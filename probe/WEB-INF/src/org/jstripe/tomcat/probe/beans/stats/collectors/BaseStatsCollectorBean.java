@@ -94,6 +94,7 @@ public class BaseStatsCollectorBean {
      * @param name
      * @param value time in milliseconds
      * @param time
+     * @throws InterruptedException
      */
     protected void buildTimePercentageStats(String name, long value, long time) throws InterruptedException {
         Entry entry = (Entry) previousData.get(name);

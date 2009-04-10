@@ -2,14 +2,14 @@
 <module version="4" relativePaths="true" type="J2EE_WEB_MODULE" j2ee-integration="Tomcat Server">
   <component name="AppServerSpecificValidatorsManager" />
   <component name="ModuleRootManager" />
-  <component name="NewModuleRootManager">
+  <component name="NewModuleRootManager" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/WEB-INF/classes" />
     <exclude-output />
     <exploded url="file://$MODULE_DIR$" />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/WEB-INF/src" isTestSource="false" />
     </content>
-    <orderEntry type="jdk" jdkName="jdk1.4" />
+    <orderEntry type="jdk" jdkName="jdk1.4" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">
       <library>
@@ -171,7 +171,7 @@
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="file://D:/java/apache-tomcat-5.5.15-src/jasper/jasper2/src/share" />
+          <root url="file://$MODULE_DIR$/../../../java/apache-tomcat-5.5.15-src/jasper/jasper2/src/share" />
         </SOURCES>
       </library>
     </orderEntry>
@@ -352,7 +352,8 @@
     <setting name="JAR_URL" value="file://" />
     <setting name="JAR_ENABLED" value="false" />
     <setting name="SYNC_EXPLODED_DIR" value="false" />
-    <setting name="BUILD_ON_FRAME_DEACTIVATION" value="false" />
+    <setting name="BUILD_MODULE_ON_FRAME_DEACTIVATION" value="false" />
+    <setting name="BUILD_EXTERNAL_DEPENDENCIES" value="false" />
     <setting name="RUN_JASPER_VALIDATION" value="false" />
   </component>
   <component name="WebModuleProperties">
@@ -363,14 +364,13 @@
       <option name="NAME" value="" />
       <option name="DESCRIPTION" value="" />
     </deploymentDescriptor>
+    <deploymentDescriptor name="jboss-web.xml" url="file://$MODULE_DIR$/WEB-INF/jboss-web.xml" optional="false" version="3.2" />
     <webroots>
       <root url="file://$MODULE_DIR$" relative="/" />
       <root url="file://$MODULE_DIR$/WEB-INF" relative="/WEB-INF" />
     </webroots>
   </component>
-  <component name="WeblogicWebModuleProperties">
-    <option name="IS_RUN_APPC" value="false" />
-  </component>
+  <component name="WeblogicWebModuleProperties" />
   <component name="com.fuhrer.idea.plugin.jboss.JBossWebModule" />
   <component name="copyright">
     <Base>

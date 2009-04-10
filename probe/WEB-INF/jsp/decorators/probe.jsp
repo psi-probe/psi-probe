@@ -13,6 +13,7 @@
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator" prefix="decorator" %>
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/page" prefix="page" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="/WEB-INF/tags/jstripe.tld" prefix="js" %>
 
 <%--
     Main site decorator. Face of the Probe.
@@ -102,7 +103,13 @@
                 code="probe.jsp.menu.quickcheck"/></a></li>
     </ul>
     <spring:message code="probe.jsp.copyright"/>
-    <div style="margin: 20px 0 0 0;">
+    <div id="locales">
+        <a href="?<js:addQueryParam param="lang" value="en"/>"><img src="<c:url value="/flags/gb.gif"/>" alt="EN"></a>
+        <a href="?<js:addQueryParam param="lang" value="ru"/>"><img src="<c:url value="/flags/ru.gif"/>" alt="RU"></a>
+        <a href="?<js:addQueryParam param="lang" value="ja"/>"><img src="<c:url value="/flags/jp.gif"/>" alt="JP"></a>
+        <a href="?<js:addQueryParam param="lang" value="de"/>"><img src="<c:url value="/flags/de.gif"/>" alt="DE"></a>
+        <a href="?<js:addQueryParam param="lang" value="fr"/>"><img src="<c:url value="/flags/fr.gif"/>" alt="FR"></a>
+        <a href="?<js:addQueryParam param="lang" value="pt_br"/>"><img src="<c:url value="/flags/br.gif"/>" alt="BR"></a>
     </div>
 </div>
 

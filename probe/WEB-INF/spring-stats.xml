@@ -70,12 +70,13 @@
     <bean name="appStatsCollector" class="org.jstripe.tomcat.probe.beans.stats.collectors.AppStatsCollector">
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="statsCollection" ref="statsCollection"/>
+        <property name="maxSeries" value="60"/>
     </bean>
 
     <!--
         The name of SeriesProvider beans is passed on the URL, so it should be short enough
     -->
-    <bean name="rcn" class="org.jstripe.tomcat.probe.beans.stats.providers.RandomConnectorSeriesProvider"/>
+    <bean name="rcn" class="org.jstripe.tomcat.probe.beans.stats.providers.ConnectorSeriesProvider"/>
 
     <bean name="cl_traffic" class="org.jstripe.tomcat.probe.beans.stats.providers.StandardSeriesProvider">
         <property name="statNames">
