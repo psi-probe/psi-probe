@@ -87,6 +87,22 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
         return statValue;
     }
 
+    /**
+     * Returns stat series that match a regular expression
+     * @param pattern - a regular expression to match stat names
+     * @return a Map that contains all stat series that match the regular expression
+     */
+    public Map getMatchingStats(String pattern) {
+        Map map = new HashMap();
+        for (Iterator i = statsData.entrySet().iterator(); i.hasNext();) {
+            Map.Entry en = (Map.Entry) i.next();
+            if (((String)en.getKey()).matches(pattern)) {
+                map.put(en.getKey(), en.getValue());
+            }
+        }
+        return map;
+    }
+    
     private File makeFile() {
         return storagePath == null ? new File(contextTempDir, swapFileName) : new File(storagePath, swapFileName);
     }

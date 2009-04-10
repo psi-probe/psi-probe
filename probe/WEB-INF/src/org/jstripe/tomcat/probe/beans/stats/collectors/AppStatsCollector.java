@@ -48,25 +48,28 @@ public class AppStatsCollector extends BaseStatsCollectorBean {
             // check if the containerWtapper has been initialized
             if (tomcatContainer != null ) {
                 long totalReqDelta = 0;
-                long totalProcTimeDelta = 0;
+                long totalAvgProcTime = 0;
+                int appCount = 0;
                 List ctxs = tomcatContainer.findContexts();
                 for (Iterator i = ctxs.iterator(); i.hasNext();) {
                     Context ctx = (Context) i.next();
                     if (ctx != null && ctx.getName() != null) {
                         Application app = new Application();
                         ApplicationUtils.collectApplicationServletStats(ctx, app);
-                        final String statName = "app." + ctx.getName() + ".";
+                        final String statName = "app." + (ctx.getName().equals("") ? "/" : ctx.getName()) + ".";
                         long reqDelta = buildDeltaStats(statName + "requests", app.getRequestCount());
                         long procTimeDelta = buildDeltaStats(statName + "proc_time", app.getProcessingTime());
                         buildDeltaStats(statName + "errors", app.getErrorCount());
-                        buildAbsoluteStats(statName + "avg_proc_time", reqDelta == 0 ? 0 : procTimeDelta / reqDelta);
+                        long avgProcTime = reqDelta == 0 ? 0 : procTimeDelta / reqDelta;
+                        buildAbsoluteStats(statName + "avg_proc_time", avgProcTime);
                         totalReqDelta += reqDelta;
-                        totalProcTimeDelta += procTimeDelta;
+                        totalAvgProcTime += avgProcTime;
+                        appCount++;
                     }
                 }
-                // building average response time statistics for all applications
-                buildAbsoluteStats("total.avg_proc_time",
-                        totalReqDelta == 0 ? 0 : totalProcTimeDelta / totalReqDelta);
+                // building cumulative statistics for all applications
+                buildAbsoluteStats("total.requests", totalReqDelta);
+                buildAbsoluteStats("total.avg_proc_time", appCount == 0 ? 0 : totalAvgProcTime / appCount);
             }
         }
         logger.info("app stats collected in " + (System.currentTimeMillis() - t) + "ms.");
