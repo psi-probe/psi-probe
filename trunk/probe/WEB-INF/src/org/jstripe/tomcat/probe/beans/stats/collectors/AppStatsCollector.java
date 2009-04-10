@@ -27,7 +27,7 @@ import java.util.List;
  * Author: Andy Shapoval
  */
 public class AppStatsCollector extends BaseStatsCollectorBean {
-    private Log logger = LogFactory.getLog(BaseStatsCollectorBean.class);
+    private Log logger = LogFactory.getLog(AppStatsCollector.class);
     private ContainerWrapperBean containerWrapper;
 
     public ContainerWrapperBean getContainerWrapper() {
