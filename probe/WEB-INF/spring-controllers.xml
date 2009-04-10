@@ -253,19 +253,16 @@
         <property name="viewName" value="/app/jsp.htm"/>
     </bean>
 
-    <bean name="/appsummary.htm" class="org.jstripe.tomcat.probe.controllers.AppSummaryController">
+    <bean name="/appsummary.htm" class="org.jstripe.tomcat.probe.controllers.GetApplicationController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="viewName" value="appsummary"/>
+        <property name="extendedInfo" value="false"/>
     </bean>
 
-    <bean name="/appreqdetails.ajax" class="org.jstripe.tomcat.probe.controllers.GetAppStatsController">
+    <bean name="/appruntimeinfo.ajax" class="org.jstripe.tomcat.probe.controllers.GetApplicationController">
         <property name="containerWrapper" ref="containerWrapper"/>
-        <property name="viewName" value="ajax/appRequestDetails"/>
-    </bean>
-
-    <bean name="/appavgproctimedetails.ajax" class="org.jstripe.tomcat.probe.controllers.GetAppStatsController">
-        <property name="containerWrapper" ref="containerWrapper"/>
-        <property name="viewName" value="ajax/appAvgProcTimeDetails"/>
+        <property name="viewName" value="ajax/appRuntimeInfo"/>
+        <property name="extendedInfo" value="true"/>
     </bean>
 
     <bean name="/app/viewwebxml.htm" class="org.jstripe.tomcat.probe.controllers.ViewXMLConfController">
