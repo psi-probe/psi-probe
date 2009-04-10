@@ -110,7 +110,7 @@ function testConnction() {
     var params = Form.serialize(formId);
     new Ajax.Updater(sqlOutputDivId, connectUrl, {method: 'post', postBody: params, onComplete: function(req, obj) {
         if (ajaxActivityTimer) clearTimeout(ajaxActivityTimer);
-        setTimeout('Element.hide("' + ajaxActivityId + '")', 250);
+        ajaxActivityTimer = setTimeout('Element.hide("' + ajaxActivityId + '")', 250);
         $('sqlResultsWrapper').show();
     }});
 }
@@ -160,7 +160,7 @@ function setupPaginationLinks(req, obj) {
     });
 
     if (ajaxActivityTimer) clearTimeout(ajaxActivityTimer);
-    setTimeout('Element.hide("' + ajaxActivityId + '")', 250);
+    ajaxActivityTimer = setTimeout('Element.hide("' + ajaxActivityId + '")', 250);
 }
 
 /*
