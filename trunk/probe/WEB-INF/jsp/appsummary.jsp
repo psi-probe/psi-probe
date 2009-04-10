@@ -16,7 +16,7 @@
 <%@ taglib uri="http://www.jstripe.com/tags" prefix="js" %>
 
 <%--
-    Displays a summary of web application information
+    Displays a web application information summary and application statistics charts
 
     Author: Andy Shapoval, Vlad Ilyushchenko
 --%>
@@ -42,6 +42,11 @@
         </div>
     </c:when>
     <c:otherwise>
+        <script type="text/javascript" language="javascript" src="<c:url value="/js/prototype.js"/>"></script>
+        <script type="text/javascript" language="javascript" src="<c:url value="/js/scriptaculous.js"/>"></script>
+        <script type="text/javascript" language="javascript" src="<c:url value="/js/func.js"/>"></script>
+        <script type="text/javascript" language="javascript" src="<c:url value="/js/behaviour.js"/>"></script>
+
         <ul class="options">
             <li id="appSurfTo"><a href="${app.name}${app.name ne '/' ? '/' : ''}" target="_blank"><spring:message code="probe.jsp.app.summary.menu.goTo"/></a></li>
             <c:choose>
@@ -213,6 +218,184 @@
                     </c:otherwise>
                 </c:choose>
             </div>
+        </div>
+
+        <div id="charts" class="embeddedBlockContainer">
+            <h3><spring:message code="probe.jsp.app.summary.h3.charts"/></h3>
+
+            <spring:message code="probe.jsp.app.summary.charts.requests.title" var="req_title"/>
+
+            <c:url value="/chart.png" var="req_url">
+                <c:param name="p" value="app_req"/>
+                <c:param name="sp" value="${param.webapp}"/>
+                <c:param name="xz" value="350"/>
+                <c:param name="yz" value="250"/>
+                <c:param name="l" value="false"/>
+            </c:url>
+
+            <spring:message code="probe.jsp.app.summary.charts.requests.legend" var="req_legend"/>
+            <spring:message code="probe.jsp.app.summary.charts.errors.legend" var="err_legend"/>
+
+            <c:url value="/chart.png" var="req_url_full">
+                <c:param name="p" value="app_req"/>
+                <c:param name="sp" value="${param.webapp}"/>
+                <c:param name="xz" value="700"/>
+                <c:param name="yz" value="320"/>
+                <c:param name="s1l" value="${req_legend}"/>
+                <c:param name="s2l" value="${err_legend}"/>
+            </c:url>
+
+            <c:url value="/appreqdetails.ajax" var="req_details_url">
+                <c:param name="webapp" value="${param.webapp}"/>
+            </c:url>
+
+            <spring:message code="probe.jsp.app.summary.charts.avgProcTime.title" var="avg_proc_time_title"/>
+
+            <c:url value="/chart.png" var="avg_proc_time_url">
+                <c:param name="p" value="app_avg_proc_time"/>
+                <c:param name="sp" value="${param.webapp}"/>
+                <c:param name="xz" value="350"/>
+                <c:param name="yz" value="250"/>
+                <c:param name="s1c" value="#95FE8B"/>
+                <c:param name="s1o" value="#009406"/>
+                <c:param name="l" value="false"/>
+            </c:url>
+
+            <spring:message code="probe.jsp.app.summary.charts.avgProcTime.legend" var="avg_proc_time_legend"/>
+
+            <c:url value="/chart.png" var="avg_proc_time_url_full">
+                <c:param name="p" value="app_avg_proc_time"/>
+                <c:param name="sp" value="${param.webapp}"/>
+                <c:param name="xz" value="700"/>
+                <c:param name="yz" value="320"/>
+                <c:param name="s1c" value="#95FE8B"/>
+                <c:param name="s1o" value="#009406"/>
+                <c:param name="s1l" value="${avg_proc_time_legend}"/>
+            </c:url>
+
+            <c:url value="/appavgproctimedetails.ajax" var="avg_proc_time_details_url">
+                <c:param name="webapp" value="${param.webapp}"/>
+            </c:url>
+
+            <div id="chart_group">
+                <div class="chartContainer">
+                    <dl>
+                        <dt>${req_title}</dt>
+                        <dd class="image">
+                            <img id="req_chart" border="0" src="${req_url}" alt="+"/>
+                        </dd>
+                        <dd id="req_details">
+                            <div class="ajax_activity"/>
+                        </dd>
+                    </dl>
+                </div>
+
+                <div class="chartContainer">
+                    <dl>
+                        <dt>${avg_proc_time_title}</dt>
+                        <dd class="image">
+                            <img id="avg_proc_time_chart" border="0" src="${avg_proc_time_url}" alt="+"/>
+                        </dd>
+                        <dd id="avg_proc_time_details">
+                            <div class="ajax_activity"/>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+
+            <div id="full_chart" class="chartContainer" style="display: none;">
+                <dl>
+                    <dt id="full_title"></dt>
+                    <dd class="image">
+                        <img id="fullImg" border="0" src="${avg_proc_time_url}" alt="-"/>
+                    </dd>
+                    <dd id="full_details">
+                        <div class="ajax_activity"/>
+                    </dd>
+                </dl>
+            </div>
+
+            <script type="text/javascript">
+                var imageUpdaters = new Array();
+                var detailUpdaters = new Array();
+                var fullImageUpdater;
+                var fullDetailsUpdater;
+
+                function zoomIn(imgUrl, detailsUrl, title) {
+                    if (fullImageUpdater) {
+                        fullImageUpdater.stop();
+                    }
+                    if (fullDetailsUpdater) {
+                        fullDetailsUpdater.stop();
+                    }
+                    for (var i = 0; i < imageUpdaters.length; i++) {
+                        if (imageUpdaters[i]) {
+                            imageUpdaters[i].stop();
+                        }
+                    }
+                    for (var i = 0; i < detailUpdaters.length; i++) {
+                        if (detailUpdaters[i]) {
+                            detailUpdaters[i].stop();
+                        }
+                    }
+                    $('full_title').innerHTML = title;
+                    $('full_details').innerHTML = '<div class="ajax_activity"/>';
+                    var img = document.getElementById('fullImg');
+                    Effect.DropOut('chart_group');
+                    Effect.Appear('full_chart');
+                    fullImageUpdater = new Ajax.ImgUpdater("fullImg", 30, imgUrl);
+                    fullDetailsUpdater = new Ajax.PeriodicalUpdater("full_details", detailsUrl, {frequency: 5});
+                }
+
+                function zoomOut() {
+                    Effect.DropOut('full_chart');
+                    Effect.Appear('chart_group');
+                    if (fullImageUpdater) {
+                        fullImageUpdater.stop();
+                        fullImageUpdater = null;
+                    }
+                    if (fullDetailsUpdater) {
+                        fullDetailsUpdater.stop();
+                        fullDetailsUpdater = null;
+                    }
+                    for (var i = 0; i < imageUpdaters.length; i++) {
+                        if (imageUpdaters[i]) {
+                            imageUpdaters[i].start();
+                        }
+                    }
+                    for (var i = 0; i < detailUpdaters.length; i++) {
+                        if (detailUpdaters[i]) {
+                            detailUpdaters[i].start();
+                        }
+                    }
+                }
+
+                var rules = {
+                    '#req_chart': function(element) {
+                        element.onclick = function() {
+                            zoomIn('${req_url_full}', '${req_details_url}', '${req_title}');
+                        }
+                    },
+                    '#avg_proc_time_chart': function(element) {
+                        element.onclick = function() {
+                            zoomIn('${avg_proc_time_url_full}', '${avg_proc_time_details_url}', '${avg_proc_time_title}');
+                        }
+                    },
+                    '#full_chart': function(element) {
+                        element.onclick = function() {
+                            zoomOut();
+                        }
+                    }
+                }
+
+                Behaviour.register(rules);
+
+                imageUpdaters[0] = new Ajax.ImgUpdater("req_chart", 30);
+                detailUpdaters[0] = new Ajax.PeriodicalUpdater("req_details", "${req_details_url}", {frequency: 5});
+
+                imageUpdaters[1] = new Ajax.ImgUpdater("avg_proc_time_chart", 30);
+                detailUpdaters[1] = new Ajax.PeriodicalUpdater("avg_proc_time_details", "${avg_proc_time_details_url}", {frequency: 5});
+            </script>
         </div>
     </c:otherwise>
     </c:choose>

@@ -18,6 +18,8 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Retrieves a list of web application servlet mappings
@@ -27,7 +29,24 @@ import java.util.List;
 public class ListAppServletMapsController extends ContextHandlerController {
     protected ModelAndView handleContext(String contextName, Context context,
                                          HttpServletRequest request, HttpServletResponse response) throws Exception {
-        List servletMaps = ApplicationUtils.getApplicationServletMaps(context);
+        List ctxs;
+        if (context == null) {
+            ctxs = getContainerWrapper().getTomcatContainer().findContexts();
+        } else {
+            ctxs = new ArrayList();
+            ctxs.add(context);
+        }
+
+        List servletMaps = new ArrayList();
+        for (Iterator i = ctxs.iterator(); i.hasNext();) {
+            Context ctx = (Context) i.next();
+            servletMaps.addAll(ApplicationUtils.getApplicationServletMaps(ctx));
+        }
+
         return new ModelAndView(getViewName(), "servletMaps", servletMaps);
+    }
+
+    protected boolean isContextOptional() {
+        return true;
     }
 }

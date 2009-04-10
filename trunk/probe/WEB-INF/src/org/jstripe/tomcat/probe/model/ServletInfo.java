@@ -20,6 +20,7 @@ import java.util.List;
  * Author: Andy Shapoval
  */
 public class ServletInfo {
+    private String applicationName;
     private String servletName;
     private String servletClass;
     private String jspFile;
@@ -36,6 +37,14 @@ public class ServletInfo {
     private int allocationCount;
     private int maxInstances;
     private List mappings = new ArrayList();
+
+    public String getApplicationName() {
+        return applicationName;
+    }
+
+    public void setApplicationName(String applicationName) {
+        this.applicationName = applicationName;
+    }
 
     public String getServletName() {
         return servletName;

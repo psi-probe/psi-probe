@@ -37,6 +37,7 @@ public class Application implements Serializable {
     private int errorCount;
     private long minTime;
     private long maxTime;
+    private long avgTime;
 
     public String getName() {
         return name;
@@ -192,5 +193,13 @@ public class Application implements Serializable {
 
     public void setMaxTime(long maxTime) {
         this.maxTime = maxTime;
+    }
+
+    public long getAvgTime() {
+        return avgTime;
+    }
+
+    public void setAvgTime(long avgTime) {
+        this.avgTime = avgTime;
     }
 }

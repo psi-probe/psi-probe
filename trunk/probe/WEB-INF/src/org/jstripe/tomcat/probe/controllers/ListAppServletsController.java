@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Retrieves a list of web application servlets
@@ -29,11 +30,31 @@ import java.util.List;
 public class ListAppServletsController extends ContextHandlerController {
     protected ModelAndView handleContext(String contextName, Context context,
                                          HttpServletRequest request, HttpServletResponse response) throws Exception {
-        List appServlets = ApplicationUtils.getApplicationServlets(context);
-        for (Iterator i = appServlets.iterator(); i.hasNext();) {
-            ServletInfo svlt = (ServletInfo) i.next();
-            Collections.sort(svlt.getMappings());
+        List ctxs;
+        if (context == null) {
+            ctxs = getContainerWrapper().getTomcatContainer().findContexts();
+        } else {
+            ctxs = new ArrayList();
+            ctxs.add(context);
         }
-        return new ModelAndView(getViewName(), "appServlets", appServlets);
+
+        List servlets = new ArrayList();
+        for (Iterator i = ctxs.iterator(); i.hasNext();) {
+            Context ctx = (Context) i.next();
+            if (ctx != null) {
+                List appServlets = ApplicationUtils.getApplicationServlets(ctx);
+                for (Iterator j = appServlets.iterator(); j.hasNext();) {
+                    ServletInfo svlt = (ServletInfo) j.next();
+                    Collections.sort(svlt.getMappings());
+                }
+                servlets.addAll(appServlets);
+            }
+        }
+
+        return new ModelAndView(getViewName(), "appServlets", servlets);
+    }
+
+    protected boolean isContextOptional() {
+        return true;
     }
 }

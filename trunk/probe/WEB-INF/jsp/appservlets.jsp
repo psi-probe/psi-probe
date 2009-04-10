@@ -24,7 +24,14 @@
 
 <head>
     <title>
-        <spring:message code="probe.jsp.title.app.servlets" arguments="${param.webapp}"/>
+        <c:choose>
+            <c:when test="${empty param.webapp}">
+                <spring:message code="probe.jsp.title.all.servlets"/>
+            </c:when>
+            <c:otherwise>
+                <spring:message code="probe.jsp.title.app.servlets" arguments="${param.webapp}"/>
+            </c:otherwise>
+        </c:choose>
     </title>
 </head>
 
@@ -32,8 +39,10 @@
     Make Tab #1 visually "active".
 --%>
 <c:set var="navTabApps" value="active" scope="request"/>
-<c:set var="use_decorator" value="application" scope="request"/>
-<c:set var="appTabServlets" value="active" scope="request"/>
+<c:if test="${! empty param.webapp}">
+    <c:set var="use_decorator" value="application" scope="request"/>
+    <c:set var="appTabServlets" value="active" scope="request"/>
+</c:if>
 
 <body>
 
@@ -41,9 +50,16 @@
 
 <ul class="options">
     <li id="viewAppServletMaps">
-        <a href="<c:url value="/appservletmaps.htm">
-                    <c:param name="webapp" value="${param.webapp}"/>
-                </c:url>"><spring:message code="probe.jsp.app.servlets.opt.maps"/></a>
+        <c:choose>
+            <c:when test="${empty param.webapp}">
+                <a href="<c:url value="/appservletmaps.htm"/>"><spring:message code="probe.jsp.app.servlets.opt.maps"/></a>
+            </c:when>
+            <c:otherwise>
+                <a href="<c:url value="/appservletmaps.htm">
+                            <c:param name="webapp" value="${param.webapp}"/>
+                        </c:url>"><spring:message code="probe.jsp.app.servlets.opt.maps"/></a>
+            </c:otherwise>
+        </c:choose>
     </li>
 </ul>
 
@@ -55,9 +71,15 @@
 
             <display:table htmlId="servletTbl" name="appServlets" id="svlt"
                            class="genericTbl" cellspacing="0" cellpadding="0"
-                           requestURI="" defaultsort="5" defaultorder="descending">
+                           requestURI="" defaultsort="${empty param.webapp ? 6 : 5}" defaultorder="descending">
+                <c:if test="${empty param.webapp}">
+                    <display:column sortProperty="applicationName" sortable="true"
+                                    titleKey="probe.jsp.app.servlets.col.applicationName" class="leftmost">
+                        <a href="<c:url value="/appsummary.htm"><c:param name="webapp" value="${svlt.applicationName}"/></c:url>">${svlt.applicationName}</a>
+                    </display:column>
+                </c:if>
                 <display:column sortProperty="servletName" sortable="true"
-                                titleKey="probe.jsp.app.servlets.col.servletName" class="leftmost">
+                                titleKey="probe.jsp.app.servlets.col.servletName" class="${! empty param.webapp ? 'leftmost' : ''}">
                     <div class="servletName"><js:out value="${svlt.servletName}" maxLength="40"/>
                         <c:if test="${! empty svlt.mappings}">
                             <span>
@@ -126,7 +148,14 @@
         <c:otherwise>
             <div class="infoMessage">
                 <p>
-                    <spring:message code="probe.jsp.app.servlets.empty"/>
+                    <c:choose>
+                        <c:when test="${empty param.webapp}">
+                            <spring:message code="probe.jsp.all.servlets.empty"/>
+                        </c:when>
+                        <c:otherwise>
+                            <spring:message code="probe.jsp.app.servlets.empty"/>
+                        </c:otherwise>
+                    </c:choose>
                 </p>
             </div>
         </c:otherwise>
