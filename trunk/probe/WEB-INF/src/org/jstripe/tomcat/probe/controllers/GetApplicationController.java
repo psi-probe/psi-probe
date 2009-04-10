@@ -57,9 +57,9 @@ public class GetApplicationController extends ContextHandlerController {
         Application app = ApplicationUtils.getApplication(
                 context, isExtendedInfo() ? getContainerWrapper().getResourceResolver() : null, calcSize);
 
-        String avgStatisticName = "app." + app.getName() + ".avg_proc_time";
-        if (isExtendedInfo()) {
-            app.setAvgTime(statsCollection.getLastValueForStat(avgStatisticName));
+        if (isExtendedInfo() && getStatsCollection() != null) {
+            String avgStatisticName = "app." + app.getName() + ".avg_proc_time";
+            app.setAvgTime(getStatsCollection().getLastValueForStat(avgStatisticName));
         }
 
         return new ModelAndView(getViewName(), "app", app).

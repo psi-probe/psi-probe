@@ -32,14 +32,12 @@ import java.awt.*;
 
 /**
  * Plots data from "statsCollection" bean. The data is converted to XYSeries using SeriesProvider, name of which
- * would be passed as a request parameter. The servlet can only plot up to two series. It is customizable using these
+ * would be passed as a request parameter. The servlet can only plot up to 9 series. It is customizable using these
  * request parameters:
  * <p/>
  * <ul>
- * <li>s1c - Series #1 main color</li>
- * <li>s1o - Series #1 outline color</li>
- * <li>s2c - Series #2 main color</li>
- * <li>s2o - Series #2 outline color</li>
+ * <li>s1c, s2c, ... s9c - Series #i main color</li>
+ * <li>s1o, s2o, ... s9o - Series #i outline color</li>
  * <li>bc  - Chart background color</li>
  * <li>gc  - Chart grid lines color</li>
  * <li>xl  - X axis label</li>
@@ -64,22 +62,28 @@ public class RenderChartController extends AbstractController {
     }
 
     protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        final int SERIES_NUM = 9; // the max number of series
+
         //
-        // get Series1 Color from the request
+        // get Series Color from the request
         //
-        int series1Color = Utils.toIntHex(request.getParameter("s1c"), 0x9bd2fb);
+        int[] seriesColor = new int[SERIES_NUM];
+        seriesColor[0] = Utils.toIntHex(request.getParameter("s1c"), 0x9bd2fb);
+        seriesColor[1] = Utils.toIntHex(request.getParameter("s2c"), 0xFF0606);
+        for (int i = 2; i < SERIES_NUM; i++) {
+            seriesColor[i] = Utils.toIntHex(request.getParameter("s"+ (i + 1) + "c"), -1);
+        }
+
         //
-        // get Series1 Outline Color from the request
+        // get Series Outline Color from the request
         //
-        int series1OutlineColor = Utils.toIntHex(request.getParameter("s1o"), 0x0665aa);
-        //
-        // get Series2 Color
-        //
-        int series2Color = Utils.toIntHex(request.getParameter("s2c"), 0xFF0606);
-        //
-        // get Series2 Outline Color
-        //
-        int series2OutlineColor = Utils.toIntHex(request.getParameter("s2o"), 0x9d0000);
+        int[] seriesOutlineColor = new int[SERIES_NUM];
+        seriesOutlineColor[0] = Utils.toIntHex(request.getParameter("s1o"), 0x0665aa);
+        seriesOutlineColor[1] = Utils.toIntHex(request.getParameter("s2o"), 0x9d0000);
+        for (int i = 2; i < SERIES_NUM; i++) {
+            seriesOutlineColor[i] = Utils.toIntHex(request.getParameter("s"+ (i + 1) + "o"), -1);
+        }
+
         //
         // background color
         //
@@ -141,16 +145,25 @@ public class RenderChartController extends AbstractController {
         } else if ("stacked".equals(chartType)) {
             chart = ChartFactory.createStackedXYAreaChart("", xLabel, yLabel, ds, PlotOrientation.VERTICAL, showLegend,
                     false, false);
+        } else if ("line".equals(chartType)) {
+            chart = ChartFactory.createXYLineChart("", xLabel, yLabel, ds, PlotOrientation.VERTICAL, showLegend,
+                    false, false);
         }
 
         if (chart != null) {
             chart.setAntiAlias(true);
             chart.setBackgroundPaint(new Color(backgroundColor));
-            ((XYAreaRenderer) chart.getXYPlot().getRenderer()).setOutline(true);
-            chart.getXYPlot().getRenderer().setSeriesPaint(0, new Color(series1Color));
-            chart.getXYPlot().getRenderer().setSeriesOutlinePaint(0, new Color(series1OutlineColor));
-            chart.getXYPlot().getRenderer().setSeriesPaint(1, new Color(series2Color));
-            chart.getXYPlot().getRenderer().setSeriesOutlinePaint(1, new Color(series2OutlineColor));
+            if ("area".equals(chartType)) {
+                ((XYAreaRenderer) chart.getXYPlot().getRenderer()).setOutline(true);
+            }
+            for (int i = 0; i < SERIES_NUM; i++) {
+                if (seriesColor[i] >= 0) {
+                    chart.getXYPlot().getRenderer().setSeriesPaint(i, new Color(seriesColor[i]));
+                }
+                if (seriesOutlineColor[i] >= 0) {
+                    chart.getXYPlot().getRenderer().setSeriesOutlinePaint(i, new Color(seriesOutlineColor[i]));
+                }
+            }
             chart.getXYPlot().setDomainGridlinePaint(new Color(gridColor));
             chart.getXYPlot().setRangeGridlinePaint(new Color(gridColor));
             chart.getXYPlot().setDomainAxis(0, new DateAxis());

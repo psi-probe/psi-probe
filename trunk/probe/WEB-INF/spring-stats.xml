@@ -171,6 +171,30 @@
         </property>
     </bean>
 
+    <bean name="all_app_avg_proc_time" class="org.jstripe.tomcat.probe.beans.stats.providers.MatchingSeriesProvider">
+        <property name="containerWrapper" ref="containerWrapper"/>
+        <property name="statNamePattern" value="^app\..*\.avg_proc_time$"/>
+        <property name="removePattern" value="^app\.|\.avg_proc_time$"/>
+        <property name="top" value="4"/>
+        <property name="moovingAvgFrame" value="10"/>
+    </bean>
+
+    <bean name="total_req" class="org.jstripe.tomcat.probe.beans.stats.providers.StandardSeriesProvider">
+        <property name="statNames">
+            <list>
+                <value>total.requests</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean name="all_app_req" class="org.jstripe.tomcat.probe.beans.stats.providers.MatchingSeriesProvider">
+        <property name="containerWrapper" ref="containerWrapper"/>
+        <property name="statNamePattern" value="^app\..*\.requests$"/>
+        <property name="removePattern" value="^app\.|\.requests$"/>
+        <property name="top" value="4"/>
+        <property name="moovingAvgFrame" value="10"/>
+    </bean>
+
     <!--
         Get spring to call method collect() on the "connectorStatsCollector", making the latter a Job
     -->
