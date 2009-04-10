@@ -11,7 +11,6 @@
 
 package org.jstripe.tomcat.probe.tools.logging.jdk;
 
-import org.jstripe.tomcat.probe.tools.logging.DefaultAccessor;
 import org.jstripe.tomcat.probe.tools.logging.LogDestination;
 
 import java.io.File;

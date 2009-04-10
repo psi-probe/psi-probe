@@ -10,10 +10,10 @@
  */
 package org.jstripe.tomcat.probe.beans;
 
-import oracle.jdbc.pool.OracleDataSource;
 import oracle.jdbc.pool.OracleConnectionCacheManager;
-import org.jstripe.tomcat.probe.model.DataSourceInfo;
+import oracle.jdbc.pool.OracleDataSource;
 import org.jstripe.tomcat.probe.Utils;
+import org.jstripe.tomcat.probe.model.DataSourceInfo;
 
 import java.util.Properties;
 

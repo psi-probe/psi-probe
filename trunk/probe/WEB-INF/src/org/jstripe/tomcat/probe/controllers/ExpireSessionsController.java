@@ -13,9 +13,9 @@ package org.jstripe.tomcat.probe.controllers;
 import org.apache.catalina.Context;
 import org.apache.catalina.Manager;
 import org.apache.catalina.Session;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.InternalResourceView;
-import org.springframework.web.bind.RequestUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -42,7 +42,7 @@ public class ExpireSessionsController extends ContextHandlerController {
                 }
             }
         } else {
-            String sessionID= RequestUtils.getStringParameter(request, "sid");
+            String sessionID= ServletRequestUtils.getStringParameter(request, "sid");
             Session session = context.getManager().findSession(sessionID);
             if (session != null) session.expire();
         }

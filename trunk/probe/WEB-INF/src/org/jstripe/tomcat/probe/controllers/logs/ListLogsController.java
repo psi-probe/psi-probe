@@ -12,26 +12,26 @@
 package org.jstripe.tomcat.probe.controllers.logs;
 
 import org.apache.catalina.Context;
+import org.jstripe.tomcat.probe.controllers.TomcatContainerController;
 import org.jstripe.tomcat.probe.model.Application;
 import org.jstripe.tomcat.probe.model.DisconnectedLogDestination;
+import org.jstripe.tomcat.probe.tools.ApplicationUtils;
+import org.jstripe.tomcat.probe.tools.Instruments;
+import org.jstripe.tomcat.probe.tools.logging.FileLogAccessor;
+import org.jstripe.tomcat.probe.tools.logging.LogDestination;
+import org.jstripe.tomcat.probe.tools.logging.catalina.CatalinaLoggerAccessor;
+import org.jstripe.tomcat.probe.tools.logging.commons.CommonsLoggerAccessor;
 import org.jstripe.tomcat.probe.tools.logging.jdk.Jdk14LoggerAccessor;
 import org.jstripe.tomcat.probe.tools.logging.jdk.Jdk14ManagerAccessor;
 import org.jstripe.tomcat.probe.tools.logging.log4j.Log4JLoggerAccessor;
 import org.jstripe.tomcat.probe.tools.logging.log4j.Log4JManagerAccessor;
-import org.jstripe.tomcat.probe.tools.logging.commons.CommonsLoggerAccessor;
-import org.jstripe.tomcat.probe.tools.logging.catalina.CatalinaLoggerAccessor;
-import org.jstripe.tomcat.probe.tools.logging.LogDestination;
-import org.jstripe.tomcat.probe.tools.logging.FileLogAccessor;
-import org.jstripe.tomcat.probe.tools.Instruments;
-import org.jstripe.tomcat.probe.tools.ApplicationUtils;
-import org.jstripe.tomcat.probe.controllers.TomcatContainerController;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.bind.RequestUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.*;
 import java.io.File;
+import java.util.*;
 
 public class ListLogsController extends TomcatContainerController {
 
@@ -134,7 +134,7 @@ public class ListLogsController extends TomcatContainerController {
                 }
             };
 
-            boolean  showAll = RequestUtils.getBooleanParameter(request, "apps", false);
+            boolean  showAll = ServletRequestUtils.getBooleanParameter(request, "apps", false);
 
             if (showAll) {
                 cmp = new Comparator() {

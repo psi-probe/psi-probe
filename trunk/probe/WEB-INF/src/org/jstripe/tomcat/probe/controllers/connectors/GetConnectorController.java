@@ -10,11 +10,11 @@
  */
 package org.jstripe.tomcat.probe.controllers.connectors;
 
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.bind.RequestUtils;
 import org.jstripe.tomcat.probe.beans.ContainerListenerBean;
-import org.jstripe.tomcat.probe.model.ThreadPool;
 import org.jstripe.tomcat.probe.controllers.TomcatContainerController;
+import org.jstripe.tomcat.probe.model.ThreadPool;
+import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,7 +33,7 @@ public class GetConnectorController extends TomcatContainerController {
 
     protected ModelAndView handleRequestInternal(HttpServletRequest request,
                                                  HttpServletResponse response) throws Exception {
-        String connectorName = RequestUtils.getStringParameter(request, "cn", null);
+        String connectorName = ServletRequestUtils.getStringParameter(request, "cn", null);
         ThreadPool connector = null;
 
         if (connectorName != null) {

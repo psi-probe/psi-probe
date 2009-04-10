@@ -11,9 +11,9 @@
 
 package org.jstripe.tomcat.probe.model.jsp;
 
-import java.util.Date;
-import java.sql.Timestamp;
 import java.io.Serializable;
+import java.sql.Timestamp;
+import java.util.Date;
 
 public class Item implements Serializable {
     /**

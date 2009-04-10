@@ -11,9 +11,9 @@
 package org.jstripe.tomcat.probe.controllers.jsp;
 
 import org.apache.catalina.Context;
+import org.jstripe.tomcat.probe.controllers.ContextHandlerController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
-import org.jstripe.tomcat.probe.controllers.ContextHandlerController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

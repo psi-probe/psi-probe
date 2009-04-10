@@ -12,12 +12,11 @@ package org.jstripe.tomcat.probe;
 
 import org.apache.catalina.Context;
 import org.apache.catalina.Wrapper;
-import org.apache.catalina.Valve;
 import org.jstripe.tomcat.probe.model.jsp.Summary;
 
+import java.io.File;
 import java.net.URL;
 import java.util.List;
-import java.io.File;
 
 /**
  * Part of Tomcat container version abstraction layer.

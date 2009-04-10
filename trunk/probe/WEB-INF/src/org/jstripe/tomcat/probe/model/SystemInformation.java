@@ -15,8 +15,8 @@ import org.apache.catalina.util.ServerInfo;
 import java.io.File;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * POJO representing system information for "system infromation" tab.

@@ -10,9 +10,9 @@
  */
 package org.jstripe.tomcat.probe.controllers;
 
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.bind.RequestUtils;
 import org.apache.catalina.Context;
+import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 public abstract class ContextHandlerController extends TomcatContainerController {
 
     protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String contextName = RequestUtils.getStringParameter(request, "webapp", null);
+        String contextName = ServletRequestUtils.getStringParameter(request, "webapp", null);
         Context context = null;
         if (contextName != null) {
             context = getContainerWrapper().getTomcatContainer().findContext(contextName);

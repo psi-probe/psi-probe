@@ -11,8 +11,10 @@
 package org.jstripe.tomcat.probe.controllers;
 
 import org.apache.catalina.Context;
-import org.jstripe.tomcat.probe.model.*;
 import org.jstripe.tomcat.probe.beans.ContainerListenerBean;
+import org.jstripe.tomcat.probe.model.ApplicationResource;
+import org.jstripe.tomcat.probe.model.DataSourceInfo;
+import org.jstripe.tomcat.probe.model.TomcatTestReport;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;

@@ -12,7 +12,7 @@
 package org.jstripe.tomcat.probe.controllers.threads;
 
 import org.jstripe.tomcat.probe.Utils;
-import org.springframework.web.bind.RequestUtils;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
 
@@ -41,7 +41,7 @@ public class ImplSelectorController extends AbstractController {
 
     protected ModelAndView handleRequestInternal(HttpServletRequest request,
                                                  HttpServletResponse response) throws Exception {
-        boolean forceOld = RequestUtils.getBooleanParameter(request, "forceold", false);
+        boolean forceOld = ServletRequestUtils.getBooleanParameter(request, "forceold", false);
         if (!forceOld && Utils.isThreadingEnabled()) {
             return new ModelAndView(impl2Controller);
         } else {

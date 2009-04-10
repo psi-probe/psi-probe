@@ -13,14 +13,14 @@ package org.jstripe.tomcat.probe;
 
 import org.apache.catalina.Context;
 import org.apache.catalina.core.StandardContext;
-import org.apache.jasper.EmbeddedServletOptions;
-import org.apache.jasper.JspCompilationContext;
-import org.apache.jasper.Options;
-import org.apache.jasper.JasperException;
-import org.apache.jasper.compiler.JspRuntimeContext;
-import org.apache.naming.resources.ResourceAttributes;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.jasper.EmbeddedServletOptions;
+import org.apache.jasper.JasperException;
+import org.apache.jasper.JspCompilationContext;
+import org.apache.jasper.Options;
+import org.apache.jasper.compiler.JspRuntimeContext;
+import org.apache.naming.resources.ResourceAttributes;
 import org.jstripe.tomcat.probe.model.jsp.Item;
 import org.jstripe.tomcat.probe.model.jsp.Summary;
 

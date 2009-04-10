@@ -11,7 +11,7 @@
 package org.jstripe.tomcat.probe.controllers.deploy;
 
 import org.jstripe.tomcat.probe.controllers.TomcatContainerController;
-import org.springframework.web.bind.RequestUtils;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.InternalResourceView;
 
@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 public class DeployContextController extends TomcatContainerController {
     public ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        String contextName = RequestUtils.getStringParameter(request, "context", null);
+        String contextName = ServletRequestUtils.getStringParameter(request, "context", null);
 
         if (contextName != null) {
             try {

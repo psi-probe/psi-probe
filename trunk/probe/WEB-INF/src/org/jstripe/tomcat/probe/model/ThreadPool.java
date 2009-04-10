@@ -10,8 +10,8 @@
  */
 package org.jstripe.tomcat.probe.model;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * POJO representing pool of request processor threads or "connector" in other terms.

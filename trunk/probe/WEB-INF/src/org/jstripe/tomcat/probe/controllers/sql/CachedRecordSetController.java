@@ -10,10 +10,10 @@
  */
 package org.jstripe.tomcat.probe.controllers.sql;
 
+import org.jstripe.tomcat.probe.model.sql.DataSourceTestInfo;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
-import org.springframework.web.bind.RequestUtils;
-import org.jstripe.tomcat.probe.model.sql.DataSourceTestInfo;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,7 +29,7 @@ import java.util.List;
 
 public class CachedRecordSetController extends ParameterizableViewController {
     protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        int rowsPerPage = RequestUtils.getIntParameter(request, "rowsPerPage", 0);
+        int rowsPerPage = ServletRequestUtils.getIntParameter(request, "rowsPerPage", 0);
         List results = null;
         int rowsAffected = 0;
         HttpSession sess = request.getSession(false);

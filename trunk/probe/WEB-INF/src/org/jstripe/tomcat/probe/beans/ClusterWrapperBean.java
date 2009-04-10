@@ -11,13 +11,13 @@
 
 package org.jstripe.tomcat.probe.beans;
 
+import org.apache.commons.modeler.Registry;
 import org.jstripe.tomcat.probe.model.jmx.*;
 import org.jstripe.tomcat.probe.tools.JmxTools;
-import org.apache.commons.modeler.Registry;
 
 import javax.management.MBeanServer;
-import javax.management.ObjectName;
 import javax.management.ObjectInstance;
+import javax.management.ObjectName;
 import java.util.Set;
 
 public class ClusterWrapperBean {

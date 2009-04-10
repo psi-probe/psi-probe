@@ -11,10 +11,10 @@
 
 package org.jstripe.tomcat.probe.controllers;
 
+import org.apache.catalina.Context;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
-import org.springframework.web.bind.RequestUtils;
-import org.apache.catalina.Context;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,7 +25,7 @@ public class RemoveApplicationAttributeController extends ContextHandlerControll
     protected ModelAndView handleContext(String contextName, Context context,
                                          HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        String attrName = RequestUtils.getStringParameter(request, "attr");
+        String attrName = ServletRequestUtils.getStringParameter(request, "attr");
         context.getServletContext().removeAttribute(attrName);
 
         return new ModelAndView(new RedirectView(request.getContextPath() + getViewName() + "?" + request.getQueryString()));

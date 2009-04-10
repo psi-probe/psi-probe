@@ -12,7 +12,7 @@ package org.jstripe.tomcat.probe.controllers;
 
 import org.apache.catalina.Context;
 import org.jstripe.tomcat.probe.tools.ApplicationUtils;
-import org.springframework.web.bind.RequestUtils;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,7 +30,7 @@ public class ListWebappsController extends TomcatContainerController {
     protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         String privelegedRole = getServletContext().getInitParameter("attribute.value.role");
-        boolean calcSize = RequestUtils.getBooleanParameter(request, "size", false) && request.isUserInRole(privelegedRole);
+        boolean calcSize = ServletRequestUtils.getBooleanParameter(request, "size", false) && request.isUserInRole(privelegedRole);
 
         List apps = getContainerWrapper().getTomcatContainer().findContexts();
         List applications = new ArrayList(apps.size());

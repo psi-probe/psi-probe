@@ -12,7 +12,7 @@
 package org.jstripe.tomcat.probe.controllers.threads;
 
 import org.jstripe.tomcat.probe.Utils;
-import org.springframework.web.bind.RequestUtils;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
 
@@ -21,8 +21,8 @@ import javax.servlet.http.HttpServletResponse;
 
 public class KillThreadController extends ParameterizableViewController {
     protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String threadName = RequestUtils.getStringParameter(request, "thread", null);
-        String view = RequestUtils.getStringParameter(request, "view", getViewName());
+        String threadName = ServletRequestUtils.getStringParameter(request, "thread", null);
+        String view = ServletRequestUtils.getStringParameter(request, "view", getViewName());
 
         Thread thread = null;
         if (threadName != null) thread = Utils.getThreadByName(threadName);

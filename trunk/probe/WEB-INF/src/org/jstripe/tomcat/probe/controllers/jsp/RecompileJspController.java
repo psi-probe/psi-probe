@@ -11,9 +11,9 @@
 package org.jstripe.tomcat.probe.controllers.jsp;
 
 import org.apache.catalina.Context;
-import org.jstripe.tomcat.probe.model.jsp.Summary;
 import org.jstripe.tomcat.probe.controllers.ContextHandlerController;
-import org.springframework.web.bind.RequestUtils;
+import org.jstripe.tomcat.probe.model.jsp.Summary;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -43,7 +43,7 @@ public class RecompileJspController extends ContextHandlerController {
             getContainerWrapper().getTomcatContainer().recompileJsps(context, summary, names);
             session.setAttribute(DisplayJspController.SUMMARY_ATTRIBUTE, summary);
         } else if ( summary != null && contextName.equals(summary.getName())) {
-            String name = RequestUtils.getStringParameter(request, "source", null);
+            String name = ServletRequestUtils.getStringParameter(request, "source", null);
             if (name != null) {
                 List names = new ArrayList();
                 names.add(name);
@@ -53,6 +53,6 @@ public class RecompileJspController extends ContextHandlerController {
                 logger.error("source is not passed, nothing to do");
             }
         }
-        return new ModelAndView(new RedirectView(request.getContextPath() + RequestUtils.getStringParameter(request, "view", getViewName()) + "?" + request.getQueryString()));
+        return new ModelAndView(new RedirectView(request.getContextPath() + ServletRequestUtils.getStringParameter(request, "view", getViewName()) + "?" + request.getQueryString()));
     }
 }

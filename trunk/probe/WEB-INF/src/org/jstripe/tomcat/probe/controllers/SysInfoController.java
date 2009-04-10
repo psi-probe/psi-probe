@@ -10,8 +10,8 @@
  */
 package org.jstripe.tomcat.probe.controllers;
 
-import org.jstripe.tomcat.probe.model.SystemInformation;
 import org.jstripe.tomcat.probe.beans.RuntimeInfoAccessorBean;
+import org.jstripe.tomcat.probe.model.SystemInformation;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;

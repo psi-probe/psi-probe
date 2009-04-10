@@ -11,7 +11,7 @@
 
 package org.jstripe.tomcat.probe.controllers.connectors;
 
-import org.springframework.web.bind.RequestUtils;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
 
@@ -25,8 +25,8 @@ public class RememberVisibilityController extends AbstractController {
     private final SimpleDateFormat sdf = new SimpleDateFormat("E, d-MMM-yyyy HH:mm:ss zz");
 
     protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String cookieName = RequestUtils.getStringParameter(request, "cn");
-        String state = RequestUtils.getStringParameter(request, "state");
+        String cookieName = ServletRequestUtils.getStringParameter(request, "cn");
+        String state = ServletRequestUtils.getStringParameter(request, "state");
         if (cookieName != null && state != null) {
             //
             // expire the cookis at the current date + 10years (roughly, nevermind leap years)

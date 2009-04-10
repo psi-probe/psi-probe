@@ -12,7 +12,7 @@
 package org.jstripe.tomcat.probe.controllers;
 
 import org.jstripe.tomcat.probe.tools.Whois;
-import org.springframework.web.bind.RequestUtils;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
 
@@ -22,10 +22,10 @@ import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class WhoisController extends ParameterizableViewController {
 
@@ -62,7 +62,7 @@ public class WhoisController extends ParameterizableViewController {
         boolean timeout = false;
         String reverseName = null;
 
-        String theIP = RequestUtils.getStringParameter(request, "ip", null);
+        String theIP = ServletRequestUtils.getStringParameter(request, "ip", null);
 
         Whois.Response wh = null;
         try {

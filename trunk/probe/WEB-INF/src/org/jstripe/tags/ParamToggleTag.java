@@ -12,13 +12,12 @@ package org.jstripe.tags;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.web.bind.RequestUtils;
+import org.springframework.web.bind.ServletRequestUtils;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
-import java.util.Enumeration;
 import java.io.IOException;
+import java.util.Enumeration;
 
 public class ParamToggleTag extends TagSupport {
 
@@ -26,13 +25,13 @@ public class ParamToggleTag extends TagSupport {
     private String param = "size";
 
     public int doStartTag() throws JspException {
-        boolean getSize = RequestUtils.getBooleanParameter((HttpServletRequest) pageContext.getRequest(), param, false);
+        boolean getSize = ServletRequestUtils.getBooleanParameter(pageContext.getRequest(), param, false);
         StringBuffer query = new StringBuffer();
         query.append(param).append("=").append(!getSize);
         for (Enumeration en = pageContext.getRequest().getParameterNames(); en.hasMoreElements(); ){
             String name = (String) en.nextElement();
             if (!param.equals(name)) {
-                query.append("&").append(name).append("=").append(RequestUtils.getStringParameter((HttpServletRequest) pageContext.getRequest(), name, ""));
+                query.append("&").append(name).append("=").append(ServletRequestUtils.getStringParameter(pageContext.getRequest(), name, ""));
             }
         }
         try {

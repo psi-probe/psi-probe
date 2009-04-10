@@ -11,15 +11,15 @@
 package org.jstripe.tomcat.probe.controllers;
 
 import org.apache.catalina.Context;
-import org.jstripe.tomcat.probe.tools.ApplicationUtils;
 import org.jstripe.tomcat.probe.model.ServletInfo;
+import org.jstripe.tomcat.probe.tools.ApplicationUtils;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
-import java.util.Iterator;
 import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * Retrieves a list of web application servlets

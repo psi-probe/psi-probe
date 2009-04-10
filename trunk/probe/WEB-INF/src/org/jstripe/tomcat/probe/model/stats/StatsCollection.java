@@ -12,19 +12,18 @@
 package org.jstripe.tomcat.probe.model.stats;
 
 import com.thoughtworks.xstream.XStream;
-
-import java.util.*;
-import java.io.*;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.DisposableBean;
-import org.springframework.beans.BeansException;
-import org.springframework.context.ApplicationContextAware;
-import org.springframework.context.ApplicationContext;
-import org.springframework.web.context.WebApplicationContext;
 import org.jfree.data.xy.XYDataItem;
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+import org.springframework.web.context.WebApplicationContext;
+
+import java.io.*;
+import java.util.*;
 
 public class StatsCollection implements InitializingBean, DisposableBean, ApplicationContextAware {
 

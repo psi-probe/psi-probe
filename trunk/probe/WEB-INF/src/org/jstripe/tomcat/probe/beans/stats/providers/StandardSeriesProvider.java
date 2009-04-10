@@ -13,7 +13,7 @@ package org.jstripe.tomcat.probe.beans.stats.providers;
 
 import org.jfree.data.xy.DefaultTableXYDataset;
 import org.jstripe.tomcat.probe.model.stats.StatsCollection;
-import org.springframework.web.bind.RequestUtils;
+import org.springframework.web.bind.ServletRequestUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.MessageFormat;
@@ -33,7 +33,7 @@ public class StandardSeriesProvider extends AbstractSeriesProvider {
     }
 
     public void populate(DefaultTableXYDataset dataset, StatsCollection statsCollection, HttpServletRequest request) {
-        String seriesParam = RequestUtils.getStringParameter(request, "sp", null);
+        String seriesParam = ServletRequestUtils.getStringParameter(request, "sp", null);
         for (int i = 0; i < statNames.size(); i++) {
             String statName = (String) statNames.get(i);
             if (seriesParam != null) {
@@ -42,7 +42,7 @@ public class StandardSeriesProvider extends AbstractSeriesProvider {
             List l = statsCollection.getStats(statName);
             if (l != null)
                 dataset.addSeries(
-                        toSeries(RequestUtils.getStringParameter(request, "s" + (i + 1) + "l", "series" + i), l)
+                        toSeries(ServletRequestUtils.getStringParameter(request, "s" + (i + 1) + "l", "series" + i), l)
                 );
         }
     }

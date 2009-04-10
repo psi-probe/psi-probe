@@ -11,9 +11,9 @@
 
 package org.jstripe.tomcat.probe.model;
 
-import java.util.List;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.List;
 
 public class FollowedFile implements Serializable {
     private String fileName;

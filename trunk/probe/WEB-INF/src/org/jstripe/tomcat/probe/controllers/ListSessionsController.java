@@ -17,7 +17,7 @@ import org.jstripe.tomcat.probe.model.Attribute;
 import org.jstripe.tomcat.probe.model.SessionSearchInfo;
 import org.jstripe.tomcat.probe.tools.ApplicationUtils;
 import org.springframework.context.support.MessageSourceAccessor;
-import org.springframework.web.bind.RequestUtils;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -38,21 +38,21 @@ public class ListSessionsController extends ContextHandlerController {
                                          HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         String privelegedRole = getServletContext().getInitParameter("attribute.value.role");
-        boolean calcSize = RequestUtils.getBooleanParameter(request, "size", false) && request.isUserInRole(privelegedRole);
+        boolean calcSize = ServletRequestUtils.getBooleanParameter(request, "size", false) && request.isUserInRole(privelegedRole);
 
         SessionSearchInfo searchInfo = new SessionSearchInfo();
-        searchInfo.setSearchAction(RequestUtils.getStringParameter(request, "searchAction", SessionSearchInfo.ACTION_NONE));
+        searchInfo.setSearchAction(ServletRequestUtils.getStringParameter(request, "searchAction", SessionSearchInfo.ACTION_NONE));
         HttpSession sess = request.getSession();
 
         if (searchInfo.isApply()) {
-            searchInfo.setSessionId(RequestUtils.getStringParameter(request, "searchSessionId", null));
-            searchInfo.setLastIP(RequestUtils.getStringParameter(request, "searchLastIP", null));
+            searchInfo.setSessionId(ServletRequestUtils.getStringParameter(request, "searchSessionId", null));
+            searchInfo.setLastIP(ServletRequestUtils.getStringParameter(request, "searchLastIP", null));
 
-            searchInfo.setAgeFrom(RequestUtils.getStringParameter(request, "searchAgeFrom", null));
-            searchInfo.setAgeTo(RequestUtils.getStringParameter(request, "searchAgeTo", null));
-            searchInfo.setIdleTimeFrom(RequestUtils.getStringParameter(request, "searchIdleTimeFrom", null));
-            searchInfo.setIdleTimeTo(RequestUtils.getStringParameter(request, "searchIdleTimeTo", null));
-            searchInfo.setAttrName(RequestUtils.getStringParameter(request, "searchAttrName", null));
+            searchInfo.setAgeFrom(ServletRequestUtils.getStringParameter(request, "searchAgeFrom", null));
+            searchInfo.setAgeTo(ServletRequestUtils.getStringParameter(request, "searchAgeTo", null));
+            searchInfo.setIdleTimeFrom(ServletRequestUtils.getStringParameter(request, "searchIdleTimeFrom", null));
+            searchInfo.setIdleTimeTo(ServletRequestUtils.getStringParameter(request, "searchIdleTimeTo", null));
+            searchInfo.setAttrName(ServletRequestUtils.getStringParameter(request, "searchAttrName", null));
             if (sess != null) {
                 sess.setAttribute(SessionSearchInfo.SESS_ATTR_NAME, searchInfo);
             }

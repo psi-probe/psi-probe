@@ -20,11 +20,11 @@ import org.jstripe.tokenizer.Token;
 import org.jstripe.tokenizer.Tokenizer;
 import org.jstripe.tokenizer.TokenizerSymbol;
 
+import javax.management.MBeanServer;
+import javax.management.MalformedObjectNameException;
+import javax.management.ObjectName;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.management.MBeanServer;
-import javax.management.ObjectName;
-import javax.management.MalformedObjectNameException;
 import java.io.*;
 import java.nio.charset.Charset;
 import java.util.ArrayList;

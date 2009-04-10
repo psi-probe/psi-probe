@@ -13,7 +13,7 @@ package org.jstripe.tomcat.probe.controllers;
 import org.apache.catalina.Context;
 import org.jstripe.tomcat.probe.model.ApplicationSession;
 import org.jstripe.tomcat.probe.tools.ApplicationUtils;
-import org.springframework.web.bind.RequestUtils;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,8 +29,8 @@ public class ListSessionAttributesController extends ContextHandlerController {
     protected ModelAndView handleContext(String contextName, Context context, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         String privelegedRole = getServletContext().getInitParameter("attribute.value.role");
-        boolean calcSize = RequestUtils.getBooleanParameter(request, "size", false) && request.isUserInRole(privelegedRole);
-        String sid = RequestUtils.getStringParameter(request, "sid");
+        boolean calcSize = ServletRequestUtils.getBooleanParameter(request, "size", false) && request.isUserInRole(privelegedRole);
+        String sid = ServletRequestUtils.getStringParameter(request, "sid");
 
         ApplicationSession appSession = ApplicationUtils.getApplicationSession(
                 context.getManager().findSession(sid), calcSize, true);
