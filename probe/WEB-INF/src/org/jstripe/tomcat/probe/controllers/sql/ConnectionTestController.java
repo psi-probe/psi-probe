@@ -11,21 +11,21 @@
 package org.jstripe.tomcat.probe.controllers.sql;
 
 import org.apache.catalina.Context;
-import org.springframework.web.bind.RequestUtils;
-import org.springframework.web.servlet.ModelAndView;
 import org.jstripe.tomcat.probe.controllers.ContextHandlerController;
+import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
-import javax.naming.NamingException;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  *  Verifies if a database connection can be established through a given datasource.
@@ -36,7 +36,7 @@ import java.util.LinkedHashMap;
 public class ConnectionTestController extends ContextHandlerController {
 
     protected ModelAndView handleContext(String contextName, Context context, HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String resourceName = RequestUtils.getStringParameter(request, "resource");
+        String resourceName = ServletRequestUtils.getStringParameter(request, "resource");
         DataSource dataSource = null;
 
         try {

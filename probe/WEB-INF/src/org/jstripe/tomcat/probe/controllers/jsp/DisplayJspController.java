@@ -12,11 +12,11 @@
 package org.jstripe.tomcat.probe.controllers.jsp;
 
 import org.apache.catalina.Context;
+import org.jstripe.tomcat.probe.controllers.ContextHandlerController;
+import org.jstripe.tomcat.probe.model.jsp.Summary;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
-import org.springframework.web.bind.RequestUtils;
-import org.jstripe.tomcat.probe.model.jsp.Summary;
-import org.jstripe.tomcat.probe.controllers.ContextHandlerController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,7 +28,7 @@ public class DisplayJspController extends ContextHandlerController {
 
     protected ModelAndView handleContext(String contextName, Context context,
                                          HttpServletRequest request, HttpServletResponse response) throws Exception {
-        boolean compile = RequestUtils.getBooleanParameter(request, "compile", false);
+        boolean compile = ServletRequestUtils.getBooleanParameter(request, "compile", false);
 
         HttpSession session = request.getSession(true);
         Summary summary = (Summary) session.getAttribute(SUMMARY_ATTRIBUTE);

@@ -11,9 +11,9 @@
 
 package org.jstripe.tomcat.probe;
 
-import javax.servlet.http.HttpServlet;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
 
 /**
  * Simple servlet that registeres its startup time in the ServletContext object.

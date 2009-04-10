@@ -11,9 +11,9 @@
 
 package org.jstripe.tomcat.probe.beans.stats.collectors;
 
+import org.jfree.data.xy.XYDataItem;
 import org.jstripe.tomcat.probe.Utils;
 import org.jstripe.tomcat.probe.model.stats.StatsCollection;
-import org.jfree.data.xy.XYDataItem;
 
 import java.util.List;
 import java.util.Map;

@@ -13,7 +13,7 @@ package org.jstripe.tomcat.probe.beans.stats.providers;
 
 import org.jfree.data.xy.DefaultTableXYDataset;
 import org.jstripe.tomcat.probe.model.stats.StatsCollection;
-import org.springframework.web.bind.RequestUtils;
+import org.springframework.web.bind.ServletRequestUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -24,15 +24,15 @@ public class RandomConnectorSeriesProvider extends AbstractSeriesProvider {
         //
         // get Connector name from the request
         //
-        String connectorName = RequestUtils.getStringParameter(request, "cn", null);
+        String connectorName = ServletRequestUtils.getStringParameter(request, "cn", null);
         //
         // type of statistic to be displayed
         //
-        String statType = RequestUtils.getStringParameter(request, "st", null);
+        String statType = ServletRequestUtils.getStringParameter(request, "st", null);
         //
         // Series legend
         //
-        String series1Legend = RequestUtils.getStringParameter(request, "sl", "");
+        String series1Legend = ServletRequestUtils.getStringParameter(request, "sl", "");
 
 
         if (connectorName != null && statType != null) {

@@ -11,12 +11,11 @@
 package org.jstripe.tomcat.probe.controllers.sql;
 
 import org.apache.catalina.Context;
-import org.springframework.web.bind.RequestUtils;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.util.HtmlUtils;
 import org.jstripe.tomcat.probe.controllers.ContextHandlerController;
 import org.jstripe.tomcat.probe.model.sql.DataSourceTestInfo;
-
+import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.util.HtmlUtils;
 
 import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
@@ -24,7 +23,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 import java.sql.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Executes an SQL query through a given datasource to test database connectivity.
@@ -35,8 +37,8 @@ import java.util.*;
 public class ExecuteSqlController extends ContextHandlerController {
 
     protected ModelAndView handleContext(String contextName, Context context, HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String resourceName = RequestUtils.getStringParameter(request, "resource");
-        String sql = RequestUtils.getStringParameter(request, "sql", null);
+        String resourceName = ServletRequestUtils.getStringParameter(request, "resource");
+        String sql = ServletRequestUtils.getStringParameter(request, "sql", null);
 
         if (sql == null || sql.equals("") || sql.trim().equals("")) {
             request.setAttribute("errorMessage", getMessageSourceAccessor().getMessage("probe.src.dataSourceTest.sql.required"));
@@ -44,9 +46,9 @@ public class ExecuteSqlController extends ContextHandlerController {
             return new ModelAndView(getViewName());
         }
 
-        int maxRows = RequestUtils.getIntParameter(request, "maxRows", 0);
-        int rowsPerPage = RequestUtils.getIntParameter(request, "rowsPerPage", 0);
-        int historySize = RequestUtils.getIntParameter(request, "historySize", 0);
+        int maxRows = ServletRequestUtils.getIntParameter(request, "maxRows", 0);
+        int rowsPerPage = ServletRequestUtils.getIntParameter(request, "rowsPerPage", 0);
+        int historySize = ServletRequestUtils.getIntParameter(request, "historySize", 0);
 
         // store current option values and query history in a session attribute
 

@@ -11,20 +11,20 @@
 
 package org.jstripe.tomcat.probe.controllers.threads;
 
-import org.springframework.web.servlet.mvc.ParameterizableViewController;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.bind.RequestUtils;
 import org.apache.commons.modeler.Registry;
-import org.jstripe.tomcat.probe.tools.JmxTools;
 import org.jstripe.tomcat.probe.model.ThreadStackElement;
+import org.jstripe.tomcat.probe.tools.JmxTools;
+import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.ParameterizableViewController;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.management.MBeanServer;
 import javax.management.ObjectName;
 import javax.management.openmbean.CompositeData;
-import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ThreadStackController extends ParameterizableViewController {
     private int stackElementCount = 20;
@@ -39,7 +39,7 @@ public class ThreadStackController extends ParameterizableViewController {
 
     protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        long threadID = RequestUtils.getLongParameter(request, "id", -1);
+        long threadID = ServletRequestUtils.getLongParameter(request, "id", -1);
         List stack = null;
         String threadName = null;
 

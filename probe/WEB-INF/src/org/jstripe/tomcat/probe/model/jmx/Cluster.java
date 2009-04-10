@@ -11,8 +11,8 @@
 
 package org.jstripe.tomcat.probe.model.jmx;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Cluster {
     private String name;

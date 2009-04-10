@@ -10,10 +10,10 @@
  */
 package org.jstripe.tomcat.probe.beans.stats.providers;
 
-import org.jfree.data.xy.XYSeries;
-import org.jfree.data.xy.XYDataItem;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.jfree.data.xy.XYDataItem;
+import org.jfree.data.xy.XYSeries;
 
 import java.util.List;
 

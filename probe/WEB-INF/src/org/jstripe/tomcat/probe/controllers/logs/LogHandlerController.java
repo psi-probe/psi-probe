@@ -12,7 +12,7 @@
 package org.jstripe.tomcat.probe.controllers.logs;
 
 import org.jstripe.tomcat.probe.tools.logging.LogDestination;
-import org.springframework.web.bind.RequestUtils;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
 
@@ -31,7 +31,7 @@ public abstract class LogHandlerController extends ParameterizableViewController
         if (request.getSession() != null) {
             List logDestinations = (List) request.getSession().getAttribute("logs");
             if (logDestinations != null) {
-                int logIndex = RequestUtils.getIntParameter(request, "id", -1);
+                int logIndex = ServletRequestUtils.getIntParameter(request, "id", -1);
                 if (logIndex != -1 && logIndex >= 0 && logIndex <= logDestinations.size()) {
                     LogDestination dest = (LogDestination) logDestinations.get(logIndex - 1);
                     if (dest.getFile() != null && dest.getFile().exists()) {

@@ -10,9 +10,9 @@
  */
 package org.jstripe.tomcat.probe.controllers.sql;
 
+import org.jstripe.tomcat.probe.model.sql.DataSourceTestInfo;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
-import org.jstripe.tomcat.probe.model.sql.DataSourceTestInfo;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

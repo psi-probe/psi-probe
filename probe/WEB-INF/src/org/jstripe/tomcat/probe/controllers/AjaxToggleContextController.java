@@ -10,8 +10,8 @@
  */
 package org.jstripe.tomcat.probe.controllers;
 
-import org.springframework.web.servlet.ModelAndView;
 import org.apache.catalina.Context;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

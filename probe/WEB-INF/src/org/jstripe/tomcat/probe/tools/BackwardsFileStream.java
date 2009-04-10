@@ -11,7 +11,10 @@
 
 package org.jstripe.tomcat.probe.tools;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.RandomAccessFile;
 
 public class BackwardsFileStream extends InputStream {
     private RandomAccessFile raf;

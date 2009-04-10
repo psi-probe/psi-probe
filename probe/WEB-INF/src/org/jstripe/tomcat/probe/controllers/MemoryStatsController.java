@@ -11,9 +11,9 @@
 
 package org.jstripe.tomcat.probe.controllers;
 
+import org.jstripe.tomcat.probe.beans.JvmMemoryInfoAccessorBean;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
-import org.jstripe.tomcat.probe.beans.JvmMemoryInfoAccessorBean;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

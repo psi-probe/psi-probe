@@ -10,11 +10,11 @@
  */
 package org.jstripe.tomcat.probe.controllers;
 
-import org.springframework.web.servlet.ModelAndView;
 import org.apache.catalina.Context;
 import org.jstripe.tomcat.probe.model.ApplicationResource;
 import org.jstripe.tomcat.probe.model.DataSourceInfo;
 import org.jstripe.tomcat.probe.model.DataSourceInfoGroup;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

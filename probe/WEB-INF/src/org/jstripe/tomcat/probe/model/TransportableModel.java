@@ -11,8 +11,8 @@
 
 package org.jstripe.tomcat.probe.model;
 
-import java.util.Map;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A wrapper class to assist marshalling of ModelAndView.getModel() Map to XML representation.

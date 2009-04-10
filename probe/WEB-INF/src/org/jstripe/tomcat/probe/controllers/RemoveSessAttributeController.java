@@ -12,7 +12,7 @@ package org.jstripe.tomcat.probe.controllers;
 
 import org.apache.catalina.Context;
 import org.apache.catalina.Session;
-import org.springframework.web.bind.RequestUtils;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -26,8 +26,8 @@ public class RemoveSessAttributeController extends ContextHandlerController {
                                          HttpServletRequest request,
                                          HttpServletResponse response) throws Exception {
 
-        String sid = RequestUtils.getStringParameter(request, "sid");
-        String attrName = RequestUtils.getStringParameter(request, "attr");
+        String sid = ServletRequestUtils.getStringParameter(request, "sid");
+        String attrName = ServletRequestUtils.getStringParameter(request, "attr");
         Session session = context.getManager().findSession(sid);
         if (session != null) {
             session.getSession().removeAttribute(attrName);

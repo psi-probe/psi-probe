@@ -11,7 +11,7 @@
 package org.jstripe.tomcat.probe.controllers;
 
 import org.apache.catalina.Context;
-import org.springframework.web.bind.RequestUtils;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.naming.NamingException;
@@ -28,8 +28,8 @@ public class ResetDataSourceController extends ContextHandlerController {
     protected ModelAndView handleContext(String contextName, Context context,
                                          HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        String resourceName = RequestUtils.getStringParameter(request, "resource", null);
-        String viewName = RequestUtils.getStringParameter(request, "view", getViewName());
+        String resourceName = ServletRequestUtils.getStringParameter(request, "resource", null);
+        String viewName = ServletRequestUtils.getStringParameter(request, "view", getViewName());
 
         if (resourceName != null && resourceName.length() > 0) {
             boolean reset = false;

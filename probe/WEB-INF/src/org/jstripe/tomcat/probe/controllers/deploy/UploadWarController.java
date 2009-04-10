@@ -18,9 +18,9 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.fileupload.servlet.ServletRequestContext;
 import org.jstripe.tomcat.probe.Utils;
-import org.jstripe.tomcat.probe.model.jsp.Summary;
 import org.jstripe.tomcat.probe.controllers.TomcatContainerController;
 import org.jstripe.tomcat.probe.controllers.jsp.DisplayJspController;
+import org.jstripe.tomcat.probe.model.jsp.Summary;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.InternalResourceView;
 

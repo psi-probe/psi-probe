@@ -10,8 +10,8 @@
  */
 package org.jstripe.tomcat.probe.beans;
 
-import org.jstripe.tomcat.probe.model.DataSourceInfo;
 import org.apache.commons.dbcp.BasicDataSource;
+import org.jstripe.tomcat.probe.model.DataSourceInfo;
 
 /**
  * DBCP datasource abstraction layer.

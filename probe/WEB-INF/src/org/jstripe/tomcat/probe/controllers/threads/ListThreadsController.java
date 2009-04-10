@@ -11,11 +11,11 @@
 
 package org.jstripe.tomcat.probe.controllers.threads;
 
+import org.apache.catalina.Context;
+import org.jstripe.tomcat.probe.controllers.TomcatContainerController;
 import org.jstripe.tomcat.probe.model.java.ThreadModel;
 import org.jstripe.tomcat.probe.tools.Instruments;
-import org.jstripe.tomcat.probe.controllers.TomcatContainerController;
 import org.springframework.web.servlet.ModelAndView;
-import org.apache.catalina.Context;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

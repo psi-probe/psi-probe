@@ -10,10 +10,10 @@
  */
 package org.jstripe.tomcat.probe.controllers;
 
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
 import org.springframework.web.servlet.view.RedirectView;
-import org.springframework.web.bind.RequestUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,7 +36,7 @@ public class ForceGCController extends ParameterizableViewController {
     }
 
     protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        boolean finalization = RequestUtils.getBooleanParameter(request, "fin", false);
+        boolean finalization = ServletRequestUtils.getBooleanParameter(request, "fin", false);
 
         String referer = request.getHeader("Referer");
         String redirectURL;

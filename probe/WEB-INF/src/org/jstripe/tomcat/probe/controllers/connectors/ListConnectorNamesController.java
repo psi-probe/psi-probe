@@ -10,8 +10,8 @@
  */
 package org.jstripe.tomcat.probe.controllers.connectors;
 
-import org.jstripe.tomcat.probe.controllers.TomcatContainerController;
 import org.jstripe.tomcat.probe.beans.ContainerListenerBean;
+import org.jstripe.tomcat.probe.controllers.TomcatContainerController;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;

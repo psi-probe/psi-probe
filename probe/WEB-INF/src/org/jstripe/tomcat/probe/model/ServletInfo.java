@@ -11,8 +11,8 @@
 
 package org.jstripe.tomcat.probe.model;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A model class representing a servlet

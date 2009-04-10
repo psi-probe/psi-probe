@@ -22,9 +22,9 @@
 
 package org.jstripe.tomcat.probe.tools.logging.catalina;
 
+import org.jstripe.tomcat.probe.tools.Instruments;
 import org.jstripe.tomcat.probe.tools.logging.DefaultAccessor;
 import org.jstripe.tomcat.probe.tools.logging.LogDestination;
-import org.jstripe.tomcat.probe.tools.Instruments;
 
 import java.io.File;
 import java.text.SimpleDateFormat;

@@ -11,8 +11,8 @@
 
 package org.jstripe.tomcat.probe.tools.logging.jdk;
 
-import org.jstripe.tomcat.probe.tools.logging.LogDestination;
 import org.jstripe.tomcat.probe.tools.Instruments;
+import org.jstripe.tomcat.probe.tools.logging.LogDestination;
 
 import java.io.File;
 

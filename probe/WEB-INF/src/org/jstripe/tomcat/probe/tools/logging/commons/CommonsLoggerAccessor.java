@@ -22,10 +22,10 @@
 
 package org.jstripe.tomcat.probe.tools.logging.commons;
 
+import org.jstripe.tomcat.probe.tools.Instruments;
 import org.jstripe.tomcat.probe.tools.logging.DefaultAccessor;
 import org.jstripe.tomcat.probe.tools.logging.jdk.Jdk14LoggerAccessor;
 import org.jstripe.tomcat.probe.tools.logging.log4j.Log4JLoggerAccessor;
-import org.jstripe.tomcat.probe.tools.Instruments;
 
 import java.util.ArrayList;
 import java.util.List;

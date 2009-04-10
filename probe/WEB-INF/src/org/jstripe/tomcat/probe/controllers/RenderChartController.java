@@ -11,20 +11,20 @@
 
 package org.jstripe.tomcat.probe.controllers;
 
-import org.springframework.web.servlet.mvc.AbstractController;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.bind.RequestUtils;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartUtilities;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.DateAxis;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.xy.XYAreaRenderer;
+import org.jfree.data.xy.DefaultTableXYDataset;
+import org.jfree.ui.RectangleInsets;
 import org.jstripe.tomcat.probe.Utils;
 import org.jstripe.tomcat.probe.beans.stats.providers.SeriesProvider;
 import org.jstripe.tomcat.probe.model.stats.StatsCollection;
-import org.jfree.data.xy.DefaultTableXYDataset;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartUtilities;
-import org.jfree.chart.axis.DateAxis;
-import org.jfree.chart.renderer.xy.XYAreaRenderer;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.ui.RectangleInsets;
+import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.AbstractController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -91,31 +91,31 @@ public class RenderChartController extends AbstractController {
         //
         // X axis title
         //
-        String xLabel = RequestUtils.getStringParameter(request, "xl", "");
+        String xLabel = ServletRequestUtils.getStringParameter(request, "xl", "");
         //
         // Y axis title
         //
-        String yLabel = RequestUtils.getStringParameter(request, "yl", "");
+        String yLabel = ServletRequestUtils.getStringParameter(request, "yl", "");
         //
         // image width
         //
-        int width = RequestUtils.getIntParameter(request, "xz", 800);
+        int width = ServletRequestUtils.getIntParameter(request, "xz", 800);
         //
         // image height
         //
-        int height = RequestUtils.getIntParameter(request, "yz", 400);
+        int height = ServletRequestUtils.getIntParameter(request, "yz", 400);
         //
         // show legend?
         //
-        boolean showLegend = RequestUtils.getBooleanParameter(request, "l", true);
+        boolean showLegend = ServletRequestUtils.getBooleanParameter(request, "l", true);
         //
         // Series provider
         //
-        String provider = RequestUtils.getStringParameter(request, "p", null);
+        String provider = ServletRequestUtils.getStringParameter(request, "p", null);
         //
         // Chart type
         //
-        String chartType = RequestUtils.getStringParameter(request, "ct", "area");
+        String chartType = ServletRequestUtils.getStringParameter(request, "ct", "area");
 
 
         DefaultTableXYDataset ds = new DefaultTableXYDataset();

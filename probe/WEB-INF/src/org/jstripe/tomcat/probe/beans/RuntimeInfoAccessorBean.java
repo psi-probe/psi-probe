@@ -11,11 +11,11 @@
 
 package org.jstripe.tomcat.probe.beans;
 
-import org.jstripe.tomcat.probe.model.jmx.RuntimeInformation;
-import org.jstripe.tomcat.probe.tools.JmxTools;
-import org.apache.commons.modeler.Registry;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.commons.modeler.Registry;
+import org.jstripe.tomcat.probe.model.jmx.RuntimeInformation;
+import org.jstripe.tomcat.probe.tools.JmxTools;
 
 import javax.management.MBeanServer;
 import javax.management.ObjectName;

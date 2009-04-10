@@ -11,7 +11,7 @@
 package org.jstripe.tomcat.probe.controllers.sql;
 
 import org.jstripe.tomcat.probe.model.sql.DataSourceTestInfo;
-import org.springframework.web.bind.RequestUtils;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
 
@@ -27,7 +27,7 @@ import java.util.List;
  */
 public class QueryHistoryItemController extends AbstractController {
     protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        int sqlId = RequestUtils.getIntParameter(request, "sqlId", -1);
+        int sqlId = ServletRequestUtils.getIntParameter(request, "sqlId", -1);
 
         HttpSession sess = request.getSession(false);
 

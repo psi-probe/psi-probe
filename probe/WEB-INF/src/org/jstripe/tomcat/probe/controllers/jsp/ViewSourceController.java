@@ -19,7 +19,7 @@ import org.jstripe.tomcat.probe.Utils;
 import org.jstripe.tomcat.probe.controllers.ContextHandlerController;
 import org.jstripe.tomcat.probe.model.jsp.Item;
 import org.jstripe.tomcat.probe.model.jsp.Summary;
-import org.springframework.web.bind.RequestUtils;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.ServletConfig;
@@ -32,8 +32,8 @@ public class ViewSourceController extends ContextHandlerController {
     protected ModelAndView handleContext(String contextName, Context context,
                                          HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        String jspName = RequestUtils.getStringParameter(request, "source", null);
-        boolean highlight = RequestUtils.getBooleanParameter(request, "highlight", true);
+        String jspName = ServletRequestUtils.getStringParameter(request, "source", null);
+        boolean highlight = ServletRequestUtils.getBooleanParameter(request, "highlight", true);
         Summary summary = (Summary) (request.getSession() != null ?
                 request.getSession().getAttribute(DisplayJspController.SUMMARY_ATTRIBUTE) : null);
 

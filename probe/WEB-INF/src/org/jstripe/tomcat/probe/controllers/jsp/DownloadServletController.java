@@ -14,7 +14,7 @@ package org.jstripe.tomcat.probe.controllers.jsp;
 import org.apache.catalina.Context;
 import org.jstripe.tomcat.probe.Utils;
 import org.jstripe.tomcat.probe.controllers.ContextHandlerController;
-import org.springframework.web.bind.RequestUtils;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +25,7 @@ public class DownloadServletController extends ContextHandlerController {
     protected ModelAndView handleContext(String contextName, Context context,
                                          HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        String jspName = RequestUtils.getStringParameter(request, "source", null);
+        String jspName = ServletRequestUtils.getStringParameter(request, "source", null);
 
         if (jspName != null) {
             String servletName = getContainerWrapper().getTomcatContainer().getServletFileNameForJsp(context, jspName);

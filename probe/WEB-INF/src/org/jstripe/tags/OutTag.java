@@ -11,9 +11,9 @@
 
 package org.jstripe.tags;
 
-import javax.servlet.jsp.tagext.BodyTagSupport;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
+import javax.servlet.jsp.tagext.BodyTagSupport;
 import java.io.IOException;
 
 public class OutTag extends BodyTagSupport {
