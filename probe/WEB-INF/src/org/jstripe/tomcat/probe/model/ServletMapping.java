@@ -18,10 +18,19 @@ package org.jstripe.tomcat.probe.model;
  */
 
 public class ServletMapping {
+    private String applicationName;
     private String url;
     private String servletName;
     private String servletClass;
     private boolean available;
+
+    public String getApplicationName() {
+        return applicationName;
+    }
+
+    public void setApplicationName(String applicationName) {
+        this.applicationName = applicationName;
+    }
 
     public String getUrl() {
         return url;

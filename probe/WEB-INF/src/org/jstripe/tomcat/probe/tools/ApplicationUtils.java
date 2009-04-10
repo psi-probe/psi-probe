@@ -103,35 +103,7 @@ public class ApplicationUtils {
 
             logger.debug("aggregating servlet stats");
 
-            int svltCount = 0;
-            int reqCount = 0;
-            int errCount = 0;
-            long procTime = 0;
-            long minTime = Long.MAX_VALUE;
-            long maxTime = 0;
-
-            Container cns[] = context.findChildren();
-            for (int i = 0; i < cns.length; i++) {
-                if (cns[i] instanceof StandardWrapper) {
-                    StandardWrapper sw = (StandardWrapper) cns[i];
-                    svltCount++;
-                    reqCount += sw.getRequestCount();
-                    errCount += sw.getErrorCount();
-                    procTime += sw.getProcessingTime();
-                    if (sw.getRequestCount() > 0 && sw.getMinTime() < minTime) {
-                        minTime = sw.getMinTime();
-                    }
-                    if (sw.getMaxTime() > maxTime) {
-                        maxTime = sw.getMaxTime();
-                    }
-                }
-            }
-            app.setServletCount(svltCount);
-            app.setRequestCount(reqCount);
-            app.setErrorCount(errCount);
-            app.setProcessingTime(procTime);
-            app.setMinTime(minTime == Long.MAX_VALUE ? 0 : minTime);
-            app.setMaxTime(maxTime);
+            collectApplicationServletStats(context, app);
 
             if (resourceResolver.supportsPrivateResources() && app.isAvailable()) {
                 app.setDataSourceUsageScore(ApplicationUtils.getApplicationDataSourceUsageScore(context, resourceResolver));
@@ -139,6 +111,41 @@ public class ApplicationUtils {
         }
 
         return app;
+    }
+
+    public static void collectApplicationServletStats(Context context, Application app) {
+        int svltCount = 0;
+        int reqCount = 0;
+        int errCount = 0;
+        long procTime = 0;
+        long minTime = Long.MAX_VALUE;
+        long maxTime = 0;
+
+        Container cns[] = context.findChildren();
+        for (int i = 0; i < cns.length; i++) {
+            if (cns[i] instanceof StandardWrapper) {
+                StandardWrapper sw = (StandardWrapper) cns[i];
+                svltCount++;
+                reqCount += sw.getRequestCount();
+                errCount += sw.getErrorCount();
+                procTime += sw.getProcessingTime();
+                if (sw.getRequestCount() > 0 && sw.getMinTime() < minTime) {
+                    minTime = sw.getMinTime();
+                }
+                if (sw.getMaxTime() > maxTime) {
+                    maxTime = sw.getMaxTime();
+                }
+            }
+        }
+        app.setServletCount(svltCount);
+        app.setRequestCount(reqCount);
+        app.setErrorCount(errCount);
+        app.setProcessingTime(procTime);
+        app.setMinTime(minTime == Long.MAX_VALUE ? 0 : minTime);
+        app.setMaxTime(maxTime);
+        if (reqCount != 0) {
+            app.setAvgTime(procTime / reqCount);
+        }
     }
 
     public static int getApplicationDataSourceUsageScore(Context context, ResourceResolver resolver) {
@@ -290,14 +297,15 @@ public class ApplicationUtils {
 
         if (c instanceof Wrapper) {
             Wrapper w = (Wrapper) c;
-            return getServletInfo(w);
+            return getServletInfo(w, context.getName());
         } else {
             return null;
         }
     }
 
-    private static ServletInfo getServletInfo(Wrapper w) {
+    private static ServletInfo getServletInfo(Wrapper w, String contextName) {
         ServletInfo si = new ServletInfo();
+        si.setApplicationName(contextName.length() > 0 ? contextName : "/");
         si.setServletName(w.getName());
         si.setServletClass(w.getServletClass());
         si.setJspFile(w.getJspFile());
@@ -329,7 +337,7 @@ public class ApplicationUtils {
         for (int i = 0; i < cns.length; i++) {
             if (cns[i] instanceof Wrapper) {
                 Wrapper w = (Wrapper) cns[i];
-                servlets.add(getServletInfo(w));
+                servlets.add(getServletInfo(w, context.getName()));
             }
         }
         return servlets;
@@ -343,6 +351,7 @@ public class ApplicationUtils {
                 String sn = context.findServletMapping(sms[i]);
                 if (sn != null) {
                     ServletMapping sm = new ServletMapping();
+                    sm.setApplicationName(context.getName().length() > 0 ? context.getName() : "/");
                     sm.setUrl(sms[i]);
                     sm.setServletName(sn);
                     Container c = context.findChild(sn);

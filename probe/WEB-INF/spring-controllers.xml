@@ -258,6 +258,16 @@
         <property name="viewName" value="appsummary"/>
     </bean>
 
+    <bean name="/appreqdetails.ajax" class="org.jstripe.tomcat.probe.controllers.GetAppStatsController">
+        <property name="containerWrapper" ref="containerWrapper"/>
+        <property name="viewName" value="ajax/appRequestDetails"/>
+    </bean>
+
+    <bean name="/appavgproctimedetails.ajax" class="org.jstripe.tomcat.probe.controllers.GetAppStatsController">
+        <property name="containerWrapper" ref="containerWrapper"/>
+        <property name="viewName" value="ajax/appAvgProcTimeDetails"/>
+    </bean>
+
     <bean name="/app/viewwebxml.htm" class="org.jstripe.tomcat.probe.controllers.ViewXMLConfController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="viewName" value="view_xml_conf"/>

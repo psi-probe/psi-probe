@@ -66,6 +66,12 @@
         <property name="statsCollection" ref="statsCollection"/>
         <property name="maxSeries" value="240"/>
     </bean>
+
+    <bean name="appStatsCollector" class="org.jstripe.tomcat.probe.beans.stats.collectors.AppStatsCollector">
+        <property name="containerWrapper" ref="containerWrapper"/>
+        <property name="statsCollection" ref="statsCollection"/>
+    </bean>
+
     <!--
         The name of SeriesProvider beans is passed on the URL, so it should be short enough
     -->
@@ -140,6 +146,23 @@
         </property>
     </bean>
 
+    <bean name="app_req" class="org.jstripe.tomcat.probe.beans.stats.providers.StandardSeriesProvider">
+        <property name="statNames">
+            <list>
+                <value>app.{0}.requests</value>
+                <value>app.{0}.errors</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean name="app_avg_proc_time" class="org.jstripe.tomcat.probe.beans.stats.providers.StandardSeriesProvider">
+        <property name="statNames">
+            <list>
+                <value>app.{0}.avg_proc_time</value>
+            </list>
+        </property>
+    </bean>
+
     <!--
         Get spring to call method collect() on the "connectorStatsCollector", making the latter a Job
     -->
@@ -163,6 +186,12 @@
 
     <bean id="runtimeStatsJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
         <property name="targetObject" ref="runtimeStatsCollector"/>
+        <property name="targetMethod" value="collect"/>
+        <property name="concurrent" value="false"/>
+    </bean>
+
+    <bean id="appStatsJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="appStatsCollector"/>
         <property name="targetMethod" value="collect"/>
         <property name="concurrent" value="false"/>
     </bean>
@@ -193,6 +222,11 @@
         <property name="cronExpression" value="0,30 * * * * ?"/>
     </bean>
 
+    <bean id="appStatsTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="appStatsJobDetail"/>
+        <property name="cronExpression" value="0,30 * * * * ?"/>
+    </bean>
+
     <bean id="statsSerializerTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
         <property name="jobDetail" ref="statsSerializerJobDetail"/>
         <property name="cronExpression" value="10 * * * * ?"/>
@@ -206,6 +240,7 @@
                 <ref local="clusterStatsTrigger"/>
                 <ref local="memoryStatsTrigger"/>
                 <ref local="runtimeStatsTrigger"/>
+                <ref local="appStatsTrigger"/>
                 <ref local="statsSerializerTrigger"/>
             </list>
         </property>
