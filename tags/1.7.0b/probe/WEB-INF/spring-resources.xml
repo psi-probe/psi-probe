@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Licensed under the GPL License. You may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~   http://probe.jstripe.com/d/license.shtml
+  ~
+  ~  THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR
+  ~  IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
+  ~  WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+  -->
+
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans default-dependency-check="none" default-lazy-init="false">
+    <!--
+        Helper class to allow Probe controllers to access Tomcat.
+    -->
+    <bean id="containerWrapper" class="org.jstripe.tomcat.probe.beans.ContainerWrapperBean">
+        <property name="forceFirstAdaptor" value="false"/>
+        <property name="adaptorClasses">
+            <list>
+                <value>org.jstripe.tomcat.probe.Tomcat55ContainerAdaptor</value>
+                <value>org.jstripe.tomcat.probe.Tomcat50ContainerAdaptor</value>
+            </list>
+        </property>
+        <property name="resourceResolvers">
+            <map>
+                <entry key="jboss" value-ref="jbossResourceResolver"/>
+                <entry key="default" value-ref="defaultResourceResolver"/>
+            </map>
+        </property>
+    </bean>
+
+    <!--
+        Helper bean to read datasource information into Probe data model.
+    -->
+    <bean id="defaultResourceResolver" class="org.jstripe.tomcat.probe.beans.ResourceResolverBean">
+        <property name="datasourceMappers">
+            <list>
+                <bean class="org.jstripe.tomcat.probe.beans.C3P0DatasourceAccessor"/>
+                <bean class="org.jstripe.tomcat.probe.beans.DbcpDatasourceAccessor"/>
+                <bean class="org.jstripe.tomcat.probe.beans.TomcatDbcpDatasourceAccessor"/>
+                <bean class="org.jstripe.tomcat.probe.beans.OracleDatasourceAccessor"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="jbossResourceResolver" class="org.jstripe.tomcat.probe.beans.JBossResourceResolverBean"/>
+
+    <bean id="containerListener" class="org.jstripe.tomcat.probe.beans.ContainerListenerBean"/>
+
+</beans>
