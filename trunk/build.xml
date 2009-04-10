@@ -1,0 +1,180 @@
+<project name="LambdaProbe" default="all" basedir=".">
+    <description>
+        Tomcat Probe build file.
+    </description>
+
+    <!--
+        set global properties for this build
+    -->
+
+    <property name="probedir" location="probe"/>
+    <property name="adaptor50dir" location="tomcat50adaptor"/>
+    <property name="adaptor55dir" location="tomcat55adaptor"/>
+
+    <property name="srcdir" location="${probedir}/WEB-INF/src"/>
+    <property name="libdir" location="${probedir}/WEB-INF/lib"/>
+    <property name="extdir" location="${probedir}/WEB-INF/ext"/>
+    <property name="builddir" location="buildtmp"/>
+    <property name="finalbuilddir" location="build"/>
+    <property name="classesdir" location="${builddir}/WEB-INF/classes"/>
+    <property name="adaptor50src" location="${adaptor50dir}/src"/>
+    <property name="adaptor55src" location="${adaptor55dir}/src"/>
+    <property file="build.properties"/>
+
+    <!--
+        configure classpath
+    -->
+    <path id="sharedClasspath">
+        <fileset dir="${libdir}">
+            <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${extdir}">
+            <include name="c3p0*.jar"/>
+            <include name="jsp-api.jar"/>
+            <include name="ojdbc14.jar"/>
+            <include name="servlet-api.jar"/>
+            <include name="naming-factory.jar"/>
+            <include name="naming-resources.jar"/>
+            <include name="commons-dbcp*.jar"/>
+            <include name="jasper-compiler-55.jar"/>
+            <include name="jasper-runtime-55.jar"/>
+            <include name="wrapper.jar"/>
+        </fileset>
+    </path>
+
+    <path id="tc50Classpath">
+        <path refid="sharedClasspath"/>
+        <fileset dir="${extdir}">
+            <include name="catalina-50.jar"/>
+        </fileset>
+    </path>
+
+    <path id="tc55Classpath">
+        <path refid="sharedClasspath"/>
+        <fileset dir="${extdir}">
+            <include name="catalina-55.jar"/>
+            <include name="naming-factory-dbcp-55.jar"/>
+        </fileset>
+    </path>
+
+
+    <target name="init">
+        <!--
+            Create the time stamp
+        -->
+        <tstamp/>
+
+        <!--
+            make directories
+        -->
+        <delete dir="${builddir}"/>
+        <mkdir dir="${classesdir}"/>
+    </target>
+
+    <target name="compile" depends="init" description="compile source files">
+        <!-- Compile the java code -->
+        <javac srcdir="${srcdir}" destdir="${classesdir}"
+            optimize="${compile.optimize}"
+            debug="${compile.debug}"
+            nowarn="${compile.nowarn}"
+            deprecation="${compile.deprecation}"
+        >
+            <classpath>
+                <path refid="tc55Classpath"/>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="compileAdapter50" depends="compile">
+        <javac srcdir="${adaptor50src}" destdir="${classesdir}" debug="true">
+            <classpath>
+                <path refid="tc50Classpath"/>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="compileAdapter55" depends="compile">
+        <javac srcdir="${adaptor55src}" destdir="${classesdir}" debug="true">
+            <classpath>
+                <path refid="tc55Classpath"/>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="copyresources" depends="compile,compileAdapter50,compileAdapter55"
+            description="Copies resource files such as .xml and .properties into build directory">
+        <copy todir="${builddir}">
+            <fileset dir="probe">
+                <include name="index.jsp"/>
+                <include name="META-INF/**"/>
+                <include name="css/**"/>
+                <include name="js/**"/>
+                <include name="flags/**"/>
+            </fileset>
+        </copy>
+        <copy todir="${builddir}/WEB-INF/">
+            <fileset dir="probe/WEB-INF">
+                <exclude name="src/**"/>
+                <include name="**/*.properties"/>
+                <include name="**/*.xml"/>
+                <include name="jsp/**"/>
+                <include name="help/**"/>
+                <include name="lib/**"/>
+                <include name="tags/**"/>
+            </fileset>
+        </copy>
+        <copy todir="${classesdir}">
+            <fileset dir="${srcdir}">
+                <include name="**/*.properties"/>
+            </fileset>
+        </copy>
+        <replace dir="${builddir}/WEB-INF/jsp" token="@VERSION@" value="${version}"/>
+    </target>
+
+    <target name="war" depends="compile,copyresources"
+            description="generate the distribution WAR file">
+        <jar jarfile="${builddir}/${name}.war" basedir="${builddir}"/>
+    </target>
+
+    <target name="copywar" depends="war" description="Copies WAR file to the final build location">
+        <copy todir="${finalbuilddir}" file="${builddir}/${name}.war"/>
+        <delete dir="${builddir}"/>
+    </target>
+
+    <target name="zipwar" depends="copywar" description="Creates binary distribution (ZIPped .war)">
+        <zip destfile="${finalbuilddir}/${name}.${version}.zip">
+            <fileset dir="${finalbuilddir}">
+                <include name="${name}.war"/>
+            </fileset>
+        </zip>
+    </target>
+
+    <target name="copysrc" depends="zipwar">
+        <delete dir="${builddir}"/>
+        <copy todir="${builddir}">
+            <fileset dir="./">
+                <include name="probe/**"/>
+                <include name="tomcat50adaptor/**"/>
+                <include name="tomcat55adaptor/**"/>
+                <include name="build.xml"/>
+                <include name="build.properties"/>
+                <exclude name="**/.svn"/>
+                <exclude name="**/*.iml"/>
+                <exclude name="**/classes/**"/>
+            </fileset>
+            <fileset dir="${finalbuilddir}">
+                <include name="${name}.war"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="zipsrc" depends="copysrc" description="Creates the source zip file">
+        <mkdir dir="${finalbuilddir}"/>
+        <zip basedir="${builddir}" destfile="${finalbuilddir}/${name}.${version}.src.zip"/>
+        <delete dir="${builddir}"/>
+    </target>
+
+    <target name="all" depends="copywar, zipsrc" description="Makes both the .war and source .zip"></target>
+
+</project>
+
