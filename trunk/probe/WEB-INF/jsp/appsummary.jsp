@@ -129,6 +129,7 @@
                 <c:param name="s1c" value="#95FE8B"/>
                 <c:param name="s1o" value="#009406"/>
                 <c:param name="l" value="false"/>
+                <c:param name="ct" value="line"/>
             </c:url>
 
             <c:url value="/chart.png" var="avg_proc_time_url_full">
@@ -141,6 +142,7 @@
                 <c:param name="s1l">
                     <spring:message code="probe.jsp.app.summary.charts.avgProcTime.legend"/>
                 </c:param>
+                <c:param name="ct" value="line"/>
             </c:url>
 
             <div id="chart_group">

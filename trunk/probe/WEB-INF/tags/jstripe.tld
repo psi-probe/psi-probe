@@ -76,6 +76,28 @@
     </tag>
 
     <tag>
+        <name>addQueryParam</name>
+        <tag-class>org.jstripe.tags.AddQueryParamTag</tag-class>
+        <body-content>JSP</body-content>
+
+        <description>
+            Adds a parameter value combination to URL query string keeping all existing parameters.
+        </description>
+
+        <attribute>
+            <name>param</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>value</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <tag>
         <name>out</name>
         <tag-class>org.jstripe.tags.OutTag</tag-class>
         <body-content>JSP</body-content>

@@ -124,6 +124,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
      * Writes stats data to file on disk.
      *
      * @throws IOException
+     * @throws InterruptedException
      */
     public synchronized void serialize() throws IOException, InterruptedException {
         lock.lockForCommit();

@@ -18,7 +18,7 @@ import org.springframework.web.bind.ServletRequestUtils;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-public class RandomConnectorSeriesProvider extends AbstractSeriesProvider {
+public class ConnectorSeriesProvider extends AbstractSeriesProvider {
 
     public void populate(DefaultTableXYDataset dataset, StatsCollection statsCollection, HttpServletRequest request) {
         //
