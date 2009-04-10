@@ -1,3 +1,14 @@
+/*
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://probe.jstripe.com/d/license.shtml
+ *
+ *  THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR
+ *  IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
+ *  WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+ */
+
 package org.jstripe.tomcat.probe.beans.stats.collectors;
 
 import org.apache.commons.logging.Log;
@@ -16,9 +27,9 @@ import java.util.Iterator;
  * <p/>
  * Author: Andy Shapoval
  */
-public class AppStatsCollector2 extends BaseStatsCollectorBean {
+public class AppStatsCollector extends BaseStatsCollectorBean {
 
-    private Log logger = LogFactory.getLog(AppStatsCollector2.class);
+    private Log logger = LogFactory.getLog(AppStatsCollector.class);
 
     private ContainerWrapperBean containerWrapper;
 
@@ -35,16 +46,12 @@ public class AppStatsCollector2 extends BaseStatsCollectorBean {
         long currentTime = System.currentTimeMillis();
 
         if (containerWrapper == null) {
-
             logger.error("Cannot collect application stats. Container wrapper is not set.");
-
         } else {
-
             TomcatContainer tomcatContainer = getContainerWrapper().getTomcatContainer();
 
             // check if the containerWtapper has been initialized
             if (tomcatContainer != null) {
-
                 long totalReqDelta = 0;
                 long totalAvgProcTime = 0;
 
@@ -52,7 +59,6 @@ public class AppStatsCollector2 extends BaseStatsCollectorBean {
 
                 List contexts = tomcatContainer.findContexts();
                 for (Iterator i = contexts.iterator(); i.hasNext(); ) {
-
                     Context ctx = (Context) i.next();
 
                     if (ctx != null && ctx.getName() != null) {
@@ -61,12 +67,12 @@ public class AppStatsCollector2 extends BaseStatsCollectorBean {
 
                         String appName = "".equals(ctx.getName()) ? "/" : ctx.getName();
 
-                        long reqDelta = buildDeltaStats("app.requests."+appName, app.getRequestCount(), currentTime);
-                        long procTimeDelta = buildDeltaStats("app.proc_time."+appName, app.getProcessingTime(), currentTime);
-                        buildDeltaStats("app.errors."+appName, app.getErrorCount());
+                        long reqDelta = buildDeltaStats("app.requests." + appName, app.getRequestCount(), currentTime);
+                        long procTimeDelta = buildDeltaStats("app.proc_time." + appName, app.getProcessingTime(), currentTime);
+                        buildDeltaStats("app.errors." + appName, app.getErrorCount());
 
                         long avgProcTime = reqDelta == 0 ? 0 : procTimeDelta / reqDelta;
-                        buildAbsoluteStats( "app.avg_proc_time."+appName, avgProcTime, currentTime);
+                        buildAbsoluteStats( "app.avg_proc_time." + appName, avgProcTime, currentTime);
 
                         // make sure applications that did not serve any requests
                         // do not participate in average response time equasion thus diluting the value

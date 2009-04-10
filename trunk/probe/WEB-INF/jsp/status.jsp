@@ -131,6 +131,26 @@
                                         titleKey="probe.jsp.status.wrk.col.out">
                             <js:volume value="${rp.bytesSent}"/>
                         </display:column>
+
+                        <c:if test="${workerThreadNameSupported}">
+                            <display:column width="130px" sortable="true" titleKey="probe.jsp.status.wrk.col.thread">
+                                <c:choose>
+                                    <c:when test="${! empty rp.workerThreadName}">
+                                        <a id="thr${rp.workerThreadName}">
+                                            ${rp.workerThreadName}
+                                        </a>
+                                        <script type="text/javascript">
+                                            addAjaxTooltip('thr${rp.workerThreadName}', 'ttdiv', '<c:url value="/app/threadstack.ajax"/>?name=${rp.workerThreadName}');
+                                        </script>
+                                    </c:when>
+                                    <c:otherwise>
+                                        &nbsp;
+                                    </c:otherwise>
+                                </c:choose>
+                            </display:column>
+
+                        </c:if>
+
                         <display:column sortable="true" titleKey="probe.jsp.status.wrk.col.url" >
                             <c:choose>
                                 <c:when test="${rp.stage == 3 && ! empty rp.currentUri}">
