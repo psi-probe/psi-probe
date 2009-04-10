@@ -178,7 +178,7 @@
                                     <a href="<c:url value="/appattributes.htm?webapp=${app.name}"/>">${app.contextAttributeCount}</a>
                                 </td>
                                 <td>
-                                    <a href="<c:url value="/appservlets.htm?webapp=${app.name}"/>">${app.servletCount}</a>
+                                    <a href="<c:url value="/appservlets.htm?webapp=${app.name}"/>">${app.requestCount}</a>
                                 </td>
                                 <td>
                                 ${app.errorCount}
