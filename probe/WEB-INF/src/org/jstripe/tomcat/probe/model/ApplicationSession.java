@@ -25,6 +25,7 @@ public class ApplicationSession {
     public static final String LAST_ACCESSED_BY_IP = "__lambda_probe_la_ip";
 
     private String id;
+    private String applicationName;
     private Date creationTime;
     private Date lastAccessTime;
     private int maxIdleTime;
@@ -45,6 +46,14 @@ public class ApplicationSession {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getApplicationName() {
+        return applicationName;
+    }
+
+    public void setApplicationName(String applicationName) {
+        this.applicationName = applicationName;
     }
 
     public Date getCreationTime() {

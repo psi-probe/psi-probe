@@ -30,7 +30,8 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 /**
- * Creates the list of sessions for a particular web application.
+ * Creates the list of sessions for a particular web application
+ * or all web applications if a webapp request parameter is not set.
  * <p/>
  * Author: Vlad Ilyushchenko, Andy Shapoval
  */
@@ -68,15 +69,31 @@ public class ListSessionsController extends ContextHandlerController {
             }
         }
 
+        // context is not specified we'll retrieve all sessions of the container
+
+        List ctxs;
+        if (context == null) {
+            ctxs = getContainerWrapper().getTomcatContainer().findContexts();
+        } else {
+            ctxs = new ArrayList();
+            ctxs.add(context);
+        }
+
         List sessionList = new ArrayList();
-        if (context.getManager() != null && (! searchInfo.isApply() || searchInfo.isUseSearch())) {
-            Session sessions[] = context.getManager().findSessions();
-            for (int i = 0; i < sessions.length; i++) {
-                Session session = sessions[i];
-                ApplicationSession appSession = ApplicationUtils.getApplicationSession(
-                        session, calcSize, searchInfo.isUseAttr());
-                if (appSession != null && matchSession(appSession, searchInfo)) {
-                    sessionList.add(appSession);
+        for (Iterator it = ctxs.iterator(); it.hasNext(); ) {
+            Context ctx = (Context) it.next();
+            if (ctx != null && ctx.getManager() != null && (! searchInfo.isApply() || searchInfo.isUseSearch())) {
+                Session sessions[] = ctx.getManager().findSessions();
+                for (int i = 0; i < sessions.length; i++) {
+                    Session session = sessions[i];
+                    ApplicationSession appSession = ApplicationUtils.getApplicationSession(
+                            session, calcSize, searchInfo.isUseAttr());
+                    if (appSession != null && matchSession(appSession, searchInfo)) {
+                        if (ctx.getName() != null) {
+                            appSession.setApplicationName(ctx.getName().length() > 0 ? ctx.getName() : "/");
+                        }
+                        sessionList.add(appSession);
+                    }
                 }
             }
         }
@@ -180,5 +197,9 @@ public class ListSessionsController extends ContextHandlerController {
         }
 
         return sessionMatches;
+    }
+
+    protected boolean isContextOptional() {
+        return true;
     }
 }

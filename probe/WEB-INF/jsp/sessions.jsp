@@ -25,7 +25,14 @@
 
 <html>
 <head>
-    <title><spring:message code="probe.jsp.title.sessions" arguments="${param.webapp}"/></title>
+    <c:choose>
+        <c:when test="${empty param.webapp}">
+            <title><spring:message code="probe.jsp.title.sessions.all"/></title>
+        </c:when>
+        <c:otherwise>
+            <title><spring:message code="probe.jsp.title.sessions" arguments="${param.webapp}"/></title>
+        </c:otherwise>
+    </c:choose>
 </head>
 
 <script type="text/javascript" language="javascript" src="<c:url value="/js/prototype.js"/>"></script>
@@ -40,8 +47,10 @@
     Make Tab #1 visually "active".
 --%>
 <c:set var="navTabApps" value="active" scope="request"/>
-<c:set var="use_decorator" value="application" scope="request"/>
-<c:set var="appTabSessions" value="active" scope="request"/>
+<c:if test="${! empty param.webapp}">
+    <c:set var="use_decorator" value="application" scope="request"/>
+    <c:set var="appTabSessions" value="active" scope="request"/>
+</c:if>
 
 <div id="ttdiv" class="tooltip" style="display: none;">
     <div class="tt_top">
@@ -51,9 +60,13 @@
     <div class="tt_content" id="tt_content"></div>
 </div>
 
-<form action="<c:url value="/app/expire.htm"/>?webapp=${param.webapp}"
+<form action="<c:url value="/app/expire_list.htm"/>"
       method="post" name="sessionForm"
       id="sessionForm">
+
+    <c:if test="${! empty param.webapp}">
+        <input type="hidden" name="webapp" value="${param.webapp}"
+    </c:if>
 
     <ul class="options">
         <c:if test="${! empty sessions}">
@@ -133,11 +146,18 @@
                                requestURI="">
 
                     <display:column class="leftmost" title="&nbsp;">
-                        <input type="checkbox" name="${session.id}"/>
+                        <input type="checkbox" name="sid_webapp" value="${session.id};${session.applicationName}"/>
                     </display:column>
 
+                    <c:if test="${empty param.webapp}">
+                        <display:column sortProperty="applicationName" sortable="true"
+                                        titleKey="probe.jsp.sessions.col.applicationName">
+                            <a href="<c:url value="/appsummary.htm"><c:param name="webapp" value="${session.applicationName}"/></c:url>">${session.applicationName}</a>&nbsp;
+                        </display:column>
+                    </c:if>
+
                     <display:column titleKey="probe.jsp.sessions.col.id">
-                        <a href="<c:url value="/attributes.htm?webapp=${param.webapp}&sid=${session.id}&size=${param.size}"/>">${session.id}</a>
+                        <a href="<c:url value="/attributes.htm?webapp=${session.applicationName}&sid=${session.id}&size=${param.size}"/>">${session.id}</a>
                     </display:column>
 
                     <display:column titleKey="probe.jsp.sessions.col.lastIP" sortProperty="lastAccessedIP" sortable="true">
@@ -254,12 +274,28 @@
     }
 
     function applySearch() {
-        $('sessionForm').action = '<c:url value="/sessions.htm"><c:param name="webapp" value="${param.webapp}"/><c:param name="size" value="${param.size}"/><c:param name="searchAction" value="apply"/></c:url>';
+        <c:choose>
+            <c:when test="${empty param.webapp}">
+                $('sessionForm').action = '<c:url value="/sessions.htm"><c:param name="size" value="${param.size}"/><c:param name="searchAction" value="apply"/></c:url>';
+            </c:when>
+            <c:otherwise>
+                $('sessionForm').action = '<c:url value="/sessions.htm"><c:param name="webapp" value="${param.webapp}"/><c:param name="size" value="${param.size}"/><c:param name="searchAction" value="apply"/></c:url>';
+            </c:otherwise>
+        </c:choose>
+
         $('sessionForm').submit();
     }
 
     function clearSearch() {
-        $('sessionForm').action = '<c:url value="/sessions.htm"><c:param name="webapp" value="${param.webapp}"/><c:param name="size" value="${param.size}"/><c:param name="searchAction" value="clear"/></c:url>';
+        <c:choose>
+            <c:when test="${empty param.webapp}">
+                $('sessionForm').action = '<c:url value="/sessions.htm"><c:param name="size" value="${param.size}"/><c:param name="searchAction" value="clear"/></c:url>';
+            </c:when>
+            <c:otherwise>
+                $('sessionForm').action = '<c:url value="/sessions.htm"><c:param name="webapp" value="${param.webapp}"/><c:param name="size" value="${param.size}"/><c:param name="searchAction" value="clear"/></c:url>';
+            </c:otherwise>
+        </c:choose>
+
         $('sessionForm').submit();
     }
 </script>
