@@ -90,21 +90,21 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
     }
 
     /**
-     * Returns stat series that match a regular expression
-     * @param pattern - a regular expression to match stat names
-     * @return a Map that contains all stat series that match the regular expression
+     * Returns series if stat name starts with the prefix.
+     * @param statNamePrefix
+     * @return a Map of matching stats. Map keys are stat names and map values are corresponding series.
      */
-    public synchronized Map getMatchingStats(String pattern) {
+    public synchronized Map getStatsByPrefix(String statNamePrefix) {
         Map map = new HashMap();
         for (Iterator i = statsData.entrySet().iterator(); i.hasNext();) {
             Map.Entry en = (Map.Entry) i.next();
-            if (((String)en.getKey()).matches(pattern)) {
+            if (((String)en.getKey()).startsWith(statNamePrefix)) {
                 map.put(en.getKey(), en.getValue());
             }
         }
         return map;
     }
-    
+
     private File makeFile() {
         return storagePath == null ? new File(contextTempDir, swapFileName) : new File(storagePath, swapFileName);
     }

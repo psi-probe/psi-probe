@@ -150,8 +150,8 @@
     <bean name="app_req" class="org.jstripe.tomcat.probe.beans.stats.providers.StandardSeriesProvider">
         <property name="statNames">
             <list>
-                <value>app.{0}.requests</value>
-                <value>app.{0}.errors</value>
+                <value>app.requests.{0}</value>
+                <value>app.errors.{0}</value>
             </list>
         </property>
     </bean>
@@ -159,7 +159,7 @@
     <bean name="app_avg_proc_time" class="org.jstripe.tomcat.probe.beans.stats.providers.StandardSeriesProvider">
         <property name="statNames">
             <list>
-                <value>app.{0}.avg_proc_time</value>
+                <value>app.avg_proc_time.{0}</value>
             </list>
         </property>
     </bean>
@@ -172,10 +172,8 @@
         </property>
     </bean>
 
-    <bean name="all_app_avg_proc_time" class="org.jstripe.tomcat.probe.beans.stats.providers.MatchingSeriesProvider">
-        <property name="containerWrapper" ref="containerWrapper"/>
-        <property name="statNamePattern" value="^app\..*\.avg_proc_time$"/>
-        <property name="removePattern" value="^app\.|\.avg_proc_time$"/>
+    <bean name="all_app_avg_proc_time" class="org.jstripe.tomcat.probe.beans.stats.providers.MultipleSeriesProvider">
+        <property name="statNamePrefix" value="app.avg_proc_time."/>
         <property name="top" value="4"/>
         <property name="movingAvgFrame" value="10"/>
     </bean>
@@ -188,10 +186,8 @@
         </property>
     </bean>
 
-    <bean name="all_app_req" class="org.jstripe.tomcat.probe.beans.stats.providers.MatchingSeriesProvider">
-        <property name="containerWrapper" ref="containerWrapper"/>
-        <property name="statNamePattern" value="^app\..*\.requests$"/>
-        <property name="removePattern" value="^app\.|\.requests$"/>
+    <bean name="all_app_req" class="org.jstripe.tomcat.probe.beans.stats.providers.MultipleSeriesProvider">
+        <property name="statNamePrefix" value="app.requests."/>
         <property name="top" value="4"/>
         <property name="movingAvgFrame" value="10"/>
     </bean>
