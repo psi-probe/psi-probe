@@ -113,6 +113,15 @@ public class ApplicationUtils {
         return app;
     }
 
+    /**
+     * Calculates Sum of requestCount, errorCount and processingTime for all servlets for the
+     * give application. It also works out minimum value of minTime and maximum value for maxTime for
+     * all servlets.
+     *
+     * @param context
+     * @param app
+     */
+
     public static void collectApplicationServletStats(Context context, Application app) {
         int svltCount = 0;
         int reqCount = 0;

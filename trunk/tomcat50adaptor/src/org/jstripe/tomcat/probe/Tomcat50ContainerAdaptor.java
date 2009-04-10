@@ -109,4 +109,8 @@ public class Tomcat50ContainerAdaptor extends AbstractTomcatContainer {
     public String getHostName() {
         return deployer.getName();
     }
+
+    public String getName() {
+        return ((Host)this.deployer).getParent().getName();
+    }
 }

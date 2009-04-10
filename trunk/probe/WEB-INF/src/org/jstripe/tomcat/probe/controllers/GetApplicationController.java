@@ -10,12 +10,12 @@
  */
 package org.jstripe.tomcat.probe.controllers;
 
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.bind.ServletRequestUtils;
 import org.apache.catalina.Context;
-import org.jstripe.tomcat.probe.tools.ApplicationUtils;
-import org.jstripe.tomcat.probe.beans.AppStatsAccessor;
 import org.jstripe.tomcat.probe.model.Application;
+import org.jstripe.tomcat.probe.model.stats.StatsCollection;
+import org.jstripe.tomcat.probe.tools.ApplicationUtils;
+import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,10 +30,7 @@ public class GetApplicationController extends ContextHandlerController {
      * denotes whether extended application information and statistics should be collected
      */
     private boolean extendedInfo = false;
-    /**
-     * retrieves application avg response time application stats
-     */
-    private AppStatsAccessor appStatsAccessor;
+    private StatsCollection statsCollection;
 
     public boolean isExtendedInfo() {
         return extendedInfo;
@@ -43,32 +40,29 @@ public class GetApplicationController extends ContextHandlerController {
         this.extendedInfo = extendedInfo;
     }
 
-    public AppStatsAccessor getAppStatsAccessor() {
-        return appStatsAccessor;
+    public StatsCollection getStatsCollection() {
+        return statsCollection;
     }
 
-    public void setAppStatsAccessor(AppStatsAccessor appStatsAccessor) {
-        this.appStatsAccessor = appStatsAccessor;
+    public void setStatsCollection(StatsCollection statsCollection) {
+        this.statsCollection = statsCollection;
     }
 
     protected ModelAndView handleContext(String contextName, Context context,
                                          HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         String privelegedRole = getServletContext().getInitParameter("attribute.value.role");
-
         boolean calcSize = ServletRequestUtils.getBooleanParameter(request, "size", false) && request.isUserInRole(privelegedRole);
 
         Application app = ApplicationUtils.getApplication(
                 context, isExtendedInfo() ? getContainerWrapper().getResourceResolver() : null, calcSize);
-        if (isExtendedInfo() && getAppStatsAccessor() != null) {
-            app.setAvgTime(getAppStatsAccessor().getAvgProcTime(app.getName()));
-        }
-        ModelAndView mv = new ModelAndView(getViewName(), "app", app);
 
-        if (! getContainerWrapper().getResourceResolver().supportsPrivateResources()) {
-            mv.addObject("no_resources", Boolean.TRUE);
+        String avgStatisticName = "app." + app.getName() + ".avg_proc_time";
+        if (isExtendedInfo()) {
+            app.setAvgTime(statsCollection.getLastValueForStat(avgStatisticName));
         }
 
-        return mv;
+        return new ModelAndView(getViewName(), "app", app).
+                addObject("no_resources", Boolean.valueOf(!getContainerWrapper().getResourceResolver().supportsPrivateResources()));
     }
 }

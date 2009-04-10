@@ -22,13 +22,13 @@ import java.util.Set;
 
 public class ClusterWrapperBean {
 
-    public Cluster getCluster(String hostName, boolean loadMembers) throws Exception {
+    public Cluster getCluster(String serverName, String hostName, boolean loadMembers) throws Exception {
         Cluster cluster = null;
 
         MBeanServer mBeanServer = new Registry().getMBeanServer();
-        ObjectName membershipOName = new ObjectName("Catalina:type=ClusterMembership,host=" + hostName);
-        ObjectName receiverOName = new ObjectName("Catalina:type=ClusterReceiver,host=" + hostName);
-        ObjectName senderOName = new ObjectName("Catalina:type=ClusterSender,host=" + hostName);
+        ObjectName membershipOName = new ObjectName(serverName +":type=ClusterMembership,host=" + hostName);
+        ObjectName receiverOName = new ObjectName(serverName +":type=ClusterReceiver,host=" + hostName);
+        ObjectName senderOName = new ObjectName(serverName +":type=ClusterSender,host=" + hostName);
 
         //
         // should be just one set, this is just to find out if this instance

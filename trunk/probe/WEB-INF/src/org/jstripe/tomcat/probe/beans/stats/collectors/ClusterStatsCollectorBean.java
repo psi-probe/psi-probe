@@ -14,6 +14,7 @@ package org.jstripe.tomcat.probe.beans.stats.collectors;
 import org.jstripe.tomcat.probe.beans.ClusterWrapperBean;
 import org.jstripe.tomcat.probe.beans.ContainerWrapperBean;
 import org.jstripe.tomcat.probe.model.jmx.Cluster;
+import org.jstripe.tomcat.probe.TomcatContainer;
 
 public class ClusterStatsCollectorBean extends BaseStatsCollectorBean {
     private ContainerWrapperBean containerWrapper;
@@ -38,8 +39,9 @@ public class ClusterStatsCollectorBean extends BaseStatsCollectorBean {
     public void collect() throws Exception {
         // Job can be called before the servlet finished intialisation. Make sure
         // we dont get an NPE.
-        if (containerWrapper.getTomcatContainer() != null) {
-            Cluster cluster = clusterWrapper.getCluster(containerWrapper.getTomcatContainer().getHostName(), false);
+        TomcatContainer container = containerWrapper.getTomcatContainer();
+        if (container != null) {
+            Cluster cluster = clusterWrapper.getCluster(container.getName(), container.getHostName(), false);
             if (cluster != null) {
                 buildDeltaStats("cluster.received", cluster.getTotalReceivedBytes());
                 buildDeltaStats("cluster.sent", cluster.getSenderTotalBytes());
