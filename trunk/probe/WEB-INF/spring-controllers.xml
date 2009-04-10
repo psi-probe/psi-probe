@@ -70,7 +70,15 @@
         <property name="viewName" value="forward:/resources.htm"/>
     </bean>
 
-    <bean name="/app/expire.htm" class="org.jstripe.tomcat.probe.controllers.ExpireSessionsController">
+    <bean name="/app/expire.htm" class="org.jstripe.tomcat.probe.controllers.ExpireSessionController">
+        <property name="containerWrapper" ref="containerWrapper"/>
+        <!--
+            This controller uses InternalResourceView, so view name here has to be a URL like
+        -->
+        <property name="viewName" value="/sessions.htm"/>
+    </bean>
+
+    <bean name="/app/expire_list.htm" class="org.jstripe.tomcat.probe.controllers.ExpireSessionsController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <!--
             This controller uses InternalResourceView, so view name here has to be a URL like
