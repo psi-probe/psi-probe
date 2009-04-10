@@ -30,6 +30,8 @@ public class RequestProcessor {
     private String currentUri;
     private String currentQueryString;
     private String protocol;
+    private String workerThreadName;
+    private boolean workerThreadNameSupported = false;
 
     public String getName() {
         return name;
@@ -125,5 +127,21 @@ public class RequestProcessor {
 
     public void setRemoteAddrLocale(Locale remoteAddrLocale) {
         this.remoteAddrLocale = remoteAddrLocale;
+    }
+
+    public String getWorkerThreadName() {
+        return workerThreadName;
+    }
+
+    public void setWorkerThreadName(String workerThreadName) {
+        this.workerThreadName = workerThreadName;
+    }
+
+    public boolean isWorkerThreadNameSupported() {
+        return workerThreadNameSupported;
+    }
+
+    public void setWorkerThreadNameSupported(boolean workerThreadNameSupported) {
+        this.workerThreadNameSupported = workerThreadNameSupported;
     }
 }

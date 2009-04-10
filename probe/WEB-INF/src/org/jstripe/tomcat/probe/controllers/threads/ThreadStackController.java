@@ -40,11 +40,26 @@ public class ThreadStackController extends ParameterizableViewController {
     protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         long threadID = ServletRequestUtils.getLongParameter(request, "id", -1);
-        List stack = null;
-        String threadName = null;
+        String threadName = ServletRequestUtils.getStringParameter(request, "name", null);
 
+        List stack = null;
         MBeanServer mBeanServer = new Registry().getMBeanServer();
         ObjectName threadingOName = new ObjectName("java.lang:type=Threading");
+
+
+        if (threadID == -1 && threadName != null) {
+            // find thread by name
+            long allIds[] = (long[]) mBeanServer.getAttribute(threadingOName, "AllThreadIds");
+            for (int i = 0; i < allIds.length; i++) {
+                CompositeData cd = (CompositeData) mBeanServer.invoke(threadingOName, "getThreadInfo",
+                        new Object[]{new Long(allIds[i])}, new String[] {"long"});
+                String name = JmxTools.getStringAttr(cd, "threadName");
+                if (threadName.equals(name)) {
+                    threadID = allIds[i];
+                    break;
+                }
+            }
+        }
 
         if (mBeanServer.queryMBeans(threadingOName, null) != null && threadID != -1) {
 

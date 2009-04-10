@@ -12,10 +12,14 @@ package org.jstripe.tomcat.probe.controllers.connectors;
 
 import org.jstripe.tomcat.probe.beans.ContainerListenerBean;
 import org.jstripe.tomcat.probe.controllers.TomcatContainerController;
+import org.jstripe.tomcat.probe.model.ThreadPool;
+import org.jstripe.tomcat.probe.model.RequestProcessor;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
+import java.util.Iterator;
 
 /**
  * Creates the list of http connection thread pools.
@@ -44,6 +48,13 @@ public class StatusController extends TomcatContainerController {
     }
 
     public ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        return new ModelAndView(getViewName(), "pools", containerListenerBean.getThreadPools(includeRequestProcessors));
+        boolean workerThreadNameSupported = false;
+        List pools = containerListenerBean.getThreadPools(includeRequestProcessors);
+
+        if (pools.size() > 0 && ((ThreadPool)pools.get(0)).getRequestProcessors().size() > 0) {
+            workerThreadNameSupported = ((RequestProcessor)((ThreadPool)pools.get(0)).getRequestProcessors().get(0)).isWorkerThreadNameSupported();
+        }
+        
+        return new ModelAndView(getViewName(), "pools", pools).addObject("workerThreadNameSupported", Boolean.valueOf(workerThreadNameSupported));
     }
 }

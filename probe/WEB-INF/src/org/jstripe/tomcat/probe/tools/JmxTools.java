@@ -68,12 +68,7 @@ public class JmxTools {
 
     public static boolean getBooleanAttr(CompositeData cds, String name) {
         Object o = cds.get(name);
-
-        if (o != null && o instanceof Boolean) {
-            return ((Boolean)o).booleanValue();
-        } else {
-            return false;
-        }
+        return o != null && o instanceof Boolean && ((Boolean) o).booleanValue();
     }
 
     public static int getIntAttr(CompositeData cds, String name, int defaultValue) {

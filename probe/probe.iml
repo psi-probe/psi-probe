@@ -2,7 +2,7 @@
 <module version="4" relativePaths="true" type="J2EE_WEB_MODULE" j2ee-integration="Tomcat Server">
   <component name="AppServerSpecificValidatorsManager" />
   <component name="ModuleRootManager" />
-  <component name="NewModuleRootManager" inherit-compiler-output="false">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_4" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/WEB-INF/classes" />
     <exclude-output />
     <exploded url="file://$MODULE_DIR$" />
@@ -24,24 +24,6 @@
       <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/WEB-INF/lib/commons-io-1.1.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/WEB-INF/lib/commons-modeler.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/WEB-INF/lib/jmx.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -178,15 +160,6 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/WEB-INF/lib/log4j-1.2.13.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
           <root url="jar://$MODULE_DIR$/WEB-INF/lib/commons-logging.jar!/" />
         </CLASSES>
         <JAVADOC />
@@ -247,17 +220,6 @@
         </CLASSES>
         <JAVADOC />
         <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/WEB-INF/lib/jboss-profiler-jvmti.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://F:/downloads/jboss-profiler-1.0.CR4/jboss-profiler-1.0.CR4/jvmti-src/java-src" />
-        </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library">
@@ -344,6 +306,24 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="Tomcat 5.0" level="application_server_libraries" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/WEB-INF/lib/commons-modeler.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/WEB-INF/lib/jmx.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
     <orderEntryProperties />
   </component>
   <component name="WebModuleBuildComponent">
@@ -357,14 +337,188 @@
     <setting name="RUN_JASPER_VALIDATION" value="false" />
   </component>
   <component name="WebModuleProperties">
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="/WEB-INF/lib/c3p0-0.9.0.jar" />
+      <url>jar://$MODULE_DIR$/WEB-INF/ext/c3p0-0.9.0.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="/WEB-INF/lib/catalina-50.jar" />
+      <url>jar://$MODULE_DIR$/WEB-INF/ext/catalina-50.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="/WEB-INF/lib/commons-dbcp-1.2.1.jar" />
+      <url>jar://$MODULE_DIR$/WEB-INF/ext/commons-dbcp-1.2.1.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="/WEB-INF/lib/jasper-compiler-55.jar" />
+      <url>jar://$MODULE_DIR$/WEB-INF/ext/jasper-compiler-55.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="/WEB-INF/lib/jasper-runtime-55.jar" />
+      <url>jar://$MODULE_DIR$/WEB-INF/ext/jasper-runtime-55.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="&lt;N/A&gt;" />
+      <url>jar://$MODULE_DIR$/WEB-INF/ext/jsp-api.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="/WEB-INF/lib/naming-factory-dbcp-55.jar" />
+      <url>jar://$MODULE_DIR$/WEB-INF/ext/naming-factory-dbcp-55.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="/WEB-INF/lib/naming-factory.jar" />
+      <url>jar://$MODULE_DIR$/WEB-INF/ext/naming-factory.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="/WEB-INF/lib/naming-resources.jar" />
+      <url>jar://$MODULE_DIR$/WEB-INF/ext/naming-resources.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="/WEB-INF/lib/ojdbc14.jar" />
+      <url>jar://$MODULE_DIR$/WEB-INF/ext/ojdbc14.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="&lt;N/A&gt;" />
+      <url>jar://$MODULE_DIR$/WEB-INF/ext/servlet-api.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="/WEB-INF/lib/wrapper.jar" />
+      <url>jar://$MODULE_DIR$/WEB-INF/ext/wrapper.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="/WEB-INF/lib/commons-beanutils-1.7.0.jar" />
+      <url>jar://$MODULE_DIR$/WEB-INF/lib/commons-beanutils-1.7.0.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="/WEB-INF/lib/commons-collections-3.2.jar" />
+      <url>jar://$MODULE_DIR$/WEB-INF/lib/commons-collections-3.2.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="/WEB-INF/lib/commons-fileupload-1.2-SNAPSHOT.jar" />
+      <url>jar://$MODULE_DIR$/WEB-INF/lib/commons-fileupload-1.2-SNAPSHOT.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="/WEB-INF/lib/commons-io-1.1.jar" />
+      <url>jar://$MODULE_DIR$/WEB-INF/lib/commons-io-1.1.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="/WEB-INF/lib/commons-lang-2.2.jar" />
+      <url>jar://$MODULE_DIR$/WEB-INF/lib/commons-lang-2.2.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="/WEB-INF/lib/commons-logging-api.jar" />
+      <url>jar://$MODULE_DIR$/WEB-INF/lib/commons-logging-api.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="/WEB-INF/lib/commons-logging.jar" />
+      <url>jar://$MODULE_DIR$/WEB-INF/lib/commons-logging.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="&lt;N/A&gt;" />
+      <url>jar://$MODULE_DIR$/WEB-INF/lib/commons-modeler.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="/WEB-INF/lib/displaytag-1.0.jar" />
+      <url>jar://$MODULE_DIR$/WEB-INF/lib/displaytag-1.0.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="/WEB-INF/lib/InetAddressLocator.jar" />
+      <url>jar://$MODULE_DIR$/WEB-INF/lib/InetAddressLocator.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="/WEB-INF/lib/jcommon-1.0.6.jar" />
+      <url>jar://$MODULE_DIR$/WEB-INF/lib/jcommon-1.0.6.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="/WEB-INF/lib/jfreechart-1.0.3.jar" />
+      <url>jar://$MODULE_DIR$/WEB-INF/lib/jfreechart-1.0.3.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="/WEB-INF/lib/jhighlight-1.0.jar" />
+      <url>jar://$MODULE_DIR$/WEB-INF/lib/jhighlight-1.0.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="&lt;N/A&gt;" />
+      <url>jar://$MODULE_DIR$/WEB-INF/lib/jmx.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="/WEB-INF/lib/jsi.jar" />
+      <url>jar://$MODULE_DIR$/WEB-INF/lib/jsi.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="/WEB-INF/lib/jstl.jar" />
+      <url>jar://$MODULE_DIR$/WEB-INF/lib/jstl.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="/WEB-INF/lib/quartz-1.6.0.jar" />
+      <url>jar://$MODULE_DIR$/WEB-INF/lib/quartz-1.6.0.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="/WEB-INF/lib/sitemesh-2.2.1.jar" />
+      <url>jar://$MODULE_DIR$/WEB-INF/lib/sitemesh-2.2.1.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="/WEB-INF/lib/spring-2.0.1.jar" />
+      <url>jar://$MODULE_DIR$/WEB-INF/lib/spring-2.0.1.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="/WEB-INF/lib/standard.jar" />
+      <url>jar://$MODULE_DIR$/WEB-INF/lib/standard.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="/WEB-INF/lib/xpp3_min-1.1.3.4.O.jar" />
+      <url>jar://$MODULE_DIR$/WEB-INF/lib/xpp3_min-1.1.3.4.O.jar!/</url>
+    </containerElement>
+    <containerElement type="library" level="module">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="/WEB-INF/lib/xstream-1.2.1.jar" />
+      <url>jar://$MODULE_DIR$/WEB-INF/lib/xstream-1.2.1.jar!/</url>
+    </containerElement>
+    <containerElement type="library" name="Tomcat 5.0" level="application_server_libraries">
+      <attribute name="method" value="0" />
+      <attribute name="URI" value="&lt;N/A&gt;" />
+    </containerElement>
     <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/WEB-INF/web.xml" optional="false" version="2.4" />
     <deploymentDescriptor name="context.xml" url="file://$MODULE_DIR$/META-INF/context.xml" optional="false" version="5.x" />
+    <deploymentDescriptor name="jboss-web.xml" url="file://$MODULE_DIR$/WEB-INF/jboss-web.xml" optional="false" version="3.2" />
     <deploymentDescriptor name="" url="file://$MODULE_DIR$/META-INF/context.xml" optional="false">
       <option name="DEFAULT_DIR" value="WEB-INF" />
       <option name="NAME" value="" />
       <option name="DESCRIPTION" value="" />
     </deploymentDescriptor>
-    <deploymentDescriptor name="jboss-web.xml" url="file://$MODULE_DIR$/WEB-INF/jboss-web.xml" optional="false" version="3.2" />
     <webroots>
       <root url="file://$MODULE_DIR$" relative="/" />
       <root url="file://$MODULE_DIR$/WEB-INF" relative="/WEB-INF" />

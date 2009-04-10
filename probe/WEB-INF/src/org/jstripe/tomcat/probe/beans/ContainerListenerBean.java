@@ -43,6 +43,8 @@ public class ContainerListenerBean implements NotificationListener {
 
     /**
      * Finds ThreadPoolObjectName by its string name.
+
+     * @param name - pool name
      *
      * @return null if the input name is null or ThreadPoolObjectName is not found
      */
@@ -87,7 +89,7 @@ public class ContainerListenerBean implements NotificationListener {
      * Load ObjectNames for the relevant MBeans so they can be queried at a later stage without searching MBean server
      * over and over again.
      *
-     * @throws Exception
+     * @throws Exception - this method does not handle any of the exceptions that may be thrown when querying MBean server.
      */
     private synchronized void initialize() throws Exception {
 
@@ -128,6 +130,8 @@ public class ContainerListenerBean implements NotificationListener {
     }
 
     public synchronized List getThreadPools(boolean includeRequestProcessors) throws Exception {
+
+        boolean workerThreadNameSupported = true;
 
         if (!isInitialized()) initialize();
 
@@ -181,6 +185,18 @@ public class ContainerListenerBean implements NotificationListener {
                             rp.setCurrentUri(JmxTools.getStringAttr(server, wrkName, "currentUri"));
                             rp.setCurrentQueryString(JmxTools.getStringAttr(server, wrkName, "currentQueryString"));
                             rp.setProtocol(JmxTools.getStringAttr(server, wrkName, "protocol"));
+                            if (workerThreadNameSupported && JmxTools.hasAttribute(server, wrkName, "workerThreadName")) {
+                                rp.setWorkerThreadName(JmxTools.getStringAttr(server, wrkName, "workerThreadName"));
+                                rp.setWorkerThreadNameSupported(true);
+                            } else {
+                                //
+                                // attribute should consistently either exist or be missing across all the workers so
+                                // it does not make sense to check attribute existence
+                                // if we have found once that it is not supported
+                                //
+                                rp.setWorkerThreadNameSupported(false);
+                                workerThreadNameSupported = false;
+                            }
                             threadPool.addRequestProcessor(rp);
                         } catch (InstanceNotFoundException e) {
                             logger.info("Failed to query RequestProcessor " + wrkName);
