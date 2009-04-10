@@ -21,6 +21,7 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.web.context.WebApplicationContext;
+import org.jstripe.tomcat.probe.tools.UpdateCommitLock;
 
 import java.io.*;
 import java.util.*;
@@ -34,6 +35,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
     private String storagePath = null;
     private File contextTempDir;
     private int maxFiles = 2;
+    private final UpdateCommitLock lock = new UpdateCommitLock();
 
     public String getSwapFileName() {
         return swapFileName;
@@ -63,13 +65,13 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
         this.maxFiles = maxFiles > 0 ? maxFiles : 2;
     }
 
-    public List newStats(String name, int maxElements) {
+    public synchronized List newStats(String name, int maxElements) {
         List stats = Collections.synchronizedList(new ArrayList(maxElements));
         statsData.put(name, stats);
         return stats;
     }
 
-    public List getStats(String name) {
+    public synchronized List getStats(String name) {
         return (List) statsData.get(name);
     }
 
@@ -92,7 +94,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
      * @param pattern - a regular expression to match stat names
      * @return a Map that contains all stat series that match the regular expression
      */
-    public Map getMatchingStats(String pattern) {
+    public synchronized Map getMatchingStats(String pattern) {
         Map map = new HashMap();
         for (Iterator i = statsData.entrySet().iterator(); i.hasNext();) {
             Map.Entry en = (Map.Entry) i.next();
@@ -123,20 +125,25 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
      *
      * @throws IOException
      */
-    public void serialize() throws IOException {
-        long t = System.currentTimeMillis();
+    public synchronized void serialize() throws IOException, InterruptedException {
+        lock.lockForCommit();
         try {
-            shiftFiles(0);
-            OutputStream os = new FileOutputStream(makeFile());
+            long t = System.currentTimeMillis();
             try {
-                new XStream().toXML(statsData, os);
+                shiftFiles(0);
+                OutputStream os = new FileOutputStream(makeFile());
+                try {
+                    new XStream().toXML(statsData, os);
+                } finally {
+                    os.close();
+                }
+            } catch (Exception e) {
+                logger.error("Could not write stats data to " + makeFile().getAbsolutePath(), e);
             } finally {
-                os.close();
+                logger.info("stats serialized in " + (System.currentTimeMillis() - t) + "ms.");
             }
-        } catch (Exception e) {
-            logger.error("Could not write stats data to " + makeFile().getAbsolutePath(), e);
-        } finally {
-            logger.info("stats serialized in " + (System.currentTimeMillis() - t) + "ms.");
+        } finally{
+            lock.releaseCommitLock();
         }
     }
 
@@ -179,12 +186,20 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
         return stats;
     }
 
+    public void lockForUpdate() throws InterruptedException {
+        lock.lockForUpdate();
+    }
+
+    public void releaseLock() {
+        lock.releaseUpdateLock();
+    }
+
     /**
      * Reads stats data from file on disk.
      *
      * @throws Exception
      */
-    public void afterPropertiesSet() throws Exception {
+    public synchronized void afterPropertiesSet() throws Exception {
         int index = 0;
         Map stats;
 
@@ -202,6 +217,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
         }
 
     }
+
 
     public void destroy() throws Exception {
         serialize();

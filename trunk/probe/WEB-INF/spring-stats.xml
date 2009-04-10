@@ -176,7 +176,7 @@
         <property name="statNamePattern" value="^app\..*\.avg_proc_time$"/>
         <property name="removePattern" value="^app\.|\.avg_proc_time$"/>
         <property name="top" value="4"/>
-        <property name="moovingAvgFrame" value="10"/>
+        <property name="movingAvgFrame" value="10"/>
     </bean>
 
     <bean name="total_req" class="org.jstripe.tomcat.probe.beans.stats.providers.StandardSeriesProvider">
@@ -192,7 +192,7 @@
         <property name="statNamePattern" value="^app\..*\.requests$"/>
         <property name="removePattern" value="^app\.|\.requests$"/>
         <property name="top" value="4"/>
-        <property name="moovingAvgFrame" value="10"/>
+        <property name="movingAvgFrame" value="10"/>
     </bean>
 
     <!--
@@ -256,12 +256,12 @@
 
     <bean id="appStatsTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
         <property name="jobDetail" ref="appStatsJobDetail"/>
-        <property name="cronExpression" value="0,30 * * * * ?"/>
+        <property name="cronExpression" value="0 0/2 * * * ?"/>
     </bean>
 
     <bean id="statsSerializerTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
         <property name="jobDetail" ref="statsSerializerJobDetail"/>
-        <property name="cronExpression" value="10 * * * * ?"/>
+        <property name="cronExpression" value="10 0/5 * * * ?"/>
     </bean>
 
 

@@ -4,6 +4,17 @@
  *
  *   http://probe.jstripe.com/d/license.shtml
  *
+ * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR
+ * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
+ * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+ */
+
+/*
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://probe.jstripe.com/d/license.shtml
+ *
  *  THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR
  *  IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  *  WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
@@ -33,7 +44,7 @@ public class MatchingSeriesProvider extends AbstractSeriesProvider {
     private String statNamePattern;
     private String removePattern;
     private int top = 0;
-    private int moovingAvgFrame = 0;
+    private int movingAvgFrame = 0;
 
     public ContainerWrapperBean getContainerWrapper() {
         return containerWrapper;
@@ -79,18 +90,18 @@ public class MatchingSeriesProvider extends AbstractSeriesProvider {
         this.top = top;
     }
 
-    public int getMoovingAvgFrame() {
-        return moovingAvgFrame;
+    public int getMovingAvgFrame() {
+        return movingAvgFrame;
     }
 
     /**
-     * @param moovingAvgFrame - if this value is greater than 0, a moving avg will be calculated for each series using
-     * every Nth value, where N % moovingAvgFrame == 0. Top series will be identified based on a max moving avg
-     * value of each series. If the moovingAvgFrame equals to 0, moving avg will not be calculated and top series
+     * @param movingAvgFrame - if this value is greater than 0, a moving avg will be calculated for each series using
+     * every Nth value, where N % movingAvgFrame == 0. Top series will be identified based on a max moving avg
+     * value of each series. If the movingAvgFrame equals to 0, moving avg will not be calculated and top series
      * will be determined based on an avg of all series values.
      */
-    public void setMoovingAvgFrame(int moovingAvgFrame) {
-        this.moovingAvgFrame = moovingAvgFrame;
+    public void setMovingAvgFrame(int movingAvgFrame) {
+        this.movingAvgFrame = movingAvgFrame;
     }
 
     public void populate(DefaultTableXYDataset dataset, StatsCollection statsCollection, HttpServletRequest request) {
@@ -118,11 +129,11 @@ public class MatchingSeriesProvider extends AbstractSeriesProvider {
                         long sum = 0;
                         int count = 1;
                         synchronized (me.getValue()) {
-                            boolean moovingAvg = getMoovingAvgFrame() > 0 && getMoovingAvgFrame() < stats.size();
+                            boolean moovingAvg = getMovingAvgFrame() > 0 && getMovingAvgFrame() < stats.size();
                             for (Iterator i = stats.iterator(); i.hasNext();) {
                                 XYDataItem xy = (XYDataItem) i.next();
                                 sum += xy.getY().longValue();
-                                if ((moovingAvg && count % getMoovingAvgFrame() == 0) || ! i.hasNext()) {
+                                if ((moovingAvg && count % getMovingAvgFrame() == 0) || ! i.hasNext()) {
                                     double a = (double) sum / count;
                                     if (a > avg) {
                                         avg = a;
@@ -136,7 +147,7 @@ public class MatchingSeriesProvider extends AbstractSeriesProvider {
                         }
                     }
                 }
-            };
+            }
 
             Map stats = statsCollection.getMatchingStats(getStatNamePattern());
             List series1 = new ArrayList(), series2;

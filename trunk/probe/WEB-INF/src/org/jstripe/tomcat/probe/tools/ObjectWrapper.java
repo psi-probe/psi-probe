@@ -29,7 +29,7 @@ class ObjectWrapper {
             ObjectWrapper ow = (ObjectWrapper) o1;
             // I know, this condition may seem strange, but if "equals" is left out 
             // sizeOf() may run into an infinite loop on some objects
-            return ow.o == o || o.equals(ow.o);
+            return ow.o == o;// || o.equals(ow.o);
         }
     }
 
@@ -43,7 +43,7 @@ class ObjectWrapper {
         session.put("bikes", bikes);
 
         Map bikeParts = new TreeMap();
-        bikeParts.put("bike1", bikes);
+        bikeParts.put("bikes", bikes);
         session.put("parts", bikeParts);
 
         System.out.println(Instruments.sizeOf(session));

@@ -17,6 +17,7 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.DateAxis;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.renderer.xy.XYAreaRenderer;
+import org.jfree.chart.renderer.xy.XYLine3DRenderer;
 import org.jfree.data.xy.DefaultTableXYDataset;
 import org.jfree.ui.RectangleInsets;
 import org.jstripe.tomcat.probe.Utils;
@@ -71,7 +72,7 @@ public class RenderChartController extends AbstractController {
         seriesColor[0] = Utils.toIntHex(request.getParameter("s1c"), 0x9bd2fb);
         seriesColor[1] = Utils.toIntHex(request.getParameter("s2c"), 0xFF0606);
         for (int i = 2; i < SERIES_NUM; i++) {
-            seriesColor[i] = Utils.toIntHex(request.getParameter("s"+ (i + 1) + "c"), -1);
+            seriesColor[i] = Utils.toIntHex(request.getParameter("s" + (i + 1) + "c"), -1);
         }
 
         //
@@ -81,7 +82,7 @@ public class RenderChartController extends AbstractController {
         seriesOutlineColor[0] = Utils.toIntHex(request.getParameter("s1o"), 0x0665aa);
         seriesOutlineColor[1] = Utils.toIntHex(request.getParameter("s2o"), 0x9d0000);
         for (int i = 2; i < SERIES_NUM; i++) {
-            seriesOutlineColor[i] = Utils.toIntHex(request.getParameter("s"+ (i + 1) + "o"), -1);
+            seriesOutlineColor[i] = Utils.toIntHex(request.getParameter("s" + (i + 1) + "o"), -1);
         }
 
         //
@@ -140,22 +141,35 @@ public class RenderChartController extends AbstractController {
 
         JFreeChart chart = null;
         if ("area".equals(chartType)) {
+
             chart = ChartFactory.createXYAreaChart("", xLabel, yLabel, ds, PlotOrientation.VERTICAL,
                     showLegend, false, false);
+
+            ((XYAreaRenderer) chart.getXYPlot().getRenderer()).setOutline(true);
+
         } else if ("stacked".equals(chartType)) {
+
             chart = ChartFactory.createStackedXYAreaChart("", xLabel, yLabel, ds, PlotOrientation.VERTICAL, showLegend,
                     false, false);
+
         } else if ("line".equals(chartType)) {
+
             chart = ChartFactory.createXYLineChart("", xLabel, yLabel, ds, PlotOrientation.VERTICAL, showLegend,
                     false, false);
+
+            final XYLine3DRenderer renderer = new XYLine3DRenderer();
+            renderer.setDrawOutlines(true);
+            renderer.setLinesVisible(true);
+            renderer.setShapesVisible(true);
+            renderer.setStroke(new BasicStroke(2));
+            renderer.setXOffset(1);
+            renderer.setYOffset(1);
+            chart.getXYPlot().setRenderer(renderer);
         }
 
         if (chart != null) {
             chart.setAntiAlias(true);
             chart.setBackgroundPaint(new Color(backgroundColor));
-            if ("area".equals(chartType)) {
-                ((XYAreaRenderer) chart.getXYPlot().getRenderer()).setOutline(true);
-            }
             for (int i = 0; i < SERIES_NUM; i++) {
                 if (seriesColor[i] >= 0) {
                     chart.getXYPlot().getRenderer().setSeriesPaint(i, new Color(seriesColor[i]));
