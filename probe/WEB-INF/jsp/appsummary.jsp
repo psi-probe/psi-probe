@@ -167,7 +167,7 @@
                 <dl>
                     <dt id="full_title"></dt>
                     <dd class="image">
-                        <img id="fullImg" border="0" src="${avg_proc_time_url}" alt="-"/>
+                        <img id="fullImg" border="0" src="" alt="-"/>
                     </dd>
                 </dl>
             </div>

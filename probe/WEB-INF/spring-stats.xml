@@ -163,6 +163,14 @@
         </property>
     </bean>
 
+    <bean name="total_avg_proc_time" class="org.jstripe.tomcat.probe.beans.stats.providers.StandardSeriesProvider">
+        <property name="statNames">
+            <list>
+                <value>total.avg_proc_time</value>
+            </list>
+        </property>
+    </bean>
+
     <!--
         Get spring to call method collect() on the "connectorStatsCollector", making the latter a Job
     -->
