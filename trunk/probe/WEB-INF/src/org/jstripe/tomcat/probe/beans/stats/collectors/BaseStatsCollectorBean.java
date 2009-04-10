@@ -47,7 +47,8 @@ public class BaseStatsCollectorBean {
 
     protected void buildDeltaStats(String name, long value, long time) {
         if (statsCollection != null) {
-            buildAbsoluteStats(name, value - Utils.toLong((Long) previousData.get(name), -1), time);
+            long delta = value - Utils.toLong((Long) previousData.get(name), -1);
+            buildAbsoluteStats(name, delta > 0 ? delta : 0, time);
             previousData.put(name, new Long(value));
         }
     }
