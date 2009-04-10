@@ -39,7 +39,7 @@ public class AppStatsCollector extends BaseStatsCollectorBean {
         this.containerWrapper = containerWrapper;
     }
 
-    public void collect() {
+    public void collect() throws Exception {
         long t = System.currentTimeMillis();
         if (containerWrapper == null) {
             logger.error("Cannot collect application stats. Container wrapper is not set.");

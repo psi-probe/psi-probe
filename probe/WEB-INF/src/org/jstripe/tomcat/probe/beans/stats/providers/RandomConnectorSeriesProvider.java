@@ -36,7 +36,7 @@ public class RandomConnectorSeriesProvider extends AbstractSeriesProvider {
 
 
         if (connectorName != null && statType != null) {
-            List l = statsCollection.getStats("stat.connector." + connectorName + "."+statType);
+            List l = statsCollection.getStats("stat.connector." + connectorName + "." + statType);
             if (l != null) {
                 dataset.addSeries(toSeries(series1Legend, l));
             }

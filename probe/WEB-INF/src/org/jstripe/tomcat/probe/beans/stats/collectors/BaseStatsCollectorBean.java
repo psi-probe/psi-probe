@@ -41,11 +41,11 @@ public class BaseStatsCollectorBean {
         this.maxSeries = maxSeries;
     }
 
-    protected long buildDeltaStats(String name, long value) {
+    protected long buildDeltaStats(String name, long value) throws InterruptedException {
         return buildDeltaStats(name, value, System.currentTimeMillis());
     }
 
-    protected long buildDeltaStats(String name, long value, long time) {
+    protected long buildDeltaStats(String name, long value, long time) throws InterruptedException {
         long delta = 0;
         if (statsCollection != null) {
             delta = value - Utils.toLong((Long) previousData.get(name), -1);
@@ -56,18 +56,23 @@ public class BaseStatsCollectorBean {
         return delta;
     }
 
-    protected void buildAbsoluteStats(String name, long value) {
+    protected void buildAbsoluteStats(String name, long value) throws InterruptedException {
         buildAbsoluteStats(name, value, System.currentTimeMillis());
     }
 
 
-    protected void buildAbsoluteStats(String name, long value, long time) {
+    protected void buildAbsoluteStats(String name, long value, long time) throws InterruptedException {
         List stats = statsCollection.getStats(name);
         if (stats == null) {
             statsCollection.newStats(name, maxSeries);
         } else {
-            stats.add(new XYDataItem(time, value));
-            houseKeepStats(stats);
+            statsCollection.lockForUpdate();
+            try {
+                stats.add(new XYDataItem(time, value));
+                houseKeepStats(stats);
+            } finally {
+                statsCollection.releaseLock();
+            }
         }
     }
 
@@ -79,10 +84,10 @@ public class BaseStatsCollectorBean {
     /**
      * If there is a value indicating the accumulated amount of time spent on something it is possible to build a
      * series of values representing the percentage of time spent on doing something. For example:
-     *
+     * <p/>
      * at point T1 the system has spent A milliseconds performing tasks
      * at point T2 the system has spent B milliseconds performing tasks
-     *
+     * <p/>
      * so between in a timeframe T2-T1 the system spent B-A milliseconds being busy. Thus (B - A)/(T2 - T1) * 100
      * is the percentage of all time the system spent being busy.
      *
@@ -90,7 +95,7 @@ public class BaseStatsCollectorBean {
      * @param value time in milliseconds
      * @param time
      */
-    protected void buildTimePercentageStats(String name, long value, long time) {
+    protected void buildTimePercentageStats(String name, long value, long time) throws InterruptedException {
         Entry entry = (Entry) previousData.get(name);
         if (entry == null) {
             entry = new Entry();
@@ -101,10 +106,15 @@ public class BaseStatsCollectorBean {
             double valueDelta = value - entry.value;
             double timeDelta = time - entry.time;
             double statValue = valueDelta * 100 / timeDelta;
-            List stats = statsCollection.getStats(name);
-            if (stats == null) stats = statsCollection.newStats(name, maxSeries);
-            stats.add(stats.size(), new XYDataItem(time, statValue));
-            houseKeepStats(stats);
+            statsCollection.lockForUpdate();
+            try {
+                List stats = statsCollection.getStats(name);
+                if (stats == null) stats = statsCollection.newStats(name, maxSeries);
+                stats.add(stats.size(), new XYDataItem(time, statValue));
+                houseKeepStats(stats);
+            } finally {
+                statsCollection.releaseLock();
+            }
         }
     }
 

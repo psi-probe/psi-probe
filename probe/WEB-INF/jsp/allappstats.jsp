@@ -52,7 +52,7 @@
         </c:url>
 
         <c:url value="/chart.png" var="all_app_avg_proc_time_url">
-            <c:param name="ct" value="area"/>
+            <c:param name="ct" value="line"/>
             <c:param name="p" value="all_app_avg_proc_time"/>
             <c:param name="xz" value="345"/>
             <c:param name="yz" value="250"/>
@@ -67,7 +67,7 @@
         </c:url>
 
         <c:url value="/chart.png" var="all_app_avg_proc_time_url_full">
-            <c:param name="ct" value="area"/>
+            <c:param name="ct" value="line"/>
             <c:param name="p" value="all_app_avg_proc_time"/>
             <c:param name="xz" value="700"/>
             <c:param name="yz" value="320"/>
@@ -99,7 +99,7 @@
         </c:url>
 
         <c:url value="/chart.png" var="all_app_req_url">
-            <c:param name="ct" value="area"/>
+            <c:param name="ct" value="line"/>
             <c:param name="p" value="all_app_req"/>
             <c:param name="xz" value="345"/>
             <c:param name="yz" value="250"/>
@@ -114,7 +114,7 @@
         </c:url>
 
         <c:url value="/chart.png" var="all_app_req_url_full">
-            <c:param name="ct" value="area"/>
+            <c:param name="ct" value="line"/>
             <c:param name="p" value="all_app_req"/>
             <c:param name="xz" value="700"/>
             <c:param name="yz" value="320"/>

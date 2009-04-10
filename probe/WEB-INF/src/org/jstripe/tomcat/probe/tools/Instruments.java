@@ -22,7 +22,7 @@ public class Instruments {
 
     public static final int SZ_REF = 4;
     private static AccessorFactory accessorFactory = null;
-    private List processedObjects = new ArrayList();
+    private List processedObjects = new ArrayList(2048);
     private ClassLoader classLoader = null;
     private static boolean ignoreNIO;
 
@@ -112,7 +112,7 @@ public class Instruments {
                 return Array.getLength(o) * sizeOfPrimitive(ct);
             } else {
                 long size = 0;
-                for (int i = 0; i < Array.getLength(o); i ++) {
+                for (int i = 0; i < Array.getLength(o); i++) {
                     size += internalSizeOf(Array.get(o, i));
                 }
                 return size;
