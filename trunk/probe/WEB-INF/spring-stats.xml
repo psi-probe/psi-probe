@@ -9,10 +9,10 @@
   ~  IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
   ~  WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
   -->
-
-<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
-
-<beans default-dependency-check="none" default-lazy-init="false">
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd"
+       default-dependency-check="none" default-lazy-init="false">
 
     <!--
         Stats collection bean. Holds all stats the Probe collects
@@ -175,37 +175,27 @@
 
     <bean id="connectorStatsTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
         <property name="jobDetail" ref="connectorStatsJobDetail"/>
-        <property name="cronExpression">
-            <value>0,30 * * * * ?</value>
-        </property>
+        <property name="cronExpression" value="0,30 * * * * ?"/>
     </bean>
 
     <bean id="clusterStatsTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
         <property name="jobDetail" ref="clusterStatsJobDetail"/>
-        <property name="cronExpression">
-            <value>0,30 * * * * ?</value>
-        </property>
+        <property name="cronExpression" value="0,30 * * * * ?"/>
     </bean>
 
     <bean id="memoryStatsTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
         <property name="jobDetail" ref="memoryStatsJobDetail"/>
-        <property name="cronExpression">
-            <value>0,30 * * * * ?</value>
-        </property>
+        <property name="cronExpression" value="0,30 * * * * ?"/>
     </bean>
 
     <bean id="runtimeStatsTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
         <property name="jobDetail" ref="runtimeStatsJobDetail"/>
-        <property name="cronExpression">
-            <value>0,30 * * * * ?</value>
-        </property>
+        <property name="cronExpression" value="0,30 * * * * ?"/>
     </bean>
 
     <bean id="statsSerializerTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
         <property name="jobDetail" ref="statsSerializerJobDetail"/>
-        <property name="cronExpression">
-            <value>10 * * * * ?</value>
-        </property>
+        <property name="cronExpression" value="10 * * * * ?"/>
     </bean>
 
 

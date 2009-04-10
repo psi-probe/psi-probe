@@ -97,7 +97,7 @@
     <display:table class="genericTbl" name="apps" id="app" cellspacing="0" requestURI="" defaultsort="1"
                    defaultorder="ascending" cellpadding="0">
 
-        <display:column class="leftMostIcon" sort="" title="&nbsp;">
+        <display:column class="leftMostIcon" title="&nbsp;">
             <a class="imglink" href="<c:url value="/adm/undeploy.htm"><c:param name="webapp" value="${app.name}"/></c:url>"
                onclick="return confirm('<spring:message code="probe.jsp.applications.undeploy.confirm" arguments="${app.name}"/>')">
                 <img class="lnk" src="${pageContext.request.contextPath}<spring:theme code="remove.img"/>"

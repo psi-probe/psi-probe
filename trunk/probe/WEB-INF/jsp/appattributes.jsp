@@ -64,7 +64,7 @@
                             <display:table htmlId="appAttrTbl" name="appAttributes" id="attribute"
                                            class="genericTbl" cellspacing="0" cellpadding="0"
                                            requestURI="" defaultsort="1">
-                                <display:column title="&nbsp;" width="20px;" class="leftMostIcon">
+                                <display:column title="&nbsp;" width="20px" class="leftMostIcon">
                                     <a href="
                                         <c:url value="/app/rmappattr.htm">
                                             <c:param name="webapp" value="${param.webapp}"/>
