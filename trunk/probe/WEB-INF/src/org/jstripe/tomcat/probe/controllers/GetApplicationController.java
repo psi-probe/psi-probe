@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.apache.catalina.Context;
 import org.jstripe.tomcat.probe.tools.ApplicationUtils;
-import org.jstripe.tomcat.probe.beans.stats.collectors.AppStatsCollector;
+import org.jstripe.tomcat.probe.beans.AppStatsAccessor;
 import org.jstripe.tomcat.probe.model.Application;
 
 import javax.servlet.http.HttpServletRequest;
@@ -31,9 +31,9 @@ public class GetApplicationController extends ContextHandlerController {
      */
     private boolean extendedInfo = false;
     /**
-     * retrieves application average response time from stats collection
+     * retrieves application avg response time application stats
      */
-    private AppStatsCollector appStatsCollector;
+    private AppStatsAccessor appStatsAccessor;
 
     public boolean isExtendedInfo() {
         return extendedInfo;
@@ -43,12 +43,12 @@ public class GetApplicationController extends ContextHandlerController {
         this.extendedInfo = extendedInfo;
     }
 
-    public AppStatsCollector getAppStatsCollector() {
-        return appStatsCollector;
+    public AppStatsAccessor getAppStatsAccessor() {
+        return appStatsAccessor;
     }
 
-    public void setAppStatsCollector(AppStatsCollector appStatsCollector) {
-        this.appStatsCollector = appStatsCollector;
+    public void setAppStatsAccessor(AppStatsAccessor appStatsAccessor) {
+        this.appStatsAccessor = appStatsAccessor;
     }
 
     protected ModelAndView handleContext(String contextName, Context context,
@@ -60,8 +60,8 @@ public class GetApplicationController extends ContextHandlerController {
 
         Application app = ApplicationUtils.getApplication(
                 context, isExtendedInfo() ? getContainerWrapper().getResourceResolver() : null, calcSize);
-        if (isExtendedInfo() && getAppStatsCollector() != null) {
-            app.setAvgTime(getAppStatsCollector().getAvgProcTime(app.getName()));
+        if (isExtendedInfo() && getAppStatsAccessor() != null) {
+            app.setAvgTime(getAppStatsAccessor().getAvgProcTime(app.getName()));
         }
         ModelAndView mv = new ModelAndView(getViewName(), "app", app);
 
