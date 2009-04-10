@@ -271,6 +271,7 @@
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="viewName" value="ajax/appRuntimeInfo"/>
         <property name="extendedInfo" value="true"/>
+        <property name="appStatsCollector" ref="appStatsCollector"/>
     </bean>
 
     <bean name="/app/viewwebxml.htm" class="org.jstripe.tomcat.probe.controllers.ViewXMLConfController">

@@ -41,16 +41,19 @@ public class BaseStatsCollectorBean {
         this.maxSeries = maxSeries;
     }
 
-    protected void buildDeltaStats(String name, long value) {
-        buildDeltaStats(name, value, System.currentTimeMillis());
+    protected long buildDeltaStats(String name, long value) {
+        return buildDeltaStats(name, value, System.currentTimeMillis());
     }
 
-    protected void buildDeltaStats(String name, long value, long time) {
+    protected long buildDeltaStats(String name, long value, long time) {
+        long delta = 0;
         if (statsCollection != null) {
-            long delta = value - Utils.toLong((Long) previousData.get(name), -1);
-            buildAbsoluteStats(name, delta > 0 ? delta : 0, time);
+            delta = value - Utils.toLong((Long) previousData.get(name), -1);
+            delta = delta > 0 ? delta : 0;
+            buildAbsoluteStats(name, delta, time);
             previousData.put(name, new Long(value));
         }
+        return delta;
     }
 
     protected void buildAbsoluteStats(String name, long value) {
