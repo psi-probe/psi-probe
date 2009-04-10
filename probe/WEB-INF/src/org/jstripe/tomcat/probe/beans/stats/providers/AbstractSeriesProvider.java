@@ -24,7 +24,8 @@ public abstract class AbstractSeriesProvider implements SeriesProvider {
     protected XYSeries toSeries(String legend, List stats) {
         XYSeries xySeries = new XYSeries(legend, true, false);
         for (int i = 0; i < stats.size(); i++) {
-            xySeries.add((XYDataItem) stats.get(i));
+            XYDataItem item = (XYDataItem) stats.get(i);
+            xySeries.addOrUpdate(item.getX(), item.getY());
         }
         return xySeries;
     }

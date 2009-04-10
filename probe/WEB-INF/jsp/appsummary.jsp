@@ -71,12 +71,7 @@
                     </p>
                 </div>
             </c:if>
-            <div class="statusMessage">
-                <p><spring:message code="probe.jsp.app.summary.status"/>&nbsp;
-                    <span id="appStatusUp" class="bigOkValue" ${app.available ? '' : 'style="display: none;"'}><spring:message code="probe.jsp.app.summary.status.up"/></span>
-                    <span id="appStatusDown" class="bigErrorValue" ${app.available ? 'style="display: none;"' : ''}><spring:message code="probe.jsp.app.summary.status.down"/></span>
-                </p>
-            </div>
+
             <h3><spring:message code="probe.jsp.app.summary.h3.static"/></h3>
             <div id="appInfo">
                 <spring:message code="probe.jsp.app.summary.application"/>&nbsp;
@@ -105,41 +100,36 @@
         <div id="charts" class="embeddedBlockContainer">
             <h3><spring:message code="probe.jsp.app.summary.h3.charts"/></h3>
 
-            <spring:message code="probe.jsp.app.summary.charts.requests.title" var="req_title"/>
-
             <c:url value="/chart.png" var="req_url">
                 <c:param name="p" value="app_req"/>
                 <c:param name="sp" value="${param.webapp}"/>
-                <c:param name="xz" value="350"/>
+                <c:param name="xz" value="345"/>
                 <c:param name="yz" value="250"/>
                 <c:param name="l" value="false"/>
             </c:url>
-
-            <spring:message code="probe.jsp.app.summary.charts.requests.legend" var="req_legend"/>
-            <spring:message code="probe.jsp.app.summary.charts.errors.legend" var="err_legend"/>
 
             <c:url value="/chart.png" var="req_url_full">
                 <c:param name="p" value="app_req"/>
                 <c:param name="sp" value="${param.webapp}"/>
                 <c:param name="xz" value="700"/>
                 <c:param name="yz" value="320"/>
-                <c:param name="s1l" value="${req_legend}"/>
-                <c:param name="s2l" value="${err_legend}"/>
+                <c:param name="s1l">
+                    <spring:message code="probe.jsp.app.summary.charts.requests.legend"/>
+                </c:param>
+                <c:param name="s2l">
+                    <spring:message code="probe.jsp.app.summary.charts.errors.legend"/>
+                </c:param>
             </c:url>
-
-            <spring:message code="probe.jsp.app.summary.charts.avgProcTime.title" var="avg_proc_time_title"/>
 
             <c:url value="/chart.png" var="avg_proc_time_url">
                 <c:param name="p" value="app_avg_proc_time"/>
                 <c:param name="sp" value="${param.webapp}"/>
-                <c:param name="xz" value="350"/>
+                <c:param name="xz" value="345"/>
                 <c:param name="yz" value="250"/>
                 <c:param name="s1c" value="#95FE8B"/>
                 <c:param name="s1o" value="#009406"/>
                 <c:param name="l" value="false"/>
             </c:url>
-
-            <spring:message code="probe.jsp.app.summary.charts.avgProcTime.legend" var="avg_proc_time_legend"/>
 
             <c:url value="/chart.png" var="avg_proc_time_url_full">
                 <c:param name="p" value="app_avg_proc_time"/>
@@ -148,13 +138,15 @@
                 <c:param name="yz" value="320"/>
                 <c:param name="s1c" value="#95FE8B"/>
                 <c:param name="s1o" value="#009406"/>
-                <c:param name="s1l" value="${avg_proc_time_legend}"/>
+                <c:param name="s1l">
+                    <spring:message code="probe.jsp.app.summary.charts.avgProcTime.legend"/>
+                </c:param>
             </c:url>
 
             <div id="chart_group">
                 <div class="chartContainer">
                     <dl>
-                        <dt>${req_title}</dt>
+                        <dt><spring:message code="probe.jsp.app.summary.charts.requests.title"/></dt>
                         <dd class="image">
                             <img id="req_chart" border="0" src="${req_url}" alt="+"/>
                         </dd>
@@ -163,7 +155,7 @@
 
                 <div class="chartContainer">
                     <dl>
-                        <dt>&nbsp;${avg_proc_time_title}</dt>
+                        <dt><spring:message code="probe.jsp.app.summary.charts.avgProcTime.title"/></dt>
                         <dd class="image">
                             <img id="avg_proc_time_chart" border="0" src="${avg_proc_time_url}" alt="+"/>
                         </dd>
@@ -183,48 +175,26 @@
 
         <%-- pereodical refreshing of runtime info --%>
         <script type="text/javascript">
-            // updates static app info section with values that are actually collected by a runtime info request
-            function updateStaticInfo() {
-                $('servletCount').innerHTML = $('r_servletCount').innerHTML;
-            }
 
-            // changes visibility of markup items that depend on an application status
-            function updateStatus() {
+            function updateAppInfo() {
+                new Ajax.Updater("runtimeAppInfo",
+                        "<c:url value="/appruntimeinfo.ajax?${pageContext.request.queryString}"/>",
+                        {asynchronous: false});
+
+                // update static app info section with values that are actually collected by a runtime info request
+                $('servletCount').innerHTML = $('r_servletCount').innerHTML;
+
+                // change visibility of markup items that depend on an application status
                 if ($('r_appStatusUp')) {
                     Element.hide('appStart');
                     Element.show('appStop');
-                    Element.hide('appStatusDown');
-                    Element.show('appStatusUp');
                 } else {
                     Element.hide('appStop');
                     Element.show('appStart');
-                    Element.hide('appStatusUp');
-                    Element.show('appStatusDown');
                 }
             }
+            new PeriodicalExecuter(updateAppInfo, 3);
 
-            // Unfortunately, Ajax.PeriodicalUpdater does not call a function specified in
-            // onComplete option property after each request. Therefore, we'll manually execute
-            // periodical requests and update the static portions of the page when a request
-            // has been completed.
-            var runtimeInfoTimer;
-            var freq = 5 * 1000;
-
-            function updateRuntimeInfo() {
-                new Ajax.Updater("runtimeAppInfo",
-                        "<c:url value="/appruntimeinfo.ajax?${pageContext.request.queryString}"/>",
-                        {onComplete: function(req, obj) {
-                            updateStatus();
-                            updateStaticInfo();
-                            if (runtimeInfoTimer) clearTimeout(runtimeInfoTimer);
-                            runtimeInfoTimer = setTimeout('updateRuntimeInfo()', freq);
-                        }});
-            }
-
-            updateStaticInfo();
-
-            if (runtimeInfoTimer) clearTimeout(runtimeInfoTimer);
-            runtimeInfoTimer = setTimeout('updateRuntimeInfo()', freq);
         </script>
 
         <%-- chart related functionality --%>
@@ -242,7 +212,6 @@
                     }
                 }
                 $('full_title').innerHTML = title;
-                var img = document.getElementById('fullImg');
                 Effect.DropOut('chart_group');
                 Effect.Appear('full_chart');
                 fullImageUpdater = new Ajax.ImgUpdater("fullImg", 30, imgUrl);
@@ -265,12 +234,12 @@
             var rules = {
                 '#req_chart': function(element) {
                     element.onclick = function() {
-                        zoomIn('${req_url_full}', '${req_title}');
+                        zoomIn('${req_url_full}', '<spring:message code="probe.jsp.app.summary.charts.requests.title"/>');
                     }
                 },
                 '#avg_proc_time_chart': function(element) {
                     element.onclick = function() {
-                        zoomIn('${avg_proc_time_url_full}', '${avg_proc_time_title}');
+                        zoomIn('${avg_proc_time_url_full}', '<spring:message code="probe.jsp.app.summary.charts.avgProcTime.title"/>');
                     }
                 },
                 '#full_chart': function(element) {

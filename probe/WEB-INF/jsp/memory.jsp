@@ -116,7 +116,6 @@
                 if (fullImageUpdater) {
                     fullImageUpdater.stop();
                 }
-                var img = document.getElementById('fullImg');
                 Effect.DropOut('memChartGroup');
                 Effect.Appear('fullMemoryChart');
                 fullImageUpdater = new Ajax.ImgUpdater("fullImg", 30, '<c:out value="${fullChartBase}" escapeXml="false"/>&sp=' + newPool + "&s1l=" + newPool);
