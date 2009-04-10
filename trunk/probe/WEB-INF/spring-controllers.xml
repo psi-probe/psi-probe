@@ -303,6 +303,10 @@
         <property name="downloadTarget" value="context.xml"/>
     </bean>
 
+    <bean name="/allappstats.htm" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+        <property name="viewName" value="allappstats"/>
+    </bean>
+
     <bean name="/cnreqdetails.ajax" class="org.jstripe.tomcat.probe.controllers.connectors.GetConnectorController">
         <property name="containerListenerBean" ref="containerListener"/>
         <property name="viewName" value="ajax/connectorRequestDetails"/>
