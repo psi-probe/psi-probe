@@ -40,6 +40,7 @@ public class ClusterStatsController extends TomcatContainerController {
 
     protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
         return new ModelAndView(getViewName(), "cluster",
-                clusterWrapper.getCluster(getContainerWrapper().getTomcatContainer().getHostName(), loadMembers));
+                clusterWrapper.getCluster(getContainerWrapper().getTomcatContainer().getName(),
+                        getContainerWrapper().getTomcatContainer().getHostName(), loadMembers));
     }
 }

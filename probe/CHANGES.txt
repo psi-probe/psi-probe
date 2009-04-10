@@ -1,7 +1,8 @@
-1.8
+2.0
 =========
 MISC: Upgraded Spring Framework to 2.0.1  
 NEW: French translation by Bruno Haleblian.
+FIX: Engine name is no longer hardcoded to "Catalina", this should allow support for embedded Tomcat.
 
 1.7 beta
 ==========

@@ -54,7 +54,7 @@ public class JvmMemoryInfoAccessorBean {
             CompositeDataSupport cd = (CompositeDataSupport) mBeanServer.getAttribute(oName, "Usage");
             //
             // It seems that "Usage" attribute of one of the pools may turn into null intermittently. We better have a
-            // deep in the graph then an NPE though.
+            // dip in the graph then an NPE though.
             //
             if (cd != null) {
                 memoryPool.setMax(JmxTools.getLongAttr(cd, "max"));

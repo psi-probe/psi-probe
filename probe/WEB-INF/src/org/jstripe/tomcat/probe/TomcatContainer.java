@@ -71,5 +71,7 @@ public interface TomcatContainer {
 
     String getHostName();
 
+    String getName();
+
     String getServletFileNameForJsp(Context context, String jspName);
 }

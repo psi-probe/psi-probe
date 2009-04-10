@@ -267,16 +267,11 @@
         <property name="extendedInfo" value="false"/>
     </bean>
 
-    <!-- retrieves application statistics values from stats collection -->
-    <bean id="appStatsAccessor" class="org.jstripe.tomcat.probe.beans.AppStatsAccessor">
-        <property name="statsCollection" ref="statsCollection"/>
-    </bean>
-
     <bean name="/appruntimeinfo.ajax" class="org.jstripe.tomcat.probe.controllers.GetApplicationController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="viewName" value="ajax/appRuntimeInfo"/>
         <property name="extendedInfo" value="true"/>
-        <property name="appStatsAccessor" ref="appStatsAccessor"/>
+        <property name="statsCollection" ref="statsCollection"/>
     </bean>
 
     <bean name="/app/viewwebxml.htm" class="org.jstripe.tomcat.probe.controllers.ViewXMLConfController">

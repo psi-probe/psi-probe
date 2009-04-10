@@ -73,17 +73,31 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
         return (List) statsData.get(name);
     }
 
+    public long getLastValueForStat(String statName) {
+        long statValue = 0;
+
+        List stats = getStats(statName);
+        if (stats != null && ! stats.isEmpty()) {
+            XYDataItem xy = (XYDataItem) stats.get(stats.size() - 1);
+            if (xy != null && xy.getY() != null) {
+                statValue = xy.getY().longValue();
+            }
+        }
+
+        return statValue;
+    }
+
     private File makeFile() {
         return storagePath == null ? new File(contextTempDir, swapFileName) : new File(storagePath, swapFileName);
     }
 
     private void shiftFiles(int index) {
-        if (index >= maxFiles-1) {
-            new File(makeFile().getAbsolutePath()+"."+index).delete();
+        if (index >= maxFiles - 1) {
+            new File(makeFile().getAbsolutePath() + "." + index).delete();
         } else {
             shiftFiles(index + 1);
-            File srcFile = index == 0 ? makeFile() : new File(makeFile().getAbsolutePath()+"."+index);
-            File destFile = new File(makeFile().getAbsolutePath()+"."+ (index + 1));
+            File srcFile = index == 0 ? makeFile() : new File(makeFile().getAbsolutePath() + "." + index);
+            File destFile = new File(makeFile().getAbsolutePath() + "." + (index + 1));
             srcFile.renameTo(destFile);
         }
     }
@@ -103,10 +117,10 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
             } finally {
                 os.close();
             }
-        } catch(Exception e) {
-            logger.error("Could not write stats data to "+makeFile().getAbsolutePath(), e);
+        } catch (Exception e) {
+            logger.error("Could not write stats data to " + makeFile().getAbsolutePath(), e);
         } finally {
-            logger.info("stats serialized in "+(System.currentTimeMillis() - t)+"ms.");
+            logger.info("stats serialized in " + (System.currentTimeMillis() - t) + "ms.");
         }
     }
 
@@ -128,7 +142,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
                         // and lets not bother about rotating stats;
                         // regular stats collection cycle will do it
 
-                        for (Iterator it = stats.keySet().iterator(); it.hasNext(); ) {
+                        for (Iterator it = stats.keySet().iterator(); it.hasNext();) {
                             List l = (List) stats.get(it.next());
                             if (l.size() > 0) {
                                 XYDataItem xy = (XYDataItem) l.get(l.size() - 1);
@@ -140,9 +154,9 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
                 } finally {
                     fis.close();
                 }
-                logger.info("stats data read in "+(System.currentTimeMillis() - t)+"ms.");
+                logger.info("stats data read in " + (System.currentTimeMillis() - t) + "ms.");
             } catch (Throwable e) {
-                logger.error("Could not read stats data from "+f.getAbsolutePath(), e);
+                logger.error("Could not read stats data from " + f.getAbsolutePath(), e);
             }
         }
 
@@ -159,10 +173,10 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
         Map stats;
 
         while (true) {
-            File f = index == 0 ? makeFile() : new File(makeFile().getAbsolutePath()+"."+index);
+            File f = index == 0 ? makeFile() : new File(makeFile().getAbsolutePath() + "." + index);
             stats = deserialize(f);
             index += 1;
-            if (stats != null || index >= maxFiles -1) break;
+            if (stats != null || index >= maxFiles - 1) break;
         }
 
         if (stats != null) {
