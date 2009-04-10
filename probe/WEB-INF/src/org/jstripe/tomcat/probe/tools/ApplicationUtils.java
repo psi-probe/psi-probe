@@ -143,9 +143,6 @@ public class ApplicationUtils {
         app.setProcessingTime(procTime);
         app.setMinTime(minTime == Long.MAX_VALUE ? 0 : minTime);
         app.setMaxTime(maxTime);
-        if (reqCount != 0) {
-            app.setAvgTime(procTime / reqCount);
-        }
     }
 
     public static int getApplicationDataSourceUsageScore(Context context, ResourceResolver resolver) {

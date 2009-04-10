@@ -14,6 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.apache.catalina.Context;
 import org.jstripe.tomcat.probe.tools.ApplicationUtils;
+import org.jstripe.tomcat.probe.beans.stats.collectors.AppStatsCollector;
+import org.jstripe.tomcat.probe.model.Application;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,6 +30,10 @@ public class GetApplicationController extends ContextHandlerController {
      * denotes whether extended application information and statistics should be collected
      */
     private boolean extendedInfo = false;
+    /**
+     * retrieves application average response time from stats collection
+     */
+    private AppStatsCollector appStatsCollector;
 
     public boolean isExtendedInfo() {
         return extendedInfo;
@@ -37,6 +43,14 @@ public class GetApplicationController extends ContextHandlerController {
         this.extendedInfo = extendedInfo;
     }
 
+    public AppStatsCollector getAppStatsCollector() {
+        return appStatsCollector;
+    }
+
+    public void setAppStatsCollector(AppStatsCollector appStatsCollector) {
+        this.appStatsCollector = appStatsCollector;
+    }
+
     protected ModelAndView handleContext(String contextName, Context context,
                                          HttpServletRequest request, HttpServletResponse response) throws Exception {
 
@@ -44,8 +58,12 @@ public class GetApplicationController extends ContextHandlerController {
 
         boolean calcSize = ServletRequestUtils.getBooleanParameter(request, "size", false) && request.isUserInRole(privelegedRole);
 
-        ModelAndView mv = new ModelAndView(getViewName(), "app", ApplicationUtils.getApplication(
-                context, isExtendedInfo() ? getContainerWrapper().getResourceResolver() : null, calcSize));
+        Application app = ApplicationUtils.getApplication(
+                context, isExtendedInfo() ? getContainerWrapper().getResourceResolver() : null, calcSize);
+        if (isExtendedInfo() && getAppStatsCollector() != null) {
+            app.setAvgTime(getAppStatsCollector().getAvgProcTime(app.getName()));
+        }
+        ModelAndView mv = new ModelAndView(getViewName(), "app", app);
 
         if (! getContainerWrapper().getResourceResolver().supportsPrivateResources()) {
             mv.addObject("no_resources", Boolean.TRUE);
