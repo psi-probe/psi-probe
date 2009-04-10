@@ -181,10 +181,7 @@
                         "<c:url value="/appruntimeinfo.ajax?${pageContext.request.queryString}"/>",
                         {asynchronous: false});
 
-                // update static app info section with values that are actually collected by a runtime info request
-                $('servletCount').innerHTML = $('r_servletCount').innerHTML;
-
-                // change visibility of markup items that depend on an application status
+                // changing visibility of markup items that depend on an application status
                 if ($('r_appStatusUp')) {
                     Element.hide('appStart');
                     Element.show('appStop');
@@ -193,6 +190,10 @@
                     Element.show('appStart');
                 }
             }
+
+            // updating static app info section with the values that are actually retrieved with runtime info
+            $('servletCount').innerHTML = $('r_servletCount').innerHTML;
+
             new PeriodicalExecuter(updateAppInfo, 3);
 
         </script>
