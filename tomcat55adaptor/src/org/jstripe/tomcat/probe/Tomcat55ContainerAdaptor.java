@@ -23,17 +23,22 @@ public class Tomcat55ContainerAdaptor extends AbstractTomcatContainer {
     private Host host;
     private ObjectName deployerOName;
     private MBeanServer mBeanServer;
+    private Valve valve = new Tomcat55AgentValve();
 
 
     public void setWrapper(Wrapper wrapper) {
-        host = (Host) wrapper.getParent().getParent();
-        try {
-            deployerOName = new ObjectName(host.getParent().getName() + ":type=Deployer,host=" + host.getName());
-        } catch (MalformedObjectNameException e) {
-            // do nothing here
+        if (wrapper != null) {
+            host = (Host) wrapper.getParent().getParent();
+            try {
+                deployerOName = new ObjectName(host.getParent().getName() + ":type=Deployer,host=" + host.getName());
+            } catch (MalformedObjectNameException e) {
+                // do nothing here
+            }
+            host.getPipeline().addValve(valve);
+            mBeanServer = Registry.getRegistry(null, null).getMBeanServer();
+        } else if (host != null) {
+            host.getPipeline().removeValve(valve);
         }
-        host.getPipeline().addValve(new Tomcat55AgentValve());
-        mBeanServer = Registry.getRegistry(null, null).getMBeanServer();
     }
 
     public boolean canBoundTo(String binding) {

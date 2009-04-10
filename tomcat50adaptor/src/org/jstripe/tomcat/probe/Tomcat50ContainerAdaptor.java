@@ -22,10 +22,15 @@ import java.util.List;
 public class Tomcat50ContainerAdaptor extends AbstractTomcatContainer {
 
     private Deployer deployer;
+    private Valve valve = new Tomcat50AgentValve();
 
     public void setWrapper(Wrapper wrapper) {
-        this.deployer = (Deployer) wrapper.getParent().getParent();
-        ((Host)this.deployer).getPipeline().addValve(new Tomcat50AgentValve());
+        if (wrapper != null) {
+            this.deployer = (Deployer) wrapper.getParent().getParent();
+            ((Host)this.deployer).getPipeline().addValve(valve);
+        } else if (deployer != null ){
+            ((Host)this.deployer).getPipeline().removeValve(valve);
+        }
     }
 
     public boolean canBoundTo(String binding) {

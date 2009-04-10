@@ -48,4 +48,12 @@ public class ProbeServlet extends DispatcherServlet implements ContainerServlet 
         }
         super.doDispatch(httpServletRequest, httpServletResponse);
     }
+
+    public void destroy() {
+        ContainerWrapperBean containerWrapper = (ContainerWrapperBean) getWebApplicationContext().getBean("containerWrapper");
+        if (containerWrapper != null) {
+            containerWrapper.setWrapper(null);
+        }
+        super.destroy();
+    }
 }
