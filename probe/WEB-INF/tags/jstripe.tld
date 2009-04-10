@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!--
+  ~ Licensed under the GPL License. You may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~   http://probe.jstripe.com/d/license.shtml
+  ~
+  ~ THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR
+  ~ IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
+  ~ WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+  -->
+
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN" "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
+
+<taglib>
+
+    <tlib-version>1.0.1</tlib-version>
+    <jsp-version>1.2</jsp-version>
+
+    <short-name>js</short-name>
+    <uri>http://www.jstripe.com/tags</uri>
+    <description>jstripe.com tools tag library. Author Vlad Ilyushchenko.</description>
+
+    <tag>
+        <name>duration</name>
+        <tag-class>org.jstripe.tags.DurationTag</tag-class>
+        <body-content>JSP</body-content>
+
+        <description>
+            Converts value in milliseconds into human readable representation of seconds, minutes and hours
+        </description>
+
+        <attribute>
+            <name>value</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <tag>
+        <name>volume</name>
+        <tag-class>org.jstripe.tags.VolumeTag</tag-class>
+        <body-content>JSP</body-content>
+
+        <description>
+            Displays volume of data in bytes, KBytes, MBytes, GBytes or TBytes depending on the value.
+        </description>
+
+        <attribute>
+            <name>value</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>fractions</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <tag>
+        <name>toggle</name>
+        <tag-class>org.jstripe.tags.ParamToggleTag</tag-class>
+        <body-content>JSP</body-content>
+
+        <description>
+            Toggles the value of "size" request parameter
+        </description>
+
+        <attribute>
+            <name>param</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <tag>
+        <name>out</name>
+        <tag-class>org.jstripe.tags.OutTag</tag-class>
+        <body-content>JSP</body-content>
+
+        <description>
+            Outputs values up to maxLength adding ellipsis (...) where necessary
+        </description>
+
+        <attribute>
+            <name>value</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>maxLength</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>ellipsisRight</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <tag>
+        <name>score</name>
+        <tag-class>org.jstripe.tags.VisualScoreTag</tag-class>
+        <body-content>JSP</body-content>
+        <attribute>
+            <name>value</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>maxValue</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>minValue</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>partialBlocks</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>fullBlocks</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>showEmptyBlocks</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>showA</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>showB</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+</taglib>
+
