@@ -10,9 +10,7 @@
   --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" session="false" %>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c' %>
-<%@ taglib uri='http://java.sun.com/jsp/jstl/fmt' prefix='fmt' %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@ taglib uri="http://www.jstripe.com/tags" prefix="js" %>
 
 <%--
@@ -49,14 +47,8 @@
 
         <ul class="options">
             <li id="appSurfTo"><a href="${app.name}${app.name ne '/' ? '/' : ''}" target="_blank"><spring:message code="probe.jsp.app.summary.menu.goTo"/></a></li>
-            <c:choose>
-                <c:when test="${app.available}">
-                    <li id="appStop"><a href="<c:url value="/app/stop_summary.htm"><c:param name="webapp" value="${param.webapp}"/></c:url>"><spring:message code="probe.jsp.app.summary.menu.stop"/></a></li>
-                </c:when>
-                <c:otherwise>
-                    <li id="appStart"><a href="<c:url value="/app/start_summary.htm"><c:param name="webapp" value="${param.webapp}"/></c:url>"><spring:message code="probe.jsp.app.summary.menu.start"/></a></li>
-                </c:otherwise>
-            </c:choose>
+            <li id="appStop" ${app.available ? '' : 'style="display: none;"'}><a href="<c:url value="/app/stop_summary.htm"><c:param name="webapp" value="${param.webapp}"/></c:url>"><spring:message code="probe.jsp.app.summary.menu.stop"/></a></li>
+            <li id="appStart" ${app.available ? 'style="display: none;"' : ''}><a href="<c:url value="/app/start_summary.htm"><c:param name="webapp" value="${param.webapp}"/></c:url>"><spring:message code="probe.jsp.app.summary.menu.start"/></a></li>
             <li id="appReload"><a href="<c:url value="/app/reload_summary.htm"><c:param name="webapp" value="${param.webapp}"/></c:url>"><spring:message code="probe.jsp.app.summary.menu.reload"/></a></li>
             <li id="appUndeploy"><a href="<c:url value="/adm/undeploy_summary.htm"><c:param name="webapp" value="${param.webapp}"/></c:url>"
                     onclick="return confirm('<spring:message code="probe.jsp.app.summary.undeploy.confirm" arguments="${param.webapp}"/>')"
@@ -81,14 +73,8 @@
             </c:if>
             <div class="statusMessage">
                 <p><spring:message code="probe.jsp.app.summary.status"/>&nbsp;
-                    <c:choose>
-                        <c:when test="${app.available}">
-                            <span class="bigOkValue"><spring:message code="probe.jsp.app.summary.status.up"/></span>
-                        </c:when>
-                        <c:otherwise>
-                            <span class="bigErrorValue"><spring:message code="probe.jsp.app.summary.status.down"/></span>
-                        </c:otherwise>
-                    </c:choose>
+                    <span id="appStatusUp" class="bigOkValue" ${app.available ? '' : 'style="display: none;"'}><spring:message code="probe.jsp.app.summary.status.up"/></span>
+                    <span id="appStatusDown" class="bigErrorValue" ${app.available ? 'style="display: none;"' : ''}><spring:message code="probe.jsp.app.summary.status.down"/></span>
                 </p>
             </div>
             <h3><spring:message code="probe.jsp.app.summary.h3.static"/></h3>
@@ -98,7 +84,7 @@
                 <spring:message code="probe.jsp.app.summary.docBase"/>&nbsp;<span class="value">${app.docBase}</span>
                 <spring:message code="probe.jsp.app.summary.description"/>&nbsp;<span class="value">${app.displayName}</span>
                 <spring:message code="probe.jsp.app.summary.servletVersion"/>&nbsp;<span class="value">${app.servletVersion}</span>
-                <spring:message code="probe.jsp.app.summary.servletCount"/>&nbsp;<span class="value"><a href="<c:url value="/servlets.htm"><c:param name="webapp" value="${app.name}"/></c:url>">${app.servletCount}</a></span>
+                <spring:message code="probe.jsp.app.summary.servletCount"/>&nbsp;<span class="value"><a href="<c:url value="/servlets.htm"><c:param name="webapp" value="${app.name}"/></c:url>"><span id="servletCount"></span></a></span>
                 <spring:message code="probe.jsp.app.summary.sessionTimeout"/>&nbsp;<span class="value">${app.sessionTimeout} sec.</span>
                 <spring:message code="probe.jsp.app.summary.distributable"/>
                 <c:choose>
@@ -112,111 +98,7 @@
             </div>
             <h3><spring:message code="probe.jsp.app.summary.h3.runtime"/></h3>
             <div id="runtimeAppInfo">
-                <c:choose>
-                    <c:when test="${app.available}">
-                        <table class="statsTable" cellpadding="0" cellspacing="0" width="90%">
-                            <thead>
-                            <tr>
-                                <th class="leftMost">
-                                    <spring:message code="probe.jsp.app.summary.sessionCount"/>
-                                </th>
-                                <th>
-                                    <spring:message code="probe.jsp.app.summary.serializable"/>
-                                </th>
-                                <th>
-                                    <spring:message code="probe.jsp.app.summary.sessionAttributeCount"/>
-                                </th>
-                                <c:if test="${param.size}">
-                                    <th>
-                                        <spring:message code="probe.jsp.app.summary.sessionSize"/>
-                                    </th>
-                                </c:if>
-                                <th>
-                                    <spring:message code="probe.jsp.app.summary.contextAttributeCount"/>
-                                </th>
-                                <th>
-                                    <spring:message code="probe.jsp.app.summary.requestCount"/>
-                                </th>
-                                <th>
-                                    <spring:message code="probe.jsp.app.summary.errorCount"/>
-                                </th>
-                                <th>
-                                    <spring:message code="probe.jsp.app.summary.processingTime"/>
-                                </th>
-                                <th>
-                                    <spring:message code="probe.jsp.app.summary.minTime"/>
-                                </th>
-                                <th>
-                                    <spring:message code="probe.jsp.app.summary.maxTime"/>
-                                </th>
-                                <c:if test="${! no_resources}">
-                                    <th>
-                                        <spring:message code="probe.jsp.app.summary.dataSourceUsageScore"/>
-                                    </th>
-                                </c:if>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td class="leftMost">
-                                    <a href="<c:url value="/sessions.htm?webapp=${app.name}&size=${param.size}"/>">${app.sessionCount}</a>
-                                </td>
-                                <td>
-                                    <c:choose>
-                                        <c:when test="${app.serializable}">
-                                            <span class="okValue"><spring:message code="probe.jsp.generic.yes"/></span>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <span class="errorValue"><spring:message code="probe.jsp.generic.no"/></span>
-                                        </c:otherwise>
-                                    </c:choose>
-                                </td>
-                                <td>
-                                ${app.sessionAttributeCount}
-                                </td>
-                                <c:if test="${param.size}">
-                                    <td>
-                                        <js:volume value="${app.size}"/>
-                                    </td>
-                                </c:if>
-                                <td>
-                                    <a href="<c:url value="/appattributes.htm?webapp=${app.name}"/>">${app.contextAttributeCount}</a>
-                                </td>
-                                <td>
-                                    <a href="<c:url value="/servlets.htm?webapp=${app.name}"/>">${app.requestCount}</a>
-                                </td>
-                                <td>
-                                ${app.errorCount}
-                                </td>
-                                <td>
-                                    <js:duration value="${app.processingTime}"/>
-                                </td>
-                                <td>
-                                ${app.minTime} ms.
-                                </td>
-                                <td>
-                                ${app.maxTime} ms.
-                                </td>
-                                <c:if test="${! no_resources}">
-                                    <td>
-                                        <js:score value="${app.dataSourceUsageScore}" fullBlocks="8" partialBlocks="5" showEmptyBlocks="true" showA="true" showB="true">
-                                            <a class="imglink" href="<c:url value="/resources.htm?webapp=${app.name}"/>"><img border="0"
-                                                src="<c:url value="/css/classic/gifs/rb_{0}.gif"/>" alt="+"
-                                                title="<spring:message code="probe.jsp.applications.jdbcUsage.title" arguments="${app.dataSourceUsageScore}"/>"/></a>
-                                        </js:score>
-                                        &nbsp;${app.dataSourceUsageScore}%
-                                    </td>
-                                </c:if>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </c:when>
-                    <c:otherwise>
-                        <div class="warningMessage">
-                            <p>This application is not running, runtime information is unavailable</p>
-                        </div>
-                    </c:otherwise>
-                </c:choose>
+                <jsp:include page="/appruntimeinfo.ajax"/>
             </div>
         </div>
 
@@ -245,10 +127,6 @@
                 <c:param name="s2l" value="${err_legend}"/>
             </c:url>
 
-            <c:url value="/appreqdetails.ajax" var="req_details_url">
-                <c:param name="webapp" value="${param.webapp}"/>
-            </c:url>
-
             <spring:message code="probe.jsp.app.summary.charts.avgProcTime.title" var="avg_proc_time_title"/>
 
             <c:url value="/chart.png" var="avg_proc_time_url">
@@ -273,10 +151,6 @@
                 <c:param name="s1l" value="${avg_proc_time_legend}"/>
             </c:url>
 
-            <c:url value="/appavgproctimedetails.ajax" var="avg_proc_time_details_url">
-                <c:param name="webapp" value="${param.webapp}"/>
-            </c:url>
-
             <div id="chart_group">
                 <div class="chartContainer">
                     <dl>
@@ -284,20 +158,14 @@
                         <dd class="image">
                             <img id="req_chart" border="0" src="${req_url}" alt="+"/>
                         </dd>
-                        <dd id="req_details">
-                            <div class="ajax_activity"/>
-                        </dd>
                     </dl>
                 </div>
 
                 <div class="chartContainer">
                     <dl>
-                        <dt>${avg_proc_time_title}</dt>
+                        <dt>&nbsp;${avg_proc_time_title}</dt>
                         <dd class="image">
                             <img id="avg_proc_time_chart" border="0" src="${avg_proc_time_url}" alt="+"/>
-                        </dd>
-                        <dd id="avg_proc_time_details">
-                            <div class="ajax_activity"/>
                         </dd>
                     </dl>
                 </div>
@@ -309,94 +177,114 @@
                     <dd class="image">
                         <img id="fullImg" border="0" src="${avg_proc_time_url}" alt="-"/>
                     </dd>
-                    <dd id="full_details">
-                        <div class="ajax_activity"/>
-                    </dd>
                 </dl>
             </div>
-
-            <script type="text/javascript">
-                var imageUpdaters = new Array();
-                var detailUpdaters = new Array();
-                var fullImageUpdater;
-                var fullDetailsUpdater;
-
-                function zoomIn(imgUrl, detailsUrl, title) {
-                    if (fullImageUpdater) {
-                        fullImageUpdater.stop();
-                    }
-                    if (fullDetailsUpdater) {
-                        fullDetailsUpdater.stop();
-                    }
-                    for (var i = 0; i < imageUpdaters.length; i++) {
-                        if (imageUpdaters[i]) {
-                            imageUpdaters[i].stop();
-                        }
-                    }
-                    for (var i = 0; i < detailUpdaters.length; i++) {
-                        if (detailUpdaters[i]) {
-                            detailUpdaters[i].stop();
-                        }
-                    }
-                    $('full_title').innerHTML = title;
-                    $('full_details').innerHTML = '<div class="ajax_activity"/>';
-                    var img = document.getElementById('fullImg');
-                    Effect.DropOut('chart_group');
-                    Effect.Appear('full_chart');
-                    fullImageUpdater = new Ajax.ImgUpdater("fullImg", 30, imgUrl);
-                    fullDetailsUpdater = new Ajax.PeriodicalUpdater("full_details", detailsUrl, {frequency: 5});
-                }
-
-                function zoomOut() {
-                    Effect.DropOut('full_chart');
-                    Effect.Appear('chart_group');
-                    if (fullImageUpdater) {
-                        fullImageUpdater.stop();
-                        fullImageUpdater = null;
-                    }
-                    if (fullDetailsUpdater) {
-                        fullDetailsUpdater.stop();
-                        fullDetailsUpdater = null;
-                    }
-                    for (var i = 0; i < imageUpdaters.length; i++) {
-                        if (imageUpdaters[i]) {
-                            imageUpdaters[i].start();
-                        }
-                    }
-                    for (var i = 0; i < detailUpdaters.length; i++) {
-                        if (detailUpdaters[i]) {
-                            detailUpdaters[i].start();
-                        }
-                    }
-                }
-
-                var rules = {
-                    '#req_chart': function(element) {
-                        element.onclick = function() {
-                            zoomIn('${req_url_full}', '${req_details_url}', '${req_title}');
-                        }
-                    },
-                    '#avg_proc_time_chart': function(element) {
-                        element.onclick = function() {
-                            zoomIn('${avg_proc_time_url_full}', '${avg_proc_time_details_url}', '${avg_proc_time_title}');
-                        }
-                    },
-                    '#full_chart': function(element) {
-                        element.onclick = function() {
-                            zoomOut();
-                        }
-                    }
-                }
-
-                Behaviour.register(rules);
-
-                imageUpdaters[0] = new Ajax.ImgUpdater("req_chart", 30);
-                detailUpdaters[0] = new Ajax.PeriodicalUpdater("req_details", "${req_details_url}", {frequency: 5});
-
-                imageUpdaters[1] = new Ajax.ImgUpdater("avg_proc_time_chart", 30);
-                detailUpdaters[1] = new Ajax.PeriodicalUpdater("avg_proc_time_details", "${avg_proc_time_details_url}", {frequency: 5});
-            </script>
         </div>
+
+        <%-- pereodical refreshing of runtime info --%>
+        <script type="text/javascript">
+            // updates static app info section with values that are actually collected by a runtime info request
+            function updateStaticInfo() {
+                $('servletCount').innerHTML = $('r_servletCount').innerHTML;
+            }
+
+            // changes visibility of markup items that depend on an application status
+            function updateStatus() {
+                if ($('r_appStatusUp')) {
+                    Element.hide('appStart');
+                    Element.show('appStop');
+                    Element.hide('appStatusDown');
+                    Element.show('appStatusUp');
+                } else {
+                    Element.hide('appStop');
+                    Element.show('appStart');
+                    Element.hide('appStatusUp');
+                    Element.show('appStatusDown');
+                }
+            }
+
+            // Unfortunately, Ajax.PeriodicalUpdater does not call a function specified in
+            // onComplete option property after each request. Therefore, we'll manually execute
+            // periodical requests and update the static portions of the page when a request
+            // has been completed.
+            var runtimeInfoTimer;
+            var freq = 5 * 1000;
+
+            function updateRuntimeInfo() {
+                new Ajax.Updater("runtimeAppInfo",
+                        "<c:url value="/appruntimeinfo.ajax?${pageContext.request.queryString}"/>",
+                        {onComplete: function(req, obj) {
+                            updateStatus();
+                            updateStaticInfo();
+                            if (runtimeInfoTimer) clearTimeout(runtimeInfoTimer);
+                            runtimeInfoTimer = setTimeout('updateRuntimeInfo()', freq);
+                        }});
+            }
+
+            updateStaticInfo();
+
+            if (runtimeInfoTimer) clearTimeout(runtimeInfoTimer);
+            runtimeInfoTimer = setTimeout('updateRuntimeInfo()', freq);
+        </script>
+
+        <%-- chart related functionality --%>
+        <script type="text/javascript">
+            var imageUpdaters = new Array();
+            var fullImageUpdater;
+
+            function zoomIn(imgUrl, title) {
+                if (fullImageUpdater) {
+                    fullImageUpdater.stop();
+                }
+                for (var i = 0; i < imageUpdaters.length; i++) {
+                    if (imageUpdaters[i]) {
+                        imageUpdaters[i].stop();
+                    }
+                }
+                $('full_title').innerHTML = title;
+                var img = document.getElementById('fullImg');
+                Effect.DropOut('chart_group');
+                Effect.Appear('full_chart');
+                fullImageUpdater = new Ajax.ImgUpdater("fullImg", 30, imgUrl);
+            }
+
+            function zoomOut() {
+                Effect.DropOut('full_chart');
+                Effect.Appear('chart_group');
+                if (fullImageUpdater) {
+                    fullImageUpdater.stop();
+                    fullImageUpdater = null;
+                }
+                for (var i = 0; i < imageUpdaters.length; i++) {
+                    if (imageUpdaters[i]) {
+                        imageUpdaters[i].start();
+                    }
+                }
+            }
+
+            var rules = {
+                '#req_chart': function(element) {
+                    element.onclick = function() {
+                        zoomIn('${req_url_full}', '${req_title}');
+                    }
+                },
+                '#avg_proc_time_chart': function(element) {
+                    element.onclick = function() {
+                        zoomIn('${avg_proc_time_url_full}', '${avg_proc_time_title}');
+                    }
+                },
+                '#full_chart': function(element) {
+                    element.onclick = function() {
+                        zoomOut();
+                    }
+                }
+            }
+
+            Behaviour.register(rules);
+
+            imageUpdaters[0] = new Ajax.ImgUpdater("req_chart", 30);
+            imageUpdaters[1] = new Ajax.ImgUpdater("avg_proc_time_chart", 30);
+        </script>
     </c:otherwise>
     </c:choose>
 </body>
