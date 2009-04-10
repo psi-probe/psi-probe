@@ -98,7 +98,7 @@
                 <spring:message code="probe.jsp.app.summary.docBase"/>&nbsp;<span class="value">${app.docBase}</span>
                 <spring:message code="probe.jsp.app.summary.description"/>&nbsp;<span class="value">${app.displayName}</span>
                 <spring:message code="probe.jsp.app.summary.servletVersion"/>&nbsp;<span class="value">${app.servletVersion}</span>
-                <spring:message code="probe.jsp.app.summary.servletCount"/>&nbsp;<span class="value"><a href="<c:url value="/appservlets.htm"><c:param name="webapp" value="${app.name}"/></c:url>">${app.servletCount}</a></span>
+                <spring:message code="probe.jsp.app.summary.servletCount"/>&nbsp;<span class="value"><a href="<c:url value="/servlets.htm"><c:param name="webapp" value="${app.name}"/></c:url>">${app.servletCount}</a></span>
                 <spring:message code="probe.jsp.app.summary.sessionTimeout"/>&nbsp;<span class="value">${app.sessionTimeout} sec.</span>
                 <spring:message code="probe.jsp.app.summary.distributable"/>
                 <c:choose>
@@ -183,7 +183,7 @@
                                     <a href="<c:url value="/appattributes.htm?webapp=${app.name}"/>">${app.contextAttributeCount}</a>
                                 </td>
                                 <td>
-                                    <a href="<c:url value="/appservlets.htm?webapp=${app.name}"/>">${app.requestCount}</a>
+                                    <a href="<c:url value="/servlets.htm?webapp=${app.name}"/>">${app.requestCount}</a>
                                 </td>
                                 <td>
                                 ${app.errorCount}

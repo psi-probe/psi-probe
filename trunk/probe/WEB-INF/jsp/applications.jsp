@@ -149,7 +149,7 @@
         </display:column>
 
         <display:column sortable="true" titleKey="probe.jsp.applications.col.requestCount" sortProperty="requestCount">
-            <a href="<c:url value="/appservlets.htm?webapp=${app.name}"/>">${app.requestCount}</a>
+            <a href="<c:url value="/servlets.htm?webapp=${app.name}"/>">${app.requestCount}</a>
         </display:column>
 
         <display:column sortable="true" sortProperty="sessionCount"

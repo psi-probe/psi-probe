@@ -14,7 +14,7 @@
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 
 <%--
-    Displays a list of web application servlet mappings
+    Displays a list of servlet mappings of a particular web application or all web applications
 
     Author: Andy Shapoval
 --%>
@@ -25,10 +25,10 @@
     <title>
         <c:choose>
             <c:when test="${empty param.webapp}">
-                <spring:message code="probe.jsp.title.all.servletmaps"/>
+                <spring:message code="probe.jsp.title.servletmaps.all"/>
             </c:when>
             <c:otherwise>
-                <spring:message code="probe.jsp.title.app.servletmaps" arguments="${param.webapp}"/>
+                <spring:message code="probe.jsp.title.servletmaps.app" arguments="${param.webapp}"/>
             </c:otherwise>
         </c:choose>
     </title>
@@ -46,15 +46,15 @@
 <body>
 
 <ul class="options">
-    <li id="viewAppServlets">
+    <li id="viewServlets">
         <c:choose>
             <c:when test="${empty param.webapp}">
-                <a href="<c:url value="/appservlets.htm"/>"><spring:message code="probe.jsp.app.servletmaps.opt.defs"/></a>
+                <a href="<c:url value="/servlets.htm"/>"><spring:message code="probe.jsp.servletmaps.opt.defs"/></a>
             </c:when>
             <c:otherwise>
-                <a href="<c:url value="/appservlets.htm">
+                <a href="<c:url value="/servlets.htm">
                             <c:param name="webapp" value="${param.webapp}"/>
-                        </c:url>"><spring:message code="probe.jsp.app.servletmaps.opt.defs"/></a>
+                        </c:url>"><spring:message code="probe.jsp.servletmaps.opt.defs"/></a>
             </c:otherwise>
         </c:choose>
     </li>
@@ -64,25 +64,25 @@
     <c:choose>
         <c:when test="${! empty servletMaps}">
 
-            <h3><spring:message code="probe.jsp.app.servletmaps.h3.maps"/></h3>
+            <h3><spring:message code="probe.jsp.servletmaps.h3.maps"/></h3>
 
             <display:table name="servletMaps" id="svlt"
                            class="genericTbl" cellspacing="0" cellpadding="0"
                            requestURI="" defaultsort="1">
                 <c:if test="${empty param.webapp}">
                     <display:column sortProperty="applicationName" sortable="true"
-                                    titleKey="probe.jsp.app.servlets.col.applicationName" class="leftmost">
+                                    titleKey="probe.jsp.servlets.col.applicationName" class="leftmost">
                         <a href="<c:url value="/appsummary.htm"><c:param name="webapp" value="${svlt.applicationName}"/></c:url>">${svlt.applicationName}</a>
                     </display:column>
                 </c:if>
                 <display:column property="url" sortable="true"
-                                titleKey="probe.jsp.app.servletmaps.col.url" class="${! empty param.webapp ? 'leftmost' : ''}"/>
+                                titleKey="probe.jsp.servletmaps.col.url" class="${! empty param.webapp ? 'leftmost' : ''}"/>
                 <display:column property="servletName" sortable="true"
-                                titleKey="probe.jsp.app.servletmaps.col.servletName" maxLength="40"/>
+                                titleKey="probe.jsp.servletmaps.col.servletName" maxLength="40"/>
                 <display:column property="servletClass" sortable="true"
-                                titleKey="probe.jsp.app.servlets.col.servletClass" maxLength="50"/>
+                                titleKey="probe.jsp.servletmaps.col.servletClass" maxLength="50"/>
                 <display:column sortProperty="available" sortable="true"
-                                titleKey="probe.jsp.app.servlets.col.available">
+                                titleKey="probe.jsp.servlets.col.available">
                     <c:choose>
                         <c:when test="${svlt.available}">
                             <span class="okValue"><spring:message code="probe.jsp.generic.yes"/></span>
@@ -97,14 +97,7 @@
         <c:otherwise>
             <div class="infoMessage">
                 <p>
-                    <c:choose>
-                        <c:when test="${empty param.webapp}">
-                            <spring:message code="probe.jsp.all.servletmaps.empty"/>
-                        </c:when>
-                        <c:otherwise>
-                            <spring:message code="probe.jsp.app.servletmaps.empty"/>
-                        </c:otherwise>
-                    </c:choose>
+                    <spring:message code="probe.jsp.servletmaps.empty"/>
                 </p>
             </div>
         </c:otherwise>

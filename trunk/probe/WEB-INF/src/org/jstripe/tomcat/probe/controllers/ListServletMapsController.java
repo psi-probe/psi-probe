@@ -8,26 +8,26 @@
  *  IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
  *  WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  */
+
 package org.jstripe.tomcat.probe.controllers;
 
 import org.apache.catalina.Context;
-import org.jstripe.tomcat.probe.model.ServletInfo;
 import org.jstripe.tomcat.probe.tools.ApplicationUtils;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
- * Retrieves a list of web application servlets
+ * Retrieves a list of servlet mappings for a particular web application
+ * or all web applications if an application name is not passed in a query string 
  * <p/>
  * Author: Andy Shapoval
  */
-public class ListAppServletsController extends ContextHandlerController {
+public class ListServletMapsController extends ContextHandlerController {
     protected ModelAndView handleContext(String contextName, Context context,
                                          HttpServletRequest request, HttpServletResponse response) throws Exception {
         List ctxs;
@@ -38,20 +38,13 @@ public class ListAppServletsController extends ContextHandlerController {
             ctxs.add(context);
         }
 
-        List servlets = new ArrayList();
+        List servletMaps = new ArrayList();
         for (Iterator i = ctxs.iterator(); i.hasNext();) {
             Context ctx = (Context) i.next();
-            if (ctx != null) {
-                List appServlets = ApplicationUtils.getApplicationServlets(ctx);
-                for (Iterator j = appServlets.iterator(); j.hasNext();) {
-                    ServletInfo svlt = (ServletInfo) j.next();
-                    Collections.sort(svlt.getMappings());
-                }
-                servlets.addAll(appServlets);
-            }
+            servletMaps.addAll(ApplicationUtils.getApplicationServletMaps(ctx));
         }
 
-        return new ModelAndView(getViewName(), "appServlets", servlets);
+        return new ModelAndView(getViewName(), "servletMaps", servletMaps);
     }
 
     protected boolean isContextOptional() {

@@ -421,14 +421,18 @@
         <property name="viewName" value="appinitparams"/>
     </bean>
 
-    <bean name="/appservlets.htm" class="org.jstripe.tomcat.probe.controllers.ListAppServletsController">
-        <property name="containerWrapper" ref="containerWrapper"/>
-        <property name="viewName" value="appservlets"/>
+    <bean name="/servlets.htm" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+        <property name="viewName" value="servlets"/>
     </bean>
 
-    <bean name="/appservletmaps.htm" class="org.jstripe.tomcat.probe.controllers.ListAppServletMapsController">
+    <bean name="/servlets.ajax" class="org.jstripe.tomcat.probe.controllers.ListServletsController">
         <property name="containerWrapper" ref="containerWrapper"/>
-        <property name="viewName" value="appservletmaps"/>
+        <property name="viewName" value="ajax/servlets"/>
+    </bean>
+
+    <bean name="/servletmaps.htm" class="org.jstripe.tomcat.probe.controllers.ListServletMapsController">
+        <property name="containerWrapper" ref="containerWrapper"/>
+        <property name="viewName" value="servletmaps"/>
     </bean>
 
     <bean name="/appfilters.htm" class="org.jstripe.tomcat.probe.controllers.ListAppFiltersController">

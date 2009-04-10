@@ -327,12 +327,12 @@ li#abbreviations {
     background: url("gifs/lightbulb.gif") top left no-repeat;
 }
 
-li#viewAppServlets {
+li#viewServlets {
     float: left;
     background: url( "gifs/application_view_list.gif" ) top left no-repeat;
 }
 
-li#viewAppServletMaps {
+li#viewServletMaps {
     float: left;
     background: url( "gifs/application_link.gif" ) top left no-repeat;
 }
