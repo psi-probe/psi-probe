@@ -17,6 +17,7 @@ import org.apache.commons.logging.LogFactory;
 import org.jstripe.tomcat.probe.beans.ContainerWrapperBean;
 import org.jstripe.tomcat.probe.model.Application;
 import org.jstripe.tomcat.probe.tools.ApplicationUtils;
+import org.jstripe.tomcat.probe.TomcatContainer;
 
 import java.util.Iterator;
 import java.util.List;
@@ -43,16 +44,20 @@ public class AppStatsCollector extends BaseStatsCollectorBean {
         if (containerWrapper == null) {
             logger.error("Cannot collect application stats. Container wrapper is not set.");
         } else {
-            List ctxs = getContainerWrapper().getTomcatContainer().findContexts();
-            for (Iterator i = ctxs.iterator(); i.hasNext();) {
-                Context ctx = (Context) i.next();
-                if (ctx != null && ctx.getName() != null) {
-                    Application app = new Application();
-                    ApplicationUtils.collectApplicationServletStats(ctx, app);
-                    String statName = "app." + ctx.getName();
-                    buildDeltaStats(statName + ".requests", app.getRequestCount());
-                    buildDeltaStats(statName + ".errors", app.getErrorCount());
-                    buildAbsoluteStats(statName + ".avg_proc_time", app.getAvgTime());
+            TomcatContainer tomcatContainer = getContainerWrapper().getTomcatContainer();
+            // check if the containerWtapper has been initialized
+            if (tomcatContainer != null ) {
+                List ctxs = tomcatContainer.findContexts();
+                for (Iterator i = ctxs.iterator(); i.hasNext();) {
+                    Context ctx = (Context) i.next();
+                    if (ctx != null && ctx.getName() != null) {
+                        Application app = new Application();
+                        ApplicationUtils.collectApplicationServletStats(ctx, app);
+                        String statName = "app." + ctx.getName();
+                        buildDeltaStats(statName + ".requests", app.getRequestCount());
+                        buildDeltaStats(statName + ".errors", app.getErrorCount());
+                        buildAbsoluteStats(statName + ".avg_proc_time", app.getAvgTime());
+                    }
                 }
             }
         }
