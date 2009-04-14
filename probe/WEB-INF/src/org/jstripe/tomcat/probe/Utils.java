@@ -46,37 +46,6 @@ public class Utils {
     }
 
     /**
-     * Copies a single file. This method does not interpret source and destination file names in any way.
-     * It opens source file for read and destination file for write and pumps the data between the two. If the destination
-     * file exists it will be overwritten.
-     */
-    public static void copyFile(File src, File dest) throws IOException {
-
-        dest.getParentFile().mkdirs();
-
-        if (dest.exists()) {
-            dest.delete();
-        }
-
-        FileInputStream fis = new FileInputStream(src);
-        try {
-            byte buffer[] = new byte[65535];
-
-            FileOutputStream fos = new FileOutputStream(dest);
-            try {
-                int ln;
-                while ((ln = fis.read(buffer)) > 0) {
-                    fos.write(buffer, 0, ln);
-                }
-            } finally {
-                fos.close();
-            }
-        } finally {
-            fis.close();
-        }
-    }
-
-    /**
      * Reads a file on disk. The method uses default file encoding (see: file.encoding system property)
      *
      * @param file to be read
