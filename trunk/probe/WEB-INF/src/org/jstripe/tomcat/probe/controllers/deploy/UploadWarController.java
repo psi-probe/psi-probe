@@ -17,7 +17,6 @@ import org.apache.commons.fileupload.FileUpload;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.fileupload.servlet.ServletRequestContext;
-import org.jstripe.tomcat.probe.Utils;
 import org.jstripe.tomcat.probe.controllers.TomcatContainerController;
 import org.jstripe.tomcat.probe.controllers.jsp.DisplayJspController;
 import org.jstripe.tomcat.probe.model.jsp.Summary;
@@ -107,7 +106,7 @@ public class UploadWarController extends TomcatContainerController {
                             File destWar = new File(getContainerWrapper().getTomcatContainer().getAppBase(),
                                     (contextName.length() == 0 ? "ROOT" : contextName) + ".war");
 
-                            Utils.copyFile(tmpWar, destWar);
+                            tmpWar.renameTo(destWar);
 
                             //
                             // let Tomcat know that the file is there
