@@ -101,7 +101,7 @@ public class UploadWarController extends TomcatContainerController {
 
                         if (getContainerWrapper().getTomcatContainer().findContext(contextName) == null) {
                             //
-                            // copy the .war to tomcat application base dir
+                            // move the .war to tomcat application base dir
                             //
                             File destWar = new File(getContainerWrapper().getTomcatContainer().getAppBase(),
                                     (contextName.length() == 0 ? "ROOT" : contextName) + ".war");
@@ -113,13 +113,11 @@ public class UploadWarController extends TomcatContainerController {
                             //
                             getContainerWrapper().getTomcatContainer().installWar(contextName, new URL("jar:file:" + destWar.getAbsolutePath() + "!/"));
 
-                            request.setAttribute("successMessage", getMessageSourceAccessor().getMessage("probe.src.deploy.war.success",
-                                    new Object[]{contextName}));
-
                             Context ctx = getContainerWrapper().getTomcatContainer().findContext(contextName);
                             if (ctx == null) {
                                 errMsg = getMessageSourceAccessor().getMessage("probe.src.deploy.war.notinstalled", new Object[]{contextName});
                             } else {
+                                request.setAttribute("successMessage", getMessageSourceAccessor().getMessage("probe.src.deploy.war.success", new Object[]{contextName}));
                                 if (discard) getContainerWrapper().getTomcatContainer().discardWorkDir(ctx);
                                 if (compile) {
                                     Summary summary = new Summary();
