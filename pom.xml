@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
@@ -17,7 +18,7 @@
 	</licenses>
 	<scm>
 		<connection>svn:http://psi-probe.googlecode.com/svn/</connection>
-		<developerConnection>svn:http://psi-probe.googlecode.com/svn/trunk</developerConnection>
+		<developerConnection>svn:https://psi-probe.googlecode.com/svn/trunk</developerConnection>
 		<url>svn:http://psi-probe.googlecode.com/svn/</url>
 	</scm>
 	<dependencyManagement>
@@ -232,8 +233,16 @@
 				<configuration>
 					<source>1.5</source>
 					<target>1.5</target>
+					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
+			<plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
@@ -243,16 +252,6 @@
 							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
 						</manifest>
 					</archive>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<version>2.2-beta-1</version>
-				<configuration>
-					<descriptors>
-						<descriptor>${basedir}/assembly.xml</descriptor>
-					</descriptors>
 				</configuration>
 			</plugin>
 			<!-- this needs maven 2.0.9 or above.
@@ -301,16 +300,6 @@
 			<id>m2proxy.atlassian.com</id>
 			<name>Atlassian Repository for Maven</name>
 			<url>https://m2proxy.atlassian.com/repository/public</url>
-			<layout>default</layout>
-		</repository>
-		<repository>
-			<snapshots>
-				<enabled>false</enabled>
-				<updatePolicy>never</updatePolicy>
-			</snapshots>
-			<id>repository.jboss.com</id>
-			<name>JBoss Repository for Maven</name>
-			<url>http://repository.jboss.com/maven2</url>
 			<layout>default</layout>
 		</repository>
 	</repositories>

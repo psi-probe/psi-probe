@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
@@ -11,6 +12,24 @@
 	<artifactId>core</artifactId>
 	<packaging>jar</packaging>
 	<name>PSI Probe Core</name>
+	<build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.0.2</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 	<dependencies>
 		<!--
 			not found in any repo, you must download manually
@@ -105,4 +124,17 @@
 			<version>1.2.1</version>
 		</dependency>
 	</dependencies>
+	<repositories>
+		<!-- Required for jta -->
+		<repository>
+			<snapshots>
+				<enabled>false</enabled>
+				<updatePolicy>never</updatePolicy>
+			</snapshots>
+			<id>repository.jboss.com</id>
+			<name>JBoss Repository for Maven</name>
+			<url>http://repository.jboss.com/maven2</url>
+			<layout>default</layout>
+		</repository>
+	</repositories>
 </project>
