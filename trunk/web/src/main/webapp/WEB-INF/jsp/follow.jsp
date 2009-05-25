@@ -75,25 +75,25 @@
     // enable automatic updater of the followed file content
     //
     var updater = new Ajax.PeriodicalUpdater(file_content_div, "<c:url value="/logs/follow.ajax"/>", {frequency: 3});
-    var top = -1;
+    var topPosition = -1;
     var updaterRunning = true;
 
     Ajax.Responders.register({
         onComplete: function() {
             objDiv = document.getElementById(file_content_div);
-            if (top == -1) {
+            if (topPosition == -1) {
                 objDiv.scrollTop = objDiv.scrollHeight;
             } else {
-                objDiv.scrollTop = top
+                objDiv.scrollTop = topPosition
             }
         },
 
         onCreate: function() {
             objDiv = document.getElementById(file_content_div);
             if (objDiv.scrollTop + objDiv.clientHeight == objDiv.scrollHeight) {
-                top = -1;
+                topPosition = -1;
             } else {
-                top = objDiv.scrollTop;
+                topPosition = objDiv.scrollTop;
             }
         }
     })
