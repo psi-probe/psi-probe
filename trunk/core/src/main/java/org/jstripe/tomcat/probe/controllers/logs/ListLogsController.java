@@ -56,7 +56,7 @@ public class ListLogsController extends TomcatContainerController {
 
     protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        if (Instruments.isInitilized()) {
+        if (Instruments.isInitialized()) {
             List allAppenders = new ArrayList();
 
             //

@@ -10,8 +10,6 @@
  */
 package org.jstripe.tomcat.probe.tools;
 
-import sun.reflect.FieldAccessor;
-
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -20,34 +18,16 @@ import java.util.List;
 
 public class Instruments {
 
-    public static final int SZ_REF = 4;
-    private static AccessorFactory accessorFactory = null;
+    private static final int SZ_REF = 4;
+    private static final Accessor ACCESSOR = AccessorFactory.getInstance();
+    private static final boolean IGNORE_NIO;
+    static {
+        String ignoreNIOProp = System.getProperty("org.jstripe.intruments.ignoreNIO");
+        IGNORE_NIO = (ignoreNIOProp == null || "true".equalsIgnoreCase(ignoreNIOProp));
+    }
+
     private List processedObjects = new ArrayList(2048);
     private ClassLoader classLoader = null;
-    private static boolean ignoreNIO;
-
-    static {
-        try {
-            String vmVer = System.getProperty("java.runtime.version");
-            String vmVendor = System.getProperty("java.vm.vendor");
-
-            if (vmVendor != null &&
-                    (vmVendor.indexOf("Sun Microsystems") != -1
-                            || vmVendor.indexOf("Apple Computer") != -1
-                            || vmVendor.indexOf("IBM Corporation") != -1)) {
-                if (vmVer.startsWith("1.4")) {
-                    accessorFactory = (AccessorFactory) Class.forName("org.jstripe.instruments.Java14AccessorFactory").newInstance();
-                } else {
-                    accessorFactory = (AccessorFactory) Class.forName("org.jstripe.instruments.Java15AccessorFactory").newInstance();
-                }
-            }
-
-                String ignoreNIOProp = System.getProperty("org.jstripe.intruments.ignoreNIO");
-            ignoreNIO = ignoreNIOProp == null || "true".equalsIgnoreCase(ignoreNIOProp);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     public static long sizeOf(Object o) {
         return new Instruments().internalSizeOf(o);
@@ -67,10 +47,10 @@ public class Instruments {
 
     private long internalSizeOf(Object o) {
         long size = 0;
-        if (isInitilized()
+        if (isInitialized()
                 && o != null
                 && (classLoader == null || classLoader == o.getClass().getClassLoader())
-                && (!ignoreNIO || !o.getClass().getName().startsWith("java.nio.")) ) {
+                && (!IGNORE_NIO || !o.getClass().getName().startsWith("java.nio.")) ) {
             ObjectWrapper ow = new ObjectWrapper(o);
             if (! processedObjects.contains(ow)) {
                 size += 8;
@@ -86,14 +66,16 @@ public class Instruments {
                         for (int i = 0; i < fields.length; i++) {
                             Field f = fields[i];
                             if ((f.getModifiers() & Modifier.STATIC) == 0) {
-                                FieldAccessor fa = getFieldAccessor(f);
                                 if (f.getType().isPrimitive()) {
                                     size += sizeOfPrimitive(f.getType());
-                                } else if (f.getType().isArray()) {
-                                    size += sizeOfArray(fa.get(o));
                                 } else {
-                                    size += internalSizeOf(fa.get(o));
-                                    size += SZ_REF;
+                                    Object val = ACCESSOR.get(o, f);
+                                    if (f.getType().isArray()) {
+                                        size += sizeOfArray(val);
+                                    } else {
+                                        size += internalSizeOf(val);
+                                        size += SZ_REF;
+                                    }
                                 }
                             }
                         }
@@ -145,45 +127,32 @@ public class Instruments {
             return SZ_REF;
     }
 
-    public static FieldAccessor getFieldAccessor(Field f) {
-        return isInitilized() ? accessorFactory.getFieldAccessor(f) : null;
-    }
-
-    public static boolean isInitilized() {
-        return accessorFactory != null;
+    public static boolean isInitialized() {
+        return ACCESSOR != null;
     }
 
     public static Object getField(Object o, String name) {
-        return getField(o, name, null);
-    }
-
-    public static Object getField(Object o, String name, Object defaultValue) {
-        Object value = null;
         Field f = findField(o.getClass(), name);
-        FieldAccessor fa;
-
-        if (f != null && ((fa = Instruments.getFieldAccessor(f)) != null)) {
-            value = fa.get(o);
+        if (f != null) {
+            return ACCESSOR.get(o, f);
+        } else {
+            return null;
         }
-        return value != null ? value : defaultValue;
     }
 
     public static Field findField(Class clazz, String name) {
-        Field result = null;
-
         Field[] fields = clazz.getDeclaredFields();
         for (int i = 0; i < fields.length; i++) {
             if (name.equals(fields[i].getName())) {
-                result = fields[i];
-                break;
+                return fields[i];
             }
         }
-        if (result == null && clazz.getSuperclass() != null) {
-            result = findField(clazz.getSuperclass(), name);
+        Class superClass = clazz.getSuperclass();
+        if (superClass != null) {
+            return findField(superClass, name);
+        } else {
+            return null;
         }
-
-        return result;
     }
-
 
 }
