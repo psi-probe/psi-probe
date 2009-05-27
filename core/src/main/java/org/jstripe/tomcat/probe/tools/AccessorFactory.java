@@ -10,11 +10,27 @@
  */
 package org.jstripe.tomcat.probe.tools;
 
-import sun.reflect.FieldAccessor;
-
-import java.lang.reflect.Field;
-
-public interface AccessorFactory {
+public class AccessorFactory {
     
-    FieldAccessor getFieldAccessor(Field f);
+    public static Accessor getInstance() {
+        String vmVer = System.getProperty("java.runtime.version");
+        String vmVendor = System.getProperty("java.vm.vendor");
+        if (vmVendor != null && (
+                vmVendor.indexOf("Sun Microsystems") != -1
+                || vmVendor.indexOf("Apple Computer") != -1
+                || vmVendor.indexOf("IBM Corporation") != -1)) {
+            try {
+                if (vmVer.startsWith("1.4")) {
+                    return (Accessor) Class.forName("org.jstripe.instruments.Java14Accessor").newInstance();
+                } else {
+                    return (Accessor) Class.forName("org.jstripe.instruments.Java15Accessor").newInstance();
+                }
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            throw new RuntimeException("Could not determine JVM version.");
+        }
+    }
+
 }
