@@ -12,12 +12,16 @@ package org.jstripe.tomcat.probe.tools;
 
 public class AccessorFactory {
     
+	private AccessorFactory() {
+	}
+
     public static Accessor getInstance() {
         String vmVer = System.getProperty("java.runtime.version");
         String vmVendor = System.getProperty("java.vm.vendor");
         if (vmVendor != null && (
                 vmVendor.indexOf("Sun Microsystems") != -1
                 || vmVendor.indexOf("Apple Computer") != -1
+                || vmVendor.indexOf("Apple Inc.") != -1
                 || vmVendor.indexOf("IBM Corporation") != -1)) {
             try {
                 if (vmVer.startsWith("1.4")) {
@@ -29,7 +33,7 @@ public class AccessorFactory {
                 throw new RuntimeException(e);
             }
         } else {
-            throw new RuntimeException("Could not determine JVM version.");
+            return null;
         }
     }
 
