@@ -9,7 +9,7 @@
 		<version>2.0.0-SNAPSHOT</version>
 	</parent>
 	<groupId>org.psiprobe</groupId>
-	<artifactId>jdk14</artifactId>
+	<artifactId>jdk1.4</artifactId>
 	<packaging>jar</packaging>
 	<name>PSI Probe JDK 1.4</name>
 	<dependencies>
@@ -27,16 +27,12 @@
 				<configuration>
 					<source>1.4</source>
 					<target>1.4</target>
-					<encoding>UTF-8</encoding>
+					<verbose>true</verbose>
+					<fork>true</fork>
+					<compilerVersion>1.4</compilerVersion>
+					<executable>${JAVA_1_4_HOME}/bin/javac</executable>
 				</configuration>
 			</plugin>
-			<plugin>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>2.2</version>
-                <configuration>
-                    <encoding>UTF-8</encoding>
-                </configuration>
-            </plugin>
 		</plugins>
 	</build>
 </project>

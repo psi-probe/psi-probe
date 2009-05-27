@@ -8,7 +8,7 @@
 	<packaging>pom</packaging>
 	<name>PSI Probe</name>
 	<version>2.0.0-SNAPSHOT</version>
-	<url>http://code.google.com/p/psi-probe/</url>
+	<url>http://psi-probe.googlecode.com/</url>
 	<licenses>
 		<license>
 			<name>GNU General Public License V2</name>
@@ -21,6 +21,30 @@
 		<developerConnection>svn:https://psi-probe.googlecode.com/svn/trunk</developerConnection>
 		<url>svn:http://psi-probe.googlecode.com/svn/</url>
 	</scm>
+	<modules>
+		<module>core</module>
+		<module>tomcat55adaptor</module>
+		<module>tomcat50adaptor</module>
+		<module>jdk1.4</module>
+		<module>jdk1.5</module>
+		<module>web</module>
+	</modules>
+	<repositories>
+		<repository>
+			<!-- needed for jfreechart -->
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+				<updatePolicy>never</updatePolicy>
+			</snapshots>
+			<id>m2proxy.atlassian.com</id>
+			<name>Atlassian Repository for Maven</name>
+			<url>https://m2proxy.atlassian.com/repository/public</url>
+			<layout>default</layout>
+		</repository>
+	</repositories>
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -71,7 +95,6 @@
 				</exclusions>
 			</dependency>
 			<dependency>
-				<!-- you must download this jar from oracle. See Readme.txt -->
 				<groupId>com.oracle</groupId>
 				<artifactId>ojdbc14</artifactId>
 				<version>10.2.0.1.0</version>
@@ -237,6 +260,7 @@
 				</configuration>
 			</plugin>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>2.2</version>
                 <configuration>
@@ -287,31 +311,4 @@
 			</plugin>
 		</plugins>
 	</reporting>
-	<repositories>
-		<repository>
-			<!-- needed for jfreechart -->
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-				<updatePolicy>never</updatePolicy>
-			</snapshots>
-			<id>m2proxy.atlassian.com</id>
-			<name>Atlassian Repository for Maven</name>
-			<url>https://m2proxy.atlassian.com/repository/public</url>
-			<layout>default</layout>
-		</repository>
-	</repositories>
-	<modules>
-		<module>core</module>
-		<module>tomcat55adaptor</module>
-		<module>tomcat50adaptor</module>
-		<!-- obsolete soon. Compiled jar see webapp resources -->
-		<!--
-			<module>jdk14</module>
-			<module>jdk15</module>
-		-->
-		<module>web</module>
-	</modules>
 </project>
