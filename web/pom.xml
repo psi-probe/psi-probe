@@ -28,18 +28,16 @@
 			<artifactId>tomcat55adaptor</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-		<!-- obsolete
 		<dependency>
 			<groupId>org.psiprobe</groupId>
-			<artifactId>jdk15</artifactId>
+			<artifactId>jdk1.5</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.psiprobe</groupId>
-			<artifactId>jdk14</artifactId>
+			<artifactId>jdk1.4</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-		-->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
@@ -50,27 +48,9 @@
 			<artifactId>standard</artifactId>
 			<type>jar</type>
 		</dependency>
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
-			<plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.0.2</version>
-                <configuration>
-                    <encoding>UTF-8</encoding>
-                </configuration>
-            </plugin>
-			<plugin>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>2.2</version>
-                <configuration>
-                    <encoding>UTF-8</encoding>
-                </configuration>
-            </plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
