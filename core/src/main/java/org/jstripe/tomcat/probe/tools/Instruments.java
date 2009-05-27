@@ -132,12 +132,13 @@ public class Instruments {
     }
 
     public static Object getField(Object o, String name) {
-        Field f = findField(o.getClass(), name);
-        if (f != null) {
-            return ACCESSOR.get(o, f);
-        } else {
-            return null;
-        }
+		if (isInitialized()) {
+			Field f = findField(o.getClass(), name);
+			if (f != null) {
+				return ACCESSOR.get(o, f);
+			}
+		}
+        return null;
     }
 
     public static Field findField(Class clazz, String name) {
