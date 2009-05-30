@@ -16,25 +16,19 @@ public class AccessorFactory {
 	}
 
     public static Accessor getInstance() {
-        String vmVer = System.getProperty("java.runtime.version");
-        String vmVendor = System.getProperty("java.vm.vendor");
-        if (vmVendor != null && (
-                vmVendor.indexOf("Sun Microsystems") != -1
-                || vmVendor.indexOf("Apple Computer") != -1
-                || vmVendor.indexOf("Apple Inc.") != -1
-                || vmVendor.indexOf("IBM Corporation") != -1)) {
-            try {
-                if (vmVer.startsWith("1.4")) {
-                    return (Accessor) Class.forName("org.jstripe.instruments.Java14Accessor").newInstance();
-                } else {
-                    return (Accessor) Class.forName("org.jstripe.instruments.Java15Accessor").newInstance();
-                }
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        } else {
+        return getReflective();
+    }
+    
+    private static Accessor getReflective() {
+        try {
+            return new ReflectiveAccessor();
+        } catch (Exception ex) {
             return null;
         }
+    }
+
+    private static Accessor getSimple() {
+        return new SimpleAccessor();
     }
 
 }

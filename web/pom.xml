@@ -28,6 +28,7 @@
 			<artifactId>tomcat55adaptor</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<!--
 		<dependency>
 			<groupId>org.psiprobe</groupId>
 			<artifactId>jdk1.5</artifactId>
@@ -38,6 +39,7 @@
 			<artifactId>jdk1.4</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		-->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
