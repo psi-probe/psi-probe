@@ -62,7 +62,7 @@ public class ReflectiveAccessor implements Accessor {
     }
 
     private static Object getReflectionFactory() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
-        Class getReflectionFactoryActionClass = Class.forName("sun.reflect.ReflectionFactory.GetReflectionFactoryAction");
+        Class getReflectionFactoryActionClass = Class.forName("sun.reflect.ReflectionFactory$GetReflectionFactoryAction");
         PrivilegedAction getReflectionFactoryAction = (PrivilegedAction) getReflectionFactoryActionClass.newInstance();
         return AccessController.doPrivileged(getReflectionFactoryAction);
     }
