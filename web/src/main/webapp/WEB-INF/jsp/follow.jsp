@@ -70,33 +70,58 @@
 <script type="text/javascript">
 
     var file_content_div = "file_content";
-    var infoUpdater = new Ajax.PeriodicalUpdater("info", "<c:url value="/logs/ff_info.ajax"/>", {frequency: 3});
-    //
-    // enable automatic updater of the followed file content
-    //
-    var updater = new Ajax.PeriodicalUpdater(file_content_div, "<c:url value="/logs/follow.ajax"/>", {frequency: 3});
     var topPosition = -1;
-    var updaterRunning = true;
+    var tailingEnabled = true;
+    var lastModified = '';
 
-    Ajax.Responders.register({
-        onComplete: function() {
-            objDiv = document.getElementById(file_content_div);
-            if (topPosition == -1) {
-                objDiv.scrollTop = objDiv.scrollHeight;
-            } else {
-                objDiv.scrollTop = topPosition
-            }
-        },
+    function lastModifiedChanged(responseText) {
+        var modified = getModified(responseText);
+        if (modified == null) {
+            // if date is not formatted correctly, assume the file has changed
+            return true;
+        } else {
+            var changed = (modified != lastModified);
+            lastModified = modified;
+            return changed;
+        }
+    }
 
-        onCreate: function() {
-            objDiv = document.getElementById(file_content_div);
-            if (objDiv.scrollTop + objDiv.clientHeight == objDiv.scrollHeight) {
-                topPosition = -1;
-            } else {
-                topPosition = objDiv.scrollTop;
+    function getModified(responseText) {
+        var index = responseText.search(/\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}.\d{3}/);
+        if (index != -1) {
+            return responseText.substring(index, index + 23);
+        } else {
+            //date not formatted correctly
+            return null;
+        }
+    }
+
+    var infoUpdater = new Ajax.PeriodicalUpdater('info', '<c:url value="/logs/ff_info.ajax"/>', {
+        frequency: 3,
+        onSuccess: function(transport) {
+            if (tailingEnabled && lastModifiedChanged(transport.responseText)) {
+                new Ajax.Updater(file_content_div, '<c:url value="/logs/follow.ajax"/>', {
+                    onComplete: function() {
+                        objDiv = document.getElementById(file_content_div);
+                        if (topPosition == -1) {
+                            objDiv.scrollTop = objDiv.scrollHeight;
+                        } else {
+                            objDiv.scrollTop = topPosition
+                        }
+                    },
+
+                    onCreate: function() {
+                        objDiv = document.getElementById(file_content_div);
+                        if (objDiv.scrollTop + objDiv.clientHeight == objDiv.scrollHeight) {
+                            topPosition = -1;
+                        } else {
+                            topPosition = objDiv.scrollTop;
+                        }
+                    }
+                });
             }
         }
-    })
+    });
 
     //
     // unfortunately it is not possible to set the size of "file_content" div in percent.
@@ -120,7 +145,7 @@
     var rules = {
         '#pause' : function (element) {
             element.onclick = function () {
-                updater.stop();
+                tailingEnabled = false;
                 Element.hide('pause');
                 Element.show('resume');
                 return false;
@@ -128,7 +153,7 @@
         },
         '#resume': function (element) {
             element.onclick = function () {
-                updater.start();
+                tailingEnabled = true;
                 Element.hide('resume');
                 Element.show('pause');
                 return false;
