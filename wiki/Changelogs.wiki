@@ -1,0 +1,19 @@
+#summary Changelogs for each release and current development.
+#labels Featured
+
+= Changelogs =
+
+  * [http://code.google.com/p/psi-probe/issues/list?can=1&q=Milestone%3A2.0%2CTBD+Type%3ADefect%2CEnhancement%2CFeature+status%3AFixed%2CVerified&colspec=ID+Milestone+Priority+Type+Status+Summary+Owner&cells=tiles Current Development]
+
+
+<wiki:comment>
+  * [http://code.google.com/p/psi-probe/issues/list?can=1&q=Milestone%3A2.0+Type%3ADefect%2CEnhancement%2CFeature+status%3AReleased&colspec=ID+Milestone+Priority+Type+Status+Summary+Owner&cells=tiles 2.0 release]
+
+http://code.google.com/p/psi-probe/issues/list?can=1
+
+Current development changelog query:
+Milestone:2.0,TBD Type:Defect,Enhancement,Feature status:Fixed,Verified
+
+Release changelog query:
+Milestone:2.0 Type:Defect,Enhancement,Feature status:Released
+</wiki:comment>
