@@ -11,15 +11,19 @@ public class SimpleAccessor implements Accessor {
     public Object get(Object o, Field f) {
         boolean accessible = pre(f);
         try {
-            if (accessible) {
-                return f.get(o);
-            } else {
-                return null;
-            }
+            return get0(o, f);
         } catch (Exception e) {
             return null;
         } finally {
             post(f, accessible);
+        }
+    }
+
+    private Object get0(Object o, Field f) throws IllegalArgumentException, IllegalAccessException {
+        if (f.isAccessible()) {
+            return f.get(o);
+        } else {
+            return null;
         }
     }
 
