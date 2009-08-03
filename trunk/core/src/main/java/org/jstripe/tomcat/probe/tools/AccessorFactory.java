@@ -16,7 +16,7 @@ public class AccessorFactory {
 	}
 
     public static Accessor getInstance() {
-        return getReflective();
+        return getSimple();
     }
     
     private static Accessor getReflective() {
