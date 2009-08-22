@@ -12,7 +12,7 @@
 |         ;;;         ;;      ;;   ;;       ;;      ;;  ;;      ;;  ;;:::::::: |
 |         ;;;         ;;      ;;   ;;       ;;,    ,;;  ;;      ;;  ;;         |
 |         ;;;         ;;;,   ,;'   ;;        ;;,  ,;;   ;;;,  ,;;    ;;,    ,' |
-|       ,;;;;;,       ;; ':;;:'   ,;;,        `;;;;'    ;; `:::'      `;;;;;'  |
+|       ,;;;;;,       ;; `:;;:'   ,;;,        `;;;;'    ;; `:::'      `;;;;;'  |
 |                     ;;                                ;;                     |
 |                     ;;                                ;;                     |
 |                     ;;                               ,;;                     |
@@ -22,13 +22,37 @@
 +------------------------------------------------------------------------------+
 
 ========================
- How to build PSI-Probe
+ How to build PSI Probe
 ========================
 
-You need to install Maven 2 to build PSI-Probe.  Once you have downloaded or
-checked out the source code for PSI-Probe, run the following command from the
-base directory (where this readme.txt file resides):
+1. Check out or download PSI Probe's source code.
 
-	mvn package
+2. Install Maven 2.
 
-This will create probe.war in web/target.
+   You may download it from the following URL:
+   http://maven.apache.org
+
+3. Create the required ojdbc14 Maven artifact.
+
+   Oracle's JDBC drivers are protected by the OTN (Oracle Technology Network)
+   Development and Distribution License.  For this reason, the .jar is not
+   hosted (legally) in any Maven repository or distributed with PSI Probe.
+
+   a. Download ojdbc14.jar.
+
+      You may download it from the following URL:
+      http://www.oracle.com/technology/software/tech/java/sqlj_jdbc/htdocs/jdbc_10201.html
+
+   b. Install ojdbc14.jar as a Maven artifact.
+
+      Execute the following command:
+      mvn install:install-file -DgroupId=com.oracle -DartifactId=ojdbc14 \
+      -Dversion=10.2.0.1.0 -Dpackaging=jar -Dfile=/path/to/ojdbc14.jar
+
+4. Run Maven.
+
+   Execute the following command from the PSI Probe base directory (where this
+   readme.txt file resides):
+   mvn package
+
+   This will create probe.war in web/target.
