@@ -80,7 +80,7 @@
                 <spring:message code="probe.jsp.app.summary.description"/>&nbsp;<span class="value">${app.displayName}</span>
                 <spring:message code="probe.jsp.app.summary.servletVersion"/>&nbsp;<span class="value">${app.servletVersion}</span>
                 <spring:message code="probe.jsp.app.summary.servletCount"/>&nbsp;<span class="value"><a href="<c:url value="/servlets.htm"><c:param name="webapp" value="${app.name}"/></c:url>"><span id="servletCount"></span></a></span>
-                <spring:message code="probe.jsp.app.summary.sessionTimeout"/>&nbsp;<span class="value">${app.sessionTimeout} sec.</span>
+                <spring:message code="probe.jsp.app.summary.sessionTimeout"/>&nbsp;<span class="value">${app.sessionTimeout} min.</span>
                 <spring:message code="probe.jsp.app.summary.distributable"/>
                 <c:choose>
                     <c:when test="${app.distributable}">
