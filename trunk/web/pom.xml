@@ -68,8 +68,8 @@
 							<!-- next two lines are required for latest svn repo version -->
 							<getRevisionOnlyOnce>true</getRevisionOnlyOnce>
 							<useLastCommittedRevision>true</useLastCommittedRevision>
-							<doCheck>false</doCheck>
-							<doUpdate>false</doUpdate>
+							<doCheck>${buildNumber.doCheck}</doCheck>
+							<doUpdate>${buildNumber.doUpdate}</doUpdate>
 						</configuration>
 					</execution>
 					<execution>
@@ -132,6 +132,8 @@
 			</activation>
 			<properties>
 				<probe.version>${project.version}</probe.version>
+				<buildNumber.doCheck>true</buildNumber.doCheck>
+				<buildNumber.doUpdate>true</buildNumber.doUpdate>
 			</properties>
 		</profile>
 		<profile>
@@ -141,6 +143,8 @@
 			</activation>
 			<properties>
 				<probe.version>${project.version} (r${buildNumber} ${buildTimestamp})</probe.version>
+				<buildNumber.doCheck>false</buildNumber.doCheck>
+				<buildNumber.doUpdate>false</buildNumber.doUpdate>
 			</properties>
 		</profile>
 	</profiles>
