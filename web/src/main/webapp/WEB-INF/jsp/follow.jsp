@@ -87,7 +87,7 @@
     }
 
     function getModified(responseText) {
-        var index = responseText.search(/\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}.\d{3}/);
+        var index = responseText.search(/\d{4}-\d{2}-\d{2} \d{1,2}:\d{2}:\d{2}\.\d{3}/);
         if (index != -1) {
             return responseText.substring(index, index + 23);
         } else {
