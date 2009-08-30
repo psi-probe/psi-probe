@@ -54,21 +54,62 @@
 	<build>
 		<plugins>
 			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>buildnumber-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<!-- buildNumber var -->
+						<id>generate-buildNumber</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>create</goal>
+						</goals>
+						<configuration>
+							<!-- next two lines are required for latest svn repo version -->
+							<getRevisionOnlyOnce>true</getRevisionOnlyOnce>
+							<useLastCommittedRevision>true</useLastCommittedRevision>
+							<doCheck>false</doCheck>
+							<doUpdate>false</doUpdate>
+						</configuration>
+					</execution>
+					<execution>
+						<!-- buildTimestamp -->
+						<id>generate-timestamp</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>create</goal>
+						</goals>
+						<configuration>
+							<format>{0,date,yyyy-MM-dd_HHmm}</format>
+							<items>
+								<item>timestamp</item>
+							</items>
+							<doCheck>false</doCheck>
+							<doUpdate>false</doUpdate>
+							<buildNumberPropertyName>buildTimestamp</buildNumberPropertyName>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
 				<configuration>
-					<excludes>**/test/**,**/.svn/**,**/classes/**</excludes>
+					<excludes>**/test/**,**/.svn/**</excludes>
 					<webResources>
 						<resource>
 							<directory>${pom.basedir}/src/main/conf</directory>
-							<filtering>true</filtering>
+							<filtering>false</filtering>
 						</resource>
 						<resource>
 							<directory>${pom.basedir}/src/main/resource</directory>
-							<filtering>false</filtering>
+							<filtering>true</filtering>
 						</resource>
 					</webResources>
 					<archive>
+						<manifestEntries>
+							<Implementation-Build>${probe.version}</Implementation-Build>
+						</manifestEntries>
 						<manifest>
 							<addClasspath>true</addClasspath>
 							<classpathPrefix>lib/</classpathPrefix>
@@ -80,4 +121,27 @@
 			</plugin>
 		</plugins>
 	</build>
+	<profiles>
+		<profile>
+			<id>release</id>
+			<activation>
+				<property>
+					<name>profile.release</name>
+					<value>true</value>
+				</property>
+			</activation>
+			<properties>
+				<probe.version>${project.version}</probe.version>
+			</properties>
+		</profile>
+		<profile>
+			<id>incremental</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<probe.version>${project.version} (r${buildNumber} ${buildTimestamp})</probe.version>
+			</properties>
+		</profile>
+	</profiles>
 </project>
