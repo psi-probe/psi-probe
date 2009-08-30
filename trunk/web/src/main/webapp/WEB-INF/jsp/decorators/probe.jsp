@@ -43,7 +43,7 @@
         <li id="logo"><a href="<c:url value="/index.htm"/>"><img src="<c:url value="/css/the-probe-logo.gif"/>"
                                                                  alt="LambdaProbe Logo"/></a></li>
         <li id="runtime">
-            <spring:message code="probe.jsp.version" arguments="@VERSION@,<b>${hostname}</b>"/>,
+            <spring:message code="probe.jsp.version" arguments="${version},<b>${hostname}</b>"/>,
             <span class="uptime"><spring:message code="probe.jsp.uptime"
                                                  arguments="${uptime_days},${uptime_hours},${uptime_mins}"/></span>
         <li id="title"><decorator:title default="Probe"/></li>
