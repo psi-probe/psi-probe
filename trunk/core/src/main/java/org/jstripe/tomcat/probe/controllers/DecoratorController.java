@@ -22,6 +22,7 @@ import java.net.UnknownHostException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
+import java.util.Properties;
 
 public class DecoratorController extends ParameterizableViewController {
 
@@ -41,6 +42,9 @@ public class DecoratorController extends ParameterizableViewController {
         } catch (UnknownHostException e) {
             request.setAttribute("hostname", "unknown");
         }
+
+        Properties version = (Properties) getApplicationContext().getBean("version");
+        request.setAttribute("version", version.getProperty("probe.version"));
 
         Object uptimeStart = getServletContext().getAttribute("UPTIME_START");
         if (uptimeStart != null && uptimeStart instanceof Long) {
