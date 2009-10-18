@@ -1,5 +1,7 @@
 #summary List of changes for Lambda Probe.
 
+* [Changelogs PSI Probe Changelog]
+
 = Lambda Probe Changelog =
 
 == 2.0 (unreleased) ==
