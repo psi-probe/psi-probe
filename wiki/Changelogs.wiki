@@ -3,7 +3,7 @@
 
 = PSI Probe Changelog =
 
-  * [http://code.google.com/p/psi-probe/issues/list?can=1&q=Milestone%3A2.0%2CTBD+Type%3ADefect%2CEnhancement%2CFeature+status%3AFixed%2CVerified&colspec=ID+Milestone+Priority+Type+Status+Summary+Owner&cells=tiles Current Development]
+  * [http://code.google.com/p/psi-probe/issues/list?can=1&q=Milestone%3A2.0%2CTBD+Type%3ADefect%2CEnhancement%2CFeature+status%3AFixed%2CVerified+-FoundIn%3ASnapshot&colspec=ID+Milestone+Priority+Type+Status+Summary+Owner&cells=tiles Current Development]
   * [ChangelogsLambdaProbe Old versions] (Lambda Probe)
 
 
