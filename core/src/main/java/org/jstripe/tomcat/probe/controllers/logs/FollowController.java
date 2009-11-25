@@ -84,8 +84,12 @@ public class FollowController extends ParameterizableViewController  {
                                 break;
                             }
                         }
-                        ff.getLines().add(listSize, s);
-                        readSize += s.length();
+                        if (!s.equals("")){
+                            ff.getLines().add(listSize, s);
+                            readSize += s.length();
+                        } else {
+                            readSize++;
+                        }
                         if (ff.getLastKnowLength() == 0 && ff.getLines().size() >= initialLines) break;
                     }
 
