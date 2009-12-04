@@ -14,7 +14,7 @@
 	<name>PSI Probe Tomcat 5.0.x Adaptor</name>
 	<dependencies>
 		<dependency>
-			<groupId>org.psiprobe</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>core</artifactId>
 			<version>${project.version}</version>
 		</dependency>
