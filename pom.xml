@@ -276,6 +276,40 @@
 						</archive>
 					</configuration>
 				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>buildnumber-maven-plugin</artifactId>
+					<executions>
+						<execution>
+							<id>generate-buildNumber</id>
+							<phase>validate</phase>
+							<goals>
+								<goal>create</goal>
+							</goals>
+							<configuration>
+								<getRevisionOnlyOnce>true</getRevisionOnlyOnce>
+								<useLastCommittedRevision>true</useLastCommittedRevision>
+								<doCheck>${buildNumber.doCheck}</doCheck>
+								<doUpdate>${buildNumber.doUpdate}</doUpdate>
+							</configuration>
+						</execution>
+						<execution>
+							<id>generate-timestamp</id>
+							<phase>validate</phase>
+							<goals>
+								<goal>create</goal>
+							</goals>
+							<configuration>
+								<timestampFormat>{0,date,yyyy-MM-dd_HHmm}</timestampFormat>
+								<items>
+									<item>timestamp</item>
+								</items>
+								<doCheck>false</doCheck>
+								<doUpdate>false</doUpdate>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
 				<!-- this needs maven 2.0.9 or above.
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -309,6 +343,10 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
 			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>buildnumber-maven-plugin</artifactId>
+			</plugin>
 			<!-- this needs maven 2.0.9 or above.
 			<plugin>
 				<inherited>true</inherited>
@@ -334,4 +372,31 @@
 			</plugin>
 		</plugins>
 	</reporting>
+	<profiles>
+		<profile>
+			<id>release</id>
+			<activation>
+				<property>
+					<name>profile.release</name>
+					<value>true</value>
+				</property>
+			</activation>
+			<properties>
+				<probe.version>${project.version}</probe.version>
+				<buildNumber.doCheck>true</buildNumber.doCheck>
+				<buildNumber.doUpdate>true</buildNumber.doUpdate>
+			</properties>
+		</profile>
+		<profile>
+			<id>incremental</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<probe.version>${project.version} (r${buildNumber} ${timestamp})</probe.version>
+				<buildNumber.doCheck>false</buildNumber.doCheck>
+				<buildNumber.doUpdate>false</buildNumber.doUpdate>
+			</properties>
+		</profile>
+	</profiles>
 </project>
