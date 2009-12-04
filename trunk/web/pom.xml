@@ -14,17 +14,17 @@
 	<name>PSI Probe Web Application</name>
 	<dependencies>
 		<dependency>
-			<groupId>org.psiprobe</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>core</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.psiprobe</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>tomcat50adaptor</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.psiprobe</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>tomcat55adaptor</artifactId>
 			<version>${project.version}</version>
 		</dependency>
@@ -98,11 +98,11 @@
 					<excludes>**/test/**,**/.svn/**</excludes>
 					<webResources>
 						<resource>
-							<directory>${pom.basedir}/src/main/conf</directory>
+							<directory>src/main/conf</directory>
 							<filtering>false</filtering>
 						</resource>
 						<resource>
-							<directory>${pom.basedir}/src/main/resource</directory>
+							<directory>src/main/conf-filtered</directory>
 							<filtering>true</filtering>
 						</resource>
 					</webResources>
