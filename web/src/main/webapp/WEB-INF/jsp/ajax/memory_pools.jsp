@@ -20,10 +20,10 @@
     <display:column title="&nbsp;" width="16px" class="leftMostIcon">
         <c:choose>
             <c:when test="${pool.type == 'HEAP'}">
-                <img src="${pageContext.request.contextPath}<spring:theme code="heap_pool.png"/>" alt=""/>
+                <img src="${pageContext.request.contextPath}<spring:theme code='heap_pool.png'/>" alt=""/>
             </c:when>
             <c:otherwise>
-                <img src="${pageContext.request.contextPath}<spring:theme code="non_heap_pool.png"/>" alt=""/>
+                <img src="${pageContext.request.contextPath}<spring:theme code='non_heap_pool.png'/>" alt=""/>
             </c:otherwise>
         </c:choose>
     </display:column>
@@ -35,8 +35,8 @@
     <display:column titleKey="probe.jsp.memory.col.usageScore" sortable="true" class="score_wrapper">
         <div class="score_wrapper">
             <js:score value="${pool.usageScore}" partialBlocks="5" fullBlocks="10" showEmptyBlocks="true" showA="true" showB="true">
-                <img src="<c:url value="/css/classic/gifs/rb_{0}.gif"/>" alt="+"
-                     title="<spring:message code="probe.jsp.memory.usage.title" arguments="${pool.usageScore}"/>"/>
+                <img src="<c:url value='/css/classic/gifs/rb_{0}.gif'/>" alt="+"
+                     title="<spring:message code='probe.jsp.memory.usage.title' arguments='${pool.usageScore}'/>"/>
             </js:score>
         </div>
     </display:column>
@@ -56,19 +56,20 @@
             </c:otherwise>
         </c:choose>
 
+        <c:url var="poolUrl" value="/remember.ajax?cn=mem_${pool.id}" />
         <img id="visible_${pool.id}"
-             onclick="return togglePanel('${pool.id}', '<c:url value="/remember.ajax?cn=mem_${pool.id}"/>')"
+             onclick="return togglePanel('${pool.id}', '${poolUrl}')"
              class="clickable"
              style="${style_on}"
-             src="${pageContext.request.contextPath}<spring:theme code="memory_chart_visible.png"/>"
+             src="${pageContext.request.contextPath}<spring:theme code='memory_chart_visible.png'/>"
              alt=""
              border="0"/>
 
         <img id="invisible_${pool.id}"
-             onclick="return togglePanel('${pool.id}', '<c:url value="/remember.ajax?cn=mem_${pool.id}"/>')"
+             onclick="return togglePanel('${pool.id}', '${poolUrl}')"
              class="clickable"
              style="${style_off}"
-             src="${pageContext.request.contextPath}<spring:theme code="memory_chart_hidden.png"/>"
+             src="${pageContext.request.contextPath}<spring:theme code='memory_chart_hidden.png'/>"
              alt=""
              border="0"/>
     </display:column>

@@ -25,6 +25,11 @@
     <title>
         <spring:message code="probe.jsp.title.app.attributes" arguments="${param.webapp}"/>
     </title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='scroller.css'/>" type="text/css"/>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/prototype.js'/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/behaviour.js'/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/scriptaculous.js'/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/areascroller.js'/>"></script>
 </head>
 
 <%--
@@ -35,13 +40,6 @@
 <c:set var="appTabAttributes" value="active" scope="request"/>
 
 <body>
-
-<link rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code="scroller.css"/>" type="text/css"/>
-
-<script type="text/javascript" language="javascript" src="<c:url value="/js/prototype.js"/>"></script>
-<script type="text/javascript" language="javascript" src="<c:url value="/js/behaviour.js"/>"></script>
-<script type="text/javascript" language="javascript" src="<c:url value="/js/scriptaculous.js"/>"></script>
-<script type="text/javascript" language="javascript" src="<c:url value="/js/areascroller.js"/>"></script>
 
 <div class="embeddedBlockContainer">
     <h3><spring:message code="probe.jsp.app.attributes.h3.attributes"/></h3>
@@ -66,15 +64,15 @@
                                            requestURI="" defaultsort="1">
                                 <display:column title="&nbsp;" width="20px" class="leftMostIcon">
                                     <a href="
-                                        <c:url value="/app/rmappattr.htm">
-                                            <c:param name="webapp" value="${param.webapp}"/>
-                                            <c:param name="attr" value="${attribute.name}"/>
+                                        <c:url value='/app/rmappattr.htm'>
+                                            <c:param name='webapp' value='${param.webapp}'/>
+                                            <c:param name='attr' value='${attribute.name}'/>
                                         </c:url>
                                     " class="imglink">
                                         <img class="lnk"
-                                             src="${pageContext.request.contextPath}<spring:theme code="remove.img"/>"
-                                             alt="<spring:message code="probe.jsp.app.attributes.col.delete"/>"
-                                             title="<spring:message code="probe.jsp.app.attributes.col.delete.title"/>"/>
+                                             src="${pageContext.request.contextPath}<spring:theme code='remove.img'/>"
+                                             alt="<spring:message code='probe.jsp.app.attributes.col.delete'/>"
+                                             title="<spring:message code='probe.jsp.app.attributes.col.delete.title'/>"/>
                                     </a>
                                 </display:column>
                                 <display:column property="name" sortable="true" maxLength="40"

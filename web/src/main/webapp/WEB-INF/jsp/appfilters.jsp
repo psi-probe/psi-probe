@@ -39,8 +39,8 @@
 
 <ul class="options">
     <li id="viewAppFilterMaps">
-        <a href="<c:url value="/appfiltermaps.htm">
-                    <c:param name="webapp" value="${param.webapp}"/>
+        <a href="<c:url value='/appfiltermaps.htm'>
+                    <c:param name='webapp' value='${param.webapp}'/>
                 </c:url>"><spring:message code="probe.jsp.app.filters.opt.maps"/></a>
     </li>
 </ul>

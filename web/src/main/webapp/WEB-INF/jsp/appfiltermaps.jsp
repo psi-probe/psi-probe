@@ -38,8 +38,8 @@
 
 <ul class="options">
     <li id="viewAppFilters">
-        <a href="<c:url value="/appfilters.htm">
-                    <c:param name="webapp" value="${param.webapp}"/>
+        <a href="<c:url value='/appfilters.htm'>
+                    <c:param name='webapp' value='${param.webapp}'/>
                 </c:url>"><spring:message code="probe.jsp.app.filtermaps.opt.defs"/></a>
     </li>
 </ul>

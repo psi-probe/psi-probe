@@ -25,16 +25,15 @@
 <html>
 <head>
     <title><spring:message code="probe.jsp.title.status"/></title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code="status.css"/>" type="text/css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='status.css'/>" type="text/css"/>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/prototype.js'/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/scriptaculous.js'/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/Tooltip.js'/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/behaviour.js'/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/func.js'/>"></script>
 </head>
 
 <body>
-
-<script type="text/javascript" language="javascript" src="<c:url value="/js/prototype.js"/>"></script>
-<script type="text/javascript" language="javascript" src="<c:url value="/js/scriptaculous.js"/>"></script>
-<script type="text/javascript" language="javascript" src="<c:url value="/js/Tooltip.js"/>"></script>
-<script type="text/javascript" language="javascript" src="<c:url value="/js/behaviour.js"/>"></script>
-<script type="text/javascript" language="javascript" src="<c:url value="/js/func.js"/>"></script>
 
 <c:set var="navTabStatus" value="active" scope="request"/>
 
@@ -77,7 +76,7 @@
                         <display:column title="&nbsp;" width="18px" class="leftmost">
                             <c:choose>
                                 <c:when test="${! empty rp.remoteAddrLocale.country && rp.remoteAddrLocale.country != '**'}">
-                                    <img border="0" src="<c:url value="/flags/${fn:toLowerCase(rp.remoteAddrLocale.country)}.gif"/>"
+                                    <img border="0" src="<c:url value='/flags/${fn:toLowerCase(rp.remoteAddrLocale.country)}.gif'/>"
                                          alt="${rp.remoteAddrLocale.country}" title="${rp.remoteAddrLocale.displayCountry}"/>
                                 </c:when>
                                 <c:otherwise>

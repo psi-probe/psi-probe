@@ -31,7 +31,7 @@
             <c:if test="${empty param.webapp}">
                 <display:column sortProperty="applicationName" sortable="true"
                                 titleKey="probe.jsp.servlets.col.applicationName" class="leftmost">
-                    <a href="<c:url value="/appsummary.htm"><c:param name="webapp" value="${svlt.applicationName}"/></c:url>">${svlt.applicationName}</a>
+                    <a href="<c:url value='/appsummary.htm'><c:param name='webapp' value='${svlt.applicationName}'/></c:url>">${svlt.applicationName}</a>
                 </display:column>
             </c:if>
             <display:column sortProperty="servletName" sortable="true"

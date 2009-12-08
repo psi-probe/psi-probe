@@ -16,8 +16,12 @@
 <html>
 <head>
     <title><spring:message code="probe.jsp.title.servlet_source"/></title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code="java_syntax.css"/>" type="text/css"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code="scroller.css"/>" type="text/css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='java_syntax.css'/>" type="text/css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='scroller.css'/>" type="text/css"/>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/prototype.js'/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/behaviour.js'/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/scriptaculous.js'/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/areascroller.js'/>"></script>
 </head>
 
 <c:set var="navTabApps" value="active" scope="request"/>
@@ -26,24 +30,19 @@
 
 <body>
 
-<script type="text/javascript" language="javascript" src="<c:url value="/js/prototype.js"/>"></script>
-<script type="text/javascript" language="javascript" src="<c:url value="/js/behaviour.js"/>"></script>
-<script type="text/javascript" language="javascript" src="<c:url value="/js/scriptaculous.js"/>"></script>
-<script type="text/javascript" language="javascript" src="<c:url value="/js/areascroller.js"/>"></script>
-
 <ul class="options">
-    <li id="back"><a href="<c:url value="/app/jsp.htm"><c:param name="webapp" value="${param.webapp}"/></c:url>">
+    <li id="back"><a href="<c:url value='/app/jsp.htm'><c:param name='webapp' value='${param.webapp}'/></c:url>">
         <spring:message code="probe.jsp.viewsource.opt.back"/></a></li>
     <li id="viewJSP">
-        <a href="<c:url value="/app/viewsource.htm">
-                    <c:param name="webapp" value="${param.webapp}"/>
-                    <c:param name="source" value="${param.source}"/>
+        <a href="<c:url value='/app/viewsource.htm'>
+                    <c:param name='webapp' value='${param.webapp}'/>
+                    <c:param name='source' value='${param.source}'/>
                 </c:url>"><spring:message code="probe.jsp.servlet_source.opt.jsp"/></a>
     </li>
     <li id="download">
-        <a href="<c:url value="/app/downloadserv.htm">
-                    <c:param name="webapp" value="${param.webapp}"/>
-                    <c:param name="source" value="${param.source}"/>
+        <a href="<c:url value='/app/downloadserv.htm'>
+                    <c:param name='webapp' value='${param.webapp}'/>
+                    <c:param name='source' value='${param.source}'/>
                 </c:url>"><spring:message code="probe.jsp.follow.menu.download"/></a>
     </li>
 

@@ -22,12 +22,12 @@
             <display:column title="&nbsp;" class="leftMostIcon" width="16px;">
                 <c:choose>
                     <c:when test="${member.suspect}">
-                        <img src="${pageContext.request.contextPath}<spring:theme code="transmit_error.png"/>" alt="<spring:message code="probe.jsp.cluster.members.failing.alt"/>"
-                             title="<spring:message code="probe.jsp.cluster.members.failing.title"/>"/>
+                        <img src="${pageContext.request.contextPath}<spring:theme code='transmit_error.png'/>" alt="<spring:message code='probe.jsp.cluster.members.failing.alt'/>"
+                             title="<spring:message code='probe.jsp.cluster.members.failing.title'/>"/>
                     </c:when>
                     <c:otherwise>
-                        <img src="${pageContext.request.contextPath}<spring:theme code="transmit.png"/>" alt="<spring:message code="probe.jsp.cluster.members.healthy.alt"/>"
-                             title="<spring:message code="probe.jsp.cluster.members.healthy.title"/>"/>
+                        <img src="${pageContext.request.contextPath}<spring:theme code='transmit.png'/>" alt="<spring:message code='probe.jsp.cluster.members.healthy.alt'/>"
+                             title="<spring:message code='probe.jsp.cluster.members.healthy.title'/>"/>
                     </c:otherwise>
                 </c:choose>
             </display:column>

@@ -18,18 +18,17 @@
 <html>
 <head>
     <title><spring:message code="probe.jsp.title.threads"/></title>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/prototype.js'/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/scriptaculous.js'/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/effects.js'/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/Tooltip.js'/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/behaviour.js'/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/func.js'/>"></script>
 </head>
 
 <c:set var="navTabThreads" value="active" scope="request"/>
 
 <body>
-
-<script type="text/javascript" language="javascript" src="<c:url value="/js/prototype.js"/>"></script>
-<script type="text/javascript" language="javascript" src="<c:url value="/js/scriptaculous.js"/>"></script>
-<script type="text/javascript" language="javascript" src="<c:url value="/js/effects.js"/>"></script>
-<script type="text/javascript" language="javascript" src="<c:url value="/js/Tooltip.js"/>"></script>
-<script type="text/javascript" language="javascript" src="<c:url value="/js/behaviour.js"/>"></script>
-<script type="text/javascript" language="javascript" src="<c:url value="/js/func.js"/>"></script>
 
 <div>
     <ul class="options">
@@ -56,13 +55,16 @@
                        defaultorder="ascending">
 
             <display:column class="leftMostIcon" title="&nbsp;" width="20px">
+                <c:set var="confirmMessage">
+                    <spring:message code="probe.jsp.threads.killmsg" arguments="${th.name}"/>
+                </c:set>
                 <a class="imglink"
-                   onclick="return confirm('<spring:message code="probe.jsp.threads.killmsg" arguments="${th.name}"/>')"
-                   href="<c:url value="/adm/kill.htm">
-                            <c:param name="thread" value="${th.name}"/>
+                   onclick="return confirm('${confirmMessage}')"
+                   href="<c:url value='/adm/kill.htm'>
+                            <c:param name='thread' value='${th.name}'/>
                          </c:url>">
-                    <img class="lnk" src="${pageContext.request.contextPath}<spring:theme code="delete.png"/>"
-                         alt="<spring:message code="probe.jsp.threads.stop.alt"/>"/>
+                    <img class="lnk" src="${pageContext.request.contextPath}<spring:theme code='delete.png'/>"
+                         alt="<spring:message code='probe.jsp.threads.stop.alt'/>"/>
                 </a>
             </display:column>
 

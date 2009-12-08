@@ -20,6 +20,12 @@
     <title><spring:message code="probe.jsp.title.testDataSource" arguments="${param.webapp},${param.resource}"/></title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code="datasourcetest.css"/>" type="text/css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code="scroller.css"/>" type="text/css"/>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/prototype.js'/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/behaviour.js'/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/scriptaculous.js'/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/func.js'/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/areascroller.js'/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/datasourcetest.js'/>"></script>
 </head>
 
 <%--
@@ -30,13 +36,6 @@
 --%>
 
 <body>
-
-<script type="text/javascript" language="javascript" src="<c:url value="/js/prototype.js"/>"></script>
-<script type="text/javascript" language="javascript" src="<c:url value="/js/behaviour.js"/>"></script>
-<script type="text/javascript" language="javascript" src="<c:url value="/js/scriptaculous.js"/>"></script>
-<script type="text/javascript" language="javascript" src="<c:url value="/js/func.js"/>"></script>
-<script type="text/javascript" language="javascript" src="<c:url value="/js/areascroller.js"/>"></script>
-<script type="text/javascript" language="javascript" src="<c:url value="/js/datasourcetest.js"/>"></script>
 
 <c:set var="navTabDatasources" value="active" scope="request"/>
 

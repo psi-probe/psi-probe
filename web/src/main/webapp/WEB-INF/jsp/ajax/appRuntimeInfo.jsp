@@ -76,7 +76,7 @@
             <tbody>
             <tr>
                 <td class="leftMost">
-                    <a href="<c:url value="/sessions.htm?webapp=${app.name}&size=${param.size}"/>">${app.sessionCount}</a>
+                    <a href="<c:url value='/sessions.htm?webapp=${app.name}&size=${param.size}'/>">${app.sessionCount}</a>
                 </td>
                 <td>
                     <c:choose>
@@ -97,10 +97,10 @@
                     </td>
                 </c:if>
                 <td>
-                    <a href="<c:url value="/appattributes.htm?webapp=${app.name}"/>">${app.contextAttributeCount}</a>
+                    <a href="<c:url value='/appattributes.htm?webapp=${app.name}'/>">${app.contextAttributeCount}</a>
                 </td>
                 <td>
-                    <a href="<c:url value="/servlets.htm?webapp=${app.name}"/>">${app.requestCount}</a>
+                    <a href="<c:url value='/servlets.htm?webapp=${app.name}'/>">${app.requestCount}</a>
                 </td>
                 <td>
                 ${app.errorCount}
@@ -121,8 +121,8 @@
                     <td>
                         <js:score value="${app.dataSourceUsageScore}" fullBlocks="8" partialBlocks="5" showEmptyBlocks="true" showA="true" showB="true">
                             <a class="imglink" href="<c:url value="/resources.htm?webapp=${app.name}"/>"><img border="0"
-                                src="<c:url value="/css/classic/gifs/rb_{0}.gif"/>" alt="+"
-                                title="<spring:message code="probe.jsp.applications.jdbcUsage.title" arguments="${app.dataSourceUsageScore}"/>"/></a>
+                                src="<c:url value='/css/classic/gifs/rb_{0}.gif'/>" alt="+"
+                                title="<spring:message code='probe.jsp.applications.jdbcUsage.title' arguments='${app.dataSourceUsageScore}'/>"/></a>
                         </js:score>
                         &nbsp;${app.dataSourceUsageScore}%
                     </td>

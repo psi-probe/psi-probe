@@ -24,19 +24,18 @@
 <html>
 <head>
     <title><spring:message code="probe.jsp.title.follow"/></title>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/prototype.js'/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/scriptaculous.js'/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/func.js'/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/behaviour.js'/>"></script>
 </head>
 
 <c:set var="navTabLogs" value="active" scope="request"/>
 
 <body>
 
-<script type="text/javascript" language="javascript" src="<c:url value="/js/prototype.js"/>"></script>
-<script type="text/javascript" language="javascript" src="<c:url value="/js/scriptaculous.js"/>"></script>
-<script type="text/javascript" language="javascript" src="<c:url value="/js/func.js"/>"></script>
-<script type="text/javascript" language="javascript" src="<c:url value="/js/behaviour.js"/>"></script>
-
 <ul class="options">
-    <li id="back"><a href="<c:url value="/logs/index.htm"/>"><spring:message code="probe.jsp.follow.menu.back"/></a></li>
+    <li id="back"><a href="<c:url value='/logs/index.htm'/>"><spring:message code="probe.jsp.follow.menu.back"/></a></li>
     <li id="pause"><a href=""><spring:message code="probe.jsp.follow.menu.pause"/></a></li>
     <li id="resume" style="display: none;"><a href=""><spring:message code="probe.jsp.follow.menu.resume"/></a></li>
     <li id="zoomin"><a href=""><spring:message code="probe.jsp.follow.menu.zoomin"/></a></li>
@@ -44,8 +43,7 @@
     <li id="wrap"><a href=""><spring:message code="probe.jsp.follow.menu.wrap"/></a></li>
     <li id="nowrap" style="display: none;"><a href=""><spring:message code="probe.jsp.follow.menu.nowrap"/></a></li>
     <li id="clear"><a href=""><spring:message code="probe.jsp.follow.menu.clear"/></a></li>
-    <li id="download"><a
-            href="<c:url value="/logs/download"><c:param name="id" value="${param.id}"/></c:url>"><spring:message code="probe.jsp.follow.menu.download"/></a></li>
+    <li id="download"><a href="<c:url value='/logs/download'><c:param name='id' value='${param.id}'/></c:url>"><spring:message code="probe.jsp.follow.menu.download"/></a></li>
 </ul>
 
 
@@ -69,15 +67,15 @@
 
 <script type="text/javascript">
 
-    var file_content_div = "file_content";
+    var file_content_div = 'file_content';
     var topPosition = -1;
     var tailingEnabled = true;
     var lastResponseText = '';
 
     function logChanged(responseText) {
-		var changed = (responseText != lastResponseText);
-		lastResponseText = responseText;
-		return changed;
+        var changed = (responseText != lastResponseText);
+        lastResponseText = responseText;
+        return changed;
     }
 
     var infoUpdater = new Ajax.PeriodicalUpdater('info', '<c:url value="/logs/ff_info.ajax"/>', {
@@ -145,12 +143,12 @@
         },
         '#zoomin': function(element) {
             element.onclick = function () {
-                style = Element.getStyle(file_content_div, "font-size").replace("px", "");
+                style = Element.getStyle(file_content_div, 'font-size').replace('px', '');
                 e = document.getElementById(file_content_div);
                 if (e) {
                     new_size = (style - 1 + 3);
                     if (new_size <= 32) {
-                        e.style.fontSize = new_size + "px";
+                        e.style.fontSize = new_size + 'px';
                     }
                 }
                 return false;
@@ -158,12 +156,12 @@
         },
         '#zoomout': function(element) {
             element.onclick = function () {
-                style = Element.getStyle(file_content_div, "font-size").replace("px", "");
+                style = Element.getStyle(file_content_div, 'font-size').replace('px', '');
                 e = document.getElementById(file_content_div);
                 if (e) {
                     new_size = (style - 3 + 1);
                     if (new_size >= 4) {
-                        e.style.fontSize = new_size + "px";
+                        e.style.fontSize = new_size + 'px';
                     }
                 }
                 return false;
@@ -171,7 +169,7 @@
         },
         '#wrap': function(element) {
             element.onclick = function () {
-                Element.setStyle(file_content_div, {"white-space": "normal"});
+                Element.setStyle(file_content_div, {'white-space': 'normal'});
                 Element.hide('wrap');
                 Element.show('nowrap');
                 return false;
@@ -179,7 +177,7 @@
         },
         '#nowrap': function(element) {
             element.onclick = function () {
-                Element.setStyle(file_content_div, {"white-space": "nowrap"});
+                Element.setStyle(file_content_div, {'white-space': 'nowrap'});
                 Element.hide('nowrap');
                 Element.show('wrap');
                 return false;
@@ -188,7 +186,7 @@
         '#clear': function(element) {
             element.onclick = function() {
                 new Ajax.Request('<c:url value="/logs/clear.ajax"/>', {method:'get',asynchronous:true});
-                new Ajax.Updater(file_content_div, "<c:url value="/logs/follow.ajax"/>");
+                new Ajax.Updater(file_content_div, '<c:url value="/logs/follow.ajax"/>');
                 return false;
             }
         }

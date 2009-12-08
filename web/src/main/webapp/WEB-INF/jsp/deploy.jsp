@@ -17,7 +17,7 @@
 <html>
 <head>
     <title><spring:message code="probe.jsp.title.deployment"/></title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code="deploy.css"/>" type="text/css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='deploy.css'/>" type="text/css"/>
 </head>
 
 <body>
@@ -35,7 +35,7 @@
 <c:if test="${! empty successMessage}">
     <div id="successMessage">
         ${successMessage}<c:if test="${! empty compiled_app}">&nbsp;
-        <a href="<c:url value="/app/jsp.htm"><c:param name="webapp" value="${compiled_app}"/></c:url>"><spring:message code="probe.jsp.deployment.compilationDetails"/></a></c:if>
+        <a href="<c:url value='/app/jsp.htm'><c:param name='webapp' value='${compiled_app}'/></c:url>"><spring:message code="probe.jsp.deployment.compilationDetails"/></a></c:if>
     </div>
 </c:if>
 
@@ -45,7 +45,7 @@
 
         <div class="deployDescription"><spring:message code="probe.jsp.deployment.s1.description"/></div>
 
-        <form action="<c:url value="/adm/war.htm"/>" method="post" enctype="multipart/form-data">
+        <form action="<c:url value='/adm/war.htm'/>" method="post" enctype="multipart/form-data">
             <dl>
                 <dt><label for="war"><spring:message code="probe.jsp.deployment.s1.file.label"/> <em>*</em></label></dt>
                 <dd><input id="war" type="file" name="war" size="90"/></dd>
@@ -59,7 +59,7 @@
                     <spring:message code="probe.jsp.deployment.s1.compile.label"/></label></span></dt>
 
                 <dd class="submit">
-                    <input class="b" type="submit" value="<spring:message code="probe.jsp.deployment.s1.submit"/>"/>
+                    <input class="b" type="submit" value="<spring:message code='probe.jsp.deployment.s1.submit'/>"/>
                 </dd>
             </dl>
         </form>
@@ -70,13 +70,13 @@
 
         <div class="deployDescription"><spring:message code="probe.jsp.deployment.s2.description"/></div>
 
-        <form action="<c:url value="/adm/deploycontext.htm"/>" method="get">
+        <form action="<c:url value='/adm/deploycontext.htm'/>" method="get">
             <dl>
                 <dt><label for="context2"><spring:message code="probe.jsp.deployment.s2.context.label"/></label> <em>*</em></dt>
                 <dd><input id="context2" type="text" name="context" size="90"/></dd>
 
                 <dd class="submit">
-                    <input class="b" type="submit" value="<spring:message code="probe.jsp.deployment.s1.submit"/>"/>
+                    <input class="b" type="submit" value="<spring:message code='probe.jsp.deployment.s1.submit'/>"/>
                 </dd>
             </dl>
         </form>

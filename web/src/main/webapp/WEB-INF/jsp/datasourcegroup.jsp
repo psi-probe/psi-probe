@@ -31,7 +31,7 @@
 
 <ul class="options">
     <li id="back">
-        <a href="<c:url value="/datasources.htm"></c:url>"><spring:message code="probe.jsp.dataSourceGroups.menu.back"/></a>
+        <a href="<c:url value='/datasources.htm'/>"><spring:message code="probe.jsp.dataSourceGroups.menu.back"/></a>
     </li>
 </ul>
 
@@ -52,8 +52,8 @@
                                 titleKey="probe.jsp.dataSourceGroups.list.col.usage" class="score_wrapper">
                     <div class="score_wrapper">
                         <js:score value="${dataSourceGroup.score}" fullBlocks="10" partialBlocks="5" showEmptyBlocks="true" showA="true" showB="true">
-                            <img src="<c:url value="/css/classic/gifs/rb_{0}.gif"/>" alt="+"
-                                 title="<spring:message code="probe.jsp.applications.jdbcUsage.title" arguments="${dataSourceGroup.score}"/>"/>
+                            <img src="<c:url value='/css/classic/gifs/rb_{0}.gif'/>" alt="+"
+                                 title="<spring:message code='probe.jsp.applications.jdbcUsage.title' arguments='${dataSourceGroup.score}'/>"/>
                         </js:score>
                     </div>
                 </display:column>

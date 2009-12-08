@@ -18,11 +18,12 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" session="false" %>
 <html>
-<head><title><spring:message code="probe.jsp.title.jsps" arguments="${param.webapp}"/></title></head>
-
-<script type="text/javascript" language="javascript" src="<c:url value="/js/prototype.js"/>"></script>
-<script type="text/javascript" language="javascript" src="<c:url value="/js/effects.js"/>"></script>
-<script type="text/javascript" language="javascript" src="<c:url value="/js/func.js"/>"></script>
+<head>
+    <title><spring:message code="probe.jsp.title.jsps" arguments="${param.webapp}"/></title>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/prototype.js'/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/effects.js'/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/func.js'/>"></script>
+</head>
 
 <c:set var="navTabApps" value="active" scope="request"/>
 <c:set var="use_decorator" value="application" scope="request"/>
@@ -38,14 +39,14 @@
         </div>
     </c:when>
     <c:otherwise>
-        <form action="<c:url value="/app/recompile.htm"><c:param name="webapp" value="${param.webapp}"/></c:url>"
+        <form action="<c:url value='/app/recompile.htm'><c:param name='webapp' value='${param.webapp}'/></c:url>"
               method="post" name="jspform" id="jspform">
 
             <ul class="options">
                 <li id="toggle"><a href="#" onclick="return inverse(jspform);"><spring:message code="probe.jsp.jsps.opt.toggleall"/></a></li>
                 <li id="compile"><a href="#" onclick="jspform.submit();"><spring:message code="probe.jsp.jsps.opt.compile"/></a></li>
-                <li id="compileall"><a href="<c:url value="/app/jsp.htm"><c:param name="compile" value="true"/><c:param name="webapp" value="${param.webapp}"/></c:url>"><spring:message code="probe.jsp.jsps.opt.compileall"/></a></li>
-                <li id="delete_r"><a href="<c:url value="/adm/discard.htm"><c:param name="webapp" value="${param.webapp}"/></c:url>"><spring:message code="probe.jsp.jsps.opt.discardscratch"/></a></li>
+                <li id="compileall"><a href="<c:url value='/app/jsp.htm'><c:param name='compile' value='true'/><c:param name='webapp' value='${param.webapp}'/></c:url>"><spring:message code="probe.jsp.jsps.opt.compileall"/></a></li>
+                <li id="delete_r"><a href="<c:url value='/adm/discard.htm'><c:param name='webapp' value='${param.webapp}'/></c:url>"><spring:message code="probe.jsp.jsps.opt.discardscratch"/></a></li>
             </ul>
 
             <div class="embeddedBlockContainer">
@@ -53,7 +54,7 @@
                                defaultorder="descending">
                     <display:column titleKey="probe.jsp.jsps.col.name" sort="true" class="leftmost" sortProperty="name" width="auto">
                         <input type="checkbox" name="${item.name}"/>&nbsp;
-                        <a href="<c:url value="/app/viewsource.htm?webapp=${param.webapp}&source=${item.name}"/>">${item.name}</a>
+                        <a href="<c:url value='/app/viewsource.htm?webapp=${param.webapp}&source=${item.name}'/>">${item.name}</a>
                     </display:column>
                     <display:column titleKey="probe.jsp.jsps.col.size" sort="true" sortProperty="size" width="30px">
                         <js:volume value="${item.size}"/>

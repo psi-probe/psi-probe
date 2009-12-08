@@ -17,15 +17,15 @@
     <title>
         <spring:message code="probe.jsp.title.allappstats"/>
     </title>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/prototype.js'/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/scriptaculous.js'/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/func.js'/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/behaviour.js'/>"></script>
 </head>
 
 <c:set var="navTabApps" value="active" scope="request"/>
 
 <body>
-    <script type="text/javascript" language="javascript" src="<c:url value="/js/prototype.js"/>"></script>
-    <script type="text/javascript" language="javascript" src="<c:url value="/js/scriptaculous.js"/>"></script>
-    <script type="text/javascript" language="javascript" src="<c:url value="/js/func.js"/>"></script>
-    <script type="text/javascript" language="javascript" src="<c:url value="/js/behaviour.js"/>"></script>
 
     <div id="charts" class="embeddedBlockContainer">
         <h3><spring:message code="probe.jsp.allappstats.h3.charts"/></h3>
@@ -189,7 +189,7 @@
             $('full_title').innerHTML = title;
             Effect.DropOut('chart_group');
             Effect.Appear('full_chart');
-            fullImageUpdater = new Ajax.ImgUpdater("fullImg", 30, imgUrl);
+            fullImageUpdater = new Ajax.ImgUpdater('fullImg', 30, imgUrl);
         }
 
         function zoomOut() {
@@ -236,10 +236,10 @@
 
         Behaviour.register(rules);
 
-        imageUpdaters[0] = new Ajax.ImgUpdater("total_avg_proc_time_chart", 30);
-        imageUpdaters[1] = new Ajax.ImgUpdater("all_app_avg_proc_time_chart", 30);
-        imageUpdaters[2] = new Ajax.ImgUpdater("total_req_chart", 30);
-        imageUpdaters[3] = new Ajax.ImgUpdater("all_app_req_chart", 30);
+        imageUpdaters[0] = new Ajax.ImgUpdater('total_avg_proc_time_chart', 30);
+        imageUpdaters[1] = new Ajax.ImgUpdater('all_app_avg_proc_time_chart', 30);
+        imageUpdaters[2] = new Ajax.ImgUpdater('total_req_chart', 30);
+        imageUpdaters[3] = new Ajax.ImgUpdater('all_app_req_chart', 30);
     </script>
 </body>
 </html>

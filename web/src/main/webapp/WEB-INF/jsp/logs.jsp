@@ -35,10 +35,10 @@
 <ul class="options">
     <c:choose>
         <c:when test="${param.apps}">
-            <li id="showapps"><a href="?<js:toggle param="apps"/>"><spring:message code="probe.jsp.logs.hideapps"/></a></li>
+            <li id="showapps"><a href="?<js:toggle param='apps'/>"><spring:message code="probe.jsp.logs.hideapps"/></a></li>
         </c:when>
         <c:otherwise>
-            <li id="showapps"><a href="?<js:toggle param="apps"/>"><spring:message code="probe.jsp.logs.showapps"/></a></li>
+            <li id="showapps"><a href="?<js:toggle param='apps'/>"><spring:message code="probe.jsp.logs.showapps"/></a></li>
         </c:otherwise>
     </c:choose>
 </ul>
@@ -70,7 +70,7 @@
                     <js:out value="${log.file}" maxLength="80" ellipsisRight="false"/>
                 </c:when>
                 <c:otherwise>
-                    <a class="logfile" href="<c:url value="/logs/follow.htm"><c:param name="id" value="${log_rowNum}"/></c:url>">
+                    <a class="logfile" href="<c:url value='/logs/follow.htm'><c:param name='id' value='${log_rowNum}'/></c:url>">
                         <js:out value="${log.file}" maxLength="80" ellipsisRight="false"/>
                     </a>
                 </c:otherwise>
@@ -79,9 +79,9 @@
 
         <display:column title="&nbsp;">
             <c:if test="${log.file != 'stdout'}">
-                <a class="imglink" href="<c:url value="/logs/download"><c:param name="id" value="${log_rowNum}"/></c:url>"><img
-                        class="lnk" src="${pageContext.request.contextPath}<spring:theme code="download.png"/>"
-                        alt="<spring:message code="probe.jsp.logs.download.alt"/>"/></a>
+                <a class="imglink" href="<c:url value='/logs/download'><c:param name='id' value='${log_rowNum}'/></c:url>"><img
+                        class="lnk" src="${pageContext.request.contextPath}<spring:theme code='download.png'/>"
+                        alt="<spring:message code='probe.jsp.logs.download.alt'/>"/></a>
             </c:if>
         </display:column>
 

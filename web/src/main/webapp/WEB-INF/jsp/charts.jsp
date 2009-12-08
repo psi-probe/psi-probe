@@ -17,7 +17,12 @@
 
 <html>
 
-<head><title><spring:message code="probe.jsp.title.charts"/></title></head>
+<head>
+    <title><spring:message code="probe.jsp.title.charts"/></title>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/prototype.js'/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/scriptaculous.js'/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/func.js'/>"></script>
+</head>
 
 <c:url value="/chart.png" var="reqimg" scope="page">
     <c:param name="p" value="connector"/>
@@ -41,10 +46,6 @@
 <c:set var="navTabCharts" value="active" scope="request"/>
 
 <body>
-
-<script type="text/javascript" language="javascript" src="<c:url value="/js/prototype.js"/>"></script>
-<script type="text/javascript" language="javascript" src="<c:url value="/js/scriptaculous.js"/>"></script>
-<script type="text/javascript" language="javascript" src="<c:url value="/js/func.js"/>"></script>
 
 <div id="charts">
     <div class="shadow">
@@ -84,7 +85,7 @@
                 <dl>
                     <dt><spring:message code="probe.jsp.charts.requests.title"/></dt>
                     <dd class="image">
-                        <a href="<c:url value="/zoomchart.htm"/>?sp=${name}&p=connector"><img
+                        <a href="<c:url value='/zoomchart.htm'/>?sp=${name}&p=connector"><img
                                 id="req-${name}"
                                 border="0" src="${reqimg}&sp=${name}"
                                 alt="Connector usage for the last 2 hours"/></a>
@@ -96,15 +97,15 @@
             </div>
 
             <script type="text/javascript">
-                new Ajax.ImgUpdater("req-${name}", 30);
-                new Ajax.PeriodicalUpdater("dd-req-${name}", "<c:url value="/cnreqdetails.ajax"/>?cn=${name}", {frequency: 3});
+                new Ajax.ImgUpdater('req-${name}', 30);
+                new Ajax.PeriodicalUpdater('dd-req-${name}', '<c:url value="/cnreqdetails.ajax"/>?cn=${name}', {frequency: 3});
             </script>
 
             <div class="chartContainer">
                 <dl>
                     <dt><spring:message code="probe.jsp.charts.traffic.title"/></dt>
                     <dd class="image">
-                        <a href="<c:url value="/zoomchart.htm"/>?sp=${name}&p=traffic"><img
+                        <a href="<c:url value='/zoomchart.htm'/>?sp=${name}&p=traffic"><img
                                 id="traf-${name}"
                                 border="0" src="${traffimg}&sp=${name}"
                                 alt="Connector usage for the last 2 hours"/></a>
@@ -116,8 +117,8 @@
             </div>
 
             <script type="text/javascript">
-                new Ajax.ImgUpdater("traf-${name}", 30);
-                new Ajax.PeriodicalUpdater("dd-traf-${name}", "<c:url value="/cntrafdetails.ajax"/>?cn=${name}", {frequency: 3});
+                new Ajax.ImgUpdater('traf-${name}', 30);
+                new Ajax.PeriodicalUpdater('dd-traf-${name}', '<c:url value="/cntrafdetails.ajax"/>?cn=${name}', {frequency: 3});
             </script>
         </div>
     </c:forEach>

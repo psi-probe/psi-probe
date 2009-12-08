@@ -48,10 +48,10 @@
                 <display:column class="leftMostIcon" title="&nbsp;" width="1px">
                     <c:choose>
                         <c:when test="${prm.fromDeplDescr}">
-                            <img src="${pageContext.request.contextPath}<spring:theme code="deploymet_descriptor.img"/>" alt="">
+                            <img src="${pageContext.request.contextPath}<spring:theme code='deploymet_descriptor.img'/>" alt="">
                         </c:when>
                         <c:otherwise>
-                            <img src="${pageContext.request.contextPath}<spring:theme code="context.img"/>" alt="">
+                            <img src="${pageContext.request.contextPath}<spring:theme code='context.img'/>" alt="">
                         </c:otherwise>
                     </c:choose>
                 </display:column>

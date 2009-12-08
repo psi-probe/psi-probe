@@ -33,6 +33,8 @@
             </c:otherwise>
         </c:choose>
     </title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='servlets.css'/>" type="text/css"/>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/prototype.js'/>"></script>
 </head>
 
 <%--
@@ -46,19 +48,15 @@
 
 <body>
 
-<script type="text/javascript" language="javascript" src="<c:url value="/js/prototype.js"/>"></script>
-
-<link rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code="servlets.css"/>" type="text/css"/>
-
 <ul class="options">
     <li id="viewServletMaps">
         <c:choose>
             <c:when test="${empty param.webapp}">
-                <a href="<c:url value="/servletmaps.htm"/>"><spring:message code="probe.jsp.servlets.opt.maps"/></a>
+                <a href="<c:url value='/servletmaps.htm'/>"><spring:message code="probe.jsp.servlets.opt.maps"/></a>
             </c:when>
             <c:otherwise>
-                <a href="<c:url value="/servletmaps.htm">
-                            <c:param name="webapp" value="${param.webapp}"/>
+                <a href="<c:url value='/servletmaps.htm'>
+                            <c:param name='webapp' value='${param.webapp}'/>
                         </c:url>"><spring:message code="probe.jsp.servlets.opt.maps"/></a>
             </c:otherwise>
         </c:choose>
@@ -70,8 +68,8 @@
 </div>
 
 <script type="text/javascript">
-    new Ajax.PeriodicalUpdater("servletListContainer",
-            "<c:url value="/servlets.ajax?${pageContext.request.queryString}"/>",
+    new Ajax.PeriodicalUpdater('servletListContainer',
+            '<c:url value="/servlets.ajax?${pageContext.request.queryString}"/>',
             {frequency: 5});
 </script>
 

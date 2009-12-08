@@ -17,10 +17,10 @@
 <html>
 <head>
     <title><spring:message code="probe.jsp.sysinfo.os.title"/></title>
-    <script type="text/javascript" language="javascript" src="<c:url value="/js/prototype.js"/>"></script>
-    <script type="text/javascript" language="javascript" src="<c:url value="/js/scriptaculous.js"/>"></script>
-    <script type="text/javascript" language="javascript" src="<c:url value="/js/func.js"/>"></script>
-    <script type="text/javascript" language="javascript" src="<c:url value="/js/behaviour.js"/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/prototype.js'/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/scriptaculous.js'/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/func.js'/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/behaviour.js'/>"></script>
 </head>
 
 <c:set var="navTabSystem" value="active" scope="request"/>
@@ -111,8 +111,8 @@
                     <dl>
                         <dt><spring:message code="probe.jsp.os.chart.cpu"/></dt>
                         <dd class="image">
-                            <img id="cpu_chart" border="0" src="<c:out value="${cpu_usage_url}" escapeXml="false"/>"
-                                 alt="<spring:message code="probe.jsp.os.chart.cpu.alt"/>"/>
+                            <img id="cpu_chart" border="0" src="<c:out value='${cpu_usage_url}' escapeXml='false'/>"
+                                 alt="<spring:message code='probe.jsp.os.chart.cpu.alt'/>"/>
                         </dd>
                     </dl>
                 </div>
@@ -121,8 +121,8 @@
                     <dl>
                         <dt><spring:message code="probe.jsp.os.chart.memory"/></dt>
                         <dd class="image">
-                            <img id="mem_chart" border="0" src="<c:out value="${os_memory_url}" escapeXml="false"/>"
-                                 alt="<spring:message code="probe.jsp.os.chart.memory.alt"/>"/>
+                            <img id="mem_chart" border="0" src="<c:out value='${os_memory_url}' escapeXml='false'/>"
+                                 alt="<spring:message code='probe.jsp.os.chart.memory.alt'/>"/>
                         </dd>
                     </dl>
                 </div>
@@ -131,8 +131,8 @@
                     <dl>
                         <dt><spring:message code="probe.jsp.os.chart.swap"/></dt>
                         <dd class="image">
-                            <img id="swap_chart" border="0" src="<c:out value="${swap_usage_url}" escapeXml="false"/>"
-                                 alt="<spring:message code="probe.jsp.os.chart.swap.alt"/>"/>
+                            <img id="swap_chart" border="0" src="<c:out value='${swap_usage_url}' escapeXml='false'/>"
+                                 alt="<spring:message code='probe.jsp.os.chart.swap.alt'/>"/>
                         </dd>
                     </dl>
                 </div>
@@ -153,7 +153,7 @@
                 var img = document.getElementById('fullImg');
                 Effect.DropOut('chart_group');
                 Effect.Appear('full_chart');
-                fullImageUpdater = new Ajax.ImgUpdater("fullImg", 30, url);
+                fullImageUpdater = new Ajax.ImgUpdater('fullImg', 30, url);
             }
 
             function zoomOut() {
@@ -190,10 +190,10 @@
 
             Behaviour.register(rules);
 
-            new Ajax.ImgUpdater("cpu_chart", 30);
-            new Ajax.ImgUpdater("mem_chart", 30);
-            new Ajax.ImgUpdater("swap_chart", 30);
-            new Ajax.PeriodicalUpdater("osinfo", "<c:url value="/adm/osinfo.ajax"/>", {frequency: 5});
+            new Ajax.ImgUpdater('cpu_chart', 30);
+            new Ajax.ImgUpdater('mem_chart', 30);
+            new Ajax.ImgUpdater('swap_chart', 30);
+            new Ajax.PeriodicalUpdater('osinfo', '<c:url value="/adm/osinfo.ajax"/>', {frequency: 5});
 
         </script>
     </c:otherwise>

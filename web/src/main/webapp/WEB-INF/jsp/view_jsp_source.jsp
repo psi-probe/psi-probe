@@ -16,6 +16,12 @@
 <html>
 <head>
     <title><spring:message code="probe.jsp.title.viewsource" arguments="${param.source}"/></title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='syntax.css'/>" type="text/css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='scroller.css'/>" type="text/css"/>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/prototype.js'/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/behaviour.js'/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/scriptaculous.js'/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/areascroller.js'/>"></script>
 </head>
 
 <body>
@@ -24,18 +30,8 @@
 <c:set var="use_decorator" value="application" scope="request"/>
 <c:set var="appTabJSPs" value="active" scope="request"/>
 
-
-<link rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code="syntax.css"/>" type="text/css"/>
-<link rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code="scroller.css"/>" type="text/css"/>
-
-<script type="text/javascript" language="javascript" src="<c:url value="/js/prototype.js"/>"></script>
-<script type="text/javascript" language="javascript" src="<c:url value="/js/behaviour.js"/>"></script>
-<script type="text/javascript" language="javascript" src="<c:url value="/js/scriptaculous.js"/>"></script>
-<script type="text/javascript" language="javascript" src="<c:url value="/js/areascroller.js"/>"></script>
-
-
 <ul class="options">
-    <li id="back"><a href="<c:url value="/app/jsp.htm"><c:param name="webapp" value="${param.webapp}"/></c:url>">
+    <li id="back"><a href="<c:url value='/app/jsp.htm'><c:param name='webapp' value='${param.webapp}'/></c:url>">
         <spring:message code="probe.jsp.viewsource.opt.back"/></a></li>
     <c:if test="${! empty content || ! empty highlightedContent}">
         <c:if test="${item.state == 2}">
@@ -47,7 +43,7 @@
             </li>
         </c:if>
         <li id="compilesingle"><a
-                href="<c:url value="/app/recompile.htm"><c:param name="webapp" value="${param.webapp}"/><c:param name="source" value="${param.source}"/><c:param name="view" value="/app/viewsource.htm"/></c:url>">
+                href="<c:url value='/app/recompile.htm'><c:param name='webapp' value='${param.webapp}'/><c:param name='source' value='${param.source}'/><c:param name='view' value='/app/viewsource.htm'/></c:url>">
             <spring:message code="probe.jsp.viewsource.opt.compile"/></a>
         </li>
     </c:if>
