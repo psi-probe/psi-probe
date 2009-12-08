@@ -17,10 +17,10 @@
 <html>
 <head>
     <title><spring:message code="probe.jsp.title.wrapper"/></title>
-    <script type="text/javascript" language="javascript" src="<c:url value="/js/prototype.js"/>"></script>
-    <script type="text/javascript" language="javascript" src="<c:url value="/js/scriptaculous.js"/>"></script>
-    <script type="text/javascript" language="javascript" src="<c:url value="/js/func.js"/>"></script>
-    <script type="text/javascript" language="javascript" src="<c:url value="/js/behaviour.js"/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/prototype.js'/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/scriptaculous.js'/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/func.js'/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/behaviour.js'/>"></script>
 </head>
 
 <c:set var="navTabSystem" value="active" scope="request"/>
@@ -74,20 +74,20 @@
             function execute(url) {
                 new Ajax.Updater('msg', url);
                 Effect.Appear('msg');
-                setTimeout('Effect.Fade("msg")', 5000);
+                setTimeout('Effect.Fade(\'msg\')', 5000);
                 return false;
             }
 
             var rules = {
                 '#restart_jvm': function(element) {
                     element.onclick = function() {
-                        return confirm("<spring:message code="probe.jsp.wrapper.confirm.restart"/>") &&
+                        return confirm('<spring:message code="probe.jsp.wrapper.confirm.restart"/>') &&
                                execute('<c:url value="/adm/restartvm.ajax"/>');
                     }
                 },
                 '#stop_jvm': function(element) {
                     element.onclick = function() {
-                        return confirm("<spring:message code="probe.jsp.wrapper.confirm.stop"/>") &&
+                        return confirm('<spring:message code="probe.jsp.wrapper.confirm.stop"/>') &&
                                execute('<c:url value="/adm/stopvm.ajax"/>');
                     }
                 },

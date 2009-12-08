@@ -14,7 +14,12 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 <html>
-<head><title>${param.cn}</title></head>
+<head>
+    <title>${param.cn}</title>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/prototype.js'/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/scriptaculous.js'/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/func.js'/>"></script>
+</head>
 
 <c:url value="/chart.png" var="imgurl" scope="request">
     <c:param name="l" value="true"/>
@@ -38,14 +43,10 @@
 
 <c:set var="navTabCharts" value="active" scope="request"/>
 
-<script type="text/javascript" language="javascript" src="<c:url value="/js/prototype.js"/>"></script>
-<script type="text/javascript" language="javascript" src="<c:url value="/js/scriptaculous.js"/>"></script>
-<script type="text/javascript" language="javascript" src="<c:url value="/js/func.js"/>"></script>
-
 <body>
 
 <ul class="options">
-    <li id="back"><a href="<c:url value="/charts.htm"/>"><spring:message code="probe.jsp.zoomedchart.back"/></a></li>
+    <li id="back"><a href="<c:url value='/charts.htm'/>"><spring:message code="probe.jsp.zoomedchart.back"/></a></li>
 </ul>
 
 <div class="blockContainer">
@@ -57,7 +58,7 @@
 
     <div id="sliderContainer">
         <div id="track">
-            <div id="handle"><img src="${pageContext.request.contextPath}<spring:theme code="slider.gif"/>" alt=""/></div>
+            <div id="handle"><img src="${pageContext.request.contextPath}<spring:theme code='slider.gif'/>" alt=""/></div>
         </div>
     </div>
 
@@ -81,18 +82,18 @@
         // we use current style settings to work our the required image dimensions
         slider.options.onChange = function(value) {
             // chop off "px" and round up float values
-            width = Math.round(Element.getStyle("img", "width").replace("px", ""));
+            width = Math.round(Element.getStyle('img', 'width').replace('px', ''));
             height = Math.round(width / 2.29);
             // reload the images
             document.images.img.src = '<c:out value="${imgurl}" escapeXml="false"/>&xz=' + width + '&yz=' + height;
             // reset the image auto-updater
             // to make sure the auto-updater knows the changed image dimensions
             if (updater) updater.stop();
-            updater = new Ajax.ImgUpdater("img", 15);
+            updater = new Ajax.ImgUpdater('img', 15);
         }
 
         // start image auto-updater
-        updater = new Ajax.ImgUpdater("img", 15);
+        updater = new Ajax.ImgUpdater('img', 15);
 
     </script>
 </div>

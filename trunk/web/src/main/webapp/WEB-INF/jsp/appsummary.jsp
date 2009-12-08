@@ -40,25 +40,26 @@
         </div>
     </c:when>
     <c:otherwise>
-        <script type="text/javascript" language="javascript" src="<c:url value="/js/prototype.js"/>"></script>
-        <script type="text/javascript" language="javascript" src="<c:url value="/js/scriptaculous.js"/>"></script>
-        <script type="text/javascript" language="javascript" src="<c:url value="/js/func.js"/>"></script>
-        <script type="text/javascript" language="javascript" src="<c:url value="/js/behaviour.js"/>"></script>
+        <script type="text/javascript" language="javascript" src="<c:url value='/js/prototype.js'/>"></script>
+        <script type="text/javascript" language="javascript" src="<c:url value='/js/scriptaculous.js'/>"></script>
+        <script type="text/javascript" language="javascript" src="<c:url value='/js/func.js'/>"></script>
+        <script type="text/javascript" language="javascript" src="<c:url value='/js/behaviour.js'/>"></script>
 
+        <c:set var="confirMessage">
+            <spring:message code="probe.jsp.app.summary.undeploy.confirm" arguments="${param.webapp}"/>
+        </c:set>
         <ul class="options">
             <li id="appSurfTo"><a href="${app.name}${app.name ne '/' ? '/' : ''}" target="_blank"><spring:message code="probe.jsp.app.summary.menu.goTo"/></a></li>
-            <li id="appStop" ${app.available ? '' : 'style="display: none;"'}><a href="<c:url value="/app/stop_summary.htm"><c:param name="webapp" value="${param.webapp}"/></c:url>"><spring:message code="probe.jsp.app.summary.menu.stop"/></a></li>
-            <li id="appStart" ${app.available ? 'style="display: none;"' : ''}><a href="<c:url value="/app/start_summary.htm"><c:param name="webapp" value="${param.webapp}"/></c:url>"><spring:message code="probe.jsp.app.summary.menu.start"/></a></li>
-            <li id="appReload"><a href="<c:url value="/app/reload_summary.htm"><c:param name="webapp" value="${param.webapp}"/></c:url>"><spring:message code="probe.jsp.app.summary.menu.reload"/></a></li>
-            <li id="appUndeploy"><a href="<c:url value="/adm/undeploy_summary.htm"><c:param name="webapp" value="${param.webapp}"/></c:url>"
-                    onclick="return confirm('<spring:message code="probe.jsp.app.summary.undeploy.confirm" arguments="${param.webapp}"/>')"
-                    ><spring:message code="probe.jsp.app.summary.menu.undeploy"/></a></li>
+            <li id="appStop" ${app.available ? '' : 'style="display: none;"'}><a href="<c:url value='/app/stop_summary.htm'><c:param name='webapp' value='${param.webapp}'/></c:url>"><spring:message code="probe.jsp.app.summary.menu.stop"/></a></li>
+            <li id="appStart" ${app.available ? 'style="display: none;"' : ''}><a href="<c:url value='/app/start_summary.htm'><c:param name='webapp' value='${param.webapp}'/></c:url>"><spring:message code="probe.jsp.app.summary.menu.start"/></a></li>
+            <li id="appReload"><a href="<c:url value='/app/reload_summary.htm'><c:param name='webapp' value='${param.webapp}'/></c:url>"><spring:message code="probe.jsp.app.summary.menu.reload"/></a></li>
+            <li id="appUndeploy"><a href="<c:url value='/adm/undeploy_summary.htm'><c:param name='webapp' value='${param.webapp}'/></c:url>" onclick="return confirm('${confirmMessage}')"><spring:message code="probe.jsp.app.summary.menu.undeploy"/></a></li>
             <c:choose>
                 <c:when test="${param.size}">
-                    <li id="size" ><a href="?<js:toggle param="size"/>"><spring:message code="probe.jsp.applications.hidesize"/></a></li>
+                    <li id="size" ><a href="?<js:toggle param='size'/>"><spring:message code="probe.jsp.applications.hidesize"/></a></li>
                 </c:when>
                 <c:otherwise>
-                    <li id="size" ><a href="?<js:toggle param="size"/>"><spring:message code="probe.jsp.applications.showsize"/></a></li>
+                    <li id="size" ><a href="?<js:toggle param='size'/>"><spring:message code="probe.jsp.applications.showsize"/></a></li>
                 </c:otherwise>
             </c:choose>
         </ul>
@@ -79,7 +80,7 @@
                 <spring:message code="probe.jsp.app.summary.docBase"/>&nbsp;<span class="value">${app.docBase}</span>
                 <spring:message code="probe.jsp.app.summary.description"/>&nbsp;<span class="value">${app.displayName}</span>
                 <spring:message code="probe.jsp.app.summary.servletVersion"/>&nbsp;<span class="value">${app.servletVersion}</span>
-                <spring:message code="probe.jsp.app.summary.servletCount"/>&nbsp;<span class="value"><a href="<c:url value="/servlets.htm"><c:param name="webapp" value="${app.name}"/></c:url>"><span id="servletCount"></span></a></span>
+                <spring:message code="probe.jsp.app.summary.servletCount"/>&nbsp;<span class="value"><a href="<c:url value='/servlets.htm'><c:param name='webapp' value='${app.name}'/></c:url>"><span id="servletCount"></span></a></span>
                 <spring:message code="probe.jsp.app.summary.sessionTimeout"/>&nbsp;<span class="value">${app.sessionTimeout} min.</span>
                 <spring:message code="probe.jsp.app.summary.distributable"/>
                 <c:choose>
@@ -179,8 +180,8 @@
         <script type="text/javascript">
 
             function updateAppInfo() {
-                new Ajax.Updater("runtimeAppInfo",
-                        "<c:url value="/appruntimeinfo.ajax?${pageContext.request.queryString}"/>",
+                new Ajax.Updater('runtimeAppInfo',
+                        '<c:url value="/appruntimeinfo.ajax?${pageContext.request.queryString}"/>',
                         {asynchronous: false});
 
                 // changing visibility of markup items that depend on an application status
@@ -217,7 +218,7 @@
                 $('full_title').innerHTML = title;
                 Effect.DropOut('chart_group');
                 Effect.Appear('full_chart');
-                fullImageUpdater = new Ajax.ImgUpdater("fullImg", 30, imgUrl);
+                fullImageUpdater = new Ajax.ImgUpdater('fullImg', 30, imgUrl);
             }
 
             function zoomOut() {
@@ -254,8 +255,8 @@
 
             Behaviour.register(rules);
 
-            imageUpdaters[0] = new Ajax.ImgUpdater("req_chart", 30);
-            imageUpdaters[1] = new Ajax.ImgUpdater("avg_proc_time_chart", 30);
+            imageUpdaters[0] = new Ajax.ImgUpdater('req_chart', 30);
+            imageUpdaters[1] = new Ajax.ImgUpdater('avg_proc_time_chart', 30);
         </script>
     </c:otherwise>
     </c:choose>

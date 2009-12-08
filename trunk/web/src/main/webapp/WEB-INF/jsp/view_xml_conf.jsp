@@ -22,6 +22,12 @@
 <html>
 <head>
     <title><spring:message code="probe.jsp.title.app.viewXMLConf" arguments="${param.webapp},${fileDesc}"/></title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='syntax.css'/>" type="text/css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='scroller.css'/>" type="text/css"/>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/prototype.js'/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/behaviour.js'/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/scriptaculous.js'/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/areascroller.js'/>"></script>
 </head>
 
 <body>
@@ -36,14 +42,6 @@
     </c:when>
 </c:choose>
 
-<link rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code="syntax.css"/>" type="text/css"/>
-<link rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code="scroller.css"/>" type="text/css"/>
-
-<script type="text/javascript" language="javascript" src="<c:url value="/js/prototype.js"/>"></script>
-<script type="text/javascript" language="javascript" src="<c:url value="/js/behaviour.js"/>"></script>
-<script type="text/javascript" language="javascript" src="<c:url value="/js/scriptaculous.js"/>"></script>
-<script type="text/javascript" language="javascript" src="<c:url value="/js/areascroller.js"/>"></script>
-
 <c:choose>
     <c:when test="${empty content}">
         <div class="infoMessage">
@@ -55,8 +53,8 @@
     <c:otherwise>
         <ul class="options">
             <li id="download">
-                <a href="<c:url value="${downloadUrl}">
-                            <c:param name="webapp" value="${param.webapp}"/>
+                <a href="<c:url value='${downloadUrl}'>
+                            <c:param name='webapp' value='${param.webapp}'/>
                         </c:url>"><spring:message code="probe.jsp.follow.menu.download"/></a>
             </li>
         </ul>

@@ -16,17 +16,17 @@
 <%@ taglib uri="http://www.jstripe.com/tags" prefix="js" %>
 
 <html>
-<head><title><spring:message code="probe.jsp.title.datasources"/></title></head>
+<head>
+    <title><spring:message code="probe.jsp.title.datasources"/></title>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/prototype.js'/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/scriptaculous.js'/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/func.js'/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/behaviour.js'/>"></script>
+</head>
 
 <body>
 
 <c:set var="navTabDatasources" value="active" scope="request"/>
-
-<script type="text/javascript" language="javascript" src="<c:url value="/js/prototype.js"/>"></script>
-<script type="text/javascript" language="javascript" src="<c:url value="/js/scriptaculous.js"/>"></script>
-<script type="text/javascript" language="javascript" src="<c:url value="/js/func.js"/>"></script>
-<script type="text/javascript" language="javascript" src="<c:url value="/js/behaviour.js"/>"></script>
-
 
 <c:choose>
     <c:when test="${! empty resources}">
@@ -40,7 +40,7 @@
 
         <ul class="options">
             <li id="groupByJdbcUrl">
-                <a href="<c:url value="/datasourcegroups.htm"></c:url>"><spring:message code="probe.jsp.datasources.opt.groupByJdbcUrl"/></a>
+                <a href="<c:url value='/datasourcegroups.htm' />"><spring:message code="probe.jsp.datasources.opt.groupByJdbcUrl"/></a>
             </li>
             <li id="abbreviations"><a href=""><spring:message code="probe.jsp.generic.abbreviations"/></a></li>
         </ul>
@@ -56,10 +56,9 @@
                     <c:when test="${! global_resources}">
 
                         <display:column sortable="true" class="leftmost" titleKey="probe.jsp.datasources.list.col.application">
-                            <a href="<c:url value="/resources.htm"/>?webapp=${resource.applicationName}">
+                            <a href="<c:url value='/resources.htm'/>?webapp=${resource.applicationName}">
                                 <c:if test="${!resource.lookedUp || resource.dataSourceInfo.jdbcURL == null}">
-                                    <img border="0" src="${pageContext.request.contextPath}<spring:theme code="exclamation.gif"/>"
-                                         alt="<spring:message code="probe.jsp.datasources.list.misconfigured.alt"/>"/>
+                                    <img border="0" src="${pageContext.request.contextPath}<spring:theme code='exclamation.gif'/>" alt="<spring:message code='probe.jsp.datasources.list.misconfigured.alt'/>"/>
                                 </c:if>
                                 ${resource.applicationName}
                             </a>
@@ -67,7 +66,7 @@
 
                         <display:column sortable="true" sortProperty="name"
                                         titleKey="probe.jsp.datasources.list.col.resource">
-                            <a href="<c:url value="/sql/datasourcetest.htm"/>?webapp=${resource.applicationName}&resource=${resource.name}">
+                            <a href="<c:url value='/sql/datasourcetest.htm'/>?webapp=${resource.applicationName}&resource=${resource.name}">
                                 ${resource.name}
                             </a>
                         </display:column>
@@ -85,8 +84,7 @@
                                 titleKey="probe.jsp.datasources.list.col.usage" class="score_wrapper">
                     <div class="score_wrapper">
                         <js:score value="${resource.dataSourceInfo.score}" fullBlocks="10" partialBlocks="5" showEmptyBlocks="true" showA="true" showB="true">
-                            <img src="<c:url value="/css/classic/gifs/rb_{0}.gif"/>" alt="+"
-                                 title="<spring:message code="probe.jsp.applications.jdbcUsage.title" arguments="${resource.dataSourceInfo.score}"/>"/>
+                            <img src="<c:url value='/css/classic/gifs/rb_{0}.gif'/>" alt="+" title="<spring:message code='probe.jsp.applications.jdbcUsage.title' arguments='${resource.dataSourceInfo.score}'/>"/>
                         </js:score>
                     </div>
                 </display:column>
@@ -103,9 +101,8 @@
                 <display:column title="&nbsp;">
                     <c:choose>
                         <c:when test="${resource.dataSourceInfo.resettable}">
-                            <a class="imglink" href="<c:url value="/app/resetds.htm"/>?webapp=${resource.applicationName}&resource=${resource.name}&view=redirect:/datasources.htm">
-                                <img border="0" src="${pageContext.request.contextPath}<spring:theme code="reset.gif"/> "
-                                     alt="<spring:message code="probe.jsp.datasources.list.col.reset.alt"/>"/>
+                            <a class="imglink" href="<c:url value='/app/resetds.htm'/>?webapp=${resource.applicationName}&resource=${resource.name}&view=redirect:/datasources.htm">
+                                <img border="0" src="${pageContext.request.contextPath}<spring:theme code='reset.gif'/>" alt="<spring:message code='probe.jsp.datasources.list.col.reset.alt'/>"/>
                             </a>
                         </c:when>
                         <c:otherwise>

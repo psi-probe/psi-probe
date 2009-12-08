@@ -27,12 +27,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="${lang}" xml:lang="${lang}">
 <head>
     <title>Probe - <decorator:title default="Tomcat management"/></title>
-    <LINK rel="shortcut icon" href="<c:url value="/css/favicon.gif"/>">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code="tables.css"/>" type="text/css"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code="main.css"/>" type="text/css"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code="mainnav.css"/>" type="text/css"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code="messages.css"/>" type="text/css"/>
-    <link rel="stylesheet" href="<c:url value="/css/classic/tooltip.css"/>" type="text/css"/>
+    <link rel="shortcut icon" href="<c:url value='/css/favicon.gif'/>"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='tables.css'/>" type="text/css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='main.css'/>" type="text/css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='mainnav.css'/>" type="text/css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='messages.css'/>" type="text/css"/>
+    <link rel="stylesheet" href="<c:url value='/css/classic/tooltip.css'/>" type="text/css"/>
     <decorator:head/>
 </head>
 
@@ -40,38 +40,28 @@
 
 <div id="caption">
     <ul id="top">
-        <li id="logo"><a href="<c:url value="/index.htm"/>"><img src="<c:url value="/css/the-probe-logo.gif"/>"
+        <li id="logo"><a href="<c:url value='/index.htm'/>"><img src="<c:url value='/css/the-probe-logo.gif'/>"
                                                                  alt="LambdaProbe Logo"/></a></li>
         <li id="runtime">
             <spring:message code="probe.jsp.version" arguments="${version},<b>${hostname}</b>"/>,
             <span class="uptime"><spring:message code="probe.jsp.uptime"
-                                                 arguments="${uptime_days},${uptime_hours},${uptime_mins}"/></span>
+                                                 arguments="${uptime_days},${uptime_hours},${uptime_mins}"/></span></li>
         <li id="title"><decorator:title default="Probe"/></li>
     </ul>
 </div>
 
 <div id="navcontainer">
     <ul id="tabnav">
-        <li><a class="${navTabApps}" href="<c:url value="/index.htm?size=${param.size}"/>"><spring:message
-                code="probe.jsp.menu.applications"/></a></li>
-        <li><a class="${navTabDatasources}" href="<c:url value="/datasources.htm"/>"><spring:message
-                code="probe.jsp.menu.datasources"/></a></li>
-        <li><a class="<c:out value="${navTabDeploy}"/>" href="<c:url value="/deploy.htm"/>"><spring:message
-                code="probe.jsp.menu.deployment"/></a></li>
-        <li><a class="<c:out value="${navTabLogs}"/>" href="<c:url value="/logs/index.htm"/>"><spring:message
-                code="probe.jsp.menu.logs"/></a></li>
-        <li><a class="<c:out value="${navTabThreads}"/>" href="<c:url value="/threads.htm"/>"><spring:message
-                code="probe.jsp.menu.threads"/></a></li>
-        <li><a class="<c:out value="${navTabCluster}"/>" href="<c:url value="/cluster.htm"/>"><spring:message
-                code="probe.jsp.menu.cluster"/></a></li>
-        <li><a class="<c:out value="${navTabSystem}"/>" href="<c:url value="/sysinfo.htm"/>"><spring:message
-                code="probe.jsp.menu.sysinfo"/></a></li>
-        <li><a class="<c:out value="${navTabStatus}"/>" href="<c:url value="/status.htm"/>"><spring:message
-                code="probe.jsp.menu.status"/></a></li>
-        <li><a class="<c:out value="${navTabCharts}"/>" href="<c:url value="/charts.htm"/>"><spring:message
-                code="probe.jsp.menu.charts"/></a></li>
-        <li><a class="<c:out value="${navTabQuickCheck}"/>" href="<c:url value="/adm/quickcheck.htm"/>">
-            <spring:message code="probe.jsp.menu.quickcheck"/></a></li>
+        <li><a class="${navTabApps}" href="<c:url value='/index.htm?size=${param.size}'/>"><spring:message code="probe.jsp.menu.applications"/></a></li>
+        <li><a class="${navTabDatasources}" href="<c:url value='/datasources.htm'/>"><spring:message code="probe.jsp.menu.datasources"/></a></li>
+        <li><a class="${navTabDeploy}" href="<c:url value='/deploy.htm'/>"><spring:message code="probe.jsp.menu.deployment"/></a></li>
+        <li><a class="${navTabLogs}" href="<c:url value='/logs/index.htm'/>"><spring:message code="probe.jsp.menu.logs"/></a></li>
+        <li><a class="${navTabThreads}" href="<c:url value='/threads.htm'/>"><spring:message code="probe.jsp.menu.threads"/></a></li>
+        <li><a class="${navTabCluster}" href="<c:url value='/cluster.htm'/>"><spring:message code="probe.jsp.menu.cluster"/></a></li>
+        <li><a class="${navTabSystem}" href="<c:url value='/sysinfo.htm'/>"><spring:message code="probe.jsp.menu.sysinfo"/></a></li>
+        <li><a class="${navTabStatus}" href="<c:url value='/status.htm'/>"><spring:message code="probe.jsp.menu.status"/></a></li>
+        <li><a class="${navTabCharts}" href="<c:url value='/charts.htm'/>"><spring:message code="probe.jsp.menu.charts"/></a></li>
+        <li><a class="${navTabQuickCheck}" href="<c:url value='/adm/quickcheck.htm'/>"><spring:message code="probe.jsp.menu.quickcheck"/></a></li>
     </ul>
 </div>
 
@@ -90,26 +80,25 @@
 
 <div id="footer">
     <ul>
-        <li><a href="<c:url value="/index.htm"/>"><spring:message code="probe.jsp.menu.applications"/></a></li>
-        <li><a href="<c:url value="/datasources.htm"/>"><spring:message code="probe.jsp.menu.datasources"/></a></li>
-        <li><a href="<c:url value="/deploy.htm"/>"><spring:message code="probe.jsp.menu.deployment"/></a></li>
-        <li><a href="<c:url value="/logs/index.htm"/>"><spring:message code="probe.jsp.menu.logs"/></a></li>
-        <li><a href="<c:url value="/threads.htm"/>"><spring:message code="probe.jsp.menu.threads"/></a></li>
-        <li><a href="<c:url value="/cluster.htm"/>"><spring:message code="probe.jsp.menu.cluster"/></a></li>
-        <li><a href="<c:url value="/sysinfo.htm"/>"><spring:message code="probe.jsp.menu.sysinfo"/></a></li>
-        <li><a href="<c:url value="/status.htm"/>"><spring:message code="probe.jsp.menu.status"/></a></li>
-        <li><a href="<c:url value="/charts.htm"/>"><spring:message code="probe.jsp.menu.charts"/></a></li>
-        <li class="last"><a href="<c:url value="/adm/quickcheck.htm"/>"><spring:message
-                code="probe.jsp.menu.quickcheck"/></a></li>
+        <li><a href="<c:url value='/index.htm'/>"><spring:message code="probe.jsp.menu.applications"/></a></li>
+        <li><a href="<c:url value='/datasources.htm'/>"><spring:message code="probe.jsp.menu.datasources"/></a></li>
+        <li><a href="<c:url value='/deploy.htm'/>"><spring:message code="probe.jsp.menu.deployment"/></a></li>
+        <li><a href="<c:url value='/logs/index.htm'/>"><spring:message code="probe.jsp.menu.logs"/></a></li>
+        <li><a href="<c:url value='/threads.htm'/>"><spring:message code="probe.jsp.menu.threads"/></a></li>
+        <li><a href="<c:url value='/cluster.htm'/>"><spring:message code="probe.jsp.menu.cluster"/></a></li>
+        <li><a href="<c:url value='/sysinfo.htm'/>"><spring:message code="probe.jsp.menu.sysinfo"/></a></li>
+        <li><a href="<c:url value='/status.htm'/>"><spring:message code="probe.jsp.menu.status"/></a></li>
+        <li><a href="<c:url value='/charts.htm'/>"><spring:message code="probe.jsp.menu.charts"/></a></li>
+        <li class="last"><a href="<c:url value='/adm/quickcheck.htm'/>"><spring:message code="probe.jsp.menu.quickcheck"/></a></li>
     </ul>
     <spring:message code="probe.jsp.copyright"/>
     <div id="locales">
-        <a href="?<js:addQueryParam param="lang" value="en"/>"><img src="<c:url value="/flags/gb.gif"/>" alt="EN"></a>
-        <a href="?<js:addQueryParam param="lang" value="ru"/>"><img src="<c:url value="/flags/ru.gif"/>" alt="RU"></a>
-        <a href="?<js:addQueryParam param="lang" value="ja"/>"><img src="<c:url value="/flags/jp.gif"/>" alt="JP"></a>
-        <a href="?<js:addQueryParam param="lang" value="de"/>"><img src="<c:url value="/flags/de.gif"/>" alt="DE"></a>
-        <a href="?<js:addQueryParam param="lang" value="fr"/>"><img src="<c:url value="/flags/fr.gif"/>" alt="FR"></a>
-        <a href="?<js:addQueryParam param="lang" value="pt_br"/>"><img src="<c:url value="/flags/br.gif"/>" alt="BR"></a>
+        <a href="?<js:addQueryParam param='lang' value='en'/>"><img src="<c:url value='/flags/gb.gif'/>" alt="EN" /></a>
+        <a href="?<js:addQueryParam param='lang' value='ru'/>"><img src="<c:url value='/flags/ru.gif'/>" alt="RU" /></a>
+        <a href="?<js:addQueryParam param='lang' value='ja'/>"><img src="<c:url value='/flags/jp.gif'/>" alt="JP" /></a>
+        <a href="?<js:addQueryParam param='lang' value='de'/>"><img src="<c:url value='/flags/de.gif'/>" alt="DE" /></a>
+        <a href="?<js:addQueryParam param='lang' value='fr'/>"><img src="<c:url value='/flags/fr.gif'/>" alt="FR" /></a>
+        <a href="?<js:addQueryParam param='lang' value='pt_br'/>"><img src="<c:url value='/flags/br.gif'/>" alt="BR" /></a>
     </div>
 </div>
 

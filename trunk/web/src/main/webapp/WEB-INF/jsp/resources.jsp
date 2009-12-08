@@ -42,7 +42,7 @@
             <display:table class="genericTbl" name="resources" id="resource" cellspacing="0">
                 <display:column class="leftmost" sortable="true" sortProperty="name"
                                 titleKey="probe.jsp.resources.col.name">
-                    <a href="<c:url value="/sql/datasourcetest.htm"/>?webapp=${resource.applicationName}&resource=${resource.name}">
+                    <a href="<c:url value='/sql/datasourcetest.htm'/>?webapp=${resource.applicationName}&resource=${resource.name}">
                         ${resource.name}
                     </a>
                 </display:column>
@@ -59,25 +59,25 @@
                                 <spring:message code="probe.jsp.resources.info.established"/>&nbsp;<b>${resource.dataSourceInfo.establishedConnections}</b>
                                 <c:if test="${resource.dataSourceInfo.resettable}">
                                     <b>&nbsp;
-                                        <a href="<c:url value="/app/resetds.htm"/>?webapp=${param.webapp}&resource=${resource.name}">
+                                        <a href="<c:url value='/app/resetds.htm'/>?webapp=${param.webapp}&resource=${resource.name}">
                                             <img border="0"
-                                                 src="${pageContext.request.contextPath}<spring:theme code="reset.gif"/>"
-                                                 alt="<spring:message code="probe.jsp.resources.info.reset.alt"/>"/>
+                                                 src="${pageContext.request.contextPath}<spring:theme code='reset.gif'/>"
+                                                 alt="<spring:message code='probe.jsp.resources.info.reset.alt'/>"/>
                                         </a>
                                     </b>
                                 </c:if>
                                 <div class="score_wrapper">
                                     <js:score value="${resource.dataSourceInfo.score}" fullBlocks="10" partialBlocks="5" showEmptyBlocks="true" showA="true" showB="true">
-                                        <img src="<c:url value="/css/classic/gifs/rb_{0}.gif"/>" alt="+"
-                                             title="<spring:message code="probe.jsp.resources.info.connectionUsage.alt" arguments="${resource.dataSourceInfo.score}"/>"/>
+                                        <img src="<c:url value='/css/classic/gifs/rb_{0}.gif'/>" alt="+"
+                                             title="<spring:message code='probe.jsp.resources.info.connectionUsage.alt' arguments='${resource.dataSourceInfo.score}'/>"/>
                                     </js:score>
                                 </div>
                             </div>
                         </c:when>
                         <c:when test="${!resource.lookedUp}">
                             <div class="dbConnMisconfigured">
-                                <img src="${pageContext.request.contextPath}<spring:theme code="exclamation.gif"/>"
-                                     alt="<spring:message code="probe.jsp.resources.info.misconfigured.alt"/>"/>
+                                <img src="${pageContext.request.contextPath}<spring:theme code='exclamation.gif'/>"
+                                     alt="<spring:message code='probe.jsp.resources.info.misconfigured.alt'/>"/>
                                 <spring:message code="probe.jsp.resources.info.misconfigured"/>
                             </div>
                         </c:when>

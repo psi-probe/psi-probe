@@ -44,12 +44,12 @@
             <td><span class="name"><spring:message code="probe.jsp.sysinfo.memory.usage"/></span>&nbsp;</td>
             <td style="padding:0; margin:0">
                 <js:score value="${memUsed}" partialBlocks="5" fullBlocks="10" showEmptyBlocks="true" showA="true" showB="true">
-                    <img src="<c:url value="/css/classic/gifs/rb_{0}.gif"/>" alt="+"
-                         title="<spring:message code="probe.jsp.sysinfo.memory.usage.alt"/>"/>
+                    <img src="<c:url value='/css/classic/gifs/rb_{0}.gif'/>" alt="+"
+                         title="<spring:message code='probe.jsp.sysinfo.memory.usage.alt'/>"/>
                 </js:score>
             </td>
             <td>&nbsp;<fmt:formatNumber maxFractionDigits="1" value="${memUsed}"/>%</td>
-            <td>&nbsp;<a href="<c:url value="/adm/forcegc.htm"/>"><spring:message code="probe.jsp.sysinfo.memory.forceGC"/></a></td>
+            <td>&nbsp;<a href="<c:url value='/adm/forcegc.htm'/>"><spring:message code="probe.jsp.sysinfo.memory.forceGC"/></a></td>
         </tr>
     </table>
     <span class="name"><spring:message code="probe.jsp.sysinfo.memory.free"/></span>&nbsp;<fmt:formatNumber maxFractionDigits="2" value="${systemInformation.freeMemory / 1024 / 1024}"/> MB

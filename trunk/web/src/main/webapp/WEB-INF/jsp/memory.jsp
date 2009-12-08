@@ -18,9 +18,9 @@
 <html>
 <head>
     <title><spring:message code="probe.jsp.title.memory"/></title>
-    <script type="text/javascript" language="javascript" src="<c:url value="/js/prototype.js"/>"></script>
-    <script type="text/javascript" language="javascript" src="<c:url value="/js/scriptaculous.js"/>"></script>
-    <script type="text/javascript" language="javascript" src="<c:url value="/js/func.js"/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/prototype.js'/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/scriptaculous.js'/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/func.js'/>"></script>
 </head>
 
 <c:set var="navTabSystem" value="active" scope="request"/>
@@ -45,8 +45,8 @@
         </c:url>
 
         <ul class="options">
-            <li id="adviseGC"><a href="<c:url value="/adm/forcegc.htm"/>"><spring:message code="probe.jsp.memory.advise.gc"/></a></li>
-            <li id="adviseFin"><a href="<c:url value="/adm/forcegc.htm?fin=true"/>"><spring:message code="probe.jsp.memory.advise.finalization"/></a></li>
+            <li id="adviseGC"><a href="<c:url value='/adm/forcegc.htm'/>"><spring:message code="probe.jsp.memory.advise.gc"/></a></li>
+            <li id="adviseFin"><a href="<c:url value='/adm/forcegc.htm?fin=true'/>"><spring:message code="probe.jsp.memory.advise.finalization"/></a></li>
         </ul>
 
         <div>
@@ -86,18 +86,19 @@
                         <dl>
                             <dt><div>
                                 ${pool.name}
-                                <img onclick="togglePanel('${pool.id}', '<c:url value="/remember.ajax?cn=mem_${pool.id}"/>')"
-                                     src="${pageContext.request.contextPath}<spring:theme code="bullet_arrow_down.gif"/>" alt=""/>
+                                <c:url var="toggleUrl" value="/remember.ajax?cn=mem_${pool.id}"/>
+                                <img onclick="togglePanel('${pool.id}', '${toggleUrl}')"
+                                     src="${pageContext.request.contextPath}<spring:theme code='bullet_arrow_down.gif'/>" alt=""/>
                             </div>
                             </dt>
                             <dd class="image"><img id="img_${pool.id}"
-                                                   src="<c:out value="${chartUrl}" escapeXml="false"/>" alt=""
+                                                   src="<c:out value='${chartUrl}' escapeXml='false'/>" alt=""
                                                    onclick="zoomIn('${pool.name}')"/></dd>
                         </dl>
                     </div>
 
                     <script type="text/javascript">
-                        new Ajax.ImgUpdater("img_${pool.id}", 30);
+                        new Ajax.ImgUpdater('img_${pool.id}', 30);
                     </script>
 
                 </c:forEach>
@@ -118,7 +119,7 @@
                 }
                 Effect.DropOut('memChartGroup');
                 Effect.Appear('fullMemoryChart');
-                fullImageUpdater = new Ajax.ImgUpdater("fullImg", 30, '<c:out value="${fullChartBase}" escapeXml="false"/>&sp=' + newPool + "&s1l=" + newPool);
+                fullImageUpdater = new Ajax.ImgUpdater('fullImg', 30, '<c:out value="${fullChartBase}" escapeXml="false"/>&sp=' + newPool + "&s1l=" + newPool);
             }
 
             function zoomOut() {
@@ -130,7 +131,7 @@
                 }
             }
 
-            new Ajax.PeriodicalUpdater("memoryPools", "<c:url value="/memory.ajax"/>?<%=request.getQueryString()%>", {frequency: 5});
+            new Ajax.PeriodicalUpdater('memoryPools', '<c:url value="/memory.ajax"/>?<%=request.getQueryString()%>', {frequency: 5});
 
         </script>
     </c:otherwise>

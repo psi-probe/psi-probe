@@ -39,22 +39,22 @@
 <body>
 <ul class="options">
     <li id="back"><a
-            href="<c:url value="/sessions.htm"><c:param name="webapp" value="${param.webapp}"/><c:param name="size" value="${param.size}"/></c:url>">
+            href="<c:url value='/sessions.htm'><c:param name='webapp' value='${param.webapp}'/><c:param name='size' value='${param.size}'/></c:url>">
         <spring:message code="probe.jsp.sessionAttibutes.menu.back"/></a>
     </li>
     <c:if test="${! empty session}">
 
         <li id="delete"><a
-                href="<c:url value="/app/expire.htm"/>?webapp=${param.webapp}&sid=${param.sid}">
+                href="<c:url value='/app/expire.htm'/>?webapp=${param.webapp}&sid=${param.sid}">
             <spring:message code="probe.jsp.sessionAttibutes.menu.destroy"/></a>
         </li>
 
         <c:choose>
             <c:when test="${param.size}">
-                <li id="size"><a href="?<js:toggle param="size"/>"><spring:message code="probe.jsp.hidesize"/></a></li>
+                <li id="size"><a href="?<js:toggle param='size'/>"><spring:message code="probe.jsp.hidesize"/></a></li>
             </c:when>
             <c:otherwise>
-                <li id="size"><a href="?<js:toggle param="size"/>"><spring:message code="probe.jsp.showsize"/></a></li>
+                <li id="size"><a href="?<js:toggle param='size'/>"><spring:message code="probe.jsp.showsize"/></a></li>
             </c:otherwise>
         </c:choose>
 
@@ -103,15 +103,15 @@
                            requestURI="">
                 <display:column title="&nbsp;" class="leftmost" style="width: 20px;">
                     <a href="
-                                <c:url value="/app/rmsattr.htm">
-                                    <c:param name="webapp" value="${param.webapp}"/>
-                                    <c:param name="sid" value="${param.sid}"/>
-                                    <c:param name="attr" value="${attribute.name}"/>
+                                <c:url value='/app/rmsattr.htm'>
+                                    <c:param name='webapp' value='${param.webapp}'/>
+                                    <c:param name='sid' value='${param.sid}'/>
+                                    <c:param name='attr' value='${attribute.name}'/>
                                 </c:url>
                             " class="imglink">
-                        <img class="lnk" src="${pageContext.request.contextPath}<spring:theme code="remove.img"/>"
-                             alt="<spring:message code="probe.jsp.sessionAttibutes.col.delete"/>"
-                             title="<spring:message code="probe.jsp.sessionAttibutes.col.delete.title"/>"/>
+                        <img class="lnk" src="${pageContext.request.contextPath}<spring:theme code='remove.img'/>"
+                             alt="<spring:message code='probe.jsp.sessionAttibutes.col.delete'/>"
+                             title="<spring:message code='probe.jsp.sessionAttibutes.col.delete.title'/>"/>
                     </a>
                 </display:column>
                 <display:column property="name" sortable="true"

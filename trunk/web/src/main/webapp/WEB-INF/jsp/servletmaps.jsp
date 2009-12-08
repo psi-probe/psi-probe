@@ -49,11 +49,11 @@
     <li id="viewServlets">
         <c:choose>
             <c:when test="${empty param.webapp}">
-                <a href="<c:url value="/servlets.htm"/>"><spring:message code="probe.jsp.servletmaps.opt.defs"/></a>
+                <a href="<c:url value='/servlets.htm'/>"><spring:message code="probe.jsp.servletmaps.opt.defs"/></a>
             </c:when>
             <c:otherwise>
-                <a href="<c:url value="/servlets.htm">
-                            <c:param name="webapp" value="${param.webapp}"/>
+                <a href="<c:url value='/servlets.htm'>
+                            <c:param name='webapp' value='${param.webapp}'/>
                         </c:url>"><spring:message code="probe.jsp.servletmaps.opt.defs"/></a>
             </c:otherwise>
         </c:choose>
@@ -72,7 +72,7 @@
                 <c:if test="${empty param.webapp}">
                     <display:column sortProperty="applicationName" sortable="true"
                                     titleKey="probe.jsp.servlets.col.applicationName" class="leftmost">
-                        <a href="<c:url value="/appsummary.htm"><c:param name="webapp" value="${svlt.applicationName}"/></c:url>">${svlt.applicationName}</a>
+                        <a href="<c:url value='/appsummary.htm'><c:param name='webapp' value='${svlt.applicationName}'/></c:url>">${svlt.applicationName}</a>
                     </display:column>
                 </c:if>
                 <display:column property="url" sortable="true"
