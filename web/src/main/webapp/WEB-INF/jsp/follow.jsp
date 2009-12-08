@@ -72,34 +72,18 @@
     var file_content_div = "file_content";
     var topPosition = -1;
     var tailingEnabled = true;
-    var lastModified = '';
+    var lastResponseText = '';
 
-    function lastModifiedChanged(responseText) {
-        var modified = getModified(responseText);
-        if (modified == null) {
-            // if date is not formatted correctly, assume the file has changed
-            return true;
-        } else {
-            var changed = (modified != lastModified);
-            lastModified = modified;
-            return changed;
-        }
-    }
-
-    function getModified(responseText) {
-        var index = responseText.search(/\d{4}-\d{2}-\d{2} \d{1,2}:\d{2}:\d{2}\.\d{1,9}/);
-        if (index != -1) {
-            return responseText.substring(index, index + 23);
-        } else {
-            //date not formatted correctly
-            return null;
-        }
+    function logChanged(responseText) {
+		var changed = (responseText != lastResponseText);
+		lastResponseText = responseText;
+		return changed;
     }
 
     var infoUpdater = new Ajax.PeriodicalUpdater('info', '<c:url value="/logs/ff_info.ajax"/>', {
         frequency: 3,
         onSuccess: function(transport) {
-            if (tailingEnabled && lastModifiedChanged(transport.responseText)) {
+            if (tailingEnabled && logChanged(transport.responseText)) {
                 new Ajax.Updater(file_content_div, '<c:url value="/logs/follow.ajax"/>', {
                     onComplete: function() {
                         objDiv = document.getElementById(file_content_div);

@@ -16,6 +16,6 @@
 
 <p>
     <spring:message code="probe.jsp.followed_file_info.fileName"/>&nbsp;<span class="value">${followed_file.fileName}</span>
-    <spring:message code="probe.jsp.followed_file_info.size"/>&nbsp;<span class="value"><js:volume value="${followed_file.size}"/></span>
+    <spring:message code="probe.jsp.followed_file_info.size"/>&nbsp;<span class="value"><js:volume value="${followed_file.size}"/></span><!-- ${followed_file.size} -->
     <spring:message code="probe.jsp.followed_file_info.lastModified"/>&nbsp;<span class="value">${followed_file.lastModified}</span>
 </p>
