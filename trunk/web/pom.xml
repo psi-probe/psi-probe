@@ -54,6 +54,32 @@
 	<build>
 		<plugins>
 			<plugin>
+				<groupId>org.codehaus.mojo.jspc</groupId>
+				<artifactId>jspc-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>compile</goal>
+						</goals>
+						<configuration>
+							<injectString>&lt;!-- [INSERT FRAGMENT HERE] --&gt;</injectString>
+						</configuration>
+					</execution>
+				</executions>
+				<dependencies>
+					<dependency>
+						<groupId>org.codehaus.mojo.jspc</groupId>
+						<artifactId>jspc-compiler-tomcat5</artifactId>
+						<version>2.0-alpha-3</version>
+					</dependency>
+					<dependency>
+						<groupId>${project.groupId}</groupId>
+						<artifactId>core</artifactId>
+						<version>${project.version}</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
 				<configuration>
@@ -78,6 +104,7 @@
 						</manifest>
 					</archive>
 					<webappDirectory>target/war_exploded</webappDirectory>
+					<webXml>target/jspweb.xml</webXml>
 					<warName>probe</warName>
 				</configuration>
 			</plugin>
