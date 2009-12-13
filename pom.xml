@@ -25,10 +25,6 @@
 		<module>core</module>
 		<module>tomcat55adaptor</module>
 		<module>tomcat50adaptor</module>
-		<!--
-		<module>jdk1.4</module>
-		<module>jdk1.5</module>
-		-->
 		<module>web</module>
 	</modules>
 	<repositories>
