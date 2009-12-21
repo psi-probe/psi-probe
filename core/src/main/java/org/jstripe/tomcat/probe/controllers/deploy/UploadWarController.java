@@ -74,7 +74,9 @@ public class UploadWarController extends TomcatContainerController {
                 logger.fatal("Could not process file upload", e);
                 request.setAttribute("errorMessage", getMessageSourceAccessor().getMessage("probe.src.deploy.war.uploadfailure",
                         new Object[]{e.getMessage()}));
-                if (tmpWar != null && tmpWar.exists()) tmpWar.delete();
+                if (tmpWar != null && tmpWar.exists()) {
+                    tmpWar.delete();
+                }
                 tmpWar = null;
             }
 
@@ -89,10 +91,14 @@ public class UploadWarController extends TomcatContainerController {
                             contextName = warFileName.equals("ROOT") ? "" : "/" + warFileName;
                         }
 
-                        if (!contextName.startsWith("/")) contextName = "/" + contextName;
+                        if (!contextName.startsWith("/")) {
+                            contextName = "/" + contextName;
+                        }
                         contextName = contextName.trim();
 
-                        if (contextName.equals("/")) contextName = "";
+                        if (contextName.equals("/")) {
+                            contextName = "";
+                        }
 
                         if (update && getContainerWrapper().getTomcatContainer().findContext(contextName) != null) {
                             logger.debug("updating "+contextName + ": removing the old copy");
@@ -118,7 +124,9 @@ public class UploadWarController extends TomcatContainerController {
                                 errMsg = getMessageSourceAccessor().getMessage("probe.src.deploy.war.notinstalled", new Object[]{contextName});
                             } else {
                                 request.setAttribute("successMessage", getMessageSourceAccessor().getMessage("probe.src.deploy.war.success", new Object[]{contextName}));
-                                if (discard) getContainerWrapper().getTomcatContainer().discardWorkDir(ctx);
+                                if (discard) {
+                                    getContainerWrapper().getTomcatContainer().discardWorkDir(ctx);
+                                }
                                 if (compile) {
                                     Summary summary = new Summary();
                                     summary.setName(ctx.getName());
@@ -142,7 +150,9 @@ public class UploadWarController extends TomcatContainerController {
                     errMsg = getMessageSourceAccessor().getMessage("probe.src.deploy.war.failure", new Object[]{e.getMessage()});
                     logger.error("Tomcat throw an exception when trying to deploy", e);
                 } finally {
-                    if (errMsg != null) request.setAttribute("errorMessage", errMsg);
+                    if (errMsg != null) {
+                        request.setAttribute("errorMessage", errMsg);
+                    }
                     tmpWar.delete();
                 }
             }

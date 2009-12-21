@@ -47,7 +47,9 @@ public abstract class LogHandlerController extends ParameterizableViewController
             }
 
         }
-        if (!logFound) response.sendError(404);
+        if (!logFound) {
+            response.sendError(404);
+        }
         return modelAndView;
     }
 

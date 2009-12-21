@@ -71,15 +71,18 @@ public class ContainerListenerBean implements NotificationListener {
 
                 if ("RequestProcessor".equals(objectName.getKeyProperty("type"))) {
                     ThreadPoolObjectName threadPoolObjectName = findPool(objectName.getKeyProperty("worker"));
-                    if (threadPoolObjectName != null) threadPoolObjectName.getRequestProcessorNames().add(objectName);
+                    if (threadPoolObjectName != null) {
+                        threadPoolObjectName.getRequestProcessorNames().add(objectName);
+                    }
                 }
 
             } else if (notification.getType().equals(MBeanServerNotification.UNREGISTRATION_NOTIFICATION)) {
 
                 if ("RequestProcessor".equals(objectName.getKeyProperty("type"))) {
                     ThreadPoolObjectName threadPoolObjectName = findPool(objectName.getKeyProperty("worker"));
-                    if (threadPoolObjectName != null)
+                    if (threadPoolObjectName != null) {
                         threadPoolObjectName.getRequestProcessorNames().remove(objectName);
+                    }
                 }
             }
         }
@@ -133,7 +136,9 @@ public class ContainerListenerBean implements NotificationListener {
 
         boolean workerThreadNameSupported = true;
 
-        if (!isInitialized()) initialize();
+        if (!isInitialized()) {
+            initialize();
+        }
 
         List threadPools = new ArrayList(poolNames.size());
 
@@ -216,7 +221,9 @@ public class ContainerListenerBean implements NotificationListener {
 
     public synchronized List getThreadPoolNames() throws Exception {
 
-        if (!isInitialized()) initialize();
+        if (!isInitialized()) {
+            initialize();
+        }
 
         List threadPoolNames = new ArrayList(poolNames.size());
 

@@ -65,20 +65,24 @@ public class Tokenizer {
                 // copy the lower half into the upper half
                 System.arraycopy(cacheBuffer, halfCacheSize, cacheBuffer, 0, halfCacheSize);
                 cachePosition -= halfCacheSize;
-                if (cachePinPosition != -1) cachePinPosition -= halfCacheSize;
+                if (cachePinPosition != -1) {
+                    cachePinPosition -= halfCacheSize;
+                }
 
                 int charsRead = reader.read(cacheBuffer, halfCacheSize, cacheSize - halfCacheSize);
-                if (charsRead == -1)
+                if (charsRead == -1) {
                     cacheSize = halfCacheSize;
-                else
+                } else {
                     cacheSize = charsRead + halfCacheSize;
+                }
             }
         }
     }
 
     public Token getToken() throws IOException {
-        if (token.type == Tokenizer.TT_ERROR)
+        if (token.type == Tokenizer.TT_ERROR) {
             return nextToken();
+        }
         return token;
     }
 
@@ -122,12 +126,16 @@ public class Tokenizer {
                             }
                         }
 
-                        if (!hideSymbol) workToken.text.append(symbol.tailText);
+                        if (!hideSymbol) {
+                            workToken.text.append(symbol.tailText);
+                        }
                         workToken.type = Tokenizer.TT_BLOCK;
                     }
 
                     //if (!hideSymbol) break;
-                    if (token.text.length() > 0) break;
+                    if (token.text.length() > 0) {
+                        break;
+                    }
                 } else {
                     token.text.append(b);
                     token.type = Tokenizer.TT_TOKEN;
@@ -173,7 +181,9 @@ public class Tokenizer {
         if (index >= 0) {
             // the index could be anywhere within a group of sybols with the same first letter
             // so we need to scroll up the group to make sure we start test from the beginning
-            while (index > 0 && ((TokenizerSymbol) symbols.get(index-1)).compareTo(c) == 0) index--;
+            while (index > 0 && ((TokenizerSymbol) symbols.get(index-1)).compareTo(c) == 0) {
+                index--;
+            }
             while (index < symbols.size()) {
                 TokenizerSymbol symbol = ((TokenizerSymbol) symbols.get(index));
                 if (symbol.compareTo(c) == 0) {
@@ -194,7 +204,9 @@ public class Tokenizer {
     private void read(char[] b, int count) throws IOException {
         loadCache(count);
         int endPoint = cachePosition + count - 1 >= cacheSize ? cacheSize : cachePosition + count - 1;
-        if (cachePosition <= endPoint) System.arraycopy(cacheBuffer, cachePosition, b, 0, endPoint - cachePosition+1);
+        if (cachePosition <= endPoint) {
+            System.arraycopy(cacheBuffer, cachePosition, b, 0, endPoint - cachePosition + 1);
+        }
         cachePosition = endPoint+1;
     }
 
@@ -230,7 +242,9 @@ public class Tokenizer {
     public long getNextLong(long defaultValue) throws IOException {
         String stval = getNextString(null);
 
-        if (stval == null) return defaultValue;
+        if (stval == null) {
+            return defaultValue;
+        }
 
         try {
             return Long.parseLong(stval);

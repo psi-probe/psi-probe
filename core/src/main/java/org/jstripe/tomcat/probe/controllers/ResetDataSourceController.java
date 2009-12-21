@@ -39,8 +39,9 @@ public class ResetDataSourceController extends ContextHandlerController {
                 request.setAttribute("errorMessage",
                         getMessageSourceAccessor().getMessage("probe.src.reset.datasource.notfound", new Object[]{resourceName}));
             }
-            if (!reset)
+            if (!reset) {
                 request.setAttribute("errorMessage", getMessageSourceAccessor().getMessage("probe.src.reset.datasource.c3p0"));
+            }
 
         }
         return new ModelAndView(viewName);

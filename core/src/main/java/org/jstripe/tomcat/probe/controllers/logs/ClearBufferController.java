@@ -23,7 +23,9 @@ public class ClearBufferController extends AbstractController {
         HttpSession session = request.getSession();
         if (session != null) {
             FollowedFile ff = (FollowedFile) session.getAttribute("followed_file");
-            if (ff != null) ff.getLines().clear();
+            if (ff != null) {
+                ff.getLines().clear();
+            }
         }
         return null;
     }

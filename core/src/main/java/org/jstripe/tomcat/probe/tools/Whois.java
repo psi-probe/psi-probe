@@ -33,7 +33,9 @@ public class Whois {
 
     public static Response lookup(String server, int port, String query, long timeout, String lineSeparator) throws IOException {
 
-        if (query == null) return null;
+        if (query == null) {
+            return null;
+        }
 
         Response response = new Response();
 
@@ -78,7 +80,9 @@ public class Whois {
                             System.out.println("Could not contact " + referral);
                         }
                     }
-                    if (newResponse != null) response = newResponse;
+                    if (newResponse != null) {
+                        response = newResponse;
+                    }
                 } finally {
                     in.close();
                 }

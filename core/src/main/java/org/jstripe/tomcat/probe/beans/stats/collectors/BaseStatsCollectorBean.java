@@ -109,7 +109,9 @@ public class BaseStatsCollectorBean {
             statsCollection.lockForUpdate();
             try {
                 List stats = statsCollection.getStats(name);
-                if (stats == null) stats = statsCollection.newStats(name, maxSeries);
+                if (stats == null) {
+                    stats = statsCollection.newStats(name, maxSeries);
+                }
                 stats.add(stats.size(), new XYDataItem(time, statValue));
                 houseKeepStats(stats);
             } finally {
@@ -119,6 +121,8 @@ public class BaseStatsCollectorBean {
     }
 
     private void houseKeepStats(List stats) {
-        while (stats.size() > maxSeries) stats.remove(0);
+        while (stats.size() > maxSeries) {
+            stats.remove(0);
+        }
     }
 }

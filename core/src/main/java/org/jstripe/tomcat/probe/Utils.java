@@ -121,7 +121,9 @@ public class Utils {
 
     public static int toIntHex(String num, int defaultValue) {
         try {
-            if (num != null && num.startsWith("#")) num = num.substring(1);
+            if (num != null && num.startsWith("#")) {
+                num = num.substring(1);
+            }
             return Integer.parseInt(num, 16);
         } catch (NumberFormatException e) {
             return defaultValue;
@@ -224,7 +226,9 @@ public class Utils {
 
                 try {
                     rangeStart = Long.parseLong(pureRange.substring(0, rangeSep));
-                    if (rangeStart > fileSize || rangeStart < 0) rangeStart = 0;
+                    if (rangeStart > fileSize || rangeStart < 0) {
+                        rangeStart = 0;
+                    }
                 } catch (NumberFormatException e) {
                     // ignore the exception, keep rangeStart unchanged
                 }
@@ -232,7 +236,9 @@ public class Utils {
                 if (rangeSep < pureRange.length() - 1) {
                     try {
                         rangeFinish = Long.parseLong(pureRange.substring(rangeSep + 1));
-                        if (rangeFinish < 0 || rangeFinish >= fileSize) rangeFinish = fileSize - 1;
+                        if (rangeFinish < 0 || rangeFinish >= fileSize) {
+                            rangeFinish = fileSize - 1;
+                        }
                     } catch (NumberFormatException e) {
                         // ignore the exception
                     }
@@ -267,7 +273,9 @@ public class Utils {
                 if (len > 0) {
                     out.write(buffer, 0, (int) len);
                     totalRead += len;
-                    if (nomore) break;
+                    if (nomore) {
+                        break;
+                    }
                 } else {
                     break;
                 }
