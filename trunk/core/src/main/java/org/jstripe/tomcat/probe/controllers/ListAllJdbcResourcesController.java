@@ -41,7 +41,9 @@ public class ListAllJdbcResourcesController extends TomcatContainerController{
                 //
                 for (Iterator it = appResources.iterator(); it.hasNext(); ) {
                     ApplicationResource res = (ApplicationResource) it.next();
-                    if (res.getDataSourceInfo() != null) resources.add(res);
+                    if (res.getDataSourceInfo() != null) {
+                        resources.add(res);
+                    }
                 }
             }
 

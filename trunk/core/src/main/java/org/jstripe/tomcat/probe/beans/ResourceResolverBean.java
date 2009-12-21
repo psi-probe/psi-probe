@@ -109,7 +109,9 @@ public class ResourceResolverBean implements ResourceResolver {
                 for (Iterator it = datasourceMappers.iterator(); it.hasNext();) {
                     DatasourceAccessor accessor = (DatasourceAccessor) it.next();
                     dataSourceInfo = accessor.getInfo(o);
-                    if (dataSourceInfo != null) break;
+                    if (dataSourceInfo != null) {
+                        break;
+                    }
                 }
 
             } catch (Throwable e) {
@@ -119,7 +121,9 @@ public class ResourceResolverBean implements ResourceResolver {
                 //
                 // make sure we always re-throw ThreadDeath
                 //
-                if (e instanceof ThreadDeath) throw (ThreadDeath)e;
+                if (e instanceof ThreadDeath) {
+                    throw (ThreadDeath) e;
+                }
             }
         } else {
             resource.setLookedUp(false);
@@ -129,9 +133,13 @@ public class ResourceResolverBean implements ResourceResolver {
         // Tomcat 5.0.x DBCP datasources would have URL set to null if they incorrectly configured
         // so we need to deal with this little feature
         //
-        if (dataSourceInfo != null && dataSourceInfo.getJdbcURL() == null) resource.setLookedUp(false);
+        if (dataSourceInfo != null && dataSourceInfo.getJdbcURL() == null) {
+            resource.setLookedUp(false);
+        }
 
-        if (resource.isLookedUp() && dataSourceInfo != null) resource.setDataSourceInfo(dataSourceInfo);
+        if (resource.isLookedUp() && dataSourceInfo != null) {
+            resource.setDataSourceInfo(dataSourceInfo);
+        }
     }
 
     public boolean resetResource(Context context, String resourceName) throws NamingException {
@@ -155,7 +163,9 @@ public class ResourceResolverBean implements ResourceResolver {
                 //
                 // make sure we always re-throw ThreadDeath
                 //
-                if (e instanceof ThreadDeath) throw (ThreadDeath)e;
+                if (e instanceof ThreadDeath) {
+                    throw (ThreadDeath) e;
+                }
             }
         } finally {
             ContextBindings.unbindClassLoader(context, null, Thread.currentThread().getContextClassLoader());

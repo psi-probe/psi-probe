@@ -49,8 +49,9 @@ public class ViewSourceController extends ContextHandlerController {
                 //
                 // remove cheeky "../" from the path to avoid exploits
                 //
-                while (jspName.indexOf("../") != -1)
+                while (jspName.indexOf("../") != -1) {
                     jspName = jspName.replaceAll("\\.\\./", "");
+                }
 
                 Resource jsp = (Resource) context.getResources().lookup(jspName);
 
@@ -88,8 +89,12 @@ public class ViewSourceController extends ContextHandlerController {
                 logger.error("jsp name passed is not in the summary, ignored");
             }
         } else {
-            if (jspName == null) logger.error("Passed empty \"source\" parameter");
-            if (summary == null) logger.error("Session has expired or there is no summary");
+            if (jspName == null) {
+                logger.error("Passed empty \"source\" parameter");
+            }
+            if (summary == null) {
+                logger.error("Session has expired or there is no summary");
+            }
         }
         return new ModelAndView(getViewName());
     }

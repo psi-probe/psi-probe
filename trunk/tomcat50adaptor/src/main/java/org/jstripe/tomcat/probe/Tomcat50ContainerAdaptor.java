@@ -86,10 +86,12 @@ public class Tomcat50ContainerAdaptor extends AbstractTomcatContainer {
         Container host = null;
         Container engine = null;
         while (container != null) {
-            if (container instanceof Host)
-                host = container;
-            if (container instanceof Engine)
-                engine = container;
+            if (container instanceof Host) {
+				host = container;
+			}
+            if (container instanceof Engine) {
+				engine = container;
+			}
             container = container.getParent();
         }
         if (engine != null) {

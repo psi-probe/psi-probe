@@ -42,6 +42,8 @@ public class BackwardsFileStream extends InputStream {
     }
 
     public void close() throws IOException {
-        if (raf != null) raf.close();
+        if (raf != null) {
+            raf.close();
+        }
     }
 }

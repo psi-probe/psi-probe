@@ -86,11 +86,15 @@ public class ContainerWrapperBean {
                             //
                             // make sure we always re-throw ThreadDeath
                             //
-                            if (e instanceof ThreadDeath) throw (ThreadDeath) e;
+                            if (e instanceof ThreadDeath) {
+                                throw (ThreadDeath) e;
+                            }
                         }
                     }
 
-                    if (tomcatContainer == null) logger.fatal("No suitable container adaptor found!");
+                    if (tomcatContainer == null) {
+                        logger.fatal("No suitable container adaptor found!");
+                    }
                 }
             }
         }

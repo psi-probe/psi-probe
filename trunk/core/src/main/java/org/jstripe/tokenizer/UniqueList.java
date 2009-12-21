@@ -30,16 +30,18 @@ public class UniqueList extends Vector {
     }
 
     protected synchronized boolean add(Object obj, Comparator c) {
-        if (size() == 0)
+        if (size() == 0) {
             return super.add(obj);
+        }
         else {
             int index;
             index = c == null ? Collections.binarySearch(this, obj) : Collections.binarySearch(this, obj, c);
             if (index < 0) {
-                if (-index - 1 >= size())
+                if (-index - 1 >= size()) {
                     super.add(obj);
-                else
+                } else {
                     super.insertElementAt(obj, -index - 1);
+                }
             }
             return index < 0;
         }

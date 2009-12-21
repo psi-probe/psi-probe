@@ -39,10 +39,11 @@ public class StandardSeriesProvider extends AbstractSeriesProvider {
                 statName = MessageFormat.format(statName, new Object[]{seriesParam});
             }
             List l = statsCollection.getStats(statName);
-            if (l != null)
+            if (l != null) {
                 dataset.addSeries(
                         toSeries(ServletRequestUtils.getStringParameter(request, "s" + (i + 1) + "l", "series" + i), l)
                 );
+            }
         }
     }
 }

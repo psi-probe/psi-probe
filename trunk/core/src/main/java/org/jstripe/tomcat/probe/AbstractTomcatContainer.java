@@ -42,7 +42,9 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
 
     public boolean installContext(String contextName) throws Exception {
 
-        if (!contextName.startsWith("/")) contextName = "/" + contextName;
+        if (!contextName.startsWith("/")) {
+            contextName = "/" + contextName;
+        }
 
         File f = new File(getConfigBase(), contextName + ".xml");
         installContextInternal(contextName, f);
@@ -50,7 +52,9 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     }
 
     public void remove(String contextName) throws Exception {
-        if (!contextName.startsWith("/")) contextName = "/" + contextName;
+        if (!contextName.startsWith("/")) {
+            contextName = "/" + contextName;
+        }
         Context ctx = findContext(contextName);
 
         //
@@ -70,7 +74,9 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
                 //
                 // make sure we always re-throw ThreadDeath
                 //
-                if (e instanceof ThreadDeath) throw (ThreadDeath) e;
+                if (e instanceof ThreadDeath) {
+                    throw (ThreadDeath) e;
+                }
             }
 
             File appDir;
@@ -212,7 +218,9 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
 
                 JspRuntimeContext jrctx = new JspRuntimeContext(sctx, opt);
                 try {
-                    if (summary.getItems() == null) summary.setItems(new HashMap());
+                    if (summary.getItems() == null) {
+                        summary.setItems(new HashMap());
+                    }
 
                     //
                     // mark all items as missing
@@ -327,7 +335,9 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
                             item.setException(e);
                             logger.info("Compiled " + name + ": FAILED", e);
                         }
-                        if (compile) item.setCompileTime(System.currentTimeMillis() - time);
+                        if (compile) {
+                            item.setCompileTime(System.currentTimeMillis() - time);
+                        }
                         item.setMissing(false);
                         summary.getItems().put(name, item);
                     } finally {

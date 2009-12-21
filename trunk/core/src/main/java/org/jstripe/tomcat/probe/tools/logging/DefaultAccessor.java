@@ -65,10 +65,11 @@ public class DefaultAccessor  {
 
     protected Object invokeMethod(Object object, String name, Object param, Object defaultValue) {
         try {
-            if (param == null)
+            if (param == null) {
                 return MethodUtils.invokeMethod(object, name, new Object[]{});
-            else
+            } else {
                 return MethodUtils.invokeMethod(object, name, param);
+            }
         } catch (Exception e) {
             return defaultValue;
         }

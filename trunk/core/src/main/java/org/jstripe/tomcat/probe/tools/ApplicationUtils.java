@@ -206,7 +206,9 @@ public class ApplicationUtils {
                             //
                             // make sure we always re-throw ThreadDeath
                             //
-                            if (e instanceof ThreadDeath) throw (ThreadDeath)e;
+                            if (e instanceof ThreadDeath) {
+                                throw (ThreadDeath) e;
+                            }
                         }
                     }
 

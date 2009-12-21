@@ -24,7 +24,9 @@ public class KillThreadController extends ParameterizableViewController {
         String view = ServletRequestUtils.getStringParameter(request, "view", getViewName());
 
         Thread thread = null;
-        if (threadName != null) thread = Utils.getThreadByName(threadName);
+        if (threadName != null) {
+            thread = Utils.getThreadByName(threadName);
+        }
 
         if (thread != null) {
             thread.stop();

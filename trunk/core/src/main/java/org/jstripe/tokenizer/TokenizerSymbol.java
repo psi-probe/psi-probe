@@ -31,10 +31,11 @@ public class TokenizerSymbol implements Comparable{
     }
 
     public int compareTo(Object o) {
-        if (o instanceof Character)
+        if (o instanceof Character) {
             return compareTo((Character) o);
-        else
+        } else {
             return compareTo((TokenizerSymbol) o);
+        }
     }
 
     public int compareTo(Character c) {

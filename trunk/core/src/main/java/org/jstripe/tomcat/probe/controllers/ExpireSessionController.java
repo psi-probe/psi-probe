@@ -30,7 +30,9 @@ public class ExpireSessionController extends ContextHandlerController {
                                          HttpServletRequest request, HttpServletResponse response) throws Exception {
         String sessionID= ServletRequestUtils.getStringParameter(request, "sid");
         Session session = context.getManager().findSession(sessionID);
-        if (session != null) session.expire();
+        if (session != null) {
+            session.expire();
+        }
         return new ModelAndView(new InternalResourceView(getViewName()));
     }
 }

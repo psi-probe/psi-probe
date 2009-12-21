@@ -37,8 +37,9 @@ public abstract class NoSelfContextHandlerController extends ContextHandlerContr
     protected ModelAndView handleContext(String contextName, Context context,
                                          HttpServletRequest request, HttpServletResponse response) throws Exception {
         try {
-            if (request.getContextPath().equals(contextName))
+            if (request.getContextPath().equals(contextName)) {
                 throw new IllegalStateException(getMessageSourceAccessor().getMessage("probe.src.contextAction.cannotActOnSelf"));
+            }
 
             executeAction(contextName);
         } catch (Exception e) {

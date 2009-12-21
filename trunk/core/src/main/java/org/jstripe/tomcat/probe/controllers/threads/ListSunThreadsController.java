@@ -80,7 +80,9 @@ public class ListSunThreadsController extends ParameterizableViewController {
     private static boolean contains(long[] array, long e) {
         if (array != null) {
             for (int i = 0; i < array.length; i++) {
-                if (array[i] == e) return true;
+                if (array[i] == e) {
+                    return true;
+                }
             }
         }
         return false;

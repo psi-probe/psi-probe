@@ -207,7 +207,9 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
             File f = index == 0 ? makeFile() : new File(makeFile().getAbsolutePath() + "." + index);
             stats = deserialize(f);
             index += 1;
-            if (stats != null || index >= maxFiles - 1) break;
+            if (stats != null || index >= maxFiles - 1) {
+                break;
+            }
         }
 
         if (stats != null) {
