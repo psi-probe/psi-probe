@@ -24,7 +24,7 @@
 
     <servlet>
         <servlet-name>uptime</servlet-name>
-        <servlet-class>org.jstripe.tomcat.probe.UptimeServlet</servlet-class>
+        <servlet-class>com.googlecode.psiprobe.UptimeServlet</servlet-class>
         <load-on-startup>0</load-on-startup>
     </servlet>
 
@@ -33,7 +33,7 @@
     -->
     <servlet>
         <servlet-name>probe</servlet-name>
-        <servlet-class>org.jstripe.tomcat.probe.ProbeServlet</servlet-class>
+        <servlet-class>com.googlecode.psiprobe.ProbeServlet</servlet-class>
         <init-param>
             <param-name>contextConfigLocation</param-name>
             <param-value>/WEB-INF/spring-*</param-value>

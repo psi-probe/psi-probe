@@ -21,12 +21,12 @@
     <!--
         Helper class to allow Probe controllers to access Tomcat.
     -->
-    <bean id="containerWrapper" class="org.jstripe.tomcat.probe.beans.ContainerWrapperBean">
+    <bean id="containerWrapper" class="com.googlecode.psiprobe.beans.ContainerWrapperBean">
         <property name="forceFirstAdaptor" value="false"/>
         <property name="adaptorClasses">
             <list>
-                <value>org.jstripe.tomcat.probe.Tomcat55ContainerAdaptor</value>
-                <value>org.jstripe.tomcat.probe.Tomcat50ContainerAdaptor</value>
+                <value>com.googlecode.psiprobe.Tomcat55ContainerAdaptor</value>
+                <value>com.googlecode.psiprobe.Tomcat50ContainerAdaptor</value>
             </list>
         </property>
         <property name="resourceResolvers">
@@ -40,19 +40,19 @@
     <!--
         Helper bean to read datasource information into Probe data model.
     -->
-    <bean id="defaultResourceResolver" class="org.jstripe.tomcat.probe.beans.ResourceResolverBean">
+    <bean id="defaultResourceResolver" class="com.googlecode.psiprobe.beans.ResourceResolverBean">
         <property name="datasourceMappers">
             <list>
-                <bean class="org.jstripe.tomcat.probe.beans.C3P0DatasourceAccessor"/>
-                <bean class="org.jstripe.tomcat.probe.beans.DbcpDatasourceAccessor"/>
-                <bean class="org.jstripe.tomcat.probe.beans.TomcatDbcpDatasourceAccessor"/>
-                <bean class="org.jstripe.tomcat.probe.beans.OracleDatasourceAccessor"/>
+                <bean class="com.googlecode.psiprobe.beans.C3P0DatasourceAccessor"/>
+                <bean class="com.googlecode.psiprobe.beans.DbcpDatasourceAccessor"/>
+                <bean class="com.googlecode.psiprobe.beans.TomcatDbcpDatasourceAccessor"/>
+                <bean class="com.googlecode.psiprobe.beans.OracleDatasourceAccessor"/>
             </list>
         </property>
     </bean>
 
-    <bean id="jbossResourceResolver" class="org.jstripe.tomcat.probe.beans.JBossResourceResolverBean"/>
+    <bean id="jbossResourceResolver" class="com.googlecode.psiprobe.beans.JBossResourceResolverBean"/>
 
-    <bean id="containerListener" class="org.jstripe.tomcat.probe.beans.ContainerListenerBean"/>
+    <bean id="containerListener" class="com.googlecode.psiprobe.beans.ContainerListenerBean"/>
 
 </beans>

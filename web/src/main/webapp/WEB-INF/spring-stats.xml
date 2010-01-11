@@ -18,7 +18,7 @@
     <!--
         Stats collection bean. Holds all stats the Probe collects
     -->
-    <bean name="statsCollection" class="org.jstripe.tomcat.probe.model.stats.StatsCollection">
+    <bean name="statsCollection" class="com.googlecode.psiprobe.model.stats.StatsCollection">
         <!--
         The default location for the stat files is $CALALINA_BASE/work/<hostname>/<context_name>.
         Use this property to override it.
@@ -27,7 +27,7 @@
         <property name="swapFileName" value="stats.xml"/>
     </bean>
 
-    <bean name="/chart.png" class="org.jstripe.tomcat.probe.controllers.RenderChartController">
+    <bean name="/chart.png" class="com.googlecode.psiprobe.controllers.RenderChartController">
         <property name="statsCollection" ref="statsCollection"/>
     </bean>
 
@@ -35,7 +35,7 @@
         JK Connector stats collector bean.
     -->
     <bean name="connectorStatsCollector"
-          class="org.jstripe.tomcat.probe.beans.stats.collectors.ConnectorStatsCollectorBean">
+          class="com.googlecode.psiprobe.beans.stats.collectors.ConnectorStatsCollectorBean">
         <property name="listenerBean" ref="containerListener"/>
         <property name="statsCollection" ref="statsCollection"/>
         <property name="maxSeries" value="240"/>
@@ -45,7 +45,7 @@
         Cluster stats collector
     -->
     <bean name="clusterStatsCollector"
-          class="org.jstripe.tomcat.probe.beans.stats.collectors.ClusterStatsCollectorBean">
+          class="com.googlecode.psiprobe.beans.stats.collectors.ClusterStatsCollectorBean">
         <property name="clusterWrapper" ref="clusterWrapper"/>
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="statsCollection" ref="statsCollection"/>
@@ -56,19 +56,19 @@
         Memory stats collector. Collects absolute usage stats for each of memory pools.
     -->
     <bean name="memoryStatsCollector"
-          class="org.jstripe.tomcat.probe.beans.stats.collectors.JvmMemoryStatsCollectorBean">
+          class="com.googlecode.psiprobe.beans.stats.collectors.JvmMemoryStatsCollectorBean">
         <property name="jvmMemoryInfoAccessor" ref="jvmMemoryInfoAccessor"/>
         <property name="statsCollection" ref="statsCollection"/>
         <property name="maxSeries" value="240"/>
     </bean>
 
-    <bean name="runtimeStatsCollector" class="org.jstripe.tomcat.probe.beans.stats.collectors.RuntimeStatsCollectorBean">
+    <bean name="runtimeStatsCollector" class="com.googlecode.psiprobe.beans.stats.collectors.RuntimeStatsCollectorBean">
         <property name="runtimeInfoAccessorBean" ref="runtimeInfoAccessor"/>
         <property name="statsCollection" ref="statsCollection"/>
         <property name="maxSeries" value="240"/>
     </bean>
 
-    <bean name="appStatsCollector" class="org.jstripe.tomcat.probe.beans.stats.collectors.AppStatsCollector">
+    <bean name="appStatsCollector" class="com.googlecode.psiprobe.beans.stats.collectors.AppStatsCollector">
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="statsCollection" ref="statsCollection"/>
         <property name="maxSeries" value="60"/>
@@ -77,9 +77,9 @@
     <!--
         The name of SeriesProvider beans is passed on the URL, so it should be short enough
     -->
-    <bean name="rcn" class="org.jstripe.tomcat.probe.beans.stats.providers.ConnectorSeriesProvider"/>
+    <bean name="rcn" class="com.googlecode.psiprobe.beans.stats.providers.ConnectorSeriesProvider"/>
 
-    <bean name="cl_traffic" class="org.jstripe.tomcat.probe.beans.stats.providers.StandardSeriesProvider">
+    <bean name="cl_traffic" class="com.googlecode.psiprobe.beans.stats.providers.StandardSeriesProvider">
         <property name="statNames">
             <list>
                 <value>cluster.sent</value>
@@ -88,7 +88,7 @@
         </property>
     </bean>
 
-    <bean name="cl_request" class="org.jstripe.tomcat.probe.beans.stats.providers.StandardSeriesProvider">
+    <bean name="cl_request" class="com.googlecode.psiprobe.beans.stats.providers.StandardSeriesProvider">
         <property name="statNames">
             <list>
                 <value>cluster.req.sent</value>
@@ -97,7 +97,7 @@
         </property>
     </bean>
 
-    <bean name="connector" class="org.jstripe.tomcat.probe.beans.stats.providers.StandardSeriesProvider">
+    <bean name="connector" class="com.googlecode.psiprobe.beans.stats.providers.StandardSeriesProvider">
         <property name="statNames">
             <list>
                 <value>stat.connector.{0}.requests</value>
@@ -106,7 +106,7 @@
         </property>
     </bean>
 
-    <bean name="traffic" class="org.jstripe.tomcat.probe.beans.stats.providers.StandardSeriesProvider">
+    <bean name="traffic" class="com.googlecode.psiprobe.beans.stats.providers.StandardSeriesProvider">
         <property name="statNames">
             <list>
                 <value>stat.connector.{0}.sent</value>
@@ -115,7 +115,7 @@
         </property>
     </bean>
 
-    <bean name="memory_usage" class="org.jstripe.tomcat.probe.beans.stats.providers.StandardSeriesProvider">
+    <bean name="memory_usage" class="com.googlecode.psiprobe.beans.stats.providers.StandardSeriesProvider">
         <property name="statNames">
             <list>
                 <value>memory.pool.{0}</value>
@@ -123,7 +123,7 @@
         </property>
     </bean>
 
-    <bean name="os_memory"  class="org.jstripe.tomcat.probe.beans.stats.providers.StandardSeriesProvider">
+    <bean name="os_memory"  class="com.googlecode.psiprobe.beans.stats.providers.StandardSeriesProvider">
         <property name="statNames">
             <list>
                 <value>os.memory.physical</value>
@@ -132,7 +132,7 @@
         </property>
     </bean>
 
-    <bean name="swap_usage" class="org.jstripe.tomcat.probe.beans.stats.providers.StandardSeriesProvider">
+    <bean name="swap_usage" class="com.googlecode.psiprobe.beans.stats.providers.StandardSeriesProvider">
         <property name="statNames">
             <list>
                 <value>os.memory.swap</value>
@@ -140,7 +140,7 @@
         </property>
     </bean>
 
-    <bean name="cpu_usage" class="org.jstripe.tomcat.probe.beans.stats.providers.StandardSeriesProvider">
+    <bean name="cpu_usage" class="com.googlecode.psiprobe.beans.stats.providers.StandardSeriesProvider">
         <property name="statNames">
             <list>
                 <value>os.cpu</value>
@@ -148,7 +148,7 @@
         </property>
     </bean>
 
-    <bean name="app_req" class="org.jstripe.tomcat.probe.beans.stats.providers.StandardSeriesProvider">
+    <bean name="app_req" class="com.googlecode.psiprobe.beans.stats.providers.StandardSeriesProvider">
         <property name="statNames">
             <list>
                 <value>app.requests.{0}</value>
@@ -157,7 +157,7 @@
         </property>
     </bean>
 
-    <bean name="app_avg_proc_time" class="org.jstripe.tomcat.probe.beans.stats.providers.StandardSeriesProvider">
+    <bean name="app_avg_proc_time" class="com.googlecode.psiprobe.beans.stats.providers.StandardSeriesProvider">
         <property name="statNames">
             <list>
                 <value>app.avg_proc_time.{0}</value>
@@ -165,7 +165,7 @@
         </property>
     </bean>
 
-    <bean name="total_avg_proc_time" class="org.jstripe.tomcat.probe.beans.stats.providers.StandardSeriesProvider">
+    <bean name="total_avg_proc_time" class="com.googlecode.psiprobe.beans.stats.providers.StandardSeriesProvider">
         <property name="statNames">
             <list>
                 <value>total.avg_proc_time</value>
@@ -173,13 +173,13 @@
         </property>
     </bean>
 
-    <bean name="all_app_avg_proc_time" class="org.jstripe.tomcat.probe.beans.stats.providers.MultipleSeriesProvider">
+    <bean name="all_app_avg_proc_time" class="com.googlecode.psiprobe.beans.stats.providers.MultipleSeriesProvider">
         <property name="statNamePrefix" value="app.avg_proc_time."/>
         <property name="top" value="4"/>
         <property name="movingAvgFrame" value="10"/>
     </bean>
 
-    <bean name="total_req" class="org.jstripe.tomcat.probe.beans.stats.providers.StandardSeriesProvider">
+    <bean name="total_req" class="com.googlecode.psiprobe.beans.stats.providers.StandardSeriesProvider">
         <property name="statNames">
             <list>
                 <value>total.requests</value>
@@ -187,7 +187,7 @@
         </property>
     </bean>
 
-    <bean name="all_app_req" class="org.jstripe.tomcat.probe.beans.stats.providers.MultipleSeriesProvider">
+    <bean name="all_app_req" class="com.googlecode.psiprobe.beans.stats.providers.MultipleSeriesProvider">
         <property name="statNamePrefix" value="app.requests."/>
         <property name="top" value="4"/>
         <property name="movingAvgFrame" value="10"/>

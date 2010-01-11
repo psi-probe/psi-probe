@@ -19,49 +19,49 @@
         ********************** Controllers ****************************
     -->
 
-    <bean name="/index.htm" class="org.jstripe.tomcat.probe.controllers.ListWebappsController">
+    <bean name="/index.htm" class="com.googlecode.psiprobe.controllers.ListWebappsController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="viewName" value="applications"/>
     </bean>
 
-    <bean name="/resources.htm" class="org.jstripe.tomcat.probe.controllers.ListApplicationResourcesController">
+    <bean name="/resources.htm" class="com.googlecode.psiprobe.controllers.ListApplicationResourcesController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="viewName" value="resources"/>
     </bean>
 
-    <bean name="/sessions.htm" class="org.jstripe.tomcat.probe.controllers.ListSessionsController">
+    <bean name="/sessions.htm" class="com.googlecode.psiprobe.controllers.ListSessionsController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="viewName" value="sessions"/>
     </bean>
 
-    <bean name="/app/toggle.ajax" class="org.jstripe.tomcat.probe.controllers.AjaxToggleContextController">
+    <bean name="/app/toggle.ajax" class="com.googlecode.psiprobe.controllers.AjaxToggleContextController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="viewName" value="ajax/context_status"/>
     </bean>
 
-    <bean name="/app/stop.htm" class="org.jstripe.tomcat.probe.controllers.StopContextController">
+    <bean name="/app/stop.htm" class="com.googlecode.psiprobe.controllers.StopContextController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="viewName" value="/index.htm"/>
     </bean>
 
-    <bean name="/app/stop_summary.htm" class="org.jstripe.tomcat.probe.controllers.StopContextController">
+    <bean name="/app/stop_summary.htm" class="com.googlecode.psiprobe.controllers.StopContextController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="viewName" value="/appsummary.htm"/>
         <property name="passQueryString" value="true"/>
     </bean>
 
-    <bean name="/app/start.htm" class="org.jstripe.tomcat.probe.controllers.StartContextController">
+    <bean name="/app/start.htm" class="com.googlecode.psiprobe.controllers.StartContextController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="viewName" value="/index.htm"/>
     </bean>
 
-    <bean name="/app/start_summary.htm" class="org.jstripe.tomcat.probe.controllers.StartContextController">
+    <bean name="/app/start_summary.htm" class="com.googlecode.psiprobe.controllers.StartContextController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="viewName" value="/appsummary.htm"/>
         <property name="passQueryString" value="true"/>
     </bean>
 
-    <bean name="/app/resetds.htm" class="org.jstripe.tomcat.probe.controllers.ResetDataSourceController">
+    <bean name="/app/resetds.htm" class="com.googlecode.psiprobe.controllers.ResetDataSourceController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <!--
             This controller uses InternalResourceView, so view name here has to be a URL like
@@ -69,7 +69,7 @@
         <property name="viewName" value="forward:/resources.htm"/>
     </bean>
 
-    <bean name="/app/expire.htm" class="org.jstripe.tomcat.probe.controllers.ExpireSessionController">
+    <bean name="/app/expire.htm" class="com.googlecode.psiprobe.controllers.ExpireSessionController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <!--
             This controller uses InternalResourceView, so view name here has to be a URL like
@@ -77,7 +77,7 @@
         <property name="viewName" value="/sessions.htm"/>
     </bean>
 
-    <bean name="/app/expire_list.htm" class="org.jstripe.tomcat.probe.controllers.ExpireSessionsController">
+    <bean name="/app/expire_list.htm" class="com.googlecode.psiprobe.controllers.ExpireSessionsController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <!--
             This controller uses InternalResourceView, so view name here has to be a URL like
@@ -93,25 +93,25 @@
         <property name="viewName" value="deployConfig"/>
     </bean>
 
-    <bean name="/adm/war.htm" class="org.jstripe.tomcat.probe.controllers.deploy.UploadWarController">
+    <bean name="/adm/war.htm" class="com.googlecode.psiprobe.controllers.deploy.UploadWarController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="viewName" value="/deploy.htm"/>
     </bean>
 
-    <bean name="/adm/deploycontext.htm" class="org.jstripe.tomcat.probe.controllers.deploy.DeployContextController">
+    <bean name="/adm/deploycontext.htm" class="com.googlecode.psiprobe.controllers.deploy.DeployContextController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="viewName" value="/deploy.htm"/>
     </bean>
 
-    <bean id="runtimeInfoAccessor" class="org.jstripe.tomcat.probe.beans.RuntimeInfoAccessorBean"/>
+    <bean id="runtimeInfoAccessor" class="com.googlecode.psiprobe.beans.RuntimeInfoAccessorBean"/>
 
-    <bean name="/sysinfo.htm" class="org.jstripe.tomcat.probe.controllers.SysInfoController">
+    <bean name="/sysinfo.htm" class="com.googlecode.psiprobe.controllers.SysInfoController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="runtimeInfoAccessor" ref="runtimeInfoAccessor"/>
         <property name="viewName" value="sysinfo"/>
     </bean>
 
-    <bean name="/sysprops.htm" class="org.jstripe.tomcat.probe.controllers.SysInfoController">
+    <bean name="/sysprops.htm" class="com.googlecode.psiprobe.controllers.SysInfoController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="runtimeInfoAccessor" ref="runtimeInfoAccessor"/>
         <property name="filterOutKeys">
@@ -122,62 +122,62 @@
         <property name="viewName" value="system_properties"/>
     </bean>
 
-    <bean name="/adm/osinfo.htm" class="org.jstripe.tomcat.probe.controllers.SysInfoController">
+    <bean name="/adm/osinfo.htm" class="com.googlecode.psiprobe.controllers.SysInfoController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="runtimeInfoAccessor" ref="runtimeInfoAccessor"/>
         <property name="viewName" value="osinfo"/>
     </bean>
 
-    <bean name="/adm/osinfo.ajax" class="org.jstripe.tomcat.probe.controllers.SysInfoController">
+    <bean name="/adm/osinfo.ajax" class="com.googlecode.psiprobe.controllers.SysInfoController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="runtimeInfoAccessor" ref="runtimeInfoAccessor"/>
         <property name="viewName" value="ajax/osinfo"/>
     </bean>
 
-    <bean name="/adm/forcegc.htm" class="org.jstripe.tomcat.probe.controllers.ForceGCController">
+    <bean name="/adm/forcegc.htm" class="com.googlecode.psiprobe.controllers.ForceGCController">
         <property name="replacePattern" value="^http(s)?://[a-zA-Z\-\.0-9]+(:[0-9]+)?"/>
         <property name="viewName" value="/sysinfo.htm"/>
     </bean>
 
-    <bean name="/status.htm" class="org.jstripe.tomcat.probe.controllers.connectors.StatusController">
+    <bean name="/status.htm" class="com.googlecode.psiprobe.controllers.connectors.StatusController">
         <property name="containerListenerBean" ref="containerListener"/>
         <property name="viewName" value="status"/>
     </bean>
 
-    <bean name="/adm/quickcheck.htm" class="org.jstripe.tomcat.probe.controllers.TomcatAvailabilityController">
+    <bean name="/adm/quickcheck.htm" class="com.googlecode.psiprobe.controllers.TomcatAvailabilityController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="containerListenerBean" ref="containerListener"/>
         <property name="viewName" value="quickcheck"/>
     </bean>
 
-    <bean name="/adm/quickcheck.xml.htm" class="org.jstripe.tomcat.probe.controllers.TomcatAvailabilityController">
+    <bean name="/adm/quickcheck.xml.htm" class="com.googlecode.psiprobe.controllers.TomcatAvailabilityController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="containerListenerBean" ref="containerListener"/>
         <property name="viewName" value="quickcheck.xml"/>
     </bean>
 
-    <bean name="/adm/undeploy.htm" class="org.jstripe.tomcat.probe.controllers.deploy.UndeployContextController">
+    <bean name="/adm/undeploy.htm" class="com.googlecode.psiprobe.controllers.deploy.UndeployContextController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="viewName" value="/index.htm"/>
     </bean>
 
-    <bean name="/adm/undeploy_summary.htm" class="org.jstripe.tomcat.probe.controllers.deploy.UndeployContextController">
+    <bean name="/adm/undeploy_summary.htm" class="com.googlecode.psiprobe.controllers.deploy.UndeployContextController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="viewName" value="/index.htm"/>
         <property name="failureViewName" value="/appsummary.htm"/>
     </bean>
 
-    <bean name="/datasources.htm" class="org.jstripe.tomcat.probe.controllers.ListAllJdbcResourcesController">
+    <bean name="/datasources.htm" class="com.googlecode.psiprobe.controllers.ListAllJdbcResourcesController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="viewName" value="datasources"/>
     </bean>
 
-    <bean name="/datasourcegroups.htm" class="org.jstripe.tomcat.probe.controllers.ListAllJdbcResourceGroups">
+    <bean name="/datasourcegroups.htm" class="com.googlecode.psiprobe.controllers.ListAllJdbcResourceGroups">
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="viewName" value="datasourcegroup"/>
     </bean>
 
-    <bean name="/sql/datasourcetest.htm" class="org.jstripe.tomcat.probe.controllers.sql.DataSourceTestController">
+    <bean name="/sql/datasourcetest.htm" class="com.googlecode.psiprobe.controllers.sql.DataSourceTestController">
         <property name="viewName" value="datasourcetest"/>
         <property name="maxRows" value="1000"/>
         <property name="rowsPerPage" value="50"/>
@@ -185,114 +185,114 @@
         <property name="replacePattern" value="^http(s)?://[a-zA-Z\-\.0-9]+(:[0-9]+)?"/>
     </bean>
 
-    <bean name="/sql/connection.ajax" class="org.jstripe.tomcat.probe.controllers.sql.ConnectionTestController">
+    <bean name="/sql/connection.ajax" class="com.googlecode.psiprobe.controllers.sql.ConnectionTestController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="viewName" value="ajax/sql/connection"/>
     </bean>
 
-    <bean name="/sql/recordset.ajax" class="org.jstripe.tomcat.probe.controllers.sql.ExecuteSqlController">
+    <bean name="/sql/recordset.ajax" class="com.googlecode.psiprobe.controllers.sql.ExecuteSqlController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="viewName" value="ajax/sql/recordset"/>
     </bean>
 
-    <bean name="/sql/cachedRecordset.ajax" class="org.jstripe.tomcat.probe.controllers.sql.CachedRecordSetController">
+    <bean name="/sql/cachedRecordset.ajax" class="com.googlecode.psiprobe.controllers.sql.CachedRecordSetController">
         <property name="viewName" value="ajax/sql/recordset"/>
     </bean>
 
-    <bean name="/sql/queryHistory.ajax" class="org.jstripe.tomcat.probe.controllers.sql.QueryHistoryController">
+    <bean name="/sql/queryHistory.ajax" class="com.googlecode.psiprobe.controllers.sql.QueryHistoryController">
         <property name="viewName" value="ajax/sql/queryHistory"/>
     </bean>
 
-    <bean name="/sql/queryHistoryItem.ajax" class="org.jstripe.tomcat.probe.controllers.sql.QueryHistoryItemController"/>
+    <bean name="/sql/queryHistoryItem.ajax" class="com.googlecode.psiprobe.controllers.sql.QueryHistoryItemController"/>
 
-    <bean name="/attributes.htm" class="org.jstripe.tomcat.probe.controllers.ListSessionAttributesController">
+    <bean name="/attributes.htm" class="com.googlecode.psiprobe.controllers.ListSessionAttributesController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="viewName" value="attributes"/>
     </bean>
 
-    <bean name="/app/rmsattr.htm" class="org.jstripe.tomcat.probe.controllers.RemoveSessAttributeController">
+    <bean name="/app/rmsattr.htm" class="com.googlecode.psiprobe.controllers.RemoveSessAttributeController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="viewName" value="/attributes.htm"/>
     </bean>
 
-    <bean name="/app/reload.ajax" class="org.jstripe.tomcat.probe.controllers.AjaxReloadContextController">
+    <bean name="/app/reload.ajax" class="com.googlecode.psiprobe.controllers.AjaxReloadContextController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="viewName" value="ajax/context_status"/>
     </bean>
 
-    <bean name="/app/reload.htm" class="org.jstripe.tomcat.probe.controllers.ReloadContextController">
+    <bean name="/app/reload.htm" class="com.googlecode.psiprobe.controllers.ReloadContextController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="viewName" value="/index.htm"/>
     </bean>
 
-    <bean name="/app/reload_summary.htm" class="org.jstripe.tomcat.probe.controllers.ReloadContextController">
+    <bean name="/app/reload_summary.htm" class="com.googlecode.psiprobe.controllers.ReloadContextController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="viewName" value="/appsummary.htm"/>
         <property name="passQueryString" value="true"/>
     </bean>
 
-    <bean name="/app/jsp.htm" class="org.jstripe.tomcat.probe.controllers.jsp.DisplayJspController">
+    <bean name="/app/jsp.htm" class="com.googlecode.psiprobe.controllers.jsp.DisplayJspController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="viewName" value="showjsps"/>
     </bean>
 
-    <bean name="/app/recompile.htm" class="org.jstripe.tomcat.probe.controllers.jsp.RecompileJspController">
+    <bean name="/app/recompile.htm" class="com.googlecode.psiprobe.controllers.jsp.RecompileJspController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="viewName" value="/app/jsp.htm"/>
     </bean>
 
-    <bean name="/app/viewsource.htm" class="org.jstripe.tomcat.probe.controllers.jsp.ViewSourceController">
+    <bean name="/app/viewsource.htm" class="com.googlecode.psiprobe.controllers.jsp.ViewSourceController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="viewName" value="view_jsp_source"/>
     </bean>
 
-    <bean name="/app/viewservlet.htm" class="org.jstripe.tomcat.probe.controllers.jsp.ViewServletSourceController">
+    <bean name="/app/viewservlet.htm" class="com.googlecode.psiprobe.controllers.jsp.ViewServletSourceController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="viewName" value="view_servlet_source"/>
     </bean>
 
-    <bean name="/app/downloadserv.htm" class="org.jstripe.tomcat.probe.controllers.jsp.DownloadServletController">
+    <bean name="/app/downloadserv.htm" class="com.googlecode.psiprobe.controllers.jsp.DownloadServletController">
         <property name="containerWrapper" ref="containerWrapper"/>
     </bean>
 
-    <bean name="/adm/discard.htm" class="org.jstripe.tomcat.probe.controllers.jsp.DiscardCompiledJspController">
+    <bean name="/adm/discard.htm" class="com.googlecode.psiprobe.controllers.jsp.DiscardCompiledJspController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="viewName" value="/app/jsp.htm"/>
     </bean>
 
-    <bean name="/appsummary.htm" class="org.jstripe.tomcat.probe.controllers.GetApplicationController">
+    <bean name="/appsummary.htm" class="com.googlecode.psiprobe.controllers.GetApplicationController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="viewName" value="appsummary"/>
         <property name="extendedInfo" value="false"/>
     </bean>
 
-    <bean name="/appruntimeinfo.ajax" class="org.jstripe.tomcat.probe.controllers.GetApplicationController">
+    <bean name="/appruntimeinfo.ajax" class="com.googlecode.psiprobe.controllers.GetApplicationController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="viewName" value="ajax/appRuntimeInfo"/>
         <property name="extendedInfo" value="true"/>
         <property name="statsCollection" ref="statsCollection"/>
     </bean>
 
-    <bean name="/app/viewwebxml.htm" class="org.jstripe.tomcat.probe.controllers.ViewXMLConfController">
+    <bean name="/app/viewwebxml.htm" class="com.googlecode.psiprobe.controllers.ViewXMLConfController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="viewName" value="view_xml_conf"/>
         <property name="displayTarget" value="web.xml"/>
         <property name="downloadUrl" value="/app/downloadwebxml.htm"/>
     </bean>
 
-    <bean name="/adm/viewcontextxml.htm" class="org.jstripe.tomcat.probe.controllers.ViewXMLConfController">
+    <bean name="/adm/viewcontextxml.htm" class="com.googlecode.psiprobe.controllers.ViewXMLConfController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="viewName" value="view_xml_conf"/>
         <property name="displayTarget" value="context.xml"/>
         <property name="downloadUrl" value="/adm/downloadcontextxml.htm"/>
     </bean>
 
-    <bean name="/app/downloadwebxml.htm" class="org.jstripe.tomcat.probe.controllers.DownloadXMLConfController">
+    <bean name="/app/downloadwebxml.htm" class="com.googlecode.psiprobe.controllers.DownloadXMLConfController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="downloadTarget" value="web.xml"/>
     </bean>
 
-    <bean name="/adm/downloadcontextxml.htm" class="org.jstripe.tomcat.probe.controllers.DownloadXMLConfController">
+    <bean name="/adm/downloadcontextxml.htm" class="com.googlecode.psiprobe.controllers.DownloadXMLConfController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="downloadTarget" value="context.xml"/>
     </bean>
@@ -301,19 +301,19 @@
         <property name="viewName" value="allappstats"/>
     </bean>
 
-    <bean name="/cnreqdetails.ajax" class="org.jstripe.tomcat.probe.controllers.connectors.GetConnectorController">
+    <bean name="/cnreqdetails.ajax" class="com.googlecode.psiprobe.controllers.connectors.GetConnectorController">
         <property name="containerListenerBean" ref="containerListener"/>
         <property name="viewName" value="ajax/connectorRequestDetails"/>
     </bean>
 
-    <bean name="/cntrafdetails.ajax" class="org.jstripe.tomcat.probe.controllers.connectors.GetConnectorController">
+    <bean name="/cntrafdetails.ajax" class="com.googlecode.psiprobe.controllers.connectors.GetConnectorController">
         <property name="containerListenerBean" ref="containerListener"/>
         <property name="viewName" value="ajax/connectorTrafficDetails"/>
     </bean>
 
-    <bean name="/remember.ajax" class="org.jstripe.tomcat.probe.controllers.connectors.RememberVisibilityController"/>
+    <bean name="/remember.ajax" class="com.googlecode.psiprobe.controllers.connectors.RememberVisibilityController"/>
 
-    <bean name="/charts.htm" class="org.jstripe.tomcat.probe.controllers.connectors.ListConnectorNamesController">
+    <bean name="/charts.htm" class="com.googlecode.psiprobe.controllers.connectors.ListConnectorNamesController">
         <property name="viewName" value="charts"/>
         <property name="containerListenerBean" ref="containerListener"/>
     </bean>
@@ -322,7 +322,7 @@
         <property name="viewName" value="zoomreq"/>
     </bean>
 
-    <bean name="/logs,/logs/index.htm" class="org.jstripe.tomcat.probe.controllers.logs.ListLogsController">
+    <bean name="/logs,/logs/index.htm" class="com.googlecode.psiprobe.controllers.logs.ListLogsController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="stdoutFiles">
             <list>
@@ -336,96 +336,96 @@
         <property name="errorView" value="logs_notsupported"/>
     </bean>
 
-    <bean name="/logs/download" class="org.jstripe.tomcat.probe.controllers.logs.DownloadLogController">
+    <bean name="/logs/download" class="com.googlecode.psiprobe.controllers.logs.DownloadLogController">
         <property name="viewName" value=""/>
     </bean>
 
-    <bean name="/logs/follow.htm" class="org.jstripe.tomcat.probe.controllers.logs.SetupFollowController">
+    <bean name="/logs/follow.htm" class="com.googlecode.psiprobe.controllers.logs.SetupFollowController">
         <property name="fileAttributeName" value="followed_file"/>
         <property name="viewName" value="follow"/>
     </bean>
 
-    <bean name="/logs/follow.ajax" class="org.jstripe.tomcat.probe.controllers.logs.FollowController">
+    <bean name="/logs/follow.ajax" class="com.googlecode.psiprobe.controllers.logs.FollowController">
         <property name="fileAttributeName" value="followed_file"/>
         <property name="viewName" value="ajax/follow"/>
         <property name="maxLines" value="1000"/>
         <property name="initialLines" value="250"/>
     </bean>
 
-    <bean name="/logs/ff_info.ajax" class="org.jstripe.tomcat.probe.controllers.logs.UpdateFileInfoController">
+    <bean name="/logs/ff_info.ajax" class="com.googlecode.psiprobe.controllers.logs.UpdateFileInfoController">
         <property name="fileAttributeName" value="followed_file"/>
         <property name="viewName" value="ajax/followed_file_info"/>
     </bean>
 
-    <bean name="/logs/clear.ajax" class="org.jstripe.tomcat.probe.controllers.logs.ClearBufferController"/>
+    <bean name="/logs/clear.ajax" class="com.googlecode.psiprobe.controllers.logs.ClearBufferController"/>
 
-    <bean name="/decorator.htm" class="org.jstripe.tomcat.probe.controllers.DecoratorController">
+    <bean name="/decorator.htm" class="com.googlecode.psiprobe.controllers.DecoratorController">
         <property name="viewName" value="decorators/probe"/>
         <property name="messagesBasename" value="/WEB-INF/messages"/>
     </bean>
 
-    <bean name="/th_impl1.htm" class="org.jstripe.tomcat.probe.controllers.threads.ListThreadsController">
+    <bean name="/th_impl1.htm" class="com.googlecode.psiprobe.controllers.threads.ListThreadsController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="viewName" value="threads"/>
     </bean>
 
-    <bean name="/th_impl2.htm" class="org.jstripe.tomcat.probe.controllers.threads.ListSunThreadsController">
+    <bean name="/th_impl2.htm" class="com.googlecode.psiprobe.controllers.threads.ListSunThreadsController">
         <property name="viewName" value="threads_sun"/>
     </bean>
 
-    <bean name="/threads.htm" class="org.jstripe.tomcat.probe.controllers.threads.ImplSelectorController">
+    <bean name="/threads.htm" class="com.googlecode.psiprobe.controllers.threads.ImplSelectorController">
         <property name="impl1Controller" value="forward:/th_impl1.htm"/>
         <property name="impl2Controller" value="forward:/th_impl2.htm"/>
     </bean>
 
-    <bean name="/cldetails.ajax" class="org.jstripe.tomcat.probe.controllers.threads.GetClassLoaderUrlsController">
+    <bean name="/cldetails.ajax" class="com.googlecode.psiprobe.controllers.threads.GetClassLoaderUrlsController">
         <property name="viewName" value="ajax/classLoaderDetails"/>
     </bean>
 
-    <bean name="/adm/kill.htm" class="org.jstripe.tomcat.probe.controllers.threads.KillThreadController">
+    <bean name="/adm/kill.htm" class="com.googlecode.psiprobe.controllers.threads.KillThreadController">
         <property name="viewName" value="redirect:/threads.htm"/>
     </bean>
 
-    <bean id="clusterWrapper" class="org.jstripe.tomcat.probe.beans.ClusterWrapperBean"/>
+    <bean id="clusterWrapper" class="com.googlecode.psiprobe.beans.ClusterWrapperBean"/>
 
-    <bean name="/cluster.htm" class="org.jstripe.tomcat.probe.controllers.cluster.ClusterStatsController">
+    <bean name="/cluster.htm" class="com.googlecode.psiprobe.controllers.cluster.ClusterStatsController">
         <property name="clusterWrapper" ref="clusterWrapper"/>
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="loadMembers" value="false"/>
         <property name="viewName" value="cluster"/>
     </bean>
 
-    <bean name="/cluster/members.ajax" class="org.jstripe.tomcat.probe.controllers.cluster.ClusterStatsController">
+    <bean name="/cluster/members.ajax" class="com.googlecode.psiprobe.controllers.cluster.ClusterStatsController">
         <property name="clusterWrapper" ref="clusterWrapper"/>
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="viewName" value="ajax/cluster/members"/>
     </bean>
 
-    <bean name="/cluster/traffic.ajax" class="org.jstripe.tomcat.probe.controllers.cluster.ClusterStatsController">
+    <bean name="/cluster/traffic.ajax" class="com.googlecode.psiprobe.controllers.cluster.ClusterStatsController">
         <property name="clusterWrapper" ref="clusterWrapper"/>
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="loadMembers" value="false"/>
         <property name="viewName" value="ajax/cluster/traffic"/>
     </bean>
 
-    <bean name="/cluster/requests.ajax" class="org.jstripe.tomcat.probe.controllers.cluster.ClusterStatsController">
+    <bean name="/cluster/requests.ajax" class="com.googlecode.psiprobe.controllers.cluster.ClusterStatsController">
         <property name="clusterWrapper" ref="clusterWrapper"/>
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="loadMembers" value="false"/>
         <property name="viewName" value="ajax/cluster/requests"/>
     </bean>
 
-    <bean name="/appattributes.htm" class="org.jstripe.tomcat.probe.controllers.ListAppAttributesController">
+    <bean name="/appattributes.htm" class="com.googlecode.psiprobe.controllers.ListAppAttributesController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="viewName" value="appattributes"/>
     </bean>
 
-    <bean name="/app/rmappattr.htm" class="org.jstripe.tomcat.probe.controllers.RemoveApplicationAttributeController">
+    <bean name="/app/rmappattr.htm" class="com.googlecode.psiprobe.controllers.RemoveApplicationAttributeController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="viewName" value="/appattributes.htm"/>
     </bean>
 
-    <bean name="/appinitparams.htm" class="org.jstripe.tomcat.probe.controllers.ListAppInitParamsController">
+    <bean name="/appinitparams.htm" class="com.googlecode.psiprobe.controllers.ListAppInitParamsController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="viewName" value="appinitparams"/>
     </bean>
@@ -434,60 +434,60 @@
         <property name="viewName" value="servlets"/>
     </bean>
 
-    <bean name="/servlets.ajax" class="org.jstripe.tomcat.probe.controllers.ListServletsController">
+    <bean name="/servlets.ajax" class="com.googlecode.psiprobe.controllers.ListServletsController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="viewName" value="ajax/servlets"/>
     </bean>
 
-    <bean name="/servletmaps.htm" class="org.jstripe.tomcat.probe.controllers.ListServletMapsController">
+    <bean name="/servletmaps.htm" class="com.googlecode.psiprobe.controllers.ListServletMapsController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="viewName" value="servletmaps"/>
     </bean>
 
-    <bean name="/appfilters.htm" class="org.jstripe.tomcat.probe.controllers.ListAppFiltersController">
+    <bean name="/appfilters.htm" class="com.googlecode.psiprobe.controllers.ListAppFiltersController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="viewName" value="appfilters"/>
     </bean>
 
-    <bean name="/appfiltermaps.htm" class="org.jstripe.tomcat.probe.controllers.ListAppFilterMapsController">
+    <bean name="/appfiltermaps.htm" class="com.googlecode.psiprobe.controllers.ListAppFilterMapsController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="viewName" value="appfiltermaps"/>
     </bean>
 
-    <bean id="jvmMemoryInfoAccessor" class="org.jstripe.tomcat.probe.beans.JvmMemoryInfoAccessorBean"/>
+    <bean id="jvmMemoryInfoAccessor" class="com.googlecode.psiprobe.beans.JvmMemoryInfoAccessorBean"/>
 
-    <bean name="/memory.ajax" class="org.jstripe.tomcat.probe.controllers.MemoryStatsController">
+    <bean name="/memory.ajax" class="com.googlecode.psiprobe.controllers.MemoryStatsController">
         <property name="jvmMemoryInfoAccessorBean" ref="jvmMemoryInfoAccessor"/>
         <property name="viewName" value="ajax/memory_pools"/>
     </bean>
 
-    <bean name="/memory.htm" class="org.jstripe.tomcat.probe.controllers.MemoryStatsController">
+    <bean name="/memory.htm" class="com.googlecode.psiprobe.controllers.MemoryStatsController">
         <property name="jvmMemoryInfoAccessorBean" ref="jvmMemoryInfoAccessor"/>
         <property name="viewName" value="memory"/>
     </bean>
 
-    <bean name="/wrapper.htm" class="org.jstripe.tomcat.probe.controllers.wrapper.WrapperInfoController">
+    <bean name="/wrapper.htm" class="com.googlecode.psiprobe.controllers.wrapper.WrapperInfoController">
         <property name="viewName" value="wrapper"/>
     </bean>
 
-    <bean name="/adm/restartvm.ajax" class="org.jstripe.tomcat.probe.controllers.wrapper.RestartJvmController">
+    <bean name="/adm/restartvm.ajax" class="com.googlecode.psiprobe.controllers.wrapper.RestartJvmController">
         <property name="viewName" value="ajax/jvm_restarted"/>
     </bean>
 
-    <bean name="/adm/stopvm.ajax" class="org.jstripe.tomcat.probe.controllers.wrapper.StopJvmController">
+    <bean name="/adm/stopvm.ajax" class="com.googlecode.psiprobe.controllers.wrapper.StopJvmController">
         <property name="viewName" value="ajax/jvm_stopped"/>
     </bean>
 
-    <bean name="/adm/threaddump.ajax" class="org.jstripe.tomcat.probe.controllers.wrapper.ThreadDumpController">
+    <bean name="/adm/threaddump.ajax" class="com.googlecode.psiprobe.controllers.wrapper.ThreadDumpController">
         <property name="viewName" value="ajax/thread_dump"/>
     </bean>
 
-    <bean name="/app/threadstack.ajax" class="org.jstripe.tomcat.probe.controllers.threads.ThreadStackController">
+    <bean name="/app/threadstack.ajax" class="com.googlecode.psiprobe.controllers.threads.ThreadStackController">
         <property name="stackElementCount" value="100"/>
         <property name="viewName" value="ajax/ThreadStack"/>
     </bean>
 
-    <bean name="/whois.ajax" class="org.jstripe.tomcat.probe.controllers.WhoisController">
+    <bean name="/whois.ajax" class="com.googlecode.psiprobe.controllers.WhoisController">
         <!-- whois lookup timeout in seconds -->
         <property name="lookupTimeout" value="5"/>
         <property name="defaultServer" value="whois.arin.net"/>
@@ -495,7 +495,7 @@
         <property name="viewName" value="ajax/whois"/>
     </bean>
 
-    <bean name="/403.htm" class="org.jstripe.tomcat.probe.controllers.ErrorHandlerController">
+    <bean name="/403.htm" class="com.googlecode.psiprobe.controllers.ErrorHandlerController">
         <property name="viewName" value="errors/403"/>
         <property name="ajaxViewName" value="errors/403_ajax"/>
         <property name="ajaxExtension" value=".ajax"/>
@@ -505,11 +505,11 @@
         <property name="viewName" value="errors/404"/>
     </bean>
 
-    <bean name="/*.oxml.htm" class="org.jstripe.tomcat.probe.controllers.BeanToXmlController">
+    <bean name="/*.oxml.htm" class="com.googlecode.psiprobe.controllers.BeanToXmlController">
         <property name="xmlMarker" value=".oxml"/>
     </bean>
 
-    <bean name="/*.help.ajax" class="org.jstripe.tomcat.probe.controllers.HelpController">
+    <bean name="/*.help.ajax" class="com.googlecode.psiprobe.controllers.HelpController">
         <property name="contentBase" value="/WEB-INF/help"/>
     </bean>
 </beans>
