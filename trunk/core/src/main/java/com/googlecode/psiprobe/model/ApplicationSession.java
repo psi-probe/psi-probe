@@ -22,7 +22,7 @@ import java.util.Locale;
  */
 public class ApplicationSession {
 
-    public static final String LAST_ACCESSED_BY_IP = "__lambda_probe_la_ip";
+    public static final String LAST_ACCESSED_BY_IP = "__psiprobe_la_ip";
 
     private String id;
     private String applicationName;
