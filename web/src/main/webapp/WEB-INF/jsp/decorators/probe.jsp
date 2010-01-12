@@ -42,7 +42,7 @@
 <div id="caption">
     <ul id="top">
         <li id="logo"><a href="<c:url value='/index.htm'/>"><img src="<c:url value='/css/the-probe-logo.gif'/>"
-                                                                 alt="LambdaProbe Logo"/></a></li>
+                                                                 alt="PSI Probe Logo"/></a></li>
         <li id="runtime">
             <spring:message code="probe.jsp.version" arguments="${version},<b>${hostname}</b>"/>,
             <span class="uptime"><spring:message code="probe.jsp.uptime"

@@ -25,7 +25,7 @@ import java.io.IOException;
 public class Tomcat50AgentValve implements Valve {
 
     public String getInfo() {
-        return "LambdaProbe Agent Valve";
+        return "PSI Probe Agent Valve";
     }
 
     public void invoke(Request request, Response response, ValveContext valveContext) throws IOException, ServletException {

@@ -15,7 +15,7 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
          version="2.4">
 
-    <display-name>LambdaProbe for Apache Tomcat</display-name>
+    <display-name>PSI Probe for Apache Tomcat</display-name>
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
@@ -161,7 +161,7 @@
     <!-- Defines the Login Configuration for this Application -->
     <login-config>
         <auth-method>BASIC</auth-method>
-        <realm-name>LambdaProbe</realm-name>
+        <realm-name>PSI Probe</realm-name>
     </login-config>
 
     <!--Security roles referenced by this web application -->
