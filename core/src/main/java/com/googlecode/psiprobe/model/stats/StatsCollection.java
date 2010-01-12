@@ -140,7 +140,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
             } catch (Exception e) {
                 logger.error("Could not write stats data to " + makeFile().getAbsolutePath(), e);
             } finally {
-                logger.info("stats serialized in " + (System.currentTimeMillis() - t) + "ms.");
+                logger.debug("stats serialized in " + (System.currentTimeMillis() - t) + "ms.");
             }
         } finally{
             lock.releaseCommitLock();
@@ -177,7 +177,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
                 } finally {
                     fis.close();
                 }
-                logger.info("stats data read in " + (System.currentTimeMillis() - t) + "ms.");
+                logger.debug("stats data read in " + (System.currentTimeMillis() - t) + "ms.");
             } catch (Throwable e) {
                 logger.error("Could not read stats data from " + f.getAbsolutePath(), e);
             }
@@ -215,7 +215,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
         if (stats != null) {
             statsData = stats;
         } else {
-            logger.info("Stats data file not found. Empty file assumed.");
+            logger.debug("Stats data file not found. Empty file assumed.");
         }
 
     }
