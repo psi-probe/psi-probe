@@ -26,7 +26,7 @@
 <html>
 
 <head>
-    <title>Lambda Probe - Error</title>
+    <title>Probe - Error</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/classic/main.css" type="text/css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/classic/messages.css" type="text/css"/>
 </head>
