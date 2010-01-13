@@ -10,55 +10,55 @@
  */
 
 .java_type {
-    color: rgb( 0, 44, 221 );
+    color: #002cdd;
 }
 
 .java_comment {
-    color: rgb( 147, 147, 147 );
-    background-color: rgb( 247, 247, 247 );
+    color: #939393;
+    background-color: #f7f7f7;
 }
 
 .java_operator {
-    color: rgb( 0, 124, 31 );
+    color: #007c1f;
 }
 
 .java_separator {
-    color: rgb( 0, 33, 255 );
+    color: #0021ff;
 }
 
 .java_plain {
-    color: rgb( 0, 0, 0 );
+    color: #000000;
 }
 
 h1 {
     font-family: sans-serif;
     font-size: 16pt;
     font-weight: bold;
-    color: rgb( 0, 0, 0 );
-    background: rgb( 210, 210, 210 );
+    color: #000000;
+    background-color: #d2d2d2;
     border: solid 1px black;
     padding: 5px;
     text-align: center;
 }
 
 .java_javadoc_comment {
-    color: rgb( 147, 147, 147 );
-    background-color: rgb( 247, 247, 247 );
+    color: #939393;
+    background-color: #f7f7f7;
     font-style: italic;
 }
 
 .java_keyword {
-    color: rgb( 0, 0, 0 );
+    color: #000000;
     font-weight: bold;
 }
 
 .java_literal {
-    color: rgb( 188, 0, 0 );
+    color: #bc0000;
 }
 
 .java_javadoc_tag {
-    color: rgb( 147, 147, 147 );
-    background-color: rgb( 247, 247, 247 );
+    color: #939393;
+    background-color: #f7f7f7;
     font-style: italic;
     font-weight: bold;
 }
