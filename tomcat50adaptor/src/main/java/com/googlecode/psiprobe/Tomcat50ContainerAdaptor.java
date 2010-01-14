@@ -10,13 +10,18 @@
  */
 package com.googlecode.psiprobe;
 
-import org.apache.catalina.*;
-
 import java.io.IOException;
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.catalina.Container;
+import org.apache.catalina.Context;
+import org.apache.catalina.Deployer;
+import org.apache.catalina.Engine;
+import org.apache.catalina.Host;
+import org.apache.catalina.Valve;
+import org.apache.catalina.Wrapper;
 
 public class Tomcat50ContainerAdaptor extends AbstractTomcatContainer {
 

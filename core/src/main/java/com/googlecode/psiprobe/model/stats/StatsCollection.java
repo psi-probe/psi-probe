@@ -10,7 +10,20 @@
  */
 package com.googlecode.psiprobe.model.stats;
 
+import com.googlecode.psiprobe.tools.UpdateCommitLock;
 import com.thoughtworks.xstream.XStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.jfree.data.xy.XYDataItem;
@@ -20,10 +33,6 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.web.context.WebApplicationContext;
-import com.googlecode.psiprobe.tools.UpdateCommitLock;
-
-import java.io.*;
-import java.util.*;
 
 public class StatsCollection implements InitializingBean, DisposableBean, ApplicationContextAware {
 

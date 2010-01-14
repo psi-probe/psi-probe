@@ -13,11 +13,14 @@ package com.googlecode.psiprobe.controllers;
 import com.googlecode.psiprobe.beans.RuntimeInfoAccessorBean;
 import com.googlecode.psiprobe.model.SystemInformation;
 import com.googlecode.psiprobe.tools.SecurityUtils;
-import org.springframework.web.servlet.ModelAndView;
-
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.*;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Creates an instance of SystemInformation POJO.
