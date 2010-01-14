@@ -24,7 +24,7 @@ div.deploy div.deployDescription {
 div.deploy .deployLabel {
     border: 1px dashed white;
     padding: 0px 5px 0px 5px;
-    background: darkorange;
+    background: #06c;
     color: white;
     font-weight: bold;
 
@@ -40,13 +40,13 @@ div.deploy .submit input.b {
     font-size: 90%;
     font-weight: bold;
     padding: 2 4 2 4;
-    border: 1px solid darkorange;
-    background: white;
-    color: rgb( 230, 44, 0 );
+    border: 1px solid #06c;
+    background-color: #c2e3ff;
+    color: #007ce6;
 }
 
 div#deployScenario1 {
-    background-color: #FFFFE0;
+    background-color: #ebf8ff;
     margin-bottom: 10px;
 }
 
@@ -55,7 +55,7 @@ div#deployScenario1 {
 }
 
 em {
-    color: rgb( 204, 0, 0 );
+    color: #cc0000;
     font-weight: bold;
     font-style: normal;
 }

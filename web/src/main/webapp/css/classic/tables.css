@@ -27,7 +27,7 @@
     border-top: 1px solid #C1DAD7;
     text-transform: uppercase;
     text-align: left;
-    background-color: #CAE8EA;
+    background-color: #cadceb;
 }
 
 .genericTbl td {
@@ -41,11 +41,15 @@
 }
 
 .genericTbl tr.even {
-    background: #FFFFE0;
+    background-color: #f5faff;
 }
 
 .genericTbl tr:hover {
-    background-color: #F0F8FF;
+    background-color: #fcfced;
+}
+
+.genericTbl tr.even:hover {
+    background-color: #f4f5e4;
 }
 
 .genericTbl a:link, .genericTbl a:active, .genericTbl th a:visited {
@@ -74,8 +78,20 @@
     border-bottom: none;
 }
 
-.highlighted {
-    background-color: #FFF0F0;
+tr td.highlighted {
+    background-color: #fff0f0;
+}
+
+tr.even td.highlighted {
+    background-color: #f2e4e4;
+}
+
+tr:hover td.highlighted {
+    background-color: #fcebeb;
+}
+
+tr.even:hover td.highlighted {
+    background-color: #f0dddd;
 }
 
 .statsTable {
