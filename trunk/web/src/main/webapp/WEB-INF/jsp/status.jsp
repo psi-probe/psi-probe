@@ -49,23 +49,22 @@
 <c:forEach items="${pools}" var="pool" varStatus="poolStatus">
 
     <div class="poolInfo">
-        <b>${pool.name}</b><br/>
+        <h3>${pool.name}</h3>
 
         <div class="threadInfo">
-            <spring:message code="probe.jsp.status.currentThreadCount"/>&nbsp;${pool.currentThreadCount}
-            <spring:message code="probe.jsp.status.currentThreadsBusy"/>&nbsp;${pool.currentThreadsBusy}
-            <spring:message code="probe.jsp.status.maxThreads"/>&nbsp;${pool.maxThreads}
-            <spring:message code="probe.jsp.status.maxSpareThreads"/>&nbsp;${pool.maxSpareThreads}
-            <spring:message code="probe.jsp.status.minSpareThreads"/>&nbsp;${pool.minSpareThreads}
+            <span class="name"><spring:message code="probe.jsp.status.currentThreadCount"/></span>&nbsp;${pool.currentThreadCount}
+            <span class="name"><spring:message code="probe.jsp.status.currentThreadsBusy"/></span>&nbsp;${pool.currentThreadsBusy}
+            <span class="name"><spring:message code="probe.jsp.status.maxThreads"/></span>&nbsp;${pool.maxThreads}
+            <span class="name"><spring:message code="probe.jsp.status.maxSpareThreads"/></span>&nbsp;${pool.maxSpareThreads}
+            <span class="name"><spring:message code="probe.jsp.status.minSpareThreads"/></span>&nbsp;${pool.minSpareThreads}
         </div>
-
         <div class="processorInfo">
-            <spring:message code="probe.jsp.status.processor.maxTime"/>&nbsp;${pool.maxTime}
-            <spring:message code="probe.jsp.status.processor.processingTime"/>&nbsp;${pool.processingTime}
-            <spring:message code="probe.jsp.status.processor.requestCount"/>&nbsp;${pool.requestCount}
-            <spring:message code="probe.jsp.status.processor.errorCount"/>&nbsp;${pool.errorCount}
-            <spring:message code="probe.jsp.status.processor.received"/>&nbsp;<js:volume value="${pool.bytesReceived}"/>
-            <spring:message code="probe.jsp.status.processor.sent"/>&nbsp;<js:volume value="${pool.bytesSent}"/>
+            <span class="name"><spring:message code="probe.jsp.status.processor.maxTime"/></span>&nbsp;${pool.maxTime}
+            <span class="name"><spring:message code="probe.jsp.status.processor.processingTime"/></span>&nbsp;${pool.processingTime}
+            <span class="name"><spring:message code="probe.jsp.status.processor.requestCount"/></span>&nbsp;${pool.requestCount}
+            <span class="name"><spring:message code="probe.jsp.status.processor.errorCount"/></span>&nbsp;${pool.errorCount}
+            <span class="name"><spring:message code="probe.jsp.status.processor.received"/></span>&nbsp;<js:volume value="${pool.bytesReceived}"/>
+            <span class="name"><spring:message code="probe.jsp.status.processor.sent"/></span>&nbsp;<js:volume value="${pool.bytesSent}"/>
         </div>
 
         <c:choose>

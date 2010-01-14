@@ -44,12 +44,12 @@
             <c:param name="yz" value="350"/>
         </c:url>
 
-        <ul class="options">
-            <li id="adviseGC"><a href="<c:url value='/adm/forcegc.htm'/>"><spring:message code="probe.jsp.memory.advise.gc"/></a></li>
-            <li id="adviseFin"><a href="<c:url value='/adm/forcegc.htm?fin=true'/>"><spring:message code="probe.jsp.memory.advise.finalization"/></a></li>
-        </ul>
+        <div class="memory">
 
-        <div>
+            <ul class="options">
+                <li id="adviseFin"><a href="<c:url value='/adm/forcegc.htm?fin=true'/>"><spring:message code="probe.jsp.memory.advise.finalization"/></a></li>
+                <li id="adviseGC"><a href="<c:url value='/adm/forcegc.htm'/>"><spring:message code="probe.jsp.memory.advise.gc"/></a></li>
+            </ul>
 
             <h3><spring:message code="probe.jsp.memory.h3.table"/></h3>
 
@@ -84,12 +84,11 @@
 
                     <div class="memoryChart" id="${pool.id}" style="${style}">
                         <dl>
-                            <dt><div>
+                            <dt>
                                 ${pool.name}
                                 <c:url var="toggleUrl" value="/remember.ajax?cn=mem_${pool.id}"/>
                                 <img onclick="togglePanel('${pool.id}', '${toggleUrl}')"
                                      src="${pageContext.request.contextPath}<spring:theme code='bullet_arrow_down.gif'/>" alt=""/>
-                            </div>
                             </dt>
                             <dd class="image"><img id="img_${pool.id}"
                                                    src="<c:out value='${chartUrl}' escapeXml='false'/>" alt=""

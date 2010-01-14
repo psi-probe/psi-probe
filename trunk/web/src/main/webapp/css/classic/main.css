@@ -67,7 +67,7 @@ li#runtime {
 li#title {
     float: right;
     font-size: 160%;
-    color: #E62C00;
+    color: #0066ff;
     padding-right: 10px;
     margin-top: 20px;
 }
@@ -128,7 +128,7 @@ div#footer li.last {
     position: relative;
     top: -3px;
     left: -3px;
-    background-color: #FFF8EA;
+    background-color: #fefcf5;
     padding: 5px 10px 5px 10px;
     border: 1px solid #aaa;
 }
@@ -143,7 +143,7 @@ div#footer li.last {
 }
 
 .info:hover .value {
-    color: rgb( 0, 51, 102 );
+    color: #003366;
 }
 
 .value a:link, .value a:visited {
@@ -174,13 +174,17 @@ ul.options li {
 ul.options li a:link, ul.options li a:visited, #successMessage a:link, #successMessage a:visited {
     color: #40659B;
     text-decoration: none;
-    border-bottom: 1px dashed rgb( 187, 187, 187 );
+    border-bottom: 1px dashed #bbbbbb;
     font-size: 100%;
 }
 
 ul.options li a:hover, #successMessage a:hover {
     color: #003366;
     border-bottom-style: solid;
+}
+
+.memory ul.options {
+    float: right;
 }
 
 /*
@@ -303,12 +307,10 @@ li#compilesingle {
 
 li#adviseGC {
     background: url( "gifs/wrench_orange.gif" ) top left no-repeat;
-    float: right;
 }
 
 li#adviseFin {
     background: url( "gifs/wrench.gif" ) top left no-repeat;
-    float: right;
 }
 
 li#stop_jvm {
@@ -463,7 +465,7 @@ dd.image:hover {
 
 .connectorChartHeader {
     clear: both;
-    background-color: #fefcf5;
+    background-color: #f2f9ff;
     border-top: 1px dashed #ccc;
     border-bottom: 1px dashed #ccc;
     padding: 5px 5px 5px 20px;
