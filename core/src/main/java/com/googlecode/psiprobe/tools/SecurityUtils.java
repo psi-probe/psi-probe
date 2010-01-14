@@ -14,10 +14,20 @@ import org.acegisecurity.context.SecurityContextHolder;
 import org.acegisecurity.GrantedAuthority;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 
 public class SecurityUtils {
+
+    private SecurityUtils() {
+    }
+
+    public static boolean hasAttributeValueRole(ServletContext servletContext, HttpServletRequest request) {
+        String privilegedRole = getPrivilegedRole(servletContext);
+        return request.isUserInRole(privilegedRole);
+    }
+
     public static boolean hasAttributeValueRole(ServletContext servletContext) {
-        String privelegedRole = servletContext.getInitParameter("attribute.value.role");
+        String privelegedRole = getPrivilegedRole(servletContext);
         GrantedAuthority[] authorities = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
 
         boolean result = false;
@@ -29,4 +39,9 @@ public class SecurityUtils {
         }
         return result;
     }
+
+    private static String getPrivilegedRole(ServletContext servletContext) {
+        return servletContext.getInitParameter("attribute.value.role");
+    }
+
 }

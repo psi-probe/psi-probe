@@ -17,6 +17,7 @@
 
     <display-name>PSI Probe for Apache Tomcat</display-name>
 
+    <!--
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>/WEB-INF/spring-root-*.xml</param-value>
@@ -25,6 +26,7 @@
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+    -->
 
     <servlet>
         <servlet-name>uptime</servlet-name>
@@ -68,6 +70,8 @@
     <!-- Below inserted by JspC -->
     <!-- [INSERT FRAGMENT HERE] -->
 
+    <!-- Security filter -->
+    <!--
     <filter>
         <filter-name>acegi</filter-name>
         <filter-class>org.acegisecurity.util.FilterToBeanProxy</filter-class>
@@ -78,13 +82,12 @@
     </filter>
 
     <filter-mapping>
-      <filter-name>acegi</filter-name>
-      <url-pattern>/*</url-pattern>
+        <filter-name>acegi</filter-name>
+        <url-pattern>/*</url-pattern>
     </filter-mapping>
-
-    <!--
-        Sitemesh filter
     -->
+
+    <!-- Sitemesh filter -->
     <filter>
         <filter-name>sitemesh</filter-name>
         <filter-class>com.opensymphony.module.sitemesh.filter.PageFilter</filter-class>
@@ -120,6 +123,87 @@
     <context-param>
         <description>Role that can view session attribute values</description>
         <param-name>attribute.value.role</param-name>
+        <param-value>manager</param-value>
+        <!--
         <param-value>ROLE_MANAGER</param-value>
+        -->
     </context-param>
+
+    <security-constraint>
+        <display-name>Probe User URLs</display-name>
+        <web-resource-collection>
+            <web-resource-name>Probe User URLs</web-resource-name>
+            <url-pattern>/</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>probeuser</role-name>
+            <role-name>poweruser</role-name>
+            <role-name>manager</role-name>
+            <role-name>poweruserplus</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-constraint>
+        <display-name>Probe Power-User URLs</display-name>
+        <web-resource-collection>
+            <web-resource-name>Probe Power-User URLs</web-resource-name>
+            <url-pattern>/app/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>poweruser</role-name>
+            <role-name>manager</role-name>
+            <role-name>poweruserplus</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-constraint>
+        <display-name>Probe Power-User-Plus URLs</display-name>
+        <web-resource-collection>
+            <web-resource-name>JVM-Restart via Service Wrapper</web-resource-name>
+            <url-pattern>/adm/restartvm.ajax</url-pattern>
+        </web-resource-collection>
+		<web-resource-collection>
+            <web-resource-name>Data Source Testing</web-resource-name>
+            <url-pattern>/sql/*</url-pattern>
+		</web-resource-collection>
+        <auth-constraint>
+            <role-name>poweruserplus</role-name>
+            <role-name>manager</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-constraint>
+        <display-name>Probe Admin (manager) URLs</display-name>
+        <web-resource-collection>
+            <web-resource-name>Probe Admin (manager) URLs</web-resource-name>
+            <url-pattern>/adm/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>manager</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <!-- Defines the Login Configuration for this Application -->
+    <login-config>
+        <auth-method>BASIC</auth-method>
+        <realm-name>PSI Probe</realm-name>
+    </login-config>
+
+    <!--Security roles referenced by this web application -->
+    <security-role>
+        <role-name>manager</role-name>
+    </security-role>
+
+    <security-role>
+        <role-name>poweruser</role-name>
+    </security-role>
+
+    <security-role>
+        <role-name>poweruserplus</role-name>
+    </security-role>
+
+    <security-role>
+        <role-name>probeuser</role-name>
+    </security-role>
+
 </web-app>

@@ -53,7 +53,7 @@ public class GetApplicationController extends ContextHandlerController {
                                          HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         boolean calcSize = ServletRequestUtils.getBooleanParameter(request, "size", false)
-                && SecurityUtils.hasAttributeValueRole(getServletContext());
+                && SecurityUtils.hasAttributeValueRole(getServletContext(), request);
 
         Application app = ApplicationUtils.getApplication(
                 context, isExtendedInfo() ? getContainerWrapper().getResourceResolver() : null, calcSize);

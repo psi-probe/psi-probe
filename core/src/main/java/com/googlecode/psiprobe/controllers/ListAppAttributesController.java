@@ -30,7 +30,7 @@ public class ListAppAttributesController extends ContextHandlerController {
         List appAttrs = ApplicationUtils.getApplicationAttributes(context);
         ModelAndView mv = new ModelAndView(getViewName(), "appAttributes", appAttrs);
 
-        if (SecurityUtils.hasAttributeValueRole(getServletContext())) {
+        if (SecurityUtils.hasAttributeValueRole(getServletContext(), request)) {
             mv.addObject("displayValues", Boolean.TRUE);
         }
         return mv;

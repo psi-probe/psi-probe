@@ -53,7 +53,7 @@ public class SysInfoController extends TomcatContainerController {
         Map sysProps = new Properties();
         sysProps.putAll(System.getProperties());
 
-        if (!SecurityUtils.hasAttributeValueRole(getServletContext())) {
+        if (!SecurityUtils.hasAttributeValueRole(getServletContext(), request)) {
             for (Iterator it = filterOutKeys.iterator(); it.hasNext();) {
                 sysProps.remove(it.next());
             }

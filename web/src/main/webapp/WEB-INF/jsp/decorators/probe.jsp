@@ -15,7 +15,9 @@
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/page" prefix="page" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="/WEB-INF/tags/probe.tld" prefix="probe" %>
+<%--
 <%@ taglib uri="http://acegisecurity.org/authz" prefix="authz" %>
+--%
 
 
 <%--
@@ -41,9 +43,11 @@
 
 <body>
 
+<%--
 <div>
     logged in as:  <authz:authentication operation="username"/>  <a href="<c:url value="/logout.htm"/>">logout</a>
 </div>
+--%>
 <div id="caption">
     <ul id="top">
         <li id="logo"><a href="<c:url value='/index.htm'/>"><img src="<c:url value='/css/the-probe-logo.gif'/>"

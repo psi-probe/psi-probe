@@ -29,7 +29,7 @@ public class ListSessionAttributesController extends ContextHandlerController {
 
     protected ModelAndView handleContext(String contextName, Context context, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        boolean privileged = SecurityUtils.hasAttributeValueRole(getServletContext());
+        boolean privileged = SecurityUtils.hasAttributeValueRole(getServletContext(), request);
         boolean calcSize = ServletRequestUtils.getBooleanParameter(request, "size", false)
                 && privileged;
         String sid = ServletRequestUtils.getStringParameter(request, "sid");
