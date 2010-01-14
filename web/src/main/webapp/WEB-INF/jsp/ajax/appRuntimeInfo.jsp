@@ -12,8 +12,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" session="false" %>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c' %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@ taglib uri="http://www.jstripe.com/tags" prefix="js" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="/WEB-INF/tags/probe.tld" prefix="probe" %>
 
 <%--
     An Ajax snippet that displays application runtime information
@@ -94,7 +93,7 @@
                 </td>
                 <c:if test="${param.size}">
                     <td>
-                        <js:volume value="${app.size}"/>
+                        <probe:volume value="${app.size}"/>
                     </td>
                 </c:if>
                 <td>
@@ -107,7 +106,7 @@
                 ${app.errorCount}
                 </td>
                 <td>
-                    <js:duration value="${app.processingTime}"/>
+                    <probe:duration value="${app.processingTime}"/>
                 </td>
                 <td>
                 ${app.minTime} ms.
@@ -120,11 +119,11 @@
                 </td>
                 <c:if test="${! no_resources}">
                     <td>
-                        <js:score value="${app.dataSourceUsageScore}" fullBlocks="8" partialBlocks="5" showEmptyBlocks="true" showA="true" showB="true">
+                        <probe:score value="${app.dataSourceUsageScore}" fullBlocks="8" partialBlocks="5" showEmptyBlocks="true" showA="true" showB="true">
                             <a class="imglink" href="<c:url value="/resources.htm?webapp=${app.name}"/>"><img border="0"
                                 src="<c:url value='/css/classic/gifs/rb_{0}.gif'/>" alt="+"
                                 title="<spring:message code='probe.jsp.applications.jdbcUsage.title' arguments='${app.dataSourceUsageScore}'/>"/></a>
-                        </js:score>
+                        </probe:score>
                         &nbsp;${app.dataSourceUsageScore}%
                     </td>
                 </c:if>

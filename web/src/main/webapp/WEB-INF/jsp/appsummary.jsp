@@ -12,7 +12,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" session="false" %>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c' %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@ taglib uri="http://www.jstripe.com/tags" prefix="js" %>
+<%@ taglib uri="/WEB-INF/tags/probe.tld" prefix="probe" %>
 
 <%--
     Displays a web application information summary and application statistics charts
@@ -57,10 +57,10 @@
             <li id="appUndeploy"><a href="<c:url value='/adm/undeploy_summary.htm'><c:param name='webapp' value='${param.webapp}'/></c:url>" onclick="return confirm('${confirmMessage}')"><spring:message code="probe.jsp.app.summary.menu.undeploy"/></a></li>
             <c:choose>
                 <c:when test="${param.size}">
-                    <li id="size" ><a href="?<js:toggle param='size'/>"><spring:message code="probe.jsp.applications.hidesize"/></a></li>
+                    <li id="size" ><a href="?<probe:toggle param='size'/>"><spring:message code="probe.jsp.applications.hidesize"/></a></li>
                 </c:when>
                 <c:otherwise>
-                    <li id="size" ><a href="?<js:toggle param='size'/>"><spring:message code="probe.jsp.applications.showsize"/></a></li>
+                    <li id="size" ><a href="?<probe:toggle param='size'/>"><spring:message code="probe.jsp.applications.showsize"/></a></li>
                 </c:otherwise>
             </c:choose>
         </ul>

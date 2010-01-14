@@ -11,8 +11,8 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" session="false" %>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c' %>
-<%@ taglib uri="/WEB-INF/tags/jstripe.tld" prefix="js" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="/WEB-INF/tags/probe.tld" prefix="probe" %>
 
 <html>
 <head>
@@ -66,7 +66,7 @@
                 <div class="info">
                     <p><spring:message code="probe.jsp.viewsource.appname"/>&nbsp;<span class="value">${param.webapp}</span>
                         <spring:message code="probe.jsp.viewsource.filename"/>&nbsp;<span class="value">${item.name}</span>
-                        <spring:message code="probe.jsp.viewsource.size"/>&nbsp;<span class="value"><js:volume value="${item.size}"/></span>
+                        <spring:message code="probe.jsp.viewsource.size"/>&nbsp;<span class="value"><probe:volume value="${item.size}"/></span>
                         <spring:message code="probe.jsp.viewsource.lastmodified"/>&nbsp;<span class="value">${item.timestamp}</span>
                         <spring:message code="probe.jsp.viewsource.encoding"/>&nbsp;<span class="value">${item.encoding}</span>
                         <spring:message code="probe.jsp.viewsource.state"/>&nbsp;<span class="value">

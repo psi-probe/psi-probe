@@ -12,7 +12,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" session="false" %>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c' %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@ taglib uri="/WEB-INF/tags/jstripe.tld" prefix="inf" %>
+<%@ taglib uri="/WEB-INF/tags/probe.tld" prefix="probe" %>
 
 <div class="shadow" style="clear: none;">
     <div class="info">
@@ -22,15 +22,15 @@
             <spring:message code="probe.jsp.os.card.version"/>
             <span class="value">${runtime.osVersion}</span>
             <spring:message code="probe.jsp.os.card.totalMemory"/>
-            <span class="value"><inf:volume value="${runtime.totalPhysicalMemorySize}" fractions="2"/></span>
+            <span class="value"><probe:volume value="${runtime.totalPhysicalMemorySize}" fractions="2"/></span>
             <spring:message code="probe.jsp.os.card.freeMemory"/>
-            <span class="value"><inf:volume value="${runtime.freePhysicalMemorySize}" fractions="2"/></span>
+            <span class="value"><probe:volume value="${runtime.freePhysicalMemorySize}" fractions="2"/></span>
             <spring:message code="probe.jsp.os.card.committedVirtualMemory"/>
-            <span class="value"><inf:volume value="${runtime.committedVirtualMemorySize}" fractions="2"/></span>
+            <span class="value"><probe:volume value="${runtime.committedVirtualMemorySize}" fractions="2"/></span>
             <spring:message code="probe.jsp.os.card.totalSwap"/>
-            <span class="value"><inf:volume value="${runtime.totalSwapSpaceSize}" fractions="2"/></span>
+            <span class="value"><probe:volume value="${runtime.totalSwapSpaceSize}" fractions="2"/></span>
             <spring:message code="probe.jsp.os.card.freeSwap"/>
-            <span class="value"><inf:volume value="${runtime.freeSwapSpaceSize}" fractions="2"/></span>
+            <span class="value"><probe:volume value="${runtime.freeSwapSpaceSize}" fractions="2"/></span>
         </p>
     </div>
 </div>

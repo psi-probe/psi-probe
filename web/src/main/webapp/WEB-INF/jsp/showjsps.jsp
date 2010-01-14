@@ -13,7 +13,7 @@
 <%@ taglib uri='http://java.sun.com/jsp/jstl/fmt' prefix='fmt' %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
-<%@ taglib uri="/WEB-INF/tags/jstripe.tld" prefix="js" %>
+<%@ taglib uri="/WEB-INF/tags/probe.tld" prefix="probe" %>
 
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" session="false" %>
@@ -57,7 +57,7 @@
                         <a href="<c:url value='/app/viewsource.htm?webapp=${param.webapp}&source=${item.name}'/>">${item.name}</a>
                     </display:column>
                     <display:column titleKey="probe.jsp.jsps.col.size" sort="true" sortProperty="size" width="30px">
-                        <js:volume value="${item.size}"/>
+                        <probe:volume value="${item.size}"/>
                     </display:column>
                     <display:column titleKey="probe.jsp.jsps.col.lastmodified" sort="true" sortProperty="lastModified" width="140px">
                         ${item.timestamp}

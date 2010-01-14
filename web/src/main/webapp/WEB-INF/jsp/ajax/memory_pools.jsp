@@ -11,9 +11,9 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" session="false" %>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c' %>
-<%@ taglib uri="http://www.jstripe.com/tags" prefix="js" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
+<%@ taglib uri="/WEB-INF/tags/probe.tld" prefix="probe" %>
 
 <display:table name="pools" class="genericTbl" cellspacing="0" id="pool" requestURI="">
 
@@ -34,10 +34,10 @@
 
     <display:column titleKey="probe.jsp.memory.col.usageScore" sortable="true" class="score_wrapper">
         <div class="score_wrapper">
-            <js:score value="${pool.usageScore}" partialBlocks="5" fullBlocks="10" showEmptyBlocks="true" showA="true" showB="true">
+            <probe:score value="${pool.usageScore}" partialBlocks="5" fullBlocks="10" showEmptyBlocks="true" showA="true" showB="true">
                 <img src="<c:url value='/css/classic/gifs/rb_{0}.gif'/>" alt="+"
                      title="<spring:message code='probe.jsp.memory.usage.title' arguments='${pool.usageScore}'/>"/>
-            </js:score>
+            </probe:score>
         </div>
     </display:column>
 
@@ -75,19 +75,19 @@
     </display:column>
 
     <display:column titleKey="probe.jsp.memory.col.used" sortable="true" sortProperty="used" width="80px">
-        <js:volume value="${pool.used}" fractions="2"/>
+        <probe:volume value="${pool.used}" fractions="2"/>
     </display:column>
 
     <display:column titleKey="probe.jsp.memory.col.committed" sortable="true" sortProperty="committed" width="80px">
-        <js:volume value="${pool.committed}" fractions="2"/>
+        <probe:volume value="${pool.committed}" fractions="2"/>
     </display:column>
 
     <display:column titleKey="probe.jsp.memory.col.max" sortable="true" sortProperty="max" width="80px">
-        <js:volume value="${pool.max}" fractions="2"/>
+        <probe:volume value="${pool.max}" fractions="2"/>
     </display:column>
 
     <display:column titleKey="probe.jsp.memory.col.initial" sortable="true" sortProperty="init" width="80px">
-        <js:volume value="${pool.init}" fractions="2"/>
+        <probe:volume value="${pool.init}" fractions="2"/>
     </display:column>
 
     <display:column titleKey="probe.jsp.memory.col.group" property="type" sortable="true"/>

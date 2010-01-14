@@ -14,7 +14,7 @@
 <%@ taglib uri='http://java.sun.com/jsp/jstl/fmt' prefix='fmt' %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
-<%@ taglib uri="http://www.jstripe.com/tags" prefix="js" %>
+<%@ taglib uri="/WEB-INF/tags/probe.tld" prefix="probe" %>
 
 <%--
     Displays various system information including System.properties. This page helps to evaluate
@@ -43,10 +43,10 @@
         <tr>
             <td><span class="name"><spring:message code="probe.jsp.sysinfo.memory.usage"/></span>&nbsp;</td>
             <td style="padding:0; margin:0">
-                <js:score value="${memUsed}" partialBlocks="5" fullBlocks="10" showEmptyBlocks="true" showA="true" showB="true">
+                <probe:score value="${memUsed}" partialBlocks="5" fullBlocks="10" showEmptyBlocks="true" showA="true" showB="true">
                     <img src="<c:url value='/css/classic/gifs/rb_{0}.gif'/>" alt="+"
                          title="<spring:message code='probe.jsp.sysinfo.memory.usage.alt'/>"/>
-                </js:score>
+                </probe:score>
             </td>
             <td>&nbsp;<fmt:formatNumber maxFractionDigits="1" value="${memUsed}"/>%</td>
             <td>&nbsp;<a href="<c:url value='/adm/forcegc.htm'/>"><spring:message code="probe.jsp.sysinfo.memory.forceGC"/></a></td>

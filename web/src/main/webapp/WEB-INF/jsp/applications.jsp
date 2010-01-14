@@ -13,7 +13,7 @@
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c' %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
-<%@ taglib uri="http://www.jstripe.com/tags" prefix="js" %>
+<%@ taglib uri="/WEB-INF/tags/probe.tld" prefix="probe" %>
 
 <%--
     Probe "home" page. Displays list of web applications.
@@ -64,10 +64,10 @@
 <ul class="options">
     <c:choose>
         <c:when test="${param.size}">
-            <li id="size" ><a href="?<js:toggle param='size'/>"><spring:message code="probe.jsp.applications.hidesize"/></a></li>
+            <li id="size" ><a href="?<probe:toggle param='size'/>"><spring:message code="probe.jsp.applications.hidesize"/></a></li>
         </c:when>
         <c:otherwise>
-            <li id="size" ><a href="?<js:toggle param='size'/>"><spring:message code="probe.jsp.applications.showsize"/></a></li>
+            <li id="size" ><a href="?<probe:toggle param='size'/>"><spring:message code="probe.jsp.applications.showsize"/></a></li>
         </c:otherwise>
     </c:choose>
     <li id="abbreviations"><a href=""><spring:message code="probe.jsp.generic.abbreviations"/></a></li>
@@ -168,7 +168,7 @@
         <c:if test="${param.size}">
             <display:column sortProperty="size" sortable="true"
                             titleKey="probe.jsp.applications.col.size" class="highlighted">
-                <js:volume value="${app.size}"/>
+                <probe:volume value="${app.size}"/>
             </display:column>
         </c:if>
 
@@ -191,11 +191,11 @@
             <display:column sortable="true" sortProperty="dataSourceUsageScore"
                             titleKey="probe.jsp.applications.col.jdbcUsage" class="score_wrapper">
                 <div class="score_wrapper">
-                    <js:score value="${app.dataSourceUsageScore}" fullBlocks="10" partialBlocks="5" showEmptyBlocks="true" showA="true" showB="true">
+                    <probe:score value="${app.dataSourceUsageScore}" fullBlocks="10" partialBlocks="5" showEmptyBlocks="true" showA="true" showB="true">
                         <a class="imglink" href="<c:url value='/resources.htm?webapp=${app.name}'/>"><img border="0"
                                  src="<c:url value='/css/classic/gifs/rb_{0}.gif'/>" alt="+"
                                  title="<spring:message code='probe.jsp.applications.jdbcUsage.title' arguments='${app.dataSourceUsageScore}'/>"/></a>
-                    </js:score>
+                    </probe:score>
                 </div>
             </display:column>
         </c:if>

@@ -12,10 +12,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c' %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@ taglib uri="/WEB-INF/tags/jstripe.tld" prefix="js" %>
+<%@ taglib uri="/WEB-INF/tags/probe.tld" prefix="probe" %>
 
 <p>
     <spring:message code="probe.jsp.followed_file_info.fileName"/>&nbsp;<span class="value">${followed_file.fileName}</span>
-    <spring:message code="probe.jsp.followed_file_info.size"/>&nbsp;<span class="value"><js:volume value="${followed_file.size}"/></span><!-- ${followed_file.size} -->
+    <spring:message code="probe.jsp.followed_file_info.size"/>&nbsp;<span class="value"><probe:volume value="${followed_file.size}"/></span><!-- ${followed_file.size} -->
     <spring:message code="probe.jsp.followed_file_info.lastModified"/>&nbsp;<span class="value">${followed_file.lastModified}</span>
 </p>
