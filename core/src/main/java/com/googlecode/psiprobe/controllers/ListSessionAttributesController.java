@@ -13,6 +13,7 @@ package com.googlecode.psiprobe.controllers;
 import org.apache.catalina.Context;
 import com.googlecode.psiprobe.model.ApplicationSession;
 import com.googlecode.psiprobe.tools.ApplicationUtils;
+import com.googlecode.psiprobe.tools.SecurityUtils;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -21,22 +22,23 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Retrieves the list of attributes for given session.
- *
+ * </p>
  * Author: Vlad Ilyushchenko
  */
 public class ListSessionAttributesController extends ContextHandlerController {
 
     protected ModelAndView handleContext(String contextName, Context context, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        String privelegedRole = getServletContext().getInitParameter("attribute.value.role");
-        boolean calcSize = ServletRequestUtils.getBooleanParameter(request, "size", false) && request.isUserInRole(privelegedRole);
+        boolean privileged = SecurityUtils.hasAttributeValueRole(getServletContext());
+        boolean calcSize = ServletRequestUtils.getBooleanParameter(request, "size", false)
+                && privileged;
         String sid = ServletRequestUtils.getStringParameter(request, "sid");
 
         ApplicationSession appSession = ApplicationUtils.getApplicationSession(
                 context.getManager().findSession(sid), calcSize, true);
 
         if (appSession != null) {
-            appSession.setAllowedToViewValues(request.isUserInRole(privelegedRole));
+            appSession.setAllowedToViewValues(privileged);
             return new ModelAndView(getViewName(), "session", appSession);
         } else {
             return new ModelAndView(getViewName());

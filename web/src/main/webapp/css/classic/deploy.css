@@ -11,19 +11,19 @@
 
 div.deploy {
     padding: 10px 10px 10px 10px;
-    margin: 0 0 10 0;
+    margin: 0 0 10px 0;
     border: 1px solid #ccc;
     vertical-align: middle;
     min-width: 700px;
 }
 
 div.deploy div.deployDescription {
-    padding: 5px 50px 15px 0px;
+    padding: 5px 50px 15px 0;
 }
 
 div.deploy .deployLabel {
     border: 1px dashed white;
-    padding: 0px 5px 0px 5px;
+    padding: 0 5px 0 5px;
     background: #06c;
     color: white;
     font-weight: bold;
@@ -39,7 +39,7 @@ div.deploy .submit {
 div.deploy .submit input.b {
     font-size: 90%;
     font-weight: bold;
-    padding: 2 4 2 4;
+    padding: 2px 4px 2px 4px;
     border: 1px solid #06c;
     background-color: #c2e3ff;
     color: #007ce6;

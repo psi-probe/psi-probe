@@ -12,6 +12,7 @@ package com.googlecode.psiprobe.controllers;
 
 import org.apache.catalina.Context;
 import com.googlecode.psiprobe.tools.ApplicationUtils;
+import com.googlecode.psiprobe.tools.SecurityUtils;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -29,8 +30,8 @@ public class ListWebappsController extends TomcatContainerController {
 
     protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        String privelegedRole = getServletContext().getInitParameter("attribute.value.role");
-        boolean calcSize = ServletRequestUtils.getBooleanParameter(request, "size", false) && request.isUserInRole(privelegedRole);
+        boolean calcSize = ServletRequestUtils.getBooleanParameter(request, "size", false)
+                && SecurityUtils.hasAttributeValueRole(getServletContext());
 
         List apps = getContainerWrapper().getTomcatContainer().findContexts();
         List applications = new ArrayList(apps.size());

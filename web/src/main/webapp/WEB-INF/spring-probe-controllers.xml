@@ -512,4 +512,8 @@
     <bean name="/*.help.ajax" class="com.googlecode.psiprobe.controllers.HelpController">
         <property name="contentBase" value="/WEB-INF/help"/>
     </bean>
+
+    <bean name="/login.htm" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+        <property name="viewName" value="login"/>
+    </bean>
 </beans>

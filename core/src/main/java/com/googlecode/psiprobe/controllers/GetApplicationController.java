@@ -14,6 +14,7 @@ import org.apache.catalina.Context;
 import com.googlecode.psiprobe.model.Application;
 import com.googlecode.psiprobe.model.stats.StatsCollection;
 import com.googlecode.psiprobe.tools.ApplicationUtils;
+import com.googlecode.psiprobe.tools.SecurityUtils;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -51,8 +52,8 @@ public class GetApplicationController extends ContextHandlerController {
     protected ModelAndView handleContext(String contextName, Context context,
                                          HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        String privelegedRole = getServletContext().getInitParameter("attribute.value.role");
-        boolean calcSize = ServletRequestUtils.getBooleanParameter(request, "size", false) && request.isUserInRole(privelegedRole);
+        boolean calcSize = ServletRequestUtils.getBooleanParameter(request, "size", false)
+                && SecurityUtils.hasAttributeValueRole(getServletContext());
 
         Application app = ApplicationUtils.getApplication(
                 context, isExtendedInfo() ? getContainerWrapper().getResourceResolver() : null, calcSize);

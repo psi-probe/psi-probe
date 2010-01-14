@@ -393,10 +393,7 @@ code {
 }
 
 #srccontent {
-    border-top: 1px solid #ccc;
-    border-left: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-    border-right: 1px solid #ccc;
+    border: 1px solid #ccc;
     padding: 20px 0 20px 0;
 }
 
@@ -587,7 +584,6 @@ td.leftMostIcon {
 #file_content {
     width: 100%;
     overflow: auto;
-    font-size: 10px;
     white-space: nowrap;
 }
 
