@@ -16,14 +16,14 @@
 <html>
 <head>
     <title>Login</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code="main.css"/>" type="text/css"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code="login.css"/>" type="text/css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='main.css'/>" type="text/css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='login.css'/>" type="text/css"/>
 </head>
 
 <body>
 
-    <script type="text/javascript" language="javascript" src="<c:url value="/js/prototype.js"/>"></script>
-    <script type="text/javascript" language="javascript" src="<c:url value="/js/scriptaculous.js"/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/prototype.js'/>"></script>
+    <script type="text/javascript" language="javascript" src="<c:url value='/js/scriptaculous.js'/>"></script>
 
     <div id="container">
 
@@ -32,7 +32,7 @@
                 sldn99880 - login
             </div>
 
-            <img id="key" src="<c:url value="/css/classic/img/password.png"/>" alt="key"/>
+            <img id="key" src="<c:url value='/css/classic/img/password.png'/>" alt="key"/>
             <div id="content">
 
                 <%-- this form-login-page form is also used as the
@@ -53,7 +53,7 @@
                             <li>
                                 <label for="username">Username:</label>
                                 <input id="username" name="j_username"
-                                       <c:if test="${not empty param.login_error}">value='<c:out value="${ACEGI_SECURITY_LAST_USERNAME}"/>'
+                                       <c:if test="${not empty param.login_error}">value="<c:out value='${ACEGI_SECURITY_LAST_USERNAME}'/>"
                                 </c:if>/>
                             </li>
                             <li>

@@ -18,7 +18,6 @@ import javax.management.MalformedObjectNameException;
 import javax.management.ObjectName;
 import java.io.File;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
 
@@ -55,9 +54,7 @@ public class Tomcat55ContainerAdaptor extends AbstractTomcatContainer {
 
     public List findContexts() {
         Container containers[] = host.findChildren();
-        List contextList = new ArrayList(containers.length);
-        contextList.addAll(Arrays.asList(containers));
-        return contextList;
+        return Arrays.asList(containers);
     }
 
     public void stop(String name) throws Exception {

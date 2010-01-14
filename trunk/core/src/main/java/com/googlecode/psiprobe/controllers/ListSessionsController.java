@@ -41,7 +41,7 @@ public class ListSessionsController extends ContextHandlerController {
                                          HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         boolean calcSize = ServletRequestUtils.getBooleanParameter(request, "size", false)
-                && SecurityUtils.hasAttributeValueRole(getServletContext());
+                && SecurityUtils.hasAttributeValueRole(getServletContext(), request);
 
         SessionSearchInfo searchInfo = new SessionSearchInfo();
         searchInfo.setSearchAction(StringUtils.trimToNull(ServletRequestUtils.getStringParameter(request, "searchAction", SessionSearchInfo.ACTION_NONE)));

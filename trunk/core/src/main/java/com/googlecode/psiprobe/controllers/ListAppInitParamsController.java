@@ -27,7 +27,7 @@ public class ListAppInitParamsController  extends ContextHandlerController {
     protected ModelAndView handleContext(String contextName, Context context,
                                          HttpServletRequest request, HttpServletResponse response) throws Exception {
         ModelAndView mv = new ModelAndView(getViewName(), "appInitParams", ApplicationUtils.getApplicationInitParams(context));
-        if (SecurityUtils.hasAttributeValueRole(getServletContext())) {
+        if (SecurityUtils.hasAttributeValueRole(getServletContext(), request)) {
             mv.addObject("allowedToViewValues", Boolean.TRUE);
         }
 
