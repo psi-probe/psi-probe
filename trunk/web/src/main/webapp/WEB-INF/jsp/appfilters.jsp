@@ -13,7 +13,7 @@
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c' %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
-<%@ taglib uri="/WEB-INF/tags/jstripe.tld" prefix="js" %>
+<%@ taglib uri="/WEB-INF/tags/probe.tld" prefix="probe" %>
 
 <%--
     Displays a list of web application filters
@@ -60,7 +60,7 @@
                 <display:column property="filterClass" sortable="true"
                                 titleKey="probe.jsp.app.filters.col.filterClass" maxLength="50"/>
                 <display:column titleKey="probe.jsp.app.filters.col.filterDesc" sortable="false">
-                    <js:out value="${ftlr.filterDesc}" maxLength="50"/>&nbsp;
+                    <probe:out value="${ftlr.filterDesc}" maxLength="50"/>&nbsp;
                 </display:column>
             </display:table>
         </c:when>

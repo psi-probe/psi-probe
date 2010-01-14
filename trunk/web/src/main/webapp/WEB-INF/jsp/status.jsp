@@ -15,7 +15,7 @@
 <%@ taglib uri='http://java.sun.com/jsp/jstl/functions' prefix='fn' %>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@ taglib uri="/WEB-INF/tags/jstripe.tld" prefix="js" %>
+<%@ taglib uri="/WEB-INF/tags/probe.tld" prefix="probe" %>
 
 <%--
     Displays current traffic information.
@@ -63,8 +63,8 @@
             <span class="name"><spring:message code="probe.jsp.status.processor.processingTime"/></span>&nbsp;${pool.processingTime}
             <span class="name"><spring:message code="probe.jsp.status.processor.requestCount"/></span>&nbsp;${pool.requestCount}
             <span class="name"><spring:message code="probe.jsp.status.processor.errorCount"/></span>&nbsp;${pool.errorCount}
-            <span class="name"><spring:message code="probe.jsp.status.processor.received"/></span>&nbsp;<js:volume value="${pool.bytesReceived}"/>
-            <span class="name"><spring:message code="probe.jsp.status.processor.sent"/></span>&nbsp;<js:volume value="${pool.bytesSent}"/>
+            <span class="name"><spring:message code="probe.jsp.status.processor.received"/></span>&nbsp;<probe:volume value="${pool.bytesReceived}"/>
+            <span class="name"><spring:message code="probe.jsp.status.processor.sent"/></span>&nbsp;<probe:volume value="${pool.bytesSent}"/>
         </div>
 
         <c:choose>
@@ -120,15 +120,15 @@
                         </display:column>
                         <display:column width="80px" sortable="true" sortProperty="processingTime"
                                         titleKey="probe.jsp.status.wrk.col.processingTime">
-                            <js:duration value="${rp.processingTime}"/>
+                            <probe:duration value="${rp.processingTime}"/>
                         </display:column>
                         <display:column width="60px" sortable="true" sortProperty="bytesReceived"
                                         titleKey="probe.jsp.status.wrk.col.in">
-                            <js:volume value="${rp.bytesReceived}"/>
+                            <probe:volume value="${rp.bytesReceived}"/>
                         </display:column>
                         <display:column width="60px" sortable="true" sortProperty="bytesSent"
                                         titleKey="probe.jsp.status.wrk.col.out">
-                            <js:volume value="${rp.bytesSent}"/>
+                            <probe:volume value="${rp.bytesSent}"/>
                         </display:column>
 
                         <c:if test="${workerThreadNameSupported}">

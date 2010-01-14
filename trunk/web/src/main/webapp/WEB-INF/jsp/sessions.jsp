@@ -14,7 +14,7 @@
 <%@ taglib uri='http://java.sun.com/jsp/jstl/functions' prefix='fn' %>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@ taglib uri="/WEB-INF/tags/jstripe.tld" prefix="js" %>
+<%@ taglib uri="/WEB-INF/tags/probe.tld" prefix="probe" %>
 
 <%--
     List of sessions view for a particular web application.
@@ -85,11 +85,11 @@
         <c:if test="${! empty sessions}">
             <c:choose>
                 <c:when test="${param.size}">
-                    <li id="size"><a href="?<js:toggle param="size"/>"><spring:message
+                    <li id="size"><a href="?<probe:toggle param="size"/>"><spring:message
                             code="probe.jsp.hidesize"/></a></li>
                 </c:when>
                 <c:otherwise>
-                    <li id="size"><a href="?<js:toggle param="size"/>"><spring:message
+                    <li id="size"><a href="?<probe:toggle param="size"/>"><spring:message
                             code="probe.jsp.showsize"/></a></li>
                 </c:otherwise>
             </c:choose>
@@ -188,11 +188,11 @@
                     </display:column>
 
                     <display:column sortable="true" sortProperty="idleTime" titleKey="probe.jsp.sessions.col.idleTime">
-                        <js:duration value="${session.idleTime}"/>
+                        <probe:duration value="${session.idleTime}"/>
                     </display:column>
 
                     <display:column sortable="true" sortProperty="age" titleKey="probe.jsp.sessions.col.age">
-                        <js:duration value="${session.age}"/>
+                        <probe:duration value="${session.age}"/>
                     </display:column>
 
                     <display:column property="expiryTime" sort="true" nulls="false"
@@ -203,7 +203,7 @@
                     <c:if test="${param.size}">
                         <display:column sortProperty="size" sortable="true" titleKey="probe.jsp.sessions.col.size"
                                         class="highlighted">
-                            <js:volume value="${session.size}"/>
+                            <probe:volume value="${session.size}"/>
                         </display:column>
                     </c:if>
 

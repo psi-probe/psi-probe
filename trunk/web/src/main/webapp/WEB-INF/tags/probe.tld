@@ -17,9 +17,9 @@
     <tlib-version>1.0.1</tlib-version>
     <jsp-version>1.2</jsp-version>
 
-    <short-name>js</short-name>
-    <uri>http://www.jstripe.com/tags</uri>
-    <description>jstripe.com tools tag library. Author Vlad Ilyushchenko.</description>
+    <short-name>probe</short-name>
+    <uri>http://psi-probe.googlecode.com/jsp/tags</uri>
+    <description>PSI Probe tag library. Author Vlad Ilyushchenko.</description>
 
     <tag>
         <name>duration</name>

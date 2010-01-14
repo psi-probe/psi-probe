@@ -13,7 +13,7 @@
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c' %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
-<%@ taglib uri="/WEB-INF/tags/jstripe.tld" prefix="js" %>
+<%@ taglib uri="/WEB-INF/tags/probe.tld" prefix="probe" %>
 
 <c:choose>
     <c:when test="${! empty cluster.members}">
@@ -63,11 +63,11 @@
 
             <display:column titleKey="probe.jsp.cluster.members.col.avgMsgSize" sortable="true"
                             sortProperty="avgMessageSize">
-                <js:volume value="${member.avgMessageSize}"/>
+                <probe:volume value="${member.avgMessageSize}"/>
             </display:column>
 
             <display:column titleKey="probe.jsp.cluster.members.col.sent" sortable="true" sortProperty="totalBytes">
-                <js:volume value="${member.totalBytes}"/>
+                <probe:volume value="${member.totalBytes}"/>
             </display:column>
 
             <c:if test="${cluster.senderReplicationMode == 'pooled'}">

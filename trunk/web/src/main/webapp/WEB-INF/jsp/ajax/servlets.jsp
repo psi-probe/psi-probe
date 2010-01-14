@@ -13,7 +13,7 @@
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c' %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
-<%@ taglib uri="/WEB-INF/tags/jstripe.tld" prefix="js" %>
+<%@ taglib uri="/WEB-INF/tags/probe.tld" prefix="probe" %>
 
 <%--
     An Ajax spippet that displays a list of servlets
@@ -37,14 +37,14 @@
             </c:if>
             <display:column sortProperty="servletName" sortable="true"
                             titleKey="probe.jsp.servlets.col.servletName" class="${! empty param.webapp ? 'leftmost' : ''}">
-                <div class="servletName"><js:out value="${svlt.servletName}" maxLength="40"/>
+                <div class="servletName"><probe:out value="${svlt.servletName}" maxLength="40"/>
                     <c:if test="${! empty svlt.mappings}">
                         <span>
-                            (<js:out maxLength="40"><c:forEach var="mp" items="${svlt.mappings}" varStatus="mpSt">${mp}<c:if test="${! mpSt.last}">,</c:if></c:forEach></js:out>)
+                            (<probe:out maxLength="40"><c:forEach var="mp" items="${svlt.mappings}" varStatus="mpSt">${mp}<c:if test="${! mpSt.last}">,</c:if></c:forEach></probe:out>)
                         </span>
                     </c:if>
                 </div>
-                <div class="servletClass"><js:out value="${svlt.servletClass}" maxLength="50"/></div>
+                <div class="servletClass"><probe:out value="${svlt.servletClass}" maxLength="50"/></div>
             </display:column>
             <display:column sortProperty="available" sortable="true"
                             titleKey="probe.jsp.servlets.col.available">
@@ -77,7 +77,7 @@
                             titleKey="probe.jsp.servlets.col.requestCount"/>
             <display:column sortable="true" sortProperty="processingTime"
                             titleKey="probe.jsp.servlets.col.processingTime">
-                <js:duration value="${svlt.processingTime}"/>
+                <probe:duration value="${svlt.processingTime}"/>
             </display:column>
             <display:column property="errorCount" sortable="true"
                             titleKey="probe.jsp.servlets.col.errorCount"/>

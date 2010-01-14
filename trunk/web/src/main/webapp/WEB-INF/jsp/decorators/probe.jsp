@@ -14,7 +14,7 @@
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator" prefix="decorator" %>
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/page" prefix="page" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@ taglib uri="/WEB-INF/tags/jstripe.tld" prefix="js" %>
+<%@ taglib uri="/WEB-INF/tags/probe.tld" prefix="probe" %>
 <%@ taglib uri="http://acegisecurity.org/authz" prefix="authz" %>
 
 
@@ -99,12 +99,12 @@
     </ul>
     <spring:message code="probe.jsp.copyright"/>
     <div id="locales">
-        <a href="?<js:addQueryParam param='lang' value='en'/>"><img src="<c:url value='/flags/gb.gif'/>" alt="EN" /></a>
-        <a href="?<js:addQueryParam param='lang' value='ru'/>"><img src="<c:url value='/flags/ru.gif'/>" alt="RU" /></a>
-        <a href="?<js:addQueryParam param='lang' value='ja'/>"><img src="<c:url value='/flags/jp.gif'/>" alt="JP" /></a>
-        <a href="?<js:addQueryParam param='lang' value='de'/>"><img src="<c:url value='/flags/de.gif'/>" alt="DE" /></a>
-        <a href="?<js:addQueryParam param='lang' value='fr'/>"><img src="<c:url value='/flags/fr.gif'/>" alt="FR" /></a>
-        <a href="?<js:addQueryParam param='lang' value='pt_br'/>"><img src="<c:url value='/flags/br.gif'/>" alt="BR" /></a>
+        <a href="?<probe:addQueryParam param='lang' value='en'/>"><img src="<c:url value='/flags/gb.gif'/>" alt="EN" /></a>
+        <a href="?<probe:addQueryParam param='lang' value='ru'/>"><img src="<c:url value='/flags/ru.gif'/>" alt="RU" /></a>
+        <a href="?<probe:addQueryParam param='lang' value='ja'/>"><img src="<c:url value='/flags/jp.gif'/>" alt="JP" /></a>
+        <a href="?<probe:addQueryParam param='lang' value='de'/>"><img src="<c:url value='/flags/de.gif'/>" alt="DE" /></a>
+        <a href="?<probe:addQueryParam param='lang' value='fr'/>"><img src="<c:url value='/flags/fr.gif'/>" alt="FR" /></a>
+        <a href="?<probe:addQueryParam param='lang' value='pt_br'/>"><img src="<c:url value='/flags/br.gif'/>" alt="BR" /></a>
     </div>
 </div>
 

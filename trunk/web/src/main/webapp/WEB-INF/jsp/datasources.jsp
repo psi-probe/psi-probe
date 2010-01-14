@@ -13,7 +13,7 @@
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c' %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
-<%@ taglib uri="http://www.jstripe.com/tags" prefix="js" %>
+<%@ taglib uri="/WEB-INF/tags/probe.tld" prefix="probe" %>
 
 <html>
 <head>
@@ -83,9 +83,9 @@
                 <display:column sortable="true" sortProperty="dataSourceInfo.score"
                                 titleKey="probe.jsp.datasources.list.col.usage" class="score_wrapper">
                     <div class="score_wrapper">
-                        <js:score value="${resource.dataSourceInfo.score}" fullBlocks="10" partialBlocks="5" showEmptyBlocks="true" showA="true" showB="true">
+                        <probe:score value="${resource.dataSourceInfo.score}" fullBlocks="10" partialBlocks="5" showEmptyBlocks="true" showA="true" showB="true">
                             <img src="<c:url value='/css/classic/gifs/rb_{0}.gif'/>" alt="+" title="<spring:message code='probe.jsp.applications.jdbcUsage.title' arguments='${resource.dataSourceInfo.score}'/>"/>
-                        </js:score>
+                        </probe:score>
                     </div>
                 </display:column>
 

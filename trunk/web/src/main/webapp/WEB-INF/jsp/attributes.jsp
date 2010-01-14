@@ -13,7 +13,7 @@
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c' %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
-<%@ taglib uri="/WEB-INF/tags/jstripe.tld" prefix="js" %>
+<%@ taglib uri="/WEB-INF/tags/probe.tld" prefix="probe" %>
 
 <%--
     Session attributes view, nothing spectacular.
@@ -51,10 +51,10 @@
 
         <c:choose>
             <c:when test="${param.size}">
-                <li id="size"><a href="?<js:toggle param='size'/>"><spring:message code="probe.jsp.hidesize"/></a></li>
+                <li id="size"><a href="?<probe:toggle param='size'/>"><spring:message code="probe.jsp.hidesize"/></a></li>
             </c:when>
             <c:otherwise>
-                <li id="size"><a href="?<js:toggle param='size'/>"><spring:message code="probe.jsp.showsize"/></a></li>
+                <li id="size"><a href="?<probe:toggle param='size'/>"><spring:message code="probe.jsp.showsize"/></a></li>
             </c:otherwise>
         </c:choose>
 
@@ -80,16 +80,16 @@
                             <span class="errorValue"><spring:message code="probe.jsp.sessionAttibutes.card.serializable.no"/></span>
                     </c:otherwise>
                 </c:choose>
-                <spring:message code="probe.jsp.sessionAttibutes.card.age"/>&nbsp;<span class="value"><js:duration value="${session.age}"/></span>
-                <spring:message code="probe.jsp.sessionAttibutes.card.idleTime"/>&nbsp;<span class="value"><js:duration value="${session.idleTime}"/></span>
+                <spring:message code="probe.jsp.sessionAttibutes.card.age"/>&nbsp;<span class="value"><probe:duration value="${session.age}"/></span>
+                <spring:message code="probe.jsp.sessionAttibutes.card.idleTime"/>&nbsp;<span class="value"><probe:duration value="${session.idleTime}"/></span>
                 <spring:message code="probe.jsp.sessionAttibutes.card.manager"/>&nbsp;<span class="value">${session.managerType}</span>
                 <spring:message code="probe.jsp.sessionAttibutes.card.info"/>&nbsp;<span class="value">${session.info}</span>
                 <spring:message code="probe.jsp.sessionAttibutes.card.created"/>&nbsp;<span class="value">${session.creationTime}</span>
                 <spring:message code="probe.jsp.sessionAttibutes.card.lastAccessed"/>&nbsp;<span class="value">${session.lastAccessTime}</span>
-                <spring:message code="probe.jsp.sessionAttibutes.card.maxIdleTime"/>&nbsp;<span class="value"><js:duration value="${session.maxIdleTime}"/></span>
+                <spring:message code="probe.jsp.sessionAttibutes.card.maxIdleTime"/>&nbsp;<span class="value"><probe:duration value="${session.maxIdleTime}"/></span>
                 <spring:message code="probe.jsp.sessionAttibutes.card.expiryTime"/>&nbsp;<span class="value">${session.expiryTime}</span>
                 <c:if test="${param.size}">
-                    <spring:message code="probe.jsp.sessionAttibutes.card.size"/>&nbsp;<span class="value"><js:volume value="${session.size}"/></span>
+                    <spring:message code="probe.jsp.sessionAttibutes.card.size"/>&nbsp;<span class="value"><probe:volume value="${session.size}"/></span>
                 </c:if>
             </p>
         </div>
@@ -133,7 +133,7 @@
                 <c:if test="${param.size}">
                     <display:column sortProperty="size" sortable="true"
                                     titleKey="probe.jsp.sessionAttibutes.col.size" class="highlighted">
-                        <js:volume value="${attribute.size}"/>
+                        <probe:volume value="${attribute.size}"/>
                     </display:column>
                 </c:if>
                 <display:column sortProperty="value" sortable="true"

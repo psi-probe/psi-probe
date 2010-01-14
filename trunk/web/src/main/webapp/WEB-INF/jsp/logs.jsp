@@ -13,7 +13,7 @@
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c' %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
-<%@ taglib uri="/WEB-INF/tags/jstripe.tld" prefix="js" %>
+<%@ taglib uri="/WEB-INF/tags/probe.tld" prefix="probe" %>
 
 <%--
     Simple tabular list of log files and their attributes. The page is further linked to
@@ -35,10 +35,10 @@
 <ul class="options">
     <c:choose>
         <c:when test="${param.apps}">
-            <li id="showapps"><a href="?<js:toggle param='apps'/>"><spring:message code="probe.jsp.logs.hideapps"/></a></li>
+            <li id="showapps"><a href="?<probe:toggle param='apps'/>"><spring:message code="probe.jsp.logs.hideapps"/></a></li>
         </c:when>
         <c:otherwise>
-            <li id="showapps"><a href="?<js:toggle param='apps'/>"><spring:message code="probe.jsp.logs.showapps"/></a></li>
+            <li id="showapps"><a href="?<probe:toggle param='apps'/>"><spring:message code="probe.jsp.logs.showapps"/></a></li>
         </c:otherwise>
     </c:choose>
 </ul>
@@ -67,11 +67,11 @@
         <display:column titleKey="probe.jsp.logs.col.file" sort="true" sortProperty="file">
             <c:choose>
                 <c:when test="${log.file == 'stdout'}">
-                    <js:out value="${log.file}" maxLength="80" ellipsisRight="false"/>
+                    <probe:out value="${log.file}" maxLength="80" ellipsisRight="false"/>
                 </c:when>
                 <c:otherwise>
                     <a class="logfile" href="<c:url value='/logs/follow.htm'><c:param name='id' value='${log_rowNum}'/></c:url>">
-                        <js:out value="${log.file}" maxLength="80" ellipsisRight="false"/>
+                        <probe:out value="${log.file}" maxLength="80" ellipsisRight="false"/>
                     </a>
                 </c:otherwise>
             </c:choose>
@@ -86,7 +86,7 @@
         </display:column>
 
         <display:column titleKey="probe.jsp.logs.col.size" sortable="true" sortProperty="size">
-            <js:volume value="${log.size}"/>&nbsp;
+            <probe:volume value="${log.size}"/>&nbsp;
         </display:column>
 
         <display:column titleKey="probe.jsp.logs.col.modified" sortable="true" sortProperty="lastModified">

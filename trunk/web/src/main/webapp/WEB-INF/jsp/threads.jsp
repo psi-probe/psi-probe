@@ -13,7 +13,7 @@
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c' %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
-<%@ taglib uri="/WEB-INF/tags/jstripe.tld" prefix="js" %>
+<%@ taglib uri="/WEB-INF/tags/probe.tld" prefix="probe" %>
 
 <html>
 <head>
@@ -63,7 +63,7 @@
                     <c:url value="/cldetails.ajax?thread=${th.name}"/>
                 </c:set>
             <span class="expandable" onclick="toggleAndReloadPanel('dd${th_rowNum}','${clUrl}')">
-                <js:out value="${th.classLoader}" maxLength="40" ellipsisRight="false"/>&nbsp;
+                <probe:out value="${th.classLoader}" maxLength="40" ellipsisRight="false"/>&nbsp;
             </span>
 
                 <div id="dd${th_rowNum}" class="urlinfo" style="display: none;">
