@@ -10,16 +10,21 @@
  */
 package com.googlecode.psiprobe;
 
-import org.apache.catalina.*;
-import org.apache.commons.modeler.Registry;
-
-import javax.management.MBeanServer;
-import javax.management.MalformedObjectNameException;
-import javax.management.ObjectName;
 import java.io.File;
 import java.net.URL;
 import java.util.List;
 import java.util.Arrays;
+import javax.management.MBeanServer;
+import javax.management.MalformedObjectNameException;
+import javax.management.ObjectName;
+import org.apache.catalina.Container;
+import org.apache.catalina.Context;
+import org.apache.catalina.Engine;
+import org.apache.catalina.Host;
+import org.apache.catalina.Lifecycle;
+import org.apache.catalina.Valve;
+import org.apache.catalina.Wrapper;
+import org.apache.commons.modeler.Registry;
 
 public class Tomcat55ContainerAdaptor extends AbstractTomcatContainer {
 

@@ -10,7 +10,11 @@
  */
 package com.googlecode.psiprobe.tokenizer;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.Vector;
 
 /**
  * <code>UniqueList</code> is a successor of <code>java.util.Vector</code> to provide a collection that

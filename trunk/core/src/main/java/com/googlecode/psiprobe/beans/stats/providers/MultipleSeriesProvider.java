@@ -10,12 +10,17 @@
  */
 package com.googlecode.psiprobe.beans.stats.providers;
 
+import com.googlecode.psiprobe.model.stats.StatsCollection;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
 import org.jfree.data.xy.DefaultTableXYDataset;
 import org.jfree.data.xy.XYDataItem;
-import com.googlecode.psiprobe.model.stats.StatsCollection;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.*;
 
 /**
  * Retrieves stats series with names that start with the statNamePrefix.

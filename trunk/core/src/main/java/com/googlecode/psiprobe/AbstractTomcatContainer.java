@@ -10,6 +10,19 @@
  */
 package com.googlecode.psiprobe;
 
+import com.googlecode.psiprobe.model.jsp.Item;
+import com.googlecode.psiprobe.model.jsp.Summary;
+import java.io.File;
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import javax.naming.NamingException;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import org.apache.catalina.Context;
 import org.apache.catalina.core.StandardContext;
 import org.apache.commons.logging.Log;
@@ -20,16 +33,6 @@ import org.apache.jasper.JspCompilationContext;
 import org.apache.jasper.Options;
 import org.apache.jasper.compiler.JspRuntimeContext;
 import org.apache.naming.resources.ResourceAttributes;
-import com.googlecode.psiprobe.model.jsp.Item;
-import com.googlecode.psiprobe.model.jsp.Summary;
-
-import javax.naming.NamingException;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletContext;
-import java.io.File;
-import java.net.URL;
-import java.net.URLClassLoader;
-import java.util.*;
 
 /**
  * Abstration layer to implement some functionality, which is common between different container adaptors.

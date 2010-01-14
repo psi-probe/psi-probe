@@ -10,7 +10,6 @@
  */
 package com.googlecode.psiprobe.controllers.logs;
 
-import org.apache.catalina.Context;
 import com.googlecode.psiprobe.controllers.TomcatContainerController;
 import com.googlecode.psiprobe.model.Application;
 import com.googlecode.psiprobe.model.DisconnectedLogDestination;
@@ -24,13 +23,18 @@ import com.googlecode.psiprobe.tools.logging.jdk.Jdk14LoggerAccessor;
 import com.googlecode.psiprobe.tools.logging.jdk.Jdk14ManagerAccessor;
 import com.googlecode.psiprobe.tools.logging.log4j.Log4JLoggerAccessor;
 import com.googlecode.psiprobe.tools.logging.log4j.Log4JManagerAccessor;
-import org.springframework.web.bind.ServletRequestUtils;
-import org.springframework.web.servlet.ModelAndView;
-
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.util.*;
+import org.apache.catalina.Context;
+import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.servlet.ModelAndView;
 
 public class ListLogsController extends TomcatContainerController {
 

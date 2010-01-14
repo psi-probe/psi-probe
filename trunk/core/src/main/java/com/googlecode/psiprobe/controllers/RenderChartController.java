@@ -10,6 +10,13 @@
  */
 package com.googlecode.psiprobe.controllers;
 
+import com.googlecode.psiprobe.Utils;
+import com.googlecode.psiprobe.beans.stats.providers.SeriesProvider;
+import com.googlecode.psiprobe.model.stats.StatsCollection;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
@@ -19,16 +26,9 @@ import org.jfree.chart.renderer.xy.XYAreaRenderer;
 import org.jfree.chart.renderer.xy.XYLine3DRenderer;
 import org.jfree.data.xy.DefaultTableXYDataset;
 import org.jfree.ui.RectangleInsets;
-import com.googlecode.psiprobe.Utils;
-import com.googlecode.psiprobe.beans.stats.providers.SeriesProvider;
-import com.googlecode.psiprobe.model.stats.StatsCollection;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.awt.*;
 
 /**
  * Plots data from "statsCollection" bean. The data is converted to XYSeries using SeriesProvider, name of which

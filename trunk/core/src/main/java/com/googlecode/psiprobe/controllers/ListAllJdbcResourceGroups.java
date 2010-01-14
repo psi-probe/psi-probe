@@ -10,15 +10,18 @@
  */
 package com.googlecode.psiprobe.controllers;
 
-import org.apache.catalina.Context;
 import com.googlecode.psiprobe.model.ApplicationResource;
 import com.googlecode.psiprobe.model.DataSourceInfo;
 import com.googlecode.psiprobe.model.DataSourceInfoGroup;
-import org.springframework.web.servlet.ModelAndView;
-
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.*;
+import org.apache.catalina.Context;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * produces a list of all datasources configured within the container grouped by JDBC URL.
