@@ -20,14 +20,8 @@ import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Arrays;
 
-/**
- * Created by IntelliJ IDEA.
- * User: ilyschenkov
- * Date: 04-Jan-2006
- * Time: 15:55:49
- * To change this template use File | Settings | File Templates.
- */
 public class Tomcat55ContainerAdaptor extends AbstractTomcatContainer {
 
     private Host host;
@@ -62,9 +56,7 @@ public class Tomcat55ContainerAdaptor extends AbstractTomcatContainer {
     public List findContexts() {
         Container containers[] = host.findChildren();
         List contextList = new ArrayList(containers.length);
-        for (int i = 0; i < containers.length; i++) {
-            contextList.add(containers[i]);
-        }
+        contextList.addAll(Arrays.asList(containers));
         return contextList;
     }
 
@@ -89,7 +81,7 @@ public class Tomcat55ContainerAdaptor extends AbstractTomcatContainer {
             mBeanServer.invoke(deployerOName, "addServiced",
                     new String[]{name}, new String[]{"java.lang.String"});
             try {
-                mBeanServer.invoke(deployerOName, "check", 
+                mBeanServer.invoke(deployerOName, "check",
                         new String[]{name}, new String[]{"java.lang.String"});
             } finally {
                 mBeanServer.invoke(deployerOName, "removeServiced",

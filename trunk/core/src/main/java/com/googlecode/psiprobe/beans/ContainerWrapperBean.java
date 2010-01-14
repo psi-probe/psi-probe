@@ -61,7 +61,7 @@ public class ContainerWrapperBean {
             synchronized (lock) {
 
                 if (tomcatContainer == null) {
-                    
+
                     String serverInfo = ServerInfo.getServerInfo();
                     logger.debug("Server info: " + serverInfo);
                     for (int i = 0; i < adaptorClasses.size(); i++) {
@@ -106,6 +106,7 @@ public class ContainerWrapperBean {
             }
         } catch (Throwable e) {
             logger.error("Could not unregister container adaptor", e);
+            if (e instanceof ThreadDeath) throw (ThreadDeath) e;
         }
     }
 

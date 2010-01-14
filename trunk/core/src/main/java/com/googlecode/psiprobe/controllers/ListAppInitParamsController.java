@@ -12,6 +12,7 @@ package com.googlecode.psiprobe.controllers;
 
 import org.apache.catalina.Context;
 import com.googlecode.psiprobe.tools.ApplicationUtils;
+import com.googlecode.psiprobe.tools.SecurityUtils;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,10 +26,8 @@ import javax.servlet.http.HttpServletResponse;
 public class ListAppInitParamsController  extends ContextHandlerController {
     protected ModelAndView handleContext(String contextName, Context context,
                                          HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String privelegedRole = getServletContext().getInitParameter("attribute.value.role");
-
         ModelAndView mv = new ModelAndView(getViewName(), "appInitParams", ApplicationUtils.getApplicationInitParams(context));
-        if (request.isUserInRole(privelegedRole)) {
+        if (SecurityUtils.hasAttributeValueRole(getServletContext())) {
             mv.addObject("allowedToViewValues", Boolean.TRUE);
         }
 

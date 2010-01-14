@@ -12,6 +12,7 @@ package com.googlecode.psiprobe.controllers;
 
 import com.googlecode.psiprobe.beans.RuntimeInfoAccessorBean;
 import com.googlecode.psiprobe.model.SystemInformation;
+import com.googlecode.psiprobe.tools.SecurityUtils;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -52,7 +53,7 @@ public class SysInfoController extends TomcatContainerController {
         Map sysProps = new Properties();
         sysProps.putAll(System.getProperties());
 
-        if (!request.isUserInRole(getServletContext().getInitParameter("attribute.value.role"))) {
+        if (!SecurityUtils.hasAttributeValueRole(getServletContext())) {
             for (Iterator it = filterOutKeys.iterator(); it.hasNext();) {
                 sysProps.remove(it.next());
             }

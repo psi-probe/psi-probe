@@ -17,6 +17,7 @@ import com.googlecode.psiprobe.model.ApplicationSession;
 import com.googlecode.psiprobe.model.Attribute;
 import com.googlecode.psiprobe.model.SessionSearchInfo;
 import com.googlecode.psiprobe.tools.ApplicationUtils;
+import com.googlecode.psiprobe.tools.SecurityUtils;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
@@ -39,8 +40,8 @@ public class ListSessionsController extends ContextHandlerController {
     protected ModelAndView handleContext(String contextName, Context context,
                                          HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        String privelegedRole = getServletContext().getInitParameter("attribute.value.role");
-        boolean calcSize = ServletRequestUtils.getBooleanParameter(request, "size", false) && request.isUserInRole(privelegedRole);
+        boolean calcSize = ServletRequestUtils.getBooleanParameter(request, "size", false)
+                && SecurityUtils.hasAttributeValueRole(getServletContext());
 
         SessionSearchInfo searchInfo = new SessionSearchInfo();
         searchInfo.setSearchAction(StringUtils.trimToNull(ServletRequestUtils.getStringParameter(request, "searchAction", SessionSearchInfo.ACTION_NONE)));
@@ -80,9 +81,9 @@ public class ListSessionsController extends ContextHandlerController {
         }
 
         List sessionList = new ArrayList();
-        for (Iterator it = ctxs.iterator(); it.hasNext(); ) {
+        for (Iterator it = ctxs.iterator(); it.hasNext();) {
             Context ctx = (Context) it.next();
-            if (ctx != null && ctx.getManager() != null && (! searchInfo.isApply() || searchInfo.isUseSearch())) {
+            if (ctx != null && ctx.getManager() != null && (!searchInfo.isApply() || searchInfo.isUseSearch())) {
                 Session sessions[] = ctx.getManager().findSessions();
                 for (int i = 0; i < sessions.length; i++) {
                     Session session = sessions[i];
@@ -99,7 +100,7 @@ public class ListSessionsController extends ContextHandlerController {
         }
 
         if (sessionList.isEmpty() && searchInfo.isApply()) {
-            synchronized(sess) {
+            synchronized (sess) {
                 populateSearchMessages(searchInfo);
             }
         }
@@ -120,25 +121,25 @@ public class ListSessionsController extends ContextHandlerController {
         } else if (searchInfo.isValid()) {
             searchInfo.setInfoMessage(msa.getMessage("probe.src.sessions.search.results.empty"));
         } else {
-            if (! searchInfo.isSessionIdValid()) {
+            if (!searchInfo.isSessionIdValid()) {
                 searchInfo.addErrorMessage(msa.getMessage("probe.src.sessions.search.invalid.sessionId", new Object[] {searchInfo.getSessionIdMsg()}));
             }
-            if (! searchInfo.isAttrNameValid()) {
+            if (!searchInfo.isAttrNameValid()) {
                 for (Iterator i = searchInfo.getAttrNameMsgs().iterator(); i.hasNext();) {
                     String m = (String) i.next();
                     searchInfo.addErrorMessage(msa.getMessage("probe.src.sessions.search.invalid.attrName", new Object[] {m}));
                 }
             }
-            if (! searchInfo.isAgeFromValid()) {
+            if (!searchInfo.isAgeFromValid()) {
                 searchInfo.addErrorMessage(msa.getMessage("probe.src.sessions.search.invalid.ageFrom"));
             }
-            if (! searchInfo.isAgeToValid()) {
+            if (!searchInfo.isAgeToValid()) {
                 searchInfo.addErrorMessage(msa.getMessage("probe.src.sessions.search.invalid.ageTo"));
             }
-            if (! searchInfo.isIdleTimeFromValid()) {
+            if (!searchInfo.isIdleTimeFromValid()) {
                 searchInfo.addErrorMessage(msa.getMessage("probe.src.sessions.search.invalid.idleTimeFrom"));
             }
-            if (! searchInfo.isIdleTimeToValid()) {
+            if (!searchInfo.isIdleTimeToValid()) {
                 searchInfo.addErrorMessage(msa.getMessage("probe.src.sessions.search.invalid.idleTimeTo"));
             }
             if (searchInfo.getErrorMessages().isEmpty()) {
@@ -177,7 +178,7 @@ public class ListSessionsController extends ContextHandlerController {
                 for (Iterator i = appSession.getAttributes().iterator(); i.hasNext();) {
                     String attrName = ((Attribute) i.next()).getName();
 
-                    if (attrName != null ) {
+                    if (attrName != null) {
                         for (Iterator j = a.iterator(); j.hasNext();) {
                             Pattern p = (Pattern) j.next();
                             if (p.matcher(attrName).matches()) {
