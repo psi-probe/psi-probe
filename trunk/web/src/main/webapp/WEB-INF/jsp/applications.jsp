@@ -117,18 +117,18 @@
                 <c:choose>
                     <c:when test="${app.available}">
                         <a onclick="return toggleContext('${app_rowNum}', '${toggleAppUrl}', '${app.name}');"
-                           class="okValue" href="<c:url value='/app/stop.htm'/>?webapp=${app.name}"
+                           href="<c:url value='/app/stop.htm'/>?webapp=${app.name}"
                            title="<spring:message code='probe.jsp.applications.title.status.up' arguments='${app.name}'/>">
-                            <div id="rs_${app_rowNum}">
+                            <div class="okValue" id="rs_${app_rowNum}">
                                 <spring:message code="probe.jsp.applications.status.up"/>
                             </div>
                         </a>
                     </c:when>
                     <c:otherwise>
                         <a onclick="return toggleContext('${app_rowNum}', '${toggleAppUrl}', '${app.name}');"
-                           class="errorValue" href="<c:url value='/app/start.htm'/>?webapp=${app.name}"
+                           href="<c:url value='/app/start.htm'/>?webapp=${app.name}"
                            title="<spring:message code='probe.jsp.applications.status.down.title' arguments='${app.name}'/>">
-                            <div id="rs_${app_rowNum}">
+                            <div class="errorValue" id="rs_${app_rowNum}">
                                 <spring:message code="probe.jsp.applications.status.down"/>
                             </div>
                         </a>
