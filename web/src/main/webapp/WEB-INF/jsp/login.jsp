@@ -16,8 +16,8 @@
 <html>
 <head>
     <title>Login</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='main.css'/>" type="text/css"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='login.css'/>" type="text/css"/>
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='main.css'/>"/>
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='login.css'/>"/>
 </head>
 
 <body>

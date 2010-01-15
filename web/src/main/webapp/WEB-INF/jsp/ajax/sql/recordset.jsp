@@ -38,9 +38,10 @@
 
     <c:choose>
         <c:when test="${! empty results}">
+            <c:url value="sql/cachedRecordset.ajax" var="requestURI" />
             <display:table htmlId="sqlResultTbl" name="results" id="row" class="genericTbl"
                            cellspacing="0" cellpadding="0" excludedParams="*"
-                           requestURI="${pageContext.request.contextPath}/sql/cachedRecordset.ajax" pagesize="${rowsPerPage}">
+                           requestURI="${requestURI}" pagesize="${rowsPerPage}">
                 <display:setProperty name="paging.banner.item_name">
                     <spring:message code="probe.jsp.dataSourceTest.results.paging.banner.item_name"/>
                 </display:setProperty>

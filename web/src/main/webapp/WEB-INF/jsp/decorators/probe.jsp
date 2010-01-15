@@ -32,12 +32,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="${lang}" xml:lang="${lang}">
 <head>
     <title>Probe - <decorator:title default="Tomcat management"/></title>
-    <link rel="shortcut icon" href="<c:url value='/css/favicon.gif'/>"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='tables.css'/>" type="text/css"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='main.css'/>" type="text/css"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='mainnav.css'/>" type="text/css"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='messages.css'/>" type="text/css"/>
-    <link rel="stylesheet" href="<c:url value='/css/classic/tooltip.css'/>" type="text/css"/>
+    <link type="image/gif" rel="shortcut icon" href="<c:url value='/css/favicon.gif'/>"/>
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='tables.css'/>"/>
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='main.css'/>"/>
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='mainnav.css'/>"/>
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='messages.css'/>"/>
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='tooltip.css'/>"/>
     <decorator:head/>
 </head>
 

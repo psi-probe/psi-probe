@@ -17,7 +17,7 @@
 <html>
 <head>
     <title><spring:message code="probe.jsp.title.deployment"/></title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='deploy.css'/>" type="text/css"/>
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='deploy.css'/>"/>
 </head>
 
 <body>
