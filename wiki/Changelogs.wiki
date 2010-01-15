@@ -1,20 +1,13 @@
 #summary List of changes for each release and current development of PSI Probe.
 #labels Featured
 
-= PSI Probe Changelog =
+= PSI Probe Changelogs =
 
-  * [http://code.google.com/p/psi-probe/issues/list?can=1&q=Type%3ADefect%2CEnhancement%2CFeature+Status%3AFixed%2CVerified+-FoundIn%3ASnapshot&sort=-type&colspec=ID+Milestone+Priority+Type+Status+Summary+Owner&cells=tiles Current Development]
-  * [ChangelogsLambdaProbe Old versions] (Lambda Probe)
-
+  * 2.0 - current development
+    * [http://code.google.com/p/psi-probe/issues/list?can=2&q=Milestone:2.0 To-do]
+    * [http://code.google.com/p/psi-probe/issues/list?can=1&q=Type:Defect,Enhancement,Feature+Status:Fixed,Verified+-FoundIn:Snapshot&sort=-Type Fixed]
+  * [ChangelogsLambdaProbe Older] (Lambda Probe)
 
 <wiki:comment>
-  * [http://code.google.com/p/psi-probe/issues/list?can=1&q=type%3ADefect%2CEnhancement%2CFeature+status%3AReleased+milestone%3A2.0&sort=-type&colspec=ID+Milestone+Priority+Type+Status+Summary+Owner&cells=tiles 2.0 release]
-
-http://code.google.com/p/psi-probe/issues/list?can=1
-
-Current development changelog query:
-Type:Defect,Enhancement,Feature Status:Fixed,Verified -FoundIn:Snapshot
-
-Release changelog query:
-Type:Defect,Enhancement,Feature Status:Released Milestone:2.0
+  * [http://code.google.com/p/psi-probe/issues/list?can=1&q=Type:Defect,Enhancement,Feature+Status:Released+Milestone:2.0&sort=-Type 2.0 release]
 </wiki:comment>
