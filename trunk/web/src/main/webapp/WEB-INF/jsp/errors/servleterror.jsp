@@ -14,7 +14,6 @@
 <%@ page import="java.io.PrintStream" %>
 <%@ page import="java.io.File" %>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c' %>
-<%@ taglib uri='http://java.sun.com/jsp/jstl/fmt' prefix='fmt' %>
 
 <%--
     Servlet exception handler page. Unfortunately we cannot use here any fancy libraries if we want
@@ -27,8 +26,8 @@
 
 <head>
     <title>Probe - Error</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/classic/main.css" type="text/css"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/classic/messages.css" type="text/css"/>
+    <link type="text/css" rel="stylesheet" href="<c:url value='css/classic/main.css'/>"/>
+    <link type="text/css" rel="stylesheet" href="<c:url value='css/classic/messages.css'/>"/>
 </head>
 
 <body>

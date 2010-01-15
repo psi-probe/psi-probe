@@ -26,7 +26,7 @@
 <html>
 <head>
     <title><spring:message code="probe.jsp.title.status"/></title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='status.css'/>" type="text/css"/>
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='status.css'/>"/>
     <script type="text/javascript" language="javascript" src="<c:url value='/js/prototype.js'/>"></script>
     <script type="text/javascript" language="javascript" src="<c:url value='/js/scriptaculous.js'/>"></script>
     <script type="text/javascript" language="javascript" src="<c:url value='/js/Tooltip.js'/>"></script>

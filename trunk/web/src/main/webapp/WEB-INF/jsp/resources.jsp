@@ -19,7 +19,7 @@
 
 <head>
     <title><spring:message code="probe.jsp.title.resources" arguments="${param.webapp}"/></title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code="resources.css"/>" type="text/css"/>
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='resources.css'/>"/>
 </head>
 
 <body>
