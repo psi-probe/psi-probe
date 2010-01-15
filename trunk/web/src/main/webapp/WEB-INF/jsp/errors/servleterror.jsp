@@ -45,31 +45,35 @@
 
         %>
         <div id="errorMessage">
-            It seems that Probe application does not have sufficient access to Tomcat core libraries.
-            Please make sure the context (<%=request.getContextPath()%>) has flag "privileged" set to "true".
-            You can do so by creating file <b>"probe.xml"</b> in <b><%=conf.getAbsolutePath()%></b> with the following
-            contents:<br/><br/>
-
+            <p>
+                It seems that Probe application does not have sufficient access to Tomcat core libraries.
+                Please make sure the context (<%=request.getContextPath()%>) has flag "privileged" set to "true".
+                You can do so by creating file <b>"probe.xml"</b> in <b><%=conf.getAbsolutePath()%></b> with the following
+                contents:
+            </p>
             <div class="codesample">
                 &lt;?xml version="1.0" encoding="UTF-8"?&gt;<br/>
                 &lt;Context path="/probe" privileged="true"/&gt;
             </div>
-            <br/>
-            and restarting Tomcat.
+            <p>
+                and restarting Tomcat.  If you need help, please visit our
+                <a href="http://groups.google.com/group/psi-probe-discuss">discussion board</a>.
+            </p>
         </div>
         <%
-        } else {
+            } else {
         %>
         <div class="errorMessage">
             <p>
                 Application encountered an unexpected error.
-                We would greatly appreciate if you send the information below back to us so we can correct the problem
-                as soon as possible!
+                We will greatly appreciate it if you share the information below
+                with us.  Sharing this information through our <a href="http://code.google.com/p/psi-probe/issues/list?can=1">issue tracker</a>
+                or our <a href="http://groups.google.com/group/psi-probe-discuss">discussion board</a>
+                will help us find and correct this problem as soon as possible!
             </p>
         </div>
 
-        <div class="errorMessageDetails">
-            <%
+        <div class="errorMessageDetails"><%
                 ByteArrayOutputStream bos = new ByteArrayOutputStream();
                 PrintStream ps = new PrintStream(bos);
                 error.printStackTrace(ps);
@@ -86,7 +90,9 @@
                     }
 
                     if (e != null) {
-                        ps.print("<br/><br/>Caused by:</br></br>");
+                        ps.println();
+                        ps.println("Caused by:");
+                        ps.println();
                         e.printStackTrace(ps);
                     } else {
                         break;
@@ -95,8 +101,7 @@
 
                 out.print(error.getMessage());
                 out.print(bos.toString());
-            %>
-        </div>
+        %></div>
         <%
             }
         %>

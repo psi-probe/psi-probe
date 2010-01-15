@@ -41,6 +41,7 @@ div.errorMessageDetails {
     font-weight: bold;
     background-color: #FFB6C1;
     border: 1px dashed #666;
+    white-space: pre-wrap;
 }
 
 div.codesample {
