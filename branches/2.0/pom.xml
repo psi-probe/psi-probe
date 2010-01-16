@@ -17,8 +17,8 @@
 		</license>
 	</licenses>
 	<scm>
-		<connection>scm:svn:http://psi-probe.googlecode.com/svn/trunk/</connection>
-		<developerConnection>scm:svn:https://psi-probe.googlecode.com/svn/trunk/</developerConnection>
+		<connection>scm:svn:http://psi-probe.googlecode.com/svn/branches/2.0/</connection>
+		<developerConnection>scm:svn:https://psi-probe.googlecode.com/svn/branches/2.0/</developerConnection>
 		<url>scm:svn:http://psi-probe.googlecode.com/svn/</url>
 	</scm>
 	<modules>
