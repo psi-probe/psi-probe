@@ -371,28 +371,16 @@
 	<profiles>
 		<profile>
 			<id>release</id>
-			<activation>
-				<property>
-					<name>profile.release</name>
-					<value>true</value>
-				</property>
-			</activation>
 			<properties>
 				<probe.version>${project.version}</probe.version>
 				<buildNumber.doCheck>true</buildNumber.doCheck>
 				<buildNumber.doUpdate>true</buildNumber.doUpdate>
 			</properties>
 		</profile>
-		<profile>
-			<id>incremental</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<properties>
-				<probe.version>${project.version} (r${buildNumber} ${timestamp})</probe.version>
-				<buildNumber.doCheck>false</buildNumber.doCheck>
-				<buildNumber.doUpdate>false</buildNumber.doUpdate>
-			</properties>
-		</profile>
 	</profiles>
+    <properties>
+        <probe.version>${project.version} (r${buildNumber} ${timestamp})</probe.version>
+        <buildNumber.doCheck>false</buildNumber.doCheck>
+        <buildNumber.doUpdate>false</buildNumber.doUpdate>
+    </properties>
 </project>
