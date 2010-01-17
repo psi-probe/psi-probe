@@ -6,5 +6,5 @@
   * 2.1 - current development
     * [http://code.google.com/p/psi-probe/issues/list?can=2&q=Milestone:2.1 To-do]
     * [http://code.google.com/p/psi-probe/issues/list?can=1&q=Type:Defect,Enhancement,Feature+Status:Fixed,Verified+-FoundIn:Snapshot&sort=-Type Fixed]
-  * [http://code.google.com/p/psi-probe/issues/list?can=1&q=Type:Defect,Enhancement,Feature+Status:Released+Milestone:2.0&sort=-Type 2.0 release]
+  * [http://code.google.com/p/psi-probe/issues/list?can=1&q=Milestone:2.0+Status:Released+Type:Defect,Enhancement,Feature+-FoundIn:Snapshot&sort=-Type 2.0 release]
   * [ChangelogsLambdaProbe Older] (Lambda Probe)
