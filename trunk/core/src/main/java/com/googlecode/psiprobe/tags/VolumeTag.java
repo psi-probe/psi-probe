@@ -10,13 +10,12 @@
  */
 package com.googlecode.psiprobe.tags;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.tagext.TagSupport;
 import java.io.IOException;
 import java.text.NumberFormat;
+import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.tagext.TagSupport;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  * JSP tag to convert size from bytes into human readable form: KB, MB, GB or TB depending on how large the value

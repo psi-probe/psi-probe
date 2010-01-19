@@ -11,13 +11,12 @@
 package com.googlecode.psiprobe.controllers.logs;
 
 import com.googlecode.psiprobe.model.FollowedFile;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.ParameterizableViewController;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.sql.Timestamp;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.ParameterizableViewController;
 
 public class UpdateFileInfoController extends ParameterizableViewController {
 

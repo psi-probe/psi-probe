@@ -10,8 +10,8 @@
  */
 package com.googlecode.psiprobe.beans;
 
-import com.mchange.v2.c3p0.ComboPooledDataSource;
 import com.googlecode.psiprobe.model.DataSourceInfo;
+import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 /**
  * Abstraction layer for c3p0. Maps c3p0 datasource properties on our generic DataSourceInfo bean.

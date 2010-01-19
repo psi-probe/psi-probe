@@ -10,10 +10,10 @@
  */
 package com.googlecode.psiprobe.tags;
 
+import java.io.IOException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.BodyTagSupport;
-import java.io.IOException;
 
 public class OutTag extends BodyTagSupport {
 

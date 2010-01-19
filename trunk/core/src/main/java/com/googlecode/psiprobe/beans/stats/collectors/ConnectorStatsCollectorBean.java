@@ -12,7 +12,6 @@ package com.googlecode.psiprobe.beans.stats.collectors;
 
 import com.googlecode.psiprobe.beans.ContainerListenerBean;
 import com.googlecode.psiprobe.model.ThreadPool;
-
 import java.util.Iterator;
 import java.util.List;
 

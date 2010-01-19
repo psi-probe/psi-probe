@@ -10,12 +10,11 @@
  */
 package com.googlecode.psiprobe.beans.stats.providers;
 
+import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.jfree.data.xy.XYDataItem;
 import org.jfree.data.xy.XYSeries;
-
-import java.util.List;
 
 public abstract class AbstractSeriesProvider implements SeriesProvider {
 

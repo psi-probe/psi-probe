@@ -10,15 +10,14 @@
  */
 package com.googlecode.psiprobe.controllers;
 
-import org.apache.catalina.Context;
 import com.googlecode.psiprobe.model.ApplicationResource;
-import org.springframework.web.servlet.ModelAndView;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.apache.catalina.Context;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Creates a list of all configured datasources for all web applications within the container.

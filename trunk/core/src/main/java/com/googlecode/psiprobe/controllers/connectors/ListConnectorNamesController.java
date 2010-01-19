@@ -12,10 +12,9 @@ package com.googlecode.psiprobe.controllers.connectors;
 
 import com.googlecode.psiprobe.beans.ContainerListenerBean;
 import com.googlecode.psiprobe.controllers.TomcatContainerController;
-import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.springframework.web.servlet.ModelAndView;
 
 public class ListConnectorNamesController extends TomcatContainerController {
     private ContainerListenerBean containerListenerBean;

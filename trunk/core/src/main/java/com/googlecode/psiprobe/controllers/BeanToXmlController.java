@@ -12,12 +12,11 @@ package com.googlecode.psiprobe.controllers;
 
 import com.thoughtworks.xstream.XStream;
 import com.googlecode.psiprobe.model.TransportableModel;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
 import org.springframework.web.servlet.mvc.Controller;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 public class BeanToXmlController extends AbstractController {
 

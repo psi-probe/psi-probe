@@ -10,14 +10,13 @@
  */
 package com.googlecode.psiprobe.beans;
 
+import com.googlecode.psiprobe.model.jmx.RuntimeInformation;
+import com.googlecode.psiprobe.tools.JmxTools;
+import javax.management.MBeanServer;
+import javax.management.ObjectName;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.commons.modeler.Registry;
-import com.googlecode.psiprobe.model.jmx.RuntimeInformation;
-import com.googlecode.psiprobe.tools.JmxTools;
-
-import javax.management.MBeanServer;
-import javax.management.ObjectName;
 
 public class RuntimeInfoAccessorBean {
 

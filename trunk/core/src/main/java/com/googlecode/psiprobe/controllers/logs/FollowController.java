@@ -13,12 +13,11 @@ package com.googlecode.psiprobe.controllers.logs;
 import com.googlecode.psiprobe.model.FollowedFile;
 import com.googlecode.psiprobe.tools.BackwardsFileStream;
 import com.googlecode.psiprobe.tools.BackwardsLineReader;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.ParameterizableViewController;
-
+import java.io.File;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.ParameterizableViewController;
 
 public class FollowController extends ParameterizableViewController  {
 

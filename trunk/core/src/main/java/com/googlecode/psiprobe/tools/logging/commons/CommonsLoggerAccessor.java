@@ -14,7 +14,6 @@ import com.googlecode.psiprobe.tools.Instruments;
 import com.googlecode.psiprobe.tools.logging.DefaultAccessor;
 import com.googlecode.psiprobe.tools.logging.jdk.Jdk14LoggerAccessor;
 import com.googlecode.psiprobe.tools.logging.log4j.Log4JLoggerAccessor;
-
 import java.util.ArrayList;
 import java.util.List;
 

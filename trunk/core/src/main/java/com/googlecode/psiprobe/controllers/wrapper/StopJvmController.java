@@ -10,12 +10,11 @@
  */
 package com.googlecode.psiprobe.controllers.wrapper;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
 import org.tanukisoftware.wrapper.WrapperManager;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 public class StopJvmController extends ParameterizableViewController {
     private int stopExitCode = 1;

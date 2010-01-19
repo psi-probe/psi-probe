@@ -10,11 +10,10 @@
  */
 package com.googlecode.psiprobe.tools;
 
-import org.acegisecurity.context.SecurityContextHolder;
-import org.acegisecurity.GrantedAuthority;
-
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import org.acegisecurity.context.SecurityContextHolder;
+import org.acegisecurity.GrantedAuthority;
 
 public class SecurityUtils {
 

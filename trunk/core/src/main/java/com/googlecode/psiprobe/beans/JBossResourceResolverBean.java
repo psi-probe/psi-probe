@@ -10,25 +10,24 @@
  */
 package com.googlecode.psiprobe.beans;
 
-import org.apache.catalina.Context;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import com.googlecode.psiprobe.model.ApplicationResource;
 import com.googlecode.psiprobe.model.DataSourceInfo;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
 import javax.management.MBeanServer;
 import javax.management.MBeanServerFactory;
 import javax.management.MalformedObjectNameException;
 import javax.management.ObjectName;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
+import org.apache.catalina.Context;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 /**
  * An Adaptor to convert information retrieved from JBoss JMX beans into internal resource model.

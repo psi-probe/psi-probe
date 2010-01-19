@@ -11,7 +11,6 @@
 package com.googlecode.psiprobe.tools.logging.jdk;
 
 import com.googlecode.psiprobe.tools.logging.LogDestination;
-
 import java.io.File;
 
 public class Jdk14HandlerAccessor extends BaseJdk14HandlerAccessor implements LogDestination {

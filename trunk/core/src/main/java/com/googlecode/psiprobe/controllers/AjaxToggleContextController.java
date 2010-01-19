@@ -10,11 +10,10 @@
  */
 package com.googlecode.psiprobe.controllers;
 
-import org.apache.catalina.Context;
-import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.catalina.Context;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Stops a web application.

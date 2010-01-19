@@ -10,21 +10,20 @@
  */
 package com.googlecode.psiprobe.beans;
 
+import com.googlecode.psiprobe.model.ApplicationResource;
+import com.googlecode.psiprobe.model.DataSourceInfo;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
 import org.apache.catalina.Context;
 import org.apache.catalina.deploy.ContextResource;
 import org.apache.catalina.deploy.ContextResourceLink;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.naming.ContextBindings;
-import com.googlecode.psiprobe.model.ApplicationResource;
-import com.googlecode.psiprobe.model.DataSourceInfo;
-
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
 public class ResourceResolverBean implements ResourceResolver {
 

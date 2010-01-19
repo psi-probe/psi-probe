@@ -10,13 +10,12 @@
  */
 package com.googlecode.psiprobe.controllers.jsp;
 
-import org.apache.catalina.Context;
 import com.googlecode.psiprobe.controllers.ContextHandlerController;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.catalina.Context;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 public class DiscardCompiledJspController extends ContextHandlerController {
 

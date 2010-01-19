@@ -10,13 +10,12 @@
  */
 package com.googlecode.psiprobe;
 
-import org.apache.catalina.Context;
-import org.apache.catalina.Wrapper;
 import com.googlecode.psiprobe.model.jsp.Summary;
-
 import java.io.File;
 import java.net.URL;
 import java.util.List;
+import org.apache.catalina.Context;
+import org.apache.catalina.Wrapper;
 
 /**
  * Part of Tomcat container version abstraction layer.

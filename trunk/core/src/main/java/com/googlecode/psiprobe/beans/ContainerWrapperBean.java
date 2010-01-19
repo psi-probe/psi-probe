@@ -11,14 +11,13 @@
 package com.googlecode.psiprobe.beans;
 
 import com.googlecode.psiprobe.TomcatContainer;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import org.apache.catalina.Wrapper;
 import org.apache.catalina.util.ServerInfo;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 /**
  * This class wires support for Tomcat "privileged" context functionality into Spring.

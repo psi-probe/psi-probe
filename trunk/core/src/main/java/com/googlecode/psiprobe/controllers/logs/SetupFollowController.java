@@ -11,13 +11,12 @@
 package com.googlecode.psiprobe.controllers.logs;
 
 import com.googlecode.psiprobe.model.FollowedFile;
-import org.springframework.web.servlet.ModelAndView;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.springframework.web.servlet.ModelAndView;
 
 public class SetupFollowController extends LogHandlerController {
 
