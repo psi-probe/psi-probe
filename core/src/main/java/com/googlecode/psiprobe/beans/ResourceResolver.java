@@ -10,11 +10,10 @@
  */
 package com.googlecode.psiprobe.beans;
 
-import org.apache.catalina.Context;
-
+import java.util.List;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-import java.util.List;
+import org.apache.catalina.Context;
 
 /**
  * Interface of beans that retrieve information about "resources" of application server. Typically those resources would

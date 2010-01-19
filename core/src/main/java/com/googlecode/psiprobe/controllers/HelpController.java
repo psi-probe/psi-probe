@@ -11,15 +11,14 @@
 package com.googlecode.psiprobe.controllers;
 
 import com.googlecode.psiprobe.Utils;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.AbstractController;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.InputStream;
 import java.util.Iterator;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.AbstractController;
 
 public class HelpController extends AbstractController {
 

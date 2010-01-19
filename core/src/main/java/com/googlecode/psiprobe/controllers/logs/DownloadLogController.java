@@ -11,11 +11,10 @@
 package com.googlecode.psiprobe.controllers.logs;
 
 import com.googlecode.psiprobe.Utils;
-import org.springframework.web.servlet.ModelAndView;
-
+import java.io.File;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
+import org.springframework.web.servlet.ModelAndView;
 
 public class DownloadLogController extends LogHandlerController {
 

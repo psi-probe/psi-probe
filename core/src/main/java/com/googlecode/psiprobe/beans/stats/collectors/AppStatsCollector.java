@@ -10,16 +10,15 @@
  */
 package com.googlecode.psiprobe.beans.stats.collectors;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.apache.catalina.Context;
 import com.googlecode.psiprobe.TomcatContainer;
 import com.googlecode.psiprobe.beans.ContainerWrapperBean;
 import com.googlecode.psiprobe.tools.ApplicationUtils;
 import com.googlecode.psiprobe.model.Application;
-
 import java.util.List;
 import java.util.Iterator;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.catalina.Context;
 
 /**
  * Collects application statistics

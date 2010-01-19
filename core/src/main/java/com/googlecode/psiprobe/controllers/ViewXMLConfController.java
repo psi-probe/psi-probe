@@ -10,15 +10,14 @@
  */
 package com.googlecode.psiprobe.controllers;
 
-import org.apache.catalina.Context;
 import com.googlecode.psiprobe.Utils;
-import org.springframework.web.servlet.ModelAndView;
-
+import java.io.File;
+import java.io.FileInputStream;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.FileInputStream;
+import org.apache.catalina.Context;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Displays a deployment descriptor (web.xml) or a context descriptor (context.xml) of a web application

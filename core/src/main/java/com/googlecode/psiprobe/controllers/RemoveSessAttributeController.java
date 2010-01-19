@@ -10,14 +10,13 @@
  */
 package com.googlecode.psiprobe.controllers;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.apache.catalina.Context;
 import org.apache.catalina.Session;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 public class RemoveSessAttributeController extends ContextHandlerController {
 

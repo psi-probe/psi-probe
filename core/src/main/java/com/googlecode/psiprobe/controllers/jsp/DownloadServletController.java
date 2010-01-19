@@ -10,15 +10,14 @@
  */
 package com.googlecode.psiprobe.controllers.jsp;
 
-import org.apache.catalina.Context;
 import com.googlecode.psiprobe.Utils;
 import com.googlecode.psiprobe.controllers.ContextHandlerController;
-import org.springframework.web.bind.ServletRequestUtils;
-import org.springframework.web.servlet.ModelAndView;
-
+import java.io.File;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
+import org.apache.catalina.Context;
+import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.servlet.ModelAndView;
 
 public class DownloadServletController extends ContextHandlerController {
     protected ModelAndView handleContext(String contextName, Context context,

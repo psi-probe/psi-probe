@@ -10,17 +10,16 @@
  */
 package com.googlecode.psiprobe.controllers;
 
-import org.apache.catalina.Context;
 import com.googlecode.psiprobe.model.ServletInfo;
 import com.googlecode.psiprobe.tools.ApplicationUtils;
-import org.springframework.web.servlet.ModelAndView;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.apache.catalina.Context;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Retrieves a list of servlets for a particular web application 

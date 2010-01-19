@@ -11,17 +11,16 @@
 package com.googlecode.psiprobe.controllers;
 
 import com.googlecode.psiprobe.Utils;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.ParameterizableViewController;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.ParameterizableViewController;
 
 public class DecoratorController extends ParameterizableViewController {
 

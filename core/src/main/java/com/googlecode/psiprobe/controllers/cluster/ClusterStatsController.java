@@ -12,10 +12,9 @@ package com.googlecode.psiprobe.controllers.cluster;
 
 import com.googlecode.psiprobe.beans.ClusterWrapperBean;
 import com.googlecode.psiprobe.controllers.TomcatContainerController;
-import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.springframework.web.servlet.ModelAndView;
 
 public class ClusterStatsController extends TomcatContainerController {
     private ClusterWrapperBean clusterWrapper;

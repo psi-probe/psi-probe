@@ -10,14 +10,13 @@
  */
 package com.googlecode.psiprobe.controllers;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.InternalResourceView;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.apache.catalina.Context;
 import org.apache.catalina.Session;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * Expires a single session of a particular web application.

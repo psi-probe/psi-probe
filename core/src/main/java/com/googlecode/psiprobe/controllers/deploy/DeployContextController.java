@@ -11,12 +11,11 @@
 package com.googlecode.psiprobe.controllers.deploy;
 
 import com.googlecode.psiprobe.controllers.TomcatContainerController;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.InternalResourceView;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * Forces Tomcat to install a pre-configured context name.

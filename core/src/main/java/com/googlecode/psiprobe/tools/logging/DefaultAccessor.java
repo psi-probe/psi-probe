@@ -10,14 +10,13 @@
  */
 package com.googlecode.psiprobe.tools.logging;
 
+import com.googlecode.psiprobe.model.Application;
+import java.io.File;
+import java.sql.Timestamp;
 import org.apache.commons.beanutils.MethodUtils;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import com.googlecode.psiprobe.model.Application;
-
-import java.io.File;
-import java.sql.Timestamp;
 
 public class DefaultAccessor  {
 

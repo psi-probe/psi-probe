@@ -10,9 +10,8 @@
  */
 package com.googlecode.psiprobe.tools.logging.log4j;
 
-import org.apache.commons.beanutils.MethodUtils;
-
 import java.lang.reflect.Method;
+import org.apache.commons.beanutils.MethodUtils;
 
 public class Log4JManagerAccessor {
 

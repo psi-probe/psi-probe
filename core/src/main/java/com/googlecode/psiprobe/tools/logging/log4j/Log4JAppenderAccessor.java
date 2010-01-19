@@ -12,7 +12,6 @@ package com.googlecode.psiprobe.tools.logging.log4j;
 
 import com.googlecode.psiprobe.tools.logging.DefaultAccessor;
 import com.googlecode.psiprobe.tools.logging.LogDestination;
-
 import java.io.File;
 
 public class Log4JAppenderAccessor extends DefaultAccessor implements LogDestination {

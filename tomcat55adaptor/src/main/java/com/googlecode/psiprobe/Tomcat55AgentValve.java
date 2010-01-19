@@ -10,15 +10,14 @@
  */
 package com.googlecode.psiprobe;
 
-import org.apache.catalina.connector.Request;
-import org.apache.catalina.connector.Response;
-import org.apache.catalina.valves.ValveBase;
 import com.googlecode.psiprobe.model.ApplicationSession;
-
+import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
+import org.apache.catalina.connector.Request;
+import org.apache.catalina.connector.Response;
+import org.apache.catalina.valves.ValveBase;
 
 public class Tomcat55AgentValve extends ValveBase {
 

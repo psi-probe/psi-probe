@@ -13,12 +13,11 @@ package com.googlecode.psiprobe.controllers.connectors;
 import com.googlecode.psiprobe.beans.ContainerListenerBean;
 import com.googlecode.psiprobe.controllers.TomcatContainerController;
 import com.googlecode.psiprobe.model.ThreadPool;
-import org.springframework.web.bind.ServletRequestUtils;
-import org.springframework.web.servlet.ModelAndView;
-
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
+import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.servlet.ModelAndView;
 
 public class GetConnectorController extends TomcatContainerController {
     private ContainerListenerBean containerListenerBean;

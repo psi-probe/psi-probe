@@ -10,13 +10,12 @@
  */
 package com.googlecode.psiprobe.beans;
 
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-import org.springframework.web.servlet.ModelAndView;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+import org.springframework.web.servlet.ModelAndView;
 
 public class NoCacheHandlerInterceptor extends HandlerInterceptorAdapter {
 

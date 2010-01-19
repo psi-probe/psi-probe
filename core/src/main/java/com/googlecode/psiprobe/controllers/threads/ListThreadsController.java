@@ -10,18 +10,17 @@
  */
 package com.googlecode.psiprobe.controllers.threads;
 
-import org.apache.catalina.Context;
 import com.googlecode.psiprobe.controllers.TomcatContainerController;
 import com.googlecode.psiprobe.model.java.ThreadModel;
 import com.googlecode.psiprobe.tools.Instruments;
-import org.springframework.web.servlet.ModelAndView;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.apache.catalina.Context;
+import org.springframework.web.servlet.ModelAndView;
 
 public class ListThreadsController extends TomcatContainerController {
     protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {

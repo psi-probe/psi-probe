@@ -10,8 +10,8 @@
  */
 package com.googlecode.psiprobe.beans;
 
-import org.apache.commons.dbcp.BasicDataSource;
 import com.googlecode.psiprobe.model.DataSourceInfo;
+import org.apache.commons.dbcp.BasicDataSource;
 
 /**
  * DBCP datasource abstraction layer.

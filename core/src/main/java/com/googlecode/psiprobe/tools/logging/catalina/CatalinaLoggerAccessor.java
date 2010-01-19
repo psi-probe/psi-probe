@@ -13,7 +13,6 @@ package com.googlecode.psiprobe.tools.logging.catalina;
 import com.googlecode.psiprobe.tools.Instruments;
 import com.googlecode.psiprobe.tools.logging.DefaultAccessor;
 import com.googlecode.psiprobe.tools.logging.LogDestination;
-
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;

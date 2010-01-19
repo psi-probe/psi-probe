@@ -10,14 +10,13 @@
  */
 package com.googlecode.psiprobe.tags;
 
+import java.util.Enumeration;
+import java.io.IOException;
+import javax.servlet.jsp.tagext.TagSupport;
+import javax.servlet.jsp.JspException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.web.bind.ServletRequestUtils;
-
-import javax.servlet.jsp.tagext.TagSupport;
-import javax.servlet.jsp.JspException;
-import java.util.Enumeration;
-import java.io.IOException;
 
 public class AddQueryParamTag extends TagSupport {
 
