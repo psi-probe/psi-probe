@@ -21,7 +21,7 @@
 			</snapshots>
 			<id>download.java.net</id>
 			<name>download.java.net</name>
-			<url>http://download.java.net/maven/2/javax/transaction/jta/</url>
+			<url>http://download.java.net/maven/2/</url>
 			<layout>default</layout>
 		</repository>
 	</repositories>
