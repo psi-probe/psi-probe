@@ -4,6 +4,6 @@
 = PSI Probe Changelogs =
 
   * [http://code.google.com/p/psi-probe/issues/list?can=1&q=Status:Released+Type:Defect,Enhancement,Feature+-FoundIn:Snapshot&sort=-Milestone+-Type All releases]
-  * [http://code.google.com/p/psi-probe/issues/list?can=1&q=Milestone:2.0.1+Status:Released+Type:Defect,Enhancement,Feature+-FoundIn:Snapshot&sort=-Milestone,-Type 2.0.1]
+  * [http://code.google.com/p/psi-probe/issues/list?can=1&q=Milestone:2.0.1+Status:Released+Type:Defect,Enhancement,Feature+-FoundIn:Snapshot&sort=-Type 2.0.1]
   * [http://code.google.com/p/psi-probe/issues/list?can=1&q=Milestone:2.0+Status:Released+Type:Defect,Enhancement,Feature+-FoundIn:Snapshot&sort=-Type 2.0.0]
   * [ChangelogsLambdaProbe Older releases] (Lambda Probe)
