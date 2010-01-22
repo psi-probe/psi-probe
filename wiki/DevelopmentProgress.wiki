@@ -1,0 +1,6 @@
+#summary Progress on the next release
+
+= Development Progress =
+
+  * [http://code.google.com/p/psi-probe/issues/list?can=2&q=Milestone:2.1 To-do]
+  * [http://code.google.com/p/psi-probe/issues/list?can=1&q=Type:Defect,Enhancement,Feature+Status:Fixed,Verified+-FoundIn:Snapshot&sort=-Type Done]
