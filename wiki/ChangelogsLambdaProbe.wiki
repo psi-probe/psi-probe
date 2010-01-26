@@ -1,16 +1,16 @@
-#summary List of changes for Lambda Probe.
+#summary List of changes for Lambda Probe
 
 [Changelogs << PSI Probe Changelog]
 
 = Lambda Probe Changelog =
 
 == 2.0 (unreleased) ==
-  * MISC: Upgraded Spring Framework to 2.0.1  
-  * NEW: French translation by Bruno Haleblian.
-  * NEW: Brasilian Portugese translation by Leandro de Oliveira
-  * FIX: Engine name is no longer hardcoded to "Catalina", this should allow support for embedded Tomcat.
-  * NEW: Dynamic locale selector
-  * NEW: Requests and average response time charts for applications (on application summary page)
+  * (issue 58) MISC: Upgraded Spring Framework to 2.0.1
+  * (issue 61) NEW: French translation by Bruno Haleblian.
+  * (issue 44) NEW: Brasilian Portugese translation by Leandro de Oliveira
+  * (issue 62) FIX: Engine name is no longer hardcoded to "Catalina", this should allow support for embedded Tomcat.
+  * (issue 59) NEW: Dynamic locale selector
+  * (issue 63) NEW: Requests and average response time charts for applications (on application summary page)
 
 == 1.7 beta ==
   * NEW: Session search tool.
