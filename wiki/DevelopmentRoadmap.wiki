@@ -17,4 +17,4 @@
   * *Issues:* [http://code.google.com/p/psi-probe/issues/list?can=2&q=Milestone:2.3 To-do]
 
 = Future =
-  * *Issues:* [http://code.google.com/p/psi-probe/issues/list?can=2&q=Milestone:TBD To-do]
+  * *Issues:* [http://code.google.com/p/psi-probe/issues/list?can=2&q=Milestone:TBD+Status:Accepted To-do]
