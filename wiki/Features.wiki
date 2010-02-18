@@ -1,6 +1,6 @@
 #summary List of features
 #labels Featured
-
+----
 = Monitoring and Management =
 || || *Monitor* || *Manage* ||
 || *Contexts* || list, status, attributes/values, request count, session count || start, stop, restart, deploy, undeploy ||
