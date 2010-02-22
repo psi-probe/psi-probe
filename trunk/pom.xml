@@ -140,11 +140,6 @@
 		</dependency>
 		<dependency>
 			<groupId>commons-logging</groupId>
-			<artifactId>commons-logging-api</artifactId>
-			<version>1.1</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-logging</groupId>
 			<artifactId>commons-logging</artifactId>
 			<version>1.1.1</version>
 		</dependency>
@@ -164,6 +159,10 @@
 				<exclusion>
 					<groupId>commons-digester</groupId>
 					<artifactId>commons-digester</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging-api</artifactId>
 				</exclusion>
 			</exclusions>
 		</dependency>
