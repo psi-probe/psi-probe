@@ -1,5 +1,5 @@
-#summary One-sentence summary of this page.
-
+#summary Instructions for setting up the project in NetBeans
+----
 == Configure NetBeans for Maven ==
   # Download and install [http://maven.apache.org/ Apache Maven].
     * If you are using JDK 1.4, get version 2.1.0.
