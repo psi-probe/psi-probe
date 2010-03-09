@@ -13,12 +13,14 @@
   # Enter the URL for psi-probe (http://psi-probe.googlecode.com/svn/trunk) and leave the credential blank. ([http://psi-probe.googlecode.com/svn/wiki/IDEConfigNetBeans/enter-repo-url.png screenshot])
     * Note to project committers: use https and enter your Google Code account information.
   # Click "Next" and wait for NetBeans to connect to the repository.
-  # Enable "Skip 'trunk' and checkout only its contents." ([http://psi-probe.googlecode.com/svn/wiki/IDEConfigNetBeans/enter-checkout-loc.png screenshot])
-  # Enter or browse to the location where you would like to check out the PSI Probe source code.
+  # Enable "Skip 'trunk' and checkout only its contents."
+  # Enter or browse to the location where you would like to check out the PSI Probe source code. ([http://psi-probe.googlecode.com/svn/wiki/IDEConfigNetBeans/enter-checkout-loc.png screenshot])
   # Click "Finish."  It may take a while to check out.
   # Assuming you have NetBeans configured to use Maven, a dialog will appear informing you that projects have been checked out.  Click "Open Project..." ([http://psi-probe.googlecode.com/svn/wiki/IDEConfigNetBeans/checkout-complete.png screenshot])
   # Select the "PSI Probe" project and enable "Open Required" near the bottom.  Then click "Open." ([http://psi-probe.googlecode.com/svn/wiki/IDEConfigNetBeans/open-projects.png screenshot])
 
 == Compiling and Packaging PSI Probe from Source ==
-  # You may see errors for some of the sub-projects.  These will likely be fixed when you perform your first build.
+  # You may see errors for some of the sub-projects.
+    * Some of these will be fixed when you perform your first build and Maven downloads the artifacts.
+    * You will need to install the ojdbc14.jar artifact manually.
   # Right-click the "PSI Probe" base project and select "Build" or "Clean and Build." ([http://psi-probe.googlecode.com/svn/wiki/IDEConfigNetBeans/build-from-source.png screenshot])
