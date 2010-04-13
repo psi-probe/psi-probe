@@ -1,0 +1,71 @@
+#summary Instructions for deploying to a server
+#labels Featured
+----
+
+= Apache Tomcat =
+
+== Option 1: Tomcat Manager ==
+  # Start Tomcat if it is not running.
+  # Go to the manager URL (e.g. `http://localhost:8080/manager/html`)
+  # Upload probe.war using "War file to deploy" option.
+
+== Option 2: Manual Copy ==
+  # Shut down Tomcat if it is running.
+  # Copy probe.war into `$CATALINA_HOME/webapps/`
+  # Start Tomcat.
+
+== Option 3: Custom ==
+PSI Probe _requires_ a *privileged* context.  `META-INF/context.xml` in the probe.war contains an example.
+{{{
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/probe" privileged="true" />
+}}}
+
+== Security Configuration ==
+By default, roles are configured via `$CATALINA_HOME/conf/tomcat-users.xml`.
+
+PSI Probe requires four security roles (in order of increasing privileges).
+||               || *Logs* || *Contexts* || *Sessions* || *JSP* || *Datasources* || *JVM* || *Quick Check* ||
+|| *probeuser*     ||Read||Read      ||Read  ||N/A    ||Read ||N/A    ||No ||
+|| *poweruser*     ||Read||Start/Stop||Expire||Compile||Reset||N/A    ||No ||
+|| *poweruserplus* ||Read||Start/Stop||Expire||Compile||Reset||Restart||No ||
+|| *manager*       ||Read||(Un)deploy||Expire||Discard||Reset||Restart||Yes||
+
+The "manager" role is the same one required by Tomcat Manager and has the highest level of privileges.
+
+<wiki:comment>
+= JBoss with embedded Tomcat =
+== 1. Declare users and rolls ==
+Create two files in `$JBOSS_SERVER_HOME/conf/props/`:
+    * `probe-users.properties`: list of users in the format of `username=password`
+      * e.g. `admin=t0psecret`
+    * `probe-roles.properties`: lists of roles in the format of `username=role1[,role2...]`
+      * e.g. admin=manager
+== 2. Define application policy ==
+Edit `$JBOSS_SERVER_HOME/conf/login.xml` and add the following code to the `<policy>` element:
+
+{{{
+<application-policy name="probe">
+  <authentication>
+    <login-module code="org.jboss.security.auth.spi.UsersRolesLoginModule" flag="required">
+      <module-option name="usersProperties">props/probe-users.properties</module-option>
+      <module-option name="rolesProperties">props/probe-roles.properties</module-option>
+    </login-module>
+  </authentication>
+</application-policy>
+}}}
+
+== 3. Ensure a privileged context ==
+Add the following attribute to `$JBOSS_SERVER_HOME/deploy/jbossweb-tomcat55.sar/META-INF/jboss-service.xml`:
+
+{{{
+<attribute name="AllowSelfPrivilegedWebApps">true</attribute>
+}}}
+
+== 4. Manually deploy PSI Probe ==
+  # Copy probe.war to `$JBOSS_SERVER_HOME/deploy/`
+  # Restart JBoss.
+
+== Known Issues ==
+  * JBoss 3.2.8SP1 has a [https://jira.jboss.org/jira/browse/JBAS-3006 bug] which does not allow Probe to restart applications.  It has been fixed in a later version.
+</wiki:comment>
