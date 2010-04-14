@@ -50,17 +50,23 @@
 
 <ul class="options">
     <li id="viewServletMaps">
-        <c:choose>
-            <c:when test="${empty param.webapp}">
-                <a href="<c:url value='/servletmaps.htm'/>"><spring:message code="probe.jsp.servlets.opt.maps"/></a>
-            </c:when>
-            <c:otherwise>
-                <a href="<c:url value='/servletmaps.htm'>
-                            <c:param name='webapp' value='${param.webapp}'/>
-                        </c:url>"><spring:message code="probe.jsp.servlets.opt.maps"/></a>
-            </c:otherwise>
-        </c:choose>
+        <c:url value="/servletmaps.htm" var="servletmaps" scope="page">
+            <c:if test="${not empty param.webapp}">
+                <c:param name="webapp" value="${param.webapp}"/>
+            </c:if>
+        </c:url>
+        <a href="${servletmaps}">
+            <spring:message code="probe.jsp.servlets.opt.maps"/>
+        </a>
     </li>
+	<c:if test="${not empty param.webapp}">
+		<li id="viewAllServlets">
+			<c:url value="/servlets.htm" var="allservlets" scope="page" />
+			<a href="${allservlets}">
+				show all
+			</a>
+		</li>
+	</c:if>
 </ul>
 
 <div id="servletListContainer" class="embeddedBlockContainer">
