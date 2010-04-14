@@ -50,7 +50,11 @@ public class Tomcat55ContainerAdaptor extends AbstractTomcatContainer {
     }
 
     public boolean canBoundTo(String binding) {
-        return binding != null && (binding.startsWith("Apache Tomcat/5.5") || binding.startsWith("Apache Tomcat/6.0"));
+        return binding != null && (
+                binding.startsWith("Apache Tomcat/5.5")
+                || binding.startsWith("Apache Tomcat/6.0")
+                || binding.startsWith("JBossWeb/2.0")
+                || binding.startsWith("JBossWeb/2.1"));
     }
 
     public Context findContext(String name) {
