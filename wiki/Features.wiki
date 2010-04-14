@@ -19,5 +19,6 @@
 = Compatibility =
   * *Java:* 1.4, 1.5, 6
   * *Tomcat:* 5.0, 5.5, 6.0 (partial)
+  * *JBoss:* 3.2, 4.0
   * *Data Sources:* DBCP, C3P0, Oracle
   * *Logs:* JDK (java.util), log4j, commons-logging
