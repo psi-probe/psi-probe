@@ -343,6 +343,16 @@ li#viewServletMaps {
     background: url( "gifs/application_link.gif" ) top left no-repeat;
 }
 
+li#viewAllServlets {
+    float: right;
+    background: url( "gifs/application_view_list.gif" ) top left no-repeat;
+}
+
+li#viewAllServletMaps {
+    float: right;
+    background: url( "gifs/application_link.gif" ) top left no-repeat;
+}
+
 li#viewAppFilters {
     float: left;
     background: url( "gifs/application_view_list.gif" ) top left no-repeat;
