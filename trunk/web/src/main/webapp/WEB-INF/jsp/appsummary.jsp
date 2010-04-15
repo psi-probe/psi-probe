@@ -100,6 +100,31 @@
             </div>
         </div>
 
+        <%-- pereodical refreshing of runtime info --%>
+        <script type="text/javascript">
+
+            function updateAppInfo() {
+                new Ajax.Updater('runtimeAppInfo',
+                        '<c:url value="/appruntimeinfo.ajax?${pageContext.request.queryString}"/>',
+                        {asynchronous: false});
+
+                // changing visibility of markup items that depend on an application status
+                if ($('r_appStatusUp')) {
+                    Element.hide('appStart');
+                    Element.show('appStop');
+                } else {
+                    Element.hide('appStop');
+                    Element.show('appStart');
+                }
+            }
+
+            // updating static app info section with the values that are actually retrieved with runtime info
+            $('servletCount').innerHTML = $('r_servletCount').innerHTML;
+
+            new PeriodicalExecuter(updateAppInfo, 3);
+        </script>
+
+        <c:if test="${app.available}">
         <div id="charts" class="embeddedBlockContainer">
             <h3><spring:message code="probe.jsp.app.summary.h3.charts"/></h3>
 
@@ -178,31 +203,6 @@
             </div>
         </div>
 
-        <%-- pereodical refreshing of runtime info --%>
-        <script type="text/javascript">
-
-            function updateAppInfo() {
-                new Ajax.Updater('runtimeAppInfo',
-                        '<c:url value="/appruntimeinfo.ajax?${pageContext.request.queryString}"/>',
-                        {asynchronous: false});
-
-                // changing visibility of markup items that depend on an application status
-                if ($('r_appStatusUp')) {
-                    Element.hide('appStart');
-                    Element.show('appStop');
-                } else {
-                    Element.hide('appStop');
-                    Element.show('appStart');
-                }
-            }
-
-            // updating static app info section with the values that are actually retrieved with runtime info
-            $('servletCount').innerHTML = $('r_servletCount').innerHTML;
-
-            new PeriodicalExecuter(updateAppInfo, 3);
-
-        </script>
-
         <%-- chart related functionality --%>
         <script type="text/javascript">
             var imageUpdaters = new Array();
@@ -260,6 +260,8 @@
             imageUpdaters[0] = new Ajax.ImgUpdater('req_chart', 30);
             imageUpdaters[1] = new Ajax.ImgUpdater('avg_proc_time_chart', 30);
         </script>
+        </c:if>
+
     </c:otherwise>
     </c:choose>
 </body>
