@@ -111,6 +111,7 @@
         <a href="?<probe:addQueryParam param='lang' value='fr'/>"><img src="<c:url value='/flags/fr.gif'/>" alt="FR" /></a>
         <a href="?<probe:addQueryParam param='lang' value='pt_br'/>"><img src="<c:url value='/flags/br.gif'/>" alt="BR" /></a>
     </div>
+    <spring:message code="probe.jsp.i18n.credit"/>
 </div>
 
 </body>
