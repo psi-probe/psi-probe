@@ -38,6 +38,10 @@
 			<artifactId>standard</artifactId>
 			<type>jar</type>
 		</dependency>
+		<dependency>
+			<groupId>displaytag</groupId>
+			<artifactId>displaytag</artifactId>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>

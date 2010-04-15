@@ -140,10 +140,6 @@
 			<artifactId>commons-modeler</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>displaytag</groupId>
-			<artifactId>displaytag</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>javainetlocator</groupId>
 			<artifactId>inetaddresslocator</artifactId>
 		</dependency>
