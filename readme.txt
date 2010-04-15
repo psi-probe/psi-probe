@@ -1,31 +1,11 @@
-+------------------------------------------------------------------------------+
-|                                                                              |
-| `;,   `:;;;:'   ,;'                                     ,;;;;,               |
-|  ;;,    ;;;    ,;;                                     ;;'  `;;              |
-|  ;;;    ;;;    ;;;                                    ;;      ;;             |
-|  ;;;    ;;;    ;;;                                    ;;      ;;             |
-|  ;;;    ;;;    ;;;                                    ;;      ;:             |
-|  `;;;   ;;;   ;;;'                                    ;;     ,:              |
-|   `:;;;;;;;;;;;:'  ,;; ,;;;;,   ,;; ,;;:,   ,;::;,    ;;  ;;:       ,;;;;,   |
-|         ;;;       ``;;;'  `;;, ``;;'  :;;  ;;'  `;;   ;;     `;    ;;'  `;;  |
-|         ;;;         ;;     `;;   ;;       ;;'    `;;  ;;      ;;  ;;      ;; |
-|         ;;;         ;;      ;;   ;;       ;;      ;;  ;;      ;;  ;;:::::::: |
-|         ;;;         ;;      ;;   ;;       ;;,    ,;;  ;;      ;;  ;;         |
-|         ;;;         ;;;,   ,;'   ;;        ;;,  ,;;   ;;;,  ,;;    ;;,    ,' |
-|       ,;;;;;,       ;; `:;;:'   ,;;,        `;;;;'    ;; `:::'      `;;;;;'  |
-|                     ;;                                ;;                     |
-|                     ;;                                ;;                     |
-|                     ;;                               ,;;                     |
-|                    ,;;,                              ;;                      |
-|                                                                              |
-|                                              http://psi-probe.googlecode.com |
-+------------------------------------------------------------------------------+
-
 ========================
  How to build PSI Probe
 ========================
 
 1. Check out or download PSI Probe's source code.
+
+   You may acquire it from the following URL:
+   http://psi-probe.googlecode.com
 
 2. Install Maven 2.
 
@@ -35,8 +15,8 @@
 3. Create the required ojdbc14 Maven artifact.
 
    Oracle's JDBC drivers are protected by the OTN (Oracle Technology Network)
-   Development and Distribution License.  For this reason, the .jar is not
-   hosted (legally) in any Maven repository or distributed with PSI Probe.
+   Development and Distribution License.  For this reason, the .jar cannot be
+   legally hosted in any Maven repository or distributed with PSI Probe.
 
    a. Download ojdbc14.jar.
 
@@ -47,7 +27,8 @@
 
       Execute the following command:
       mvn install:install-file -DgroupId=com.oracle -DartifactId=ojdbc14 \
-      -Dversion=10.2.0.1.0 -Dpackaging=jar -Dfile=/path/to/ojdbc14.jar
+      -Dversion=10.2.0.1.0 -Dpackaging=jar -Dfile=/path/to/ojdbc14.jar \
+      -DgeneratePom=true
 
 4. Run Maven.
 
