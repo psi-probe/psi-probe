@@ -33,7 +33,6 @@ PSI Probe requires four security roles (in order of increasing privileges).
 
 The "manager" role is the same one required by Tomcat Manager and has the highest level of privileges.
 
-<wiki:comment>
 = JBoss with embedded Tomcat =
 == 1. Declare users and rolls ==
 Create two files in `$JBOSS_SERVER_HOME/conf/props/`:
@@ -68,4 +67,3 @@ Add the following attribute to `$JBOSS_SERVER_HOME/deploy/jbossweb-tomcat55.sar/
 
 == Known Issues ==
   * JBoss 3.2.8SP1 has a [https://jira.jboss.org/jira/browse/JBAS-3006 bug] which does not allow Probe to restart applications.  It has been fixed in a later version.
-</wiki:comment>
