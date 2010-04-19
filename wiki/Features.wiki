@@ -1,20 +1,21 @@
 #summary List of features
 #labels Featured
 ----
-= Monitoring and Management =
-|| || *Monitor* || *Manage* ||
-|| *Contexts* || list, status, attributes/values, request count, session count || start, stop, restart, deploy, undeploy ||
-|| *Sessions* || list, status, attributes/values, last-accessed IP, search || expire, remove attributes ||
-|| *Data Sources* || list, list grouped by JDBC URL, usage (max/established/busy connections) || reset ||
-|| *JSPs* || list, view source || compile selected, pre-compile on deployment, view generated servlet source, delete "work" directory ||
-|| *Threads* || list, status || kill (stop hanging requests) ||
-|| *Logs* || list, download, tail in real-time || ||
-|| *Connectors* || status, real-time usage charts || ||
-|| *Cluster* || status, real-time traffic charts || ||
-|| *System* || properties, OS details || ||
-|| *JVM* || details, real-time memory usage charts || advise GC ||
-|| *Java Service Wrapper* || status || restart JVM ||
-|| *Quick Check* || view || ||
+= Features by Role =
+|| || *probeuser* || *poweruser* || *poweruserplus* || *manager* ||
+|| *Contexts* || list, status, list attributes, view servlets/mappings, view filters/mappings, request count, session count || start, stop, remove attributes, view web.xml || || deploy, undeploy, view context.xml ||
+|| *Sessions* || list, status, list attributes, last-accessed IP, search || remove attributes, expire || || ||
+|| *JSPs* || || list, compile, view JSP source, view servlet source || || pre-compile on deployment, discard ||
+|| *Data Sources* || list, group by JDBC URL, status (max/established/busy connections) || reset || test, view query history, execute SQL || ||
+|| 
+|| *Logs* || list, tail in real-time, download || || || ||
+|| *Threads* || list || view execution stack || || kill ||
+|| *Connectors* || status, real-time usage charts || || || ||
+|| *Cluster* || status, real-time traffic charts || || || ||
+|| *JVM* || status, real-time memory usage charts || || || advise GC ||
+|| *System* || || || || properties, OS details ||
+|| *Java Service Wrapper* || status || || || restart JVM ||
+|| *Quick Check* || || || || view ||
 
 = Compatibility =
   * *Java:* 1.4, 1.5, 6
