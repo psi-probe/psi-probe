@@ -4,7 +4,7 @@
 = 2.1 =
   * *Focus:* Monitoring and Metrics
   * *Target:* 2010 Q2 (April-June)
-  * *Issues:* [http://code.google.com/p/psi-probe/issues/list?can=2&q=Milestone:2.1 To-do], [http://code.google.com/p/psi-probe/issues/list?can=1&q=Type:Defect,Enhancement,Feature+Status:Fixed,Verified+-FoundIn:Snapshot&sort=-Type Done]
+  * *Issues:* [http://code.google.com/p/psi-probe/issues/list?can=2&q=Milestone:2.1 To-do], [http://code.google.com/p/psi-probe/issues/list?can=1&q=Type:Defect,Enhancement,Feature+Status:Fixed,FixVerified+-FoundIn:Snapshot&sort=-Type Done]
 
 = 2.2 =
   * *Focus:* Tomcat 6
