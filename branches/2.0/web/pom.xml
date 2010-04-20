@@ -78,6 +78,15 @@
 							<filtering>false</filtering>
 						</resource>
 						<resource>
+							<!-- Required for JBoss -->
+							<directory>src/main/conf/META-INF</directory>
+							<includes>
+								<include>context.xml</include>
+							</includes>
+							<targetPath>WEB-INF</targetPath>
+							<filtering>false</filtering>
+						</resource>
+						<resource>
 							<directory>src/main/conf-filtered</directory>
 							<filtering>true</filtering>
 						</resource>
