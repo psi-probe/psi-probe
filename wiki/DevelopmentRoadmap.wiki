@@ -1,5 +1,4 @@
 #summary Plans for future releases
-#labels Featured
 ----
 = 2.1 =
   * *Focus:* Monitoring and Metrics
