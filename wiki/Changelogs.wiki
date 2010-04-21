@@ -2,6 +2,7 @@
 #labels Featured
 ----
   * [http://code.google.com/p/psi-probe/issues/list?can=1&q=Status:FixReleased+Type:Defect,Enhancement,Feature+-FoundIn:Snapshot&sort=-Milestone+-Type All releases]
+  * [http://code.google.com/p/psi-probe/issues/list?can=1&q=Milestone:2.0.2+Status:FixReleased+Type:Defect,Enhancement,Feature+-FoundIn:Snapshot&sort=-Type 2.0.2]
   * [http://code.google.com/p/psi-probe/issues/list?can=1&q=Milestone:2.0.1+Status:FixReleased+Type:Defect,Enhancement,Feature+-FoundIn:Snapshot&sort=-Type 2.0.1]
   * [http://code.google.com/p/psi-probe/issues/list?can=1&q=Milestone:2.0+Status:FixReleased+Type:Defect,Enhancement,Feature+-FoundIn:Snapshot&sort=-Type 2.0.0]
   * [ChangelogsLambdaProbe Older releases] (Lambda Probe)
