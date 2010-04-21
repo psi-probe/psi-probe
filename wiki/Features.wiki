@@ -3,23 +3,84 @@
 ----
 = Features by Role =
 || || *probeuser* || *poweruser* || *poweruserplus* || *manager* ||
-|| *Contexts* || list, status, list attributes, view servlets/mappings, view filters/mappings, request count, session count || start, stop, remove attributes, view web.xml || || deploy, undeploy, view context.xml ||
-|| *Sessions* || list, status, list attributes, last-accessed IP, search || remove attributes, expire || || ||
-|| *JSPs* || || list, compile, view JSP source, view servlet source || || pre-compile on deployment, discard ||
-|| *Data Sources* || list, group by JDBC URL, status (max/established/busy connections) || reset || test, view query history, execute SQL || ||
-|| 
-|| *Logs* || list, tail in real-time, download || || || ||
-|| *Threads* || list || view execution stack || || kill ||
-|| *Connectors* || status, real-time usage charts || || || ||
-|| *Cluster* || status, real-time traffic charts || || || ||
-|| *JVM* || status, real-time memory usage charts || || || advise GC ||
-|| *System* || || || || properties, OS details ||
-|| *Java Service Wrapper* || status || || || restart JVM ||
-|| *Quick Check* || || || || view ||
+|| *Context:* list                      || X || X || X || X ||
+|| *Context:* status                    || X || X || X || X ||
+|| *Context:* view request count        || X || X || X || X ||
+|| *Context:* view session count        || X || X || X || X ||
+|| *Context:* list attributes           || X || X || X || X ||
+|| *Context:* view servlets/mappings    || X || X || X || X ||
+|| *Context:* view filters/mappings     || X || X || X || X ||
+|| *Context:* start                     ||   || X || X || X ||
+|| *Context:* stop                      ||   || X || X || X ||
+|| *Context:* remove attributes         ||   || X || X || X ||
+|| *Context:* view web.xml              ||   || X || X || X ||
+|| *Context:* view context.xml          ||   ||   ||   || X ||
+|| *Context:* deploy                    ||   ||   ||   || X ||
+|| *Context:* undeploy                  ||   ||   ||   || X ||
+|| *Session:* list                      || X || X || X || X ||
+|| *Session:* status                    || X || X || X || X ||
+|| *Session:* last-accessed IP          || X || X || X || X ||
+|| *Session:* list attributes           || X || X || X || X ||
+|| *Session:* search attributes         || X || X || X || X ||
+|| *Session:* remove attributes         ||   || X || X || X ||
+|| *Session:* expire                    ||   || X || X || X ||
+|| *JSP:* list                          ||   || X || X || X ||
+|| *JSP:* compile                       ||   || X || X || X ||
+|| *JSP:* view JSP source               ||   || X || X || X ||
+|| *JSP:* view servlet source           ||   || X || X || X ||
+|| *JSP:* pre-compile on deployment     ||   ||   ||   || X ||
+|| *JSP:* discard                       ||   ||   ||   || X ||
+|| *Data Source:* list                  || X || X || X || X ||
+|| *Data Source:* group by JDBC URL     || X || X || X || X ||
+|| *Data Source:* status                || X || X || X || X ||
+|| *Data Source:* reset                 ||   || X || X || X ||
+|| *Data Source:* test                  ||   ||   || X || X ||
+|| *Data Source:* view query history    ||   ||   || X || X ||
+|| *Data Source:* execute SQL           ||   ||   || X || X ||
+|| *Log:* list                          || X || X || X || X ||
+|| *Log:* tail in real-time             || X || X || X || X ||
+|| *Log:* download                      || X || X || X || X ||
+|| *Thread:* list                       || X || X || X || X ||
+|| *Thread:* view execution stack       ||   || X || X || X ||
+|| *Thread:* kill                       ||   ||   ||   || X ||
+|| *Connector:* status                  || X || X || X || X ||
+|| *Connector:* real-time usage charts  || X || X || X || X ||
+|| *Cluster:* status                    || X || X || X || X ||
+|| *Cluster:* real-time traffic charts  || X || X || X || X ||
+|| *JVM:* status                        || X || X || X || X ||
+|| *JVM:* real-time memory usage charts || X || X || X || X ||
+|| *JVM:* advise GC                     ||   ||   ||   || X ||
+|| *Java Service Wrapper:* status       || X || X || X || X ||
+|| *Java Service Wrapper:* restart JVM  ||   ||   ||   || X ||
+|| *System:* properties                 ||   ||   ||   || X ||
+|| *System:* OS details                 ||   ||   ||   || X ||
+|| *Quick Check:* execute               ||   ||   ||   || X ||
 
+----
 = Compatibility =
-  * *Java:* 1.4, 1.5, 6
-  * *Tomcat:* 5.0, 5.5, 6.0 (partial)
-  * *JBoss:* 3.2, 4.0
-  * *Data Sources:* DBCP, C3P0, Oracle
-  * *Logs:* JDK (java.util), log4j, commons-logging
+
+== Java ==
+  * 1.4
+  * 1.5
+  * 6
+
+== Servers ==
+  * Apache Tomcat 5.0
+  * Apache Tomcat 5.5
+  * Apache Tomcat 6.0 (partial; see issue 90)
+  * JBoss 3.2
+  * JBoss 4.0
+  * JBoss 4.2 (partial)
+  * JBoss 4.3 (partial)
+  * JBoss 5.0 (partial)
+  * JBoss 5.1 (partial)
+
+== Data Sources ==
+  * DBCP
+  * C3P0
+  * Oracle
+
+== Logs ==
+  * JDK (java.util)
+  * log4j
+  * commons-logging
