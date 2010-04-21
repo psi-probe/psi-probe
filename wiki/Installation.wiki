@@ -15,31 +15,39 @@
   # Start Tomcat.
 
 == Option 3: Custom ==
-PSI Probe _requires_ a *privileged* context.  `META-INF/context.xml` in the probe.war contains an example.
+You can, of course, unpackage the `probe.war` file and create the `probe.xml` context descriptor yourself.
+
+If you do this, understand that PSI Probe _requires_ a *privileged* context.  `META-INF/context.xml` in the probe.war contains an example.
 {{{
 <?xml version="1.0" encoding="UTF-8"?>
 <Context path="/probe" privileged="true" />
 }}}
 
 == Security Configuration ==
-By default, roles are configured via `$CATALINA_HOME/conf/tomcat-users.xml`.
+PSI Probe requires four security roles (in order of increasing [Features#Features_by_Role privileges]):
+  * *probeuser*
+  * *poweruser*
+  * *poweruserplus*
+  * *manager* - The "manager" role is the same one required by Tomcat Manager and has the highest level of privileges.
 
-PSI Probe requires four security roles (in order of increasing privileges).
-||               || *Logs* || *Contexts* || *Sessions* || *JSP* || *Datasources* || *JVM* || *Quick Check* ||
-|| *probeuser*     ||Read||Read      ||Read  ||N/A    ||Read ||N/A    ||No ||
-|| *poweruser*     ||Read||Start/Stop||Expire||Compile||Reset||N/A    ||No ||
-|| *poweruserplus* ||Read||Start/Stop||Expire||Compile||Reset||Restart||No ||
-|| *manager*       ||Read||(Un)deploy||Expire||Discard||Reset||Restart||Yes||
+By default, roles are configured via `$CATALINA_HOME/conf/tomcat-users.xml`:
+{{{
+<tomcat-users>
+  <role rolename="probeuser" />
+  <role rolename="poweruser" />
+  <role rolename="poweruserplus" />
+  <user username="admin" password="t0psecret" roles="manager,admin" />
+</tomcat-users>
+}}}
 
-The "manager" role is the same one required by Tomcat Manager and has the highest level of privileges.
-
+----
 = JBoss with embedded Tomcat =
 == 1. Declare users and rolls ==
 Create two files in `$JBOSS_SERVER_HOME/conf/props/`:
     * `probe-users.properties`: list of users in the format of `username=password`
       * e.g. `admin=t0psecret`
     * `probe-roles.properties`: lists of roles in the format of `username=role1[,role2...]`
-      * e.g. admin=manager
+      * e.g. `admin=manager`
 == 2. Define application policy ==
 Edit `$JBOSS_SERVER_HOME/conf/login.xml` and add the following code to the `<policy>` element:
 
