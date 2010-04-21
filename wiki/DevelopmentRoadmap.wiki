@@ -1,5 +1,7 @@
 #summary Plans for future releases
 ----
+  * [Changelogs Previous releases]
+
 = 2.1 =
   * *Focus:* Monitoring and Metrics
   * *Target:* 2010 Q2 (April-June)
