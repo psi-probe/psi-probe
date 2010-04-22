@@ -40,6 +40,11 @@ By default, roles are configured via `$CATALINA_HOME/conf/tomcat-users.xml`:
 </tomcat-users>
 }}}
 
+== JVM Options ==
+To allow PSI Probe to display and collect memory usage statistics, you must enable remote JMX with the following command line option:
+
+  * `-Dcom.sun.management.jmxremote`
+
 ----
 = JBoss with embedded Tomcat =
 == 1. Declare users and rolls ==
