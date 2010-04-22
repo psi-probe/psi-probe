@@ -84,3 +84,12 @@
   * JDK (java.util)
   * log4j
   * commons-logging
+
+----
+= Internationalization =
+  * Brazilian Portuguese
+  * English
+  * French
+  * German
+  * Japanese
+  * Russian
