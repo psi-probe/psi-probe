@@ -119,6 +119,10 @@ public class BaseStatsCollectorBean {
         }
     }
 
+    protected void resetStats(String name) {
+        statsCollection.resetStats(name);
+    }
+
     private void houseKeepStats(List stats) {
         while (stats.size() > maxSeries) {
             stats.remove(0);

@@ -79,6 +79,13 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
         return stats;
     }
 
+    public synchronized void resetStats(String name) {
+        List stats = getStats(name);
+        if (stats != null) {
+            stats.clear();
+        }
+    }
+
     public synchronized List getStats(String name) {
         return (List) statsData.get(name);
     }
