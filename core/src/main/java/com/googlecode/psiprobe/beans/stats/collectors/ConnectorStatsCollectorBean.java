@@ -40,4 +40,21 @@ public class ConnectorStatsCollectorBean extends BaseStatsCollectorBean {
         }
     }
 
+    public void reset() throws Exception {
+        List pools = listenerBean.getThreadPools(false);
+        for (Iterator it = pools.iterator(); it.hasNext();) {
+            ThreadPool pool = (ThreadPool) it.next();
+            reset(pool.getName());
+        }
+    }
+
+    public void reset(String connectorName) {
+        String statName = "stat.connector." + connectorName;
+        resetStats(statName + ".requests");
+        resetStats(statName + ".errors");
+        resetStats(statName + ".sent");
+        resetStats(statName + ".received");
+        resetStats(statName + ".threads_busy");
+    }
+
 }
