@@ -74,6 +74,10 @@
             <li id="delete"><a href="#" onclick="sessionForm.submit();"><spring:message
                     code="probe.jsp.sessions.menu.expire"/></a></li>
         </c:if>
+        <c:if test="${! empty param.webapp}">
+            <li id="showAll"><a href="<c:url value='/sessions.htm'/>"><spring:message
+                    code="probe.jsp.sessions.opt.all"/></a></li>
+        </c:if>
         <c:if test="${! empty sessions or searchInfo.apply}">
             <li id="showSearch" ${searchInfo.apply ? 'style="display: none;"' : ''}><a href="#" onclick="showSearch();"><spring:message
                     code="probe.jsp.sessions.menu.showSearch"/></a></li>
