@@ -63,7 +63,7 @@
 		<li id="viewAllServlets">
 			<c:url value="/servlets.htm" var="allservlets" scope="page" />
 			<a href="${allservlets}">
-				show all
+				<spring:message code="probe.jsp.servlets.opt.all"/>
 			</a>
 		</li>
 	</c:if>
