@@ -322,6 +322,11 @@
         <property name="viewName" value="zoomreq"/>
     </bean>
 
+    <bean name="/app/connectorReset.htm" class="com.googlecode.psiprobe.controllers.connectors.ResetConnectorStatsController">
+        <property name="collectorBean" ref="connectorStatsCollector"/>
+        <property name="viewName" value="/charts.htm"/>
+    </bean>
+
     <bean name="/logs,/logs/index.htm" class="com.googlecode.psiprobe.controllers.logs.ListLogsController">
         <property name="containerWrapper" ref="containerWrapper"/>
         <property name="stdoutFiles">
