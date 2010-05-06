@@ -17,6 +17,7 @@ import org.apache.commons.fileupload.FileUpload;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.fileupload.servlet.ServletRequestContext;
+import org.apache.commons.io.FilenameUtils;
 import com.googlecode.psiprobe.controllers.TomcatContainerController;
 import com.googlecode.psiprobe.controllers.jsp.DisplayJspController;
 import com.googlecode.psiprobe.model.jsp.Summary;
@@ -57,7 +58,7 @@ public class UploadWarController extends TomcatContainerController {
                     FileItem fi = (FileItem) it.next();
                     if (!fi.isFormField()) {
                         if (fi.getName() != null && fi.getName().length() > 0) {
-                            tmpWar = new File(System.getProperty("java.io.tmpdir"), new File(fi.getName()).getName());
+                            tmpWar = new File(System.getProperty("java.io.tmpdir"), FilenameUtils.getName(fi.getName()));
                             fi.write(tmpWar);
                         }
                     } else if ("context".equals(fi.getFieldName())) {
