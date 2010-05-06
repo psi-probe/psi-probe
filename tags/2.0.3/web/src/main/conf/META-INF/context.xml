@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/probe" privileged="true">
+    <Logger className="org.apache.catalina.logger.FileLogger"
+                prefix="probe."
+                suffix=".out"
+                timestamp="true"/>
+</Context>
