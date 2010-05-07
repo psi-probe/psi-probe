@@ -1,6 +1,6 @@
 #summary List of changes for Lambda Probe
 ----
-[Changelogs << PSI Probe Changelog]
+<font color="silver"><< Older</font> | [Changelogs Newer >>]
 
 == 2.0 (unreleased) ==
   * (issue 58) MISC: Upgraded Spring Framework to 2.0.1
