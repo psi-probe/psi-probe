@@ -77,7 +77,7 @@
 
 == Data Sources ==
   * DBCP
-  * C3P0
+  * !C3P0
   * Oracle
 
 == Logs ==
