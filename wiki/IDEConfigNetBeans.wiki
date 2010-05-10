@@ -1,6 +1,6 @@
 #summary Instructions for setting up the project in NetBeans
 ----
-== Configure NetBeans for Maven ==
+== Configure !NetBeans for Maven ==
   # Download and install [http://maven.apache.org/ Apache Maven].
     * If you are using JDK 1.4, get version 2.1.0.
     * If you are using JDK 1.5 or higher, get the latest version.
