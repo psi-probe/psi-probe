@@ -3,11 +3,10 @@
 ----
 [ChangelogsLambdaProbe << Older] | [DevelopmentRoadmap Newer >>]
 
-== 2.0 ==
-  * [http://code.google.com/p/psi-probe/issues/list?can=1&q=Milestone:2.0.3+Status:FixReleased+Type:Defect,Enhancement,Feature+-FoundIn:Snapshot&sort=-Type 2.0.3]
-  * [http://code.google.com/p/psi-probe/issues/list?can=1&q=Milestone:2.0.2+Status:FixReleased+Type:Defect,Enhancement,Feature+-FoundIn:Snapshot&sort=-Type 2.0.2]
-  * [http://code.google.com/p/psi-probe/issues/list?can=1&q=Milestone:2.0.1+Status:FixReleased+Type:Defect,Enhancement,Feature+-FoundIn:Snapshot&sort=-Type 2.0.1]
-  * [http://code.google.com/p/psi-probe/issues/list?can=1&q=Milestone:2.0+Status:FixReleased+Type:Defect,Enhancement,Feature+-FoundIn:Snapshot&sort=-Type 2.0.0]
+== [http://code.google.com/p/psi-probe/issues/list?can=1&q=Status:FixReleased+Type:Defect,Enhancement,Feature+-FoundIn:Snapshot+Milestone:2.0.3,2.0.2,2.0.1,2.0&sort=-Type 2.0.x] ==
+      * [http://code.google.com/p/psi-probe/issues/list?can=1&q=Status:FixReleased+Type:Defect,Enhancement,Feature+-FoundIn:Snapshot+Milestone:2.0.3&sort=-Type 2.0.3]
+      * [http://code.google.com/p/psi-probe/issues/list?can=1&q=Status:FixReleased+Type:Defect,Enhancement,Feature+-FoundIn:Snapshot+Milestone:2.0.2&sort=-Type 2.0.2]
+      * [http://code.google.com/p/psi-probe/issues/list?can=1&q=Status:FixReleased+Type:Defect,Enhancement,Feature+-FoundIn:Snapshot+Milestone:2.0.1&sort=-Type 2.0.1]
+      * [http://code.google.com/p/psi-probe/issues/list?can=1&q=Status:FixReleased+Type:Defect,Enhancement,Feature+-FoundIn:Snapshot+Milestone:2.0&sort=-Type 2.0.0]
 
-== All ==
-  * [http://code.google.com/p/psi-probe/issues/list?can=1&q=Status:FixReleased+Type:Defect,Enhancement,Feature+-FoundIn:Snapshot&sort=-Milestone+-Type All releases]
+== [http://code.google.com/p/psi-probe/issues/list?can=1&q=Status:FixReleased+Type:Defect,Enhancement,Feature+-FoundIn:Snapshot&sort=-Milestone+-Type All] ==
