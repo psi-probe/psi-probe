@@ -11,6 +11,7 @@
 package com.googlecode.psiprobe.beans;
 
 import java.util.List;
+import javax.management.MBeanServer;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 import org.apache.catalina.Context;
@@ -37,4 +38,13 @@ public interface ResourceResolver {
     boolean resetResource (Context context, String resourceName) throws NamingException;
 
     DataSource lookupDataSource(Context context, String resourceName) throws NamingException;
+
+    /**
+     * Method that gets {@link MBeanServer} instance that is "default" for the
+     * current environment. It is preferably to use this method to locate the
+     * "default" {@link MBeanServer} implementation.
+     * 
+     * @return "default" {@link MBeanServer} instance for the current environment
+     */
+    public MBeanServer getMBeanServer();
 }

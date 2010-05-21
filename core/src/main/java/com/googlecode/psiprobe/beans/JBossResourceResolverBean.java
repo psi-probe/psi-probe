@@ -38,7 +38,7 @@ public class JBossResourceResolverBean implements ResourceResolver {
 
     protected Log logger = LogFactory.getLog(getClass());
 
-    protected MBeanServer getJBossMBeanServer() {
+    public MBeanServer getMBeanServer() {
         for (Iterator it = MBeanServerFactory.findMBeanServer(null).iterator(); it.hasNext();) {
             MBeanServer server = (MBeanServer) it.next();
             if ("jboss".equals(server.getDefaultDomain())) {
@@ -56,7 +56,7 @@ public class JBossResourceResolverBean implements ResourceResolver {
 
         List resources = new ArrayList();
 
-        MBeanServer server = getJBossMBeanServer();
+        MBeanServer server = getMBeanServer();
         if (server != null) {
             try {
                 Set dsNames = server.queryNames(new ObjectName("jboss.jca:service=ManagedConnectionPool,*"), null);
@@ -128,7 +128,7 @@ public class JBossResourceResolverBean implements ResourceResolver {
     public boolean resetResource(Context context, String resourceName) throws NamingException {
         try {
             ObjectName poolOName = new ObjectName("jboss.jca:service=ManagedConnectionPool,name="+resourceName);
-            MBeanServer server = getJBossMBeanServer();
+            MBeanServer server = getMBeanServer();
             if (server != null) {
                 try {
                     server.invoke(poolOName, "stop", null, null);
