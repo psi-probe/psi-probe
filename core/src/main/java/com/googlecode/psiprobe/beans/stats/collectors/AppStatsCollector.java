@@ -88,4 +88,33 @@ public class AppStatsCollector extends BaseStatsCollectorBean {
         }
         logger.debug("app stats collected in " + (System.currentTimeMillis() - currentTime) + "ms.");
     }
+
+    public void reset() {
+        if (containerWrapper == null) {
+            logger.error("Cannot reset application stats. Container wrapper is not set.");
+        } else {
+            TomcatContainer tomcatContainer = getContainerWrapper().getTomcatContainer();
+            if (tomcatContainer != null) {
+                List contexts = tomcatContainer.findContexts();
+                for (Iterator i = contexts.iterator(); i.hasNext(); ) {
+                    Context ctx = (Context) i.next();
+
+                    if (ctx != null && ctx.getName() != null) {
+                        String appName = "".equals(ctx.getName()) ? "/" : ctx.getName();
+                        reset(appName);
+                    }
+                }
+            }
+        }
+        resetStats("total.requests");
+        resetStats("total.avg_proc_time");
+    }
+
+    public void reset(String appName) {
+        resetStats("app.requests." + appName);
+        resetStats("app.proc_time." + appName);
+        resetStats("app.errors." + appName);
+        resetStats("app.avg_proc_time." + appName);
+    }
+
 }
