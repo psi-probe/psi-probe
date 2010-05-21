@@ -482,16 +482,23 @@ dd.image:hover {
     border-bottom: 1px dashed #ccc;
     padding: 5px 5px 5px 20px;
     margin-bottom: 2px;
-    cursor: pointer;
     color: #aaa;
-    text-align: center;
+    text-align: left;
 }
 
 .connectorChartHeader .headerTitle {
-    float: left;
     font-weight: bold;
     letter-spacing: 0.1em;
     color: #444;
+    cursor: pointer;
+}
+
+.connectorChartHeader .headerTitle img {
+	background-color: #ffffff;
+}
+
+.connectorChartHeader .actions {
+	float: right;
 }
 
 img.lnk {
