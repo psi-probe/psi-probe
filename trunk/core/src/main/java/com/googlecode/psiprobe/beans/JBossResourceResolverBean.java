@@ -133,6 +133,7 @@ public class JBossResourceResolverBean implements ResourceResolver {
                 try {
                     server.invoke(poolOName, "stop", null, null);
                     server.invoke(poolOName, "start", null, null);
+                    return true;
                 } catch (Exception e) {
                     logger.error("Could not reset resource \""+resourceName+"\"", e);
                     return false;
