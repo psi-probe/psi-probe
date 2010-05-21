@@ -53,6 +53,10 @@
 
     <bean id="jbossResourceResolver" class="com.googlecode.psiprobe.beans.JBossResourceResolverBean"/>
 
-    <bean id="containerListener" class="com.googlecode.psiprobe.beans.ContainerListenerBean"/>
+    <bean id="containerListener" class="com.googlecode.psiprobe.beans.ContainerListenerBean">
+        <property name="containerWrapper">
+            <ref bean="containerWrapper"/>
+        </property>
+    </bean>
 
 </beans>

@@ -15,6 +15,7 @@ import com.googlecode.psiprobe.model.DataSourceInfo;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import javax.management.MBeanServer;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
@@ -23,6 +24,7 @@ import org.apache.catalina.deploy.ContextResource;
 import org.apache.catalina.deploy.ContextResourceLink;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.commons.modeler.Registry;
 import org.apache.naming.ContextBindings;
 
 public class ResourceResolverBean implements ResourceResolver {
@@ -200,4 +202,9 @@ public class ResourceResolverBean implements ResourceResolver {
     public boolean supportsPrivateResources() {
         return true;
     }
+
+    public MBeanServer getMBeanServer() {
+        return new Registry().getMBeanServer();
+    }
+
 }
