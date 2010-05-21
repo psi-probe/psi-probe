@@ -54,6 +54,13 @@
 
     <c:forEach items="${names}" var="name">
 
+		<%--
+           create "reset connector" url
+		--%>
+		<c:url value="/app/connectorReset.htm" var="reset_url">
+			<c:param name="cn" value="${name}"/>
+		</c:url>
+
         <%--
            create  "remember group visibility" url
         --%>
@@ -61,24 +68,34 @@
             <c:param name="cn" value="${name}"/>
         </c:url>
 
-        <div class="connectorChartHeader"
-             onclick="togglePanel('chartdata-${name}', '${remember_url}')">
-            <span class="headerTitle">${name}</span><spring:message code="probe.jsp.charts.toggleVisibility"/>
-        </div>
-
         <%--
            create style of the div based on user cookies
         --%>
         <c:choose>
             <c:when test="${cookie[name].value == 'off'}">
-                <c:set var="style" value="display:none"/>
+                <c:set var="style_collapse" value="display:none"/>
+                <c:set var="style_expand" value=""/>
             </c:when>
             <c:otherwise>
-                <c:set var="style" value=""/>
+                <c:set var="style_collapse" value=""/>
+                <c:set var="style_expand" value="display:none"/>
             </c:otherwise>
         </c:choose>
 
-        <div id="chartdata-${name}" style="${style}">
+        <div class="connectorChartHeader">
+            <span class="headerTitle" onclick="togglePanel('chartdata-${name}', '${remember_url}')">
+				<img class="lnk" src="${pageContext.request.contextPath}<spring:theme code='section.collapse.img'/>" alt="collapse" id="visible_chartdata-${name}" style="${style_collapse}"/>
+				<img class="lnk" src="${pageContext.request.contextPath}<spring:theme code='section.expand.img'/>" alt="expand" id="invisible_chartdata-${name}" style="${style_expand}"/>
+				${name}
+			</span>
+			<span class="actions">
+				<a href="${reset_url}">
+					<img border="0" src="${pageContext.request.contextPath}<spring:theme code='reset.gif'/>" alt="reset"/>
+				</a>
+			</span>
+        </div>
+
+        <div id="chartdata-${name}" style="${style_collapse}">
             <div class="chartContainer">
                 <dl>
                     <dt><spring:message code="probe.jsp.charts.requests.title"/></dt>
