@@ -57,7 +57,7 @@
 
     function toggleContext(idx, url, context) {
         var status = $('rs_'+idx);
-        status.update('<img border="0" src="${pageContext.request.contextPath}<spring:theme code="progerssbar_editnplace.gif"/>"/>');
+        status.update('<img border="0" src="${pageContext.request.contextPath}<spring:theme code="progressbar_editnplace.gif"/>"/>');
         new Ajax.Updater(status, url+'?webapp='+context, {
             method:'get',
             asynchronous:true,
