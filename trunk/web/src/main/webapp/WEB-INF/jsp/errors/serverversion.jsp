@@ -13,18 +13,18 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <%--
-    An error page to be displayed if some Probe's feature
-    is not implemented for a particular version of Tomcat
+	An error page to be displayed if some Probe's feature
+	is not implemented for a particular version of Tomcat
 --%>
 
 <html>
-<head><title>Error</title></head>
+	<head><title>Error</title></head>
 
-<body>
-<div class="errorMessage">
-    <p>
-        <spring:message code="probe.jsp.wrongsvrversion" arguments="${serverVersion}"/>
-    </p>
-</div>
-</body>
+	<body>
+		<div class="errorMessage">
+			<p>
+				<spring:message code="probe.jsp.wrongsvrversion" arguments="${serverVersion}"/>
+			</p>
+		</div>
+	</body>
 </html>
