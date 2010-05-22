@@ -15,27 +15,27 @@
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 
 <%--
-    Ajax HTML snippet to display datasource connection info.
+	Ajax HTML snippet to display datasource connection info.
 
-    Author: Andy Shapoval
+	Author: Andy Shapoval
 --%>
 
 <div id="sqlResultsContainer">
 
-    <c:if test="${! empty errorMessage}">
-        <div class="errorMessage">
-            <p>${errorMessage}</p>
-        </div>
-    </c:if>
+	<c:if test="${! empty errorMessage}">
+		<div class="errorMessage">
+			<p>${errorMessage}</p>
+		</div>
+	</c:if>
 
-    <c:if test="${! empty dbMetaData}">
-        <div id="dbMetaData" class="sqlResultsContainer">
-            <display:table name="dbMetaData" id="row" class="genericTbl"
-                           cellspacing="0" cellpadding="0" requestURI="">
-                <display:column class="leftmost" titleKey="probe.jsp.dataSourceTest.dbMetaData.col.propName" property="propertyName"/>
-                <display:column titleKey="probe.jsp.dataSourceTest.dbMetaData.col.propValue" property="propertyValue"/>
-            </display:table>
-        </div>
-    </c:if>
+	<c:if test="${! empty dbMetaData}">
+		<div id="dbMetaData" class="sqlResultsContainer">
+			<display:table name="dbMetaData" id="row" class="genericTbl"
+					cellspacing="0" cellpadding="0" requestURI="">
+				<display:column class="leftmost" titleKey="probe.jsp.dataSourceTest.dbMetaData.col.propName" property="propertyName"/>
+				<display:column titleKey="probe.jsp.dataSourceTest.dbMetaData.col.propValue" property="propertyValue"/>
+			</display:table>
+		</div>
+	</c:if>
 
 </div>

@@ -15,10 +15,10 @@
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 
 <%--
-    AJAX HTML bit, representing log file content.
+	AJAX HTML bit, representing log file content.
 
-    Author: Vlad Ilyushchenko
+	Author: Vlad Ilyushchenko
 --%>
 <c:forEach items="${followed_file.lines}" var="line">
-    <div class="line">${line}</div>
+	<div class="line">${line}</div>
 </c:forEach>
