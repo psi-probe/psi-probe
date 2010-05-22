@@ -79,6 +79,7 @@
 </script>
 
 <ul class="options">
+	<li id="allStats"><a href="<c:url value='/allappstats.htm'/>"><spring:message code="probe.jsp.title.allappstats"/></a></li>
     <c:choose>
         <c:when test="${param.size}">
             <li id="size" ><a href="?<probe:toggle param='size'/>"><spring:message code="probe.jsp.applications.hidesize"/></a></li>

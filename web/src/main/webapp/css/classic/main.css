@@ -196,6 +196,11 @@ li#back {
     background: url( "gifs/control_rewind_blue.gif" ) top left no-repeat;
 }
 
+li#allStats {
+	float: left;
+	background: url( "gifs/bricks.gif" ) top left no-repeat;
+}
+
 li#size {
     float: right; /*background: url( "img/gear.gif" ) top left no-repeat;*/
     background: url( "gifs/browser_galeon.gif" ) top left no-repeat;
