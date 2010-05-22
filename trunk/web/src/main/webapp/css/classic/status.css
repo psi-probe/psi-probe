@@ -10,10 +10,10 @@
  */
 
 div.workerInfo {
-    margin-top: 10px;
+	margin-top: 10px;
 }
 
 div.workerInfo table {
-    table-layout:fixed;
+	table-layout:fixed;
 }
 
