@@ -35,13 +35,13 @@
 
 <ul class="options">
     <li id="back"><a href="<c:url value='/logs/index.htm'/>"><spring:message code="probe.jsp.follow.menu.back"/></a></li>
-    <li id="pause"><a href=""><spring:message code="probe.jsp.follow.menu.pause"/></a></li>
-    <li id="resume" style="display: none;"><a href=""><spring:message code="probe.jsp.follow.menu.resume"/></a></li>
-    <li id="zoomin"><a href=""><spring:message code="probe.jsp.follow.menu.zoomin"/></a></li>
-    <li id="zoomout"><a href=""><spring:message code="probe.jsp.follow.menu.zoomout"/></a></li>
-    <li id="wrap"><a href=""><spring:message code="probe.jsp.follow.menu.wrap"/></a></li>
-    <li id="nowrap" style="display: none;"><a href=""><spring:message code="probe.jsp.follow.menu.nowrap"/></a></li>
-    <li id="clear"><a href=""><spring:message code="probe.jsp.follow.menu.clear"/></a></li>
+    <li id="pause"><a href="#"><spring:message code="probe.jsp.follow.menu.pause"/></a></li>
+    <li id="resume" style="display: none;"><a href="#"><spring:message code="probe.jsp.follow.menu.resume"/></a></li>
+    <li id="zoomin"><a href="#"><spring:message code="probe.jsp.follow.menu.zoomin"/></a></li>
+    <li id="zoomout"><a href="#"><spring:message code="probe.jsp.follow.menu.zoomout"/></a></li>
+    <li id="wrap"><a href=#""><spring:message code="probe.jsp.follow.menu.wrap"/></a></li>
+    <li id="nowrap" style="display: none;"><a href="#"><spring:message code="probe.jsp.follow.menu.nowrap"/></a></li>
+    <li id="clear"><a href="#"><spring:message code="probe.jsp.follow.menu.clear"/></a></li>
     <li id="download"><a href="<c:url value='/logs/download'><c:param name='id' value='${param.id}'/></c:url>"><spring:message code="probe.jsp.follow.menu.download"/></a></li>
 </ul>
 
@@ -142,12 +142,12 @@
         },
         '#zoomin': function(element) {
             element.onclick = function () {
-                style = Element.getStyle(file_content_div, 'font-size').replace('px', '');
-                e = document.getElementById(file_content_div);
+                var e = $(file_content_div);
                 if (e) {
-                    new_size = (style - 1 + 3);
+                    var old_size = e.getStyle('font-size').replace('px', '');
+                    var new_size = (old_size - 1 + 3);
                     if (new_size <= 32) {
-                        e.style.fontSize = new_size + 'px';
+                        setFontSize(e, new_size, true);
                     }
                 }
                 return false;
@@ -155,12 +155,12 @@
         },
         '#zoomout': function(element) {
             element.onclick = function () {
-                style = Element.getStyle(file_content_div, 'font-size').replace('px', '');
-                e = document.getElementById(file_content_div);
+                var e = $(file_content_div);
                 if (e) {
-                    new_size = (style - 3 + 1);
+                    var old_size = e.getStyle('font-size').replace('px', '');
+                    var new_size = (old_size - 3 + 1);
                     if (new_size >= 4) {
-                        e.style.fontSize = new_size + 'px';
+                        setFontSize(e, new_size, true);
                     }
                 }
                 return false;
@@ -192,6 +192,20 @@
 
     }
     Behaviour.register(rules);
+
+    function setFontSize(elm, new_size, save) {
+        elm.setStyle({'font-size': new_size + 'px'});
+        if (save) {
+            new Ajax.Request('<c:url value="/remember.ajax"/>?cn=file_content_font_size&state=' + new_size, {method:'get',asynchronous:true});
+        }
+    }
+
+    <c:if test="${cookie['file_content_font_size'] != null}">
+        Event.observe(window, 'load', function() {
+            setFontSize($(file_content_div), ${cookie['file_content_font_size'].value}, false);
+        });
+    </c:if>
+
 </script>
 
 </body>
