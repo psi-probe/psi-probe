@@ -31,6 +31,7 @@
     <div id="charts" class="embeddedBlockContainer">
         <h3><spring:message code="probe.jsp.allappstats.h3.charts"/></h3>
 
+        <%-- Cumulative Response Time --%>
         <c:url value="/chart.png" var="total_avg_proc_time_url">
             <c:param name="ct" value="area"/>
             <c:param name="p" value="total_avg_proc_time"/>
@@ -52,6 +53,7 @@
             </c:param>
         </c:url>
 
+        <%-- Response Time by App --%>
         <c:url value="/chart.png" var="all_app_avg_proc_time_url">
             <c:param name="ct" value="line"/>
             <c:param name="p" value="all_app_avg_proc_time"/>
@@ -82,6 +84,7 @@
             <c:param name="s4o" value="#D26900"/>
         </c:url>
 
+        <%-- Cumulative Requests --%>
         <c:url value="/chart.png" var="total_req_url">
             <c:param name="ct" value="area"/>
             <c:param name="p" value="total_req"/>
@@ -99,6 +102,7 @@
             </c:param>
         </c:url>
 
+        <%-- Requests By App --%>
         <c:url value="/chart.png" var="all_app_req_url">
             <c:param name="ct" value="line"/>
             <c:param name="p" value="all_app_req"/>
@@ -130,37 +134,41 @@
         </c:url>
 
         <div id="chart_group">
-            <div class="chartContainer">
-                <dl>
-                    <dt><spring:message code="probe.jsp.allappstats.charts.totalAvgProcTime.title"/></dt>
-                    <dd class="image">
-                        <img id="total_avg_proc_time_chart" border="0" src="${total_avg_proc_time_url}" alt="+"/>
-                    </dd>
-                </dl>
+            <div class="cumulative">
+                <div class="chartContainer">
+                    <dl>
+                        <dt><spring:message code="probe.jsp.allappstats.charts.totalReq.title"/></dt>
+                        <dd class="image">
+                            <img id="total_req_chart" border="0" src="${total_req_url}" alt="+"/>
+                        </dd>
+                    </dl>
+                </div>
+                <div class="chartContainer">
+                    <dl>
+                        <dt><spring:message code="probe.jsp.allappstats.charts.totalAvgProcTime.title"/></dt>
+                            <dd class="image">
+                            <img id="total_avg_proc_time_chart" border="0" src="${total_avg_proc_time_url}" alt="+"/>
+                        </dd>
+                    </dl>
+                </div>
             </div>
-            <div class="chartContainer">
-                <dl>
-                    <dt><spring:message code="probe.jsp.allappstats.charts.allAppAvgProcTime.title"/></dt>
-                    <dd class="image">
-                        <img id="all_app_avg_proc_time_chart" border="0" src="${all_app_avg_proc_time_url}" alt="+"/>
-                    </dd>
-                </dl>
-            </div>
-            <div class="chartContainer">
-                <dl>
-                    <dt><spring:message code="probe.jsp.allappstats.charts.totalReq.title"/></dt>
-                    <dd class="image">
-                        <img id="total_req_chart" border="0" src="${total_req_url}" alt="+"/>
-                    </dd>
-                </dl>
-            </div>
-            <div class="chartContainer">
-                <dl>
-                    <dt><spring:message code="probe.jsp.allappstats.charts.allAppReq.title"/></dt>
-                    <dd class="image">
-                        <img id="all_app_req_chart" border="0" src="${all_app_req_url}" alt="+"/>
-                    </dd>
-                </dl>
+            <div class="combined">
+                <div class="chartContainer">
+                    <dl>
+                        <dt><spring:message code="probe.jsp.allappstats.charts.allAppReq.title"/></dt>
+                        <dd class="image">
+                            <img id="all_app_req_chart" border="0" src="${all_app_req_url}" alt="+"/>
+                        </dd>
+                    </dl>
+                </div>
+                <div class="chartContainer">
+                    <dl>
+                        <dt><spring:message code="probe.jsp.allappstats.charts.allAppAvgProcTime.title"/></dt>
+                        <dd class="image">
+                            <img id="all_app_avg_proc_time_chart" border="0" src="${all_app_avg_proc_time_url}" alt="+"/>
+                        </dd>
+                    </dl>
+                </div>
             </div>
         </div>
 
