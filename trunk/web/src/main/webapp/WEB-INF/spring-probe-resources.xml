@@ -11,52 +11,52 @@
 -->
 
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	   xmlns:util="http://www.springframework.org/schema/util"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd"
-       default-dependency-check="none" default-lazy-init="false">
-    
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:util="http://www.springframework.org/schema/util"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd"
+		default-dependency-check="none" default-lazy-init="false">
+
 	<util:properties id="version" location="WEB-INF/version.properties" />
 
-    <!--
-        Helper class to allow Probe controllers to access Tomcat.
-    -->
-    <bean id="containerWrapper" class="com.googlecode.psiprobe.beans.ContainerWrapperBean">
-        <property name="forceFirstAdaptor" value="false"/>
-        <property name="adaptorClasses">
-            <list>
-                <value>com.googlecode.psiprobe.Tomcat55ContainerAdaptor</value>
-                <value>com.googlecode.psiprobe.Tomcat50ContainerAdaptor</value>
-            </list>
-        </property>
-        <property name="resourceResolvers">
-            <map>
-                <entry key="jboss" value-ref="jbossResourceResolver"/>
-                <entry key="default" value-ref="defaultResourceResolver"/>
-            </map>
-        </property>
-    </bean>
+	<!--
+		Helper class to allow Probe controllers to access Tomcat.
+	-->
+	<bean id="containerWrapper" class="com.googlecode.psiprobe.beans.ContainerWrapperBean">
+		<property name="forceFirstAdaptor" value="false"/>
+		<property name="adaptorClasses">
+			<list>
+				<value>com.googlecode.psiprobe.Tomcat55ContainerAdaptor</value>
+				<value>com.googlecode.psiprobe.Tomcat50ContainerAdaptor</value>
+			</list>
+		</property>
+		<property name="resourceResolvers">
+			<map>
+				<entry key="jboss" value-ref="jbossResourceResolver"/>
+				<entry key="default" value-ref="defaultResourceResolver"/>
+			</map>
+		</property>
+	</bean>
 
-    <!--
-        Helper bean to read datasource information into Probe data model.
-    -->
-    <bean id="defaultResourceResolver" class="com.googlecode.psiprobe.beans.ResourceResolverBean">
-        <property name="datasourceMappers">
-            <list>
-                <bean class="com.googlecode.psiprobe.beans.C3P0DatasourceAccessor"/>
-                <bean class="com.googlecode.psiprobe.beans.DbcpDatasourceAccessor"/>
-                <bean class="com.googlecode.psiprobe.beans.TomcatDbcpDatasourceAccessor"/>
-                <bean class="com.googlecode.psiprobe.beans.OracleDatasourceAccessor"/>
-            </list>
-        </property>
-    </bean>
+	<!--
+		Helper bean to read datasource information into Probe data model.
+	-->
+	<bean id="defaultResourceResolver" class="com.googlecode.psiprobe.beans.ResourceResolverBean">
+		<property name="datasourceMappers">
+			<list>
+				<bean class="com.googlecode.psiprobe.beans.C3P0DatasourceAccessor"/>
+				<bean class="com.googlecode.psiprobe.beans.DbcpDatasourceAccessor"/>
+				<bean class="com.googlecode.psiprobe.beans.TomcatDbcpDatasourceAccessor"/>
+				<bean class="com.googlecode.psiprobe.beans.OracleDatasourceAccessor"/>
+			</list>
+		</property>
+	</bean>
 
-    <bean id="jbossResourceResolver" class="com.googlecode.psiprobe.beans.JBossResourceResolverBean"/>
+	<bean id="jbossResourceResolver" class="com.googlecode.psiprobe.beans.JBossResourceResolverBean"/>
 
-    <bean id="containerListener" class="com.googlecode.psiprobe.beans.ContainerListenerBean">
-        <property name="containerWrapper">
-            <ref bean="containerWrapper"/>
-        </property>
-    </bean>
+	<bean id="containerListener" class="com.googlecode.psiprobe.beans.ContainerListenerBean">
+		<property name="containerWrapper">
+			<ref bean="containerWrapper"/>
+		</property>
+	</bean>
 
 </beans>
