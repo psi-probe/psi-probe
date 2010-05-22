@@ -15,39 +15,38 @@ public class IPInfo {
     }
 
     public IPInfo(HttpServletRequest request) {
-	this.address = getClientAddress(request);
-	if (!address.equals(request.getRemoteAddr())) {
-	    this.forwarded = true;
-	}
+        this.address = getClientAddress(request);
+        if (!address.equals(request.getRemoteAddr())) {
+            this.forwarded = true;
+        }
     }
 
     public boolean isForwarded() {
-	return forwarded;
+        return forwarded;
     }
 
     public void setForwarded(boolean forwarded) {
-	this.forwarded = forwarded;
+        this.forwarded = forwarded;
     }
 
     public String getAddress() {
-	return address;
+        return address;
     }
 
     public void setAddress(String address) {
-	this.address = address;
+        this.address = address;
     }
 
     public String toString() {
-	return address;
+        return address;
     }
 
     public static String getClientAddress(HttpServletRequest request) {
-	String addr = request.getRemoteAddr();
-	String fwdHeader = request.getHeader("X-Forwarded-For");
-	if (fwdHeader != null) {
-	    addr = fwdHeader.split(",")[0];
-	}
-	return addr;
+        String addr = request.getRemoteAddr();
+        String fwdHeader = request.getHeader("X-Forwarded-For");
+        if (fwdHeader != null) {
+            addr = fwdHeader.split(",")[0];
+        }
+        return addr;
     }
-
 }
