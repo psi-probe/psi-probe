@@ -11,14 +11,14 @@
 package com.googlecode.psiprobe.tools;
 
 public class AccessorFactory {
-    
-	private AccessorFactory() {
-	}
+
+    private AccessorFactory() {
+    }
 
     public static Accessor getInstance() {
         return getSimple();
     }
-    
+
     private static Accessor getReflective() {
         try {
             return new ReflectiveAccessor();
