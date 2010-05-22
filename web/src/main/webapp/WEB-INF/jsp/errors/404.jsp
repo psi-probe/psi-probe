@@ -12,20 +12,20 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" session="false" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%--
-    "404 - Not Found" error handler.
+	"404 - Not Found" error handler.
 
-    Author: Vlad Ilyushchenko
+	Author: Vlad Ilyushchenko
 --%>
 
 <html>
 
-<head><title><spring:message code="probe.jsp.notfound.title"/></title></head>
+	<head><title><spring:message code="probe.jsp.notfound.title"/></title></head>
 
-<body>
-<div class="errorMessage">
-    <p>
-        <spring:message code="probe.jsp.notfound"/>
-    </p>
-</div>
-</body>
+	<body>
+		<div class="errorMessage">
+			<p>
+				<spring:message code="probe.jsp.notfound"/>
+			</p>
+		</div>
+	</body>
 </html>

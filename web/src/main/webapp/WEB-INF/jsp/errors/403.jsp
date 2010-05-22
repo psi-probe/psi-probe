@@ -13,20 +13,20 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 <%--
-    "403 - Forbidden" error handler.
+	"403 - Forbidden" error handler.
 
-    Author: Vlad Ilyushchenko
+	Author: Vlad Ilyushchenko
 --%>
 
 <html>
 
-<head><title><spring:message code="probe.jsp.noaccess.title"/></title></head>
+	<head><title><spring:message code="probe.jsp.noaccess.title"/></title></head>
 
-<body>
-<div class="errorMessage">
-    <p>
-        <spring:message code="probe.jsp.noaccess"/>
-    </p>
-</div>
-</body>
+	<body>
+		<div class="errorMessage">
+			<p>
+				<spring:message code="probe.jsp.noaccess"/>
+			</p>
+		</div>
+	</body>
 </html>
