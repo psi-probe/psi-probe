@@ -14,4 +14,5 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="/WEB-INF/tags/probe.tld" prefix="probe" %>
 
-<span class="name"><spring:message code="probe.jsp.cluster.sent"/></span> <probe:volume value="${cluster.senderTotalBytes}"/> <span class="name"><spring:message code="probe.jsp.cluster.received"/></span> <probe:volume value="${cluster.totalReceivedBytes}"/>
+<span class="name"><spring:message code="probe.jsp.cluster.sent"/></span> <probe:volume value="${cluster.senderTotalBytes}"/>
+<span class="name"><spring:message code="probe.jsp.cluster.received"/></span> <probe:volume value="${cluster.totalReceivedBytes}"/>
