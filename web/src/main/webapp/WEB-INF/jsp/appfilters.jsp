@@ -16,62 +16,62 @@
 <%@ taglib uri="/WEB-INF/tags/probe.tld" prefix="probe" %>
 
 <%--
-    Displays a list of web application filters
+	Displays a list of web application filters
 
-    Author: Andy Shapoval
+	Author: Andy Shapoval
 --%>
 
 <html>
 
-<head>
-    <title>
-        <spring:message code="probe.jsp.title.app.filters" arguments="${param.webapp}"/>
-    </title>
-</head>
+	<head>
+		<title>
+			<spring:message code="probe.jsp.title.app.filters" arguments="${param.webapp}"/>
+		</title>
+	</head>
 
-<%--
-    Make Tab #1 visually "active".
---%>
-<c:set var="navTabApps" value="active" scope="request"/>
-<c:set var="use_decorator" value="application" scope="request"/>
-<c:set var="appTabFilters" value="active" scope="request"/>
+	<%--
+		Make Tab #1 visually "active".
+	--%>
+	<c:set var="navTabApps" value="active" scope="request"/>
+	<c:set var="use_decorator" value="application" scope="request"/>
+	<c:set var="appTabFilters" value="active" scope="request"/>
 
-<body>
+	<body>
 
-<ul class="options">
-    <li id="viewAppFilterMaps">
-        <a href="<c:url value='/appfiltermaps.htm'>
-                    <c:param name='webapp' value='${param.webapp}'/>
-                </c:url>"><spring:message code="probe.jsp.app.filters.opt.maps"/></a>
-    </li>
-</ul>
+		<ul class="options">
+			<li id="viewAppFilterMaps">
+				<a href="<c:url value='/appfiltermaps.htm'><c:param name='webapp' value='${param.webapp}'/></c:url>">
+					<spring:message code="probe.jsp.app.filters.opt.maps"/>
+				</a>
+			</li>
+		</ul>
 
-<div class="embeddedBlockContainer">
-    <c:choose>
-        <c:when test="${! empty appFilters}">
+		<div class="embeddedBlockContainer">
+			<c:choose>
+				<c:when test="${! empty appFilters}">
 
-            <h3><spring:message code="probe.jsp.app.filters.h3.defs"/></h3>
+					<h3><spring:message code="probe.jsp.app.filters.h3.defs"/></h3>
 
-            <display:table htmlId="filterTbl" name="appFilters" id="fltr"
-                           class="genericTbl" cellspacing="0" cellpadding="0"
-                           requestURI="" defaultsort="1">
-                <display:column property="filterName" sortable="true"
-                                titleKey="probe.jsp.app.filters.col.filterName" maxLength="40" class="leftmost"/>
-                <display:column property="filterClass" sortable="true"
-                                titleKey="probe.jsp.app.filters.col.filterClass" maxLength="50"/>
-                <display:column titleKey="probe.jsp.app.filters.col.filterDesc" sortable="false">
-                    <probe:out value="${ftlr.filterDesc}" maxLength="50"/>&nbsp;
-                </display:column>
-            </display:table>
-        </c:when>
-        <c:otherwise>
-            <div class="infoMessage">
-                <p>
-                    <spring:message code="probe.jsp.app.filters.empty"/>
-                </p>
-            </div>
-        </c:otherwise>
-    </c:choose>
-</div>
-</body>
+					<display:table htmlId="filterTbl" name="appFilters" id="fltr"
+							class="genericTbl" cellspacing="0" cellpadding="0"
+							requestURI="" defaultsort="1">
+						<display:column property="filterName" sortable="true"
+								titleKey="probe.jsp.app.filters.col.filterName" maxLength="40" class="leftmost"/>
+						<display:column property="filterClass" sortable="true"
+								titleKey="probe.jsp.app.filters.col.filterClass" maxLength="50"/>
+						<display:column titleKey="probe.jsp.app.filters.col.filterDesc" sortable="false">
+							<probe:out value="${ftlr.filterDesc}" maxLength="50"/>&nbsp;
+						</display:column>
+					</display:table>
+				</c:when>
+				<c:otherwise>
+					<div class="infoMessage">
+						<p>
+							<spring:message code="probe.jsp.app.filters.empty"/>
+						</p>
+					</div>
+				</c:otherwise>
+			</c:choose>
+		</div>
+	</body>
 </html>

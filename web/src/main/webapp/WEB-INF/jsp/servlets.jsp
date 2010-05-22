@@ -15,69 +15,69 @@
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 
 <%--
-    Displays a list of servlets of a particular web application or all web applications
+	Displays a list of servlets of a particular web application or all web applications
 
-    Author: Andy Shapoval
+	Author: Andy Shapoval
 --%>
 
 <html>
 
-<head>
-    <title>
-        <c:choose>
-            <c:when test="${empty param.webapp}">
-                <spring:message code="probe.jsp.title.servlets.all"/>
-            </c:when>
-            <c:otherwise>
-                <spring:message code="probe.jsp.title.servlets.app" arguments="${param.webapp}"/>
-            </c:otherwise>
-        </c:choose>
-    </title>
-    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='servlets.css'/>"/>
-    <script type="text/javascript" language="javascript" src="<c:url value='/js/prototype.js'/>"></script>
-</head>
+	<head>
+		<title>
+			<c:choose>
+				<c:when test="${empty param.webapp}">
+					<spring:message code="probe.jsp.title.servlets.all"/>
+				</c:when>
+				<c:otherwise>
+					<spring:message code="probe.jsp.title.servlets.app" arguments="${param.webapp}"/>
+				</c:otherwise>
+			</c:choose>
+		</title>
+		<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='servlets.css'/>"/>
+		<script type="text/javascript" language="javascript" src="<c:url value='/js/prototype.js'/>"></script>
+	</head>
 
-<%--
-    Make Tab #1 visually "active".
---%>
-<c:set var="navTabApps" value="active" scope="request"/>
-<c:if test="${! empty param.webapp}">
-    <c:set var="use_decorator" value="application" scope="request"/>
-    <c:set var="appTabServlets" value="active" scope="request"/>
-</c:if>
-
-<body>
-
-<ul class="options">
-    <li id="viewServletMaps">
-        <c:url value="/servletmaps.htm" var="servletmaps" scope="page">
-            <c:if test="${not empty param.webapp}">
-                <c:param name="webapp" value="${param.webapp}"/>
-            </c:if>
-        </c:url>
-        <a href="${servletmaps}">
-            <spring:message code="probe.jsp.servlets.opt.maps"/>
-        </a>
-    </li>
-	<c:if test="${not empty param.webapp}">
-		<li id="viewAllServlets">
-			<c:url value="/servlets.htm" var="allservlets" scope="page" />
-			<a href="${allservlets}">
-				<spring:message code="probe.jsp.servlets.opt.all"/>
-			</a>
-		</li>
+	<%--
+		Make Tab #1 visually "active".
+	--%>
+	<c:set var="navTabApps" value="active" scope="request"/>
+	<c:if test="${! empty param.webapp}">
+		<c:set var="use_decorator" value="application" scope="request"/>
+		<c:set var="appTabServlets" value="active" scope="request"/>
 	</c:if>
-</ul>
 
-<div id="servletListContainer" class="embeddedBlockContainer">
-    <jsp:include page="/servlets.ajax"/>
-</div>
+	<body>
 
-<script type="text/javascript">
-    new Ajax.PeriodicalUpdater('servletListContainer',
-            '<c:url value="/servlets.ajax?${pageContext.request.queryString}"/>',
-            {frequency: 5});
-</script>
+		<ul class="options">
+			<li id="viewServletMaps">
+				<c:url value="/servletmaps.htm" var="servletmaps" scope="page">
+					<c:if test="${not empty param.webapp}">
+						<c:param name="webapp" value="${param.webapp}"/>
+					</c:if>
+				</c:url>
+				<a href="${servletmaps}">
+					<spring:message code="probe.jsp.servlets.opt.maps"/>
+				</a>
+			</li>
+			<c:if test="${not empty param.webapp}">
+				<li id="viewAllServlets">
+					<c:url value="/servlets.htm" var="allservlets" scope="page" />
+					<a href="${allservlets}">
+						<spring:message code="probe.jsp.servlets.opt.all"/>
+					</a>
+				</li>
+			</c:if>
+		</ul>
 
-</body>
+		<div id="servletListContainer" class="embeddedBlockContainer">
+			<jsp:include page="/servlets.ajax"/>
+		</div>
+
+		<script type="text/javascript">
+			new Ajax.PeriodicalUpdater('servletListContainer',
+			'<c:url value="/servlets.ajax?${pageContext.request.queryString}"/>',
+			{frequency: 5});
+		</script>
+
+	</body>
 </html>
