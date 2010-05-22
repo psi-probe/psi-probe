@@ -448,6 +448,11 @@ code {
     border-bottom: 3px solid red;
 }
 
+.cumulative,
+.combined {
+	clear: left;
+}
+
 .chartContainer {
     float: left;
 }
