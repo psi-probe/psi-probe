@@ -14,162 +14,162 @@
 
 <taglib>
 
-    <tlib-version>1.0.1</tlib-version>
-    <jsp-version>1.2</jsp-version>
+	<tlib-version>1.0.1</tlib-version>
+	<jsp-version>1.2</jsp-version>
 
-    <short-name>probe</short-name>
-    <uri>http://psi-probe.googlecode.com/jsp/tags</uri>
-    <description>PSI Probe tag library. Author Vlad Ilyushchenko.</description>
+	<short-name>probe</short-name>
+	<uri>http://psi-probe.googlecode.com/jsp/tags</uri>
+	<description>PSI Probe tag library. Author Vlad Ilyushchenko.</description>
 
-    <tag>
-        <name>duration</name>
-        <tag-class>com.googlecode.psiprobe.tags.DurationTag</tag-class>
-        <body-content>JSP</body-content>
+	<tag>
+		<name>duration</name>
+		<tag-class>com.googlecode.psiprobe.tags.DurationTag</tag-class>
+		<body-content>JSP</body-content>
 
-        <description>
-            Converts value in milliseconds into human readable representation of seconds, minutes and hours
-        </description>
+		<description>
+			Converts value in milliseconds into human readable representation of seconds, minutes and hours
+		</description>
 
-        <attribute>
-            <name>value</name>
-            <required>true</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-    </tag>
+		<attribute>
+			<name>value</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
 
-    <tag>
-        <name>volume</name>
-        <tag-class>com.googlecode.psiprobe.tags.VolumeTag</tag-class>
-        <body-content>JSP</body-content>
+	<tag>
+		<name>volume</name>
+		<tag-class>com.googlecode.psiprobe.tags.VolumeTag</tag-class>
+		<body-content>JSP</body-content>
 
-        <description>
-            Displays volume of data in bytes, KBytes, MBytes, GBytes or TBytes depending on the value.
-        </description>
+		<description>
+			Displays volume of data in bytes, KBytes, MBytes, GBytes or TBytes depending on the value.
+		</description>
 
-        <attribute>
-            <name>value</name>
-            <required>true</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
+		<attribute>
+			<name>value</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
 
-        <attribute>
-            <name>fractions</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-    </tag>
+		<attribute>
+			<name>fractions</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
 
-    <tag>
-        <name>toggle</name>
-        <tag-class>com.googlecode.psiprobe.tags.ParamToggleTag</tag-class>
-        <body-content>JSP</body-content>
+	<tag>
+		<name>toggle</name>
+		<tag-class>com.googlecode.psiprobe.tags.ParamToggleTag</tag-class>
+		<body-content>JSP</body-content>
 
-        <description>
-            Toggles the value of "size" request parameter
-        </description>
+		<description>
+			Toggles the value of "size" request parameter
+		</description>
 
-        <attribute>
-            <name>param</name>
-            <required>true</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-    </tag>
+		<attribute>
+			<name>param</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
 
-    <tag>
-        <name>addQueryParam</name>
-        <tag-class>com.googlecode.psiprobe.tags.AddQueryParamTag</tag-class>
-        <body-content>JSP</body-content>
+	<tag>
+		<name>addQueryParam</name>
+		<tag-class>com.googlecode.psiprobe.tags.AddQueryParamTag</tag-class>
+		<body-content>JSP</body-content>
 
-        <description>
-            Adds a parameter value combination to URL query string keeping all existing parameters.
-        </description>
+		<description>
+			Adds a parameter value combination to URL query string keeping all existing parameters.
+		</description>
 
-        <attribute>
-            <name>param</name>
-            <required>true</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
+		<attribute>
+			<name>param</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
 
-        <attribute>
-            <name>value</name>
-            <required>true</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-    </tag>
+		<attribute>
+			<name>value</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
 
-    <tag>
-        <name>out</name>
-        <tag-class>com.googlecode.psiprobe.tags.OutTag</tag-class>
-        <body-content>JSP</body-content>
+	<tag>
+		<name>out</name>
+		<tag-class>com.googlecode.psiprobe.tags.OutTag</tag-class>
+		<body-content>JSP</body-content>
 
-        <description>
-            Outputs values up to maxLength adding ellipsis (...) where necessary
-        </description>
+		<description>
+			Outputs values up to maxLength adding ellipsis (...) where necessary
+		</description>
 
-        <attribute>
-            <name>value</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
+		<attribute>
+			<name>value</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
 
-        <attribute>
-            <name>maxLength</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
+		<attribute>
+			<name>maxLength</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
 
-        <attribute>
-            <name>ellipsisRight</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-    </tag>
+		<attribute>
+			<name>ellipsisRight</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
 
-    <tag>
-        <name>score</name>
-        <tag-class>com.googlecode.psiprobe.tags.VisualScoreTag</tag-class>
-        <body-content>JSP</body-content>
-        <attribute>
-            <name>value</name>
-            <required>true</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>maxValue</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>minValue</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>partialBlocks</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>fullBlocks</name>
-            <required>true</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>showEmptyBlocks</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>showA</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>showB</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-    </tag>
+	<tag>
+		<name>score</name>
+		<tag-class>com.googlecode.psiprobe.tags.VisualScoreTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>value</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>maxValue</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>minValue</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>partialBlocks</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>fullBlocks</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>showEmptyBlocks</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>showA</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>showB</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
 
 </taglib>
 
