@@ -11,6 +11,7 @@
 package com.googlecode.psiprobe;
 
 import com.googlecode.psiprobe.model.ApplicationSession;
+import com.googlecode.psiprobe.model.IPInfo;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
@@ -31,9 +32,11 @@ public class Tomcat50AgentValve implements Valve {
         valveContext.invokeNext(request, response);
         ServletRequest servletRequest = request.getRequest();
         if (servletRequest instanceof HttpServletRequest) {
-            HttpSession session = ((HttpServletRequest)request).getSession(false);
+            HttpServletRequest hsr = (HttpServletRequest) request;
+            HttpSession session = hsr.getSession(false);
             if (session != null) {
-                session.setAttribute(ApplicationSession.LAST_ACCESSED_BY_IP, servletRequest.getRemoteAddr());
+                String ip = IPInfo.getClientAddress(hsr);
+                session.setAttribute(ApplicationSession.LAST_ACCESSED_BY_IP, ip);
             }
         }
     }
