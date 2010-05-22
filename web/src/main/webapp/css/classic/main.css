@@ -394,7 +394,7 @@ li#appSurfTo {
 }
 
 .fixed_width {
-    font-family: "Lucida Sans Typewriter", Courier, monospace;
+    font-family: fixed-width, monospace;
 }
 pre {
     font-size: 85%;
