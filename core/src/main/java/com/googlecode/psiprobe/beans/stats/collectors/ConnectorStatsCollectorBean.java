@@ -15,7 +15,7 @@ import com.googlecode.psiprobe.model.ThreadPool;
 import java.util.Iterator;
 import java.util.List;
 
-public class ConnectorStatsCollectorBean extends BaseStatsCollectorBean {
+public class ConnectorStatsCollectorBean extends AbstractStatsCollectorBean {
 
     private ContainerListenerBean listenerBean;
 
