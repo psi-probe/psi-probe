@@ -25,7 +25,7 @@ import org.apache.catalina.Context;
  * <p/>
  * Author: Andy Shapoval
  */
-public class AppStatsCollector extends BaseStatsCollectorBean {
+public class AppStatsCollector extends AbstractStatsCollectorBean {
 
     private Log logger = LogFactory.getLog(AppStatsCollector.class);
 

@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.TreeMap;
 import org.jfree.data.xy.XYDataItem;
 
-public abstract class BaseStatsCollectorBean {
+public abstract class AbstractStatsCollectorBean {
 
     private StatsCollection statsCollection;
     private int maxSeries = 240;
