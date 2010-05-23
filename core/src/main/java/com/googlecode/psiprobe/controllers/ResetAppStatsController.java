@@ -1,6 +1,6 @@
 package com.googlecode.psiprobe.controllers;
 
-import com.googlecode.psiprobe.beans.stats.collectors.AppStatsCollector;
+import com.googlecode.psiprobe.beans.stats.collectors.AppStatsCollectorBean;
 
 /**
  *
@@ -8,13 +8,13 @@ import com.googlecode.psiprobe.beans.stats.collectors.AppStatsCollector;
  */
 public class ResetAppStatsController extends NoSelfContextHandlerController {
 
-    private AppStatsCollector statsCollector;
+    private AppStatsCollectorBean statsCollector;
 
-    public AppStatsCollector getStatsCollector() {
+    public AppStatsCollectorBean getStatsCollector() {
         return statsCollector;
     }
 
-    public void setStatsCollector(AppStatsCollector statsCollector) {
+    public void setStatsCollector(AppStatsCollectorBean statsCollector) {
         this.statsCollector = statsCollector;
     }
 

@@ -73,7 +73,7 @@
 		<property name="maxSeries" value="${com.googlecode.psiprobe.beans.stats.collectors.runtime.maxSeries}"/>
 	</bean>
 
-	<bean name="appStatsCollector" class="com.googlecode.psiprobe.beans.stats.collectors.AppStatsCollector">
+	<bean name="appStatsCollector" class="com.googlecode.psiprobe.beans.stats.collectors.AppStatsCollectorBean">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="statsCollection" ref="statsCollection"/>
 		<property name="maxSeries" value="${com.googlecode.psiprobe.beans.stats.collectors.app.maxSeries}"/>
