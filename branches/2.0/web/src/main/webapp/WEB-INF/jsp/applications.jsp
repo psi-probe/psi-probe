@@ -41,22 +41,39 @@
     function handleContextReload(idx, context) {
         var img = $('ri_'+idx);
         var status = $('rs_'+idx);
-        reload_url = '<c:url value="/app/reload.ajax"/>?webapp='+context;
+        var reload_url = '<c:url value="/app/reload.ajax"/>?webapp='+context;
         img.src='${pageContext.request.contextPath}<spring:theme code="animated_reset.gif"/>';
-        status.innerHTML='wait...';
-        new Ajax.Updater(status,
-                         '<c:url value="/app/reload.ajax"/>?webapp='+context,
-                         {method:'get',asynchronous:true}).onComplete = function() {
-            img.src='${pageContext.request.contextPath}<spring:theme code="reset.gif"/>';
-        };
+        status.update('wait...');
+        new Ajax.Updater(status,reload_url, {
+            method:'get',
+            asynchronous:true,
+            onComplete:function(response) {
+                img.src='${pageContext.request.contextPath}<spring:theme code="reset.gif"/>';
+                updateStatusClass(status, response.responseText);
+            }
+        });
         return false;
     }
 
     function toggleContext(idx, url, context) {
-        status = $('rs_'+idx);
-        status.innerHTML = '<img border="0" src="${pageContext.request.contextPath}<spring:theme code="progerssbar_editnplace.gif"/>"/>'
-        new Ajax.Updater(status, url+'?webapp='+context, {method:'get',asynchronous:true});
+        var status = $('rs_'+idx);
+        status.update('<img border="0" src="${pageContext.request.contextPath}<spring:theme code="progerssbar_editnplace.gif"/>"/>');
+        new Ajax.Updater(status, url+'?webapp='+context, {
+            method:'get',
+            asynchronous:true,
+            onComplete:function(response) {
+                updateStatusClass(status, response.responseText);
+            }
+        });
         return false;
+    }
+
+    function updateStatusClass(status, responseText) {
+        if (responseText == "<spring:message code='probe.jsp.applications.status.up'/>") {
+            status.addClassName('okValue').removeClassName('errorValue');
+        } else if (responseText == "<spring:message code='probe.jsp.applications.status.down'/>") {
+            status.addClassName('errorValue').removeClassName('okValue');
+        }
     }
 
 </script>

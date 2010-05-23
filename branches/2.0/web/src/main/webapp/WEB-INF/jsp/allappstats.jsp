@@ -187,7 +187,7 @@
                     imageUpdaters[i].stop();
                 }
             }
-            $('full_title').innerHTML = title;
+            $('full_title').update(title);
             Effect.DropOut('chart_group');
             Effect.Appear('full_chart');
             fullImageUpdater = new Ajax.ImgUpdater('fullImg', 30, imgUrl);

@@ -197,7 +197,7 @@
             }
 
             // updating static app info section with the values that are actually retrieved with runtime info
-            $('servletCount').innerHTML = $('r_servletCount').innerHTML;
+            $('servletCount').update($('r_servletCount').innerHTML);
 
             new PeriodicalExecuter(updateAppInfo, 3);
 
@@ -217,7 +217,7 @@
                         imageUpdaters[i].stop();
                     }
                 }
-                $('full_title').innerHTML = title;
+                $('full_title').update(title);
                 Effect.DropOut('chart_group');
                 Effect.Appear('full_chart');
                 fullImageUpdater = new Ajax.ImgUpdater('fullImg', 30, imgUrl);
