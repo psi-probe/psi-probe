@@ -11,9 +11,12 @@
 package com.googlecode.psiprobe.beans;
 
 import com.googlecode.psiprobe.TomcatContainer;
+import com.googlecode.psiprobe.model.ApplicationResource;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import org.apache.catalina.Context;
 import org.apache.catalina.Wrapper;
 import org.apache.catalina.util.ServerInfo;
 import org.apache.commons.logging.Log;
@@ -140,5 +143,29 @@ public class ContainerWrapperBean {
 
     public void setResourceResolvers(Map resourceResolvers) {
         this.resourceResolvers = resourceResolvers;
+    }
+
+    public List getDataSources() throws Exception {
+        if (getResourceResolver().supportsPrivateResources()) {
+            List apps = getTomcatContainer().findContexts();
+
+            List resources = new ArrayList();
+            for (int i = 0; i < apps.size(); i++) {
+
+                List appResources = getResourceResolver().getApplicationResources((Context) apps.get(i));
+                //
+                // add only those resources that have data source info
+                //
+                for (Iterator it = appResources.iterator(); it.hasNext(); ) {
+                    ApplicationResource res = (ApplicationResource) it.next();
+                    if (res.getDataSourceInfo() != null) {
+                        resources.add(res);
+                    }
+                }
+            }
+            return resources;
+        } else {
+            return getResourceResolver().getApplicationResources();
+        }
     }
 }
