@@ -79,6 +79,12 @@
 		<property name="maxSeries" value="${com.googlecode.psiprobe.beans.stats.collectors.app.maxSeries}"/>
 	</bean>
 
+	<bean name="datasourceStatsCollector" class="com.googlecode.psiprobe.beans.stats.collectors.DatasourceStatsCollectorBean">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="statsCollection" ref="statsCollection"/>
+		<property name="maxSeries" value="${com.googlecode.psiprobe.beans.stats.collectors.datasource.maxSeries}"/>
+	</bean>
+
 	<!--
 		The name of SeriesProvider beans is passed on the URL, so it should be short enough
 	-->
@@ -198,6 +204,15 @@
 		<property name="movingAvgFrame" value="10"/>
 	</bean>
 
+	<bean name="datasource_usage" class="com.googlecode.psiprobe.beans.stats.providers.StandardSeriesProvider">
+		<property name="statNames">
+			<list>
+				<value>ds.est.{0}</value>
+				<value>ds.busy.{0}</value>
+			</list>
+		</property>
+	</bean>
+
 	<!--
 		Get spring to call method collect() on the "connectorStatsCollector", making the latter a Job
 	-->
@@ -231,6 +246,12 @@
 		<property name="concurrent" value="false"/>
 	</bean>
 
+	<bean id="datasourceStatsJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="datasourceStatsCollector"/>
+		<property name="targetMethod" value="collect"/>
+		<property name="concurrent" value="false"/>
+	</bean>
+
 	<bean id="statsSerializerJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
 		<property name="targetObject" ref="statsCollection"/>
 		<property name="targetMethod" value="serialize"/>
@@ -260,6 +281,11 @@
 	<bean id="appStatsTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
 		<property name="jobDetail" ref="appStatsJobDetail"/>
 		<property name="cronExpression" value="${com.googlecode.psiprobe.beans.stats.collectors.app.cron}"/>
+	</bean>
+
+	<bean id="datasourceStatsTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="datasourceStatsJobDetail"/>
+		<property name="cronExpression" value="${com.googlecode.psiprobe.beans.stats.collectors.datasource.cron}"/>
 	</bean>
 
 	<bean id="statsSerializerTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
