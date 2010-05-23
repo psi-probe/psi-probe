@@ -10,13 +10,8 @@
  */
 package com.googlecode.psiprobe.controllers;
 
-import com.googlecode.psiprobe.model.ApplicationResource;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.catalina.Context;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -27,29 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class ListAllJdbcResourcesController extends TomcatContainerController{
 
     protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse httpServletResponse) throws Exception {
-
-        if (getContainerWrapper().getResourceResolver().supportsPrivateResources()) {
-            List apps = getContainerWrapper().getTomcatContainer().findContexts();
-
-            List resources = new ArrayList();
-            for (int i = 0; i < apps.size(); i++) {
-
-                List appResources = getContainerWrapper().getResourceResolver().getApplicationResources((Context) apps.get(i));
-                //
-                // add only those resources that have data source info
-                //
-                for (Iterator it = appResources.iterator(); it.hasNext(); ) {
-                    ApplicationResource res = (ApplicationResource) it.next();
-                    if (res.getDataSourceInfo() != null) {
-                        resources.add(res);
-                    }
-                }
-            }
-
-            return new ModelAndView(getViewName(), "resources", resources);
-        } else {
-            request.setAttribute("global_resources", Boolean.TRUE);
-            return new ModelAndView(getViewName(), "resources", getContainerWrapper().getResourceResolver().getApplicationResources());
-        }
+        request.setAttribute("global_resources", Boolean.valueOf(!getContainerWrapper().getResourceResolver().supportsPrivateResources()));
+        return new ModelAndView(getViewName(), "resources", getContainerWrapper().getDataSources());
     }
 }
