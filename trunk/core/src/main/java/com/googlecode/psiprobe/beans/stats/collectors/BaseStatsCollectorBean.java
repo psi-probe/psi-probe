@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.TreeMap;
 import org.jfree.data.xy.XYDataItem;
 
-public class BaseStatsCollectorBean {
+public abstract class BaseStatsCollectorBean {
 
     private StatsCollection statsCollection;
     private int maxSeries = 240;
@@ -38,6 +38,8 @@ public class BaseStatsCollectorBean {
     public void setMaxSeries(int maxSeries) {
         this.maxSeries = maxSeries;
     }
+
+    public abstract void collect() throws Exception;
 
     protected long buildDeltaStats(String name, long value) throws InterruptedException {
         return buildDeltaStats(name, value, System.currentTimeMillis());
