@@ -144,9 +144,6 @@ public class ResourceResolverBean implements ResourceResolver {
     }
 
     public boolean resetResource(Context context, String resourceName) throws NamingException {
-
-        boolean reset = false;
-
         ContextBindings.bindClassLoader(context, null, Thread.currentThread().getContextClassLoader());
         try {
             Object o = new InitialContext().lookup(ResourceResolverBean.DEFAULT_RESOURCE_PREFIX + resourceName);
@@ -155,24 +152,22 @@ public class ResourceResolverBean implements ResourceResolver {
                     DatasourceAccessor accessor = (DatasourceAccessor) it.next();
                     if (accessor.canMap(o)) {
                         accessor.reset(o);
-                        reset = true;
-                        break;
+                        return true;
                     }
                 }
+                return false;
             } catch (Throwable e) {
-                reset = false;
                 //
                 // make sure we always re-throw ThreadDeath
                 //
                 if (e instanceof ThreadDeath) {
                     throw (ThreadDeath) e;
                 }
+                return false;
             }
         } finally {
             ContextBindings.unbindClassLoader(context, null, Thread.currentThread().getContextClassLoader());
         }
-
-        return reset;
     }
 
     public DataSource lookupDataSource(Context context, String resourceName) throws NamingException {
