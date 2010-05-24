@@ -136,13 +136,12 @@ public class JBossResourceResolverBean implements ResourceResolver {
                     return true;
                 } catch (Exception e) {
                     logger.error("Could not reset resource \""+resourceName+"\"", e);
-                    return false;
                 }
             }
+            return false;
         } catch (MalformedObjectNameException e) {
             throw new NamingException("Resource name: \""+resourceName + "\" makes a malformed ObjectName");
         }
-        return false;
     }
 
     public DataSource lookupDataSource(Context context, String resourceName) throws NamingException {
