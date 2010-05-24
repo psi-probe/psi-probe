@@ -302,6 +302,7 @@
 				<ref local="memoryStatsTrigger"/>
 				<ref local="runtimeStatsTrigger"/>
 				<ref local="appStatsTrigger"/>
+				<ref local="datasourceStatsTrigger"/>
 				<ref local="statsSerializerTrigger"/>
 			</list>
 		</property>

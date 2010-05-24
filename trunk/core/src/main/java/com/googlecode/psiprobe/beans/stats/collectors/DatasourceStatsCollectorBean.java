@@ -1,11 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.googlecode.psiprobe.beans.stats.collectors;
 
 import com.googlecode.psiprobe.beans.ContainerWrapperBean;
 import com.googlecode.psiprobe.model.ApplicationResource;
+import com.googlecode.psiprobe.model.DataSourceInfo;
 import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -31,19 +28,22 @@ public class DatasourceStatsCollectorBean extends AbstractStatsCollectorBean {
     }
 
     public void collect() throws Exception {
+        long currentTime = System.currentTimeMillis();
         if (containerWrapper == null) {
             logger.error("Cannot collect data source stats. Container wrapper is not set.");
         } else {
             List dataSources = getContainerWrapper().getDataSources();
-            long currentTime = System.currentTimeMillis();
             for (int i = 0; i < dataSources.size(); i++) {
                 ApplicationResource ds = (ApplicationResource) dataSources.get(i);
                 String name = ds.getName();
-                int numEstablished = ds.getDataSourceInfo().getEstablishedConnections();
-                int numBusy = ds.getDataSourceInfo().getBusyConnections();
+                DataSourceInfo dsi = ds.getDataSourceInfo();
+                int numEstablished = dsi.getEstablishedConnections();
+                int numBusy = dsi.getBusyConnections();
+                logger.trace("Collecting stats for datasource: " + name);
                 buildAbsoluteStats(PREFIX_ESTABLISHED + name, numEstablished, currentTime);
                 buildAbsoluteStats(PREFIX_BUSY + name, numBusy, currentTime);
             }
+            logger.debug("datasource stats collected in " + (System.currentTimeMillis() - currentTime) + "mss");
         }
     }
 
@@ -53,7 +53,8 @@ public class DatasourceStatsCollectorBean extends AbstractStatsCollectorBean {
         } else {
             List dataSources = getContainerWrapper().getDataSources();
             for (int i = 0; i < dataSources.size(); i++) {
-                reset(((ApplicationResource) dataSources.get(i)).getName());
+                ApplicationResource ds = (ApplicationResource) dataSources.get(i);
+                reset(ds.getName());
             }
         }
     }
