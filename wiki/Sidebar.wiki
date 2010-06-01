@@ -4,5 +4,6 @@
   * [Installation]
   * [Features]
     * [Changelogs]
+    * [ChangelogsLambdaProbe Changelogs for LambdaProbe]
   * [DevelopmentRoadmap Development]
     * [IDEConfigNetBeans Configure NetBeans]
