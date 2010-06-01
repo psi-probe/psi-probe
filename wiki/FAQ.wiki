@@ -1,0 +1,93 @@
+#summary Frequently Asked Questions
+----
+To be fair, no one has actually _asked_ these questions, so their frequency cannot be guaranteed.  We just tried to anticipate the sorts of questions which _might_ frequently be asked if we don't answer them here.  If you have a question that was not answered here, please [http://groups.google.com/group/psi-probe-discuss ask it]!
+
+  * [FAQ#General General]
+    * [FAQ#What_is_PSI_Probe? What is PSI Probe?]
+    * [FAQ#Why_fork_Lambda_Probe? Why fork Lambda Probe?]
+    * [FAQ#What's_the_significance_of_PSI? What's the significance of PSI?]
+    * [FAQ#Who_made_the_original_Lambda_Probe? Who made the original Lambda Probe?]
+  * [FAQ#Usage Usage]
+    * [FAQ#How_do_I_install_PSI_Probe_onto_my_server? How do I install PSI Probe onto my server?]
+    * [FAQ#What_can_PSI_Probe_do? What can PSI Probe do?]
+    * [FAQ#Is_PSI_Probe_safe_to_use? Is PSI Probe safe to use?]
+    * [FAQ#I_found_a_bug_in_PSI_Probe._What_should_I_do? I found a bug in PSI Probe. What should I do?]
+  * [FAQ#Development Development]
+    * [FAQ#How_are_bugs_prioritized? How are bugs prioritized?]
+    * [FAQ#I_have_a_cool_idea._Will_you_add_it_to_PSI_Probe? I have a cool idea. Will you add it to PSI Probe?]
+    * [FAQ#Can_you_translate_PSI_Probe_into_my_language? Can you translate PSI Probe into my language?]
+    * [FAQ#How_can_I_contribute_to_this_project? How can I contribute to this project?]
+    * [FAQ#How_do_I_become_a_project_committer? How do I become a project committer?]
+
+----
+= General =
+
+== What is PSI Probe? ==
+PSI Probe is a community-driven fork of [http://www.lambdaprobe.org Lambda Probe] distributed under the same license (GPLv2).  It is intended to replace Tomcat Manager, making it easier to manage and monitor an instance of Apache Tomcat.
+
+== Why fork Lambda Probe? ==
+There have been no releases since November 2006, and commits to their repository have been sparse.  Many people on the Lambda Probe forums fear the project is dead.  We contacted the developers and received no reply, so we're trying to revive the project ourselves.  And because Lambda Probe was released under GPLv2, we can do that, right?
+
+*You're asking me?*
+
+No, I was being rhetorical.
+
+== What's the significance of PSI? ==
+It's a [http://en.wikipedia.org/wiki/Psi_(letter) Greek letter] just like [http://en.wikipedia.org/wiki/Lambda_(letter) lambda].
+
+*Right, but why is it in all caps?  Is it an acronym or something?*
+
+Sure, why not?  Let's say it stands for Packaged Server Introspector.
+
+For what it's worth, a capital psi (Ψ) looks like a [http://en.wikipedia.org/wiki/Fork fork], and PSI Probe is a [http://en.wikipedia.org/wiki/Fork_(software_development) forked] project.  Does that count for anything?
+
+*No.  You should be ashamed of yourself for even mentioning that.*
+
+I am. :(
+
+== Who made the original Lambda Probe? ==
+Lambda Probe was created and maintained by Vlad Ilyushchenko (turbomonkey) and Andy Shapoval.  We want to extend a _very_ special thanks to them, along with an open invitation to join us at any time should their schedules allow it.
+
+----
+= Usage =
+
+== How do I install PSI Probe onto my server? ==
+Just follow [Installation these instructions].
+
+== What does PSI Probe do? ==
+Almost anything Tomcat Manager does, plus [Features a lot more].
+
+== Is PSI Probe safe to use? ==
+PSI Probe comes with no warranty, but it utilizes the same security model as Tomcat Manager with some additions.
+
+== I found a bug in PSI Probe. What should I do? ==
+Please [[http://code.google.com/p/psi-probe/issues/list report it], and include as much information as possible about your environment and the circumstances that led to the bug.  Snippets of log files, stack traces, and the like are incredibly helpful.
+
+----
+= Development =
+
+== How are bugs prioritized? ==
+We use stars to help us gauge popularity of issues and aim to resolve the most popular issues first.  In general, we will prioritize defects over enhancements and features.  Finally, we try to establish a theme for each release to help focus our efforts.
+
+== I have a cool idea. Will you add it to PSI Probe? ==
+Maybe.  Can you be [http://code.google.com/p/psi-probe/issues/list more specific]?
+
+== Can you translate PSI Probe into my language? ==
+Probably not.  The developers only speak English, but we welcome any and all translations.
+
+== How can I contribute to this project? ==
+Our goal with creating PSI Probe was not only to revive the project but also to allow a community to develop around it and help support it.  We welcome any help you are willing to provide.  Here are some suggestions:
+
+  * [http://code.google.com/p/psi-probe/downloads/list Download it] and use it.  It is free, after all.
+  * Use the [http://code.google.com/p/psi-probe/issues/list issue tracker] here to...
+    * "Star" issues that you would like to see fixed.  This will help us assign priority.
+    * Report bugs and request enhancements or new features.
+    * Submit translations of the program's [http://psi-probe.googlecode.com/svn/trunk/web/src/main/conf/WEB-INF/messages.properties messages].
+    * Submit patches for [http://code.google.com/p/psi-probe/issues/list?can=2&q=-has:owner unclaimed issues], especially the ones labeled with [http://code.google.com/p/psi-probe/issues/list?can=1&q=label:HelpWanted HelpWanted].  You can check out the source code [http://code.google.com/p/psi-probe/source/checkout here].
+    * Verify [http://code.google.com/p/psi-probe/issues/list?can=1&q=Status:Fixed fixed issues] in the latest trunk build.
+  * Join our [http://groups.google.com/group/psi-probe-discuss Google Group] and participate in discussions.
+
+Anyone who provides a patch (or even just a detailed description of what changes need to be made to the code) will be made a Contributor of this project.  We want to acknowledge all such contributions, that that's our way of saying thanks.
+
+== How do I become a project committer? ==
+We are a bit skeptical about granting commit privileges to just anyone.  As the community grows, our hope is that experts and leaders will emerge.  Contributors who make frequent high-quality contributions may be invited to become Committers.
