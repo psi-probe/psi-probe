@@ -1,5 +1,6 @@
 #summary Sidebar
 
+  * [FAQ]
   * [Installation]
   * [Features]
     * [Changelogs]
