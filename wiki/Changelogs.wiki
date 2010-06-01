@@ -1,5 +1,4 @@
 #summary List of changes for each release
-#labels Featured
 ----
 [ChangelogsLambdaProbe << Older] | [DevelopmentRoadmap Newer >>]
 
