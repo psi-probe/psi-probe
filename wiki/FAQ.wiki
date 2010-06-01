@@ -9,7 +9,7 @@ To be fair, no one has actually _asked_ these questions, so their frequency cann
     * [FAQ#Who_made_the_original_Lambda_Probe? Who made the original Lambda Probe?]
   * [FAQ#Usage Usage]
     * [FAQ#How_do_I_install_PSI_Probe_onto_my_server? How do I install PSI Probe onto my server?]
-    * [FAQ#What_can_PSI_Probe_do? What can PSI Probe do?]
+    * [FAQ#What_does_PSI_Probe_do? What does PSI Probe do?]
     * [FAQ#Is_PSI_Probe_safe_to_use? Is PSI Probe safe to use?]
     * [FAQ#I_found_a_bug_in_PSI_Probe._What_should_I_do? I found a bug in PSI Probe. What should I do?]
   * [FAQ#Development Development]
