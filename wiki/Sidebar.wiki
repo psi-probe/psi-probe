@@ -1,7 +1,7 @@
 #summary Sidebar
 
+  * [Installation]
   * [Features]
     * [Changelogs]
-  * [Installation]
   * [DevelopmentRoadmap Development]
     * [IDEConfigNetBeans Configure NetBeans]
