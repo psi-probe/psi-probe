@@ -1,4 +1,5 @@
 #summary Frequently Asked Questions
+#labels Featured
 ----
 To be fair, no one has actually _asked_ these questions, so their frequency cannot be guaranteed.  We just tried to anticipate the sorts of questions which _might_ frequently be asked if we don't answer them here.  If you have a question that was not answered here, please [http://groups.google.com/group/psi-probe-discuss ask it]!
 
