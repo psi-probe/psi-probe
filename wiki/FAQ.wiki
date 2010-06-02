@@ -1,13 +1,7 @@
 #summary Frequently Asked Questions
 #labels Featured
 ----
-To be fair, no one has actually _asked_ these questions, so their frequency cannot be guaranteed.  We just tried to anticipate the sorts of questions which _might_ frequently be asked if we don't answer them here.  If you have a question that was not answered here, please [http://groups.google.com/group/psi-probe-discuss ask it]!
 
-  * [FAQ#General General]
-    * [FAQ#What_is_PSI_Probe? What is PSI Probe?]
-    * [FAQ#Why_fork_Lambda_Probe? Why fork Lambda Probe?]
-    * [FAQ#What's_the_significance_of_PSI? What's the significance of PSI?]
-    * [FAQ#Who_made_the_original_Lambda_Probe? Who made the original Lambda Probe?]
   * [FAQ#Usage Usage]
     * [FAQ#How_do_I_install_PSI_Probe_onto_my_server? How do I install PSI Probe onto my server?]
     * [FAQ#What_does_PSI_Probe_do? What does PSI Probe do?]
@@ -19,35 +13,8 @@ To be fair, no one has actually _asked_ these questions, so their frequency cann
     * [FAQ#Can_you_translate_PSI_Probe_into_my_language? Can you translate PSI Probe into my language?]
     * [FAQ#How_can_I_contribute_to_this_project? How can I contribute to this project?]
     * [FAQ#How_do_I_become_a_project_committer? How do I become a project committer?]
-
-----
-= General =
-
-== What is PSI Probe? ==
-PSI Probe is a community-driven fork of [http://www.lambdaprobe.org Lambda Probe] distributed under the same license (GPLv2).  It is intended to replace Tomcat Manager, making it easier to manage and monitor an instance of Apache Tomcat.
-
-== Why fork Lambda Probe? ==
-There have been no releases since November 2006, and commits to their repository have been sparse.  Many people on the Lambda Probe forums fear the project is dead.  We contacted the developers and received no reply, so we're trying to revive the project ourselves.  And because Lambda Probe was released under GPLv2, we can do that, right?
-
-*You're asking me?*
-
-No, I was being rhetorical.
-
-== What's the significance of PSI? ==
-It's a [http://en.wikipedia.org/wiki/Psi_(letter) Greek letter] just like [http://en.wikipedia.org/wiki/Lambda_(letter) lambda].
-
-*Right, but why is it in all caps?  Is it an acronym or something?*
-
-Sure, why not?  Let's say it stands for Packaged Server Introspector.
-
-For what it's worth, a capital psi (Ψ) looks like a [http://en.wikipedia.org/wiki/Fork fork], and PSI Probe is a [http://en.wikipedia.org/wiki/Fork_(software_development) forked] project.  Does that count for anything?
-
-*No.  You should be ashamed of yourself for even mentioning that.*
-
-I am. :(
-
-== Who made the original Lambda Probe? ==
-Lambda Probe was created and maintained by Vlad Ilyushchenko (turbomonkey) and Andy Shapoval.  We want to extend a _very_ special thanks to them, along with an open invitation to join us at any time should their schedules allow it.
+  * [FAQ#Miscellaneous Miscellaneous]
+    * [FAQ#What_should_I_do_if_my_question_was_not_answered_here? What should I do if my question was not answered here?]
 
 ----
 = Usage =
@@ -62,7 +29,7 @@ Almost anything Tomcat Manager does, plus [Features a lot more].
 PSI Probe comes with no warranty, but it utilizes the same security model as Tomcat Manager with some additions.
 
 == I found a bug in PSI Probe. What should I do? ==
-Please [[http://code.google.com/p/psi-probe/issues/list report it], and include as much information as possible about your environment and the circumstances that led to the bug.  Snippets of log files, stack traces, and the like are incredibly helpful.
+Please [http://code.google.com/p/psi-probe/issues/list report it], and include as much information as possible about your environment and the circumstances that led to the bug.  Snippets of log files, stack traces, and the like are incredibly helpful.
 
 ----
 = Development =
@@ -92,3 +59,9 @@ Anyone who provides a patch (or even just a detailed description of what changes
 
 == How do I become a project committer? ==
 We are a bit skeptical about granting commit privileges to just anyone.  As the community grows, our hope is that experts and leaders will emerge.  Contributors who make frequent high-quality contributions may be invited to become Committers.
+
+----
+= Miscellaneous =
+
+== What should I do if my question was not answered here? ==
+Please join our [http://groups.google.com/group/psi-probe-discuss Google Group] and ask it!
