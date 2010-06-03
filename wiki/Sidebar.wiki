@@ -1,9 +1,11 @@
 #summary Sidebar
 
   * [FAQ]
-  * [Installation]
   * [Features]
+  * [Installation]
+  * Development
+    * [DevelopmentRoadmap Roadmap]
     * [Changelogs]
-    * [ChangelogsLambdaProbe Changelogs for LambdaProbe]
-  * [DevelopmentRoadmap Development]
-    * [IDEConfigNetBeans Configure NetBeans]
+      * [ChangelogsLambdaProbe Lambda Probe]
+    * Configure Your IDE
+      * [IDEConfigNetBeans NetBeans]
