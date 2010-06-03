@@ -2,7 +2,7 @@
 ----
 == Configure !NetBeans for Maven ==
   # Download and install [http://maven.apache.org/ Apache Maven].
-    * If you are using JDK 1.4, get version 2.1.0.
+    * If you are using JDK 1.4, get version 2.0.x (preferably 2.0.9+).
     * If you are using JDK 1.5 or higher, get the latest version.
   # In !NetBeans, go to "Tools" > "Options." ([http://psi-probe.googlecode.com/svn/wiki/IDEConfigNetBeans/tools-options.png screenshot])
   # Click the "Miscellaneous" tab, then click the "Maven" subtab.
