@@ -2,22 +2,22 @@
 #labels Featured
 ----
 
-  * [FAQ#Usage Usage]
-    * [FAQ#What_does_PSI_Probe_do? What does PSI Probe do?]
-    * [FAQ#Is_PSI_Probe_safe_to_use? Is PSI Probe safe to use?]
-    * [FAQ#How_do_I_install_PSI_Probe_onto_my_server? How do I install PSI Probe onto my server?]
-    * [FAQ#I_found_a_bug_in_PSI_Probe._What_should_I_do? I found a bug in PSI Probe. What should I do?]
-  * [FAQ#Development Development]
-    * [FAQ#I_have_a_great_idea._Can_you_add_it_to_PSI_Probe? I have a great idea. Can you add it to PSI Probe?]
-    * [FAQ#How_are_issues_prioritized? How are issues prioritized?]
-    * [FAQ#Can_you_translate_PSI_Probe_into_my_language? Can you translate PSI Probe into my language?]
-    * [FAQ#How_can_I_contribute_to_this_project? How can I contribute to this project?]
-    * [FAQ#How_do_I_become_a_project_committer? How do I become a project committer?]
-  * [FAQ#Miscellaneous Miscellaneous]
-    * [FAQ#Who_made_Lambda_Probe? Who made Lambda Probe?]
-    * [FAQ#Why_fork_Lambda_Probe? Why fork Lambda Probe?]
-    * [FAQ#Why_PSI? Why PSI?]
-    * [FAQ#What_should_I_do_if_my_question_was_not_answered_here? What should I do if my question was not answered here?]
+  * [#Usage Usage]
+    * [#What_does_PSI_Probe_do? What does PSI Probe do?]
+    * [#Is_PSI_Probe_safe_to_use? Is PSI Probe safe to use?]
+    * [#How_do_I_install_PSI_Probe_onto_my_server? How do I install PSI Probe onto my server?]
+    * [#I_found_a_bug_in_PSI_Probe._What_should_I_do? I found a bug in PSI Probe. What should I do?]
+  * [#Development Development]
+    * [#I_have_a_great_idea._Can_you_add_it_to_PSI_Probe? I have a great idea. Can you add it to PSI Probe?]
+    * [#How_are_issues_prioritized? How are issues prioritized?]
+    * [#Can_you_translate_PSI_Probe_into_my_language? Can you translate PSI Probe into my language?]
+    * [#How_can_I_contribute_to_this_project? How can I contribute to this project?]
+    * [#How_do_I_become_a_project_committer? How do I become a project committer?]
+  * [#Miscellaneous Miscellaneous]
+    * [#Who_made_Lambda_Probe? Who made Lambda Probe?]
+    * [#Why_fork_Lambda_Probe? Why fork Lambda Probe?]
+    * [#Why_PSI? Why PSI?]
+    * [#What_should_I_do_if_my_question_was_not_answered_here? What should I do if my question was not answered here?]
 
 ----
 = Usage =
