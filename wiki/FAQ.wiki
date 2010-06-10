@@ -26,10 +26,12 @@
 Almost anything Tomcat Manager does, plus [Features a lot more].
 
 == Is PSI Probe safe to use? ==
-PSI Probe comes with no warranty, but it should be as secure as Tomcat Manager.
+PSI Probe comes with no warranty, but web access should be as secure as access to Tomcat Manager.
+
+You can also secure the remote JMX connection if you choose to [InstallationApacheTomcat#Enable_Remote_JMX_(Optional) enable it].
 
 == How do I install PSI Probe onto my server? ==
-Just follow [Installation these instructions].
+We have instructions for installing to [InstallationApacheTomcat Apache Tomcat] and [InstallationJBossAS JBoss Application Server].
 
 == I found a bug in PSI Probe. What should I do? ==
 Please [https://code.google.com/p/psi-probe/issues/entry report it], and include as much information as possible about your environment and the circumstances that led to the bug.  Snippets of log files, stack traces, and the like are incredibly helpful.
