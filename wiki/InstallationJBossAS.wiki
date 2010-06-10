@@ -1,0 +1,43 @@
+#summary Instructions for deploying to JBoss Application Server
+----
+
+== 1. Declare users and rolls ==
+
+Create two files in `$JBOSS_SERVER_HOME/conf/props/`:
+
+    * `probe-users.properties`: list of users in the format of `username=password`
+      * e.g. `admin=t0psecret`
+    * `probe-roles.properties`: lists of roles in the format of `username=role1[,role2...]`
+      * e.g. `admin=manager`
+
+== 2. Define application policy ==
+
+Edit `$JBOSS_SERVER_HOME/conf/login.xml` and add the following code to the `<policy>` element:
+
+{{{
+<application-policy name="probe">
+  <authentication>
+    <login-module code="org.jboss.security.auth.spi.UsersRolesLoginModule" flag="required">
+      <module-option name="usersProperties">props/probe-users.properties</module-option>
+      <module-option name="rolesProperties">props/probe-roles.properties</module-option>
+    </login-module>
+  </authentication>
+</application-policy>
+}}}
+
+== 3. Ensure a privileged context ==
+
+Add the following attribute to `$JBOSS_SERVER_HOME/deploy/jbossweb-tomcat55.sar/META-INF/jboss-service.xml`:
+
+{{{
+<attribute name="AllowSelfPrivilegedWebApps">true</attribute>
+}}}
+
+== 4. Manually deploy PSI Probe ==
+
+  # Copy probe.war to `$JBOSS_SERVER_HOME/deploy/`
+  # Restart JBoss.
+
+== Known Issues ==
+
+  * JBoss 3.2.8SP1 has a [https://jira.jboss.org/jira/browse/JBAS-3006 bug] which does not allow Probe to restart applications.  It has been fixed in a later version.
