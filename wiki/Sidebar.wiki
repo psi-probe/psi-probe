@@ -2,7 +2,9 @@
 
   * [FAQ]
   * [Features]
-  * [Installation]
+  * Installation
+    * [InstallationApacheTomcat Apache Tomcat]
+    * [InstallationJBossAS JBoss Application Server]
   * Development
     * [DevelopmentRoadmap Roadmap]
     * [Changelogs]
