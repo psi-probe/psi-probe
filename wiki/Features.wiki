@@ -56,6 +56,8 @@
 || *System: OS details*                 ||   ||   ||   || X ||
 || *[http://psi-probe.googlecode.com/svn/wiki/Features/quick-check.png Quick Check: execute]*                        ||   ||   ||   || X ||
 
+To find out when these features were added, please refer to the [Changelogs].
+
 ----
 = Compatibility =
 
