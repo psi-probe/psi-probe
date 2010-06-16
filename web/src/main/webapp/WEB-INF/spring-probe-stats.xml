@@ -77,6 +77,7 @@
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="statsCollection" ref="statsCollection"/>
 		<property name="maxSeries" value="${com.googlecode.psiprobe.beans.stats.collectors.app.maxSeries}"/>
+		<property name="selfIgnored" value="${com.googlecode.psiprobe.beans.stats.collectors.app.selfIgnored}"/>
 	</bean>
 
 	<bean name="datasourceStatsCollector" class="com.googlecode.psiprobe.beans.stats.collectors.DatasourceStatsCollectorBean">

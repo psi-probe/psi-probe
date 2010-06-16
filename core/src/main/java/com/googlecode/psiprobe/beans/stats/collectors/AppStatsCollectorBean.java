@@ -16,20 +16,24 @@ import com.googlecode.psiprobe.tools.ApplicationUtils;
 import com.googlecode.psiprobe.model.Application;
 import java.util.List;
 import java.util.Iterator;
+import javax.servlet.ServletContext;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.catalina.Context;
+import org.springframework.web.context.ServletContextAware;
 
 /**
  * Collects application statistics
  * <p/>
  * Author: Andy Shapoval
  */
-public class AppStatsCollectorBean extends AbstractStatsCollectorBean {
+public class AppStatsCollectorBean extends AbstractStatsCollectorBean implements ServletContextAware {
 
     private Log logger = LogFactory.getLog(AppStatsCollectorBean.class);
 
     private ContainerWrapperBean containerWrapper;
+    private ServletContext servletContext;
+    private boolean selfIgnored;
 
     public ContainerWrapperBean getContainerWrapper() {
         return containerWrapper;
@@ -37,6 +41,22 @@ public class AppStatsCollectorBean extends AbstractStatsCollectorBean {
 
     public void setContainerWrapper(ContainerWrapperBean containerWrapper) {
         this.containerWrapper = containerWrapper;
+    }
+
+    public boolean isSelfIgnored() {
+        return selfIgnored;
+    }
+
+    public void setSelfIgnored(boolean selfIgnored) {
+        this.selfIgnored = selfIgnored;
+    }
+
+    protected ServletContext getServletContext() {
+        return servletContext;
+    }
+
+    public void setServletContext(ServletContext servletContext) {
+        this.servletContext = servletContext;
     }
 
     public void collect() throws Exception {
@@ -52,7 +72,6 @@ public class AppStatsCollectorBean extends AbstractStatsCollectorBean {
             if (tomcatContainer != null) {
                 long totalReqDelta = 0;
                 long totalAvgProcTime = 0;
-
                 int participatingAppCount = 0;
 
                 List contexts = tomcatContainer.findContexts();
@@ -75,9 +94,11 @@ public class AppStatsCollectorBean extends AbstractStatsCollectorBean {
                         // make sure applications that did not serve any requests
                         // do not participate in average response time equasion thus diluting the value
                         if (reqDelta > 0) {
-                            totalReqDelta += reqDelta;
-                            totalAvgProcTime += avgProcTime;
-                            participatingAppCount++;
+                            if (!excludeFromTotal(ctx)) {
+                                totalReqDelta += reqDelta;
+                                totalAvgProcTime += avgProcTime;
+                                participatingAppCount++;
+                            }
                         }
                     }
                 }
@@ -87,6 +108,10 @@ public class AppStatsCollectorBean extends AbstractStatsCollectorBean {
             }
             logger.debug("app stats collected in " + (System.currentTimeMillis() - currentTime) + "ms.");
         }
+    }
+
+    private boolean excludeFromTotal(Context ctx) {
+        return isSelfIgnored() && getServletContext().equals(ctx.getServletContext());
     }
 
     public void reset() {
