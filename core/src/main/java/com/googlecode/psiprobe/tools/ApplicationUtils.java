@@ -150,12 +150,10 @@ public class ApplicationUtils {
                 reqCount += sw.getRequestCount();
                 errCount += sw.getErrorCount();
                 procTime += sw.getProcessingTime();
-                if (sw.getRequestCount() > 0 && sw.getMinTime() < minTime) {
-                    minTime = sw.getMinTime();
+                if (sw.getRequestCount() > 0) {
+                    minTime = Math.min(minTime, sw.getMinTime());
                 }
-                if (sw.getMaxTime() > maxTime) {
-                    maxTime = sw.getMaxTime();
-                }
+                maxTime = Math.max(maxTime, sw.getMaxTime());
             }
         }
         app.setServletCount(svltCount);
