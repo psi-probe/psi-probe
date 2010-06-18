@@ -155,7 +155,26 @@
 
 		</div>
 
+		<div id="charts" class="embeddedBlockContainer">
+			<c:url value="/chart.png" var="usage_img" scope="page">
+				<c:param name="p" value="datasource_usage"/>
+				<c:param name="sp" value="${param.resource}"/>
+				<c:param name="xz" value="400"/>
+				<c:param name="yz" value="250"/>
+				<c:param name="l" value="false"/>
+			</c:url>
+			<div class="chartContainer">
+				<dl>
+					<dt><spring:message code="probe.jsp.dataSourceTest.chart.usage.title"/></dt>
+					<dd class="image">
+						<img id="usage-${param.resource}" border="0" src="${usage_img}" alt="Datasource usage for the last 2 hours"/>
+					</dd>
+				</dl>
+			</div>
+		</div>
+
 		<script type="text/javascript">
+			new Ajax.ImgUpdater('usage-${param.resource}', 30);
 			setupAjaxActions(
 				'<c:url value="/sql/connection.ajax"/>',
 				'<c:url value="/sql/recordset.ajax"/>',
