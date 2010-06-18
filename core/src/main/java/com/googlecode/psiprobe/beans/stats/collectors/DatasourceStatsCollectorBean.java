@@ -43,7 +43,7 @@ public class DatasourceStatsCollectorBean extends AbstractStatsCollectorBean {
                 buildAbsoluteStats(PREFIX_ESTABLISHED + name, numEstablished, currentTime);
                 buildAbsoluteStats(PREFIX_BUSY + name, numBusy, currentTime);
             }
-            logger.debug("datasource stats collected in " + (System.currentTimeMillis() - currentTime) + "mss");
+            logger.debug("datasource stats collected in " + (System.currentTimeMillis() - currentTime) + "ms");
         }
     }
 
