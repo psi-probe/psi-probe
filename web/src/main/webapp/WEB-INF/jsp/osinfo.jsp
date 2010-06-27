@@ -152,7 +152,7 @@
 						var img = document.getElementById('fullImg');
 						Effect.DropOut('chart_group');
 						Effect.Appear('full_chart');
-						fullImageUpdater = new Ajax.ImgUpdater('fullImg', 30, url);
+						fullImageUpdater = new Ajax.ImgUpdater('fullImg', 30, url); //TODO: issue 111
 					}
 
 					function zoomOut() {
@@ -189,9 +189,9 @@
 
 					Behaviour.register(rules);
 
-					new Ajax.ImgUpdater('cpu_chart', 30);
-					new Ajax.ImgUpdater('mem_chart', 30);
-					new Ajax.ImgUpdater('swap_chart', 30);
+					new Ajax.ImgUpdater('cpu_chart', 30); //TODO: issue 111
+					new Ajax.ImgUpdater('mem_chart', 30); //TODO: issue 111
+					new Ajax.ImgUpdater('swap_chart', 30); //TODO: issue 111
 					new Ajax.PeriodicalUpdater('osinfo', '<c:url value="/adm/osinfo.ajax"/>', {frequency: 5});
 
 				</script>

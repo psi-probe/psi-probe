@@ -93,11 +93,11 @@
 					// reset the image auto-updater
 					// to make sure the auto-updater knows the changed image dimensions
 					if (updater) updater.stop();
-					updater = new Ajax.ImgUpdater('img', 15);
+					updater = new Ajax.ImgUpdater('img', 15); //TODO: issue 111
 				}
 
 				// start image auto-updater
-				updater = new Ajax.ImgUpdater('img', 15);
+				updater = new Ajax.ImgUpdater('img', 15); //TODO: issue 111
 
 			</script>
 		</div>
