@@ -14,8 +14,12 @@ public class TimeExpression {
         return cronExpression(inSeconds(periodExpression), inSeconds(phaseExpression));
     }
 
-    public static long dataPoints(long period, long interval) {
-        return interval / period;
+    public static long dataPoints(String periodExpression, String spanExpression) {
+        return dataPoints(inSeconds(periodExpression), inSeconds(spanExpression));
+    }
+
+    public static long dataPoints(long period, long span) {
+        return span / period;
     }
 
     public static String cronExpression(long period, long phase) {
@@ -73,6 +77,9 @@ public class TimeExpression {
     }
 
     private static long inSeconds(String expression) {
+        if (expression == null || expression.equals("")) {
+            return 0;
+        }
         if (expression.matches("[0-9]+[smhd]")) {
             int multiplier = multiplier(expression.charAt(expression.length() - 1));
             if (multiplier == 0) {
