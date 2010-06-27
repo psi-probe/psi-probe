@@ -48,7 +48,7 @@
 		<div id="charts">
 			<div class="shadow">
 				<div class="info">
-					<p><spring:message code="probe.jsp.charts.information"/></p>
+					<p><spring:message code="probe.jsp.charts.information"/></p><!-- TODO: issue 111 -->
 				</div>
 			</div>
 
@@ -98,7 +98,7 @@
 				<div id="chartdata-${name}" style="${style_collapse}">
 					<div class="chartContainer">
 						<dl>
-							<dt><spring:message code="probe.jsp.charts.requests.title"/></dt>
+							<dt><spring:message code="probe.jsp.charts.requests.title"/></dt><!-- TODO: issue 111 -->
 							<dd class="image">
 								<a href="<c:url value='/zoomchart.htm'/>?sp=${name}&p=connector"><img
 										id="req-${name}"
@@ -118,7 +118,7 @@
 
 					<div class="chartContainer">
 						<dl>
-							<dt><spring:message code="probe.jsp.charts.traffic.title"/></dt>
+							<dt><spring:message code="probe.jsp.charts.traffic.title"/></dt><!-- TODO: issue 111 -->
 							<dd class="image">
 								<a href="<c:url value='/zoomchart.htm'/>?sp=${name}&p=traffic"><img
 										id="traf-${name}"

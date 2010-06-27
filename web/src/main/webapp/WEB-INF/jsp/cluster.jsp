@@ -97,7 +97,7 @@
 					<div>
 						<div class="chartContainer">
 							<dl>
-								<dt><spring:message code="probe.jsp.cluster.chart.traffic"/></dt>
+								<dt><spring:message code="probe.jsp.cluster.chart.traffic"/></dt><!-- TODO: issue 111 -->
 								<dd>
 									<img id="cl_traffic" border="0" src="${receivedimg}" alt="Bytes received"/>
 								</dd>
@@ -107,7 +107,7 @@
 
 						<div class="chartContainer">
 							<dl>
-								<dt><spring:message code="probe.jsp.cluster.chart.requests"/></dt>
+								<dt><spring:message code="probe.jsp.cluster.chart.requests"/></dt><!-- TODO: issue 111 -->
 								<dd>
 									<img id="cl_requests" border="0" src="${sentimg}" alt="Bytes sent"/>
 								</dd>

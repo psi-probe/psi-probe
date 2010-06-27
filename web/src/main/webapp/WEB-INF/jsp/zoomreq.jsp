@@ -56,7 +56,7 @@
 		<div class="blockContainer">
 			<div class="shadow">
 				<div class="info">
-					<p><spring:message code="probe.jsp.zoomedchart.information"/></p>
+					<p><spring:message code="probe.jsp.zoomedchart.information"/></p><!-- TODO: issue 111 -->
 				</div>
 			</div>
 
