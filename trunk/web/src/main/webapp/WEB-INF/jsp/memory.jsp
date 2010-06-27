@@ -95,23 +95,23 @@
 									${pool.name}
 									<c:url var="toggleUrl" value="/remember.ajax?cn=mem_${pool.id}"/>
 									<img onclick="togglePanel('${pool.id}', '${toggleUrl}')"
-											src="${pageContext.request.contextPath}<spring:theme code='bullet_arrow_down.gif'/>" alt=""/>
+											src="${pageContext.request.contextPath}<spring:theme code='bullet_arrow_down.gif'/>" alt="+"/>
 								</dt>
 								<dd class="image"><img id="img_${pool.id}"
-													src="<c:out value='${chartUrl}' escapeXml='false'/>" alt=""
+													src="<c:out value='${chartUrl}' escapeXml='false'/>" alt="+"
 													onclick="zoomIn('${pool.name}')"/></dd>
 							</dl>
 						</div>
 
 						<script type="text/javascript">
-							new Ajax.ImgUpdater('img_${pool.id}', 30);
+							new Ajax.ImgUpdater('img_${pool.id}', 30); //TODO: issue 111
 						</script>
 
 					</c:forEach>
 				</div>
 
 				<div id="fullMemoryChart" style="display: none;">
-					<img id="fullImg" class="clickable" src="${fullChartBase}&sp=Total" alt="" onclick="zoomOut();"/>
+					<img id="fullImg" class="clickable" src="${fullChartBase}&sp=Total" alt="-" onclick="zoomOut();"/>
 				</div>
 			</div>
 
@@ -125,7 +125,7 @@
 					}
 					Effect.DropOut('memChartGroup');
 					Effect.Appear('fullMemoryChart');
-					fullImageUpdater = new Ajax.ImgUpdater('fullImg', 30, '<c:out value="${fullChartBase}" escapeXml="false"/>&sp=' + newPool + "&s1l=" + newPool);
+					fullImageUpdater = new Ajax.ImgUpdater('fullImg', 30, '<c:out value="${fullChartBase}" escapeXml="false"/>&sp=' + newPool + "&s1l=" + newPool); //TODO: issue 111
 				}
 
 				function zoomOut() {

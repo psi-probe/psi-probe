@@ -240,7 +240,7 @@
 							$('full_title').update(title);
 							Effect.DropOut('chart_group');
 							Effect.Appear('full_chart');
-							fullImageUpdater = new Ajax.ImgUpdater('fullImg', 30, imgUrl);
+							fullImageUpdater = new Ajax.ImgUpdater('fullImg', 30, imgUrl); //TODO: issue 111
 						}
 
 						function zoomOut() {
@@ -277,8 +277,8 @@
 
 						Behaviour.register(rules);
 
-						imageUpdaters[0] = new Ajax.ImgUpdater('req_chart', 30);
-						imageUpdaters[1] = new Ajax.ImgUpdater('avg_proc_time_chart', 30);
+						imageUpdaters[0] = new Ajax.ImgUpdater('req_chart', 30); //TODO: issue 111
+						imageUpdaters[1] = new Ajax.ImgUpdater('avg_proc_time_chart', 30); //TODO: issue 111
 					</script>
 				</c:if>
 

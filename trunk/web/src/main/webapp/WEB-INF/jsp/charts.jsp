@@ -103,7 +103,7 @@
 								<a href="<c:url value='/zoomchart.htm'/>?sp=${name}&p=connector"><img
 										id="req-${name}"
 										border="0" src="${reqimg}&sp=${name}"
-										alt="Connector usage for the last 2 hours"/></a>
+										alt="Connector usage for the last 2 hours"/><!-- TODO: issue 111 --></a>
 							</dd>
 							<dd id="dd-req-${name}">
 								<div class="ajax_activity"/>
@@ -112,7 +112,7 @@
 					</div>
 
 					<script type="text/javascript">
-						new Ajax.ImgUpdater('req-${name}', 30);
+						new Ajax.ImgUpdater('req-${name}', 30); //TODO: issue 111
 						new Ajax.PeriodicalUpdater('dd-req-${name}', '<c:url value="/cnreqdetails.ajax"/>?cn=${name}', {frequency: 3});
 					</script>
 
@@ -123,7 +123,7 @@
 								<a href="<c:url value='/zoomchart.htm'/>?sp=${name}&p=traffic"><img
 										id="traf-${name}"
 										border="0" src="${traffimg}&sp=${name}"
-										alt="Connector usage for the last 2 hours"/></a>
+										alt="Connector usage for the last 2 hours"/><!-- TODO: issue 111 --></a>
 							</dd>
 							<dd id="dd-traf-${name}">
 								<div class="ajax_activity"/>
@@ -132,7 +132,7 @@
 					</div>
 
 					<script type="text/javascript">
-						new Ajax.ImgUpdater('traf-${name}', 30);
+						new Ajax.ImgUpdater('traf-${name}', 30); //TODO: issue 111
 						new Ajax.PeriodicalUpdater('dd-traf-${name}', '<c:url value="/cntrafdetails.ajax"/>?cn=${name}', {frequency: 3});
 					</script>
 				</div>
