@@ -345,51 +345,23 @@
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>buildnumber-maven-plugin</artifactId>
+					<version>1.0-beta-4</version>
 					<executions>
 						<execution>
-							<id>generate-buildNumber</id>
 							<phase>validate</phase>
 							<goals>
 								<goal>create</goal>
 							</goals>
-							<configuration>
-								<getRevisionOnlyOnce>true</getRevisionOnlyOnce>
-								<useLastCommittedRevision>true</useLastCommittedRevision>
-								<doCheck>${buildNumber.doCheck}</doCheck>
-								<doUpdate>${buildNumber.doUpdate}</doUpdate>
-							</configuration>
-						</execution>
-						<execution>
-							<id>generate-timestamp</id>
-							<phase>validate</phase>
-							<goals>
-								<goal>create</goal>
-							</goals>
-							<configuration>
-								<timestampFormat>{0,date,yyyy-MM-dd_HHmm}</timestampFormat>
-								<items>
-									<item>timestamp</item>
-								</items>
-								<doCheck>false</doCheck>
-								<doUpdate>false</doUpdate>
-							</configuration>
 						</execution>
 					</executions>
+					<configuration>
+						<getRevisionOnlyOnce>true</getRevisionOnlyOnce>
+						<useLastCommittedRevision>true</useLastCommittedRevision>
+						<doCheck>${buildNumber.doCheck}</doCheck>
+						<doUpdate>${buildNumber.doUpdate}</doUpdate>
+						<timestampFormat>{0,date,yyyy-MM-dd HH:mm Z}</timestampFormat>
+					</configuration>
 				</plugin>
-				<!-- this needs maven 2.0.9 or above.
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-source-plugin</artifactId>
-					<executions>
-						<execution>
-							<id>attach-sources</id>
-							<goals>
-								<goal>jar</goal>
-							</goals>
-						</execution>
-					</executions>
-				</plugin>
-				-->
 			</plugins>
 		</pluginManagement>
 		<plugins>
@@ -413,31 +385,8 @@
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>buildnumber-maven-plugin</artifactId>
 			</plugin>
-			<!-- this needs maven 2.0.9 or above.
-			<plugin>
-				<inherited>true</inherited>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-source-plugin</artifactId>
-			</plugin>
-			-->
 		</plugins>
 	</build>
-	<reporting>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-checkstyle-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jxr-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-pmd-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</reporting>
 	<profiles>
 		<profile>
 			<id>release</id>
@@ -447,10 +396,16 @@
 				<buildNumber.doUpdate>true</buildNumber.doUpdate>
 			</properties>
 		</profile>
+		<profile>
+			<id>development</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<probe.version>${project.version} (r${buildNumber} ${timestamp})</probe.version>
+				<buildNumber.doCheck>false</buildNumber.doCheck>
+				<buildNumber.doUpdate>false</buildNumber.doUpdate>
+			</properties>
+		</profile>
 	</profiles>
-    <properties>
-        <probe.version>${project.version} (r${buildNumber} ${timestamp})</probe.version>
-        <buildNumber.doCheck>false</buildNumber.doCheck>
-        <buildNumber.doUpdate>false</buildNumber.doUpdate>
-    </properties>
 </project>
