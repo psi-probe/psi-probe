@@ -44,12 +44,12 @@ public class DurationTag extends TagSupport {
     public static String duration(long value) {
         int millis = (int) ((value / 1000 - Math.round(value / 1000)) * 1000);
         long sec = value / 1000;
-
         long mins = sec / 60;
-        sec = sec % 60;
-
         long hours = mins / 60;
+
+        sec = sec % 60;
         mins = mins % 60;
+
         return long2Str(hours) + ":" + long2Str(mins) + ":" + long2Str(sec) + "." + millis;
     }
 
