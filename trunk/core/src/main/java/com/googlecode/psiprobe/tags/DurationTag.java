@@ -17,13 +17,13 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * Silly JSP tag to display duration in milliseconds in hours:minutes:seconds
+ * Silly JSP tag to display duration in milliseconds as hours:minutes:seconds.milliseconds
  *
- * Author: Vlad Ilyushchenko
+ * @author Vlad Ilyushchenko
  */
 public class DurationTag extends TagSupport {
 
-    private Log logger = LogFactory.getLog(getClass());
+    private static Log logger = LogFactory.getLog(DurationTag.class);
 
     private long value;
 
@@ -33,16 +33,7 @@ public class DurationTag extends TagSupport {
 
     public int doStartTag() throws JspException {
         try {
-            int millis = (int) ((value / 1000 - Math.round(value / 1000)) * 1000);
-            long sec = value / 1000;
-
-            long mins = sec / 60;
-            sec = sec % 60;
-
-            long hours = mins / 60;
-            mins = mins % 60;
-
-            pageContext.getOut().write(long2Str(hours) + ":" + long2Str(mins) + ":" + long2Str(sec) + "." + millis);
+            pageContext.getOut().write(duration(value));
         } catch (IOException e) {
             logger.debug(e.getMessage());
             throw new JspException(e);
@@ -50,8 +41,20 @@ public class DurationTag extends TagSupport {
         return EVAL_BODY_INCLUDE;
     }
 
-    private String long2Str(long l) {
-        return l < 10 ? "0"+l : Long.toString(l);
+    public static String duration(long value) {
+        int millis = (int) ((value / 1000 - Math.round(value / 1000)) * 1000);
+        long sec = value / 1000;
 
+        long mins = sec / 60;
+        sec = sec % 60;
+
+        long hours = mins / 60;
+        mins = mins % 60;
+        return long2Str(hours) + ":" + long2Str(mins) + ":" + long2Str(sec) + "." + millis;
     }
+
+    private static String long2Str(long l) {
+        return l < 10 ? "0"+l : Long.toString(l);
+    }
+
 }
