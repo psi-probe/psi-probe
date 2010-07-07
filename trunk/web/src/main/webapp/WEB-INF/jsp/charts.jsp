@@ -48,7 +48,7 @@
 		<div id="charts">
 			<div class="shadow">
 				<div class="info">
-					<p><spring:message code="probe.jsp.charts.information"/></p><!-- TODO: issue 111 -->
+					<p><spring:message code="probe.jsp.charts.information"/></p>
 				</div>
 			</div>
 
@@ -98,12 +98,12 @@
 				<div id="chartdata-${name}" style="${style_collapse}">
 					<div class="chartContainer">
 						<dl>
-							<dt><spring:message code="probe.jsp.charts.requests.title"/></dt><!-- TODO: issue 111 -->
+							<dt><spring:message code="probe.jsp.charts.requests.title"/></dt>
 							<dd class="image">
 								<a href="<c:url value='/zoomchart.htm'/>?sp=${name}&p=connector"><img
 										id="req-${name}"
 										border="0" src="${reqimg}&sp=${name}"
-										alt="Connector usage for the last 2 hours"/><!-- TODO: issue 111 --></a>
+										alt="+"/></a>
 							</dd>
 							<dd id="dd-req-${name}">
 								<div class="ajax_activity"/>
@@ -118,12 +118,12 @@
 
 					<div class="chartContainer">
 						<dl>
-							<dt><spring:message code="probe.jsp.charts.traffic.title"/></dt><!-- TODO: issue 111 -->
+							<dt><spring:message code="probe.jsp.charts.traffic.title"/></dt>
 							<dd class="image">
 								<a href="<c:url value='/zoomchart.htm'/>?sp=${name}&p=traffic"><img
 										id="traf-${name}"
 										border="0" src="${traffimg}&sp=${name}"
-										alt="Connector usage for the last 2 hours"/><!-- TODO: issue 111 --></a>
+										alt="+"/></a>
 							</dd>
 							<dd id="dd-traf-${name}">
 								<div class="ajax_activity"/>
