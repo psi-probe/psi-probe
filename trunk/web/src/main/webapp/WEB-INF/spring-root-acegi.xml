@@ -109,6 +109,7 @@
 		<property name="tomcatUsersFile" value="tomcat-users.xml"/>
 		<property name="roleNameMap">
 			<map>
+				<entry key="manager-gui" value="ROLE_MANAGER"/>
 				<entry key="manager" value="ROLE_MANAGER"/>
 				<entry key="poweruser" value="ROLE_POWER_USER"/>
 				<entry key="poweruserplus" value="ROLE_POWER_USER_PLUS"/>

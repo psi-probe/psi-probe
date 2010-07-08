@@ -53,6 +53,7 @@ public class Tomcat55ContainerAdaptor extends AbstractTomcatContainer {
         return binding != null && (
                 binding.startsWith("Apache Tomcat/5.5")
                 || binding.startsWith("Apache Tomcat/6.0")
+                || binding.startsWith("Apache Tomcat/7.0")
                 || binding.startsWith("JBossWeb/2.0")
                 || binding.startsWith("JBossWeb/2.1"));
     }
