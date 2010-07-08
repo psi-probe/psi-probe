@@ -180,6 +180,7 @@
 		</web-resource-collection>
 		<auth-constraint>
 			<role-name>manager</role-name>
+			<role-name>manager-gui</role-name>
 		</auth-constraint>
 	</security-constraint>
 
@@ -190,6 +191,10 @@
 	</login-config>
 
 	<!--Security roles referenced by this web application -->
+	<security-role>
+		<role-name>manager-gui</role-name>
+	</security-role>
+
 	<security-role>
 		<role-name>manager</role-name>
 	</security-role>
