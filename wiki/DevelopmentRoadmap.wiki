@@ -3,10 +3,13 @@
 ----
 [Changelogs << Older] | <font color="silver">Newer >></font>
 
-== 2.1 ==
+== Release Pending ==
+  * *Issues:* [http://code.google.com/p/psi-probe/issues/list?can=1&q=Type:Defect,Enhancement,Feature+Status:Fixed,FixVerified+-FoundIn:Snapshot&sort=-Type Fixed]
+
+== Current Focus: 2.1 ==
   * *Focus:* Monitoring and Metrics
-  * *Target:* 2010 Q2 (April-June)
-  * *Issues:* [http://code.google.com/p/psi-probe/issues/list?can=2&q=Milestone:2.1 To-do], [http://code.google.com/p/psi-probe/issues/list?can=1&q=Type:Defect,Enhancement,Feature+Status:Fixed,FixVerified+-FoundIn:Snapshot&sort=-Type Done]
+  * *Target:* 2010 Q3 (July-September)
+  * *Issues:* [http://code.google.com/p/psi-probe/issues/list?can=2&q=Milestone:2.1 To-do]
 
 == 2.2 ==
   * *Focus:* Tomcat 6
@@ -20,3 +23,6 @@
 
 == Future ==
   * *Issues:* [http://code.google.com/p/psi-probe/issues/list?can=2&q=Milestone:TBD+Status:Accepted To-do]
+
+== All ==
+  * *Issues:* [http://code.google.com/p/psi-probe/issues/list?can=2&q=&mode=grid&x=type&y=milestone&cells=counts To-do (Grid)]
