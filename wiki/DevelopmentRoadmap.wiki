@@ -1,4 +1,5 @@
 #summary Plans for future releases
+#labels Featured
 ----
 [Changelogs << Older] | <font color="silver">Newer >></font>
 
