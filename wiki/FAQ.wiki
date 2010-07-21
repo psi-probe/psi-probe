@@ -2,30 +2,41 @@
 #labels Featured
 ----
 
+  * [#General General]
+    * [#What_is_PSI_Probe? What is PSI Probe?]
+    * [#Why_fork_Lambda_Probe? Why fork Lambda Probe?]
+    * [#What_should_I_do_if_my_question_was_not_answered_here? What should I do if my question was not answered here?]
   * [#Usage Usage]
-    * [#What_does_PSI_Probe_do? What does PSI Probe do?]
-    * [#Is_PSI_Probe_safe_to_use? Is PSI Probe safe to use?]
+    * [#How_secure_is_PSI_Probe? How secure is PSI Probe?]
     * [#How_do_I_install_PSI_Probe_onto_my_server? How do I install PSI Probe onto my server?]
     * [#I_found_a_bug_in_PSI_Probe._What_should_I_do? I found a bug in PSI Probe. What should I do?]
-  * [#Development Development]
     * [#I_have_a_great_idea._Can_you_add_it_to_PSI_Probe? I have a great idea. Can you add it to PSI Probe?]
+  * [#Development Development]
     * [#How_are_issues_prioritized? How are issues prioritized?]
     * [#Can_you_translate_PSI_Probe_into_my_language? Can you translate PSI Probe into my language?]
     * [#How_can_I_contribute_to_this_project? How can I contribute to this project?]
     * [#How_do_I_become_a_project_committer? How do I become a project committer?]
-  * [#Miscellaneous Miscellaneous]
-    * [#Who_made_Lambda_Probe? Who made Lambda Probe?]
-    * [#Why_fork_Lambda_Probe? Why fork Lambda Probe?]
+  * [#Other Other]
     * [#Why_PSI? Why PSI?]
-    * [#What_should_I_do_if_my_question_was_not_answered_here? What should I do if my question was not answered here?]
+
+----
+= General =
+
+== What is PSI Probe? ==
+PSI Probe is a fork of [http://www.lambdaprobe.org/ Lambda Probe].  It can do almost anything Tomcat Manager does, plus [Features a lot more].
+
+== Why fork Lambda Probe? ==
+There have been no releases since November 2006, and commits to their repository have been sparse.  Many people on the Lambda Probe forums fear the project is dead.  We contacted the developers and received no reply, so we're trying to revive the project ourselves.
+
+Lambda Probe was created and maintained by Vlad Ilyushchenko (turbomonkey) and Andy Shapoval.  We want to extend a _very_ special thanks to them, along with an open invitation to join us at any time should their schedules allow it.
+
+== What should I do if my question was not answered here? ==
+Please join our [http://groups.google.com/group/psi-probe-discuss Google Group] and ask it!
 
 ----
 = Usage =
 
-== What does PSI Probe do? ==
-Almost anything Tomcat Manager does, plus [Features a lot more].
-
-== Is PSI Probe safe to use? ==
+== How secure is PSI Probe? ==
 PSI Probe comes with no warranty, but web access should be as secure as access to Tomcat Manager.
 
 You can also secure the remote JMX connection if you choose to [InstallationApacheTomcat#Enable_Remote_JMX_(Optional) enable it].
@@ -36,14 +47,19 @@ We have instructions for installing to [InstallationApacheTomcat Apache Tomcat] 
 == I found a bug in PSI Probe. What should I do? ==
 Please [https://code.google.com/p/psi-probe/issues/entry report it], and include as much information as possible about your environment and the circumstances that led to the bug.  Snippets of log files, stack traces, and the like are incredibly helpful.
 
-----
-= Development =
-
 == I have a great idea. Can you add it to PSI Probe? ==
 That depends.  What [http://code.google.com/p/psi-probe/issues/entry?template=Enhance%20an%20existing%20feature changes] or [http://code.google.com/p/psi-probe/issues/entry?template=Add%20a%20new%20feature additions] did you have in mind?
 
+----
+= Development =
+
 == How are issues prioritized? ==
-We use stars to help us gauge popularity of issues and aim to resolve the most popular issues first.  In general, we will prioritize defects over enhancements or features and minor changes over major ones.  Finally, we try to establish a theme for each release to help focus our efforts.
+We use four metrics to assign priority:
+
+  # *Popularity:* We prioritize issues with many stars over issues with few stars.
+  # *Urgency:* We prioritize defects over enhancements or features.
+  # *Simplicity:* We prioritize minor changes over major ones.
+  # *Unity:* We try to establish a theme for each release to help focus our efforts.
 
 == Can you translate PSI Probe into my language? ==
 Probably not.  The developers only speak English, but we welcome any and all translations.
@@ -56,7 +72,7 @@ Our goal with creating PSI Probe was not only to revive the project but also to 
     * "Star" issues that you would like to see fixed.  This will help us assign priority.
     * Report bugs and request enhancements or new features.
     * Submit translations of the program's [http://psi-probe.googlecode.com/svn/trunk/web/src/main/conf/WEB-INF/messages.properties messages].
-    * Submit patches for [http://code.google.com/p/psi-probe/issues/list?can=2&q=-has:owner unclaimed issues], especially the ones labeled with [http://code.google.com/p/psi-probe/issues/list?can=1&q=label:HelpWanted HelpWanted].  You can check out the source code [http://code.google.com/p/psi-probe/source/checkout here].
+    * Submit patches for [http://code.google.com/p/psi-probe/issues/list?can=2&q=-has:owner unclaimed issues] or ones labeled with [http://code.google.com/p/psi-probe/issues/list?can=1&q=-has:owner+label:HelpWanted HelpWanted].  You can check out the source code [http://code.google.com/p/psi-probe/source/checkout here].
     * Verify [http://code.google.com/p/psi-probe/issues/list?can=1&q=Status:Fixed fixed issues] in the latest trunk build.
   * Join our [http://groups.google.com/group/psi-probe-discuss Google Group] and participate in discussions.
 
@@ -66,13 +82,7 @@ Anyone who provides a patch (or even just a detailed description of what changes
 We are a bit skeptical about granting commit privileges to just anyone.  As the community grows, our hope is that experts and leaders will emerge.  Contributors who make frequent high-quality contributions may be invited to become Committers.
 
 ----
-= Miscellaneous =
-
-== Who made Lambda Probe? ==
-Lambda Probe was created and maintained by Vlad Ilyushchenko (turbomonkey) and Andy Shapoval.  We want to extend a _very_ special thanks to them, along with an open invitation to join us at any time should their schedules allow it.
-
-== Why fork Lambda Probe? ==
-There have been no releases since November 2006, and commits to their repository have been sparse.  Many people on the Lambda Probe forums fear the project is dead.  We contacted the developers and received no reply, so we're trying to revive the project ourselves.
+= Other =
 
 == Why PSI? ==
 It's a [http://en.wikipedia.org/wiki/Psi_(letter) Greek letter] just like [http://en.wikipedia.org/wiki/Lambda_(letter) lambda].
@@ -86,6 +96,3 @@ For what it's worth, a capital psi (Ψ) looks like a [http://en.wikipedia.org/wi
 ==== No, and you should be ashamed of yourself for even mentioning that. ====
 
 I am. :(
-
-== What should I do if my question was not answered here? ==
-Please join our [http://groups.google.com/group/psi-probe-discuss Google Group] and ask it!
