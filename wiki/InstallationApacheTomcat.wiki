@@ -1,11 +1,11 @@
 #summary Instructions for deploying to Apache Tomcat
 ----
 
-= Pre-Deployment =
+= Configuration =
 
 Before you deploy PSI Probe to Apache Tomcat, there are two things you must do which may require restarting the server.
 
-== Security Configuration ==
+== Security ==
 
 PSI Probe requires four security roles (in order of increasing [Features#Features_by_Role privileges]):
 
@@ -28,11 +28,21 @@ These must be added to your Realm.  By default, roles are configured via `$CATAL
 
 If you are not using the default configuration, add these roles as appropriate for your Realm.  Some Realm configurations, such as a JNDIRealm connecting to LDAP, will not require a server restart.
 
+== Run AWT in Headless Mode ==
+
+Some users have experienced [http://code.google.com/p/psi-probe/issues/detail?id=64 problems] with graph images not displaying properly, especially when running Tomcat on Sun's JDK for UNIX.  If you see a stack trace for a `java.lang.NoClassDefFoundError` thrown by a class in the `org.jfree.chart` package, add the following JVM command line option:
+
+{{{
+-Djava.awt.headless
+}}}
+
 == Enable Remote JMX (Optional) ==
 
 PSI Probe requires remote JMX to collect and display certain pieces of information (memory usage, cluster traffic, connection pools, and active threads).  You can enable remote JMX with the following JVM command line option:
 
-  * `-Dcom.sun.management.jmxremote`
+{{{
+-Dcom.sun.management.jmxremote
+}}}
 
 If you need the JMX connection to be secured, refer to the [http://tomcat.apache.org/tomcat-5.5-doc/monitoring.html Tomcat 5.5] and [http://tomcat.apache.org/tomcat-6.0-doc/monitoring.html Tomcat 6] documentation on this topic.
 
