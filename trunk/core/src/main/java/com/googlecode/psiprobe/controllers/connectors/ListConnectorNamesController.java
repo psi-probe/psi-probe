@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 public class ListConnectorNamesController extends TomcatContainerController {
     private ContainerListenerBean containerListenerBean;
+    private long collectionPeriod;
 
     public ContainerListenerBean getContainerListenerBean() {
         return containerListenerBean;
@@ -27,7 +28,17 @@ public class ListConnectorNamesController extends TomcatContainerController {
         this.containerListenerBean = containerListenerBean;
     }
 
+    public long getCollectionPeriod() {
+        return collectionPeriod;
+    }
+
+    public void setCollectionPeriod(long collectionPeriod) {
+        this.collectionPeriod = collectionPeriod;
+    }
+
     protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        return new ModelAndView(getViewName(), "names", containerListenerBean.getThreadPoolNames());
+        return new ModelAndView(getViewName())
+                .addObject("names", containerListenerBean.getThreadPoolNames())
+                .addObject("collectionPeriod", Long.valueOf(getCollectionPeriod()));
     }
 }

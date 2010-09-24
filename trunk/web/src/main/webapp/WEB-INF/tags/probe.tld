@@ -185,4 +185,11 @@
 		</attribute>
 	</tag>
 
+	<function>
+		<display-name>max</display-name>
+		<name>max</name>
+		<function-class>java.lang.Math</function-class>
+		<function-signature>long max(long, long)</function-signature>
+	</function>
+
 </taglib>
