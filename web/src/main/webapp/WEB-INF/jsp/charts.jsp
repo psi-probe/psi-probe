@@ -12,6 +12,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" session="false" %>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c' %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="/WEB-INF/tags/probe.tld" prefix="probe" %>
 
 <html>
 
@@ -112,7 +113,7 @@
 					</div>
 
 					<script type="text/javascript">
-						new Ajax.ImgUpdater('req-${name}', 30); //TODO: issue 111
+						new Ajax.ImgUpdater('req-${name}', ${probe:max(collectionPeriod, 5)});
 						new Ajax.PeriodicalUpdater('dd-req-${name}', '<c:url value="/cnreqdetails.ajax"/>?cn=${name}', {frequency: 3});
 					</script>
 
@@ -132,7 +133,7 @@
 					</div>
 
 					<script type="text/javascript">
-						new Ajax.ImgUpdater('traf-${name}', 30); //TODO: issue 111
+						new Ajax.ImgUpdater('traf-${name}', ${probe:max(collectionPeriod, 5)});
 						new Ajax.PeriodicalUpdater('dd-traf-${name}', '<c:url value="/cntrafdetails.ajax"/>?cn=${name}', {frequency: 3});
 					</script>
 				</div>

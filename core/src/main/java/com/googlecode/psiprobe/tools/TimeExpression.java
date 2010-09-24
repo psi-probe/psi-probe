@@ -6,10 +6,6 @@ package com.googlecode.psiprobe.tools;
  */
 public class TimeExpression {
 
-    public static String cronExpression(String periodExpression) {
-        return cronExpression(inSeconds(periodExpression), 0);
-    }
-
     public static String cronExpression(String periodExpression, String phaseExpression) {
         return cronExpression(inSeconds(periodExpression), inSeconds(phaseExpression));
     }
@@ -76,7 +72,7 @@ public class TimeExpression {
         }
     }
 
-    private static long inSeconds(String expression) {
+    public static long inSeconds(String expression) {
         if (expression == null || expression.equals("")) {
             return 0;
         }

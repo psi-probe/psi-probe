@@ -316,6 +316,17 @@
 	<bean name="/charts.htm" class="com.googlecode.psiprobe.controllers.connectors.ListConnectorNamesController">
 		<property name="viewName" value="charts"/>
 		<property name="containerListenerBean" ref="containerListener"/>
+		<property name="collectionPeriod">
+			<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+				<property name="targetClass" value="com.googlecode.psiprobe.tools.TimeExpression" />
+				<property name="targetMethod" value="inSeconds" />
+				<property name="arguments">
+					<list>
+						<value>${com.googlecode.psiprobe.beans.stats.collectors.connector.period}</value>
+					</list>
+				</property>
+			</bean>
+		</property>
 	</bean>
 
 	<bean name="/zoomchart.htm" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
