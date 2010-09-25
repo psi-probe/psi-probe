@@ -12,6 +12,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" session="false" %>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c' %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="/WEB-INF/tags/probe.tld" prefix="probe" %>
 
 <%--
 	Cluster statistic view. Displays cluster members and sender and receiver traffic stats.
@@ -97,7 +98,7 @@
 					<div>
 						<div class="chartContainer">
 							<dl>
-								<dt><spring:message code="probe.jsp.cluster.chart.traffic"/></dt><!-- TODO: issue 111 -->
+								<dt><spring:message code="probe.jsp.cluster.chart.traffic" arguments="${probe:max(collectionPeriod, 5)}"/></dt>
 								<dd>
 									<img id="cl_traffic" border="0" src="${receivedimg}" alt="Bytes received"/>
 								</dd>
@@ -107,7 +108,7 @@
 
 						<div class="chartContainer">
 							<dl>
-								<dt><spring:message code="probe.jsp.cluster.chart.requests"/></dt><!-- TODO: issue 111 -->
+								<dt><spring:message code="probe.jsp.cluster.chart.requests" arguments="${probe:max(collectionPeriod, 5)}"/></dt>
 								<dd>
 									<img id="cl_requests" border="0" src="${sentimg}" alt="Bytes sent"/>
 								</dd>
@@ -127,8 +128,8 @@
 				</div>
 
 				<script type="text/javascript">
-					new Ajax.ImgUpdater('cl_traffic', 30); //TODO: issue 111
-					new Ajax.ImgUpdater('cl_requests', 30); //TODO: issue 111
+					new Ajax.ImgUpdater('cl_traffic', ${probe:max(collectionPeriod, 5)});
+					new Ajax.ImgUpdater('cl_requests', ${probe:max(collectionPeriod, 5)});
 					new Ajax.PeriodicalUpdater('dd_traffic', '<c:url value="/cluster/traffic.ajax"/>', {frequency: 3});
 					new Ajax.PeriodicalUpdater('dd_requests', '<c:url value="/cluster/requests.ajax"/>', {frequency: 3});
 					new Ajax.PeriodicalUpdater('members', '<c:url value="/cluster/members.ajax"/>?<%=request.getQueryString()%>', {frequency: 3});

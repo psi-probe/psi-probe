@@ -10,8 +10,10 @@
  */
 package com.googlecode.psiprobe.controllers.cluster;
 
+import com.googlecode.psiprobe.TomcatContainer;
 import com.googlecode.psiprobe.beans.ClusterWrapperBean;
 import com.googlecode.psiprobe.controllers.TomcatContainerController;
+import com.googlecode.psiprobe.model.jmx.Cluster;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class ClusterStatsController extends TomcatContainerController {
     private ClusterWrapperBean clusterWrapper;
     private boolean loadMembers = true;
+    private long collectionPeriod;
 
     public ClusterWrapperBean getClusterWrapper() {
         return clusterWrapper;
@@ -36,9 +39,19 @@ public class ClusterStatsController extends TomcatContainerController {
         this.loadMembers = loadMembers;
     }
 
+    public long getCollectionPeriod() {
+        return collectionPeriod;
+    }
+
+    public void setCollectionPeriod(long collectionPeriod) {
+        this.collectionPeriod = collectionPeriod;
+    }
+
     protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        return new ModelAndView(getViewName(), "cluster",
-                clusterWrapper.getCluster(getContainerWrapper().getTomcatContainer().getName(),
-                        getContainerWrapper().getTomcatContainer().getHostName(), loadMembers));
+        TomcatContainer container = getContainerWrapper().getTomcatContainer();
+        Cluster cluster = getClusterWrapper().getCluster(container.getName(), container.getHostName(), isLoadMembers());
+        return new ModelAndView(getViewName())
+                .addObject("cluster", cluster)
+                .addObject("collectionPeriod", Long.valueOf(getCollectionPeriod()));
     }
 }
