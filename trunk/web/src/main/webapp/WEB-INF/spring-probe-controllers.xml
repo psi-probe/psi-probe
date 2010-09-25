@@ -126,6 +126,17 @@
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="runtimeInfoAccessor" ref="runtimeInfoAccessor"/>
 		<property name="viewName" value="osinfo"/>
+		<property name="collectionPeriod">
+			<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+				<property name="targetClass" value="com.googlecode.psiprobe.tools.TimeExpression" />
+				<property name="targetMethod" value="inSeconds" />
+				<property name="arguments">
+					<list>
+						<value>${com.googlecode.psiprobe.beans.stats.collectors.runtime.period}</value>
+					</list>
+				</property>
+			</bean>
+		</property>
 	</bean>
 
 	<bean name="/adm/osinfo.ajax" class="com.googlecode.psiprobe.controllers.SysInfoController">

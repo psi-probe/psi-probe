@@ -12,6 +12,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" session="false" %>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c' %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="/WEB-INF/tags/probe.tld" prefix="probe" %>
 
 <html>
 	<head>
@@ -152,7 +153,7 @@
 						var img = document.getElementById('fullImg');
 						Effect.DropOut('chart_group');
 						Effect.Appear('full_chart');
-						fullImageUpdater = new Ajax.ImgUpdater('fullImg', 30, url); //TODO: issue 111
+						fullImageUpdater = new Ajax.ImgUpdater('fullImg', ${probe:max(collectionPeriod, 5)}, url);
 					}
 
 					function zoomOut() {
@@ -189,9 +190,9 @@
 
 					Behaviour.register(rules);
 
-					new Ajax.ImgUpdater('cpu_chart', 30); //TODO: issue 111
-					new Ajax.ImgUpdater('mem_chart', 30); //TODO: issue 111
-					new Ajax.ImgUpdater('swap_chart', 30); //TODO: issue 111
+					new Ajax.ImgUpdater('cpu_chart', ${probe:max(collectionPeriod, 5)});
+					new Ajax.ImgUpdater('mem_chart', ${probe:max(collectionPeriod, 5)});
+					new Ajax.ImgUpdater('swap_chart', ${probe:max(collectionPeriod, 5)});
 					new Ajax.PeriodicalUpdater('osinfo', '<c:url value="/adm/osinfo.ajax"/>', {frequency: 5});
 
 				</script>
