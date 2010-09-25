@@ -431,6 +431,17 @@
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="loadMembers" value="false"/>
 		<property name="viewName" value="cluster"/>
+		<property name="collectionPeriod">
+			<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+				<property name="targetClass" value="com.googlecode.psiprobe.tools.TimeExpression" />
+				<property name="targetMethod" value="inSeconds" />
+				<property name="arguments">
+					<list>
+						<value>${com.googlecode.psiprobe.beans.stats.collectors.cluster.period}</value>
+					</list>
+				</property>
+			</bean>
+		</property>
 	</bean>
 
 	<bean name="/cluster/members.ajax" class="com.googlecode.psiprobe.controllers.cluster.ClusterStatsController">
