@@ -275,6 +275,17 @@
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="viewName" value="appsummary"/>
 		<property name="extendedInfo" value="false"/>
+		<property name="collectionPeriod">
+			<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+				<property name="targetClass" value="com.googlecode.psiprobe.tools.TimeExpression" />
+				<property name="targetMethod" value="inSeconds" />
+				<property name="arguments">
+					<list>
+						<value>${com.googlecode.psiprobe.beans.stats.collectors.app.period}</value>
+					</list>
+				</property>
+			</bean>
+		</property>
 	</bean>
 
 	<bean name="/appruntimeinfo.ajax" class="com.googlecode.psiprobe.controllers.GetApplicationController">
