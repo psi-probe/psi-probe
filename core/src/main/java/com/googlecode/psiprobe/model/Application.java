@@ -15,7 +15,7 @@ import java.io.Serializable;
 /**
  * POJO representing Tomcat's web application.
  *
- * Author: Vlad Ilyushchenko
+ * @author Vlad Ilyushchenko
  */
 public class Application implements Serializable {
     private String name;

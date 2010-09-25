@@ -21,9 +21,11 @@ import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * Creates the list of web application installed in the same "host" as the Probe.
+ * Creates the list of web application installed in the same "host" as the
+ * Probe.
  *
- * Author: Vlad Ilyushchenko, Andy Shapoval
+ * @author Vlad Ilyushchenko
+ * @author Andy Shapoval
  */
 public class ListWebappsController extends TomcatContainerController {
 

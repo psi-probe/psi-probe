@@ -31,10 +31,10 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
 
 /**
- * Plots data from "statsCollection" bean. The data is converted to XYSeries using SeriesProvider, name of which
- * would be passed as a request parameter. The servlet can only plot up to 9 series. It is customizable using these
+ * Plots data from "statsCollection" bean. The data is converted to XYSeries
+ * using SeriesProvider, name of which would be passed as a request parameter.
+ * The servlet can only plot up to 9 series. It is customizable using these
  * request parameters:
- * <p/>
  * <ul>
  * <li>s1c, s2c, ... s9c - Series #i main color</li>
  * <li>s1o, s2o, ... s9o - Series #i outline color</li>
@@ -46,8 +46,8 @@ import org.springframework.web.servlet.mvc.AbstractController;
  * <li>yx  - image height</li>
  * <li>l   - show legend (boolean: true|false)</li>
  * <li>p   - name of series provider bean</li>
- * <p/>
- * Author: Vlad Ilyushchenko
+ * 
+ * @author Vlad Ilyushchenko
  */
 public class RenderChartController extends AbstractController {
 

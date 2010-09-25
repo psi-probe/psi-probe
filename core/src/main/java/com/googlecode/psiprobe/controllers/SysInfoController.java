@@ -24,8 +24,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Creates an instance of SystemInformation POJO.
- * <p/>
- * Author: Vlad Ilyushchenko
+ * 
+ * @author Vlad Ilyushchenko
  */
 public class SysInfoController extends TomcatContainerController {
 

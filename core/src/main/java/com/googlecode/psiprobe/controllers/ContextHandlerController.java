@@ -19,7 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 /**
  * Base class for all controllers requiring "webapp" request parameter.
  *
- * Author: Vlad Ilyushchenko
+ * @author Vlad Ilyushchenko
  */
 public abstract class ContextHandlerController extends TomcatContainerController {
 

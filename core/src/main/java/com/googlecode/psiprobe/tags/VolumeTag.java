@@ -18,10 +18,10 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * JSP tag to convert size from bytes into human readable form: KB, MB, GB or TB depending on how large the value
- * in bytes is.
+ * JSP tag to convert size from bytes into human readable form: KB, MB, GB or TB
+ * depending on how large the value in bytes is.
  *
- * Author: Vlad Ilyushchenko
+ * @author Vlad Ilyushchenko
  */
 public class VolumeTag extends TagSupport {
 

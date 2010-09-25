@@ -17,9 +17,10 @@ import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
 /**
- * Data model class used by session search feature of application session screen
- * <p/>
- * Author: Andy Shapoval
+ * Data model class used by session search feature of application session
+ * screen.
+ * 
+ * @author Andy Shapoval
  */
 
 public class SessionSearchInfo implements Serializable {

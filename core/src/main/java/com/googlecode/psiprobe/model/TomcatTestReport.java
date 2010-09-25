@@ -13,7 +13,7 @@ package com.googlecode.psiprobe.model;
 /**
  * POJO representing "quick check" report.
  *
- * Author: Vlad Ilyushchenko
+ * @author Vlad Ilyushchenko
  */
 public class TomcatTestReport {
     public static final int TEST_UNKNOWN = 0;

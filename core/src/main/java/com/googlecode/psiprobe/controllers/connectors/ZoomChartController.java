@@ -7,7 +7,7 @@ import org.springframework.web.servlet.mvc.ParameterizableViewController;
 
 /**
  *
- * @author <a href="mailto:mlewis@itos.uga.edu">Mark Lewis</a>
+ * @author Mark Lewis
  */
 public class ZoomChartController extends ParameterizableViewController {
 

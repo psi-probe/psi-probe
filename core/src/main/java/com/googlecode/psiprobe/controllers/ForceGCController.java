@@ -20,7 +20,7 @@ import org.springframework.web.servlet.view.RedirectView;
 /**
  * Force is a wrong term here. Advises Java to run GC asap.
  *
- * Author: Vlad Ilyushchenko
+ * @author Vlad Ilyushchenko
  */
 public class ForceGCController extends ParameterizableViewController {
 

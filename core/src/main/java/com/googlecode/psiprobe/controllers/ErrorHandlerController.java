@@ -16,9 +16,10 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
 
 /**
- * The ErrorHandlerController will show two different views depending on whether the failed request was AJAX or not.
+ * The ErrorHandlerController will show two different views depending on whether
+ * the failed request was AJAX or not.
  *
- * Author: Vlad Ilyushchenko.
+ * @author Vlad Ilyushchenko.
  */
 public class ErrorHandlerController extends AbstractController {
     private String viewName;

@@ -31,10 +31,10 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * This class interfaces Tomcat JMX functionality to read connection status. The class
- * essentially provides and maintains the list of connection ThreadPools.
- * <p/>
- * Author: Vlad Ilyushchenko
+ * This class interfaces Tomcat JMX functionality to read connection status. The
+ * class essentially provides and maintains the list of connection ThreadPools.
+ * 
+ * @author Vlad Ilyushchenko
  */
 public class ContainerListenerBean implements NotificationListener {
 

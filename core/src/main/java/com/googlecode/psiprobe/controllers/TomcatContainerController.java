@@ -16,7 +16,7 @@ import org.springframework.web.servlet.mvc.AbstractController;
 /**
  * Base class for controllers requiring access to ContainerWrapperBean.
  *
- * Author: Vlad Ilyushchenko
+ * @author Vlad Ilyushchenko
  */
 public abstract class TomcatContainerController extends AbstractController {
 

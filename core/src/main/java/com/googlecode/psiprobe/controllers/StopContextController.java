@@ -13,7 +13,7 @@ package com.googlecode.psiprobe.controllers;
 /**
  * Stops a web application.
  *
- * Author: Vlad Ilyushchenko
+ * @author Vlad Ilyushchenko
  */
 public class StopContextController extends NoSelfContextHandlerController {
     protected void executeAction(String contextName) throws Exception {

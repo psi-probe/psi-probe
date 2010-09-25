@@ -14,9 +14,10 @@ import com.googlecode.psiprobe.model.DataSourceInfo;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 /**
- * Abstraction layer for c3p0. Maps c3p0 datasource properties on our generic DataSourceInfo bean.
+ * Abstraction layer for c3p0. Maps c3p0 datasource properties on our generic
+ * DataSourceInfo bean.
  *
- * Author: Vlad Ilyushchenko
+ * @author Vlad Ilyushchenko
  */
 public class C3P0DatasourceAccessor implements DatasourceAccessor {
 

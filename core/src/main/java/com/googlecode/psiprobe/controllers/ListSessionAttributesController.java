@@ -21,8 +21,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Retrieves the list of attributes for given session.
- * </p>
- * Author: Vlad Ilyushchenko
+ * 
+ * @author Vlad Ilyushchenko
  */
 public class ListSessionAttributesController extends ContextHandlerController {
 

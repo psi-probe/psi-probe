@@ -20,10 +20,11 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.InternalResourceView;
 
 /**
- * Expires a list of sessionIDs.
- * Accepts a list of sid_webapp parameters that are expected to be in a form of "sid;webapp"
+ * Expires a list of sessionIDs. Accepts a list of sid_webapp parameters that
+ * are expected to be in a form of "sid;webapp"
  *
- * Author: Vlad Ilyushchenko, Andy Shapoval
+ * @author Vlad Ilyushchenko
+ * @author Andy Shapoval
  */
 public class ExpireSessionsController extends TomcatContainerController {
     protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {

@@ -15,9 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * Creates a list of all configured datasources for all web applications within the container.
+ * Creates a list of all configured datasources for all web applications within
+ * the container.
  *
- * Author: Vlad Ilyushchenko
+ * @author Vlad Ilyushchenko
  */
 public class ListAllJdbcResourcesController extends TomcatContainerController{
 

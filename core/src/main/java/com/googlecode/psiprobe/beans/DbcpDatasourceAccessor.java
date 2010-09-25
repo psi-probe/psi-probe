@@ -16,7 +16,7 @@ import org.apache.commons.dbcp.BasicDataSource;
 /**
  * DBCP datasource abstraction layer.
  *
- * Author: Vlad Ilyushchenko
+ * @author Vlad Ilyushchenko
  */
 public class DbcpDatasourceAccessor implements DatasourceAccessor {
     public DataSourceInfo getInfo(Object resource) throws Exception {

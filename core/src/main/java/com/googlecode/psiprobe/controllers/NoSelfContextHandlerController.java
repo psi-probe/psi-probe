@@ -18,9 +18,10 @@ import org.springframework.web.servlet.view.InternalResourceView;
 import org.springframework.web.servlet.view.RedirectView;
 
 /**
- * Base class preventing "destructive" actions to be executed on the Probe's context.
+ * Base class preventing "destructive" actions to be executed on the Probe's
+ * context.
  *
- * Author: Vlad Ilyushchenko
+ * @author Vlad Ilyushchenko
  */
 public abstract class NoSelfContextHandlerController extends ContextHandlerController {
     private boolean passQueryString = false;

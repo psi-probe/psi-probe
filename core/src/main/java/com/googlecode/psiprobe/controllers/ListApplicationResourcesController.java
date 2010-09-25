@@ -18,7 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 /**
  * Creates a list of resources for a particular web application.
  *
- * Author: Vlad Ilyushchenko
+ * @author Vlad Ilyushchenko
  */
 public class ListApplicationResourcesController extends ContextHandlerController {
 

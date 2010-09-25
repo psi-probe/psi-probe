@@ -20,8 +20,7 @@ import org.apache.catalina.Wrapper;
 /**
  * Part of Tomcat container version abstraction layer.
  *
- * Author: Vlad Ilyushchenko
- * 
+ * @author Vlad Ilyushchenko
  */
 
 public interface TomcatContainer {

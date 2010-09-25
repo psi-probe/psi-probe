@@ -23,13 +23,15 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * This class wires support for Tomcat "privileged" context functionality into Spring.
- * If application context is privileged Tomcat would always call servlet.setWrapper method on each request.
- * ContainerWrapperBean wires the passed wrapper to the relevant Tomcat container adaptor class, which in turn helps
- * the Probe to interpret the wrapper. Container adaptors are required because internal wrapper structure is quite
- * different between Tomcat 5.5.x and Tomcat 5.0.x
- * <p/>
- * Author: Vlad Ilyushchenko
+ * This class wires support for Tomcat "privileged" context functionality into
+ * Spring. If application context is privileged Tomcat would always call
+ * servlet.setWrapper method on each request. ContainerWrapperBean wires the
+ * passed wrapper to the relevant Tomcat container adaptor class, which in turn
+ * helps the Probe to interpret the wrapper. Container adaptors are required
+ * because internal wrapper structure is quite different between Tomcat 5.5.x
+ * and Tomcat 5.0.x
+ * 
+ * @author Vlad Ilyushchenko
  */
 public class ContainerWrapperBean {
 

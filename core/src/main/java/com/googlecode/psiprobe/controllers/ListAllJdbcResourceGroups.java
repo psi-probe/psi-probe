@@ -24,9 +24,10 @@ import org.apache.catalina.Context;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * produces a list of all datasources configured within the container grouped by JDBC URL.
+ * Produces a list of all datasources configured within the container grouped by
+ * JDBC URL.
  *
- * Author: Andy Shapoval
+ * @author Andy Shapoval
  */
 
 public class ListAllJdbcResourceGroups extends TomcatContainerController {

@@ -10,7 +10,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 /**
  *
- * @author <a href="mailto:mlewis@itos.uga.edu">Mark Lewis</a>
+ * @author Mark Lewis
  */
 public class ResetConnectorStatsController extends ParameterizableViewController {
 

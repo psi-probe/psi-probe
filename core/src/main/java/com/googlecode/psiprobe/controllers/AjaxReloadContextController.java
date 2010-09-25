@@ -17,8 +17,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Reloads application context.
- * <p/>
- * Author: Vlad Ilyushchenko
+ * 
+ * @author Vlad Ilyushchenko
  */
 public class AjaxReloadContextController extends ContextHandlerController {
 

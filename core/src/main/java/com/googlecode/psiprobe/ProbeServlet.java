@@ -18,12 +18,12 @@ import org.apache.catalina.Wrapper;
 import org.springframework.web.servlet.DispatcherServlet;
 
 /**
- * Main dispatcher servlet. Spring default dispatcher servlet had to be superceeded to handle "privileged" application
- * context features. The actual requirement is to capture passed Wrapper instance into ContainerWrapperBean. Wrapper
- * instance is our gateway to Tomcat.
+ * Main dispatcher servlet. Spring default dispatcher servlet had to be
+ * superceeded to handle "privileged" application context features. The actual
+ * requirement is to capture passed Wrapper instance into ContainerWrapperBean.
+ * Wrapper instance is our gateway to Tomcat.
  *
- * Author: Vlad Ilyushchenko
- *
+ * @author Vlad Ilyushchenko
  */
 public class ProbeServlet extends DispatcherServlet implements ContainerServlet {
 

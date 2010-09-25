@@ -32,10 +32,10 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.HtmlUtils;
 
 /**
- * Executes an SQL query through a given datasource to test database connectivity.
- * Displays results returned by the query.
- * <p/>
- * Author: Andy Shapoval
+ * Executes an SQL query through a given datasource to test database
+ * connectivity. Displays results returned by the query.
+ * 
+ * @author Andy Shapoval
  */
 public class ExecuteSqlController extends ContextHandlerController {
 

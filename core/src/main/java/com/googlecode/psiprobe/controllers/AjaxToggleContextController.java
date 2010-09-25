@@ -18,7 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 /**
  * Stops a web application.
  *
- * Author: Vlad Ilyushchenko
+ * @author Vlad Ilyushchenko
  */
 public class AjaxToggleContextController extends ContextHandlerController {
     protected ModelAndView handleContext(String contextName, Context context,

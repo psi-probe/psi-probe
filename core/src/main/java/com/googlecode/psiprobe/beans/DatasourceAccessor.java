@@ -13,9 +13,10 @@ package com.googlecode.psiprobe.beans;
 import com.googlecode.psiprobe.model.DataSourceInfo;
 
 /**
- * Part of datasource type abstraction layer. Allows to extent Probe functionality to any kind of datasources.
+ * Part of datasource type abstraction layer. Allows to extent Probe
+ * functionality to any kind of datasources.
  *
- * Author: Vlad Ilyushchenko
+ * @author Vlad Ilyushchenko
  *
  */
 public interface DatasourceAccessor {

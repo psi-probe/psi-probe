@@ -12,8 +12,8 @@ package com.googlecode.psiprobe.model;
 
 /**
  * A model class representing a filter
- * <p/>
- * Author: Andy Shapoval
+ * 
+ * @author Andy Shapoval
  */
 public class FilterInfo {
     private String filterName;

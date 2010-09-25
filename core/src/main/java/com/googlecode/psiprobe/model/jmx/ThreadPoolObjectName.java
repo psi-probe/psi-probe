@@ -15,10 +15,10 @@ import java.util.List;
 import javax.management.ObjectName;
 
 /**
- * This bean represens a hierarchy of Tomcat's ObjectNames necessary to display real-time connection information
- * on "status" tab.
+ * This bean represens a hierarchy of Tomcat's ObjectNames necessary to display
+ * real-time connection information on "status" tab.
  *
- * Author: Vlad Ilyushchenko
+ * @author Vlad Ilyushchenko
  */
 public class ThreadPoolObjectName  {
 

@@ -30,10 +30,11 @@ import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * Creates the list of sessions for a particular web application
- * or all web applications if a webapp request parameter is not set.
- * <p/>
- * Author: Vlad Ilyushchenko, Andy Shapoval
+ * Creates the list of sessions for a particular web application or all web
+ * applications if a webapp request parameter is not set.
+ * 
+ * @author Vlad Ilyushchenko
+ * @author Andy Shapoval
  */
 public class ListSessionsController extends ContextHandlerController {
     protected ModelAndView handleContext(String contextName, Context context,

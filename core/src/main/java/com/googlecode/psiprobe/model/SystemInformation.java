@@ -20,7 +20,7 @@ import org.apache.catalina.util.ServerInfo;
 /**
  * POJO representing system information for "system infromation" tab.
  *
- * Author: Vlad Ilyushchenko
+ * @author Vlad Ilyushchenko
  */
 public class SystemInformation implements Serializable {
 

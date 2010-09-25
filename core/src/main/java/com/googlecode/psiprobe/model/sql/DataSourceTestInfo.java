@@ -15,9 +15,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * A class to store data source test tool related data in a session attribute
- * <p/>
- * Author: Andy Shapoval
+ * A class to store data source test tool related data in a session attribute.
+ * 
+ * @author Andy Shapoval
  */
 public class DataSourceTestInfo implements Serializable {
     public static final String DS_TEST_SESS_ATTR = "dataSourceTestData";

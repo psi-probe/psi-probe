@@ -19,8 +19,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Retrieves a list of context initialization parameters for a web application.
- * <p/>
- * Author: Andy Shapoval
+ * 
+ * @author Andy Shapoval
  */
 public class ListAppInitParamsController  extends ContextHandlerController {
     protected ModelAndView handleContext(String contextName, Context context,
