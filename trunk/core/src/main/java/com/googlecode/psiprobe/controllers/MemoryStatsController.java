@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.ParameterizableViewController;
 
 public class MemoryStatsController extends ParameterizableViewController {
     private JvmMemoryInfoAccessorBean jvmMemoryInfoAccessorBean;
+    private long collectionPeriod;
 
     public JvmMemoryInfoAccessorBean getJvmMemoryInfoAccessorBean() {
         return jvmMemoryInfoAccessorBean;
@@ -27,7 +28,17 @@ public class MemoryStatsController extends ParameterizableViewController {
         this.jvmMemoryInfoAccessorBean = jvmMemoryInfoAccessorBean;
     }
 
+    public long getCollectionPeriod() {
+        return collectionPeriod;
+    }
+
+    public void setCollectionPeriod(long collectionPeriod) {
+        this.collectionPeriod = collectionPeriod;
+    }
+
     protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        return new ModelAndView(getViewName(), "pools", jvmMemoryInfoAccessorBean.getPools());
+        return new ModelAndView(getViewName())
+                .addObject("pools", getJvmMemoryInfoAccessorBean().getPools())
+                .addObject("collectionPeriod", Long.valueOf(getCollectionPeriod()));
     }
 }
