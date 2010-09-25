@@ -20,9 +20,10 @@ import org.apache.catalina.Context;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * Displays a deployment descriptor (web.xml) or a context descriptor (context.xml) of a web application
- * <p/>
- * Author: Andy Shapoval 
+ * Displays a deployment descriptor (web.xml) or a context descriptor
+ * (context.xml) of a web application
+ * 
+ * @author Andy Shapoval
  */
 
 public class ViewXMLConfController extends ContextHandlerController {

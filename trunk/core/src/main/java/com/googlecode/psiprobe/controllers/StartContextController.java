@@ -13,7 +13,7 @@ package com.googlecode.psiprobe.controllers;
 /**
  * Starts a web application.
  *
- * Author: Vlad Ilyushchenko
+ * @author Vlad Ilyushchenko
  */
 public class StartContextController extends NoSelfContextHandlerController {
 

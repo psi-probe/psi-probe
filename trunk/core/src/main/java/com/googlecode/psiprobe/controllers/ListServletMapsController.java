@@ -20,10 +20,10 @@ import org.apache.catalina.Context;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * Retrieves a list of servlet mappings for a particular web application
- * or all web applications if an application name is not passed in a query string 
- * <p/>
- * Author: Andy Shapoval
+ * Retrieves a list of servlet mappings for a particular web application or all
+ * web applications if an application name is not passed in a query string.
+ * 
+ * @author Andy Shapoval
  */
 public class ListServletMapsController extends ContextHandlerController {
     protected ModelAndView handleContext(String contextName, Context context,

@@ -19,9 +19,10 @@ import org.apache.catalina.Context;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * Downloads a deployment descriptor (web.xml) or a context descriptor (context.xml) of a web application
- * <p/>
- * Author: Andy Shapoval
+ * Downloads a deployment descriptor (web.xml) or a context descriptor
+ * (context.xml) of a web application
+ * 
+ * @author Andy Shapoval
  */
 public class DownloadXMLConfController extends ContextHandlerController {
     public static final String TARGET_WEB_XML = "web.xml";

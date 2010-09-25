@@ -11,9 +11,10 @@
 package com.googlecode.psiprobe.model;
 
 /**
- * This bean represents HttpSession attirbute. It is a part of the display model for ListSessionAttributesController.
+ * This bean represents HttpSession attirbute. It is a part of the display model
+ * for ListSessionAttributesController.
  *
- * Author: Vlad Ilyushchenko
+ * @author Vlad Ilyushchenko
  */
 public class Attribute {
     private String name;

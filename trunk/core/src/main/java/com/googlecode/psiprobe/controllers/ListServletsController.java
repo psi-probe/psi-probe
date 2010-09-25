@@ -22,10 +22,10 @@ import org.apache.catalina.Context;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * Retrieves a list of servlets for a particular web application 
- * or for all applications if an application name is not passed in a query string
- * <p/>
- * Author: Andy Shapoval
+ * Retrieves a list of servlets for a particular web application or for all
+ * applications if an application name is not passed in a query string.
+ * 
+ * @author Andy Shapoval
  */
 public class ListServletsController extends ContextHandlerController {
     protected ModelAndView handleContext(String contextName, Context context,

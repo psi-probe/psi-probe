@@ -22,7 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 /**
  * Creates the list of http connection thread pools.
  *
- * Author: Vlad Ilyushchenko
+ * @author Vlad Ilyushchenko
  */
 public class StatusController extends TomcatContainerController {
 

@@ -14,8 +14,8 @@ import org.apache.catalina.Context;
 
 /**
  * Reloads application context.
- * <p/>
- * Author: Vlad Ilyushchenko
+ * 
+ * @author Vlad Ilyushchenko
  */
 public class ReloadContextController extends NoSelfContextHandlerController {
 

@@ -11,9 +11,9 @@
 package com.googlecode.psiprobe.model;
 
 /**
- * A model class representing a servlet mapping item
- * <p/>
- * Author: Andy Shapoval
+ * A model class representing a servlet mapping item.
+ * 
+ * @author Andy Shapoval
  */
 
 public class ServletMapping {

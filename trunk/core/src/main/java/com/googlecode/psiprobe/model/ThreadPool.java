@@ -14,9 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * POJO representing pool of request processor threads or "connector" in other terms.
+ * POJO representing pool of request processor threads or "connector" in other
+ * terms.
  *
- * Author: Vlad Ilyushchenko
+ * @author Vlad Ilyushchenko
  */
 public class ThreadPool {
 

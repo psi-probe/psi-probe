@@ -18,10 +18,10 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
 
 /**
- * Displays a view that allows for a database connectivity testing.
- * Supplies default values to input fields of the view.
- * <p/>
- * Author: Andy Shapoval
+ * Displays a view that allows for a database connectivity testing. Supplies
+ * default values to input fields of the view.
+ * 
+ * @author Andy Shapoval
  */
 public class DataSourceTestController extends ParameterizableViewController {
     private int maxRows;

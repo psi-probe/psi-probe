@@ -4,7 +4,7 @@ import com.googlecode.psiprobe.beans.stats.collectors.AppStatsCollectorBean;
 
 /**
  *
- * @author <a href="mailto:mlewis@itos.uga.edu">Mark Lewis</a>
+ * @author Mark Lewis
  */
 public class ResetAppStatsController extends NoSelfContextHandlerController {
 

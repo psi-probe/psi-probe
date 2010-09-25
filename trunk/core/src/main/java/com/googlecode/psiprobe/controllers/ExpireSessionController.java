@@ -21,7 +21,8 @@ import org.apache.catalina.Session;
 /**
  * Expires a single session of a particular web application.
  *
- * Author: Vlad Ilyushchenko, Andy Shapoval
+ * @author Vlad Ilyushchenko
+ * @author Andy Shapoval
  */
 public class ExpireSessionController extends ContextHandlerController {
 

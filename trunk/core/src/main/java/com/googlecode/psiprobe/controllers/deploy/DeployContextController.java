@@ -20,7 +20,7 @@ import org.springframework.web.servlet.view.InternalResourceView;
 /**
  * Forces Tomcat to install a pre-configured context name.
  *
- * Author: Vlad Ilyushchenko
+ * @author Vlad Ilyushchenko
  */
 public class DeployContextController extends TomcatContainerController {
     public ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {

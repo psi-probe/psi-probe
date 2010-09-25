@@ -27,10 +27,10 @@ import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- *  Verifies if a database connection can be established through a given datasource.
- *  Displays basic information about the database.
- *  <p/>
- *  Author: Andy Shapoval
+ * Verifies if a database connection can be established through a given
+ * datasource. Displays basic information about the database.
+ * 
+ * @author Andy Shapoval
  */
 public class ConnectionTestController extends ContextHandlerController {
 

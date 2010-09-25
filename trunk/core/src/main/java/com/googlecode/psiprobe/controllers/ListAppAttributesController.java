@@ -20,8 +20,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Retrieves a list of servlet context attributes for a web application.
- * <p/>
- * Author: Andy Shapoval
+ * 
+ * @author Andy Shapoval
  */
 public class ListAppAttributesController extends ContextHandlerController {
     protected ModelAndView handleContext(String contextName, Context context,

@@ -15,10 +15,11 @@ import javax.servlet.http.HttpServletRequest;
 import org.jfree.data.xy.DefaultTableXYDataset;
 
 /**
- * Classes implementing this interface can be wired up with RenderChartController to provide Series data based on
- * StatsCollection instance.
+ * Classes implementing this interface can be wired up with
+ * RenderChartController to provide Series data based on StatsCollection
+ * instance.
  *
- * Author: Vlad Ilyushchenko
+ * @author Vlad Ilyushchenko
  */
 public interface SeriesProvider {
     void populate(DefaultTableXYDataset dataset, StatsCollection statsCollection, HttpServletRequest request);

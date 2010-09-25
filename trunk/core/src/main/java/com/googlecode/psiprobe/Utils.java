@@ -43,8 +43,8 @@ import org.apache.commons.modeler.Registry;
 
 /**
  * Misc. static helper methods.
- * <p/>
- * Author: Vlad Ilyushchenko
+ * 
+ * @author Vlad Ilyushchenko
  */
 public class Utils {
 

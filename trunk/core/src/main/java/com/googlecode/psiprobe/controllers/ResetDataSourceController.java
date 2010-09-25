@@ -19,8 +19,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Resets datasource if the datasource supports it.
- * <p/>
- * Author: Vlad Ilyushchenko
+ * 
+ * @author Vlad Ilyushchenko
  */
 public class ResetDataSourceController extends ContextHandlerController {
 

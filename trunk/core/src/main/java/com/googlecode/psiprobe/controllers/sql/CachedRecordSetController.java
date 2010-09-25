@@ -20,10 +20,11 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
 
 /**
- * Displays a result set cached in an attribute of HttpSession object to support result set pagination feature
- * without re-executing a query that created the result set.
- * <p/>
- * Author: Andy Shapoval
+ * Displays a result set cached in an attribute of HttpSession object to support
+ * result set pagination feature without re-executing a query that created the
+ * result set.
+ * 
+ * @author Andy Shapoval
  */
 
 public class CachedRecordSetController extends ParameterizableViewController {

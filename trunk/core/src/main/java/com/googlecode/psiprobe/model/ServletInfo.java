@@ -14,9 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A model class representing a servlet
- * <p/>
- * Author: Andy Shapoval
+ * A model class representing a servlet.
+ * 
+ * @author Andy Shapoval
  */
 public class ServletInfo {
     private String applicationName;

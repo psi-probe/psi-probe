@@ -21,8 +21,8 @@ import org.springframework.web.servlet.mvc.AbstractController;
 
 /**
  * Retrieves a single query from a history list.
- * <p/>
- * Author: Andy Shapoval
+ * 
+ * @author Andy Shapoval
  */
 public class QueryHistoryItemController extends AbstractController {
     protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {

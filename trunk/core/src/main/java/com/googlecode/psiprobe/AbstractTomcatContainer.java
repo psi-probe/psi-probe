@@ -36,8 +36,8 @@ import org.apache.naming.resources.ResourceAttributes;
 
 /**
  * Abstration layer to implement some functionality, which is common between different container adaptors.
- * <p/>
- * Author: Vlad Ilyushchenko
+ * 
+ * @author Vlad Ilyushchenko
  */
 public abstract class AbstractTomcatContainer implements TomcatContainer {
 

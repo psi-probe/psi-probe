@@ -20,8 +20,8 @@ import org.springframework.web.servlet.mvc.ParameterizableViewController;
 
 /**
  * Retrieves a history list of executed queries from a session variable.
- * <p/>
- * Author: Andy Shapoval
+ * 
+ * @author Andy Shapoval
  */
 
 public class QueryHistoryController extends ParameterizableViewController {

@@ -44,10 +44,10 @@ import org.apache.catalina.deploy.FilterMap;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-/*
-* Author: Vlad Ilyushchenko, Andy Shapoval
-*/
-
+/**
+ * @author Vlad Ilyushchenko
+ * @author Andy Shapoval
+ */
 public class ApplicationUtils {
 
     private static Log logger = LogFactory.getLog(ApplicationUtils.class);

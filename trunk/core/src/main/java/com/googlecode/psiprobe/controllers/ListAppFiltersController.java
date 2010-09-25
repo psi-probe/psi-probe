@@ -18,9 +18,10 @@ import org.apache.catalina.Context;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * Retrieves a list of filter mappings or filter definitions of a web application
- * <p/>
- * Author: Andy Shapoval
+ * Retrieves a list of filter mappings or filter definitions of a web
+ * application.
+ * 
+ * @author Andy Shapoval
  */
 public class ListAppFiltersController extends ContextHandlerController {
     protected ModelAndView handleContext(String contextName, Context context,

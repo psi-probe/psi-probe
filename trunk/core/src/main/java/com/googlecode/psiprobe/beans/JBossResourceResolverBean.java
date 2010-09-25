@@ -30,9 +30,10 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * An Adaptor to convert information retrieved from JBoss JMX beans into internal resource model.
+ * An Adaptor to convert information retrieved from JBoss JMX beans into
+ * internal resource model.
  *
- * Author: Vlad Ilyushchenko
+ * @author Vlad Ilyushchenko
  */
 public class JBossResourceResolverBean implements ResourceResolver {
 
