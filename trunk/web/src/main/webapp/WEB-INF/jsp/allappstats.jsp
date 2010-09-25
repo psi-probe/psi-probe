@@ -12,6 +12,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" session="false" %>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c' %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="/WEB-INF/tags/probe.tld" prefix="probe" %>
 
 <html>
 	<head>
@@ -198,7 +199,7 @@
 				$('full_title').update(title);
 				Effect.DropOut('chart_group');
 				Effect.Appear('full_chart');
-				fullImageUpdater = new Ajax.ImgUpdater('fullImg', 30, imgUrl); //TODO: issue 111
+				fullImageUpdater = new Ajax.ImgUpdater('fullImg', ${probe:max(collectionPeriod, 5)}, imgUrl);
 			}
 
 			function zoomOut() {
@@ -245,10 +246,10 @@
 
 			Behaviour.register(rules);
 
-			imageUpdaters[0] = new Ajax.ImgUpdater('total_avg_proc_time_chart', 30); //TODO: issue 111
-			imageUpdaters[1] = new Ajax.ImgUpdater('all_app_avg_proc_time_chart', 30); //TODO: issue 111
-			imageUpdaters[2] = new Ajax.ImgUpdater('total_req_chart', 30); //TODO: issue 111
-			imageUpdaters[3] = new Ajax.ImgUpdater('all_app_req_chart', 30); //TODO: issue 111
+			imageUpdaters[0] = new Ajax.ImgUpdater('total_avg_proc_time_chart', ${probe:max(collectionPeriod, 5)});
+			imageUpdaters[1] = new Ajax.ImgUpdater('all_app_avg_proc_time_chart', ${probe:max(collectionPeriod, 5)});
+			imageUpdaters[2] = new Ajax.ImgUpdater('total_req_chart', ${probe:max(collectionPeriod, 5)});
+			imageUpdaters[3] = new Ajax.ImgUpdater('all_app_req_chart', ${probe:max(collectionPeriod, 5)});
 		</script>
 	</body>
 </html>
