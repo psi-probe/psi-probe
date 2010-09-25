@@ -31,6 +31,7 @@ public class GetApplicationController extends ContextHandlerController {
      */
     private boolean extendedInfo = false;
     private StatsCollection statsCollection;
+    private long collectionPeriod;
 
     public boolean isExtendedInfo() {
         return extendedInfo;
@@ -48,6 +49,14 @@ public class GetApplicationController extends ContextHandlerController {
         this.statsCollection = statsCollection;
     }
 
+    public long getCollectionPeriod() {
+        return collectionPeriod;
+    }
+
+    public void setCollectionPeriod(long collectionPeriod) {
+        this.collectionPeriod = collectionPeriod;
+    }
+
     protected ModelAndView handleContext(String contextName, Context context,
                                          HttpServletRequest request, HttpServletResponse response) throws Exception {
 
@@ -62,7 +71,9 @@ public class GetApplicationController extends ContextHandlerController {
             app.setAvgTime(getStatsCollection().getLastValueForStat(avgStatisticName));
         }
 
-        return new ModelAndView(getViewName(), "app", app).
-                addObject("no_resources", Boolean.valueOf(!getContainerWrapper().getResourceResolver().supportsPrivateResources()));
+        return new ModelAndView(getViewName())
+                .addObject("app", app)
+                .addObject("no_resources", Boolean.valueOf(!getContainerWrapper().getResourceResolver().supportsPrivateResources()))
+                .addObject("collectionPeriod", Long.valueOf(getCollectionPeriod()));
     }
 }
