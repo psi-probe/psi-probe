@@ -12,6 +12,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" session="false" %>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c' %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="/WEB-INF/tags/probe.tld" prefix="probe" %>
 
 <html>
 	<head>
@@ -56,7 +57,7 @@
 		<div class="blockContainer">
 			<div class="shadow">
 				<div class="info">
-					<p><spring:message code="probe.jsp.zoomedchart.information"/></p><!-- TODO: issue 111 -->
+					<p><spring:message code="probe.jsp.zoomedchart.information" arguments="${probe:max(collectionPeriod, 5)}" /></p>
 				</div>
 			</div>
 
@@ -93,11 +94,11 @@
 					// reset the image auto-updater
 					// to make sure the auto-updater knows the changed image dimensions
 					if (updater) updater.stop();
-					updater = new Ajax.ImgUpdater('img', 15); //TODO: issue 111
+					updater = new Ajax.ImgUpdater('img', ${probe:max(collectionPeriod, 5)});
 				}
 
 				// start image auto-updater
-				updater = new Ajax.ImgUpdater('img', 15); //TODO: issue 111
+				updater = new Ajax.ImgUpdater('img', ${probe:max(collectionPeriod, 5)});
 
 			</script>
 		</div>
