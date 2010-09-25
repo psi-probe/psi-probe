@@ -13,6 +13,7 @@
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c' %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
+<%@ taglib uri="/WEB-INF/tags/probe.tld" prefix="probe" %>
 
 <html>
 	<head>
@@ -104,7 +105,7 @@
 						</div>
 
 						<script type="text/javascript">
-							new Ajax.ImgUpdater('img_${pool.id}', 30); //TODO: issue 111
+							new Ajax.ImgUpdater('img_${pool.id}', ${probe:max(collectionPeriod, 5)});
 						</script>
 
 					</c:forEach>
@@ -125,7 +126,7 @@
 					}
 					Effect.DropOut('memChartGroup');
 					Effect.Appear('fullMemoryChart');
-					fullImageUpdater = new Ajax.ImgUpdater('fullImg', 30, '<c:out value="${fullChartBase}" escapeXml="false"/>&sp=' + newPool + "&s1l=" + newPool); //TODO: issue 111
+					fullImageUpdater = new Ajax.ImgUpdater('fullImg', ${probe:max(collectionPeriod, 5)}, '<c:out value="${fullChartBase}" escapeXml="false"/>&sp=' + newPool + "&s1l=" + newPool);
 				}
 
 				function zoomOut() {

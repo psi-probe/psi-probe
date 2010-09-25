@@ -513,6 +513,17 @@
 	<bean name="/memory.htm" class="com.googlecode.psiprobe.controllers.MemoryStatsController">
 		<property name="jvmMemoryInfoAccessorBean" ref="jvmMemoryInfoAccessor"/>
 		<property name="viewName" value="memory"/>
+		<property name="collectionPeriod">
+			<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+				<property name="targetClass" value="com.googlecode.psiprobe.tools.TimeExpression" />
+				<property name="targetMethod" value="inSeconds" />
+				<property name="arguments">
+					<list>
+						<value>${com.googlecode.psiprobe.beans.stats.collectors.memory.period}</value>
+					</list>
+				</property>
+			</bean>
+		</property>
 	</bean>
 
 	<bean name="/wrapper.htm" class="com.googlecode.psiprobe.controllers.wrapper.WrapperInfoController">
