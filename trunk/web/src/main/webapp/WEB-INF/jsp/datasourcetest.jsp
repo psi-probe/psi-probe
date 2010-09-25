@@ -13,6 +13,7 @@
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c' %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
+<%@ taglib uri="/WEB-INF/tags/probe.tld" prefix="probe" %>
 
 <html>
 
@@ -167,14 +168,14 @@
 				<dl>
 					<dt><spring:message code="probe.jsp.dataSourceTest.chart.usage.title"/></dt>
 					<dd class="image">
-						<img id="usage-${param.resource}" border="0" src="${usage_img}" alt="Datasource usage for the last 2 hours"/><!-- TODO: issue 111 -->
+						<img id="usage-${param.resource}" border="0" src="${usage_img}" alt="Datasource usage"/>
 					</dd>
 				</dl>
 			</div>
 		</div>
 
 		<script type="text/javascript">
-			new Ajax.ImgUpdater('usage-${param.resource}', 30); //TODO: issue 111
+			new Ajax.ImgUpdater('usage-${param.resource}', ${probe:max(collectionPeriod, 5)});
 			setupAjaxActions(
 				'<c:url value="/sql/connection.ajax"/>',
 				'<c:url value="/sql/recordset.ajax"/>',

@@ -28,6 +28,7 @@ public class DataSourceTestController extends ParameterizableViewController {
     private int rowsPerPage;
     private int historySize;
     private String replacePattern;
+    private long collectionPeriod;
 
     protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession sess = request.getSession(false);
@@ -46,13 +47,20 @@ public class DataSourceTestController extends ParameterizableViewController {
             backURL = null;
         }
 
-        ModelAndView mv = new ModelAndView(getViewName());
-        mv.addObject("maxRows", String.valueOf(sessData == null ? getMaxRows() : sessData.getMaxRows()));
-        mv.addObject("rowsPerPage", String.valueOf(sessData == null ? getRowsPerPage() : sessData.getRowsPerPage()));
-        mv.addObject("historySize", String.valueOf(sessData == null ? getHistorySize() : sessData.getHistorySize()));
-        mv.addObject("backURL", backURL);
+        return new ModelAndView(getViewName())
+                .addObject("maxRows", String.valueOf(sessData == null ? getMaxRows() : sessData.getMaxRows()))
+                .addObject("rowsPerPage", String.valueOf(sessData == null ? getRowsPerPage() : sessData.getRowsPerPage()))
+                .addObject("historySize", String.valueOf(sessData == null ? getHistorySize() : sessData.getHistorySize()))
+                .addObject("backURL", backURL)
+                .addObject("collectionPeriod", Long.valueOf(getCollectionPeriod()));
+    }
 
-        return mv;
+    public long getCollectionPeriod() {
+        return collectionPeriod;
+    }
+
+    public void setCollectionPeriod(long collectionPeriod) {
+        this.collectionPeriod = collectionPeriod;
     }
 
     public int getMaxRows() {
