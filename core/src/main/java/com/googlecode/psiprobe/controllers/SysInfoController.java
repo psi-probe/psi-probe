@@ -31,6 +31,7 @@ public class SysInfoController extends TomcatContainerController {
 
     private List filterOutKeys = new ArrayList();
     private RuntimeInfoAccessorBean runtimeInfoAccessor;
+    private long collectionPeriod;
 
     public List getFilterOutKeys() {
         return filterOutKeys;
@@ -46,6 +47,14 @@ public class SysInfoController extends TomcatContainerController {
 
     public void setRuntimeInfoAccessor(RuntimeInfoAccessorBean runtimeInfoAccessor) {
         this.runtimeInfoAccessor = runtimeInfoAccessor;
+    }
+
+    public long getCollectionPeriod() {
+        return collectionPeriod;
+    }
+
+    public void setCollectionPeriod(long collectionPeriod) {
+        this.collectionPeriod = collectionPeriod;
     }
 
     protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -64,6 +73,9 @@ public class SysInfoController extends TomcatContainerController {
 
         systemInformation.setSystemProperties(sysProps);
 
-        return new ModelAndView(getViewName(), "systemInformation", systemInformation).addObject("runtime", runtimeInfoAccessor.getRuntimeInformation());
+        return new ModelAndView(getViewName())
+                .addObject("systemInformation", systemInformation)
+                .addObject("runtime", getRuntimeInfoAccessor().getRuntimeInformation())
+                .addObject("collectionPeriod", Long.valueOf(getCollectionPeriod()));
     }
 }
