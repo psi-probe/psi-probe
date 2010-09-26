@@ -1,0 +1,35 @@
+#summary Instructions for creating a release build.
+----
+
+= Major Release =
+
+  * _Same as Minor Release._
+
+= Minor Release =
+  # *SVN*
+     # Create branch from trunk.
+     # In branch, remove "SNAPSHOT" from version numbers and update SCM URLs.
+     # Create tag from branch.
+     # In trunk, increment version numbers.
+  # *Build*
+     # Check out tag.
+     # Create probe.war: `mvn -Prelease clean package`
+       * Be sure to use JDK 1.4 and Maven 2.0.9+.
+     # Create Changelog.txt file from [Changelogs] and [DevelopmentRoadmap].
+     # Combine probe.war and Changelog.txt into ZIP.
+  # *GC*
+     # Upload ZIP to GC as a Featured Download.
+     # Deprecate previous build.
+     # Change status of issues to !FixReleased.
+     # Update [Changelogs] and [DevelopmentRoadmap].
+     # Announce.
+
+= Patch Release =
+  # *SVN*
+    # Merge changes from trunk to branch (or vice versa if applicable).
+    # In branch, increment version number.
+    # Create tag from branch.
+  # *Build*
+     * _Same as Minor Release._
+  # *GC*
+     * _Same as Minor Release._
