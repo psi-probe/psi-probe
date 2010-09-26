@@ -12,3 +12,4 @@
       * [ChangelogsLambdaProbe Lambda Probe]
     * Configure Your IDE
       * [IDEConfigNetBeans NetBeans]
+    * [Releases]
