@@ -5,6 +5,7 @@
   * Installation
     * [InstallationApacheTomcat Apache Tomcat]
     * [InstallationJBossAS JBoss Application Server]
+  * [Configuration]
   * Development
     * [DevelopmentRoadmap Roadmap]
     * [Changelogs]
