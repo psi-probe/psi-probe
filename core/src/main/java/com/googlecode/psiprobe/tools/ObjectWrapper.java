@@ -36,6 +36,10 @@ class ObjectWrapper {
         }
     }
 
+    public int hashCode() {
+        return o.hashCode();
+    }
+
     public static void main(String[] args) {
         Map session = new HashMap();
         session.put("test1", "test message");
