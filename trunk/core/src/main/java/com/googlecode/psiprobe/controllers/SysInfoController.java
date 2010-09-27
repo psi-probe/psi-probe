@@ -76,6 +76,6 @@ public class SysInfoController extends TomcatContainerController {
         return new ModelAndView(getViewName())
                 .addObject("systemInformation", systemInformation)
                 .addObject("runtime", getRuntimeInfoAccessor().getRuntimeInformation())
-                .addObject("collectionPeriod", Long.valueOf(getCollectionPeriod()));
+                .addObject("collectionPeriod", new Long(getCollectionPeriod()));
     }
 }
