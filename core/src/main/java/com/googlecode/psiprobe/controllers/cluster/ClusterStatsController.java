@@ -52,6 +52,6 @@ public class ClusterStatsController extends TomcatContainerController {
         Cluster cluster = getClusterWrapper().getCluster(container.getName(), container.getHostName(), isLoadMembers());
         return new ModelAndView(getViewName())
                 .addObject("cluster", cluster)
-                .addObject("collectionPeriod", Long.valueOf(getCollectionPeriod()));
+                .addObject("collectionPeriod", new Long(getCollectionPeriod()));
     }
 }

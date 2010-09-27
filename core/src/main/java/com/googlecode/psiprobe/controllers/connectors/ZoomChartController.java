@@ -23,7 +23,7 @@ public class ZoomChartController extends ParameterizableViewController {
 
     protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
         return super.handleRequestInternal(request, response)
-                .addObject("collectionPeriod", Long.valueOf(getCollectionPeriod()));
+                .addObject("collectionPeriod", new Long(getCollectionPeriod()));
     }
 
 }
