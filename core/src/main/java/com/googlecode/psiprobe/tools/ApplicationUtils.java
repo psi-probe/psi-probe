@@ -200,7 +200,7 @@ public class ApplicationUtils {
             long size = 0;
 
             HttpSession httpSession = session.getSession();
-            List processedObjects = new ArrayList(1000);
+            Set processedObjects = new HashSet(1000);
             try {
                 for (Enumeration e = httpSession.getAttributeNames(); e.hasMoreElements();) {
                     String name = (String) e.nextElement();
