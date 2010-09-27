@@ -39,6 +39,6 @@ public class ListConnectorNamesController extends TomcatContainerController {
     protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
         return new ModelAndView(getViewName())
                 .addObject("names", containerListenerBean.getThreadPoolNames())
-                .addObject("collectionPeriod", Long.valueOf(getCollectionPeriod()));
+                .addObject("collectionPeriod", new Long(getCollectionPeriod()));
     }
 }

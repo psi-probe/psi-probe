@@ -52,7 +52,7 @@ public class DataSourceTestController extends ParameterizableViewController {
                 .addObject("rowsPerPage", String.valueOf(sessData == null ? getRowsPerPage() : sessData.getRowsPerPage()))
                 .addObject("historySize", String.valueOf(sessData == null ? getHistorySize() : sessData.getHistorySize()))
                 .addObject("backURL", backURL)
-                .addObject("collectionPeriod", Long.valueOf(getCollectionPeriod()));
+                .addObject("collectionPeriod", new Long(getCollectionPeriod()));
     }
 
     public long getCollectionPeriod() {
