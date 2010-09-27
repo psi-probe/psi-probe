@@ -39,6 +39,6 @@ public class MemoryStatsController extends ParameterizableViewController {
     protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
         return new ModelAndView(getViewName())
                 .addObject("pools", getJvmMemoryInfoAccessorBean().getPools())
-                .addObject("collectionPeriod", Long.valueOf(getCollectionPeriod()));
+                .addObject("collectionPeriod", new Long(getCollectionPeriod()));
     }
 }
