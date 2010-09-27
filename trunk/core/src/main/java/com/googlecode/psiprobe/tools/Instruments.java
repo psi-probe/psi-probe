@@ -13,8 +13,8 @@ package com.googlecode.psiprobe.tools;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Instruments {
 
@@ -26,7 +26,7 @@ public class Instruments {
         IGNORE_NIO = (ignoreNIOProp == null || "true".equalsIgnoreCase(ignoreNIOProp));
     }
 
-    private List processedObjects = new ArrayList(2048);
+    private Set processedObjects = new HashSet(2048);
     private ClassLoader classLoader = null;
 
     public static long sizeOf(Object o) {
@@ -39,7 +39,7 @@ public class Instruments {
         return instruments.internalSizeOf(o);
     }
 
-    public static long sizeOf(Object o, List objects) {
+    public static long sizeOf(Object o, Set objects) {
         Instruments instruments = new Instruments();
         instruments.processedObjects = objects;
         return instruments.internalSizeOf(o);
