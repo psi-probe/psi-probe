@@ -6,30 +6,29 @@
   * _Same as Minor Release._
 
 = Minor Release =
-  # *SVN*
+  # *Branch*
      # Create branch from trunk.
+     # Check out branch.
      # In branch, remove "SNAPSHOT" from version numbers and update SCM URLs.
-     # Create tag from branch.
-     # In trunk, increment version numbers.
   # *Build*
-     # Check out tag.
-     # Create probe.war: `mvn -Prelease clean package`
+     # Create probe.war from branch: `mvn -Prelease clean package`
        * Be sure to use JDK 1.4 and Maven 2.0.9+.
      # Create Changelog.txt file from [Changelogs] and [DevelopmentRoadmap].
-     # Combine probe.war and Changelog.txt into ZIP.
-  # *GC*
+     # Create ZIP from probe.war and Changelog.txt.
+  # *Release*
+     # Create tag from branch.
      # Upload ZIP to GC as a Featured Download.
      # Deprecate previous build.
      # Change status of issues to !FixReleased.
      # Update [Changelogs] and [DevelopmentRoadmap].
      # Announce.
+     # In trunk, increment version numbers.
 
 = Patch Release =
-  # *SVN*
-    # Merge changes from trunk to branch (or vice versa if applicable).
+  # *Merge*
+    # Merge changes from trunk into branch (or vice versa if applicable).
     # In branch, increment version number.
-    # Create tag from branch.
   # *Build*
      * _Same as Minor Release._
-  # *GC*
+  # *Release*
      * _Same as Minor Release._
