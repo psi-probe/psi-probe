@@ -4,7 +4,7 @@
 [Changelogs << Older] | <font color="silver">Newer >></font>
 
 == Release Pending ==
-  * *Issues:* [http://code.google.com/p/psi-probe/issues/list?can=1&q=Type:Defect,Enhancement,Feature+Status:Fixed,FixVerified&sort=-Type Fixed]
+  * *Issues:* [http://code.google.com/p/psi-probe/issues/list?can=1&q=Type:Defect,Enhancement,Feature+Status:Fixed,FixVerified&sort=-Milestone+-Type Fixed]
 
 == Current Focus: 2.2 ==
   * *Focus:* Tomcat 6
