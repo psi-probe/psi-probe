@@ -19,49 +19,49 @@
 		********************** Controllers ****************************
 	-->
 
-	<bean name="/index.htm" class="com.googlecode.psiprobe.controllers.ListWebappsController">
+	<bean name="/index.htm" class="com.googlecode.psiprobe.controllers.apps.ListWebappsController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="viewName" value="applications"/>
 	</bean>
 
-	<bean name="/resources.htm" class="com.googlecode.psiprobe.controllers.ListApplicationResourcesController">
+	<bean name="/resources.htm" class="com.googlecode.psiprobe.controllers.apps.ListApplicationResourcesController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="viewName" value="resources"/>
 	</bean>
 
-	<bean name="/sessions.htm" class="com.googlecode.psiprobe.controllers.ListSessionsController">
+	<bean name="/sessions.htm" class="com.googlecode.psiprobe.controllers.sessions.ListSessionsController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="viewName" value="sessions"/>
 	</bean>
 
-	<bean name="/app/toggle.ajax" class="com.googlecode.psiprobe.controllers.AjaxToggleContextController">
+	<bean name="/app/toggle.ajax" class="com.googlecode.psiprobe.controllers.apps.AjaxToggleContextController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="viewName" value="ajax/context_status"/>
 	</bean>
 
-	<bean name="/app/stop.htm" class="com.googlecode.psiprobe.controllers.StopContextController">
+	<bean name="/app/stop.htm" class="com.googlecode.psiprobe.controllers.apps.StopContextController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="viewName" value="/index.htm"/>
 	</bean>
 
-	<bean name="/app/stop_summary.htm" class="com.googlecode.psiprobe.controllers.StopContextController">
+	<bean name="/app/stop_summary.htm" class="com.googlecode.psiprobe.controllers.apps.StopContextController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="viewName" value="/appsummary.htm"/>
 		<property name="passQueryString" value="true"/>
 	</bean>
 
-	<bean name="/app/start.htm" class="com.googlecode.psiprobe.controllers.StartContextController">
+	<bean name="/app/start.htm" class="com.googlecode.psiprobe.controllers.apps.StartContextController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="viewName" value="/index.htm"/>
 	</bean>
 
-	<bean name="/app/start_summary.htm" class="com.googlecode.psiprobe.controllers.StartContextController">
+	<bean name="/app/start_summary.htm" class="com.googlecode.psiprobe.controllers.apps.StartContextController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="viewName" value="/appsummary.htm"/>
 		<property name="passQueryString" value="true"/>
 	</bean>
 
-	<bean name="/app/resetds.htm" class="com.googlecode.psiprobe.controllers.ResetDataSourceController">
+	<bean name="/app/resetds.htm" class="com.googlecode.psiprobe.controllers.datasources.ResetDataSourceController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<!--
 			This controller uses InternalResourceView, so view name here has to be a URL like
@@ -69,7 +69,7 @@
 		<property name="viewName" value="forward:/resources.htm"/>
 	</bean>
 
-	<bean name="/app/expire.htm" class="com.googlecode.psiprobe.controllers.ExpireSessionController">
+	<bean name="/app/expire.htm" class="com.googlecode.psiprobe.controllers.sessions.ExpireSessionController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<!--
 			This controller uses InternalResourceView, so view name here has to be a URL like
@@ -77,7 +77,7 @@
 		<property name="viewName" value="/sessions.htm"/>
 	</bean>
 
-	<bean name="/app/expire_list.htm" class="com.googlecode.psiprobe.controllers.ExpireSessionsController">
+	<bean name="/app/expire_list.htm" class="com.googlecode.psiprobe.controllers.sessions.ExpireSessionsController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<!--
 			This controller uses InternalResourceView, so view name here has to be a URL like
@@ -105,13 +105,13 @@
 
 	<bean id="runtimeInfoAccessor" class="com.googlecode.psiprobe.beans.RuntimeInfoAccessorBean"/>
 
-	<bean name="/sysinfo.htm" class="com.googlecode.psiprobe.controllers.SysInfoController">
+	<bean name="/sysinfo.htm" class="com.googlecode.psiprobe.controllers.system.SysInfoController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="runtimeInfoAccessor" ref="runtimeInfoAccessor"/>
 		<property name="viewName" value="sysinfo"/>
 	</bean>
 
-	<bean name="/sysprops.htm" class="com.googlecode.psiprobe.controllers.SysInfoController">
+	<bean name="/sysprops.htm" class="com.googlecode.psiprobe.controllers.system.SysInfoController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="runtimeInfoAccessor" ref="runtimeInfoAccessor"/>
 		<property name="filterOutKeys">
@@ -122,7 +122,7 @@
 		<property name="viewName" value="system_properties"/>
 	</bean>
 
-	<bean name="/adm/osinfo.htm" class="com.googlecode.psiprobe.controllers.SysInfoController">
+	<bean name="/adm/osinfo.htm" class="com.googlecode.psiprobe.controllers.system.SysInfoController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="runtimeInfoAccessor" ref="runtimeInfoAccessor"/>
 		<property name="viewName" value="osinfo"/>
@@ -139,13 +139,13 @@
 		</property>
 	</bean>
 
-	<bean name="/adm/osinfo.ajax" class="com.googlecode.psiprobe.controllers.SysInfoController">
+	<bean name="/adm/osinfo.ajax" class="com.googlecode.psiprobe.controllers.system.SysInfoController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="runtimeInfoAccessor" ref="runtimeInfoAccessor"/>
 		<property name="viewName" value="ajax/osinfo"/>
 	</bean>
 
-	<bean name="/adm/forcegc.htm" class="com.googlecode.psiprobe.controllers.ForceGCController">
+	<bean name="/adm/forcegc.htm" class="com.googlecode.psiprobe.controllers.system.ForceGCController">
 		<property name="replacePattern" value="^http(s)?://[a-zA-Z\-\.0-9]+(:[0-9]+)?"/>
 		<property name="viewName" value="/sysinfo.htm"/>
 	</bean>
@@ -178,12 +178,12 @@
 		<property name="failureViewName" value="/appsummary.htm"/>
 	</bean>
 
-	<bean name="/datasources.htm" class="com.googlecode.psiprobe.controllers.ListAllJdbcResourcesController">
+	<bean name="/datasources.htm" class="com.googlecode.psiprobe.controllers.datasources.ListAllJdbcResourcesController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="viewName" value="datasources"/>
 	</bean>
 
-	<bean name="/datasourcegroups.htm" class="com.googlecode.psiprobe.controllers.ListAllJdbcResourceGroups">
+	<bean name="/datasourcegroups.htm" class="com.googlecode.psiprobe.controllers.datasources.ListAllJdbcResourceGroups">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="viewName" value="datasourcegroup"/>
 	</bean>
@@ -227,27 +227,27 @@
 
 	<bean name="/sql/queryHistoryItem.ajax" class="com.googlecode.psiprobe.controllers.sql.QueryHistoryItemController"/>
 
-	<bean name="/attributes.htm" class="com.googlecode.psiprobe.controllers.ListSessionAttributesController">
+	<bean name="/attributes.htm" class="com.googlecode.psiprobe.controllers.sessions.ListSessionAttributesController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="viewName" value="attributes"/>
 	</bean>
 
-	<bean name="/app/rmsattr.htm" class="com.googlecode.psiprobe.controllers.RemoveSessAttributeController">
+	<bean name="/app/rmsattr.htm" class="com.googlecode.psiprobe.controllers.sessions.RemoveSessAttributeController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="viewName" value="/attributes.htm"/>
 	</bean>
 
-	<bean name="/app/reload.ajax" class="com.googlecode.psiprobe.controllers.AjaxReloadContextController">
+	<bean name="/app/reload.ajax" class="com.googlecode.psiprobe.controllers.apps.AjaxReloadContextController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="viewName" value="ajax/context_status"/>
 	</bean>
 
-	<bean name="/app/reload.htm" class="com.googlecode.psiprobe.controllers.ReloadContextController">
+	<bean name="/app/reload.htm" class="com.googlecode.psiprobe.controllers.apps.ReloadContextController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="viewName" value="/index.htm"/>
 	</bean>
 
-	<bean name="/app/reload_summary.htm" class="com.googlecode.psiprobe.controllers.ReloadContextController">
+	<bean name="/app/reload_summary.htm" class="com.googlecode.psiprobe.controllers.apps.ReloadContextController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="viewName" value="/appsummary.htm"/>
 		<property name="passQueryString" value="true"/>
@@ -282,7 +282,7 @@
 		<property name="viewName" value="/app/jsp.htm"/>
 	</bean>
 
-	<bean name="/appsummary.htm" class="com.googlecode.psiprobe.controllers.GetApplicationController">
+	<bean name="/appsummary.htm" class="com.googlecode.psiprobe.controllers.apps.GetApplicationController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="viewName" value="appsummary"/>
 		<property name="extendedInfo" value="false"/>
@@ -299,38 +299,38 @@
 		</property>
 	</bean>
 
-	<bean name="/appruntimeinfo.ajax" class="com.googlecode.psiprobe.controllers.GetApplicationController">
+	<bean name="/appruntimeinfo.ajax" class="com.googlecode.psiprobe.controllers.apps.GetApplicationController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="viewName" value="ajax/appRuntimeInfo"/>
 		<property name="extendedInfo" value="true"/>
 		<property name="statsCollection" ref="statsCollection"/>
 	</bean>
 
-	<bean name="/app/viewwebxml.htm" class="com.googlecode.psiprobe.controllers.ViewXMLConfController">
+	<bean name="/app/viewwebxml.htm" class="com.googlecode.psiprobe.controllers.apps.ViewXMLConfController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="viewName" value="view_xml_conf"/>
 		<property name="displayTarget" value="web.xml"/>
 		<property name="downloadUrl" value="/app/downloadwebxml.htm"/>
 	</bean>
 
-	<bean name="/adm/viewcontextxml.htm" class="com.googlecode.psiprobe.controllers.ViewXMLConfController">
+	<bean name="/adm/viewcontextxml.htm" class="com.googlecode.psiprobe.controllers.apps.ViewXMLConfController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="viewName" value="view_xml_conf"/>
 		<property name="displayTarget" value="context.xml"/>
 		<property name="downloadUrl" value="/adm/downloadcontextxml.htm"/>
 	</bean>
 
-	<bean name="/app/downloadwebxml.htm" class="com.googlecode.psiprobe.controllers.DownloadXMLConfController">
+	<bean name="/app/downloadwebxml.htm" class="com.googlecode.psiprobe.controllers.apps.DownloadXMLConfController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="downloadTarget" value="web.xml"/>
 	</bean>
 
-	<bean name="/adm/downloadcontextxml.htm" class="com.googlecode.psiprobe.controllers.DownloadXMLConfController">
+	<bean name="/adm/downloadcontextxml.htm" class="com.googlecode.psiprobe.controllers.apps.DownloadXMLConfController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="downloadTarget" value="context.xml"/>
 	</bean>
 
-	<bean name="/allappstats.htm" class="com.googlecode.psiprobe.controllers.AllAppStatsController">
+	<bean name="/allappstats.htm" class="com.googlecode.psiprobe.controllers.apps.AllAppStatsController">
 		<property name="viewName" value="allappstats"/>
 		<property name="collectionPeriod">
 			<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
@@ -497,17 +497,17 @@
 		<property name="viewName" value="ajax/cluster/requests"/>
 	</bean>
 
-	<bean name="/appattributes.htm" class="com.googlecode.psiprobe.controllers.ListAppAttributesController">
+	<bean name="/appattributes.htm" class="com.googlecode.psiprobe.controllers.apps.ListAppAttributesController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="viewName" value="appattributes"/>
 	</bean>
 
-	<bean name="/app/rmappattr.htm" class="com.googlecode.psiprobe.controllers.RemoveApplicationAttributeController">
+	<bean name="/app/rmappattr.htm" class="com.googlecode.psiprobe.controllers.apps.RemoveApplicationAttributeController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="viewName" value="/appattributes.htm"/>
 	</bean>
 
-	<bean name="/appinitparams.htm" class="com.googlecode.psiprobe.controllers.ListAppInitParamsController">
+	<bean name="/appinitparams.htm" class="com.googlecode.psiprobe.controllers.apps.ListAppInitParamsController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="viewName" value="appinitparams"/>
 	</bean>
@@ -516,34 +516,34 @@
 		<property name="viewName" value="servlets"/>
 	</bean>
 
-	<bean name="/servlets.ajax" class="com.googlecode.psiprobe.controllers.ListServletsController">
+	<bean name="/servlets.ajax" class="com.googlecode.psiprobe.controllers.servlets.ListServletsController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="viewName" value="ajax/servlets"/>
 	</bean>
 
-	<bean name="/servletmaps.htm" class="com.googlecode.psiprobe.controllers.ListServletMapsController">
+	<bean name="/servletmaps.htm" class="com.googlecode.psiprobe.controllers.servlets.ListServletMapsController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="viewName" value="servletmaps"/>
 	</bean>
 
-	<bean name="/appfilters.htm" class="com.googlecode.psiprobe.controllers.ListAppFiltersController">
+	<bean name="/appfilters.htm" class="com.googlecode.psiprobe.controllers.filters.ListAppFiltersController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="viewName" value="appfilters"/>
 	</bean>
 
-	<bean name="/appfiltermaps.htm" class="com.googlecode.psiprobe.controllers.ListAppFilterMapsController">
+	<bean name="/appfiltermaps.htm" class="com.googlecode.psiprobe.controllers.filters.ListAppFilterMapsController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="viewName" value="appfiltermaps"/>
 	</bean>
 
 	<bean id="jvmMemoryInfoAccessor" class="com.googlecode.psiprobe.beans.JvmMemoryInfoAccessorBean"/>
 
-	<bean name="/memory.ajax" class="com.googlecode.psiprobe.controllers.MemoryStatsController">
+	<bean name="/memory.ajax" class="com.googlecode.psiprobe.controllers.system.MemoryStatsController">
 		<property name="jvmMemoryInfoAccessorBean" ref="jvmMemoryInfoAccessor"/>
 		<property name="viewName" value="ajax/memory_pools"/>
 	</bean>
 
-	<bean name="/memory.htm" class="com.googlecode.psiprobe.controllers.MemoryStatsController">
+	<bean name="/memory.htm" class="com.googlecode.psiprobe.controllers.system.MemoryStatsController">
 		<property name="jvmMemoryInfoAccessorBean" ref="jvmMemoryInfoAccessor"/>
 		<property name="viewName" value="memory"/>
 		<property name="collectionPeriod">
