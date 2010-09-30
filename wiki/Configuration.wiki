@@ -38,16 +38,16 @@ The Expression you choose for a category's `period` should evenly divide the nex
 
 === Memory Consumption ===
 
-These statistics can take up large amounts of memory, especially if you have a short period, a long span, or a large number of items within the category.  To determine the amount of memory taken up by a category's data, use the following formula:
+Each data point takes up 24 bytes of memory, so these statistics can take up large amounts of memory if you have a short period, a long span, or a large number of items within the category.  To determine the amount of memory taken up by a category's data, use the following formula:
 
-<a href="http://www.codecogs.com/eqnedit.php?latex=m=\frac{4ds}{p}" target="_blank"><img src="http://latex.codecogs.com/png.latex?m=\frac{4ds}{p}%.png" title="m=\frac{4ds}{p}" align="middle" /></a>, where
+<a href="http://www.codecogs.com/eqnedit.php?latex=m=\frac{24ds}{p}" target="_blank"><img src="http://latex.codecogs.com/png.latex?m=\frac{24ds}{p}%.png" title="m=\frac{24ds}{p}" align="middle" /></a>, where
 
   * _m_ = Memory used in bytes
   * _d_ = Data Points per Collection (see [#Category Category] above)
   * _s_ = `span` (in seconds)
   * _p_ = `period` (in seconds)
 
-For instance, if you configure the `cluster` category to collect information every 10 seconds and retain it for 3 days, this will take up 405 KB of memory.
+For instance, if you configure the `cluster` category to collect information every 10 seconds and retain it for 3 days, this will take up 2,488,320 bytes (2.37 MB) of memory.
 
 === Defaults ===
 
