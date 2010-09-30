@@ -23,17 +23,20 @@
 		<script type="text/javascript" language="javascript" src="<c:url value='/js/func.js'/>"></script>
 	</head>
 
+	<c:set var="chartWidth" value="400"/>
+	<c:set var="chartHeight" value="250"/>
+
 	<c:url value="/chart.png" var="reqimg" scope="page">
 		<c:param name="p" value="connector"/>
-		<c:param name="xz" value="400"/>
-		<c:param name="yz" value="250"/>
+		<c:param name="xz" value="${chartWidth}"/>
+		<c:param name="yz" value="${chartHeight}"/>
 		<c:param name="l" value="false"/>
 	</c:url>
 
 	<c:url value="/chart.png" var="traffimg" scope="page">
 		<c:param name="p" value="traffic"/>
-		<c:param name="xz" value="400"/>
-		<c:param name="yz" value="250"/>
+		<c:param name="xz" value="${chartWidth}"/>
+		<c:param name="yz" value="${chartHeight}"/>
 		<c:param name="xl" value="Bytes"/>
 		<c:param name="s1c" value="#95FE8B"/>
 		<c:param name="s1o" value="#009406"/>
@@ -104,6 +107,8 @@
 								<a href="<c:url value='/zoomchart.htm'/>?sp=${name}&p=connector"><img
 										id="req-${name}"
 										border="0" src="${reqimg}&sp=${name}"
+										width="${chartWidth}"
+										height="${chartHeight}"
 										alt="+"/></a>
 							</dd>
 							<dd id="dd-req-${name}">
@@ -124,6 +129,8 @@
 								<a href="<c:url value='/zoomchart.htm'/>?sp=${name}&p=traffic"><img
 										id="traf-${name}"
 										border="0" src="${traffimg}&sp=${name}"
+										width="${chartWidth}"
+										height="${chartHeight}"
 										alt="+"/></a>
 							</dd>
 							<dd id="dd-traf-${name}">
