@@ -32,12 +32,17 @@
 		<div id="charts" class="embeddedBlockContainer">
 			<h3><spring:message code="probe.jsp.allappstats.h3.charts"/></h3>
 
+			<c:set var="chartWidth" value="345"/>
+			<c:set var="chartHeight" value="250"/>
+			<c:set var="fullChartWidth" value="700"/>
+			<c:set var="fullChartHeight" value="320"/>
+
 			<%-- Cumulative Response Time --%>
 			<c:url value="/chart.png" var="total_avg_proc_time_url">
 				<c:param name="ct" value="area"/>
 				<c:param name="p" value="total_avg_proc_time"/>
-				<c:param name="xz" value="345"/>
-				<c:param name="yz" value="250"/>
+				<c:param name="xz" value="${chartWidth}"/>
+				<c:param name="yz" value="${chartHeight}"/>
 				<c:param name="s1c" value="#95FE8B"/>
 				<c:param name="s1o" value="#009406"/>
 				<c:param name="l" value="false"/>
@@ -45,8 +50,8 @@
 
 			<c:url value="/chart.png" var="total_avg_proc_time_url_full">
 				<c:param name="p" value="total_avg_proc_time"/>
-				<c:param name="xz" value="700"/>
-				<c:param name="yz" value="320"/>
+				<c:param name="xz" value="${fullChartWidth}"/>
+				<c:param name="yz" value="${fullChartHeight}"/>
 				<c:param name="s1c" value="#95FE8B"/>
 				<c:param name="s1o" value="#009406"/>
 				<c:param name="s1l">
@@ -58,8 +63,8 @@
 			<c:url value="/chart.png" var="all_app_avg_proc_time_url">
 				<c:param name="ct" value="line"/>
 				<c:param name="p" value="all_app_avg_proc_time"/>
-				<c:param name="xz" value="345"/>
-				<c:param name="yz" value="250"/>
+				<c:param name="xz" value="${chartWidth}"/>
+				<c:param name="yz" value="${chartHeight}"/>
 				<c:param name="s1c" value="#9BD2FB"/>
 				<c:param name="s1o" value="#0665AA"/>
 				<c:param name="s2c" value="#FFCCCC"/>
@@ -73,8 +78,8 @@
 			<c:url value="/chart.png" var="all_app_avg_proc_time_url_full">
 				<c:param name="ct" value="line"/>
 				<c:param name="p" value="all_app_avg_proc_time"/>
-				<c:param name="xz" value="700"/>
-				<c:param name="yz" value="320"/>
+				<c:param name="xz" value="${fullChartWidth}"/>
+				<c:param name="yz" value="${fullChartHeight}"/>
 				<c:param name="s1c" value="#9BD2FB"/>
 				<c:param name="s1o" value="#0665AA"/>
 				<c:param name="s2c" value="#FFCCCC"/>
@@ -89,15 +94,15 @@
 			<c:url value="/chart.png" var="total_req_url">
 				<c:param name="ct" value="area"/>
 				<c:param name="p" value="total_req"/>
-				<c:param name="xz" value="345"/>
-				<c:param name="yz" value="250"/>
+				<c:param name="xz" value="${chartWidth}"/>
+				<c:param name="yz" value="${chartHeight}"/>
 				<c:param name="l" value="false"/>
 			</c:url>
 
 			<c:url value="/chart.png" var="total_req_url_full">
 				<c:param name="p" value="total_req"/>
-				<c:param name="xz" value="700"/>
-				<c:param name="yz" value="320"/>
+				<c:param name="xz" value="${fullChartWidth}"/>
+				<c:param name="yz" value="${fullChartHeight}"/>
 				<c:param name="s1l">
 					<spring:message code="probe.jsp.allappstats.charts.totalReq.legend"/>
 				</c:param>
@@ -107,8 +112,8 @@
 			<c:url value="/chart.png" var="all_app_req_url">
 				<c:param name="ct" value="line"/>
 				<c:param name="p" value="all_app_req"/>
-				<c:param name="xz" value="345"/>
-				<c:param name="yz" value="250"/>
+				<c:param name="xz" value="${chartWidth}"/>
+				<c:param name="yz" value="${chartHeight}"/>
 				<c:param name="s1c" value="#9BD2FB"/>
 				<c:param name="s1o" value="#0665AA"/>
 				<c:param name="s2c" value="#FFCCCC"/>
@@ -122,8 +127,8 @@
 			<c:url value="/chart.png" var="all_app_req_url_full">
 				<c:param name="ct" value="line"/>
 				<c:param name="p" value="all_app_req"/>
-				<c:param name="xz" value="700"/>
-				<c:param name="yz" value="320"/>
+				<c:param name="xz" value="${fullChartWidth}"/>
+				<c:param name="yz" value="${fullChartHeight}"/>
 				<c:param name="s1c" value="#9BD2FB"/>
 				<c:param name="s1o" value="#0665AA"/>
 				<c:param name="s2c" value="#FFCCCC"/>
@@ -140,7 +145,7 @@
 						<dl>
 							<dt><spring:message code="probe.jsp.allappstats.charts.totalReq.title"/></dt>
 							<dd class="image">
-								<img id="total_req_chart" border="0" src="${total_req_url}" alt="+"/>
+								<img id="total_req_chart" border="0" src="${total_req_url}" width="${chartWidth}" height="${chartHeight}" alt="+"/>
 							</dd>
 						</dl>
 					</div>
@@ -148,7 +153,7 @@
 						<dl>
 							<dt><spring:message code="probe.jsp.allappstats.charts.totalAvgProcTime.title"/></dt>
 							<dd class="image">
-								<img id="total_avg_proc_time_chart" border="0" src="${total_avg_proc_time_url}" alt="+"/>
+								<img id="total_avg_proc_time_chart" border="0" src="${total_avg_proc_time_url}" width="${chartWidth}" height="${chartHeight}" alt="+"/>
 							</dd>
 						</dl>
 					</div>
@@ -158,7 +163,7 @@
 						<dl>
 							<dt><spring:message code="probe.jsp.allappstats.charts.allAppReq.title"/></dt>
 							<dd class="image">
-								<img id="all_app_req_chart" border="0" src="${all_app_req_url}" alt="+"/>
+								<img id="all_app_req_chart" border="0" src="${all_app_req_url}" width="${chartWidth}" height="${chartHeight}" alt="+"/>
 							</dd>
 						</dl>
 					</div>
@@ -166,7 +171,7 @@
 						<dl>
 							<dt><spring:message code="probe.jsp.allappstats.charts.allAppAvgProcTime.title"/></dt>
 							<dd class="image">
-								<img id="all_app_avg_proc_time_chart" border="0" src="${all_app_avg_proc_time_url}" alt="+"/>
+								<img id="all_app_avg_proc_time_chart" border="0" src="${all_app_avg_proc_time_url}" width="${chartWidth}" height="${chartHeight}" alt="+"/>
 							</dd>
 						</dl>
 					</div>
@@ -177,7 +182,7 @@
 				<dl>
 					<dt id="full_title"></dt>
 					<dd class="image">
-						<img id="fullImg" border="0" src="${total_avg_proc_time_url_full}" alt="-"/>
+						<img id="fullImg" border="0" src="${total_avg_proc_time_url_full}" width="${fullChartWidth}" height="${fullChartHeight}" alt="-"/>
 					</dd>
 				</dl>
 			</div>

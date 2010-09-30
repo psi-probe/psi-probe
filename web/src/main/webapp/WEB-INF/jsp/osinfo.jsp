@@ -27,6 +27,11 @@
 	<c:set var="systemTabOsInfo" value="active" scope="request"/>
 	<c:set var="use_decorator" value="system" scope="request"/>
 
+	<c:set var="chartWidth" value="260"/>
+	<c:set var="chartHeight" value="140"/>
+	<c:set var="fullChartWidth" value="650"/>
+	<c:set var="fullChartHeight" value="320"/>
+
 	<body>
 		<c:choose>
 			<c:when test="${empty runtime}">
@@ -44,15 +49,15 @@
 
 				<c:url value="/chart.png" var="os_memory_url">
 					<c:param name="p" value="os_memory"/>
-					<c:param name="xz" value="260"/>
-					<c:param name="yz" value="140"/>
+					<c:param name="xz" value="${chartWidth}"/>
+					<c:param name="yz" value="${chartHeight}"/>
 					<c:param name="l" value="false"/>
 				</c:url>
 
 				<c:url value="/chart.png" var="os_memory_url_full">
 					<c:param name="p" value="os_memory"/>
-					<c:param name="xz" value="650"/>
-					<c:param name="yz" value="320"/>
+					<c:param name="xz" value="${fullChartWidth}"/>
+					<c:param name="yz" value="${fullChartHeight}"/>
 					<c:param name="s1l" value="${mem_total_legend}"/>
 					<c:param name="s2l" value="${jvm_legend}"/>
 				</c:url>
@@ -61,8 +66,8 @@
 
 				<c:url value="/chart.png" var="swap_usage_url">
 					<c:param name="p" value="swap_usage"/>
-					<c:param name="xz" value="260"/>
-					<c:param name="yz" value="140"/>
+					<c:param name="xz" value="${chartWidth}"/>
+					<c:param name="yz" value="${chartHeight}"/>
 					<c:param name="s1c" value="#FFCD9B"/>
 					<c:param name="s1o" value="#D26900"/>
 					<c:param name="l" value="false"/>
@@ -70,8 +75,8 @@
 
 				<c:url value="/chart.png" var="swap_usage_url_full">
 					<c:param name="p" value="swap_usage"/>
-					<c:param name="xz" value="650"/>
-					<c:param name="yz" value="320"/>
+					<c:param name="xz" value="${fullChartWidth}"/>
+					<c:param name="yz" value="${fullChartHeight}"/>
 					<c:param name="s1c" value="#FFCD9B"/>
 					<c:param name="s1o" value="#D26900"/>
 					<c:param name="s1l" value="${swap_legend}"/>
@@ -81,8 +86,8 @@
 
 				<c:url value="/chart.png" var="cpu_usage_url">
 					<c:param name="p" value="cpu_usage"/>
-					<c:param name="xz" value="260"/>
-					<c:param name="yz" value="140"/>
+					<c:param name="xz" value="${chartWidth}"/>
+					<c:param name="yz" value="${chartHeight}"/>
 					<c:param name="s1c" value="#FFCCCC"/>
 					<c:param name="s1o" value="#FF8484"/>
 					<c:param name="l" value="false"/>
@@ -90,8 +95,8 @@
 
 				<c:url value="/chart.png" var="cpu_usage_url_full">
 					<c:param name="p" value="cpu_usage"/>
-					<c:param name="xz" value="650"/>
-					<c:param name="yz" value="320"/>
+					<c:param name="xz" value="${fullChartWidth}"/>
+					<c:param name="yz" value="${fullChartHeight}"/>
 					<c:param name="s1c" value="#FFCCCC"/>
 					<c:param name="s1o" value="#FF8484"/>
 					<c:param name="s1l" value="${cpu_legend}"/>
@@ -112,6 +117,8 @@
 								<dt><spring:message code="probe.jsp.os.chart.cpu"/></dt>
 								<dd class="image">
 									<img id="cpu_chart" border="0" src="<c:out value='${cpu_usage_url}' escapeXml='false'/>"
+											width="${chartWidth}"
+											height="${chartHeight}"
 											alt="<spring:message code='probe.jsp.os.chart.cpu.alt'/>"/>
 								</dd>
 							</dl>
@@ -122,6 +129,8 @@
 								<dt><spring:message code="probe.jsp.os.chart.memory"/></dt>
 								<dd class="image">
 									<img id="mem_chart" border="0" src="<c:out value='${os_memory_url}' escapeXml='false'/>"
+											width="${chartWidth}"
+											height="${chartHeight}"
 											alt="<spring:message code='probe.jsp.os.chart.memory.alt'/>"/>
 								</dd>
 							</dl>
@@ -132,6 +141,8 @@
 								<dt><spring:message code="probe.jsp.os.chart.swap"/></dt>
 								<dd class="image">
 									<img id="swap_chart" border="0" src="<c:out value='${swap_usage_url}' escapeXml='false'/>"
+											width="${chartWidth}"
+											height="${chartHeight}"
 											alt="<spring:message code='probe.jsp.os.chart.swap.alt'/>"/>
 								</dd>
 							</dl>
@@ -139,7 +150,7 @@
 					</div>
 
 					<div id="full_chart" style="display: none;">
-						<img id="fullImg" class="clickable" src="" alt=""/>
+						<img id="fullImg" class="clickable" src="" width="${fullChartWidth}" height="${fullChartHeight}" alt=""/>
 					</div>
 				</div>
 

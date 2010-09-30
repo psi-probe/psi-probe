@@ -27,6 +27,11 @@
 	<c:set var="systemTabMemory" value="active" scope="request"/>
 	<c:set var="use_decorator" value="system" scope="request"/>
 
+	<c:set var="chartWidth" value="228"/>
+	<c:set var="chartHeight" value="120"/>
+	<c:set var="fullChartWidth" value="750"/>
+	<c:set var="fullChartHeight" value="350"/>
+
 	<body>
 
 	<c:choose>
@@ -40,8 +45,8 @@
 		<c:otherwise>
 			<c:url value="/chart.png" var="fullChartBase">
 				<c:param name="p" value="memory_usage"/>
-				<c:param name="xz" value="750"/>
-				<c:param name="yz" value="350"/>
+				<c:param name="xz" value="${fullChartWidth}"/>
+				<c:param name="yz" value="${fullChartHeight}"/>
 			</c:url>
 
 			<div class="memory">
@@ -74,8 +79,8 @@
 						<c:url value="/chart.png" var="chartUrl" scope="page">
 							<c:param name="p" value="memory_usage"/>
 							<c:param name="sp" value="${pool.name}"/>
-							<c:param name="xz" value="228"/>
-							<c:param name="yz" value="120"/>
+							<c:param name="xz" value="${chartWidth}"/>
+							<c:param name="yz" value="${chartHeight}"/>
 							<c:param name="l" value="false"/>
 						</c:url>
 
@@ -99,7 +104,7 @@
 											src="${pageContext.request.contextPath}<spring:theme code='bullet_arrow_down.gif'/>" alt="+"/>
 								</dt>
 								<dd class="image"><img id="img_${pool.id}"
-													src="<c:out value='${chartUrl}' escapeXml='false'/>" alt="+"
+													src="<c:out value='${chartUrl}' escapeXml='false'/>" width="${chartWidth}" height="${chartHeight}" alt="+"
 													onclick="zoomIn('${pool.name}')"/></dd>
 							</dl>
 						</div>
@@ -112,7 +117,7 @@
 				</div>
 
 				<div id="fullMemoryChart" style="display: none;">
-					<img id="fullImg" class="clickable" src="${fullChartBase}&sp=Total" alt="-" onclick="zoomOut();"/>
+					<img id="fullImg" class="clickable" src="${fullChartBase}&sp=Total" width="${fullChartWidth}" height="${fullChartHeight}" alt="-" onclick="zoomOut();"/>
 				</div>
 			</div>
 
