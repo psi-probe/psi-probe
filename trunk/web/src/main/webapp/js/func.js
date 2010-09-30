@@ -90,11 +90,15 @@ function togglePanel(container, remember_url) {
 	return false;
 }
 
-function scaleImage(v, min, max) {
+function scaleImage(v, minX, maxX, minY, maxY) {
 	var images = document.getElementsByClassName('scale-image');
-	w = (max - min) * v + min;
+	var w = (maxX - minX) * v + minX;
+	var h = (maxY - minY) * v + minY;
 	for (i = 0; i < images.length; i++) {
-		images[i].style.width = w + 'px';
+		$(images[i]).setStyle({
+			"width": w + 'px',
+			"height": h + 'px'
+		});
 	}
 }
 

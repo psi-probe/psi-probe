@@ -22,6 +22,9 @@
 		<script type="text/javascript" language="javascript" src="<c:url value='/js/func.js'/>"></script>
 	</head>
 
+	<c:set var="fullChartWidth" value="800"/>
+	<c:set var="fullChartHeight" value="350"/>
+	
 	<c:url value="/chart.png" var="imgurl" scope="request">
 		<c:param name="l" value="true"/>
 		<c:param name="p" value="${param.p}"/>
@@ -68,7 +71,7 @@
 			</div>
 
 			<div>
-				<img id="img" class="scale-image" src="${imgurl}&xz=800&yz=350" alt=""/>
+				<img id="img" class="scale-image" src="${imgurl}&xz=${fullChartWidth}&yz=${fullChartHeight}" width="${fullChartWidth}" height="${fullChartHeight}" alt=""/>
 			</div>
 
 			<script type="text/javascript" language="JavaScript">
@@ -80,15 +83,15 @@
 				// would not be final anyway. Once slider is released the image is re-requested from the server, where
 				// it is rebuilt from vector format
 				slider.options.onSlide = function(value) {
-					scaleImage(value, 800, 1600);
+					scaleImage(value, ${fullChartWidth}, ${fullChartWidth * 2}, ${fullChartHeight}, ${fullChartHeight * 2});
 				}
 
 				// this is where the slider is released and the image is reloaded
 				// we use current style settings to work our the required image dimensions
 				slider.options.onChange = function(value) {
 					// chop off "px" and round up float values
-					width = Math.round(Element.getStyle('img', 'width').replace('px', ''));
-					height = Math.round(width / 2.29);
+					var width = Math.round(Element.getStyle('img', 'width').replace('px', ''));
+					var height = Math.round(width / ${fullChartWidth / fullChartHeight});
 					// reload the images
 					document.images.img.src = '<c:out value="${imgurl}" escapeXml="false"/>&xz=' + width + '&yz=' + height;
 					// reset the image auto-updater
