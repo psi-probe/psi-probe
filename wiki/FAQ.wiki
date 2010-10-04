@@ -26,9 +26,11 @@
 PSI Probe is a fork of [http://www.lambdaprobe.org/ Lambda Probe].  It can do almost anything Tomcat Manager does, plus [Features a lot more].
 
 == Why fork Lambda Probe? ==
-There have been no releases since November 2006, and commits to their repository have been sparse.  Many people on the Lambda Probe forums fear the project is dead.  We contacted the developers and received no reply, so we're trying to revive the project ourselves.
+At the time of our fork, there had been no releases or commits for more than 2 years.  Many people on the Lambda Probe forums feared the project was dead.  We contacted the developers and received no reply, so we tried to revive the project ourselves.
 
-Lambda Probe was created and maintained by Vlad Ilyushchenko (turbomonkey) and Andy Shapoval.  We want to extend a _very_ special thanks to them, along with an open invitation to join us at any time should their schedules allow it.
+Since then, we've learned that [http://www.mulesoft.com/ MuleSoft] purchased a [http://www.theserverside.com/news/thread.tss?thread_id=57531#321130 commercial license] for Lambda Probe from its creators and incorporated it into their [http://www.mulesoft.com/tcat-server-enterprise-tomcat-application-server Tcat Server] product.  !MuleSoft has [http://www.theserverside.com/news/thread.tss?thread_id=58164#323370 no plans] to contribute their changes back to the open-source community, as they were added to a commercially-licensed version of Lambda Probe, not the GPL version.  In light of this, we strongly suspect that open development of Lambda Probe by its creators will not resume.
+
+Lambda Probe was created and maintained by Vlad Ilyushchenko (turbomonkey) and Andy Shapoval.  We want to extend a _very_ special thanks to both of them.
 
 == What should I do if my question was not answered here? ==
 Please join our [http://groups.google.com/group/psi-probe-discuss Google Group] and ask it!
