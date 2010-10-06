@@ -448,6 +448,10 @@ code {
 	border-bottom: 3px solid red;
 }
 
+.poolCharts,
+.threadInfo,
+.processorInfo,
+.workerInfo,
 .cumulative,
 .combined {
 	clear: left;
@@ -509,6 +513,10 @@ dd.image:hover {
 
 .connectorChartHeader .actions {
 	float: right;
+}
+
+.poolInfo {
+	margin-bottom: 1em;
 }
 
 img.lnk {
