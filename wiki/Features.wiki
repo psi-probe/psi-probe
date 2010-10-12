@@ -4,7 +4,7 @@
 = Features by Role =
 || || *probeuser* || *poweruser* || *poweruserplus* || *manager* ||
 || *[http://psi-probe.googlecode.com/svn/wiki/Features/context-list.png Context: list]*                              || X || X || X || X ||
-|| *[http://psi-probe.googlecode.com/svn/wiki/Features/context-status.png Context: status]*                     || X || X || X || X ||
+|| *[http://psi-probe.googlecode.com/svn/wiki/Features/context-status.png Context: status]*                          || X || X || X || X ||
 || *[http://psi-probe.googlecode.com/svn/wiki/Features/context-attributes.png Context: list attributes]*             || X || X || X || X ||
 || *[http://psi-probe.googlecode.com/svn/wiki/Features/context-servlets.png Context: view servlets]*                 || X || X || X || X ||
 || *[http://psi-probe.googlecode.com/svn/wiki/Features/context-servlet-mappings.png Context: view servlet mappings]* || X || X || X || X ||
