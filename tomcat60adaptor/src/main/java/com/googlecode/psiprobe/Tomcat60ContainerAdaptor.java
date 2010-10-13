@@ -64,7 +64,7 @@ public class Tomcat60ContainerAdaptor extends AbstractTomcatContainer {
     }
 
     public List<Container> findContexts() {
-        Container containers[] = host.findChildren();
+        Container[] containers = host.findChildren();
         return Arrays.asList(containers);
     }
 

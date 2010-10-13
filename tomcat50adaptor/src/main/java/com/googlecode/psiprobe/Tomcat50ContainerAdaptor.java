@@ -46,7 +46,7 @@ public class Tomcat50ContainerAdaptor extends AbstractTomcatContainer {
     }
 
     public List findContexts() {
-        String names[] = deployer.findDeployedApps();
+        String[] names = deployer.findDeployedApps();
         List result = new ArrayList(names.length);
 
         for (int i = 0; i < names.length; i++) {
