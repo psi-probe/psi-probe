@@ -56,7 +56,7 @@ public class ListThreadsController extends TomcatContainerController {
         //
         List threadList = new ArrayList();
 
-        Thread threads[] = new Thread[masterGroup.activeCount()];
+        Thread[] threads = new Thread[masterGroup.activeCount()];
         int numThreads = masterGroup.enumerate(threads);
 
         for (int i = 0; i < numThreads; i++) {

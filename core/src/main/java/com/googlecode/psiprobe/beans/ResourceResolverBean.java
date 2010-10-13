@@ -58,7 +58,7 @@ public class ResourceResolverBean implements ResourceResolver {
             }
 
             try {
-                ContextResource resources[] = context.getNamingResources().findResources();
+                ContextResource[] resources = context.getNamingResources().findResources();
                 for (int i = 0; i < resources.length; i++) {
                     ContextResource contextResource = resources[i];
                     ApplicationResource resource = new ApplicationResource();
@@ -76,7 +76,7 @@ public class ResourceResolverBean implements ResourceResolver {
                     resourceList.add(resource);
                 }
 
-                ContextResourceLink resourceLinks[] = context.getNamingResources().findResourceLinks();
+                ContextResourceLink[] resourceLinks = context.getNamingResources().findResourceLinks();
                 for (int i = 0; i < resourceLinks.length; i++) {
                     ContextResourceLink link = resourceLinks[i];
 

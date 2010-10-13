@@ -83,8 +83,8 @@ public class TomcatUsersDaoBean implements UserDetailsService, InitializingBean 
             String password = nnm.getNamedItem("password").getNodeValue();
             String roleCsv = nnm.getNamedItem("roles").getNodeValue();
 
-            String roles[] = roleCsv.split(",");
-            GrantedAuthority authorities[] = new GrantedAuthority[roles.length];
+            String[] roles = roleCsv.split(",");
+            GrantedAuthority[] authorities = new GrantedAuthority[roles.length];
 
             for (int j = 0; j < roles.length; j++) {
                 String mappedName = (String) roleNameMap.get(roles[j]);

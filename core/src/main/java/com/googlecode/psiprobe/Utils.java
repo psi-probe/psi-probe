@@ -107,7 +107,7 @@ public class Utils {
     public static void delete(File f) {
         if (f != null && f.exists()) {
             if (f.isDirectory()) {
-                File files[] = f.listFiles();
+                File[] files = f.listFiles();
                 for (int i = 0; i < files.length; i++) {
                     delete(files[i]);
                 }
@@ -265,7 +265,7 @@ public class Utils {
             raf.seek(rangeStart);
 
             // send the file
-            byte buffer[] = new byte[4096];
+            byte[] buffer = new byte[4096];
 
             long len;
             int totalRead = 0;
@@ -305,7 +305,7 @@ public class Utils {
             }
 
 
-            Thread threads[] = new Thread[masterGroup.activeCount()];
+            Thread[] threads = new Thread[masterGroup.activeCount()];
             int numThreads = masterGroup.enumerate(threads);
 
             for (int i = 0; i < numThreads; i++) {
