@@ -99,7 +99,7 @@ public class ApplicationUtils {
                 int sessionAttributeCount = 0;
                 long size = 0;
 
-                Session sessions[] = context.getManager().findSessions();
+                Session[] sessions = context.getManager().findSessions();
                 for (int i = 0; i < sessions.length; i++) {
                     ApplicationSession appSession = getApplicationSession(sessions[i], calcSize, false);
                     if (appSession != null) {
@@ -142,7 +142,7 @@ public class ApplicationUtils {
         long minTime = Long.MAX_VALUE;
         long maxTime = 0;
 
-        Container cns[] = context.findChildren();
+        Container[] cns = context.findChildren();
         for (int i = 0; i < cns.length; i++) {
             if (cns[i] instanceof StandardWrapper) {
                 StandardWrapper sw = (StandardWrapper) cns[i];

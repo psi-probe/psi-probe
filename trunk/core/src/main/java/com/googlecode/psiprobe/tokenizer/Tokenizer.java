@@ -96,7 +96,7 @@ public class Tokenizer {
             return token;
         } else {
             token.init();
-            char b[] = new char[1];
+            char[] b = new char[1];
             while (hasMore()) {
                 read(b, 1);
 
@@ -159,7 +159,7 @@ public class Tokenizer {
     }
 
     private boolean compare(char[] chars, int offs) throws IOException {
-        char b[] = new char[chars.length-offs];
+        char[] b = new char[chars.length-offs];
         cachePinPosition = cachePosition;
         read(b, b.length);
         for (int i=0; i < b.length; i++) {

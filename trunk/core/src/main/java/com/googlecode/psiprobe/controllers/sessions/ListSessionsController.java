@@ -85,7 +85,7 @@ public class ListSessionsController extends ContextHandlerController {
         for (Iterator it = ctxs.iterator(); it.hasNext();) {
             Context ctx = (Context) it.next();
             if (ctx != null && ctx.getManager() != null && (!searchInfo.isApply() || searchInfo.isUseSearch())) {
-                Session sessions[] = ctx.getManager().findSessions();
+                Session[] sessions = ctx.getManager().findSessions();
                 for (int i = 0; i < sessions.length; i++) {
                     Session session = sessions[i];
                     ApplicationSession appSession = ApplicationUtils.getApplicationSession(

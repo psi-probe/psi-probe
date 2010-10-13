@@ -47,7 +47,7 @@ public class ThreadStackController extends ParameterizableViewController {
 
         if (threadID == -1 && threadName != null) {
             // find thread by name
-            long allIds[] = (long[]) mBeanServer.getAttribute(threadingOName, "AllThreadIds");
+            long[] allIds = (long[]) mBeanServer.getAttribute(threadingOName, "AllThreadIds");
             for (int i = 0; i < allIds.length; i++) {
                 CompositeData cd = (CompositeData) mBeanServer.invoke(threadingOName, "getThreadInfo",
                         new Object[]{new Long(allIds[i])}, new String[] {"long"});
