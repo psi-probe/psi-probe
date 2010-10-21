@@ -1,0 +1,7 @@
+#summary Instructions for setting up the project in Eclipse (incomplete)
+----
+
+== Requirements ==
+  * [http://www.eclipse.org/ Eclipse] 3.3+ with the following plugins:
+    * [http://m2eclipse.sonatype.org/ m2eclipse]
+    * [http://www.eclipse.org/webtools/ wtp]
