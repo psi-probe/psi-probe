@@ -6,13 +6,13 @@
 == Release Pending ==
   * *Issues:* [http://code.google.com/p/psi-probe/issues/list?can=1&q=Type:Defect,Enhancement,Feature+Status:Fixed,FixVerified&sort=Milestone+-Type Fixed]
 
-== Current Focus: 2.2 ==
-  * *Focus:* Tomcat 6
+== 2.2 ==
+  * *Theme:* Tomcat 6
   * *Target:* TBD
   * *Issues:* [http://code.google.com/p/psi-probe/issues/list?can=2&q=Milestone:2.2 To-do]
 
 == 2.3 ==
-  * *Focus:* Deployment
+  * *Theme:* Deployment
   * *Target:* TBD
   * *Issues:* [http://code.google.com/p/psi-probe/issues/list?can=2&q=Milestone:2.3 To-do]
 
