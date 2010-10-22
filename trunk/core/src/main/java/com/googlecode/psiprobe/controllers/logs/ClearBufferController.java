@@ -18,10 +18,21 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
 
 public class ClearBufferController extends AbstractController {
+
+    private String fileAttributeName;
+
+    public String getFileAttributeName() {
+        return fileAttributeName;
+    }
+
+    public void setFileAttributeName(String fileAttributeName) {
+        this.fileAttributeName = fileAttributeName;
+    }
+
     protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession();
         if (session != null) {
-            FollowedFile ff = (FollowedFile) session.getAttribute("followed_file");
+            FollowedFile ff = (FollowedFile) session.getAttribute(fileAttributeName);
             if (ff != null) {
                 ff.getLines().clear();
             }
