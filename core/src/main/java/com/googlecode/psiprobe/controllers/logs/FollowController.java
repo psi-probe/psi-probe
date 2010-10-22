@@ -51,7 +51,7 @@ public class FollowController extends ParameterizableViewController  {
 
     protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        FollowedFile ff = (FollowedFile) request.getSession(true).getAttribute("followed_file");
+        FollowedFile ff = (FollowedFile) request.getSession(true).getAttribute(fileAttributeName);
 
         if (ff != null) {
             File f = new File(ff.getFileName());

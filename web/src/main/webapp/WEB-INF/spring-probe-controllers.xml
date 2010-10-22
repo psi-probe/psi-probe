@@ -428,7 +428,9 @@
 		<property name="viewName" value="ajax/followed_file_info"/>
 	</bean>
 
-	<bean name="/logs/clear.ajax" class="com.googlecode.psiprobe.controllers.logs.ClearBufferController"/>
+	<bean name="/logs/clear.ajax" class="com.googlecode.psiprobe.controllers.logs.ClearBufferController">
+		<property name="fileAttributeName" value="followed_file"/>
+	</bean>
 
 	<bean name="/decorator.htm" class="com.googlecode.psiprobe.controllers.DecoratorController">
 		<property name="viewName" value="decorators/probe"/>
