@@ -12,6 +12,7 @@
     * [#I_found_a_bug_in_PSI_Probe._What_should_I_do? I found a bug in PSI Probe. What should I do?]
     * [#I_have_a_great_idea._Can_you_add_it_to_PSI_Probe? I have a great idea. Can you add it to PSI Probe?]
   * [#Development Development]
+    * [#When_will_the_next_version_be_released? When will the next version be released?]
     * [#How_are_issues_prioritized? How are issues prioritized?]
     * [#Can_you_translate_PSI_Probe_into_my_language? Can you translate PSI Probe into my language?]
     * [#How_can_I_contribute_to_this_project? How can I contribute to this project?]
