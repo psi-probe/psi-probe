@@ -44,22 +44,25 @@ PSI Probe comes with no warranty, but web access should be as secure as access t
 You can also secure the remote JMX connection if you choose to [InstallationApacheTomcat#Enable_Remote_JMX_(Optional) enable it].
 
 == How do I install PSI Probe onto my server? ==
-We have instructions for installing to [InstallationApacheTomcat Apache Tomcat] and [InstallationJBossAS JBoss Application Server].
+For the most part, it's just like deploying any other Java web application.  We have more detailed instructions for installing to [InstallationApacheTomcat Apache Tomcat] and [InstallationJBossAS JBoss Application Server].
 
 == I found a bug in PSI Probe. What should I do? ==
-Please [https://code.google.com/p/psi-probe/issues/entry report it], and include as much information as possible about your environment and the circumstances that led to the bug.  Snippets of log files, stack traces, and the like are incredibly helpful.
+Please [https://code.google.com/p/psi-probe/issues/entry report it], and include as much information as possible about your environment and the circumstances that led to the bug.  Snippets of log files, stack traces, and the like are incredibly helpful.  Please star the issue you submit and/or check it regularly, as we may ask for more details.
 
 == I have a great idea. Can you add it to PSI Probe? ==
-That depends.  What [http://code.google.com/p/psi-probe/issues/entry?template=Enhance%20an%20existing%20feature changes] or [http://code.google.com/p/psi-probe/issues/entry?template=Add%20a%20new%20feature additions] did you have in mind?
+We'd love to hear your idea, whether it's for a [http://code.google.com/p/psi-probe/issues/entry?template=Enhance%20an%20existing%20feature change] or [http://code.google.com/p/psi-probe/issues/entry?template=Add%20a%20new%20feature addition], but we make no guarantees.  The chances improved dramatically if you include a patch.
 
 ----
 = Development =
+
+== When will the next version be released? ==
+Please check the [DevelopmentRoadmap development roadmap].  We don't have a fixed schedule yet, but so far we've averaged about two releases per year, not including patches.
 
 == How are issues prioritized? ==
 We use four metrics to assign priority:
 
   # *Popularity:* We prioritize issues with many stars over issues with few stars.
-  # *Urgency:* We prioritize defects over enhancements or features.
+  # *Severity:* We prioritize defects over enhancements or features.
   # *Simplicity:* We prioritize minor changes over major ones.
   # *Unity:* We try to establish a theme for each release to help focus our efforts.
 
@@ -72,7 +75,8 @@ Our goal with creating PSI Probe was not only to revive the project but also to 
   * [http://code.google.com/p/psi-probe/downloads/list Download it] and use it.  It is free, after all.
   * Use the [http://code.google.com/p/psi-probe/issues/list issue tracker] here to...
     * "Star" issues that you would like to see fixed.  This will help us assign priority.
-    * Report bugs and request enhancements or new features.
+    * Report any bugs you encounter.
+    * Request enhancements or new features.
     * Submit translations of the program's [http://psi-probe.googlecode.com/svn/trunk/web/src/main/conf/WEB-INF/messages.properties messages].
     * Submit patches for [http://code.google.com/p/psi-probe/issues/list?can=2&q=-has:owner unclaimed issues] or ones labeled with [http://code.google.com/p/psi-probe/issues/list?can=1&q=-has:owner+label:HelpWanted HelpWanted].  You can check out the source code [http://code.google.com/p/psi-probe/source/checkout here].
     * Verify [http://code.google.com/p/psi-probe/issues/list?can=1&q=Status:Fixed fixed issues] in the latest trunk build.
