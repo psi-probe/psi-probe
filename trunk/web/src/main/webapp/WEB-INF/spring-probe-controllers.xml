@@ -424,7 +424,6 @@
 	</bean>
 
 	<bean name="/logs/ff_info.ajax" class="com.googlecode.psiprobe.controllers.logs.UpdateFileInfoController">
-		<property name="fileAttributeName" value="followed_file"/>
 		<property name="viewName" value="ajax/followed_file_info"/>
 	</bean>
 
