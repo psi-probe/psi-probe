@@ -34,6 +34,7 @@ public abstract class LogHandlerController extends ParameterizableViewController
                     LogDestination dest = (LogDestination) logDestinations.get(logIndex - 1);
                     if (dest.getFile() != null && dest.getFile().exists()) {
                         modelAndView = handleLogFile(request, response, dest.getFile());
+                        modelAndView.addObject("logIndex", new Integer(logIndex));
                         logFound = true;
                     } else {
                         logger.error(dest.getFile() + ": file not found");
