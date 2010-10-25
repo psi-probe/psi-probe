@@ -105,12 +105,12 @@
 			var file_content_div = 'file_content';
 			var topPosition = -1;
 			var tailingEnabled = true;
-			var lastResponseText = '';
+			var lastLogSize = 0;
+			var logSizeRegex = /<!-- (\d*) -->/;
 
-			function logChanged(responseText) {
-				var changed = (responseText != lastResponseText);
-				lastResponseText = responseText;
-				return changed;
+			function logSize(responseText) {
+				var captures = logSizeRegex.exec(responseText);
+				return captures.length > 0 ? captures[1] : lastLogSize;
 			}
 
 			var infoUpdater = new Ajax.PeriodicalUpdater('info', '<c:url value="/logs/ff_info.ajax"/>', {
@@ -118,30 +118,46 @@
 					id: ${logIndex}
 				},
 				frequency: 3,
-				onSuccess: function(transport) {
-					if (tailingEnabled && logChanged(transport.responseText)) {
-						new Ajax.Updater(file_content_div, '<c:url value="/logs/follow.ajax"/>', {
-							onComplete: function() {
-								objDiv = document.getElementById(file_content_div);
-								if (topPosition == -1) {
-									objDiv.scrollTop = objDiv.scrollHeight;
-								} else {
-									objDiv.scrollTop = topPosition
-								}
-							},
-
-							onCreate: function() {
-								objDiv = document.getElementById(file_content_div);
-								if (objDiv.scrollTop + objDiv.clientHeight == objDiv.scrollHeight) {
-									topPosition = -1;
-								} else {
-									topPosition = objDiv.scrollTop;
-								}
-							}
-						});
+				onSuccess: function(response) {
+					if (tailingEnabled) {
+						var currentLogSize = logSize(response.responseText);
+						if (lastLogSize != currentLogSize) {
+							followLog();
+							lastLogSize = currentLogSize;
+						}
 					}
 				}
 			});
+
+			function followLog() {
+				if (lastLogSize == 0) {
+					$(file_content_div).update();
+				}
+				new Ajax.Updater(file_content_div, '<c:url value="/logs/follow.ajax"/>', {
+					parameters: {
+						id: ${logIndex},
+						lastKnownLength: lastLogSize
+					},
+					insertion: (lastLogSize == 0 ? null : 'bottom'),
+					onComplete: function() {
+						objDiv = document.getElementById(file_content_div);
+						if (topPosition == -1) {
+							objDiv.scrollTop = objDiv.scrollHeight;
+						} else {
+							objDiv.scrollTop = topPosition
+						}
+					},
+
+					onCreate: function() {
+						objDiv = document.getElementById(file_content_div);
+						if (objDiv.scrollTop + objDiv.clientHeight == objDiv.scrollHeight) {
+							topPosition = -1;
+						} else {
+							topPosition = objDiv.scrollTop;
+						}
+					}
+				});
+			}
 
 			//
 			// unfortunately it is not possible to set the size of "file_content" div in percent.
@@ -223,8 +239,8 @@
 				},
 				'#clear': function(element) {
 					element.onclick = function() {
-						new Ajax.Request('<c:url value="/logs/clear.ajax"/>', {method:'get',asynchronous:true});
-						new Ajax.Updater(file_content_div, '<c:url value="/logs/follow.ajax"/>');
+						$(file_content_div).update();
+						followLog();
 						return false;
 					}
 				}
