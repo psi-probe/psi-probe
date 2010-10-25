@@ -10,42 +10,25 @@
  */
 package com.googlecode.psiprobe.controllers.logs;
 
-import com.googlecode.psiprobe.model.FollowedFile;
 import java.io.File;
 import java.sql.Timestamp;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.ParameterizableViewController;
 
-public class UpdateFileInfoController extends ParameterizableViewController {
+public class UpdateFileInfoController extends LogHandlerController {
 
-    private String fileAttributeName;
-
-    public String getFileAttributeName() {
-        return fileAttributeName;
-    }
-
-    public void setFileAttributeName(String fileAttributeName) {
-        this.fileAttributeName = fileAttributeName;
-    }
-
-    protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        if (request.getSession() != null) {
-            FollowedFile ff = (FollowedFile) request.getSession().getAttribute(fileAttributeName);
-            if (ff != null) {
-                File f = new File(ff.getFileName());
-                if (f.exists()) {
-                    ff.setLastModified(new Timestamp(f.lastModified()));
-                    ff.setSize(f.length());
-                    request.getSession().setAttribute(fileAttributeName, ff);
-                } else {
-                    logger.debug("File "+ff.getFileName() + " does not exist");
-                }
-            } else {
-                logger.debug(fileAttributeName + " attribute is not in session");
-            }
+    protected ModelAndView handleLogFile(HttpServletRequest request, HttpServletResponse response, File file) throws Exception {
+        ModelAndView mv = new ModelAndView(getViewName());
+        String fileName = file.getAbsolutePath();
+        if (file.exists()) {
+            mv.addObject("fileName", fileName)
+                    .addObject("lastModified", new Timestamp(file.lastModified()))
+                    .addObject("size", new Long(file.length()));
+        } else {
+            logger.debug("File " + fileName + " does not exist");
         }
-        return new ModelAndView(getViewName());
+        return mv;
     }
+
 }

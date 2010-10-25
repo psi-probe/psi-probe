@@ -114,6 +114,9 @@
 			}
 
 			var infoUpdater = new Ajax.PeriodicalUpdater('info', '<c:url value="/logs/ff_info.ajax"/>', {
+				parameters: {
+					id: ${logIndex}
+				},
 				frequency: 3,
 				onSuccess: function(transport) {
 					if (tailingEnabled && logChanged(transport.responseText)) {
