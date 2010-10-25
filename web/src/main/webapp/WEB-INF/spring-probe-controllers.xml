@@ -412,12 +412,10 @@
 	</bean>
 
 	<bean name="/logs/follow.htm" class="com.googlecode.psiprobe.controllers.logs.SetupFollowController">
-		<property name="fileAttributeName" value="followed_file"/>
 		<property name="viewName" value="follow"/>
 	</bean>
 
 	<bean name="/logs/follow.ajax" class="com.googlecode.psiprobe.controllers.logs.FollowController">
-		<property name="fileAttributeName" value="followed_file"/>
 		<property name="viewName" value="ajax/follow"/>
 		<property name="maxLines" value="1000"/>
 		<property name="initialLines" value="250"/>
@@ -425,10 +423,6 @@
 
 	<bean name="/logs/ff_info.ajax" class="com.googlecode.psiprobe.controllers.logs.UpdateFileInfoController">
 		<property name="viewName" value="ajax/followed_file_info"/>
-	</bean>
-
-	<bean name="/logs/clear.ajax" class="com.googlecode.psiprobe.controllers.logs.ClearBufferController">
-		<property name="fileAttributeName" value="followed_file"/>
 	</bean>
 
 	<bean name="/decorator.htm" class="com.googlecode.psiprobe.controllers.DecoratorController">

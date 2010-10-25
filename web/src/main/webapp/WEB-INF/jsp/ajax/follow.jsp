@@ -19,6 +19,6 @@
 
 	Author: Vlad Ilyushchenko
 --%>
-<c:forEach items="${followed_file.lines}" var="line">
+<c:forEach items="${lines}" var="line">
 	<div class="line"><c:out value="${line}" escapeXml="true" /></div>
 </c:forEach>

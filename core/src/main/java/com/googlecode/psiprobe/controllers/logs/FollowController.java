@@ -10,20 +10,19 @@
  */
 package com.googlecode.psiprobe.controllers.logs;
 
-import com.googlecode.psiprobe.model.FollowedFile;
 import com.googlecode.psiprobe.tools.BackwardsFileStream;
 import com.googlecode.psiprobe.tools.BackwardsLineReader;
 import java.io.File;
+import java.util.LinkedList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.ParameterizableViewController;
 
-public class FollowController extends ParameterizableViewController  {
+public class FollowController extends LogHandlerController  {
 
     private int maxLines;
     private int initialLines;
-    private String fileAttributeName;
 
     public int getMaxLines() {
         return maxLines;
@@ -41,72 +40,53 @@ public class FollowController extends ParameterizableViewController  {
         this.initialLines = initialLines;
     }
 
-    public String getFileAttributeName() {
-        return fileAttributeName;
-    }
+    protected ModelAndView handleLogFile(HttpServletRequest request, HttpServletResponse response, File file) throws Exception {
 
-    public void setFileAttributeName(String fileAttributeName) {
-        this.fileAttributeName = fileAttributeName;
-    }
+        ModelAndView mv = new ModelAndView(getViewName());
+        LinkedList lines = new LinkedList();
+        long lastKnownLength = ServletRequestUtils.getLongParameter(request, "lastKnownLength", 0);
 
-    protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
-        FollowedFile ff = (FollowedFile) request.getSession(true).getAttribute(fileAttributeName);
-
-        if (ff != null) {
-            File f = new File(ff.getFileName());
-
-            if (f.exists()) {
-                long currentLength = f.length();
+            if (file.exists()) {
+                long currentLength = file.length();
                 long readSize = 0;
-                int listSize = ff.getLines().size();
 
-                if (currentLength < ff.getLastKnowLength()) {
+                if (currentLength < lastKnownLength) {
                     //
                     // file length got reset
                     //
-                    ff.setLastKnowLength(0);
-                    ff.getLines().add(listSize, " ------------- THE FILE HAS BEEN TRUNCATED --------------");
+                    lastKnownLength = 0;
+                    lines.add(" ------------- THE FILE HAS BEEN TRUNCATED --------------");
                 }
 
-                BackwardsFileStream bfs = new BackwardsFileStream(f, currentLength);
+                BackwardsFileStream bfs = new BackwardsFileStream(file, currentLength);
                 try {
                     BackwardsLineReader br = new BackwardsLineReader(bfs);
                     String s;
-                    while (readSize < currentLength - ff.getLastKnowLength() && (s = br.readLine()) != null) {
-                        if (ff.getLines().size() >= maxLines) {
-                            if (listSize > 0) {
-                                ff.getLines().remove(0);
-                                listSize--;
-                            } else {
-                                break;
-                            }
+                    while (readSize < currentLength - lastKnownLength && (s = br.readLine()) != null) {
+                        if (lines.size() >= maxLines) {
+                            break;
                         }
                         if (!s.equals("")){
-                            ff.getLines().add(listSize, s);
+                            lines.addFirst(s);
                             readSize += s.length();
                         } else {
                             readSize++;
                         }
-                        if (ff.getLastKnowLength() == 0 && ff.getLines().size() >= initialLines) {
+                        if (lastKnownLength == 0 && lines.size() >= initialLines) {
                             break;
                         }
                     }
 
-                    if (readSize > currentLength - ff.getLastKnowLength() && listSize > 0) {
-                        ff.getLines().remove(listSize-1);
+                    if (readSize > currentLength - lastKnownLength) {
+                        lines.removeFirst();
                     }
 
-                    ff.setLastKnowLength(currentLength);
+                    mv.addObject("lines", lines);
                 } finally {
                     bfs.close();
                 }
-            } else {
-                ff.getLines().clear();
             }
-            request.getSession(true).setAttribute(fileAttributeName, ff);
-        }
 
-        return new ModelAndView(getViewName());
+        return mv;
     }
 }
