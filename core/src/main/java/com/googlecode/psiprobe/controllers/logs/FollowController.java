@@ -24,52 +24,52 @@ public class FollowController extends LogHandlerController  {
     protected ModelAndView handleLogFile(HttpServletRequest request, HttpServletResponse response, File file) throws Exception {
 
         ModelAndView mv = new ModelAndView(getViewName());
-        LinkedList lines = new LinkedList();
-        long lastKnownLength = ServletRequestUtils.getLongParameter(request, "lastKnownLength", 0);
 
-            if (file.exists()) {
-                long actualLength = file.length();
-                long currentLength = ServletRequestUtils.getLongParameter(request, "currentLength", actualLength);
-                long maxReadLines = ServletRequestUtils.getLongParameter(request, "maxReadLines", 0);
+        if (file.exists()) {
+            LinkedList lines = new LinkedList();
+            long actualLength = file.length();
+            long lastKnownLength = ServletRequestUtils.getLongParameter(request, "lastKnownLength", 0);
+            long currentLength = ServletRequestUtils.getLongParameter(request, "currentLength", actualLength);
+            long maxReadLines = ServletRequestUtils.getLongParameter(request, "maxReadLines", 0);
 
-                if (lastKnownLength > currentLength
-                        || lastKnownLength > actualLength
-                        || currentLength > actualLength) {
-                    //
-                    // file length got reset
-                    //
-                    lastKnownLength = 0;
-                    lines.add(" ------------- THE FILE HAS BEEN TRUNCATED --------------");
-                }
-
-                BackwardsFileStream bfs = new BackwardsFileStream(file, currentLength);
-                try {
-                    BackwardsLineReader br = new BackwardsLineReader(bfs);
-                    long readSize = 0;
-                    long totalReadSize = currentLength - lastKnownLength;
-                    String s;
-                    while (readSize < totalReadSize && (s = br.readLine()) != null) {
-                        if (!s.equals("")){
-                            lines.addFirst(s);
-                            readSize += s.length();
-                        } else {
-                            readSize++;
-                        }
-                        if (maxReadLines != 0 && lines.size() >= maxReadLines) {
-                            break;
-                        }
-                    }
-
-                    if (lastKnownLength != 0 && readSize > totalReadSize) {
-                        lines.removeFirst();
-                    }
-
-                    mv.addObject("lines", lines);
-                } finally {
-                    bfs.close();
-                }
+            if (lastKnownLength > currentLength
+                    || lastKnownLength > actualLength
+                    || currentLength > actualLength) {
+                //
+                // file length got reset
+                //
+                lastKnownLength = 0;
+                lines.add(" ------------- THE FILE HAS BEEN TRUNCATED --------------");
             }
 
+            BackwardsFileStream bfs = new BackwardsFileStream(file, currentLength);
+            try {
+                BackwardsLineReader br = new BackwardsLineReader(bfs);
+                long readSize = 0;
+                long totalReadSize = currentLength - lastKnownLength;
+                String s;
+                while (readSize < totalReadSize && (s = br.readLine()) != null) {
+                    if (!s.equals("")){
+                        lines.addFirst(s);
+                        readSize += s.length();
+                    } else {
+                        readSize++;
+                    }
+                    if (maxReadLines != 0 && lines.size() >= maxReadLines) {
+                        break;
+                    }
+                }
+
+                if (lastKnownLength != 0 && readSize > totalReadSize) {
+                    lines.removeFirst();
+                }
+            } finally {
+                bfs.close();
+            }
+            
+            mv.addObject("lines", lines);
+        }
         return mv;
     }
+
 }
