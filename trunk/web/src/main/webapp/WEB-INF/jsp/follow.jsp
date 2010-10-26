@@ -105,12 +105,14 @@
 			var file_content_div = 'file_content';
 			var topPosition = -1;
 			var tailingEnabled = true;
+			var maxLines = 1000;
+			var initialLines = 250;
 			var lastLogSize = 0;
 			var logSizeRegex = /<!-- (\d*) -->/;
 
 			function logSize(responseText) {
 				var captures = logSizeRegex.exec(responseText);
-				return captures.length > 0 ? captures[1] : lastLogSize;
+				return captures.length > 1 ? captures[1] : lastLogSize;
 			}
 
 			var infoUpdater = new Ajax.PeriodicalUpdater('info', '<c:url value="/logs/ff_info.ajax"/>', {
@@ -122,29 +124,38 @@
 					if (tailingEnabled) {
 						var currentLogSize = logSize(response.responseText);
 						if (lastLogSize != currentLogSize) {
-							followLog();
+							followLog(currentLogSize);
 							lastLogSize = currentLogSize;
 						}
 					}
 				}
 			});
 
-			function followLog() {
-				if (lastLogSize == 0) {
-					$(file_content_div).update();
-				}
+			function followLog(currentLogSize) {
 				new Ajax.Updater(file_content_div, '<c:url value="/logs/follow.ajax"/>', {
 					parameters: {
 						id: ${logIndex},
-						lastKnownLength: lastLogSize
+						lastKnownLength: lastLogSize,
+						currentLength: currentLogSize,
+						maxReadLines: (lastLogSize == 0 ? initialLines : undefined)
 					},
-					insertion: (lastLogSize == 0 ? null : 'bottom'),
+					insertion: (lastLogSize == 0 ? undefined : 'bottom'),
 					onComplete: function() {
 						objDiv = document.getElementById(file_content_div);
 						if (topPosition == -1) {
 							objDiv.scrollTop = objDiv.scrollHeight;
 						} else {
 							objDiv.scrollTop = topPosition
+						}
+						
+						var lines = $(objDiv).childElements();
+						var numOfLines = lines.length;
+						var toBeRemoved = new Array();
+						for (var i = 0; i < numOfLines - maxLines; i++) {
+							toBeRemoved.push(lines[i]);
+						}
+						for (var i = 0; i < toBeRemoved.length; i++) {
+							toBeRemoved[i].remove();
 						}
 					},
 
@@ -240,7 +251,7 @@
 				'#clear': function(element) {
 					element.onclick = function() {
 						$(file_content_div).update();
-						followLog();
+						followLog(undefined);
 						return false;
 					}
 				}

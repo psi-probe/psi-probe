@@ -21,25 +21,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 public class FollowController extends LogHandlerController  {
 
-    private int maxLines;
-    private int initialLines;
-
-    public int getMaxLines() {
-        return maxLines;
-    }
-
-    public void setMaxLines(int maxLines) {
-        this.maxLines = maxLines;
-    }
-
-    public int getInitialLines() {
-        return initialLines;
-    }
-
-    public void setInitialLines(int initialLines) {
-        this.initialLines = initialLines;
-    }
-
     protected ModelAndView handleLogFile(HttpServletRequest request, HttpServletResponse response, File file) throws Exception {
 
         ModelAndView mv = new ModelAndView(getViewName());
@@ -47,10 +28,13 @@ public class FollowController extends LogHandlerController  {
         long lastKnownLength = ServletRequestUtils.getLongParameter(request, "lastKnownLength", 0);
 
             if (file.exists()) {
-                long currentLength = file.length();
-                long readSize = 0;
+                long actualLength = file.length();
+                long currentLength = ServletRequestUtils.getLongParameter(request, "currentLength", actualLength);
+                long maxReadLines = ServletRequestUtils.getLongParameter(request, "maxReadLines", 0);
 
-                if (currentLength < lastKnownLength) {
+                if (lastKnownLength > currentLength
+                        || lastKnownLength > actualLength
+                        || currentLength > actualLength) {
                     //
                     // file length got reset
                     //
@@ -61,23 +45,22 @@ public class FollowController extends LogHandlerController  {
                 BackwardsFileStream bfs = new BackwardsFileStream(file, currentLength);
                 try {
                     BackwardsLineReader br = new BackwardsLineReader(bfs);
+                    long readSize = 0;
+                    long totalReadSize = currentLength - lastKnownLength;
                     String s;
-                    while (readSize < currentLength - lastKnownLength && (s = br.readLine()) != null) {
-                        if (lines.size() >= maxLines) {
-                            break;
-                        }
+                    while (readSize < totalReadSize && (s = br.readLine()) != null) {
                         if (!s.equals("")){
                             lines.addFirst(s);
                             readSize += s.length();
                         } else {
                             readSize++;
                         }
-                        if (lastKnownLength == 0 && lines.size() >= initialLines) {
+                        if (maxReadLines != 0 && lines.size() >= maxReadLines) {
                             break;
                         }
                     }
 
-                    if (readSize > currentLength - lastKnownLength) {
+                    if (lastKnownLength != 0 && readSize > totalReadSize) {
                         lines.removeFirst();
                     }
 
