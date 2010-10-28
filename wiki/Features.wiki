@@ -62,9 +62,12 @@ To find out when these features were added, please refer to the [Changelogs].
 = Compatibility =
 
 == Java ==
-  * 1.4
-  * 1.5
-  * 6
+  * Sun JDK 1.4
+  * Sun JDK 1.5
+  * Sun JDK 6
+  * IBM JDK 1.4.2
+  * IBM JDK 5
+  * IBM JDK 6
 
 == Servers ==
   * Apache Tomcat 5.0
