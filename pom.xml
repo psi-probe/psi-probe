@@ -30,7 +30,7 @@
 	</modules>
 	<repositories>
 		<repository>
-			<!-- needed for jfreechart -->
+			<!-- required for jfreechart -->
 			<releases>
 				<enabled>true</enabled>
 			</releases>
@@ -41,6 +41,28 @@
 			<id>m2proxy.atlassian.com</id>
 			<name>Atlassian Repository for Maven</name>
 			<url>https://m2proxy.atlassian.com/repository/public</url>
+			<layout>default</layout>
+		</repository>
+		<!-- Required for jta -->
+		<repository>
+			<snapshots>
+				<enabled>false</enabled>
+				<updatePolicy>never</updatePolicy>
+			</snapshots>
+			<id>download.java.net</id>
+			<name>download.java.net</name>
+			<url>http://download.java.net/maven/2/</url>
+			<layout>default</layout>
+		</repository>
+		<!-- Required for jmxri -->
+		<repository>
+			<snapshots>
+				<enabled>false</enabled>
+				<updatePolicy>never</updatePolicy>
+			</snapshots>
+			<id>repository.jboss.org</id>
+			<name>repository.jboss.org</name>
+			<url>https://repository.jboss.org/nexus/content/repositories/deprecated/</url>
 			<layout>default</layout>
 		</repository>
 	</repositories>
