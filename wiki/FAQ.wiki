@@ -1,25 +1,7 @@
 #summary Frequently Asked Questions
 #labels Featured
 ----
-
-  * [#General General]
-    * [#What_is_PSI_Probe? What is PSI Probe?]
-    * [#Why_fork_Lambda_Probe? Why fork Lambda Probe?]
-    * [#What_should_I_do_if_my_question_was_not_answered_here? What should I do if my question was not answered here?]
-  * [#Usage Usage]
-    * [#How_secure_is_PSI_Probe? How secure is PSI Probe?]
-    * [#How_do_I_install_PSI_Probe_onto_my_server? How do I install PSI Probe onto my server?]
-    * [#I_found_a_bug_in_PSI_Probe._What_should_I_do? I found a bug in PSI Probe. What should I do?]
-    * [#I_have_a_great_idea._Can_you_add_it_to_PSI_Probe? I have a great idea. Can you add it to PSI Probe?]
-  * [#Development Development]
-    * [#When_will_the_next_version_be_released? When will the next version be released?]
-    * [#How_are_issues_prioritized? How are issues prioritized?]
-    * [#Can_you_translate_PSI_Probe_into_my_language? Can you translate PSI Probe into my language?]
-    * [#How_can_I_contribute_to_this_project? How can I contribute to this project?]
-    * [#How_do_I_become_a_project_committer? How do I become a project committer?]
-  * [#Other Other]
-    * [#Why_PSI? Why PSI?]
-
+<wiki:toc max_depth="2" />
 ----
 = General =
 
