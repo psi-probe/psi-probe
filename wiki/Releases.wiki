@@ -22,6 +22,7 @@
      # Change status of issues to !FixReleased.
      # Update [Changelogs] and [DevelopmentRoadmap].
      # Announce.
+  # *Prep*
      # In trunk, increment version numbers.
 
 = Patch Release =
