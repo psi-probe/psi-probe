@@ -5,14 +5,14 @@
 || || *probeuser* || *poweruser* || *poweruserplus* || *manager* ||
 || *[http://psi-probe.googlecode.com/svn/wiki/Features/context-list.png Context: list]*                              || X || X || X || X ||
 || *[http://psi-probe.googlecode.com/svn/wiki/Features/context-status.png Context: status]*                          || X || X || X || X ||
-|| *[http://psi-probe.googlecode.com/svn/wiki/Features/context-attributes.png Context: list attributes]*             || X || X || X || X ||
 || *[http://psi-probe.googlecode.com/svn/wiki/Features/context-servlets.png Context: view servlets]*                 || X || X || X || X ||
 || *[http://psi-probe.googlecode.com/svn/wiki/Features/context-servlet-mappings.png Context: view servlet mappings]* || X || X || X || X ||
 || *[http://psi-probe.googlecode.com/svn/wiki/Features/context-filters.png Context: view filters]*                   || X || X || X || X ||
 || *[http://psi-probe.googlecode.com/svn/wiki/Features/context-filter-mappings.png Context: view filter mappings]*   || X || X || X || X ||
+|| *[http://psi-probe.googlecode.com/svn/wiki/Features/context-attributes.png Context: list attributes]*             || X || X || X || X ||
+|| *[http://psi-probe.googlecode.com/svn/wiki/Features/context-attributes.png Context: remove attributes]*           ||   || X || X || X ||
 || *Context: start*                     ||   || X || X || X ||
 || *Context: stop*                      ||   || X || X || X ||
-|| *Context: remove attributes*         ||   || X || X || X ||
 || *[http://psi-probe.googlecode.com/svn/wiki/Features/context-webxml.png Context: view web.xml]*                    ||   || X || X || X ||
 || *[http://psi-probe.googlecode.com/svn/wiki/Features/context-contextxml.png Context: view context.xml]*            ||   ||   ||   || X ||
 || *[http://psi-probe.googlecode.com/svn/wiki/Features/context-deploy.png Context: deploy]*                          ||   ||   ||   || X ||
@@ -20,15 +20,17 @@
 || *[http://psi-probe.googlecode.com/svn/wiki/Features/session-list.png Session: list]*                              || X || X || X || X ||
 || *[http://psi-probe.googlecode.com/svn/wiki/Features/session-attributes.png Session: list attributes]*             || X || X || X || X ||
 || *[http://psi-probe.googlecode.com/svn/wiki/Features/session-search.png Session: search attributes]*               || X || X || X || X ||
-|| *Session: remove attributes*         ||   || X || X || X ||
+|| *[http://psi-probe.googlecode.com/svn/wiki/Features/session-list.png Session: remove attributes]*                 ||   || X || X || X ||
 || *Session: view last-accessed IP*     || X || X || X || X ||
-|| *Session: expire*                    ||   || X || X || X ||
+|| *[http://psi-probe.googlecode.com/svn/wiki/Features/session-attributes.png Session: expire single]*               ||   || X || X || X ||
+|| *[http://psi-probe.googlecode.com/svn/wiki/Features/session-list.png Session: expire multiple]*                   ||   || X || X || X ||
 || *[http://psi-probe.googlecode.com/svn/wiki/Features/jsp-list.png JSP: list]*                                      ||   || X || X || X ||
-|| *JSP: compile*                       ||   || X || X || X ||
 || *[http://psi-probe.googlecode.com/svn/wiki/Features/jsp-source.png JSP: view source]*                             ||   || X || X || X ||
 || *[http://psi-probe.googlecode.com/svn/wiki/Features/jsp-servlet-source.png JSP: view servlet source]*             ||   || X || X || X ||
-|| *JSP: pre-compile on deployment*     ||   ||   ||   || X ||
-|| *JSP: discard*                       ||   ||   ||   || X ||
+|| *[http://psi-probe.googlecode.com/svn/wiki/Features/jsp-source.png JSP: compile single]*                          ||   || X || X || X ||
+|| *[http://psi-probe.googlecode.com/svn/wiki/Features/jsp-list.png JSP: compile multiple]*                          ||   || X || X || X ||
+|| *[http://psi-probe.googlecode.com/svn/wiki/Features/context-deploy.png JSP: compile all on deployment]*           ||   ||   ||   || X ||
+|| *[http://psi-probe.googlecode.com/svn/wiki/Features/jsp-list.png JSP: discard all compiled]*                      ||   ||   ||   || X ||
 || *Data Source: list*                  || X || X || X || X ||
 || *Data Source: group by JDBC URL*     || X || X || X || X ||
 || *Data Source: status*                || X || X || X || X ||
@@ -38,10 +40,10 @@
 || *Data Source: execute SQL*           ||   ||   || X || X ||
 || *[http://psi-probe.googlecode.com/svn/wiki/Features/log-list.png Log: list]*                                      || X || X || X || X ||
 || *[http://psi-probe.googlecode.com/svn/wiki/Features/log-tail.png Log: tail in real-time]*                         || X || X || X || X ||
-|| *Log: download]*                     || X || X || X || X ||
+|| *[http://psi-probe.googlecode.com/svn/wiki/Features/log-tail.png Log: download]*                                  || X || X || X || X ||
 || *[http://psi-probe.googlecode.com/svn/wiki/Features/thread-list.png Thread: list]*                                || X || X || X || X ||
 || *Thread: view execution stack*       ||   || X || X || X ||
-|| *Thread: kill*                       ||   ||   ||   || X ||
+|| *[http://psi-probe.googlecode.com/svn/wiki/Features/thread-list.png Thread: kill]*                                ||   ||   ||   || X ||
 || *[http://psi-probe.googlecode.com/svn/wiki/Features/connector-status.png Connector: status]*                      || X || X || X || X ||
 || *Connector: real-time usage charts*  || X || X || X || X ||
 || *Cluster: status*                    || X || X || X || X ||
