@@ -171,7 +171,9 @@
 					</a>
 				</li>
 			</ul>
-			<spring:message code="probe.jsp.copyright"/>
+			<p>
+				<spring:message code="probe.jsp.copyright"/>
+			</p>
 			<div id="locales">
 				<a href="?<probe:addQueryParam param='lang' value='en'/>">
 					<img src="<c:url value='/flags/gb.gif'/>" alt="EN" />
@@ -195,7 +197,12 @@
 					<img src="<c:url value='/flags/br.gif'/>" alt="BR" />
 				</a>
 			</div>
-			<spring:message code="probe.jsp.i18n.credit"/>
+			<p>
+				<spring:message code="probe.jsp.i18n.credit"/>
+			</p>
+			<p>
+				<spring:message code="probe.jsp.icons.credit"/>
+			</p>
 		</div>
 
 	</body>
