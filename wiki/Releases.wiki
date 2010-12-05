@@ -10,6 +10,8 @@
      # Create branch from trunk.
      # Check out branch.
      # In branch, remove "SNAPSHOT" from version numbers and update SCM URLs.
+       * e.g. `1.0.0-SNAPSHOT` becomes `1.0.0`
+       * e.g. `scm:svn:.../trunk/` becomes `scm:svn:.../branches/1.0/`
   # *Build*
      # Create probe.war from branch: `mvn -Prelease clean package`
        * Be sure to use JDK 1.4 and Maven 2.0.9+.
@@ -27,8 +29,11 @@
 
 = Patch Release =
   # *Merge*
+    # In branch, increment version number and add "SNAPSHOT."
+      * e.g. `1.0.0` becomes `1.0.1-SNAPSHOT`
     # Merge changes from trunk into branch (or vice versa if applicable).
-    # In branch, increment version number.
+    # In branch, remove "SNAPSHOT" from version number.
+      * e.g. `1.0.1-SNAPSHOT` becomes `1.0.1`
   # *Build*
      * _Same as Minor Release._
   # *Release*
