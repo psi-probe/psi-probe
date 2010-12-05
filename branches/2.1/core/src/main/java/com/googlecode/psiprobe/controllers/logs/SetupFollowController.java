@@ -10,36 +10,14 @@
  */
 package com.googlecode.psiprobe.controllers.logs;
 
-import com.googlecode.psiprobe.model.FollowedFile;
 import java.io.File;
-import java.sql.Timestamp;
-import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 
 public class SetupFollowController extends LogHandlerController {
 
-    private String fileAttributeName;
-
-    public String getFileAttributeName() {
-        return fileAttributeName;
-    }
-
-    public void setFileAttributeName(String fileAttributeName) {
-        this.fileAttributeName = fileAttributeName;
-    }
-
     protected ModelAndView handleLogFile(HttpServletRequest request, HttpServletResponse response, File file) throws Exception {
-        if (file.exists()) {
-            FollowedFile ff = new FollowedFile();
-            ff.setFileName(file.getAbsolutePath());
-            ff.setLastKnowLength(0);
-            ff.setLines(new ArrayList());
-            ff.setSize(file.length());
-            ff.setLastModified(new Timestamp(file.lastModified()));
-            request.getSession(true).setAttribute(fileAttributeName, ff);
-        }
         return new ModelAndView(getViewName());
     }
 }

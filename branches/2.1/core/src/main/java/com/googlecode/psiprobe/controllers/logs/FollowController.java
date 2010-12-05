@@ -10,103 +10,66 @@
  */
 package com.googlecode.psiprobe.controllers.logs;
 
-import com.googlecode.psiprobe.model.FollowedFile;
 import com.googlecode.psiprobe.tools.BackwardsFileStream;
 import com.googlecode.psiprobe.tools.BackwardsLineReader;
 import java.io.File;
+import java.util.LinkedList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.ParameterizableViewController;
 
-public class FollowController extends ParameterizableViewController  {
+public class FollowController extends LogHandlerController  {
 
-    private int maxLines;
-    private int initialLines;
-    private String fileAttributeName;
+    protected ModelAndView handleLogFile(HttpServletRequest request, HttpServletResponse response, File file) throws Exception {
 
-    public int getMaxLines() {
-        return maxLines;
-    }
+        ModelAndView mv = new ModelAndView(getViewName());
 
-    public void setMaxLines(int maxLines) {
-        this.maxLines = maxLines;
-    }
+        if (file.exists()) {
+            LinkedList lines = new LinkedList();
+            long actualLength = file.length();
+            long lastKnownLength = ServletRequestUtils.getLongParameter(request, "lastKnownLength", 0);
+            long currentLength = ServletRequestUtils.getLongParameter(request, "currentLength", actualLength);
+            long maxReadLines = ServletRequestUtils.getLongParameter(request, "maxReadLines", 0);
 
-    public int getInitialLines() {
-        return initialLines;
-    }
-
-    public void setInitialLines(int initialLines) {
-        this.initialLines = initialLines;
-    }
-
-    public String getFileAttributeName() {
-        return fileAttributeName;
-    }
-
-    public void setFileAttributeName(String fileAttributeName) {
-        this.fileAttributeName = fileAttributeName;
-    }
-
-    protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
-        FollowedFile ff = (FollowedFile) request.getSession(true).getAttribute("followed_file");
-
-        if (ff != null) {
-            File f = new File(ff.getFileName());
-
-            if (f.exists()) {
-                long currentLength = f.length();
-                long readSize = 0;
-                int listSize = ff.getLines().size();
-
-                if (currentLength < ff.getLastKnowLength()) {
-                    //
-                    // file length got reset
-                    //
-                    ff.setLastKnowLength(0);
-                    ff.getLines().add(listSize, " ------------- THE FILE HAS BEEN TRUNCATED --------------");
-                }
-
-                BackwardsFileStream bfs = new BackwardsFileStream(f, currentLength);
-                try {
-                    BackwardsLineReader br = new BackwardsLineReader(bfs);
-                    String s;
-                    while (readSize < currentLength - ff.getLastKnowLength() && (s = br.readLine()) != null) {
-                        if (ff.getLines().size() >= maxLines) {
-                            if (listSize > 0) {
-                                ff.getLines().remove(0);
-                                listSize--;
-                            } else {
-                                break;
-                            }
-                        }
-                        if (!s.equals("")){
-                            ff.getLines().add(listSize, s);
-                            readSize += s.length();
-                        } else {
-                            readSize++;
-                        }
-                        if (ff.getLastKnowLength() == 0 && ff.getLines().size() >= initialLines) {
-                            break;
-                        }
-                    }
-
-                    if (readSize > currentLength - ff.getLastKnowLength() && listSize > 0) {
-                        ff.getLines().remove(listSize-1);
-                    }
-
-                    ff.setLastKnowLength(currentLength);
-                } finally {
-                    bfs.close();
-                }
-            } else {
-                ff.getLines().clear();
+            if (lastKnownLength > currentLength
+                    || lastKnownLength > actualLength
+                    || currentLength > actualLength) {
+                //
+                // file length got reset
+                //
+                lastKnownLength = 0;
+                lines.add(" ------------- THE FILE HAS BEEN TRUNCATED --------------");
             }
-            request.getSession(true).setAttribute(fileAttributeName, ff);
-        }
 
-        return new ModelAndView(getViewName());
+            BackwardsFileStream bfs = new BackwardsFileStream(file, currentLength);
+            try {
+                BackwardsLineReader br = new BackwardsLineReader(bfs);
+                long readSize = 0;
+                long totalReadSize = currentLength - lastKnownLength;
+                String s;
+                while (readSize < totalReadSize && (s = br.readLine()) != null) {
+                    if (!s.equals("")){
+                        lines.addFirst(s);
+                        readSize += s.length();
+                    } else {
+                        readSize++;
+                    }
+                    if (maxReadLines != 0 && lines.size() >= maxReadLines) {
+                        break;
+                    }
+                }
+
+                if (lastKnownLength != 0 && readSize > totalReadSize) {
+                    lines.removeFirst();
+                }
+            } finally {
+                bfs.close();
+            }
+            
+            mv.addObject("lines", lines);
+        }
+        return mv;
     }
+
 }
