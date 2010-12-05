@@ -183,6 +183,8 @@
 			</ul>
 			<p>
 				<spring:message code="probe.jsp.copyright"/>
+				<br/>
+				<spring:message code="probe.jsp.icons.credit"/>
 			</p>
 			<div id="locales">
 				<a href="?<probe:addQueryParam param='lang' value='en'/>">
@@ -209,9 +211,6 @@
 			</div>
 			<p>
 				<spring:message code="probe.jsp.i18n.credit"/>
-			</p>
-			<p>
-				<spring:message code="probe.jsp.icons.credit"/>
 			</p>
 		</div>
 
