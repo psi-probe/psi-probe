@@ -98,6 +98,11 @@
 					</a>
 				</li>
 				<li>
+					<a class="${navTabStatus}" href="<c:url value='/status.htm'/>">
+						<spring:message code="probe.jsp.menu.status"/>
+					</a>
+				</li>
+				<li>
 					<a class="${navTabCharts}" href="<c:url value='/charts.htm'/>">
 						<spring:message code="probe.jsp.menu.charts"/>
 					</a>
@@ -158,6 +163,11 @@
 				<li>
 					<a href="<c:url value='/sysinfo.htm'/>">
 						<spring:message code="probe.jsp.menu.sysinfo"/>
+					</a>
+				</li>
+				<li>
+					<a href="<c:url value='/status.htm'/>">
+						<spring:message code="probe.jsp.menu.status"/>
 					</a>
 				</li>
 				<li>
