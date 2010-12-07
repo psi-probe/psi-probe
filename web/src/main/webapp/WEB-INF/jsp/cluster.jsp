@@ -32,18 +32,20 @@
 	<c:set var="chartWidth" value="400"/>
 	<c:set var="chartHeight" value="250"/>
 
-	<c:url value="/chart.png" var="receivedimg" scope="page">
+	<c:url value="/chart.png" var="trafficimg" scope="page">
 		<c:param name="xz" value="${chartWidth}"/>
 		<c:param name="yz" value="${chartHeight}"/>
 		<c:param name="s1l" value="sent"/>
 		<c:param name="s2l" value="received"/>
 		<c:param name="l" value="true"/>
-		<c:param name="s2c" value="#95FE8B"/>
-		<c:param name="s2o" value="#009406"/>
+		<c:param name="s1c" value="#95FE8B"/>
+		<c:param name="s1o" value="#009406"/>
+		<c:param name="s2c" value="#FDFB8B"/>
+		<c:param name="s2o" value="#D9CB00"/>
 		<c:param name="p" value="cl_traffic"/>
 	</c:url>
 
-	<c:url value="/chart.png" var="sentimg" scope="page">
+	<c:url value="/chart.png" var="requestsimg" scope="page">
 		<c:param name="xz" value="${chartWidth}"/>
 		<c:param name="yz" value="${chartHeight}"/>
 		<c:param name="s1l" value="sent"/>
@@ -103,7 +105,7 @@
 							<dl>
 								<dt><spring:message code="probe.jsp.cluster.chart.traffic" arguments="${probe:max(collectionPeriod, 5)}"/></dt>
 								<dd>
-									<img id="cl_traffic" border="0" src="${receivedimg}" width="${chartWidth}" height="${chartHeight}" alt="Bytes received"/>
+									<img id="cl_traffic" border="0" src="${trafficimg}" width="${chartWidth}" height="${chartHeight}" alt="Bytes received"/>
 								</dd>
 								<dd id="dd_traffic"><div class="ajax_activity"/></dd>
 							</dl>
@@ -113,7 +115,7 @@
 							<dl>
 								<dt><spring:message code="probe.jsp.cluster.chart.requests" arguments="${probe:max(collectionPeriod, 5)}"/></dt>
 								<dd>
-									<img id="cl_requests" border="0" src="${sentimg}" width="${chartWidth}" height="${chartHeight}" alt="Bytes sent"/>
+									<img id="cl_requests" border="0" src="${requestsimg}" width="${chartWidth}" height="${chartHeight}" alt="Bytes sent"/>
 								</dd>
 								<dd id="dd_requests"><div class="ajax_activity"/></dd>
 							</dl>

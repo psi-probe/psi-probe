@@ -43,8 +43,8 @@
 				<c:param name="p" value="total_avg_proc_time"/>
 				<c:param name="xz" value="${chartWidth}"/>
 				<c:param name="yz" value="${chartHeight}"/>
-				<c:param name="s1c" value="#95FE8B"/>
-				<c:param name="s1o" value="#009406"/>
+				<c:param name="s1c" value="#FFCD9B"/>
+				<c:param name="s1o" value="#D26900"/>
 				<c:param name="l" value="false"/>
 			</c:url>
 
@@ -52,8 +52,8 @@
 				<c:param name="p" value="total_avg_proc_time"/>
 				<c:param name="xz" value="${fullChartWidth}"/>
 				<c:param name="yz" value="${fullChartHeight}"/>
-				<c:param name="s1c" value="#95FE8B"/>
-				<c:param name="s1o" value="#009406"/>
+				<c:param name="s1c" value="#FFCD9B"/>
+				<c:param name="s1o" value="#D26900"/>
 				<c:param name="s1l">
 					<spring:message code="probe.jsp.allappstats.charts.totalAvgProcTime.legend"/>
 				</c:param>

@@ -179,10 +179,9 @@
 							<c:param name="sp" value="${param.webapp}"/>
 							<c:param name="xz" value="${chartWidth}"/>
 							<c:param name="yz" value="${chartHeight}"/>
-							<c:param name="s1c" value="#95FE8B"/>
-							<c:param name="s1o" value="#009406"/>
+							<c:param name="s1c" value="#FFCD9B"/>
+							<c:param name="s1o" value="#D26900"/>
 							<c:param name="l" value="false"/>
-							<c:param name="ct" value="line"/>
 						</c:url>
 
 						<c:url value="/chart.png" var="avg_proc_time_url_full">
@@ -190,12 +189,11 @@
 							<c:param name="sp" value="${param.webapp}"/>
 							<c:param name="xz" value="${fullChartWidth}"/>
 							<c:param name="yz" value="${fullChartHeight}"/>
-							<c:param name="s1c" value="#95FE8B"/>
-							<c:param name="s1o" value="#009406"/>
+							<c:param name="s1c" value="#FFCD9B"/>
+							<c:param name="s1o" value="#D26900"/>
 							<c:param name="s1l">
 								<spring:message code="probe.jsp.app.summary.charts.avgProcTime.legend"/>
 							</c:param>
-							<c:param name="ct" value="line"/>
 						</c:url>
 
 						<div id="chart_group">
