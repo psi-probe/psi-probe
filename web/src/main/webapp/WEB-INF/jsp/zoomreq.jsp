@@ -38,6 +38,11 @@
 				<c:param name="s1l" value="sent"/>
 				<c:param name="s2l" value="received"/>
 			</c:when>
+			<c:when test="${param.p == 'proc_time'}">
+				<c:param name="s1c" value="#FFCD9B"/>
+				<c:param name="s1o" value="#D26900"/>
+				<c:param name="s1l" value="processing time"/>
+			</c:when>
 			<c:otherwise>
 				<c:param name="s1l" value="requests"/>
 				<c:param name="s2l" value="errors"/>
