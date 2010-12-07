@@ -193,6 +193,14 @@
 		</property>
 	</bean>
 
+	<bean name="connector_proc_time" class="com.googlecode.psiprobe.beans.stats.providers.StandardSeriesProvider">
+		<property name="statNames">
+			<list>
+				<value>stat.connector.{0}.proc_time</value>
+			</list>
+		</property>
+	</bean>
+
 	<bean name="memory_usage" class="com.googlecode.psiprobe.beans.stats.providers.StandardSeriesProvider">
 		<property name="statNames">
 			<list>

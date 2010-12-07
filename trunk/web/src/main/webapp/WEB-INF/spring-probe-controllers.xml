@@ -355,6 +355,11 @@
 		<property name="viewName" value="ajax/connectorTrafficDetails"/>
 	</bean>
 
+	<bean name="/cnprocdetails.ajax" class="com.googlecode.psiprobe.controllers.connectors.GetConnectorController">
+		<property name="containerListenerBean" ref="containerListener"/>
+		<property name="viewName" value="ajax/connectorProcTimeDetails"/>
+	</bean>
+
 	<bean name="/remember.ajax" class="com.googlecode.psiprobe.controllers.connectors.RememberVisibilityController"/>
 
 	<bean name="/charts.htm" class="com.googlecode.psiprobe.controllers.connectors.ListConnectorNamesController">
