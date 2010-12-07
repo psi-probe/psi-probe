@@ -128,6 +128,23 @@
 
 					<div class="chartContainer">
 						<dl>
+							<dt><spring:message code="probe.jsp.charts.proc_time.title"/></dt>
+							<dd class="image">
+								<a href="<c:url value='/zoomchart.htm'/>?sp=${name}&p=connector_proc_time"><img
+										id="proc_time-${name}"
+										border="0" src="${connector_proc_time_url}&sp=${name}"
+										width="${chartWidth}"
+										height="${chartHeight}"
+										alt="+"/></a>
+							</dd>
+							<dd id="dd-proc_time-${name}">
+								<div class="ajax_activity"/>
+							</dd>
+						</dl>
+					</div>
+
+					<div class="chartContainer">
+						<dl>
 							<dt><spring:message code="probe.jsp.charts.traffic.title"/></dt>
 							<dd class="image">
 								<a href="<c:url value='/zoomchart.htm'/>?sp=${name}&p=traffic"><img
@@ -143,30 +160,13 @@
 						</dl>
 					</div>
 
-					<div class="chartContainer">
-						<dl>
-							<dt><spring:message code="probe.jsp.charts.proc_time.title"/></dt>
-							<dd class="image">
-								<a href="<c:url value='/zoomchart.htm'/>?sp=${name}&p=proc_time"><img
-										id="proc_time-${name}"
-										border="0" src="${connector_proc_time_url}&sp=${name}"
-										width="${chartWidth}"
-										height="${chartHeight}"
-										alt="+"/></a>
-							</dd>
-							<dd id="dd-proc_time-${name}">
-								<div class="ajax_activity"/>
-							</dd>
-						</dl>
-					</div>
-
 					<script type="text/javascript">
 						new Ajax.ImgUpdater('req-${name}', ${probe:max(collectionPeriod, 5)});
-						new Ajax.ImgUpdater('traf-${name}', ${probe:max(collectionPeriod, 5)});
 						new Ajax.ImgUpdater('proc_time-${name}', ${probe:max(collectionPeriod, 5)});
+						new Ajax.ImgUpdater('traf-${name}', ${probe:max(collectionPeriod, 5)});
 						new Ajax.PeriodicalUpdater('dd-req-${name}', '<c:url value="/cnreqdetails.ajax"/>?cn=${name}', {frequency: 3});
-						new Ajax.PeriodicalUpdater('dd-traf-${name}', '<c:url value="/cntrafdetails.ajax"/>?cn=${name}', {frequency: 3});
 						new Ajax.PeriodicalUpdater('dd-proc_time-${name}', '<c:url value="/cnprocdetails.ajax"/>?cn=${name}', {frequency: 3});
+						new Ajax.PeriodicalUpdater('dd-traf-${name}', '<c:url value="/cntrafdetails.ajax"/>?cn=${name}', {frequency: 3});
 					</script>
 
 				</div>
