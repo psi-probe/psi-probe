@@ -360,7 +360,7 @@
 		<property name="viewName" value="ajax/connectorProcTimeDetails"/>
 	</bean>
 
-	<bean name="/remember.ajax" class="com.googlecode.psiprobe.controllers.connectors.RememberVisibilityController"/>
+	<bean name="/remember.ajax" class="com.googlecode.psiprobe.controllers.RememberVisibilityController"/>
 
 	<bean name="/charts.htm" class="com.googlecode.psiprobe.controllers.connectors.ListConnectorNamesController">
 		<property name="viewName" value="charts"/>
