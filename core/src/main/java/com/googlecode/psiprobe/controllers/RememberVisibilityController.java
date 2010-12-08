@@ -8,7 +8,7 @@
  * WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
  * MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  */
-package com.googlecode.psiprobe.controllers.connectors;
+package com.googlecode.psiprobe.controllers;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
