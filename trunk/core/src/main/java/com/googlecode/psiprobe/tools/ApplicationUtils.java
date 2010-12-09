@@ -243,6 +243,12 @@ public class ApplicationUtils {
                     sbean.setLastAccessedIPLocale(InetAddressLocator.getLocale(InetAddress.getByName(lastAccessedIP).getAddress()));
                 } catch (Throwable e) {
                     logger.error("Cannot determine Locale of "+lastAccessedIP);
+                    //
+                    // make sure we always re-throw ThreadDeath
+                    //
+                    if (e instanceof ThreadDeath) {
+                        throw (ThreadDeath) e;
+                    }
                 }
 
 

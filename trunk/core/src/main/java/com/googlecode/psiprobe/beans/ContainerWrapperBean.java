@@ -110,7 +110,12 @@ public class ContainerWrapperBean {
             }
         } catch (Throwable e) {
             logger.error("Could not unregister container adaptor", e);
-            if (e instanceof ThreadDeath) throw (ThreadDeath) e;
+            //
+            // make sure we always re-throw ThreadDeath
+            //
+            if (e instanceof ThreadDeath) {
+                throw (ThreadDeath) e;
+            }
         }
     }
 

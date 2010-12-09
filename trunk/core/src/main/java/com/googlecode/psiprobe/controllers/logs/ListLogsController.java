@@ -106,6 +106,12 @@ public class ListLogsController extends TomcatContainerController {
                 } catch (Throwable e) {
                     logger.error("Could not interrogate context logger for " + ctx.getName() + ". Enable debug logging to see the trace stack");
                     logger.debug(e);
+                    //
+                    // make sure we always re-throw ThreadDeath
+                    //
+                    if (e instanceof ThreadDeath) {
+                        throw (ThreadDeath) e;
+                    }
                 }
 
                 if (application.isAvailable()) {
