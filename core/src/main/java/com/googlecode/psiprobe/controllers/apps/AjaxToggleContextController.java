@@ -35,6 +35,12 @@ public class AjaxToggleContextController extends ContextHandlerController {
                 }
             } catch (Throwable e) {
                 logger.error(e);
+                //
+                // make sure we always re-throw ThreadDeath
+                //
+                if (e instanceof ThreadDeath) {
+                    throw (ThreadDeath) e;
+                }
             }
         }
         return new ModelAndView(getViewName(), "available",

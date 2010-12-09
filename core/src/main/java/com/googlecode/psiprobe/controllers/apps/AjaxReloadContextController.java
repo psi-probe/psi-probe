@@ -31,6 +31,12 @@ public class AjaxReloadContextController extends ContextHandlerController {
                 context.reload();
             } catch (Throwable e) {
                 logger.error(e);
+                //
+                // make sure we always re-throw ThreadDeath
+                //
+                if (e instanceof ThreadDeath) {
+                    throw (ThreadDeath) e;
+                }
             }
         }
         return new ModelAndView(getViewName(), "available",

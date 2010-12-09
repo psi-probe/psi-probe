@@ -196,6 +196,12 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
                 logger.debug("stats data read in " + (System.currentTimeMillis() - t) + "ms.");
             } catch (Throwable e) {
                 logger.error("Could not read stats data from " + f.getAbsolutePath(), e);
+                //
+                // make sure we always re-throw ThreadDeath
+                //
+                if (e instanceof ThreadDeath) {
+                    throw (ThreadDeath) e;
+                }
             }
         }
 
