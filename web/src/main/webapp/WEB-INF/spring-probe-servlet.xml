@@ -39,7 +39,6 @@
 		<property name="interceptors">
 			<list>
 				<ref bean="localeChangeInterceptor"/>
-				<bean class="com.googlecode.psiprobe.beans.NoCacheHandlerInterceptor"/>
 			</list>
 		</property>
 	</bean>

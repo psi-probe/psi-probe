@@ -17,17 +17,6 @@
 
 	<display-name>PSI Probe for Apache Tomcat</display-name>
 
-	<!--
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/spring-root-*.xml</param-value>
-	</context-param>
-
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
-	-->
-
 	<servlet>
 		<servlet-name>uptime</servlet-name>
 		<servlet-class>com.googlecode.psiprobe.UptimeServlet</servlet-class>
@@ -76,23 +65,6 @@
 
 	<!-- Below inserted by JspC -->
 	<!-- [INSERT FRAGMENT HERE] -->
-
-	<!-- Security filter -->
-	<!--
-	<filter>
-		<filter-name>acegi</filter-name>
-		<filter-class>org.acegisecurity.util.FilterToBeanProxy</filter-class>
-		<init-param>
-			<param-name>targetBean</param-name>
-			<param-value>acegiEntryPointBean</param-value>
-		</init-param>
-	</filter>
-
-	<filter-mapping>
-		<filter-name>acegi</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
-	-->
 
 	<!-- Sitemesh filter -->
 	<filter>

@@ -12,8 +12,6 @@ package com.googlecode.psiprobe.tools;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
-import org.acegisecurity.context.SecurityContextHolder;
-import org.acegisecurity.GrantedAuthority;
 
 public class SecurityUtils {
 
@@ -25,6 +23,7 @@ public class SecurityUtils {
         return request.isUserInRole(privilegedRole);
     }
 
+    /*
     public static boolean hasAttributeValueRole(ServletContext servletContext) {
         String privelegedRole = getPrivilegedRole(servletContext);
         GrantedAuthority[] authorities = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
@@ -38,6 +37,7 @@ public class SecurityUtils {
         }
         return result;
     }
+     */
 
     private static String getPrivilegedRole(ServletContext servletContext) {
         return servletContext.getInitParameter("attribute.value.role");
