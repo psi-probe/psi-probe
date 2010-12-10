@@ -207,6 +207,8 @@ public class ContainerListenerBean implements NotificationListener {
                             rp.setCurrentUri(JmxTools.getStringAttr(server, wrkName, "currentUri"));
                             rp.setCurrentQueryString(JmxTools.getStringAttr(server, wrkName, "currentQueryString"));
                             rp.setProtocol(JmxTools.getStringAttr(server, wrkName, "protocol"));
+
+                            // Relies on https://issues.apache.org/bugzilla/show_bug.cgi?id=41128
                             if (workerThreadNameSupported && JmxTools.hasAttribute(server, wrkName, "workerThreadName")) {
                                 rp.setWorkerThreadName(JmxTools.getStringAttr(server, wrkName, "workerThreadName"));
                                 rp.setWorkerThreadNameSupported(true);
