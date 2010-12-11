@@ -61,9 +61,11 @@ public class OracleDatasourceAccessor implements DatasourceAccessor {
     }
 
     public boolean reset(Object resource) throws Exception {
-        OracleDataSource source = (OracleDataSource) resource;
-        source.close();
-        return true;
+        if (canMap(resource)) {
+            ((OracleDataSource) resource).close();
+            return true;
+        }
+        return false;
     }
 
     public boolean canMap(Object resource) {

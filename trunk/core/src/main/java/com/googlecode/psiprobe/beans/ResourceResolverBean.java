@@ -150,8 +150,7 @@ public class ResourceResolverBean implements ResourceResolver {
             try {
                 for (Iterator it = datasourceMappers.iterator(); it.hasNext();) {
                     DatasourceAccessor accessor = (DatasourceAccessor) it.next();
-                    if (accessor.canMap(o)) {
-                        accessor.reset(o);
+                    if (accessor.reset(o)) {
                         return true;
                     }
                 }
