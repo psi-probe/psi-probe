@@ -143,7 +143,7 @@ public class ResourceResolverBean implements ResourceResolver {
         }
     }
 
-    public boolean resetResource(Context context, String resourceName) throws NamingException {
+    public synchronized boolean resetResource(Context context, String resourceName) throws NamingException {
         ContextBindings.bindClassLoader(context, null, Thread.currentThread().getContextClassLoader());
         try {
             Object o = new InitialContext().lookup(ResourceResolverBean.DEFAULT_RESOURCE_PREFIX + resourceName);
@@ -170,7 +170,7 @@ public class ResourceResolverBean implements ResourceResolver {
         }
     }
 
-    public DataSource lookupDataSource(Context context, String resourceName) throws NamingException {
+    public synchronized DataSource lookupDataSource(Context context, String resourceName) throws NamingException {
         ContextBindings.bindClassLoader(context, null, Thread.currentThread().getContextClassLoader());
 
         try {
