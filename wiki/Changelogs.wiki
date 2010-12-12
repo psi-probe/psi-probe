@@ -2,7 +2,8 @@
 ----
 [ChangelogsLambdaProbe << Older] | [DevelopmentRoadmap Newer >>]
 
-== [http://code.google.com/p/psi-probe/issues/list?can=1&q=Status:FixReleased+Type:Defect,Enhancement,Feature+-FoundIn:Snapshot+Milestone:2.1.1,2.1&sort=-Milestone+-Type 2.1.x] ==
+== [http://code.google.com/p/psi-probe/issues/list?can=1&q=Status:FixReleased+Type:Defect,Enhancement,Feature+-FoundIn:Snapshot+Milestone:2.1.2,2.1.1,2.1&sort=-Milestone+-Type 2.1.x] ==
+      * [http://code.google.com/p/psi-probe/issues/list?can=1&q=Status:FixReleased+Type:Defect,Enhancement,Feature+-FoundIn:Snapshot+Milestone:2.1.2&sort=-Type 2.1.2]
       * [http://code.google.com/p/psi-probe/issues/list?can=1&q=Status:FixReleased+Type:Defect,Enhancement,Feature+-FoundIn:Snapshot+Milestone:2.1.1&sort=-Type 2.1.1]
       * [http://code.google.com/p/psi-probe/issues/list?can=1&q=Status:FixReleased+Type:Defect,Enhancement,Feature+-FoundIn:Snapshot+Milestone:2.1&sort=-Type 2.1.0]
 
