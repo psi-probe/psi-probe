@@ -11,6 +11,8 @@
 package com.googlecode.psiprobe;
 
 import com.googlecode.psiprobe.beans.ContainerWrapperBean;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.catalina.ContainerServlet;
@@ -38,20 +40,29 @@ public class ProbeServlet extends DispatcherServlet implements ContainerServlet 
         logger.info("setWrapper() called");
     }
 
-    protected void doDispatch(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
-        httpServletRequest.setCharacterEncoding("UTF-8");
-        ContainerWrapperBean containerWrapper = (ContainerWrapperBean) getWebApplicationContext().getBean("containerWrapper");
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+        ContainerWrapperBean containerWrapper = getContainerWrapperBean();
         if (containerWrapper != null) {
             containerWrapper.setWrapper(getWrapper());
         }
+    }
+
+    protected void doDispatch(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
+        httpServletRequest.setCharacterEncoding("UTF-8");
         super.doDispatch(httpServletRequest, httpServletResponse);
     }
 
     public void destroy() {
-        ContainerWrapperBean containerWrapper = (ContainerWrapperBean) getWebApplicationContext().getBean("containerWrapper");
+        ContainerWrapperBean containerWrapper = getContainerWrapperBean();
         if (containerWrapper != null) {
             containerWrapper.setWrapper(null);
         }
         super.destroy();
     }
+
+    protected ContainerWrapperBean getContainerWrapperBean() {
+        return (ContainerWrapperBean) getWebApplicationContext().getBean("containerWrapper");
+    }
+
 }
