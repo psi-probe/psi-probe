@@ -60,4 +60,8 @@
 		</property>
 	</bean>
 
+	<bean id="runtimeInfoAccessor"   class="com.googlecode.psiprobe.beans.RuntimeInfoAccessorBean"/>
+	<bean id="clusterWrapper"        class="com.googlecode.psiprobe.beans.ClusterWrapperBean"/>
+	<bean id="jvmMemoryInfoAccessor" class="com.googlecode.psiprobe.beans.JvmMemoryInfoAccessorBean"/>
+
 </beans>
