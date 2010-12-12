@@ -25,6 +25,7 @@
     # Deprecate previous build.
     # Change status of issues to !FixReleased.
     # Update [Changelogs] and [DevelopmentRoadmap].
+      * Commit message: _Adding x.x.x changelog link._
     # Announce.
   # *Prep*
     # In trunk, increment version numbers.
