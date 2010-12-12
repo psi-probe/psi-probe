@@ -103,8 +103,6 @@
 		<property name="viewName" value="/deploy.htm"/>
 	</bean>
 
-	<bean id="runtimeInfoAccessor" class="com.googlecode.psiprobe.beans.RuntimeInfoAccessorBean"/>
-
 	<bean name="/sysinfo.htm" class="com.googlecode.psiprobe.controllers.SysInfoController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="runtimeInfoAccessor" ref="runtimeInfoAccessor"/>
@@ -450,8 +448,6 @@
 		<property name="viewName" value="redirect:/threads.htm"/>
 	</bean>
 
-	<bean id="clusterWrapper" class="com.googlecode.psiprobe.beans.ClusterWrapperBean"/>
-
 	<bean name="/cluster.htm" class="com.googlecode.psiprobe.controllers.cluster.ClusterStatsController">
 		<property name="clusterWrapper" ref="clusterWrapper"/>
 		<property name="containerWrapper" ref="containerWrapper"/>
@@ -529,8 +525,6 @@
 		<property name="viewName" value="appfiltermaps"/>
 	</bean>
 
-	<bean id="jvmMemoryInfoAccessor" class="com.googlecode.psiprobe.beans.JvmMemoryInfoAccessorBean"/>
-
 	<bean name="/memory.ajax" class="com.googlecode.psiprobe.controllers.MemoryStatsController">
 		<property name="jvmMemoryInfoAccessorBean" ref="jvmMemoryInfoAccessor"/>
 		<property name="viewName" value="ajax/memory_pools"/>
@@ -554,6 +548,10 @@
 
 	<bean name="/wrapper.htm" class="com.googlecode.psiprobe.controllers.wrapper.WrapperInfoController">
 		<property name="viewName" value="wrapper"/>
+	</bean>
+
+	<bean name="/chart.png" class="com.googlecode.psiprobe.controllers.RenderChartController">
+		<property name="statsCollection" ref="statsCollection"/>
 	</bean>
 
 	<bean name="/adm/restartvm.ajax" class="com.googlecode.psiprobe.controllers.wrapper.RestartJvmController">

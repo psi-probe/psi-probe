@@ -42,7 +42,14 @@
 		<servlet-class>com.googlecode.psiprobe.ProbeServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/spring-probe-*</param-value>
+			<param-value>
+				<![CDATA[
+					/WEB-INF/spring-probe-servlet.xml,
+					/WEB-INF/spring-probe-resources.xml,
+					/WEB-INF/spring-probe-stats.xml,
+					/WEB-INF/spring-probe-controllers.xml
+				]]>
+			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
