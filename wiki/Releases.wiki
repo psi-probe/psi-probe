@@ -9,9 +9,10 @@
   # *Branch*
      # Create branch from trunk.
      # Check out branch.
-     # In branch, remove "SNAPSHOT" from version numbers and update SCM URLs.
+     # In branch, remove "SNAPSHOT" from version number and update SCM URLs.
        * e.g. `1.0.0-SNAPSHOT` becomes `1.0.0`
        * e.g. `scm:svn:.../trunk/` becomes `scm:svn:.../branches/1.0/`
+       * Commit message: _Removing "SNAPSHOT" from version number and updating SCM URLs._
   # *Build*
      # Create probe.war from branch: `mvn -Prelease clean package`
        * Be sure to use JDK 1.4 and Maven 2.0.9+.
@@ -19,6 +20,7 @@
      # Create ZIP from probe.war and Changelog.txt.
   # *Release*
      # Create tag from branch.
+       * Commit message: _Tagging x.x.x release_
      # Upload ZIP to GC as a Featured Download.
      # Deprecate previous build.
      # Change status of issues to !FixReleased.
@@ -26,14 +28,19 @@
      # Announce.
   # *Prep*
      # In trunk, increment version numbers.
+       * e.g. `1.0.0-SNAPSHOT` becomes `1.1.0-SNAPSHOT`
+      * Commit message: _Changing version number to x.x.x_
 
 = Patch Release =
   # *Merge*
     # In branch, increment version number and add "SNAPSHOT."
       * e.g. `1.0.0` becomes `1.0.1-SNAPSHOT`
+      * Commit message: _Preparing for patch._
     # Merge changes from trunk into branch (or vice versa if applicable).
+      * Commit message: _Merging trunk:x into branches/x.x._
     # In branch, remove "SNAPSHOT" from version number.
       * e.g. `1.0.1-SNAPSHOT` becomes `1.0.1`
+      * Commit message: _Changing version number to x.x.x_
   # *Build*
      * _Same as Minor Release._
   # *Release*
