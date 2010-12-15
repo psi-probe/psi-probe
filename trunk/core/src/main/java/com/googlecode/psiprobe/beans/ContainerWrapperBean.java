@@ -153,7 +153,7 @@ public class ContainerWrapperBean {
     }
 
     public List getDataSources() throws Exception {
-        if (getResourceResolver().supportsPrivateResources()) {
+        if (tomcatContainer != null && getResourceResolver().supportsPrivateResources()) {
             List apps = getTomcatContainer().findContexts();
 
             List resources = new ArrayList();
