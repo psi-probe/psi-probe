@@ -53,6 +53,10 @@ public class JBossResourceResolverBean implements ResourceResolver {
         return false;
     }
 
+    public boolean supportsGlobalResources() {
+        return true;
+    }
+
     public List getApplicationResources() throws NamingException {
 
         List resources = new ArrayList();

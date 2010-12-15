@@ -31,6 +31,15 @@ public interface ResourceResolver {
      */
     boolean supportsPrivateResources();
 
+    /**
+     * Most servlet containers support global resources, but for those that do
+     * not, this returns false.
+     *
+     * @return true if the servlet container supports global resources,
+     *         otherwise false.
+     */
+    boolean supportsGlobalResources();
+
     List getApplicationResources() throws NamingException;
 
     List getApplicationResources (Context context) throws NamingException;
