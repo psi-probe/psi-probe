@@ -15,7 +15,9 @@ import com.googlecode.psiprobe.model.DataSourceInfo;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import javax.management.MBeanServer;
+import javax.management.ObjectName;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
@@ -31,12 +33,48 @@ public class ResourceResolverBean implements ResourceResolver {
 
     private Log logger = LogFactory.getLog(getClass());
 
-    public static final String DEFAULT_RESOURCE_PREFIX = "java:comp/env/";
+    /**
+     * The default resource prefix for JNDI objects in the global scope:
+     * <code>java:</code>.
+     */
+    public static final String DEFAULT_GLOBAL_RESOURCE_PREFIX = "java:";
+
+    /**
+     * The default resource prefix for objects in a private application scope:
+     * <code>java:comp/env/</code>.
+     */
+    public static final String DEFAULT_RESOURCE_PREFIX = DEFAULT_GLOBAL_RESOURCE_PREFIX + "comp/env/";
 
     private List datasourceMappers = new ArrayList();
 
     public List getApplicationResources() throws NamingException {
-        return new ArrayList();
+        logger.info("Reading GLOBAL resources");
+        List resources = new ArrayList();
+
+        MBeanServer server = getMBeanServer();
+        if (server != null) {
+            try {
+                Set dsNames = server.queryNames(new ObjectName("Catalina:type=Resource,resourcetype=Global,*"), null);
+                for (Iterator it = dsNames.iterator(); it.hasNext();) {
+                    ObjectName objectName = (ObjectName) it.next();
+                    ApplicationResource resource = new ApplicationResource();
+
+                    logger.info("reading resource: " + objectName);
+                    resource.setName(getStringAttribute(server, objectName, "name"));
+                    resource.setType(getStringAttribute(server, objectName, "type"));
+                    resource.setScope(getStringAttribute(server, objectName, "scope"));
+                    resource.setAuth(getStringAttribute(server, objectName, "auth"));
+                    resource.setDescription(getStringAttribute(server, objectName, "description"));
+
+                    lookupResource(resource, true, true);
+
+                    resources.add(resource);
+                }
+            } catch (Exception e) {
+                logger.error("There was an error querying JMX server:", e);
+            }
+        }
+        return resources;
     }
 
     public synchronized List getApplicationResources(Context context) throws NamingException {
@@ -71,7 +109,7 @@ public class ResourceResolverBean implements ResourceResolver {
                     resource.setAuth(contextResource.getAuth());
                     resource.setDescription(contextResource.getDescription());
 
-                    lookupResource(resource, contextBound);
+                    lookupResource(resource, contextBound, false);
 
                     resourceList.add(resource);
                 }
@@ -87,7 +125,8 @@ public class ResourceResolverBean implements ResourceResolver {
                     resource.setType(link.getType());
                     resource.setLinkTo(link.getGlobal());
 
-                    lookupResource(resource, contextBound);
+                    lookupResource(resource, contextBound, false);
+                    
                     resourceList.add(resource);
                 }
             } finally {
@@ -101,11 +140,12 @@ public class ResourceResolverBean implements ResourceResolver {
         return resourceList;
     }
 
-    public void lookupResource(ApplicationResource resource, boolean contextBound) {
+    public void lookupResource(ApplicationResource resource, boolean contextBound, boolean global) {
         DataSourceInfo dataSourceInfo = null;
         if (contextBound) {
             try {
-                Object o = new InitialContext().lookup(DEFAULT_RESOURCE_PREFIX + resource.getName());
+                String jndiName = resolveJndiName(resource.getName(), global);
+                Object o = new InitialContext().lookup(jndiName);
                 resource.setLookedUp(true);
                 for (Iterator it = datasourceMappers.iterator(); it.hasNext();) {
                     DatasourceAccessor accessor = (DatasourceAccessor) it.next();
@@ -146,7 +186,8 @@ public class ResourceResolverBean implements ResourceResolver {
     public synchronized boolean resetResource(Context context, String resourceName) throws NamingException {
         ContextBindings.bindClassLoader(context, null, Thread.currentThread().getContextClassLoader());
         try {
-            Object o = new InitialContext().lookup(ResourceResolverBean.DEFAULT_RESOURCE_PREFIX + resourceName);
+            String jndiName = resolveJndiName(resourceName, (context == null));
+            Object o = new InitialContext().lookup(jndiName);
             try {
                 for (Iterator it = datasourceMappers.iterator(); it.hasNext();) {
                     DatasourceAccessor accessor = (DatasourceAccessor) it.next();
@@ -173,7 +214,8 @@ public class ResourceResolverBean implements ResourceResolver {
         ContextBindings.bindClassLoader(context, null, Thread.currentThread().getContextClassLoader());
 
         try {
-            Object o = new InitialContext().lookup(ResourceResolverBean.DEFAULT_RESOURCE_PREFIX + resourceName);
+            String jndiName = resolveJndiName(resourceName, (context == null));
+            Object o = new InitialContext().lookup(jndiName);
 
             if (o instanceof DataSource) {
                 return (DataSource) o;
@@ -197,8 +239,36 @@ public class ResourceResolverBean implements ResourceResolver {
         return true;
     }
 
+    public boolean supportsGlobalResources() {
+        return true;
+    }
+
     public MBeanServer getMBeanServer() {
         return new Registry().getMBeanServer();
+    }
+
+    /**
+     * Resolves a JNDI resource name by prepending the scope-appropriate prefix.
+     *
+     * @param global whether to use the global prefix
+     * @param name the JNDI name of the resource
+     * 
+     * @return the JNDI resource name with the prefix appended
+     *
+     * @see #DEFAULT_GOBAL_RESOURCE_PREFIX
+     * @see #DEFAULT_RESOURCE_PREFIX
+     */
+    protected static String resolveJndiName(String name, boolean global) {
+        return (global ? DEFAULT_GLOBAL_RESOURCE_PREFIX : DEFAULT_RESOURCE_PREFIX) + name;
+    }
+
+    private String getStringAttribute(MBeanServer server, ObjectName objectName, String attributeName) {
+        try {
+            return (String) server.getAttribute(objectName, attributeName);
+        } catch (Exception e) {
+            logger.error("Error getting attribute '" + attributeName + "' from '" + objectName + "'", e);
+            return null;
+        }
     }
 
 }
