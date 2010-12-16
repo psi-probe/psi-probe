@@ -28,15 +28,16 @@
 
 		<c:set var="navTabDatasources" value="active" scope="request"/>
 
+		<c:if test="${! empty errorMessage}">
+			<div class="errorMessage">
+				<p>
+					${errorMessage}
+				</p>
+			</div>
+		</c:if>
+
 		<c:choose>
-			<c:when test="${! empty resources}">
-				<c:if test="${! empty errorMessage}">
-					<div class="errorMessage">
-						<p>
-							${errorMessage}
-						</p>
-					</div>
-				</c:if>
+			<c:when test="${! empty privateResources || ! empty globalResources}">
 
 				<ul class="options">
 					<li id="groupByJdbcUrl">
@@ -57,109 +58,38 @@
 						<div class="ajax_activity"></div>
 					</div>
 
-					<display:table class="genericTbl" cellspacing="0" name="resources" uid="resource" requestURI="">
-						<c:choose>
-							<c:when test="${! global_resources}">
-
-								<display:column sortable="true" class="leftmost" titleKey="probe.jsp.datasources.list.col.application">
-									<a href="<c:url value='/resources.htm'/>?webapp=${resource.applicationName}">
-										<c:if test="${!resource.lookedUp || resource.dataSourceInfo.jdbcURL == null}">
-											<img border="0" src="${pageContext.request.contextPath}<spring:theme code='exclamation.gif'/>" alt="<spring:message code='probe.jsp.datasources.list.misconfigured.alt'/>"/>
-										</c:if>
-										${resource.applicationName}
-									</a>
-								</display:column>
-
-								<display:column sortable="true" sortProperty="name"
-										titleKey="probe.jsp.datasources.list.col.resource">
-									<a href="<c:url value='/sql/datasourcetest.htm'/>?webapp=${resource.applicationName}&resource=${resource.name}">
-										${resource.name}
-									</a>
-								</display:column>
-
-							</c:when>
-
-							<c:otherwise>
-
-								<display:column class="leftmost" property="name" sortable="true" titleKey="probe.jsp.datasources.list.col.resource"/>
-
-							</c:otherwise>
-						</c:choose>
-
-						<display:column sortable="true" sortProperty="dataSourceInfo.score"
-								titleKey="probe.jsp.datasources.list.col.usage" class="score_wrapper">
-							<div class="score_wrapper">
-								<probe:score value="${resource.dataSourceInfo.score}" fullBlocks="10" partialBlocks="5" showEmptyBlocks="true" showA="true" showB="true">
-									<img src="<c:url value='/css/classic/gifs/rb_{0}.gif'/>" alt="+" title="<spring:message code='probe.jsp.applications.jdbcUsage.title' arguments='${resource.dataSourceInfo.score}'/>"/>
-								</probe:score>
+					<h3>
+						<spring:message code="probe.jsp.datasources.h3.global"/>
+					</h3>
+					<c:choose>
+						<c:when test="${not empty globalResources}">
+							<c:set var="resources" value="${globalResources}" scope="request" />
+							<c:set var="isGlobalResources" value="true" scope="request" />
+							<jsp:include page="datasources_table.jsp" />
+						</c:when>
+						<c:otherwise>
+							<div class="errorMessage">
+								<p><spring:message code="probe.jsp.datasources.global.empty" /></p>
 							</div>
-						</display:column>
+						</c:otherwise>
+					</c:choose>
 
-						<display:column property="dataSourceInfo.maxConnections" sortable="true"
-								titleKey="probe.jsp.datasources.list.col.max"/>
+					<h3>
+						<spring:message code="probe.jsp.datasources.h3.app"/>
+					</h3>
+					<c:choose>
+						<c:when test="${not empty privateResources}">
+							<c:set var="resources" value="${privateResources}" scope="request" />
+							<c:set var="isGlobalResources" value="false" scope="request" />
+							<jsp:include page="datasources_table.jsp" />
+						</c:when>
+						<c:otherwise>
+							<div class="errorMessage">
+								<p><spring:message code="probe.jsp.datasources.app.empty" /></p>
+							</div>
+						</c:otherwise>
+					</c:choose>
 
-						<display:column property="dataSourceInfo.establishedConnections" sortable="true"
-								titleKey="probe.jsp.datasources.list.col.established"/>
-
-						<display:column property="dataSourceInfo.busyConnections" sortable="true"
-								titleKey="probe.jsp.datasources.list.col.busy"/>
-
-						<display:column title="&nbsp;">
-							<c:choose>
-								<c:when test="${resource.dataSourceInfo.resettable}">
-									<a class="imglink" href="<c:url value='/app/resetds.htm'/>?webapp=${resource.applicationName}&resource=${resource.name}&view=redirect:/datasources.htm">
-										<img border="0" src="${pageContext.request.contextPath}<spring:theme code='reset.gif'/>" alt="<spring:message code='probe.jsp.datasources.list.col.reset.alt'/>"/>
-									</a>
-								</c:when>
-								<c:otherwise>
-									&nbsp;
-								</c:otherwise>
-							</c:choose>
-						</display:column>
-
-						<display:column property="dataSourceInfo.username" sortable="true"
-								sortProperty="dataSourceInfo.username" nulls="false"
-								titleKey="probe.jsp.datasources.list.col.user">
-							${resource.dataSourceInfo.username}&nbsp;
-						</display:column>
-
-						<!--
-						this does have to be one liner due to the tag forcing maxLength
-						-->
-						<display:column property="dataSourceInfo.jdbcURL" sortable="true" maxLength="50" nulls="true"
-								titleKey="probe.jsp.datasources.list.col.url"/>
-
-						<display:column maxLength="50" sortable="true" sortProperty="description"
-								titleKey="probe.jsp.datasources.list.col.description">
-							${resource.description}&nbsp;
-						</display:column>
-
-						<display:column sortable="true" titleKey="probe.jsp.datasources.list.col.type">
-							<c:choose>
-								<c:when test="${resource.type == 'com.mchange.v2.c3p0.ComboPooledDataSource'}">
-									c3p0
-								</c:when>
-								<c:when test="${resource.type == 'javax.sql.DataSource'}">
-									dbcp
-								</c:when>
-								<c:when test="${resource.type == 'oracle.jdbc.pool.OracleDataSource'}">
-									oracle
-								</c:when>
-								<c:otherwise>
-									${resource.type}
-								</c:otherwise>
-							</c:choose>
-						</display:column>
-
-						<display:column sortable="true" sortProperty="linkTo" titleKey="probe.jsp.datasources.list.col.linkTo">
-							${resource.linkTo}&nbsp;
-						</display:column>
-
-						<display:column sortable="true" sortProperty="auth" titleKey="probe.jsp.datasources.list.col.auth">
-							${resource.auth}&nbsp;
-						</display:column>
-
-					</display:table>
 				</div>
 
 				<script type="text/javascript">

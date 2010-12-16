@@ -93,7 +93,9 @@
 			</div>
 
 			<form id="sqlForm" action="" method="post">
-				<input type="hidden" name="webapp" value="${param.webapp}"/>
+				<c:if test="${param.webapp != null}">
+					<input type="hidden" name="webapp" value="${param.webapp}"/>
+				</c:if>
 				<input type="hidden" name="resource" value="${param.resource}"/>
 				<dl id="sqlDL">
 					<dt><label for="sql"><spring:message code="probe.jsp.dataSourceTest.sqlForm.sql.label"/></label></dt>

@@ -11,6 +11,7 @@
 package com.googlecode.psiprobe.controllers.datasources;
 
 import com.googlecode.psiprobe.controllers.TomcatContainerController;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
@@ -24,7 +25,10 @@ import org.springframework.web.servlet.ModelAndView;
 public class ListAllJdbcResourcesController extends TomcatContainerController{
 
     protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse httpServletResponse) throws Exception {
-        request.setAttribute("global_resources", Boolean.valueOf(!getContainerWrapper().getResourceResolver().supportsPrivateResources()));
-        return new ModelAndView(getViewName(), "resources", getContainerWrapper().getDataSources());
+        List privateResources = getContainerWrapper().getPrivateDataSources();
+        List globalResources = getContainerWrapper().getGlobalDataSources();
+        return new ModelAndView(getViewName())
+                .addObject("privateResources", privateResources)
+                .addObject("globalResources", globalResources);
     }
 }
