@@ -85,6 +85,7 @@ public class ExecuteSqlController extends ContextHandlerController {
             int rowsAffected = 0;
 
             try {
+                // TODO: use Spring's jdbc template?
                 Connection conn = dataSource.getConnection();
 
                 try {
@@ -153,11 +154,17 @@ public class ExecuteSqlController extends ContextHandlerController {
 
                 return mv;
             } catch (SQLException e) {
-                request.setAttribute("errorMessage", getMessageSourceAccessor().getMessage(
-                        "probe.src.dataSourceTest.sql.failure", new Object[]{e.getMessage()}));
+                String message = getMessageSourceAccessor().getMessage("probe.src.dataSourceTest.sql.failure", new Object[] { e.getMessage() });
+                logger.error(message, e);
+                request.setAttribute("errorMessage", message);
             }
         }
 
         return new ModelAndView(getViewName());
     }
+
+    protected boolean isContextOptional() {
+        return true;
+    }
+
 }
