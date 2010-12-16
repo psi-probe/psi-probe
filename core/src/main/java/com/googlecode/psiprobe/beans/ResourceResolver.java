@@ -28,6 +28,8 @@ public interface ResourceResolver {
      * resources, which alters the way resource information is displayed (and accessed).
      *
      * @return true if datasources can be associated with applications, otherwise false.
+     *
+     * @see #getApplicationResources(org.apache.catalina.Context)
      */
     boolean supportsPrivateResources();
 
@@ -37,8 +39,19 @@ public interface ResourceResolver {
      *
      * @return true if the servlet container supports global resources,
      *         otherwise false.
+     *
+     * @see #getApplicationResources()
      */
     boolean supportsGlobalResources();
+
+    /**
+     * Indicates whether this servlet container exposes datasources via JNDI.
+     *
+     * @return true if the servlet container supports datasource lookup
+     *
+     * @see #lookupDataSource(org.apache.catalina.Context, java.lang.String)
+     */
+    boolean supportsDataSourceLookup();
 
     List getApplicationResources() throws NamingException;
 

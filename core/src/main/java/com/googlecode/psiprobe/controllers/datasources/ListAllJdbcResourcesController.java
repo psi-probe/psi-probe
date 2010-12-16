@@ -25,9 +25,11 @@ import org.springframework.web.servlet.ModelAndView;
 public class ListAllJdbcResourcesController extends TomcatContainerController{
 
     protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse httpServletResponse) throws Exception {
+        boolean supportsDSLookup = getContainerWrapper().getResourceResolver().supportsDataSourceLookup();
         List privateResources = getContainerWrapper().getPrivateDataSources();
         List globalResources = getContainerWrapper().getGlobalDataSources();
         return new ModelAndView(getViewName())
+                .addObject("supportsDSLookup", Boolean.valueOf(supportsDSLookup))
                 .addObject("privateResources", privateResources)
                 .addObject("globalResources", globalResources);
     }

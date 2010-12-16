@@ -250,6 +250,10 @@ public class ResourceResolverBean implements ResourceResolver {
         return true;
     }
 
+    public boolean supportsDataSourceLookup() {
+        return true;
+    }
+
     public MBeanServer getMBeanServer() {
         return new Registry().getMBeanServer();
     }
