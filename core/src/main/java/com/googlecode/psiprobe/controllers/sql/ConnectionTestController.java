@@ -48,6 +48,7 @@ public class ConnectionTestController extends ContextHandlerController {
             request.setAttribute("errorMessage", getMessageSourceAccessor().getMessage("probe.src.dataSourceTest.resource.lookup.failure", new Object[]{resourceName}));
         } else {
             try {
+                // TODO: use Spring's jdbc template?
                 Connection conn = dataSource.getConnection();
                 try {
                     DatabaseMetaData md = conn.getMetaData();
@@ -65,12 +66,17 @@ public class ConnectionTestController extends ContextHandlerController {
                     conn.close();
                 }
             } catch (SQLException e) {
-                request.setAttribute("errorMessage", getMessageSourceAccessor().getMessage(
-                                "probe.src.dataSourceTest.connection.failure", new Object[]{e.getMessage()}));
+                String message = getMessageSourceAccessor().getMessage("probe.src.dataSourceTest.connection.failure", new Object[] { e.getMessage() });
+                logger.error(message, e);
+                request.setAttribute("errorMessage", message);
             }
         }
 
         return new ModelAndView(getViewName());
+    }
+
+    protected boolean isContextOptional() {
+        return true;
     }
 
     private void addDbMetaDataEntry(List list, String name, String value) {
