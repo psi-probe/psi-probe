@@ -183,8 +183,10 @@ public class ResourceResolverBean implements ResourceResolver {
         }
     }
 
-    public synchronized boolean resetResource(Context context, String resourceName) throws NamingException {
-        ContextBindings.bindClassLoader(context, null, Thread.currentThread().getContextClassLoader());
+    public synchronized boolean resetResource(final Context context, String resourceName) throws NamingException {
+        if (context != null) {
+            ContextBindings.bindClassLoader(context, null, Thread.currentThread().getContextClassLoader());
+        }
         try {
             String jndiName = resolveJndiName(resourceName, (context == null));
             Object o = new InitialContext().lookup(jndiName);
@@ -206,13 +208,16 @@ public class ResourceResolverBean implements ResourceResolver {
                 return false;
             }
         } finally {
-            ContextBindings.unbindClassLoader(context, null, Thread.currentThread().getContextClassLoader());
+            if (context != null) {
+                ContextBindings.unbindClassLoader(context, null, Thread.currentThread().getContextClassLoader());
+            }
         }
     }
 
-    public synchronized DataSource lookupDataSource(Context context, String resourceName) throws NamingException {
-        ContextBindings.bindClassLoader(context, null, Thread.currentThread().getContextClassLoader());
-
+    public synchronized DataSource lookupDataSource(final Context context, String resourceName) throws NamingException {
+        if (context != null) {
+            ContextBindings.bindClassLoader(context, null, Thread.currentThread().getContextClassLoader());
+        }
         try {
             String jndiName = resolveJndiName(resourceName, (context == null));
             Object o = new InitialContext().lookup(jndiName);
@@ -223,7 +228,9 @@ public class ResourceResolverBean implements ResourceResolver {
                 return null;
             }
         } finally {
-            ContextBindings.unbindClassLoader(context, null, Thread.currentThread().getContextClassLoader());
+            if (context != null) {
+                ContextBindings.unbindClassLoader(context, null, Thread.currentThread().getContextClassLoader());
+            }
         }
     }
 
