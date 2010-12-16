@@ -55,15 +55,22 @@
 	</c:if>
 
 	<display:column titleKey="probe.jsp.datasources.list.col.resource"        sortable="true" sortProperty="name">
-		<c:url value="/sql/datasourcetest.htm" var="name_url">
-			<c:if test="${!isGlobalResources}">
-				<c:param name="webapp" value="${resource.applicationName}"/>
-			</c:if>
-			<c:param name="resource" value="${resource.name}"/>
-		</c:url>
-		<a href="${name_url}">
-			${resource.name}
-		</a>
+		<c:choose>
+			<c:when test="${supportsDSLookup}">
+				<c:url value="/sql/datasourcetest.htm" var="name_url">
+					<c:if test="${!isGlobalResources}">
+						<c:param name="webapp" value="${resource.applicationName}"/>
+					</c:if>
+					<c:param name="resource" value="${resource.name}"/>
+				</c:url>
+				<a href="${name_url}">
+					${resource.name}
+				</a>
+			</c:when>
+			<c:otherwise>
+				${resource.name}
+			</c:otherwise>
+		</c:choose>
 	</display:column>
 
 	<display:column titleKey="probe.jsp.datasources.list.col.usage"           sortable="true" sortProperty="dataSourceInfo.score" class="score_wrapper">

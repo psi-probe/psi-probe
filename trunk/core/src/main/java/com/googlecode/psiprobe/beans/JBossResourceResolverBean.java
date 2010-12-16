@@ -57,6 +57,10 @@ public class JBossResourceResolverBean implements ResourceResolver {
         return true;
     }
 
+    public boolean supportsDataSourceLookup() {
+        return false;
+    }
+
     public List getApplicationResources() throws NamingException {
 
         List resources = new ArrayList();
