@@ -162,7 +162,7 @@
 
 			<c:url value="/chart.png" var="usage_img" scope="page">
 				<c:param name="p" value="datasource_usage"/>
-				<c:param name="sp" value="${param.resource}"/>
+				<c:param name="sp" value="${param.webapp == null ? '' : param.webapp}/${param.resource}"/>
 				<c:param name="xz" value="${chartWidth}"/>
 				<c:param name="yz" value="${chartHeight}"/>
 				<c:param name="l" value="false"/>
