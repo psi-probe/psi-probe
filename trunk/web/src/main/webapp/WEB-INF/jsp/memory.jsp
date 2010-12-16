@@ -53,12 +53,12 @@
 
 				<ul class="options">
 					<li id="adviseFin">
-						<a href="<c:url value='/adm/forcegc.htm?fin=true'/>">
+						<a href="<c:url value='/adm/advisegc.htm?fin=true'/>">
 							<spring:message code="probe.jsp.memory.advise.finalization"/>
 						</a>
 					</li>
 					<li id="adviseGC">
-						<a href="<c:url value='/adm/forcegc.htm'/>">
+						<a href="<c:url value='/adm/advisegc.htm'/>">
 							<spring:message code="probe.jsp.memory.advise.gc"/>
 						</a>
 					</li>

@@ -22,7 +22,7 @@ import org.springframework.web.servlet.view.RedirectView;
  *
  * @author Vlad Ilyushchenko
  */
-public class ForceGCController extends ParameterizableViewController {
+public class AdviseGCController extends ParameterizableViewController {
 
     private String replacePattern;
 

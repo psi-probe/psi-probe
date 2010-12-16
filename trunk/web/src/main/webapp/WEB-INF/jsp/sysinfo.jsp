@@ -49,7 +49,7 @@
 						</probe:score>
 					</td>
 					<td>&nbsp;<fmt:formatNumber maxFractionDigits="1" value="${memUsed}"/>%</td>
-					<td>&nbsp;<a href="<c:url value='/adm/forcegc.htm'/>"><spring:message code="probe.jsp.sysinfo.memory.forceGC"/></a></td>
+					<td>&nbsp;<a href="<c:url value='/adm/advisegc.htm'/>"><spring:message code="probe.jsp.sysinfo.memory.adviseGC"/></a></td>
 				</tr>
 			</table>
 			<span class="name"><spring:message code="probe.jsp.sysinfo.memory.free"/></span>&nbsp;<fmt:formatNumber maxFractionDigits="2" value="${systemInformation.freeMemory / 1024 / 1024}"/> MB
