@@ -143,7 +143,7 @@
 		<property name="viewName" value="ajax/osinfo"/>
 	</bean>
 
-	<bean name="/adm/forcegc.htm" class="com.googlecode.psiprobe.controllers.system.ForceGCController">
+	<bean name="/adm/advisegc.htm" class="com.googlecode.psiprobe.controllers.system.AdviseGCController">
 		<property name="replacePattern" value="^http(s)?://[a-zA-Z\-\.0-9]+(:[0-9]+)?"/>
 		<property name="viewName" value="/sysinfo.htm"/>
 	</bean>
