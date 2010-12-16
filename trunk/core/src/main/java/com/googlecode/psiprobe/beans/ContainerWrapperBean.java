@@ -153,26 +153,43 @@ public class ContainerWrapperBean {
     }
 
     public List getDataSources() throws Exception {
+        List resources = new ArrayList();
+        resources.addAll(getPrivateDataSources());
+        resources.addAll(getGlobalDataSources());
+        return resources;
+    }
+
+    public List getPrivateDataSources() throws Exception {
+        List resources = new ArrayList();
         if (tomcatContainer != null && getResourceResolver().supportsPrivateResources()) {
             List apps = getTomcatContainer().findContexts();
 
-            List resources = new ArrayList();
             for (int i = 0; i < apps.size(); i++) {
-
                 List appResources = getResourceResolver().getApplicationResources((Context) apps.get(i));
-                //
                 // add only those resources that have data source info
-                //
-                for (Iterator it = appResources.iterator(); it.hasNext(); ) {
-                    ApplicationResource res = (ApplicationResource) it.next();
-                    if (res.getDataSourceInfo() != null) {
-                        resources.add(res);
-                    }
-                }
+                filterDataSources(appResources, resources);
             }
-            return resources;
-        } else {
-            return getResourceResolver().getApplicationResources();
+        }
+        return resources;
+    }
+
+    public List getGlobalDataSources() throws Exception {
+        List resources = new ArrayList();
+        if (getResourceResolver().supportsGlobalResources()) {
+            List globalResources = getResourceResolver().getApplicationResources();
+            // add only those resources that have data source info
+            filterDataSources(globalResources, resources);
+        }
+        return resources;
+    }
+
+    protected void filterDataSources(List resources, List dataSources) {
+        for (Iterator it = resources.iterator(); it.hasNext(); ) {
+            ApplicationResource res = (ApplicationResource) it.next();
+            if (res.getDataSourceInfo() != null) {
+                dataSources.add(res);
+            }
         }
     }
+
 }

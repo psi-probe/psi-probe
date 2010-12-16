@@ -21,7 +21,6 @@ import java.util.Iterator;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.catalina.Context;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -32,68 +31,58 @@ import org.springframework.web.servlet.ModelAndView;
  */
 
 public class ListAllJdbcResourceGroups extends TomcatContainerController {
+
     protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
         List dataSourceGroups = new ArrayList();
+        List dataSources = new ArrayList();
+        
+        List privateResources = getContainerWrapper().getPrivateDataSources();
+        List globalResources = getContainerWrapper().getGlobalDataSources();
 
-        // as of now detailed datasource info including URL is available for private resources only
+        // filter out anything that is not a datasource
+        // and use only those datasources that are properly configured
+        // as aggregated totals would not make any sense otherwise
+        filterValidDataSources(privateResources, dataSources);
+        filterValidDataSources(globalResources, dataSources);
 
-        if (getContainerWrapper().getResourceResolver().supportsPrivateResources()) {
-            List dataSources = new ArrayList();
-            List apps = getContainerWrapper().getTomcatContainer().findContexts();
+        // sort datasources by JDBC URL
+        Collections.sort(dataSources, new Comparator() {
+            public int compare(Object o1, Object o2) {
+                String jdbcURL1 = ((DataSourceInfo) o1).getJdbcURL();
+                String jdbcURL2 = ((DataSourceInfo) o2).getJdbcURL();
 
-            for (Iterator i = apps.iterator(); i.hasNext(); ) {
-                Context app = (Context) i.next();
-                List appResources = getContainerWrapper().getResourceResolver().getApplicationResources(app);
+                // here we rely on the the filter not to add any
+                // datasources with a null jdbcUrl to the list
 
-                // filter out anything that is not a datasource
-                // and use only those datasources that are properly configured
-                // as aggregated totals would not make any sence otherwise
-
-                for (Iterator j = appResources.iterator(); j.hasNext(); ) {
-                    ApplicationResource res = (ApplicationResource) j.next();
-
-                    if (res.getDataSourceInfo() != null && res.isLookedUp() &&
-                        res.getDataSourceInfo().getJdbcURL() != null) {
-                        dataSources.add(res.getDataSourceInfo());
-                    }
-                }
+                return jdbcURL1.compareToIgnoreCase(jdbcURL2);
             }
+        });
 
-            Collections.sort(dataSources, new Comparator() {
-                public int compare(Object o1, Object o2) {
-                    String jdbcURL1 = ((DataSourceInfo) o1).getJdbcURL();
-                    String jdbcURL2 = ((DataSourceInfo) o2).getJdbcURL();
+        // group datasources by JDBC URL and calculate aggregated totals
+        DataSourceInfoGroup dsGroup = null;
+        for (Iterator i = dataSources.iterator(); i.hasNext();) {
+            DataSourceInfo ds = (DataSourceInfo) i.next();
 
-                    // here we rely on the the code above for not to add any
-                    // datasources with jdbcUrl == null to the list
-
-                    return jdbcURL1.compareToIgnoreCase(jdbcURL2);
-                }
-            });
-
-            // group datasources by JdbsURL and calculate aggregated totals
-
-            DataSourceInfoGroup dsGroup = null;
-            boolean firstGroup = true;
-
-            for (Iterator i = dataSources.iterator(); i.hasNext();) {
-                DataSourceInfo ds = (DataSourceInfo) i.next();
-
-                if (firstGroup) {
-                    dsGroup = new DataSourceInfoGroup(ds);
-                    dataSourceGroups.add(dsGroup);
-                    firstGroup = false;
-                } else {
-                    if (dsGroup.getJdbcURL().equalsIgnoreCase(ds.getJdbcURL())) {
-                        dsGroup.addDataSourceInfo(ds);
-                    } else {
-                        dsGroup = new DataSourceInfoGroup(ds);
-                        dataSourceGroups.add(dsGroup);
-                    }
-                }
+            if (dsGroup == null || !dsGroup.getJdbcURL().equalsIgnoreCase(ds.getJdbcURL())) {
+                dsGroup = new DataSourceInfoGroup(ds);
+                dataSourceGroups.add(dsGroup);
+            } else {
+                dsGroup.addDataSourceInfo(ds);
             }
         }
 
         return new ModelAndView(getViewName(), "dataSourceGroups", dataSourceGroups);
     }
+
+    protected void filterValidDataSources(List resources, List dataSources) {
+        for (Iterator i = resources.iterator(); i.hasNext(); ) {
+            ApplicationResource res = (ApplicationResource) i.next();
+            if (res.isLookedUp()
+                    && res.getDataSourceInfo() != null
+                    && res.getDataSourceInfo().getJdbcURL() != null) {
+                dataSources.add(res.getDataSourceInfo());
+            }
+        }
+    }
+
 }
