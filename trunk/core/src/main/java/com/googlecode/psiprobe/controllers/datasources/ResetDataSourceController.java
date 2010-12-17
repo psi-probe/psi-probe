@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.catalina.Context;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 /**
  * Resets datasource if the datasource supports it.
@@ -25,11 +26,27 @@ import org.springframework.web.servlet.ModelAndView;
  */
 public class ResetDataSourceController extends ContextHandlerController {
 
+    private String replacePattern;
+
+    public String getReplacePattern() {
+        return replacePattern;
+    }
+
+    public void setReplacePattern(String replacePattern) {
+        this.replacePattern = replacePattern;
+    }
+
     protected ModelAndView handleContext(String contextName, Context context,
                                          HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         String resourceName = ServletRequestUtils.getStringParameter(request, "resource", null);
-        String viewName = ServletRequestUtils.getStringParameter(request, "view", getViewName());
+        String referer = request.getHeader("Referer");
+        String redirectURL;
+        if (referer != null) {
+            redirectURL = referer.replaceAll(replacePattern, "");
+        } else {
+            redirectURL = request.getContextPath() + getViewName();
+        }
 
         if (resourceName != null && resourceName.length() > 0) {
             boolean reset = false;
@@ -44,7 +61,8 @@ public class ResetDataSourceController extends ContextHandlerController {
             }
 
         }
-        return new ModelAndView(viewName);
+        logger.debug("Redirected to " + redirectURL);
+        return new ModelAndView(new RedirectView(redirectURL));
     }
 
     protected boolean isContextOptional() {

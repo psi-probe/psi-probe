@@ -63,10 +63,11 @@
 
 	<bean name="/app/resetds.htm" class="com.googlecode.psiprobe.controllers.datasources.ResetDataSourceController">
 		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="replacePattern" value="^http(s)?://[a-zA-Z\-\.0-9]+(:[0-9]+)?"/>
 		<!--
 			This controller uses InternalResourceView, so view name here has to be a URL like
 		-->
-		<property name="viewName" value="forward:/resources.htm"/>
+		<property name="viewName" value="/resources.htm"/>
 	</bean>
 
 	<bean name="/app/expire.htm" class="com.googlecode.psiprobe.controllers.sessions.ExpireSessionController">
