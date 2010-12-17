@@ -58,37 +58,41 @@
 						<div class="ajax_activity"></div>
 					</div>
 
-					<h3>
-						<spring:message code="probe.jsp.datasources.h3.global"/>
-					</h3>
-					<c:choose>
-						<c:when test="${not empty globalResources}">
-							<c:set var="resources" value="${globalResources}" scope="request" />
-							<c:set var="isGlobalResources" value="true" scope="request" />
-							<jsp:include page="datasources_table.jsp" />
-						</c:when>
-						<c:otherwise>
-							<div class="errorMessage">
-								<p><spring:message code="probe.jsp.datasources.global.empty" /></p>
-							</div>
-						</c:otherwise>
-					</c:choose>
+					<c:if test="${supportsGlobal}">
+						<h3>
+							<spring:message code="probe.jsp.datasources.h3.global"/>
+						</h3>
+						<c:choose>
+							<c:when test="${not empty globalResources}">
+								<c:set var="resources" value="${globalResources}" scope="request" />
+								<c:set var="isGlobalResources" value="true" scope="request" />
+								<jsp:include page="datasources_table.jsp" />
+							</c:when>
+							<c:otherwise>
+								<div class="errorMessage">
+									<p><spring:message code="probe.jsp.datasources.global.empty" /></p>
+								</div>
+							</c:otherwise>
+						</c:choose>
+					</c:if>
 
-					<h3>
-						<spring:message code="probe.jsp.datasources.h3.app"/>
-					</h3>
-					<c:choose>
-						<c:when test="${not empty privateResources}">
-							<c:set var="resources" value="${privateResources}" scope="request" />
-							<c:set var="isGlobalResources" value="false" scope="request" />
-							<jsp:include page="datasources_table.jsp" />
-						</c:when>
-						<c:otherwise>
-							<div class="errorMessage">
-								<p><spring:message code="probe.jsp.datasources.app.empty" /></p>
-							</div>
-						</c:otherwise>
-					</c:choose>
+					<c:if test="${supportsPrivate}">
+						<h3>
+							<spring:message code="probe.jsp.datasources.h3.app"/>
+						</h3>
+						<c:choose>
+							<c:when test="${not empty privateResources}">
+								<c:set var="resources" value="${privateResources}" scope="request" />
+								<c:set var="isGlobalResources" value="false" scope="request" />
+								<jsp:include page="datasources_table.jsp" />
+							</c:when>
+							<c:otherwise>
+								<div class="errorMessage">
+									<p><spring:message code="probe.jsp.datasources.app.empty" /></p>
+								</div>
+							</c:otherwise>
+						</c:choose>
+					</c:if>
 
 				</div>
 
