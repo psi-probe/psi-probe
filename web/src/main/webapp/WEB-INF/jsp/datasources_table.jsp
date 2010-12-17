@@ -26,7 +26,6 @@
 						<c:param name="webapp" value="${resource.applicationName}"/>
 					</c:if>
 					<c:param name="resource" value="${resource.name}"/>
-					<c:param name="view" value="redirect:/datasources.htm"/>
 				</c:url>
 				<a class="imglink" href="${reset_url}">
 					<img border="0" src="${pageContext.request.contextPath}<spring:theme code='reset.gif'/>"
