@@ -16,10 +16,41 @@
 			<distribution>manual</distribution>
 		</license>
 	</licenses>
+	<issueManagement>
+		<system>Google Code</system>
+		<url>http://code.google.com/p/psi-probe/issues/</url>
+	</issueManagement>
+	<mailingLists>
+		<mailingList>
+			<name>PSI Probe Announcements</name>
+			<subscribe>psi-probe+subscribe@googlegroups.com</subscribe>
+			<unsubscribe>psi-probe+unsubscribe@googlegroups.com</unsubscribe>
+			<archive>http://groups.google.com/group/psi-probe/</archive>
+		</mailingList>
+		<mailingList>
+			<name>PSI Probe Discussions</name>
+			<subscribe>psi-probe-discuss+subscribe@googlegroups.com</subscribe>
+			<unsubscribe>psi-probe-discuss+unsubscribe@googlegroups.com</unsubscribe>
+			<post>psi-probe-discuss@googlegroups.com</post>
+			<archive>http://groups.google.com/group/psi-probe-discuss/</archive>
+		</mailingList>
+		<mailingList>
+			<name>PSI Probe Issues</name>
+			<subscribe>psi-probe-issues+subscribe@googlegroups.com</subscribe>
+			<unsubscribe>psi-probe-issues+unsubscribe@googlegroups.com</unsubscribe>
+			<archive>http://groups.google.com/group/psi-probe-issues/</archive>
+		</mailingList>
+		<mailingList>
+			<name>PSI Probe Subversion</name>
+			<subscribe>psi-probe-svn+subscribe@googlegroups.com</subscribe>
+			<unsubscribe>psi-probe-svn+unsubscribe@googlegroups.com</unsubscribe>
+			<archive>http://groups.google.com/group/psi-probe-svn/</archive>
+		</mailingList>
+	</mailingLists>
 	<scm>
 		<connection>scm:svn:http://psi-probe.googlecode.com/svn/trunk/</connection>
 		<developerConnection>scm:svn:https://psi-probe.googlecode.com/svn/trunk/</developerConnection>
-		<url>scm:svn:http://psi-probe.googlecode.com/svn/</url>
+		<url>http://code.google.com/p/psi-probe/source/browse/trunk/</url>
 	</scm>
 	<modules>
 		<module>core</module>
