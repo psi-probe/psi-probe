@@ -56,7 +56,8 @@ public class Tomcat60ContainerAdaptor extends AbstractTomcatContainer {
         return binding != null && (binding.startsWith("Apache Tomcat/6.0")
                 || binding.startsWith("Apache Tomcat/7.0")
                 || binding.startsWith("JBossWeb/2.0")
-                || binding.startsWith("JBossWeb/2.1"));
+                || binding.startsWith("JBossWeb/2.1")
+                || (binding.startsWith("SpringSource tc") && binding.contains("/6.0")));
     }
 
     public Context findContext(String name) {
