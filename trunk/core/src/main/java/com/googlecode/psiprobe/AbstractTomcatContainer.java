@@ -304,16 +304,34 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
         return filterMaps;
     }
 
+    /**
+     * Converts a {@link FilterMap} into one or more {@link FilterMapping}s.
+     *
+     * <p>
+     * This implementation is for Tomcat 5.0/5.5.
+     * {@link FilterMap#getURLPattern()} and {@link FilterMap#getServletName()}
+     * were replaced in Tomcat 6 with binary-incompatible methods.
+     * </p>
+     *
+     * @param fmap
+     *        the FilterMap to analyze
+     * @param dm
+     *        the dispatcher mapping for the given FilterMap.  This will be the
+     *        same for each FilterMapping.
+     * @param filterClass
+     *        the class name of the mapped filter.  This will be the same for
+     *        each FilterMapping.
+     * @return
+     */
     protected List getFilterMappings(FilterMap fmap, String dm, String filterClass) {
         List filterMappings = new ArrayList(1);
         FilterMapping fm = new FilterMapping();
-        // FilterMap getURLPattern() was replaced with getURLPatterns() in Tomcat 6
-        // the following line results in an exception when Probe runs on Tomcat 6 !!!
         fm.setUrl(fmap.getURLPattern());
         fm.setServletName(fmap.getServletName());
         fm.setFilterName(fmap.getFilterName());
         fm.setDispatcherMap(dm);
         fm.setFilterClass(filterClass);
+        filterMappings.add(fm);
         return filterMappings;
     }
 
