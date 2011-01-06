@@ -17,7 +17,6 @@ import com.googlecode.psiprobe.model.ApplicationResource;
 import com.googlecode.psiprobe.model.ApplicationSession;
 import com.googlecode.psiprobe.model.Attribute;
 import com.googlecode.psiprobe.model.FilterInfo;
-import com.googlecode.psiprobe.model.FilterMapping;
 import com.googlecode.psiprobe.model.ServletInfo;
 import com.googlecode.psiprobe.model.ServletMapping;
 import java.io.Serializable;
@@ -40,7 +39,6 @@ import org.apache.catalina.Wrapper;
 import org.apache.catalina.core.StandardWrapper;
 import org.apache.catalina.deploy.ApplicationParameter;
 import org.apache.catalina.deploy.FilterDef;
-import org.apache.catalina.deploy.FilterMap;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
