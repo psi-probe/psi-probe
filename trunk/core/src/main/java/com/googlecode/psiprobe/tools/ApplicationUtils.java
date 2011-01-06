@@ -420,45 +420,4 @@ public class ApplicationUtils {
         return filterDefs;
     }
 
-    public static List getApplicationFilterMaps(Context context) {
-        FilterMap[] fms = context.findFilterMaps();
-        List filterMaps = new ArrayList(fms.length);
-        for (int i = 0; i < fms.length; i++) {
-            if (fms[i] != null) {
-                FilterMapping fm = new FilterMapping();
-                // FilterMap getURLPattern() was replaced with getURLPatterns() in Tomcat 6
-                // the following line results in an exception when Probe runs on Tomcat 6 !!!
-                //TODO: ApplicationUtils needs to be refactored in order to become Tomcat version specific
-                fm.setUrl(fms[i].getURLPattern());
-                fm.setServletName(fms[i].getServletName());
-                fm.setFilterName(fms[i].getFilterName());
-                String dm;
-                switch(fms[i].getDispatcherMapping()) {
-                    case FilterMap.ERROR: dm = "ERROR"; break;
-                    case FilterMap.FORWARD: dm = "FORWARD"; break;
-                    case FilterMap.FORWARD_ERROR: dm = "FORWARD,ERROR"; break;
-                    case FilterMap.INCLUDE: dm = "INCLUDE"; break;
-                    case FilterMap.INCLUDE_ERROR: dm = "INCLUDE,ERROR"; break;
-                    case FilterMap.INCLUDE_ERROR_FORWARD: dm = "INCLUDE,ERROR,FORWARD"; break;
-                    case FilterMap.INCLUDE_FORWARD: dm = "INCLUDE,FORWARD"; break;
-                    case FilterMap.REQUEST: dm = "REQUEST"; break;
-                    case FilterMap.REQUEST_ERROR: dm = "REQUEST,ERROR"; break;
-                    case FilterMap.REQUEST_ERROR_FORWARD: dm = "REQUEST,ERROR,FORWARD"; break;
-                    case FilterMap.REQUEST_ERROR_FORWARD_INCLUDE: dm = "REQUEST,ERROR,FORWARD,INCLUDE"; break;
-                    case FilterMap.REQUEST_ERROR_INCLUDE: dm = "REQUEST,ERROR,INCLUDE"; break;
-                    case FilterMap.REQUEST_FORWARD: dm = "REQUEST,FORWARD"; break;
-                    case FilterMap.REQUEST_INCLUDE: dm = "REQUEST,INCLUDE"; break;
-                    case FilterMap.REQUEST_FORWARD_INCLUDE: dm = "REQUEST,FORWARD,INCLUDE"; break;
-                    default: dm = "";
-                }
-                fm.setDispatcherMap(dm);
-                FilterDef fd = context.findFilterDef(fm.getFilterName());
-                if (fd != null) {
-                    fm.setFilterClass(fd.getFilterClass());
-                }
-                filterMaps.add(fm);
-            }
-        }
-        return filterMaps;
-    }
 }

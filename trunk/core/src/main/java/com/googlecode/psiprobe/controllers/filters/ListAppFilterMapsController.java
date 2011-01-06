@@ -11,12 +11,10 @@
 package com.googlecode.psiprobe.controllers.filters;
 
 import com.googlecode.psiprobe.controllers.ContextHandlerController;
-import com.googlecode.psiprobe.tools.ApplicationUtils;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.catalina.Context;
-import org.apache.catalina.util.ServerInfo;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -27,15 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class ListAppFilterMapsController extends ContextHandlerController {
     protected ModelAndView handleContext(String contextName, Context context,
                                          HttpServletRequest request, HttpServletResponse response) throws Exception {
-        // Tomcat's class representing filter mapping was changed starting with Tomcat 6,
-        // therefore ApplicationUtils.getApplicationFilterMaps() throws an exception on Tomcat 6
-        // TODO Add support of Tomcat 6
-        String serverVersion = ServerInfo.getServerInfo();
-        if (serverVersion.startsWith("Apache Tomcat/5.")) {
-            List filterMaps = ApplicationUtils.getApplicationFilterMaps(context);
-            return new ModelAndView(getViewName(), "filterMaps", filterMaps);
-        } else {
-            return new ModelAndView("errors/serverversion", "serverVersion", serverVersion);
-        }
+        List filterMaps = getContainerWrapper().getTomcatContainer().getApplicationFilterMaps(context);
+        return new ModelAndView(getViewName(), "filterMaps", filterMaps);
     }
 }
