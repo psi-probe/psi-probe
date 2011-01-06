@@ -10,11 +10,13 @@
  */
 package com.googlecode.psiprobe;
 
+import com.googlecode.psiprobe.model.FilterMapping;
 import com.googlecode.psiprobe.model.jsp.Item;
 import com.googlecode.psiprobe.model.jsp.Summary;
 import java.io.File;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -25,6 +27,8 @@ import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import org.apache.catalina.Context;
 import org.apache.catalina.core.StandardContext;
+import org.apache.catalina.deploy.FilterDef;
+import org.apache.catalina.deploy.FilterMap;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.jasper.EmbeddedServletOptions;
@@ -260,6 +264,57 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
         } else {
             logger.error("Context " + context.getName() + " does not have \"jsp\" servlet");
         }
+    }
+
+    public List getApplicationFilterMaps(Context context) {
+        FilterMap[] fms = context.findFilterMaps();
+        List filterMaps = new ArrayList(fms.length);
+        for (int i = 0; i < fms.length; i++) {
+            if (fms[i] != null) {
+                String dm;
+                switch(fms[i].getDispatcherMapping()) {
+                    case FilterMap.ERROR: dm = "ERROR"; break;
+                    case FilterMap.FORWARD: dm = "FORWARD"; break;
+                    case FilterMap.FORWARD_ERROR: dm = "FORWARD,ERROR"; break;
+                    case FilterMap.INCLUDE: dm = "INCLUDE"; break;
+                    case FilterMap.INCLUDE_ERROR: dm = "INCLUDE,ERROR"; break;
+                    case FilterMap.INCLUDE_ERROR_FORWARD: dm = "INCLUDE,ERROR,FORWARD"; break;
+                    case FilterMap.INCLUDE_FORWARD: dm = "INCLUDE,FORWARD"; break;
+                    case FilterMap.REQUEST: dm = "REQUEST"; break;
+                    case FilterMap.REQUEST_ERROR: dm = "REQUEST,ERROR"; break;
+                    case FilterMap.REQUEST_ERROR_FORWARD: dm = "REQUEST,ERROR,FORWARD"; break;
+                    case FilterMap.REQUEST_ERROR_FORWARD_INCLUDE: dm = "REQUEST,ERROR,FORWARD,INCLUDE"; break;
+                    case FilterMap.REQUEST_ERROR_INCLUDE: dm = "REQUEST,ERROR,INCLUDE"; break;
+                    case FilterMap.REQUEST_FORWARD: dm = "REQUEST,FORWARD"; break;
+                    case FilterMap.REQUEST_INCLUDE: dm = "REQUEST,INCLUDE"; break;
+                    case FilterMap.REQUEST_FORWARD_INCLUDE: dm = "REQUEST,FORWARD,INCLUDE"; break;
+                    default: dm = "";
+                }
+
+                String filterClass = "";
+                FilterDef fd = context.findFilterDef(fms[i].getFilterName());
+                if (fd != null) {
+                    filterClass = fd.getFilterClass();
+                }
+
+                List filterMappings = getFilterMappings(fms[i], dm, filterClass);
+                filterMaps.addAll(filterMappings);
+            }
+        }
+        return filterMaps;
+    }
+
+    protected List getFilterMappings(FilterMap fmap, String dm, String filterClass) {
+        List filterMappings = new ArrayList(1);
+        FilterMapping fm = new FilterMapping();
+        // FilterMap getURLPattern() was replaced with getURLPatterns() in Tomcat 6
+        // the following line results in an exception when Probe runs on Tomcat 6 !!!
+        fm.setUrl(fmap.getURLPattern());
+        fm.setServletName(fmap.getServletName());
+        fm.setFilterName(fmap.getFilterName());
+        fm.setDispatcherMap(dm);
+        fm.setFilterClass(filterClass);
+        return filterMappings;
     }
 
     /**

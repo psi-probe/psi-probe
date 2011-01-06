@@ -10,8 +10,10 @@
  */
 package com.googlecode.psiprobe;
 
+import com.googlecode.psiprobe.model.FilterMapping;
 import java.io.File;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import javax.management.MBeanServer;
@@ -24,6 +26,8 @@ import org.apache.catalina.Host;
 import org.apache.catalina.Lifecycle;
 import org.apache.catalina.Valve;
 import org.apache.catalina.Wrapper;
+import org.apache.catalina.deploy.FilterDef;
+import org.apache.catalina.deploy.FilterMap;
 import org.apache.commons.modeler.Registry;
 
 /**
@@ -152,6 +156,29 @@ public class Tomcat60ContainerAdaptor extends AbstractTomcatContainer {
 
     public String getName() {
         return host.getParent().getName();
+    }
+
+    protected List getFilterMappings(FilterMap fmap, String dm, String filterClass) {
+        String[] urls = fmap.getURLPatterns();
+        String[] servlets = fmap.getServletNames();
+        List filterMappings = new ArrayList(urls.length + servlets.length);
+        for (int i = 0; i < urls.length; i++) {
+            FilterMapping fm = new FilterMapping();
+            fm.setUrl(urls[i]);
+            fm.setFilterName(fmap.getFilterName());
+            fm.setDispatcherMap(dm);
+            fm.setFilterClass(filterClass);
+            filterMappings.add(fm);
+        }
+        for (int i = 0; i < servlets.length; i++) {
+            FilterMapping fm = new FilterMapping();
+            fm.setServletName(servlets[i]);
+            fm.setFilterName(fmap.getFilterName());
+            fm.setDispatcherMap(dm);
+            fm.setFilterClass(filterClass);
+            filterMappings.add(fm);
+        }
+        return filterMappings;
     }
 
 }

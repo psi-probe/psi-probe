@@ -72,4 +72,6 @@ public interface TomcatContainer {
     String getName();
 
     String getServletFileNameForJsp(Context context, String jspName);
+
+    List getApplicationFilterMaps(Context context);
 }
