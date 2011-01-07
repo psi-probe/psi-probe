@@ -13,19 +13,6 @@
 	<packaging>jar</packaging>
 	<name>PSI Probe Core</name>
 	<dependencies>
-		<!--
-			not found in any repo, you must download manually
-			see  http://www.oracle.com/technology/software/tech/java/sqlj_jdbc/htdocs/jdbc_10201.html
-			and deploy to your local repo:
-			mvn install:install-file \
-				-DgroupId=com.oracle -DartifactId=ojdbc14 -Dversion=10.2.0.1.0 \
-				-Dpackaging=jar -DgeneratePom=true -Dfile=path/to/ojdbc14.jar
-		-->
-		<dependency>
-			<groupId>com.oracle</groupId>
-			<artifactId>ojdbc14</artifactId>
-			<scope>provided</scope>
-		</dependency>
 		<!--  tomcat libs start -->
 		<dependency>
 			<groupId>tomcat</groupId>
@@ -78,6 +65,11 @@
 		<dependency>
 			<groupId>c3p0</groupId>
 			<artifactId>c3p0</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc14</artifactId>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>

@@ -144,6 +144,10 @@
 				</exclusions>
 			</dependency>
 			<dependency>
+				<!--
+					Not in any known Maven repository; must be installed manually.
+					See readme.txt for instructions.
+				-->
 				<groupId>com.oracle</groupId>
 				<artifactId>ojdbc14</artifactId>
 				<version>10.2.0.1.0</version>
