@@ -24,6 +24,7 @@
 		<dependency>
 			<groupId>com.oracle</groupId>
 			<artifactId>ojdbc14</artifactId>
+			<scope>provided</scope>
 		</dependency>
 		<!--  tomcat libs start -->
 		<dependency>
@@ -141,6 +142,7 @@
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
+			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>opensymphony</groupId>
