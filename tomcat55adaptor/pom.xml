@@ -12,6 +12,9 @@
 	<artifactId>tomcat55adaptor</artifactId>
 	<packaging>jar</packaging>
 	<name>PSI Probe Tomcat 5.5.x Adaptor</name>
+	<description>
+		Implementation of features specific to Apache Tomcat 5.5.x
+	</description>
 	<dependencies>
 		<dependency>
 			<groupId>${project.groupId}</groupId>

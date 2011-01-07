@@ -5,10 +5,13 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.googlecode.psiprobe</groupId>
 	<artifactId>psi-probe</artifactId>
+	<version>2.2.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>PSI Probe</name>
-	<version>2.2.0-SNAPSHOT</version>
 	<url>http://psi-probe.googlecode.com/</url>
+	<description>
+		Advanced manager and monitor for Tomcat, forked from Lambda Probe
+	</description>
 	<licenses>
 		<license>
 			<name>GNU General Public License, version 2</name>

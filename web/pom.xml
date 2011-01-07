@@ -12,6 +12,9 @@
 	<artifactId>web</artifactId>
 	<packaging>war</packaging>
 	<name>PSI Probe Web Application</name>
+	<description>
+		Web view, message resources, and configuration
+	</description>
 	<dependencies>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
