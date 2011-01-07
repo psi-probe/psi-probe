@@ -12,6 +12,9 @@
     <artifactId>tomcat60adaptor</artifactId>
     <packaging>jar</packaging>
     <name>PSI Probe Tomcat 6.0.x Adaptor</name>
+	<description>
+		Implementation of features specific to Apache Tomcat 6.0.x
+	</description>
 	<dependencyManagement>
 		<dependencies>
 			<dependency>

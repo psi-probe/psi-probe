@@ -12,6 +12,9 @@
 	<artifactId>core</artifactId>
 	<packaging>jar</packaging>
 	<name>PSI Probe Core</name>
+	<description>
+		Core logic, data models, and controllers
+	</description>
 	<dependencies>
 		<!--  tomcat libs start -->
 		<dependency>
