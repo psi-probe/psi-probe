@@ -55,8 +55,7 @@
 			<dependency>
 				<!--
 					Not in any known Maven repository; must be installed manually.
-					Download JAR: http://people.apache.org/~fhanik/jdbc-pool/v1.0.8.5/
-					Note: groupId and artifactId chosen to match those used in http://ascendant76.blogspot.com/2010/02/upcoming-jdbc-pool.html
+					See readme.txt for instructions.
 				-->
 				<groupId>org.apache.tomcat</groupId>
 				<artifactId>jdbc-pool</artifactId>
