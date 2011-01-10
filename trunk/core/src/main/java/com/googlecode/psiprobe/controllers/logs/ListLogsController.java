@@ -19,9 +19,7 @@ import com.googlecode.psiprobe.tools.logging.FileLogAccessor;
 import com.googlecode.psiprobe.tools.logging.LogDestination;
 import com.googlecode.psiprobe.tools.logging.catalina.CatalinaLoggerAccessor;
 import com.googlecode.psiprobe.tools.logging.commons.CommonsLoggerAccessor;
-import com.googlecode.psiprobe.tools.logging.jdk.Jdk14LoggerAccessor;
 import com.googlecode.psiprobe.tools.logging.jdk.Jdk14ManagerAccessor;
-import com.googlecode.psiprobe.tools.logging.log4j.Log4JLoggerAccessor;
 import com.googlecode.psiprobe.tools.logging.log4j.Log4JManagerAccessor;
 import java.io.File;
 import java.util.ArrayList;
@@ -133,36 +131,8 @@ public class ListLogsController extends TomcatContainerController {
             //
             List uniqueList = new LinkedList();
 
-            Comparator cmp = new Comparator() {
-                public int compare(Object o1, Object o2) {
-                    File f1 = ((LogDestination) o1).getFile();
-                    File f2 = ((LogDestination) o2).getFile();
-                    String name1 = f1 == null ? "" : f1.getAbsolutePath();
-                    String name2 = f2 == null ? "" : f2.getAbsolutePath();
-                    return name1.compareTo(name2);
-                }
-            };
-
             boolean  showAll = ServletRequestUtils.getBooleanParameter(request, "apps", false);
-
-            if (showAll) {
-                cmp = new Comparator() {
-                    public int compare(Object o1, Object o2) {
-                        LogDestination d1 = (LogDestination) o1;
-                        LogDestination d2 = (LogDestination) o2;
-
-                        String appName1 = d1.getApplication() != null ? d1.getApplication().getName() : "";
-                        String appName2 = d2.getApplication() != null ? d2.getApplication().getName() : "";
-
-                        String logClass1 = d1.getLogClass();
-                        String logClass2 = d1.getLogClass();
-
-                        String name1 = appName1 + logClass1 + (d1.getFile() == null ? "" : d1.getFile().getAbsolutePath());
-                        String name2 = appName2 + logClass2 + (d2.getFile() == null ? "" : d2.getFile().getAbsolutePath());
-                        return name1.compareTo(name2);
-                    }
-                };
-            }
+            Comparator cmp = new LogDestinationComparator(showAll);
 
             Collections.sort(allAppenders, cmp);
             for (int i = 0; i < allAppenders.size(); i++) {
@@ -183,14 +153,14 @@ public class ListLogsController extends TomcatContainerController {
 
     private void interrogateClassLoader(ClassLoader cl, Application application, List appenders) throws Exception {
 
-        Jdk14LoggerAccessor jdk14accessor = Jdk14ManagerAccessor.getRootLogger(cl);
+        Jdk14ManagerAccessor jdk14accessor = Jdk14ManagerAccessor.create(cl);
         if (jdk14accessor != null) {
             jdk14accessor.setApplication(application);
             appenders.addAll(jdk14accessor.getHandlers());
         }
 
         // check for Log4J loggers
-        Log4JLoggerAccessor log4JAccessor = Log4JManagerAccessor.getRootLogger(cl);
+        Log4JManagerAccessor log4JAccessor = Log4JManagerAccessor.create(cl);
         if (log4JAccessor != null) {
             log4JAccessor.setApplication(application);
             appenders.addAll(log4JAccessor.getAppenders());
@@ -209,4 +179,34 @@ public class ListLogsController extends TomcatContainerController {
         }
 
     }
+
+    private static class LogDestinationComparator implements Comparator {
+
+        private boolean showAll;
+
+        public LogDestinationComparator(boolean showAll) {
+            this.showAll = showAll;
+        }
+
+        public int compare(Object o1, Object o2) {
+            LogDestination d1 = (LogDestination) o1;
+            LogDestination d2 = (LogDestination) o2;
+            String name1, name2;
+            if (showAll) {
+                String appName1 = d1.getApplication() != null ? d1.getApplication().getName() : "";
+                String appName2 = d2.getApplication() != null ? d2.getApplication().getName() : "";
+                String logClass1 = d1.getLogClass();
+                String logClass2 = d1.getLogClass();
+                name1 = appName1 + logClass1 + (d1.getFile() == null ? "" : d1.getFile().getAbsolutePath());
+                name2 = appName2 + logClass2 + (d2.getFile() == null ? "" : d2.getFile().getAbsolutePath());
+            } else {
+                File f1 = d1.getFile();
+                File f2 = d2.getFile();
+                name1 = (f1 == null ? "" : f1.getAbsolutePath());
+                name2 = (f2 == null ? "" : f2.getAbsolutePath());
+            }
+            return name1.compareTo(name2);
+        }
+    }
+
 }

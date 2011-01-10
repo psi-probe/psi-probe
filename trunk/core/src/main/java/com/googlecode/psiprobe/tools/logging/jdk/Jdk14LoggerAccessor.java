@@ -10,10 +10,8 @@
  */
 package com.googlecode.psiprobe.tools.logging.jdk;
 
-import com.googlecode.psiprobe.model.Application;
 import com.googlecode.psiprobe.tools.logging.DefaultAccessor;
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.List;
 import org.apache.commons.beanutils.MethodUtils;
 import org.apache.commons.beanutils.PropertyUtils;
@@ -21,33 +19,9 @@ import org.apache.commons.beanutils.PropertyUtils;
 public class Jdk14LoggerAccessor extends DefaultAccessor {
 
     public List getHandlers() {
-
-        List allHandlers = new ArrayList();
-
+        List handlerAccessors = new ArrayList();
         try {
-            Enumeration ee = (Enumeration) MethodUtils.invokeMethod(getTarget(), "getLoggerNames", null);
-
-            List loggerNames = new ArrayList();
-            while (ee.hasMoreElements()) {
-                loggerNames.add(ee.nextElement());
-            }
-
-
-            for (int j = 0; j < loggerNames.size(); j++) {
-                String name = (String) loggerNames.get(j);
-                getHandlersForLogger(MethodUtils.invokeMethod(getTarget(), "getLogger", name), getApplication(),
-                        allHandlers, "jdk");
-            }
-        } catch (Exception e) {
-            //
-        }
-        return allHandlers;
-    }
-
-    public static void getHandlersForLogger(Object logger, Application application, List handlerAccessors,
-                                            String logClass) {
-        try {
-            Object handlers[] = (Object[]) PropertyUtils.getProperty(logger, "handlers");
+            Object handlers[] = (Object[]) PropertyUtils.getProperty(getTarget(), "handlers");
             for (int h = 0; h < handlers.length; h++) {
                 Object handler = handlers[h];
                 BaseJdk14HandlerAccessor handlerAccessor = null;
@@ -58,15 +32,37 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
                 }
 
                 if (handlerAccessor != null) {
-                    handlerAccessor.setLogClass(logClass);
-                    handlerAccessor.setLogger(logger);
+                    handlerAccessor.setLogClass("jdk");
+                    handlerAccessor.setLogger(getTarget());
                     handlerAccessor.setTarget(handlers[h]);
-                    handlerAccessor.setApplication(application);
+                    handlerAccessor.setApplication(getApplication());
                     handlerAccessors.add(handlerAccessor);
                 }
             }
         } catch (Exception e) {
             //
         }
+        return handlerAccessors;
     }
+
+    public String getLevel() {
+        try {
+            Object level = MethodUtils.invokeMethod(getTarget(), "getLevel", null);
+            return (String) MethodUtils.invokeMethod(level, "getName", null);
+        } catch (Exception e) {
+            log.error(getTarget() + ".getLevel() failed", e);
+        }
+        return null;
+    }
+
+    public void setLevel(String newLevelStr) {
+        try {
+            Object level = MethodUtils.invokeMethod(getTarget(), "getLevel", null);
+            Object newLevel = MethodUtils.invokeMethod(level, "parse", newLevelStr);
+            MethodUtils.invokeMethod(getTarget(), "setLevel", newLevel);
+        } catch (Exception e) {
+            log.error(getTarget() + ".setLevel() failed", e);
+        }
+    }
+
 }
