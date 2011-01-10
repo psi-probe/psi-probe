@@ -10,18 +10,47 @@
  */
 package com.googlecode.psiprobe.tools.logging.jdk;
 
+import com.googlecode.psiprobe.tools.logging.DefaultAccessor;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.List;
 import org.apache.commons.beanutils.MethodUtils;
 
-public class Jdk14ManagerAccessor {
-    public static Jdk14LoggerAccessor getRootLogger(ClassLoader cl) {
+public class Jdk14ManagerAccessor extends DefaultAccessor {
+
+    private Jdk14ManagerAccessor() {
+
+    }
+
+    public static Jdk14ManagerAccessor create(ClassLoader cl) {
         try {
             Class clazz = cl.loadClass("java.util.logging.LogManager");
             Object manager = MethodUtils.getAccessibleMethod(clazz, "getLogManager", new Class[]{}).invoke(null, null);
-            Jdk14LoggerAccessor accessor = new Jdk14LoggerAccessor();
+            Jdk14ManagerAccessor accessor = new Jdk14ManagerAccessor();
             accessor.setTarget(manager);
             return accessor;
         } catch (Exception e) {
             return null;
         }
     }
+
+    public List getHandlers() {
+        List allHandlers = new ArrayList();
+        try {
+            Enumeration e = (Enumeration) MethodUtils.invokeMethod(getTarget(), "getLoggerNames", null);
+            while (e.hasMoreElements()) {
+                String name = (String) e.nextElement();
+                Object logger = MethodUtils.invokeMethod(getTarget(), "getLogger", name);
+                Jdk14LoggerAccessor accessor = new Jdk14LoggerAccessor();
+                accessor.setTarget(logger);
+                accessor.setApplication(getApplication());
+                accessor.setLogClass("jdk");
+                allHandlers.addAll(accessor.getHandlers());
+            }
+        } catch (Exception e) {
+            //
+        }
+        return allHandlers;
+    }
+
 }

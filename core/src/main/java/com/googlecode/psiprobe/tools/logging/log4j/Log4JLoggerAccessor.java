@@ -21,29 +21,39 @@ public class Log4JLoggerAccessor extends DefaultAccessor {
     public List getAppenders() {
         List appenders = new ArrayList();
         try {
-            populateAppenders(getTarget(), appenders);
-            Object hierarchy = MethodUtils.invokeMethod(getTarget(), "getLoggerRepository", null);
-            if (hierarchy != null) {
-                Enumeration e = (Enumeration) MethodUtils.invokeMethod(hierarchy, "getCurrentLoggers", null);
-                while (e.hasMoreElements()) {
-                    populateAppenders(e.nextElement(), appenders);
-                }
+            Enumeration e = (Enumeration) MethodUtils.invokeMethod(getTarget(), "getAllAppenders", null);
+            while(e.hasMoreElements()) {
+                Log4JAppenderAccessor aa = new Log4JAppenderAccessor();
+                aa.setTarget(e.nextElement());
+                aa.setLoggerAccessor(this);
+                aa.setLogClass("log4j");
+                aa.setApplication(getApplication());
+                appenders.add(aa);
             }
         } catch (Exception e) {
-            log.error(getTarget()+".getAppenders() failed", e);
+            log.error(getTarget()+".getAllAppenders() failed", e);
         }
         return appenders;
     }
 
-    private void populateAppenders(Object o, List appenderList) throws Exception {
-        Enumeration e = (Enumeration) MethodUtils.invokeMethod(o, "getAllAppenders", null);
-        while(e.hasMoreElements()) {
-            Log4JAppenderAccessor aa = new Log4JAppenderAccessor();
-            aa.setTarget(e.nextElement());
-            aa.setLoggerAccessor(this);
-            aa.setLogClass("log4j");
-            aa.setApplication(getApplication());
-            appenderList.add(aa);
+    public String getLevel() {
+        try {
+            Object level = MethodUtils.invokeMethod(getTarget(), "getLevel", null);
+            return (String) MethodUtils.invokeMethod(level, "toString", null);
+        } catch (Exception e) {
+            log.error(getTarget() + ".getLevel() failed", e);
+        }
+        return null;
+    }
+
+    public void setLevel(String newLevelStr) {
+        try {
+            Object level = MethodUtils.invokeMethod(getTarget(), "getLevel", null);
+            Object newLevel = MethodUtils.invokeMethod(level, "toLevel", newLevelStr);
+            MethodUtils.invokeMethod(getTarget(), "setLevel", newLevel);
+        } catch (Exception e) {
+            log.error(getTarget() + ".setLevel() failed", e);
         }
     }
+
 }

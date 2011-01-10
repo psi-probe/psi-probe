@@ -39,7 +39,11 @@ public class CommonsLoggerAccessor extends DefaultAccessor {
             } else if ("java.util.logging.Logger".equals(logger.getClass().getName())) {
 
                 while (logger != null) {
-                    Jdk14LoggerAccessor.getHandlersForLogger(logger, getApplication(), destinations, "jdk");
+                    Jdk14LoggerAccessor accessor = new Jdk14LoggerAccessor();
+                    accessor.setTarget(logger);
+                    accessor.setLogClass("jdk");
+                    accessor.setApplication(getApplication());
+                    destinations.addAll(accessor.getHandlers());
                     logger = invokeMethod(logger, "getParent", null, null);
                 }
             }
