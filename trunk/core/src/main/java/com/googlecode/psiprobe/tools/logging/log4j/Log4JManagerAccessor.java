@@ -50,6 +50,23 @@ public class Log4JManagerAccessor extends DefaultAccessor {
         }
     }
 
+    public Log4JLoggerAccessor getLogger(String name) {
+        try {
+            Class clazz = (Class) getTarget();
+            Method m = MethodUtils.getAccessibleMethod(clazz, "getLogger", new Class[] {String.class});
+            Object logger = m.invoke(null, new Object[] {name});
+
+            Log4JLoggerAccessor accessor = new Log4JLoggerAccessor();
+            accessor.setTarget(logger);
+            accessor.setApplication(getApplication());
+            return accessor;
+
+        } catch (Exception e) {
+            log.error(getTarget() + ".getLogger(\"" + name + "\") failed", e);
+            return null;
+        }
+    }
+
     public List getAppenders() {
         List appenders = new ArrayList();
         try {
