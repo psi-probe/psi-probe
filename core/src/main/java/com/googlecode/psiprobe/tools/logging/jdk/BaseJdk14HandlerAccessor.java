@@ -15,14 +15,14 @@ import com.googlecode.psiprobe.tools.logging.LogDestination;
 
 public abstract class BaseJdk14HandlerAccessor extends DefaultAccessor implements LogDestination {
 
-    private Object logger;
+    private Jdk14LoggerAccessor loggerAccessor;
 
-    public Object getLogger() {
-        return logger;
+    public Object getLoggerAccessor() {
+        return loggerAccessor;
     }
 
-    public void setLogger(Object logger) {
-        this.logger = logger;
+    public void setLoggerAccessor(Jdk14LoggerAccessor loggerAccessor) {
+        this.loggerAccessor = loggerAccessor;
     }
 
     public String getType() {
