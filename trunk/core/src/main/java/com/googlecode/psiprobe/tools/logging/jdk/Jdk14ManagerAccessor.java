@@ -40,8 +40,10 @@ public class Jdk14ManagerAccessor extends DefaultAccessor {
             Jdk14LoggerAccessor accessor = new Jdk14LoggerAccessor();
             accessor.setTarget(logger);
             accessor.setApplication(getApplication());
+            accessor.setLogClass("jdk");
             return accessor;
         } catch (Exception e) {
+            log.error(getTarget() + ".getLogger(\"" + name + "\") failed", e);
             return null;
         }
     }
@@ -52,15 +54,12 @@ public class Jdk14ManagerAccessor extends DefaultAccessor {
             Enumeration e = (Enumeration) MethodUtils.invokeMethod(getTarget(), "getLoggerNames", null);
             while (e.hasMoreElements()) {
                 String name = (String) e.nextElement();
-                Object logger = MethodUtils.invokeMethod(getTarget(), "getLogger", name);
-                Jdk14LoggerAccessor accessor = new Jdk14LoggerAccessor();
-                accessor.setTarget(logger);
-                accessor.setApplication(getApplication());
-                accessor.setLogClass("jdk");
+                Jdk14LoggerAccessor accessor = getLogger(name);
+
                 allHandlers.addAll(accessor.getHandlers());
             }
         } catch (Exception e) {
-            //
+            log.error(getTarget() + ".getLoggerNames() failed", e);
         }
         return allHandlers;
     }
