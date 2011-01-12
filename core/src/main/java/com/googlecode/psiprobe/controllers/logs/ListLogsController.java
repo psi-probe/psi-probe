@@ -78,53 +78,7 @@ public class ListLogsController extends TomcatContainerController {
             // interrogate webapp classloaders and avilable loggers
             //
             List contexts = getContainerWrapper().getTomcatContainer().findContexts();
-            for (int i = 0; i < contexts.size(); i++) {
-
-                Context ctx = (Context) contexts.get(i);
-                Application application = ApplicationUtils.getApplication(ctx);
-
-                ClassLoader cl = ctx.getLoader().getClassLoader();
-
-                try {
-                    Object contextLogger = getContainerWrapper().getTomcatContainer().getLogger(ctx);
-                    if (contextLogger != null) {
-                        if (contextLogger.getClass().getName().startsWith("org.apache.commons.logging")) {
-                            CommonsLoggerAccessor commonsAccessor = new CommonsLoggerAccessor();
-                            commonsAccessor.setTarget(contextLogger);
-                            commonsAccessor.setApplication(application);
-                            allAppenders.addAll(commonsAccessor.getDestinations());
-                        } else if (contextLogger.getClass().getName().startsWith("org.apache.catalina.logger")) {
-                            CatalinaLoggerAccessor catalinaAccessor = new CatalinaLoggerAccessor();
-                            catalinaAccessor.setApplication(application);
-                            catalinaAccessor.setTarget(contextLogger);
-                            catalinaAccessor.setLogClass("catalina");
-                            allAppenders.add(catalinaAccessor);
-                        }
-                    }
-                } catch (Throwable e) {
-                    logger.error("Could not interrogate context logger for " + ctx.getName() + ". Enable debug logging to see the trace stack");
-                    logger.debug(e);
-                    //
-                    // make sure we always re-throw ThreadDeath
-                    //
-                    if (e instanceof ThreadDeath) {
-                        throw (ThreadDeath) e;
-                    }
-                }
-
-                if (application.isAvailable()) {
-                    ClassLoader thisCl = Thread.currentThread().getContextClassLoader();
-                    Thread.currentThread().setContextClassLoader(cl);
-                    try {
-                        interrogateClassLoader(cl, application, allAppenders);
-                    } catch (Exception e) {
-                        logger.error("Could not interrogate classloader loggers for " + ctx.getName() + ". Enable debug logging to see the trace stack");
-                        logger.debug(e);
-                    } finally {
-                        Thread.currentThread().setContextClassLoader(thisCl);
-                    }
-                }
-            }
+            interrogateApplicationClassLoaders(contexts, allAppenders);
 
             //
             // this list has to guarantee the order in which elements are added
@@ -148,6 +102,56 @@ public class ListLogsController extends TomcatContainerController {
             return new ModelAndView(getViewName());
         } else {
             return new ModelAndView(errorView);
+        }
+    }
+
+    private void interrogateApplicationClassLoaders(List contexts, List allAppenders) {
+        for (int i = 0; i < contexts.size(); i++) {
+
+            Context ctx = (Context) contexts.get(i);
+            Application application = ApplicationUtils.getApplication(ctx);
+
+            ClassLoader cl = ctx.getLoader().getClassLoader();
+
+            try {
+                Object contextLogger = getContainerWrapper().getTomcatContainer().getLogger(ctx);
+                if (contextLogger != null) {
+                    if (contextLogger.getClass().getName().startsWith("org.apache.commons.logging")) {
+                        CommonsLoggerAccessor commonsAccessor = new CommonsLoggerAccessor();
+                        commonsAccessor.setTarget(contextLogger);
+                        commonsAccessor.setApplication(application);
+                        allAppenders.addAll(commonsAccessor.getDestinations());
+                    } else if (contextLogger.getClass().getName().startsWith("org.apache.catalina.logger")) {
+                        CatalinaLoggerAccessor catalinaAccessor = new CatalinaLoggerAccessor();
+                        catalinaAccessor.setApplication(application);
+                        catalinaAccessor.setTarget(contextLogger);
+                        catalinaAccessor.setLogClass("catalina");
+                        allAppenders.add(catalinaAccessor);
+                    }
+                }
+            } catch (Throwable e) {
+                logger.error("Could not interrogate context logger for " + ctx.getName() + ". Enable debug logging to see the trace stack");
+                logger.debug(e);
+                //
+                // make sure we always re-throw ThreadDeath
+                //
+                if (e instanceof ThreadDeath) {
+                    throw (ThreadDeath) e;
+                }
+            }
+
+            if (application.isAvailable()) {
+                ClassLoader thisCl = Thread.currentThread().getContextClassLoader();
+                Thread.currentThread().setContextClassLoader(cl);
+                try {
+                    interrogateClassLoader(cl, application, allAppenders);
+                } catch (Exception e) {
+                    logger.error("Could not interrogate classloader loggers for " + ctx.getName() + ". Enable debug logging to see the trace stack");
+                    logger.debug(e);
+                } finally {
+                    Thread.currentThread().setContextClassLoader(thisCl);
+                }
+            }
         }
     }
 
