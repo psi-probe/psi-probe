@@ -16,6 +16,7 @@ import com.googlecode.psiprobe.tools.logging.LogDestination;
 public abstract class BaseJdk14HandlerAccessor extends DefaultAccessor implements LogDestination {
 
     private Jdk14LoggerAccessor loggerAccessor;
+    private String name;
 
     public Jdk14LoggerAccessor getLoggerAccessor() {
         return loggerAccessor;
@@ -23,6 +24,14 @@ public abstract class BaseJdk14HandlerAccessor extends DefaultAccessor implement
 
     public void setLoggerAccessor(Jdk14LoggerAccessor loggerAccessor) {
         this.loggerAccessor = loggerAccessor;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getType() {
