@@ -45,4 +45,13 @@ public class CatalinaLoggerAccessor extends DefaultAccessor implements LogDestin
             return log;
         }
     }
+
+    public String getLevel() {
+        return null;
+    }
+
+    public String[] getValidLevels() {
+        return null;
+    }
+
 }

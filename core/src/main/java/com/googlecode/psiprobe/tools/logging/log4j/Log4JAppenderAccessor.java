@@ -46,5 +46,13 @@ public class Log4JAppenderAccessor extends DefaultAccessor implements LogDestina
         String fileName = (String) getProperty(getTarget(), "file", null);
         return fileName != null ? new File(fileName) : getStdoutFile();
     }
+
+    public String getLevel() {
+        return getLoggerAccessor().getLevel();
+    }
+
+    public String[] getValidLevels() {
+        return new String[] {"OFF", "FATAL", "ERROR", "WARNING", "INFO", "DEBUG", "TRACE", "ALL"};
+    }
     
 }

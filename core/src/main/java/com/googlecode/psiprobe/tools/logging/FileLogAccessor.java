@@ -35,4 +35,13 @@ public class FileLogAccessor extends DefaultAccessor implements LogDestination {
     public void setFile(File file) {
         this.file = file;
     }
+
+    public String getLevel() {
+        return null;
+    }
+
+    public String[] getValidLevels() {
+        return null;
+    }
+
 }

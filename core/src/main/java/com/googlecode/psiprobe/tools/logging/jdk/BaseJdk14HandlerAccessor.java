@@ -17,7 +17,7 @@ public abstract class BaseJdk14HandlerAccessor extends DefaultAccessor implement
 
     private Jdk14LoggerAccessor loggerAccessor;
 
-    public Object getLoggerAccessor() {
+    public Jdk14LoggerAccessor getLoggerAccessor() {
         return loggerAccessor;
     }
 
@@ -28,4 +28,13 @@ public abstract class BaseJdk14HandlerAccessor extends DefaultAccessor implement
     public String getType() {
         return getTarget().getClass().getName();
     }
+
+    public String getLevel() {
+        return getLoggerAccessor().getLevel();
+    }
+
+    public String[] getValidLevels() {
+        return new String[] {"OFF", "SEVERE", "WARNING", "INFO", "CONFIG", "FINE", "FINER", "FINEST", "ALL"};
+    }
+
 }
