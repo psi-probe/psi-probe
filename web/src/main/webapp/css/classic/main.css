@@ -295,6 +295,15 @@ li#clear {
 	background: url( "gifs/pill.gif" ) top left no-repeat;
 }
 
+li#level {
+	float: left;
+	background: url( "gifs/script_gear.gif" ) top left no-repeat;
+}
+
+li#level select {
+	margin: 0;
+}
+
 span.fail {
 	background: url( "img/exclamation.gif" ) top left no-repeat;
 	padding-left: 20px;
