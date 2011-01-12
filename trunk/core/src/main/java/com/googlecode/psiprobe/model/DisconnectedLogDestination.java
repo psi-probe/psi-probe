@@ -30,6 +30,8 @@ public class DisconnectedLogDestination implements LogDestination, Serializable 
     private String logClass;
     private long size;
     private Timestamp lastModified;
+    private String level;
+    private String[] validLevels;
 
     public DisconnectedLogDestination(LogDestination destination) {
         this.application = destination.getApplication();
@@ -40,6 +42,8 @@ public class DisconnectedLogDestination implements LogDestination, Serializable 
         this.logClass = destination.getLogClass();
         this.size = destination.getSize();
         this.lastModified = destination.getLastModified();
+        this.level = destination.getLevel();
+        this.validLevels = destination.getValidLevels();
     }
 
     public Application getApplication() {
@@ -72,6 +76,14 @@ public class DisconnectedLogDestination implements LogDestination, Serializable 
 
     public Timestamp getLastModified() {
         return lastModified;
+    }
+
+    public String getLevel() {
+        return level;
+    }
+
+    public String[] getValidLevels() {
+        return validLevels;
     }
 
 }

@@ -23,4 +23,6 @@ public interface LogDestination {
     long getSize();
     Timestamp getLastModified();
     String getLogClass();
+    String getLevel();
+    String[] getValidLevels();
 }
