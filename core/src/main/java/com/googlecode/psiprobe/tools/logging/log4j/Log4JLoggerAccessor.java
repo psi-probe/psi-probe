@@ -52,7 +52,7 @@ public class Log4JLoggerAccessor extends DefaultAccessor {
             Object newLevel = MethodUtils.invokeMethod(level, "toLevel", newLevelStr);
             MethodUtils.invokeMethod(getTarget(), "setLevel", newLevel);
         } catch (Exception e) {
-            log.error(getTarget() + ".setLevel() failed", e);
+            log.error(getTarget() + ".setLevel(\"" + newLevelStr + "\") failed", e);
         }
     }
 

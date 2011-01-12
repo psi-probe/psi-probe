@@ -40,7 +40,7 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
                 }
             }
         } catch (Exception e) {
-            //
+            log.error(getTarget() + "#handlers inaccessible", e);
         }
         return handlerAccessors;
     }
