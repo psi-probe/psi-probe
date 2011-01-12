@@ -74,6 +74,15 @@
 					<spring:message code="probe.jsp.follow.menu.clear"/>
 				</a>
 			</li>
+			<li id="level">
+				<c:if test="${not empty validLogLevels && logLevel != null}">
+					<select>
+						<c:forEach items="${validLogLevels}" var="validLogLevel">
+							<option value="${validLogLevel}" ${validLogLevel == logLevel ? 'selected="selected"' : ''}>${validLogLevel}</option>
+						</c:forEach>
+					</select>
+				</c:if>
+			</li>
 			<li id="download">
 				<a href="<c:url value='/logs/download'><c:param name='id' value='${param.id}'/></c:url>">
 					<spring:message code="probe.jsp.follow.menu.download"/>
@@ -253,6 +262,11 @@
 						$(file_content_div).update();
 						followLog(undefined);
 						return false;
+					}
+				},
+				'#level select': function(element) {
+					element.onchange = function() {
+						// TODO: change the log level via AJAX
 					}
 				}
 
