@@ -12,6 +12,7 @@ package com.googlecode.psiprobe.tools.logging.jdk;
 
 import com.googlecode.psiprobe.tools.logging.DefaultAccessor;
 import com.googlecode.psiprobe.tools.logging.LogDestination;
+import org.apache.commons.beanutils.MethodUtils;
 
 public abstract class BaseJdk14HandlerAccessor extends DefaultAccessor implements LogDestination {
 
@@ -39,7 +40,23 @@ public abstract class BaseJdk14HandlerAccessor extends DefaultAccessor implement
     }
 
     public String getLevel() {
-        return getLoggerAccessor().getLevel();
+        try {
+            Object level = MethodUtils.invokeMethod(getTarget(), "getLevel", null);
+            return (String) MethodUtils.invokeMethod(level, "getName", null);
+        } catch (Exception e) {
+            log.error(getTarget() + ".getLevel() failed", e);
+        }
+        return null;
+    }
+
+    public void setLevel(String newLevelStr) {
+        try {
+            Object level = MethodUtils.invokeMethod(getTarget(), "getLevel", null);
+            Object newLevel = MethodUtils.invokeMethod(level, "parse", newLevelStr);
+            MethodUtils.invokeMethod(getTarget(), "setLevel", newLevel);
+        } catch (Exception e) {
+            log.error(getTarget() + ".setLevel(\"" + newLevelStr + "\") failed", e);
+        }
     }
 
     public String[] getValidLevels() {
