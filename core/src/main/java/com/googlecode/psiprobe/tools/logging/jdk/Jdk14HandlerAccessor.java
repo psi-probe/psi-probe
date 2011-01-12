@@ -14,9 +14,6 @@ import com.googlecode.psiprobe.tools.logging.LogDestination;
 import java.io.File;
 
 public class Jdk14HandlerAccessor extends BaseJdk14HandlerAccessor implements LogDestination {
-    public String getName() {
-        return null;
-    }
 
     public String getConversionPattern() {
         return null;

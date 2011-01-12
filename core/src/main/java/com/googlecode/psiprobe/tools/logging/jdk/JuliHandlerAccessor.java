@@ -16,10 +16,6 @@ import java.io.File;
 
 public class JuliHandlerAccessor extends BaseJdk14HandlerAccessor implements LogDestination {
 
-    public String getName() {
-        return null;
-    }
-
     public String getConversionPattern() {
         return null;
     }
