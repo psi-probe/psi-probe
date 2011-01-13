@@ -31,7 +31,6 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
                 }
 
                 if (handlerAccessor != null) {
-                    handlerAccessor.setLogClass("jdk");
                     handlerAccessor.setLoggerAccessor(this);
                     handlerAccessor.setTarget(handler);
                     handlerAccessor.setName(Integer.toString(h));

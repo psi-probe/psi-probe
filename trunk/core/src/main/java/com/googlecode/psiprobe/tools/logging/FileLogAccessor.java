@@ -24,6 +24,10 @@ public class FileLogAccessor extends DefaultAccessor implements LogDestination {
         return "stdout";
     }
 
+    public String getLogClass() {
+        return "stdout";
+    }
+
     public String getConversionPattern() {
         return "";
     }

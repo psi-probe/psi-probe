@@ -26,7 +26,6 @@ public class Log4JLoggerAccessor extends DefaultAccessor {
                 Log4JAppenderAccessor aa = new Log4JAppenderAccessor();
                 aa.setTarget(e.nextElement());
                 aa.setLoggerAccessor(this);
-                aa.setLogClass("log4j");
                 aa.setApplication(getApplication());
                 appenders.add(aa);
             }
