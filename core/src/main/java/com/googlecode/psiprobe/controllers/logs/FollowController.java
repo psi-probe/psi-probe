@@ -12,6 +12,7 @@ package com.googlecode.psiprobe.controllers.logs;
 
 import com.googlecode.psiprobe.tools.BackwardsFileStream;
 import com.googlecode.psiprobe.tools.BackwardsLineReader;
+import com.googlecode.psiprobe.tools.logging.LogDestination;
 import java.io.File;
 import java.util.LinkedList;
 import javax.servlet.http.HttpServletRequest;
@@ -21,9 +22,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 public class FollowController extends LogHandlerController  {
 
-    protected ModelAndView handleLogFile(HttpServletRequest request, HttpServletResponse response, File file) throws Exception {
+    protected ModelAndView handleLogFile(HttpServletRequest request, HttpServletResponse response, LogDestination logDest) throws Exception {
 
         ModelAndView mv = new ModelAndView(getViewName());
+        File file = logDest.getFile();
 
         if (file.exists()) {
             LinkedList lines = new LinkedList();

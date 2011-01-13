@@ -11,7 +11,6 @@
 package com.googlecode.psiprobe.controllers.logs;
 
 import com.googlecode.psiprobe.tools.logging.LogDestination;
-import java.io.File;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,10 +32,8 @@ public abstract class LogHandlerController extends ParameterizableViewController
                 if (logIndex != -1 && logIndex >= 0 && logIndex <= logDestinations.size()) {
                     LogDestination dest = (LogDestination) logDestinations.get(logIndex - 1);
                     if (dest.getFile() != null && dest.getFile().exists()) {
-                        modelAndView = handleLogFile(request, response, dest.getFile());
+                        modelAndView = handleLogFile(request, response, dest);
                         modelAndView.addObject("logIndex", new Integer(logIndex));
-                        modelAndView.addObject("validLogLevels", dest.getValidLevels());
-                        modelAndView.addObject("logLevel", dest.getLevel());
                         logFound = true;
                     } else {
                         logger.error(dest.getFile() + ": file not found");
@@ -55,6 +52,6 @@ public abstract class LogHandlerController extends ParameterizableViewController
         return modelAndView;
     }
 
-    protected abstract ModelAndView handleLogFile(HttpServletRequest request, HttpServletResponse response, File file)
+    protected abstract ModelAndView handleLogFile(HttpServletRequest request, HttpServletResponse response, LogDestination logDest)
             throws Exception;
 }
