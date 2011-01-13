@@ -10,11 +10,10 @@
  */
 package com.googlecode.psiprobe.tools.logging.log4j;
 
-import com.googlecode.psiprobe.tools.logging.DefaultAccessor;
-import com.googlecode.psiprobe.tools.logging.LogDestination;
+import com.googlecode.psiprobe.tools.logging.AbstractLogDestination;
 import java.io.File;
 
-public class Log4JAppenderAccessor extends DefaultAccessor implements LogDestination {
+public class Log4JAppenderAccessor extends AbstractLogDestination {
     private Log4JLoggerAccessor loggerAccessor;
 
     public Log4JLoggerAccessor getLoggerAccessor() {

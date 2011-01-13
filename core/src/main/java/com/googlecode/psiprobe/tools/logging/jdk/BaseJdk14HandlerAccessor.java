@@ -10,11 +10,10 @@
  */
 package com.googlecode.psiprobe.tools.logging.jdk;
 
-import com.googlecode.psiprobe.tools.logging.DefaultAccessor;
-import com.googlecode.psiprobe.tools.logging.LogDestination;
+import com.googlecode.psiprobe.tools.logging.AbstractLogDestination;
 import org.apache.commons.beanutils.MethodUtils;
 
-public abstract class BaseJdk14HandlerAccessor extends DefaultAccessor implements LogDestination {
+public abstract class BaseJdk14HandlerAccessor extends AbstractLogDestination {
 
     private Jdk14LoggerAccessor loggerAccessor;
     private String name;

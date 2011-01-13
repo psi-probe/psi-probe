@@ -11,8 +11,6 @@
 package com.googlecode.psiprobe.tools.logging;
 
 import com.googlecode.psiprobe.model.Application;
-import java.io.File;
-import java.sql.Timestamp;
 import org.apache.commons.beanutils.MethodUtils;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.logging.Log;
@@ -61,22 +59,4 @@ public class DefaultAccessor  {
         }
     }
 
-    protected File getStdoutFile() {
-        File f = new File(System.getProperty("catalina.base"), "logs/catalina.out");
-        return f.exists() ? f : new File("stdout");
-    }
-
-    public File getFile() {
-        return getStdoutFile();
-    }
-
-    public long getSize() {
-        File f = getFile();
-        return f != null && f.exists() ? f.length() : 0;
-    }
-
-    public Timestamp getLastModified() {
-        File f = getFile();
-        return f != null && f.exists() ? new Timestamp(f.lastModified()) : null;
-    }
 }

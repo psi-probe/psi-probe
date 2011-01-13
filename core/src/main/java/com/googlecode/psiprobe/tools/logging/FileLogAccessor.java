@@ -12,7 +12,7 @@ package com.googlecode.psiprobe.tools.logging;
 
 import java.io.File;
 
-public class FileLogAccessor extends DefaultAccessor implements LogDestination {
+public class FileLogAccessor extends AbstractLogDestination {
 
     private File file;
 
