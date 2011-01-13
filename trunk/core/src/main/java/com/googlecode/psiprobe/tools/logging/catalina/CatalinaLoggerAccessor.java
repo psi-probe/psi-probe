@@ -11,13 +11,12 @@
 package com.googlecode.psiprobe.tools.logging.catalina;
 
 import com.googlecode.psiprobe.tools.Instruments;
-import com.googlecode.psiprobe.tools.logging.DefaultAccessor;
-import com.googlecode.psiprobe.tools.logging.LogDestination;
+import com.googlecode.psiprobe.tools.logging.AbstractLogDestination;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class CatalinaLoggerAccessor extends DefaultAccessor implements LogDestination {
+public class CatalinaLoggerAccessor extends AbstractLogDestination {
 
     public String getName() {
         return null;
