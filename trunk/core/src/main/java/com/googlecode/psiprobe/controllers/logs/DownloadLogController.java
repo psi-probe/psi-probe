@@ -11,6 +11,7 @@
 package com.googlecode.psiprobe.controllers.logs;
 
 import com.googlecode.psiprobe.Utils;
+import com.googlecode.psiprobe.tools.logging.LogDestination;
 import java.io.File;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,7 +19,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 public class DownloadLogController extends LogHandlerController {
 
-    protected ModelAndView handleLogFile(HttpServletRequest request, HttpServletResponse response, File file) throws Exception {
+    protected ModelAndView handleLogFile(HttpServletRequest request, HttpServletResponse response, LogDestination logDest) throws Exception {
+        File file = logDest.getFile();
         logger.info("Sending "+file + " to "+request.getRemoteAddr() + "("+request.getRemoteUser()+")");
         Utils.sendFile(request, response, file);
         return null;

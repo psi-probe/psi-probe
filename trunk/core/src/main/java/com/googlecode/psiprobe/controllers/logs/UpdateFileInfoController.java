@@ -10,6 +10,7 @@
  */
 package com.googlecode.psiprobe.controllers.logs;
 
+import com.googlecode.psiprobe.tools.logging.LogDestination;
 import java.io.File;
 import java.sql.Timestamp;
 import javax.servlet.http.HttpServletRequest;
@@ -18,8 +19,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 public class UpdateFileInfoController extends LogHandlerController {
 
-    protected ModelAndView handleLogFile(HttpServletRequest request, HttpServletResponse response, File file) throws Exception {
+    protected ModelAndView handleLogFile(HttpServletRequest request, HttpServletResponse response, LogDestination logDest) throws Exception {
         ModelAndView mv = new ModelAndView(getViewName());
+        File file = logDest.getFile();
         String fileName = file.getAbsolutePath();
         if (file.exists()) {
             mv.addObject("fileName", fileName)
