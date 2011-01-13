@@ -15,10 +15,6 @@ import java.io.File;
 
 public class Jdk14HandlerAccessor extends BaseJdk14HandlerAccessor implements LogDestination {
 
-    public String getConversionPattern() {
-        return null;
-    }
-
     public File getFile() {
         return getStdoutFile();
     }

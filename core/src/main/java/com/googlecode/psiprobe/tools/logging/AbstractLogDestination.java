@@ -23,6 +23,14 @@ public abstract class AbstractLogDestination extends DefaultAccessor implements 
         return null;
     }
 
+    public String getType() {
+        return getTarget().getClass().getName();
+    }
+
+    public String getConversionPattern() {
+        return null;
+    }
+
     protected File getStdoutFile() {
         File f = new File(System.getProperty("catalina.base"), "logs/catalina.out");
         return f.exists() ? f : new File("stdout");
@@ -40,6 +48,14 @@ public abstract class AbstractLogDestination extends DefaultAccessor implements 
     public Timestamp getLastModified() {
         File f = getFile();
         return f != null && f.exists() ? new Timestamp(f.lastModified()) : null;
+    }
+
+    public String getLevel() {
+        return null;
+    }
+
+    public String[] getValidLevels() {
+        return null;
     }
 
 }

@@ -38,10 +38,6 @@ public abstract class BaseJdk14HandlerAccessor extends AbstractLogDestination {
         this.index = index;
     }
 
-    public String getType() {
-        return getTarget().getClass().getName();
-    }
-
     public String getLogClass() {
         return "jdk";
     }

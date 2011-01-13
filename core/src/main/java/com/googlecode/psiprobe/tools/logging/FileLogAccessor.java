@@ -40,12 +40,4 @@ public class FileLogAccessor extends AbstractLogDestination {
         this.file = file;
     }
 
-    public String getLevel() {
-        return null;
-    }
-
-    public String[] getValidLevels() {
-        return null;
-    }
-
 }
