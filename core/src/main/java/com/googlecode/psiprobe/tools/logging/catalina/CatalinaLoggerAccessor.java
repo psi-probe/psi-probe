@@ -27,6 +27,10 @@ public class CatalinaLoggerAccessor extends DefaultAccessor implements LogDestin
         return getTarget().getClass().getName();
     }
 
+    public String getLogClass() {
+        return "catalina";
+    }
+
     public String getConversionPattern() {
         return null;
     }

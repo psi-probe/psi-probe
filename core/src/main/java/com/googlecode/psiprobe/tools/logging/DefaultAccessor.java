@@ -22,11 +22,6 @@ public class DefaultAccessor  {
 
     protected final Log log = LogFactory.getLog(getClass());
     private Application application;
-    //
-    // class of the log, e.g. "log4j", "jdk", "commons-" etc.
-    // it is NOT a class name in Java sense of the word
-    //
-    private String logClass;
     private Object target;
 
     public Application getApplication() {
@@ -35,14 +30,6 @@ public class DefaultAccessor  {
 
     public void setApplication(Application application) {
         this.application = application;
-    }
-
-    public String getLogClass() {
-        return logClass;
-    }
-
-    public void setLogClass(String logClass) {
-        this.logClass = logClass;
     }
 
     public Object getTarget() {

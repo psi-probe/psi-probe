@@ -40,7 +40,6 @@ public class Jdk14ManagerAccessor extends DefaultAccessor {
             Jdk14LoggerAccessor accessor = new Jdk14LoggerAccessor();
             accessor.setTarget(logger);
             accessor.setApplication(getApplication());
-            accessor.setLogClass("jdk");
             return accessor;
         } catch (Exception e) {
             log.error(getTarget() + ".getLogger(\"" + name + "\") failed", e);

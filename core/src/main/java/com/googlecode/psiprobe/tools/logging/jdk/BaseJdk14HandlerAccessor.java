@@ -39,6 +39,10 @@ public abstract class BaseJdk14HandlerAccessor extends DefaultAccessor implement
         return getTarget().getClass().getName();
     }
 
+    public String getLogClass() {
+        return "jdk";
+    }
+
     public String getLevel() {
         try {
             Object level = MethodUtils.invokeMethod(getTarget(), "getLevel", null);

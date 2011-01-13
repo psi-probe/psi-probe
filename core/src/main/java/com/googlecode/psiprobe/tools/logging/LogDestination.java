@@ -22,6 +22,13 @@ public interface LogDestination {
     File getFile();
     long getSize();
     Timestamp getLastModified();
+
+    /**
+     * class of the log, e.g. "log4j", "jdk", "commons-" etc.
+     * This is NOT a class name in Java sense of the word
+     *
+     * @return the class of the log
+     */
     String getLogClass();
     String getLevel();
     String[] getValidLevels();

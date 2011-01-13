@@ -125,7 +125,6 @@ public class ListLogsController extends TomcatContainerController {
                         CatalinaLoggerAccessor catalinaAccessor = new CatalinaLoggerAccessor();
                         catalinaAccessor.setApplication(application);
                         catalinaAccessor.setTarget(contextLogger);
-                        catalinaAccessor.setLogClass("catalina");
                         allAppenders.add(catalinaAccessor);
                     }
                 }

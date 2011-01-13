@@ -30,7 +30,6 @@ public class CommonsLoggerAccessor extends DefaultAccessor {
                 while (logger != null) {
                     Log4JLoggerAccessor accessor = new Log4JLoggerAccessor();
                     accessor.setTarget(logger);
-                    accessor.setLogClass("log4j");
                     accessor.setApplication(getApplication());
                     destinations.addAll(accessor.getAppenders());
                     logger = invokeMethod(logger, "getParent", null, null);
@@ -41,7 +40,6 @@ public class CommonsLoggerAccessor extends DefaultAccessor {
                 while (logger != null) {
                     Jdk14LoggerAccessor accessor = new Jdk14LoggerAccessor();
                     accessor.setTarget(logger);
-                    accessor.setLogClass("jdk");
                     accessor.setApplication(getApplication());
                     destinations.addAll(accessor.getHandlers());
                     logger = invokeMethod(logger, "getParent", null, null);
