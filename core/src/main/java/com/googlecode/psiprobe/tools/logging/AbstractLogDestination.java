@@ -19,6 +19,10 @@ import java.sql.Timestamp;
  */
 public abstract class AbstractLogDestination extends DefaultAccessor implements LogDestination {
 
+    public String getIndex() {
+        return null;
+    }
+
     protected File getStdoutFile() {
         File f = new File(System.getProperty("catalina.base"), "logs/catalina.out");
         return f.exists() ? f : new File("stdout");

@@ -23,18 +23,8 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
             Object handlers[] = (Object[]) PropertyUtils.getProperty(getTarget(), "handlers");
             for (int h = 0; h < handlers.length; h++) {
                 Object handler = handlers[h];
-                BaseJdk14HandlerAccessor handlerAccessor = null;
-                if ("org.apache.juli.FileHandler".equals(handler.getClass().getName())) {
-                    handlerAccessor = new JuliHandlerAccessor();
-                } else if ("java.util.logging.ConsoleHandler".equals(handler.getClass().getName())){
-                    handlerAccessor = new Jdk14HandlerAccessor();
-                }
-
+                BaseJdk14HandlerAccessor handlerAccessor = wrapHandler(handler, h);
                 if (handlerAccessor != null) {
-                    handlerAccessor.setLoggerAccessor(this);
-                    handlerAccessor.setTarget(handler);
-                    handlerAccessor.setName(Integer.toString(h));
-                    handlerAccessor.setApplication(getApplication());
                     handlerAccessors.add(handlerAccessor);
                 }
             }
@@ -42,6 +32,37 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
             log.error(getTarget() + "#handlers inaccessible", e);
         }
         return handlerAccessors;
+    }
+
+    public String getName() {
+        return (String) getProperty(getTarget(), "name", null);
+    }
+
+    public BaseJdk14HandlerAccessor getHandler(int index) {
+        try {
+            Object handlers[] = (Object[]) PropertyUtils.getProperty(getTarget(), "handlers");
+            return wrapHandler(handlers[index], index);
+        } catch (Exception e) {
+            log.error(getTarget() + "#handlers inaccessible", e);
+        }
+        return null;
+    }
+
+    private BaseJdk14HandlerAccessor wrapHandler(Object handler, int index) {
+        BaseJdk14HandlerAccessor handlerAccessor = null;
+        if ("org.apache.juli.FileHandler".equals(handler.getClass().getName())) {
+            handlerAccessor = new JuliHandlerAccessor();
+        } else if ("java.util.logging.ConsoleHandler".equals(handler.getClass().getName())){
+            handlerAccessor = new Jdk14HandlerAccessor();
+        }
+
+        if (handlerAccessor != null) {
+            handlerAccessor.setLoggerAccessor(this);
+            handlerAccessor.setTarget(handler);
+            handlerAccessor.setIndex(Integer.toString(index));
+            handlerAccessor.setApplication(getApplication());
+        }
+        return handlerAccessor;
     }
 
 }

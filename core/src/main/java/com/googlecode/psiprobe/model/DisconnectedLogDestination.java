@@ -24,6 +24,7 @@ public class DisconnectedLogDestination implements LogDestination, Serializable 
 
     private Application application;
     private String name;
+    private String index;
     private String type;
     private String conversionPattern;
     private File file;
@@ -36,6 +37,7 @@ public class DisconnectedLogDestination implements LogDestination, Serializable 
     public DisconnectedLogDestination(LogDestination destination) {
         this.application = destination.getApplication();
         this.name = destination.getName();
+        this.index = destination.getIndex();
         this.type = destination.getType();
         this.conversionPattern = destination.getConversionPattern();
         this.file = destination.getFile();
@@ -52,6 +54,10 @@ public class DisconnectedLogDestination implements LogDestination, Serializable 
 
     public String getName() {
         return name;
+    }
+
+    public String getIndex() {
+        return index;
     }
 
     public String getType() {
