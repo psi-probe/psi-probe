@@ -16,7 +16,7 @@ import org.apache.commons.beanutils.MethodUtils;
 public abstract class BaseJdk14HandlerAccessor extends AbstractLogDestination {
 
     private Jdk14LoggerAccessor loggerAccessor;
-    private String name;
+    private String index;
 
     public Jdk14LoggerAccessor getLoggerAccessor() {
         return loggerAccessor;
@@ -27,11 +27,15 @@ public abstract class BaseJdk14HandlerAccessor extends AbstractLogDestination {
     }
 
     public String getName() {
-        return name;
+        return getLoggerAccessor().getName();
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getIndex() {
+        return index;
+    }
+
+    public void setIndex(String index) {
+        this.index = index;
     }
 
     public String getType() {

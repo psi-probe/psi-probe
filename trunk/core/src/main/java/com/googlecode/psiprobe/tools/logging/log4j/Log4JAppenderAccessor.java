@@ -29,7 +29,7 @@ public class Log4JAppenderAccessor extends AbstractLogDestination {
     }
 
     public String getName() {
-        return (String) getProperty(getTarget(), "name", null);
+        return getLoggerAccessor().getName();
     }
 
     public String getLogClass() {

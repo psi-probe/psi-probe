@@ -35,6 +35,10 @@ public class Log4JLoggerAccessor extends DefaultAccessor {
         return appenders;
     }
 
+    public String getName() {
+        return (String) getProperty(getTarget(), "name", null);
+    }
+
     public String getLevel() {
         try {
             Object level = MethodUtils.invokeMethod(getTarget(), "getLevel", null);
