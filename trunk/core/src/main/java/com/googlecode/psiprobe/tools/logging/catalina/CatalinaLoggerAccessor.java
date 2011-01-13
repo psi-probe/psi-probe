@@ -22,16 +22,8 @@ public class CatalinaLoggerAccessor extends AbstractLogDestination {
         return null;
     }
 
-    public String getType() {
-        return getTarget().getClass().getName();
-    }
-
     public String getLogClass() {
         return "catalina";
-    }
-
-    public String getConversionPattern() {
-        return null;
     }
 
     public File getFile() {
@@ -47,14 +39,6 @@ public class CatalinaLoggerAccessor extends AbstractLogDestination {
         } else {
             return log;
         }
-    }
-
-    public String getLevel() {
-        return null;
-    }
-
-    public String[] getValidLevels() {
-        return null;
     }
 
 }

@@ -16,10 +16,6 @@ import java.io.File;
 
 public class JuliHandlerAccessor extends BaseJdk14HandlerAccessor implements LogDestination {
 
-    public String getConversionPattern() {
-        return null;
-    }
-
     public File getFile() {
         String dir = (String) Instruments.getField(getTarget(), "directory");
         String prefix = (String) Instruments.getField(getTarget(), "prefix");
