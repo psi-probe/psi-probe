@@ -1,5 +1,7 @@
 #summary Instructions for deploying to Apache Tomcat
 ----
+<wiki:toc max_depth="2" />
+----
 
 = Configuration =
 
@@ -48,13 +50,13 @@ If you need the JMX connection to be secured, refer to the [http://tomcat.apache
 
 = Deployment =
 
-Once you have completed the pre-deployment steps , it's time to deploy PSI Probe.
+Once you have completed the configuration steps, it's time to deploy PSI Probe.
 
 == Option 1: Deploy with Tomcat Manager ==
 
   # Start Tomcat if it is not running.
-  # Go to the manager URL (e.g. `http://localhost:8080/manager/html`)
-  # Upload `probe.war` using "War file to deploy" option.
+  # Open the manager URL (e.g. `http://localhost:8080/manager/html`) in your web browser.
+  # Upload `probe.war` using the "War file to deploy" option.
 
 == Option 2: Manually Copy to Server ==
 
@@ -72,3 +74,7 @@ If you do this, understand that PSI Probe _requires_ a *privileged* context.  `M
 <?xml version="1.0" encoding="UTF-8"?>
 <Context path="/probe" privileged="true" />
 }}}
+
+= Testing =
+
+Once you have deployed PSI Probe to Tomcat, verify that you can access it in your web browser by entering PSI Probe's URL (e.g. `http://localhost:8080/probe`).
