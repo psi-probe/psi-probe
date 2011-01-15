@@ -23,16 +23,23 @@ public class Log4JLoggerAccessor extends DefaultAccessor {
         try {
             Enumeration e = (Enumeration) MethodUtils.invokeMethod(getTarget(), "getAllAppenders", null);
             while(e.hasMoreElements()) {
-                Log4JAppenderAccessor aa = new Log4JAppenderAccessor();
-                aa.setTarget(e.nextElement());
-                aa.setLoggerAccessor(this);
-                aa.setApplication(getApplication());
+                Log4JAppenderAccessor aa = wrapAppender(e.nextElement());
                 appenders.add(aa);
             }
         } catch (Exception e) {
             log.error(getTarget()+".getAllAppenders() failed", e);
         }
         return appenders;
+    }
+
+    public Log4JAppenderAccessor getAppender(String name) {
+        try {
+            Object appender = MethodUtils.invokeMethod(getTarget(), "getAppender", name);
+            return wrapAppender(appender);
+        } catch (Exception e) {
+            log.error(getTarget() + ".getAppender() failed", e);
+        }
+        return null;
     }
 
     public boolean isRoot() {
@@ -62,6 +69,14 @@ public class Log4JLoggerAccessor extends DefaultAccessor {
         } catch (Exception e) {
             log.error(getTarget() + ".setLevel(\"" + newLevelStr + "\") failed", e);
         }
+    }
+
+    private Log4JAppenderAccessor wrapAppender(Object appender) {
+        Log4JAppenderAccessor appenderAccessor = new Log4JAppenderAccessor();
+        appenderAccessor.setTarget(appender);
+        appenderAccessor.setLoggerAccessor(this);
+        appenderAccessor.setApplication(getApplication());
+        return appenderAccessor;
     }
 
 }
