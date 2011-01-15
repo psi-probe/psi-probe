@@ -23,6 +23,7 @@ import java.sql.Timestamp;
 public class DisconnectedLogDestination implements LogDestination, Serializable {
 
     private Application application;
+    private boolean root;
     private String name;
     private String index;
     private String type;
@@ -36,6 +37,7 @@ public class DisconnectedLogDestination implements LogDestination, Serializable 
 
     public DisconnectedLogDestination(LogDestination destination) {
         this.application = destination.getApplication();
+        this.root = destination.isRoot();
         this.name = destination.getName();
         this.index = destination.getIndex();
         this.type = destination.getType();
@@ -50,6 +52,10 @@ public class DisconnectedLogDestination implements LogDestination, Serializable 
 
     public Application getApplication() {
         return application;
+    }
+
+    public boolean isRoot() {
+        return root;
     }
 
     public String getName() {

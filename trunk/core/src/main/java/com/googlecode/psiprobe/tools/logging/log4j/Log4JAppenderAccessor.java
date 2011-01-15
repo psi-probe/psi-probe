@@ -24,6 +24,10 @@ public class Log4JAppenderAccessor extends AbstractLogDestination {
         this.loggerAccessor = loggerAccessor;
     }
 
+    public boolean isRoot() {
+        return getLoggerAccessor().isRoot();
+    }
+
     public String getName() {
         return getLoggerAccessor().getName();
     }

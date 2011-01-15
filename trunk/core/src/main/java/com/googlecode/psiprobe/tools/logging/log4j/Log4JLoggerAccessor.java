@@ -35,6 +35,11 @@ public class Log4JLoggerAccessor extends DefaultAccessor {
         return appenders;
     }
 
+    public boolean isRoot() {
+        return "root".equals(getName())
+                && "org.apache.log4j.spi.RootLogger".equals(getType());
+    }
+
     public String getName() {
         return (String) getProperty(getTarget(), "name", null);
     }
