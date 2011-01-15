@@ -38,6 +38,10 @@ public class DefaultAccessor  {
         this.target = target;
     }
 
+    public String getType() {
+        return getTarget().getClass().getName();
+    }
+
     protected Object getProperty(Object o, String name, Object defaultValue) {
         try {
             return PropertyUtils.isReadable(o, name) ? PropertyUtils.getProperty(o, name) : defaultValue;

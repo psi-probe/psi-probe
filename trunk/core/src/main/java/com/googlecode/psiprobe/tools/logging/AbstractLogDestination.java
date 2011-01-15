@@ -23,10 +23,6 @@ public abstract class AbstractLogDestination extends DefaultAccessor implements 
         return null;
     }
 
-    public String getType() {
-        return getTarget().getClass().getName();
-    }
-
     public String getConversionPattern() {
         return null;
     }
