@@ -11,10 +11,9 @@
 package com.googlecode.psiprobe.tools.logging.jdk;
 
 import com.googlecode.psiprobe.tools.Instruments;
-import com.googlecode.psiprobe.tools.logging.LogDestination;
 import java.io.File;
 
-public class JuliHandlerAccessor extends BaseJdk14HandlerAccessor implements LogDestination {
+public class JuliHandlerAccessor extends BaseJdk14HandlerAccessor {
 
     public File getFile() {
         String dir = (String) Instruments.getField(getTarget(), "directory");
