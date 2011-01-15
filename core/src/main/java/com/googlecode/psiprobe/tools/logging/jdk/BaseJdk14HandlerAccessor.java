@@ -26,6 +26,10 @@ public abstract class BaseJdk14HandlerAccessor extends AbstractLogDestination {
         this.loggerAccessor = loggerAccessor;
     }
 
+    public boolean isRoot() {
+        return getLoggerAccessor().isRoot();
+    }
+
     public String getName() {
         return getLoggerAccessor().getName();
     }

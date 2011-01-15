@@ -19,6 +19,10 @@ import java.sql.Timestamp;
  */
 public abstract class AbstractLogDestination extends DefaultAccessor implements LogDestination {
 
+    public boolean isRoot() {
+        return false;
+    }
+
     public String getIndex() {
         return null;
     }
