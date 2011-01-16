@@ -10,44 +10,26 @@
  */
 package com.googlecode.psiprobe.tools.logging.commons;
 
-import com.googlecode.psiprobe.tools.Instruments;
 import com.googlecode.psiprobe.tools.logging.DefaultAccessor;
-import com.googlecode.psiprobe.tools.logging.jdk.Jdk14LoggerAccessor;
-import com.googlecode.psiprobe.tools.logging.log4j.Log4JLoggerAccessor;
-import java.util.ArrayList;
+import com.googlecode.psiprobe.tools.logging.LogDestination;
 import java.util.List;
 
 public class CommonsLoggerAccessor extends DefaultAccessor {
 
     public List getDestinations() {
-        Object logger = Instruments.getField(getTarget(), "logger");
+        GetAllDestinationsVisitor v = new GetAllDestinationsVisitor();
+        v.setTarget(getTarget());
+        v.setApplication(getApplication());
+        v.visit();
+        return v.getDestinations();
+    }
 
-        List destinations = new ArrayList();
-        
-        if (logger != null) {
-            if ("org.apache.log4j.Logger".equals(logger.getClass().getName())) {
-
-                while (logger != null) {
-                    Log4JLoggerAccessor accessor = new Log4JLoggerAccessor();
-                    accessor.setTarget(logger);
-                    accessor.setApplication(getApplication());
-                    destinations.addAll(accessor.getAppenders());
-                    logger = invokeMethod(logger, "getParent", null, null);
-                }
-
-            } else if ("java.util.logging.Logger".equals(logger.getClass().getName())) {
-
-                while (logger != null) {
-                    Jdk14LoggerAccessor accessor = new Jdk14LoggerAccessor();
-                    accessor.setTarget(logger);
-                    accessor.setApplication(getApplication());
-                    destinations.addAll(accessor.getHandlers());
-                    logger = invokeMethod(logger, "getParent", null, null);
-                }
-            }
-        }
-
-        return destinations;
+    public LogDestination getDestination(String name) {
+        GetSingleDestinationVisitor v = new GetSingleDestinationVisitor(name);
+        v.setTarget(getTarget());
+        v.setApplication(getApplication());
+        v.visit();
+        return v.getDestination();
     }
 
 }
