@@ -34,6 +34,10 @@ public class Jdk14ManagerAccessor extends DefaultAccessor {
         }
     }
 
+    public Jdk14LoggerAccessor getRootLogger() {
+        return getLogger("");
+    }
+
     public Jdk14LoggerAccessor getLogger(String name) {
         try {
             Object logger = MethodUtils.invokeMethod(getTarget(), "getLogger", name);

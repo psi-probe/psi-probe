@@ -43,6 +43,16 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
         return (String) getProperty(getTarget(), "name", null);
     }
 
+    public BaseJdk14HandlerAccessor getHandler(String logIndex) {
+        int index = 0;
+        try {
+            index = Integer.parseInt(logIndex);
+        } catch (Exception e) {
+            log.info("Could not parse integer from: " + logIndex + ".  Assuming 0.");
+        }
+        return getHandler(index);
+    }
+
     public BaseJdk14HandlerAccessor getHandler(int index) {
         try {
             Object handlers[] = (Object[]) PropertyUtils.getProperty(getTarget(), "handlers");
