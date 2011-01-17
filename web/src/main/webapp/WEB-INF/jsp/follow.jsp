@@ -85,7 +85,29 @@
 				</c:if>
 			</li>
 			<li id="download">
-				<a href="<c:url value='/logs/download'><c:param name='id' value='${param.id}'/></c:url>">
+				<c:url value="/logs/download" var="downloadUrl">
+					<c:param name="logClass" value="${log.logClass}"/>
+					<c:if test="${log.application != null}">
+						<c:param name="webapp" value="${log.application.name}"/>
+						<c:if test="${log.context}">
+							<c:param name="context" value="${log.context}"/>
+						</c:if>
+					</c:if>
+					<c:if test="${!log.context}">
+						<c:choose>
+							<c:when test="${log.root}">
+								<c:param name="root" value="${log.root}"/>
+							</c:when>
+							<c:otherwise>
+								<c:param name="logName" value="${log.name}"/>
+							</c:otherwise>
+						</c:choose>
+					</c:if>
+					<c:if test="${log.index != null}">
+						<c:param name="logIndex" value="${log.index}"/>
+					</c:if>
+				</c:url>
+				<a href="${downloadUrl}">
 					<spring:message code="probe.jsp.follow.menu.download"/>
 				</a>
 			</li>
