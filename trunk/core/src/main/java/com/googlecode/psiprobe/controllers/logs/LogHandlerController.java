@@ -18,7 +18,7 @@ import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
 
-public abstract class LogHandlerController extends ParameterizableViewController {
+public class LogHandlerController extends ParameterizableViewController {
     protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         boolean logFound = false;
@@ -52,6 +52,10 @@ public abstract class LogHandlerController extends ParameterizableViewController
         return modelAndView;
     }
 
-    protected abstract ModelAndView handleLogFile(HttpServletRequest request, HttpServletResponse response, LogDestination logDest)
-            throws Exception;
+    protected ModelAndView handleLogFile(HttpServletRequest request, HttpServletResponse response, LogDestination logDest)
+            throws Exception {
+
+        return new ModelAndView(getViewName())
+                .addObject("log", logDest);
+    }
 }
