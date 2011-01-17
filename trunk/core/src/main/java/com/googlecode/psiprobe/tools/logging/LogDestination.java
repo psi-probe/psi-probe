@@ -17,6 +17,7 @@ import java.sql.Timestamp;
 public interface LogDestination {
     Application getApplication();
     boolean isRoot();
+    boolean isContext();
     String getName();
     String getIndex();
     String getType();

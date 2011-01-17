@@ -29,6 +29,7 @@ public abstract class LoggerAccessorVisitor extends DefaultAccessor {
                     Log4JLoggerAccessor accessor = new Log4JLoggerAccessor();
                     accessor.setTarget(logger);
                     accessor.setApplication(getApplication());
+                    accessor.setContext(true);
                     visit(accessor);
                     logger = invokeMethod(logger, "getParent", null, null);
                 }
@@ -37,6 +38,7 @@ public abstract class LoggerAccessorVisitor extends DefaultAccessor {
                     Jdk14LoggerAccessor accessor = new Jdk14LoggerAccessor();
                     accessor.setTarget(logger);
                     accessor.setApplication(getApplication());
+                    accessor.setContext(true);
                     visit(accessor);
                     logger = invokeMethod(logger, "getParent", null, null);
                 }

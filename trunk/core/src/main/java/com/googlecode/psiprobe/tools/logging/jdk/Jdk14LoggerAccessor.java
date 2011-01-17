@@ -17,6 +17,8 @@ import org.apache.commons.beanutils.PropertyUtils;
 
 public class Jdk14LoggerAccessor extends DefaultAccessor {
 
+    private boolean context = false;
+
     public List getHandlers() {
         List handlerAccessors = new ArrayList();
         try {
@@ -32,6 +34,14 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
             log.error(getTarget() + "#handlers inaccessible", e);
         }
         return handlerAccessors;
+    }
+
+    public boolean isContext() {
+        return context;
+    }
+
+    public void setContext(boolean context) {
+        this.context = context;
     }
 
     public boolean isRoot() {

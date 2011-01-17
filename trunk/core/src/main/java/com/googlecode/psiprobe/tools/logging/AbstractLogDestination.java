@@ -23,6 +23,10 @@ public abstract class AbstractLogDestination extends DefaultAccessor implements 
         return false;
     }
 
+    public boolean isContext() {
+        return false;
+    }
+
     public String getIndex() {
         return null;
     }

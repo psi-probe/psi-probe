@@ -24,6 +24,7 @@ public class DisconnectedLogDestination implements LogDestination, Serializable 
 
     private Application application;
     private boolean root;
+    private boolean context;
     private String name;
     private String index;
     private String type;
@@ -38,6 +39,7 @@ public class DisconnectedLogDestination implements LogDestination, Serializable 
     public DisconnectedLogDestination(LogDestination destination) {
         this.application = destination.getApplication();
         this.root = destination.isRoot();
+        this.context = destination.isContext();
         this.name = destination.getName();
         this.index = destination.getIndex();
         this.type = destination.getType();
@@ -56,6 +58,10 @@ public class DisconnectedLogDestination implements LogDestination, Serializable 
 
     public boolean isRoot() {
         return root;
+    }
+
+    public boolean isContext() {
+        return context;
     }
 
     public String getName() {
