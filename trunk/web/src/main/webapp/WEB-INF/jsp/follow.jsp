@@ -280,13 +280,15 @@
 				}
 			}
 
-			<c:if test="${cookie['file_content_font_size'] != null}">
+		</script>
+
+		<c:if test="${cookie['file_content_font_size'] != null}">
+			<script type="text/javascript">
 				Event.observe(window, 'load', function() {
 					setFontSize($(file_content_div), ${cookie['file_content_font_size'].value}, false);
 				});
-			</c:if>
-
-		</script>
+			</script>
+		</c:if>
 
 	</body>
 </html>
