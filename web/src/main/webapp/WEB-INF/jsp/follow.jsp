@@ -12,6 +12,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="/WEB-INF/tags/probe.tld" prefix="probe" %>
 
 <%--
 	Log file view. The view is a simple markup that gets updated via AJAX calls. Top menu does not go to the server but
@@ -109,6 +110,15 @@
 			</div>
 		</div>
 
+		<c:choose>
+			<c:when test="${log.application != null}">
+				<c:set var="webapp" value="'${probe:escapeJS(log.application.name)}'" />
+			</c:when>
+			<c:otherwise>
+				<c:set var="webapp" value="null" />
+			</c:otherwise>
+		</c:choose>
+
 		<script type="text/javascript">
 
 			var file_content_div = 'file_content';
@@ -126,7 +136,12 @@
 
 			var infoUpdater = new Ajax.PeriodicalUpdater('info', '<c:url value="/logs/ff_info.ajax"/>', {
 				parameters: {
-					id: ${logIndex}
+					logClass: '${probe:escapeJS(log.logClass)}',
+					webapp: ${webapp},
+					context: ${log.context},
+					root: ${log.root},
+					logName: '${probe:escapeJS(log.name)}',
+					logIndex: '${probe:escapeJS(log.index)}'
 				},
 				frequency: 3,
 				onSuccess: function(response) {
@@ -143,7 +158,12 @@
 			function followLog(currentLogSize) {
 				new Ajax.Updater(file_content_div, '<c:url value="/logs/follow.ajax"/>', {
 					parameters: {
-						id: ${logIndex},
+						logClass: '${probe:escapeJS(log.logClass)}',
+						webapp: ${webapp},
+						context: ${log.context},
+						root: ${log.root},
+						logName: '${probe:escapeJS(log.name)}',
+						logIndex: '${probe:escapeJS(log.index)}',
 						lastKnownLength: (lastLogSize == -1 ? 0 : lastLogSize),
 						currentLength: currentLogSize,
 						maxReadLines: (lastLogSize == -1 ? initialLines : undefined)

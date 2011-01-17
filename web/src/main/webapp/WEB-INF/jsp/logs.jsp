@@ -52,7 +52,7 @@
 		</ul>
 
 		<div class="blockContainer">
-			<display:table name="logs" scope="session" class="genericTbl" cellspacing="0" uid="log" requestURI="">
+			<display:table name="logs" class="genericTbl" cellspacing="0" uid="log" requestURI="">
 
 				<c:choose>
 
@@ -78,7 +78,29 @@
 							<probe:out value="${log.file}" maxLength="80" ellipsisRight="false"/>
 						</c:when>
 						<c:otherwise>
-							<a class="logfile" href="<c:url value='/logs/follow.htm'><c:param name='id' value='${log_rowNum}'/></c:url>">
+							<c:url value="/logs/follow.htm" var="followUrlTest">
+								<c:param name="logClass" value="${log.logClass}"/>
+								<c:if test="${log.application != null}">
+									<c:param name="webapp" value="${log.application.name}"/>
+									<c:if test="${log.context}">
+										<c:param name="context" value="${log.context}"/>
+									</c:if>
+								</c:if>
+								<c:if test="${!log.context}">
+									<c:choose>
+										<c:when test="${log.root}">
+											<c:param name="root" value="${log.root}"/>
+										</c:when>
+										<c:otherwise>
+											<c:param name="logName" value="${log.name}"/>
+										</c:otherwise>
+									</c:choose>
+								</c:if>
+								<c:if test="${log.index != null}">
+									<c:param name="logIndex" value="${log.index}"/>
+								</c:if>
+							</c:url>
+							<a class="logfile" href="${followUrlTest}">
 								<probe:out value="${log.file}" maxLength="80" ellipsisRight="false"/>
 							</a>
 						</c:otherwise>
