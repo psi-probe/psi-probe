@@ -75,10 +75,10 @@
 				</a>
 			</li>
 			<li id="level">
-				<c:if test="${not empty validLogLevels && logLevel != null}">
+				<c:if test="${not empty log.validLogLevels && log.logLevel != null}">
 					<select>
-						<c:forEach items="${validLogLevels}" var="validLogLevel">
-							<option value="${validLogLevel}" ${validLogLevel == logLevel ? 'selected="selected"' : ''}>${validLogLevel}</option>
+						<c:forEach items="${log.validLogLevels}" var="validLogLevel">
+							<option value="${validLogLevel}" ${validLogLevel == log.logLevel ? 'selected="selected"' : ''}>${validLogLevel}</option>
 						</c:forEach>
 					</select>
 				</c:if>
