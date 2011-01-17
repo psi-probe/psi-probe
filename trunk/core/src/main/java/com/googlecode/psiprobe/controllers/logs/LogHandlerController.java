@@ -10,8 +10,8 @@
  */
 package com.googlecode.psiprobe.controllers.logs;
 
+import com.googlecode.psiprobe.beans.LogResolverBean;
 import com.googlecode.psiprobe.tools.logging.LogDestination;
-import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.ServletRequestUtils;
@@ -19,32 +19,41 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
 
 public class LogHandlerController extends ParameterizableViewController {
+
+    private LogResolverBean logResolver;
+
+    public LogResolverBean getLogResolver() {
+        return logResolver;
+    }
+
+    public void setLogResolver(LogResolverBean logResolver) {
+        this.logResolver = logResolver;
+    }
+
     protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         boolean logFound = false;
 
         ModelAndView modelAndView = null;
 
-        if (request.getSession() != null) {
-            List logDestinations = (List) request.getSession().getAttribute("logs");
-            if (logDestinations != null) {
-                int logIndex = ServletRequestUtils.getIntParameter(request, "id", -1);
-                if (logIndex != -1 && logIndex >= 0 && logIndex <= logDestinations.size()) {
-                    LogDestination dest = (LogDestination) logDestinations.get(logIndex - 1);
-                    if (dest.getFile() != null && dest.getFile().exists()) {
-                        modelAndView = handleLogFile(request, response, dest);
-                        modelAndView.addObject("logIndex", new Integer(logIndex));
-                        logFound = true;
-                    } else {
-                        logger.error(dest.getFile() + ": file not found");
-                    }
-                } else {
-                    logger.error("List index " + logIndex + " is either missing or invalid");
-                }
-            } else {
-                logger.error("There is no \"logs\" attribute in this session");
-            }
+        String logClass = ServletRequestUtils.getStringParameter(request, "logClass");
+        String webapp = ServletRequestUtils.getStringParameter(request, "webapp");
+        boolean context = ServletRequestUtils.getBooleanParameter(request, "context", false);
+        boolean root = ServletRequestUtils.getBooleanParameter(request, "root", false);
+        String logName = ServletRequestUtils.getStringParameter(request, "logName");
+        String logIndex = ServletRequestUtils.getStringParameter(request, "logIndex");
 
+        LogDestination dest = logResolver.getLogDestination(logClass, webapp, context, root, logName, logIndex);
+
+        if (dest != null) {
+            if (dest.getFile() != null && dest.getFile().exists()) {
+                modelAndView = handleLogFile(request, response, dest);
+                logFound = true;
+            } else {
+                logger.error(dest.getFile() + ": file not found");
+            }
+        } else {
+            logger.error(logClass + (root ? " root" : "") + " log" + (root ? "" : " \"" + logName + "\"") + " not found");
         }
         if (!logFound) {
             response.sendError(404);
