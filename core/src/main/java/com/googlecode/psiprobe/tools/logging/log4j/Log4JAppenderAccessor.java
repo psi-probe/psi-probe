@@ -36,6 +36,10 @@ public class Log4JAppenderAccessor extends AbstractLogDestination {
         return "log4j";
     }
 
+    public String getIndex() {
+        return (String) getProperty(getTarget(), "name", null);
+    }
+
     public String getConversionPattern() {
         Object layout = getProperty(getTarget(), "layout", null);
         if (layout != null && "org.apache.log4j.PatternLayout".equals(layout.getClass().getName())) {
