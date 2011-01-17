@@ -116,7 +116,7 @@
 			var tailingEnabled = true;
 			var maxLines = 1000;
 			var initialLines = 250;
-			var lastLogSize = 0;
+			var lastLogSize = -1;
 			var logSizeRegex = /<!-- (\d*) -->/;
 
 			function logSize(responseText) {
@@ -144,11 +144,11 @@
 				new Ajax.Updater(file_content_div, '<c:url value="/logs/follow.ajax"/>', {
 					parameters: {
 						id: ${logIndex},
-						lastKnownLength: lastLogSize,
+						lastKnownLength: (lastLogSize == -1 ? 0 : lastLogSize),
 						currentLength: currentLogSize,
-						maxReadLines: (lastLogSize == 0 ? initialLines : undefined)
+						maxReadLines: (lastLogSize == -1 ? initialLines : undefined)
 					},
-					insertion: (lastLogSize == 0 ? undefined : 'bottom'),
+					insertion: (lastLogSize == -1 ? undefined : 'bottom'),
 					onComplete: function() {
 						objDiv = document.getElementById(file_content_div);
 						if (topPosition == -1) {
