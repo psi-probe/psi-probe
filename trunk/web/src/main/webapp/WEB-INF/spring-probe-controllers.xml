@@ -399,14 +399,7 @@
 
 	<bean name="/logs,/logs/index.htm" class="com.googlecode.psiprobe.controllers.logs.ListLogsController">
 		<property name="containerWrapper" ref="containerWrapper"/>
-		<property name="stdoutFiles">
-			<list>
-				<value>catalina.out</value>
-				<value>wrapper.log</value>
-				<value>stdout.log</value>
-				<value>stdout.err</value>
-			</list>
-		</property>
+		<property name="stdoutFiles" ref="stdoutFiles"/>
 		<property name="viewName" value="logs"/>
 		<property name="errorView" value="logs_notsupported"/>
 	</bean>
