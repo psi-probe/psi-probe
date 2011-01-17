@@ -18,7 +18,9 @@ import com.googlecode.psiprobe.tools.logging.FileLogAccessor;
 import com.googlecode.psiprobe.tools.logging.LogDestination;
 import com.googlecode.psiprobe.tools.logging.catalina.CatalinaLoggerAccessor;
 import com.googlecode.psiprobe.tools.logging.commons.CommonsLoggerAccessor;
+import com.googlecode.psiprobe.tools.logging.jdk.Jdk14LoggerAccessor;
 import com.googlecode.psiprobe.tools.logging.jdk.Jdk14ManagerAccessor;
+import com.googlecode.psiprobe.tools.logging.log4j.Log4JLoggerAccessor;
 import com.googlecode.psiprobe.tools.logging.log4j.Log4JManagerAccessor;
 import java.io.File;
 import java.util.ArrayList;
@@ -102,6 +104,50 @@ public class LogResolverBean {
         return null;
     }
 
+    public LogDestination getLogDestination(String logClass, String webapp, boolean context, boolean root, String logName, String logIndex) {
+        Context ctx = null;
+        Application application = null;
+        if (webapp != null) {
+            ctx = getContainerWrapper().getTomcatContainer().findContext(webapp);
+            if (ctx != null) {
+                application = ApplicationUtils.getApplication(ctx);
+            }
+        }
+
+        if ("stdout".equals(logClass) && logName != null) {
+            return getStdoutLogDestination(logName);
+        } else if ("catalina".equals(logClass) && ctx != null) {
+            return getCatalinaLogDestination(ctx, application);
+        } else if (("jdk".equals(logClass) || "log4j".equals(logClass)) && logIndex != null) {
+            if (context && ctx != null) {
+                return getCommonsLogDestination(ctx, application, logIndex);
+            }
+            ClassLoader cl;
+            ClassLoader prevCl = null;
+            if (ctx != null) {
+                cl = ctx.getLoader().getClassLoader();
+                prevCl = Thread.currentThread().getContextClassLoader();
+                Thread.currentThread().setContextClassLoader(cl);
+            } else {
+                cl = Thread.currentThread().getContextClassLoader().getParent();
+            }
+            try {
+                if ((root || logName != null) && logIndex != null) {
+                    if ("jdk".equals(logClass)) {
+                        return getJdk14LogDestination(cl, application, root, logName, logIndex);
+                    } else if ("log4j".equals(logClass)) {
+                        return getLog4JLogDestination(cl, application, root, logName, logIndex);
+                    }
+                }
+            } finally {
+                if (prevCl != null) {
+                    Thread.currentThread().setContextClassLoader(prevCl);
+                }
+            }
+        }
+        return null;
+    }
+
     private void interrogateApplicationClassLoaders(List contexts, List allAppenders) {
         for (int i = 0; i < contexts.size(); i++) {
 
@@ -179,6 +225,67 @@ public class LogResolverBean {
             }
         }
 
+    }
+
+    private LogDestination getStdoutLogDestination(String logName) {
+        for (Iterator it = stdoutFiles.iterator(); it.hasNext(); ) {
+            String fileName = (String) it.next();
+            if (fileName.equals(logName)) {
+                File stdout = new File(System.getProperty("catalina.base"), "logs/" + logName);
+                if (stdout.exists()) {
+                    FileLogAccessor fla = new FileLogAccessor();
+                    fla.setName(fileName);
+                    fla.setFile(stdout);
+                    return fla;
+                }
+            }
+        }
+        return null;
+    }
+
+    private LogDestination getCatalinaLogDestination(Context ctx, Application application) {
+        Object log = getContainerWrapper().getTomcatContainer().getLogger(ctx);
+        if (log != null) {
+            CatalinaLoggerAccessor logAccessor = new CatalinaLoggerAccessor();
+            logAccessor.setTarget(log);
+            logAccessor.setApplication(application);
+            if (logAccessor.getFile().exists()) {
+                return logAccessor;
+            }
+        }
+        return null;
+    }
+
+    private LogDestination getCommonsLogDestination(Context ctx, Application application, String logIndex) {
+        Object contextLogger = getContainerWrapper().getTomcatContainer().getLogger(ctx);
+        CommonsLoggerAccessor commonsAccessor = new CommonsLoggerAccessor();
+        commonsAccessor.setTarget(contextLogger);
+        commonsAccessor.setApplication(application);
+        return commonsAccessor.getDestination(logIndex);
+    }
+
+    private LogDestination getJdk14LogDestination(ClassLoader cl, Application application, boolean root, String logName, String handlerIndex) {
+        Jdk14ManagerAccessor manager = Jdk14ManagerAccessor.create(cl);
+        if (manager != null) {
+            manager.setApplication(application);
+            Jdk14LoggerAccessor log = (root ? manager.getRootLogger() : manager.getLogger(logName));
+            if (log != null) {
+                return log.getHandler(handlerIndex);
+            }
+        }
+        return null;
+    }
+
+    private LogDestination getLog4JLogDestination(ClassLoader cl, Application application, boolean root, String logName, String appenderName) {
+        Log4JManagerAccessor manager = Log4JManagerAccessor.create(cl);
+        if (manager != null) {
+            manager.setApplication(application);
+            Log4JLoggerAccessor log = (root ? manager.getRootLogger() : manager.getLogger(logName));
+            if (log != null) {
+                return log.getAppender(appenderName);
+            }
+        }
+        return null;
     }
 
     private static class LogDestinationComparator implements Comparator {
