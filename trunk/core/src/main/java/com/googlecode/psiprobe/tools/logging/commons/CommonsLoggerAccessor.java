@@ -24,8 +24,8 @@ public class CommonsLoggerAccessor extends DefaultAccessor {
         return v.getDestinations();
     }
 
-    public LogDestination getDestination(String name) {
-        GetSingleDestinationVisitor v = new GetSingleDestinationVisitor(name);
+    public LogDestination getDestination(String logIndex) {
+        GetSingleDestinationVisitor v = new GetSingleDestinationVisitor(logIndex);
         v.setTarget(getTarget());
         v.setApplication(getApplication());
         v.visit();

@@ -14,10 +14,15 @@ import java.io.File;
 
 public class FileLogAccessor extends AbstractLogDestination {
 
+    private String name;
     private File file;
 
     public String getName() {
-        return "stdout";
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getType() {
