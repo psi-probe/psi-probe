@@ -192,4 +192,11 @@
 		<function-signature>long max(long, long)</function-signature>
 	</function>
 
+	<function>
+		<display-name>escapeJS</display-name>
+		<name>escapeJS</name>
+		<function-class>org.springframework.web.util.JavaScriptUtils</function-class>
+		<function-signature>java.lang.String javaScriptEscape(java.lang.String)</function-signature>
+	</function>
+
 </taglib>
