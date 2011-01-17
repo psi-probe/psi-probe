@@ -18,6 +18,10 @@ import java.util.Date;
 
 public class CatalinaLoggerAccessor extends AbstractLogDestination {
 
+    public boolean isContext() {
+        return true;
+    }
+
     public String getName() {
         return null;
     }

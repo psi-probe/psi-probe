@@ -18,6 +18,8 @@ import org.apache.commons.beanutils.MethodUtils;
 
 public class Log4JLoggerAccessor extends DefaultAccessor {
 
+    private boolean context = false;
+
     public List getAppenders() {
         List appenders = new ArrayList();
         try {
@@ -40,6 +42,14 @@ public class Log4JLoggerAccessor extends DefaultAccessor {
             log.error(getTarget() + ".getAppender() failed", e);
         }
         return null;
+    }
+
+    public boolean isContext() {
+        return context;
+    }
+
+    public void setContext(boolean context) {
+        this.context = context;
     }
 
     public boolean isRoot() {
