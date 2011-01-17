@@ -18,13 +18,6 @@
 
 	<util:properties id="version" location="WEB-INF/version.properties" />
 
-	<util:list id="stdoutFiles">
-		<value>catalina.out</value>
-		<value>wrapper.log</value>
-		<value>stdout.log</value>
-		<value>stdout.err</value>
-	</util:list>
-
 	<!--
 		Helper class to allow Probe controllers to access Tomcat.
 	-->
@@ -61,6 +54,18 @@
 	</bean>
 
 	<bean id="jbossResourceResolver" class="com.googlecode.psiprobe.beans.JBossResourceResolverBean"/>
+
+	<bean id="logResolver" class="com.googlecode.psiprobe.beans.LogResolverBean">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="stdoutFiles">
+			<list>
+				<value>catalina.out</value>
+				<value>wrapper.log</value>
+				<value>stdout.log</value>
+				<value>stdout.err</value>
+			</list>
+		</property>
+	</bean>
 
 	<bean id="containerListener" class="com.googlecode.psiprobe.beans.ContainerListenerBean">
 		<property name="containerWrapper">

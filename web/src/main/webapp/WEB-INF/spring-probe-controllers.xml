@@ -398,8 +398,7 @@
 	</bean>
 
 	<bean name="/logs,/logs/index.htm" class="com.googlecode.psiprobe.controllers.logs.ListLogsController">
-		<property name="containerWrapper" ref="containerWrapper"/>
-		<property name="stdoutFiles" ref="stdoutFiles"/>
+		<property name="logResolver" ref="logResolver"/>
 		<property name="viewName" value="logs"/>
 		<property name="errorView" value="logs_notsupported"/>
 	</bean>
