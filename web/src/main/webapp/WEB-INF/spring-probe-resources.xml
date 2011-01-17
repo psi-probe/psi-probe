@@ -18,6 +18,13 @@
 
 	<util:properties id="version" location="WEB-INF/version.properties" />
 
+	<util:list id="stdoutFiles">
+		<value>catalina.out</value>
+		<value>wrapper.log</value>
+		<value>stdout.log</value>
+		<value>stdout.err</value>
+	</util:list>
+
 	<!--
 		Helper class to allow Probe controllers to access Tomcat.
 	-->
