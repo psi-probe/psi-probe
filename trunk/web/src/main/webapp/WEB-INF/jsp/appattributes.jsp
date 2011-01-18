@@ -60,7 +60,7 @@
 							<td id="separator" width="1%">&nbsp;</td>
 							<td>
 								<div id="appAttrTblContainer" class="scrollable_content">
-									<display:table htmlId="appAttrTbl" name="appAttributes" id="attribute"
+									<display:table htmlId="appAttrTbl" name="appAttributes" uid="attribute"
 											class="genericTbl" cellspacing="0" cellpadding="0"
 											requestURI="" defaultsort="1">
 										<display:column title="&nbsp;" width="20px" class="leftMostIcon">

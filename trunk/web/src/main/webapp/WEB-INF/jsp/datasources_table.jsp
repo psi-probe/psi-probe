@@ -15,7 +15,7 @@
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@ taglib uri="/WEB-INF/tags/probe.tld" prefix="probe" %>
 
-<display:table class="genericTbl" cellspacing="0" name="resources" id="resource"
+<display:table class="genericTbl" cellspacing="0" name="resources" uid="resource"
 		htmlId="${isGlobalResources ? 'global_resources' : 'app_resources'}" requestURI="">
 
 	<display:column class="leftmost" title="&nbsp;">

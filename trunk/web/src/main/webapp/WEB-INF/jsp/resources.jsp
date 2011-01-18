@@ -39,7 +39,7 @@
 					</div>
 				</c:if>
 				<div id="resources">
-					<display:table class="genericTbl" name="resources" id="resource" cellspacing="0">
+					<display:table class="genericTbl" name="resources" uid="resource" cellspacing="0">
 						<display:column class="leftmost" sortable="true" sortProperty="name"
 								titleKey="probe.jsp.resources.col.name">
 							<a href="<c:url value='/sql/datasourcetest.htm'/>?webapp=${resource.applicationName}&resource=${resource.name}">

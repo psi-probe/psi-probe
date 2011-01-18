@@ -15,7 +15,7 @@
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@ taglib uri="/WEB-INF/tags/probe.tld" prefix="probe" %>
 
-<display:table name="pools" class="genericTbl" cellspacing="0" id="pool" requestURI="">
+<display:table name="pools" class="genericTbl" cellspacing="0" uid="pool" requestURI="">
 
 	<display:column title="&nbsp;" width="16px" class="leftMostIcon">
 		<c:choose>

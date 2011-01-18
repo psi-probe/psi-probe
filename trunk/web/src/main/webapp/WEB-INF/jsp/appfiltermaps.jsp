@@ -53,7 +53,7 @@
 
 					<h3><spring:message code="probe.jsp.app.filtermaps.h3.maps"/></h3>
 
-					<display:table name="filterMaps" id="fltr"
+					<display:table name="filterMaps" uid="fltr"
 							class="genericTbl" cellspacing="0" cellpadding="0"
 							requestURI="" defaultsort="1">
 						<display:column sortProperty="url" sortable="true"

@@ -26,7 +26,7 @@
 
 		<h3><spring:message code="probe.jsp.servlets.h3.defs"/></h3>
 
-		<display:table htmlId="servletTbl" name="servlets" id="svlt"
+		<display:table htmlId="servletTbl" name="servlets" uid="svlt"
 				class="genericTbl" cellspacing="0" cellpadding="0"
 				requestURI="" defaultsort="${empty param.webapp ? 6 : 5}" defaultorder="descending">
 			<c:if test="${empty param.webapp}">

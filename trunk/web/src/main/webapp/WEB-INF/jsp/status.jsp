@@ -72,7 +72,7 @@
 						<div class="workerInfo">
 							<display:table name="${pool.requestProcessors}"
 									class="genericTbl" cellspacing="0"
-									requestURI="" id="rp" defaultsort="7" defaultorder="descending">
+									requestURI="" uid="rp" defaultsort="7" defaultorder="descending">
 								<display:column title="&nbsp;" width="18px" class="leftmost">
 									<c:choose>
 										<c:when test="${! empty rp.remoteAddrLocale.country && rp.remoteAddrLocale.country != '**'}">
