@@ -19,8 +19,14 @@ public class SecurityUtils {
     }
 
     public static boolean hasAttributeValueRole(ServletContext servletContext, HttpServletRequest request) {
-        String privilegedRole = getPrivilegedRole(servletContext);
-        return request.isUserInRole(privilegedRole);
+        String[] privilegedRoles = getPrivilegedRoles(servletContext).split(",");
+        for (int i = 0; i < privilegedRoles.length; i++) {
+            String privilegedRole = privilegedRoles[i];
+            if (request.isUserInRole(privilegedRole)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /*
@@ -39,8 +45,8 @@ public class SecurityUtils {
     }
      */
 
-    private static String getPrivilegedRole(ServletContext servletContext) {
-        return servletContext.getInitParameter("attribute.value.role");
+    private static String getPrivilegedRoles(ServletContext servletContext) {
+        return servletContext.getInitParameter("attribute.value.roles");
     }
 
 }
