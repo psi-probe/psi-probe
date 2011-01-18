@@ -85,8 +85,7 @@
 									</c:choose>
 								</display:column>
 
-								<display:column width="90px"
-										nowrap="" sortable="true" titleKey="probe.jsp.status.wrk.col.remoteAddr">
+								<display:column nowrap="" sortable="true" titleKey="probe.jsp.status.wrk.col.remoteAddr">
 									<a id="ip_${pool.name}_${rp_rowNum}" href="#">${rp.remoteAddr}</a>
 
 									<script type="text/javascript">
@@ -96,7 +95,7 @@
 
 								</display:column>
 
-								<display:column width="60px" sortable="true" sortProperty="stage"
+								<display:column sortable="true" sortProperty="stage"
 										titleKey="probe.jsp.status.wrk.col.stage">
 									<c:choose>
 										<c:when test="${rp.stage == 1}">
@@ -126,28 +125,28 @@
 										<c:otherwise>?</c:otherwise>
 									</c:choose>
 								</display:column>
-								<display:column width="80px" sortable="true" sortProperty="processingTime"
+								<display:column sortable="true" sortProperty="processingTime"
 										titleKey="probe.jsp.status.wrk.col.processingTime">
 									<probe:duration value="${rp.processingTime}"/>
 								</display:column>
-								<display:column width="60px" sortable="true" sortProperty="bytesReceived"
+								<display:column sortable="true" sortProperty="bytesReceived"
 										titleKey="probe.jsp.status.wrk.col.in">
 									<probe:volume value="${rp.bytesReceived}"/>
 								</display:column>
-								<display:column width="60px" sortable="true" sortProperty="bytesSent"
+								<display:column sortable="true" sortProperty="bytesSent"
 										titleKey="probe.jsp.status.wrk.col.out">
 									<probe:volume value="${rp.bytesSent}"/>
 								</display:column>
 
 								<c:if test="${workerThreadNameSupported}">
-									<display:column width="130px" sortable="true" titleKey="probe.jsp.status.wrk.col.thread">
+									<display:column sortable="true" titleKey="probe.jsp.status.wrk.col.thread">
 										<c:choose>
 											<c:when test="${! empty rp.workerThreadName}">
-												<a id="thr${rp.workerThreadName}">
+												<a id="thr${rp_rowNum}">
 													${rp.workerThreadName}
 												</a>
 												<script type="text/javascript">
-													addAjaxTooltip('thr${rp.workerThreadName}', 'ttdiv', '<c:url value="/app/threadstack.ajax"/>?name=${rp.workerThreadName}');
+													addAjaxTooltip('thr${rp_rowNum}', 'ttdiv', '<c:url value="/app/threadstack.ajax"/>?name=${rp.workerThreadName}');
 												</script>
 											</c:when>
 											<c:otherwise>
