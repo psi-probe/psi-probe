@@ -63,7 +63,7 @@ public class Log4JAppenderAccessor extends AbstractLogDestination {
     }
 
     public String[] getValidLevels() {
-        return new String[] {"OFF", "FATAL", "ERROR", "WARNING", "INFO", "DEBUG", "TRACE", "ALL"};
+        return new String[] {"OFF", "FATAL", "ERROR", "WARN", "INFO", "DEBUG", "TRACE", "ALL"};
     }
     
 }
