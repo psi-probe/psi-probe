@@ -408,7 +408,7 @@
 		<property name="viewName" value=""/>
 	</bean>
 
-	<bean name="/logs/follow.htm" class="com.googlecode.psiprobe.controllers.logs.LogHandlerController">
+	<bean name="/logs/follow.htm" class="com.googlecode.psiprobe.controllers.logs.SetupFollowController">
 		<property name="logResolver" ref="logResolver"/>
 		<property name="viewName" value="follow"/>
 	</bean>
@@ -421,6 +421,11 @@
 	<bean name="/logs/ff_info.ajax" class="com.googlecode.psiprobe.controllers.logs.LogHandlerController">
 		<property name="logResolver" ref="logResolver"/>
 		<property name="viewName" value="ajax/followed_file_info"/>
+	</bean>
+
+	<bean name="/logs/changelevel.ajax" class="com.googlecode.psiprobe.controllers.logs.ChangeLogLevelController">
+		<property name="logResolver" ref="logResolver"/>
+		<property name="viewName" value=""/>
 	</bean>
 
 	<bean name="/decorator.htm" class="com.googlecode.psiprobe.controllers.DecoratorController">

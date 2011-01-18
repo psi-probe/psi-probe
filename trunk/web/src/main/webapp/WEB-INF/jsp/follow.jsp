@@ -12,6 +12,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@ taglib uri="/WEB-INF/tags/probe.tld" prefix="probe" %>
 
 <%--
@@ -75,15 +76,6 @@
 					<spring:message code="probe.jsp.follow.menu.clear"/>
 				</a>
 			</li>
-			<li id="level">
-				<c:if test="${not empty log.validLevels && log.level != null}">
-					<select>
-						<c:forEach items="${log.validLevels}" var="validLogLevel">
-							<option value="${validLogLevel}" ${validLogLevel == log.level ? 'selected="selected"' : ''}>${validLogLevel}</option>
-						</c:forEach>
-					</select>
-				</c:if>
-			</li>
 			<li id="download">
 				<c:url value="/logs/download" var="downloadUrl">
 					<c:param name="logClass" value="${log.logClass}"/>
@@ -130,6 +122,86 @@
 					<div class="ajax_activity"></div>
 				</div>
 			</div>
+
+			<h3><spring:message code="probe.jsp.follow.h3.sources"/></h3>
+
+			<display:table name="sources" class="genericTbl" cellspacing="0" uid="logsource" requestURI="">
+
+				<display:column titleKey="probe.jsp.logs.col.app" sortable="true" class="leftmost">
+					${logsource.application.name}
+				</display:column>
+
+				<display:column titleKey="probe.jsp.logs.col.class" sortable="true" property="logClass"/>
+
+				<display:column titleKey="probe.jsp.logs.col.name" sortable="true">
+					<c:choose>
+						<c:when test="${logsource.context}">
+							(CONTEXT)
+						</c:when>
+						<c:when test="${logsource.root}">
+							(ROOT)
+						</c:when>
+						<c:otherwise>
+							${logsource.name}
+						</c:otherwise>
+					</c:choose>
+				</display:column>
+
+				<display:column titleKey="probe.jsp.logs.col.type" sortable="true">
+					${logsource.type} (${logsource.index})
+				</display:column>
+
+				<display:column titleKey="probe.jsp.logs.col.level" sortable="false">
+					<c:if test="${not empty logsource.validLevels && logsource.level != null}">
+						<select id="log_${logsource_rowNum}">
+							<c:forEach items="${logsource.validLevels}" var="validLogLevel">
+								<option value="${validLogLevel}" ${validLogLevel == logsource.level ? 'selected="selected"' : ''}>${validLogLevel}</option>
+							</c:forEach>
+						</select>
+
+						<c:url value="/logs/changelevel.ajax" var="changeLogLevelUrl">
+							<c:param name="logClass" value="${logsource.logClass}"/>
+							<c:if test="${logsource.application != null}">
+								<c:param name="webapp" value="${logsource.application.name}"/>
+								<c:if test="${logsource.context}">
+									<c:param name="context" value="${logsource.context}"/>
+								</c:if>
+							</c:if>
+							<c:if test="${!logsource.context}">
+								<c:choose>
+									<c:when test="${logsource.root}">
+										<c:param name="root" value="${logsource.root}"/>
+									</c:when>
+									<c:otherwise>
+										<c:param name="logName" value="${logsource.name}"/>
+									</c:otherwise>
+								</c:choose>
+							</c:if>
+							<c:if test="${logsource.index != null}">
+								<c:param name="logIndex" value="${logsource.index}"/>
+							</c:if>
+						</c:url>
+
+						<script type="text/javascript">
+							Event.observe(window, 'load', function() {
+								$('log_${logsource_rowNum}').observe('change', function(event) {
+									this.disable();
+									new Ajax.Request('${changeLogLevelUrl}', {
+										method: 'get',
+										parameters: {
+											level: this.value
+										},
+										asynchronous: true,
+										onSuccess: function(response) {
+											event.element().enable();
+										}
+									});
+								});
+							});
+						</script>
+					</c:if>
+				</display:column>
+			</display:table>
 		</div>
 
 		<c:choose>
@@ -304,11 +376,6 @@
 						$(file_content_div).update();
 						followLog(undefined);
 						return false;
-					}
-				},
-				'#level select': function(element) {
-					element.onchange = function() {
-						// TODO: change the log level via AJAX
 					}
 				}
 
