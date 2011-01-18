@@ -14,6 +14,7 @@ import com.googlecode.psiprobe.model.Application;
 import com.googlecode.psiprobe.model.DisconnectedLogDestination;
 import com.googlecode.psiprobe.tools.ApplicationUtils;
 import com.googlecode.psiprobe.tools.Instruments;
+import com.googlecode.psiprobe.tools.logging.DefaultAccessor;
 import com.googlecode.psiprobe.tools.logging.FileLogAccessor;
 import com.googlecode.psiprobe.tools.logging.LogDestination;
 import com.googlecode.psiprobe.tools.logging.catalina.CatalinaLoggerAccessor;
@@ -61,6 +62,51 @@ public class LogResolverBean {
     }
 
     public List getLogDestinations(boolean all) {
+        List allAppenders = getAllLogDestinations();
+
+        if (allAppenders != null) {
+            //
+            // this list has to guarantee the order in which elements are added
+            //
+            List uniqueList = new LinkedList();
+            Comparator cmp = new LogDestinationComparator(all);
+
+            Collections.sort(allAppenders, cmp);
+            for (int i = 0; i < allAppenders.size(); i++) {
+                LogDestination dest = (LogDestination) allAppenders.get(i);
+                if (Collections.binarySearch(uniqueList, dest, cmp) < 0) {
+                    if (all || dest.getFile() == null || dest.getFile().exists()) {
+                        uniqueList.add(new DisconnectedLogDestination(dest));
+                    }
+                }
+            }
+            return uniqueList;
+        }
+        return null;
+    }
+
+    public List getLogSources(File logFile) {
+        List sources = new LinkedList();
+
+        List allAppenders = getAllLogDestinations();
+        if (allAppenders != null) {
+            Comparator cmp = new LogDestinationComparator(true);
+            Comparator logsMatch = new LogTargetsMatchComparator();
+
+            Collections.sort(allAppenders, cmp);
+            for (int i = 0; i < allAppenders.size(); i++) {
+                LogDestination dest = (LogDestination) allAppenders.get(i);
+                if (logFile.equals(dest.getFile())
+                        && Collections.binarySearch(sources, dest, logsMatch) < 0) {
+
+                    sources.add(new DisconnectedLogDestination(dest));
+                }
+            }
+        }
+        return sources;
+    }
+
+    private List getAllLogDestinations() {
         if (Instruments.isInitialized()) {
             List allAppenders = new ArrayList();
 
@@ -84,22 +130,7 @@ public class LogResolverBean {
             List contexts = getContainerWrapper().getTomcatContainer().findContexts();
             interrogateApplicationClassLoaders(contexts, allAppenders);
 
-            //
-            // this list has to guarantee the order in which elements are added
-            //
-            List uniqueList = new LinkedList();
-            Comparator cmp = new LogDestinationComparator(all);
-
-            Collections.sort(allAppenders, cmp);
-            for (int i = 0; i < allAppenders.size(); i++) {
-                LogDestination dest = (LogDestination) allAppenders.get(i);
-                if (Collections.binarySearch(uniqueList, dest, cmp) < 0) {
-                    if (all || dest.getFile() == null || dest.getFile().exists()) {
-                        uniqueList.add(new DisconnectedLogDestination(dest));
-                    }
-                }
-            }
-            return uniqueList;
+            return allAppenders;
         }
         return null;
     }
@@ -299,22 +330,46 @@ public class LogResolverBean {
         public int compare(Object o1, Object o2) {
             LogDestination d1 = (LogDestination) o1;
             LogDestination d2 = (LogDestination) o2;
-            String name1, name2;
+            File f1 = d1.getFile();
+            File f2 = d2.getFile();
+            String name1 = (f1 == null ? "" : f1.getAbsolutePath());
+            String name2 = (f2 == null ? "" : f2.getAbsolutePath());
             if (all) {
-                String appName1 = d1.getApplication() != null ? d1.getApplication().getName() : "";
-                String appName2 = d2.getApplication() != null ? d2.getApplication().getName() : "";
+                Application a1 = d1.getApplication();
+                Application a2 = d2.getApplication();
+                String appName1 = (a1 == null ? "" : a1.getName());
+                String appName2 = (a2 == null ? "" : a2.getName());
+                String context1 = (d1.isContext() ? "is" : "not");
+                String context2 = (d2.isContext() ? "is" : "not");
+                String root1 = (d1.isRoot() ? "is" : "not");
+                String root2 = (d2.isRoot() ? "is" : "not");
                 String logClass1 = d1.getLogClass();
                 String logClass2 = d1.getLogClass();
-                name1 = appName1 + logClass1 + (d1.getFile() == null ? "" : d1.getFile().getAbsolutePath());
-                name2 = appName2 + logClass2 + (d2.getFile() == null ? "" : d2.getFile().getAbsolutePath());
-            } else {
-                File f1 = d1.getFile();
-                File f2 = d2.getFile();
-                name1 = (f1 == null ? "" : f1.getAbsolutePath());
-                name2 = (f2 == null ? "" : f2.getAbsolutePath());
+                char delim = '!';
+                name1 = appName1 + delim + context1 + delim + root1 + delim + logClass1 + delim + name1;
+                name2 = appName2 + delim + context2 + delim + root2 + delim + logClass2 + delim + name2;
             }
             return name1.compareTo(name2);
         }
+    }
+
+    private static class LogTargetsMatchComparator extends LogDestinationComparator {
+
+        public LogTargetsMatchComparator() {
+            super(true);
+        }
+
+        public int compare(Object o1, Object o2) {
+            if (o1 instanceof DefaultAccessor && o2 instanceof DefaultAccessor) {
+                DefaultAccessor da1 = (DefaultAccessor) o1;
+                DefaultAccessor da2 = (DefaultAccessor) o2;
+                if (da1.getTarget() == da2.getTarget()) {
+                    return 0;
+                }
+            }
+            return super.compare(o1, o2);
+        }
+
     }
 
 }
