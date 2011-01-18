@@ -101,8 +101,8 @@
 
 	<context-param>
 		<description>Role that can view session attribute values</description>
-		<param-name>attribute.value.role</param-name>
-		<param-value>manager</param-value>
+		<param-name>attribute.value.roles</param-name>
+		<param-value>manager,manager-gui</param-value>
 		<!--
 		<param-value>ROLE_MANAGER</param-value>
 		-->
@@ -118,6 +118,7 @@
 			<role-name>probeuser</role-name>
 			<role-name>poweruser</role-name>
 			<role-name>manager</role-name>
+			<role-name>manager-gui</role-name>
 			<role-name>poweruserplus</role-name>
 		</auth-constraint>
 	</security-constraint>
@@ -131,6 +132,7 @@
 		<auth-constraint>
 			<role-name>poweruser</role-name>
 			<role-name>manager</role-name>
+			<role-name>manager-gui</role-name>
 			<role-name>poweruserplus</role-name>
 		</auth-constraint>
 	</security-constraint>
@@ -148,6 +150,7 @@
 		<auth-constraint>
 			<role-name>poweruserplus</role-name>
 			<role-name>manager</role-name>
+			<role-name>manager-gui</role-name>
 		</auth-constraint>
 	</security-constraint>
 
