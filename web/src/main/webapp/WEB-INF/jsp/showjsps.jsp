@@ -66,7 +66,7 @@
 					</ul>
 
 					<div class="embeddedBlockContainer">
-						<display:table name="summary.items" id="item" class="genericTbl" cellspacing="0" requestURI="" defaultsort="1"
+						<display:table name="summary.items" uid="item" class="genericTbl" cellspacing="0" requestURI="" defaultsort="1"
 								defaultorder="descending">
 							<display:column titleKey="probe.jsp.jsps.col.name" sort="true" class="leftmost" sortProperty="name" width="auto">
 								<input type="checkbox" name="${item.name}"/>&nbsp;

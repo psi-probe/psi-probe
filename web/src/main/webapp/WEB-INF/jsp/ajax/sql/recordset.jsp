@@ -39,7 +39,7 @@
 	<c:choose>
 		<c:when test="${! empty results}">
 			<c:url value="sql/cachedRecordset.ajax" var="requestURI" />
-			<display:table htmlId="sqlResultTbl" name="results" id="row" class="genericTbl"
+			<display:table htmlId="sqlResultTbl" name="results" uid="row" class="genericTbl"
 					cellspacing="0" cellpadding="0" excludedParams="*"
 					requestURI="${requestURI}" pagesize="${rowsPerPage}">
 				<display:setProperty name="paging.banner.item_name">

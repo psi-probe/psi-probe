@@ -73,7 +73,7 @@
 
 					<h3><spring:message code="probe.jsp.servletmaps.h3.maps"/></h3>
 
-					<display:table name="servletMaps" id="svlt"
+					<display:table name="servletMaps" uid="svlt"
 							class="genericTbl" cellspacing="0" cellpadding="0"
 							requestURI="" defaultsort="1">
 						<c:if test="${empty param.webapp}">

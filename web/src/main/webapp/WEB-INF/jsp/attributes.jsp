@@ -108,7 +108,7 @@
 					<h3><spring:message code="probe.jsp.sessionAttibutes.h3.attributes"/></h3>
 					<c:choose>
 						<c:when test="${! empty session.attributes}">
-							<display:table name="session.attributes" id="attribute"
+							<display:table name="session.attributes" uid="attribute"
 									class="genericTbl" cellspacing="0" cellpadding="0"
 									requestURI="">
 								<display:column title="&nbsp;" class="leftmost" style="width: 20px;">

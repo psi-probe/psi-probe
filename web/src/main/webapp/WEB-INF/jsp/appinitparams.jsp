@@ -43,7 +43,7 @@
 
 					<h3><spring:message code="probe.jsp.app.initParams.h3.params"/></h3>
 
-					<display:table htmlId="initParamTbl" name="appInitParams" id="prm"
+					<display:table htmlId="initParamTbl" name="appInitParams" uid="prm"
 							class="genericTbl" cellspacing="0" cellpadding="0"
 							requestURI="" defaultsort="2">
 						<display:column class="leftMostIcon" title="&nbsp;" width="1px">
