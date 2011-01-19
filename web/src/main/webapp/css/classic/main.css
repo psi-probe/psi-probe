@@ -193,12 +193,12 @@ ul.options li a:hover, #successMessage a:hover {
 
 li#back {
 	float: left; /*background: url( "img/back-arrow.gif" ) top left no-repeat;*/
-	background: url( "gifs/control_rewind_blue.gif" ) top left no-repeat;
+	background: url( "gifs/silk/control_rewind_blue.gif" ) top left no-repeat;
 }
 
 li#allStats {
 	float: left;
-	background: url( "gifs/bricks.gif" ) top left no-repeat;
+	background: url( "gifs/silk/bricks.gif" ) top left no-repeat;
 }
 
 li#size {
@@ -208,12 +208,12 @@ li#size {
 
 li#toggle {
 	float: left; /*background: url( "img/inverse.gif" ) top left no-repeat;*/
-	background: url( "gifs/tag_blue.gif" ) top left no-repeat;
+	background: url( "gifs/silk/tag_blue.gif" ) top left no-repeat;
 }
 
 li#delete, li#delete_r {
 	float: left;
-	background: url( "gifs/folder_delete.gif" ) top left no-repeat;
+	background: url( "gifs/silk/folder_delete.gif" ) top left no-repeat;
 }
 
 li#delete_r {
@@ -222,77 +222,77 @@ li#delete_r {
 
 li#showSearch {
 	float: left;
-	background: url( "gifs/folder_explore.gif" ) top left no-repeat;
+	background: url( "gifs/silk/folder_explore.gif" ) top left no-repeat;
 }
 
 li#applySearch {
 	float: left;
-	background: url( "gifs/application_form_magnify.gif" ) top left no-repeat;
+	background: url( "gifs/silk/application_form_magnify.gif" ) top left no-repeat;
 }
 
 li#clearSearch {
 	float: left;
-	background: url( "gifs/application_form_delete.gif" ) top left no-repeat;
+	background: url( "gifs/silk/application_form_delete.gif" ) top left no-repeat;
 }
 
 li#showAll {
 	float: right;
-	background: url( "gifs/application_view_list.gif" ) top left no-repeat;
+	background: url( "gifs/silk/application_view_list.gif" ) top left no-repeat;
 }
 
 li#download {
 	float: right;
-	background: url( "gifs/page_white_put.gif" ) top left no-repeat;
+	background: url( "gifs/silk/page_white_put.gif" ) top left no-repeat;
 }
 
 li#pause {
 	float: left;
-	background: url( "gifs/control_pause_blue.gif" ) top left no-repeat;
+	background: url( "gifs/silk/control_pause_blue.gif" ) top left no-repeat;
 }
 
 li#resume {
 	float: left;
-	background: url( "gifs/control_play_blue.gif" ) top left no-repeat;
+	background: url( "gifs/silk/control_play_blue.gif" ) top left no-repeat;
 }
 
 li#zoomin {
 	float: left;
-	background: url( "gifs/magnifier_zoom_in.gif" ) top left no-repeat;
+	background: url( "gifs/silk/magnifier_zoom_in.gif" ) top left no-repeat;
 }
 
 li#zoomout {
 	float: left;
-	background: url( "gifs/magnifier_zoom_out.gif" ) top left no-repeat;
+	background: url( "gifs/silk/magnifier_zoom_out.gif" ) top left no-repeat;
 }
 
 li#wrap {
 	float: left;
-	background: url( "gifs/arrow_undo.gif" ) top left no-repeat;
+	background: url( "gifs/silk/arrow_undo.gif" ) top left no-repeat;
 }
 
 li#nowrap {
 	float: left;
-	background: url( "gifs/arrow_right.gif" ) top left no-repeat;
+	background: url( "gifs/silk/arrow_right.gif" ) top left no-repeat;
 }
 
 li#groupByJdbcUrl {
 	float: right;
-	background: url( "gifs/database_table.gif" ) top left no-repeat;
+	background: url( "gifs/silk/database_table.gif" ) top left no-repeat;
 }
 
 li#viewservlet {
 	float: left;
-	background: url( "gifs/script_gear.gif" ) top left no-repeat;
+	background: url( "gifs/silk/script_gear.gif" ) top left no-repeat;
 }
 
 li#viewJSP {
 	float: left;
-	background: url( "gifs/script_code_red.gif" ) top left no-repeat;
+	background: url( "gifs/silk/script_code_red.gif" ) top left no-repeat;
 }
 
 li#clear {
 	float: left;
-	background: url( "gifs/pill.gif" ) top left no-repeat;
+	background: url( "gifs/silk/pill.gif" ) top left no-repeat;
 }
 
 span.fail {
@@ -302,13 +302,13 @@ span.fail {
 
 li#compileall {
 	float: left; /*background: url( "img/compileall.gif" ) top left no-repeat;*/
-	background: url( "gifs/lightning.gif" ) top left no-repeat;
+	background: url( "gifs/silk/lightning.gif" ) top left no-repeat;
 
 }
 
 li#compile, li#compilesingle {
 	float: left;
-	background: url( "gifs/table_lightning.gif" ) top left no-repeat;
+	background: url( "gifs/silk/table_lightning.gif" ) top left no-repeat;
 }
 
 li#compilesingle {
@@ -316,76 +316,76 @@ li#compilesingle {
 }
 
 li#adviseGC {
-	background: url( "gifs/wrench_orange.gif" ) top left no-repeat;
+	background: url( "gifs/silk/wrench_orange.gif" ) top left no-repeat;
 }
 
 li#adviseFin {
-	background: url( "gifs/wrench.gif" ) top left no-repeat;
+	background: url( "gifs/silk/wrench.gif" ) top left no-repeat;
 }
 
 li#stop_jvm {
-	background: url("gifs/cup_delete.gif") top left no-repeat;
+	background: url("gifs/silk/cup_delete.gif") top left no-repeat;
 	float: right;
 }
 
 li#restart_jvm {
-	background: url("gifs/cup_go.gif") top left no-repeat;
+	background: url("gifs/silk/cup_go.gif") top left no-repeat;
 	float: right;
 }
 
 li#thread_dump {
-	background: url("gifs/bug_edit.gif") top left no-repeat;
+	background: url("gifs/silk/bug_edit.gif") top left no-repeat;
 	float: right;
 }
 
 li#abbreviations {
 	float: right;
-	background: url("gifs/lightbulb.gif") top left no-repeat;
+	background: url("gifs/silk/lightbulb.gif") top left no-repeat;
 }
 
 li#viewServlets {
 	float: left;
-	background: url( "gifs/application_view_list.gif" ) top left no-repeat;
+	background: url( "gifs/silk/application_view_list.gif" ) top left no-repeat;
 }
 
 li#viewServletMaps {
 	float: left;
-	background: url( "gifs/application_link.gif" ) top left no-repeat;
+	background: url( "gifs/silk/application_link.gif" ) top left no-repeat;
 }
 
 li#viewAllServlets {
 	float: right;
-	background: url( "gifs/application_view_list.gif" ) top left no-repeat;
+	background: url( "gifs/silk/application_view_list.gif" ) top left no-repeat;
 }
 
 li#viewAllServletMaps {
 	float: right;
-	background: url( "gifs/application_link.gif" ) top left no-repeat;
+	background: url( "gifs/silk/application_link.gif" ) top left no-repeat;
 }
 
 li#viewAppFilters {
 	float: left;
-	background: url( "gifs/application_view_list.gif" ) top left no-repeat;
+	background: url( "gifs/silk/application_view_list.gif" ) top left no-repeat;
 }
 
 li#viewAppFilterMaps {
 	float: left;
-	background: url( "gifs/application_link.gif" ) top left no-repeat;
+	background: url( "gifs/silk/application_link.gif" ) top left no-repeat;
 }
 
 li#appStart {
 	float: left;
-	background: url( "gifs/control_play_blue.gif" ) top left no-repeat;
+	background: url( "gifs/silk/control_play_blue.gif" ) top left no-repeat;
 }
 
 li#appStop {
 	float: left;
-	background: url( "gifs/control_stop_blue.gif" ) top left no-repeat;
+	background: url( "gifs/silk/control_stop_blue.gif" ) top left no-repeat;
 }
 
 li#appReload {
 	float: left;
-	background: url( "gifs/control_repeat_blue.gif" ) top left no-repeat;
+	background: url( "gifs/silk/control_repeat_blue.gif" ) top left no-repeat;
 }
 
 li#appUndeploy {
@@ -395,7 +395,7 @@ li#appUndeploy {
 
 li#appSurfTo {
 	float: left;
-	background: url( "gifs/page_world.gif" ) top left no-repeat;
+	background: url( "gifs/silk/page_world.gif" ) top left no-repeat;
 }
 
 .fixed_width {
@@ -551,7 +551,7 @@ div#handle {
 
 li#showapps {
 	float: right;
-	background-image: url( "gifs/application_link.gif" );
+	background-image: url( "gifs/silk/application_link.gif" );
 	background-position: center left;
 	background-repeat: no-repeat;
 	height: 16px; /*padding: 3px 0 8px 24px;*/
@@ -714,7 +714,7 @@ html>body #memoryPools table {
 	margin: 0 10px 0 10px;
 	padding: 2px 0 2px 0;
 	color: #003366;
-	background: url( "gifs/computer.gif" ) center left no-repeat;
+	background: url( "gifs/silk/computer.gif" ) center left no-repeat;
 	font-size: 93%;
 	text-transform: uppercase;
 	text-align: center;
@@ -744,7 +744,7 @@ html>body #memoryPools table {
 
 .verticalMenu a:hover, .verticalMenu a.active {
 	color: #000;
-	background: #FFFFFF url( "gifs/bullet_go.gif" ) center left no-repeat;
+	background: #FFFFFF url( "gifs/silk/bullet_go.gif" ) center left no-repeat;
 }
 
 #contentBody {

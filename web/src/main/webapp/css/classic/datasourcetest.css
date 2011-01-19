@@ -15,44 +15,44 @@ div.dataSourceTestMenu, div.dataSourceTestContent {
 
 li#connect {
 	float: left;
-	background: url( "gifs/database_key.gif" ) top left no-repeat;
+	background: url( "gifs/silk/database_key.gif" ) top left no-repeat;
 }
 
 li#executeSql {
 	float: left;
-	background: url( "gifs/database_lightning.gif" ) top left no-repeat;
+	background: url( "gifs/silk/database_lightning.gif" ) top left no-repeat;
 }
 
 li#showHistory {
 	float: left;
-	background: url( "gifs/script_go.gif" ) top left no-repeat;
+	background: url( "gifs/silk/script_go.gif" ) top left no-repeat;
 }
 
 li#hideHistory {
 	float: left;
-	background: url( "gifs/script_delete.gif" ) top left no-repeat;
+	background: url( "gifs/silk/script_delete.gif" ) top left no-repeat;
 }
 
 li#showOptions {
 	float: left;
-	background: url( "gifs/application_form_edit.gif" ) top left no-repeat;
+	background: url( "gifs/silk/application_form_edit.gif" ) top left no-repeat;
 }
 
 li#hideOptions {
 	float: left;
-	background: url( "gifs/application_form_delete.gif" ) top left no-repeat;
+	background: url( "gifs/silk/application_form_delete.gif" ) top left no-repeat;
 }
 
 li#wrap {
 	float: right;
 	padding-top: 10px;
-	background: url( "gifs/arrow_undo.gif" ) center left no-repeat;
+	background: url( "gifs/silk/arrow_undo.gif" ) center left no-repeat;
 }
 
 li#nowrap {
 	float: right;
 	padding-top: 10px;
-	background: url( "gifs/arrow_right.gif" ) center left no-repeat;
+	background: url( "gifs/silk/arrow_right.gif" ) center left no-repeat;
 }
 
 #sqlForm {
