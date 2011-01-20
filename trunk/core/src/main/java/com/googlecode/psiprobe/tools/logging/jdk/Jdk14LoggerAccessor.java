@@ -13,6 +13,7 @@ package com.googlecode.psiprobe.tools.logging.jdk;
 import com.googlecode.psiprobe.tools.logging.DefaultAccessor;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.commons.beanutils.MethodUtils;
 import org.apache.commons.beanutils.PropertyUtils;
 
 public class Jdk14LoggerAccessor extends DefaultAccessor {
@@ -71,6 +72,30 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
             log.error(getTarget() + "#handlers inaccessible", e);
         }
         return null;
+    }
+
+    public String getLevel() {
+        try {
+            Object level = getLevelInternal();
+            return (String) MethodUtils.invokeMethod(level, "getName", null);
+        } catch (Exception e) {
+            log.error(getTarget() + ".getLevel() failed", e);
+        }
+        return null;
+    }
+
+    public void setLevel(String newLevelStr) {
+        try {
+            Object level = getLevelInternal();
+            Object newLevel = MethodUtils.invokeMethod(level, "parse", newLevelStr);
+            MethodUtils.invokeMethod(getTarget(), "setLevel", newLevel);
+        } catch (Exception e) {
+            log.error(getTarget() + ".setLevel(\"" + newLevelStr + "\") failed", e);
+        }
+    }
+
+    private Object getLevelInternal() throws Exception {
+        return MethodUtils.invokeMethod(getTarget(), "getLevel", null);
     }
 
     private BaseJdk14HandlerAccessor wrapHandler(Object handler, int index) {
