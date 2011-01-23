@@ -90,11 +90,6 @@
 					</a>
 				</li>
 				<li>
-					<a class="${navTabStatus}" href="<c:url value='/status.htm'/>">
-						<spring:message code="probe.jsp.menu.status"/>
-					</a>
-				</li>
-				<li>
 					<a class="${navTabConnectors}" href="<c:url value='/connectors.htm'/>">
 						<spring:message code="probe.jsp.menu.connectors"/>
 					</a>
@@ -155,11 +150,6 @@
 				<li>
 					<a href="<c:url value='/sysinfo.htm'/>">
 						<spring:message code="probe.jsp.menu.sysinfo"/>
-					</a>
-				</li>
-				<li>
-					<a href="<c:url value='/status.htm'/>">
-						<spring:message code="probe.jsp.menu.status"/>
 					</a>
 				</li>
 				<li>

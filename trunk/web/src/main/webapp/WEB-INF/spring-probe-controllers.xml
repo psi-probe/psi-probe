@@ -149,9 +149,9 @@
 		<property name="viewName" value="/sysinfo.htm"/>
 	</bean>
 
-	<bean name="/status.htm" class="com.googlecode.psiprobe.controllers.connectors.StatusController">
+	<bean name="/threadpools.htm" class="com.googlecode.psiprobe.controllers.threads.ListThreadPoolsController">
 		<property name="containerListenerBean" ref="containerListener"/>
-		<property name="viewName" value="status"/>
+		<property name="viewName" value="threadpools"/>
 	</bean>
 
 	<bean name="/adm/quickcheck.htm" class="com.googlecode.psiprobe.controllers.TomcatAvailabilityController">
