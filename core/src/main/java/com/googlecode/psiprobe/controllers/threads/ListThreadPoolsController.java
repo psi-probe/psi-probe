@@ -8,7 +8,7 @@
  * WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
  * MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  */
-package com.googlecode.psiprobe.controllers.connectors;
+package com.googlecode.psiprobe.controllers.threads;
 
 import com.googlecode.psiprobe.beans.ContainerListenerBean;
 import com.googlecode.psiprobe.controllers.TomcatContainerController;
@@ -22,7 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
  *
  * @author Vlad Ilyushchenko
  */
-public class StatusController extends TomcatContainerController {
+public class ListThreadPoolsController extends TomcatContainerController {
 
     private ContainerListenerBean containerListenerBean;
 

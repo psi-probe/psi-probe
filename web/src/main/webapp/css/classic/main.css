@@ -333,6 +333,16 @@ li#restart_jvm {
 	float: right;
 }
 
+li#pools {
+	background: url("gifs/silk/application_link.gif") top left no-repeat;
+	float: left;
+}
+
+li#threads {
+	background: url("gifs/silk/application_view_list.gif") top left no-repeat;
+	float: left;
+}
+
 li#thread_dump {
 	background: url("gifs/silk/bug_edit.gif") top left no-repeat;
 	float: right;

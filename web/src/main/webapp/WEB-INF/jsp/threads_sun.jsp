@@ -31,6 +31,11 @@
 
 		<div>
 			<ul class="options">
+				<li id="pools">
+					<a href="<c:url value='/threadpools.htm'/>">
+						<spring:message code="probe.jsp.threads.menu.threadpools"/>
+					</a>
+				</li>
 				<li id="abbreviations">
 					<a href="#">
 						<spring:message code="probe.jsp.generic.abbreviations"/>
