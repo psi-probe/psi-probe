@@ -14,7 +14,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 <c:if test="${! empty pool}">
-	<span class="name"><spring:message code="probe.jsp.charts.request.count"/></span>&nbsp;${pool.requestCount}
+	<span class="name"><spring:message code="probe.jsp.charts.request.count"/></span>&nbsp;${connector.requestCount}
 	&nbsp;
-	<span class="name"><spring:message code="probe.jsp.charts.error.count"/></span>&nbsp;${pool.errorCount}
+	<span class="name"><spring:message code="probe.jsp.charts.error.count"/></span>&nbsp;${connector.errorCount}
 </c:if>

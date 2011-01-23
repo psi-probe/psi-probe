@@ -11,7 +11,7 @@
 package com.googlecode.psiprobe.beans.stats.collectors;
 
 import com.googlecode.psiprobe.beans.ContainerListenerBean;
-import com.googlecode.psiprobe.model.ThreadPool;
+import com.googlecode.psiprobe.model.Connector;
 import java.util.Iterator;
 import java.util.List;
 
@@ -28,24 +28,23 @@ public class ConnectorStatsCollectorBean extends AbstractStatsCollectorBean {
     }
 
     public void collect() throws Exception {
-        List pools = listenerBean.getThreadPools(false);
-        for (Iterator it = pools.iterator(); it.hasNext();) {
-            ThreadPool pool = (ThreadPool) it.next();
-            String statName = "stat.connector." + pool.getName();
-            buildDeltaStats(statName + ".requests", pool.getRequestCount());
-            buildDeltaStats(statName + ".errors", pool.getErrorCount());
-            buildDeltaStats(statName + ".sent", pool.getBytesSent());
-            buildDeltaStats(statName + ".received", pool.getBytesReceived());
-            buildDeltaStats(statName + ".proc_time", pool.getProcessingTime());
-            buildAbsoluteStats(statName + ".threads_busy", pool.getCurrentThreadsBusy());
+        List connectors = listenerBean.getConnectors(false);
+        for (Iterator it = connectors.iterator(); it.hasNext();) {
+            Connector connector = (Connector) it.next();
+            String statName = "stat.connector." + connector.getName();
+            buildDeltaStats(statName + ".requests", connector.getRequestCount());
+            buildDeltaStats(statName + ".errors", connector.getErrorCount());
+            buildDeltaStats(statName + ".sent", connector.getBytesSent());
+            buildDeltaStats(statName + ".received", connector.getBytesReceived());
+            buildDeltaStats(statName + ".proc_time", connector.getProcessingTime());
         }
     }
 
     public void reset() throws Exception {
-        List pools = listenerBean.getThreadPools(false);
-        for (Iterator it = pools.iterator(); it.hasNext();) {
-            ThreadPool pool = (ThreadPool) it.next();
-            reset(pool.getName());
+        List connectors = listenerBean.getConnectors(false);
+        for (Iterator it = connectors.iterator(); it.hasNext();) {
+            Connector connector = (Connector) it.next();
+            reset(connector.getName());
         }
     }
 
@@ -56,7 +55,6 @@ public class ConnectorStatsCollectorBean extends AbstractStatsCollectorBean {
         resetStats(statName + ".sent");
         resetStats(statName + ".received");
         resetStats(statName + ".proc_time");
-        resetStats(statName + ".threads_busy");
     }
 
 }

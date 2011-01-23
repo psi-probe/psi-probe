@@ -12,7 +12,7 @@ package com.googlecode.psiprobe.controllers.connectors;
 
 import com.googlecode.psiprobe.beans.ContainerListenerBean;
 import com.googlecode.psiprobe.controllers.TomcatContainerController;
-import com.googlecode.psiprobe.model.ThreadPool;
+import com.googlecode.psiprobe.model.Connector;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,12 +33,12 @@ public class GetConnectorController extends TomcatContainerController {
     protected ModelAndView handleRequestInternal(HttpServletRequest request,
                                                  HttpServletResponse response) throws Exception {
         String connectorName = ServletRequestUtils.getStringParameter(request, "cn", null);
-        ThreadPool connector = null;
+        Connector connector = null;
 
         if (connectorName != null) {
-            List pools = containerListenerBean.getThreadPools(false);
-            for (int i = 0; i < pools.size(); i++) {
-                ThreadPool p = (ThreadPool) pools.get(i);
+            List connectors = containerListenerBean.getConnectors(false);
+            for (int i = 0; i < connectors.size(); i++) {
+                Connector p = (Connector) connectors.get(i);
                 if (connectorName.equals(p.getName())) {
                     connector = p;
                     break;
@@ -46,6 +46,6 @@ public class GetConnectorController extends TomcatContainerController {
             }
         }
 
-        return new ModelAndView(getViewName(), "pool", connector);
+        return new ModelAndView(getViewName(), "connector", connector);
     }
 }

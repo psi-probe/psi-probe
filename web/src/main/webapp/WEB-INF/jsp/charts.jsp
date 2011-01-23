@@ -79,9 +79,9 @@
 				</div>
 			</div>
 
-			<c:forEach items="${pools}" var="pool">
+			<c:forEach items="${connectors}" var="connector">
 
-				<c:set var="name" value="${pool.name}" />
+				<c:set var="name" value="${connector.name}" />
 
 				<%--
 					create "reset connector" url
@@ -185,11 +185,11 @@
 						new Ajax.PeriodicalUpdater('dd-traf-${name}', '<c:url value="/cntrafdetails.ajax"/>?cn=${name}', {frequency: 3});
 					</script>
 
-					<div class="poolInfo">
+					<div class="connectorInfo">
 						<c:choose>
-							<c:when test="${! empty pool.requestProcessors}">
+							<c:when test="${! empty connector.requestProcessors}">
 								<div class="workerInfo">
-									<display:table name="${pool.requestProcessors}"
+									<display:table name="${connector.requestProcessors}"
 											class="genericTbl" cellspacing="0"
 											requestURI="" uid="rp" defaultsort="7" defaultorder="descending">
 										<display:column title="&nbsp;" width="18px" class="leftmost">
@@ -205,10 +205,10 @@
 										</display:column>
 
 										<display:column nowrap="" sortable="true" titleKey="probe.jsp.status.wrk.col.remoteAddr">
-											<a id="ip_${pool.name}_${rp_rowNum}" href="#">${rp.remoteAddr}</a>
+											<a id="ip_${connector.name}_${rp_rowNum}" href="#">${rp.remoteAddr}</a>
 
 											<script type="text/javascript">
-												addAjaxTooltip('ip_${pool.name}_${rp_rowNum}',
+												addAjaxTooltip('ip_${connector.name}_${rp_rowNum}',
 												'ttdiv', '<c:url value="/whois.ajax?ip=${rp.remoteAddr}"/>');
 											</script>
 
