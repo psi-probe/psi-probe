@@ -12,8 +12,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" session="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@ taglib uri="/WEB-INF/tags/probe.tld" prefix="probe" %>
 
 <c:if test="${! empty pool}">
-	<span class="name"><spring:message code="probe.jsp.charts.proc_time"/></span>&nbsp;<probe:duration value="${pool.processingTime}"/>
+	<span class="name"><spring:message code="probe.jsp.charts.proc_time.total"/></span>&nbsp;${pool.processingTime}
+	&nbsp;
+	<span class="name"><spring:message code="probe.jsp.charts.proc_time.max"/></span>&nbsp;${pool.maxTime}
 </c:if>

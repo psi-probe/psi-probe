@@ -364,6 +364,7 @@
 	<bean name="/charts.htm" class="com.googlecode.psiprobe.controllers.connectors.ListConnectorNamesController">
 		<property name="viewName" value="charts"/>
 		<property name="containerListenerBean" ref="containerListener"/>
+		<property name="includeRequestProcessors" value="true"/>
 		<property name="collectionPeriod">
 			<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
 				<property name="targetClass" value="com.googlecode.psiprobe.tools.TimeExpression" />
