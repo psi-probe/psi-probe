@@ -95,8 +95,8 @@
 					</a>
 				</li>
 				<li>
-					<a class="${navTabCharts}" href="<c:url value='/charts.htm'/>">
-						<spring:message code="probe.jsp.menu.charts"/>
+					<a class="${navTabConnectors}" href="<c:url value='/connectors.htm'/>">
+						<spring:message code="probe.jsp.menu.connectors"/>
 					</a>
 				</li>
 				<li>
@@ -163,8 +163,8 @@
 					</a>
 				</li>
 				<li>
-					<a href="<c:url value='/charts.htm'/>">
-						<spring:message code="probe.jsp.menu.charts"/>
+					<a href="<c:url value='/connectors.htm'/>">
+						<spring:message code="probe.jsp.menu.connectors"/>
 					</a>
 				</li>
 				<li class="last">

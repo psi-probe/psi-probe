@@ -20,7 +20,7 @@
 <html>
 
 	<head>
-		<title><spring:message code="probe.jsp.title.charts"/></title>
+		<title><spring:message code="probe.jsp.title.connectors"/></title>
 		<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='status.css'/>"/>
 		<script type="text/javascript" language="javascript" src="<c:url value='/js/prototype.js'/>"></script>
 		<script type="text/javascript" language="javascript" src="<c:url value='/js/scriptaculous.js'/>"></script>
@@ -60,7 +60,7 @@
 		<c:param name="l" value="false"/>
 	</c:url>
 
-	<c:set var="navTabCharts" value="active" scope="request"/>
+	<c:set var="navTabConnectors" value="active" scope="request"/>
 
 	<body>
 
@@ -72,10 +72,10 @@
 			<div class="tt_content" id="tt_content"></div>
 		</div>
 
-		<div id="charts">
+		<div id="connectors">
 			<div class="shadow">
 				<div class="info">
-					<p><spring:message code="probe.jsp.charts.information"/></p>
+					<p><spring:message code="probe.jsp.connectors.information"/></p>
 				</div>
 			</div>
 
@@ -127,7 +127,7 @@
 				<div id="chartdata-${name}" style="${style_collapse}">
 					<div class="chartContainer">
 						<dl>
-							<dt><spring:message code="probe.jsp.charts.requests.title"/></dt>
+							<dt><spring:message code="probe.jsp.connectors.requests.title"/></dt>
 							<dd class="image">
 								<a href="<c:url value='/zoomchart.htm'/>?sp=${name}&p=connector"><img
 										id="req-${name}"
@@ -144,7 +144,7 @@
 
 					<div class="chartContainer">
 						<dl>
-							<dt><spring:message code="probe.jsp.charts.proc_time.title"/></dt>
+							<dt><spring:message code="probe.jsp.connectors.proc_time.title"/></dt>
 							<dd class="image">
 								<a href="<c:url value='/zoomchart.htm'/>?sp=${name}&p=connector_proc_time"><img
 										id="proc_time-${name}"
@@ -161,7 +161,7 @@
 
 					<div class="chartContainer">
 						<dl>
-							<dt><spring:message code="probe.jsp.charts.traffic.title"/></dt>
+							<dt><spring:message code="probe.jsp.connectors.traffic.title"/></dt>
 							<dd class="image">
 								<a href="<c:url value='/zoomchart.htm'/>?sp=${name}&p=traffic"><img
 										id="traf-${name}"

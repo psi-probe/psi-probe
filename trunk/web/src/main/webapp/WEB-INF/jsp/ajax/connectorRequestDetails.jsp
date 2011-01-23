@@ -13,8 +13,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
-<c:if test="${! empty pool}">
-	<span class="name"><spring:message code="probe.jsp.charts.request.count"/></span>&nbsp;${connector.requestCount}
+<c:if test="${! empty connector}">
+	<span class="name"><spring:message code="probe.jsp.connectors.request.count"/></span>&nbsp;${connector.requestCount}
 	&nbsp;
-	<span class="name"><spring:message code="probe.jsp.charts.error.count"/></span>&nbsp;${connector.errorCount}
+	<span class="name"><spring:message code="probe.jsp.connectors.error.count"/></span>&nbsp;${connector.errorCount}
 </c:if>

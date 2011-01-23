@@ -13,8 +13,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
-<c:if test="${! empty pool}">
-	<span class="name"><spring:message code="probe.jsp.charts.proc_time.total"/></span>&nbsp;${connector.processingTime}
+<c:if test="${! empty connector}">
+	<span class="name"><spring:message code="probe.jsp.connectors.proc_time.total"/></span>&nbsp;${connector.processingTime}
 	&nbsp;
-	<span class="name"><spring:message code="probe.jsp.charts.proc_time.max"/></span>&nbsp;${connector.maxTime}
+	<span class="name"><spring:message code="probe.jsp.connectors.proc_time.max"/></span>&nbsp;${connector.maxTime}
 </c:if>
