@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 
-public class ListConnectorNamesController extends TomcatContainerController {
+public class ListConnectorsController extends TomcatContainerController {
     private ContainerListenerBean containerListenerBean;
     private boolean includeRequestProcessors;
     private long collectionPeriod;

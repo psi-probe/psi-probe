@@ -14,8 +14,8 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="/WEB-INF/tags/probe.tld" prefix="probe" %>
 
-<c:if test="${! empty pool}">
-	<span class="name"><spring:message code="probe.jsp.charts.sent"/></span>&nbsp;<probe:volume value="${connector.bytesSent}"/>
+<c:if test="${! empty connector}">
+	<span class="name"><spring:message code="probe.jsp.connectors.sent"/></span>&nbsp;<probe:volume value="${connector.bytesSent}"/>
 	&nbsp;
-	<span class="name"><spring:message code="probe.jsp.charts.received"/></span>&nbsp;<probe:volume value="${connector.bytesReceived}"/>
+	<span class="name"><spring:message code="probe.jsp.connectors.received"/></span>&nbsp;<probe:volume value="${connector.bytesReceived}"/>
 </c:if>

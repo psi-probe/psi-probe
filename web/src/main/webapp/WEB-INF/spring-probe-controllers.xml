@@ -361,8 +361,8 @@
 
 	<bean name="/remember.ajax" class="com.googlecode.psiprobe.controllers.RememberVisibilityController"/>
 
-	<bean name="/charts.htm" class="com.googlecode.psiprobe.controllers.connectors.ListConnectorNamesController">
-		<property name="viewName" value="charts"/>
+	<bean name="/connectors.htm" class="com.googlecode.psiprobe.controllers.connectors.ListConnectorsController">
+		<property name="viewName" value="connectors"/>
 		<property name="containerListenerBean" ref="containerListener"/>
 		<property name="includeRequestProcessors" value="true"/>
 		<property name="collectionPeriod">
@@ -395,7 +395,7 @@
 
 	<bean name="/app/connectorReset.htm" class="com.googlecode.psiprobe.controllers.connectors.ResetConnectorStatsController">
 		<property name="collectorBean" ref="connectorStatsCollector"/>
-		<property name="viewName" value="/charts.htm"/>
+		<property name="viewName" value="/connectors.htm"/>
 	</bean>
 
 	<bean name="/logs,/logs/index.htm" class="com.googlecode.psiprobe.controllers.logs.ListLogsController">

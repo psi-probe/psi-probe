@@ -50,13 +50,13 @@
 		</c:choose>
 	</c:url>
 
-	<c:set var="navTabCharts" value="active" scope="request"/>
+	<c:set var="navTabConnectors" value="active" scope="request"/>
 
 	<body>
 
 		<ul class="options">
 			<li id="back">
-				<a href="<c:url value='/charts.htm'/>">
+				<a href="<c:url value='/connectors.htm'/>">
 					<spring:message code="probe.jsp.zoomedchart.back"/>
 				</a>
 			</li>
