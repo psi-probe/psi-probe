@@ -10,6 +10,7 @@
  */
 package com.googlecode.psiprobe.beans;
 
+import com.googlecode.psiprobe.model.Connector;
 import com.googlecode.psiprobe.model.RequestProcessor;
 import com.googlecode.psiprobe.model.ThreadPool;
 import com.googlecode.psiprobe.model.jmx.ThreadPoolObjectName;
@@ -149,9 +150,7 @@ public class ContainerListenerBean implements NotificationListener {
 
     }
 
-    public synchronized List getThreadPools(boolean includeRequestProcessors) throws Exception {
-
-        boolean workerThreadNameSupported = true;
+    public synchronized List getThreadPools() throws Exception {
 
         if (!isInitialized()) {
             initialize();
@@ -179,15 +178,43 @@ public class ContainerListenerBean implements NotificationListener {
                 threadPool.setCurrentThreadsBusy(JmxTools.getIntAttr(server, poolName, "currentThreadsBusy"));
                 threadPool.setCurrentThreadCount(JmxTools.getIntAttr(server, poolName, "currentThreadCount"));
 
+                threadPools.add(threadPool);
+            } catch (InstanceNotFoundException e) {
+                logger.error("Failed to query entire thread pool " + threadPoolObjectName);
+                logger.debug(e);
+            }
+        }
+        return threadPools;
+    }
+
+    public synchronized List getConnectors(boolean includeRequestProcessors) throws Exception {
+        boolean workerThreadNameSupported = true;
+
+        if (!isInitialized()) {
+            initialize();
+        }
+
+        List connectors = new ArrayList(poolNames.size());
+
+        MBeanServer server = getContainerWrapper().getResourceResolver().getMBeanServer();
+
+        for (Iterator it = poolNames.iterator(); it.hasNext();) {
+
+            ThreadPoolObjectName threadPoolObjectName = (ThreadPoolObjectName) it.next();
+            try {
+                ObjectName poolName = threadPoolObjectName.getThreadPoolName();
+
+                Connector connector = new Connector();
+                connector.setName(poolName.getKeyProperty("name"));
 
                 ObjectName grpName = threadPoolObjectName.getGlobalRequestProcessorName();
 
-                threadPool.setMaxTime(JmxTools.getLongAttr(server, grpName, "maxTime"));
-                threadPool.setProcessingTime(JmxTools.getLongAttr(server, grpName, "processingTime"));
-                threadPool.setBytesReceived(JmxTools.getLongAttr(server, grpName, "bytesReceived"));
-                threadPool.setBytesSent(JmxTools.getLongAttr(server, grpName, "bytesSent"));
-                threadPool.setRequestCount(JmxTools.getIntAttr(server, grpName, "requestCount"));
-                threadPool.setErrorCount(JmxTools.getIntAttr(server, grpName, "errorCount"));
+                connector.setMaxTime(JmxTools.getLongAttr(server, grpName, "maxTime"));
+                connector.setProcessingTime(JmxTools.getLongAttr(server, grpName, "processingTime"));
+                connector.setBytesReceived(JmxTools.getLongAttr(server, grpName, "bytesReceived"));
+                connector.setBytesSent(JmxTools.getLongAttr(server, grpName, "bytesSent"));
+                connector.setRequestCount(JmxTools.getIntAttr(server, grpName, "requestCount"));
+                connector.setErrorCount(JmxTools.getIntAttr(server, grpName, "errorCount"));
 
                 if (includeRequestProcessors) {
                     for (Iterator wrkIt = threadPoolObjectName.getRequestProcessorNames().iterator(); wrkIt.hasNext();) {
@@ -221,7 +248,7 @@ public class ContainerListenerBean implements NotificationListener {
                                 rp.setWorkerThreadNameSupported(false);
                                 workerThreadNameSupported = false;
                             }
-                            threadPool.addRequestProcessor(rp);
+                            connector.addRequestProcessor(rp);
                         } catch (InstanceNotFoundException e) {
                             logger.info("Failed to query RequestProcessor " + wrkName);
                             logger.debug(e);
@@ -229,31 +256,14 @@ public class ContainerListenerBean implements NotificationListener {
                     }
                 }
 
-                threadPools.add(threadPool);
+                connectors.add(connector);
             } catch (InstanceNotFoundException e) {
                 logger.error("Failed to query entire thread pool " + threadPoolObjectName);
                 logger.debug(e);
             }
         }
-        return threadPools;
+        return connectors;
     }
 
-    public synchronized List getThreadPoolNames() throws Exception {
-
-        if (!isInitialized()) {
-            initialize();
-        }
-
-        List threadPoolNames = new ArrayList(poolNames.size());
-
-        for (Iterator it = poolNames.iterator(); it.hasNext();) {
-
-            ThreadPoolObjectName threadPoolObjectName = (ThreadPoolObjectName) it.next();
-            ObjectName poolName = threadPoolObjectName.getThreadPoolName();
-            String name = poolName.getKeyProperty("name");
-            threadPoolNames.add(name);
-        }
-        return threadPoolNames;
-    }
 }
 

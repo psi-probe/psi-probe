@@ -12,8 +12,8 @@ package com.googlecode.psiprobe.controllers.connectors;
 
 import com.googlecode.psiprobe.beans.ContainerListenerBean;
 import com.googlecode.psiprobe.controllers.TomcatContainerController;
+import com.googlecode.psiprobe.model.Connector;
 import com.googlecode.psiprobe.model.RequestProcessor;
-import com.googlecode.psiprobe.model.ThreadPool;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -50,14 +50,14 @@ public class ListConnectorNamesController extends TomcatContainerController {
 
     protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
         boolean workerThreadNameSupported = false;
-        List pools = containerListenerBean.getThreadPools(includeRequestProcessors);
+        List connectors = containerListenerBean.getConnectors(includeRequestProcessors);
 
-        if (pools.size() > 0 && ((ThreadPool)pools.get(0)).getRequestProcessors().size() > 0) {
-            workerThreadNameSupported = ((RequestProcessor)((ThreadPool)pools.get(0)).getRequestProcessors().get(0)).isWorkerThreadNameSupported();
+        if (connectors.size() > 0 && ((Connector)connectors.get(0)).getRequestProcessors().size() > 0) {
+            workerThreadNameSupported = ((RequestProcessor)((Connector)connectors.get(0)).getRequestProcessors().get(0)).isWorkerThreadNameSupported();
         }
 
         return new ModelAndView(getViewName())
-                .addObject("pools", pools)
+                .addObject("connectors", connectors)
                 .addObject("workerThreadNameSupported", Boolean.valueOf(workerThreadNameSupported))
                 .addObject("collectionPeriod", new Long(getCollectionPeriod()));
     }

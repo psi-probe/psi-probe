@@ -10,12 +10,8 @@
  */
 package com.googlecode.psiprobe.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
- * POJO representing pool of request processor threads or "connector" in other
- * terms.
+ * POJO representing thread pool
  *
  * @author Vlad Ilyushchenko
  */
@@ -27,13 +23,6 @@ public class ThreadPool {
     private int maxSpareThreads;
     private int currentThreadCount;
     private int currentThreadsBusy;
-    private long maxTime;
-    private long processingTime;
-    private int requestCount;
-    private int errorCount;
-    private long bytesReceived;
-    private long bytesSent;
-    private List requestProcessors = new ArrayList();
 
     public String getName() {
         return name;
@@ -83,63 +72,4 @@ public class ThreadPool {
         this.currentThreadsBusy = currentThreadsBusy;
     }
 
-    public long getMaxTime() {
-        return maxTime;
-    }
-
-    public void setMaxTime(long maxTime) {
-        this.maxTime = maxTime;
-    }
-
-    public long getProcessingTime() {
-        return processingTime;
-    }
-
-    public void setProcessingTime(long processingTime) {
-        this.processingTime = processingTime;
-    }
-
-    public int getRequestCount() {
-        return requestCount;
-    }
-
-    public void setRequestCount(int requestCount) {
-        this.requestCount = requestCount;
-    }
-
-    public long getBytesReceived() {
-        return bytesReceived;
-    }
-
-    public void setBytesReceived(long bytesReceived) {
-        this.bytesReceived = bytesReceived;
-    }
-
-    public long getBytesSent() {
-        return bytesSent;
-    }
-
-    public void setBytesSent(long bytesSent) {
-        this.bytesSent = bytesSent;
-    }
-
-    public int getErrorCount() {
-        return errorCount;
-    }
-
-    public void setErrorCount(int errorCount) {
-        this.errorCount = errorCount;
-    }
-
-    public List getRequestProcessors() {
-        return requestProcessors;
-    }
-
-    public void setRequestProcessors(List requestProcessors) {
-        this.requestProcessors = requestProcessors;
-    }
-
-    public void addRequestProcessor(RequestProcessor rp) {
-        requestProcessors.add(rp);
-    }
 }

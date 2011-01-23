@@ -14,7 +14,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 <c:if test="${! empty pool}">
-	<span class="name"><spring:message code="probe.jsp.charts.proc_time.total"/></span>&nbsp;${pool.processingTime}
+	<span class="name"><spring:message code="probe.jsp.charts.proc_time.total"/></span>&nbsp;${connector.processingTime}
 	&nbsp;
-	<span class="name"><spring:message code="probe.jsp.charts.proc_time.max"/></span>&nbsp;${pool.maxTime}
+	<span class="name"><spring:message code="probe.jsp.charts.proc_time.max"/></span>&nbsp;${connector.maxTime}
 </c:if>
