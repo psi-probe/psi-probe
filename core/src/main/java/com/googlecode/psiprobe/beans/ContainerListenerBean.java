@@ -41,6 +41,7 @@ public class ContainerListenerBean implements NotificationListener {
 
     private Log logger = LogFactory.getLog(getClass());
     private List poolNames = null;
+    private List executorNames = null;
 
     /**
      * Used to obtain required {@link MBeanServer} instance.
@@ -115,9 +116,10 @@ public class ContainerListenerBean implements NotificationListener {
     private synchronized void initialize() throws Exception {
 
         MBeanServer server = getContainerWrapper().getResourceResolver().getMBeanServer();
-        Set set = server.queryMBeans(new ObjectName("*:type=ThreadPool,*"), null);
-        poolNames = new ArrayList(set.size());
-        for (Iterator it = set.iterator(); it.hasNext();) {
+        String serverName = getContainerWrapper().getTomcatContainer().getName();
+        Set threadPools = server.queryMBeans(new ObjectName(serverName + ":type=ThreadPool,*"), null);
+        poolNames = new ArrayList(threadPools.size());
+        for (Iterator it = threadPools.iterator(); it.hasNext();) {
 
             ThreadPoolObjectName threadPoolObjectName = new ThreadPoolObjectName();
             ObjectName threadPoolName = ((ObjectInstance) it.next()).getObjectName();
@@ -145,6 +147,13 @@ public class ContainerListenerBean implements NotificationListener {
             poolNames.add(threadPoolObjectName);
         }
 
+        Set executors = server.queryMBeans(new ObjectName(serverName + ":type=Executor,*"), null);
+        executorNames = new ArrayList(executors.size());
+        for (Iterator it = executors.iterator(); it.hasNext();) {
+            ObjectName executorName = ((ObjectInstance) it.next()).getObjectName();
+            executorNames.add(executorName);
+        }
+
         // Register with MBean server
         server.addNotificationListener(new ObjectName("JMImplementation:type=MBeanServerDelegate"), this, null, null);
 
@@ -159,6 +168,20 @@ public class ContainerListenerBean implements NotificationListener {
         List threadPools = new ArrayList(poolNames.size());
 
         MBeanServer server = getContainerWrapper().getResourceResolver().getMBeanServer();
+
+        for (Iterator it = executorNames.iterator(); it.hasNext();) {
+            ObjectName executorName = (ObjectName) it.next();
+
+            ThreadPool threadPool = new ThreadPool();
+            threadPool.setName(executorName.getKeyProperty("name"));
+            threadPool.setMaxThreads(JmxTools.getIntAttr(server, executorName, "maxThreads"));
+            threadPool.setMaxSpareThreads(JmxTools.getIntAttr(server, executorName, "largestPoolSize"));
+            threadPool.setMinSpareThreads(JmxTools.getIntAttr(server, executorName, "minSpareThreads"));
+            threadPool.setCurrentThreadsBusy(JmxTools.getIntAttr(server, executorName, "activeCount"));
+            threadPool.setCurrentThreadCount(JmxTools.getIntAttr(server, executorName, "poolSize"));
+
+			threadPools.add(threadPool);
+        }
 
         for (Iterator it = poolNames.iterator(); it.hasNext();) {
 
@@ -178,7 +201,11 @@ public class ContainerListenerBean implements NotificationListener {
                 threadPool.setCurrentThreadsBusy(JmxTools.getIntAttr(server, poolName, "currentThreadsBusy"));
                 threadPool.setCurrentThreadCount(JmxTools.getIntAttr(server, poolName, "currentThreadCount"));
 
-                threadPools.add(threadPool);
+                // Tomcat 6.0.21+ will return -1 for maxThreads if the connector uses an executor for its threads.
+                // In this case, don't add its ThreadPool to the results.
+                if (threadPool.getMaxThreads() > -1) {
+                    threadPools.add(threadPool);
+                }
             } catch (InstanceNotFoundException e) {
                 logger.error("Failed to query entire thread pool " + threadPoolObjectName);
                 logger.debug(e);
