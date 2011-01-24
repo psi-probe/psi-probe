@@ -278,7 +278,10 @@
 										<display:column sortable="true" titleKey="probe.jsp.connectors.wrk.col.url" >
 											<c:choose>
 												<c:when test="${rp.stage == 3 && ! empty rp.currentUri}">
-													${rp.method}&nbsp;${rp.currentUri}<c:if test="${! empty rp.currentQueryString}">?${rp.currentQueryString}</c:if>
+													<c:set var="req">
+														${rp.method}&nbsp;${rp.currentUri}<c:if test="${! empty rp.currentQueryString}">?${rp.currentQueryString}</c:if>
+													</c:set>
+													<probe:out value="${req}" maxLength="60"/>
 												</c:when>
 												<c:otherwise>
 													&nbsp;
