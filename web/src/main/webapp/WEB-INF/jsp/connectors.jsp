@@ -203,7 +203,7 @@
 											</c:choose>
 										</display:column>
 
-										<display:column nowrap="" sortable="true" titleKey="probe.jsp.status.wrk.col.remoteAddr">
+										<display:column nowrap="" sortable="true" titleKey="probe.jsp.connectors.wrk.col.remoteAddr">
 											<a id="ip_${connector.name}_${rp_rowNum}" href="#">${rp.remoteAddr}</a>
 
 											<script type="text/javascript">
@@ -214,50 +214,50 @@
 										</display:column>
 
 										<display:column sortable="true" sortProperty="stage"
-												titleKey="probe.jsp.status.wrk.col.stage">
+												titleKey="probe.jsp.connectors.wrk.col.stage">
 											<c:choose>
 												<c:when test="${rp.stage == 1}">
-													<spring:message code="probe.jsp.status.wrk.stage.parse"/>
+													<spring:message code="probe.jsp.connectors.wrk.stage.parse"/>
 												</c:when>
 												<c:when test="${rp.stage == 2}">
-													<spring:message code="probe.jsp.status.wrk.stage.prepare"/>
+													<spring:message code="probe.jsp.connectors.wrk.stage.prepare"/>
 												</c:when>
 												<c:when test="${rp.stage == 3}">
-													<spring:message code="probe.jsp.status.wrk.stage.service"/>
+													<spring:message code="probe.jsp.connectors.wrk.stage.service"/>
 												</c:when>
 												<c:when test="${rp.stage == 4}">
-													<spring:message code="probe.jsp.status.wrk.stage.endInput"/>
+													<spring:message code="probe.jsp.connectors.wrk.stage.endInput"/>
 												</c:when>
 												<c:when test="${rp.stage == 5}">
-													<spring:message code="probe.jsp.status.wrk.stage.endOutput"/>
+													<spring:message code="probe.jsp.connectors.wrk.stage.endOutput"/>
 												</c:when>
 												<c:when test="${rp.stage == 6}">
-													<spring:message code="probe.jsp.status.wrk.stage.keepAlive"/>
+													<spring:message code="probe.jsp.connectors.wrk.stage.keepAlive"/>
 												</c:when>
 												<c:when test="${rp.stage == 7}">
-													<spring:message code="probe.jsp.status.wrk.stage.ended"/>
+													<spring:message code="probe.jsp.connectors.wrk.stage.ended"/>
 												</c:when>
 												<c:when test="${rp.stage == 0}">
-													<spring:message code="probe.jsp.status.wrk.stage.new"/>
+													<spring:message code="probe.jsp.connectors.wrk.stage.new"/>
 												</c:when>
 												<c:otherwise>?</c:otherwise>
 											</c:choose>
 										</display:column>
 										<display:column sortable="true" sortProperty="processingTime"
-												titleKey="probe.jsp.status.wrk.col.processingTime">
+												titleKey="probe.jsp.connectors.wrk.col.processingTime">
 											<probe:duration value="${rp.processingTime}"/>
 										</display:column>
 										<display:column sortable="true" sortProperty="bytesReceived"
-												titleKey="probe.jsp.status.wrk.col.in">
+												titleKey="probe.jsp.connectors.wrk.col.in">
 											<probe:volume value="${rp.bytesReceived}"/>
 										</display:column>
 										<display:column sortable="true" sortProperty="bytesSent"
-												titleKey="probe.jsp.status.wrk.col.out">
+												titleKey="probe.jsp.connectors.wrk.col.out">
 											<probe:volume value="${rp.bytesSent}"/>
 										</display:column>
 
 										<c:if test="${workerThreadNameSupported}">
-											<display:column sortable="true" titleKey="probe.jsp.status.wrk.col.thread">
+											<display:column sortable="true" titleKey="probe.jsp.connectors.wrk.col.thread">
 												<c:choose>
 													<c:when test="${! empty rp.workerThreadName}">
 														<a id="thr${rp_rowNum}">
@@ -275,7 +275,7 @@
 
 										</c:if>
 
-										<display:column sortable="true" titleKey="probe.jsp.status.wrk.col.url" >
+										<display:column sortable="true" titleKey="probe.jsp.connectors.wrk.col.url" >
 											<c:choose>
 												<c:when test="${rp.stage == 3 && ! empty rp.currentUri}">
 													${rp.method}&nbsp;${rp.currentUri}<c:if test="${! empty rp.currentQueryString}">?${rp.currentQueryString}</c:if>
@@ -289,7 +289,7 @@
 								</div>
 							</c:when>
 							<c:otherwise>
-								<spring:message code="probe.jsp.status.wrk.empty"/>
+								<spring:message code="probe.jsp.connectors.wrk.empty"/>
 							</c:otherwise>
 						</c:choose>
 					</div>
