@@ -10,11 +10,68 @@
  */
 package com.googlecode.psiprobe.tools.logging.jdk;
 
-import java.io.File;
+import com.googlecode.psiprobe.tools.logging.AbstractLogDestination;
+import org.apache.commons.beanutils.MethodUtils;
 
-public class Jdk14HandlerAccessor extends BaseJdk14HandlerAccessor {
+public class Jdk14HandlerAccessor extends AbstractLogDestination {
 
-    public File getFile() {
-        return getStdoutFile();
+    private Jdk14LoggerAccessor loggerAccessor;
+    private String index;
+
+    public Jdk14LoggerAccessor getLoggerAccessor() {
+        return loggerAccessor;
     }
+
+    public void setLoggerAccessor(Jdk14LoggerAccessor loggerAccessor) {
+        this.loggerAccessor = loggerAccessor;
+    }
+
+    public boolean isContext() {
+        return getLoggerAccessor().isContext();
+    }
+
+    public boolean isRoot() {
+        return getLoggerAccessor().isRoot();
+    }
+
+    public String getName() {
+        return getLoggerAccessor().getName();
+    }
+
+    public String getIndex() {
+        return index;
+    }
+
+    public void setIndex(String index) {
+        this.index = index;
+    }
+
+    public String getLogClass() {
+        return "jdk";
+    }
+
+    public String getLevel() {
+        try {
+            Object level = MethodUtils.invokeMethod(getTarget(), "getLevel", null);
+            return (String) MethodUtils.invokeMethod(level, "getName", null);
+        } catch (Exception e) {
+            log.error(getTarget() + ".getLevel() failed", e);
+        }
+        return null;
+    }
+
+    public void setLevel(String newLevelStr) {
+        try {
+            Object level = MethodUtils.invokeMethod(getTarget(), "getLevel", null);
+            Object newLevel = MethodUtils.invokeMethod(level, "parse", newLevelStr);
+            MethodUtils.invokeMethod(getTarget(), "setLevel", newLevel);
+        } catch (Exception e) {
+            log.error(getTarget() + ".setLevel(\"" + newLevelStr + "\") failed", e);
+        }
+    }
+
+    public String[] getValidLevels() {
+        return new String[] {"OFF", "SEVERE", "WARNING", "INFO", "CONFIG", "FINE", "FINER", "FINEST", "ALL"};
+    }
+
 }

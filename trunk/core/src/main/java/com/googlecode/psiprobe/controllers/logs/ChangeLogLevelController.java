@@ -11,7 +11,7 @@
 package com.googlecode.psiprobe.controllers.logs;
 
 import com.googlecode.psiprobe.tools.logging.LogDestination;
-import com.googlecode.psiprobe.tools.logging.jdk.BaseJdk14HandlerAccessor;
+import com.googlecode.psiprobe.tools.logging.jdk.Jdk14HandlerAccessor;
 import com.googlecode.psiprobe.tools.logging.log4j.Log4JAppenderAccessor;
 import java.util.Arrays;
 import javax.servlet.http.HttpServletRequest;
@@ -31,8 +31,8 @@ public class ChangeLogLevelController extends LogHandlerController {
             if (logDest instanceof Log4JAppenderAccessor) {
                 Log4JAppenderAccessor accessor = (Log4JAppenderAccessor) logDest;
                 accessor.getLoggerAccessor().setLevel(level);
-            } else if (logDest instanceof BaseJdk14HandlerAccessor) {
-                BaseJdk14HandlerAccessor accessor = (BaseJdk14HandlerAccessor) logDest;
+            } else if (logDest instanceof Jdk14HandlerAccessor) {
+                Jdk14HandlerAccessor accessor = (Jdk14HandlerAccessor) logDest;
                 accessor.setLevel(level);
             }
         }
