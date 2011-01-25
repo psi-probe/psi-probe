@@ -26,7 +26,7 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
             Object handlers[] = (Object[]) PropertyUtils.getProperty(getTarget(), "handlers");
             for (int h = 0; h < handlers.length; h++) {
                 Object handler = handlers[h];
-                BaseJdk14HandlerAccessor handlerAccessor = wrapHandler(handler, h);
+                Jdk14HandlerAccessor handlerAccessor = wrapHandler(handler, h);
                 if (handlerAccessor != null) {
                     handlerAccessors.add(handlerAccessor);
                 }
@@ -54,7 +54,7 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
         return (String) getProperty(getTarget(), "name", null);
     }
 
-    public BaseJdk14HandlerAccessor getHandler(String logIndex) {
+    public Jdk14HandlerAccessor getHandler(String logIndex) {
         int index = 0;
         try {
             index = Integer.parseInt(logIndex);
@@ -64,7 +64,7 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
         return getHandler(index);
     }
 
-    public BaseJdk14HandlerAccessor getHandler(int index) {
+    public Jdk14HandlerAccessor getHandler(int index) {
         try {
             Object handlers[] = (Object[]) PropertyUtils.getProperty(getTarget(), "handlers");
             return wrapHandler(handlers[index], index);
@@ -98,8 +98,8 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
         return MethodUtils.invokeMethod(getTarget(), "getLevel", null);
     }
 
-    private BaseJdk14HandlerAccessor wrapHandler(Object handler, int index) {
-        BaseJdk14HandlerAccessor handlerAccessor = null;
+    private Jdk14HandlerAccessor wrapHandler(Object handler, int index) {
+        Jdk14HandlerAccessor handlerAccessor = null;
         if ("org.apache.juli.FileHandler".equals(handler.getClass().getName())) {
             handlerAccessor = new JuliHandlerAccessor();
         } else if ("java.util.logging.ConsoleHandler".equals(handler.getClass().getName())){
