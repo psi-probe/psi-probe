@@ -99,7 +99,12 @@ public class UploadWarController extends TomcatContainerController {
                         if (contextName.equals("/")) {
                             contextName = "";
                         }
-                        request.setAttribute("contextName", contextName);
+                        //
+                        // pass the name of the newly deployed context to the presentation layer
+                        // using this name the presentation layer can render a url to view compilation details
+                        //
+                        String visibleContextName = (contextName.equals("") ? "/" : contextName);
+                        request.setAttribute("contextName", visibleContextName);
 
                         if (update && getContainerWrapper().getTomcatContainer().findContext(contextName) != null) {
                             logger.debug("updating "+contextName + ": removing the old copy");
@@ -122,7 +127,7 @@ public class UploadWarController extends TomcatContainerController {
 
                             Context ctx = getContainerWrapper().getTomcatContainer().findContext(contextName);
                             if (ctx == null) {
-                                errMsg = getMessageSourceAccessor().getMessage("probe.src.deploy.war.notinstalled", new Object[]{contextName});
+                                errMsg = getMessageSourceAccessor().getMessage("probe.src.deploy.war.notinstalled", new Object[]{visibleContextName});
                             } else {
                                 request.setAttribute("success", Boolean.TRUE);
                                 if (discard) {
@@ -133,16 +138,12 @@ public class UploadWarController extends TomcatContainerController {
                                     summary.setName(ctx.getName());
                                     getContainerWrapper().getTomcatContainer().listContextJsps(ctx, summary, true);
                                     request.getSession(true).setAttribute(DisplayJspController.SUMMARY_ATTRIBUTE, summary);
-                                    //
-                                    // pass the name of the newly deployed context to the presentation layer
-                                    // using this name the presentation layer can render a url to view compilation details
-                                    //
                                     request.setAttribute("compileSuccess", Boolean.TRUE);
                                 }
                             }
 
                         } else {
-                            errMsg = getMessageSourceAccessor().getMessage("probe.src.deploy.war.alreadyExists", new Object[]{contextName});
+                            errMsg = getMessageSourceAccessor().getMessage("probe.src.deploy.war.alreadyExists", new Object[]{visibleContextName});
                         }
                     } else {
                         errMsg = getMessageSourceAccessor().getMessage("probe.src.deploy.war.notWar.failure");
