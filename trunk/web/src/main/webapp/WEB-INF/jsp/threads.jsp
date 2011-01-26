@@ -91,7 +91,7 @@
 		</div>
 
 		<script type="text/javascript">
-			setupHelpToggle('<c:url value="/threads.help.ajax"/>');
+			setupHelpToggle('<c:url value="/help/threads.ajax"/>');
 		</script>
 
 	</body>

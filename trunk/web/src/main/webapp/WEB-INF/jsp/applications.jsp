@@ -264,7 +264,7 @@
 		</display:table>
 
 		<script type="text/javascript">
-			setupHelpToggle('<c:url value="/applications.help.ajax"/>');
+			setupHelpToggle('<c:url value="/help/applications.ajax"/>');
 		</script>
 	</div>
 </body>
