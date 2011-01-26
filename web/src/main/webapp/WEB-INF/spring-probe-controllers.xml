@@ -601,8 +601,28 @@
 		<property name="xmlMarker" value=".oxml"/>
 	</bean>
 
-	<bean name="/*.help.ajax" class="com.googlecode.psiprobe.controllers.HelpController">
-		<property name="contentBase" value="/WEB-INF/help"/>
+	<bean name="/help/applications.ajax" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="ajax/help/applications" />
+	</bean>
+
+	<bean name="/help/datasources.ajax" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="ajax/help/datasources" />
+	</bean>
+
+	<bean name="/help/datasourcetest.ajax" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="ajax/help/datasourcetest" />
+	</bean>
+
+	<bean name="/help/sessionsearch.ajax" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="ajax/help/sessionsearch" />
+	</bean>
+
+	<bean name="/help/threads.ajax" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="ajax/help/threads" />
+	</bean>
+
+	<bean name="/help/threads2.ajax" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="ajax/help/threads2" />
 	</bean>
 
 </beans>

@@ -123,7 +123,7 @@
 		</div>
 
 		<script type="text/javascript">
-			setupHelpToggle('<c:url value="/threads2.help.ajax"/>');
+			setupHelpToggle('<c:url value="/help/threads2.ajax"/>');
 			var rules = {
 				'#ttdiv_close': function(e) {
 					e.onclick = function(e) {

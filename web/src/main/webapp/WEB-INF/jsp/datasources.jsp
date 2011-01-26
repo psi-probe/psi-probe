@@ -97,7 +97,7 @@
 				</div>
 
 				<script type="text/javascript">
-					setupHelpToggle('<c:url value="/datasources.help.ajax"/>');
+					setupHelpToggle('<c:url value="/help/datasources.ajax"/>');
 				</script>
 
 			</c:when>

@@ -323,7 +323,7 @@
 			}
 			Behaviour.register(rules);
 
-			setupHelpToggle('<c:url value="/sessionsearch.help.ajax"/>');
+			setupHelpToggle('<c:url value="/help/sessionsearch.ajax"/>');
 
 			function showSearch() {
 				Element.hide('showSearch');

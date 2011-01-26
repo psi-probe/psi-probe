@@ -186,7 +186,7 @@
 				'<c:url value="/sql/recordset.ajax"/>',
 				'<c:url value="/sql/queryHistory.ajax"/>');
 			setupShortcuts();
-			setupHelpToggle('<c:url value="/datasourcetest.help.ajax"/>');
+			setupHelpToggle('<c:url value="/help/datasourcetest.ajax"/>');
 			new Draggable('sqlDragHandle', {
 				constraint: 'vertical',
 				change: resizeTextArea,
