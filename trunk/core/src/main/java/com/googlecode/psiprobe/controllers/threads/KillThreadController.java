@@ -16,11 +16,22 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
+import org.springframework.web.servlet.view.RedirectView;
 
 public class KillThreadController extends ParameterizableViewController {
+
+    private String replacePattern;
+
+    public String getReplacePattern() {
+        return replacePattern;
+    }
+
+    public void setReplacePattern(String replacePattern) {
+        this.replacePattern = replacePattern;
+    }
+
     protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String threadName = ServletRequestUtils.getStringParameter(request, "thread", null);
-        String view = ServletRequestUtils.getStringParameter(request, "view", getViewName());
 
         Thread thread = null;
         if (threadName != null) {
@@ -31,6 +42,13 @@ public class KillThreadController extends ParameterizableViewController {
             thread.stop();
         }
 
-        return new ModelAndView(view);
+        String referer = request.getHeader("Referer");
+        String redirectURL;
+        if (referer != null) {
+            redirectURL = referer.replaceAll(replacePattern, "");
+        } else {
+            redirectURL = request.getContextPath() + getViewName();
+        }
+        return new ModelAndView(new RedirectView(redirectURL));
     }
 }
