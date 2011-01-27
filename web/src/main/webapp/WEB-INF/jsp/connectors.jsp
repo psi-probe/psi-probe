@@ -273,6 +273,26 @@
 												</c:choose>
 											</display:column>
 
+											<display:column sortable="false" title="&nbsp;" width="16px">
+												<c:choose>
+													<c:when test="${! empty rp.workerThreadName}">
+														<c:set var="confirmMessage">
+															<spring:message code="probe.jsp.threads.killmsg" arguments="${rp.workerThreadName}"/>
+														</c:set>
+														<a class="imglink"
+																onclick="return confirm('${confirmMessage}')"
+																href="<c:url value='/adm/kill.htm'>
+																<c:param name='thread' value='${rp.workerThreadName}'/>
+																</c:url>">
+															<img class="lnk" src="${pageContext.request.contextPath}<spring:theme code='delete.png'/>"
+																	alt="<spring:message code='probe.jsp.threads.stop.alt'/>"/>
+														</a>
+													</c:when>
+													<c:otherwise>
+														&nbsp;
+													</c:otherwise>
+												</c:choose>
+											</display:column>
 										</c:if>
 
 										<display:column sortable="true" titleKey="probe.jsp.connectors.wrk.col.url" >
