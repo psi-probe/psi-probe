@@ -135,7 +135,7 @@ public class LogResolverBean {
         return null;
     }
 
-    public LogDestination getLogDestination(String logClass, String webapp, boolean context, boolean root, String logName, String logIndex) {
+    public LogDestination getLogDestination(String logType, String webapp, boolean context, boolean root, String logName, String logIndex) {
         Context ctx = null;
         Application application = null;
         if (webapp != null) {
@@ -145,11 +145,11 @@ public class LogResolverBean {
             }
         }
 
-        if ("stdout".equals(logClass) && logName != null) {
+        if ("stdout".equals(logType) && logName != null) {
             return getStdoutLogDestination(logName);
-        } else if ("catalina".equals(logClass) && ctx != null) {
+        } else if ("catalina".equals(logType) && ctx != null) {
             return getCatalinaLogDestination(ctx, application);
-        } else if (("jdk".equals(logClass) || "log4j".equals(logClass)) && logIndex != null) {
+        } else if (("jdk".equals(logType) || "log4j".equals(logType)) && logIndex != null) {
             if (context && ctx != null) {
                 return getCommonsLogDestination(ctx, application, logIndex);
             }
@@ -164,9 +164,9 @@ public class LogResolverBean {
             }
             try {
                 if ((root || logName != null) && logIndex != null) {
-                    if ("jdk".equals(logClass)) {
+                    if ("jdk".equals(logType)) {
                         return getJdk14LogDestination(cl, application, root, logName, logIndex);
-                    } else if ("log4j".equals(logClass)) {
+                    } else if ("log4j".equals(logType)) {
                         return getLog4JLogDestination(cl, application, root, logName, logIndex);
                     }
                 }
@@ -343,11 +343,11 @@ public class LogResolverBean {
                 String context2 = (d2.isContext() ? "is" : "not");
                 String root1 = (d1.isRoot() ? "is" : "not");
                 String root2 = (d2.isRoot() ? "is" : "not");
-                String logClass1 = d1.getLogClass();
-                String logClass2 = d1.getLogClass();
+                String logType1 = d1.getLogType();
+                String logType2 = d1.getLogType();
                 char delim = '!';
-                name1 = appName1 + delim + context1 + delim + root1 + delim + logClass1 + delim + name1;
-                name2 = appName2 + delim + context2 + delim + root2 + delim + logClass2 + delim + name2;
+                name1 = appName1 + delim + context1 + delim + root1 + delim + logType1 + delim + name1;
+                name2 = appName2 + delim + context2 + delim + root2 + delim + logType2 + delim + name2;
             }
             return name1.compareTo(name2);
         }

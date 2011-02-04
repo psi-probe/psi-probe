@@ -47,7 +47,7 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
 
     public boolean isRoot() {
         return "".equals(getName())
-                || "org.apache.juli.ClassLoaderLogManager#RootLogger".equals(getType());
+                || "org.apache.juli.ClassLoaderLogManager#RootLogger".equals(getTargetClass());
     }
 
     public String getName() {

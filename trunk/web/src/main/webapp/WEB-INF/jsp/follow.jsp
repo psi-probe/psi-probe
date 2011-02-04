@@ -78,7 +78,7 @@
 			</li>
 			<li id="download">
 				<c:url value="/logs/download" var="downloadUrl">
-					<c:param name="logClass" value="${log.logClass}"/>
+					<c:param name="logType" value="${log.logType}"/>
 					<c:if test="${log.application != null}">
 						<c:param name="webapp" value="${log.application.name}"/>
 						<c:if test="${log.context}">
@@ -131,7 +131,7 @@
 					${logsource.application.name}
 				</display:column>
 
-				<display:column titleKey="probe.jsp.logs.col.class" sortable="true" property="logClass"/>
+				<display:column titleKey="probe.jsp.logs.col.type" sortable="true" property="logType"/>
 
 				<display:column titleKey="probe.jsp.logs.col.name" sortable="true">
 					<c:choose>
@@ -145,10 +145,11 @@
 							${logsource.name}
 						</c:otherwise>
 					</c:choose>
+					(${logsource.index})
 				</display:column>
 
-				<display:column titleKey="probe.jsp.logs.col.type" sortable="true">
-					${logsource.type} (${logsource.index})
+				<display:column titleKey="probe.jsp.logs.col.class" sortable="true">
+					${logsource.targetClass}
 				</display:column>
 
 				<display:column titleKey="probe.jsp.logs.col.level" sortable="false">
@@ -160,7 +161,7 @@
 						</select>
 
 						<c:url value="/logs/changelevel.ajax" var="changeLogLevelUrl">
-							<c:param name="logClass" value="${logsource.logClass}"/>
+							<c:param name="logType" value="${logsource.logType}"/>
 							<c:if test="${logsource.application != null}">
 								<c:param name="webapp" value="${logsource.application.name}"/>
 								<c:if test="${logsource.context}">
@@ -230,7 +231,7 @@
 
 			var infoUpdater = new Ajax.PeriodicalUpdater('info', '<c:url value="/logs/ff_info.ajax"/>', {
 				parameters: {
-					logClass: '${probe:escapeJS(log.logClass)}',
+					logType: '${probe:escapeJS(log.logType)}',
 					webapp: ${webapp},
 					context: ${log.context},
 					root: ${log.root},
@@ -252,7 +253,7 @@
 			function followLog(currentLogSize) {
 				new Ajax.Updater(file_content_div, '<c:url value="/logs/follow.ajax"/>', {
 					parameters: {
-						logClass: '${probe:escapeJS(log.logClass)}',
+						logType: '${probe:escapeJS(log.logType)}',
 						webapp: ${webapp},
 						context: ${log.context},
 						root: ${log.root},

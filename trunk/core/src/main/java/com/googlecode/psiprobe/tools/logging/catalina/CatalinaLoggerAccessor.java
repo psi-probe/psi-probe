@@ -26,7 +26,7 @@ public class CatalinaLoggerAccessor extends AbstractLogDestination {
         return null;
     }
 
-    public String getLogClass() {
+    public String getLogType() {
         return "catalina";
     }
 

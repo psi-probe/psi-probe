@@ -36,14 +36,14 @@ public class LogHandlerController extends ParameterizableViewController {
 
         ModelAndView modelAndView = null;
 
-        String logClass = ServletRequestUtils.getStringParameter(request, "logClass");
+        String logType = ServletRequestUtils.getStringParameter(request, "logType");
         String webapp = ServletRequestUtils.getStringParameter(request, "webapp");
         boolean context = ServletRequestUtils.getBooleanParameter(request, "context", false);
         boolean root = ServletRequestUtils.getBooleanParameter(request, "root", false);
         String logName = ServletRequestUtils.getStringParameter(request, "logName");
         String logIndex = ServletRequestUtils.getStringParameter(request, "logIndex");
 
-        LogDestination dest = logResolver.getLogDestination(logClass, webapp, context, root, logName, logIndex);
+        LogDestination dest = logResolver.getLogDestination(logType, webapp, context, root, logName, logIndex);
 
         if (dest != null) {
             if (dest.getFile() != null && dest.getFile().exists()) {
@@ -53,7 +53,7 @@ public class LogHandlerController extends ParameterizableViewController {
                 logger.error(dest.getFile() + ": file not found");
             }
         } else {
-            logger.error(logClass + (root ? " root" : "") + " log" + (root ? "" : " \"" + logName + "\"") + " not found");
+            logger.error(logType + (root ? " root" : "") + " log" + (root ? "" : " \"" + logName + "\"") + " not found");
         }
         if (!logFound) {
             response.sendError(404);

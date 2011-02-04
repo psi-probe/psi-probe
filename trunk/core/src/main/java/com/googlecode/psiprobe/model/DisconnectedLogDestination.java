@@ -27,10 +27,10 @@ public class DisconnectedLogDestination implements LogDestination, Serializable 
     private boolean context;
     private String name;
     private String index;
-    private String type;
+    private String targetClass;
     private String conversionPattern;
     private File file;
-    private String logClass;
+    private String logType;
     private long size;
     private Timestamp lastModified;
     private String level;
@@ -42,10 +42,10 @@ public class DisconnectedLogDestination implements LogDestination, Serializable 
         this.context = destination.isContext();
         this.name = destination.getName();
         this.index = destination.getIndex();
-        this.type = destination.getType();
+        this.targetClass = destination.getTargetClass();
         this.conversionPattern = destination.getConversionPattern();
         this.file = destination.getFile();
-        this.logClass = destination.getLogClass();
+        this.logType = destination.getLogType();
         this.size = destination.getSize();
         this.lastModified = destination.getLastModified();
         this.level = destination.getLevel();
@@ -72,8 +72,8 @@ public class DisconnectedLogDestination implements LogDestination, Serializable 
         return index;
     }
 
-    public String getType() {
-        return type;
+    public String getTargetClass() {
+        return targetClass;
     }
 
     public String getConversionPattern() {
@@ -84,8 +84,8 @@ public class DisconnectedLogDestination implements LogDestination, Serializable 
         return file;
     }
 
-    public String getLogClass() {
-        return logClass;
+    public String getLogType() {
+        return logType;
     }
 
     public long getSize() {

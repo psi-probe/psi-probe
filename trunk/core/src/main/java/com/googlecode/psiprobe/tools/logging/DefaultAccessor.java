@@ -38,7 +38,7 @@ public class DefaultAccessor  {
         this.target = target;
     }
 
-    public String getType() {
+    public String getTargetClass() {
         return getTarget().getClass().getName();
     }
 

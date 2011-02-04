@@ -62,12 +62,12 @@
 							${log.application.name}
 						</display:column>
 
-						<display:column titleKey="probe.jsp.logs.col.class" sortable="true" property="logClass"/>
+						<display:column titleKey="probe.jsp.logs.col.type" sortable="true" property="logType"/>
 
 					</c:when>
 
 					<c:otherwise>
-						<display:column titleKey="probe.jsp.logs.col.class" sortable="true" property="logClass" class="leftmost"/>
+						<display:column titleKey="probe.jsp.logs.col.type" sortable="true" property="logType" class="leftmost"/>
 					</c:otherwise>
 
 				</c:choose>
@@ -79,7 +79,7 @@
 						</c:when>
 						<c:otherwise>
 							<c:url value="/logs/follow.htm" var="followUrlTest">
-								<c:param name="logClass" value="${log.logClass}"/>
+								<c:param name="logType" value="${log.logType}"/>
 								<c:if test="${log.application != null}">
 									<c:param name="webapp" value="${log.application.name}"/>
 									<c:if test="${log.context}">
@@ -110,7 +110,7 @@
 				<display:column title="&nbsp;">
 					<c:if test="${log.file != 'stdout'}">
 						<c:url value="/logs/download" var="downloadUrl">
-							<c:param name="logClass" value="${log.logClass}"/>
+							<c:param name="logType" value="${log.logType}"/>
 							<c:if test="${log.application != null}">
 								<c:param name="webapp" value="${log.application.name}"/>
 								<c:if test="${log.context}">
@@ -145,7 +145,7 @@
 					${log.lastModified}&nbsp;
 				</display:column>
 
-				<display:column titleKey="probe.jsp.logs.col.type" sort="true" property="type"/>
+				<display:column titleKey="probe.jsp.logs.col.class" sort="true" property="targetClass"/>
 			</display:table>
 		</div>
 	</body>
