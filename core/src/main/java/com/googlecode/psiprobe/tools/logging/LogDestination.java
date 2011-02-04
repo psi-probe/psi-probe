@@ -20,19 +20,18 @@ public interface LogDestination {
     boolean isContext();
     String getName();
     String getIndex();
-    String getType();
+    String getTargetClass();
     String getConversionPattern();
     File getFile();
     long getSize();
     Timestamp getLastModified();
 
     /**
-     * class of the log, e.g. "log4j", "jdk", "commons-" etc.
-     * This is NOT a class name in Java sense of the word
+     * Type of the log, e.g. "log4j", "jdk", "commons-" etc.
      *
      * @return the class of the log
      */
-    String getLogClass();
+    String getLogType();
     String getLevel();
     String[] getValidLevels();
 }

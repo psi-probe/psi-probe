@@ -36,7 +36,7 @@ public class Log4JAppenderAccessor extends AbstractLogDestination {
         return getLoggerAccessor().getName();
     }
 
-    public String getLogClass() {
+    public String getLogType() {
         return "log4j";
     }
 

@@ -25,11 +25,11 @@ public class FileLogAccessor extends AbstractLogDestination {
         this.name = name;
     }
 
-    public String getType() {
+    public String getTargetClass() {
         return "stdout";
     }
 
-    public String getLogClass() {
+    public String getLogType() {
         return "stdout";
     }
 
