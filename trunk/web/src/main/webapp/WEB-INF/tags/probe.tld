@@ -149,6 +149,11 @@
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 		<attribute>
+			<name>value2</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
 			<name>maxValue</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
