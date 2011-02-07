@@ -14,6 +14,7 @@ import java.io.IOException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.BodyTagSupport;
+import org.apache.commons.lang.StringEscapeUtils;
 
 public class OutTag extends BodyTagSupport {
 
@@ -68,7 +69,8 @@ public class OutTag extends BodyTagSupport {
                 } else {
                     newValue = "..." + displayValue.substring(displayValue.length() - maxLength + 3);
                 }
-                out.print("<span title=\""+displayValue+"\">"+newValue+"</span>");
+                String title = StringEscapeUtils.escapeHtml(displayValue);
+                out.print("<span title=\""+title+"\">"+newValue+"</span>");
             } else {
                 out.print(displayValue);
             }
