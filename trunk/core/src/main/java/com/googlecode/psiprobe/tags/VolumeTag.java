@@ -71,7 +71,9 @@ public class VolumeTag extends TagSupport {
         try {
             NumberFormat nf = NumberFormat.getInstance();
             nf.setMinimumFractionDigits(fractions);
-            pageContext.getOut().write(nf.format(doubleResult) + suffix);
+            String title = Long.toString((long) value);
+            String newValue = nf.format(doubleResult) + suffix;
+            pageContext.getOut().write("<span title=\"" + title + "\">" + newValue + "</span>");
         } catch (IOException e) {
             logger.debug(e);
             throw new JspException(e);

@@ -222,7 +222,7 @@
 			var maxLines = 1000;
 			var initialLines = 250;
 			var lastLogSize = -1;
-			var logSizeRegex = /<!-- (\d*) -->/;
+			var logSizeRegex = /<span title="(\d*)">/;
 
 			function logSize(responseText) {
 				var captures = logSizeRegex.exec(responseText);
