@@ -70,9 +70,9 @@ public class TomcatAvailabilityController extends TomcatContainerController {
                     ApplicationResource appResource = (ApplicationResource) it2.next();
 
                     DataSourceInfo dsi = appResource.getDataSourceInfo();
-                    if (dsi != null && dsi.getScore() > tomcatTestReport.getDatasourceUsageScore()) {
+                    if (dsi != null && dsi.getBusyScore() > tomcatTestReport.getDatasourceUsageScore()) {
                         tomcatTestReport.setContextName(appContext.getName());
-                        tomcatTestReport.setDatasourceUsageScore(dsi.getScore());
+                        tomcatTestReport.setDatasourceUsageScore(dsi.getBusyScore());
                         tomcatTestReport.setDataSourceName(appResource.getName());
                     }
                 }
@@ -86,8 +86,8 @@ public class TomcatAvailabilityController extends TomcatContainerController {
             for (int i = 0; i < l.size(); i++) {
                 ApplicationResource resource = (ApplicationResource)l.get(i);
                 DataSourceInfo dsi = resource.getDataSourceInfo();
-                if (dsi != null && dsi.getScore() > tomcatTestReport.getDatasourceUsageScore()) {
-                    tomcatTestReport.setDatasourceUsageScore(dsi.getScore());
+                if (dsi != null && dsi.getBusyScore() > tomcatTestReport.getDatasourceUsageScore()) {
+                    tomcatTestReport.setDatasourceUsageScore(dsi.getBusyScore());
                     tomcatTestReport.setDataSourceName(resource.getName());
                 }
             }

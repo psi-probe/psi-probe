@@ -116,7 +116,9 @@ public class ApplicationUtils {
             collectApplicationServletStats(context, app);
 
             if (resourceResolver.supportsPrivateResources() && app.isAvailable()) {
-                app.setDataSourceUsageScore(ApplicationUtils.getApplicationDataSourceUsageScore(context, resourceResolver));
+                int[] scores = getApplicationDataSourceUsageScores(context, resourceResolver);
+                app.setDataSourceBusyScore(scores[0]);
+                app.setDataSourceEstablishedScore(scores[1]);
             }
         }
 
@@ -162,10 +164,10 @@ public class ApplicationUtils {
         app.setMaxTime(maxTime);
     }
 
-    public static int getApplicationDataSourceUsageScore(Context context, ResourceResolver resolver) {
+    public static int[] getApplicationDataSourceUsageScores(Context context, ResourceResolver resolver) {
         logger.debug("Calculating datasource usage score");
 
-        int score = 0;
+        int[] scores = new int[] {0, 0};
         List appResources;
         try {
             appResources = resolver.getApplicationResources(context);
@@ -175,10 +177,11 @@ public class ApplicationUtils {
         for (Iterator it = appResources.iterator(); it.hasNext();) {
             ApplicationResource appResource = (ApplicationResource) it.next();
             if (appResource.getDataSourceInfo() != null) {
-                score = Math.max(score, appResource.getDataSourceInfo().getScore());
+                scores[0] = Math.max(scores[0], appResource.getDataSourceInfo().getBusyScore());
+                scores[1] = Math.max(scores[1], appResource.getDataSourceInfo().getEstablishedScore());
             }
         }
-        return score;
+        return scores;
     }
 
     public static ApplicationSession getApplicationSession(Session session, boolean calcSize, boolean addAttributes) {

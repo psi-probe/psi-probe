@@ -226,13 +226,13 @@
 			</display:column>
 
 			<c:if test="${!no_resources}">
-				<display:column sortable="true" sortProperty="dataSourceUsageScore"
+				<display:column sortable="true" sortProperty="dataSourceBusyScore"
 						titleKey="probe.jsp.applications.col.jdbcUsage" class="score_wrapper">
 					<div class="score_wrapper">
-						<probe:score value="${app.dataSourceUsageScore}" fullBlocks="10" partialBlocks="5" showEmptyBlocks="true" showA="true" showB="true">
+						<probe:score value="${app.dataSourceBusyScore}" value2="${app.dataSourceEstablishedScore - app.dataSourceBusyScore}" fullBlocks="10" partialBlocks="5" showEmptyBlocks="true" showA="true" showB="true">
 							<a class="imglink" href="<c:url value='/resources.htm?webapp=${app.name}'/>"><img border="0"
 																											src="<c:url value='/css/classic/gifs/rb_{0}.gif'/>" alt="+"
-																											title="<spring:message code='probe.jsp.applications.jdbcUsage.title' arguments='${app.dataSourceUsageScore}'/>"/></a>
+																											title="<spring:message code='probe.jsp.applications.jdbcUsage.title' arguments='${app.dataSourceBusyScore},${app.dataSourceEstablishedScore}'/>"/></a>
 						</probe:score>
 					</div>
 				</display:column>
