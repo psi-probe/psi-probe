@@ -73,7 +73,12 @@ public class DataSourceInfo {
         this.username = username;
     }
 
-    public int getScore() {
-        return Utils.calcPoolUsageScore(getMaxConnections(), getBusyConnections(), getEstablishedConnections());
+    public int getBusyScore() {
+        return Utils.calcPoolUsageScore(getMaxConnections(), getBusyConnections());
     }
+
+    public int getEstablishedScore() {
+        return Utils.calcPoolUsageScore(getMaxConnections(), getEstablishedConnections());
+    }
+
 }

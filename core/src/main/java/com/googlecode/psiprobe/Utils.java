@@ -50,8 +50,8 @@ public class Utils {
 
     private static Log logger = LogFactory.getLog(Utils.class.getName());
 
-    public static int calcPoolUsageScore(int max, int busy, int total) {
-        return max > 0 ? (busy + Math.max(0, (total - busy) / 3)) * 100 / max : 0;
+    public static int calcPoolUsageScore(int max, int value) {
+        return max > 0 ? Math.max(0, value) * 100 / max : 0;
     }
 
     /**

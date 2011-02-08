@@ -72,11 +72,11 @@
 		</c:choose>
 	</display:column>
 
-	<display:column titleKey="probe.jsp.datasources.list.col.usage"           sortable="true" sortProperty="dataSourceInfo.score" class="score_wrapper">
+	<display:column titleKey="probe.jsp.datasources.list.col.usage"           sortable="true" sortProperty="dataSourceInfo.busyScore" class="score_wrapper">
 		<div class="score_wrapper">
-			<probe:score value="${resource.dataSourceInfo.score}" fullBlocks="10" partialBlocks="5" showEmptyBlocks="true" showA="true" showB="true">
+			<probe:score value="${resource.dataSourceInfo.busyScore}" value2="${resource.dataSourceInfo.establishedScore - resource.dataSourceInfo.busyScore}" fullBlocks="10" partialBlocks="5" showEmptyBlocks="true" showA="true" showB="true">
 				<img src="<c:url value='/css/classic/gifs/rb_{0}.gif'/>" alt="+"
-						title="<spring:message code='probe.jsp.applications.jdbcUsage.title' arguments='${resource.dataSourceInfo.score}'/>"/>
+						title="<spring:message code='probe.jsp.applications.jdbcUsage.title' arguments='${resource.dataSourceInfo.busyScore},${resource.dataSourceInfo.establishedScore}'/>"/>
 			</probe:score>
 		</div>
 	</display:column>

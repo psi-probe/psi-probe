@@ -52,12 +52,12 @@
 						<display:column property="jdbcURL" class="leftmost" sortable="true" maxLength="50" nulls="true"
 								titleKey="probe.jsp.dataSourceGroups.list.col.url"/>
 
-						<display:column sortable="true" sortProperty="score"
+						<display:column sortable="true" sortProperty="busyScore"
 								titleKey="probe.jsp.dataSourceGroups.list.col.usage" class="score_wrapper">
 							<div class="score_wrapper">
-								<probe:score value="${dataSourceGroup.score}" fullBlocks="10" partialBlocks="5" showEmptyBlocks="true" showA="true" showB="true">
+								<probe:score value="${dataSourceGroup.busyScore}" value2="${dataSourceGroup.establishedScore - dataSourceGroup.busyScore}" fullBlocks="10" partialBlocks="5" showEmptyBlocks="true" showA="true" showB="true">
 									<img src="<c:url value='/css/classic/gifs/rb_{0}.gif'/>" alt="+"
-											title="<spring:message code='probe.jsp.applications.jdbcUsage.title' arguments='${dataSourceGroup.score}'/>"/>
+											title="<spring:message code='probe.jsp.applications.jdbcUsage.title' arguments='${dataSourceGroup.busyScore},${dataSourceGroup.establishedScore}'/>"/>
 								</probe:score>
 							</div>
 						</display:column>

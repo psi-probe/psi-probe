@@ -25,7 +25,8 @@ public class Application implements Serializable {
     private long sessionCount;
     private long sessionAttributeCount;
     private int contextAttributeCount;
-    private int dataSourceUsageScore;
+    private int dataSourceBusyScore;
+    private int dataSourceEstablishedScore;
     private boolean distributable;
     private int sessionTimeout;
     private String servletVersion;
@@ -95,12 +96,20 @@ public class Application implements Serializable {
         this.contextAttributeCount = contextAttributeCount;
     }
 
-    public int getDataSourceUsageScore() {
-        return dataSourceUsageScore;
+    public int getDataSourceBusyScore() {
+        return dataSourceBusyScore;
     }
 
-    public void setDataSourceUsageScore(int dataSourceUsageScore) {
-        this.dataSourceUsageScore = dataSourceUsageScore;
+    public void setDataSourceBusyScore(int dataSourceBusyScore) {
+        this.dataSourceBusyScore = dataSourceBusyScore;
+    }
+
+    public int getDataSourceEstablishedScore() {
+        return dataSourceEstablishedScore;
+    }
+
+    public void setDataSourceEstablishedScore(int dataSourceEstablishedScore) {
+        this.dataSourceEstablishedScore = dataSourceEstablishedScore;
     }
 
     public boolean isDistributable() {

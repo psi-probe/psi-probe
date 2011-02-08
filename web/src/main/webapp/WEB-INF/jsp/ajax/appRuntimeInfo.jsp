@@ -119,12 +119,12 @@
 					</td>
 					<c:if test="${! no_resources}">
 						<td>
-							<probe:score value="${app.dataSourceUsageScore}" fullBlocks="8" partialBlocks="5" showEmptyBlocks="true" showA="true" showB="true">
+							<probe:score value="${app.dataSourceBusyScore}" value2="${app.dataSourceEstablishedScore - app.dataSourceBusyScore}" fullBlocks="8" partialBlocks="5" showEmptyBlocks="true" showA="true" showB="true">
 								<a class="imglink" href="<c:url value='/resources.htm?webapp=${app.name}'/>"><img border="0"
 																												src="<c:url value='/css/classic/gifs/rb_{0}.gif'/>" alt="+"
-																												title="<spring:message code='probe.jsp.applications.jdbcUsage.title' arguments='${app.dataSourceUsageScore}'/>"/></a>
+																												title="<spring:message code='probe.jsp.applications.jdbcUsage.title' arguments='${app.dataSourceBusyScore},${app.dataSourceEstablishedScore}'/>"/></a>
 							</probe:score>
-							&nbsp;${app.dataSourceUsageScore}%
+							&nbsp;${app.dataSourceBusyScore}%
 						</td>
 					</c:if>
 				</tr>
