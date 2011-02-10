@@ -41,6 +41,7 @@ import org.apache.catalina.deploy.ApplicationParameter;
 import org.apache.catalina.deploy.FilterDef;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.util.ClassUtils;
 
 /**
  * @author Vlad Ilyushchenko
@@ -227,7 +228,7 @@ public class ApplicationUtils {
                     if (addAttributes) {
                         Attribute saBean = new Attribute();
                         saBean.setName(name);
-                        saBean.setType(o.getClass().getName());
+                        saBean.setType(ClassUtils.getQualifiedName(o.getClass()));
                         saBean.setValue(o);
                         saBean.setSize(oSize);
                         saBean.setSerializable(o instanceof Serializable);
@@ -275,7 +276,7 @@ public class ApplicationUtils {
             Attribute attr = new Attribute();
             attr.setName(attrName);
             attr.setValue(attrValue);
-            attr.setType(attrValue.getClass().getName());
+            attr.setType(ClassUtils.getQualifiedName(attrValue.getClass()));
             attrs.add(attr);
         }
         return attrs;
