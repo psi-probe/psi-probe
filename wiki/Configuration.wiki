@@ -1,9 +1,11 @@
 #summary Overview of configuration options
 ----
+<wiki:toc max_depth="2" />
+----
 
-= Stats Collection =
+= Collected Stats =
 
-== Scheduling ==
+== Scheduling Data Collection ==
 
 Command line properties can be used to control stats collection schedules.  The format of these properties is:
 
@@ -36,7 +38,11 @@ A short time expression consisting of a number and a letter representing the uni
 
 The Expression you choose for a category's `period` should evenly divide the next highest unit of time.  Poor choices include `17s`, `24m` or `5h`.  Good choices include `15s`, `30m`, or `6h`.
 
-=== Memory Consumption ===
+=== Examples ===
+
+You may view the default values [http://code.google.com/p/psi-probe/source/browse/trunk/web/src/main/conf/WEB-INF/stats.properties here] to see examples.
+
+== Memory Consumption ==
 
 Each data point takes up 24 bytes of memory, so these statistics can take up large amounts of memory if you have a short period, a long span, or a large number of items within the category.  To determine the amount of memory taken up by a category's data, use the following formula:
 
@@ -48,10 +54,6 @@ Each data point takes up 24 bytes of memory, so these statistics can take up lar
   * _p_ = `period` (in seconds)
 
 For instance, if you configure the `cluster` category to collect information every 10 seconds and retain it for 3 days, this will take up 2,488,320 bytes (2.37 MB) of memory.
-
-=== Defaults ===
-
-You may view the default values [http://code.google.com/p/psi-probe/source/browse/trunk/web/src/main/conf/WEB-INF/stats.properties here] to see examples.
 
 == Excluding PSI Probe ==
 
