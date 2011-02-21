@@ -33,6 +33,7 @@ import java.util.List;
 import org.apache.catalina.Context;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.util.ClassUtils;
 
 /**
  *
@@ -157,8 +158,7 @@ public class LogResolverBean {
             ClassLoader prevCl = null;
             if (ctx != null) {
                 cl = ctx.getLoader().getClassLoader();
-                prevCl = Thread.currentThread().getContextClassLoader();
-                Thread.currentThread().setContextClassLoader(cl);
+                prevCl = ClassUtils.overrideThreadContextClassLoader(cl);
             } else {
                 cl = Thread.currentThread().getContextClassLoader().getParent();
             }
@@ -172,7 +172,7 @@ public class LogResolverBean {
                 }
             } finally {
                 if (prevCl != null) {
-                    Thread.currentThread().setContextClassLoader(prevCl);
+                    ClassUtils.overrideThreadContextClassLoader(prevCl);
                 }
             }
         }
@@ -214,15 +214,16 @@ public class LogResolverBean {
             }
 
             if (application.isAvailable()) {
-                ClassLoader thisCl = Thread.currentThread().getContextClassLoader();
-                Thread.currentThread().setContextClassLoader(cl);
+                ClassLoader prevCl = ClassUtils.overrideThreadContextClassLoader(cl);
                 try {
                     interrogateClassLoader(cl, application, allAppenders);
                 } catch (Exception e) {
                     logger.error("Could not interrogate classloader loggers for " + ctx.getName() + ". Enable debug logging to see the trace stack");
                     logger.debug(e);
                 } finally {
-                    Thread.currentThread().setContextClassLoader(thisCl);
+                    if (prevCL != null) {
+                        ClassUtils.overrideThreadContextClassLoader(prevCl);
+                    }
                 }
             }
         }
