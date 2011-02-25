@@ -221,7 +221,7 @@ public class LogResolverBean {
                     logger.error("Could not interrogate classloader loggers for " + ctx.getName() + ". Enable debug logging to see the trace stack");
                     logger.debug(e);
                 } finally {
-                    if (prevCL != null) {
+                    if (prevCl != null) {
                         ClassUtils.overrideThreadContextClassLoader(prevCl);
                     }
                 }
