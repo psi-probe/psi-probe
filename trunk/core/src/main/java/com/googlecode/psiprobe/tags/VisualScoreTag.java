@@ -19,7 +19,7 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
 
 public class VisualScoreTag extends BodyTagSupport {
 
-    private double value;
+    private double value = 0;
     private double value2 = 0;
     private double minValue = 0;
     private double maxValue = 100;
@@ -113,6 +113,9 @@ public class VisualScoreTag extends BodyTagSupport {
     }
 
     public void setValue(double value) {
+        if (value < 0) {
+            return;
+        }
         this.value = value;
     }
 
@@ -121,6 +124,9 @@ public class VisualScoreTag extends BodyTagSupport {
     }
 
     public void setValue2(double value2) {
+        if (value2 < 0) {
+            return;
+        }
         this.value2 = value2;
     }
 
