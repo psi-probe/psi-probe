@@ -305,6 +305,20 @@
 		<property name="statsCollection" ref="statsCollection"/>
 	</bean>
 
+	<bean name="/appreqdetails.ajax" class="com.googlecode.psiprobe.controllers.apps.GetApplicationController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="viewName" value="ajax/appRequestDetails"/>
+		<property name="extendedInfo" value="true"/>
+		<property name="statsCollection" ref="statsCollection"/>
+	</bean>
+
+	<bean name="/appprocdetails.ajax" class="com.googlecode.psiprobe.controllers.apps.GetApplicationController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="viewName" value="ajax/appProcTimeDetails"/>
+		<property name="extendedInfo" value="true"/>
+		<property name="statsCollection" ref="statsCollection"/>
+	</bean>
+
 	<bean name="/app/viewwebxml.htm" class="com.googlecode.psiprobe.controllers.apps.ViewXMLConfController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="viewName" value="view_xml_conf"/>

@@ -28,7 +28,7 @@
 		<%-- a hidden flag that shows if the app is up to display the status in a static app info section --%>
 		<span id="r_appStatusUp" style="display: none;">true</span>
 
-		<table class="statsTable" cellpadding="0" cellspacing="0" width="90%">
+		<table class="statsTable" cellpadding="0" cellspacing="0">
 			<thead>
 				<tr>
 					<th class="leftMost">
@@ -47,24 +47,6 @@
 					</c:if>
 					<th>
 						<spring:message code="probe.jsp.app.summary.contextAttributeCount"/>
-					</th>
-					<th>
-						<spring:message code="probe.jsp.app.summary.requestCount"/>
-					</th>
-					<th>
-						<spring:message code="probe.jsp.app.summary.errorCount"/>
-					</th>
-					<th>
-						<spring:message code="probe.jsp.app.summary.processingTime"/>
-					</th>
-					<th>
-						<spring:message code="probe.jsp.app.summary.minTime"/>
-					</th>
-					<th>
-						<spring:message code="probe.jsp.app.summary.maxTime"/>
-					</th>
-					<th>
-						<spring:message code="probe.jsp.app.summary.avgTime"/>
 					</th>
 					<c:if test="${! no_resources}">
 						<th>
@@ -98,24 +80,6 @@
 					</c:if>
 					<td>
 						<a href="<c:url value='/appattributes.htm?webapp=${app.name}'/>">${app.contextAttributeCount}</a>
-					</td>
-					<td>
-						<a href="<c:url value='/servlets.htm?webapp=${app.name}'/>">${app.requestCount}</a>
-					</td>
-					<td>
-						${app.errorCount}
-					</td>
-					<td>
-						<probe:duration value="${app.processingTime}"/>
-					</td>
-					<td>
-						${app.minTime} ms.
-					</td>
-					<td>
-						${app.maxTime} ms.
-					</td>
-					<td>
-						${app.avgTime} ms.
 					</td>
 					<c:if test="${! no_resources}">
 						<td>

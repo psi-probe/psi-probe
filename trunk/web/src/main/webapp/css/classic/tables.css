@@ -97,7 +97,6 @@ tr.even:hover td.highlighted {
 .statsTable {
 	padding: 0;
 	margin: 0;
-	width: 99%;
 }
 
 .statsTable th, .statsTable td {
