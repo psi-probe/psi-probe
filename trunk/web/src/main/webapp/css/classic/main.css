@@ -521,6 +521,11 @@ dd.image:hover {
 	float: right;
 }
 
+.connectorInfo {
+	clear: both;
+	margin-bottom: 2em;
+}
+
 img.lnk {
 	border: 0;
 	padding: 0 0 0 0;
