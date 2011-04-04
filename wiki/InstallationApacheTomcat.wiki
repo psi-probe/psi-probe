@@ -40,7 +40,7 @@ If you are not using the default configuration, add these roles as appropriate f
 Some users have experienced [http://code.google.com/p/psi-probe/issues/detail?id=64 problems] with graph images not displaying properly, especially when running Tomcat on Sun's JDK for UNIX.  If you see a stack trace for a `java.lang.NoClassDefFoundError` thrown by a class in the `org.jfree.chart` package, add the following JVM command line option:
 
 {{{
--Djava.awt.headless
+-Djava.awt.headless=true
 }}}
 
 == Enable Remote JMX (Optional) ==
@@ -48,7 +48,7 @@ Some users have experienced [http://code.google.com/p/psi-probe/issues/detail?id
 PSI Probe requires remote JMX to collect and display certain pieces of information (memory usage, cluster traffic, connection pools, and active threads).  You can enable remote JMX with the following JVM command line option:
 
 {{{
--Dcom.sun.management.jmxremote
+-Dcom.sun.management.jmxremote=true
 }}}
 
 If you need the JMX connection to be secured, refer to the [http://tomcat.apache.org/tomcat-5.5-doc/monitoring.html Tomcat 5.5] and [http://tomcat.apache.org/tomcat-6.0-doc/monitoring.html Tomcat 6] documentation on this topic.
