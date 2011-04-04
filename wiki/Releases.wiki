@@ -1,4 +1,5 @@
 #summary Instructions for creating a release build.
+<wiki:toc depth="1" />
 ----
 
 = Major Release =
