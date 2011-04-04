@@ -1,5 +1,4 @@
 #summary Overview of configuration options
-----
 <wiki:toc max_depth="2" />
 ----
 
