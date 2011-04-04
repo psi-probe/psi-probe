@@ -1,5 +1,4 @@
 #summary Instructions for deploying to Apache Tomcat
-----
 <wiki:toc max_depth="2" />
 ----
 
