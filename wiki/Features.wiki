@@ -1,6 +1,8 @@
 #summary List of features
 #labels Featured
+<wiki:toc depth="1" />
 ----
+
 = Features by Role =
 || || *probeuser* || *poweruser* || *poweruserplus* || *manager* ||
 || *[http://psi-probe.googlecode.com/svn/wiki/Features/context-list.png Context: list]*                              || X || X || X || X ||
