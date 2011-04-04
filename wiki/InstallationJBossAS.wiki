@@ -1,5 +1,4 @@
 #summary Instructions for deploying to JBoss Application Server
-----
 
 == 1. Declare users and rolls ==
 
