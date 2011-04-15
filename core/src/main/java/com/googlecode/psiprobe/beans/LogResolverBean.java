@@ -347,6 +347,10 @@ public class LogResolverBean {
             if (all) {
                 Application a1 = d1.getApplication();
                 Application a2 = d2.getApplication();
+            if (a1 == null || a2 == null) {
+                a1 = null;
+                a2 = null;
+            }
                 String appName1 = (a1 == null ? "" : a1.getName());
                 String appName2 = (a2 == null ? "" : a2.getName());
                 String context1 = (d1.isContext() ? "is" : "not");
@@ -381,6 +385,10 @@ public class LogResolverBean {
             String filename2 = (f2 == null ? "" : f2.getAbsolutePath());
             Application a1 = d1.getApplication();
             Application a2 = d2.getApplication();
+            if (a1 == null || a2 == null) {
+                a1 = null;
+                a2 = null;
+            }
             String appName1 = (a1 == null ? "" : a1.getName());
             String appName2 = (a2 == null ? "" : a2.getName());
             String logType1 = d1.getLogType();
