@@ -87,19 +87,28 @@ public class LogResolverBean {
     }
 
     public List getLogSources(File logFile) {
+        List filtered = new LinkedList();
+        List sources = getLogSources();
+        for (int i = 0; i < sources.size(); i++) {
+            LogDestination dest = (LogDestination) sources.get(i);
+            if (logFile.equals(dest.getFile())) {
+                filtered.add(dest);
+            }
+        }
+        return filtered;
+    }
+
+    public List getLogSources() {
         List sources = new LinkedList();
 
         List allAppenders = getAllLogDestinations();
         if (allAppenders != null) {
-            Comparator cmp = new LogDestinationComparator(true);
-            Comparator logsMatch = new LogTargetsMatchComparator();
+            Comparator cmp = new LogSourceComparator();
 
             Collections.sort(allAppenders, cmp);
             for (int i = 0; i < allAppenders.size(); i++) {
                 LogDestination dest = (LogDestination) allAppenders.get(i);
-                if (logFile.equals(dest.getFile())
-                        && Collections.binarySearch(sources, dest, logsMatch) < 0) {
-
+                if (Collections.binarySearch(sources, dest, cmp) < 0) {
                     sources.add(new DisconnectedLogDestination(dest));
                 }
             }
@@ -354,11 +363,7 @@ public class LogResolverBean {
         }
     }
 
-    private static class LogTargetsMatchComparator extends LogDestinationComparator {
-
-        public LogTargetsMatchComparator() {
-            super(true);
-        }
+    private static class LogSourceComparator implements Comparator {
 
         public int compare(Object o1, Object o2) {
             if (o1 instanceof DefaultAccessor && o2 instanceof DefaultAccessor) {
@@ -368,7 +373,30 @@ public class LogResolverBean {
                     return 0;
                 }
             }
-            return super.compare(o1, o2);
+            LogDestination d1 = (LogDestination) o1;
+            LogDestination d2 = (LogDestination) o2;
+            File f1 = d1.getFile();
+            File f2 = d2.getFile();
+            String filename1 = (f1 == null ? "" : f1.getAbsolutePath());
+            String filename2 = (f2 == null ? "" : f2.getAbsolutePath());
+            Application a1 = d1.getApplication();
+            Application a2 = d2.getApplication();
+            String appName1 = (a1 == null ? "" : a1.getName());
+            String appName2 = (a2 == null ? "" : a2.getName());
+            String logType1 = d1.getLogType();
+            String logType2 = d1.getLogType();
+            String context1 = (d1.isContext() ? "is" : "not");
+            String context2 = (d2.isContext() ? "is" : "not");
+            String root1 = (d1.isRoot() ? "is" : "not");
+            String root2 = (d2.isRoot() ? "is" : "not");
+            String logName1 = d1.getName();
+            String logName2 = d2.getName();
+            String logIndex1 = d1.getIndex();
+            String logIndex2 = d2.getIndex();
+            char delim = '!';
+            String name1 = appName1 + delim + logType1 + delim + context1 + delim + root1 + delim + logName1 + delim + logIndex1 + delim + filename1;
+            String name2 = appName2 + delim + logType2 + delim + context2 + delim + root2 + delim + logName2 + delim + logIndex2 + delim + filename2;
+            return name1.compareTo(name2);
         }
 
     }

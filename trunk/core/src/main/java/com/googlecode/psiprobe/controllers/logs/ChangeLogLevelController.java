@@ -33,7 +33,7 @@ public class ChangeLogLevelController extends LogHandlerController {
                 accessor.getLoggerAccessor().setLevel(level);
             } else if (logDest instanceof Jdk14HandlerAccessor) {
                 Jdk14HandlerAccessor accessor = (Jdk14HandlerAccessor) logDest;
-                accessor.setLevel(level);
+                accessor.getLoggerAccessor().setLevel(level);
             }
         }
         return null;
