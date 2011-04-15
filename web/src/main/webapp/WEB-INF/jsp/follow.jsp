@@ -145,11 +145,11 @@
 							${logsource.name}
 						</c:otherwise>
 					</c:choose>
-					(${logsource.index})
 				</display:column>
 
 				<display:column titleKey="probe.jsp.logs.col.class" sortable="true">
 					${logsource.targetClass}
+					(${logsource.index})
 				</display:column>
 
 				<display:column titleKey="probe.jsp.logs.col.level" sortable="false">
