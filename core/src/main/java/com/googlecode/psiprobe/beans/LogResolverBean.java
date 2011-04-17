@@ -23,6 +23,8 @@ import com.googlecode.psiprobe.tools.logging.jdk.Jdk14LoggerAccessor;
 import com.googlecode.psiprobe.tools.logging.jdk.Jdk14ManagerAccessor;
 import com.googlecode.psiprobe.tools.logging.log4j.Log4JLoggerAccessor;
 import com.googlecode.psiprobe.tools.logging.log4j.Log4JManagerAccessor;
+import com.googlecode.psiprobe.tools.logging.logback.LogbackLoggerAccessor;
+import com.googlecode.psiprobe.tools.logging.logback.LogbackFactoryAccessor;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -159,7 +161,10 @@ public class LogResolverBean {
             return getStdoutLogDestination(logName);
         } else if ("catalina".equals(logType) && ctx != null) {
             return getCatalinaLogDestination(ctx, application);
-        } else if (("jdk".equals(logType) || "log4j".equals(logType)) && logIndex != null) {
+        } else if (logIndex != null
+                && ("jdk".equals(logType)
+                || "log4j".equals(logType)
+                || "logback".equals(logType))) {
             if (context && ctx != null) {
                 return getCommonsLogDestination(ctx, application, logIndex);
             }
@@ -177,6 +182,8 @@ public class LogResolverBean {
                         return getJdk14LogDestination(cl, application, root, logName, logIndex);
                     } else if ("log4j".equals(logType)) {
                         return getLog4JLogDestination(cl, application, root, logName, logIndex);
+                    } else if ("logback".equals(logType)) {
+                        return getLogbackLogDestination(cl, application, root, logName, logIndex);
                     }
                 }
             } finally {
@@ -252,6 +259,13 @@ public class LogResolverBean {
             log4JAccessor.setApplication(application);
             appenders.addAll(log4JAccessor.getAppenders());
         }
+
+        // check for Logback loggers
+        LogbackFactoryAccessor logbackAccessor = LogbackFactoryAccessor.create(cl);
+        if (logbackAccessor != null) {
+            logbackAccessor.setApplication(application);
+            appenders.addAll(logbackAccessor.getAppenders());
+        }
     }
 
     private void interrogateStdOutFiles(List appenders) {
@@ -322,6 +336,18 @@ public class LogResolverBean {
         if (manager != null) {
             manager.setApplication(application);
             Log4JLoggerAccessor log = (root ? manager.getRootLogger() : manager.getLogger(logName));
+            if (log != null) {
+                return log.getAppender(appenderName);
+            }
+        }
+        return null;
+    }
+
+    private LogDestination getLogbackLogDestination(ClassLoader cl, Application application, boolean root, String logName, String appenderName) {
+        LogbackFactoryAccessor manager = LogbackFactoryAccessor.create(cl);
+        if (manager != null) {
+            manager.setApplication(application);
+            LogbackLoggerAccessor log = (root ? manager.getRootLogger() : manager.getLogger(logName));
             if (log != null) {
                 return log.getAppender(appenderName);
             }
