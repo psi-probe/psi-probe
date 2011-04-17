@@ -11,6 +11,7 @@
 package com.googlecode.psiprobe.tools.logging.jdk;
 
 import com.googlecode.psiprobe.tools.logging.DefaultAccessor;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.beanutils.MethodUtils;
@@ -47,7 +48,11 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
 
     public boolean isRoot() {
         return "".equals(getName())
-                || "org.apache.juli.ClassLoaderLogManager#RootLogger".equals(getTargetClass());
+                || isJuliRoot();
+    }
+
+    public boolean isJuliRoot() {
+        return "org.apache.juli.ClassLoaderLogManager$RootLogger".equals(getTargetClass());
     }
 
     public String getName() {
@@ -76,8 +81,17 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
 
     public String getLevel() {
         try {
-            Object level = getLevelInternal();
-            return (String) MethodUtils.invokeMethod(level, "getName", null);
+            Object level = null;
+            Object target = getTarget();
+            while (level == null && target != null) {
+                level = getLevelInternal(target);
+                target = MethodUtils.invokeMethod(target, "getParent", null);
+            }
+            if (level == null && isJuliRoot()) {
+                return "INFO";
+            } else {
+                return (String) MethodUtils.invokeMethod(level, "getName", null);
+            }
         } catch (Exception e) {
             log.error(getTarget() + ".getLevel() failed", e);
         }
@@ -86,16 +100,17 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
 
     public void setLevel(String newLevelStr) {
         try {
-            Object level = getLevelInternal();
-            Object newLevel = MethodUtils.invokeMethod(level, "parse", newLevelStr);
+            Class levelClass = getTarget().getClass().getClassLoader().loadClass("java.util.logging.Level");
+            Method setLevel = MethodUtils.getAccessibleMethod(levelClass, "parse", String.class);
+            Object newLevel = setLevel.invoke(null, new Object[] {newLevelStr});
             MethodUtils.invokeMethod(getTarget(), "setLevel", newLevel);
         } catch (Exception e) {
             log.error(getTarget() + ".setLevel(\"" + newLevelStr + "\") failed", e);
         }
     }
 
-    private Object getLevelInternal() throws Exception {
-        return MethodUtils.invokeMethod(getTarget(), "getLevel", null);
+    private Object getLevelInternal(Object target) throws Exception {
+        return MethodUtils.invokeMethod(target, "getLevel", null);
     }
 
     private Jdk14HandlerAccessor wrapHandler(Object handler, int index) {
