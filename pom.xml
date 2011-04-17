@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.googlecode.psiprobe</groupId>
 	<artifactId>psi-probe</artifactId>
-	<version>2.2.0</version>
+	<version>2.2.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>PSI Probe</name>
 	<url>http://psi-probe.googlecode.com/</url>
