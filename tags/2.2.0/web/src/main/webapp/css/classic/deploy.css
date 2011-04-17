@@ -1,0 +1,67 @@
+/*
+ * Licensed under the GPL License.  You may not use this file except in
+ * compliance with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ *
+ * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
+ * MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+ */
+
+div.deploy {
+	padding: 10px 10px 10px 10px;
+	margin: 0 0 10px 0;
+	border: 1px solid #ccc;
+	vertical-align: middle;
+	min-width: 700px;
+}
+
+div.deploy div.deployDescription {
+	padding: 5px 50px 15px 0;
+}
+
+div.deploy .deployLabel {
+	border: 1px dashed white;
+	padding: 0 5px 0 5px;
+	background: #06c;
+	color: white;
+	font-weight: bold;
+
+}
+
+div.deploy .submit {
+	text-align: right;
+	padding-top: 15px;
+	padding-right: 30px;
+}
+
+div.deploy .submit input.b {
+	font-size: 90%;
+	font-weight: bold;
+	padding: 2px 4px 2px 4px;
+	border: 1px solid #06c;
+	background-color: #c2e3ff;
+	color: #007ce6;
+}
+
+div#deployScenario1 {
+	background-color: #ebf8ff;
+	margin-bottom: 10px;
+}
+
+.cb input {
+	margin-left: 0;
+}
+
+em {
+	color: #cc0000;
+	font-weight: bold;
+	font-style: normal;
+}
+
+.deploy dl dd {
+	margin: 0;
+	padding: 0 0 1em 0;
+	line-height: 1.5em;
+}
