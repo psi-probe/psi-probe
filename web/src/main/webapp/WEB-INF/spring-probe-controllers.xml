@@ -438,7 +438,7 @@
 		<property name="viewName" value="ajax/followed_file_info"/>
 	</bean>
 
-	<bean name="/logs/changelevel.ajax" class="com.googlecode.psiprobe.controllers.logs.ChangeLogLevelController">
+	<bean name="/adm/changeloglevel.ajax" class="com.googlecode.psiprobe.controllers.logs.ChangeLogLevelController">
 		<property name="logResolver" ref="logResolver"/>
 		<property name="viewName" value=""/>
 	</bean>
