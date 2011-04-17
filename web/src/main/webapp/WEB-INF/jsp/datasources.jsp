@@ -69,9 +69,7 @@
 								<jsp:include page="datasources_table.jsp" />
 							</c:when>
 							<c:otherwise>
-								<div class="errorMessage">
-									<p><spring:message code="probe.jsp.datasources.global.empty" /></p>
-								</div>
+								<p><spring:message code="probe.jsp.datasources.global.empty" /></p>
 							</c:otherwise>
 						</c:choose>
 					</c:if>
@@ -87,9 +85,7 @@
 								<jsp:include page="datasources_table.jsp" />
 							</c:when>
 							<c:otherwise>
-								<div class="errorMessage">
-									<p><spring:message code="probe.jsp.datasources.app.empty" /></p>
-								</div>
+								<p><spring:message code="probe.jsp.datasources.app.empty" /></p>
 							</c:otherwise>
 						</c:choose>
 					</c:if>
