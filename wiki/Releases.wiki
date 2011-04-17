@@ -9,6 +9,7 @@
 = Minor Release =
   # *Branch*
     # Create branch from trunk.
+      * Commit message: _Creating x.x release branch._
     # Check out branch.
     # In branch, remove "SNAPSHOT" from version number and update SCM URLs.
       * e.g. `1.0.0-SNAPSHOT` becomes `1.0.0`
