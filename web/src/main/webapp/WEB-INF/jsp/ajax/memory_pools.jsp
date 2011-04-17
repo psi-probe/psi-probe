@@ -17,7 +17,7 @@
 
 <display:table name="pools" class="genericTbl" cellspacing="0" uid="pool" requestURI="">
 
-	<display:column title="&nbsp;" width="16px" class="leftMostIcon">
+	<display:column title="&nbsp;" style="width:16px;" class="leftMostIcon">
 		<c:choose>
 			<c:when test="${pool.type == 'HEAP'}">
 				<img src="${pageContext.request.contextPath}<spring:theme code='heap_pool.png'/>" alt=""/>
@@ -28,7 +28,7 @@
 		</c:choose>
 	</display:column>
 
-	<display:column titleKey="probe.jsp.memory.col.name" sortable="true" width="180px">
+	<display:column titleKey="probe.jsp.memory.col.name" sortable="true" style="width:180px;">
 		${pool.name}
 	</display:column>
 
@@ -41,7 +41,7 @@
 		</div>
 	</display:column>
 
-	<display:column titleKey="probe.jsp.memory.col.plot" width="20px">
+	<display:column titleKey="probe.jsp.memory.col.plot" style="width:20px;">
 
 		<c:set var="cookie_name" value="mem_${pool.id}" scope="page"/>
 
@@ -74,19 +74,19 @@
 				border="0"/>
 	</display:column>
 
-	<display:column titleKey="probe.jsp.memory.col.used" sortable="true" sortProperty="used" width="80px">
+	<display:column titleKey="probe.jsp.memory.col.used" sortable="true" sortProperty="used" style="width:80px;">
 		<probe:volume value="${pool.used}" fractions="2"/>
 	</display:column>
 
-	<display:column titleKey="probe.jsp.memory.col.committed" sortable="true" sortProperty="committed" width="80px">
+	<display:column titleKey="probe.jsp.memory.col.committed" sortable="true" sortProperty="committed" style="width:80px;">
 		<probe:volume value="${pool.committed}" fractions="2"/>
 	</display:column>
 
-	<display:column titleKey="probe.jsp.memory.col.max" sortable="true" sortProperty="max" width="80px">
+	<display:column titleKey="probe.jsp.memory.col.max" sortable="true" sortProperty="max" style="width:80px;">
 		<probe:volume value="${pool.max}" fractions="2"/>
 	</display:column>
 
-	<display:column titleKey="probe.jsp.memory.col.initial" sortable="true" sortProperty="init" width="80px">
+	<display:column titleKey="probe.jsp.memory.col.initial" sortable="true" sortProperty="init" style="width:80px;">
 		<probe:volume value="${pool.init}" fractions="2"/>
 	</display:column>
 

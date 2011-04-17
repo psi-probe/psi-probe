@@ -68,19 +68,19 @@
 					<div class="embeddedBlockContainer">
 						<display:table name="summary.items" uid="item" class="genericTbl" cellspacing="0" requestURI="" defaultsort="1"
 								defaultorder="descending">
-							<display:column titleKey="probe.jsp.jsps.col.name" sort="true" class="leftmost" sortProperty="name" width="auto">
+							<display:column titleKey="probe.jsp.jsps.col.name" sortable="true" class="leftmost" sortProperty="name">
 								<input type="checkbox" name="${item.name}"/>&nbsp;
 								<a href="<c:url value='/app/viewsource.htm?webapp=${param.webapp}&source=${item.name}'/>">
 									${item.name}
 								</a>
 							</display:column>
-							<display:column titleKey="probe.jsp.jsps.col.size" sort="true" sortProperty="size" width="30px">
+							<display:column titleKey="probe.jsp.jsps.col.size" sortable="true" sortProperty="size" style="width:30px;">
 								<probe:volume value="${item.size}"/>
 							</display:column>
-							<display:column titleKey="probe.jsp.jsps.col.lastmodified" sort="true" sortProperty="lastModified" width="140px">
+							<display:column titleKey="probe.jsp.jsps.col.lastmodified" sortable="true" sortProperty="lastModified" style="width:140px;">
 								${item.timestamp}
 							</display:column>
-							<display:column titleKey="probe.jsp.jsps.col.status" sort="true" sortProperty="state" width="60px">
+							<display:column titleKey="probe.jsp.jsps.col.status" sortable="true" sortProperty="state" style="width:60px;">
 								<c:choose>
 									<c:when test="${item.state == 1}">
 										<spring:message code="probe.jsp.jsps.status.outdated"/>
@@ -93,7 +93,7 @@
 									</c:otherwise>
 								</c:choose>
 							</display:column>
-							<display:column titleKey="probe.jsp.jsps.col.message" sort="true" width="auto">
+							<display:column titleKey="probe.jsp.jsps.col.message" sortable="true">
 								<c:out value="${item.exception.message}" escapeXml="false"/>&nbsp;
 							</display:column>
 						</display:table>

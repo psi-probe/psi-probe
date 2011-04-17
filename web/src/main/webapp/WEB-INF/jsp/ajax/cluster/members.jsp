@@ -19,7 +19,7 @@
 	<c:when test="${! empty cluster.members}">
 		<display:table name="cluster.members" class="genericTbl" cellspacing="0" uid="member" requestURI="">
 
-			<display:column title="&nbsp;" class="leftMostIcon" width="16px;">
+			<display:column title="&nbsp;" class="leftMostIcon" style="width:16px;">
 				<c:choose>
 					<c:when test="${member.suspect}">
 						<img src="${pageContext.request.contextPath}<spring:theme code='transmit_error.png'/>" alt="<spring:message code='probe.jsp.cluster.members.failing.alt'/>"

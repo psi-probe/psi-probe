@@ -191,7 +191,7 @@
 									<display:table name="${connector.requestProcessors}"
 											class="genericTbl" cellspacing="0"
 											requestURI="" uid="rp" defaultsort="7" defaultorder="descending">
-										<display:column title="&nbsp;" width="18px" class="leftmost">
+										<display:column title="&nbsp;" style="width:18px;" class="leftmost">
 											<c:choose>
 												<c:when test="${! empty rp.remoteAddrLocale.country && rp.remoteAddrLocale.country != '**'}">
 													<img border="0" src="<c:url value='/flags/${fn:toLowerCase(rp.remoteAddrLocale.country)}.gif'/>"
@@ -203,7 +203,7 @@
 											</c:choose>
 										</display:column>
 
-										<display:column nowrap="" sortable="true" titleKey="probe.jsp.connectors.wrk.col.remoteAddr">
+										<display:column style="white-space:nowrap;" sortable="true" titleKey="probe.jsp.connectors.wrk.col.remoteAddr">
 											<a id="ip_${connector.name}_${rp_rowNum}" href="#">${rp.remoteAddr}</a>
 
 											<script type="text/javascript">
@@ -273,7 +273,7 @@
 												</c:choose>
 											</display:column>
 
-											<display:column sortable="false" title="&nbsp;" width="16px">
+											<display:column sortable="false" title="&nbsp;" style="width:16px;">
 												<c:choose>
 													<c:when test="${! empty rp.workerThreadName}">
 														<c:set var="confirmMessage">

@@ -72,7 +72,7 @@
 
 				</c:choose>
 
-				<display:column titleKey="probe.jsp.logs.col.file" sort="true" sortProperty="file">
+				<display:column titleKey="probe.jsp.logs.col.file" sortable="true" sortProperty="file">
 					<c:choose>
 						<c:when test="${log.file == 'stdout'}">
 							<probe:out value="${log.file}" maxLength="80" ellipsisRight="false"/>
@@ -145,7 +145,7 @@
 					${log.lastModified}&nbsp;
 				</display:column>
 
-				<display:column titleKey="probe.jsp.logs.col.class" sort="true" property="targetClass"/>
+				<display:column titleKey="probe.jsp.logs.col.class" sortable="true" property="targetClass"/>
 			</display:table>
 		</div>
 	</body>

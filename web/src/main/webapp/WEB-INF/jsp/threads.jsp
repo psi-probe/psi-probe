@@ -61,13 +61,13 @@
 									alt="<spring:message code='probe.jsp.threads.stop.alt'/>"/>
 						</a>
 					</display:column>
-					<display:column property="name" sortable="true" titleKey="probe.jsp.threads.col.name" maxLength="30" nowrap="true"/>
+					<display:column property="name" sortable="true" titleKey="probe.jsp.threads.col.name" maxLength="30" style="white-space:nowrap;"/>
 					<display:column property="priority" sortable="true" titleKey="probe.jsp.threads.col.priority"/>
-					<display:column sortable="true" sortProperty="appName" titleKey="probe.jsp.threads.col.application" nowrap="true">
+					<display:column sortable="true" sortProperty="appName" titleKey="probe.jsp.threads.col.application" style="white-space:nowrap;">
 						${th.appName}&nbsp;
 					</display:column>
 
-					<display:column sortable="true" sortProperty="classLoader" titleKey="probe.jsp.threads.col.classLoader" nowrap="true">
+					<display:column sortable="true" sortProperty="classLoader" titleKey="probe.jsp.threads.col.classLoader" style="white-space:nowrap;">
 						<c:set var="clUrl">
 							<c:url value="/cldetails.ajax?thread=${th.name}"/>
 						</c:set>
@@ -79,9 +79,9 @@
 							<spring:message code="probe.jsp.threads.info.loading"/></div>
 						</display:column>
 
-					<display:column property="groupName" sortable="true" titleKey="probe.jsp.threads.col.groupName" maxLength="15" nowrap="true"/>
-					<display:column property="threadClass" sortable="true" titleKey="probe.jsp.threads.col.threadClass" maxLength="30" nowrap="true"/>
-					<display:column sortable="true" sortProperty="runnableClassName" titleKey="probe.jsp.threads.col.runnableClass" maxLength="30" nowrap="true">
+					<display:column property="groupName" sortable="true" titleKey="probe.jsp.threads.col.groupName" maxLength="15" style="white-space:nowrap;"/>
+					<display:column property="threadClass" sortable="true" titleKey="probe.jsp.threads.col.threadClass" maxLength="30" style="white-space:nowrap;"/>
+					<display:column sortable="true" sortProperty="runnableClassName" titleKey="probe.jsp.threads.col.runnableClass" maxLength="30" style="white-space:nowrap;">
 						${th.runnableClassName}&nbsp;
 					</display:column>
 					<display:column property="daemon" sortable="true" titleKey="probe.jsp.threads.col.daemon"/>

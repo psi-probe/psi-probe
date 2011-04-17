@@ -46,7 +46,7 @@
 					<display:table htmlId="initParamTbl" name="appInitParams" uid="prm"
 							class="genericTbl" cellspacing="0" cellpadding="0"
 							requestURI="" defaultsort="2">
-						<display:column class="leftMostIcon" title="&nbsp;" width="1px">
+						<display:column class="leftMostIcon" title="&nbsp;" style="width:1px;">
 							<c:choose>
 								<c:when test="${prm.fromDeplDescr}">
 									<img src="${pageContext.request.contextPath}<spring:theme code='deployment_descriptor.img'/>" alt="">

@@ -38,12 +38,12 @@
 		</ul>
 
 		<display:table name="pools" uid="pool" class="genericTbl" cellspacing="0" requestURI="" defaultsort="1" defaultorder="ascending">
-			<display:column property="name"               sortable="true" titleKey="probe.jsp.threadpools.name"               nowrap="true" class="leftmost"/>
-			<display:column property="currentThreadCount" sortable="true" titleKey="probe.jsp.threadpools.currentThreadCount" nowrap="true"/>
-			<display:column property="currentThreadsBusy" sortable="true" titleKey="probe.jsp.threadpools.currentThreadsBusy" nowrap="true"/>
-			<display:column property="maxThreads"         sortable="true" titleKey="probe.jsp.threadpools.maxThreads"         nowrap="true"/>
-			<display:column property="maxSpareThreads"    sortable="true" titleKey="probe.jsp.threadpools.maxSpareThreads"    nowrap="true"/>
-			<display:column property="minSpareThreads"    sortable="true" titleKey="probe.jsp.threadpools.minSpareThreads"    nowrap="true"/>
+			<display:column property="name"               sortable="true" titleKey="probe.jsp.threadpools.name"               style="white-space:nowrap;" class="leftmost"/>
+			<display:column property="currentThreadCount" sortable="true" titleKey="probe.jsp.threadpools.currentThreadCount" style="white-space:nowrap;"/>
+			<display:column property="currentThreadsBusy" sortable="true" titleKey="probe.jsp.threadpools.currentThreadsBusy" style="white-space:nowrap;"/>
+			<display:column property="maxThreads"         sortable="true" titleKey="probe.jsp.threadpools.maxThreads"         style="white-space:nowrap;"/>
+			<display:column property="maxSpareThreads"    sortable="true" titleKey="probe.jsp.threadpools.maxSpareThreads"    style="white-space:nowrap;"/>
+			<display:column property="minSpareThreads"    sortable="true" titleKey="probe.jsp.threadpools.minSpareThreads"    style="white-space:nowrap;"/>
 		</display:table>
 	</body>
 </html>
