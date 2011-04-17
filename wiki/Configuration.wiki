@@ -17,7 +17,7 @@ The category of statistics to configure.  Must be one of the following:
 || *Category* || *Description* || *Data Points per Collection* ||
 || `app` || Number of requests/errors, current/average processing time time || 4 x (# of apps) + 2 ||
 || `cluster` || Bytes sent/received, messages sent/received || 4 ||
-|| `connector` || Number of requests/errors, bytes sent/received, busy threads || 5 x (# of connectors) ||
+|| `connector` || Number of requests/errors, bytes sent/received, processing time || 5 x (# of connectors) ||
 || `datasource` || established/busy connections || 2 x (# of datasources) ||
 || `memory` || JVM memory used per pool || 1 x (# of memory pools) + 1 ||
 || `runtime` || OS physical/virtual/swap memory used, CPU usage || 4 ||
