@@ -160,7 +160,7 @@
 							</c:forEach>
 						</select>
 
-						<c:url value="/logs/changelevel.ajax" var="changeLogLevelUrl">
+						<c:url value="/adm/changeloglevel.ajax" var="changeLogLevelUrl">
 							<c:param name="logType" value="${logsource.logType}"/>
 							<c:if test="${logsource.application != null}">
 								<c:param name="webapp" value="${logsource.application.name}"/>
