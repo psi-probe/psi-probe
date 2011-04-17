@@ -236,7 +236,7 @@
 								</c:choose>
 							</display:column>
 
-							<display:column title="&nbsp;" width="18px">
+							<display:column title="&nbsp;" style="width:18px;">
 								<c:choose>
 									<c:when test="${! empty session.lastAccessedIPLocale.country && session.lastAccessedIPLocale.country != '**'}">
 										<img border="0" src="<c:url value='/flags/${fn:toLowerCase(session.lastAccessedIPLocale.country)}.gif'/>"
@@ -257,8 +257,8 @@
 								<probe:duration value="${session.age}"/>
 							</display:column>
 
-							<display:column property="expiryTime" sort="true" nulls="false"
-									titleKey="probe.jsp.sessions.col.expiryTime" nowrap="true"/>
+							<display:column property="expiryTime" sortable="true" nulls="false"
+									titleKey="probe.jsp.sessions.col.expiryTime" style="white-space:nowrap;"/>
 							<display:column property="objectCount" sortable="true"
 									titleKey="probe.jsp.sessions.col.objectCount"/>
 

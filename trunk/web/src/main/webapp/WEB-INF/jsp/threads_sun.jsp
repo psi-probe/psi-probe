@@ -62,7 +62,7 @@
 				<display:table name="threads" uid="th" class="genericTbl" cellspacing="0" requestURI="" defaultsort="4"
 						defaultorder="ascending">
 
-					<display:column class="leftMostIcon" title="&nbsp;" width="20px">
+					<display:column class="leftMostIcon" title="&nbsp;" style="width:20px;">
 						<c:set var="confirmMessage">
 							<spring:message code="probe.jsp.threads.killmsg" arguments="${th.name}"/>
 						</c:set>
