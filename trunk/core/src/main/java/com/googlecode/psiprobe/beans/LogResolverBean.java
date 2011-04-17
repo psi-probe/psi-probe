@@ -399,11 +399,11 @@ public class LogResolverBean {
             String root2 = (d2.isRoot() ? "is" : "not");
             String logName1 = d1.getName();
             String logName2 = d2.getName();
-            String logIndex1 = d1.getIndex();
-            String logIndex2 = d2.getIndex();
+            //String logIndex1 = d1.getIndex();
+            //String logIndex2 = d2.getIndex();
             char delim = '!';
-            String name1 = appName1 + delim + logType1 + delim + context1 + delim + root1 + delim + logName1 + delim + logIndex1 + delim + filename1;
-            String name2 = appName2 + delim + logType2 + delim + context2 + delim + root2 + delim + logName2 + delim + logIndex2 + delim + filename2;
+            String name1 = appName1 + delim + logType1 + delim + context1 + delim + root1 + delim + logName1 + delim + filename1;
+            String name2 = appName2 + delim + logType2 + delim + context2 + delim + root2 + delim + logName2 + delim + filename2;
             return name1.compareTo(name2);
         }
 
