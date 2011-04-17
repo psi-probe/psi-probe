@@ -43,7 +43,9 @@
 || *[http://psi-probe.googlecode.com/svn/wiki/Features/log-list.png Log: list]*                                      || X || X || X || X ||
 || *[http://psi-probe.googlecode.com/svn/wiki/Features/log-tail.png Log: tail in real-time]*                         || X || X || X || X ||
 || *[http://psi-probe.googlecode.com/svn/wiki/Features/log-tail.png Log: download]*                                  || X || X || X || X ||
+|| *Log: change level*                  ||   ||   ||   || X ||
 || *[http://psi-probe.googlecode.com/svn/wiki/Features/thread-list.png Thread: list]*                                || X || X || X || X ||
+|| *Thread: list pools*                 || X || X || X || X ||
 || *Thread: view execution stack*       ||   || X || X || X ||
 || *[http://psi-probe.googlecode.com/svn/wiki/Features/thread-list.png Thread: kill]*                                ||   ||   ||   || X ||
 || *[http://psi-probe.googlecode.com/svn/wiki/Features/connector-status.png Connector: status]*                      || X || X || X || X ||
@@ -76,24 +78,26 @@ To find out when these features were added, please refer to the [Changelogs].
 == Servers ==
   * Apache Tomcat 5.0
   * Apache Tomcat 5.5
-  * Apache Tomcat 6.0 (partial; see issue 90)
+  * Apache Tomcat 6.0 (except cluster info; see issue 82)
   * Apache Tomcat 7.0 (partial; see issue 140)
   * JBoss 3.2
   * JBoss 4.0
-  * JBoss 4.2 (partial)
-  * JBoss 4.3 (partial)
-  * JBoss 5.0 (partial)
-  * JBoss 5.1 (partial)
+  * JBoss 4.2
+  * JBoss 4.3
+  * JBoss 5.0
+  * JBoss 5.1
+  * !SpringSource tc Server 2.0
 
 == Data Sources ==
   * DBCP
   * !C3P0
   * Oracle
+  * tomcat-jdbc
 
 == Logs ==
-  * JDK (java.util)
+  * JDK (java.util.logging)
   * log4j
-  * commons-logging
+  * logback
 
 ----
 = Internationalization =
