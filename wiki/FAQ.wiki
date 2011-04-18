@@ -32,7 +32,7 @@ For the most part, it's just like deploying any other Java web application.  We 
 Please [https://code.google.com/p/psi-probe/issues/entry report it], and include as much information as possible about your environment and the circumstances that led to the bug.  Snippets of log files, stack traces, and the like are incredibly helpful.  Please star the issue you submit and/or check it regularly, as we may ask for more details.
 
 == I have a great idea. Can you add it to PSI Probe? ==
-We'd love to hear your idea, whether it's for a [http://code.google.com/p/psi-probe/issues/entry?template=Enhance%20an%20existing%20feature change] or [http://code.google.com/p/psi-probe/issues/entry?template=Add%20a%20new%20feature addition], but we make no guarantees.  The chances improved dramatically if you include a patch.
+We'd love to hear your idea, whether it's for a [http://code.google.com/p/psi-probe/issues/entry?template=Enhance%20an%20existing%20feature change] or [http://code.google.com/p/psi-probe/issues/entry?template=Add%20a%20new%20feature addition], but we make no guarantees.  The chances improve dramatically if you include a patch.
 
 ----
 = Development =
