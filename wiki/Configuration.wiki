@@ -6,9 +6,11 @@
 
 == Scheduling Data Collection ==
 
-Command line properties can be used to control stats collection schedules.  The format of these properties is:
+Command line properties can be used to configure stats collection schedules.  The template of these properties is:
 
-  * `com.googlecode.psiprobe.beans.stats.collectors.CATEGORY.PARAMETER=EXPRESSION`
+{{{
+-Dcom.googlecode.psiprobe.beans.stats.collectors.CATEGORY.PARAMETER=EXPRESSION
+}}}
 
 === Category ===
 
@@ -52,10 +54,12 @@ Each data point takes up 24 bytes of memory, so these statistics can take up lar
   * _s_ = `span` (in seconds)
   * _p_ = `period` (in seconds)
 
-For instance, if you configure the `cluster` category to collect information every 10 seconds and retain it for 3 days, this will take up 2,488,320 bytes (2.37 MB) of memory.
+For instance, if you configure the `cluster` category to collect information every 10 seconds and retain it for 3 days, this will take up 2,488,320 bytes (2.37 MB) of memory.  The same settings for app statistics would take up about the same amount of memory _per application_.
 
 == Excluding PSI Probe ==
 
 PSI Probe can ignore its own requests when calculating cumulative application statistics.  Just add the following to the command line:
 
-  * `-Dcom.googlecode.psiprobe.beans.stats.collectors.app.selfIgnored`
+{{{
+-Dcom.googlecode.psiprobe.beans.stats.collectors.app.selfIgnored=true
+}}}
