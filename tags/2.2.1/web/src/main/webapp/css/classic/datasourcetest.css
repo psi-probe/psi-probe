@@ -1,0 +1,290 @@
+/*
+ * Licensed under the GPL License.  You may not use this file except in
+ * compliance with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ *
+ * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
+ * MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+ */
+
+div.dataSourceTestMenu, div.dataSourceTestContent {
+	clear: both;
+}
+
+li#connect {
+	float: left;
+	background: url( "gifs/silk/database_key.gif" ) top left no-repeat;
+}
+
+li#executeSql {
+	float: left;
+	background: url( "gifs/silk/database_lightning.gif" ) top left no-repeat;
+}
+
+li#showHistory {
+	float: left;
+	background: url( "gifs/silk/script_go.gif" ) top left no-repeat;
+}
+
+li#hideHistory {
+	float: left;
+	background: url( "gifs/silk/script_delete.gif" ) top left no-repeat;
+}
+
+li#showOptions {
+	float: left;
+	background: url( "gifs/silk/application_form_edit.gif" ) top left no-repeat;
+}
+
+li#hideOptions {
+	float: left;
+	background: url( "gifs/silk/application_form_delete.gif" ) top left no-repeat;
+}
+
+li#wrap {
+	float: right;
+	padding-top: 10px;
+	background: url( "gifs/silk/arrow_undo.gif" ) center left no-repeat;
+}
+
+li#nowrap {
+	float: right;
+	padding-top: 10px;
+	background: url( "gifs/silk/arrow_right.gif" ) center left no-repeat;
+}
+
+#sqlForm {
+	margin: 0;
+	padding: 0;
+}
+
+#sql {
+	font-family: 'Lucida Sans Typewriter', 'Courier New', monospace;
+	font-size: 100%;
+	width: 99%;
+	border: none;
+	overflow: auto;
+	margin: 0;
+	padding: 2px 0px 2px 5px;
+	height: 100px;
+	background-color: #fff;
+}
+
+div#sqlDragHandle {
+	background: #ddd;
+	cursor: n-resize;
+	height: 3px;
+	margin-top: 0px; /* for IE */
+	font-size: 0px;
+	line-height: 0px;
+}
+
+div#sqlDragHandle:hover {
+	background: #000;
+}
+
+h3 {
+	float: left;
+	height: 2em;
+	margin: 0;
+	padding: 10px 0 5px 2px;
+}
+
+div#outputHolder {
+	padding: 0;
+	margin: 0;
+}
+
+#sqlResultsWrapper {
+	clear: both;
+}
+
+#sqlResultsContainer {
+	margin: 0;
+	padding: 0;
+	width: 99%;
+	overflow: hidden;
+}
+
+#rowsAffected {
+	margin: 0 0 5px 0;
+	padding: 0;
+	float: left;
+	color: #4f6b72;
+	text-align: left;
+}
+
+#sqlResultTbl {
+	border-left: 1px solid #C1DAD7;
+	padding: 0;
+	margin: 0;
+	clear: both;
+}
+
+#sqlResultTbl td {
+	white-space: nowrap;
+}
+
+#pagebanner {
+	color: #4f6b72;
+	float: left;
+	padding: 0 0 0 5px;
+	margin: 0;
+}
+
+#pagelinks {
+	color: #4f6b72;
+	float: left;
+	padding: 0 0 0 5px;
+	margin: 0;
+}
+
+#pagelinks a:link, #pagelinks a:visited {
+	color: #40659B;
+	border-bottom: 1px none;
+}
+
+#pagelinks td a:hover, #pagelinks td:hover a {
+	color: #003366;
+	border-bottom: 1px dashed #bbb;
+}
+
+.ajax_activity {
+	float: right;
+	width: 50%;
+	height: 2em;
+	padding: 0px 20px 5px 20px;
+	margin: 0;
+	background-position: left center;
+	font-size: 95%;
+}
+
+#rs_rowsAffected, #rs_pagebanner, #rs_pagelinks {
+	display: none;
+}
+
+#queryHistoryContainer {
+	margin: 5px 0 0 0;
+	clear: both;
+	width: 100%;
+}
+
+#queryHistoryBorder {
+	margin: 0;
+	padding: 0;
+	border: 1px solid #ccc;
+	clear: both;
+}
+
+#queryHistoryHolder {
+	margin: 0;
+	padding: 0;
+	clear: both;
+	overflow: auto;
+	width: 100%;
+}
+
+#queryHistoryHolder ul {
+	margin: 5px 5px 5px 5px;
+	padding: 0;
+	list-style: none;
+	/*overflow: hidden;*/
+	width: 99%;
+}
+
+#queryHistoryHolder ul li {
+	padding: 0;
+	margin: 5px 0;
+}
+
+#queryHistoryHolder ul a {
+	display: block;
+}
+
+#queryHistoryHolder ul a:link, #queryHistoryHolder ul a:visited {
+	color: #40659B;
+	text-decoration: none;
+	padding-left: 10px;
+	padding-right: 10px;
+	border: 1px solid #fff;
+}
+
+#queryHistoryHolder ul a:hover, #queryHistoryHolder ul a:hover a {
+	background-color: #F0F8FF;
+	color: #000;
+	border: 1px solid #ccc;
+}
+
+#historyEmpty {
+	margin: 5px 5px 5px 10px;;
+	padding: 0;
+}
+
+div#historyDragHandle {
+	background: #ddd;
+	cursor: n-resize;
+	height: 3px;
+	margin-top: 0px; /* for IE */
+	font-size: 0px;
+	line-height: 0px;
+}
+
+div#historyDragHandle:hover {
+	background: #000;
+}
+
+.txtInput {
+	border: 1px solid #ccc;
+	padding: 0 0 0 3px;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+
+dl#optionsDL {
+	clear: both;
+	padding: 10px 0 0 0;
+	margin: 0;
+	list-style: none;
+}
+
+dl#optionsDL dt {
+	margin: 0;
+	padding: 0 5px 0 0;
+	float: left;
+}
+
+dl#optionsDL dd {
+	margin: 0;
+	padding: 0 10px 0 0;
+	float: left;
+}
+
+dl#sqlDL {
+	clear: both;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+dl#sqlDL dt {
+	margin: 0;
+	padding: 0;
+}
+
+dl#sqlDL dd {
+	margin: 0;
+	padding: 0;
+}
+
+#sqlContainer {
+	border: 1px solid #ccc;
+}
+
+#h3Container {
+	clear: both;
+}
+
+#sqlResultsHeader {
+	clear: both;
+}
