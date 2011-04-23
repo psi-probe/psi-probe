@@ -26,7 +26,6 @@ import org.apache.catalina.Host;
 import org.apache.catalina.Lifecycle;
 import org.apache.catalina.Valve;
 import org.apache.catalina.Wrapper;
-import org.apache.catalina.deploy.FilterDef;
 import org.apache.catalina.deploy.FilterMap;
 import org.apache.commons.modeler.Registry;
 
@@ -34,12 +33,12 @@ import org.apache.commons.modeler.Registry;
  *
  * @author Mark Lewis
  */
-public class Tomcat60ContainerAdaptor extends AbstractTomcatContainer {
+public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
 
     private Host host;
     private ObjectName deployerOName;
     private MBeanServer mBeanServer;
-    private Valve valve = new Tomcat60AgentValve();
+    private Valve valve = new Tomcat70AgentValve();
 
     public void setWrapper(Wrapper wrapper) {
         if (wrapper != null) {
@@ -57,10 +56,7 @@ public class Tomcat60ContainerAdaptor extends AbstractTomcatContainer {
     }
 
     public boolean canBoundTo(String binding) {
-        return binding != null && (binding.startsWith("Apache Tomcat/6.0")
-                || binding.startsWith("JBossWeb/2.0")
-                || binding.startsWith("JBossWeb/2.1")
-                || (binding.startsWith("SpringSource tc") && binding.contains("/6.0")));
+        return binding != null && binding.startsWith("Apache Tomcat/7.0");
     }
 
     public Context findContext(String name) {

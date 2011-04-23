@@ -57,6 +57,7 @@
 	</scm>
 	<modules>
 		<module>core</module>
+		<module>tomcat70adaptor</module>
 		<module>tomcat60adaptor</module>
 		<module>tomcat55adaptor</module>
 		<module>tomcat50adaptor</module>

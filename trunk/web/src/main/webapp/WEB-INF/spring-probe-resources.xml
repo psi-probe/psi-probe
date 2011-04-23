@@ -25,6 +25,7 @@
 		<property name="forceFirstAdaptor" value="false"/>
 		<property name="adaptorClasses">
 			<list>
+				<value>com.googlecode.psiprobe.Tomcat70ContainerAdaptor</value>
 				<value>com.googlecode.psiprobe.Tomcat60ContainerAdaptor</value>
 				<value>com.googlecode.psiprobe.Tomcat55ContainerAdaptor</value>
 				<value>com.googlecode.psiprobe.Tomcat50ContainerAdaptor</value>
