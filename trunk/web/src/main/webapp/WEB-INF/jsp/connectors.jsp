@@ -31,34 +31,6 @@
 	<c:set var="chartWidth" value="280"/>
 	<c:set var="chartHeight" value="175"/>
 
-	<c:url value="/chart.png" var="reqimg" scope="page">
-		<c:param name="p" value="connector"/>
-		<c:param name="xz" value="${chartWidth}"/>
-		<c:param name="yz" value="${chartHeight}"/>
-		<c:param name="l" value="false"/>
-	</c:url>
-
-	<c:url value="/chart.png" var="traffimg" scope="page">
-		<c:param name="p" value="traffic"/>
-		<c:param name="xz" value="${chartWidth}"/>
-		<c:param name="yz" value="${chartHeight}"/>
-		<c:param name="xl" value="Bytes"/>
-		<c:param name="s1c" value="#95FE8B"/>
-		<c:param name="s1o" value="#009406"/>
-		<c:param name="s2c" value="#FDFB8B"/>
-		<c:param name="s2o" value="#D9CB00"/>
-		<c:param name="l" value="false"/>
-	</c:url>
-
-	<c:url value="/chart.png" var="connector_proc_time_url">
-		<c:param name="p" value="connector_proc_time"/>
-		<c:param name="xz" value="${chartWidth}"/>
-		<c:param name="yz" value="${chartHeight}"/>
-		<c:param name="s1c" value="#FFCD9B"/>
-		<c:param name="s1o" value="#D26900"/>
-		<c:param name="l" value="false"/>
-	</c:url>
-
 	<c:set var="navTabConnectors" value="active" scope="request"/>
 
 	<body>
@@ -82,16 +54,68 @@
 
 				<c:set var="name" value="${connector.name}" />
 
-				<%--
-					create "reset connector" url
-				--%>
+				<c:url value="/chart.png" var="reqimg" scope="page">
+					<c:param name="p" value="connector"/>
+					<c:param name="sp" value="${name}"/>
+					<c:param name="xz" value="${chartWidth}"/>
+					<c:param name="yz" value="${chartHeight}"/>
+					<c:param name="l" value="false"/>
+				</c:url>
+
+				<c:url value="/chart.png" var="traffimg" scope="page">
+					<c:param name="p" value="traffic"/>
+					<c:param name="sp" value="${name}"/>
+					<c:param name="xz" value="${chartWidth}"/>
+					<c:param name="yz" value="${chartHeight}"/>
+					<c:param name="xl" value="Bytes"/>
+					<c:param name="s1c" value="#95FE8B"/>
+					<c:param name="s1o" value="#009406"/>
+					<c:param name="s2c" value="#FDFB8B"/>
+					<c:param name="s2o" value="#D9CB00"/>
+					<c:param name="l" value="false"/>
+				</c:url>
+
+				<c:url value="/chart.png" var="proctimeimg" scope="page">
+					<c:param name="p" value="connector_proc_time"/>
+					<c:param name="sp" value="${name}"/>
+					<c:param name="xz" value="${chartWidth}"/>
+					<c:param name="yz" value="${chartHeight}"/>
+					<c:param name="s1c" value="#FFCD9B"/>
+					<c:param name="s1o" value="#D26900"/>
+					<c:param name="l" value="false"/>
+				</c:url>
+
+				<c:url value="/zoomchart.htm" var="reqZoomUrl">
+					<c:param name="p" value="connector" />
+					<c:param name="sp" value="${name}" />
+				</c:url>
+				
+				<c:url value="/zoomchart.htm" var="proctimeZoomUrl">
+					<c:param name="p" value="connector_proc_time" />
+					<c:param name="sp" value="${name}" />
+				</c:url>
+
+				<c:url value="/zoomchart.htm" var="trafficZoomUrl">
+					<c:param name="p" value="traffic" />
+					<c:param name="sp" value="${name}" />
+				</c:url>
+
+				<c:url value="/cnreqdetails.ajax" var="reqAjaxUrl">
+					<c:param name="cn" value="${name}" />
+				</c:url>
+
+				<c:url value="/cnprocdetails.ajax" var="proctimeAjaxUrl">
+					<c:param name="cn" value="${name}" />
+				</c:url>
+
+				<c:url value="/cntrafdetails.ajax" var="trafficAjaxUrl">
+					<c:param name="cn" value="${name}" />
+				</c:url>
+
 				<c:url value="/app/connectorReset.htm" var="reset_url">
 					<c:param name="cn" value="${name}"/>
 				</c:url>
 
-				<%--
-					create  "remember group visibility" url
-				--%>
 				<c:url value="/remember.ajax" var="remember_url">
 					<c:param name="cn" value="${name}"/>
 				</c:url>
@@ -111,9 +135,9 @@
 				</c:choose>
 
 				<div class="connectorChartHeader">
-					<span class="headerTitle" onclick="togglePanel('chartdata-${name}', '${remember_url}')">
-						<img class="lnk" src="${pageContext.request.contextPath}<spring:theme code='section.collapse.img'/>" alt="collapse" id="visible_chartdata-${name}" style="${style_collapse}"/>
-						<img class="lnk" src="${pageContext.request.contextPath}<spring:theme code='section.expand.img'/>" alt="expand" id="invisible_chartdata-${name}" style="${style_expand}"/>
+					<span class="headerTitle" onclick="togglePanel('chartdata-${probe:escapeHtml(name)}', '${remember_url}')">
+						<img class="lnk" src="${pageContext.request.contextPath}<spring:theme code='section.collapse.img'/>" alt="collapse" id="visible_chartdata-${probe:escapeHtml(name)}" style="${style_collapse}"/>
+						<img class="lnk" src="${pageContext.request.contextPath}<spring:theme code='section.expand.img'/>" alt="expand" id="invisible_chartdata-${probe:escapeHtml(name)}" style="${style_expand}"/>
 						${name}
 					</span>
 					<span class="actions">
@@ -123,19 +147,19 @@
 					</span>
 				</div>
 
-				<div id="chartdata-${name}" style="${style_collapse}">
+				<div id="chartdata-${probe:escapeHtml(name)}" style="${style_collapse}">
 					<div class="chartContainer">
 						<dl>
 							<dt><spring:message code="probe.jsp.connectors.requests.title"/></dt>
 							<dd class="image">
-								<a href="<c:url value='/zoomchart.htm'/>?sp=${name}&p=connector"><img
-										id="req-${name}"
-										border="0" src="${reqimg}&sp=${name}"
+								<a href="${reqZoomUrl}"><img
+										id="req-${probe:escapeHtml(name)}"
+										border="0" src="${reqimg}"
 										width="${chartWidth}"
 										height="${chartHeight}"
 										alt="+"/></a>
 							</dd>
-							<dd id="dd-req-${name}">
+							<dd id="dd-req-${probe:escapeHtml(name)}">
 								<div class="ajax_activity"/>
 							</dd>
 						</dl>
@@ -145,14 +169,14 @@
 						<dl>
 							<dt><spring:message code="probe.jsp.connectors.proc_time.title"/></dt>
 							<dd class="image">
-								<a href="<c:url value='/zoomchart.htm'/>?sp=${name}&p=connector_proc_time"><img
-										id="proc_time-${name}"
-										border="0" src="${connector_proc_time_url}&sp=${name}"
+								<a href="${proctimeZoomUrl}"><img
+										id="proc_time-${probe:escapeHtml(name)}"
+										border="0" src="${proctimeimg}"
 										width="${chartWidth}"
 										height="${chartHeight}"
 										alt="+"/></a>
 							</dd>
-							<dd id="dd-proc_time-${name}">
+							<dd id="dd-proc_time-${probe:escapeHtml(name)}">
 								<div class="ajax_activity"/>
 							</dd>
 						</dl>
@@ -162,26 +186,26 @@
 						<dl>
 							<dt><spring:message code="probe.jsp.connectors.traffic.title"/></dt>
 							<dd class="image">
-								<a href="<c:url value='/zoomchart.htm'/>?sp=${name}&p=traffic"><img
-										id="traf-${name}"
-										border="0" src="${traffimg}&sp=${name}"
+								<a href="${trafficZoomUrl}"><img
+										id="traf-${probe:escapeHtml(name)}"
+										border="0" src="${traffimg}"
 										width="${chartWidth}"
 										height="${chartHeight}"
 										alt="+"/></a>
 							</dd>
-							<dd id="dd-traf-${name}">
+							<dd id="dd-traf-${probe:escapeHtml(name)}">
 								<div class="ajax_activity"/>
 							</dd>
 						</dl>
 					</div>
 
 					<script type="text/javascript">
-						new Ajax.ImgUpdater('req-${name}', ${probe:max(collectionPeriod, 5)});
-						new Ajax.ImgUpdater('proc_time-${name}', ${probe:max(collectionPeriod, 5)});
-						new Ajax.ImgUpdater('traf-${name}', ${probe:max(collectionPeriod, 5)});
-						new Ajax.PeriodicalUpdater('dd-req-${name}', '<c:url value="/cnreqdetails.ajax"/>?cn=${name}', {frequency: 3});
-						new Ajax.PeriodicalUpdater('dd-proc_time-${name}', '<c:url value="/cnprocdetails.ajax"/>?cn=${name}', {frequency: 3});
-						new Ajax.PeriodicalUpdater('dd-traf-${name}', '<c:url value="/cntrafdetails.ajax"/>?cn=${name}', {frequency: 3});
+						new Ajax.ImgUpdater('req-${probe:escapeJS(name)}', ${probe:max(collectionPeriod, 5)});
+						new Ajax.ImgUpdater('proc_time-${probe:escapeJS(name)}', ${probe:max(collectionPeriod, 5)});
+						new Ajax.ImgUpdater('traf-${probe:escapeJS(name)}', ${probe:max(collectionPeriod, 5)});
+						new Ajax.PeriodicalUpdater('dd-req-${probe:escapeJS(name)}', '${reqAjaxUrl}', {frequency: 3});
+						new Ajax.PeriodicalUpdater('dd-proc_time-${probe:escapeJS(name)}', '${proctimeAjaxUrl}', {frequency: 3});
+						new Ajax.PeriodicalUpdater('dd-traf-${probe:escapeJS(name)}', '${trafficAjaxUrl}', {frequency: 3});
 					</script>
 
 					<div class="connectorInfo">
@@ -204,10 +228,10 @@
 										</display:column>
 
 										<display:column style="white-space:nowrap;" sortable="true" titleKey="probe.jsp.connectors.wrk.col.remoteAddr">
-											<a id="ip_${connector.name}_${rp_rowNum}" href="#">${rp.remoteAddr}</a>
+											<a id="ip_${probe:escapeHtml(connector.name)}_${rp_rowNum}" href="#">${rp.remoteAddr}</a>
 
 											<script type="text/javascript">
-												addAjaxTooltip('ip_${connector.name}_${rp_rowNum}',
+												addAjaxTooltip('ip_${probe:escapeJS(connector.name)}_${rp_rowNum}',
 												'ttdiv', '<c:url value="/whois.ajax?ip=${rp.remoteAddr}"/>');
 											</script>
 
