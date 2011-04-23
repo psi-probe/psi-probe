@@ -86,7 +86,11 @@ public class ContainerWrapperBean {
                                 logger.error(className + " does not implement " + TomcatContainer.class.getName());
                             }
                         } catch (Throwable e) {
-                            logger.info("Failed to load " + className);
+                            if (logger.isDebugEnabled()) {
+                                logger.debug("Failed to load " + className, e);
+                            } else {
+                                logger.info("Failed to load " + className);
+                            }
                             //
                             // make sure we always re-throw ThreadDeath
                             //
