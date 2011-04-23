@@ -137,7 +137,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
             ServletContext sctx = context.getServletContext();
             Options opt = new EmbeddedServletOptions(servletConfig, sctx);
             JspRuntimeContext jrctx = new JspRuntimeContext(sctx, opt);
-            JspCompilationContext jcctx = new JspCompilationContext(jspName, false, opt, sctx, null, jrctx);
+            JspCompilationContext jcctx = createJspCompilationContext(jspName, false, opt, sctx, jrctx, null);
             servletName = jcctx.getServletJavaFileName();
         } else {
             logger.error("Context " + context.getName() + " does not have \"jsp\" servlet");
@@ -171,8 +171,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
                         for (Iterator it = names.iterator(); it.hasNext();) {
                             String name = (String) it.next();
                             long time = System.currentTimeMillis();
-                            JspCompilationContext jcctx = new JspCompilationContext(name, false, opt, sctx, null, jrctx);
-                            jcctx.setClassLoader(classLoader);
+                            JspCompilationContext jcctx = createJspCompilationContext(name, false, opt, sctx, jrctx, classLoader);
                             ClassLoader prevCl = ClassUtils.overrideThreadContextClassLoader(classLoader);
                             try {
                                 Item item = (Item) summary.getItems().get(name);
@@ -364,8 +363,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
                 }
 
                 if (isJsp) {
-                    JspCompilationContext jcctx = new JspCompilationContext(name, false, opt, sctx, null, jrctx);
-                    jcctx.setClassLoader(classLoader);
+                    JspCompilationContext jcctx = createJspCompilationContext(name, false, opt, sctx, jrctx, classLoader);
                     ClassLoader prevCl = ClassUtils.overrideThreadContextClassLoader(classLoader);
                     try {
                         Item item = (Item) summary.getItems().get(name);
@@ -423,6 +421,14 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
         } else {
             logger.debug("getResourcePaths() is null for " + jspName + ". Empty dir? Or Tomcat bug?");
         }
+    }
+
+    protected JspCompilationContext createJspCompilationContext(String name, boolean isErrPage, Options opt, ServletContext sctx, JspRuntimeContext jrctx, ClassLoader cl) {
+        JspCompilationContext jcctx = new JspCompilationContext(name, false, opt, sctx, null, jrctx);
+        if (cl != null && cl instanceof URLClassLoader) {
+            jcctx.setClassLoader((URLClassLoader) cl);
+        }
+        return jcctx;
     }
 
     protected abstract void removeInternal(String name) throws Exception;

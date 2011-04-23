@@ -19,6 +19,7 @@ import java.util.List;
 import javax.management.MBeanServer;
 import javax.management.MalformedObjectNameException;
 import javax.management.ObjectName;
+import javax.servlet.ServletContext;
 import org.apache.catalina.Container;
 import org.apache.catalina.Context;
 import org.apache.catalina.Engine;
@@ -28,6 +29,9 @@ import org.apache.catalina.Valve;
 import org.apache.catalina.Wrapper;
 import org.apache.catalina.deploy.FilterMap;
 import org.apache.commons.modeler.Registry;
+import org.apache.jasper.JspCompilationContext;
+import org.apache.jasper.Options;
+import org.apache.jasper.compiler.JspRuntimeContext;
 
 /**
  *
@@ -174,6 +178,15 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
             filterMappings.add(fm);
         }
         return filterMappings;
+    }
+
+	@Override
+    protected JspCompilationContext createJspCompilationContext(String name, boolean isErrPage, Options opt, ServletContext sctx, JspRuntimeContext jrctx, ClassLoader cl) {
+        JspCompilationContext jcctx = new JspCompilationContext(name, false, opt, sctx, null, jrctx);
+        if (cl != null) {
+            jcctx.setClassLoader(cl);
+        }
+        return jcctx;
     }
 
 }
