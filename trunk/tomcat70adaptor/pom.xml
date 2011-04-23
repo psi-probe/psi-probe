@@ -37,6 +37,12 @@
 				<groupId>org.apache.tomcat</groupId>
 				<artifactId>tomcat-jasper</artifactId>
 				<version>7.0.12</version>
+				<exclusions>
+					<exclusion>
+						<artifactId>ecj</artifactId>
+						<groupId>org.eclipse.jdt.core.compiler</groupId>
+					</exclusion>
+				</exclusions>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -49,6 +55,11 @@
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-catalina</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-jasper</artifactId>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>

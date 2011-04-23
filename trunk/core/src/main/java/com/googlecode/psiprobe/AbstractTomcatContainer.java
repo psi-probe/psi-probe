@@ -37,6 +37,7 @@ import org.apache.jasper.JspCompilationContext;
 import org.apache.jasper.Options;
 import org.apache.jasper.compiler.JspRuntimeContext;
 import org.apache.naming.resources.ResourceAttributes;
+import org.springframework.util.ClassUtils;
 
 /**
  * Abstration layer to implement some functionality, which is common between different container adaptors.
@@ -172,8 +173,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
                             long time = System.currentTimeMillis();
                             JspCompilationContext jcctx = new JspCompilationContext(name, false, opt, sctx, null, jrctx);
                             jcctx.setClassLoader(classLoader);
-                            ClassLoader cl = Thread.currentThread().getContextClassLoader();
-                            Thread.currentThread().setContextClassLoader(classLoader);
+                            ClassLoader prevCl = ClassUtils.overrideThreadContextClassLoader(classLoader);
                             try {
                                 Item item = (Item) summary.getItems().get(name);
                                 if (item != null) {
@@ -193,7 +193,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
                                     logger.error(name + " is not on the summary list, ignored");
                                 }
                             } finally {
-                                Thread.currentThread().setContextClassLoader(cl);
+                                ClassUtils.overrideThreadContextClassLoader(prevCl);
                             }
                         }
                     } finally {
@@ -366,10 +366,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
                 if (isJsp) {
                     JspCompilationContext jcctx = new JspCompilationContext(name, false, opt, sctx, null, jrctx);
                     jcctx.setClassLoader(classLoader);
-                    ClassLoader cl = Thread.currentThread().getContextClassLoader();
-
-                    Thread.currentThread().setContextClassLoader(classLoader);
-
+                    ClassLoader prevCl = ClassUtils.overrideThreadContextClassLoader(classLoader);
                     try {
                         Item item = (Item) summary.getItems().get(name);
 
@@ -417,7 +414,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
                         item.setMissing(false);
                         summary.getItems().put(name, item);
                     } finally {
-                        Thread.currentThread().setContextClassLoader(cl);
+                        ClassUtils.overrideThreadContextClassLoader(prevCl);
                     }
                 } else {
                     compileItem(name, opt, ctx, jrctx, summary, classLoader, level + 1, compile);
