@@ -109,11 +109,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
             }
 
 
-            if (ctx.getConfigFile() != null) {
-                File configFile = new File(ctx.getConfigFile());
-                logger.debug("Deleting " + configFile.getAbsolutePath());
-                Utils.delete(configFile);
-            }
+            removeConfigFile(ctx);
 
             removeInternal(contextName);
         }
@@ -420,6 +416,14 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
             }
         } else {
             logger.debug("getResourcePaths() is null for " + jspName + ". Empty dir? Or Tomcat bug?");
+        }
+    }
+
+    protected void removeConfigFile(Context ctx) {
+        if (ctx.getConfigFile() != null) {
+            File configFile = new File(ctx.getConfigFile());
+            logger.debug("Deleting " + configFile.getAbsolutePath());
+            Utils.delete(configFile);
         }
     }
 
