@@ -12,6 +12,8 @@ package com.googlecode.psiprobe;
 
 import com.googlecode.psiprobe.model.FilterMapping;
 import java.io.File;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -178,6 +180,23 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
             filterMappings.add(fm);
         }
         return filterMappings;
+    }
+
+    @Override
+    protected void removeConfigFile(Context ctx) {
+		URL configUrl = ctx.getConfigFile();
+        if (configUrl != null) {
+			try {
+				URI configUri = configUrl.toURI();
+				if ("file".equals(configUri.getScheme())) {
+					File configFile = new File(configUri);
+					logger.debug("Deleting " + configFile.getAbsolutePath());
+					Utils.delete(configFile);
+				}
+			} catch (Exception ex) {
+				logger.error("Could not delete " + configUrl, ex);
+			}
+        }
     }
 
 	@Override
