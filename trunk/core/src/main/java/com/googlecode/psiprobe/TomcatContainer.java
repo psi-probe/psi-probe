@@ -51,6 +51,8 @@ public interface TomcatContainer {
      */
     File getAppBase();
 
+    File getConfigFile(Context ctx);
+
     String getConfigBase();
 
     void setWrapper(Wrapper wrapper);
