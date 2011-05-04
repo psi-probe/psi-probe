@@ -108,8 +108,11 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
                 logger.debug("Root application (/). Cannot assume a war file");
             }
 
-
-            removeConfigFile(ctx);
+            File configFile = getConfigFile(ctx);
+            if (configFile != null) {
+                logger.debug("Deleting " + configFile.getAbsolutePath());
+                Utils.delete(configFile);
+            }
 
             removeInternal(contextName);
         }
@@ -299,6 +302,15 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
         return filterMaps;
     }
 
+    public File getConfigFile(Context ctx) {
+        String configFilePath = ctx.getConfigFile();
+        if (configFilePath != null) {
+            return new File(configFilePath);
+        } else {
+            return null;
+        }
+    }
+
     /**
      * Converts a {@link FilterMap} into one or more {@link FilterMapping}s.
      *
@@ -416,14 +428,6 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
             }
         } else {
             logger.debug("getResourcePaths() is null for " + jspName + ". Empty dir? Or Tomcat bug?");
-        }
-    }
-
-    protected void removeConfigFile(Context ctx) {
-        if (ctx.getConfigFile() != null) {
-            File configFile = new File(ctx.getConfigFile());
-            logger.debug("Deleting " + configFile.getAbsolutePath());
-            Utils.delete(configFile);
         }
     }
 
