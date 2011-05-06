@@ -22,7 +22,6 @@ public class ServletInfo {
     private String applicationName;
     private String servletName;
     private String servletClass;
-    private String jspFile;
     private boolean available;
     private int loadOnStartup;
     private String runAs;
@@ -59,14 +58,6 @@ public class ServletInfo {
 
     public void setServletClass(String servletClass) {
         this.servletClass = servletClass;
-    }
-
-    public String getJspFile() {
-        return jspFile;
-    }
-
-    public void setJspFile(String jspFile) {
-        this.jspFile = jspFile;
     }
 
     public boolean isAvailable() {
