@@ -43,8 +43,8 @@ public class VisualScoreTag extends BodyTagSupport {
 
             BodyContent bc = getBodyContent();
             String body = bc.getString().trim();
-            JspWriter out = bc.getEnclosingWriter();
 
+            StringBuffer buf = new StringBuffer();
 
             // Beginning
             if (showA) {
@@ -54,31 +54,31 @@ public class VisualScoreTag extends BodyTagSupport {
                 } else if (partialBlueBlockIndex1 == 0 && (fullBlueBlockCount > 0 || partialBlueBlockIndex2 > 0)) {
                     format = "a2";
                 }
-                out.print(MessageFormat.format(body, new Object[]{format}));
+                buf.append(MessageFormat.format(body, new Object[]{format}));
             }
 
             // Full red blocks
             String fullRedBody = MessageFormat.format(body, new Object[]{partialBlocks + "+0"});
             for (int i = 0; i < fullRedBlockCount; i++) {
-                out.print(fullRedBody);
+                buf.append(fullRedBody);
             }
 
             // Mixed red/blue block (mid-block transition)
             if (partialRedBlockIndex > 0) {
                 String partialBody = MessageFormat.format(body, new Object[]{partialRedBlockIndex + "+" + partialBlueBlockIndex1});
-                out.print(partialBody);
+                buf.append(partialBody);
             }
 
             // Full blue blocks
             String fullBlueBody = MessageFormat.format(body, new Object[]{"0+" + partialBlocks});
             for (int i = 0; i < fullBlueBlockCount; i++) {
-                out.print(fullBlueBody);
+                buf.append(fullBlueBody);
             }
 
             // Partial blue block
             if (partialBlueBlockIndex2 > 0) {
                 String partialBody = MessageFormat.format(body, new Object[]{"0+" + partialBlueBlockIndex2});
-                out.print(partialBody);
+                buf.append(partialBody);
             }
 
             // Empty blocks
@@ -86,7 +86,7 @@ public class VisualScoreTag extends BodyTagSupport {
             if (emptyBlocks > 0) {
                 String emptyBody = MessageFormat.format(body, new Object[]{"0+0"});
                 for (int i = 0; i < emptyBlocks; i++) {
-                    out.print(emptyBody);
+                    buf.append(emptyBody);
                 }
             }
 
@@ -98,9 +98,11 @@ public class VisualScoreTag extends BodyTagSupport {
                 } else if (fullRedBlockCount + (partialRedBlockIndex + partialBlueBlockIndex1 == partialBlocks ? 1 : 0) + fullBlueBlockCount == fullBlocks) {
                     format = "b2";
                 }
-                out.print(MessageFormat.format(body, new Object[]{format}));
+                buf.append(MessageFormat.format(body, new Object[]{format}));
             }
 
+            JspWriter out = bc.getEnclosingWriter();
+            out.print(buf.toString());
         } catch (IOException ioe) {
             throw new JspException("Error:IOException while writing to client" + ioe.getMessage());
         }
