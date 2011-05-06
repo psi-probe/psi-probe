@@ -334,7 +334,6 @@ public class ApplicationUtils {
         si.setApplicationName(contextName.length() > 0 ? contextName : "/");
         si.setServletName(w.getName());
         si.setServletClass(w.getServletClass());
-        si.setJspFile(w.getJspFile());
         si.setAvailable(! w.isUnavailable());
         si.setLoadOnStartup(w.getLoadOnStartup());
         si.setRunAs(w.getRunAs());
