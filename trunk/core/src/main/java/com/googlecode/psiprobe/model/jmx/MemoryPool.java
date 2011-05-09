@@ -69,7 +69,17 @@ public class MemoryPool {
     }
 
     public int getUsageScore() {
-        return max == 0 ? 0 : (int) (used * 100 / max);
+        long div;
+        if (max == -1) {
+            /* 
+             * Some memory pools have an undefined maximum size.  In this case,
+             * report how much of the currently allocated memory is used.
+             */
+            div = committed;
+        } else {
+            div = max;
+        }
+        return div == 0 ? 0 : (int) (used * 100 / div);
     }
 
     public String getId() {
