@@ -16,8 +16,12 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.BodyContent;
 import javax.servlet.jsp.tagext.BodyTagSupport;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 public class VisualScoreTag extends BodyTagSupport {
+
+    protected Log log = LogFactory.getLog(getClass());
 
     private double value = 0;
     private double value2 = 0;
@@ -30,6 +34,23 @@ public class VisualScoreTag extends BodyTagSupport {
     private boolean showB = false;
 
     public int doAfterBody() throws JspException {
+
+        if (value < minValue) {
+            log.info("value " + value + " is less than min value " + minValue);
+            value = minValue;
+        }
+        if (value > maxValue) {
+            log.info("value " + value + " is greater than max value " + maxValue);
+            value = maxValue;
+        }
+        if (value + value2 < minValue || value2 < 0) {
+            log.info("value2 " + value2 + " is less than min value");
+            value2 = 0;
+        }
+        if (value + value2 > maxValue) {
+            log.info("value2 " + value2 + " is greater than max value");
+            value2 = maxValue - value;
+        }
 
         try {
             double unitSize = (maxValue - minValue) / (fullBlocks * partialBlocks);
@@ -115,9 +136,6 @@ public class VisualScoreTag extends BodyTagSupport {
     }
 
     public void setValue(double value) {
-        if (value < 0) {
-            return;
-        }
         this.value = value;
     }
 
@@ -126,9 +144,6 @@ public class VisualScoreTag extends BodyTagSupport {
     }
 
     public void setValue2(double value2) {
-        if (value2 < 0) {
-            return;
-        }
         this.value2 = value2;
     }
 
