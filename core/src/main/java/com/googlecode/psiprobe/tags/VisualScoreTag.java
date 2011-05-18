@@ -52,76 +52,76 @@ public class VisualScoreTag extends BodyTagSupport {
             value2 = maxValue - value;
         }
 
+        double unitSize = (maxValue - minValue) / (fullBlocks * partialBlocks);
+        double blockWidth = unitSize * partialBlocks;
+
+        int fullRedBlockCount = (int) Math.floor(value / blockWidth);
+        int partialRedBlockIndex = (int) Math.floor((value - fullRedBlockCount * blockWidth) / unitSize);
+        int partialBlueBlockIndex1 = (partialRedBlockIndex > 0 ? Math.min((int) Math.floor(value2 / unitSize), partialBlocks - partialRedBlockIndex) : 0);
+        int fullBlueBlockCount = Math.max(0, (int) Math.floor(value2 / blockWidth) - (partialRedBlockIndex > 0 ? 1 : 0));
+        int partialBlueBlockIndex2 = (int) Math.floor((value2 - (fullBlueBlockCount * blockWidth) - (partialBlueBlockIndex1 * unitSize)) / unitSize);
+
+        BodyContent bc = getBodyContent();
+        String body = bc.getString().trim();
+
+        StringBuffer buf = new StringBuffer();
+
+        // Beginning
+        if (showA) {
+            String format = "a0";
+            if (fullRedBlockCount > 0 || partialRedBlockIndex > 0) {
+                format = "a1";
+            } else if (partialBlueBlockIndex1 == 0 && (fullBlueBlockCount > 0 || partialBlueBlockIndex2 > 0)) {
+                format = "a2";
+            }
+            buf.append(MessageFormat.format(body, new Object[]{format}));
+        }
+
+        // Full red blocks
+        String fullRedBody = MessageFormat.format(body, new Object[]{partialBlocks + "+0"});
+        for (int i = 0; i < fullRedBlockCount; i++) {
+            buf.append(fullRedBody);
+        }
+
+        // Mixed red/blue block (mid-block transition)
+        if (partialRedBlockIndex > 0) {
+            String partialBody = MessageFormat.format(body, new Object[]{partialRedBlockIndex + "+" + partialBlueBlockIndex1});
+            buf.append(partialBody);
+        }
+
+        // Full blue blocks
+        String fullBlueBody = MessageFormat.format(body, new Object[]{"0+" + partialBlocks});
+        for (int i = 0; i < fullBlueBlockCount; i++) {
+            buf.append(fullBlueBody);
+        }
+
+        // Partial blue block
+        if (partialBlueBlockIndex2 > 0) {
+            String partialBody = MessageFormat.format(body, new Object[]{"0+" + partialBlueBlockIndex2});
+            buf.append(partialBody);
+        }
+
+        // Empty blocks
+        int emptyBlocks = showEmptyBlocks ? fullBlocks - (fullRedBlockCount + fullBlueBlockCount + (partialRedBlockIndex > 0 ? 1 : 0) + (partialBlueBlockIndex2 > 0 ? 1 : 0)) : 0;
+        if (emptyBlocks > 0) {
+            String emptyBody = MessageFormat.format(body, new Object[]{"0+0"});
+            for (int i = 0; i < emptyBlocks; i++) {
+                buf.append(emptyBody);
+            }
+        }
+
+        // End
+        if (showB) {
+            String format = "b0";
+            if (fullRedBlockCount == fullBlocks) {
+                format = "b1";
+            } else if (fullRedBlockCount + (partialRedBlockIndex + partialBlueBlockIndex1 == partialBlocks ? 1 : 0) + fullBlueBlockCount == fullBlocks) {
+                format = "b2";
+            }
+            buf.append(MessageFormat.format(body, new Object[]{format}));
+        }
+
         try {
-            double unitSize = (maxValue - minValue) / (fullBlocks * partialBlocks);
-            double blockWidth = unitSize * partialBlocks;
-
-            int fullRedBlockCount = (int) Math.floor(value / blockWidth);
-            int partialRedBlockIndex = (int) Math.floor((value - fullRedBlockCount * blockWidth) / unitSize);
-            int partialBlueBlockIndex1 = (partialRedBlockIndex > 0 ? Math.min((int) Math.floor(value2 / unitSize), partialBlocks - partialRedBlockIndex) : 0);
-            int fullBlueBlockCount = Math.max(0, (int) Math.floor(value2 / blockWidth) - (partialRedBlockIndex > 0 ? 1 : 0));
-            int partialBlueBlockIndex2 = (int) Math.floor((value2 - (fullBlueBlockCount * blockWidth) - (partialBlueBlockIndex1 * unitSize)) / unitSize);
-
-            BodyContent bc = getBodyContent();
-            String body = bc.getString().trim();
-
-            StringBuffer buf = new StringBuffer();
-
-            // Beginning
-            if (showA) {
-                String format = "a0";
-                if (fullRedBlockCount > 0 || partialRedBlockIndex > 0) {
-                    format = "a1";
-                } else if (partialBlueBlockIndex1 == 0 && (fullBlueBlockCount > 0 || partialBlueBlockIndex2 > 0)) {
-                    format = "a2";
-                }
-                buf.append(MessageFormat.format(body, new Object[]{format}));
-            }
-
-            // Full red blocks
-            String fullRedBody = MessageFormat.format(body, new Object[]{partialBlocks + "+0"});
-            for (int i = 0; i < fullRedBlockCount; i++) {
-                buf.append(fullRedBody);
-            }
-
-            // Mixed red/blue block (mid-block transition)
-            if (partialRedBlockIndex > 0) {
-                String partialBody = MessageFormat.format(body, new Object[]{partialRedBlockIndex + "+" + partialBlueBlockIndex1});
-                buf.append(partialBody);
-            }
-
-            // Full blue blocks
-            String fullBlueBody = MessageFormat.format(body, new Object[]{"0+" + partialBlocks});
-            for (int i = 0; i < fullBlueBlockCount; i++) {
-                buf.append(fullBlueBody);
-            }
-
-            // Partial blue block
-            if (partialBlueBlockIndex2 > 0) {
-                String partialBody = MessageFormat.format(body, new Object[]{"0+" + partialBlueBlockIndex2});
-                buf.append(partialBody);
-            }
-
-            // Empty blocks
-            int emptyBlocks = showEmptyBlocks ? fullBlocks - (fullRedBlockCount + fullBlueBlockCount + (partialRedBlockIndex > 0 ? 1 : 0) + (partialBlueBlockIndex2 > 0 ? 1 : 0)) : 0;
-            if (emptyBlocks > 0) {
-                String emptyBody = MessageFormat.format(body, new Object[]{"0+0"});
-                for (int i = 0; i < emptyBlocks; i++) {
-                    buf.append(emptyBody);
-                }
-            }
-
-            // End
-            if (showB) {
-                String format = "b0";
-                if (fullRedBlockCount == fullBlocks) {
-                    format = "b1";
-                } else if (fullRedBlockCount + (partialRedBlockIndex + partialBlueBlockIndex1 == partialBlocks ? 1 : 0) + fullBlueBlockCount == fullBlocks) {
-                    format = "b2";
-                }
-                buf.append(MessageFormat.format(body, new Object[]{format}));
-            }
-
             JspWriter out = bc.getEnclosingWriter();
             out.print(buf.toString());
         } catch (IOException ioe) {
