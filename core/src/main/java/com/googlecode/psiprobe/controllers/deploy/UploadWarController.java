@@ -25,6 +25,7 @@ import org.apache.commons.fileupload.FileUpload;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.fileupload.servlet.ServletRequestContext;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.InternalResourceView;
@@ -118,7 +119,7 @@ public class UploadWarController extends TomcatContainerController {
                             File destWar = new File(getContainerWrapper().getTomcatContainer().getAppBase(),
                                     (contextName.length() == 0 ? "ROOT" : contextName) + ".war");
 
-                            tmpWar.renameTo(destWar);
+                            FileUtils.moveFile(tmpWar, destWar);
 
                             //
                             // let Tomcat know that the file is there
