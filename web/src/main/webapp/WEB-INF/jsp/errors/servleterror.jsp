@@ -73,34 +73,10 @@
 						</p>
 					</div>
 
-					<div class="errorMessageDetails">
-						<%
+					<div class="errorMessageDetails"><%
 						ByteArrayOutputStream bos = new ByteArrayOutputStream();
 						PrintStream ps = new PrintStream(bos);
 						error.printStackTrace(ps);
-
-						Throwable e = error;
-
-						int maxCauses = 10;
-
-						while (maxCauses-- > 0) {
-							if (e instanceof ServletException) {
-								e = ((ServletException) e).getRootCause();
-							} else {
-								e = e.getCause();
-							}
-
-							if (e != null) {
-								ps.println();
-								ps.println("Caused by:");
-								ps.println();
-								e.printStackTrace(ps);
-							} else {
-								break;
-							}
-						}
-
-						out.print(error.getMessage());
 						out.print(bos.toString());
 						%>
 					</div>
