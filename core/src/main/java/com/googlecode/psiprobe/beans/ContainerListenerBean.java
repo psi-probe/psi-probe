@@ -28,6 +28,7 @@ import javax.management.Notification;
 import javax.management.NotificationListener;
 import javax.management.ObjectInstance;
 import javax.management.ObjectName;
+import javax.management.RuntimeOperationsException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -228,6 +229,7 @@ public class ContainerListenerBean implements NotificationListener {
         for (Iterator it = poolNames.iterator(); it.hasNext();) {
 
             ThreadPoolObjectName threadPoolObjectName = (ThreadPoolObjectName) it.next();
+            boolean remoteAddrAvailable = true;
             try {
                 ObjectName poolName = threadPoolObjectName.getThreadPoolName();
 
@@ -254,8 +256,17 @@ public class ContainerListenerBean implements NotificationListener {
                             rp.setProcessingTime(JmxTools.getLongAttr(server, wrkName, "requestProcessingTime"));
                             rp.setBytesSent(JmxTools.getLongAttr(server, wrkName, "requestBytesSent"));
                             rp.setBytesReceived(JmxTools.getLongAttr(server, wrkName, "requestBytesReceived"));
-                            rp.setRemoteAddr(JmxTools.getStringAttr(server, wrkName, "remoteAddr"));
-                            rp.setRemoteAddrLocale(InetAddressLocator.getLocale(InetAddress.getByName(rp.getRemoteAddr()).getAddress()));
+                            try {
+                                String remoteAddr = JmxTools.getStringAttr(server, wrkName, "remoteAddr");
+                                rp.setRemoteAddr(remoteAddr);
+                                rp.setRemoteAddrLocale(InetAddressLocator.getLocale(InetAddress.getByName(remoteAddr).getAddress()));
+                            } catch (RuntimeOperationsException ex) {
+                                /*
+                                 * if it's not available for this request processor, then it's
+                                 * not available for any request processor in this thread pool
+                                 */
+                                remoteAddrAvailable = false;
+                            }
                             rp.setVirtualHost(JmxTools.getStringAttr(server, wrkName, "virtualHost"));
                             rp.setMethod(JmxTools.getStringAttr(server, wrkName, "method"));
                             rp.setCurrentUri(JmxTools.getStringAttr(server, wrkName, "currentUri"));

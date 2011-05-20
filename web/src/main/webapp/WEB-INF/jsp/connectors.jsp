@@ -230,10 +230,12 @@
 										<display:column style="white-space:nowrap;" sortable="true" titleKey="probe.jsp.connectors.wrk.col.remoteAddr">
 											<a id="ip_${probe:escapeHtml(connector.name)}_${rp_rowNum}" href="#">${rp.remoteAddr}</a>
 
-											<script type="text/javascript">
-												addAjaxTooltip('ip_${probe:escapeJS(connector.name)}_${rp_rowNum}',
-												'ttdiv', '<c:url value="/whois.ajax?ip=${rp.remoteAddr}"/>');
-											</script>
+											<c:if test="${rp.remoteAddr != ''}">
+												<script type="text/javascript">
+													addAjaxTooltip('ip_${probe:escapeJS(connector.name)}_${rp_rowNum}',
+													'ttdiv', '<c:url value="/whois.ajax?ip=${rp.remoteAddr}"/>');
+												</script>
+											</c:if>
 
 										</display:column>
 
