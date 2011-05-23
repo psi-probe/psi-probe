@@ -25,7 +25,11 @@ import org.apache.catalina.valves.ValveBase;
  * @author Mark Lewis
  */
 public class Tomcat70AgentValve extends ValveBase {
-	
+
+    public Tomcat70AgentValve() {
+        super(true);
+    }
+
     public String getInfo() {
         return info;
     }
