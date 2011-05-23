@@ -179,6 +179,8 @@
 						src="<c:url value='/flags/it.gif'/>" alt="IT" /></a>
 				<a href="?<probe:addQueryParam param='lang' value='de'/>"><img
 						src="<c:url value='/flags/de.gif'/>" alt="DE" /></a>
+				<a href="?<probe:addQueryParam param='lang' value='es'/>"><img
+						src="<c:url value='/flags/es.gif'/>" alt="ES" /></a>
 				<a href="?<probe:addQueryParam param='lang' value='fr'/>"><img
 						src="<c:url value='/flags/fr.gif'/>" alt="FR" /></a>
 				<a href="?<probe:addQueryParam param='lang' value='pt_br'/>"><img
