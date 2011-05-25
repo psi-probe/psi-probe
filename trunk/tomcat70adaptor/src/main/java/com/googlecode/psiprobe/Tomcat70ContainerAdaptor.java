@@ -183,21 +183,21 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
 
     @Override
     public File getConfigFile(Context ctx) {
-		URL configUrl = ctx.getConfigFile();
+        URL configUrl = ctx.getConfigFile();
         if (configUrl != null) {
-			try {
-				URI configUri = configUrl.toURI();
-				if ("file".equals(configUri.getScheme())) {
-					return new File(configUri);
-				}
-			} catch (Exception ex) {
-				logger.error("Could not delete " + configUrl, ex);
-			}
+            try {
+                URI configUri = configUrl.toURI();
+                if ("file".equals(configUri.getScheme())) {
+                    return new File(configUri);
+                }
+            } catch (Exception ex) {
+                logger.error("Could not delete " + configUrl, ex);
+            }
         }
-		return null;
+        return null;
     }
 
-	@Override
+    @Override
     protected JspCompilationContext createJspCompilationContext(String name, boolean isErrPage, Options opt, ServletContext sctx, JspRuntimeContext jrctx, ClassLoader cl) {
         JspCompilationContext jcctx = new JspCompilationContext(name, false, opt, sctx, null, jrctx);
         if (cl != null) {
