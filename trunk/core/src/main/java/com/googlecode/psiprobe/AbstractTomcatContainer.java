@@ -50,7 +50,8 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
 
     public boolean installContext(String contextName) throws Exception {
         contextName = formatContextName(contextName);
-        File f = new File(getConfigBase(), contextName + ".xml");
+        String contextFilename = formatContextFilename(contextName);
+        File f = new File(getConfigBase(), contextFilename + ".xml");
         installContextInternal(contextName, f);
         return findContext(contextName) != null;
     }
@@ -85,14 +86,10 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
             logger.debug("Deleting " + appDir.getAbsolutePath());
             Utils.delete(appDir);
 
-            String contextBase = "".equals(contextName) ? null : contextName.substring("/".length());
-            if (contextBase != null) {
-                File warFile = new File(getAppBase(), contextBase + ".war");
-                logger.debug("Deleting " + warFile.getAbsolutePath());
-                Utils.delete(warFile);
-            } else {
-                logger.debug("Root application (/). Cannot assume a war file");
-            }
+            String warFilename = formatContextFilename(contextName);
+            File warFile = new File(getAppBase(), warFilename + ".war");
+            logger.debug("Deleting " + warFile.getAbsolutePath());
+            Utils.delete(warFile);
 
             File configFile = getConfigFile(ctx);
             if (configFile != null) {
@@ -121,10 +118,22 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
         if (!result.startsWith("/")) {
             result = "/" + result;
         }
-        if ("/".equals(result)) {
+        if ("/".equals(result) || "/ROOT".equals(result)) {
             result = "";
         }
         return result;
+    }
+
+    public String formatContextFilename(String contextName) {
+        if (contextName == null) {
+            return null;
+        } else if ("".equals(contextName)) {
+            return "ROOT";
+        } else if (contextName.startsWith("/")) {
+            return contextName.substring(1);
+        } else {
+            return contextName;
+        }
     }
 
     public void discardWorkDir(Context context) {

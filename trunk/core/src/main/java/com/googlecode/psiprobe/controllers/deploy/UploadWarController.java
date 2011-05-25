@@ -89,7 +89,7 @@ public class UploadWarController extends TomcatContainerController {
 
                         if (contextName == null || contextName.length() == 0) {
                             String warFileName = tmpWar.getName().replaceAll("\\.war$", "");
-                            contextName = warFileName.equals("ROOT") ? "" : "/" + warFileName;
+                            contextName = "/" + warFileName;
                         }
 
                         contextName = getContainerWrapper().getTomcatContainer().formatContextName(contextName);
@@ -110,8 +110,8 @@ public class UploadWarController extends TomcatContainerController {
                             //
                             // move the .war to tomcat application base dir
                             //
-                            File destWar = new File(getContainerWrapper().getTomcatContainer().getAppBase(),
-                                    (contextName.length() == 0 ? "ROOT" : contextName) + ".war");
+                            String destWarFilename = getContainerWrapper().getTomcatContainer().formatContextFilename(contextName);
+                            File destWar = new File(getContainerWrapper().getTomcatContainer().getAppBase(), destWarFilename + ".war");
 
                             FileUtils.moveFile(tmpWar, destWar);
 
