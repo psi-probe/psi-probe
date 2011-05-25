@@ -29,6 +29,8 @@ public interface TomcatContainer {
 
     String formatContextName(String name);
 
+    String formatContextFilename(String contextName);
+
     List findContexts();
 
     void stop(String name) throws Exception;
