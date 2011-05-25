@@ -63,7 +63,7 @@ public class Tomcat60ContainerAdaptor extends AbstractTomcatContainer {
                 || (binding.startsWith("SpringSource tc") && binding.contains("/6.0")));
     }
 
-    public Context findContext(String name) {
+    protected Context findContextInternal(String name) {
         return (Context) host.findChild(name);
     }
 

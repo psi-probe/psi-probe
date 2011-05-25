@@ -27,11 +27,8 @@ public abstract class ContextHandlerController extends TomcatContainerController
         String contextName = ServletRequestUtils.getStringParameter(request, "webapp", null);
         Context context = null;
         if (contextName != null) {
+            contextName = getContainerWrapper().getTomcatContainer().formatContextName(contextName);
             context = getContainerWrapper().getTomcatContainer().findContext(contextName);
-            if (context == null && "/".equals(contextName)) {
-                contextName = "";
-                context = getContainerWrapper().getTomcatContainer().findContext(contextName);
-            }
         }
 
         if (context != null || isContextOptional()) {
