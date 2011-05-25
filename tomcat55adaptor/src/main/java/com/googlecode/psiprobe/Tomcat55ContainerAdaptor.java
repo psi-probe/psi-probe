@@ -65,15 +65,15 @@ public class Tomcat55ContainerAdaptor extends AbstractTomcatContainer {
     public void stop(String name) throws Exception {
         Context ctx = findContext(name);
         if (ctx != null) {
-			((Lifecycle) ctx).stop();
-		}
+            ((Lifecycle) ctx).stop();
+        }
     }
 
     public void start(String name) throws Exception {
         Context ctx = findContext(name);
         if (ctx != null) {
-			((Lifecycle) ctx).start();
-		}
+            ((Lifecycle) ctx).start();
+        }
     }
 
     private void checkChanges(String name) throws Exception {
@@ -119,11 +119,11 @@ public class Tomcat55ContainerAdaptor extends AbstractTomcatContainer {
         Container engine = null;
         while (container != null) {
             if (container instanceof Host) {
-				host = container;
-			}
+                host = container;
+            }
             if (container instanceof Engine) {
-				engine = container;
-			}
+                engine = container;
+            }
             container = container.getParent();
         }
         if (engine != null) {
