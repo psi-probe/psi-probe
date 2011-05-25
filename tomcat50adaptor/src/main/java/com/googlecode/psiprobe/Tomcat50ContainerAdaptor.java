@@ -41,7 +41,7 @@ public class Tomcat50ContainerAdaptor extends AbstractTomcatContainer {
         return binding != null && binding.startsWith("Apache Tomcat/5.0");
     }
 
-    public Context findContext(String name) {
+    protected Context findContextInternal(String name) {
         return deployer.findDeployedApp(name);
     }
 

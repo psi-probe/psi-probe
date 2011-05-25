@@ -37,9 +37,6 @@ public class ExpireSessionsController extends TomcatContainerController {
                     String sessionId = ss[0];
                     String appName = ss[1];
                     Context context = getContainerWrapper().getTomcatContainer().findContext(appName);
-                    if (context == null && "/".equals(appName)) {
-                        context = getContainerWrapper().getTomcatContainer().findContext("");
-                    }
                     if (context != null) {
                         Manager manager = context.getManager();
                         Session session = manager.findSession(sessionId);
