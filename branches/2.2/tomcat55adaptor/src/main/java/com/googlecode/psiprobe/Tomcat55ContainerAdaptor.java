@@ -53,7 +53,7 @@ public class Tomcat55ContainerAdaptor extends AbstractTomcatContainer {
         return binding != null && (binding.startsWith("Apache Tomcat/5.5"));
     }
 
-    public Context findContext(String name) {
+    protected Context findContextInternal(String name) {
         return (Context) host.findChild(name);
     }
 
