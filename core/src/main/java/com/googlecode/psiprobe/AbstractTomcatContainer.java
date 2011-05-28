@@ -48,29 +48,15 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     protected Log logger = LogFactory.getLog(getClass());
 
     public boolean installContext(String contextName) throws Exception {
-
-        if (!contextName.startsWith("/")) {
-            contextName = "/" + contextName;
-        }
-
+        contextName = formatContextName(contextName);
         File f = new File(getConfigBase(), contextName + ".xml");
         installContextInternal(contextName, f);
         return findContext(contextName) != null;
     }
 
     public void remove(String contextName) throws Exception {
-        if (!contextName.startsWith("/")) {
-            contextName = "/" + contextName;
-        }
+        contextName = formatContextName(contextName);
         Context ctx = findContext(contextName);
-
-        //
-        // special treatment for root context.
-        //
-        if (ctx == null && "/".equals(contextName)) {
-            contextName = "";
-            ctx = findContext(contextName);
-        }
 
         if (ctx != null) {
 
@@ -98,7 +84,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
             logger.debug("Deleting " + appDir.getAbsolutePath());
             Utils.delete(appDir);
 
-            String contextBase = "/".equals(contextName) || "".equals(contextName) ? null : contextName.substring("/".length());
+            String contextBase = "".equals(contextName) ? null : contextName.substring("/".length());
             if (contextBase != null) {
                 File warFile = new File(getAppBase(), contextBase + ".war");
                 logger.debug("Deleting " + warFile.getAbsolutePath());
@@ -116,6 +102,29 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
 
             removeInternal(contextName);
         }
+    }
+
+    public Context findContext(String name) {
+        String safeName = formatContextName(name);
+        if (safeName == null) {
+            return null;
+        } else {
+            return findContextInternal(safeName);
+        }
+    }
+
+    public String formatContextName(String name) {
+        if (name == null) {
+            return null;
+        }
+        String result = name.trim();
+        if (!result.startsWith("/")) {
+            result = "/" + result;
+        }
+        if ("/".equals(result)) {
+            result = "";
+        }
+        return result;
     }
 
     public void discardWorkDir(Context context) {
@@ -431,4 +440,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     protected abstract void removeInternal(String name) throws Exception;
 
     protected abstract void installContextInternal(String contextName, File f) throws Exception;
+
+    protected abstract Context findContextInternal(String contextName);
+
 }

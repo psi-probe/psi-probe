@@ -27,6 +27,8 @@ public interface TomcatContainer {
 
     Context findContext(String name);
 
+    String formatContextName(String name);
+
     List findContexts();
 
     void stop(String name) throws Exception;

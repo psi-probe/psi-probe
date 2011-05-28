@@ -92,19 +92,13 @@ public class UploadWarController extends TomcatContainerController {
                             contextName = warFileName.equals("ROOT") ? "" : "/" + warFileName;
                         }
 
-                        if (!contextName.startsWith("/")) {
-                            contextName = "/" + contextName;
-                        }
-                        contextName = contextName.trim();
+                        contextName = getContainerWrapper().getTomcatContainer().formatContextName(contextName);
 
-                        if (contextName.equals("/")) {
-                            contextName = "";
-                        }
                         //
                         // pass the name of the newly deployed context to the presentation layer
                         // using this name the presentation layer can render a url to view compilation details
                         //
-                        String visibleContextName = (contextName.equals("") ? "/" : contextName);
+                        String visibleContextName = "".equals(contextName) ? "/" : contextName;
                         request.setAttribute("contextName", visibleContextName);
 
                         if (update && getContainerWrapper().getTomcatContainer().findContext(contextName) != null) {
