@@ -42,7 +42,11 @@ public class ProbeServlet extends DispatcherServlet implements ContainerServlet 
 
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-        getContainerWrapperBean().setWrapper(getWrapper());
+        if (wrapper != null) {
+            getContainerWrapperBean().setWrapper(wrapper);
+        } else {
+            throw new ServletException("Wrapper is null");
+        }
     }
 
     protected void doDispatch(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
