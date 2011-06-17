@@ -43,7 +43,7 @@ public class ContainerWrapperBean {
     /**
      * List of class names to adapt particular Tomcat implementation to TomcatContainer interface
      */
-    private List adaptorClasses = new ArrayList();
+    private List adaptorClasses;
 
     private ResourceResolver resourceResolver;
 
@@ -67,7 +67,7 @@ public class ContainerWrapperBean {
                 if (tomcatContainer == null) {
 
                     String serverInfo = ServerInfo.getServerInfo();
-                    logger.debug("Server info: " + serverInfo);
+                    logger.info("Server info: " + serverInfo);
                     for (int i = 0; i < adaptorClasses.size(); i++) {
                         String className = (String) adaptorClasses.get(i);
                         try {
