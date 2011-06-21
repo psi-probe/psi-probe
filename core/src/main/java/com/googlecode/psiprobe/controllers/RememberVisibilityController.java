@@ -10,7 +10,7 @@
  */
 package com.googlecode.psiprobe.controllers;
 
-import com.googlecode.psiprobe.tags.Functions;
+import com.googlecode.psiprobe.jsp.Functions;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.servlet.http.HttpServletRequest;

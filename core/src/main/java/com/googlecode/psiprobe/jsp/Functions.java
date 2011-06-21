@@ -1,4 +1,4 @@
-package com.googlecode.psiprobe.tags;
+package com.googlecode.psiprobe.jsp;
 
 /**
  *
