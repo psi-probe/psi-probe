@@ -87,7 +87,7 @@
 						<c:set var="cookie_name" value="mem_${pool.id}" scope="page"/>
 
 						<c:choose>
-							<c:when test="${cookie[cookie_name].value == 'off'}">
+							<c:when test="${cookie[probe:safeCookieName(cookie_name)].value == 'off'}">
 								<c:set var="style" value="display:none"/>
 							</c:when>
 							<c:otherwise>

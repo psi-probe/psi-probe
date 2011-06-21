@@ -124,7 +124,7 @@
 					create style of the div based on user cookies
 				--%>
 				<c:choose>
-					<c:when test="${cookie[name].value == 'off'}">
+					<c:when test="${cookie[probe:safeCookieName(name)].value == 'off'}">
 						<c:set var="style_collapse" value="display:none"/>
 						<c:set var="style_expand" value=""/>
 					</c:when>

@@ -211,4 +211,11 @@
 		<function-signature>java.lang.String htmlEscape(java.lang.String)</function-signature>
 	</function>
 
+	<function>
+		<display-name>safeCookieName</display-name>
+		<name>safeCookieName</name>
+		<function-class>com.googlecode.psiprobe.tags.Functions</function-class>
+		<function-signature>java.lang.String safeCookieName(java.lang.String)</function-signature>
+	</function>
+
 </taglib>
