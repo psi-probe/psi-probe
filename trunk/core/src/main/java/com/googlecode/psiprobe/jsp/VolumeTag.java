@@ -8,7 +8,7 @@
  * WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
  * MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  */
-package com.googlecode.psiprobe.tags;
+package com.googlecode.psiprobe.jsp;
 
 import java.io.IOException;
 import java.text.NumberFormat;
