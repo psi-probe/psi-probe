@@ -15,7 +15,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@ taglib uri="/WEB-INF/tags/probe.tld" prefix="probe" %>
+<%@ taglib uri="/WEB-INF/tld/probe.tld" prefix="probe" %>
 
 <html>
 

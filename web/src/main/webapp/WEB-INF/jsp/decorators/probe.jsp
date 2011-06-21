@@ -14,7 +14,7 @@
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator" prefix="decorator" %>
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/page" prefix="page" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@ taglib uri="/WEB-INF/tags/probe.tld" prefix="probe" %>
+<%@ taglib uri="/WEB-INF/tld/probe.tld" prefix="probe" %>
 
 
 <%--
