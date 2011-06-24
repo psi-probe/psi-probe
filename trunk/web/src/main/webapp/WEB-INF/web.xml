@@ -63,9 +63,6 @@
 		<url-pattern>/chart.png</url-pattern>
 	</servlet-mapping>
 
-	<!-- Below inserted by JspC -->
-	<!-- [INSERT FRAGMENT HERE] -->
-
 	<!-- Sitemesh filter -->
 	<filter>
 		<filter-name>sitemesh</filter-name>

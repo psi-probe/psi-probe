@@ -61,14 +61,15 @@
 			<plugin>
 				<groupId>org.codehaus.mojo.jspc</groupId>
 				<artifactId>jspc-maven-plugin</artifactId>
+				<configuration>
+					<compile>false</compile>
+					<includeInProject>false</includeInProject>
+				</configuration>
 				<executions>
 					<execution>
 						<goals>
 							<goal>compile</goal>
 						</goals>
-						<configuration>
-							<injectString>&lt;!-- [INSERT FRAGMENT HERE] --&gt;</injectString>
-						</configuration>
 					</execution>
 				</executions>
 				<dependencies>
@@ -124,7 +125,6 @@
 						</manifest>
 					</archive>
 					<webappDirectory>target/war_exploded</webappDirectory>
-					<webXml>target/jspweb.xml</webXml>
 					<warName>probe</warName>
 				</configuration>
 			</plugin>
