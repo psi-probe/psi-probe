@@ -81,7 +81,13 @@
 										<display:column titleKey="probe.jsp.app.attributes.col.value">
 											<c:choose>
 												<c:when test="${displayValues}">
-													<c:out value="${attribute.value}" escapeXml="true"/>
+													<c:catch var="displayException">
+														<c:out value="${attribute.value}" escapeXml="true"/>
+													</c:catch>
+													<c:if test="${not empty displayException}">
+														<span class="errorValue">**************</span>
+														<c:remove var="displayException" />
+													</c:if>
 												</c:when>
 												<c:otherwise>
 													**************
