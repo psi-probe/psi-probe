@@ -81,6 +81,11 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>jdbc-pool</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
 			<groupId>tanukisoft</groupId>
 			<artifactId>wrapper</artifactId>
 			<scope>provided</scope>
