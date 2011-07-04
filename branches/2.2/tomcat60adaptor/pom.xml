@@ -55,15 +55,6 @@
 					</exclusion>
 				</exclusions>
 			</dependency>
-			<dependency>
-				<!--
-					Not in any known Maven repository; must be installed manually.
-					See readme.txt for instructions.
-				-->
-				<groupId>org.apache.tomcat</groupId>
-				<artifactId>jdbc-pool</artifactId>
-				<version>1.0.8.5</version>
-			</dependency>
 		</dependencies>
 	</dependencyManagement>
     <dependencies>
@@ -92,11 +83,6 @@
             <artifactId>jasper</artifactId>
             <scope>provided</scope>
         </dependency>
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>jdbc-pool</artifactId>
-			<scope>provided</scope>
-		</dependency>
     </dependencies>
     <build>
         <pluginManagement>
