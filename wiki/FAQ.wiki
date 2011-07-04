@@ -59,7 +59,7 @@ Our goal with creating PSI Probe was not only to revive the project but also to 
     * "Star" issues that you would like to see fixed.  This will help us assign priority.
     * Report any bugs you encounter.
     * Request enhancements or new features.
-    * Submit translations of the program's [http://psi-probe.googlecode.com/svn/trunk/web/src/main/conf/WEB-INF/messages_en.properties messages].
+    * Submit translations of the program's [http://psi-probe.googlecode.com/svn/trunk/web/src/main/conf/WEB-INF/messages.properties messages].
     * Submit patches for [http://code.google.com/p/psi-probe/issues/list?can=2&q=-has:owner unclaimed issues] or ones labeled with [http://code.google.com/p/psi-probe/issues/list?can=1&q=label:HelpWanted HelpWanted].  You can check out the source code [http://code.google.com/p/psi-probe/source/checkout here].
     * Verify [http://code.google.com/p/psi-probe/issues/list?can=1&q=Status:FixedInSource+-Verified:Yes fixed issues] in the latest trunk build.
   * Join our [http://groups.google.com/group/psi-probe-discuss Google Group] and participate in discussions.
