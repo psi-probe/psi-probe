@@ -15,4 +15,4 @@
   * *Issues:* [http://code.google.com/p/psi-probe/issues/list?can=2&q=Milestone:TBD+Status:Accepted To-do]
 
 == All ==
-  * *Issues:* [http://code.google.com/p/psi-probe/issues/list?can=2&q=&mode=grid&x=type&y=milestone&cells=counts To-do (Grid)]
+  * *Issues:* [http://code.google.com/p/psi-probe/issues/list?can=2&q=-Status:FixedInSource&mode=grid&x=type&y=milestone&cells=counts To-do (Grid)]
