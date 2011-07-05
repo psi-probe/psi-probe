@@ -9,7 +9,7 @@
 == 2.3 ==
   * *Theme:* Tomcat 7, Deployment
   * *Target:* TBD
-  * *Issues:* [http://code.google.com/p/psi-probe/issues/list?can=2&q=Milestone:2.3.0 To-do]
+  * *Issues:* [http://code.google.com/p/psi-probe/issues/list?can=2&q=Milestone:2.3.0+-Status:FixedInSource To-do]
 
 == Future ==
   * *Issues:* [http://code.google.com/p/psi-probe/issues/list?can=2&q=Milestone:TBD+Status:Accepted To-do]
