@@ -2,12 +2,12 @@ package com.googlecode.psiprobe.jsp;
 
 /**
  *
- * @author <a href="mailto:mlewis@itos.uga.edu">Mark Lewis</a>
+ * @author Mark Lewis
  */
 public class Functions {
 
-	public static String safeCookieName(String cookieName) {
-		return cookieName.replaceAll("\"", "");
-	}
-    
+    public static String safeCookieName(String cookieName) {
+        return cookieName.replaceAll("\"", "");
+    }
+
 }
