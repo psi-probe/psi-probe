@@ -21,5 +21,5 @@
 == Compiling and Packaging PSI Probe from Source ==
   # You may see errors for some of the sub-projects.
     * Some of these will be fixed when you perform your first build and Maven downloads the artifacts.
-    * You will need to install the ojdbc14.jar artifact manually.
+    * You will need to install the ojdbc14 and tomcat-jdbc Maven artifacts manually.  See [http://psi-probe.googlecode.com/svn/trunk/readme.txt readme.txt] for more details.
   # Right-click the "PSI Probe" base project and select "Build" or "Clean and Build." ([http://psi-probe.googlecode.com/svn/wiki/IDEConfigNetBeans/build-from-source.png screenshot])
