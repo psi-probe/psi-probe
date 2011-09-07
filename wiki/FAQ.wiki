@@ -64,7 +64,7 @@ Our goal with creating PSI Probe was not only to revive the project but also to 
     * Verify [http://code.google.com/p/psi-probe/issues/list?can=1&q=Status:FixedInSource+-Verified:Yes fixed issues] in the latest trunk build.
   * Join our [http://groups.google.com/group/psi-probe-discuss Google Group] and participate in discussions.
 
-Anyone who provides a patch (or even just a detailed description of what changes need to be made to the code) will be made a Contributor of this project.  We want to acknowledge all such contributions, that that's our way of saying thanks.
+Anyone who provides a patch (or even just a detailed description of what changes need to be made to the code) will be made a Contributor of this project.  We want to acknowledge all such contributions, and that's our way of saying thanks.
 
 == How do I become a project committer? ==
 We are a bit skeptical about granting commit privileges to just anyone.  As the community grows, our hope is that experts and leaders will emerge.  Contributors who make frequent high-quality contributions may be invited to become Committers.
