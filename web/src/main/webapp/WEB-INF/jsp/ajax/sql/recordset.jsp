@@ -38,7 +38,7 @@
 
 	<c:choose>
 		<c:when test="${! empty results}">
-			<c:url value="sql/cachedRecordset.ajax" var="requestURI" />
+			<c:url value="cachedRecordset.ajax" var="requestURI" />
 			<display:table htmlId="sqlResultTbl" name="results" uid="row" class="genericTbl"
 					cellspacing="0" cellpadding="0" excludedParams="*"
 					requestURI="${requestURI}" pagesize="${rowsPerPage}">
