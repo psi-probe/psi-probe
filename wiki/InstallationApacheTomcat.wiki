@@ -34,14 +34,6 @@ This will create a user called `admin` with the role of `manager`.
 
 If you are not using the default configuration, add these roles as appropriate for your Realm.  Some Realm configurations, such as a JNDIRealm connecting to LDAP, will not require a server restart.
 
-== Run AWT in Headless Mode ==
-
-Some users have experienced [http://code.google.com/p/psi-probe/issues/detail?id=64 problems] with graph images not displaying properly, especially when running Tomcat on Sun's JDK for UNIX.  If you see a stack trace for a `java.lang.NoClassDefFoundError` thrown by a class in the `org.jfree.chart` package, add the following JVM command line option:
-
-{{{
--Djava.awt.headless=true
-}}}
-
 == Enable Remote JMX (Optional) ==
 
 PSI Probe requires remote JMX to collect and display certain pieces of information (memory usage, cluster traffic, connection pools, and active threads).  You can enable remote JMX with the following JVM command line option:
@@ -84,3 +76,17 @@ If you do this, understand that PSI Probe _requires_ a *privileged* context.  `M
 Once you have deployed PSI Probe to Tomcat, verify that you can access it in your web browser by entering PSI Probe's URL (e.g. `http://localhost:8080/probe`).
 
 When you are prompted for a username and password, enter the credentials for the manager account you created earlier.
+
+= Troubleshooting =
+
+== Run AWT in Headless Mode on UNIX ==
+
+Some users have experienced problems (see issue 64) with graph images not displaying properly, especially when running Tomcat on Sun's JDK for UNIX.  If you see a stack trace for a `java.lang.NoClassDefFoundError` thrown by a class in the `org.jfree.chart` package, add the following JVM command line option:
+
+{{{
+-Djava.awt.headless=true
+}}}
+
+== Privileged Apps on Tomcat 6 on RHEL 6 ==
+
+An issue with the yum package for Tomcat 6 may prevent privileged apps from working correctly (see issue 243).  You may need to create `/etc/tomcat6/Catalina/localhost/probe.xml` manually, similar to [#Option_3:_Fully_Manual_Deployment Option 3] above.
