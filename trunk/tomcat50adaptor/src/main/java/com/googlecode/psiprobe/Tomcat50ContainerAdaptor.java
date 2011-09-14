@@ -18,7 +18,6 @@ import java.util.List;
 import org.apache.catalina.Container;
 import org.apache.catalina.Context;
 import org.apache.catalina.Deployer;
-import org.apache.catalina.Engine;
 import org.apache.catalina.Host;
 import org.apache.catalina.Valve;
 import org.apache.catalina.Wrapper;
@@ -86,26 +85,7 @@ public class Tomcat50ContainerAdaptor extends AbstractTomcatContainer {
     }
 
     public String getConfigBase() {
-        File configBase = new File(System.getProperty("catalina.base"), "conf");
-        Container container = (Container) deployer;
-        Container host = null;
-        Container engine = null;
-        while (container != null) {
-            if (container instanceof Host) {
-                host = container;
-            }
-            if (container instanceof Engine) {
-                engine = container;
-            }
-            container = container.getParent();
-        }
-        if (engine != null) {
-            configBase = new File(configBase, engine.getName());
-        }
-        if (host != null) {
-            configBase = new File(configBase, host.getName());
-        }
-        return configBase.getAbsolutePath();
+        return getConfigBase((Container) deployer);
     }
 
     public Object getLogger(Context context) {
@@ -119,4 +99,5 @@ public class Tomcat50ContainerAdaptor extends AbstractTomcatContainer {
     public String getName() {
         return ((Host)this.deployer).getParent().getName();
     }
+
 }
