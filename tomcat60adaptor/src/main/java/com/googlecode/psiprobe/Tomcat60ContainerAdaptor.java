@@ -21,12 +21,10 @@ import javax.management.MalformedObjectNameException;
 import javax.management.ObjectName;
 import org.apache.catalina.Container;
 import org.apache.catalina.Context;
-import org.apache.catalina.Engine;
 import org.apache.catalina.Host;
 import org.apache.catalina.Lifecycle;
 import org.apache.catalina.Valve;
 import org.apache.catalina.Wrapper;
-import org.apache.catalina.deploy.FilterDef;
 import org.apache.catalina.deploy.FilterMap;
 import org.apache.commons.modeler.Registry;
 
@@ -123,26 +121,7 @@ public class Tomcat60ContainerAdaptor extends AbstractTomcatContainer {
     }
 
     public String getConfigBase() {
-        File configBase = new File(System.getProperty("catalina.base"), "conf");
-        Container container = host;
-        Container host = null;
-        Container engine = null;
-        while (container != null) {
-            if (container instanceof Host) {
-                host = container;
-            }
-            if (container instanceof Engine) {
-                engine = container;
-            }
-            container = container.getParent();
-        }
-        if (engine != null) {
-            configBase = new File(configBase, engine.getName());
-        }
-        if (host != null) {
-            configBase = new File(configBase, host.getName());
-        }
-        return configBase.getAbsolutePath();
+        return getConfigBase(host);
     }
 
     public Object getLogger(Context context) {
@@ -157,6 +136,7 @@ public class Tomcat60ContainerAdaptor extends AbstractTomcatContainer {
         return host.getParent().getName();
     }
 
+    @Override
     protected List getFilterMappings(FilterMap fmap, String dm, String filterClass) {
         String[] urls = fmap.getURLPatterns();
         String[] servlets = fmap.getServletNames();

@@ -25,7 +25,10 @@ import java.util.Set;
 import javax.naming.NamingException;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
+import org.apache.catalina.Container;
 import org.apache.catalina.Context;
+import org.apache.catalina.Engine;
+import org.apache.catalina.Host;
 import org.apache.catalina.core.StandardContext;
 import org.apache.catalina.deploy.FilterDef;
 import org.apache.catalina.deploy.FilterMap;
@@ -327,6 +330,28 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
         } else {
             return null;
         }
+    }
+
+    protected String getConfigBase(Container container) {
+        File configBase = new File(System.getProperty("catalina.base"), "conf");
+        Container baseHost = null;
+        Container baseEngine = null;
+        while (container != null) {
+            if (container instanceof Host) {
+                baseHost = container;
+            }
+            if (container instanceof Engine) {
+                baseEngine = container;
+            }
+            container = container.getParent();
+        }
+        if (baseEngine != null) {
+            configBase = new File(configBase, baseEngine.getName());
+        }
+        if (baseHost != null) {
+            configBase = new File(configBase, baseHost.getName());
+        }
+        return configBase.getAbsolutePath();
     }
 
     /**
