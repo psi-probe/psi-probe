@@ -53,26 +53,26 @@ public class VolumeTag extends TagSupport {
 
         if (value < KB) {
             doubleResult = value;
-            suffix = "b";
+            suffix = "B";
         } else if (value >= KB && value < MB) {
             doubleResult = round(value / KB);
-            suffix = "Kb";
+            suffix = "KB";
         } else if (value >= MB && value < GB) {
             doubleResult = round(value / MB);
-            suffix = "Mb";
+            suffix = "MB";
         } else if (value >= GB && value < TB) {
             doubleResult = round(value / GB);
-            suffix = "Gb";
+            suffix = "GB";
         } else {
             doubleResult = round(value / TB);
-            suffix = "Tb";
+            suffix = "TB";
         }
 
         try {
             NumberFormat nf = NumberFormat.getInstance();
             nf.setMinimumFractionDigits(fractions);
-            String title = Long.toString((long) value);
-            String newValue = nf.format(doubleResult) + suffix;
+            String title = Long.toString(value);
+            String newValue = nf.format(doubleResult) + " " + suffix;
             pageContext.getOut().write("<span title=\"" + title + "\">" + newValue + "</span>");
         } catch (IOException e) {
             logger.debug(e);

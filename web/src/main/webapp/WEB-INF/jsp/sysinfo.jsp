@@ -52,9 +52,9 @@
 					<td>&nbsp;<a href="<c:url value='/adm/advisegc.htm'/>"><spring:message code="probe.jsp.sysinfo.memory.adviseGC"/></a></td>
 				</tr>
 			</table>
-			<span class="name"><spring:message code="probe.jsp.sysinfo.memory.free"/></span>&nbsp;<fmt:formatNumber maxFractionDigits="2" value="${systemInformation.freeMemory / 1024 / 1024}"/> MB
-			<span class="name"><spring:message code="probe.jsp.sysinfo.memory.total"/></span>&nbsp;<fmt:formatNumber maxFractionDigits="2" value="${systemInformation.totalMemory / 1024 / 1024}"/> MB
-			<span class="name"><spring:message code="probe.jsp.sysinfo.memory.max"/></span>&nbsp;<fmt:formatNumber maxFractionDigits="2" value="${systemInformation.maxMemory / 1024 / 1024}"/> MB
+			<span class="name"><spring:message code="probe.jsp.sysinfo.memory.free"/></span>&nbsp;<probe:volume value="${systemInformation.freeMemory}" fractions="2"/>
+			<span class="name"><spring:message code="probe.jsp.sysinfo.memory.total"/></span>&nbsp;<probe:volume value="${systemInformation.totalMemory}" fractions="2"/>
+			<span class="name"><spring:message code="probe.jsp.sysinfo.memory.max"/></span>&nbsp;<probe:volume value="${systemInformation.maxMemory}" fractions="2"/>
 		</div>
 
 		<div id="osInformation">
