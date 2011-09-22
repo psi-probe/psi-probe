@@ -1,6 +1,5 @@
 package com.googlecode.psiprobe.tools;
 
-import com.googlecode.psiprobe.tools.LogOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;

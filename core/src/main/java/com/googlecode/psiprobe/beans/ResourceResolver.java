@@ -68,5 +68,5 @@ public interface ResourceResolver {
      * 
      * @return "default" {@link MBeanServer} instance for the current environment
      */
-    public MBeanServer getMBeanServer();
+    MBeanServer getMBeanServer();
 }
