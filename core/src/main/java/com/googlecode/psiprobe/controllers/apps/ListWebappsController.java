@@ -18,6 +18,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.catalina.Context;
+import org.apache.catalina.util.ServerInfo;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -35,7 +36,12 @@ public class ListWebappsController extends TomcatContainerController {
         boolean calcSize = ServletRequestUtils.getBooleanParameter(request, "size", false)
                 && SecurityUtils.hasAttributeValueRole(getServletContext(), request);
 
-        List apps = getContainerWrapper().getTomcatContainer().findContexts();
+        List apps;
+        try {
+            apps = getContainerWrapper().getTomcatContainer().findContexts();
+        } catch (NullPointerException ex) {
+            throw new RuntimeException("No container found for your server: " + ServerInfo.getServerInfo(), ex);
+        }
         List applications = new ArrayList(apps.size());
         boolean showResources = getContainerWrapper().getResourceResolver().supportsPrivateResources();
         for (int i = 0; i < apps.size(); i++) {
