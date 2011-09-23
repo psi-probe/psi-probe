@@ -26,6 +26,11 @@ public class Log4JManagerAccessor extends DefaultAccessor {
     public static Log4JManagerAccessor create(ClassLoader cl) {
         try {
             Class clazz = cl.loadClass("org.apache.log4j.LogManager");
+            Method m = MethodUtils.getAccessibleMethod(clazz, "exists", new Class[] {String.class});
+            if (m == null) {
+                // This LogManager is part of the slf4j bridge.
+                return null;
+            }
             Log4JManagerAccessor accessor = new Log4JManagerAccessor();
             accessor.setTarget(clazz);
             return accessor;
