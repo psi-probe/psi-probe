@@ -1,6 +1,7 @@
 package com.googlecode.psiprobe.tools;
 
 import java.io.OutputStream;
+import java.io.PrintStream;
 import org.apache.commons.logging.Log;
 
 /**
@@ -23,6 +24,21 @@ public class LogOutputStream extends OutputStream {
     private int level;
     private boolean shouldWrite;
     private StringBuffer buf = new StringBuffer();
+
+    /**
+     * Creates a {@code PrintStream} with autoFlush enabled which will write to
+     * the given {@code Log} at the given level.
+     * 
+     * @param log
+     *        the {@code Log} to which to write
+     * @param level
+     *        the level at which to write
+     * @return 
+     */
+    public static PrintStream createPrintStream(Log log, int level) {
+        LogOutputStream logStream = new LogOutputStream(log, level);
+        return new PrintStream(logStream, true);
+    }
 
     /**
      * Creates a new instance of {@code LogOutputStream} which will write to

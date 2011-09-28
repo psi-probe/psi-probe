@@ -26,19 +26,19 @@ public class MailMessage {
         setBody(body);
     }
 
-    public String[] getTo() {
+    public String[] getToArray() {
         return (String[]) to.toArray(new String[to.size()]);
     }
 
-    public String[] getCc() {
+    public String[] getCcArray() {
         return (String[]) cc.toArray(new String[cc.size()]);
     }
 
-    public String[] getBcc() {
+    public String[] getBccArray() {
         return (String[]) bcc.toArray(new String[bcc.size()]);
     }
 
-    public DataSource[] getAttachments() {
+    public DataSource[] getAttachmentsArray() {
         return (DataSource[]) attachments.toArray(new DataSource[attachments.size()]);
     }
 
@@ -55,17 +55,23 @@ public class MailMessage {
     }
 
     public MailMessage addRecipientTo(String address) {
-        to.add(address);
+        if (address != null) {
+            to.add(address);
+        }
         return this;
     }
 
     public MailMessage addRecipientCc(String address) {
-        cc.add(address);
+        if (address != null) {
+            cc.add(address);
+        }
         return this;
     }
 
     public MailMessage addRecipientBcc(String address) {
-        bcc.add(address);
+        if (address != null) {
+            bcc.add(address);
+        }
         return this;
     }
 
@@ -75,7 +81,9 @@ public class MailMessage {
     }
 
     public MailMessage addAttachment(DataSource attachment) {
-        attachments.add(attachment);
+        if (attachment != null) {
+            attachments.add(attachment);
+        }
         return this;
     }
 
@@ -112,6 +120,22 @@ public class MailMessage {
     public MailMessage setBodyHtml(boolean bodyHtml) {
         this.bodyHtml = bodyHtml;
         return this;
+    }
+
+    protected List getTo() {
+        return to;
+    }
+
+    protected List getCc() {
+        return cc;
+    }
+
+    protected List getBcc() {
+        return bcc;
+    }
+
+    protected List getAttachments() {
+        return attachments;
     }
 
 }
