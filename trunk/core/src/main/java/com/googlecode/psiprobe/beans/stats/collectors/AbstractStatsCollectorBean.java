@@ -11,7 +11,10 @@
 package com.googlecode.psiprobe.beans.stats.collectors;
 
 import com.googlecode.psiprobe.Utils;
+import com.googlecode.psiprobe.beans.stats.listeners.StatsCollectionEvent;
+import com.googlecode.psiprobe.beans.stats.listeners.StatsCollectionListener;
 import com.googlecode.psiprobe.model.stats.StatsCollection;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -21,6 +24,7 @@ public abstract class AbstractStatsCollectorBean {
 
     private StatsCollection statsCollection;
     private int maxSeries = 240;
+    private List listeners;
     private Map previousData = new TreeMap();
 
     public StatsCollection getStatsCollection() {
@@ -39,6 +43,14 @@ public abstract class AbstractStatsCollectorBean {
         this.maxSeries = maxSeries;
     }
 
+    public List getListeners() {
+        return listeners;
+    }
+
+    public void setListeners(List listeners) {
+        this.listeners = listeners;
+    }
+
     public abstract void collect() throws Exception;
 
     protected long buildDeltaStats(String name, long value) throws InterruptedException {
@@ -48,7 +60,8 @@ public abstract class AbstractStatsCollectorBean {
     protected long buildDeltaStats(String name, long value, long time) throws InterruptedException {
         long delta = 0;
         if (statsCollection != null) {
-            delta = value - Utils.toLong((Long) previousData.get(name), -1);
+            long previousValue = Utils.toLong((Long) previousData.get(name), 0);
+            delta = value - previousValue;
             delta = delta > 0 ? delta : 0;
             buildAbsoluteStats(name, delta, time);
             previousData.put(name, new Long(value));
@@ -64,14 +77,25 @@ public abstract class AbstractStatsCollectorBean {
     protected void buildAbsoluteStats(String name, long value, long time) throws InterruptedException {
         List stats = statsCollection.getStats(name);
         if (stats == null) {
-            statsCollection.newStats(name, maxSeries);
+            stats = statsCollection.newStats(name, maxSeries);
         } else {
+            XYDataItem data = new XYDataItem(time, value);
+            StatsCollectionEvent event = new StatsCollectionEvent(name, data);
             statsCollection.lockForUpdate();
             try {
-                stats.add(new XYDataItem(time, value));
+                stats.add(data);
                 houseKeepStats(stats);
             } finally {
                 statsCollection.releaseLock();
+            }
+            if (listeners != null) {
+                for (Iterator it = listeners.iterator(); it.hasNext();) {
+                    Object o = it.next();
+                    if (o instanceof StatsCollectionListener) {
+                        StatsCollectionListener listener = (StatsCollectionListener) o;
+                        listener.statsCollected(event);
+                    }
+                }
             }
         }
     }
