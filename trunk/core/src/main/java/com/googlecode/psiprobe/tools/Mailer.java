@@ -28,13 +28,15 @@ public class Mailer {
     private Log log = LogFactory.getLog(this.getClass());
     private String from;
     private String smtp;
+    private String defaultTo;
+    private String subjectPrefix;
 
     public Mailer() {
-        this(System.getProperty("com.googlecode.psiprobe.tools.mail.from"));
+        this(null);
     }
 
     public Mailer(String from) {
-        this(from, System.getProperty("mail.smtp.host"));
+        this(from, null);
     }
 
     public Mailer(String from, String smtp) {
@@ -58,11 +60,28 @@ public class Mailer {
         this.smtp = smtp;
     }
 
+    public String getDefaultTo() {
+        return defaultTo;
+    }
+
+    public void setDefaultTo(String defaultTo) {
+        this.defaultTo = defaultTo;
+    }
+
+    public String getSubjectPrefix() {
+        return subjectPrefix;
+    }
+
+    public void setSubjectPrefix(String subjectPrefix) {
+        this.subjectPrefix = subjectPrefix;
+    }
+
     public void send(MailMessage mailMessage) throws MessagingException {
         Properties props = (Properties) System.getProperties().clone();
-        props.put("mail.smtp.host", smtp);
-        LogOutputStream logStream = new LogOutputStream(log, LogOutputStream.LEVEL_DEBUG);
-        PrintStream debugOut = new PrintStream(logStream, true);
+        if (smtp != null) {
+            props.put("mail.smtp.host", smtp);
+        }
+        PrintStream debugOut = LogOutputStream.createPrintStream(log, LogOutputStream.LEVEL_DEBUG);
 
         Session session = Session.getDefaultInstance(props);
         session.setDebug(true);
@@ -75,13 +94,22 @@ public class Mailer {
 
     private MimeMessage createMimeMessage(Session session, MailMessage mailMessage) throws MessagingException {
         MimeMessage message = new MimeMessage(session);
-        InternetAddress[] to = createAddresses(mailMessage.getTo());
-        InternetAddress[] cc = createAddresses(mailMessage.getCc());
-        InternetAddress[] bcc = createAddresses(mailMessage.getBcc());
+        if (mailMessage.getTo().isEmpty()) {
+            mailMessage.addRecipientTo(defaultTo);
+        }
+        InternetAddress[] to = createAddresses(mailMessage.getToArray());
+        InternetAddress[] cc = createAddresses(mailMessage.getCcArray());
+        InternetAddress[] bcc = createAddresses(mailMessage.getBccArray());
+
+        String subject = mailMessage.getSubject();
+        if (subjectPrefix != null) {
+            subject = subjectPrefix + subject;
+        }
+
         MimeMultipart content = new MimeMultipart("related");
 
         //Create attachments
-        DataSource[] attachments = mailMessage.getAttachments();
+        DataSource[] attachments = mailMessage.getAttachmentsArray();
         for (int i = 0; i < attachments.length; i++) {
             DataSource attachment = attachments[i];
             MimeBodyPart attachmentPart = createAttachmentPart(attachment);
@@ -93,20 +121,20 @@ public class Mailer {
         content.addBodyPart(bodyPart);
 
         if (from == null) {
-            message.setFrom();
+            message.setFrom(); //Uses mail.from property
         } else {
             message.setFrom(new InternetAddress(from));
         }
         message.setRecipients(Message.RecipientType.TO, to);
         message.setRecipients(Message.RecipientType.CC, cc);
         message.setRecipients(Message.RecipientType.BCC, bcc);
-        message.setSubject(mailMessage.getSubject());
+        message.setSubject(subject);
         message.setContent(content);
         return message;
     }
 
     private static InternetAddress[] createAddresses(String[] addresses) throws AddressException {
-        List/*InternetAddress*/ result = new ArrayList();
+        List/*InternetAddress*/ result = new ArrayList(addresses.length);
         for (int i = 0; i < addresses.length; i++) {
             String address = addresses[i];
             InternetAddress[] parsedAddresses = InternetAddress.parse(address);
