@@ -266,7 +266,7 @@ public class ResourceResolverBean implements ResourceResolver {
      * 
      * @return the JNDI resource name with the prefix appended
      *
-     * @see #DEFAULT_GOBAL_RESOURCE_PREFIX
+     * @see #DEFAULT_GLOBAL_RESOURCE_PREFIX
      * @see #DEFAULT_RESOURCE_PREFIX
      */
     protected static String resolveJndiName(String name, boolean global) {

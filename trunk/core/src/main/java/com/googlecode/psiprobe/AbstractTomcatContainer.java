@@ -371,7 +371,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
      * @param filterClass
      *        the class name of the mapped filter.  This will be the same for
      *        each FilterMapping.
-     * @return
+     * @return a list containing a single {@link FilterMapping} object
      */
     protected List getFilterMappings(FilterMap fmap, String dm, String filterClass) {
         List filterMappings = new ArrayList(1);
