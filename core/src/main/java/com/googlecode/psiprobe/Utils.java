@@ -77,7 +77,7 @@ public class Utils {
      *
      * @param is
      * @param charsetName
-     * @return
+     * @return the contents of the given input stream
      * @throws IOException
      */
     public static String readStream(InputStream is, String charsetName) throws IOException {
