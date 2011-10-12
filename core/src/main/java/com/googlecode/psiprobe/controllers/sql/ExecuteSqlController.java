@@ -123,7 +123,7 @@ public class ExecuteSqlController extends ContextHandlerController {
                                             value = "&nbsp;";
                                         }
 
-                                        record.put(HtmlUtils.htmlEscape(metaData.getColumnName(i)), value);
+                                        record.put(HtmlUtils.htmlEscape(metaData.getColumnLabel(i)), value);
                                     }
 
                                     results.add(record);
