@@ -123,7 +123,12 @@ public class ExecuteSqlController extends ContextHandlerController {
                                             value = "&nbsp;";
                                         }
 
-                                        record.put(HtmlUtils.htmlEscape(metaData.getColumnLabel(i)), value);
+                                        // Pad the keys of columns with existing labels so they are distinct
+                                        String key = metaData.getColumnLabel(i);
+                                        while (record.containsKey(key)) {
+                                            key += " ";
+                                        }
+                                        record.put(HtmlUtils.htmlEscape(key), value);
                                     }
 
                                     results.add(record);
