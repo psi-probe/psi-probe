@@ -108,9 +108,12 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
         String safeName = formatContextName(name);
         if (safeName == null) {
             return null;
-        } else {
-            return findContextInternal(safeName);
         }
+        Context result = findContextInternal(safeName);
+        if (result == null && "".equals(safeName)) {
+            result = findContextInternal("/");
+        }
+        return result;
     }
 
     public String formatContextName(String name) {
