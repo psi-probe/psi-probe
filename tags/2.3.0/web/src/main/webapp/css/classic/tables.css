@@ -1,0 +1,130 @@
+/*
+ * Licensed under the GPL License.  You may not use this file except in
+ * compliance with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ *
+ * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
+ * MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+ */
+
+.genericTbl {
+	color: #4f6b72;
+	background-color: #fff;
+	width: 99%;
+	font-size: 95%;
+	font-style: normal;
+	padding: 0;
+	margin: 0;
+}
+
+.genericTbl th, .genericTbl td {
+	padding: 1px 5px 2px 5px;
+}
+
+.genericTbl th {
+	border-top: 1px solid #C1DAD7;
+	text-transform: uppercase;
+	text-align: left;
+	background-color: #cadceb;
+}
+
+.genericTbl td {
+	border-right: 1px solid #C1DAD7;
+	border-bottom: 1px solid #C1DAD7;
+	margin: 0; /*color: #4f6b72;*/
+}
+
+.genericTbl td.leftmost {
+	border-left: 1px solid #C1DAD7;
+}
+
+.genericTbl tr.even {
+	background-color: #f5faff;
+}
+
+.genericTbl tr:hover {
+	background-color: #fcfced;
+}
+
+.genericTbl tr.even:hover {
+	background-color: #f4f5e4;
+}
+
+.genericTbl a:link, .genericTbl a:active, .genericTbl th a:visited {
+	color: #4f6b72;
+	text-decoration: none;
+	border-bottom: 1px dashed #4f6b72;
+}
+
+.genericTbl th a:hover {
+	color: #000;
+	border-bottom: 1px solid #000;
+}
+
+.genericTbl td a:link, .genericTbl a:visited {
+	color: #40659B;
+	text-decoration: none;
+	border-bottom: 1px none;
+}
+
+.genericTbl td a:hover, .genericTbl td:hover a {
+	color: #003366;
+	border-bottom: 1px dashed #bbb;
+}
+
+.genericTbl td a.imglink:hover,  .genericTbl td:hover a.imglink {
+	border-bottom: none;
+}
+
+tr td.highlighted {
+	background-color: #fff0f0;
+}
+
+tr.even td.highlighted {
+	background-color: #f2e4e4;
+}
+
+tr:hover td.highlighted {
+	background-color: #fcebeb;
+}
+
+tr.even:hover td.highlighted {
+	background-color: #f0dddd;
+}
+
+.statsTable {
+	padding: 0;
+	margin: 0;
+}
+
+.statsTable th, .statsTable td {
+	padding: 1px 5px 1px 5px;
+	border-right: 1px solid #ddd;
+	color: #444;
+}
+
+.statsTable th {
+	border-top: 1px solid #ddd;
+	background-color: #eee;
+}
+
+.statsTable td {
+	border-bottom: 1px solid #ddd;
+	text-align: right;
+}
+
+.statsTable .leftMost {
+	border-left: 1px solid #ddd;
+}
+
+.statsTable a:link, .statsTable a:active, .statsTable a:visited {
+	color: #40659B;
+	text-decoration: none;
+	border-bottom: 1px dashed #bbb;
+}
+
+a.imglink:visited, a.imglink:active, a.imglink:link {
+	border-bottom: none;
+}
