@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Licensed under the GPL License.  You may not use this file except in
+ * compliance with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ *
+ * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
+ * MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd"
+		default-dependency-check="none" default-lazy-init="false">
+
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations" value="/WEB-INF/stats.properties" />
+		<property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />
+	</bean>
+
+	<!--
+		Stats collection bean. Holds all stats the Probe collects
+	-->
+	<bean name="statsCollection" class="com.googlecode.psiprobe.model.stats.StatsCollection">
+		<!--
+		The default location for the stat files is $CALALINA_BASE/work/<hostname>/<context_name>.
+		Use this property to override it.
+		<property name="storagePath" value="/tmp"/>
+		-->
+		<property name="swapFileName" value="stats.xml"/>
+	</bean>
+
+	<!--
+		JK Connector stats collector bean.
+	-->
+	<bean name="connectorStatsCollector"
+			class="com.googlecode.psiprobe.beans.stats.collectors.ConnectorStatsCollectorBean">
+		<property name="listenerBean" ref="containerListener"/>
+		<property name="statsCollection" ref="statsCollection"/>
+		<property name="maxSeries">
+			<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+				<property name="targetClass" value="com.googlecode.psiprobe.tools.TimeExpression" />
+				<property name="targetMethod" value="dataPoints" />
+				<property name="arguments">
+					<list>
+						<value>${com.googlecode.psiprobe.beans.stats.collectors.connector.period}</value>
+						<value>${com.googlecode.psiprobe.beans.stats.collectors.connector.span}</value>
+					</list>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<!--
+		Cluster stats collector
+	-->
+	<bean name="clusterStatsCollector"
+			class="com.googlecode.psiprobe.beans.stats.collectors.ClusterStatsCollectorBean">
+		<property name="clusterWrapper" ref="clusterWrapper"/>
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="statsCollection" ref="statsCollection"/>
+		<property name="maxSeries">
+			<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+				<property name="targetClass" value="com.googlecode.psiprobe.tools.TimeExpression" />
+				<property name="targetMethod" value="dataPoints" />
+				<property name="arguments">
+					<list>
+						<value>${com.googlecode.psiprobe.beans.stats.collectors.cluster.period}</value>
+						<value>${com.googlecode.psiprobe.beans.stats.collectors.cluster.span}</value>
+					</list>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<!--
+		Memory stats collector. Collects absolute usage stats for each of memory pools.
+	-->
+	<bean name="memoryStatsCollector"
+			class="com.googlecode.psiprobe.beans.stats.collectors.JvmMemoryStatsCollectorBean">
+		<property name="jvmMemoryInfoAccessor" ref="jvmMemoryInfoAccessor"/>
+		<property name="statsCollection" ref="statsCollection"/>
+		<property name="maxSeries">
+			<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+				<property name="targetClass" value="com.googlecode.psiprobe.tools.TimeExpression" />
+				<property name="targetMethod" value="dataPoints" />
+				<property name="arguments">
+					<list>
+						<value>${com.googlecode.psiprobe.beans.stats.collectors.memory.period}</value>
+						<value>${com.googlecode.psiprobe.beans.stats.collectors.memory.span}</value>
+					</list>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean name="runtimeStatsCollector" class="com.googlecode.psiprobe.beans.stats.collectors.RuntimeStatsCollectorBean">
+		<property name="runtimeInfoAccessorBean" ref="runtimeInfoAccessor"/>
+		<property name="statsCollection" ref="statsCollection"/>
+		<property name="maxSeries">
+			<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+				<property name="targetClass" value="com.googlecode.psiprobe.tools.TimeExpression" />
+				<property name="targetMethod" value="dataPoints" />
+				<property name="arguments">
+					<list>
+						<value>${com.googlecode.psiprobe.beans.stats.collectors.runtime.period}</value>
+						<value>${com.googlecode.psiprobe.beans.stats.collectors.runtime.span}</value>
+					</list>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean name="appStatsCollector" class="com.googlecode.psiprobe.beans.stats.collectors.AppStatsCollectorBean">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="statsCollection" ref="statsCollection"/>
+		<property name="maxSeries">
+			<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+				<property name="targetClass" value="com.googlecode.psiprobe.tools.TimeExpression" />
+				<property name="targetMethod" value="dataPoints" />
+				<property name="arguments">
+					<list>
+						<value>${com.googlecode.psiprobe.beans.stats.collectors.app.period}</value>
+						<value>${com.googlecode.psiprobe.beans.stats.collectors.app.span}</value>
+					</list>
+				</property>
+			</bean>
+		</property>
+		<property name="selfIgnored" value="${com.googlecode.psiprobe.beans.stats.collectors.app.selfIgnored}"/>
+	</bean>
+
+	<bean name="datasourceStatsCollector" class="com.googlecode.psiprobe.beans.stats.collectors.DatasourceStatsCollectorBean">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="statsCollection" ref="statsCollection"/>
+		<property name="maxSeries">
+			<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+				<property name="targetClass" value="com.googlecode.psiprobe.tools.TimeExpression" />
+				<property name="targetMethod" value="dataPoints" />
+				<property name="arguments">
+					<list>
+						<value>${com.googlecode.psiprobe.beans.stats.collectors.datasource.period}</value>
+						<value>${com.googlecode.psiprobe.beans.stats.collectors.datasource.span}</value>
+					</list>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<!--
+		The name of SeriesProvider beans is passed on the URL, so it should be short enough
+	-->
+	<bean name="rcn" class="com.googlecode.psiprobe.beans.stats.providers.ConnectorSeriesProvider"/>
+
+	<bean name="cl_traffic" class="com.googlecode.psiprobe.beans.stats.providers.StandardSeriesProvider">
+		<property name="statNames">
+			<list>
+				<value>cluster.sent</value>
+				<value>cluster.received</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean name="cl_request" class="com.googlecode.psiprobe.beans.stats.providers.StandardSeriesProvider">
+		<property name="statNames">
+			<list>
+				<value>cluster.req.sent</value>
+				<value>cluster.req.received</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean name="connector" class="com.googlecode.psiprobe.beans.stats.providers.StandardSeriesProvider">
+		<property name="statNames">
+			<list>
+				<value>stat.connector.{0}.requests</value>
+				<value>stat.connector.{0}.errors</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean name="traffic" class="com.googlecode.psiprobe.beans.stats.providers.StandardSeriesProvider">
+		<property name="statNames">
+			<list>
+				<value>stat.connector.{0}.sent</value>
+				<value>stat.connector.{0}.received</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean name="connector_proc_time" class="com.googlecode.psiprobe.beans.stats.providers.StandardSeriesProvider">
+		<property name="statNames">
+			<list>
+				<value>stat.connector.{0}.proc_time</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean name="memory_usage" class="com.googlecode.psiprobe.beans.stats.providers.StandardSeriesProvider">
+		<property name="statNames">
+			<list>
+				<value>memory.pool.{0}</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean name="os_memory"  class="com.googlecode.psiprobe.beans.stats.providers.StandardSeriesProvider">
+		<property name="statNames">
+			<list>
+				<value>os.memory.physical</value>
+				<value>os.memory.committed</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean name="swap_usage" class="com.googlecode.psiprobe.beans.stats.providers.StandardSeriesProvider">
+		<property name="statNames">
+			<list>
+				<value>os.memory.swap</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean name="cpu_usage" class="com.googlecode.psiprobe.beans.stats.providers.StandardSeriesProvider">
+		<property name="statNames">
+			<list>
+				<value>os.cpu</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean name="app_req" class="com.googlecode.psiprobe.beans.stats.providers.StandardSeriesProvider">
+		<property name="statNames">
+			<list>
+				<value>app.requests.{0}</value>
+				<value>app.errors.{0}</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean name="app_avg_proc_time" class="com.googlecode.psiprobe.beans.stats.providers.StandardSeriesProvider">
+		<property name="statNames">
+			<list>
+				<value>app.avg_proc_time.{0}</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean name="total_avg_proc_time" class="com.googlecode.psiprobe.beans.stats.providers.StandardSeriesProvider">
+		<property name="statNames">
+			<list>
+				<value>total.avg_proc_time</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean name="all_app_avg_proc_time" class="com.googlecode.psiprobe.beans.stats.providers.MultipleSeriesProvider">
+		<property name="statNamePrefix" value="app.avg_proc_time."/>
+		<property name="top" value="4"/>
+		<property name="movingAvgFrame" value="10"/>
+	</bean>
+
+	<bean name="total_req" class="com.googlecode.psiprobe.beans.stats.providers.StandardSeriesProvider">
+		<property name="statNames">
+			<list>
+				<value>total.requests</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean name="all_app_req" class="com.googlecode.psiprobe.beans.stats.providers.MultipleSeriesProvider">
+		<property name="statNamePrefix" value="app.requests."/>
+		<property name="top" value="4"/>
+		<property name="movingAvgFrame" value="10"/>
+	</bean>
+
+	<bean name="datasource_usage" class="com.googlecode.psiprobe.beans.stats.providers.StandardSeriesProvider">
+		<property name="statNames">
+			<list>
+				<value>ds.est.{0}</value>
+				<value>ds.busy.{0}</value>
+			</list>
+		</property>
+	</bean>
+
+	<!--
+		Get spring to call method collect() on the "connectorStatsCollector", making the latter a Job
+	-->
+	<bean id="connectorStatsJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="connectorStatsCollector"/>
+		<property name="targetMethod" value="collect"/>
+		<property name="concurrent" value="false"/>
+	</bean>
+
+	<bean id="clusterStatsJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="clusterStatsCollector"/>
+		<property name="targetMethod" value="collect"/>
+		<property name="concurrent" value="false"/>
+	</bean>
+
+	<bean id="memoryStatsJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="memoryStatsCollector"/>
+		<property name="targetMethod" value="collect"/>
+		<property name="concurrent" value="false"/>
+	</bean>
+
+	<bean id="runtimeStatsJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="runtimeStatsCollector"/>
+		<property name="targetMethod" value="collect"/>
+		<property name="concurrent" value="false"/>
+	</bean>
+
+	<bean id="appStatsJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="appStatsCollector"/>
+		<property name="targetMethod" value="collect"/>
+		<property name="concurrent" value="false"/>
+	</bean>
+
+	<bean id="datasourceStatsJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="datasourceStatsCollector"/>
+		<property name="targetMethod" value="collect"/>
+		<property name="concurrent" value="false"/>
+	</bean>
+
+	<bean id="statsSerializerJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="statsCollection"/>
+		<property name="targetMethod" value="serialize"/>
+		<property name="concurrent" value="false"/>
+	</bean>
+
+	<bean id="connectorStatsTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="connectorStatsJobDetail"/>
+		<property name="cronExpression">
+			<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+				<property name="targetClass" value="com.googlecode.psiprobe.tools.TimeExpression" />
+				<property name="targetMethod" value="cronExpression" />
+				<property name="arguments">
+					<list>
+						<value>${com.googlecode.psiprobe.beans.stats.collectors.connector.period}</value>
+						<value>${com.googlecode.psiprobe.beans.stats.collectors.connector.phase}</value>
+					</list>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="clusterStatsTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="clusterStatsJobDetail"/>
+		<property name="cronExpression">
+			<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+				<property name="targetClass" value="com.googlecode.psiprobe.tools.TimeExpression" />
+				<property name="targetMethod" value="cronExpression" />
+				<property name="arguments">
+					<list>
+						<value>${com.googlecode.psiprobe.beans.stats.collectors.cluster.period}</value>
+						<value>${com.googlecode.psiprobe.beans.stats.collectors.cluster.phase}</value>
+					</list>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="memoryStatsTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="memoryStatsJobDetail"/>
+		<property name="cronExpression">
+			<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+				<property name="targetClass" value="com.googlecode.psiprobe.tools.TimeExpression" />
+				<property name="targetMethod" value="cronExpression" />
+				<property name="arguments">
+					<list>
+						<value>${com.googlecode.psiprobe.beans.stats.collectors.memory.period}</value>
+						<value>${com.googlecode.psiprobe.beans.stats.collectors.memory.phase}</value>
+					</list>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="runtimeStatsTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="runtimeStatsJobDetail"/>
+		<property name="cronExpression">
+			<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+				<property name="targetClass" value="com.googlecode.psiprobe.tools.TimeExpression" />
+				<property name="targetMethod" value="cronExpression" />
+				<property name="arguments">
+					<list>
+						<value>${com.googlecode.psiprobe.beans.stats.collectors.runtime.period}</value>
+						<value>${com.googlecode.psiprobe.beans.stats.collectors.runtime.phase}</value>
+					</list>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="appStatsTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="appStatsJobDetail"/>
+		<property name="cronExpression">
+			<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+				<property name="targetClass" value="com.googlecode.psiprobe.tools.TimeExpression" />
+				<property name="targetMethod" value="cronExpression" />
+				<property name="arguments">
+					<list>
+						<value>${com.googlecode.psiprobe.beans.stats.collectors.app.period}</value>
+						<value>${com.googlecode.psiprobe.beans.stats.collectors.app.phase}</value>
+					</list>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="datasourceStatsTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="datasourceStatsJobDetail"/>
+		<property name="cronExpression">
+			<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+				<property name="targetClass" value="com.googlecode.psiprobe.tools.TimeExpression" />
+				<property name="targetMethod" value="cronExpression" />
+				<property name="arguments">
+					<list>
+						<value>${com.googlecode.psiprobe.beans.stats.collectors.datasource.period}</value>
+						<value>${com.googlecode.psiprobe.beans.stats.collectors.datasource.phase}</value>
+					</list>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="statsSerializerTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="statsSerializerJobDetail"/>
+		<property name="cronExpression">
+			<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+				<property name="targetClass" value="com.googlecode.psiprobe.tools.TimeExpression" />
+				<property name="targetMethod" value="cronExpression" />
+				<property name="arguments">
+					<list>
+						<value>${com.googlecode.psiprobe.beans.stats.serializer.period}</value>
+						<value>${com.googlecode.psiprobe.beans.stats.serializer.phase}</value>
+					</list>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+
+	<bean name="scheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref local="connectorStatsTrigger"/>
+				<ref local="clusterStatsTrigger"/>
+				<ref local="memoryStatsTrigger"/>
+				<ref local="runtimeStatsTrigger"/>
+				<ref local="appStatsTrigger"/>
+				<ref local="datasourceStatsTrigger"/>
+				<ref local="statsSerializerTrigger"/>
+			</list>
+		</property>
+	</bean>
+</beans>
