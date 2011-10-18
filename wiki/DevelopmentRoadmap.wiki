@@ -6,10 +6,10 @@
 == Release Pending ==
   * *Issues:* [http://code.google.com/p/psi-probe/issues/list?can=1&q=Type:Defect,Enhancement,Feature+Status:FixedInSource,ReleasePending&sort=Milestone+Status+Type+Priority Fixed]
 
-== 2.3 ==
-  * *Theme:* Tomcat 7, Deployment
-  * *Target:* TBD
-  * *Issues:* [http://code.google.com/p/psi-probe/issues/list?can=2&q=Milestone:2.3.0+-Status:FixedInSource To-do]
+== 2.4 ==
+  * *Theme:* Monitoring
+  * *Target:* 2012 Q2
+  * *Issues:* [http://code.google.com/p/psi-probe/issues/list?can=2&q=Milestone:2.4.0+-Status:FixedInSource To-do]
 
 == Future ==
   * *Issues:* [http://code.google.com/p/psi-probe/issues/list?can=2&q=Milestone:TBD+Status:Accepted To-do]
