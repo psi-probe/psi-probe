@@ -79,7 +79,7 @@ To find out when these features were added, please refer to the [Changelogs].
   * Apache Tomcat 5.0
   * Apache Tomcat 5.5
   * Apache Tomcat 6.0 (except cluster info; see issue 82)
-  * Apache Tomcat 7.0 (partial; see issue 140)
+  * Apache Tomcat 7.0 (except cluster info; see issue 82)
   * JBoss 3.2
   * JBoss 4.0
   * JBoss 4.2
@@ -107,3 +107,4 @@ To find out when these features were added, please refer to the [Changelogs].
   * German
   * Japanese
   * Russian
+  * Spanish
