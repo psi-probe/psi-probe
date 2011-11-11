@@ -114,20 +114,28 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
     }
 
     private Jdk14HandlerAccessor wrapHandler(Object handler, int index) {
-        Jdk14HandlerAccessor handlerAccessor = null;
-        if ("org.apache.juli.FileHandler".equals(handler.getClass().getName())) {
-            handlerAccessor = new JuliHandlerAccessor();
-        } else if ("java.util.logging.ConsoleHandler".equals(handler.getClass().getName())){
-            handlerAccessor = new Jdk14HandlerAccessor();
-        }
+        try {
+            if (handler == null) {
+                throw new IllegalArgumentException("handler is null");
+            }
+            Jdk14HandlerAccessor handlerAccessor = null;
+            if ("org.apache.juli.FileHandler".equals(handler.getClass().getName())) {
+                handlerAccessor = new JuliHandlerAccessor();
+            } else if ("java.util.logging.ConsoleHandler".equals(handler.getClass().getName())){
+                handlerAccessor = new Jdk14HandlerAccessor();
+            }
 
-        if (handlerAccessor != null) {
-            handlerAccessor.setLoggerAccessor(this);
-            handlerAccessor.setTarget(handler);
-            handlerAccessor.setIndex(Integer.toString(index));
-            handlerAccessor.setApplication(getApplication());
+            if (handlerAccessor != null) {
+                handlerAccessor.setLoggerAccessor(this);
+                handlerAccessor.setTarget(handler);
+                handlerAccessor.setIndex(Integer.toString(index));
+                handlerAccessor.setApplication(getApplication());
+            }
+            return handlerAccessor;
+        } catch (Exception e) {
+            log.error("Could not wrap handler: " + handler, e);
         }
-        return handlerAccessor;
+        return null;
     }
 
 }
