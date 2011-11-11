@@ -25,8 +25,10 @@ public class Log4JLoggerAccessor extends DefaultAccessor {
         try {
             Enumeration e = (Enumeration) MethodUtils.invokeMethod(getTarget(), "getAllAppenders", null);
             while(e.hasMoreElements()) {
-                Log4JAppenderAccessor aa = wrapAppender(e.nextElement());
-                appenders.add(aa);
+                Log4JAppenderAccessor appender = wrapAppender(e.nextElement());
+                if (appender != null) {
+                    appenders.add(appender);
+                }
             }
         } catch (Exception e) {
             log.error(getTarget()+".getAllAppenders() failed", e);
@@ -82,11 +84,19 @@ public class Log4JLoggerAccessor extends DefaultAccessor {
     }
 
     private Log4JAppenderAccessor wrapAppender(Object appender) {
-        Log4JAppenderAccessor appenderAccessor = new Log4JAppenderAccessor();
-        appenderAccessor.setTarget(appender);
-        appenderAccessor.setLoggerAccessor(this);
-        appenderAccessor.setApplication(getApplication());
-        return appenderAccessor;
+        try {
+            if (appender == null) {
+                throw new IllegalArgumentException("appender is null");
+            }
+            Log4JAppenderAccessor appenderAccessor = new Log4JAppenderAccessor();
+            appenderAccessor.setTarget(appender);
+            appenderAccessor.setLoggerAccessor(this);
+            appenderAccessor.setApplication(getApplication());
+            return appenderAccessor;
+        } catch (Exception e) {
+            log.error("Could not wrap appender: " + appender, e);
+        }
+        return null;
     }
 
 }
