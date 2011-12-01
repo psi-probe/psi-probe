@@ -10,6 +10,7 @@
  */
 package com.googlecode.psiprobe.tools.logging.logback;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -34,39 +35,26 @@ import com.googlecode.psiprobe.tools.logging.DefaultAccessor;
  */
 public class LogbackFactoryAccessor extends DefaultAccessor {
 
-    private LogbackFactoryAccessor() {
-        
-    }
-
     /**
-     * Attempts to access a Logback logger factory via the given class loader.
+     * Attempts to initialize a Logback logger factory via the given class loader.
      *  
      * @param cl the ClassLoader to use when fetching the factory
-     * @return Logback factory wrapper, or {@code null} if the SLF4J binding is
-     *         not Logback or if there is no SLF4J binding at all
      */
-    public static LogbackFactoryAccessor create(ClassLoader cl) {
-        try {
-            // Get the singleton SLF4J binding, which may or may not be Logback, depending on the            
-            // binding.
-            Class clazz = cl.loadClass("org.slf4j.impl.StaticLoggerBinder");
-            Method m1 = MethodUtils.getAccessibleMethod(clazz, "getSingleton", new Class[]{});
-            Object singleton = m1.invoke(null, null);
-            Method m = MethodUtils.getAccessibleMethod(clazz, "getLoggerFactory", new Class[]{});
-            Object loggerFactory = m.invoke(singleton, null);
-            
-            // Check if the binding is indeed logback, return null otherwise
-            Class loggerFactoryClass = cl.loadClass("ch.qos.logback.classic.LoggerContext");            
-            if (loggerFactoryClass.isInstance(loggerFactory)) {
-                LogbackFactoryAccessor accessor = new LogbackFactoryAccessor();            
-                accessor.setTarget(loggerFactory);
-                return accessor;
-            } else {
-                return null;
-            }
-        } catch (Exception e) {
-            return null;
+    public LogbackFactoryAccessor(ClassLoader cl) throws ClassNotFoundException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+        // Get the singleton SLF4J binding, which may or may not be Logback, depending on the            
+        // binding.
+        Class clazz = cl.loadClass("org.slf4j.impl.StaticLoggerBinder");
+        Method m1 = MethodUtils.getAccessibleMethod(clazz, "getSingleton", new Class[]{});
+        Object singleton = m1.invoke(null, null);
+        Method m = MethodUtils.getAccessibleMethod(clazz, "getLoggerFactory", new Class[]{});
+        Object loggerFactory = m.invoke(singleton, null);
+
+        // Check if the binding is indeed Logback
+        Class loggerFactoryClass = cl.loadClass("ch.qos.logback.classic.LoggerContext");            
+        if (!loggerFactoryClass.isInstance(loggerFactory)) {
+            throw new RuntimeException("The singleton SLF4J binding was not Logback");
         }
+        setTarget(loggerFactory);
     }
 
     /**

@@ -19,24 +19,13 @@ import org.apache.commons.beanutils.MethodUtils;
 
 public class Log4JManagerAccessor extends DefaultAccessor {
 
-    private Log4JManagerAccessor() {
-        
-    }
-
-    public static Log4JManagerAccessor create(ClassLoader cl) {
-        try {
-            Class clazz = cl.loadClass("org.apache.log4j.LogManager");
-            Method m = MethodUtils.getAccessibleMethod(clazz, "exists", new Class[] {String.class});
-            if (m == null) {
-                // This LogManager is part of the slf4j bridge.
-                return null;
-            }
-            Log4JManagerAccessor accessor = new Log4JManagerAccessor();
-            accessor.setTarget(clazz);
-            return accessor;
-        } catch (Exception e) {
-            return null;
+    public Log4JManagerAccessor(ClassLoader cl) throws ClassNotFoundException {
+        Class clazz = cl.loadClass("org.apache.log4j.LogManager");
+        Method m = MethodUtils.getAccessibleMethod(clazz, "exists", new Class[] {String.class});
+        if (m == null) {
+            throw new RuntimeException("The LogManager is part of the slf4j bridge.");
         }
+        setTarget(clazz);
     }
 
     public Log4JLoggerAccessor getRootLogger() {
