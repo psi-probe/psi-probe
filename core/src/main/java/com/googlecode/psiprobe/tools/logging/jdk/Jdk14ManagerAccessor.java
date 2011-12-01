@@ -11,6 +11,7 @@
 package com.googlecode.psiprobe.tools.logging.jdk;
 
 import com.googlecode.psiprobe.tools.logging.DefaultAccessor;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -19,24 +20,14 @@ import org.apache.commons.beanutils.MethodUtils;
 
 public class Jdk14ManagerAccessor extends DefaultAccessor {
 
-    private Jdk14ManagerAccessor() {
-
-    }
-
-    public static Jdk14ManagerAccessor create(ClassLoader cl) {
-        try {
-            Class clazz = cl.loadClass("java.util.logging.LogManager");
-            Method getManager = MethodUtils.getAccessibleMethod(clazz, "getLogManager", new Class[]{});
-            Object manager = getManager.invoke(null, null);
-            if (manager == null) {
-                throw new NullPointerException(clazz.getName() + ".getLogManager() returned null");
-            }
-            Jdk14ManagerAccessor accessor = new Jdk14ManagerAccessor();
-            accessor.setTarget(manager);
-            return accessor;
-        } catch (Exception e) {
-            return null;
+    public Jdk14ManagerAccessor(ClassLoader cl) throws ClassNotFoundException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+        Class clazz = cl.loadClass("java.util.logging.LogManager");
+        Method getManager = MethodUtils.getAccessibleMethod(clazz, "getLogManager", new Class[]{});
+        Object manager = getManager.invoke(null, null);
+        if (manager == null) {
+            throw new NullPointerException(clazz.getName() + ".getLogManager() returned null");
         }
+        setTarget(manager);
     }
 
     public Jdk14LoggerAccessor getRootLogger() {
