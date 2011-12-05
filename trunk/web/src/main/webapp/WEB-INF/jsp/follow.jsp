@@ -62,7 +62,7 @@
 				</a>
 			</li>
 			<li id="wrap">
-				<a href=#"">
+				<a href="#">
 					<spring:message code="probe.jsp.follow.menu.wrap"/>
 				</a>
 			</li>
