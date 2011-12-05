@@ -244,6 +244,8 @@ public class LogResolverBean {
     }
 
     private void interrogateClassLoader(ClassLoader cl, Application application, List appenders) {
+        String applicationName = (application != null ? "application \"" + application.getName() + "\"" : "server");
+        
         //check for JDK loggers
         try {
             Jdk14ManagerAccessor jdk14accessor = new Jdk14ManagerAccessor(cl);
@@ -256,7 +258,7 @@ public class LogResolverBean {
             if (t instanceof ThreadDeath) {
                 throw (ThreadDeath) t;
             }
-            logger.debug("Could not resolve JDK loggers for application \"" + application.getName() + "\"", t);
+            logger.debug("Could not resolve JDK loggers for " + applicationName, t);
         }
 
         // check for Log4J loggers
@@ -271,7 +273,7 @@ public class LogResolverBean {
             if (t instanceof ThreadDeath) {
                 throw (ThreadDeath) t;
             }
-            logger.debug("Could not resolve log4j loggers for application \"" + application.getName() + "\"", t);
+            logger.debug("Could not resolve JDK loggers for " + applicationName, t);
         }
 
         // check for Logback loggers
@@ -286,7 +288,7 @@ public class LogResolverBean {
             if (t instanceof ThreadDeath) {
                 throw (ThreadDeath) t;
             }
-            logger.debug("Could not resolve Logback loggers for application \"" + application.getName() + "\"", t);
+            logger.debug("Could not resolve JDK loggers for " + applicationName, t);
         }
     }
 
