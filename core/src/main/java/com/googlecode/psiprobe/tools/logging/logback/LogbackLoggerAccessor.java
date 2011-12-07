@@ -10,18 +10,17 @@
  */
 package com.googlecode.psiprobe.tools.logging.logback;
 
+import com.googlecode.psiprobe.tools.logging.DefaultAccessor;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
 import org.apache.commons.beanutils.MethodUtils;
-
-import com.googlecode.psiprobe.tools.logging.DefaultAccessor;
 
 /**
  * A wrapper for a Logback logger.
  * 
  * @author Harald Wellmann
+ * @author Mark Lewis
  */
 public class LogbackLoggerAccessor extends DefaultAccessor {
 
@@ -35,13 +34,21 @@ public class LogbackLoggerAccessor extends DefaultAccessor {
         try {
             Iterator it =  (Iterator) MethodUtils.invokeMethod(getTarget(), "iteratorForAppenders", null);
             while (it.hasNext()) {
-                LogbackAppenderAccessor aa = wrapAppender(it.next());
-                if (aa != null) {
-                    appenders.add(aa);
+                Object appender = it.next();
+                if ("ch.qos.logback.classic.sift.SiftingAppender".equals(appender.getClass().getName())) {
+                    Object tracker = MethodUtils.invokeExactMethod(appender, "getAppenderTracker", null);
+                    if (tracker != null) {
+                        List siftedAppenders = (List) MethodUtils.invokeExactMethod(tracker, "valueList", null);
+                        for (int i = 0; i < siftedAppenders.size(); i++) {
+                            wrapAndAddAppender(siftedAppenders.get(i), appenders);
+                        }
+                    }
+                } else {
+                    wrapAndAddAppender(appender, appenders);
                 }
             }
         } catch (Exception e) {
-            log.error(getTarget() + ".iteratorForAppenders() failed", e);
+            log.error(getTarget() + ".getAppenders() failed", e);
         }
         return appenders;
     }
@@ -102,6 +109,13 @@ public class LogbackLoggerAccessor extends DefaultAccessor {
             MethodUtils.invokeMethod(getTarget(), "setLevel", newLevel);
         } catch (Exception e) {
             log.error(getTarget() + ".setLevel(\"" + newLevelStr + "\") failed", e);
+        }
+    }
+
+    private void wrapAndAddAppender(Object appender, List appenders) {
+        LogbackAppenderAccessor appenderAccessor = wrapAppender(appender);
+        if (appenderAccessor != null) {
+            appenders.add(appenderAccessor);
         }
     }
 
