@@ -16,7 +16,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
-import java.net.InetAddress;
 import java.net.Socket;
 import java.util.Map;
 import java.util.TreeMap;
@@ -121,13 +120,4 @@ public class Whois {
         }
     }
 
-    public static void main(String[] args) throws IOException {
-/*
-        Response response = Whois.lookup("whois.arin.net", 43, args[0], 5);
-        System.out.println("[" + response.server + ":" + response.port + "]");
-        System.out.println(response.getSummary());
-*/
-        System.out.println(InetAddress.getByName("62.252.064.32").getHostName());
-//        System.out.println(InetAddress.getByAddress("062.252.064.032".getBytes()).getHostName());
-    }
 }
