@@ -35,13 +35,11 @@ public class LogbackLoggerAccessor extends DefaultAccessor {
             Iterator it =  (Iterator) MethodUtils.invokeMethod(getTarget(), "iteratorForAppenders", null);
             while (it.hasNext()) {
                 Object appender = it.next();
-                if ("ch.qos.logback.classic.sift.SiftingAppender".equals(appender.getClass().getName())) {
-                    Object tracker = MethodUtils.invokeExactMethod(appender, "getAppenderTracker", null);
-                    if (tracker != null) {
-                        List siftedAppenders = (List) MethodUtils.invokeExactMethod(tracker, "valueList", null);
-                        for (int i = 0; i < siftedAppenders.size(); i++) {
-                            wrapAndAddAppender(siftedAppenders.get(i), appenders);
-                        }
+                List siftedAppenders = getSiftedAppenders(appender);
+                if (siftedAppenders != null) {
+                    for (int i = 0; i < siftedAppenders.size(); i++) {
+                        Object siftedAppender = siftedAppenders.get(i);
+                        wrapAndAddAppender(siftedAppender, appenders);
                     }
                 } else {
                     wrapAndAddAppender(appender, appenders);
@@ -63,6 +61,15 @@ public class LogbackLoggerAccessor extends DefaultAccessor {
     public LogbackAppenderAccessor getAppender(String name) {
         try {
             Object appender = MethodUtils.invokeMethod(getTarget(), "getAppender", name);
+            if (appender == null) {
+                List appenders = getAppenders();
+                for (int i = 0; i < appenders.size(); i++) {
+                    LogbackAppenderAccessor wrappedAppender = (LogbackAppenderAccessor) appenders.get(i);
+                    if (wrappedAppender.getIndex().equals(name)) {
+                        return wrappedAppender;
+                    }
+                }
+            }
             return wrapAppender(appender);
         } catch (Exception e) {
             log.error(getTarget() + ".getAppender() failed", e);
@@ -109,6 +116,19 @@ public class LogbackLoggerAccessor extends DefaultAccessor {
             MethodUtils.invokeMethod(getTarget(), "setLevel", newLevel);
         } catch (Exception e) {
             log.error(getTarget() + ".setLevel(\"" + newLevelStr + "\") failed", e);
+        }
+    }
+
+    private List getSiftedAppenders(Object appender) throws Exception {
+        if ("ch.qos.logback.classic.sift.SiftingAppender".equals(appender.getClass().getName())) {
+            Object tracker = MethodUtils.invokeMethod(appender, "getAppenderTracker", null);
+            if (tracker != null) {
+                return (List) MethodUtils.invokeMethod(tracker, "valueList", null);
+            } else {
+                return new ArrayList();
+            }
+        } else {
+            return null;
         }
     }
 
