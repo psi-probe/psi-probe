@@ -48,20 +48,4 @@ class ObjectWrapper {
         return System.identityHashCode(o);
     }
 
-    public static void main(String[] args) {
-        Map session = new HashMap();
-        session.put("test1", "test message");
-        List bikes = new ArrayList();
-        bikes.add("specialized");
-        bikes.add("kona");
-        bikes.add("GT");
-        session.put("bikes", bikes);
-
-        Map bikeParts = new TreeMap();
-        bikeParts.put("bikes", bikes);
-        session.put("parts", bikeParts);
-
-        System.out.println(Instruments.sizeOf(session));
-
-    }
 }
