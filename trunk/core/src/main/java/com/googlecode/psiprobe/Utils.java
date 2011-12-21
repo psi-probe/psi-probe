@@ -121,11 +121,14 @@ public class Utils {
     }
 
     public static int toInt(String num, int defaultValue) {
-        try {
-            return Integer.parseInt(num);
-        } catch (NumberFormatException e) {
-            return defaultValue;
+        if (num != null) {
+            try {
+                return Integer.parseInt(num);
+            } catch (NumberFormatException e) {
+                //ignore
+            }
         }
+        return defaultValue;
     }
 
     public static int toIntHex(String num, int defaultValue) {
@@ -143,8 +146,30 @@ public class Utils {
         return num == null ? defaultValue : num.intValue();
     }
 
+    public static long toLong(String num, long defaultValue) {
+        if (num != null) {
+            try {
+                return Long.parseLong(num);
+            } catch (NumberFormatException e) {
+                //ignore
+            }
+        }
+        return defaultValue;
+    }
+
     public static long toLong(Long num, long defaultValue) {
         return num == null ? defaultValue : num.longValue();
+    }
+
+    public static float toFloat(String num, float defaultValue) {
+        if (num != null) {
+            try {
+                return Float.parseFloat(num);
+            } catch (NumberFormatException e) {
+                //ignore
+            }
+        }
+        return defaultValue;
     }
 
     public static String getJSPEncoding(InputStream is) throws IOException {
