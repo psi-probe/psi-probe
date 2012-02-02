@@ -79,25 +79,4 @@ Once you have deployed PSI Probe to Tomcat, verify that you can access it in you
 
 When you are prompted for a username and password, enter the credentials for the manager account you created earlier.
 
-= Troubleshooting =
-
-== Run AWT in Headless Mode on UNIX ==
-
-Some users have experienced problems (see issue 64) with graph images not displaying properly, especially when running Tomcat on Sun's JDK for UNIX.  If you see a stack trace for a `java.lang.NoClassDefFoundError` thrown by a class in the `org.jfree.chart` package, add the following JVM command line option:
-
-{{{
--Djava.awt.headless=true
-}}}
-
-== Privileged Apps on Tomcat 6 on RHEL 6 ==
-
-An issue with the yum package for Tomcat 6 may prevent privileged apps from working correctly (see issue 243).  You may need to create `/etc/tomcat6/Catalina/localhost/probe.xml` manually, similar to [#Option_3:_Fully_Manual_Deployment Option 3] above.
-
-== Error on first request ==
-
-Probe uses !ServerInfo to determine what server it's running on.  If you've changed this property on your server, Probe may give an error when you try to access it.  However, you can bypass this issue by forcing Probe to use a specific server adapter:
-
-  # Open probe.war and edit `/WEB-INF/spring-probe-resources.xml`.
-  # Find the "containerWrapper" bean.
-  # Toggle the "forceFirstAdaptor" value from *false* to *true*.
-  # Ensure that the adapter for your version of Tomcat is listed first in the list of "adaptorClasses."  For example, if you are deploying Probe to Tomcat 6, ensure that `com.googlecode.psiprobe.Tomcat60ContainerAdaptor` is listed first.
+If you have any problems, see our [Troubleshooting] page.
