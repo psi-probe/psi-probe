@@ -2,25 +2,9 @@
 <wiki:toc max_depth="2" />
 ----
 
-= Run AWT in Headless Mode on UNIX =
+= !ProbeServlet is privileged and cannot be loaded... =
 
-Some users have experienced problems (see issue 64) with graph images not displaying properly, especially when running Tomcat on Sun's JDK for UNIX.  If you see a stack trace for a `java.lang.NoClassDefFoundError` thrown by a class in the `org.jfree.chart` package, add the following JVM command line option:
-
-{{{
--Djava.awt.headless=true
-}}}
-
-= No fonts found in OpenJDK =
-
-Some users have experienced problems (see issue 161) when running OpenJDK, causing `java.lang.Error: Probable fatal error:No fonts found.`  If switching to the Sun/Oracle JDK is not an option, consider installing a font package.
-
- * http://wiki.hudson-ci.org/display/HUDSON/Hudson+got+java.awt.headless+problem
- * https://bugzilla.redhat.com/show_bug.cgi?id=478480
- * http://www.rhq-project.org/display/JOPR2/FAQ#FAQ-WhyarethegraphsandchartsontheMonitortabintheGUInotdisplayed%3F
-
-= Privileged Apps on Tomcat 6 on RHEL 6 =
-
-An issue with the yum package for Tomcat 6 may prevent privileged apps from working correctly (see issue 243).  You may need to create `/etc/tomcat6/Catalina/localhost/probe.xml` manually, similar to a [InstallationApacheTomcat#Option_3:_Fully_Manual_Deployment Fully Manual Deployment].
+An issue with the yum package for Tomcat 6 on RHEL 6 may prevent privileged apps from working correctly (see issue 243).  You may need to create `/etc/tomcat6/Catalina/localhost/probe.xml` manually, similar to a [InstallationApacheTomcat#Option_3:_Fully_Manual_Deployment Fully Manual Deployment].
 
 = Error on first request =
 
@@ -30,3 +14,31 @@ Probe uses !ServerInfo to determine what server it's running on.  If you've chan
   # Find the "containerWrapper" bean.
   # Toggle the "forceFirstAdaptor" value from *false* to *true*.
   # Ensure that the adapter for your version of Tomcat is listed first in the list of "adaptorClasses."  For example, if you are deploying Probe to Tomcat 6, ensure that `com.googlecode.psiprobe.Tomcat60ContainerAdaptor` is listed first.
+
+= Graphs do not display =
+
+== Run AWT in Headless Mode on UNIX ==
+
+Some users have experienced problems (see issue 64) with graph images not displaying properly, especially when running Tomcat on Sun's JDK for UNIX.  If you see a stack trace for a `java.lang.NoClassDefFoundError` thrown by a class in the `org.jfree.chart` package, add the following JVM command line option:
+
+{{{
+-Djava.awt.headless=true
+}}}
+
+== No fonts found in OpenJDK ==
+
+Some users have experienced problems (see issue 161) when running OpenJDK, causing `java.lang.Error: Probable fatal error:No fonts found.`  If switching to the Sun/Oracle JDK is not an option, consider installing a font package.
+
+ * http://wiki.hudson-ci.org/display/HUDSON/Hudson+got+java.awt.headless+problem
+ * https://bugzilla.redhat.com/show_bug.cgi?id=478480
+ * http://www.rhq-project.org/display/JOPR2/FAQ#FAQ-WhyarethegraphsandchartsontheMonitortabintheGUInotdisplayed%3F
+
+= My problem wasn't listed here =
+
+I hate to ask, but are you using the latest version of Probe?  Your issue might be [Changelogs fixed already].
+
+Someone might have already found a solution you can apply yourself.  Check the [http://code.google.com/p/psi-probe/issues/list?can=1&q=status%3AExternalFix list of issues with an ExternalFix].
+
+No fix available?  You might not be alone.  Search the [http://code.google.com/p/psi-probe/issues/list list of open issues] and star your issue to stay informed.
+
+Still no luck?  Please [http://code.google.com/p/psi-probe/issues/entry file a new issue] and provide as much information as you can.
