@@ -1,4 +1,5 @@
 #summary Addressing common problems
+#labels Featured
 <wiki:toc max_depth="2" />
 ----
 
