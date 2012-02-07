@@ -35,6 +35,8 @@ import org.apache.commons.logging.LogFactory;
  */
 public class Mailer {
 
+    public static final String PROPERTY_KEY_SMTP = "mail.smtp.host";
+
     private Log log = LogFactory.getLog(this.getClass());
     private String from;
     private String smtp;
@@ -89,7 +91,7 @@ public class Mailer {
     public void send(MailMessage mailMessage) throws MessagingException {
         Properties props = (Properties) System.getProperties().clone();
         if (smtp != null) {
-            props.put("mail.smtp.host", smtp);
+            props.put(PROPERTY_KEY_SMTP, smtp);
         }
         PrintStream debugOut = LogOutputStream.createPrintStream(log, LogOutputStream.LEVEL_DEBUG);
 
