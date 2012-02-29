@@ -18,6 +18,17 @@
 
 	<util:properties id="version" location="WEB-INF/version.properties" />
 
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations" value="WEB-INF/stats.properties" />
+		<property name="nullValue" value="NULL" />
+		<property name="properties">
+			<props>
+				<prop key="com.googlecode.psiprobe.tools.mail.to">NULL</prop>
+			</props>
+		</property>
+		<property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />
+	</bean>
+
 	<!--
 		Helper bean to read datasource information into Probe data model.
 	-->
@@ -77,6 +88,13 @@
 		<property name="containerWrapper">
 			<ref bean="containerWrapper"/>
 		</property>
+	</bean>
+
+	<bean id="mailer" class="com.googlecode.psiprobe.tools.Mailer">
+		<property name="defaultTo">
+			<value>${com.googlecode.psiprobe.tools.mail.to}</value>
+		</property>
+		<property name="subjectPrefix" value="[PSI-PROBE] " />
 	</bean>
 
 	<bean id="runtimeInfoAccessor"   class="com.googlecode.psiprobe.beans.RuntimeInfoAccessorBean"/>
