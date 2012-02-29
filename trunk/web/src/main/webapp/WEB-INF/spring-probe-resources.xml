@@ -51,6 +51,11 @@
 		Helper class to allow Probe controllers to access Tomcat.
 	-->
 	<bean id="containerWrapper" class="com.googlecode.psiprobe.beans.ContainerWrapperBean">
+		<!--
+			Setting this property to true will override the server polling each
+			adaptor performs to test for compatibility.  Instead, it will use
+			the first one in the list below.  Reorder those values if necessary.
+		-->
 		<property name="forceFirstAdaptor" value="false"/>
 		<property name="adaptorClasses">
 			<list>
