@@ -44,7 +44,7 @@ PSI Probe requires remote JMX to collect and display certain pieces of informati
 -Dcom.sun.management.jmxremote=true
 }}}
 
-If you need the JMX connection to be secured, refer to the [http://tomcat.apache.org/tomcat-5.5-doc/monitoring.html Tomcat 5.5] and [http://tomcat.apache.org/tomcat-6.0-doc/monitoring.html Tomcat 6] documentation on this topic.
+If you need the JMX connection to be secured, refer to the Tomcat documentation on this topic.
 
 = Deployment =
 
