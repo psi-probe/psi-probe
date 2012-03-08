@@ -69,9 +69,9 @@
 		}
 
 		function updateStatusClass(status, responseText) {
-			if (responseText == "<spring:message code='probe.jsp.applications.status.up'/>") {
+			if (responseText.include("<spring:message code='probe.jsp.applications.status.up'/>")) {
 				status.addClassName('okValue').removeClassName('errorValue');
-			} else if (responseText == "<spring:message code='probe.jsp.applications.status.down'/>") {
+			} else if (responseText.include("<spring:message code='probe.jsp.applications.status.down'/>")) {
 				status.addClassName('errorValue').removeClassName('okValue');
 			}
 		}
