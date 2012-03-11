@@ -1,0 +1,643 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Licensed under the GPL License.  You may not use this file except in
+ * compliance with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ *
+ * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
+ * MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd"
+		default-dependency-check="none" default-lazy-init="false">
+
+	<!--
+		********************** Controllers ****************************
+	-->
+
+	<bean name="/index.htm" class="com.googlecode.psiprobe.controllers.apps.ListWebappsController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="viewName" value="applications"/>
+	</bean>
+
+	<bean name="/resources.htm" class="com.googlecode.psiprobe.controllers.apps.ListApplicationResourcesController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="viewName" value="resources"/>
+	</bean>
+
+	<bean name="/sessions.htm" class="com.googlecode.psiprobe.controllers.sessions.ListSessionsController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="viewName" value="sessions"/>
+	</bean>
+
+	<bean name="/app/toggle.ajax" class="com.googlecode.psiprobe.controllers.apps.AjaxToggleContextController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="viewName" value="ajax/context_status"/>
+	</bean>
+
+	<bean name="/app/stop.htm" class="com.googlecode.psiprobe.controllers.apps.StopContextController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="viewName" value="/index.htm"/>
+	</bean>
+
+	<bean name="/app/stop_summary.htm" class="com.googlecode.psiprobe.controllers.apps.StopContextController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="viewName" value="/appsummary.htm"/>
+		<property name="passQueryString" value="true"/>
+	</bean>
+
+	<bean name="/app/start.htm" class="com.googlecode.psiprobe.controllers.apps.StartContextController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="viewName" value="/index.htm"/>
+	</bean>
+
+	<bean name="/app/start_summary.htm" class="com.googlecode.psiprobe.controllers.apps.StartContextController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="viewName" value="/appsummary.htm"/>
+		<property name="passQueryString" value="true"/>
+	</bean>
+
+	<bean name="/app/resetds.htm" class="com.googlecode.psiprobe.controllers.datasources.ResetDataSourceController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="replacePattern" value="^http(s)?://[a-zA-Z\-\.0-9]+(:[0-9]+)?"/>
+		<!--
+			This controller uses InternalResourceView, so view name here has to be a URL like
+		-->
+		<property name="viewName" value="/resources.htm"/>
+	</bean>
+
+	<bean name="/app/expire.htm" class="com.googlecode.psiprobe.controllers.sessions.ExpireSessionController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<!--
+			This controller uses InternalResourceView, so view name here has to be a URL like
+		-->
+		<property name="viewName" value="/sessions.htm"/>
+	</bean>
+
+	<bean name="/app/expire_list.htm" class="com.googlecode.psiprobe.controllers.sessions.ExpireSessionsController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<!--
+			This controller uses InternalResourceView, so view name here has to be a URL like
+		-->
+		<property name="viewName" value="/sessions.htm"/>
+	</bean>
+
+	<bean name="/deploy.htm" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="deploy"/>
+	</bean>
+
+	<bean name="/adm/deploycfg.htm" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="deployConfig"/>
+	</bean>
+
+	<bean name="/adm/war.htm" class="com.googlecode.psiprobe.controllers.deploy.UploadWarController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="viewName" value="/deploy.htm"/>
+	</bean>
+
+	<bean name="/adm/deploycontext.htm" class="com.googlecode.psiprobe.controllers.deploy.DeployContextController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="viewName" value="/deploy.htm"/>
+	</bean>
+
+	<bean name="/sysinfo.htm" class="com.googlecode.psiprobe.controllers.system.SysInfoController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="runtimeInfoAccessor" ref="runtimeInfoAccessor"/>
+		<property name="viewName" value="sysinfo"/>
+	</bean>
+
+	<bean name="/sysprops.htm" class="com.googlecode.psiprobe.controllers.system.SysInfoController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="runtimeInfoAccessor" ref="runtimeInfoAccessor"/>
+		<property name="filterOutKeys">
+			<list>
+				<value>jmxremote.password</value>
+			</list>
+		</property>
+		<property name="viewName" value="system_properties"/>
+	</bean>
+
+	<bean name="/adm/osinfo.htm" class="com.googlecode.psiprobe.controllers.system.SysInfoController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="runtimeInfoAccessor" ref="runtimeInfoAccessor"/>
+		<property name="viewName" value="osinfo"/>
+		<property name="collectionPeriod">
+			<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+				<property name="targetClass" value="com.googlecode.psiprobe.tools.TimeExpression" />
+				<property name="targetMethod" value="inSeconds" />
+				<property name="arguments">
+					<list>
+						<value>${com.googlecode.psiprobe.beans.stats.collectors.runtime.period}</value>
+					</list>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean name="/adm/osinfo.ajax" class="com.googlecode.psiprobe.controllers.system.SysInfoController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="runtimeInfoAccessor" ref="runtimeInfoAccessor"/>
+		<property name="viewName" value="ajax/osinfo"/>
+	</bean>
+
+	<bean name="/adm/advisegc.htm" class="com.googlecode.psiprobe.controllers.system.AdviseGCController">
+		<property name="replacePattern" value="^http(s)?://[a-zA-Z\-\.0-9]+(:[0-9]+)?"/>
+		<property name="viewName" value="/sysinfo.htm"/>
+	</bean>
+
+	<bean name="/threadpools.htm" class="com.googlecode.psiprobe.controllers.threads.ListThreadPoolsController">
+		<property name="containerListenerBean" ref="containerListener"/>
+		<property name="viewName" value="threadpools"/>
+	</bean>
+
+	<bean name="/adm/quickcheck.htm" class="com.googlecode.psiprobe.controllers.TomcatAvailabilityController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="containerListenerBean" ref="containerListener"/>
+		<property name="viewName" value="quickcheck"/>
+	</bean>
+
+	<bean name="/adm/quickcheck.xml.htm" class="com.googlecode.psiprobe.controllers.TomcatAvailabilityController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="containerListenerBean" ref="containerListener"/>
+		<property name="viewName" value="quickcheck.xml"/>
+	</bean>
+
+	<bean name="/adm/undeploy.htm" class="com.googlecode.psiprobe.controllers.deploy.UndeployContextController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="viewName" value="/index.htm"/>
+	</bean>
+
+	<bean name="/adm/undeploy_summary.htm" class="com.googlecode.psiprobe.controllers.deploy.UndeployContextController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="viewName" value="/index.htm"/>
+		<property name="failureViewName" value="/appsummary.htm"/>
+	</bean>
+
+	<bean name="/datasources.htm" class="com.googlecode.psiprobe.controllers.datasources.ListAllJdbcResourcesController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="viewName" value="datasources"/>
+	</bean>
+
+	<bean name="/datasourcegroups.htm" class="com.googlecode.psiprobe.controllers.datasources.ListAllJdbcResourceGroups">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="viewName" value="datasourcegroup"/>
+	</bean>
+
+	<bean name="/sql/datasourcetest.htm" class="com.googlecode.psiprobe.controllers.sql.DataSourceTestController">
+		<property name="viewName" value="datasourcetest"/>
+		<property name="maxRows" value="1000"/>
+		<property name="rowsPerPage" value="50"/>
+		<property name="historySize" value="30"/>
+		<property name="replacePattern" value="^http(s)?://[a-zA-Z\-\.0-9]+(:[0-9]+)?"/>
+		<property name="collectionPeriod">
+			<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+				<property name="targetClass" value="com.googlecode.psiprobe.tools.TimeExpression" />
+				<property name="targetMethod" value="inSeconds" />
+				<property name="arguments">
+					<list>
+						<value>${com.googlecode.psiprobe.beans.stats.collectors.datasource.period}</value>
+					</list>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean name="/sql/connection.ajax" class="com.googlecode.psiprobe.controllers.sql.ConnectionTestController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="viewName" value="ajax/sql/connection"/>
+	</bean>
+
+	<bean name="/sql/recordset.ajax" class="com.googlecode.psiprobe.controllers.sql.ExecuteSqlController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="viewName" value="ajax/sql/recordset"/>
+	</bean>
+
+	<bean name="/sql/cachedRecordset.ajax" class="com.googlecode.psiprobe.controllers.sql.CachedRecordSetController">
+		<property name="viewName" value="ajax/sql/recordset"/>
+	</bean>
+
+	<bean name="/sql/queryHistory.ajax" class="com.googlecode.psiprobe.controllers.sql.QueryHistoryController">
+		<property name="viewName" value="ajax/sql/queryHistory"/>
+	</bean>
+
+	<bean name="/sql/queryHistoryItem.ajax" class="com.googlecode.psiprobe.controllers.sql.QueryHistoryItemController"/>
+
+	<bean name="/attributes.htm" class="com.googlecode.psiprobe.controllers.sessions.ListSessionAttributesController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="viewName" value="attributes"/>
+	</bean>
+
+	<bean name="/app/rmsattr.htm" class="com.googlecode.psiprobe.controllers.sessions.RemoveSessAttributeController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="viewName" value="/attributes.htm"/>
+	</bean>
+
+	<bean name="/app/reload.ajax" class="com.googlecode.psiprobe.controllers.apps.AjaxReloadContextController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="viewName" value="ajax/context_status"/>
+	</bean>
+
+	<bean name="/app/reload.htm" class="com.googlecode.psiprobe.controllers.apps.ReloadContextController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="viewName" value="/index.htm"/>
+	</bean>
+
+	<bean name="/app/reload_summary.htm" class="com.googlecode.psiprobe.controllers.apps.ReloadContextController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="viewName" value="/appsummary.htm"/>
+		<property name="passQueryString" value="true"/>
+	</bean>
+
+	<bean name="/app/jsp.htm" class="com.googlecode.psiprobe.controllers.jsp.DisplayJspController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="viewName" value="showjsps"/>
+	</bean>
+
+	<bean name="/app/recompile.htm" class="com.googlecode.psiprobe.controllers.jsp.RecompileJspController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="viewName" value="/app/jsp.htm"/>
+	</bean>
+
+	<bean name="/app/viewsource.htm" class="com.googlecode.psiprobe.controllers.jsp.ViewSourceController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="viewName" value="view_jsp_source"/>
+	</bean>
+
+	<bean name="/app/viewservlet.htm" class="com.googlecode.psiprobe.controllers.jsp.ViewServletSourceController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="viewName" value="view_servlet_source"/>
+	</bean>
+
+	<bean name="/app/downloadserv.htm" class="com.googlecode.psiprobe.controllers.jsp.DownloadServletController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+	</bean>
+
+	<bean name="/adm/discard.htm" class="com.googlecode.psiprobe.controllers.jsp.DiscardCompiledJspController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="viewName" value="/app/jsp.htm"/>
+	</bean>
+
+	<bean name="/appsummary.htm" class="com.googlecode.psiprobe.controllers.apps.GetApplicationController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="viewName" value="appsummary"/>
+		<property name="extendedInfo" value="false"/>
+		<property name="collectionPeriod">
+			<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+				<property name="targetClass" value="com.googlecode.psiprobe.tools.TimeExpression" />
+				<property name="targetMethod" value="inSeconds" />
+				<property name="arguments">
+					<list>
+						<value>${com.googlecode.psiprobe.beans.stats.collectors.app.period}</value>
+					</list>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean name="/appruntimeinfo.ajax" class="com.googlecode.psiprobe.controllers.apps.GetApplicationController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="viewName" value="ajax/appRuntimeInfo"/>
+		<property name="extendedInfo" value="true"/>
+		<property name="statsCollection" ref="statsCollection"/>
+	</bean>
+
+	<bean name="/appreqdetails.ajax" class="com.googlecode.psiprobe.controllers.apps.GetApplicationController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="viewName" value="ajax/appRequestDetails"/>
+		<property name="extendedInfo" value="true"/>
+		<property name="statsCollection" ref="statsCollection"/>
+	</bean>
+
+	<bean name="/appprocdetails.ajax" class="com.googlecode.psiprobe.controllers.apps.GetApplicationController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="viewName" value="ajax/appProcTimeDetails"/>
+		<property name="extendedInfo" value="true"/>
+		<property name="statsCollection" ref="statsCollection"/>
+	</bean>
+
+	<bean name="/app/viewwebxml.htm" class="com.googlecode.psiprobe.controllers.apps.ViewXMLConfController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="viewName" value="view_xml_conf"/>
+		<property name="displayTarget" value="web.xml"/>
+		<property name="downloadUrl" value="/app/downloadwebxml.htm"/>
+	</bean>
+
+	<bean name="/adm/viewcontextxml.htm" class="com.googlecode.psiprobe.controllers.apps.ViewXMLConfController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="viewName" value="view_xml_conf"/>
+		<property name="displayTarget" value="context.xml"/>
+		<property name="downloadUrl" value="/adm/downloadcontextxml.htm"/>
+	</bean>
+
+	<bean name="/app/downloadwebxml.htm" class="com.googlecode.psiprobe.controllers.apps.DownloadXMLConfController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="downloadTarget" value="web.xml"/>
+	</bean>
+
+	<bean name="/adm/downloadcontextxml.htm" class="com.googlecode.psiprobe.controllers.apps.DownloadXMLConfController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="downloadTarget" value="context.xml"/>
+	</bean>
+
+	<bean name="/allappstats.htm" class="com.googlecode.psiprobe.controllers.apps.AllAppStatsController">
+		<property name="viewName" value="allappstats"/>
+		<property name="collectionPeriod">
+			<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+				<property name="targetClass" value="com.googlecode.psiprobe.tools.TimeExpression" />
+				<property name="targetMethod" value="inSeconds" />
+				<property name="arguments">
+					<list>
+						<value>${com.googlecode.psiprobe.beans.stats.collectors.app.period}</value>
+					</list>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean name="/cnreqdetails.ajax" class="com.googlecode.psiprobe.controllers.connectors.GetConnectorController">
+		<property name="containerListenerBean" ref="containerListener"/>
+		<property name="viewName" value="ajax/connectorRequestDetails"/>
+	</bean>
+
+	<bean name="/cntrafdetails.ajax" class="com.googlecode.psiprobe.controllers.connectors.GetConnectorController">
+		<property name="containerListenerBean" ref="containerListener"/>
+		<property name="viewName" value="ajax/connectorTrafficDetails"/>
+	</bean>
+
+	<bean name="/cnprocdetails.ajax" class="com.googlecode.psiprobe.controllers.connectors.GetConnectorController">
+		<property name="containerListenerBean" ref="containerListener"/>
+		<property name="viewName" value="ajax/connectorProcTimeDetails"/>
+	</bean>
+
+	<bean name="/remember.ajax" class="com.googlecode.psiprobe.controllers.RememberVisibilityController"/>
+
+	<bean name="/connectors.htm" class="com.googlecode.psiprobe.controllers.connectors.ListConnectorsController">
+		<property name="viewName" value="connectors"/>
+		<property name="containerListenerBean" ref="containerListener"/>
+		<property name="includeRequestProcessors" value="true"/>
+		<property name="collectionPeriod">
+			<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+				<property name="targetClass" value="com.googlecode.psiprobe.tools.TimeExpression" />
+				<property name="targetMethod" value="inSeconds" />
+				<property name="arguments">
+					<list>
+						<value>${com.googlecode.psiprobe.beans.stats.collectors.connector.period}</value>
+					</list>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean name="/zoomchart.htm" class="com.googlecode.psiprobe.controllers.connectors.ZoomChartController">
+		<property name="viewName" value="zoomreq"/>
+		<property name="collectionPeriod">
+			<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+				<property name="targetClass" value="com.googlecode.psiprobe.tools.TimeExpression" />
+				<property name="targetMethod" value="inSeconds" />
+				<property name="arguments">
+					<list>
+						<value>${com.googlecode.psiprobe.beans.stats.collectors.connector.period}</value>
+					</list>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean name="/app/connectorReset.htm" class="com.googlecode.psiprobe.controllers.connectors.ResetConnectorStatsController">
+		<property name="collectorBean" ref="connectorStatsCollector"/>
+		<property name="viewName" value="/connectors.htm"/>
+	</bean>
+
+	<bean name="/logs,/logs/index.htm" class="com.googlecode.psiprobe.controllers.logs.ListLogsController">
+		<property name="logResolver" ref="logResolver"/>
+		<property name="viewName" value="logs"/>
+		<property name="errorView" value="logs_notsupported"/>
+	</bean>
+
+	<bean name="/logs/download" class="com.googlecode.psiprobe.controllers.logs.DownloadLogController">
+		<property name="logResolver" ref="logResolver"/>
+		<property name="viewName" value=""/>
+	</bean>
+
+	<bean name="/logs/follow.htm" class="com.googlecode.psiprobe.controllers.logs.SetupFollowController">
+		<property name="logResolver" ref="logResolver"/>
+		<property name="viewName" value="follow"/>
+	</bean>
+
+	<bean name="/logs/follow.ajax" class="com.googlecode.psiprobe.controllers.logs.FollowController">
+		<property name="logResolver" ref="logResolver"/>
+		<property name="viewName" value="ajax/follow"/>
+	</bean>
+
+	<bean name="/logs/ff_info.ajax" class="com.googlecode.psiprobe.controllers.logs.LogHandlerController">
+		<property name="logResolver" ref="logResolver"/>
+		<property name="viewName" value="ajax/followed_file_info"/>
+	</bean>
+
+	<bean name="/adm/changeloglevel.ajax" class="com.googlecode.psiprobe.controllers.logs.ChangeLogLevelController">
+		<property name="logResolver" ref="logResolver"/>
+		<property name="viewName" value=""/>
+	</bean>
+
+	<bean name="/decorator.htm" class="com.googlecode.psiprobe.controllers.DecoratorController">
+		<property name="viewName" value="decorators/probe"/>
+		<property name="messagesBasename" value="/WEB-INF/messages"/>
+	</bean>
+
+	<bean name="/th_impl1.htm" class="com.googlecode.psiprobe.controllers.threads.ListThreadsController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="viewName" value="threads"/>
+	</bean>
+
+	<bean name="/th_impl2.htm" class="com.googlecode.psiprobe.controllers.threads.ListSunThreadsController">
+		<property name="viewName" value="threads_sun"/>
+	</bean>
+
+	<bean name="/threads.htm" class="com.googlecode.psiprobe.controllers.threads.ImplSelectorController">
+		<property name="impl1Controller" value="forward:/th_impl1.htm"/>
+		<property name="impl2Controller" value="forward:/th_impl2.htm"/>
+	</bean>
+
+	<bean name="/cldetails.ajax" class="com.googlecode.psiprobe.controllers.threads.GetClassLoaderUrlsController">
+		<property name="viewName" value="ajax/classLoaderDetails"/>
+	</bean>
+
+	<bean name="/adm/kill.htm" class="com.googlecode.psiprobe.controllers.threads.KillThreadController">
+		<property name="replacePattern" value="^http(s)?://[a-zA-Z\-\.0-9]+(:[0-9]+)?"/>
+		<property name="viewName" value="redirect:/threads.htm"/>
+	</bean>
+
+	<bean name="/cluster.htm" class="com.googlecode.psiprobe.controllers.cluster.ClusterStatsController">
+		<property name="clusterWrapper" ref="clusterWrapper"/>
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="loadMembers" value="false"/>
+		<property name="viewName" value="cluster"/>
+		<property name="collectionPeriod">
+			<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+				<property name="targetClass" value="com.googlecode.psiprobe.tools.TimeExpression" />
+				<property name="targetMethod" value="inSeconds" />
+				<property name="arguments">
+					<list>
+						<value>${com.googlecode.psiprobe.beans.stats.collectors.cluster.period}</value>
+					</list>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean name="/cluster/members.ajax" class="com.googlecode.psiprobe.controllers.cluster.ClusterStatsController">
+		<property name="clusterWrapper" ref="clusterWrapper"/>
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="viewName" value="ajax/cluster/members"/>
+	</bean>
+
+	<bean name="/cluster/traffic.ajax" class="com.googlecode.psiprobe.controllers.cluster.ClusterStatsController">
+		<property name="clusterWrapper" ref="clusterWrapper"/>
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="loadMembers" value="false"/>
+		<property name="viewName" value="ajax/cluster/traffic"/>
+	</bean>
+
+	<bean name="/cluster/requests.ajax" class="com.googlecode.psiprobe.controllers.cluster.ClusterStatsController">
+		<property name="clusterWrapper" ref="clusterWrapper"/>
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="loadMembers" value="false"/>
+		<property name="viewName" value="ajax/cluster/requests"/>
+	</bean>
+
+	<bean name="/appattributes.htm" class="com.googlecode.psiprobe.controllers.apps.ListAppAttributesController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="viewName" value="appattributes"/>
+	</bean>
+
+	<bean name="/app/rmappattr.htm" class="com.googlecode.psiprobe.controllers.apps.RemoveApplicationAttributeController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="viewName" value="/appattributes.htm"/>
+	</bean>
+
+	<bean name="/appinitparams.htm" class="com.googlecode.psiprobe.controllers.apps.ListAppInitParamsController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="viewName" value="appinitparams"/>
+	</bean>
+
+	<bean name="/servlets.htm" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="servlets"/>
+	</bean>
+
+	<bean name="/servlets.ajax" class="com.googlecode.psiprobe.controllers.servlets.ListServletsController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="viewName" value="ajax/servlets"/>
+	</bean>
+
+	<bean name="/servletmaps.htm" class="com.googlecode.psiprobe.controllers.servlets.ListServletMapsController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="viewName" value="servletmaps"/>
+	</bean>
+
+	<bean name="/appfilters.htm" class="com.googlecode.psiprobe.controllers.filters.ListAppFiltersController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="viewName" value="appfilters"/>
+	</bean>
+
+	<bean name="/appfiltermaps.htm" class="com.googlecode.psiprobe.controllers.filters.ListAppFilterMapsController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="viewName" value="appfiltermaps"/>
+	</bean>
+
+	<bean name="/memory.ajax" class="com.googlecode.psiprobe.controllers.system.MemoryStatsController">
+		<property name="jvmMemoryInfoAccessorBean" ref="jvmMemoryInfoAccessor"/>
+		<property name="viewName" value="ajax/memory_pools"/>
+	</bean>
+
+	<bean name="/memory.htm" class="com.googlecode.psiprobe.controllers.system.MemoryStatsController">
+		<property name="jvmMemoryInfoAccessorBean" ref="jvmMemoryInfoAccessor"/>
+		<property name="viewName" value="memory"/>
+		<property name="collectionPeriod">
+			<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+				<property name="targetClass" value="com.googlecode.psiprobe.tools.TimeExpression" />
+				<property name="targetMethod" value="inSeconds" />
+				<property name="arguments">
+					<list>
+						<value>${com.googlecode.psiprobe.beans.stats.collectors.memory.period}</value>
+					</list>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean name="/wrapper.htm" class="com.googlecode.psiprobe.controllers.wrapper.WrapperInfoController">
+		<property name="viewName" value="wrapper"/>
+	</bean>
+
+	<bean name="/chart.png" class="com.googlecode.psiprobe.controllers.RenderChartController">
+		<property name="statsCollection" ref="statsCollection"/>
+	</bean>
+
+	<bean name="/adm/restartvm.ajax" class="com.googlecode.psiprobe.controllers.wrapper.RestartJvmController">
+		<property name="viewName" value="ajax/jvm_restarted"/>
+	</bean>
+
+	<bean name="/adm/stopvm.ajax" class="com.googlecode.psiprobe.controllers.wrapper.StopJvmController">
+		<property name="viewName" value="ajax/jvm_stopped"/>
+	</bean>
+
+	<bean name="/adm/threaddump.ajax" class="com.googlecode.psiprobe.controllers.wrapper.ThreadDumpController">
+		<property name="viewName" value="ajax/thread_dump"/>
+	</bean>
+
+	<bean name="/app/threadstack.ajax" class="com.googlecode.psiprobe.controllers.threads.ThreadStackController">
+		<property name="stackElementCount" value="100"/>
+		<property name="viewName" value="ajax/ThreadStack"/>
+	</bean>
+
+	<bean name="/whois.ajax" class="com.googlecode.psiprobe.controllers.WhoisController">
+		<!-- whois lookup timeout in seconds -->
+		<property name="lookupTimeout" value="5"/>
+		<property name="defaultServer" value="whois.arin.net"/>
+		<property name="defaultPort" value="43"/>
+		<property name="viewName" value="ajax/whois"/>
+	</bean>
+
+	<bean name="/403.htm" class="com.googlecode.psiprobe.controllers.ErrorHandlerController">
+		<property name="viewName" value="errors/403"/>
+		<property name="ajaxViewName" value="errors/403_ajax"/>
+		<property name="ajaxExtension" value=".ajax"/>
+	</bean>
+
+	<bean name="/404.htm" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="errors/404"/>
+	</bean>
+
+	<bean name="/*.oxml.htm" class="com.googlecode.psiprobe.controllers.BeanToXmlController">
+		<property name="xmlMarker" value=".oxml"/>
+	</bean>
+
+	<bean name="/help/applications.ajax" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="ajax/help/applications" />
+	</bean>
+
+	<bean name="/help/datasources.ajax" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="ajax/help/datasources" />
+	</bean>
+
+	<bean name="/help/datasourcetest.ajax" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="ajax/help/datasourcetest" />
+	</bean>
+
+	<bean name="/help/sessionsearch.ajax" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="ajax/help/sessionsearch" />
+	</bean>
+
+	<bean name="/help/threads.ajax" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="ajax/help/threads" />
+	</bean>
+
+	<bean name="/help/threads2.ajax" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="ajax/help/threads2" />
+	</bean>
+
+</beans>
