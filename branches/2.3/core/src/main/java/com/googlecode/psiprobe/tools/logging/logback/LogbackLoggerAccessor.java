@@ -10,18 +10,17 @@
  */
 package com.googlecode.psiprobe.tools.logging.logback;
 
+import com.googlecode.psiprobe.tools.logging.DefaultAccessor;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
 import org.apache.commons.beanutils.MethodUtils;
-
-import com.googlecode.psiprobe.tools.logging.DefaultAccessor;
 
 /**
  * A wrapper for a Logback logger.
  * 
  * @author Harald Wellmann
+ * @author Mark Lewis
  */
 public class LogbackLoggerAccessor extends DefaultAccessor {
 
@@ -35,13 +34,19 @@ public class LogbackLoggerAccessor extends DefaultAccessor {
         try {
             Iterator it =  (Iterator) MethodUtils.invokeMethod(getTarget(), "iteratorForAppenders", null);
             while (it.hasNext()) {
-                LogbackAppenderAccessor aa = wrapAppender(it.next());
-                if (aa != null) {
-                    appenders.add(aa);
+                Object appender = it.next();
+                List siftedAppenders = getSiftedAppenders(appender);
+                if (siftedAppenders != null) {
+                    for (int i = 0; i < siftedAppenders.size(); i++) {
+                        Object siftedAppender = siftedAppenders.get(i);
+                        wrapAndAddAppender(siftedAppender, appenders);
+                    }
+                } else {
+                    wrapAndAddAppender(appender, appenders);
                 }
             }
         } catch (Exception e) {
-            log.error(getTarget() + ".iteratorForAppenders() failed", e);
+            log.error(getTarget() + ".getAppenders() failed", e);
         }
         return appenders;
     }
@@ -56,6 +61,15 @@ public class LogbackLoggerAccessor extends DefaultAccessor {
     public LogbackAppenderAccessor getAppender(String name) {
         try {
             Object appender = MethodUtils.invokeMethod(getTarget(), "getAppender", name);
+            if (appender == null) {
+                List appenders = getAppenders();
+                for (int i = 0; i < appenders.size(); i++) {
+                    LogbackAppenderAccessor wrappedAppender = (LogbackAppenderAccessor) appenders.get(i);
+                    if (wrappedAppender.getIndex().equals(name)) {
+                        return wrappedAppender;
+                    }
+                }
+            }
             return wrapAppender(appender);
         } catch (Exception e) {
             log.error(getTarget() + ".getAppender() failed", e);
@@ -102,6 +116,26 @@ public class LogbackLoggerAccessor extends DefaultAccessor {
             MethodUtils.invokeMethod(getTarget(), "setLevel", newLevel);
         } catch (Exception e) {
             log.error(getTarget() + ".setLevel(\"" + newLevelStr + "\") failed", e);
+        }
+    }
+
+    private List getSiftedAppenders(Object appender) throws Exception {
+        if ("ch.qos.logback.classic.sift.SiftingAppender".equals(appender.getClass().getName())) {
+            Object tracker = MethodUtils.invokeMethod(appender, "getAppenderTracker", null);
+            if (tracker != null) {
+                return (List) MethodUtils.invokeMethod(tracker, "valueList", null);
+            } else {
+                return new ArrayList();
+            }
+        } else {
+            return null;
+        }
+    }
+
+    private void wrapAndAddAppender(Object appender, List appenders) {
+        LogbackAppenderAccessor appenderAccessor = wrapAppender(appender);
+        if (appenderAccessor != null) {
+            appenders.add(appenderAccessor);
         }
     }
 
