@@ -90,7 +90,9 @@ public class LogbackFactoryAccessor extends DefaultAccessor {
             Class clazz = getTarget().getClass();
             Method m = MethodUtils.getAccessibleMethod(clazz, "getLogger", new Class[] {String.class});
             Object logger = m.invoke(getTarget(), new Object[] {name});
-
+            if (logger == null) {
+                throw new NullPointerException(getTarget() + ".getLogger(\"" + name + "\") returned null");
+            }
             LogbackLoggerAccessor accessor = new LogbackLoggerAccessor();
             accessor.setTarget(logger);
             accessor.setApplication(getApplication());
@@ -98,8 +100,8 @@ public class LogbackFactoryAccessor extends DefaultAccessor {
 
         } catch (Exception e) {
             log.error(getTarget() + ".getLogger(\"" + name + "\") failed", e);
-            return null;
         }
+        return null;
     }
 
     /**

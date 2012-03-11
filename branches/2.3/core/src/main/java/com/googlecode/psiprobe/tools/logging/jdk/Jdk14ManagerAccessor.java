@@ -11,6 +11,7 @@
 package com.googlecode.psiprobe.tools.logging.jdk;
 
 import com.googlecode.psiprobe.tools.logging.DefaultAccessor;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
@@ -25,7 +26,11 @@ public class Jdk14ManagerAccessor extends DefaultAccessor {
     public static Jdk14ManagerAccessor create(ClassLoader cl) {
         try {
             Class clazz = cl.loadClass("java.util.logging.LogManager");
-            Object manager = MethodUtils.getAccessibleMethod(clazz, "getLogManager", new Class[]{}).invoke(null, null);
+            Method getManager = MethodUtils.getAccessibleMethod(clazz, "getLogManager", new Class[]{});
+            Object manager = getManager.invoke(null, null);
+            if (manager == null) {
+                throw new NullPointerException(clazz.getName() + ".getLogManager() returned null");
+            }
             Jdk14ManagerAccessor accessor = new Jdk14ManagerAccessor();
             accessor.setTarget(manager);
             return accessor;
@@ -41,14 +46,17 @@ public class Jdk14ManagerAccessor extends DefaultAccessor {
     public Jdk14LoggerAccessor getLogger(String name) {
         try {
             Object logger = MethodUtils.invokeMethod(getTarget(), "getLogger", name);
+            if (logger == null) {
+                throw new NullPointerException(getTarget() + ".getLogger(\"" + name + "\") returned null");
+            }
             Jdk14LoggerAccessor accessor = new Jdk14LoggerAccessor();
             accessor.setTarget(logger);
             accessor.setApplication(getApplication());
             return accessor;
         } catch (Exception e) {
             log.error(getTarget() + ".getLogger(\"" + name + "\") failed", e);
-            return null;
         }
+        return null;
     }
 
     public List getHandlers() {
@@ -58,8 +66,9 @@ public class Jdk14ManagerAccessor extends DefaultAccessor {
             while (e.hasMoreElements()) {
                 String name = (String) e.nextElement();
                 Jdk14LoggerAccessor accessor = getLogger(name);
-
-                allHandlers.addAll(accessor.getHandlers());
+                if (accessor != null) {
+                    allHandlers.addAll(accessor.getHandlers());
+                }
             }
         } catch (Exception e) {
             log.error(getTarget() + ".getLoggerNames() failed", e);

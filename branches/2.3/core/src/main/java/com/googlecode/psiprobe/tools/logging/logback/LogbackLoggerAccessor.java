@@ -36,7 +36,9 @@ public class LogbackLoggerAccessor extends DefaultAccessor {
             Iterator it =  (Iterator) MethodUtils.invokeMethod(getTarget(), "iteratorForAppenders", null);
             while (it.hasNext()) {
                 LogbackAppenderAccessor aa = wrapAppender(it.next());
-                appenders.add(aa);
+                if (aa != null) {
+                    appenders.add(aa);
+                }
             }
         } catch (Exception e) {
             log.error(getTarget() + ".iteratorForAppenders() failed", e);
@@ -104,15 +106,19 @@ public class LogbackLoggerAccessor extends DefaultAccessor {
     }
 
     private LogbackAppenderAccessor wrapAppender(Object appender) {
-        if (appender != null) {
+        try {
+            if (appender == null) {
+                throw new IllegalArgumentException("appender is null");
+            }
             LogbackAppenderAccessor appenderAccessor = new LogbackAppenderAccessor();
             appenderAccessor.setTarget(appender);
             appenderAccessor.setLoggerAccessor(this);
             appenderAccessor.setApplication(getApplication());
             return appenderAccessor;
-        } else {
-            return null;
+        } catch (Exception e) {
+            log.error("Could not wrap appender: " + appender, e);
         }
+        return null;
     }
 
 }
