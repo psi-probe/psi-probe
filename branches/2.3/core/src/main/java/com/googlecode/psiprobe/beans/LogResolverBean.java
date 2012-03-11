@@ -246,25 +246,51 @@ public class LogResolverBean {
     }
 
     private void interrogateClassLoader(ClassLoader cl, Application application, List appenders) {
-
-        Jdk14ManagerAccessor jdk14accessor = Jdk14ManagerAccessor.create(cl);
-        if (jdk14accessor != null) {
+        String applicationName = (application != null ? "application \"" + application.getName() + "\"" : "server");
+        
+        //check for JDK loggers
+        try {
+            Jdk14ManagerAccessor jdk14accessor = new Jdk14ManagerAccessor(cl);
             jdk14accessor.setApplication(application);
             appenders.addAll(jdk14accessor.getHandlers());
+        } catch (Throwable t) {
+            //
+            // make sure we always re-throw ThreadDeath
+            //
+            if (t instanceof ThreadDeath) {
+                throw (ThreadDeath) t;
+            }
+            logger.debug("Could not resolve JDK loggers for " + applicationName, t);
         }
 
         // check for Log4J loggers
-        Log4JManagerAccessor log4JAccessor = Log4JManagerAccessor.create(cl);
-        if (log4JAccessor != null) {
+        try {
+            Log4JManagerAccessor log4JAccessor = new Log4JManagerAccessor(cl);
             log4JAccessor.setApplication(application);
             appenders.addAll(log4JAccessor.getAppenders());
+        } catch (Throwable t) {
+            //
+            // make sure we always re-throw ThreadDeath
+            //
+            if (t instanceof ThreadDeath) {
+                throw (ThreadDeath) t;
+            }
+            logger.debug("Could not resolve JDK loggers for " + applicationName, t);
         }
 
         // check for Logback loggers
-        LogbackFactoryAccessor logbackAccessor = LogbackFactoryAccessor.create(cl);
-        if (logbackAccessor != null) {
+        try {
+            LogbackFactoryAccessor logbackAccessor = new LogbackFactoryAccessor(cl);
             logbackAccessor.setApplication(application);
             appenders.addAll(logbackAccessor.getAppenders());
+        } catch (Throwable t) {
+            //
+            // make sure we always re-throw ThreadDeath
+            //
+            if (t instanceof ThreadDeath) {
+                throw (ThreadDeath) t;
+            }
+            logger.debug("Could not resolve JDK loggers for " + applicationName, t);
         }
     }
 
@@ -320,37 +346,55 @@ public class LogResolverBean {
     }
 
     private LogDestination getJdk14LogDestination(ClassLoader cl, Application application, boolean root, String logName, String handlerIndex) {
-        Jdk14ManagerAccessor manager = Jdk14ManagerAccessor.create(cl);
-        if (manager != null) {
+        try {
+            Jdk14ManagerAccessor manager = new Jdk14ManagerAccessor(cl);
             manager.setApplication(application);
             Jdk14LoggerAccessor log = (root ? manager.getRootLogger() : manager.getLogger(logName));
             if (log != null) {
                 return log.getHandler(handlerIndex);
             }
+        } catch (Throwable t) {
+            //always re-throw ThreadDeath when catching Throwable
+            if (t instanceof ThreadDeath) {
+                throw (ThreadDeath) t;
+            }
+            logger.debug("getJdk14LogDestination failed", t);
         }
         return null;
     }
 
     private LogDestination getLog4JLogDestination(ClassLoader cl, Application application, boolean root, String logName, String appenderName) {
-        Log4JManagerAccessor manager = Log4JManagerAccessor.create(cl);
-        if (manager != null) {
+        try {
+            Log4JManagerAccessor manager = new Log4JManagerAccessor(cl);
             manager.setApplication(application);
             Log4JLoggerAccessor log = (root ? manager.getRootLogger() : manager.getLogger(logName));
             if (log != null) {
                 return log.getAppender(appenderName);
             }
+        } catch (Throwable t) {
+            //always re-throw ThreadDeath when catching Throwable
+            if (t instanceof ThreadDeath) {
+                throw (ThreadDeath) t;
+            }
+            logger.debug("getLog4JLogDestination failed", t);
         }
         return null;
     }
 
     private LogDestination getLogbackLogDestination(ClassLoader cl, Application application, boolean root, String logName, String appenderName) {
-        LogbackFactoryAccessor manager = LogbackFactoryAccessor.create(cl);
-        if (manager != null) {
+        try {
+            LogbackFactoryAccessor manager = new LogbackFactoryAccessor(cl);
             manager.setApplication(application);
             LogbackLoggerAccessor log = (root ? manager.getRootLogger() : manager.getLogger(logName));
             if (log != null) {
                 return log.getAppender(appenderName);
             }
+        } catch (Throwable t) {
+            //always re-throw ThreadDeath when catching Throwable
+            if (t instanceof ThreadDeath) {
+                throw (ThreadDeath) t;
+            }
+            logger.debug("getLogbackLogDestination failed", t);
         }
         return null;
     }
