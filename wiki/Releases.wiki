@@ -24,7 +24,7 @@
     # Create tag from branch.
       * Commit message: _Tagging x.x.x release_
     # Upload ZIP to GC as a Featured Download.
-    # Deprecate previous build.
+    # Remove Featured label from previous release.
     # Change status of issues to !FixReleased.
       * Issue comment: _x.x.x released._
     # Update [Changelogs] and [DevelopmentRoadmap].
