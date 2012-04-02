@@ -76,6 +76,11 @@
 		</dependency>
 		<dependency>
 			<groupId>com.oracle</groupId>
+			<artifactId>ucp</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.oracle</groupId>
 			<artifactId>ojdbc14</artifactId>
 			<scope>provided</scope>
 		</dependency>

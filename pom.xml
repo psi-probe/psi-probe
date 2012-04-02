@@ -100,6 +100,17 @@
 			<url>https://repository.jboss.org/nexus/content/repositories/deprecated/</url>
 			<layout>default</layout>
 		</repository>
+		<repository>
+			<!-- Required for oracle ucp -->
+			<snapshots>
+				<enabled>false</enabled>
+				<updatePolicy>never</updatePolicy>
+			</snapshots>
+			<id>repo.edorasframework.org</id>
+			<name>repo.edorasframework.org</name>
+			<url>http://repo.edorasframework.org/mvn/maven2/</url>
+			<layout>default</layout>
+		</repository>
 	</repositories>
 	<dependencyManagement>
 		<dependencies>
@@ -151,6 +162,11 @@
 						<artifactId>jmxri</artifactId>
 					</exclusion>
 				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>com.oracle</groupId>
+				<artifactId>ucp</artifactId>
+				<version>11.2.0.1.0</version>
 			</dependency>
 			<dependency>
 				<!--
