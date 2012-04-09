@@ -12,6 +12,8 @@ package com.googlecode.psiprobe.tools;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import org.springframework.security.GrantedAuthority;
+import org.springframework.security.context.SecurityContextHolder;
 
 public class SecurityUtils {
 
@@ -22,28 +24,29 @@ public class SecurityUtils {
         String[] privilegedRoles = getPrivilegedRoles(servletContext).split(",");
         for (int i = 0; i < privilegedRoles.length; i++) {
             String privilegedRole = privilegedRoles[i];
-            if (request.isUserInRole(privilegedRole)) {
+            if (userHasRole(privilegedRole)) {
                 return true;
             }
         }
         return false;
     }
 
-    /*
-    public static boolean hasAttributeValueRole(ServletContext servletContext) {
-        String privelegedRole = getPrivilegedRole(servletContext);
+    private static boolean userHasRole(String privilegedRole) {
         GrantedAuthority[] authorities = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
 
         boolean result = false;
         for (int i = 0; i < authorities.length; i++) {
-            if (privelegedRole.equals(authorities[i].getAuthority())) {
+            if (privilegedRole.equals(authorities[i].getAuthority())) {
                 result = true;
                 break;
             }
         }
         return result;
     }
-     */
+
+    private static boolean userHasRole(String privilegedRole, HttpServletRequest request) {
+        return request.isUserInRole(privilegedRole);
+    }
 
     private static String getPrivilegedRoles(ServletContext servletContext) {
         return servletContext.getInitParameter("attribute.value.roles");
