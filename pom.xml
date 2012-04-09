@@ -239,6 +239,33 @@
 				</exclusions>
 			</dependency>
 			<dependency>
+				<groupId>jaxen</groupId>
+				<artifactId>jaxen</artifactId>
+				<version>1.1.1</version>
+				<exclusions>
+					<exclusion>
+						<groupId>dom4j</groupId>
+						<artifactId>dom4j</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>jdom</groupId>
+						<artifactId>jdom</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>xerces</groupId>
+						<artifactId>xercesImpl</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>xom</groupId>
+						<artifactId>xom</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>xml-apis</groupId>
+						<artifactId>xml-apis</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-context</artifactId>
 				<version>2.5.6.SEC01</version>
@@ -252,6 +279,21 @@
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-tx</artifactId>
 				<version>2.5.6.SEC01</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-core</artifactId>
+				<version>2.0.7.RELEASE</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-core</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-support</artifactId>
+					</exclusion>
+				</exclusions>
 			</dependency>
 			<dependency>
 				<groupId>javainetlocator</groupId>

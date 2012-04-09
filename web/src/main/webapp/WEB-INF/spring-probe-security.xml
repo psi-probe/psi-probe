@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:sec="http://www.springframework.org/schema/security"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans    http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+		                    http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-2.0.6.xsd">
+
+	<bean id="filterChainProxy" class="org.springframework.security.util.FilterChainProxy">
+		<sec:filter-chain-map path-type="ant">
+			<sec:filter-chain pattern="/**" filters="sif,j2eePreAuthFilter,logoutFilter,etf,fsi"/>
+		</sec:filter-chain-map>
+	</bean>
+
+	<bean id="authenticationManager" class="org.springframework.security.providers.ProviderManager">
+		<property name="providers">
+			<list>
+				<ref local="preAuthenticatedAuthenticationProvider"/>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="sif" class="org.springframework.security.context.HttpSessionContextIntegrationFilter"/>
+
+	<bean id="preAuthenticatedAuthenticationProvider" class="org.springframework.security.providers.preauth.PreAuthenticatedAuthenticationProvider">
+		<property name="preAuthenticatedUserDetailsService" ref="preAuthenticatedUserDetailsService"/>
+	</bean>
+
+	<bean id="preAuthenticatedUserDetailsService"
+		  class="org.springframework.security.providers.preauth.PreAuthenticatedGrantedAuthoritiesUserDetailsService"/>
+
+	<bean id="j2eePreAuthFilter" class="org.springframework.security.ui.preauth.j2ee.J2eePreAuthenticatedProcessingFilter">
+		<property name="authenticationManager" ref="authenticationManager"/>
+		<property name="authenticationDetailsSource" ref="authenticationDetailsSource"/>
+	</bean>
+
+	<bean id="preAuthenticatedProcessingFilterEntryPoint"
+		  class="org.springframework.security.ui.preauth.PreAuthenticatedProcessingFilterEntryPoint"/>
+
+	<bean id="logoutFilter" class="org.springframework.security.ui.logout.LogoutFilter">
+		<constructor-arg value="/"/>
+		<constructor-arg>
+			<list>
+				<bean class="org.springframework.security.ui.logout.SecurityContextLogoutHandler"/>
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<bean id="authenticationDetailsSource" class="org.springframework.security.ui.preauth.j2ee.J2eeBasedPreAuthenticatedWebAuthenticationDetailsSource">
+		<property name="mappableRolesRetriever" ref="j2eeMappableRolesRetriever"/>
+		<property name="userRoles2GrantedAuthoritiesMapper" ref="j2eeUserRoles2GrantedAuthoritiesMapper"/>
+	</bean>
+
+	<bean id="j2eeUserRoles2GrantedAuthoritiesMapper" class="org.springframework.security.authoritymapping.SimpleAttributes2GrantedAuthoritiesMapper">
+		<property name="convertAttributeToUpperCase" value="true"/>
+	</bean>
+
+	<bean id="j2eeMappableRolesRetriever" class="org.springframework.security.ui.preauth.j2ee.WebXmlMappableAttributesRetriever">
+		<property name="webXmlInputStream">
+			<bean factory-bean="webXmlResource" factory-method="getInputStream"/>
+		</property>
+	</bean>
+
+	<bean id="webXmlResource" class="org.springframework.web.context.support.ServletContextResource">
+		<constructor-arg ref="servletContext"/>
+		<constructor-arg value="/WEB-INF/web.xml"/>
+	</bean>
+
+	<bean id="servletContext" class="org.springframework.web.context.support.ServletContextFactoryBean"/>
+
+	<bean id="etf" class="org.springframework.security.ui.ExceptionTranslationFilter">
+		<property name="authenticationEntryPoint" ref="preAuthenticatedProcessingFilterEntryPoint"/>
+	</bean>
+
+	<bean id="httpRequestAccessDecisionManager" class="org.springframework.security.vote.AffirmativeBased">
+		<property name="allowIfAllAbstainDecisions" value="false"/>
+		<property name="decisionVoters">
+			<list>
+				<ref bean="roleVoter"/>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="fsi" class="org.springframework.security.intercept.web.FilterSecurityInterceptor">
+		<property name="authenticationManager" ref="authenticationManager"/>
+		<property name="accessDecisionManager" ref="httpRequestAccessDecisionManager"/>
+		<property name="objectDefinitionSource">
+			<sec:filter-invocation-definition-source>
+				<sec:intercept-url pattern="/adm/**"  access="ROLE_MANAGER,ROLE_MANAGER-GUI"/>
+				<sec:intercept-url pattern="/sql/**,/adm/restartvm.ajax" access="ROLE_POWERUSERPLUS,ROLE_MANAGER,ROLE_MANAGER-GUI"/>
+				<sec:intercept-url pattern="/app/**"  access="ROLE_POWERUSER,ROLE_POWERUSERPLUS,ROLE_MANAGER,ROLE_MANAGER-GUI"/>
+				<sec:intercept-url pattern="/**"      access="ROLE_PROBEUSER,ROLE_POWERUSER,ROLE_POWERUSERPLUS,ROLE_MANAGER,ROLE_MANAGER-GUI"/>
+			</sec:filter-invocation-definition-source>
+		</property>
+	</bean>
+
+	<bean id="roleVoter" class="org.springframework.security.vote.RoleVoter"/>
+
+	<bean id="securityContextHolderAwareRequestFilter" class="org.springframework.security.wrapper.SecurityContextHolderAwareRequestFilter">
+		<property name="wrapperClass" value="org.springframework.security.wrapper.SecurityContextHolderAwareRequestWrapper"/>
+	</bean>
+
+</beans>
