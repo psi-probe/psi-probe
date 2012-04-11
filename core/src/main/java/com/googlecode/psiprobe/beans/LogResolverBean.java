@@ -441,6 +441,8 @@ public class LogResolverBean {
 
     private static class LogSourceComparator implements Comparator {
 
+        private static final char DELIM = '!';
+
         public int compare(Object o1, Object o2) {
             if (o1 instanceof DefaultAccessor && o2 instanceof DefaultAccessor) {
                 DefaultAccessor da1 = (DefaultAccessor) o1;
@@ -457,22 +459,20 @@ public class LogResolverBean {
             return name1.compareTo(name2);
         }
 
-        private String convertToString(LogDestination d1, boolean eitherAppIsNull) {
-            File f1 = d1.getFile();
-            String filename1 = (f1 == null ? "" : f1.getAbsolutePath());
-            Application a1 = d1.getApplication();
+        private String convertToString(LogDestination dest, boolean eitherAppIsNull) {
+            File file = dest.getFile();
+            String fileName = (file == null ? "" : file.getAbsolutePath());
+            Application app = dest.getApplication();
             if (eitherAppIsNull) {
-                a1 = null;
+                app = null;
             }
-            String appName1 = (a1 == null ? "" : a1.getName());
-            String logType1 = d1.getLogType();
-            String context1 = (d1.isContext() ? "is" : "not");
-            String root1 = (d1.isRoot() ? "is" : "not");
-            String logName1 = d1.getName();
+            String appName = (app == null ? "" : app.getName());
+            String logType = dest.getLogType();
+            String context = (dest.isContext() ? "is" : "not");
+            String root = (dest.isRoot() ? "is" : "not");
+            String logName = dest.getName();
             //String logIndex1 = d1.getIndex();
-            char delim = '!';
-            String name1 = appName1 + delim + logType1 + delim + context1 + delim + root1 + delim + logName1 + delim + filename1;
-            return name1;
+            return appName + DELIM + logType + DELIM + context + DELIM + root + DELIM + logName + DELIM + fileName;
         }
 
     }
