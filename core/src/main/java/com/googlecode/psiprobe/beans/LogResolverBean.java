@@ -464,7 +464,7 @@ public class LogResolverBean {
             String appName1 = (a1 == null ? "" : a1.getName());
             String appName2 = (a2 == null ? "" : a2.getName());
             String logType1 = d1.getLogType();
-            String logType2 = d1.getLogType();
+            String logType2 = d2.getLogType();
             String context1 = (d1.isContext() ? "is" : "not");
             String context2 = (d2.isContext() ? "is" : "not");
             String root1 = (d1.isRoot() ? "is" : "not");
