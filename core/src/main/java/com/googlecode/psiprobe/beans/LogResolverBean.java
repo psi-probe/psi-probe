@@ -451,32 +451,28 @@ public class LogResolverBean {
             }
             LogDestination d1 = (LogDestination) o1;
             LogDestination d2 = (LogDestination) o2;
+            boolean eitherAppIsNull = (d1.getApplication() == null || d2.getApplication() == null);
+            String name1 = convertToString(d1, eitherAppIsNull);
+            String name2 = convertToString(d2, eitherAppIsNull);
+            return name1.compareTo(name2);
+        }
+
+        private String convertToString(LogDestination d1, boolean eitherAppIsNull) {
             File f1 = d1.getFile();
-            File f2 = d2.getFile();
             String filename1 = (f1 == null ? "" : f1.getAbsolutePath());
-            String filename2 = (f2 == null ? "" : f2.getAbsolutePath());
             Application a1 = d1.getApplication();
-            Application a2 = d2.getApplication();
-            if (a1 == null || a2 == null) {
+            if (eitherAppIsNull) {
                 a1 = null;
-                a2 = null;
             }
             String appName1 = (a1 == null ? "" : a1.getName());
-            String appName2 = (a2 == null ? "" : a2.getName());
             String logType1 = d1.getLogType();
-            String logType2 = d2.getLogType();
             String context1 = (d1.isContext() ? "is" : "not");
-            String context2 = (d2.isContext() ? "is" : "not");
             String root1 = (d1.isRoot() ? "is" : "not");
-            String root2 = (d2.isRoot() ? "is" : "not");
             String logName1 = d1.getName();
-            String logName2 = d2.getName();
             //String logIndex1 = d1.getIndex();
-            //String logIndex2 = d2.getIndex();
             char delim = '!';
             String name1 = appName1 + delim + logType1 + delim + context1 + delim + root1 + delim + logName1 + delim + filename1;
-            String name2 = appName2 + delim + logType2 + delim + context2 + delim + root2 + delim + logName2 + delim + filename2;
-            return name1.compareTo(name2);
+            return name1;
         }
 
     }
