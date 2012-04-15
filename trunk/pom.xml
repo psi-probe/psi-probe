@@ -166,13 +166,9 @@
 				<version>10.2.0.1.0</version>
 			</dependency>
 			<dependency>
-				<!--
-					Not in any known Maven repository; must be installed manually.
-					See readme.txt for instructions.
-				-->
 				<groupId>org.apache.tomcat</groupId>
-				<artifactId>jdbc-pool</artifactId>
-				<version>1.0.8.5</version>
+				<artifactId>tomcat-jdbc</artifactId>
+				<version>7.0.27</version>
 			</dependency>
 			<dependency>
 				<groupId>commons-beanutils</groupId>

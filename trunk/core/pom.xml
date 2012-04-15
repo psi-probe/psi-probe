@@ -91,7 +91,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
-			<artifactId>jdbc-pool</artifactId>
+			<artifactId>tomcat-jdbc</artifactId>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
