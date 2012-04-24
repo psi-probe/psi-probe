@@ -145,23 +145,18 @@
 										<probe:volume value="${attribute.size}"/>
 									</display:column>
 								</c:if>
-								<display:column sortProperty="value" sortable="true"
-										titleKey="probe.jsp.sessionAttibutes.col.value">
-									<c:choose>
-										<c:when test="${session.allowedToViewValues}">
-											<c:catch var="displayException">
-												<c:out value="${attribute.value}" escapeXml="true"/>
-											</c:catch>
-											<c:if test="${not empty displayException}">
-												<span class="errorValue">**************</span>
-												<c:remove var="displayException" />
-											</c:if>
-										</c:when>
-										<c:otherwise>
-											**************
-										</c:otherwise>
-									</c:choose>
-								</display:column>
+								<c:if test="${session.allowedToViewValues}">
+									<display:column sortProperty="value" sortable="true"
+											titleKey="probe.jsp.sessionAttibutes.col.value">
+										<c:catch var="displayException">
+											<c:out value="${attribute.value}" escapeXml="true"/>
+										</c:catch>
+										<c:if test="${not empty displayException}">
+											<span class="errorValue">**************</span>
+											<c:remove var="displayException" />
+										</c:if>
+									</display:column>
+								</c:if>
 							</display:table>
 						</c:when>
 						<c:otherwise>
