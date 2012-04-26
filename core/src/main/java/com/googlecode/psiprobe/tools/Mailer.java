@@ -105,13 +105,12 @@ public class Mailer {
     }
 
     private MimeMessage createMimeMessage(Session session, MailMessage mailMessage) throws MessagingException {
-        MimeMessage message = new MimeMessage(session);
-        if (mailMessage.getTo().isEmpty()) {
-            mailMessage.addRecipientTo(defaultTo);
-        }
         InternetAddress[] to = createAddresses(mailMessage.getToArray());
         InternetAddress[] cc = createAddresses(mailMessage.getCcArray());
         InternetAddress[] bcc = createAddresses(mailMessage.getBccArray());
+        if (to.length == 0) {
+            to = InternetAddress.parse(defaultTo);
+        }
 
         String subject = mailMessage.getSubject();
         if (subjectPrefix != null) {
@@ -132,6 +131,7 @@ public class Mailer {
         MimeBodyPart bodyPart = createMessageBodyPart(mailMessage.getBody(), mailMessage.isBodyHtml());
         content.addBodyPart(bodyPart);
 
+        MimeMessage message = new MimeMessage(session);
         if (from == null) {
             message.setFrom(); //Uses mail.from property
         } else {
