@@ -24,6 +24,7 @@
 		<property name="properties">
 			<props>
 				<prop key="com.googlecode.psiprobe.tools.mail.to">NULL</prop>
+				<prop key="com.googlecode.psiprobe.tools.mail.subjectPrefix">[PSI Probe] </prop>
 			</props>
 		</property>
 		<property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />
@@ -95,7 +96,9 @@
 		<property name="defaultTo">
 			<value>${com.googlecode.psiprobe.tools.mail.to}</value>
 		</property>
-		<property name="subjectPrefix" value="[PSI-PROBE] " />
+		<property name="subjectPrefix">
+			<value>${com.googlecode.psiprobe.tools.mail.subjectPrefix}</value>
+		</property>
 	</bean>
 
 	<bean id="runtimeInfoAccessor"   class="com.googlecode.psiprobe.beans.RuntimeInfoAccessorBean"/>
