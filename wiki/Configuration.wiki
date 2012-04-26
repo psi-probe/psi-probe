@@ -63,3 +63,21 @@ PSI Probe can ignore its own requests when calculating cumulative application st
 {{{
 -Dcom.googlecode.psiprobe.beans.stats.collectors.app.selfIgnored=true
 }}}
+
+<wiki:comment>
+= E-mail Notifications =
+
+Command line properties can be used to configure e-mail settings.
+
+|| *Property* || *Function* || *Default value* ||
+|| `mail.smtp.host` || SMTP server used to send mail || _None_ (mail is disabled) ||
+|| `mail.from` || Mail sender || _Server-generated value_ ([http://javamail.kenai.com/nonav/javadocs/javax/mail/internet/InternetAddress.html#getLocalAddress(javax.mail.Session) info]) ||
+|| `com.googlecode.psiprobe.tools.mail.to` || Mail recipient(s), comma-separated || _None_ (mail is disabled) ||
+|| `com.googlecode.psiprobe.tools.mail.subjectPrefix` || Prefix added to the subject of every message || `[PSI Probe]` ||
+
+== Enabling ==
+Both the `mail.smtp.host` and `com.googlecode.psiprobe.tools.mail.to` properties must be defined for e-mail notification to be enabled.
+
+== Identifying a message's source ==
+Defining the `mail.from` and `com.googlecode.psiprobe.tools.mail.subjectPrefix` properties will help recipients identify which server is sending the message.  !JavaMail allows Personal Names in addresses too, so "Test Server Monitor <psi-probe@test.mydomain.com>" is a valid sender address.
+</wiki:comment>
