@@ -61,7 +61,11 @@ public class Mailer {
     }
 
     public String getSmtp() {
-        return smtp;
+        if (smtp == null) {
+            return System.getProperty(PROPERTY_KEY_SMTP);
+        } else {
+            return smtp;
+        }
     }
 
     public void setFrom(String from) {
