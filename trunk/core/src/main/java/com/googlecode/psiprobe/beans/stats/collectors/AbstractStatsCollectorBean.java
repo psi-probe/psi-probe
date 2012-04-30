@@ -93,7 +93,9 @@ public abstract class AbstractStatsCollectorBean {
                     Object o = it.next();
                     if (o instanceof StatsCollectionListener) {
                         StatsCollectionListener listener = (StatsCollectionListener) o;
-                        listener.statsCollected(event);
+                        if (listener.isEnabled()) {
+                            listener.statsCollected(event);
+                        }
                     }
                 }
             }

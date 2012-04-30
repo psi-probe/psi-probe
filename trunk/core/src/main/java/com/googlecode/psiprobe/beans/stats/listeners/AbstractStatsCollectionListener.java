@@ -10,13 +10,26 @@
  */
 package com.googlecode.psiprobe.beans.stats.listeners;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 /**
  *
  * @author Mark Lewis
  */
 public abstract class AbstractStatsCollectionListener implements StatsCollectionListener {
 
+    protected Log logger = LogFactory.getLog(getClass());
     private String propertyCategory;
+    private boolean enabled = true;
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    protected void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
 
     protected String getPropertyValue(String name, String attribute) {
         String value = getPropertyValue(getPropertyKey(name, attribute));
