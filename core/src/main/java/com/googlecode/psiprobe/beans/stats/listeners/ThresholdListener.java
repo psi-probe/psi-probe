@@ -19,10 +19,11 @@ import java.util.HashMap;
  */
 public abstract class ThresholdListener extends AbstractStatsCollectionListener {
     
-    public static final long DEFAULT_THRESHOLD = -1;
-    public static final long DEFAULT_VALUE = -1;
+    public static final long DEFAULT_THRESHOLD = Long.MAX_VALUE;
+    public static final long DEFAULT_VALUE = Long.MIN_VALUE;
     
     private HashMap/*String, Long*/ previousValues = new HashMap();
+    private HashMap/*String, Boolean*/ seriesDisabled = new HashMap();
 
     protected abstract void crossedAboveThreshold(StatsCollectionEvent sce);
 
@@ -34,6 +35,9 @@ public abstract class ThresholdListener extends AbstractStatsCollectionListener 
 
     public void statsCollected(StatsCollectionEvent sce) {
         String name = sce.getName();
+        if (isSeriesDisabled(name)) {
+            return;
+        }
         long value = sce.getValue();
         if (isValueAboveThreshold(sce)) {
             if (isPreviousValueAboveThreshold(sce)) {
@@ -60,26 +64,22 @@ public abstract class ThresholdListener extends AbstractStatsCollectionListener 
         String name = sce.getName();
         long threshold = getThreshold(name);
         long previousValue = getPreviousValue(name);
-        if (threshold != DEFAULT_THRESHOLD) {
-            return previousValue != DEFAULT_VALUE && previousValue > threshold;
-        } else {
-            throw new RuntimeException("Required property " + getPropertyKey(name, "threshold") + " is not defined");
-        }
+        return previousValue != DEFAULT_VALUE && previousValue > threshold;
     }
 
     protected boolean isValueAboveThreshold(StatsCollectionEvent sce) {
         String name = sce.getName();
         long value = sce.getValue();
         long threshold = getThreshold(name);
-        if (threshold != DEFAULT_THRESHOLD) {
-            return value > threshold;
-        } else {
-            throw new RuntimeException("Required property " + getPropertyKey(name, "threshold") + " is not defined");
-        }
+        return value > threshold;
     }
     
     protected long getThreshold(String name) {
         String threshold = getPropertyValue(name, "threshold");
+        if (threshold == null) {
+            logger.info("Required property " + getPropertyKey(name, "threshold") + " is not defined or inherited.  Disabling listener for \"" + name + "\" series.");
+            setSeriesDisabled(name, true);
+        }
         return Utils.toLong(threshold, DEFAULT_THRESHOLD);
     }
 
@@ -91,6 +91,18 @@ public abstract class ThresholdListener extends AbstractStatsCollectionListener 
     protected void setPreviousValue(String name, long previousValue) {
         Long l = new Long(previousValue);
         previousValues.put(name, l);
+    }
+
+    protected boolean isSeriesDisabled(String name) {
+        Boolean disabled = (Boolean) seriesDisabled.get(name);
+        if (disabled == null) {
+            disabled = Boolean.FALSE;
+        }
+        return disabled.booleanValue();
+    }
+
+    protected void setSeriesDisabled(String name, boolean disabled) {
+        seriesDisabled.put(name, Boolean.valueOf(disabled));
     }
 
 }
