@@ -63,9 +63,9 @@ public abstract class FlapListener extends ThresholdListener {
         super.reset();
     }
     
-    protected void statsCollected(StatsCollectionEvent sce, boolean flap, boolean above) {
+    protected void statsCollected(StatsCollectionEvent sce, boolean crossedThreshold, boolean above) {
         String name = sce.getName();
-        boolean flappingStateChanged = checkFlappingStateChanged(name, flap);
+        boolean flappingStateChanged = checkFlappingStateChanged(name, crossedThreshold);
         boolean flappingState = getFlappingState(name);
         if (flappingStateChanged) {
             if (flappingState) {
@@ -75,7 +75,7 @@ public abstract class FlapListener extends ThresholdListener {
             } else {
                 belowThresholdFlappingStopped(sce);
             }
-        } else if (!flappingState) {
+        } else if (crossedThreshold) {
             if (above) {
                 aboveThresholdNotFlapping(sce);
             } else {
@@ -84,8 +84,8 @@ public abstract class FlapListener extends ThresholdListener {
         }
     }
 
-    protected boolean checkFlappingStateChanged(String name, boolean flap) {
-        addFlap(name, flap);
+    protected boolean checkFlappingStateChanged(String name, boolean crossedThreshold) {
+        addFlap(name, crossedThreshold);
         boolean oldFlappingState = getFlappingState(name);
         float transitionPercent = calculateStateTransitionPercentage(name, oldFlappingState);
         boolean newFlappingState;
