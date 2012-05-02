@@ -47,7 +47,7 @@ public abstract class AbstractStatsCollectionListener implements StatsCollection
     }
 
     private String getPropertyKey(String category, String name, String attribute) {
-        String result = AbstractStatsCollectionListener.class.getPackage().getName();
+        String result = getClass().getPackage().getName();
         if (category != null) {
             result += '.' + category;
         }

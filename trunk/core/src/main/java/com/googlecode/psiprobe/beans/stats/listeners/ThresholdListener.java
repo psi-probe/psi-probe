@@ -76,7 +76,7 @@ public abstract class ThresholdListener extends AbstractStatsCollectionListener 
     
     protected long getThreshold(String name) {
         String threshold = getPropertyValue(name, "threshold");
-        if (threshold == null) {
+        if (threshold == null && !isSeriesDisabled(name)) {
             logger.info("Required property " + getPropertyKey(name, "threshold") + " is not defined or inherited.  Disabling listener for \"" + name + "\" series.");
             setSeriesDisabled(name, true);
         }
