@@ -263,6 +263,11 @@
 			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
+				<artifactId>spring-beans</artifactId>
+				<version>2.5.6.SEC01</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
 				<artifactId>spring-context</artifactId>
 				<version>2.5.6.SEC01</version>
 			</dependency>
