@@ -117,8 +117,8 @@ public class Mailer {
         }
 
         String subject = mailMessage.getSubject();
-        if (subjectPrefix != null) {
-            subject = subjectPrefix + subject;
+        if (subjectPrefix != null && !subjectPrefix.equals("")) {
+            subject = subjectPrefix + " " + subject;
         }
 
         MimeMultipart content = new MimeMultipart("related");
