@@ -8,9 +8,7 @@
 
 Command line properties can be used to configure stats collection schedules.  The template of these properties is:
 
-{{{
--Dcom.googlecode.psiprobe.beans.stats.collectors.CATEGORY.PARAMETER=EXPRESSION
-}}}
+`-Dcom.googlecode.psiprobe.beans.stats.collectors.CATEGORY.PARAMETER=EXPRESSION`
 
 === Category ===
 
@@ -60,12 +58,14 @@ For instance, if you configure the `cluster` category to collect information eve
 
 PSI Probe can ignore its own requests when calculating cumulative application statistics.  Just add the following to the command line:
 
-{{{
--Dcom.googlecode.psiprobe.beans.stats.collectors.app.selfIgnored=true
-}}}
+`-Dcom.googlecode.psiprobe.beans.stats.collectors.app.selfIgnored=true`
 
 <wiki:comment>
 = E-mail Notifications =
+
+PSI Probe can send you notification emails based on the status of the server.
+
+== Recipients and Formatting ==
 
 Command line properties can be used to configure e-mail settings.
 
@@ -75,9 +75,20 @@ Command line properties can be used to configure e-mail settings.
 || `com.googlecode.psiprobe.tools.mail.to` || Mail recipient(s), comma-separated || _None_ (mail is disabled) ||
 || `com.googlecode.psiprobe.tools.mail.subjectPrefix` || Prefix added to the subject of every message || `[PSI Probe]` ||
 
-== Enabling ==
+=== Enabling ===
 Both the `mail.smtp.host` and `com.googlecode.psiprobe.tools.mail.to` properties must be defined for e-mail notification to be enabled.
 
-== Identifying a message's source ==
+=== Identifying a message's source ===
 Defining the `mail.from` and `com.googlecode.psiprobe.tools.mail.subjectPrefix` properties will help recipients identify which server is sending the message.  !JavaMail allows Personal Names in addresses too, so "Test Server Monitor <psi-probe@test.mydomain.com>" is a valid sender address.
+
+== Trigger: Memory Usage ==
+
+Command line properties can be used to configure the memory threshold for notifications.  The template of these properties is:
+
+`-Dcom.googlecode.psiprobe.beans.stats.listeners.memory.pool.POOLNAME.threshold=VALUE`
+
+  * `POOLNAME` will correspond to the name of the memory pool listed under the Memory Utilization page.
+  * `VALUE` will represent the threshold size of the pool, in bytes.  When this value is exceeded, PSI Probe will send an e-mail.
+
+If the value flaps back and forth between being above and below the threshold, PSI Probe will put that pool listener into a temporary "flapping" state.  Emails will be temporarily suspended until the value stabilizes.  This helps to avoid flooding recipients with emails.
 </wiki:comment>
