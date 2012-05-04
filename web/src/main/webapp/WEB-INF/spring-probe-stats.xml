@@ -89,6 +89,13 @@
 				</property>
 			</bean>
 		</property>
+		<property name="listeners">
+			<list>
+				<bean class="com.googlecode.psiprobe.beans.stats.listeners.MemoryPoolMailingListener">
+					<property name="mailer" ref="mailer"/>
+				</bean>
+			</list>
+		</property>
 	</bean>
 
 	<bean name="runtimeStatsCollector" class="com.googlecode.psiprobe.beans.stats.collectors.RuntimeStatsCollectorBean">
