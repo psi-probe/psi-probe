@@ -273,7 +273,7 @@ public class LogResolverBean {
             if (t instanceof ThreadDeath) {
                 throw (ThreadDeath) t;
             }
-            logger.debug("Could not resolve JDK loggers for " + applicationName, t);
+            logger.debug("Could not resolve log4j loggers for " + applicationName, t);
         }
 
         // check for Logback loggers
@@ -288,7 +288,7 @@ public class LogResolverBean {
             if (t instanceof ThreadDeath) {
                 throw (ThreadDeath) t;
             }
-            logger.debug("Could not resolve JDK loggers for " + applicationName, t);
+            logger.debug("Could not resolve logback loggers for " + applicationName, t);
         }
     }
 
