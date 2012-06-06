@@ -34,14 +34,14 @@ public class Log4JManagerAccessor extends DefaultAccessor {
             Method m = MethodUtils.getAccessibleMethod(clazz, "getRootLogger", new Class[]{});
             Object logger = m.invoke(null, null);
             if (logger == null) {
-                throw new NullPointerException(getTarget() + ".getRootLogger() returned null");
+                throw new NullPointerException(getTarget().getClass().getName() + "#getRootLogger() returned null");
             }
             Log4JLoggerAccessor accessor = new Log4JLoggerAccessor();
             accessor.setTarget(logger);
             accessor.setApplication(getApplication());
             return accessor;
         } catch (Exception e) {
-            log.error(getTarget() + ".getRootLogger() failed", e);
+            log.error(getTarget().getClass().getName() + "#getRootLogger() failed", e);
         }
         return null;
     }
@@ -52,14 +52,14 @@ public class Log4JManagerAccessor extends DefaultAccessor {
             Method m = MethodUtils.getAccessibleMethod(clazz, "getLogger", new Class[] {String.class});
             Object logger = m.invoke(null, new Object[] {name});
             if (logger == null) {
-                throw new NullPointerException(getTarget() + ".getLogger(\"" + name + "\") returned null");
+                throw new NullPointerException(getTarget().getClass().getName() + "#getLogger(\"" + name + "\") returned null");
             }
             Log4JLoggerAccessor accessor = new Log4JLoggerAccessor();
             accessor.setTarget(logger);
             accessor.setApplication(getApplication());
             return accessor;
         } catch (Exception e) {
-            log.error(getTarget() + ".getLogger(\"" + name + "\") failed", e);
+            log.error(getTarget().getClass().getName() + "#getLogger(\"" + name + "\") failed", e);
         }
         return null;
     }
@@ -80,7 +80,7 @@ public class Log4JManagerAccessor extends DefaultAccessor {
                 appenders.addAll(accessor.getAppenders());
             }
         } catch (Exception e) {
-            log.error(getTarget() + ".getCurrentLoggers() failed", e);
+            log.error(getTarget().getClass().getName() + "#getCurrentLoggers() failed", e);
         }
         return appenders;
     }
