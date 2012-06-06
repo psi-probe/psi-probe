@@ -36,7 +36,7 @@ public class AddQueryParamTag extends TagSupport {
         try {
             pageContext.getOut().print(query);
         } catch (IOException e) {
-            logger.debug(e);
+            logger.debug("Exception printing query string to JspWriter", e);
             throw new JspException(e);
         }
         return EVAL_BODY_INCLUDE;

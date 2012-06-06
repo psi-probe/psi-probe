@@ -35,7 +35,7 @@ public class DurationTag extends TagSupport {
         try {
             pageContext.getOut().write(duration(value));
         } catch (IOException e) {
-            logger.debug(e.getMessage());
+            logger.debug("Exception writing duration to JspWriter", e);
             throw new JspException(e);
         }
         return EVAL_BODY_INCLUDE;

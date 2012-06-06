@@ -219,7 +219,7 @@ public class LogResolverBean {
             }
         } catch (Throwable e) {
             logger.error("Could not interrogate context logger for " + ctx.getName() + ". Enable debug logging to see the trace stack");
-            logger.debug(e);
+            logger.debug("  Stack trace:", e);
             //
             // make sure we always re-throw ThreadDeath
             //
@@ -234,7 +234,7 @@ public class LogResolverBean {
                 interrogateClassLoader(cl, application, allAppenders);
             } catch (Exception e) {
                 logger.error("Could not interrogate classloader loggers for " + ctx.getName() + ". Enable debug logging to see the trace stack");
-                logger.debug(e);
+                logger.debug("  Stack trace:", e);
             } finally {
                 if (prevCl != null) {
                     ClassUtils.overrideThreadContextClassLoader(prevCl);
