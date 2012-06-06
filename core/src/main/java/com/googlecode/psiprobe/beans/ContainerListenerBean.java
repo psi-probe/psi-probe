@@ -209,7 +209,7 @@ public class ContainerListenerBean implements NotificationListener {
                 }
             } catch (InstanceNotFoundException e) {
                 logger.error("Failed to query entire thread pool " + threadPoolObjectName);
-                logger.debug(e);
+                logger.debug("  Stack trace:", e);
             }
         }
         return threadPools;
@@ -289,7 +289,7 @@ public class ContainerListenerBean implements NotificationListener {
                             connector.addRequestProcessor(rp);
                         } catch (InstanceNotFoundException e) {
                             logger.info("Failed to query RequestProcessor " + wrkName);
-                            logger.debug(e);
+                            logger.debug("  Stack trace:", e);
                         }
                     }
                 }
@@ -297,7 +297,7 @@ public class ContainerListenerBean implements NotificationListener {
                 connectors.add(connector);
             } catch (InstanceNotFoundException e) {
                 logger.error("Failed to query entire thread pool " + threadPoolObjectName);
-                logger.debug(e);
+                logger.debug("  Stack trace:", e);
             }
         }
         return connectors;

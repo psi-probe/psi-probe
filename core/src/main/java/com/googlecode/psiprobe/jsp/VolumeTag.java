@@ -75,7 +75,7 @@ public class VolumeTag extends TagSupport {
             String newValue = nf.format(doubleResult) + " " + suffix;
             pageContext.getOut().write("<span title=\"" + title + "\">" + newValue + "</span>");
         } catch (IOException e) {
-            logger.debug(e);
+            logger.debug("Exception writing value to JspWriter", e);
             throw new JspException(e);
         }
 

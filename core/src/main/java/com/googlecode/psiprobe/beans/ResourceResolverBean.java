@@ -92,7 +92,7 @@ public class ResourceResolverBean implements ResourceResolver {
                 contextBound = true;
             } catch (NamingException e) {
                 logger.error("Cannot bind to context. useNaming=false ?");
-                logger.debug(e);
+                logger.debug("  Stack trace:", e);
             }
 
             try {

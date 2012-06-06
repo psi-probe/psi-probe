@@ -46,7 +46,7 @@ public class DefaultAccessor  {
         try {
             return PropertyUtils.isReadable(o, name) ? PropertyUtils.getProperty(o, name) : defaultValue;
         } catch (Exception e) {
-            log.debug(e);
+            log.debug("Could not access property \"" + name + "\" of object " + o, e);
             return defaultValue;
         }
     }
