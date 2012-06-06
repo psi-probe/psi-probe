@@ -38,14 +38,14 @@ public class Jdk14ManagerAccessor extends DefaultAccessor {
         try {
             Object logger = MethodUtils.invokeMethod(getTarget(), "getLogger", name);
             if (logger == null) {
-                throw new NullPointerException(getTarget() + ".getLogger(\"" + name + "\") returned null");
+                throw new NullPointerException(getTarget().getClass().getName() + "#getLogger(\"" + name + "\") returned null");
             }
             Jdk14LoggerAccessor accessor = new Jdk14LoggerAccessor();
             accessor.setTarget(logger);
             accessor.setApplication(getApplication());
             return accessor;
         } catch (Exception e) {
-            log.error(getTarget() + ".getLogger(\"" + name + "\") failed", e);
+            log.error(getTarget().getClass().getName() + "#getLogger(\"" + name + "\") failed", e);
         }
         return null;
     }
@@ -62,7 +62,7 @@ public class Jdk14ManagerAccessor extends DefaultAccessor {
                 }
             }
         } catch (Exception e) {
-            log.error(getTarget() + ".getLoggerNames() failed", e);
+            log.error(getTarget().getClass().getName() + "#getLoggerNames() failed", e);
         }
         return allHandlers;
     }
