@@ -15,7 +15,6 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.beanutils.MethodUtils;
-import org.apache.commons.beanutils.PropertyUtils;
 
 public class Jdk14LoggerAccessor extends DefaultAccessor {
 
@@ -24,7 +23,7 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
     public List getHandlers() {
         List handlerAccessors = new ArrayList();
         try {
-            Object handlers[] = (Object[]) PropertyUtils.getProperty(getTarget(), "handlers");
+            Object handlers[] = (Object[]) MethodUtils.invokeMethod(getTarget(), "getHandlers", null);
             for (int h = 0; h < handlers.length; h++) {
                 Object handler = handlers[h];
                 Jdk14HandlerAccessor handlerAccessor = wrapHandler(handler, h);
@@ -71,7 +70,7 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
 
     public Jdk14HandlerAccessor getHandler(int index) {
         try {
-            Object handlers[] = (Object[]) PropertyUtils.getProperty(getTarget(), "handlers");
+            Object handlers[] = (Object[]) MethodUtils.invokeMethod(getTarget(), "getHandlers", null);
             return wrapHandler(handlers[index], index);
         } catch (Exception e) {
             log.error(getTarget().getClass().getName() + "#handlers inaccessible", e);
