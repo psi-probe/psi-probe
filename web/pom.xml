@@ -109,4 +109,20 @@
 			</plugin>
 		</plugins>
 	</build>
+	<profiles>
+		<profile>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<probe.log4j.path>${catalina.base}/logs</probe.log4j.path>
+			</properties>
+		</profile>
+		<profile>
+			<id>jboss</id>
+			<properties>
+				<probe.log4j.path>${jboss.server.log.dir}</probe.log4j.path>
+			</properties>
+		</profile>
+	</profiles>
 </project>
