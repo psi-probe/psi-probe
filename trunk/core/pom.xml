@@ -184,7 +184,7 @@
 		<dependency>
 			<groupId>javax.management</groupId>
 			<artifactId>jmxri</artifactId>
-			<scope>compile</scope>
+			<scope>${jmxri.scope}</scope>
 		</dependency>
 		<dependency>
 			<groupId>xpp3</groupId>
@@ -222,4 +222,20 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+	<profiles>
+		<profile>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<jmxri.scope>compile</jmxri.scope>
+			</properties>
+		</profile>
+		<profile>
+			<id>jboss</id>
+			<properties>
+				<jmxri.scope>provided</jmxri.scope>
+			</properties>
+		</profile>
+	</profiles>
 </project>
