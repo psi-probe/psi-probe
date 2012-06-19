@@ -8,7 +8,7 @@
 
 == 2.4 ==
   * *Theme:* Monitoring
-  * *Target:* 2012 Q2
+  * *Target:* 2012 Q3
   * *Issues:* [http://code.google.com/p/psi-probe/issues/list?can=2&q=Milestone:2.4.0+-Status:FixedInSource To-do]
 
 == Future ==
