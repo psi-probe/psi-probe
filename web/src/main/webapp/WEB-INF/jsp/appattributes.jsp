@@ -64,10 +64,11 @@
 											class="genericTbl" cellspacing="0" cellpadding="0"
 											requestURI="" defaultsort="1">
 										<display:column title="&nbsp;" style="width:20px;" class="leftMostIcon">
-											<a href="<c:url value='/app/rmappattr.htm' var='rmappattr_url'>
-													<c:param name='webapp' value='${param.webapp}'/>
-													<c:param name='attr' value='${attribute.name}'/>
-													</c:url>" class="imglink">
+											<c:url value='/app/rmappattr.htm' var='rmappattr_url'>
+												<c:param name='webapp' value='${param.webapp}'/>
+												<c:param name='attr' value='${attribute.name}'/>
+											</c:url>
+											<a href="${rmappattr_url}" class="imglink">
 												<img class="lnk"
 														src="${pageContext.request.contextPath}<spring:theme code='remove.img'/>"
 														alt="<spring:message code='probe.jsp.app.attributes.col.delete'/>"
