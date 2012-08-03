@@ -25,8 +25,8 @@ import org.springframework.web.servlet.ModelAndView;
  * (context.xml) of a web application
  * 
  * @author Andy Shapoval
+ * @author Vlad Ilyushchenko
  */
-
 public class ViewXMLConfController extends ContextHandlerController {
     public static final String TARGET_WEB_XML = "web.xml";
     public static final String TARGET_CONTEXT_XML = "context.xml";

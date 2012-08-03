@@ -19,6 +19,11 @@ import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
 
+/**
+ * 
+ * @author Vlad Ilyushchenko
+ * @author Mark Lewis
+ */
 public class RememberVisibilityController extends AbstractController {
 
     private final SimpleDateFormat sdf = new SimpleDateFormat("E, d-MMM-yyyy HH:mm:ss zz");

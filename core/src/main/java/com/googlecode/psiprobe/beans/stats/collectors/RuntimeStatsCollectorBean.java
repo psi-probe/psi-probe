@@ -13,6 +13,10 @@ package com.googlecode.psiprobe.beans.stats.collectors;
 import com.googlecode.psiprobe.beans.RuntimeInfoAccessorBean;
 import com.googlecode.psiprobe.model.jmx.RuntimeInformation;
 
+/**
+ * 
+ * @author Vlad Ilyushchenko
+ */
 public class RuntimeStatsCollectorBean extends AbstractStatsCollectorBean {
     private RuntimeInfoAccessorBean runtimeInfoAccessorBean;
 

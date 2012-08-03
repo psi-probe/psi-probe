@@ -24,6 +24,10 @@ import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
 
+/**
+ * 
+ * @author Vlad Ilyushchenko
+ */
 public class ThreadStackController extends ParameterizableViewController {
     private int stackElementCount = 20;
 

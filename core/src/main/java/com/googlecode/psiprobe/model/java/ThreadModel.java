@@ -10,6 +10,10 @@
  */
 package com.googlecode.psiprobe.model.java;
 
+/**
+ * 
+ * @author Vlad Ilyushchenko
+ */
 public class ThreadModel {
     private String name;
     private int priority;

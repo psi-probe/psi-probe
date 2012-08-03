@@ -14,6 +14,10 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
 
+/**
+ * 
+ * @author Vlad Ilyushchenko
+ */
 public class Item implements Serializable {
     /**
      * Item is Out Of Date and requires recompilation.

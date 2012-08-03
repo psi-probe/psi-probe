@@ -10,6 +10,10 @@
  */
 package com.googlecode.psiprobe.model;
 
+/**
+ * 
+ * @author Vlad Ilyushchenko
+ */
 public class SunThread {
     private long id;
     private String name;

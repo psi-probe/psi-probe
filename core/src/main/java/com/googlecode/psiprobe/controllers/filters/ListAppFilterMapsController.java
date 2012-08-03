@@ -21,6 +21,8 @@ import org.springframework.web.servlet.ModelAndView;
  * Retrieves a list of web application filter mappings.
  * 
  * @author Andy Shapoval
+ * @author Vlad Ilyushchenko
+ * @author Mark Lewis
  */
 public class ListAppFilterMapsController extends ContextHandlerController {
     protected ModelAndView handleContext(String contextName, Context context,

@@ -25,6 +25,10 @@ import org.apache.catalina.Valve;
 import org.apache.catalina.Wrapper;
 import org.apache.commons.modeler.Registry;
 
+/**
+ * 
+ * @author Vlad Ilyushchenko
+ */
 public class Tomcat55ContainerAdaptor extends AbstractTomcatContainer {
 
     private Host host;

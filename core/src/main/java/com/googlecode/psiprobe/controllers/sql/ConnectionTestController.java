@@ -31,6 +31,8 @@ import org.springframework.web.servlet.ModelAndView;
  * datasource. Displays basic information about the database.
  * 
  * @author Andy Shapoval
+ * @author Vlad Ilyushchenko
+ * @author jackdimm
  */
 public class ConnectionTestController extends ContextHandlerController {
 

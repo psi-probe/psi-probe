@@ -20,6 +20,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
+/**
+ * 
+ * @author Vlad Ilyushchenko
+ * @author Mark Lewis
+ */
 public class FollowController extends LogHandlerController  {
 
     protected ModelAndView handleLogFile(HttpServletRequest request, HttpServletResponse response, LogDestination logDest) throws Exception {

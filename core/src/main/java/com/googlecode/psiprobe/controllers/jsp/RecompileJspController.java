@@ -23,6 +23,10 @@ import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+/**
+ * 
+ * @author Vlad Ilyushchenko
+ */
 public class RecompileJspController extends ContextHandlerController {
 
     protected ModelAndView handleContext(String contextName, Context context, HttpServletRequest request,

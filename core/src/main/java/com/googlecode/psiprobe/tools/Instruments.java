@@ -16,6 +16,11 @@ import java.lang.reflect.Modifier;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * 
+ * @author Vlad Ilyushchenko
+ * @author Mark Lewis
+ */
 public class Instruments {
 
     private static final int SZ_REF = 4;

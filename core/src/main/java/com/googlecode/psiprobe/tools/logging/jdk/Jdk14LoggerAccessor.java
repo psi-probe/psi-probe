@@ -16,6 +16,11 @@ import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.beanutils.MethodUtils;
 
+/**
+ * 
+ * @author Vlad Ilyushchenko
+ * @author Mark Lewis
+ */
 public class Jdk14LoggerAccessor extends DefaultAccessor {
 
     private boolean context = false;

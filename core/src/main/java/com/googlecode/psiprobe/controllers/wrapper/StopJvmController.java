@@ -16,6 +16,10 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
 import org.tanukisoftware.wrapper.WrapperManager;
 
+/**
+ * 
+ * @author Vlad Ilyushchenko
+ */
 public class StopJvmController extends ParameterizableViewController {
     private int stopExitCode = 1;
 

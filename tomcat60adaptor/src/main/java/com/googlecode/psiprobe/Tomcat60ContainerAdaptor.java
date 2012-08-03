@@ -29,7 +29,8 @@ import org.apache.catalina.deploy.FilterMap;
 import org.apache.commons.modeler.Registry;
 
 /**
- *
+ * 
+ * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */
 public class Tomcat60ContainerAdaptor extends AbstractTomcatContainer {

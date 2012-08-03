@@ -10,6 +10,11 @@
  */
 package com.googlecode.psiprobe.model.jmx;
 
+/**
+ * 
+ * @author Vlad Ilyushchenko
+ * @author Mark Lewis
+ */
 public class MemoryPool {
     private String name;
     private long init = 0;

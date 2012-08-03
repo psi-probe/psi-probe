@@ -16,10 +16,9 @@ import javax.servlet.http.HttpServlet;
 
 /**
  * Simple servlet that registeres its startup time in the ServletContext object.
- *
+ * 
  * @author Vlad Ilyushchenko
  */
-
 public class UptimeServlet extends HttpServlet {
     public void init(ServletConfig servletConfig) throws ServletException {
         servletConfig.getServletContext().setAttribute("UPTIME_START", new Long(System.currentTimeMillis()));

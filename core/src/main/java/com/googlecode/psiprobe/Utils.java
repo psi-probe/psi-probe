@@ -45,6 +45,7 @@ import org.apache.commons.modeler.Registry;
  * Misc. static helper methods.
  * 
  * @author Vlad Ilyushchenko
+ * @author Mark Lewis
  */
 public class Utils {
 

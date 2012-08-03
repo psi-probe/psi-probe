@@ -14,11 +14,8 @@ import com.googlecode.psiprobe.model.DataSourceInfo;
 import org.apache.tomcat.dbcp.dbcp.BasicDataSource;
 
 /**
- * Created by IntelliJ IDEA.
- * User: vlad
- * Date: 05-Jan-2006
- * Time: 00:49:42
- * To change this template use File | Settings | File Templates.
+ * 
+ * @author Vlad Ilyushchenko
  */
 public class TomcatDbcpDatasourceAccessor implements DatasourceAccessor {
     public DataSourceInfo getInfo(Object resource) throws Exception {

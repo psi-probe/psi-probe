@@ -16,6 +16,11 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * 
+ * @author Vlad Ilyushchenko
+ * @author Mark Lewis
+ */
 public class CatalinaLoggerAccessor extends AbstractLogDestination {
 
     public boolean isContext() {

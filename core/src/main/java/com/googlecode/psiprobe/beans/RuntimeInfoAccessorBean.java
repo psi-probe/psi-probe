@@ -18,6 +18,10 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.commons.modeler.Registry;
 
+/**
+ * 
+ * @author Vlad Ilyushchenko
+ */
 public class RuntimeInfoAccessorBean {
 
     private Log logger = LogFactory.getLog(RuntimeInfoAccessorBean.class);

@@ -13,6 +13,10 @@ package com.googlecode.psiprobe.tools;
 import java.io.IOException;
 import java.net.Socket;
 
+/**
+ * 
+ * @author Vlad Ilyushchenko
+ */
 public class AsyncSocketFactory {
 
     public static Socket createSocket(String server, int port, long timeout) throws IOException {

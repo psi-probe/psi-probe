@@ -17,6 +17,10 @@ import org.apache.catalina.Context;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+/**
+ * 
+ * @author Vlad Ilyushchenko
+ */
 public class DiscardCompiledJspController extends ContextHandlerController {
 
     protected ModelAndView handleContext(String contextName, Context context, HttpServletRequest request, HttpServletResponse response) throws Exception {

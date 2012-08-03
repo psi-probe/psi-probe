@@ -20,6 +20,10 @@ import org.apache.catalina.connector.Request;
 import org.apache.catalina.connector.Response;
 import org.apache.catalina.valves.ValveBase;
 
+/**
+ * 
+ * @author Vlad Ilyushchenko
+ */
 public class Tomcat55AgentValve extends ValveBase {
 
     public String getInfo() {

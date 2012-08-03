@@ -24,6 +24,10 @@ import org.apache.jasper.Options;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
+/**
+ * 
+ * @author Vlad Ilyushchenko
+ */
 public class ViewServletSourceController extends ContextHandlerController {
     protected ModelAndView handleContext(String contextName, Context context,
                                          HttpServletRequest request, HttpServletResponse response) throws Exception {

@@ -44,8 +44,10 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.util.ClassUtils;
 
 /**
+ * 
  * @author Vlad Ilyushchenko
  * @author Andy Shapoval
+ * @author Mark Lewis
  */
 public class ApplicationUtils {
 

@@ -13,6 +13,11 @@ package com.googlecode.psiprobe.tools.logging.jdk;
 import com.googlecode.psiprobe.tools.Instruments;
 import java.io.File;
 
+/**
+ * 
+ * @author Vlad Ilyushchenko
+ * @author Mark Lewis
+ */
 public class JuliHandlerAccessor extends Jdk14HandlerAccessor {
 
     public File getFile() {

@@ -15,6 +15,8 @@ import java.util.Map;
 
 /**
  * A wrapper class to assist marshalling of ModelAndView.getModel() Map to XML representation.
+ * 
+ * @author Vlad Ilyushchenko
  */
 public class TransportableModel {
     private Map items = new HashMap();

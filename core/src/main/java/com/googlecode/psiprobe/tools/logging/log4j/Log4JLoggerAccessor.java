@@ -16,6 +16,11 @@ import java.util.Enumeration;
 import java.util.List;
 import org.apache.commons.beanutils.MethodUtils;
 
+/**
+ * 
+ * @author Vlad Ilyushchenko
+ * @author Mark Lewis
+ */
 public class Log4JLoggerAccessor extends DefaultAccessor {
 
     private boolean context = false;

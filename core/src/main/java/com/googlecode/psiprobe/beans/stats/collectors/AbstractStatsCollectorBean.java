@@ -20,6 +20,12 @@ import java.util.Map;
 import java.util.TreeMap;
 import org.jfree.data.xy.XYDataItem;
 
+/**
+ * 
+ * @author Vlad Ilyushchenko
+ * @author Andy Shapoval
+ * @author Mark Lewis
+ */
 public abstract class AbstractStatsCollectorBean {
 
     private StatsCollection statsCollection;

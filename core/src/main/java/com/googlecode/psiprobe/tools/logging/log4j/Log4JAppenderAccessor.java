@@ -13,6 +13,11 @@ package com.googlecode.psiprobe.tools.logging.log4j;
 import com.googlecode.psiprobe.tools.logging.AbstractLogDestination;
 import java.io.File;
 
+/**
+ * 
+ * @author Vlad Ilyushchenko
+ * @author Mark Lewis
+ */
 public class Log4JAppenderAccessor extends AbstractLogDestination {
     private Log4JLoggerAccessor loggerAccessor;
 

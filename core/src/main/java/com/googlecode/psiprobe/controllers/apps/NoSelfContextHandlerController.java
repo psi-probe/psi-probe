@@ -21,8 +21,9 @@ import org.springframework.web.servlet.view.RedirectView;
 /**
  * Base class preventing "destructive" actions to be executed on the Probe's
  * context.
- *
+ * 
  * @author Vlad Ilyushchenko
+ * @author Andy Shapoval
  */
 public abstract class NoSelfContextHandlerController extends ContextHandlerController {
     private boolean passQueryString = false;
