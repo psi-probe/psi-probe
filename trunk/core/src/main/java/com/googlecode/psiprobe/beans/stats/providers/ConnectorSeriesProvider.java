@@ -16,6 +16,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.jfree.data.xy.DefaultTableXYDataset;
 import org.springframework.web.bind.ServletRequestUtils;
 
+/**
+ * 
+ * @author Vlad Ilyushchenko
+ */
 public class ConnectorSeriesProvider extends AbstractSeriesProvider {
 
     public void populate(DefaultTableXYDataset dataset, StatsCollection statsCollection, HttpServletRequest request) {

@@ -26,6 +26,7 @@ import org.springframework.web.context.ServletContextAware;
  * Collects application statistics
  * 
  * @author Andy Shapoval
+ * @author Mark Lewis
  */
 public class AppStatsCollectorBean extends AbstractStatsCollectorBean implements ServletContextAware {
 

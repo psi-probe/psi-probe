@@ -25,6 +25,8 @@ import org.springframework.web.servlet.ModelAndView;
  * Retrieves Application model object populated with application information.
  * 
  * @author Andy Shapoval
+ * @author Vlad Ilyushchenko
+ * @author Mark Lewis
  */
 public class GetApplicationController extends ContextHandlerController {
     /**

@@ -13,6 +13,10 @@ package com.googlecode.psiprobe.model.jsp;
 import java.io.Serializable;
 import java.util.Map;
 
+/**
+ * 
+ * @author Vlad Ilyushchenko
+ */
 public class Summary implements Serializable {
     private String name;
     private Map items;

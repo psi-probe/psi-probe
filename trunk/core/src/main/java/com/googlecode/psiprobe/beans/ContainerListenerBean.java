@@ -37,6 +37,7 @@ import org.apache.commons.logging.LogFactory;
  * class essentially provides and maintains the list of connection ThreadPools.
  * 
  * @author Vlad Ilyushchenko
+ * @author Mark Lewis
  */
 public class ContainerListenerBean implements NotificationListener {
 

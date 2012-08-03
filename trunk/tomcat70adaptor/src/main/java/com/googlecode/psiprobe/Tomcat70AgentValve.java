@@ -21,7 +21,8 @@ import org.apache.catalina.connector.Response;
 import org.apache.catalina.valves.ValveBase;
 
 /**
- *
+ * 
+ * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */
 public class Tomcat70AgentValve extends ValveBase {

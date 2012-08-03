@@ -48,6 +48,7 @@ import org.springframework.util.ClassUtils;
  * Abstration layer to implement some functionality, which is common between different container adaptors.
  * 
  * @author Vlad Ilyushchenko
+ * @author Mark Lewis
  */
 public abstract class AbstractTomcatContainer implements TomcatContainer {
 

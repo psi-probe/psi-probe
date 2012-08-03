@@ -34,6 +34,12 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.web.context.WebApplicationContext;
 
+/**
+ * 
+ * @author Vlad Ilyushchenko
+ * @author Andy Shapoval
+ * @author Mark Lewis
+ */
 public class StatsCollection implements InitializingBean, DisposableBean, ApplicationContextAware {
 
     private Log logger = LogFactory.getLog(this.getClass());

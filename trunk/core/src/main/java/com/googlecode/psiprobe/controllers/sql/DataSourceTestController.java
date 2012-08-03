@@ -22,6 +22,7 @@ import org.springframework.web.servlet.mvc.ParameterizableViewController;
  * default values to input fields of the view.
  * 
  * @author Andy Shapoval
+ * @author Mark Lewis
  */
 public class DataSourceTestController extends ParameterizableViewController {
     private int maxRows;

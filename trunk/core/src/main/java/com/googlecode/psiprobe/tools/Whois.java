@@ -20,6 +20,10 @@ import java.net.Socket;
 import java.util.Map;
 import java.util.TreeMap;
 
+/**
+ * 
+ * @author Vlad Ilyushchenko
+ */
 public class Whois {
 
     public static Response lookup(String server, int port, String query) throws IOException {

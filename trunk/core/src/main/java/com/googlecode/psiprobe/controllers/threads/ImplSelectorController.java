@@ -17,6 +17,10 @@ import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
 
+/**
+ * 
+ * @author Vlad Ilyushchenko
+ */
 public class ImplSelectorController extends AbstractController {
     private String impl1Controller;
     private String impl2Controller;

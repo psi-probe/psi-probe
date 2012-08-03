@@ -15,6 +15,10 @@ import java.io.Reader;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * 
+ * @author Vlad Ilyushchenko
+ */
 public class Tokenizer {
     public static final int TT_TOKEN = 0;
     public static final int TT_SYMBOL = 1;

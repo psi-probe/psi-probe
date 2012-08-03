@@ -13,6 +13,10 @@ package com.googlecode.psiprobe.model.jmx;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 
+ * @author Vlad Ilyushchenko
+ */
 public class Cluster {
     private String name;
     private String info;

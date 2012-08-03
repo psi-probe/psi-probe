@@ -15,6 +15,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.RandomAccessFile;
 
+/**
+ * 
+ * @author Vlad Ilyushchenko
+ */
 public class BackwardsFileStream extends InputStream {
     private RandomAccessFile raf;
     private long seekPos;

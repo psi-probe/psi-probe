@@ -19,6 +19,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 /**
+ * 
+ * @author Vlad Ilyushchenko
  */
 public class RemoveApplicationAttributeController extends ContextHandlerController {
     protected ModelAndView handleContext(String contextName, Context context,

@@ -29,6 +29,12 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.commons.modeler.Registry;
 import org.apache.naming.ContextBindings;
 
+/**
+ * 
+ * @author Vlad Ilyushchenko
+ * @author Andy Shapoval
+ * @author Mark Lewis
+ */
 public class ResourceResolverBean implements ResourceResolver {
 
     private Log logger = LogFactory.getLog(getClass());

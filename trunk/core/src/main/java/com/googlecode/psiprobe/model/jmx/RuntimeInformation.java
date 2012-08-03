@@ -10,6 +10,10 @@
  */
 package com.googlecode.psiprobe.model.jmx;
 
+/**
+ * 
+ * @author Vlad Ilyushchenko
+ */
 public class RuntimeInformation {
     private String vmVendor;
     private long committedVirtualMemorySize = 0;

@@ -22,6 +22,10 @@ import org.apache.catalina.Request;
 import org.apache.catalina.Response;
 import org.apache.catalina.ValveContext;
 
+/**
+ * 
+ * @author Vlad Ilyushchenko
+ */
 public class Tomcat50AgentValve implements Valve {
 
     public String getInfo() {

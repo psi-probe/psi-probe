@@ -12,6 +12,10 @@ package com.googlecode.psiprobe.tools.url;
 
 import java.net.MalformedURLException;
 
+/**
+ * 
+ * @author Vlad Ilyushchenko
+ */
 public class URLParser {
     private String protocol = null;
     private String host = null;

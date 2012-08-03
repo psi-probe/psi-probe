@@ -37,7 +37,8 @@ import org.apache.jasper.compiler.JspRuntimeContext;
 import org.apache.jasper.servlet.JspServletWrapper;
 
 /**
- *
+ * 
+ * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */
 public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {

@@ -28,8 +28,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  * "Quick check" controller.
- *
+ * 
  * @author Vlad Ilyushchenko
+ * @author Mark Lewis
  */
 public class TomcatAvailabilityController extends TomcatContainerController {
 

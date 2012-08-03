@@ -18,8 +18,8 @@ import org.springframework.web.servlet.mvc.ParameterizableViewController;
 import org.springframework.web.servlet.view.RedirectView;
 
 /**
- * Force is a wrong term here. Advises Java to run GC asap.
- *
+ * Advises Java to run GC asap.
+ * 
  * @author Vlad Ilyushchenko
  */
 public class AdviseGCController extends ParameterizableViewController {

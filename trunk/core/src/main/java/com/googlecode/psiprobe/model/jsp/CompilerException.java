@@ -10,6 +10,10 @@
  */
 package com.googlecode.psiprobe.model.jsp;
 
+/**
+ * 
+ * @author Vlad Ilyushchenko
+ */
 public class CompilerException extends Exception {
 
     public CompilerException() {

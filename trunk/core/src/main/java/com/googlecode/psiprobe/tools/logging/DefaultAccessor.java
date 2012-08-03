@@ -16,7 +16,12 @@ import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public class DefaultAccessor  {
+/**
+ * 
+ * @author Vlad Ilyushchenko
+ * @author Mark Lewis
+ */
+public class DefaultAccessor {
 
     protected final Log log = LogFactory.getLog(getClass());
     private Application application;

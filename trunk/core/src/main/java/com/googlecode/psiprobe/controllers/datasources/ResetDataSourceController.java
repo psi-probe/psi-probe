@@ -23,6 +23,7 @@ import org.springframework.web.servlet.view.RedirectView;
  * Resets datasource if the datasource supports it.
  * 
  * @author Vlad Ilyushchenko
+ * @author Mark Lewis
  */
 public class ResetDataSourceController extends ContextHandlerController {
 

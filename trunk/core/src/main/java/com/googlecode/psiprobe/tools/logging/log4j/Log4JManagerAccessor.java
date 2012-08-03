@@ -17,6 +17,11 @@ import java.util.Enumeration;
 import java.util.List;
 import org.apache.commons.beanutils.MethodUtils;
 
+/**
+ * 
+ * @author Vlad Ilyushchenko
+ * @author Mark Lewis
+ */
 public class Log4JManagerAccessor extends DefaultAccessor {
 
     public Log4JManagerAccessor(ClassLoader cl) throws ClassNotFoundException {

@@ -19,10 +19,10 @@ import org.apache.catalina.Wrapper;
 
 /**
  * Part of Tomcat container version abstraction layer.
- *
+ * 
  * @author Vlad Ilyushchenko
+ * @author Mark Lewis
  */
-
 public interface TomcatContainer {
 
     Context findContext(String name);

@@ -22,6 +22,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.catalina.Context;
 import org.springframework.web.servlet.ModelAndView;
 
+/**
+ * 
+ * @author Vlad Ilyushchenko
+ */
 public class ListThreadsController extends TomcatContainerController {
     protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
 

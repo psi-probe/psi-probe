@@ -26,10 +26,11 @@ import org.springframework.web.servlet.ModelAndView;
 /**
  * Produces a list of all datasources configured within the container grouped by
  * JDBC URL.
- *
+ * 
  * @author Andy Shapoval
+ * @author Vlad Ilyushchenko
+ * @author Mark Lewis
  */
-
 public class ListAllJdbcResourceGroups extends TomcatContainerController {
 
     protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {

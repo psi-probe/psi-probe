@@ -19,6 +19,11 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+/**
+ * 
+ * @author Vlad Ilyushchenko
+ * @author Mark Lewis
+ */
 public class VisualScoreTag extends BodyTagSupport {
 
     protected Log log = LogFactory.getLog(getClass());

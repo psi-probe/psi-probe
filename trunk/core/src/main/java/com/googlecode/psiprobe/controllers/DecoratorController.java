@@ -22,6 +22,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
 
+/**
+ * 
+ * @author Vlad Ilyushchenko
+ */
 public class DecoratorController extends ParameterizableViewController {
 
     private String messagesBasename;

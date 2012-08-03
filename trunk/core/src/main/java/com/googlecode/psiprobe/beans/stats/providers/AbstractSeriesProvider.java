@@ -16,6 +16,11 @@ import org.apache.commons.logging.LogFactory;
 import org.jfree.data.xy.XYDataItem;
 import org.jfree.data.xy.XYSeries;
 
+/**
+ * 
+ * @author Vlad Ilyushchenko
+ * @author Andy Shapoval
+ */
 public abstract class AbstractSeriesProvider implements SeriesProvider {
 
     protected Log logger = LogFactory.getLog(getClass());

@@ -10,6 +10,10 @@
  */
 package com.googlecode.psiprobe.tokenizer;
 
+/**
+ * 
+ * @author Vlad Ilyushchenko
+ */
 public interface Token {
 
     String getText();

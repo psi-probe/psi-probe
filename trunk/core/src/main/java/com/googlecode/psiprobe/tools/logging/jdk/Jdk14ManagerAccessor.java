@@ -18,6 +18,11 @@ import java.util.Enumeration;
 import java.util.List;
 import org.apache.commons.beanutils.MethodUtils;
 
+/**
+ * 
+ * @author Vlad Ilyushchenko
+ * @author Mark Lewis
+ */
 public class Jdk14ManagerAccessor extends DefaultAccessor {
 
     public Jdk14ManagerAccessor(ClassLoader cl) throws ClassNotFoundException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {

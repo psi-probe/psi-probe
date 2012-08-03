@@ -10,6 +10,10 @@
  */
 package com.googlecode.psiprobe.tools;
 
+/**
+ * 
+ * @author Mark Lewis
+ */
 public class AccessorFactory {
 
     private AccessorFactory() {

@@ -15,6 +15,11 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.security.GrantedAuthority;
 import org.springframework.security.context.SecurityContextHolder;
 
+/**
+ * 
+ * @author Vlad Ilyushchenko
+ * @author Mark Lewis
+ */
 public class SecurityUtils {
 
     private SecurityUtils() {

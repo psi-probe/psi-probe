@@ -18,6 +18,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.jfree.data.xy.DefaultTableXYDataset;
 import org.springframework.web.bind.ServletRequestUtils;
 
+/**
+ * 
+ * @author Vlad Ilyushchenko
+ */
 public class StandardSeriesProvider extends AbstractSeriesProvider {
 
     private List statNames = new ArrayList(2);

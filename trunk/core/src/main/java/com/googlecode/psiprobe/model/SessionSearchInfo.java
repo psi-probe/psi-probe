@@ -21,8 +21,8 @@ import java.util.regex.PatternSyntaxException;
  * screen.
  * 
  * @author Andy Shapoval
+ * @author Vlad Ilyushchenko
  */
-
 public class SessionSearchInfo implements Serializable {
     public static final String SESS_ATTR_NAME = "sessionSearchInfo";
     public static final String ACTION_NONE = "none";

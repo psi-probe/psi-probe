@@ -32,6 +32,7 @@ import org.apache.commons.logging.LogFactory;
  * and Tomcat 5.0.x
  * 
  * @author Vlad Ilyushchenko
+ * @author Mark Lewis
  */
 public class ContainerWrapperBean {
 
