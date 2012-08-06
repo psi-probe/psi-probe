@@ -419,10 +419,10 @@ public class LogResolverBean {
             if (all) {
                 Application a1 = d1.getApplication();
                 Application a2 = d2.getApplication();
-            if (a1 == null || a2 == null) {
-                a1 = null;
-                a2 = null;
-            }
+                if (a1 == null || a2 == null) {
+                    a1 = null;
+                    a2 = null;
+                }
                 String appName1 = (a1 == null ? "" : a1.getName());
                 String appName2 = (a2 == null ? "" : a2.getName());
                 String context1 = (d1.isContext() ? "is" : "not");
