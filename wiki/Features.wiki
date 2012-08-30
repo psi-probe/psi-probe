@@ -80,18 +80,19 @@ To find out when these features were added, please refer to the [Changelogs].
   * Apache Tomcat 5.5
   * Apache Tomcat 6.0 (except cluster info; see issue 82)
   * Apache Tomcat 7.0 (except cluster info; see issue 267)
-  * JBoss 3.2
-  * JBoss 4.0
-  * JBoss 4.2
-  * JBoss 4.3
-  * JBoss 5.0
-  * JBoss 5.1
+  * JBoss 3.x
+  * JBoss 4.x
+  * JBoss 5.x
+  * JBoss 6.x (partial)
+  * JBoss 7.x (partial)
   * !SpringSource tc Server 2.0
+  * VMware vFabric tc Server 2.x
 
 == Data Sources ==
   * DBCP
   * !C3P0
   * Oracle
+  * Oracle UCP
   * tomcat-jdbc
 
 == Logs ==
