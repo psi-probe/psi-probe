@@ -29,6 +29,7 @@
 				<bean class="com.googlecode.psiprobe.beans.TomcatDbcpDatasourceAccessor"/>
 				<bean class="com.googlecode.psiprobe.beans.TomcatJdbcPoolDatasourceAccessor"/>
 				<bean class="com.googlecode.psiprobe.beans.OracleDatasourceAccessor"/>
+				<bean class="com.googlecode.psiprobe.beans.OracleUcpDatasourceAssessor"/>
 			</list>
 		</property>
 	</bean>
