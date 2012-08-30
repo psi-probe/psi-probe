@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Licensed under the GPL License.  You may not use this file except in
+ * compliance with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ *
+ * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
+ * MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+-->
+
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+		version="2.4">
+
+	<display-name>PSI Probe for Apache Tomcat</display-name>
+
+	<servlet>
+		<servlet-name>uptime</servlet-name>
+		<servlet-class>com.googlecode.psiprobe.UptimeServlet</servlet-class>
+		<load-on-startup>0</load-on-startup>
+	</servlet>
+
+	<!--
+		Core dispatcher servlet
+	-->
+	<servlet>
+		<servlet-name>probe</servlet-name>
+		<servlet-class>com.googlecode.psiprobe.ProbeServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>
+				<![CDATA[
+					/WEB-INF/spring-probe-servlet.xml,
+					/WEB-INF/spring-probe-resources.xml,
+					/WEB-INF/spring-probe-stats.xml,
+					/WEB-INF/spring-probe-controllers.xml
+				]]>
+			</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>probe</servlet-name>
+		<url-pattern>*.htm</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>probe</servlet-name>
+		<url-pattern>*.ajax</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>probe</servlet-name>
+		<url-pattern>/logs/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>probe</servlet-name>
+		<url-pattern>/chart.png</url-pattern>
+	</servlet-mapping>
+
+	<!-- Sitemesh filter -->
+	<filter>
+		<filter-name>sitemesh</filter-name>
+		<filter-class>com.opensymphony.module.sitemesh.filter.PageFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>sitemesh</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>ERROR</dispatcher>
+	</filter-mapping>
+
+	<!-- no access error -->
+	<error-page>
+		<error-code>403</error-code>
+		<location>/403.htm</location>
+	</error-page>
+
+	<!-- page not found error -->
+	<error-page>
+		<error-code>404</error-code>
+		<location>/404.htm</location>
+	</error-page>
+
+	<!--exception page -->
+	<error-page>
+		<exception-type>java.lang.Exception</exception-type>
+		<!-- Displays a stack trace -->
+		<location>/WEB-INF/jsp/errors/servleterror.jsp</location>
+	</error-page>
+
+	<context-param>
+		<description>Role that can view session attribute values</description>
+		<param-name>attribute.value.roles</param-name>
+		<param-value>manager,manager-gui</param-value>
+		<!--
+		<param-value>ROLE_MANAGER</param-value>
+		-->
+	</context-param>
+
+	<security-constraint>
+		<display-name>Probe User URLs</display-name>
+		<web-resource-collection>
+			<web-resource-name>Probe User URLs</web-resource-name>
+			<url-pattern>/</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>probeuser</role-name>
+			<role-name>poweruser</role-name>
+			<role-name>manager</role-name>
+			<role-name>manager-gui</role-name>
+			<role-name>poweruserplus</role-name>
+		</auth-constraint>
+	</security-constraint>
+
+	<security-constraint>
+		<display-name>Probe Power-User URLs</display-name>
+		<web-resource-collection>
+			<web-resource-name>Probe Power-User URLs</web-resource-name>
+			<url-pattern>/app/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>poweruser</role-name>
+			<role-name>manager</role-name>
+			<role-name>manager-gui</role-name>
+			<role-name>poweruserplus</role-name>
+		</auth-constraint>
+	</security-constraint>
+
+	<security-constraint>
+		<display-name>Probe Power-User-Plus URLs</display-name>
+		<web-resource-collection>
+			<web-resource-name>JVM-Restart via Service Wrapper</web-resource-name>
+			<url-pattern>/adm/restartvm.ajax</url-pattern>
+		</web-resource-collection>
+		<web-resource-collection>
+			<web-resource-name>Data Source Testing</web-resource-name>
+			<url-pattern>/sql/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>poweruserplus</role-name>
+			<role-name>manager</role-name>
+			<role-name>manager-gui</role-name>
+		</auth-constraint>
+	</security-constraint>
+
+	<security-constraint>
+		<display-name>Probe Admin (manager) URLs</display-name>
+		<web-resource-collection>
+			<web-resource-name>Probe Admin (manager) URLs</web-resource-name>
+			<url-pattern>/adm/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>manager</role-name>
+			<role-name>manager-gui</role-name>
+		</auth-constraint>
+	</security-constraint>
+
+	<!-- Defines the Login Configuration for this Application -->
+	<login-config>
+		<auth-method>BASIC</auth-method>
+		<realm-name>PSI Probe</realm-name>
+	</login-config>
+
+	<!--Security roles referenced by this web application -->
+	<security-role>
+		<role-name>manager-gui</role-name>
+	</security-role>
+
+	<security-role>
+		<role-name>manager</role-name>
+	</security-role>
+
+	<security-role>
+		<role-name>poweruser</role-name>
+	</security-role>
+
+	<security-role>
+		<role-name>poweruserplus</role-name>
+	</security-role>
+
+	<security-role>
+		<role-name>probeuser</role-name>
+	</security-role>
+
+</web-app>

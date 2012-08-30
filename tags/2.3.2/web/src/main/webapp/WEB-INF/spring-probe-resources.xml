@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Licensed under the GPL License.  You may not use this file except in
+ * compliance with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ *
+ * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
+ * MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:util="http://www.springframework.org/schema/util"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd"
+		default-dependency-check="none" default-lazy-init="false">
+
+	<util:properties id="version" location="WEB-INF/version.properties" />
+
+	<!--
+		Helper bean to read datasource information into Probe data model.
+	-->
+	<bean id="defaultResourceResolver" class="com.googlecode.psiprobe.beans.ResourceResolverBean">
+		<property name="datasourceMappers">
+			<list>
+				<bean class="com.googlecode.psiprobe.beans.C3P0DatasourceAccessor"/>
+				<bean class="com.googlecode.psiprobe.beans.DbcpDatasourceAccessor"/>
+				<bean class="com.googlecode.psiprobe.beans.TomcatDbcpDatasourceAccessor"/>
+				<bean class="com.googlecode.psiprobe.beans.TomcatJdbcPoolDatasourceAccessor"/>
+				<bean class="com.googlecode.psiprobe.beans.OracleDatasourceAccessor"/>
+				<bean class="com.googlecode.psiprobe.beans.OracleUcpDatasourceAssessor"/>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="jbossResourceResolver" class="com.googlecode.psiprobe.beans.JBossResourceResolverBean"/>
+
+	<bean id="logResolver" class="com.googlecode.psiprobe.beans.LogResolverBean">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="stdoutFiles">
+			<list>
+				<value>catalina.out</value>
+				<value>wrapper.log</value>
+				<value>stdout.log</value>
+				<value>stdout.err</value>
+			</list>
+		</property>
+	</bean>
+
+	<!--
+		Helper class to allow Probe controllers to access Tomcat.
+	-->
+	<bean id="containerWrapper" class="com.googlecode.psiprobe.beans.ContainerWrapperBean">
+		<property name="forceFirstAdaptor" value="false"/>
+		<property name="adaptorClasses">
+			<list>
+				<value>com.googlecode.psiprobe.Tomcat70ContainerAdaptor</value>
+				<value>com.googlecode.psiprobe.Tomcat60ContainerAdaptor</value>
+				<value>com.googlecode.psiprobe.Tomcat55ContainerAdaptor</value>
+				<value>com.googlecode.psiprobe.Tomcat50ContainerAdaptor</value>
+			</list>
+		</property>
+		<property name="resourceResolvers">
+			<map>
+				<entry key="jboss" value-ref="jbossResourceResolver"/>
+				<entry key="default" value-ref="defaultResourceResolver"/>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="containerListener" class="com.googlecode.psiprobe.beans.ContainerListenerBean">
+		<property name="containerWrapper">
+			<ref bean="containerWrapper"/>
+		</property>
+	</bean>
+
+	<bean id="runtimeInfoAccessor"   class="com.googlecode.psiprobe.beans.RuntimeInfoAccessorBean"/>
+	<bean id="clusterWrapper"        class="com.googlecode.psiprobe.beans.ClusterWrapperBean"/>
+	<bean id="jvmMemoryInfoAccessor" class="com.googlecode.psiprobe.beans.JvmMemoryInfoAccessorBean"/>
+
+</beans>

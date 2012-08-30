@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!--
+ * Licensed under the GPL License.  You may not use this file except in
+ * compliance with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ *
+ * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
+ * MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+-->
+
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+		version="2.0">
+
+	<description>
+		<![CDATA[
+			PSI Probe tag library. Authors: Vlad Ilyushchenko, Mark Lewis.
+		]]>
+	</description>
+
+	<tlib-version>1.1</tlib-version>
+	<short-name>probe</short-name>
+	<uri>http://psi-probe.googlecode.com/jsp/tags</uri>
+
+	<tag>
+		<description>
+			<![CDATA[
+				Converts value in milliseconds into human readable representation of seconds, minutes and hours
+			]]>
+		</description>
+
+		<name>duration</name>
+		<tag-class>com.googlecode.psiprobe.jsp.DurationTag</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>value</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<description>
+			<![CDATA[
+				Displays volume of data in bytes, KBytes, MBytes, GBytes or TBytes depending on the value.
+			]]>
+		</description>
+
+		<name>volume</name>
+		<tag-class>com.googlecode.psiprobe.jsp.VolumeTag</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>value</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>fractions</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<description>
+			<![CDATA[
+				Toggles the value of "size" request parameter
+			]]>
+		</description>
+
+		<name>toggle</name>
+		<tag-class>com.googlecode.psiprobe.jsp.ParamToggleTag</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>param</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<description>
+			<![CDATA[
+				Adds a parameter value combination to URL query string keeping all existing parameters.
+			]]>
+		</description>
+
+		<name>addQueryParam</name>
+		<tag-class>com.googlecode.psiprobe.jsp.AddQueryParamTag</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>param</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>value</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<description>
+			<![CDATA[
+			Outputs values up to maxLength adding ellipsis (...) where necessary
+			]]>
+		</description>
+
+		<name>out</name>
+		<tag-class>com.googlecode.psiprobe.jsp.OutTag</tag-class>
+		<body-content>JSP</body-content>
+
+		<attribute>
+			<name>value</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>maxLength</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<attribute>
+			<name>ellipsisRight</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>score</name>
+		<tag-class>com.googlecode.psiprobe.jsp.VisualScoreTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>value</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>value2</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>maxValue</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>minValue</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>partialBlocks</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>fullBlocks</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>showEmptyBlocks</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>showA</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>showB</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<function>
+		<display-name>max</display-name>
+		<name>max</name>
+		<function-class>java.lang.Math</function-class>
+		<function-signature>long max(long, long)</function-signature>
+	</function>
+
+	<function>
+		<display-name>escapeJS</display-name>
+		<name>escapeJS</name>
+		<function-class>org.springframework.web.util.JavaScriptUtils</function-class>
+		<function-signature>java.lang.String javaScriptEscape(java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<display-name>escapeHtml</display-name>
+		<name>escapeHtml</name>
+		<function-class>org.springframework.web.util.HtmlUtils</function-class>
+		<function-signature>java.lang.String htmlEscape(java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<display-name>safeCookieName</display-name>
+		<name>safeCookieName</name>
+		<function-class>com.googlecode.psiprobe.jsp.Functions</function-class>
+		<function-signature>java.lang.String safeCookieName(java.lang.String)</function-signature>
+	</function>
+
+</taglib>

@@ -1,0 +1,13 @@
+<decorators defaultdir="/WEB-INF/jsp/decorators">
+	<excludes>
+		<pattern>/*.xml.htm</pattern>
+		<pattern>/*.ajax*</pattern>
+		<pattern>/WEB-INF/*</pattern>
+	</excludes>
+	<decorator name="system" page="system.jsp"/>
+	<decorator name="application" page="application.jsp"/>
+	<decorator name="probe" page="/decorator.htm">
+		<pattern>/</pattern>
+		<pattern>/*.htm</pattern>
+	</decorator>
+</decorators>

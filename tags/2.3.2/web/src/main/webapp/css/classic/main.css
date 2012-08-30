@@ -1,0 +1,828 @@
+/*
+ * Licensed under the GPL License.  You may not use this file except in
+ * compliance with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ *
+ * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
+ * MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+ */
+
+BODY {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 75%;
+	line-height: 20px;
+	color: #000000;
+	text-decoration: none;
+	background-color: #fff; /* this is an IE hack to enable :hover behavior */
+	/*behavior: url( 'css/csshover.htc' );*/
+}
+
+h3 {
+	color: #003366;
+	background: inherit;
+	font-size: 95%;
+	font-weight: bold;
+	text-transform: uppercase;
+	padding: 0;
+	margin: 10px 0 10px 0;
+}
+
+img {
+	border: none;
+}
+
+/*
+	Top panel
+*/
+div#caption {
+	height: 70px;
+	min-height: 70px;
+	max-height: 70px;
+}
+
+#top {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+li#logo {
+	float: left;
+	padding-top: 15px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+li#logo img {
+	border: none;
+}
+
+li#runtime {
+	float: left;
+	margin-top: 33px;
+}
+
+li#title {
+	float: right;
+	font-size: 160%;
+	color: #0066ff;
+	padding-right: 10px;
+	margin-top: 20px;
+}
+
+/*
+	Content area
+*/
+div#mainBody {
+	width: 90%;
+	padding: 10px 5px 5px 10px;
+	clear: both;
+}
+
+div#footer {
+	clear: both;
+	text-align: center;
+	padding-top: 20px;
+}
+
+div#footer li {
+	display: inline;
+	border-left: 1px solid #000000;
+	padding-left: 3px;
+}
+
+div#footer li.last {
+	padding-right: 3px;
+	border-right: 1px solid #000000;
+}
+
+/*
+	Color "ok" and "error/warning" values in table cells
+*/
+
+.errorValue, .bigErrorValue {
+	color: #DC143C;
+}
+
+.okValue, .bigOkValue {
+	color: green;
+}
+
+.bigErrorValue, .bigOkValue {
+	font-size: 130%;
+	font-weight: bold;
+}
+
+
+
+.shadow {
+	background-color: #E6E6E6;
+	margin-bottom: 20px;
+	margin-top: 20px;
+	clear: left;
+}
+
+.info {
+	position: relative;
+	top: -3px;
+	left: -3px;
+	background-color: #fefcf5;
+	padding: 5px 10px 5px 10px;
+	border: 1px solid #aaa;
+}
+
+.info p {
+	margin: 0;
+	padding: 0;
+}
+
+.value {
+	color: #40659B;
+}
+
+.info:hover .value {
+	color: #003366;
+}
+
+.value a:link, .value a:visited {
+	color: #40659B;
+	text-decoration: none;
+	border-bottom: 1px none;
+}
+
+.value a:hover {
+	color: #003366;
+	border-bottom: 1px dashed #bbb;
+}
+
+/*
+	Small navigation on the attributes page
+*/
+ul.options {
+	list-style: none;
+	padding: 0 0 10px 0;
+	margin: 0;
+}
+
+ul.options li {
+	display: inline; /*padding: 0 20px 10px 30px;*/
+	padding: 0 10px 7px 20px;
+}
+
+ul.options li a:link, ul.options li a:visited, #successMessage a:link, #successMessage a:visited {
+	color: #40659B;
+	text-decoration: none;
+	border-bottom: 1px dashed #bbbbbb;
+	font-size: 100%;
+}
+
+ul.options li a:hover, #successMessage a:hover {
+	color: #003366;
+	border-bottom-style: solid;
+}
+
+.memory ul.options {
+	float: right;
+}
+
+/*
+	Menu options
+*/
+
+li#back {
+	float: left; /*background: url( "img/back-arrow.gif" ) top left no-repeat;*/
+	background: url( "gifs/silk/control_rewind_blue.gif" ) top left no-repeat;
+}
+
+li#allStats {
+	float: left;
+	background: url( "gifs/silk/bricks.gif" ) top left no-repeat;
+}
+
+li#size {
+	float: right; /*background: url( "img/gear.gif" ) top left no-repeat;*/
+	background: url( "gifs/browser_galeon.gif" ) top left no-repeat;
+}
+
+li#toggle {
+	float: left; /*background: url( "img/inverse.gif" ) top left no-repeat;*/
+	background: url( "gifs/silk/tag_blue.gif" ) top left no-repeat;
+}
+
+li#delete, li#delete_r {
+	float: left;
+	background: url( "gifs/silk/folder_delete.gif" ) top left no-repeat;
+}
+
+li#delete_r {
+	float: right;
+}
+
+li#showSearch {
+	float: left;
+	background: url( "gifs/silk/folder_explore.gif" ) top left no-repeat;
+}
+
+li#applySearch {
+	float: left;
+	background: url( "gifs/silk/application_form_magnify.gif" ) top left no-repeat;
+}
+
+li#clearSearch {
+	float: left;
+	background: url( "gifs/silk/application_form_delete.gif" ) top left no-repeat;
+}
+
+li#showAll {
+	float: right;
+	background: url( "gifs/silk/application_view_list.gif" ) top left no-repeat;
+}
+
+li#download {
+	float: right;
+	background: url( "gifs/silk/page_white_put.gif" ) top left no-repeat;
+}
+
+li#pause {
+	float: left;
+	background: url( "gifs/silk/control_pause_blue.gif" ) top left no-repeat;
+}
+
+li#resume {
+	float: left;
+	background: url( "gifs/silk/control_play_blue.gif" ) top left no-repeat;
+}
+
+li#zoomin {
+	float: left;
+	background: url( "gifs/silk/magnifier_zoom_in.gif" ) top left no-repeat;
+}
+
+li#zoomout {
+	float: left;
+	background: url( "gifs/silk/magnifier_zoom_out.gif" ) top left no-repeat;
+}
+
+li#wrap {
+	float: left;
+	background: url( "gifs/silk/arrow_undo.gif" ) top left no-repeat;
+}
+
+li#nowrap {
+	float: left;
+	background: url( "gifs/silk/arrow_right.gif" ) top left no-repeat;
+}
+
+li#groupByJdbcUrl {
+	float: right;
+	background: url( "gifs/silk/database_table.gif" ) top left no-repeat;
+}
+
+li#viewservlet {
+	float: left;
+	background: url( "gifs/silk/script_gear.gif" ) top left no-repeat;
+}
+
+li#viewJSP {
+	float: left;
+	background: url( "gifs/silk/script_code_red.gif" ) top left no-repeat;
+}
+
+li#clear {
+	float: left;
+	background: url( "gifs/silk/pill.gif" ) top left no-repeat;
+}
+
+span.fail {
+	background: url( "img/exclamation.gif" ) top left no-repeat;
+	padding-left: 20px;
+}
+
+li#compileall {
+	float: left; /*background: url( "img/compileall.gif" ) top left no-repeat;*/
+	background: url( "gifs/silk/lightning.gif" ) top left no-repeat;
+
+}
+
+li#compile, li#compilesingle {
+	float: left;
+	background: url( "gifs/silk/table_lightning.gif" ) top left no-repeat;
+}
+
+li#compilesingle {
+	float: right;
+}
+
+li#adviseGC {
+	background: url( "gifs/silk/wrench_orange.gif" ) top left no-repeat;
+}
+
+li#adviseFin {
+	background: url( "gifs/silk/wrench.gif" ) top left no-repeat;
+}
+
+li#stop_jvm {
+	background: url("gifs/silk/cup_delete.gif") top left no-repeat;
+	float: right;
+}
+
+li#restart_jvm {
+	background: url("gifs/silk/cup_go.gif") top left no-repeat;
+	float: right;
+}
+
+li#pools {
+	background: url("gifs/silk/application_link.gif") top left no-repeat;
+	float: left;
+}
+
+li#threads {
+	background: url("gifs/silk/application_view_list.gif") top left no-repeat;
+	float: left;
+}
+
+li#thread_dump {
+	background: url("gifs/silk/bug_edit.gif") top left no-repeat;
+	float: right;
+}
+
+li#abbreviations {
+	float: right;
+	background: url("gifs/silk/lightbulb.gif") top left no-repeat;
+}
+
+li#viewServlets {
+	float: left;
+	background: url( "gifs/silk/application_view_list.gif" ) top left no-repeat;
+}
+
+li#viewServletMaps {
+	float: left;
+	background: url( "gifs/silk/application_link.gif" ) top left no-repeat;
+}
+
+li#viewAllServlets {
+	float: right;
+	background: url( "gifs/silk/application_view_list.gif" ) top left no-repeat;
+}
+
+li#viewAllServletMaps {
+	float: right;
+	background: url( "gifs/silk/application_link.gif" ) top left no-repeat;
+}
+
+li#viewAppFilters {
+	float: left;
+	background: url( "gifs/silk/application_view_list.gif" ) top left no-repeat;
+}
+
+li#viewAppFilterMaps {
+	float: left;
+	background: url( "gifs/silk/application_link.gif" ) top left no-repeat;
+}
+
+li#appStart {
+	float: left;
+	background: url( "gifs/silk/control_play_blue.gif" ) top left no-repeat;
+}
+
+li#appStop {
+	float: left;
+	background: url( "gifs/silk/control_stop_blue.gif" ) top left no-repeat;
+}
+
+li#appReload {
+	float: left;
+	background: url( "gifs/silk/control_repeat_blue.gif" ) top left no-repeat;
+}
+
+li#appUndeploy {
+	float: left;
+	background: url( "img/bin.jpg" ) top left no-repeat;
+}
+
+li#appSurfTo {
+	float: left;
+	background: url( "gifs/silk/page_world.gif" ) top left no-repeat;
+}
+
+.fixed_width {
+	font-family: fixed-width, monospace;
+}
+pre {
+	font-size: 85%;
+}
+
+code {
+	font-family: monospace;
+	font-size: 120%;
+	white-space: nowrap;
+	line-height: 120%;
+}
+
+#srccontent {
+	border: 1px solid #ccc;
+	padding: 20px 0 20px 0;
+}
+
+.linenum {
+	background-color: #eee;
+	margin-right: 10px;
+}
+
+.codeline {
+	display: block;
+	width: 100%;
+}
+
+.codeline:hover {
+	background-color: #F0F8FF;
+}
+
+.codeline:hover .linenum {
+	background-color: #ccc;
+}
+
+#jsps table {
+	table-layout: fixed;
+}
+
+.errors {
+	margin: 0;
+	padding: 10px 5px 10px 5px;
+	color: red;
+	background-color: #ffc4c4;
+	border-top: 3px solid red;
+	border-bottom: 3px solid red;
+}
+
+.cumulative,
+.combined {
+	clear: left;
+}
+
+.chartContainer {
+	float: left;
+}
+
+.chartContainer dd, .chartContainer dt {
+	padding: 0;
+	margin: 0;
+	text-align: center;
+}
+
+.chartContainer dt {
+	font-size: 100%;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.chartContainer dd {
+	font-size: 92%;
+	letter-spacing: 0.1em;
+}
+
+dd.image {
+	margin: 0;
+	padding: 11px 11px 1px 11px;
+	cursor: pointer;
+}
+
+dd.image:hover {
+	padding: 10px 10px 0 10px;
+	border: 1px dashed #ff7f2f;
+}
+
+.connectorChartHeader {
+	clear: both;
+	background-color: #f2f9ff;
+	border-top: 1px dashed #ccc;
+	border-bottom: 1px dashed #ccc;
+	padding: 5px 5px 5px 20px;
+	margin-bottom: 2px;
+	color: #aaa;
+	text-align: left;
+}
+
+.connectorChartHeader .headerTitle {
+	font-weight: bold;
+	letter-spacing: 0.1em;
+	color: #444;
+	cursor: pointer;
+}
+
+.connectorChartHeader .headerTitle img {
+	background-color: #ffffff;
+}
+
+.connectorChartHeader .actions {
+	float: right;
+}
+
+.connectorInfo {
+	clear: both;
+	margin-bottom: 2em;
+}
+
+img.lnk {
+	border: 0;
+	padding: 0 0 0 0;
+	margin: 0 0 0 0;
+}
+
+/**
+	System info page
+*/
+div#memoryInfo td {
+	padding: 0;
+	margin: 0;
+}
+
+span.name {
+	color: #4f6b72;
+	font-variant: small-caps;
+	text-transform: lowercase;
+}
+
+div#sliderContainer {
+	margin: 0 0 10px 30px;
+	clear: both;
+}
+
+div#track, div#handle {
+	height: 18px;
+}
+
+div#track {
+	width: 200px;
+	background: url( 'img/scaler_slider_track.gif' ) center left repeat-x;
+}
+
+div#handle {
+	width: 18px;
+}
+
+li#showapps {
+	float: right;
+	background-image: url( "gifs/silk/application_link.gif" );
+	background-position: center left;
+	background-repeat: no-repeat;
+	height: 16px; /*padding: 3px 0 8px 24px;*/
+}
+
+.expandable:hover {
+	border-bottom: 1px dashed #ccc;
+	cursor: pointer;
+}
+
+.urlinfo {
+	padding: 7px;
+	margin: 5px 0 5px 0;
+	background-color: #e6ffe6;
+	border: 1px solid #00E600;
+	color: #888;
+}
+
+td.leftMostIcon {
+	padding: 1px 0 0 5px;
+	border-right: 0;
+	border-left: 1px solid #C1DAD7;
+	vertical-align: middle;
+}
+
+.shaper {
+	border: 1px solid #ddd;
+	padding: 10px;
+}
+
+.line {
+	padding-left: 10px;
+	padding-right: 10px;
+	border: 1px solid #fff;
+}
+
+.line:hover {
+	background-color: #F0F8FF;
+	color: #000;
+	border: 1px solid #ccc;
+}
+
+.shaper_inverse {
+	border: 1px solid #ddd;
+	padding: 10px;
+	background: #000;
+	color: #BB0;
+}
+
+.line_inverse {
+	padding-left: 10px;
+	padding-right: 10px;
+	border: 1px solid #000;
+}
+
+.line_inverse:hover {
+	background-color: #dd0;
+	color: #000;
+	border: 1px solid #ccc;
+}
+
+#file_content {
+	width: 100%;
+	overflow: auto;
+	white-space: nowrap;
+}
+
+p.empty_list {
+	text-align: center;
+}
+
+.uptime {
+	color: #009933;
+}
+
+.memoryChart {
+	float: left;
+}
+
+.memoryChart dl, .memoryChart dt {
+	padding: 0;
+	margin: 0;
+	width: 240px;
+}
+
+.memoryChart dt {
+	padding-top: 10px;
+	text-align: center;
+}
+
+.memoryChart dt img {
+	float: right;
+	cursor: pointer;
+}
+
+.clickable {
+	cursor: pointer;
+}
+
+.blockContainer {
+	clear: both;
+}
+
+.embeddedBlockContainer {
+	clear: left;
+}
+
+
+/*
+  All browsers
+*/
+#systemProperties {
+	border-right: 1px solid #C1DAD7;
+}
+
+/*
+  Non-IE browsers
+*/
+html>body #systemProperties {
+	overflow: auto;
+}
+
+/*
+	IE hack, see http://browservulsel.blogspot.com/2005/04/ie-overflow-auto-scrollbar-overlap.html
+*/
+* html #systemProperties {
+	overflow-x: auto;
+	/* cannot be 100%, funnily enough */
+	width: 99%;
+}
+
+/*
+ For IE browser table width cannot be 100%. So we make it "auto"
+*/
+#memoryPools table {
+	width: auto;
+}
+
+/*
+ This selector restores table width for non-IE browsers
+*/
+html>body #memoryPools table {
+	width: 100%;
+}
+
+.verticalMenu {
+	float: right;
+	width: 180px;
+	margin-top: 10px;
+	padding: 10px;
+	border: 1px solid #eee;
+}
+
+.verticalMenu div {
+	margin: 0 0 10px 0;
+	border: 1px solid #C1DAD7;
+}
+
+.verticalMenu p {
+	margin: 0 10px 0 10px;
+	padding: 2px 0 2px 0;
+	color: #003366;
+	background: url( "gifs/silk/computer.gif" ) center left no-repeat;
+	font-size: 93%;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+.verticalMenu ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.verticalMenu a {
+	text-decoration: none;
+	color: #666;
+	background: #f3f3f3;
+	display: block;
+	border: 1px solid #ddd;
+	padding: 4px 20px 0 20px;
+	margin: 2px 0 0 0;
+	height: 24px;
+}
+
+.verticalMenu li {
+	padding: 0;
+	margin: 0;
+}
+
+.verticalMenu a:hover, .verticalMenu a.active {
+	color: #000;
+	background: #FFFFFF url( "gifs/silk/bullet_go.gif" ) center left no-repeat;
+}
+
+#contentBody {
+	margin-right: 200px;
+	clear: none;
+	padding-left: 20px;
+	padding-right: 20px;
+	margin-top: 10px;
+}
+
+.ajax_activity {
+	background: url("gifs/progressbar_microsoft.gif") center top no-repeat;
+	height: 30px;
+}
+
+#outputHolder {
+	clear: both;
+}
+
+.ck_fail {
+	color: #f00;
+	font-weight: bold;
+}
+
+.ck_pass {
+	color: #090;
+	font-weight: bold;
+}
+
+#searchFormContainer {
+	clear: left;
+	margin: 0 0 10px 0;
+	padding: 0;
+}
+
+.txtInput {
+	border: 1px solid #ccc;
+	padding: 0 0 0 3px;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+
+#searchFormTable {
+	border-collapse: separate;
+	border-spacing: 2px;
+	border-style: none;
+	text-align: right;
+	width: auto;
+}
+
+td.labelCell {
+	text-align: right;
+	padding-right: 10px;
+}
+
+td.inputCell {
+	text-align: left;
+	padding-right: 10px;
+}
+
+.score_wrapper {
+	width: 110px;
+}
+
+#locales {
+	margin-top: 10px;
+}
