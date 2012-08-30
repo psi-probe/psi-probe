@@ -14,6 +14,7 @@ import com.googlecode.psiprobe.model.FilterMapping;
 import com.googlecode.psiprobe.model.jsp.Item;
 import com.googlecode.psiprobe.model.jsp.Summary;
 import java.io.File;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
@@ -32,6 +33,7 @@ import org.apache.catalina.Host;
 import org.apache.catalina.core.StandardContext;
 import org.apache.catalina.deploy.FilterDef;
 import org.apache.catalina.deploy.FilterMap;
+import org.apache.commons.lang.reflect.MethodUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.jasper.EmbeddedServletOptions;
@@ -480,7 +482,20 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     protected JspCompilationContext createJspCompilationContext(String name, boolean isErrPage, Options opt, ServletContext sctx, JspRuntimeContext jrctx, ClassLoader cl) {
         JspCompilationContext jcctx = new JspCompilationContext(name, false, opt, sctx, null, jrctx);
         if (cl != null && cl instanceof URLClassLoader) {
-            jcctx.setClassLoader((URLClassLoader) cl);
+            try {
+                jcctx.setClassLoader((URLClassLoader) cl);
+            } catch (NoSuchMethodError err) {
+                //JBoss Web 2.1 has a different method signature for setClassLoader().
+                try {
+                    MethodUtils.invokeMethod(jcctx, "setClassLoader", cl);
+                } catch (NoSuchMethodException ex) {
+                    throw new RuntimeException(ex);
+                } catch (IllegalAccessException ex) {
+                    throw new RuntimeException(ex);
+                } catch (InvocationTargetException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
         }
         return jcctx;
     }
