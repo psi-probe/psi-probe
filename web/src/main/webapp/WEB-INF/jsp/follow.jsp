@@ -334,7 +334,7 @@
 					element.onclick = function () {
 						var e = $(file_content_div);
 						if (e) {
-							var old_size = e.getStyle('font-size').replace('px', '');
+							var old_size = e.getStyle('fontSize').replace('px', '');
 							var new_size = (old_size - 1 + 3);
 							if (new_size <= 32) {
 								setFontSize(e, new_size, true);
@@ -347,7 +347,7 @@
 					element.onclick = function () {
 						var e = $(file_content_div);
 						if (e) {
-							var old_size = e.getStyle('font-size').replace('px', '');
+							var old_size = e.getStyle('fontSize').replace('px', '');
 							var new_size = (old_size - 3 + 1);
 							if (new_size >= 4) {
 								setFontSize(e, new_size, true);
@@ -358,7 +358,7 @@
 				},
 				'#wrap': function(element) {
 					element.onclick = function () {
-						Element.setStyle(file_content_div, {'white-space': 'normal'});
+						Element.setStyle(file_content_div, {'whiteSpace': 'normal'});
 						Element.hide('wrap');
 						Element.show('nowrap');
 						return false;
@@ -366,7 +366,7 @@
 				},
 				'#nowrap': function(element) {
 					element.onclick = function () {
-						Element.setStyle(file_content_div, {'white-space': 'nowrap'});
+						Element.setStyle(file_content_div, {'whiteSpace': 'nowrap'});
 						Element.hide('nowrap');
 						Element.show('wrap');
 						return false;
@@ -384,7 +384,7 @@
 			Behaviour.register(rules);
 
 			function setFontSize(elm, new_size, save) {
-				elm.setStyle({'font-size': new_size + 'px'});
+				elm.setStyle({'fontSize': new_size + 'px'});
 				if (save) {
 					new Ajax.Request('<c:url value="/remember.ajax"/>?cn=file_content_font_size&state=' + new_size, {method:'get',asynchronous:true});
 				}

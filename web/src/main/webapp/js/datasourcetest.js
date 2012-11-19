@@ -226,7 +226,7 @@ function hideQueryHistory() {
 
 function wrapQueryHistory() {
 	Element.setStyle(historyOutputDivId, {
-		"white-space": "normal"
+		"whiteSpace": "normal"
 	});
 	Element.hide('wrap');
 	Element.show('nowrap');
@@ -235,7 +235,7 @@ function wrapQueryHistory() {
 
 function nowrapQueryHistory() {
 	Element.setStyle(historyOutputDivId, {
-		"white-space": "nowrap"
+		"whiteSpace": "nowrap"
 	});
 	Element.hide('nowrap');
 	Element.show('wrap');
