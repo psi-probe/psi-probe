@@ -10,8 +10,8 @@
  */
 package com.googlecode.psiprobe.jsp;
 
+import com.googlecode.psiprobe.tools.SizeExpression;
 import java.io.IOException;
-import java.text.NumberFormat;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.commons.logging.Log;
@@ -25,11 +25,6 @@ import org.apache.commons.logging.LogFactory;
  * @author Mark Lewis
  */
 public class VolumeTag extends TagSupport {
-
-    public static final double KB = 1024;
-    public static final double MB = KB * 1024;
-    public static final double GB = MB * 1024;
-    public static final double TB = GB * 1024;
 
     private Log logger = LogFactory.getLog(getClass());
 
@@ -49,31 +44,9 @@ public class VolumeTag extends TagSupport {
     }
 
     public int doStartTag() throws JspException {
-        double doubleResult;
-        String suffix;
-
-        if (value < KB) {
-            doubleResult = value;
-            suffix = "B";
-        } else if (value >= KB && value < MB) {
-            doubleResult = round(value / KB);
-            suffix = "KB";
-        } else if (value >= MB && value < GB) {
-            doubleResult = round(value / MB);
-            suffix = "MB";
-        } else if (value >= GB && value < TB) {
-            doubleResult = round(value / GB);
-            suffix = "GB";
-        } else {
-            doubleResult = round(value / TB);
-            suffix = "TB";
-        }
-
+        String title = Long.toString(value);
+        String newValue = SizeExpression.roundedExpression(value, fractions);
         try {
-            NumberFormat nf = NumberFormat.getInstance();
-            nf.setMinimumFractionDigits(fractions);
-            String title = Long.toString(value);
-            String newValue = nf.format(doubleResult) + " " + suffix;
             pageContext.getOut().write("<span title=\"" + title + "\">" + newValue + "</span>");
         } catch (IOException e) {
             logger.debug("Exception writing value to JspWriter", e);
@@ -83,7 +56,4 @@ public class VolumeTag extends TagSupport {
         return EVAL_BODY_INCLUDE;
     }
 
-    private double round(double value) {
-        return Math.round(value * Math.pow(10, fractions)) / Math.pow(10, fractions);
-    }
 }
