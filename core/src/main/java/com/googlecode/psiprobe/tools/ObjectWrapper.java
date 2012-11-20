@@ -29,10 +29,8 @@ class ObjectWrapper {
     }
 
     public boolean equals(Object o1) {
-        if (o == null && o1 == null) {
-            return true;
-        } else if (o == null) {
-            return false;
+        if (o == null) {
+            return o1 == null;
         } else {
             ObjectWrapper ow = (ObjectWrapper) o1;
             // I know, this condition may seem strange, but if "equals" is left out 
@@ -42,7 +40,11 @@ class ObjectWrapper {
     }
 
     public int hashCode() {
-        return o.hashCode();
+        try {
+            return o.hashCode();
+        } catch (Exception e) {
+            return 0;
+        }
     }
 
 }
