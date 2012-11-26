@@ -403,6 +403,8 @@ public class LogResolverBean {
 
     private static class LogDestinationComparator implements Comparator {
 
+        private static final char DELIM = '!';
+
         private boolean all;
 
         public LogDestinationComparator(boolean all) {
@@ -412,31 +414,29 @@ public class LogResolverBean {
         public int compare(Object o1, Object o2) {
             LogDestination d1 = (LogDestination) o1;
             LogDestination d2 = (LogDestination) o2;
-            File f1 = d1.getFile();
-            File f2 = d2.getFile();
-            String name1 = (f1 == null ? "" : f1.getAbsolutePath());
-            String name2 = (f2 == null ? "" : f2.getAbsolutePath());
-            if (all) {
-                Application a1 = d1.getApplication();
-                Application a2 = d2.getApplication();
-                if (a1 == null || a2 == null) {
-                    a1 = null;
-                    a2 = null;
-                }
-                String appName1 = (a1 == null ? "" : a1.getName());
-                String appName2 = (a2 == null ? "" : a2.getName());
-                String context1 = (d1.isContext() ? "is" : "not");
-                String context2 = (d2.isContext() ? "is" : "not");
-                String root1 = (d1.isRoot() ? "is" : "not");
-                String root2 = (d2.isRoot() ? "is" : "not");
-                String logType1 = d1.getLogType();
-                String logType2 = d2.getLogType();
-                char delim = '!';
-                name1 = appName1 + delim + context1 + delim + root1 + delim + logType1 + delim + name1;
-                name2 = appName2 + delim + context2 + delim + root2 + delim + logType2 + delim + name2;
-            }
+            boolean eitherAppIsNull = (d1.getApplication() == null || d2.getApplication() == null);
+            String name1 = convertToString(d1, eitherAppIsNull);
+            String name2 = convertToString(d2, eitherAppIsNull);
             return name1.compareTo(name2);
         }
+
+        private String convertToString(LogDestination dest, boolean eitherAppIsNull) {
+            File file = dest.getFile();
+            String name = (file == null ? "" : file.getAbsolutePath());
+            if (all) {
+                Application app = dest.getApplication();
+                if (eitherAppIsNull) {
+                    app = null;
+                }
+                String appName = (app == null ? "" : app.getName());
+                String context = (dest.isContext() ? "is" : "not");
+                String root = (dest.isRoot() ? "is" : "not");
+                String logType = dest.getLogType();
+                name = appName + DELIM + context + DELIM + root + DELIM + logType + DELIM + name;
+            }
+            return name;
+        }
+
     }
 
     private static class LogSourceComparator implements Comparator {
