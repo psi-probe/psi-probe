@@ -430,7 +430,7 @@ public class LogResolverBean {
                 String root1 = (d1.isRoot() ? "is" : "not");
                 String root2 = (d2.isRoot() ? "is" : "not");
                 String logType1 = d1.getLogType();
-                String logType2 = d1.getLogType();
+                String logType2 = d2.getLogType();
                 char delim = '!';
                 name1 = appName1 + delim + context1 + delim + root1 + delim + logType1 + delim + name1;
                 name2 = appName2 + delim + context2 + delim + root2 + delim + logType2 + delim + name2;
