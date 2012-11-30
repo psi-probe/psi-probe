@@ -16,6 +16,7 @@ import com.googlecode.psiprobe.model.jmx.RuntimeInformation;
 /**
  * 
  * @author Vlad Ilyushchenko
+ * @author Mark Lewis
  */
 public class RuntimeStatsCollectorBean extends AbstractStatsCollectorBean {
     private RuntimeInfoAccessorBean runtimeInfoAccessorBean;
@@ -35,11 +36,10 @@ public class RuntimeStatsCollectorBean extends AbstractStatsCollectorBean {
             buildAbsoluteStats("os.memory.committed", ri.getCommittedVirtualMemorySize()/1024, time);
             buildAbsoluteStats("os.memory.physical", (ri.getTotalPhysicalMemorySize() - ri.getFreePhysicalMemorySize())/1024, time);
             buildAbsoluteStats("os.memory.swap", (ri.getTotalSwapSpaceSize() - ri.getFreeSwapSpaceSize())/1024, time);
-            //
-            // processCpuTime is in nano-seconds, to build timePercentageStats both time parameters have to use
-            // in the same units.
-            //
-            buildTimePercentageStats("os.cpu", ri.getProcessCpuTime() / 1000000, time);
+            //convert from nanoseconds so times use the same units
+            long processCpuTimeMs = ri.getProcessCpuTime() / 1000000;
+            //divide by the number of processors to reflect shared load (<= 100%)
+            buildTimePercentageStats("os.cpu", processCpuTimeMs / ri.getAvailableProcessors(), time);
         }
     }
 }
