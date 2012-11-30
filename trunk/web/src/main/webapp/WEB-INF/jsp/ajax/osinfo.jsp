@@ -21,6 +21,8 @@
 			<span class="value">${runtime.osName}</span>
 			<spring:message code="probe.jsp.os.card.version"/>
 			<span class="value">${runtime.osVersion}</span>
+			<spring:message code="probe.jsp.os.card.processors"/>
+			<span class="value">${runtime.availableProcessors}</span>
 			<spring:message code="probe.jsp.os.card.totalMemory"/>
 			<span class="value"><probe:volume value="${runtime.totalPhysicalMemorySize}" fractions="2"/></span>
 			<spring:message code="probe.jsp.os.card.freeMemory"/>
