@@ -13,6 +13,7 @@ package com.googlecode.psiprobe.model.jmx;
 /**
  * 
  * @author Vlad Ilyushchenko
+ * @author Mark Lewis
  */
 public class RuntimeInformation {
     private String vmVendor;
@@ -20,6 +21,7 @@ public class RuntimeInformation {
     private long freePhysicalMemorySize = 0;
     private long freeSwapSpaceSize = 0;
     private long processCpuTime = 0;
+    private int availableProcessors = 1;
     private long totalPhysicalMemorySize = 0;
     private long totalSwapSpaceSize = 0;
     private String osName;
@@ -57,6 +59,14 @@ public class RuntimeInformation {
 
     public void setProcessCpuTime(long processCpuTime) {
         this.processCpuTime = processCpuTime;
+    }
+
+    public int getAvailableProcessors() {
+        return availableProcessors;
+    }
+
+    public void setAvailableProcessors(int availableProcessors) {
+        this.availableProcessors = availableProcessors;
     }
 
     public long getTotalPhysicalMemorySize() {

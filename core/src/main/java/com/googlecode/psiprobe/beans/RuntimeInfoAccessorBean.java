@@ -21,6 +21,7 @@ import org.apache.commons.modeler.Registry;
 /**
  * 
  * @author Vlad Ilyushchenko
+ * @author Mark Lewis
  */
 public class RuntimeInfoAccessorBean {
 
@@ -47,6 +48,7 @@ public class RuntimeInfoAccessorBean {
                 ri.setFreeSwapSpaceSize(JmxTools.getLongAttr(mBeanServer, osOName, "FreeSwapSpaceSize"));
                 ri.setTotalSwapSpaceSize(JmxTools.getLongAttr(mBeanServer, osOName, "TotalSwapSpaceSize"));
                 ri.setProcessCpuTime(JmxTools.getLongAttr(mBeanServer, osOName, "ProcessCpuTime"));
+                ri.setAvailableProcessors(Runtime.getRuntime().availableProcessors());
             } else {
                 ri.setTotalPhysicalMemorySize(JmxTools.getLongAttr(mBeanServer, osOName, "TotalPhysicalMemory"));
             }
