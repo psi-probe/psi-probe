@@ -86,7 +86,7 @@
 		<property name="viewName" value="/sessions.htm"/>
 	</bean>
 
-	<bean name="/deploy.htm" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+	<bean name="/adm/deploy.htm" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
 		<property name="viewName" value="deploy"/>
 	</bean>
 
@@ -96,12 +96,12 @@
 
 	<bean name="/adm/war.htm" class="com.googlecode.psiprobe.controllers.deploy.UploadWarController">
 		<property name="containerWrapper" ref="containerWrapper"/>
-		<property name="viewName" value="/deploy.htm"/>
+		<property name="viewName" value="/adm/deploy.htm"/>
 	</bean>
 
 	<bean name="/adm/deploycontext.htm" class="com.googlecode.psiprobe.controllers.deploy.DeployContextController">
 		<property name="containerWrapper" ref="containerWrapper"/>
-		<property name="viewName" value="/deploy.htm"/>
+		<property name="viewName" value="/adm/deploy.htm"/>
 	</bean>
 
 	<bean name="/sysinfo.htm" class="com.googlecode.psiprobe.controllers.system.SysInfoController">
