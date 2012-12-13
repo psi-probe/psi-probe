@@ -24,67 +24,72 @@ import junit.framework.TestCase;
  */
 public class InstrumentsTests extends TestCase {
 
-    public static final long SIZE_BYTE = 1;
-    public static final long SIZE_CHAR = 2;
-    public static final long SIZE_SHORT = 2;
-    public static final long SIZE_INT = 4;
-    public static final long SIZE_LONG = 8;
-    public static final long SIZE_FLOAT = 8;
-    public static final long SIZE_DOUBLE = 8;
-    public static final long SIZE_OBJECT = 8;
-    public static final long SIZE_REFERENCE = 4;
-
     public void testObject() {
         long oSize = Instruments.sizeOf(new Object());
-        Assert.assertEquals(SIZE_OBJECT, oSize);
+        Assert.assertEquals(Instruments.SIZE_OBJECT, oSize);
+    }
+
+    public void testBoolean() {
+        boolean b = false;
+        long booleanSize = Instruments.sizeOf(new Boolean(b)) - Instruments.SIZE_OBJECT;
+        Assert.assertEquals(Instruments.SIZE_BOOLEAN, booleanSize);
     }
 
     public void testByte() {
         byte b = 0x00;
-        long byteSize = Instruments.sizeOf(new Byte(b)) - SIZE_OBJECT;
-        Assert.assertEquals(SIZE_BYTE, byteSize);
+        long byteSize = Instruments.sizeOf(new Byte(b)) - Instruments.SIZE_OBJECT;
+        Assert.assertEquals(Instruments.SIZE_BYTE, byteSize);
     }
     
     public void testChar() {
         char c = '\0';
-        long charSize = Instruments.sizeOf(new Character(c)) - SIZE_OBJECT;
-        Assert.assertEquals(SIZE_CHAR, charSize);
+        long charSize = Instruments.sizeOf(new Character(c)) - Instruments.SIZE_OBJECT;
+        Assert.assertEquals(Instruments.SIZE_CHAR, charSize);
     }
 
     public void testShort() {
         short s = 0;
-        long shortSize = Instruments.sizeOf(new Short(s)) - SIZE_OBJECT;
-        Assert.assertEquals(SIZE_SHORT, shortSize);
+        long shortSize = Instruments.sizeOf(new Short(s)) - Instruments.SIZE_OBJECT;
+        Assert.assertEquals(Instruments.SIZE_SHORT, shortSize);
     }
 
     public void testInt() {
         int i = 0;
-        long intSize = Instruments.sizeOf(new Integer(i)) - SIZE_OBJECT;
-        Assert.assertEquals(SIZE_INT, intSize);
+        long intSize = Instruments.sizeOf(new Integer(i)) - Instruments.SIZE_OBJECT;
+        Assert.assertEquals(Instruments.SIZE_INT, intSize);
     }
 
     public void testLong() {
         long l = 0;
-        long longSize = Instruments.sizeOf(new Long(l)) - SIZE_OBJECT;
-        Assert.assertEquals(SIZE_LONG, longSize);
+        long longSize = Instruments.sizeOf(new Long(l)) - Instruments.SIZE_OBJECT;
+        Assert.assertEquals(Instruments.SIZE_LONG, longSize);
     }
 
     public void testFloat() {
         float f = 0.0f;
-        long floatSize = Instruments.sizeOf(new Float(f)) - SIZE_OBJECT;
-        Assert.assertEquals(SIZE_FLOAT, floatSize);
+        long floatSize = Instruments.sizeOf(new Float(f)) - Instruments.SIZE_OBJECT;
+        Assert.assertEquals(Instruments.SIZE_FLOAT, floatSize);
     }
 
     public void testDouble() {
         double d = 0.0;
-        long doubleSize = Instruments.sizeOf(new Double(d)) - SIZE_OBJECT;
-        Assert.assertEquals(SIZE_DOUBLE, doubleSize);
+        long doubleSize = Instruments.sizeOf(new Double(d)) - Instruments.SIZE_OBJECT;
+        Assert.assertEquals(Instruments.SIZE_DOUBLE, doubleSize);
     }
     
     public void testString() {
         String s = "test";
         long stringSize = Instruments.sizeOf(s);
-        Assert.assertEquals((s.length() * SIZE_CHAR) + (3 * SIZE_INT) + SIZE_OBJECT, stringSize);
+        Assert.assertEquals((s.length() * Instruments.SIZE_CHAR) + (3 * Instruments.SIZE_INT) + Instruments.SIZE_OBJECT, stringSize);
+    }
+
+    public void testList() {
+        List bikes = new ArrayList();
+        bikes.add("specialized");
+        bikes.add("kona");
+        bikes.add("GT");
+        long size = Instruments.sizeOf(bikes);
+        Assert.assertEquals(110, size);
     }
 
     public void testMap() {
@@ -101,7 +106,15 @@ public class InstrumentsTests extends TestCase {
         session.put("parts", bikeParts);
 
         long size = Instruments.sizeOf(session);
-        Assert.assertEquals(453, size);
+        Assert.assertEquals(425, size);
+    }
+
+    public void testCircularReference() {
+        Map session = new HashMap();
+        session.put("test1", "test message");
+        session.put("self", session);
+        long size = Instruments.sizeOf(session);
+        Assert.assertEquals(186, size);
     }
 
 }
