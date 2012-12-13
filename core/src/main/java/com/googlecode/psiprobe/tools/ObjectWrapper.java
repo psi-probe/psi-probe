@@ -10,16 +10,21 @@
  */
 package com.googlecode.psiprobe.tools;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
-
 /**
+ * Wraps an object that may have overridden the
+ * {@link Object#equals(Object) equals()} and
+ * {@link Object#hashCode() hashCode()} methods so it reverts to the default
+ * behavior for {@link Object} instead.
+ * 
+ * This allows us to (1) use {@link java.util.Collection#contains(Object)} to
+ * filter out unique instances when calculating object sizes and (2) call
+ * {@link Object#hashCode() hashCode()} without fear of an exception or infinite
+ * loop.
  * 
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
+ * 
+ * @see Instruments
  */
 class ObjectWrapper {
     private Object o;
@@ -40,11 +45,7 @@ class ObjectWrapper {
     }
 
     public int hashCode() {
-        try {
-            return o.hashCode();
-        } catch (Exception e) {
-            return 0;
-        }
+        return System.identityHashCode(o);
     }
 
 }
