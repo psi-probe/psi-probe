@@ -24,6 +24,23 @@ import junit.framework.TestCase;
  */
 public class InstrumentsTests extends TestCase {
 
+    private String sunArchDataModelProperty;
+
+    /**
+     * Forces the tests to run in 32-bit mode.
+     */
+    protected void setUp() {
+        sunArchDataModelProperty = System.getProperty("sun.arch.data.model");
+        System.setProperty("sun.arch.data.model", "32");
+    }
+
+    /**
+     * Undoes the changes made in {@link #setUp()}.
+     */
+    protected void tearDown() {
+        System.setProperty("sun.arch.data.model", sunArchDataModelProperty);
+    }
+
     public void testObject() {
         long oSize = Instruments.sizeOf(new Object());
         Assert.assertEquals(Instruments.SIZE_OBJECT, oSize);
