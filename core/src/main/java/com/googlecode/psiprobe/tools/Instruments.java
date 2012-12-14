@@ -31,13 +31,15 @@ public class Instruments {
     public static final long SIZE_FLOAT = 4;
     public static final long SIZE_DOUBLE = 8;
     public static final long SIZE_OBJECT = 8;
-    public static final long SIZE_REFERENCE = 4;
+    public static final long SIZE_REFERENCE;
 
     private static final Accessor ACCESSOR = AccessorFactory.getInstance();
     private static final boolean IGNORE_NIO;
     static {
         String ignoreNIOProp = System.getProperty("com.googlecode.psiprobe.intruments.ignoreNIO");
+        String os64bitProp = System.getProperty("sun.arch.data.model");
         IGNORE_NIO = (ignoreNIOProp == null || "true".equalsIgnoreCase(ignoreNIOProp));
+        SIZE_REFERENCE = ("64".equals(os64bitProp) ? 8 : 4);
     }
 
     private Set processedObjects = new HashSet(2048);
