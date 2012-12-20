@@ -36,6 +36,9 @@ public class RuntimeStatsCollectorBean extends AbstractStatsCollectorBean {
             buildAbsoluteStats("os.memory.committed", ri.getCommittedVirtualMemorySize()/1024, time);
             buildAbsoluteStats("os.memory.physical", (ri.getTotalPhysicalMemorySize() - ri.getFreePhysicalMemorySize())/1024, time);
             buildAbsoluteStats("os.memory.swap", (ri.getTotalSwapSpaceSize() - ri.getFreeSwapSpaceSize())/1024, time);
+
+            buildAbsoluteStats("os.fd.open", ri.getOpenFDCount(), time);
+            buildAbsoluteStats("os.fd.max", ri.getMaxFDCount(), time);
             //convert from nanoseconds so times use the same units
             long processCpuTimeMs = ri.getProcessCpuTime() / 1000000;
             //divide by the number of processors to reflect shared load (<= 100%)
