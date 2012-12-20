@@ -232,6 +232,15 @@
 		</property>
 	</bean>
 
+	<bean name="fd_usage" class="com.googlecode.psiprobe.beans.stats.providers.StandardSeriesProvider">
+		<property name="statNames">
+			<list>
+				<value>os.fd.open</value>
+				<value>os.fd.max</value>
+			</list>
+		</property>
+	</bean>
+
 	<bean name="app_req" class="com.googlecode.psiprobe.beans.stats.providers.StandardSeriesProvider">
 		<property name="statNames">
 			<list>

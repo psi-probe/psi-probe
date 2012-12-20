@@ -102,6 +102,32 @@
 					<c:param name="s1l" value="${cpu_legend}"/>
 				</c:url>
 
+				<spring:message code="probe.jsp.os.chart.fd.legend.open" var="fd_open_legend"/>
+				<spring:message code="probe.jsp.os.chart.fd.legend.max" var="fd_max_legend"/>
+
+				<c:url value="/chart.png" var="fd_usage_url">
+					<c:param name="p" value="fd_usage"/>
+					<c:param name="xz" value="${chartWidth}"/>
+					<c:param name="yz" value="${chartHeight}"/>
+					<c:param name="s1c" value="#FF009B"/>
+					<c:param name="s1o" value="#D26900"/>
+					<c:param name="s2c" value="#00CD00"/>
+					<c:param name="s2o" value="#006900"/>
+					<c:param name="l" value="false"/>
+				</c:url>
+
+				<c:url value="/chart.png" var="fd_usage_url_full">
+					<c:param name="p" value="fd_usage"/>
+					<c:param name="xz" value="${fullChartWidth}"/>
+					<c:param name="yz" value="${fullChartHeight}"/>
+					<c:param name="s1c" value="#FF009B"/>
+					<c:param name="s1o" value="#D26900"/>
+					<c:param name="s2c" value="#00CD00"/>
+					<c:param name="s2o" value="#006900"/>
+					<c:param name="s1l" value="${fd_open_legend}"/>
+					<c:param name="s2l" value="${fd_max_legend}"/>
+				</c:url>
+
 				<div>
 					<h3><spring:message code="probe.jsp.os.h3.information"/></h3>
 
@@ -144,6 +170,18 @@
 											width="${chartWidth}"
 											height="${chartHeight}"
 											alt="<spring:message code='probe.jsp.os.chart.swap.alt'/>"/>
+								</dd>
+							</dl>
+						</div>
+
+						<div class="chartContainer">
+							<dl>
+								<dt><spring:message code="probe.jsp.os.chart.fd"/></dt>
+								<dd class="image">
+									<img id="fd_chart" border="0" src="<c:out value='${fd_usage_url}' escapeXml='false'/>"
+											width="${chartWidth}"
+											height="${chartHeight}"
+											alt="<spring:message code='probe.jsp.os.chart.fd.alt'/>"/>
 								</dd>
 							</dl>
 						</div>
@@ -192,6 +230,11 @@
 								zoomIn('<c:out value="${cpu_usage_url_full}" escapeXml="false"/>');
 							}
 						},
+						'#fd_chart': function(element) {
+							element.onclick = function() {
+								zoomIn('<c:out value="${fd_usage_url_full}" escapeXml="false"/>');
+							}
+						},
 						'#full_chart': function(element) {
 							element.onclick = function() {
 								zoomOut();
@@ -204,6 +247,7 @@
 					new Ajax.ImgUpdater('cpu_chart', ${probe:max(collectionPeriod, 5)});
 					new Ajax.ImgUpdater('mem_chart', ${probe:max(collectionPeriod, 5)});
 					new Ajax.ImgUpdater('swap_chart', ${probe:max(collectionPeriod, 5)});
+					new Ajax.ImgUpdater('fd_chart', ${probe:max(collectionPeriod, 5)});
 					new Ajax.PeriodicalUpdater('osinfo', '<c:url value="/adm/osinfo.ajax"/>', {frequency: 5});
 
 				</script>

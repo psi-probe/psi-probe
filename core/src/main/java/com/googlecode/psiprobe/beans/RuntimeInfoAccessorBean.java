@@ -53,6 +53,13 @@ public class RuntimeInfoAccessorBean {
                 ri.setTotalPhysicalMemorySize(JmxTools.getLongAttr(mBeanServer, osOName, "TotalPhysicalMemory"));
             }
 
+            if (JmxTools.hasAttribute(mBeanServer, osOName, "OpenFileDescriptorCount")
+                    && JmxTools.hasAttribute(mBeanServer, osOName, "MaxFileDescriptorCount")) {
+
+                ri.setOpenFDCount(JmxTools.getLongAttr(mBeanServer, osOName, "OpenFileDescriptorCount"));
+                ri.setMaxFDCount(JmxTools.getLongAttr(mBeanServer, osOName, "MaxFileDescriptorCount"));
+            }
+
             return ri;
         } catch (Exception e) {
             logger.debug("OS information is unavailable");

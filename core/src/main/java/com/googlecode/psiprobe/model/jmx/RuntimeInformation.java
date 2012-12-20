@@ -28,6 +28,8 @@ public class RuntimeInformation {
     private String osVersion;
     private long startTime;
     private long uptime;
+    private long openFDCount;
+    private long maxFDCount;
 
     public long getCommittedVirtualMemorySize() {
         return committedVirtualMemorySize;
@@ -124,4 +126,21 @@ public class RuntimeInformation {
     public void setVmVendor(String vmVendor) {
         this.vmVendor = vmVendor;
     }
+
+    public long getOpenFDCount() {
+        return openFDCount;
+    }
+
+    public void setOpenFDCount(long openFDCount) {
+        this.openFDCount = openFDCount;
+    }
+
+    public long getMaxFDCount() {
+        return maxFDCount;
+    }
+
+    public void setMaxFDCount(long maxFDCount) {
+        this.maxFDCount = maxFDCount;
+    }
+
 }
