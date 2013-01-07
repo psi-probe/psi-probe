@@ -9,7 +9,7 @@ An issue with the yum package for Tomcat 6 on RHEL 6 may prevent privileged apps
 
 = Error on first request =
 
-Probe uses !ServerInfo to determine what server it's running on.  If you've changed this property on your server, Probe may give an error when you try to access it.  However, you can bypass this issue by forcing Probe to use a specific server adapter:
+Probe uses !ServerInfo to determine what server it's running on.  If you've changed this property on your server or if you are using an unsupported server, Probe may give an error when you try to access it.  However, you can bypass this issue by forcing Probe to use a specific server adapter:
 
   # Open probe.war and edit `/WEB-INF/spring-probe-resources.xml`.
   # Find the "containerWrapper" bean.
