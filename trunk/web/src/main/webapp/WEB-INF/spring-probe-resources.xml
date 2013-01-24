@@ -36,6 +36,7 @@
 	<bean id="defaultResourceResolver" class="com.googlecode.psiprobe.beans.ResourceResolverBean">
 		<property name="datasourceMappers">
 			<list>
+				<bean class="com.googlecode.psiprobe.beans.BoneCPDatasourceAccessor"/>
 				<bean class="com.googlecode.psiprobe.beans.C3P0DatasourceAccessor"/>
 				<bean class="com.googlecode.psiprobe.beans.DbcpDatasourceAccessor"/>
 				<bean class="com.googlecode.psiprobe.beans.TomcatDbcpDatasourceAccessor"/>
