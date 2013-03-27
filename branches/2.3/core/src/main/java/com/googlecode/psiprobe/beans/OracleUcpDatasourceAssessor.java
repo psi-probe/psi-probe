@@ -45,7 +45,8 @@ public class OracleUcpDatasourceAssessor implements DatasourceAccessor {
     }
 
     public boolean canMap(Object resource) {
-        return "oracle.ucp.jdbc.PoolDataSource".equals(resource.getClass().getName())
+        return ("oracle.ucp.jdbc.PoolDataSourceImpl".equals(resource.getClass().getName())
+                || "oracle.ucp.jdbc.PoolXADataSourceImpl".equals(resource.getClass().getName()))
                 && resource instanceof PoolDataSource;
     }
 
