@@ -1,0 +1,47 @@
+/*
+ * Licensed under the GPL License.  You may not use this file except in
+ * compliance with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ *
+ * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
+ * MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+ */
+
+#tabnav {
+	height: 20px;
+	margin: 0;
+	padding-left: 10px;
+	background: url( img/tab_bottom.gif ) repeat-x bottom;
+}
+
+#tabnav li {
+	margin: 0;
+	padding: 0;
+	display: inline;
+	list-style-type: none;
+}
+
+#tabnav a:link, #tabnav a:visited {
+	float: left;
+	background: #f3f3f3;
+	font-size: 12px;
+	line-height: 14px;
+	font-weight: bold;
+	padding: 2px 10px 2px 10px;
+	margin-right: 4px;
+	border: 1px solid #ccc;
+	text-decoration: none;
+	color: #666;
+}
+
+#tabnav a:link.active, #tabnav a:visited.active {
+	border-bottom: 1px solid #fff;
+	background: #fff;
+	color: #000;
+}
+
+#tabnav a:hover {
+	background: #fff;
+}
