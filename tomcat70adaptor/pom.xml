@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>com.googlecode.psiprobe</groupId>
 		<artifactId>psi-probe</artifactId>
-		<version>2.3.3-SNAPSHOT</version>
+		<version>2.3.3</version>
 	</parent>
 	<groupId>com.googlecode.psiprobe</groupId>
 	<artifactId>tomcat70adaptor</artifactId>
