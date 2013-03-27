@@ -95,6 +95,11 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
+			<groupId>com.jolbox</groupId>
+			<artifactId>bonecp</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
 			<groupId>tanukisoft</groupId>
 			<artifactId>wrapper</artifactId>
 			<scope>provided</scope>
