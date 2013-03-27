@@ -14,11 +14,25 @@ import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 public class Instruments {
 
-    private static final int SZ_REF = 4;
+    public static final long SIZE_VOID = 0;
+    public static final long SIZE_BOOLEAN = 1;
+    public static final long SIZE_BYTE = 1;
+    public static final long SIZE_CHAR = 2;
+    public static final long SIZE_SHORT = 2;
+    public static final long SIZE_INT = 4;
+    public static final long SIZE_LONG = 8;
+    public static final long SIZE_FLOAT = 4;
+    public static final long SIZE_DOUBLE = 8;
+    public static final long SIZE_OBJECT = 8;
+    public static final long SIZE_REFERENCE = 4;
+
     private static final Accessor ACCESSOR = AccessorFactory.getInstance();
     private static final boolean IGNORE_NIO;
     static {
@@ -27,6 +41,8 @@ public class Instruments {
     }
 
     private Set processedObjects = new HashSet(2048);
+    private List thisQueue = new LinkedList();
+    private List nextQueue = new LinkedList();
     private ClassLoader classLoader = null;
 
     public static long sizeOf(Object o) {
@@ -45,44 +61,62 @@ public class Instruments {
         return instruments.internalSizeOf(o);
     }
 
-    private long internalSizeOf(Object o) {
+    private long internalSizeOf(Object obj) {
         long size = 0;
-        if (isInitialized()
-                && o != null
-                && (classLoader == null || classLoader == o.getClass().getClassLoader())
-                && (!IGNORE_NIO || !o.getClass().getName().startsWith("java.nio.")) ) {
-            ObjectWrapper ow = new ObjectWrapper(o);
-            if (! processedObjects.contains(ow)) {
-                size += 8;
-                if (o.getClass().isArray()) {
-                    size = sizeOfArray(o);
-                } else if (o.getClass().isPrimitive()) {
-                    size = sizeOfPrimitive(o.getClass());
-                } else {
-                    processedObjects.add(ow);
-                    Class clazz = o.getClass();
-                    while (clazz != null) {
-                        Field fields[] = clazz.getDeclaredFields();
-                        for (int i = 0; i < fields.length; i++) {
-                            Field f = fields[i];
-                            if (!Modifier.isStatic(f.getModifiers())) {
-                                if (f.getType().isPrimitive()) {
-                                    size += sizeOfPrimitive(f.getType());
-                                } else {
-                                    Object val = ACCESSOR.get(o, f);
-                                    if (f.getType().isArray()) {
-                                        size += sizeOfArray(val);
-                                    } else {
-                                        size += internalSizeOf(val);
-                                        size += SZ_REF;
-                                    }
-                                }
-                            }
+        thisQueue.add(obj);
+        while (!thisQueue.isEmpty()) {
+            Iterator it = thisQueue.iterator();
+            while (it.hasNext()) {
+                Object o = it.next();
+                if (isInitialized()
+                        && o != null
+                        && (classLoader == null || classLoader == o.getClass().getClassLoader())
+                        && (!IGNORE_NIO || !o.getClass().getName().startsWith("java.nio.")) ) {
+                    ObjectWrapper ow = new ObjectWrapper(o);
+                    if (!processedObjects.contains(ow)) {
+                        if (o.getClass().isArray()) {
+                            size += sizeOfArray(o);
+                        } else if (o.getClass().isPrimitive()) {
+                            size += sizeOfPrimitive(o.getClass());
+                        } else {
+                            processedObjects.add(ow);
+                            size += sizeOfObject(o);
                         }
-                        clazz = clazz.getSuperclass();
+                    }
+                }
+                it.remove();
+            }
+            //avoids ConcurrentModificationException
+            if (!nextQueue.isEmpty()) {
+                thisQueue.addAll(nextQueue);
+                nextQueue.clear();
+            }
+        }
+        return size;
+    }
+
+    private long sizeOfObject(Object o) {
+        long size = SIZE_OBJECT;
+        Class clazz = o.getClass();
+        while (clazz != null) {
+            Field fields[] = clazz.getDeclaredFields();
+            for (int i = 0; i < fields.length; i++) {
+                Field f = fields[i];
+                if (!Modifier.isStatic(f.getModifiers())) {
+                    if (f.getType().isPrimitive()) {
+                        size += sizeOfPrimitive(f.getType());
+                    } else {
+                        Object val = ACCESSOR.get(o, f);
+                        if (f.getType().isArray()) {
+                            size += sizeOfArray(val);
+                        } else {
+                            size += SIZE_REFERENCE;
+                            nextQueue.add(val);
+                        }
                     }
                 }
             }
+            clazz = clazz.getSuperclass();
         }
         return size;
     }
@@ -93,38 +127,35 @@ public class Instruments {
             if (ct.isPrimitive()) {
                 return Array.getLength(o) * sizeOfPrimitive(ct);
             } else {
-                long size = 0;
                 for (int i = 0; i < Array.getLength(o); i++) {
-                    size += internalSizeOf(Array.get(o, i));
+                    nextQueue.add(Array.get(o, i));
                 }
-                return size;
             }
-        } else {
-            return 0;
         }
+        return 0;
     }
 
     private static long sizeOfPrimitive(Class t) {
         if (t == Boolean.TYPE) {
-            return 1;
+            return SIZE_BOOLEAN;
         } else if (t == Byte.TYPE) {
-            return 1;
+            return SIZE_BYTE;
         } else if (t == Character.TYPE) {
-            return 2;
+            return SIZE_CHAR;
         } else if (t == Short.TYPE) {
-            return 2;
+            return SIZE_SHORT;
         } else if (t == Integer.TYPE) {
-            return 4;
+            return SIZE_INT;
         } else if (t == Long.TYPE) {
-            return 8;
+            return SIZE_LONG;
         } else if (t == Float.TYPE) {
-            return 8;
+            return SIZE_FLOAT;
         } else if (t == Double.TYPE) {
-            return 8;
+            return SIZE_DOUBLE;
         } else if (t == Void.TYPE) {
-            return 0;
+            return SIZE_VOID;
         } else {
-            return SZ_REF;
+            return SIZE_REFERENCE;
         }
     }
 
