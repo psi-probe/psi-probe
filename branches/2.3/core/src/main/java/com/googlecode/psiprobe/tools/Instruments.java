@@ -65,7 +65,7 @@ public class Instruments {
                         Field fields[] = clazz.getDeclaredFields();
                         for (int i = 0; i < fields.length; i++) {
                             Field f = fields[i];
-                            if ((f.getModifiers() & Modifier.STATIC) == 0) {
+                            if (!Modifier.isStatic(f.getModifiers())) {
                                 if (f.getType().isPrimitive()) {
                                     size += sizeOfPrimitive(f.getType());
                                 } else {
