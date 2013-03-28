@@ -10,6 +10,7 @@
  */
 package com.googlecode.psiprobe.controllers;
 
+import com.googlecode.psiprobe.UptimeListener;
 import com.googlecode.psiprobe.Utils;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -48,7 +49,7 @@ public class DecoratorController extends ParameterizableViewController {
         Properties version = (Properties) getApplicationContext().getBean("version");
         request.setAttribute("version", version.getProperty("probe.version"));
 
-        Object uptimeStart = getServletContext().getAttribute("UPTIME_START");
+        Object uptimeStart = getServletContext().getAttribute(UptimeListener.START_TIME_KEY);
         if (uptimeStart != null && uptimeStart instanceof Long) {
             long l = ((Long)uptimeStart).longValue();
             long uptime = System.currentTimeMillis() - l;
