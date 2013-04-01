@@ -30,11 +30,9 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
-	<servlet>
-		<servlet-name>uptime</servlet-name>
-		<servlet-class>com.googlecode.psiprobe.UptimeServlet</servlet-class>
-		<load-on-startup>0</load-on-startup>
-	</servlet>
+	<listener>
+		<listener-class>com.googlecode.psiprobe.UptimeListener</listener-class>
+	</listener>
 
 	<!--
 		Core dispatcher servlet
@@ -53,7 +51,7 @@
 				]]>
 			</param-value>
 		</init-param>
-		<load-on-startup>1</load-on-startup>
+		<load-on-startup>0</load-on-startup>
 	</servlet>
 
 	<servlet-mapping>
