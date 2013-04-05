@@ -312,6 +312,22 @@
 			</div>
 		</form>
 
+		<c:url value="/sessions.htm" var="urlApply">
+			<c:param name="searchAction" value="apply"/>
+			<c:param name="size" value="${param.size}"/>
+			<c:if test="${not empty param.webapp}">
+				<c:param name="webapp" value="${param.webapp}"/>
+			</c:if>
+		</c:url>
+
+		<c:url value="/sessions.htm" var="urlClear">
+			<c:param name="searchAction" value="clear"/>
+			<c:param name="size" value="${param.size}"/>
+			<c:if test="${not empty param.webapp}">
+				<c:param name="webapp" value="${param.webapp}"/>
+			</c:if>
+		</c:url>
+
 		<script type="text/javascript">
 			var rules = {
 				'#ttdiv_close': function(e) {
@@ -335,28 +351,12 @@
 			}
 
 			function applySearch() {
-				<c:choose>
-					<c:when test="${empty param.webapp}">
-						$('sessionForm').action = '<c:url value="/sessions.htm"><c:param name="size" value="${param.size}"/><c:param name="searchAction" value="apply"/></c:url>';
-					</c:when>
-					<c:otherwise>
-						$('sessionForm').action = '<c:url value="/sessions.htm"><c:param name="webapp" value="${param.webapp}"/><c:param name="size" value="${param.size}"/><c:param name="searchAction" value="apply"/></c:url>';
-					</c:otherwise>
-				</c:choose>
-
+				$('sessionForm').action = '<c:out value="${urlApply}" />';
 				$('sessionForm').submit();
 			}
 
 			function clearSearch() {
-				<c:choose>
-					<c:when test="${empty param.webapp}">
-						$('sessionForm').action = '<c:url value="/sessions.htm"><c:param name="size" value="${param.size}"/><c:param name="searchAction" value="clear"/></c:url>';
-					</c:when>
-					<c:otherwise>
-						$('sessionForm').action = '<c:url value="/sessions.htm"><c:param name="webapp" value="${param.webapp}"/><c:param name="size" value="${param.size}"/><c:param name="searchAction" value="clear"/></c:url>';
-					</c:otherwise>
-				</c:choose>
-
+				$('sessionForm').action = '<c:out value="${urlClear}" />';
 				$('sessionForm').submit();
 			}
 		</script>
