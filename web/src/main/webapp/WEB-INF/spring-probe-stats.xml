@@ -276,6 +276,7 @@
 		<property name="statNames">
 			<list>
 				<value>total.requests</value>
+				<value>total.errors</value>
 			</list>
 		</property>
 	</bean>

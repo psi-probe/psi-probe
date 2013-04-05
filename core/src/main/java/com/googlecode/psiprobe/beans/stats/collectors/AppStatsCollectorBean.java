@@ -72,6 +72,7 @@ public class AppStatsCollectorBean extends AbstractStatsCollectorBean implements
             // check if the containerWtapper has been initialized
             if (tomcatContainer != null) {
                 long totalReqDelta = 0;
+                long totalErrDelta = 0;
                 long totalAvgProcTime = 0;
                 int participatingAppCount = 0;
 
@@ -86,8 +87,8 @@ public class AppStatsCollectorBean extends AbstractStatsCollectorBean implements
                         String appName = "".equals(ctx.getName()) ? "/" : ctx.getName();
 
                         long reqDelta = buildDeltaStats("app.requests." + appName, app.getRequestCount(), currentTime);
+                        long errDelta = buildDeltaStats("app.errors." + appName, app.getErrorCount());
                         long procTimeDelta = buildDeltaStats("app.proc_time." + appName, app.getProcessingTime(), currentTime);
-                        buildDeltaStats("app.errors." + appName, app.getErrorCount());
 
                         long avgProcTime = reqDelta == 0 ? 0 : procTimeDelta / reqDelta;
                         buildAbsoluteStats( "app.avg_proc_time." + appName, avgProcTime, currentTime);
@@ -97,6 +98,7 @@ public class AppStatsCollectorBean extends AbstractStatsCollectorBean implements
                         if (reqDelta > 0) {
                             if (!excludeFromTotal(ctx)) {
                                 totalReqDelta += reqDelta;
+                                totalErrDelta += errDelta;
                                 totalAvgProcTime += avgProcTime;
                                 participatingAppCount++;
                             }
@@ -105,6 +107,7 @@ public class AppStatsCollectorBean extends AbstractStatsCollectorBean implements
                 }
                 // build totals for all applications
                 buildAbsoluteStats("total.requests", totalReqDelta, currentTime);
+                buildAbsoluteStats("total.errors", totalErrDelta, currentTime);
                 buildAbsoluteStats("total.avg_proc_time", participatingAppCount == 0 ? 0 : totalAvgProcTime / participatingAppCount, currentTime);
             }
             logger.debug("app stats collected in " + (System.currentTimeMillis() - currentTime) + "ms.");
@@ -133,6 +136,7 @@ public class AppStatsCollectorBean extends AbstractStatsCollectorBean implements
             }
         }
         resetStats("total.requests");
+        resetStats("total.errors");
         resetStats("total.avg_proc_time");
     }
 
