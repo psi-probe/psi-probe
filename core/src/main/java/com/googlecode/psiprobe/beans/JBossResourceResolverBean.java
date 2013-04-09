@@ -43,7 +43,8 @@ public class JBossResourceResolverBean implements ResourceResolver {
     public MBeanServer getMBeanServer() {
         for (Iterator it = MBeanServerFactory.findMBeanServer(null).iterator(); it.hasNext();) {
             MBeanServer server = (MBeanServer) it.next();
-            if ("jboss".equals(server.getDefaultDomain())) {
+            if ("jboss".equals(server.getDefaultDomain())
+                    || "DefaultDomain".equals(server.getDefaultDomain())) {
                 return server;
             }
         }
