@@ -14,7 +14,6 @@ import com.googlecode.psiprobe.model.Application;
 import com.googlecode.psiprobe.model.DisconnectedLogDestination;
 import com.googlecode.psiprobe.tools.ApplicationUtils;
 import com.googlecode.psiprobe.tools.Instruments;
-import com.googlecode.psiprobe.tools.logging.DefaultAccessor;
 import com.googlecode.psiprobe.tools.logging.FileLogAccessor;
 import com.googlecode.psiprobe.tools.logging.LogDestination;
 import com.googlecode.psiprobe.tools.logging.catalina.CatalinaLoggerAccessor;
@@ -72,7 +71,7 @@ public class LogResolverBean {
             // this list has to guarantee the order in which elements are added
             //
             List uniqueList = new LinkedList();
-            Comparator cmp = new LogDestinationComparator(all);
+            LogComparator cmp = new LogDestinationComparator(all);
 
             Collections.sort(allAppenders, cmp);
             for (int i = 0; i < allAppenders.size(); i++) {
@@ -105,7 +104,7 @@ public class LogResolverBean {
 
         List allAppenders = getAllLogDestinations();
         if (allAppenders != null) {
-            Comparator cmp = new LogSourceComparator();
+            LogComparator cmp = new LogSourceComparator();
 
             Collections.sort(allAppenders, cmp);
             for (int i = 0; i < allAppenders.size(); i++) {
@@ -401,17 +400,11 @@ public class LogResolverBean {
         return null;
     }
 
-    private static class LogDestinationComparator implements Comparator {
+    private static abstract class LogComparator implements Comparator {
 
-        private static final char DELIM = '!';
+        protected static final char DELIM = '!';
 
-        private boolean all;
-
-        public LogDestinationComparator(boolean all) {
-            this.all = all;
-        }
-
-        public int compare(Object o1, Object o2) {
+        public final int compare(Object o1, Object o2) {
             LogDestination d1 = (LogDestination) o1;
             LogDestination d2 = (LogDestination) o2;
             boolean eitherAppIsNull = (d1.getApplication() == null || d2.getApplication() == null);
@@ -420,9 +413,22 @@ public class LogResolverBean {
             return name1.compareTo(name2);
         }
 
-        private String convertToString(LogDestination dest, boolean eitherAppIsNull) {
+        protected abstract String convertToString(LogDestination d1, boolean eitherAppIsNull);
+
+    }
+
+    private static class LogDestinationComparator extends LogComparator {
+
+        private boolean all;
+
+        public LogDestinationComparator(boolean all) {
+            this.all = all;
+        }
+
+        protected String convertToString(LogDestination dest, boolean eitherAppIsNull) {
             File file = dest.getFile();
-            String name = (file == null ? "" : file.getAbsolutePath());
+            String fileName = (file == null ? "" : file.getAbsolutePath());
+            String name;
             if (all) {
                 Application app = dest.getApplication();
                 if (eitherAppIsNull) {
@@ -432,34 +438,18 @@ public class LogResolverBean {
                 String context = (dest.isContext() ? "is" : "not");
                 String root = (dest.isRoot() ? "is" : "not");
                 String logType = dest.getLogType();
-                name = appName + DELIM + context + DELIM + root + DELIM + logType + DELIM + name;
+                name = appName + DELIM + context + DELIM + root + DELIM + logType + DELIM + fileName;
+            } else {
+                name = fileName;
             }
             return name;
         }
 
     }
 
-    private static class LogSourceComparator implements Comparator {
+    private static class LogSourceComparator extends LogComparator {
 
-        private static final char DELIM = '!';
-
-        public int compare(Object o1, Object o2) {
-            if (o1 instanceof DefaultAccessor && o2 instanceof DefaultAccessor) {
-                DefaultAccessor da1 = (DefaultAccessor) o1;
-                DefaultAccessor da2 = (DefaultAccessor) o2;
-                if (da1.getTarget() == da2.getTarget()) {
-                    return 0;
-                }
-            }
-            LogDestination d1 = (LogDestination) o1;
-            LogDestination d2 = (LogDestination) o2;
-            boolean eitherAppIsNull = (d1.getApplication() == null || d2.getApplication() == null);
-            String name1 = convertToString(d1, eitherAppIsNull);
-            String name2 = convertToString(d2, eitherAppIsNull);
-            return name1.compareTo(name2);
-        }
-
-        private String convertToString(LogDestination dest, boolean eitherAppIsNull) {
+        protected String convertToString(LogDestination dest, boolean eitherAppIsNull) {
             File file = dest.getFile();
             String fileName = (file == null ? "" : file.getAbsolutePath());
             Application app = dest.getApplication();
@@ -471,7 +461,6 @@ public class LogResolverBean {
             String context = (dest.isContext() ? "is" : "not");
             String root = (dest.isRoot() ? "is" : "not");
             String logName = dest.getName();
-            //String logIndex1 = d1.getIndex();
             return appName + DELIM + logType + DELIM + context + DELIM + root + DELIM + logName + DELIM + fileName;
         }
 
