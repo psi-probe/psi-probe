@@ -22,12 +22,11 @@ import java.util.LinkedList;
  */
 public abstract class FlapListener extends ThresholdListener {
 
-    public static final int DEFAULT_FLAP_INTERVAL = 20;
-    public static final float DEFAULT_FLAP_START_THRESHOLD = 0.2f;
-    public static final float DEFAULT_FLAP_STOP_THRESHOLD = 0.5f;
-    public static final float DEFAULT_FLAP_LOW_WEIGHT = 1.0f;
-    public static final float DEFAULT_FLAP_HIGH_WEIGHT = 1.0f;
-
+    private int defaultFlapInterval;
+    private float defaultFlapStartThreshold;
+    private float defaultFlapStopThreshold;
+    private float defaultFlapLowWeight;
+    private float defaultFlapHighWeight;
     private HashMap/*String, LinkedList*/ flaps = new HashMap();
     private HashMap/*String, Boolean*/ flappingStates = new HashMap();
 
@@ -90,9 +89,9 @@ public abstract class FlapListener extends ThresholdListener {
         float transitionPercent = calculateStateTransitionPercentage(name, oldFlappingState);
         boolean newFlappingState;
         if (oldFlappingState) {
-            newFlappingState = (transitionPercent <= getFlappingStopThreshold(name));
+            newFlappingState = (transitionPercent <= getFlapStopThreshold(name));
         } else {
-            newFlappingState = (transitionPercent > getFlappingStartThreshold(name));
+            newFlappingState = (transitionPercent > getFlapStartThreshold(name));
         }
         setFlappingState(name, newFlappingState);
         return oldFlappingState != newFlappingState;
@@ -148,28 +147,68 @@ public abstract class FlapListener extends ThresholdListener {
     }
 
     protected int getFlapInterval(String name) {
-        String flapInterval = getPropertyValue(name, "flapInterval");
-        return Utils.toInt(flapInterval, DEFAULT_FLAP_INTERVAL);
+        String interval = getPropertyValue(name, "flapInterval");
+        return Utils.toInt(interval, getDefaultFlapInterval());
     }
 
-    protected float getFlappingStartThreshold(String name) {
-        String flapStartThreshold = getPropertyValue(name, "flapStartThreshold");
-        return Utils.toFloat(flapStartThreshold, DEFAULT_FLAP_START_THRESHOLD);
+    protected float getFlapStartThreshold(String name) {
+        String startThreshold = getPropertyValue(name, "flapStartThreshold");
+        return Utils.toFloat(startThreshold, getDefaultFlapStartThreshold());
     }
 
-    protected float getFlappingStopThreshold(String name) {
-        String flapStopThreshold = getPropertyValue(name, "flapStopThreshold");
-        return Utils.toFloat(flapStopThreshold, DEFAULT_FLAP_STOP_THRESHOLD);
+    protected float getFlapStopThreshold(String name) {
+        String stopThreshold = getPropertyValue(name, "flapStopThreshold");
+        return Utils.toFloat(stopThreshold, getDefaultFlapStopThreshold());
     }
 
     protected float getFlapLowWeight(String name) {
-        String flapLowWeight = getPropertyValue(name, "flapLowWeight");
-        return Utils.toFloat(flapLowWeight, DEFAULT_FLAP_LOW_WEIGHT);
+        String lowWeight = getPropertyValue(name, "flapLowWeight");
+        return Utils.toFloat(lowWeight, getDefaultFlapLowWeight());
     }
     
     protected float getFlapHighWeight(String name) {
-        String flapHighWeight = getPropertyValue(name, "flapHighWeight");
-        return Utils.toFloat(flapHighWeight, DEFAULT_FLAP_HIGH_WEIGHT);
+        String highWeight = getPropertyValue(name, "flapHighWeight");
+        return Utils.toFloat(highWeight, getDefaultFlapHighWeight());
+    }
+
+    public int getDefaultFlapInterval() {
+        return defaultFlapInterval;
+    }
+
+    public void setDefaultFlapInterval(int defaultFlapInterval) {
+        this.defaultFlapInterval = defaultFlapInterval;
+    }
+
+    public float getDefaultFlapStartThreshold() {
+        return defaultFlapStartThreshold;
+    }
+
+    public void setDefaultFlapStartThreshold(float defaultFlapStartThreshold) {
+        this.defaultFlapStartThreshold = defaultFlapStartThreshold;
+    }
+
+    public float getDefaultFlapStopThreshold() {
+        return defaultFlapStopThreshold;
+    }
+
+    public void setDefaultFlapStopThreshold(float defaultFlapStopThreshold) {
+        this.defaultFlapStopThreshold = defaultFlapStopThreshold;
+    }
+
+    public float getDefaultFlapLowWeight() {
+        return defaultFlapLowWeight;
+    }
+
+    public void setDefaultFlapLowWeight(float defaultFlapLowWeight) {
+        this.defaultFlapLowWeight = defaultFlapLowWeight;
+    }
+
+    public float getDefaultFlapHighWeight() {
+        return defaultFlapHighWeight;
+    }
+
+    public void setDefaultFlapHighWeight(float defaultFlapHighWeight) {
+        this.defaultFlapHighWeight = defaultFlapHighWeight;
     }
 
 }

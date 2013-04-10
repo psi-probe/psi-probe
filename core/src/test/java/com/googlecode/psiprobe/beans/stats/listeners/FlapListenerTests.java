@@ -23,8 +23,10 @@ public class FlapListenerTests extends TestCase {
     private final int defaultInterval = 10;
     private final float defaultStartThreshold = 0.29f;
     private final float defaultStopThreshold = 0.49f;
+    private final float defaultLowWeight = 1.0f;
+    private final float defaultHighWeight = 1.0f;
 
-    private MockFlapListener listener = new MockFlapListener(defaultThreshold, defaultInterval, defaultStartThreshold, defaultStopThreshold);
+    private MockFlapListener listener = new MockFlapListener(defaultThreshold, defaultInterval, defaultStartThreshold, defaultStopThreshold, defaultLowWeight, defaultHighWeight);
     private StatsCollectionEvent belowThreshold = new StatsCollectionEvent("test", 0, 0);
     private StatsCollectionEvent aboveThreshold = new StatsCollectionEvent("test", 0, 20);
 
@@ -130,9 +132,6 @@ public class FlapListenerTests extends TestCase {
     public static class MockFlapListener extends FlapListener {
 
         private final long threshold;
-        private final int flapInterval;
-        private final float flappingStartThreshold;
-        private final float flappingStopThreshold;
         
         private boolean flappingStarted;
         private boolean aboveThresholdFlappingStopped;
@@ -140,11 +139,13 @@ public class FlapListenerTests extends TestCase {
         private boolean aboveThresholdNotFlapping;
         private boolean belowThresholdNotFlapping;
 
-        public MockFlapListener(long threshold, int flapInterval, float flappingStartThreshold, float flappingStopThreshold) {
+        public MockFlapListener(long threshold, int flapInterval, float flapStartThreshold, float flapStopThreshold, float lowWeight, float highWeight) {
             this.threshold = threshold;
-            this.flapInterval = flapInterval;
-            this.flappingStartThreshold = flappingStartThreshold;
-            this.flappingStopThreshold = flappingStopThreshold;
+            setDefaultFlapInterval(flapInterval);
+            setDefaultFlapStartThreshold(flapStartThreshold);
+            setDefaultFlapStopThreshold(flapStopThreshold);
+            setDefaultFlapLowWeight(lowWeight);
+            setDefaultFlapHighWeight(highWeight);
         }
         
         public void statsCollected(StatsCollectionEvent sce) {
@@ -174,18 +175,6 @@ public class FlapListenerTests extends TestCase {
         
         public long getThreshold(String name) {
             return threshold;
-        }
-
-        protected int getFlapInterval(String name) {
-            return flapInterval;
-        }
-
-        protected float getFlappingStartThreshold(String name) {
-            return flappingStartThreshold;
-        }
-
-        protected float getFlappingStopThreshold(String name) {
-            return flappingStopThreshold;
         }
 
         public void reset() {

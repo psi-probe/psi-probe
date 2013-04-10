@@ -93,6 +93,21 @@
 			<list>
 				<bean class="com.googlecode.psiprobe.beans.stats.listeners.MemoryPoolMailingListener">
 					<property name="mailer" ref="mailer"/>
+					<property name="defaultFlapInterval">
+						<value>${com.googlecode.psiprobe.beans.stats.listeners.flapInterval}</value>
+					</property>
+					<property name="defaultFlapStartThreshold">
+						<value>${com.googlecode.psiprobe.beans.stats.listeners.flapStartThreshold}</value>
+					</property>
+					<property name="defaultFlapStopThreshold">
+						<value>${com.googlecode.psiprobe.beans.stats.listeners.flapStopThreshold}</value>
+					</property>
+					<property name="defaultFlapLowWeight">
+						<value>${com.googlecode.psiprobe.beans.stats.listeners.flapLowWeight}</value>
+					</property>
+					<property name="defaultFlapHighWeight">
+						<value>${com.googlecode.psiprobe.beans.stats.listeners.flapHighWeight}</value>
+					</property>
 				</bean>
 			</list>
 		</property>
