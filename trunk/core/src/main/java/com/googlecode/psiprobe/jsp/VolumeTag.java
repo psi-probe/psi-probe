@@ -45,7 +45,7 @@ public class VolumeTag extends TagSupport {
 
     public int doStartTag() throws JspException {
         String title = Long.toString(value);
-        String newValue = SizeExpression.roundedExpression(value, fractions);
+        String newValue = SizeExpression.format(value, fractions);
         try {
             pageContext.getOut().write("<span title=\"" + title + "\">" + newValue + "</span>");
         } catch (IOException e) {
