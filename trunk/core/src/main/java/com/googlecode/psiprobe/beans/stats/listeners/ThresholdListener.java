@@ -11,6 +11,7 @@
 package com.googlecode.psiprobe.beans.stats.listeners;
 
 import com.googlecode.psiprobe.Utils;
+import com.googlecode.psiprobe.tools.SizeExpression;
 import java.util.HashMap;
 
 /**
@@ -79,8 +80,14 @@ public abstract class ThresholdListener extends AbstractStatsCollectionListener 
         if (threshold == null && !isSeriesDisabled(name)) {
             logger.info("Required property " + getPropertyKey(name, "threshold") + " is not defined or inherited.  Disabling listener for \"" + name + "\" series.");
             setSeriesDisabled(name, true);
+            return DEFAULT_THRESHOLD;
+        } else {
+            try {
+                return SizeExpression.parse(threshold);
+            } catch (NumberFormatException ex) {
+                return DEFAULT_THRESHOLD;
+            }
         }
-        return Utils.toLong(threshold, DEFAULT_THRESHOLD);
     }
 
     protected long getPreviousValue(String name) {
