@@ -15,6 +15,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
+ * Tool for parsing and formatting SI-prefixed numbers in base-2 and base-10.
  *
  * @author Mark Lewis
  */
@@ -29,6 +30,52 @@ public class SizeExpression {
     public static final char PREFIX_TERA = 'T';
     public static final char PREFIX_PETA = 'P';
 
+    /**
+     * Parses the given expression into a numerical value.
+     * 
+     * <p>
+     * An expression has three parts:
+     * </p>
+     * <table>
+     *  <thead>
+     *   <tr>
+     *    <th>Name</th>
+     *    <th>Description</th>
+     *   </tr>
+     *  </thead>
+     *  <tbody>
+     *   <tr>
+     *    <td>Base Number</td>
+     *    <td>(Required) The mantissa or significand of the expression.  This can include decimal values.</td>
+     *   </tr>
+     *   <tr>
+     *    <td>Prefix</td>
+     *    <td>(Optional) The <a href="http://en.wikipedia.org/wiki/Si_prefix" target="_blank">SI prefix</a>.  These span from K for kilo- to P for peta-.</td>
+     *   </tr>
+     *   <tr>
+     *    <td>Unit</td>
+     *    <td>(Optional) If the unit "B" (for bytes) is provided, the prefix is treated as base-2 (1024).  Otherwise, it uses base-10 (1000).</td>
+     *   </tr>
+     *  </tbody>
+     *  <tfoot>
+     *   <tr>
+     *    <td colspan="2"><em>Note: Whitespace may or may not exist between the Base Number and Prefix.</em></td>
+     *   </tr>
+     *  </tfoot>
+     * </table>
+     * 
+     * <p>Examples:</p>
+     * <ul>
+     *  <li>"2k" returns {@code 2000}</li>
+     *  <li>"3.5m" returns {@code 3500000}</li>
+     *  <li>"2kb" returns {@code 2048}</li>
+     *  <li>"3.5mb" returns {@code 3670016}</li>
+     * </ul>
+     * 
+     * @param expression the expression to parse
+     * @return the parsed value
+     * @throws NumberFormatException if the given expression cannot be parsed
+     */
     public static long parse(String expression) {
         String prefixClass = "[" + PREFIX_KILO + PREFIX_MEGA + PREFIX_GIGA + PREFIX_TERA + PREFIX_PETA + "]";
         Pattern p = Pattern.compile("(\\d+|\\d*\\.\\d+)\\s*(" + prefixClass + ")?(" + UNIT_BASE + ")?", Pattern.CASE_INSENSITIVE);
@@ -44,14 +91,20 @@ public class SizeExpression {
             double rawValue = Double.parseDouble(value);
             return (long) (rawValue * multiplier);
         } else {
-            throw new IllegalArgumentException("Invalid expression format: " + expression);
+            throw new NumberFormatException("Invalid expression format: " + expression);
         }
     }
 
-    public static String format(long bytes, int decimalPlaces) {
-        return format(bytes, decimalPlaces, true);
-    }
-
+    /**
+     * Formats the value as an expression.
+     * 
+     * @param value the numerical value to be formatted
+     * @param decimalPlaces the number of decimal places in the mantissa
+     * @param base2 whether to use the base-2 (1024) multiplier and format with
+     *        "B" units.  If false, uses the base-10 (1000) multiplier and no
+     *        units.
+     * @return a formatted string expression of the value
+     */
     public static String format(long value, int decimalPlaces, boolean base2) {
         NumberFormat nf = NumberFormat.getInstance();
         nf.setMinimumFractionDigits(decimalPlaces);
@@ -85,10 +138,26 @@ public class SizeExpression {
         return nf.format(doubleResult) + (base2 ? " " : "") + unit;
     }
 
+    /**
+     * Rounds a decimal value to the given decimal place.
+     * 
+     * @param value the value to round
+     * @param decimalPlaces the number of decimal places to preserve.
+     * @return the rounded value
+     */
     private static double round(double value, int decimalPlaces) {
         return Math.round(value * Math.pow(10, decimalPlaces)) / Math.pow(10, decimalPlaces);
     }
 
+    /**
+     * Returns the base-2 or base-10 multiplier for a given prefix.
+     * 
+     * @param unitPrefix the character representing the prefix.  Can be K, M, G,
+     *        T, or P.
+     * @param base2 whether to use the base-2 (1024) multiplier.  If false, uses
+     *        the base-10 (1000) multiplier.
+     * @return the multiplier for the given prefix
+     */
     private static long multiplier(char unitPrefix, boolean base2) {
         long result;
         long multiplier = (base2 ? MULTIPLIER_2 : MULTIPLIER_10);
