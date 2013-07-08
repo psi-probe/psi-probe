@@ -205,6 +205,9 @@ public class ApplicationUtils {
 
             HttpSession httpSession = session.getSession();
             Set processedObjects = new HashSet(1000);
+            
+            //Exclude references back to the session itself
+            processedObjects.add(httpSession);
             try {
                 for (Enumeration e = httpSession.getAttributeNames(); e.hasMoreElements();) {
                     String name = (String) e.nextElement();
