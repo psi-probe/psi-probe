@@ -399,7 +399,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-resources-plugin</artifactId>
-					<version>2.2</version>
+					<version>2.6</version>
 					<configuration>
 						<encoding>UTF-8</encoding>
 					</configuration>
@@ -476,12 +476,50 @@
 						</dependency>
 					</dependencies>
 				</plugin>
+				<!-- IDE -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-eclipse-plugin</artifactId>
+					<version>2.7</version>
+					<configuration>
+						<downloadSources>true</downloadSources>
+						<downloadJavadocs>false</downloadJavadocs>
+						<wtpversion>2.0</wtpversion>
+						<wtpContextName>probe</wtpContextName>
+						<additionalBuildcommands>
+							<buildCommand>
+								<name>org.springframework.ide.eclipse.core.springbuilder</name>
+							</buildCommand>
+						</additionalBuildcommands>
+						<additionalProjectnatures>
+							<projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
+						</additionalProjectnatures>
+					</configuration>
+				  </plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-idea-plugin</artifactId>
+					<version>2.2</version>
+					<configuration>
+						<downloadSources>true</downloadSources>
+						<dependenciesAsLibraries>true</dependenciesAsLibraries>
+					</configuration>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 		<plugins>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>buildnumber-maven-plugin</artifactId>
+			</plugin>
+			<!-- IDE -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-idea-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>
