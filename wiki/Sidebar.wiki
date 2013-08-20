@@ -12,5 +12,6 @@
   * Development
     * [DevelopmentRoadmap Roadmap]
     * Configure Your IDE
+      * [IDEConfigEclipse Eclipse]
       * [IDEConfigNetBeans NetBeans]
     * [Releases]
