@@ -51,5 +51,11 @@
 			<version>5.5.23</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>tomcat</groupId>
+			<artifactId>tomcat-util</artifactId>
+			<version>5.5.23</version>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 </project>
