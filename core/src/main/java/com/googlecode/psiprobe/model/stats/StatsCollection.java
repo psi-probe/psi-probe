@@ -149,23 +149,20 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
      */
     public synchronized void serialize() throws IOException, InterruptedException {
         lock.lockForCommit();
+        long t = System.currentTimeMillis();
         try {
-            long t = System.currentTimeMillis();
+            shiftFiles(0);
+            OutputStream os = new FileOutputStream(makeFile());
             try {
-                shiftFiles(0);
-                OutputStream os = new FileOutputStream(makeFile());
-                try {
-                    new XStream().toXML(statsData, os);
-                } finally {
-                    os.close();
-                }
-            } catch (Exception e) {
-                logger.error("Could not write stats data to " + makeFile().getAbsolutePath(), e);
+                new XStream().toXML(statsData, os);
             } finally {
-                logger.debug("stats serialized in " + (System.currentTimeMillis() - t) + "ms.");
+                os.close();
             }
-        } finally{
+        } catch (Exception e) {
+            logger.error("Could not write stats data to " + makeFile().getAbsolutePath(), e);
+        } finally {
             lock.releaseCommitLock();
+            logger.debug("stats serialized in " + (System.currentTimeMillis() - t) + "ms.");
         }
     }
 

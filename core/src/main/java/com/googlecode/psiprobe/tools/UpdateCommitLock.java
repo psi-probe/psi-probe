@@ -18,52 +18,37 @@ package com.googlecode.psiprobe.tools;
  * Commits themselves are not synchronized. It is allowed for two commits to run concurrently.
  * 
  * @author Vlad Ilyushchenko
+ * @author Christoph Geiss
  */
 public class UpdateCommitLock {
-    private volatile int updateCount = 0;
-    private volatile boolean committing = false;
-    private final Object updateLock = new Object();
-    private final Object commitLock = new Object();
+    private int updateCount = 0;
+    private int commitCount = 0;
+    private int commitRequests = 0;
 
     public synchronized void lockForUpdate() throws InterruptedException {
-        while (committing) {
-            synchronized (commitLock) {
-                commitLock.wait();
-            }
+        while (commitCount > 0 || commitRequests > 0) {
+            wait();
         }
         updateCount++;
     }
 
     public synchronized void releaseUpdateLock() {
-        if (updateCount > 0) {
-            updateCount--;
-            if (updateCount == 0) {
-                synchronized (updateLock) {
-                    updateLock.notifyAll();
-                }
-            }
-        }
+        updateCount--;
+        notifyAll();
     }
 
     public synchronized void lockForCommit() throws InterruptedException {
-
-        committing = true;
-
-        while (updateCount > 0) {
-            synchronized (updateLock) {
-                updateLock.wait();
-            }
+        commitRequests++;
+        while (updateCount > 0 || commitCount > 0) {
+            wait();
         }
-
+        commitRequests--;
+        commitCount++;
     }
 
     public synchronized void releaseCommitLock() {
-        if (committing) {
-            committing = false;
-            synchronized(commitLock) {
-                commitLock.notifyAll();
-            }
-        }
+        commitCount--;
+        notifyAll();
     }
 
 }
