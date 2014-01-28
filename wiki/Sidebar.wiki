@@ -7,6 +7,7 @@
   * Installation
     * [InstallationApacheTomcat Apache Tomcat]
     * [InstallationJBossAS JBoss Application Server]
+    * [InstallationWSO2AS WSO2 Application Server]
   * [Configuration]
   * [Troubleshooting]
   * Development
