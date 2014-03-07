@@ -115,7 +115,7 @@
 			<dependency>
 				<groupId>javax.servlet</groupId>
 				<artifactId>jstl</artifactId>
-				<version>1.1.0</version>
+				<version>1.1.2</version>
 			</dependency>
 			<dependency>
 				<groupId>javax.mail</groupId>
@@ -125,7 +125,7 @@
 			<dependency>
 				<groupId>taglibs</groupId>
 				<artifactId>standard</artifactId>
-				<version>1.1.0</version>
+				<version>1.1.2</version>
 			</dependency>
 			<dependency>
 				<groupId>log4j</groupId>
@@ -419,7 +419,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-war-plugin</artifactId>
-					<version>2.1-alpha-2</version>
+					<version>2.1.1</version>
 					<configuration>
 						<excludes>**/test/**,**/.svn/**</excludes>
 						<archive>
