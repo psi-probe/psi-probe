@@ -25,9 +25,15 @@ public class BoneCPDatasourceAccessor implements DatasourceAccessor {
         DataSourceInfo dataSourceInfo = null;
         if (canMap(resource)) {
             final BoneCPDataSource source = (BoneCPDataSource) resource;
-            final Field poolField = BoneCPDataSource.class.getDeclaredField("pool");
-            poolField.setAccessible(true);
-            final BoneCP pool = (BoneCP) poolField.get(source);
+            BoneCP pool;
+            try {
+                pool = source.getPool();
+            } catch (NoSuchMethodError ex) {
+                //This is an older version of BoneCP (pre-0.8.0)
+                final Field poolField = BoneCPDataSource.class.getDeclaredField("pool");
+                poolField.setAccessible(true);
+                pool = (BoneCP) poolField.get(source);
+            }
 
             dataSourceInfo = new DataSourceInfo();
             dataSourceInfo.setBusyConnections(source.getTotalLeased());
