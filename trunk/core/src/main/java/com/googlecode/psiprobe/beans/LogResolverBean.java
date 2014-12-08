@@ -405,15 +405,12 @@ public class LogResolverBean {
         protected static final char DELIM = '!';
 
         public final int compare(Object o1, Object o2) {
-            LogDestination d1 = (LogDestination) o1;
-            LogDestination d2 = (LogDestination) o2;
-            boolean eitherAppIsNull = (d1.getApplication() == null || d2.getApplication() == null);
-            String name1 = convertToString(d1, eitherAppIsNull);
-            String name2 = convertToString(d2, eitherAppIsNull);
+            String name1 = convertToString((LogDestination) o1);
+            String name2 = convertToString((LogDestination) o2);
             return name1.compareTo(name2);
         }
 
-        protected abstract String convertToString(LogDestination d1, boolean eitherAppIsNull);
+        protected abstract String convertToString(LogDestination d1);
 
     }
 
@@ -425,16 +422,13 @@ public class LogResolverBean {
             this.all = all;
         }
 
-        protected String convertToString(LogDestination dest, boolean eitherAppIsNull) {
+        protected String convertToString(LogDestination dest) {
             File file = dest.getFile();
             String fileName = (file == null ? "" : file.getAbsolutePath());
             String name;
             if (all) {
                 Application app = dest.getApplication();
-                if (eitherAppIsNull) {
-                    app = null;
-                }
-                String appName = (app == null ? "" : app.getName());
+                String appName = (app == null ? "" + DELIM : app.getName());
                 String context = (dest.isContext() ? "is" : "not");
                 String root = (dest.isRoot() ? "is" : "not");
                 String logType = dest.getLogType();
@@ -449,14 +443,11 @@ public class LogResolverBean {
 
     private static class LogSourceComparator extends LogComparator {
 
-        protected String convertToString(LogDestination dest, boolean eitherAppIsNull) {
+        protected String convertToString(LogDestination dest) {
             File file = dest.getFile();
             String fileName = (file == null ? "" : file.getAbsolutePath());
             Application app = dest.getApplication();
-            if (eitherAppIsNull) {
-                app = null;
-            }
-            String appName = (app == null ? "" : app.getName());
+            String appName = (app == null ? "" + DELIM : app.getName());
             String logType = dest.getLogType();
             String context = (dest.isContext() ? "is" : "not");
             String root = (dest.isRoot() ? "is" : "not");
