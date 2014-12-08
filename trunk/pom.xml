@@ -96,7 +96,7 @@
 			</snapshots>
 			<id>repo.edorasframework.org</id>
 			<name>repo.edorasframework.org</name>
-			<url>http://repo.edorasframework.org/mvn/maven2/</url>
+			<url>http://web.archive.org/web/20110204062704/http://repo.edorasframework.org/mvn/maven2/</url>
 			<layout>default</layout>
 		</repository>
 	</repositories>

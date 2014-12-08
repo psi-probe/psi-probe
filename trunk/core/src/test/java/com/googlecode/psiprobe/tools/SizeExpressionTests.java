@@ -10,13 +10,26 @@
  */
 package com.googlecode.psiprobe.tools;
 
+import java.util.Locale;
 import junit.framework.Assert;
+import junit.framework.TestCase;
 
 /**
  *
  * @author Mark Lewis
  */
-public class SizeExpressionTests {
+public class SizeExpressionTests extends TestCase {
+    
+    private Locale defaultLocale;
+
+    protected void setUp() throws Exception {
+        this.defaultLocale = Locale.getDefault();
+        Locale.setDefault(Locale.US);
+    }
+
+    protected void tearDown() throws Exception {
+        Locale.setDefault(defaultLocale);
+    }
     
     public void testFormatNoDecimalBase2() {
         Assert.assertEquals(SizeExpression.format(1, 0, true), "1 B");

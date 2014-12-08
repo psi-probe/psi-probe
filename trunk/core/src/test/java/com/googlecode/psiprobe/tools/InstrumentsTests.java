@@ -10,11 +10,6 @@
  */
 package com.googlecode.psiprobe.tools;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 import junit.framework.Assert;
 import junit.framework.TestCase;
 
@@ -30,7 +25,7 @@ public class InstrumentsTests extends TestCase {
      * Forces the tests to run in 32-bit mode.
      */
     protected void setUp() {
-        sunArchDataModelProperty = System.getProperty("sun.arch.data.model");
+        this.sunArchDataModelProperty = System.getProperty("sun.arch.data.model");
         System.setProperty("sun.arch.data.model", "32");
     }
 
@@ -38,12 +33,13 @@ public class InstrumentsTests extends TestCase {
      * Undoes the changes made in {@link #setUp()}.
      */
     protected void tearDown() {
-        System.setProperty("sun.arch.data.model", sunArchDataModelProperty);
+        System.setProperty("sun.arch.data.model", this.sunArchDataModelProperty);
     }
 
     public void testObject() {
-        long oSize = Instruments.sizeOf(new Object());
-        Assert.assertEquals(Instruments.SIZE_OBJECT, oSize);
+        Object o = new Object();
+        long objectSize = Instruments.sizeOf(o);
+        Assert.assertEquals(Instruments.SIZE_OBJECT, objectSize);
     }
 
     public void testBoolean() {
@@ -94,44 +90,4 @@ public class InstrumentsTests extends TestCase {
         Assert.assertEquals(Instruments.SIZE_DOUBLE, doubleSize);
     }
     
-    public void testString() {
-        String s = "test";
-        long stringSize = Instruments.sizeOf(s);
-        Assert.assertEquals((s.length() * Instruments.SIZE_CHAR) + (3 * Instruments.SIZE_INT) + Instruments.SIZE_OBJECT, stringSize);
-    }
-
-    public void testList() {
-        List bikes = new ArrayList();
-        bikes.add("specialized");
-        bikes.add("kona");
-        bikes.add("GT");
-        long size = Instruments.sizeOf(bikes);
-        Assert.assertEquals(110, size);
-    }
-
-    public void testMap() {
-        Map session = new HashMap();
-        session.put("test1", "test message");
-        List bikes = new ArrayList();
-        bikes.add("specialized");
-        bikes.add("kona");
-        bikes.add("GT");
-        session.put("bikes", bikes);
-
-        Map bikeParts = new TreeMap();
-        bikeParts.put("bikes", bikes);
-        session.put("parts", bikeParts);
-
-        long size = Instruments.sizeOf(session);
-        Assert.assertEquals(425, size);
-    }
-
-    public void testCircularReference() {
-        Map session = new HashMap();
-        session.put("test1", "test message");
-        session.put("self", session);
-        long size = Instruments.sizeOf(session);
-        Assert.assertEquals(186, size);
-    }
-
 }
