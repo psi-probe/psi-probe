@@ -11,9 +11,11 @@
 package com.googlecode.psiprobe.beans;
 
 import java.util.List;
+
 import javax.management.MBeanServer;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+
 import org.apache.catalina.Context;
 
 /**
@@ -59,7 +61,7 @@ public interface ResourceResolver {
 
     List getApplicationResources() throws NamingException;
 
-    List getApplicationResources (Context context) throws NamingException;
+    List getApplicationResources (Context context, ContainerWrapperBean containerWrapper) throws NamingException;
 
     boolean resetResource (Context context, String resourceName) throws NamingException;
 

@@ -158,4 +158,8 @@ public class JBossResourceResolverBean implements ResourceResolver {
     public DataSource lookupDataSource(Context context, String resourceName) throws NamingException {
         throw new UnsupportedOperationException("This feature has not been implemented for JBoss server yet.");
     }
+
+    public List getApplicationResources(Context context, ContainerWrapperBean containerWrapper) throws NamingException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

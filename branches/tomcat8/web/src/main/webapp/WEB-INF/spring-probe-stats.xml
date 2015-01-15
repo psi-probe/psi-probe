@@ -49,7 +49,16 @@
 	</bean>
 
 	<!--
-		Cluster stats collector
+		ResourceResolverBean
+	-->
+	<!-- 
+	<bean name="resourceResolverBean"
+			class="com.googlecode.psiprobe.beans.ResourceResolverBean">
+		<property name="containerWrapper" ref="containerWrapper"/>
+	</bean>
+	 -->
+	<!--
+		Cluster stats collector 
 	-->
 	<bean name="clusterStatsCollector"
 			class="com.googlecode.psiprobe.beans.stats.collectors.ClusterStatsCollectorBean">

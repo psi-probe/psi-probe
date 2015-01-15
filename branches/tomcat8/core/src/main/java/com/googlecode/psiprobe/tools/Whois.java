@@ -80,7 +80,8 @@ public class Whois {
                                         timeout, lineSeparator);
                             }
                         } catch (IOException e) {
-                            System.out.println("Could not contact " + referral);
+                            //System.out.println("Could not contact " + referral);
+                        	
                         }
                     }
                     if (newResponse != null) {

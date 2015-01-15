@@ -24,6 +24,6 @@ import org.springframework.web.servlet.ModelAndView;
 public class ListApplicationResourcesController extends ContextHandlerController {
 
     protected ModelAndView handleContext(String contextName, Context context, HttpServletRequest request, HttpServletResponse response) throws Exception {
-        return new ModelAndView(getViewName(), "resources", getContainerWrapper().getResourceResolver().getApplicationResources(context));
+        return new ModelAndView(getViewName(), "resources", getContainerWrapper().getResourceResolver().getApplicationResources(context, getContainerWrapper()));
     }
 }

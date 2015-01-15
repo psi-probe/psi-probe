@@ -10,24 +10,25 @@
  */
 package com.googlecode.psiprobe.beans;
 
-import com.googlecode.psiprobe.model.ApplicationResource;
-import com.googlecode.psiprobe.model.DataSourceInfo;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+
 import javax.management.MBeanServer;
 import javax.management.ObjectName;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+
 import org.apache.catalina.Context;
-import org.apache.catalina.deploy.ContextResource;
-import org.apache.catalina.deploy.ContextResourceLink;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.commons.modeler.Registry;
 import org.apache.naming.ContextBindings;
+
+import com.googlecode.psiprobe.model.ApplicationResource;
+import com.googlecode.psiprobe.model.DataSourceInfo;
 
 /**
  * 
@@ -38,6 +39,7 @@ import org.apache.naming.ContextBindings;
 public class ResourceResolverBean implements ResourceResolver {
 
     private Log logger = LogFactory.getLog(getClass());
+    
 
     /**
      * The default resource prefix for JNDI objects in the global scope:
@@ -83,11 +85,12 @@ public class ResourceResolverBean implements ResourceResolver {
         return resources;
     }
 
-    public synchronized List getApplicationResources(Context context) throws NamingException {
+    public synchronized List getApplicationResources(Context context, ContainerWrapperBean containerWrapper) throws NamingException {
 
         List resourceList = new ArrayList();
 
-        if (context.getAvailable()) {
+        boolean contextAvailable = containerWrapper.getTomcatContainer().getAvailable(context);
+        if (contextAvailable) {
 
             logger.info("Reading CONTEXT " + context.getName());
 
@@ -102,41 +105,14 @@ public class ResourceResolverBean implements ResourceResolver {
             }
 
             try {
-                ContextResource[] resources = context.getNamingResources().findResources();
-                for (int i = 0; i < resources.length; i++) {
-                    ContextResource contextResource = resources[i];
-                    ApplicationResource resource = new ApplicationResource();
+            	containerWrapper.getTomcatContainer().addContextResource(context, resourceList, contextBound);
 
-                    logger.info("reading resource: " + contextResource.getName());
-                    resource.setApplicationName(context.getName());
-                    resource.setName(contextResource.getName());
-                    resource.setType(contextResource.getType());
-                    resource.setScope(contextResource.getScope());
-                    resource.setAuth(contextResource.getAuth());
-                    resource.setDescription(contextResource.getDescription());
-
-                    lookupResource(resource, contextBound, false);
-
-                    resourceList.add(resource);
-                }
-
-                ContextResourceLink[] resourceLinks = context.getNamingResources().findResourceLinks();
-                for (int i = 0; i < resourceLinks.length; i++) {
-                    ContextResourceLink link = resourceLinks[i];
-
-                    ApplicationResource resource = new ApplicationResource();
-                    logger.debug("reading resourceLink: " + link.getName());
-                    resource.setApplicationName(context.getName());
-                    resource.setName(link.getName());
-                    resource.setType(link.getType());
-                    resource.setLinkTo(link.getGlobal());
-
-                    lookupResource(resource, contextBound, false);
-                    
-                    resourceList.add(resource);
-                }
+            	containerWrapper.getTomcatContainer().addContextResourceLink(context, resourceList, contextBound);
+            	for (int i = 0 ; i < resourceList.size() ; i++) {
+            		lookupResource((ApplicationResource) resourceList.get(i), contextBound, false);
+            	}
+            	
             } finally {
-
                 if (contextBound) {
                     ContextBindings.unbindClassLoader(context, null, Thread.currentThread().getContextClassLoader());
                 }
@@ -145,6 +121,8 @@ public class ResourceResolverBean implements ResourceResolver {
 
         return resourceList;
     }
+
+	
 
     public void lookupResource(ApplicationResource resource, boolean contextBound, boolean global) {
         DataSourceInfo dataSourceInfo = null;
@@ -163,7 +141,7 @@ public class ResourceResolverBean implements ResourceResolver {
 
             } catch (Throwable e) {
                 resource.setLookedUp(false);
-                dataSourceInfo = null;
+                dataSourceInfo = null;        
                 logger.error("Failed to lookup: " + resource.getName(), e);
                 //
                 // make sure we always re-throw ThreadDeath

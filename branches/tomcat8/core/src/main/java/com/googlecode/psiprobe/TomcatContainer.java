@@ -11,9 +11,11 @@
 package com.googlecode.psiprobe;
 
 import com.googlecode.psiprobe.model.jsp.Summary;
+
 import java.io.File;
 import java.net.URL;
 import java.util.List;
+
 import org.apache.catalina.Context;
 import org.apache.catalina.Wrapper;
 
@@ -80,4 +82,18 @@ public interface TomcatContainer {
     String getServletFileNameForJsp(Context context, String jspName);
 
     List getApplicationFilterMaps(Context context);
+    
+    boolean getAvailable(Context context);
+    
+    public void addContextResource(Context context, List resourceList,
+			boolean contextBound);
+    
+    public void addContextResourceLink(Context context, List resourceList,
+			boolean contextBound);
+    
+    public List getApplicationFilters(Context context);
+    
+    public List getApplicationInitParams(Context context);
+    
+    public Long[] getResourceAttributes(String name, Context context);
 }

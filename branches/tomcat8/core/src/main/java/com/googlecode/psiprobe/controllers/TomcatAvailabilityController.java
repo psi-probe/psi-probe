@@ -62,9 +62,9 @@ public class TomcatAvailabilityController extends TomcatContainerController {
                 //
                 Context appContext = (Context) it.next();
 
-                allContextsAvailable = allContextsAvailable && appContext.getAvailable();
+                allContextsAvailable = allContextsAvailable && getContainerWrapper().getTomcatContainer().getAvailable(appContext);
 
-                List applicationResources = getContainerWrapper().getResourceResolver().getApplicationResources(appContext);
+                List applicationResources = getContainerWrapper().getResourceResolver().getApplicationResources(appContext, getContainerWrapper());
 
                 for (Iterator it2 = applicationResources.iterator(); it2.hasNext();) {
 

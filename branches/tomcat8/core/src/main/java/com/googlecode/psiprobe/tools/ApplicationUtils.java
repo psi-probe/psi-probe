@@ -10,15 +10,6 @@
  */
 package com.googlecode.psiprobe.tools;
 
-import com.googlecode.psiprobe.beans.ResourceResolver;
-import com.googlecode.psiprobe.model.Application;
-import com.googlecode.psiprobe.model.ApplicationParam;
-import com.googlecode.psiprobe.model.ApplicationResource;
-import com.googlecode.psiprobe.model.ApplicationSession;
-import com.googlecode.psiprobe.model.Attribute;
-import com.googlecode.psiprobe.model.FilterInfo;
-import com.googlecode.psiprobe.model.ServletInfo;
-import com.googlecode.psiprobe.model.ServletMapping;
 import java.io.Serializable;
 import java.net.InetAddress;
 import java.util.ArrayList;
@@ -28,10 +19,13 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+
 import javax.naming.NamingException;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
+
 import net.sf.javainetlocator.InetAddressLocator;
+
 import org.apache.catalina.Container;
 import org.apache.catalina.Context;
 import org.apache.catalina.Session;
@@ -43,6 +37,17 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.util.ClassUtils;
 
+import com.googlecode.psiprobe.beans.ContainerWrapperBean;
+import com.googlecode.psiprobe.beans.ResourceResolver;
+import com.googlecode.psiprobe.model.Application;
+import com.googlecode.psiprobe.model.ApplicationParam;
+import com.googlecode.psiprobe.model.ApplicationResource;
+import com.googlecode.psiprobe.model.ApplicationSession;
+import com.googlecode.psiprobe.model.Attribute;
+import com.googlecode.psiprobe.model.FilterInfo;
+import com.googlecode.psiprobe.model.ServletInfo;
+import com.googlecode.psiprobe.model.ServletMapping;
+
 /**
  * 
  * @author Vlad Ilyushchenko
@@ -52,9 +57,9 @@ import org.springframework.util.ClassUtils;
 public class ApplicationUtils {
 
     private static Log logger = LogFactory.getLog(ApplicationUtils.class);
-
-    public static Application getApplication(Context context) {
-        return getApplication(context, null, false);
+    
+    public static Application getApplication(Context context, ContainerWrapperBean containerWrapper) {
+        return getApplication(context, null, false, containerWrapper);
     }
 
     /**
@@ -69,15 +74,16 @@ public class ApplicationUtils {
      * @param calcSize
      * @return Application object
      */
-    public static Application getApplication(Context context, ResourceResolver resourceResolver, boolean calcSize) {
-
+    public static Application getApplication(Context context, ResourceResolver resourceResolver, boolean calcSize, ContainerWrapperBean containerWrapper) {
+//ContainerWrapperBean containerWrapper
         logger.debug("Querying webapp: " + context.getName());
 
         Application app = new Application();
         app.setName(context.getName().length() > 0 ? context.getName() : "/");
         app.setDocBase(context.getDocBase());
         app.setDisplayName(context.getDisplayName());
-        app.setAvailable(context.getAvailable());
+       
+        app.setAvailable(containerWrapper.getTomcatContainer().getAvailable(context));
         app.setDistributable(context.getDistributable());
         app.setSessionTimeout(context.getSessionTimeout());
         app.setServletVersion(context.getServletContext().getMajorVersion() + "." + context.getServletContext().getMinorVersion());
@@ -119,7 +125,7 @@ public class ApplicationUtils {
             collectApplicationServletStats(context, app);
 
             if (resourceResolver.supportsPrivateResources() && app.isAvailable()) {
-                int[] scores = getApplicationDataSourceUsageScores(context, resourceResolver);
+                int[] scores = getApplicationDataSourceUsageScores(context, resourceResolver, containerWrapper);
                 app.setDataSourceBusyScore(scores[0]);
                 app.setDataSourceEstablishedScore(scores[1]);
             }
@@ -167,13 +173,13 @@ public class ApplicationUtils {
         app.setMaxTime(maxTime);
     }
 
-    public static int[] getApplicationDataSourceUsageScores(Context context, ResourceResolver resolver) {
+    public static int[] getApplicationDataSourceUsageScores(Context context, ResourceResolver resolver, ContainerWrapperBean containerWrapper) {
         logger.debug("Calculating datasource usage score");
 
         int[] scores = new int[] {0, 0};
         List appResources;
         try {
-            appResources = resolver.getApplicationResources(context);
+            appResources = resolver.getApplicationResources(context, containerWrapper);
         } catch (NamingException e) {
             throw new RuntimeException(e);
         }
@@ -197,7 +203,8 @@ public class ApplicationUtils {
             sbean.setLastAccessTime(new Date(session.getLastAccessedTime()));
             sbean.setMaxIdleTime(session.getMaxInactiveInterval() * 1000);
             sbean.setManagerType(session.getManager().getClass().getName());
-            sbean.setInfo(session.getInfo());
+            //sbean.setInfo(session.getInfo());
+            //TODO:fixmee
 
             boolean sessionSerializable = true;
             int attributeCount = 0;
@@ -287,40 +294,8 @@ public class ApplicationUtils {
         return attrs;
     }
 
-    public static List getApplicationInitParams(Context context) {
-        // We'll try to determine if a parameter value comes from a deployment descriptor or a context descriptor.
-        // assumption: Context.findParameter() returns only values of parameters that are declared in a deployment descriptor.
-        // If a parameter is declared in a context descriptor with override=false and redeclared in a deployment descriptor,
-        // Context.findParameter() still returns its value, even though the value is taken from a context descriptor.
-        // context.findApplicationParameters() returns all parameters that are declared in a context descriptor regardless
-        // of whether they are overridden in a deployment descriptor or not or not.
-
-        // creating a set of parameter names that are declared in a context descriptor
-        // and can not be ovevridden in a deployment descriptor.
-        Set nonOverridableParams = new HashSet();
-        ApplicationParameter[] appParams = context.findApplicationParameters();
-        for (int i = 0; i < appParams.length; i++) {
-            if (appParams[i] != null && ! appParams[i].getOverride()) {
-                nonOverridableParams.add(appParams[i].getName());
-            }
-        }
-
-        List initParams = new ArrayList();
-        ServletContext servletCtx = context.getServletContext();
-        for (Enumeration e = servletCtx.getInitParameterNames(); e.hasMoreElements(); ) {
-            String paramName = (String) e.nextElement();
-
-            ApplicationParam param = new ApplicationParam();
-            param.setName(paramName);
-            param.setValue(servletCtx.getInitParameter(paramName));
-            // if the parameter is declared in a deployment descriptor
-            // and it is not declared in a context descriptor with override=false,
-            // the value comes from the deployment descriptor
-            param.setFromDeplDescr(context.findParameter(paramName) != null && ! nonOverridableParams.contains(paramName));
-            initParams.add(param);
-        }
-
-        return initParams;
+    public static List getApplicationInitParams(Context context, ContainerWrapperBean containerWrapper) {
+    	return containerWrapper.getTomcatContainer().getApplicationInitParams(context);
     }
 
     public static ServletInfo getApplicationServlet(Context context, String servletName) {
@@ -405,7 +380,7 @@ public class ApplicationUtils {
             return null;
         }
     }
-
+    
     private static FilterInfo getFilterInfo(FilterDef fd) {
         FilterInfo fi = new FilterInfo();
         fi.setFilterName(fd.getFilterName());
@@ -413,17 +388,8 @@ public class ApplicationUtils {
         fi.setFilterDesc(fd.getDescription());
         return fi;
     }
-
-    public static List getApplicationFilters(Context context) {
-        FilterDef[] fds = context.findFilterDefs();
-        List filterDefs = new ArrayList(fds.length);
-        for(int i = 0; i < fds.length; i++) {
-            if (fds[i] != null) {
-                FilterInfo fi = getFilterInfo(fds[i]);
-                filterDefs.add(fi);
-            }
-        }
-        return filterDefs;
+    
+    public static List getApplicationFilters(Context context, ContainerWrapperBean containerWrapper) {
+    	return containerWrapper.getTomcatContainer().getApplicationFilters(context);
     }
-
 }
