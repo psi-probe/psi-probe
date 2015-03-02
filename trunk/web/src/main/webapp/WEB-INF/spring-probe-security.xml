@@ -86,7 +86,8 @@
 		<property name="objectDefinitionSource">
 			<sec:filter-invocation-definition-source>
 				<sec:intercept-url pattern="/adm/**"  access="ROLE_MANAGER,ROLE_MANAGER-GUI"/>
-				<sec:intercept-url pattern="/sql/**,/adm/restartvm.ajax" access="ROLE_POWERUSERPLUS,ROLE_MANAGER,ROLE_MANAGER-GUI"/>
+				<sec:intercept-url pattern="/adm/restartvm.ajax" access="ROLE_POWERUSERPLUS,ROLE_MANAGER,ROLE_MANAGER-GUI"/>
+				<sec:intercept-url pattern="/sql/**"  access="ROLE_POWERUSERPLUS,ROLE_MANAGER,ROLE_MANAGER-GUI"/>
 				<sec:intercept-url pattern="/app/**"  access="ROLE_POWERUSER,ROLE_POWERUSERPLUS,ROLE_MANAGER,ROLE_MANAGER-GUI"/>
 				<sec:intercept-url pattern="/**"      access="ROLE_PROBEUSER,ROLE_POWERUSER,ROLE_POWERUSERPLUS,ROLE_MANAGER,ROLE_MANAGER-GUI"/>
 			</sec:filter-invocation-definition-source>
