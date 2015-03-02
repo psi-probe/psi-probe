@@ -11,6 +11,8 @@
 package com.googlecode.psiprobe;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -38,6 +40,7 @@ import org.apache.catalina.deploy.FilterDef;
 import org.apache.catalina.deploy.FilterMap;
 import org.apache.catalina.deploy.NamingResources;
 import org.apache.commons.modeler.Registry;
+import org.apache.naming.resources.Resource;
 import org.apache.naming.resources.ResourceAttributes;
 
 import com.googlecode.psiprobe.model.ApplicationParam;
@@ -322,8 +325,24 @@ public class Tomcat55ContainerAdaptor extends AbstractTomcatContainer {
 
 		}
 	 
-	 public Long[] getResourceAttributes(String name, Context context) {
-		 Long result[] = new Long[2];
+	public boolean resourceExists(String name, Context context) {
+		try {
+			return context.getResources().lookup(name) != null;
+		} catch (NamingException ex) {
+			throw new RuntimeException(ex);
+		}
+	}
+
+	public InputStream getResourceStream(String name, Context context) throws IOException {
+		try {
+			return ((Resource) context.getResources().lookup(name)).streamContent();
+		} catch (NamingException ex) {
+			throw new RuntimeException(ex);
+		}
+	}
+
+	public Long[] getResourceAttributes(String name, Context context) {
+		Long result[] = new Long[2];
 			try {
 			ResourceAttributes resource = (ResourceAttributes) context.getResources().getAttributes(name);
 				result[0] = Long.valueOf(resource.getContentLength());

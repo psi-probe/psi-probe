@@ -15,6 +15,8 @@ import com.googlecode.psiprobe.model.ApplicationResource;
 import com.googlecode.psiprobe.model.FilterInfo;
 import com.googlecode.psiprobe.model.FilterMapping;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
 import java.net.URL;
@@ -47,6 +49,7 @@ import org.apache.jasper.JspCompilationContext;
 import org.apache.jasper.Options;
 import org.apache.jasper.compiler.JspRuntimeContext;
 import org.apache.jasper.servlet.JspServletWrapper;
+import org.apache.naming.resources.Resource;
 import org.apache.naming.resources.ResourceAttributes;
 
 /**
@@ -386,6 +389,22 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
         return initParams;
 
     }
+
+	public boolean resourceExists(String name, Context context) {
+		try {
+			return context.getResources().lookup(name) != null;
+		} catch (NamingException ex) {
+			throw new RuntimeException(ex);
+		}
+	}
+
+	public InputStream getResourceStream(String name, Context context) throws IOException {
+		try {
+			return ((Resource) context.getResources().lookup(name)).streamContent();
+		} catch (NamingException ex) {
+			throw new RuntimeException(ex);
+		}
+	}
 
     public Long[] getResourceAttributes(String name, Context context) {
         Long result[] = new Long[2];

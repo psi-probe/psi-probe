@@ -11,7 +11,8 @@
 package com.googlecode.psiprobe;
 
 import java.io.File;
-import java.lang.reflect.InvocationTargetException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
@@ -32,12 +33,10 @@ import org.apache.catalina.Valve;
 import org.apache.catalina.WebResource;
 import org.apache.catalina.Wrapper;
 import org.apache.catalina.deploy.NamingResourcesImpl;
-import org.apache.commons.beanutils.ConstructorUtils;
 import org.apache.commons.modeler.Registry;
 import org.apache.jasper.JspCompilationContext;
 import org.apache.jasper.Options;
 import org.apache.jasper.compiler.JspRuntimeContext;
-import org.apache.jasper.servlet.JspServletWrapper;
 import org.apache.tomcat.util.descriptor.web.ApplicationParameter;
 import org.apache.tomcat.util.descriptor.web.ContextResource;
 import org.apache.tomcat.util.descriptor.web.ContextResourceLink;
@@ -195,42 +194,8 @@ public class Tomcat80ContainerAdaptor extends AbstractTomcatContainer {
 	}
 
 	protected JspCompilationContext createJspCompilationContext(String name, boolean isErrPage, Options opt, ServletContext sctx, JspRuntimeContext jrctx, ClassLoader cl) {
-		JspCompilationContext jcctx;
-		try {
-			jcctx = new JspCompilationContext(name, opt, sctx, null, jrctx);
-		} catch (NoSuchMethodError err) {
-			/*
-			 * The above constructor's signature changed in Tomcat 7.0.16:
-			 * http://svn.apache.org/viewvc?view=revision&revision=1124719
-			 * 
-			 * If we reach this point, we are running on a prior version of
-			 * Tomcat 7 and must use reflection to create this object.
-			 */
-			try {
-				jcctx = (JspCompilationContext) ConstructorUtils.invokeConstructor(
-						JspCompilationContext.class,
-						new Object[]{name, false, opt, sctx, null, jrctx},
-						new Class[]{
-							String.class,
-							Boolean.TYPE,
-							Options.class,
-							ServletContext.class,
-							JspServletWrapper.class,
-							JspRuntimeContext.class
-						});
-			} catch (NoSuchMethodException ex) {
-				throw new RuntimeException(ex);
-			} catch (IllegalAccessException ex) {
-				throw new RuntimeException(ex);
-			} catch (InvocationTargetException ex) {
-				throw new RuntimeException(ex);
-			} catch (InstantiationException ex) {
-				throw new RuntimeException(ex);
-			}
-		}
-		if (cl != null) {
-			jcctx.setClassLoader(cl);
-		}
+		JspCompilationContext jcctx = new JspCompilationContext(name, opt, sctx, null, jrctx);
+		jcctx.setClassLoader(cl);
 		return jcctx;
 	}
 
@@ -379,6 +344,15 @@ public class Tomcat80ContainerAdaptor extends AbstractTomcatContainer {
 		}
 
 		return initParams;
+	}
+
+	public boolean resourceExists(String name, Context context) {
+		return context.getResources().getResource(name) != null;
+	}
+
+	public InputStream getResourceStream(String name, Context context) throws IOException {
+		WebResource r = context.getResources().getResource(name);
+		return r.getInputStream();
 	}
 
 	public Long[] getResourceAttributes(String name, Context context) {

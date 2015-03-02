@@ -20,7 +20,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import javax.naming.NamingException;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 
@@ -37,14 +36,13 @@ import org.apache.jasper.JasperException;
 import org.apache.jasper.JspCompilationContext;
 import org.apache.jasper.Options;
 import org.apache.jasper.compiler.JspRuntimeContext;
-import org.apache.naming.resources.ResourceAttributes;
 import org.springframework.util.ClassUtils;
 
 import com.googlecode.psiprobe.model.jsp.Item;
 import com.googlecode.psiprobe.model.jsp.Summary;
 
 /**
- * Abstration layer to implement some functionality, which is common between different container adaptors.
+ * Abstraction layer to implement some functionality, which is common between different container adaptors.
  * 
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
