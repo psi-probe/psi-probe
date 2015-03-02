@@ -77,7 +77,8 @@ public class Tomcat80ContainerAdaptor extends AbstractTomcatContainer {
 	}
 
 	public boolean canBoundTo(String binding) {
-		return binding != null && (binding.startsWith("Apache Tomcat/8.0"));
+		return binding != null && (binding.startsWith("Apache Tomcat/8.0")
+				|| binding.startsWith("Apache Tomcat (TomEE)/8.0"));
 	}
 
 	protected Context findContextInternal(String name) {
