@@ -27,7 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class ListAppFiltersController extends ContextHandlerController {
     protected ModelAndView handleContext(String contextName, Context context,
                                          HttpServletRequest request, HttpServletResponse response) throws Exception {
-        List appFilters = ApplicationUtils.getApplicationFilters(context);
+        List appFilters = ApplicationUtils.getApplicationFilters(context, getContainerWrapper());
         return new ModelAndView(getViewName(), "appFilters", appFilters);
     }
 }

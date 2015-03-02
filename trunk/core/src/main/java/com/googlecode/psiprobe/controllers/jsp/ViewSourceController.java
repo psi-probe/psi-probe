@@ -14,6 +14,7 @@ import com.googlecode.psiprobe.Utils;
 import com.googlecode.psiprobe.controllers.ContextHandlerController;
 import com.googlecode.psiprobe.model.jsp.Item;
 import com.googlecode.psiprobe.model.jsp.Summary;
+import java.io.InputStream;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +22,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.catalina.Context;
 import org.apache.jasper.EmbeddedServletOptions;
 import org.apache.jasper.Options;
-import org.apache.naming.resources.Resource;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -56,10 +56,7 @@ public class ViewSourceController extends ContextHandlerController {
                     jspName = jspName.replaceAll("\\.\\./", "");
                 }
 
-                Resource jsp = (Resource) context.getResources().lookup(jspName);
-
-                if (jsp != null) {
-
+                if (getContainerWrapper().getTomcatContainer().resourceExists(jspName, context)) {
                     ServletContext sctx = context.getServletContext();
                     ServletConfig scfg = (ServletConfig) context.findChild("jsp");
                     Options opt = new EmbeddedServletOptions(scfg, sctx);
@@ -73,13 +70,14 @@ public class ViewSourceController extends ContextHandlerController {
                         // we have to read the JSP twice, once to figure out the content encoding
                         // the second time to read the actual content using the correct encoding
                         //
-                        item.setEncoding(Utils.getJSPEncoding(jsp.streamContent()));
+						InputStream encodedStream = getContainerWrapper().getTomcatContainer().getResourceStream(jspName, context);
+                        item.setEncoding(Utils.getJSPEncoding(encodedStream));
                     }
+					InputStream jspStream = getContainerWrapper().getTomcatContainer().getResourceStream(jspName, context);
                     if (highlight) {
-                        request.setAttribute("highlightedContent", Utils.highlightStream(jspName, jsp.streamContent(),
-                                "xhtml", item.getEncoding()));
+                        request.setAttribute("highlightedContent", Utils.highlightStream(jspName, jspStream, "xhtml", item.getEncoding()));
                     } else {
-                        request.setAttribute("content", Utils.readStream(jsp.streamContent(), item.getEncoding()));
+                        request.setAttribute("content", Utils.readStream(jspStream, item.getEncoding()));
                     }
 
                 } else {

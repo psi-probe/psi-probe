@@ -50,7 +50,7 @@ public class ListWebappsController extends TomcatContainerController {
             // check if this is not the ROOT webapp
             //
             if (appContext.getName() != null) {
-                applications.add(ApplicationUtils.getApplication(appContext, getContainerWrapper().getResourceResolver(), calcSize));
+                applications.add(ApplicationUtils.getApplication(appContext, getContainerWrapper().getResourceResolver(), calcSize, getContainerWrapper()));
             }
         }
         if (! applications.isEmpty() && ! showResources) {

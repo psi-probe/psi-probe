@@ -41,7 +41,6 @@ public class AjaxReloadContextController extends ContextHandlerController {
             }
         }
         return new ModelAndView(getViewName(), "available",
-                Boolean.valueOf(context != null && context.getAvailable()));
+                Boolean.valueOf(context != null && getContainerWrapper().getTomcatContainer().getAvailable(context)));
     }
-
 }

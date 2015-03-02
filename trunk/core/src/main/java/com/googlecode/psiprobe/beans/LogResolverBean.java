@@ -155,7 +155,7 @@ public class LogResolverBean {
         if (webapp != null) {
             ctx = getContainerWrapper().getTomcatContainer().findContext(webapp);
             if (ctx != null) {
-                application = ApplicationUtils.getApplication(ctx);
+                application = ApplicationUtils.getApplication(ctx, getContainerWrapper());
             }
         }
 
@@ -198,7 +198,7 @@ public class LogResolverBean {
     }
 
     private void interrogateContext(Context ctx, List allAppenders) {
-        Application application = ApplicationUtils.getApplication(ctx);
+        Application application = ApplicationUtils.getApplication(ctx, getContainerWrapper());
         ClassLoader cl = ctx.getLoader().getClassLoader();
 
         try {
