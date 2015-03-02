@@ -12,10 +12,14 @@ package com.googlecode.psiprobe.beans;
 
 import com.googlecode.psiprobe.TomcatContainer;
 import com.googlecode.psiprobe.model.ApplicationResource;
+
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
 import org.apache.catalina.Context;
 import org.apache.catalina.Wrapper;
 import org.apache.catalina.util.ServerInfo;
@@ -170,7 +174,7 @@ public class ContainerWrapperBean {
             List apps = getTomcatContainer().findContexts();
 
             for (int i = 0; i < apps.size(); i++) {
-                List appResources = getResourceResolver().getApplicationResources((Context) apps.get(i));
+                List appResources = getResourceResolver().getApplicationResources((Context) apps.get(i), this);
                 // add only those resources that have data source info
                 filterDataSources(appResources, resources);
             }

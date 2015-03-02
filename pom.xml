@@ -49,6 +49,7 @@
 		<module>tomcat55adaptor</module>
 		<module>tomcat60adaptor</module>
 		<module>tomcat70adaptor</module>
+		<module>tomcat80adaptor</module>
 		<module>web</module>
 	</modules>
 	<repositories>

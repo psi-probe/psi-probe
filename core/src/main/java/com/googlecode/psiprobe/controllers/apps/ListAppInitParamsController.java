@@ -26,7 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class ListAppInitParamsController  extends ContextHandlerController {
     protected ModelAndView handleContext(String contextName, Context context,
                                          HttpServletRequest request, HttpServletResponse response) throws Exception {
-        ModelAndView mv = new ModelAndView(getViewName(), "appInitParams", ApplicationUtils.getApplicationInitParams(context));
+        ModelAndView mv = new ModelAndView(getViewName(), "appInitParams", ApplicationUtils.getApplicationInitParams(context, getContainerWrapper()));
         if (SecurityUtils.hasAttributeValueRole(getServletContext(), request)) {
             mv.addObject("allowedToViewValues", Boolean.TRUE);
         }

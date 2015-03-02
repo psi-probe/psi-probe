@@ -10,29 +10,24 @@
  */
 package com.googlecode.psiprobe;
 
-import com.googlecode.psiprobe.model.FilterMapping;
-import com.googlecode.psiprobe.model.jsp.Item;
-import com.googlecode.psiprobe.model.jsp.Summary;
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.net.URLClassLoader;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import javax.naming.NamingException;
+
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
+
 import org.apache.catalina.Container;
 import org.apache.catalina.Context;
 import org.apache.catalina.Engine;
 import org.apache.catalina.Host;
 import org.apache.catalina.core.StandardContext;
-import org.apache.catalina.deploy.FilterDef;
-import org.apache.catalina.deploy.FilterMap;
 import org.apache.commons.lang.reflect.MethodUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -41,11 +36,13 @@ import org.apache.jasper.JasperException;
 import org.apache.jasper.JspCompilationContext;
 import org.apache.jasper.Options;
 import org.apache.jasper.compiler.JspRuntimeContext;
-import org.apache.naming.resources.ResourceAttributes;
 import org.springframework.util.ClassUtils;
 
+import com.googlecode.psiprobe.model.jsp.Item;
+import com.googlecode.psiprobe.model.jsp.Summary;
+
 /**
- * Abstration layer to implement some functionality, which is common between different container adaptors.
+ * Abstraction layer to implement some functionality, which is common between different container adaptors.
  * 
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
@@ -291,44 +288,6 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
         }
     }
 
-    public List getApplicationFilterMaps(Context context) {
-        FilterMap[] fms = context.findFilterMaps();
-        List filterMaps = new ArrayList(fms.length);
-        for (int i = 0; i < fms.length; i++) {
-            if (fms[i] != null) {
-                String dm;
-                switch(fms[i].getDispatcherMapping()) {
-                    case FilterMap.ERROR: dm = "ERROR"; break;
-                    case FilterMap.FORWARD: dm = "FORWARD"; break;
-                    case FilterMap.FORWARD_ERROR: dm = "FORWARD,ERROR"; break;
-                    case FilterMap.INCLUDE: dm = "INCLUDE"; break;
-                    case FilterMap.INCLUDE_ERROR: dm = "INCLUDE,ERROR"; break;
-                    case FilterMap.INCLUDE_ERROR_FORWARD: dm = "INCLUDE,ERROR,FORWARD"; break;
-                    case FilterMap.INCLUDE_FORWARD: dm = "INCLUDE,FORWARD"; break;
-                    case FilterMap.REQUEST: dm = "REQUEST"; break;
-                    case FilterMap.REQUEST_ERROR: dm = "REQUEST,ERROR"; break;
-                    case FilterMap.REQUEST_ERROR_FORWARD: dm = "REQUEST,ERROR,FORWARD"; break;
-                    case FilterMap.REQUEST_ERROR_FORWARD_INCLUDE: dm = "REQUEST,ERROR,FORWARD,INCLUDE"; break;
-                    case FilterMap.REQUEST_ERROR_INCLUDE: dm = "REQUEST,ERROR,INCLUDE"; break;
-                    case FilterMap.REQUEST_FORWARD: dm = "REQUEST,FORWARD"; break;
-                    case FilterMap.REQUEST_INCLUDE: dm = "REQUEST,INCLUDE"; break;
-                    case FilterMap.REQUEST_FORWARD_INCLUDE: dm = "REQUEST,FORWARD,INCLUDE"; break;
-                    default: dm = "";
-                }
-
-                String filterClass = "";
-                FilterDef fd = context.findFilterDef(fms[i].getFilterName());
-                if (fd != null) {
-                    filterClass = fd.getFilterClass();
-                }
-
-                List filterMappings = getFilterMappings(fms[i], dm, filterClass);
-                filterMaps.addAll(filterMappings);
-            }
-        }
-        return filterMaps;
-    }
-
     public File getConfigFile(Context ctx) {
         String configFilePath = ctx.getConfigFile();
         if (configFilePath != null) {
@@ -358,37 +317,6 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
             configBase = new File(configBase, baseHost.getName());
         }
         return configBase.getAbsolutePath();
-    }
-
-    /**
-     * Converts a {@link FilterMap} into one or more {@link FilterMapping}s.
-     *
-     * <p>
-     * This implementation is for Tomcat 5.0/5.5.
-     * {@link FilterMap#getURLPattern()} and {@link FilterMap#getServletName()}
-     * were replaced in Tomcat 6 with binary-incompatible methods.
-     * </p>
-     *
-     * @param fmap
-     *        the FilterMap to analyze
-     * @param dm
-     *        the dispatcher mapping for the given FilterMap.  This will be the
-     *        same for each FilterMapping.
-     * @param filterClass
-     *        the class name of the mapped filter.  This will be the same for
-     *        each FilterMapping.
-     * @return a list containing a single {@link FilterMapping} object
-     */
-    protected List getFilterMappings(FilterMap fmap, String dm, String filterClass) {
-        List filterMappings = new ArrayList(1);
-        FilterMapping fm = new FilterMapping();
-        fm.setUrl(fmap.getURLPattern());
-        fm.setServletName(fmap.getServletName());
-        fm.setFilterName(fmap.getFilterName());
-        fm.setDispatcherMap(dm);
-        fm.setFilterClass(filterClass);
-        filterMappings.add(fm);
-        return filterMappings;
     }
 
     /**
@@ -432,13 +360,13 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
 
                         item.setLevel(level);
                         item.setCompileTime(-1);
-                        try {
-                            ResourceAttributes jspAttributes = (ResourceAttributes) ctx.getResources().getAttributes(name);
-                            item.setSize(jspAttributes.getContentLength());
-                            item.setLastModified(jspAttributes.getLastModified());
-                        } catch (NamingException e) {
-                            logger.error("Cannot lookup attributes for " + name);
-                        }
+
+                        	Long objects[] = this.getResourceAttributes(name, ctx); 
+                            item.setSize(objects[0].longValue());
+                            item.setLastModified(objects[1].longValue());
+//                        } catch (NamingException e) {
+//                            logger.error("Cannot lookup attributes for " + name);
+//                        }
 
 
                         long time = System.currentTimeMillis();

@@ -67,7 +67,7 @@ public class GetApplicationController extends ContextHandlerController {
                 && SecurityUtils.hasAttributeValueRole(getServletContext(), request);
 
         Application app = ApplicationUtils.getApplication(
-                context, isExtendedInfo() ? getContainerWrapper().getResourceResolver() : null, calcSize);
+                context, isExtendedInfo() ? getContainerWrapper().getResourceResolver() : null, calcSize, getContainerWrapper());
 
         if (isExtendedInfo() && getStatsCollection() != null) {
             String avgStatisticName = "app.avg_proc_time." + app.getName();
