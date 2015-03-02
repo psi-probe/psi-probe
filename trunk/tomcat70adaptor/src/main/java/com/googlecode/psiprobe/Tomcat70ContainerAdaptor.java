@@ -81,6 +81,7 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
 
     public boolean canBoundTo(String binding) {
         return binding != null && (binding.startsWith("Apache Tomcat/7.0")
+				|| binding.startsWith("Apache Tomcat (TomEE)/7.0")
                 || binding.startsWith("JBoss Web/3.0")
                 || binding.startsWith("JBoss Web/7.0")
                 || binding.startsWith("NonStop(tm) Servlets For JavaServer Pages(tm) v7.0")
