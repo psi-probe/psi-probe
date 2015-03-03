@@ -17,6 +17,7 @@ import org.apache.commons.dbcp.BasicDataSource;
  * DBCP datasource abstraction layer.
  *
  * @author Vlad Ilyushchenko
+ * @author Mark Lewis
  */
 public class DbcpDatasourceAccessor implements DatasourceAccessor {
     public DataSourceInfo getInfo(Object resource) throws Exception {
@@ -30,6 +31,7 @@ public class DbcpDatasourceAccessor implements DatasourceAccessor {
             dataSourceInfo.setJdbcURL(source.getUrl());
             dataSourceInfo.setUsername(source.getUsername());
             dataSourceInfo.setResettable(false);
+            dataSourceInfo.setType("commons-dbcp");
         }
         return dataSourceInfo;
     }

@@ -16,6 +16,7 @@ import org.apache.tomcat.dbcp.dbcp.BasicDataSource;
 /**
  * 
  * @author Vlad Ilyushchenko
+ * @author Mark Lewis
  */
 public class TomcatDbcpDatasourceAccessor implements DatasourceAccessor {
     public DataSourceInfo getInfo(Object resource) throws Exception {
@@ -29,6 +30,7 @@ public class TomcatDbcpDatasourceAccessor implements DatasourceAccessor {
             dataSourceInfo.setJdbcURL(source.getUrl());
             dataSourceInfo.setUsername(source.getUsername());
             dataSourceInfo.setResettable(false);
+            dataSourceInfo.setType("tomcat-dbcp");
         }
         return dataSourceInfo;
     }

@@ -18,6 +18,7 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
  * DataSourceInfo bean.
  *
  * @author Vlad Ilyushchenko
+ * @author Mark Lewis
  */
 public class C3P0DatasourceAccessor implements DatasourceAccessor {
 
@@ -35,6 +36,7 @@ public class C3P0DatasourceAccessor implements DatasourceAccessor {
             dataSourceInfo.setJdbcURL(source.getJdbcUrl());
             dataSourceInfo.setUsername(source.getUser());
             dataSourceInfo.setResettable(true);
+            dataSourceInfo.setType("c3p0");
         }
         return dataSourceInfo;
     }

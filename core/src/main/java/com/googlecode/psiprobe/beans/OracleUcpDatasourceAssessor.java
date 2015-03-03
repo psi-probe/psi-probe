@@ -36,6 +36,7 @@ public class OracleUcpDatasourceAssessor implements DatasourceAccessor {
             dataSourceInfo.setJdbcURL(source.getURL());
             dataSourceInfo.setUsername(source.getUser());
             dataSourceInfo.setResettable(false);
+            dataSourceInfo.setType("oracle-ucp");
         }
         return dataSourceInfo;
     }
