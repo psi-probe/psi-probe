@@ -12,25 +12,33 @@
    You may download it from the following URL:
    http://maven.apache.org
 
-3. Create the required ojdbc14 Maven artifact.
+3. Create the required ojdbc14 and ucp Maven artifacts.
 
-   Oracle's JDBC drivers are protected by the OTN (Oracle Technology Network)
-   Development and Distribution License.  For this reason, the .jar cannot be
-   legally hosted in any Maven repository or distributed with PSI Probe.
+   Oracle's JDBC drivers and connection pool are protected by the OTN (Oracle
+   Technology Network) Development and Distribution License.  For this reason,
+   the .jar files cannot be legally hosted in any Maven repository or
+   distributed with PSI Probe.
 
-   a. Download version 10.2.0.1.0 of the ojdbc14.jar.
+   a. Download version 10.2.0.1.0 of the ojdbc14.jar and version 11.2.0.1.0 of
+      the ucp.jar.
 
-      You may download it from the following URL:
+      You may download them from the following URLs:
       http://www.oracle.com/technetwork/database/enterprise-edition/jdbc-10201-088211.html
+      http://www.oracle.com/technetwork/database/enterprise-edition/downloads/ucp-112010-099129.html
 
-   b. Locate the ojdbc14-pom.xml file (where this readme.txt file resides).
+   b. Locate the ojdbc14-pom.xml and ucp-pom.xml files (where this readme.txt
+      file resides).
 
-   c. Install ojdbc14.jar as a Maven artifact.
+   c. Install ojdbc14.jar and ucp.jar as Maven artifacts.
 
-      Execute the following command:
+      Execute the following commands:
       mvn install:install-file \
       -Dfile=/path/to/ojdbc14.jar \
       -DpomFile=/path/to/ojdbc14-pom.xml
+
+      mvn install:install-file \
+      -Dfile=/path/to/ucp.jar \
+      -DpomFile=/path/to/ucp-pom.xml
 
 4. Run Maven.
 
