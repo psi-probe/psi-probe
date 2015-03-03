@@ -98,21 +98,8 @@
 		${resource.description}&nbsp;
 	</display:column>
 
-	<display:column titleKey="probe.jsp.datasources.list.col.type"            sortable="true">
-		<c:choose>
-			<c:when test="${resource.type == 'com.mchange.v2.c3p0.ComboPooledDataSource'}">
-				c3p0
-			</c:when>
-			<c:when test="${resource.type == 'javax.sql.DataSource'}">
-				dbcp
-			</c:when>
-			<c:when test="${resource.type == 'oracle.jdbc.pool.OracleDataSource'}">
-				oracle
-			</c:when>
-			<c:otherwise>
-				${resource.type}
-			</c:otherwise>
-		</c:choose>
+	<display:column titleKey="probe.jsp.datasources.list.col.type"            sortable="true" sortProperty="dataSourceInfo.type">
+		${resource.dataSourceInfo.type}&nbsp;
 	</display:column>
 
 	<c:if test="${! isGlobalResources}">

@@ -18,6 +18,7 @@ import java.lang.reflect.Field;
 /**
  *
  * @author akhawatrah
+ * @author Mark Lewis
  */
 public class BoneCPDatasourceAccessor implements DatasourceAccessor {
 
@@ -42,6 +43,7 @@ public class BoneCPDatasourceAccessor implements DatasourceAccessor {
             dataSourceInfo.setJdbcURL(source.getJdbcUrl());
             dataSourceInfo.setUsername(source.getUsername());
             dataSourceInfo.setResettable(false);
+            dataSourceInfo.setType("bonecp");
         }
         return dataSourceInfo;
     }

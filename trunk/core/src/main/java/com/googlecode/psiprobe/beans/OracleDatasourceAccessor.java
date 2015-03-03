@@ -57,6 +57,7 @@ public class OracleDatasourceAccessor implements DatasourceAccessor {
                 dataSourceInfo.setJdbcURL(source.getURL());
                 dataSourceInfo.setUsername(source.getUser());
                 dataSourceInfo.setResettable(true);
+                dataSourceInfo.setType("oracle-jdbc");
             }
         }
         return dataSourceInfo;

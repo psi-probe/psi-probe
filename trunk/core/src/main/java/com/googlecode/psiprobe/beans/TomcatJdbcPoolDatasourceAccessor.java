@@ -24,6 +24,7 @@ import org.apache.tomcat.jdbc.pool.DataSource;
  * </p>
  *
  * @author chenwang
+ * @author Mark Lewis
  */
 public class TomcatJdbcPoolDatasourceAccessor implements DatasourceAccessor {
 
@@ -38,6 +39,7 @@ public class TomcatJdbcPoolDatasourceAccessor implements DatasourceAccessor {
             dataSourceInfo.setJdbcURL(source.getUrl());
             dataSourceInfo.setUsername(source.getUsername());
             dataSourceInfo.setResettable(false);
+            dataSourceInfo.setType("tomcat-jdbc");
         }
         return dataSourceInfo;
     }

@@ -25,6 +25,7 @@ public class DataSourceInfo {
     private int maxConnections;
     private boolean resettable;
     private String username;
+    private String type;
 
     public String getJdbcURL() {
         return jdbcURL;
@@ -72,6 +73,14 @@ public class DataSourceInfo {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public int getBusyScore() {
