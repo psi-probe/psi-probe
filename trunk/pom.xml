@@ -89,17 +89,6 @@
 			<url>https://repository.jboss.org/nexus/content/repositories/deprecated/</url>
 			<layout>default</layout>
 		</repository>
-		<repository>
-			<!-- Required for oracle ucp -->
-			<snapshots>
-				<enabled>false</enabled>
-				<updatePolicy>never</updatePolicy>
-			</snapshots>
-			<id>repo.edorasframework.org</id>
-			<name>repo.edorasframework.org</name>
-			<url>http://web.archive.org/web/20110204062704/http://repo.edorasframework.org/mvn/maven2/</url>
-			<layout>default</layout>
-		</repository>
 	</repositories>
 	<dependencyManagement>
 		<dependencies>
