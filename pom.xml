@@ -8,7 +8,7 @@
 	<version>2.4.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>PSI Probe</name>
-	<url>http://psi-probe.googlecode.com/</url>
+	<url>https://github.com/MALfunction84/psi-probe/</url>
 	<description>
 		Advanced manager and monitor for Tomcat, forked from Lambda Probe
 	</description>
@@ -20,8 +20,8 @@
 		</license>
 	</licenses>
 	<issueManagement>
-		<system>Google Code</system>
-		<url>http://code.google.com/p/psi-probe/issues/</url>
+		<system>GitHub Issues</system>
+		<url>https://github.com/MALfunction84/psi-probe/issues/</url>
 	</issueManagement>
 	<mailingLists>
 		<mailingList>
@@ -39,9 +39,9 @@
 		</mailingList>
 	</mailingLists>
 	<scm>
-		<connection>scm:svn:http://psi-probe.googlecode.com/svn/trunk/</connection>
-		<developerConnection>scm:svn:https://psi-probe.googlecode.com/svn/trunk/</developerConnection>
-		<url>http://code.google.com/p/psi-probe/source/browse/trunk/</url>
+		<connection>scm:git:ssh://git@github.com:MALfunction84/psi-probe.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com:MALfunction84/psi-probe.git</developerConnection>
+		<url>https://github.com/MALfunction84/psi-probe/</url>
 	</scm>
 	<modules>
 		<module>core</module>
@@ -411,7 +411,7 @@
 					<artifactId>maven-war-plugin</artifactId>
 					<version>2.1.1</version>
 					<configuration>
-						<excludes>**/test/**,**/.svn/**</excludes>
+						<excludes>**/test/**,**/.git/**</excludes>
 						<archive>
 							<manifestEntries>
 								<Implementation-Build>${probe.version}</Implementation-Build>
@@ -502,7 +502,7 @@
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>buildnumber-maven-plugin</artifactId>
 			</plugin>
-			<!-- IDE -->
+			<!-- begin IDE plugins -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-eclipse-plugin</artifactId>
@@ -511,6 +511,7 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-idea-plugin</artifactId>
 			</plugin>
+			<!-- end IDE plugins -->
 		</plugins>
 	</build>
 	<profiles>
