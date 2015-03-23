@@ -424,26 +424,6 @@
 					</configuration>
 				</plugin>
 				<plugin>
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>buildnumber-maven-plugin</artifactId>
-					<version>1.0-beta-4</version>
-					<executions>
-						<execution>
-							<phase>validate</phase>
-							<goals>
-								<goal>create</goal>
-							</goals>
-						</execution>
-					</executions>
-					<configuration>
-						<getRevisionOnlyOnce>true</getRevisionOnlyOnce>
-						<useLastCommittedRevision>true</useLastCommittedRevision>
-						<doCheck>${buildNumber.doCheck}</doCheck>
-						<doUpdate>${buildNumber.doUpdate}</doUpdate>
-						<timestampFormat>{0,date,yyyy-MM-dd HH:mm Z}</timestampFormat>
-					</configuration>
-				</plugin>
-				<plugin>
 					<groupId>org.codehaus.mojo.jspc</groupId>
 					<artifactId>jspc-maven-plugin</artifactId>
 					<version>2.0-alpha-3</version>
@@ -498,10 +478,6 @@
 			</plugins>
 		</pluginManagement>
 		<plugins>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>buildnumber-maven-plugin</artifactId>
-			</plugin>
 			<!-- begin IDE plugins -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -519,8 +495,6 @@
 			<id>release</id>
 			<properties>
 				<probe.version>${project.version}</probe.version>
-				<buildNumber.doCheck>true</buildNumber.doCheck>
-				<buildNumber.doUpdate>true</buildNumber.doUpdate>
 			</properties>
 		</profile>
 		<profile>
@@ -529,9 +503,7 @@
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<properties>
-				<probe.version>${project.version} (r${buildNumber} ${timestamp})</probe.version>
-				<buildNumber.doCheck>false</buildNumber.doCheck>
-				<buildNumber.doUpdate>false</buildNumber.doUpdate>
+				<probe.version>${project.version} (built at ${timestamp})</probe.version>
 			</properties>
 		</profile>
 	</profiles>
