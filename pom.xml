@@ -89,6 +89,17 @@
 			<url>https://repository.jboss.org/nexus/content/repositories/deprecated/</url>
 			<layout>default</layout>
 		</repository>
+		<repository>
+			<!-- Required for ojdbc14 and ucp -->
+			<snapshots>
+				<enabled>false</enabled>
+				<updatePolicy>never</updatePolicy>
+			</snapshots>
+			<id>code.lds.org</id>
+			<name>code.lds.org</name>
+			<url>https://code.lds.org/nexus/content/repositories/main-repo/</url>
+			<layout>default</layout>
+		</repository>
 	</repositories>
 	<dependencyManagement>
 		<dependencies>
@@ -147,13 +158,9 @@
 				<version>11.2.0.1.0</version>
 			</dependency>
 			<dependency>
-				<!--
-					Not in any known Maven repository; must be installed manually.
-					See readme.txt for instructions.
-				-->
 				<groupId>com.oracle</groupId>
 				<artifactId>ojdbc14</artifactId>
-				<version>10.2.0.1.0</version>
+				<version>10.2.0.3</version>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.tomcat</groupId>
