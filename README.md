@@ -10,9 +10,9 @@
 
 	This will create directory called `psi-probe`. Subsequent steps will refer to this as "your PSI Probe base directory."
 
-2.	**Install Maven 2.**
+2.	**Download and install Maven 3.**
 
-	You may download it from the [Maven release archive](http://maven.apache.org/docs/history.html).
+	You may download it from the [Apache Maven website](http://maven.apache.org/download.cgi).
 
 3.	**Run Maven.**
 
