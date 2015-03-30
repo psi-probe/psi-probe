@@ -6,7 +6,7 @@
 
 	Execute the following command:
 
-		git clone https://github.com/MALfunction84/psi-probe
+		git clone https://github.com/psi-probe/psi-probe
 
 	This will create directory called `psi-probe`. Subsequent steps will refer to this as "your PSI Probe base directory."
 
