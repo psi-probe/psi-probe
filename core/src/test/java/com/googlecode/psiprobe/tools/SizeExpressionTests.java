@@ -32,95 +32,95 @@ public class SizeExpressionTests extends TestCase {
     }
     
     public void testFormatNoDecimalBase2() {
-        Assert.assertEquals(SizeExpression.format(1, 0, true), "1 B");
-        Assert.assertEquals(SizeExpression.format(10, 0, true), "10 B");
-        Assert.assertEquals(SizeExpression.format(100, 0, true), "100 B");
-        Assert.assertEquals(SizeExpression.format(1000, 0, true), "1,000 B");
-        Assert.assertEquals(SizeExpression.format(1023, 0, true), "1,023 B");
-        Assert.assertEquals(SizeExpression.format(1024, 0, true), "1 KB");
-        Assert.assertEquals(SizeExpression.format(10240, 0, true), "10 KB");
-        Assert.assertEquals(SizeExpression.format(10250, 0, true), "10 KB");
+        Assert.assertEquals("1 B", SizeExpression.format(1, 0, true));
+        Assert.assertEquals("10 B", SizeExpression.format(10, 0, true));
+        Assert.assertEquals("100 B", SizeExpression.format(100, 0, true));
+        Assert.assertEquals("1,000 B", SizeExpression.format(1000, 0, true));
+        Assert.assertEquals("1,023 B", SizeExpression.format(1023, 0, true));
+        Assert.assertEquals("1 KB", SizeExpression.format(1024, 0, true));
+        Assert.assertEquals("10 KB", SizeExpression.format(10240, 0, true));
+        Assert.assertEquals("10 KB", SizeExpression.format(10250, 0, true));
     }
     
     public void testFormatNoDecimalBase10() {
-        Assert.assertEquals(SizeExpression.format(1, 0, false), "1");
-        Assert.assertEquals(SizeExpression.format(10, 0, false), "10");
-        Assert.assertEquals(SizeExpression.format(100, 0, false), "100");
-        Assert.assertEquals(SizeExpression.format(1000, 0, false), "1K");
-        Assert.assertEquals(SizeExpression.format(1023, 0, false), "1K");
-        Assert.assertEquals(SizeExpression.format(1024, 0, false), "1K");
-        Assert.assertEquals(SizeExpression.format(10240, 0, false), "10K");
-        Assert.assertEquals(SizeExpression.format(10250, 0, false), "10K");
+        Assert.assertEquals("1", SizeExpression.format(1, 0, false));
+        Assert.assertEquals("10", SizeExpression.format(10, 0, false));
+        Assert.assertEquals("100", SizeExpression.format(100, 0, false));
+        Assert.assertEquals("1K", SizeExpression.format(1000, 0, false));
+        Assert.assertEquals("1K", SizeExpression.format(1023, 0, false));
+        Assert.assertEquals("1K", SizeExpression.format(1024, 0, false));
+        Assert.assertEquals("10K", SizeExpression.format(10240, 0, false));
+        Assert.assertEquals("10K", SizeExpression.format(10250, 0, false));
     }
     
     public void testFormatOneDecimalBase2() {
-        Assert.assertEquals(SizeExpression.format(1, 1, true), "1 B");
-        Assert.assertEquals(SizeExpression.format(10, 1, true), "10 B");
-        Assert.assertEquals(SizeExpression.format(100, 1, true), "100 B");
-        Assert.assertEquals(SizeExpression.format(1000, 1, true), "1,000 B");
-        Assert.assertEquals(SizeExpression.format(1023, 1, true), "1,023 B");
-        Assert.assertEquals(SizeExpression.format(1024, 1, true), "1.0 KB");
-        Assert.assertEquals(SizeExpression.format(10240, 1, true), "10.0 KB");
-        Assert.assertEquals(SizeExpression.format(10250, 1, true), "10.0 KB");
+        Assert.assertEquals("1 B", SizeExpression.format(1, 1, true));
+        Assert.assertEquals("10 B", SizeExpression.format(10, 1, true));
+        Assert.assertEquals("100 B", SizeExpression.format(100, 1, true));
+        Assert.assertEquals("1,000 B", SizeExpression.format(1000, 1, true));
+        Assert.assertEquals("1,023 B", SizeExpression.format(1023, 1, true));
+        Assert.assertEquals("1.0 KB", SizeExpression.format(1024, 1, true));
+        Assert.assertEquals("10.0 KB", SizeExpression.format(10240, 1, true));
+        Assert.assertEquals("10.0 KB", SizeExpression.format(10250, 1, true));
     }
     
     public void testFormatOneDecimalBase10() {
-        Assert.assertEquals(SizeExpression.format(1, 1, false), "1");
-        Assert.assertEquals(SizeExpression.format(10, 1, false), "10");
-        Assert.assertEquals(SizeExpression.format(100, 1, false), "100");
-        Assert.assertEquals(SizeExpression.format(1000, 1, false), "1.0K");
-        Assert.assertEquals(SizeExpression.format(1023, 1, false), "1.0K");
-        Assert.assertEquals(SizeExpression.format(1024, 1, false), "1.0K");
-        Assert.assertEquals(SizeExpression.format(10240, 1, false), "10.0K");
-        Assert.assertEquals(SizeExpression.format(10250, 1, false), "10.0K");
+        Assert.assertEquals("1", SizeExpression.format(1, 1, false));
+        Assert.assertEquals("10", SizeExpression.format(10, 1, false));
+        Assert.assertEquals("100", SizeExpression.format(100, 1, false));
+        Assert.assertEquals("1.0K", SizeExpression.format(1000, 1, false));
+        Assert.assertEquals("1.0K", SizeExpression.format(1023, 1, false));
+        Assert.assertEquals("1.0K", SizeExpression.format(1024, 1, false));
+        Assert.assertEquals("10.2K", SizeExpression.format(10240, 1, false));
+        Assert.assertEquals("10.3K", SizeExpression.format(10250, 1, false));
     }
     
     public void testFormatAllPrefixesBase2() {
-        Assert.assertEquals(SizeExpression.format(1, 0, true), "1 B");
-        Assert.assertEquals(SizeExpression.format(1024, 0, true), "1 KB");
-        Assert.assertEquals(SizeExpression.format(1048576, 0, true), "1 MB");
-        Assert.assertEquals(SizeExpression.format(1073741824, 0, true), "1 GB");
-        Assert.assertEquals(SizeExpression.format(1099511627776L, 0, true), "1 TB");
-        Assert.assertEquals(SizeExpression.format(1125899906842624L, 0, true), "1 PB");
+        Assert.assertEquals("1 B", SizeExpression.format(1, 0, true));
+        Assert.assertEquals("1 KB", SizeExpression.format(1024, 0, true));
+        Assert.assertEquals("1 MB", SizeExpression.format(1048576, 0, true));
+        Assert.assertEquals("1 GB", SizeExpression.format(1073741824, 0, true));
+        Assert.assertEquals("1 TB", SizeExpression.format(1099511627776L, 0, true));
+        Assert.assertEquals("1 PB", SizeExpression.format(1125899906842624L, 0, true));
     }
     
     public void testFormatAllPrefixesBase10() {
-        Assert.assertEquals(SizeExpression.format(1, 0, false), "1");
-        Assert.assertEquals(SizeExpression.format(1000, 0, false), "1K");
-        Assert.assertEquals(SizeExpression.format(1000000, 0, false), "1M");
-        Assert.assertEquals(SizeExpression.format(1000000000, 0, false), "1G");
-        Assert.assertEquals(SizeExpression.format(1000000000000L, 0, false), "1T");
-        Assert.assertEquals(SizeExpression.format(1000000000000000L, 0, false), "1P");
+        Assert.assertEquals("1", SizeExpression.format(1, 0, false));
+        Assert.assertEquals("1K", SizeExpression.format(1000, 0, false));
+        Assert.assertEquals("1M", SizeExpression.format(1000000, 0, false));
+        Assert.assertEquals("1G", SizeExpression.format(1000000000, 0, false));
+        Assert.assertEquals("1T", SizeExpression.format(1000000000000L, 0, false));
+        Assert.assertEquals("1P", SizeExpression.format(1000000000000000L, 0, false));
     }
     
     public void testParseWithUnit() {
-        Assert.assertEquals(SizeExpression.parse("1B"), 1);
-        Assert.assertEquals(SizeExpression.parse("10B"), 10);
-        Assert.assertEquals(SizeExpression.parse("100B"), 100);
-        Assert.assertEquals(SizeExpression.parse("1000B"), 1000);
-        Assert.assertEquals(SizeExpression.parse("1023B"), 1023);
-        Assert.assertEquals(SizeExpression.parse("1024B"), 1024);
-        Assert.assertEquals(SizeExpression.parse("1.0KB"), 1024);
-        Assert.assertEquals(SizeExpression.parse("1KB"), 1024);
-        Assert.assertEquals(SizeExpression.parse("1MB"), 1048576);
-        Assert.assertEquals(SizeExpression.parse("1GB"), 1073741824);
-        Assert.assertEquals(SizeExpression.parse("1TB"), 1099511627776L);
-        Assert.assertEquals(SizeExpression.parse("1PB"), 1125899906842624L);
+        Assert.assertEquals(1, SizeExpression.parse("1B"));
+        Assert.assertEquals(10, SizeExpression.parse("10B"));
+        Assert.assertEquals(100, SizeExpression.parse("100B"));
+        Assert.assertEquals(1000, SizeExpression.parse("1000B"));
+        Assert.assertEquals(1023, SizeExpression.parse("1023B"));
+        Assert.assertEquals(1024, SizeExpression.parse("1024B"));
+        Assert.assertEquals(1024, SizeExpression.parse("1.0KB"));
+        Assert.assertEquals(1024, SizeExpression.parse("1KB"));
+        Assert.assertEquals(1048576, SizeExpression.parse("1MB"));
+        Assert.assertEquals(1073741824, SizeExpression.parse("1GB"));
+        Assert.assertEquals(1099511627776L, SizeExpression.parse("1TB"));
+        Assert.assertEquals(1125899906842624L, SizeExpression.parse("1PB"));
     }
     
     public void testParseWithoutUnit() {
-        Assert.assertEquals(SizeExpression.parse("1"), 1);
-        Assert.assertEquals(SizeExpression.parse("10"), 10);
-        Assert.assertEquals(SizeExpression.parse("100"), 100);
-        Assert.assertEquals(SizeExpression.parse("1000"), 1000);
-        Assert.assertEquals(SizeExpression.parse("1023"), 1023);
-        Assert.assertEquals(SizeExpression.parse("1024"), 1024);
-        Assert.assertEquals(SizeExpression.parse("1.0K"), 1000);
-        Assert.assertEquals(SizeExpression.parse("1K"), 1000);
-        Assert.assertEquals(SizeExpression.parse("1M"), 1000000);
-        Assert.assertEquals(SizeExpression.parse("1G"), 1000000000);
-        Assert.assertEquals(SizeExpression.parse("1T"), 1000000000000L);
-        Assert.assertEquals(SizeExpression.parse("1P"), 1000000000000000L);
+        Assert.assertEquals(1, SizeExpression.parse("1"));
+        Assert.assertEquals(10, SizeExpression.parse("10"));
+        Assert.assertEquals(100, SizeExpression.parse("100"));
+        Assert.assertEquals(1000, SizeExpression.parse("1000"));
+        Assert.assertEquals(1023, SizeExpression.parse("1023"));
+        Assert.assertEquals(1024, SizeExpression.parse("1024"));
+        Assert.assertEquals(1000, SizeExpression.parse("1.0K"));
+        Assert.assertEquals(1000, SizeExpression.parse("1K"));
+        Assert.assertEquals(1000000, SizeExpression.parse("1M"));
+        Assert.assertEquals(1000000000, SizeExpression.parse("1G"));
+        Assert.assertEquals(1000000000000L, SizeExpression.parse("1T"));
+        Assert.assertEquals(1000000000000000L, SizeExpression.parse("1P"));
     }
     
 }
