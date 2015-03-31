@@ -68,7 +68,7 @@
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.codehaus.mojo.jspc</groupId>
+				<groupId>org.jasig.mojo.jspc</groupId>
 				<artifactId>jspc-maven-plugin</artifactId>
 				<dependencies>
 					<dependency>
