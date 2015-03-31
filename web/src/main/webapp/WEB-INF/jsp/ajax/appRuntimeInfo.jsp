@@ -58,7 +58,7 @@
 			<tbody>
 				<tr>
 					<td class="leftMost">
-						<a href="<c:url value='/sessions.htm?webapp=${app.name}&size=${param.size}'/>">${app.sessionCount}</a>
+						<a href="<c:url value='/sessions.htm'><c:param name='webapp' value='${app.name}' /><c:param name='size' value='${param.size}' /></c:url>">${app.sessionCount}</a>
 					</td>
 					<td>
 						<c:choose>
@@ -79,14 +79,14 @@
 						</td>
 					</c:if>
 					<td>
-						<a href="<c:url value='/appattributes.htm?webapp=${app.name}'/>">${app.contextAttributeCount}</a>
+						<a href="<c:url value='/appattributes.htm'><c:param name='webapp' value='${app.name}' /></c:url>">${app.contextAttributeCount}</a>
 					</td>
 					<c:if test="${! no_resources}">
 						<td>
 							<probe:score value="${app.dataSourceBusyScore}" value2="${app.dataSourceEstablishedScore - app.dataSourceBusyScore}" fullBlocks="8" partialBlocks="5" showEmptyBlocks="true" showA="true" showB="true">
-								<a class="imglink" href="<c:url value='/resources.htm?webapp=${app.name}'/>"><img border="0"
-																												src="<c:url value='/css/classic/gifs/rb_{0}.gif'/>" alt="+"
-																												title="<spring:message code='probe.jsp.applications.jdbcUsage.title' arguments='${app.dataSourceBusyScore},${app.dataSourceEstablishedScore}'/>"/></a>
+								<a class="imglink" href="<c:url value='/resources.htm'><c:param name='webapp' value='${app.name}' /></c:url>"><img border="0"
+										src="<c:url value='/css/classic/gifs/rb_{0}.gif'/>" alt="+"
+										title="<spring:message code='probe.jsp.applications.jdbcUsage.title' arguments='${app.dataSourceBusyScore},${app.dataSourceEstablishedScore}'/>"/></a>
 							</probe:score>
 							&nbsp;${app.dataSourceBusyScore}%
 						</td>

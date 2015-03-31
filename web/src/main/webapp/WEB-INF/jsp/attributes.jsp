@@ -46,7 +46,7 @@
 			<c:if test="${! empty session}">
 
 				<li id="delete">
-					<a href="<c:url value='/app/expire.htm'/>?webapp=${param.webapp}&sid=${param.sid}">
+					<a href="<c:url value='/app/expire.htm'><c:param name='webapp' value='${app.name}' /><c:param name='sid' value='${param.sid}' /></c:url>">
 						<spring:message code="probe.jsp.sessionAttibutes.menu.destroy"/>
 					</a>
 				</li>

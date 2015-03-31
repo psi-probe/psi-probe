@@ -216,7 +216,7 @@
 							</c:if>
 
 							<display:column titleKey="probe.jsp.sessions.col.id">
-								<a href="<c:url value='/attributes.htm?webapp=${session.applicationName}&sid=${session.id}&size=${param.size}'/>">
+								<a href="<c:url value='/attributes.htm'><c:param name='webapp' value='${session.applicationName}' /><c:param name='sid' value='${session.id}' /><c:param name='size' value='${param.size}' /></c:url>">
 									${session.id}
 								</a>
 							</display:column>
