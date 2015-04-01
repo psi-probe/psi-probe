@@ -128,7 +128,7 @@ public class ResourceResolverBean implements ResourceResolver {
         DataSourceInfo dataSourceInfo = null;
         if (contextBound) {
             try {
-                String jndiName = resolveJndiName(resource.getName(), global);
+                String jndiName = resolveJndiName(resource.getName());
                 Object o = new InitialContext().lookup(jndiName);
                 resource.setLookedUp(true);
                 for (Iterator it = datasourceMappers.iterator(); it.hasNext();) {
@@ -172,7 +172,7 @@ public class ResourceResolverBean implements ResourceResolver {
             ContextBindings.bindClassLoader(context, null, Thread.currentThread().getContextClassLoader());
         }
         try {
-            String jndiName = resolveJndiName(resourceName, (context == null));
+            String jndiName = resolveJndiName(resourceName);
             Object o = new InitialContext().lookup(jndiName);
             try {
                 for (Iterator it = datasourceMappers.iterator(); it.hasNext();) {
@@ -203,7 +203,7 @@ public class ResourceResolverBean implements ResourceResolver {
             ContextBindings.bindClassLoader(context, null, Thread.currentThread().getContextClassLoader());
         }
         try {
-            String jndiName = resolveJndiName(resourceName, (context == null));
+            String jndiName = resolveJndiName(resourceName);
             Object o = new InitialContext().lookup(jndiName);
 
             if (o instanceof DataSource) {
@@ -253,8 +253,8 @@ public class ResourceResolverBean implements ResourceResolver {
      * @see #DEFAULT_GLOBAL_RESOURCE_PREFIX
      * @see #DEFAULT_RESOURCE_PREFIX
      */
-    protected static String resolveJndiName(String name, boolean global) {
-        return (global ? DEFAULT_GLOBAL_RESOURCE_PREFIX : DEFAULT_RESOURCE_PREFIX) + name;
+    protected static String resolveJndiName(String name) {
+        return DEFAULT_RESOURCE_PREFIX + name;
     }
 
     private String getStringAttribute(MBeanServer server, ObjectName objectName, String attributeName) {
