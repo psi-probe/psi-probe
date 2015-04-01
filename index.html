@@ -27,39 +27,23 @@
         </ul>
       </header>
       <section>
-        <h1>
-<a id="how-to-build-psi-probe-" class="anchor" href="#how-to-build-psi-probe-" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to build PSI Probe <a href="https://travis-ci.org/MALfunction84/psi-probe"><img src="https://travis-ci.org/MALfunction84/psi-probe.svg?branch=master" alt="Build Status"></a>
-</h1>
+        <p>PSI Probe is a community-driven fork of Lambda Probe distributed under the same open-source license (GPLv2). It is intended to replace and extend Tomcat Manager, making it easier to manage and monitor an instance of Apache Tomcat.</p>
 
-<ol>
-<li>
-<p><strong>Clone PSI Probe's git repository.</strong></p>
+<p>Unlike many other server monitoring tools, PSI Probe does not require any changes to your existing apps. It provides all of its features through a web-accessible interface that becomes available simply by deploying it to your server.  These features include:</p>
 
-<p><em>Note: If you plan to contribute to PSI Probe, you should create your own fork on GitHub first and clone that.  Otherwise, follow these steps to build the latest version of PSI Probe for yourself.</em></p>
-
-<p>Execute the following command:</p>
-
-<pre><code>git clone https://github.com/MALfunction84/psi-probe
-</code></pre>
-
-<p>This will create directory called <code>psi-probe</code>. Subsequent steps will refer to this as "your PSI Probe base directory."</p>
-</li>
-<li>
-<p><strong>Download and install Maven 3.</strong></p>
-
-<p>You may download it from the <a href="http://maven.apache.org/download.cgi">Apache Maven website</a>.</p>
-</li>
-<li>
-<p><strong>Run Maven.</strong></p>
-
-<p>Execute the following command from your PSI Probe base directory:</p>
-
-<pre><code>mvn package
-</code></pre>
-
-<p>This will create a deployable file at <code>web/target/probe.war</code>.</p>
-</li>
-</ol>
+<ul>
+<li>Requests: Monitor traffic in real-time, even on a per-application basis.</li>
+<li>Sessions: Browse/search attributes, view last IP, expire, estimate size.</li>
+<li>JSP: Browse, view source, compile.</li>
+<li>Data Sources: View pool usage, execute queries.</li>
+<li>Logs: View contents, download, change levels at runtime.</li>
+<li>Threads: View execution stack, kill.</li>
+<li>Connectors: Status, usage charts.</li>
+<li>Cluster: Status, usage charts.</li>
+<li>JVM: Memory usage charts, advise GC</li>
+<li>Java Service Wrapper: Restart JVM.</li>
+<li>System: CPU usage, memory usage, swap file usage.</li>
+</ul>
       </section>
     </div>
     <footer>
