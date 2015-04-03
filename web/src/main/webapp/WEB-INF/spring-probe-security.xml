@@ -3,7 +3,7 @@
 	   xmlns:sec="http://www.springframework.org/schema/security"
 	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans    http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
-		                    http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-2.0.6.xsd">
+		                    http://www.springframework.org/schema/security http://grepcode.com/file_/repo1.maven.org/maven2/org.springframework.security/spring-security-core/2.0.6.RELEASE/org/springframework/security/config/spring-security-2.0.6.xsd/?v=source">
 
 	<bean id="filterChainProxy" class="org.springframework.security.util.FilterChainProxy">
 		<sec:filter-chain-map path-type="ant">
