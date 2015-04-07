@@ -11,6 +11,8 @@
 package com.googlecode.psiprobe.jsp;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.Enumeration;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
@@ -32,10 +34,17 @@ public class ParamToggleTag extends TagSupport {
         boolean getSize = ServletRequestUtils.getBooleanParameter(pageContext.getRequest(), param, false);
         StringBuffer query = new StringBuffer();
         query.append(param).append("=").append(!getSize);
+        String encoding = pageContext.getResponse().getCharacterEncoding();
         for (Enumeration en = pageContext.getRequest().getParameterNames(); en.hasMoreElements(); ){
             String name = (String) en.nextElement();
             if (!param.equals(name)) {
-                query.append("&").append(name).append("=").append(ServletRequestUtils.getStringParameter(pageContext.getRequest(), name, ""));
+                try {
+                    String value = ServletRequestUtils.getStringParameter(pageContext.getRequest(), name, "");
+                    String encodedValue = URLEncoder.encode(value, encoding);
+                    query.append("&").append(name).append("=").append(encodedValue);
+                } catch (UnsupportedEncodingException e) {
+                    throw new JspException(e);
+                }
             }
         }
         try {

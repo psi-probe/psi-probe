@@ -70,7 +70,7 @@
 								defaultorder="descending">
 							<display:column titleKey="probe.jsp.jsps.col.name" sortable="true" class="leftmost" sortProperty="name">
 								<input type="checkbox" name="${item.name}"/>&nbsp;
-								<a href="<c:url value='/app/viewsource.htm?webapp=${param.webapp}&source=${item.name}'/>">
+								<a href="<c:url value='/app/viewsource.htm'><c:param name='webapp' value='${param.webapp}' /><c:param name='source' value='${item.name}' /></c:url>">
 									${item.name}
 								</a>
 							</display:column>

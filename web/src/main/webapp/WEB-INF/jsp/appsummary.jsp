@@ -288,8 +288,8 @@
 
 						imageUpdaters[0] = new Ajax.ImgUpdater('req_chart', ${probe:max(collectionPeriod, 5)});
 						imageUpdaters[1] = new Ajax.ImgUpdater('avg_proc_time_chart', ${probe:max(collectionPeriod, 5)});
-						new Ajax.PeriodicalUpdater('dd-req', '<c:url value="/appreqdetails.ajax"/>?webapp=${app.name}', {frequency: 3});
-						new Ajax.PeriodicalUpdater('dd-proc_time', '<c:url value="/appprocdetails.ajax"/>?webapp=${app.name}', {frequency: 3});
+						new Ajax.PeriodicalUpdater('dd-req', '<c:url value="/appreqdetails.ajax"><c:param name="webapp" value="${app.name}" /></c:url>', {frequency: 3});
+						new Ajax.PeriodicalUpdater('dd-proc_time', '<c:url value="/appprocdetails.ajax"><c:param name="webapp" value="${app.name}" /></c:url>', {frequency: 3});
 					</script>
 				</c:if>
 

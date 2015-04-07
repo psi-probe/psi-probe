@@ -119,7 +119,7 @@ public class UploadWarController extends TomcatContainerController {
                             //
                             // let Tomcat know that the file is there
                             //
-                            getContainerWrapper().getTomcatContainer().installWar(contextName, new URL("jar:file:" + destWar.getAbsolutePath() + "!/"));
+                            getContainerWrapper().getTomcatContainer().installWar(contextName, new URL("jar:" + destWar.toURI().toURL().toString() + "!/"));
 
                             Context ctx = getContainerWrapper().getTomcatContainer().findContext(contextName);
                             if (ctx == null) {

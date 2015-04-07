@@ -42,7 +42,7 @@
 					<display:table class="genericTbl" name="resources" uid="resource" cellspacing="0">
 						<display:column class="leftmost" sortable="true" sortProperty="name"
 								titleKey="probe.jsp.resources.col.name">
-							<a href="<c:url value='/sql/datasourcetest.htm'/>?webapp=${resource.applicationName}&resource=${resource.name}">
+							<a href="<c:url value='/sql/datasourcetest.htm'><c:param name='webapp' value='${resource.applicationName}' /><c:param name='resource' value='${resource.name}' /></c:url>">
 								${resource.name}
 							</a>
 						</display:column>
@@ -59,7 +59,7 @@
 										<spring:message code="probe.jsp.resources.info.established"/>&nbsp;<b>${resource.dataSourceInfo.establishedConnections}</b>
 										<c:if test="${resource.dataSourceInfo.resettable}">
 											<b>&nbsp;
-												<a href="<c:url value='/app/resetds.htm'/>?webapp=${param.webapp}&resource=${resource.name}">
+												<a href="<c:url value='/app/resetds.htm'><c:param name='webapp' value='${resource.applicationName}' /><c:param name='resource' value='${resource.name}' /></c:url>">
 													<img border="0"
 															src="${pageContext.request.contextPath}<spring:theme code='reset.gif'/>"
 															alt="<spring:message code='probe.jsp.resources.info.reset.alt'/>"/>

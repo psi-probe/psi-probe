@@ -84,7 +84,7 @@ public class SizeExpression {
             String value = m.group(1);
             String unitPrefix = m.group(2);
             String unitBase = m.group(3);
-            long multiplier = 1;
+            double multiplier = 1;
             if (unitPrefix != null) {
                 multiplier = multiplier(unitPrefix.charAt(0), unitBase != null);
             }
@@ -111,11 +111,11 @@ public class SizeExpression {
 
         double doubleResult;
         String unit = (base2 ? UNIT_BASE : "");
-        long multiplierKilo = multiplier(PREFIX_KILO, base2);
-        long multiplierMega = multiplier(PREFIX_MEGA, base2);
-        long multiplierGiga = multiplier(PREFIX_GIGA, base2);
-        long multiplierTera = multiplier(PREFIX_TERA, base2);
-        long multiplierPeta = multiplier(PREFIX_PETA, base2);
+        double multiplierKilo = multiplier(PREFIX_KILO, base2);
+        double multiplierMega = multiplier(PREFIX_MEGA, base2);
+        double multiplierGiga = multiplier(PREFIX_GIGA, base2);
+        double multiplierTera = multiplier(PREFIX_TERA, base2);
+        double multiplierPeta = multiplier(PREFIX_PETA, base2);
         if (value < multiplierKilo) {
             doubleResult = value;
             nf.setMinimumFractionDigits(0);
@@ -158,7 +158,7 @@ public class SizeExpression {
      *        the base-10 (1000) multiplier.
      * @return the multiplier for the given prefix
      */
-    private static long multiplier(char unitPrefix, boolean base2) {
+    private static double multiplier(char unitPrefix, boolean base2) {
         long result;
         long multiplier = (base2 ? MULTIPLIER_2 : MULTIPLIER_10);
         switch(Character.toUpperCase(unitPrefix)) {

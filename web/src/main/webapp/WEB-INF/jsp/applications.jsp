@@ -153,7 +153,7 @@
 				<c:choose>
 					<c:when test="${app.available}">
 						<a onclick="return toggleContext('${app_rowNum}', '${toggleAppUrl}', '${app.name}');"
-								href="<c:url value='/app/stop.htm'/>?webapp=${app.name}"
+								href="<c:url value='/app/stop.htm'><c:param name='webapp' value='${app.name}' /></c:url>"
 								title="<spring:message code='probe.jsp.applications.title.status.up' arguments='${app.name}'/>">
 							<div class="okValue" id="rs_${app_rowNum}">
 								<spring:message code="probe.jsp.applications.status.up"/>
@@ -162,7 +162,7 @@
 					</c:when>
 					<c:otherwise>
 						<a onclick="return toggleContext('${app_rowNum}', '${toggleAppUrl}', '${app.name}');"
-								href="<c:url value='/app/start.htm'/>?webapp=${app.name}"
+								href="<c:url value='/app/start.htm'><c:param name='webapp' value='${app.name}' /></c:url>"
 								title="<spring:message code='probe.jsp.applications.status.down.title' arguments='${app.name}'/>">
 							<div class="errorValue" id="rs_${app_rowNum}">
 								<spring:message code="probe.jsp.applications.status.down"/>
@@ -175,7 +175,7 @@
 			<display:column title="&nbsp;">
 				<a onclick="return handleContextReload('${app_rowNum}', '${app.name}');"
 						class="imglink"
-						href="<c:url value='/app/reload.htm'/>?webapp=${app.name}">
+						href="<c:url value='/app/reload.htm'><c:param name='webapp' value='${app.name}' /></c:url>">
 					<img id='ri_${app_rowNum}'
 							border="0" src="${pageContext.request.contextPath}<spring:theme code='reset.gif'/>"
 							alt="<spring:message code='probe.jsp.applications.alt.reload'/>"
@@ -188,7 +188,7 @@
 			</display:column>
 
 			<display:column sortable="true" titleKey="probe.jsp.applications.col.requestCount" sortProperty="requestCount">
-				<a href="<c:url value='/servlets.htm?webapp=${app.name}'/>">
+				<a href="<c:url value='/servlets.htm'><c:param name='webapp' value='${app.name}' /></c:url>">
 					${app.requestCount}
 				</a>
 			</display:column>
@@ -230,9 +230,9 @@
 						titleKey="probe.jsp.applications.col.jdbcUsage" class="score_wrapper">
 					<div class="score_wrapper">
 						<probe:score value="${app.dataSourceBusyScore}" value2="${app.dataSourceEstablishedScore - app.dataSourceBusyScore}" fullBlocks="10" partialBlocks="5" showEmptyBlocks="true" showA="true" showB="true">
-							<a class="imglink" href="<c:url value='/resources.htm?webapp=${app.name}'/>"><img border="0"
-																											src="<c:url value='/css/classic/gifs/rb_{0}.gif'/>" alt="+"
-																											title="<spring:message code='probe.jsp.applications.jdbcUsage.title' arguments='${app.dataSourceBusyScore},${app.dataSourceEstablishedScore}'/>"/></a>
+							<a class="imglink" href="<c:url value='/resources.htm'><c:param name='webapp' value='${app.name}' /></c:url>"><img border="0"
+									src="<c:url value='/css/classic/gifs/rb_{0}.gif'/>" alt="+"
+									title="<spring:message code='probe.jsp.applications.jdbcUsage.title' arguments='${app.dataSourceBusyScore},${app.dataSourceEstablishedScore}'/>"/></a>
 						</probe:score>
 					</div>
 				</display:column>

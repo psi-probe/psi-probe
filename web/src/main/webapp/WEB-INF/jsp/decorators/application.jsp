@@ -20,52 +20,52 @@
 	</div>
 	<ul>
 		<li>
-			<a class="${appTabSummary}" href="<c:url value='/appsummary.htm'/>?webapp=${param.webapp}&size=${param.size}">
+			<a class="${appTabSummary}" href="<c:url value='/appsummary.htm'><c:param name='webapp' value='${param.webapp}' /><c:param name='size' value='${param.size}' /></c:url>">
 				<spring:message code="probe.jsp.app.nav.summary"/>
 			</a>
 		</li>
 		<li>
-			<a class="${appTabSessions}" href="<c:url value='/sessions.htm'/>?webapp=${param.webapp}&size=${param.size}">
+			<a class="${appTabSessions}" href="<c:url value='/sessions.htm'><c:param name='webapp' value='${param.webapp}' /><c:param name='size' value='${param.size}' /></c:url>">
 				<spring:message code="probe.jsp.app.nav.sessions"/>
 			</a>
 		</li>
 		<li>
-			<a class="${appTabAttributes}" href="<c:url value='/appattributes.htm'/>?webapp=${param.webapp}">
+			<a class="${appTabAttributes}" href="<c:url value='/appattributes.htm'><c:param name='webapp' value='${param.webapp}' /></c:url>">
 				<spring:message code="probe.jsp.app.nav.attributes"/>
 			</a>
 		</li>
 		<li>
-			<a class="${appTabJSPs}" href="<c:url value='/app/jsp.htm'/>?webapp=${param.webapp}">
+			<a class="${appTabJSPs}" href="<c:url value='/app/jsp.htm'><c:param name='webapp' value='${param.webapp}' /></c:url>">
 				<spring:message code="probe.jsp.app.nav.jsps"/>
 			</a>
 		</li>
 		<li>
-			<a class="${appTabResources}" href="<c:url value='/resources.htm'/>?webapp=${param.webapp}">
+			<a class="${appTabResources}" href="<c:url value='/resources.htm'><c:param name='webapp' value='${param.webapp}' /></c:url>">
 				<spring:message code="probe.jsp.app.nav.resources"/>
 			</a>
 		</li>
 		<li>
-			<a class="${appTabContextDescriptor}" href="<c:url value='/adm/viewcontextxml.htm'/>?webapp=${param.webapp}">
+			<a class="${appTabContextDescriptor}" href="<c:url value='/adm/viewcontextxml.htm'><c:param name='webapp' value='${param.webapp}' /></c:url>">
 				<spring:message code="probe.jsp.app.nav.contextxml"/>
 			</a>
 		</li>
 		<li>
-			<a class="${appTabDeploymentDescriptor}" href="<c:url value='/app/viewwebxml.htm'/>?webapp=${param.webapp}">
+			<a class="${appTabDeploymentDescriptor}" href="<c:url value='/app/viewwebxml.htm'><c:param name='webapp' value='${param.webapp}' /></c:url>">
 				<spring:message code="probe.jsp.app.nav.webxml"/>
 			</a>
 		</li>
 		<li>
-			<a class="${appTabServlets}" href="<c:url value='/servlets.htm'/>?webapp=${param.webapp}">
+			<a class="${appTabServlets}" href="<c:url value='/servlets.htm'><c:param name='webapp' value='${param.webapp}' /></c:url>">
 				<spring:message code="probe.jsp.app.nav.servlets"/>
 			</a>
 		</li>
 		<li>
-			<a class="${appTabFilters}" href="<c:url value='/appfilters.htm'/>?webapp=${param.webapp}">
+			<a class="${appTabFilters}" href="<c:url value='/appfilters.htm'><c:param name='webapp' value='${param.webapp}' /></c:url>">
 				<spring:message code="probe.jsp.app.nav.filters"/>
 			</a>
 		</li>
 		<li>
-			<a class="${appTabInitParams}" href="<c:url value='/appinitparams.htm'/>?webapp=${param.webapp}">
+			<a class="${appTabInitParams}" href="<c:url value='/appinitparams.htm'><c:param name='webapp' value='${param.webapp}' /></c:url>">
 				<spring:message code="probe.jsp.app.nav.initParams"/>
 			</a>
 		</li>

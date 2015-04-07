@@ -1,4 +1,4 @@
-# How to build PSI Probe [![Build Status](https://travis-ci.org/MALfunction84/psi-probe.svg?branch=master)](https://travis-ci.org/MALfunction84/psi-probe)
+# How to build PSI Probe [![Build Status](https://travis-ci.org/psi-probe/psi-probe.svg?branch=master)](https://travis-ci.org/psi-probe/psi-probe)
 
 1.	**Clone PSI Probe's git repository.**
 
@@ -6,7 +6,7 @@
 
 	Execute the following command:
 
-		git clone https://github.com/MALfunction84/psi-probe
+		git clone https://github.com/psi-probe/psi-probe
 
 	This will create directory called `psi-probe`. Subsequent steps will refer to this as "your PSI Probe base directory."
 
