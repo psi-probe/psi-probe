@@ -4,3 +4,6 @@ jdk:
   - oraclejdk7
   - openjdk6
   
+os:
+  - linux
+  - osx
