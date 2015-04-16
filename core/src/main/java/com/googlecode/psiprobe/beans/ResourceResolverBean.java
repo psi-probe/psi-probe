@@ -129,7 +129,16 @@ public class ResourceResolverBean implements ResourceResolver {
         if (contextBound) {
             try {
                 String jndiName = resolveJndiName(resource.getName(), global);
-                Object o = new InitialContext().lookup(jndiName);
+                Thread currentThread = Thread.currentThread();
+                ClassLoader currentClassLoader = currentThread.getContextClassLoader();
+                ClassLoader standardClassLoader = currentClassLoader.getParent();
+                currentThread.setContextClassLoader(standardClassLoader);
+                Object o;
+                try {
+                    o = new InitialContext().lookup(jndiName);
+                } finally {
+                    currentThread.setContextClassLoader(currentClassLoader);
+                }
                 resource.setLookedUp(true);
                 for (Iterator it = datasourceMappers.iterator(); it.hasNext();) {
                     DatasourceAccessor accessor = (DatasourceAccessor) it.next();
