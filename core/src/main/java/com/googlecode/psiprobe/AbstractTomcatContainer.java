@@ -22,12 +22,14 @@ import java.util.Set;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
+import javax.naming.NamingException;
 
 import org.apache.catalina.Container;
 import org.apache.catalina.Context;
 import org.apache.catalina.Engine;
 import org.apache.catalina.Host;
 import org.apache.catalina.core.StandardContext;
+import org.apache.naming.ContextBindings;
 import org.apache.commons.lang.reflect.MethodUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -104,6 +106,28 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
         }
     }
 
+	/**
+     * Binds a naming context to the current thread's classloader.
+     * 
+     * @param context the catalina context
+     */
+    public void bindToContext(Context context) 
+        throws NamingException {
+		Object token = null;
+        ContextBindings.bindClassLoader(context, token, Thread.currentThread().getContextClassLoader());
+    }
+	
+	/**
+     * Unbinds a naming context from the current thread's classloader.
+     * 
+     * @param context the catalina context
+     */
+    public void unbindFromContext(Context context) 
+        throws NamingException {
+		Object token = null;
+        ContextBindings.bindClassLoader(context, token);
+    }
+	
     public Context findContext(String name) {
         String safeName = formatContextName(name);
         if (safeName == null) {

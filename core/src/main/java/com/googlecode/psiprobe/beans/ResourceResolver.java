@@ -55,7 +55,7 @@ public interface ResourceResolver {
      *
      * @return true if the servlet container supports datasource lookup
      *
-     * @see #lookupDataSource(org.apache.catalina.Context, java.lang.String)
+     * @see #lookupDataSource(org.apache.catalina.Context, java.lang.String, com.googlecode.psiprobe.beans.ContainerWrapperBean)
      */
     boolean supportsDataSourceLookup();
 
@@ -63,9 +63,9 @@ public interface ResourceResolver {
 
     List getApplicationResources (Context context, ContainerWrapperBean containerWrapper) throws NamingException;
 
-    boolean resetResource (Context context, String resourceName) throws NamingException;
+    boolean resetResource (Context context, String resourceName, ContainerWrapperBean containerWrapper) throws NamingException;
 
-    DataSource lookupDataSource(Context context, String resourceName) throws NamingException;
+    DataSource lookupDataSource(Context context, String resourceName, ContainerWrapperBean containerWrapper) throws NamingException;
 
     /**
      * Method that gets {@link MBeanServer} instance that is "default" for the
