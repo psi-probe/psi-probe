@@ -11,9 +11,13 @@
 package com.googlecode.psiprobe.tools;
 
 import com.googlecode.psiprobe.tools.Whois.Response;
+
 import java.io.IOException;
 import java.net.InetAddress;
-import junit.framework.Assert;
+
+import org.junit.Test;
+import org.junit.Assert;
+
 import junit.framework.TestCase;
 
 /**
@@ -22,6 +26,7 @@ import junit.framework.TestCase;
  */
 public class WhoisTests extends TestCase {
 
+    @Test
     public void testLocalhost() throws IOException {
         int a = 127;
         int b = 0;
@@ -35,7 +40,8 @@ public class WhoisTests extends TestCase {
         //System.out.println(InetAddress.getByName(dotted).getHostName());
         //System.out.println(InetAddress.getByAddress(bytes).getHostName());
     }
-    
+
+    @Test
     public void testGoogle() throws IOException {
         int a = 74;
         int b = 125;
@@ -49,5 +55,5 @@ public class WhoisTests extends TestCase {
         //System.out.println(InetAddress.getByName(dotted).getHostName());
         //System.out.println(InetAddress.getByAddress(bytes).getHostName());
     }
-    
+
 }

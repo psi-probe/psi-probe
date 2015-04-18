@@ -10,21 +10,24 @@
  */
 package com.googlecode.psiprobe.tools;
 
-import junit.framework.Assert;
-import junit.framework.TestCase;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  *
  * @author Mark Lewis
  */
-public class InstrumentsTests extends TestCase {
+public class InstrumentsTests {
 
     private String sunArchDataModelProperty;
 
     /**
      * Forces the tests to run in 32-bit mode.
      */
-    protected void setUp() {
+    @Before
+    public void setUp() {
         this.sunArchDataModelProperty = System.getProperty("sun.arch.data.model");
         System.setProperty("sun.arch.data.model", "32");
     }
@@ -32,62 +35,72 @@ public class InstrumentsTests extends TestCase {
     /**
      * Undoes the changes made in {@link #setUp()}.
      */
-    protected void tearDown() {
+    @After
+    public void tearDown() {
         System.setProperty("sun.arch.data.model", this.sunArchDataModelProperty);
     }
 
+    @Test
     public void testObject() {
         Object o = new Object();
         long objectSize = Instruments.sizeOf(o);
         Assert.assertEquals(Instruments.SIZE_OBJECT, objectSize);
     }
 
+    @Test
     public void testBoolean() {
         boolean b = false;
         long booleanSize = Instruments.sizeOf(new Boolean(b)) - Instruments.SIZE_OBJECT;
         Assert.assertEquals(Instruments.SIZE_BOOLEAN, booleanSize);
     }
 
+    @Test
     public void testByte() {
         byte b = 0x00;
         long byteSize = Instruments.sizeOf(new Byte(b)) - Instruments.SIZE_OBJECT;
         Assert.assertEquals(Instruments.SIZE_BYTE, byteSize);
     }
-    
+
+    @Test
     public void testChar() {
         char c = '\0';
         long charSize = Instruments.sizeOf(new Character(c)) - Instruments.SIZE_OBJECT;
         Assert.assertEquals(Instruments.SIZE_CHAR, charSize);
     }
 
+    @Test
     public void testShort() {
         short s = 0;
         long shortSize = Instruments.sizeOf(new Short(s)) - Instruments.SIZE_OBJECT;
         Assert.assertEquals(Instruments.SIZE_SHORT, shortSize);
     }
 
+    @Test
     public void testInt() {
         int i = 0;
         long intSize = Instruments.sizeOf(new Integer(i)) - Instruments.SIZE_OBJECT;
         Assert.assertEquals(Instruments.SIZE_INT, intSize);
     }
 
+    @Test
     public void testLong() {
         long l = 0;
         long longSize = Instruments.sizeOf(new Long(l)) - Instruments.SIZE_OBJECT;
         Assert.assertEquals(Instruments.SIZE_LONG, longSize);
     }
 
+    @Test
     public void testFloat() {
         float f = 0.0f;
         long floatSize = Instruments.sizeOf(new Float(f)) - Instruments.SIZE_OBJECT;
         Assert.assertEquals(Instruments.SIZE_FLOAT, floatSize);
     }
 
+    @Test
     public void testDouble() {
         double d = 0.0;
         long doubleSize = Instruments.sizeOf(new Double(d)) - Instruments.SIZE_OBJECT;
         Assert.assertEquals(Instruments.SIZE_DOUBLE, doubleSize);
     }
-    
+
 }
