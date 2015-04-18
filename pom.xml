@@ -63,6 +63,8 @@
 		<git.relative.path></git.relative.path>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<!-- Clear maven warnings, this will be overridden based on run type -->
+		<jmxri.scope>provided</jmxri.scope>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
