@@ -13,8 +13,9 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		xmlns:util="http://www.springframework.org/schema/util"
-		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd"
-		default-dependency-check="none" default-lazy-init="false">
+		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+			http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd"
+			default-lazy-init="false">
 
 	<util:properties id="version" location="WEB-INF/version.properties" />
 
@@ -75,7 +76,7 @@
 		<property name="forceFirstAdaptor" value="false"/>
 		<property name="adaptorClasses">
 			<list>
-			    <value>com.googlecode.psiprobe.Tomcat80ContainerAdaptor</value>
+				<value>com.googlecode.psiprobe.Tomcat80ContainerAdaptor</value>
 				<value>com.googlecode.psiprobe.Tomcat70ContainerAdaptor</value>
 			</list>
 		</property>

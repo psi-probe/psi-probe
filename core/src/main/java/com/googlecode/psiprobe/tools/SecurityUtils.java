@@ -11,8 +11,11 @@
 
 package com.googlecode.psiprobe.tools;
 
-import org.springframework.security.GrantedAuthority;
-import org.springframework.security.context.SecurityContextHolder;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+
+import java.util.Collection;
+import java.util.Iterator;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -40,12 +43,12 @@ public class SecurityUtils {
   }
 
   private static boolean userHasRole(String privilegedRole) {
-    GrantedAuthority[] authorities =
-        SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+    Collection<? extends GrantedAuthority> authorities = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
 
     boolean result = false;
-    for (int i = 0; i < authorities.length; i++) {
-      if (privilegedRole.equals(authorities[i].getAuthority())) {
+    Iterator<? extends GrantedAuthority> iterator = authorities.iterator();
+    while (iterator.hasNext()) {
+      if (privilegedRole.equals(iterator.next())) {
         result = true;
         break;
       }
