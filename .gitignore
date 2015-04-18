@@ -1,8 +1,14 @@
-/TurtleHub.log
-/core/target/
-/tomcat55adaptor/target/
-/tomcat50adaptor/target/
-/tomcat70adaptor/target/
-/tomcat60adaptor/target/
-/tomcat80adaptor/target/
-/web/target/
+# Eclipse
+.settings
+.classpath
+.project
+
+# Intellij
+.idea
+*.iml
+
+# Maven
+target/
+
+# Project
+*.log
