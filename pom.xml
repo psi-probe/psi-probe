@@ -66,6 +66,10 @@
 			<layout>default</layout>
 		</repository>
 	</repositories>
+	<properties>
+		<!-- Clear maven warnings, this will be overridden based on run type -->
+		<jmxri.scope>provided</jmxri.scope>
+	</properties>
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
