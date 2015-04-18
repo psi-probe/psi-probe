@@ -310,7 +310,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-surefire-plugin</artifactId>
-					<version>2.4.3</version>
+					<version>2.18.1</version>
 					<configuration>
 						<includes>
 							<include>**/*Tests.java</include>
@@ -323,7 +323,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
-					<version>2.0.2</version>
+					<version>3.2</version>
 					<configuration>
 						<source>1.4</source>
 						<target>1.4</target>
@@ -333,7 +333,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-resources-plugin</artifactId>
-					<version>2.6</version>
+					<version>2.7</version>
 					<configuration>
 						<encoding>UTF-8</encoding>
 					</configuration>
@@ -341,7 +341,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-jar-plugin</artifactId>
-					<version>2.2</version>
+					<version>2.6</version>
 					<configuration>
 						<archive>
 							<manifest>
@@ -353,7 +353,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-war-plugin</artifactId>
-					<version>2.1.1</version>
+					<version>2.6</version>
 					<configuration>
 						<excludes>**/test/**,**/.git/**</excludes>
 						<archive>
