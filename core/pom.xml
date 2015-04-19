@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.googlecode.psiprobe</groupId>
@@ -15,6 +15,14 @@
 		Core logic, data models, and controllers
 	</description>
 	<dependencies>
+		<!-- Fake out build in order to ensure order -->
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>thirdParty</artifactId>
+			<version>${project.version}</version>
+			<scope>compile</scope>
+			<type>pom</type>
+		</dependency>
 		<!--  tomcat libs start -->
 		<dependency>
 			<groupId>tomcat</groupId>
@@ -80,7 +88,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.oracle</groupId>
-			<artifactId>ojdbc14</artifactId>
+			<artifactId>ojdbc6</artifactId>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -216,8 +224,23 @@
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-core</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.googlecode.psiprobe</groupId>
 	<artifactId>psi-probe</artifactId>
@@ -45,6 +45,7 @@
 	</scm>
 	<modules>
 		<module>core</module>
+		<module>thirdParty</module>
 		<module>tomcat50adaptor</module>
 		<module>tomcat55adaptor</module>
 		<module>tomcat60adaptor</module>
@@ -52,66 +53,26 @@
 		<module>tomcat80adaptor</module>
 		<module>web</module>
 	</modules>
-	<repositories>
-		<repository>
-			<!-- Required for jfreechart -->
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-				<updatePolicy>never</updatePolicy>
-			</snapshots>
-			<id>m2proxy.atlassian.com</id>
-			<name>Atlassian Repository for Maven</name>
-			<url>https://m2proxy.atlassian.com/repository/public</url>
-			<layout>default</layout>
-		</repository>
-		<repository>
-			<!-- Required for jta -->
-			<snapshots>
-				<enabled>false</enabled>
-				<updatePolicy>never</updatePolicy>
-			</snapshots>
-			<id>download.java.net</id>
-			<name>download.java.net</name>
-			<url>http://download.java.net/maven/2/</url>
-			<layout>default</layout>
-		</repository>
-		<repository>
-			<!-- Required for jmxri -->
-			<snapshots>
-				<enabled>false</enabled>
-				<updatePolicy>never</updatePolicy>
-			</snapshots>
-			<id>repository.jboss.org</id>
-			<name>repository.jboss.org</name>
-			<url>https://repository.jboss.org/nexus/content/repositories/deprecated/</url>
-			<layout>default</layout>
-		</repository>
-		<repository>
-			<!-- Required for ojdbc14 and ucp -->
-			<snapshots>
-				<enabled>false</enabled>
-				<updatePolicy>never</updatePolicy>
-			</snapshots>
-			<id>code.lds.org</id>
-			<name>code.lds.org</name>
-			<url>https://code.lds.org/nexus/content/repositories/main-repo/</url>
-			<layout>default</layout>
-		</repository>
-	</repositories>
+	<properties>
+		<!-- Clear maven warnings, this will be overridden based on run type -->
+		<jmxri.scope>provided</jmxri.scope>
+	</properties>
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
-				<version>3.8.1</version>
+				<version>4.12</version>
 			</dependency>
 			<dependency>
 				<groupId>javax.servlet</groupId>
 				<artifactId>servlet-api</artifactId>
 				<version>2.4</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>jsp-api</artifactId>
+				<version>2.0</version>
 			</dependency>
 			<dependency>
 				<groupId>javax.servlet</groupId>
@@ -131,41 +92,22 @@
 			<dependency>
 				<groupId>log4j</groupId>
 				<artifactId>log4j</artifactId>
-				<version>1.2.13</version>
-				<type>jar</type>
-				<exclusions>
-					<exclusion>
-						<groupId>javax.mail</groupId>
-						<artifactId>mail</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>javax.jms</groupId>
-						<artifactId>jms</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>com.sun.jdmk</groupId>
-						<artifactId>jmxtools</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>com.sun.jmx</groupId>
-						<artifactId>jmxri</artifactId>
-					</exclusion>
-				</exclusions>
+				<version>1.2.17</version>
 			</dependency>
 			<dependency>
 				<groupId>com.oracle</groupId>
 				<artifactId>ucp</artifactId>
-				<version>11.2.0.1.0</version>
+				<version>11.2.0.4.0</version>
 			</dependency>
 			<dependency>
 				<groupId>com.oracle</groupId>
-				<artifactId>ojdbc14</artifactId>
-				<version>10.2.0.3</version>
+				<artifactId>ojdbc6</artifactId>
+				<version>11.2.0.4.0</version>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.tomcat</groupId>
 				<artifactId>tomcat-jdbc</artifactId>
-				<version>7.0.27</version>
+				<version>7.0.61</version>
 			</dependency>
 			<dependency>
 				<groupId>com.jolbox</groupId>
@@ -266,37 +208,42 @@
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-beans</artifactId>
-				<version>2.5.6.SEC03</version>
+				<version>3.2.13.RELEASE</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-context</artifactId>
-				<version>2.5.6.SEC03</version>
+				<version>3.2.13.RELEASE</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context-support</artifactId>
+				<version>3.2.13.RELEASE</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-webmvc</artifactId>
-				<version>2.5.6.SEC03</version>
+				<version>3.2.13.RELEASE</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-tx</artifactId>
-				<version>2.5.6.SEC03</version>
+				<version>3.2.13.RELEASE</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-config</artifactId>
+				<version>3.2.7.RELEASE</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework.security</groupId>
 				<artifactId>spring-security-core</artifactId>
-				<version>2.0.8.RELEASE</version>
-				<exclusions>
-					<exclusion>
-						<groupId>org.springframework</groupId>
-						<artifactId>spring-core</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>org.springframework</groupId>
-						<artifactId>spring-support</artifactId>
-					</exclusion>
-				</exclusions>
+				<version>3.2.7.RELEASE</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-web</artifactId>
+				<version>3.2.7.RELEASE</version>
 			</dependency>
 			<dependency>
 				<groupId>javainetlocator</groupId>
@@ -306,7 +253,7 @@
 			<dependency>
 				<groupId>javax.transaction</groupId>
 				<artifactId>jta</artifactId>
-				<version>1.0.1B</version>
+				<version>1.1</version>
 			</dependency>
 			<dependency>
 				<groupId>opensymphony</groupId>
@@ -373,7 +320,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-surefire-plugin</artifactId>
-					<version>2.4.3</version>
+					<version>2.18.1</version>
 					<configuration>
 						<includes>
 							<include>**/*Tests.java</include>
@@ -386,17 +333,17 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
-					<version>2.0.2</version>
+					<version>3.2</version>
 					<configuration>
-						<source>1.4</source>
-						<target>1.4</target>
+						<source>1.5</source>
+						<target>1.5</target>
 						<encoding>UTF-8</encoding>
 					</configuration>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-resources-plugin</artifactId>
-					<version>2.6</version>
+					<version>2.7</version>
 					<configuration>
 						<encoding>UTF-8</encoding>
 					</configuration>
@@ -404,7 +351,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-jar-plugin</artifactId>
-					<version>2.2</version>
+					<version>2.6</version>
 					<configuration>
 						<archive>
 							<manifest>
@@ -416,7 +363,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-war-plugin</artifactId>
-					<version>2.1.1</version>
+					<version>2.6</version>
 					<configuration>
 						<excludes>**/test/**,**/.git/**</excludes>
 						<archive>
@@ -453,49 +400,13 @@
 						</dependency>
 					</dependencies>
 				</plugin>
-				<!-- IDE -->
 				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-eclipse-plugin</artifactId>
-					<version>2.7</version>
-					<configuration>
-						<downloadSources>true</downloadSources>
-						<downloadJavadocs>false</downloadJavadocs>
-						<wtpversion>2.0</wtpversion>
-						<wtpContextName>probe</wtpContextName>
-						<additionalBuildcommands>
-							<buildCommand>
-								<name>org.springframework.ide.eclipse.core.springbuilder</name>
-							</buildCommand>
-						</additionalBuildcommands>
-						<additionalProjectnatures>
-							<projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
-						</additionalProjectnatures>
-					</configuration>
-				  </plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-idea-plugin</artifactId>
-					<version>2.2</version>
-					<configuration>
-						<downloadSources>true</downloadSources>
-						<dependenciesAsLibraries>true</dependenciesAsLibraries>
-					</configuration>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>exec-maven-plugin</artifactId>
+					<version>1.4.0</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>
-		<plugins>
-			<!-- begin IDE plugins -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-eclipse-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-idea-plugin</artifactId>
-			</plugin>
-			<!-- end IDE plugins -->
-		</plugins>
 	</build>
 	<profiles>
 		<profile>
