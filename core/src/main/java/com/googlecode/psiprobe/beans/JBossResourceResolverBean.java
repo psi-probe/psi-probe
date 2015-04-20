@@ -136,7 +136,7 @@ public class JBossResourceResolverBean implements ResourceResolver {
         return new ArrayList();
     }
 
-    public boolean resetResource(Context context, String resourceName) throws NamingException {
+    public boolean resetResource(Context context, String resourceName, ContainerWrapperBean containerWrapper) throws NamingException {
         try {
             ObjectName poolOName = new ObjectName("jboss.jca:service=ManagedConnectionPool,name="+resourceName);
             MBeanServer server = getMBeanServer();
@@ -155,7 +155,7 @@ public class JBossResourceResolverBean implements ResourceResolver {
         }
     }
 
-    public DataSource lookupDataSource(Context context, String resourceName) throws NamingException {
+    public DataSource lookupDataSource(Context context, String resourceName, ContainerWrapperBean containerWrapper) throws NamingException {
         throw new UnsupportedOperationException("This feature has not been implemented for JBoss server yet.");
     }
 

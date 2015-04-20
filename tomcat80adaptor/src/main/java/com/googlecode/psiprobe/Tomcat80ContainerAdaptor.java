@@ -25,6 +25,7 @@ import javax.management.MBeanServer;
 import javax.management.MalformedObjectNameException;
 import javax.management.ObjectName;
 import javax.servlet.ServletContext;
+import javax.naming.NamingException;
 import org.apache.catalina.Container;
 import org.apache.catalina.Context;
 import org.apache.catalina.Host;
@@ -33,6 +34,8 @@ import org.apache.catalina.Valve;
 import org.apache.catalina.WebResource;
 import org.apache.catalina.Wrapper;
 import org.apache.catalina.deploy.NamingResourcesImpl;
+import org.apache.naming.ContextBindings;
+import org.apache.naming.ContextAccessController;
 import org.apache.commons.modeler.Registry;
 import org.apache.jasper.JspCompilationContext;
 import org.apache.jasper.Options;
@@ -363,5 +366,50 @@ public class Tomcat80ContainerAdaptor extends AbstractTomcatContainer {
 		result[1] = resource.getLastModified();
 		return result;
 	}
-
+	
+	/**
+     * Returns the security token required to bind to a naming context.
+     *
+     * @param context the catalina context
+     * 
+     * @return the security token for use with <code>ContextBindings</code>
+     */
+	protected Object getNamingToken(Context context) {
+		//null token worked before 8.0.6
+		Object token = null;
+		if (!ContextAccessController.checkSecurityToken(context, token)) {
+			//namingToken added to Context and Server interfaces in 8.0.6
+			//Used by NamingContextListener when settinp up JNDI context
+			token = context.getNamingToken();
+			if (!ContextAccessController.checkSecurityToken(context, token)) {
+				logger.error("Couldn't get a valid security token. ClassLoader binding will fail.");
+			}
+		}
+		
+		return token;
+	}
+	
+	/**
+     * Binds a naming context to the current thread's classloader.
+     * 
+     * @param context the catalina context
+     */
+	@Override
+	public void bindToContext(Context context) 
+        throws NamingException {
+		Object token = getNamingToken(context);
+		ContextBindings.bindClassLoader(context, token, Thread.currentThread().getContextClassLoader());
+    }
+	
+	/**
+     * Unbinds a naming context from the current thread's classloader.
+     * 
+     * @param context the catalina context
+     */
+	@Override
+    public void unbindFromContext(Context context) 
+        throws NamingException {
+		Object token = getNamingToken(context);
+        ContextBindings.unbindClassLoader(context, token, Thread.currentThread().getContextClassLoader());
+    }
 }
