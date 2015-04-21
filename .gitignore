@@ -6,3 +6,7 @@
 /tomcat60adaptor/target/
 /tomcat80adaptor/target/
 /web/target/
+/.project
+/**/**.project
+/**/.classpath
+/**/.settings/
