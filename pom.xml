@@ -8,7 +8,7 @@
 	<version>2.4.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>PSI Probe</name>
-	<url>https://github.com/MALfunction84/psi-probe/</url>
+	<url>https://github.com/psi-probe/psi-probe/</url>
 	<description>
 		Advanced manager and monitor for Tomcat, forked from Lambda Probe
 	</description>
@@ -21,7 +21,7 @@
 	</licenses>
 	<issueManagement>
 		<system>GitHub Issues</system>
-		<url>https://github.com/MALfunction84/psi-probe/issues/</url>
+		<url>https://github.com/psi-probe/psi-probe/issues/</url>
 	</issueManagement>
 	<mailingLists>
 		<mailingList>
@@ -39,9 +39,9 @@
 		</mailingList>
 	</mailingLists>
 	<scm>
-		<connection>scm:git:ssh://git@github.com:MALfunction84/psi-probe.git</connection>
-		<developerConnection>scm:git:ssh://git@github.com:MALfunction84/psi-probe.git</developerConnection>
-		<url>https://github.com/MALfunction84/psi-probe/</url>
+		<connection>scm:git:ssh://git@github.com:psi-probe/psi-probe.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com:psi-probe/psi-probe.git</developerConnection>
+		<url>https://github.com/psi-probe/psi-probe/</url>
 	</scm>
 	<modules>
 		<module>core</module>
