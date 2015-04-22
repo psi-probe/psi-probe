@@ -54,20 +54,6 @@
 	</modules>
 	<repositories>
 		<repository>
-			<!-- Required for jfreechart -->
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-				<updatePolicy>never</updatePolicy>
-			</snapshots>
-			<id>m2proxy.atlassian.com</id>
-			<name>Atlassian Repository for Maven</name>
-			<url>https://m2proxy.atlassian.com/repository/public</url>
-			<layout>default</layout>
-		</repository>
-		<repository>
 			<!-- Required for jta -->
 			<snapshots>
 				<enabled>false</enabled>
