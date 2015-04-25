@@ -87,6 +87,12 @@
 			<layout>default</layout>
 		</repository>
 	</repositories>
+	<properties>
+		<maven.compiler.source>1.4</maven.compiler.source>
+		<maven.compiler.target>1.4</maven.compiler.target>
+		<maven.compiler.testSource>1.5</maven.compiler.testSource>
+		<maven.compiler.testTarget>1.5</maven.compiler.testTarget>
+	</properties>
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -368,10 +374,8 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
-					<version>2.0.2</version>
+					<version>3.2</version>
 					<configuration>
-						<source>1.4</source>
-						<target>1.4</target>
 						<encoding>UTF-8</encoding>
 					</configuration>
 				</plugin>
