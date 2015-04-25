@@ -52,7 +52,7 @@ public class ResetDataSourceController extends ContextHandlerController {
         if (resourceName != null && resourceName.length() > 0) {
             boolean reset = false;
             try {
-                reset = getContainerWrapper().getResourceResolver().resetResource(context, resourceName);
+                reset = getContainerWrapper().getResourceResolver().resetResource(context, resourceName, getContainerWrapper());
             } catch (NamingException e) {
                 request.setAttribute("errorMessage",
                         getMessageSourceAccessor().getMessage("probe.src.reset.datasource.notfound", new Object[]{resourceName}));

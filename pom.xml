@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.googlecode.psiprobe</groupId>
 	<artifactId>psi-probe</artifactId>
 	<version>2.4.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>PSI Probe</name>
-	<url>https://github.com/MALfunction84/psi-probe/</url>
+	<url>https://github.com/psi-probe/psi-probe/</url>
 	<description>
 		Advanced manager and monitor for Tomcat, forked from Lambda Probe
 	</description>
@@ -21,7 +21,7 @@
 	</licenses>
 	<issueManagement>
 		<system>GitHub Issues</system>
-		<url>https://github.com/MALfunction84/psi-probe/issues/</url>
+		<url>https://github.com/psi-probe/psi-probe/issues/</url>
 	</issueManagement>
 	<mailingLists>
 		<mailingList>
@@ -39,9 +39,9 @@
 		</mailingList>
 	</mailingLists>
 	<scm>
-		<connection>scm:git:ssh://git@github.com:MALfunction84/psi-probe.git</connection>
-		<developerConnection>scm:git:ssh://git@github.com:MALfunction84/psi-probe.git</developerConnection>
-		<url>https://github.com/MALfunction84/psi-probe/</url>
+		<connection>scm:git:ssh://git@github.com:psi-probe/psi-probe.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com:psi-probe/psi-probe.git</developerConnection>
+		<url>https://github.com/psi-probe/psi-probe/</url>
 	</scm>
 	<modules>
 		<module>core</module>
@@ -53,20 +53,6 @@
 		<module>web</module>
 	</modules>
 	<repositories>
-		<repository>
-			<!-- Required for jfreechart -->
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-				<updatePolicy>never</updatePolicy>
-			</snapshots>
-			<id>m2proxy.atlassian.com</id>
-			<name>Atlassian Repository for Maven</name>
-			<url>https://m2proxy.atlassian.com/repository/public</url>
-			<layout>default</layout>
-		</repository>
 		<repository>
 			<!-- Required for jta -->
 			<snapshots>
@@ -115,6 +101,11 @@
 			</dependency>
 			<dependency>
 				<groupId>javax.servlet</groupId>
+				<artifactId>jsp-api</artifactId>
+				<version>2.0</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet</groupId>
 				<artifactId>jstl</artifactId>
 				<version>1.1.2</version>
 			</dependency>
@@ -131,26 +122,7 @@
 			<dependency>
 				<groupId>log4j</groupId>
 				<artifactId>log4j</artifactId>
-				<version>1.2.13</version>
-				<type>jar</type>
-				<exclusions>
-					<exclusion>
-						<groupId>javax.mail</groupId>
-						<artifactId>mail</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>javax.jms</groupId>
-						<artifactId>jms</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>com.sun.jdmk</groupId>
-						<artifactId>jmxtools</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>com.sun.jmx</groupId>
-						<artifactId>jmxri</artifactId>
-					</exclusion>
-				</exclusions>
+				<version>1.2.17</version>
 			</dependency>
 			<dependency>
 				<groupId>com.oracle</groupId>
@@ -371,6 +343,16 @@
 		<pluginManagement>
 			<plugins>
 				<plugin>
+					<groupId>org.owasp</groupId>
+					<artifactId>dependency-check-maven</artifactId>
+					<version>1.2.10</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-project-info-reports-plugin</artifactId>
+					<version>2.8</version>
+				</plugin>
+				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-surefire-plugin</artifactId>
 					<version>2.4.3</version>
@@ -453,50 +435,28 @@
 						</dependency>
 					</dependencies>
 				</plugin>
-				<!-- IDE -->
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-eclipse-plugin</artifactId>
-					<version>2.7</version>
-					<configuration>
-						<downloadSources>true</downloadSources>
-						<downloadJavadocs>false</downloadJavadocs>
-						<wtpversion>2.0</wtpversion>
-						<wtpContextName>probe</wtpContextName>
-						<additionalBuildcommands>
-							<buildCommand>
-								<name>org.springframework.ide.eclipse.core.springbuilder</name>
-							</buildCommand>
-						</additionalBuildcommands>
-						<additionalProjectnatures>
-							<projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
-						</additionalProjectnatures>
-					</configuration>
-				  </plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-idea-plugin</artifactId>
-					<version>2.2</version>
-					<configuration>
-						<downloadSources>true</downloadSources>
-						<dependenciesAsLibraries>true</dependenciesAsLibraries>
-					</configuration>
-				</plugin>
 			</plugins>
 		</pluginManagement>
-		<plugins>
-			<!-- begin IDE plugins -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-eclipse-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-idea-plugin</artifactId>
-			</plugin>
-			<!-- end IDE plugins -->
-		</plugins>
 	</build>
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.owasp</groupId>
+				<artifactId>dependency-check-maven</artifactId>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>aggregate</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+		</plugins>
+	</reporting>
 	<profiles>
 		<profile>
 			<id>release</id>
