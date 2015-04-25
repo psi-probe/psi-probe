@@ -54,17 +54,6 @@
 	</modules>
 	<repositories>
 		<repository>
-			<!-- Required for jta -->
-			<snapshots>
-				<enabled>false</enabled>
-				<updatePolicy>never</updatePolicy>
-			</snapshots>
-			<id>download.java.net</id>
-			<name>download.java.net</name>
-			<url>http://download.java.net/maven/2/</url>
-			<layout>default</layout>
-		</repository>
-		<repository>
 			<!-- Required for jmxri -->
 			<snapshots>
 				<enabled>false</enabled>
@@ -95,43 +84,52 @@
 		<jdk7.version>1.7</jdk7.version>
 		<jdk8.version>1.8</jdk8.version>
 		<!-- END Java Versions -->
+
+		<!-- Tomcat Version -->
+		<tomcat50.version>5.0.28</tomcat50.version>
+		<tomcat55.version>5.5.23</tomcat55.version>
+		<tomcat60.version>6.0.43</tomcat60.version>
+		<tomcat70.version>7.0.61</tomcat70.version>
+		<tomcat80.version>8.0.21</tomcat80.version>
+		<!-- END Tomcat Version -->
+
 		<!-- Dependencies -->
 		<junit.version>3.8.1</junit.version>
 		<servlet-api.version>2.4</servlet-api.version>
 		<jsp-api.version>2.0</jsp-api.version>
 		<jstl.version>1.1.2</jstl.version>
-		<mail.version>1.4</mail.version>
+		<mail.version>1.4.7</mail.version>
 		<taglibs.standard.version>1.1.2</taglibs.standard.version>
 		<log4j.version>1.2.17</log4j.version>
-		<oracle11.version>11.2.0.1.0</oracle11.version>
-		<oracle10.version>10.2.0.3</oracle10.version>
-		<tomcat-jdbc.version>7.0.61</tomcat-jdbc.version>
+		<ucp.version>12.1.0.2</ucp.version>
+		<ojdbc14.version>10.2.0.3</ojdbc14.version>
+		<tomcat-jdbc.version>${tomcat80.version}</tomcat-jdbc.version>
 		<bonecp.version>0.8.0.RELEASE</bonecp.version>
 		<!-- Commons -->
-		<beanutils.version>1.8.3</beanutils.version>
-		<collections.version>3.2</collections.version>
-		<fileupload.version>1.2</fileupload.version>
-		<io.version>1.4</io.version>
-		<lang.version>2.5</lang.version>
-		<logging.version>1.1.1</logging.version>
+		<beanutils.version>1.9.2</beanutils.version>
+		<collections.version>3.2.1</collections.version>
+		<fileupload.version>1.3.1</fileupload.version>
+		<io.version>2.4</io.version>
+		<lang.version>2.6</lang.version>
+		<logging.version>1.2</logging.version>
 		<modeler.version>2.0</modeler.version>
-		<dbcp.version>1.2.1</dbcp.version>
+		<dbcp.version>1.4</dbcp.version>
 		<!-- END Commons -->
 		<displaytag.version>1.2</displaytag.version>
-		<jaxen.version>1.1.1</jaxen.version>
+		<jaxen.version>1.1.6</jaxen.version>
 		<spring.version>2.5.6.SEC03</spring.version>
 		<spring-sec.version>2.0.8.RELEASE</spring-sec.version>
 		<inetaddresslocator.version>2.18</inetaddresslocator.version>
-		<jta.version>1.0.1B</jta.version>
-		<quartz.version>1.6.0</quartz.version>
-		<sitemesh.version>2.4</sitemesh.version>
+		<jta.version>1.1</jta.version>
+		<quartz.version>1.6.3</quartz.version>
+		<sitemesh.version>2.4.2</sitemesh.version>
 		<jmxrmi.version>1.2.1</jmxrmi.version>
 		<xpp3.version>1.1.3.4.O</xpp3.version>
-		<xstream.version>1.2.2</xstream.version>
+		<xstream.version>1.4.8</xstream.version>
 		<jhighlight.version>1.0</jhighlight.version>
-		<c3p0.version>0.9.0</c3p0.version>
+		<c3p0.version>0.9.0.2</c3p0.version>
 		<wrapper.version>3.2.0</wrapper.version>
-		<jfreechart.version>1.0.4</jfreechart.version>
+		<jfreechart.version>1.0.13</jfreechart.version>
 		<!-- END Dependencies -->
 
 		<!-- Plugins -->
@@ -145,14 +143,6 @@
 		<jspc.version>2.0.0</jspc.version>
 		<versions.version>2.1</versions.version>
 		<!-- END Plugins -->
-
-		<!-- Tomcat Version -->
-		<tomcat50.version>5.0.28</tomcat50.version>
-		<tomcat55.version>5.5.23</tomcat55.version>
-		<tomcat60.version>6.0.43</tomcat60.version>
-		<tomcat70.version>7.0.61</tomcat70.version>
-		<tomcat80.version>8.0.21</tomcat80.version>
-		<!-- END Tomcat Version -->
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -194,12 +184,12 @@
 			<dependency>
 				<groupId>com.oracle</groupId>
 				<artifactId>ucp</artifactId>
-				<version>${oracle11.version}</version>
+				<version>${ucp.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.oracle</groupId>
 				<artifactId>ojdbc14</artifactId>
-				<version>${oracle10.version}</version>
+				<version>${ojdbc14.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.tomcat</groupId>
