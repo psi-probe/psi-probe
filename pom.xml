@@ -94,11 +94,11 @@
 		<!-- END Tomcat Version -->
 
 		<!-- Dependencies -->
-		<junit.version>3.8.1</junit.version>
+		<junit.version>3.8.2</junit.version>
 		<servlet-api.version>2.4</servlet-api.version>
 		<jsp-api.version>2.0</jsp-api.version>
 		<jstl.version>1.1.2</jstl.version>
-		<mail.version>1.4.7</mail.version>
+		<mail.version>1.5.3</mail.version>
 		<taglibs.standard.version>1.1.2</taglibs.standard.version>
 		<log4j.version>1.2.17</log4j.version>
 		<ucp.version>12.1.0.2</ucp.version>
@@ -112,7 +112,7 @@
 		<io.version>2.4</io.version>
 		<lang.version>2.6</lang.version>
 		<logging.version>1.2</logging.version>
-		<modeler.version>2.0</modeler.version>
+		<modeler.version>2.0.1</modeler.version>
 		<dbcp.version>1.4</dbcp.version>
 		<!-- END Commons -->
 		<displaytag.version>1.2</displaytag.version>
@@ -124,12 +124,12 @@
 		<quartz.version>1.6.3</quartz.version>
 		<sitemesh.version>2.4.2</sitemesh.version>
 		<jmxrmi.version>1.2.1</jmxrmi.version>
-		<xpp3.version>1.1.3.4.O</xpp3.version>
+		<xpp3.version>1.1.4c</xpp3.version>
 		<xstream.version>1.4.8</xstream.version>
 		<jhighlight.version>1.0</jhighlight.version>
-		<c3p0.version>0.9.0.2</c3p0.version>
-		<wrapper.version>3.2.0</wrapper.version>
-		<jfreechart.version>1.0.13</jfreechart.version>
+		<c3p0.version>0.9.5</c3p0.version>
+		<wrapper.version>3.2.3</wrapper.version>
+		<jfreechart.version>1.0.19</jfreechart.version>
 		<!-- END Dependencies -->
 
 		<!-- Plugins -->
@@ -168,7 +168,7 @@
 			</dependency>
 			<dependency>
 				<groupId>javax.mail</groupId>
-				<artifactId>mail</artifactId>
+				<artifactId>javax.mail-api</artifactId>
 				<version>${mail.version}</version>
 			</dependency>
 			<dependency>
@@ -368,7 +368,7 @@
 				<version>${jhighlight.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>c3p0</groupId>
+				<groupId>com.mchange</groupId>
 				<artifactId>c3p0</artifactId>
 				<version>${c3p0.version}</version>
 			</dependency>
@@ -389,7 +389,7 @@
 				<version>${wrapper.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>jfree</groupId>
+				<groupId>org.jfree</groupId>
 				<artifactId>jfreechart</artifactId>
 				<version>${jfreechart.version}</version>
 			</dependency>
