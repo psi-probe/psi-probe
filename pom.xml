@@ -87,97 +87,164 @@
 			<layout>default</layout>
 		</repository>
 	</repositories>
+	<properties>
+		<!-- Java Versions -->
+		<jdk14.version>1.4</jdk14.version>
+		<jdk5.version>1.5</jdk5.version>
+		<jdk6.version>1.6</jdk6.version>
+		<jdk7.version>1.7</jdk7.version>
+		<jdk8.version>1.8</jdk8.version>
+		<!-- END Java Versions -->
+		<!-- Dependencies -->
+		<junit.version>3.8.1</junit.version>
+		<servlet-api.version>2.4</servlet-api.version>
+		<jsp-api.version>2.0</jsp-api.version>
+		<jstl.version>1.1.2</jstl.version>
+		<mail.version>1.4</mail.version>
+		<taglibs.standard.version>1.1.2</taglibs.standard.version>
+		<log4j.version>1.2.17</log4j.version>
+		<oracle11.version>11.2.0.1.0</oracle11.version>
+		<oracle10.version>10.2.0.3</oracle10.version>
+		<tomcat-jdbc.version>7.0.61</tomcat-jdbc.version>
+		<bonecp.version>0.8.0.RELEASE</bonecp.version>
+		<!-- Commons -->
+		<beanutils.version>1.8.3</beanutils.version>
+		<collections.version>3.2</collections.version>
+		<fileupload.version>1.2</fileupload.version>
+		<io.version>1.4</io.version>
+		<lang.version>2.5</lang.version>
+		<logging.version>1.1.1</logging.version>
+		<modeler.version>2.0</modeler.version>
+		<dbcp.version>1.2.1</dbcp.version>
+		<!-- END Commons -->
+		<displaytag.version>1.2</displaytag.version>
+		<jaxen.version>1.1.1</jaxen.version>
+		<spring.version>2.5.6.SEC03</spring.version>
+		<spring-sec.version>2.0.8.RELEASE</spring-sec.version>
+		<inetaddresslocator.version>2.18</inetaddresslocator.version>
+		<jta.version>1.0.1B</jta.version>
+		<quartz.version>1.6.0</quartz.version>
+		<sitemesh.version>2.4</sitemesh.version>
+		<jmxrmi.version>1.2.1</jmxrmi.version>
+		<xpp3.version>1.1.3.4.O</xpp3.version>
+		<xstream.version>1.2.2</xstream.version>
+		<jhighlight.version>1.0</jhighlight.version>
+		<c3p0.version>0.9.0</c3p0.version>
+		<wrapper.version>3.2.0</wrapper.version>
+		<jfreechart.version>1.0.4</jfreechart.version>
+		<!-- END Dependencies -->
+
+		<!-- Plugins -->
+		<owasp.dependency-check.version>1.2.10</owasp.dependency-check.version>
+		<maven.project-info.version>2.8</maven.project-info.version>
+		<maven.surefire.version>2.18.1</maven.surefire.version>
+		<maven.compiler.version>3.3</maven.compiler.version>
+		<maven.resources.version>2.7</maven.resources.version>
+		<maven.jar.version>2.6</maven.jar.version>
+		<maven.war.version>2.6</maven.war.version>
+		<jspc.version>2.0.0</jspc.version>
+		<versions.version>2.1</versions.version>
+		<!-- END Plugins -->
+
+		<!-- Tomcat Version -->
+		<tomcat50.version>5.0.28</tomcat50.version>
+		<tomcat55.version>5.5.23</tomcat55.version>
+		<tomcat60.version>6.0.43</tomcat60.version>
+		<tomcat70.version>7.0.61</tomcat70.version>
+		<tomcat80.version>8.0.21</tomcat80.version>
+		<!-- END Tomcat Version -->
+	</properties>
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
-				<version>3.8.1</version>
+				<version>${junit.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>javax.servlet</groupId>
 				<artifactId>servlet-api</artifactId>
-				<version>2.4</version>
+				<version>${servlet-api.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>javax.servlet</groupId>
 				<artifactId>jsp-api</artifactId>
-				<version>2.0</version>
+				<version>${jsp-api.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>javax.servlet</groupId>
 				<artifactId>jstl</artifactId>
-				<version>1.1.2</version>
+				<version>${jstl.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>javax.mail</groupId>
 				<artifactId>mail</artifactId>
-				<version>1.4</version>
+				<version>${mail.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>taglibs</groupId>
 				<artifactId>standard</artifactId>
-				<version>1.1.2</version>
+				<version>${taglibs.standard.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>log4j</groupId>
 				<artifactId>log4j</artifactId>
-				<version>1.2.17</version>
+				<version>${log4j.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.oracle</groupId>
 				<artifactId>ucp</artifactId>
-				<version>11.2.0.1.0</version>
+				<version>${oracle11.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.oracle</groupId>
 				<artifactId>ojdbc14</artifactId>
-				<version>10.2.0.3</version>
+				<version>${oracle10.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.tomcat</groupId>
 				<artifactId>tomcat-jdbc</artifactId>
-				<version>7.0.27</version>
+				<version>${tomcat-jdbc.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.jolbox</groupId>
 				<artifactId>bonecp</artifactId>
-				<version>0.8.0.RELEASE</version>
+				<version>${bonecp.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>commons-beanutils</groupId>
 				<artifactId>commons-beanutils</artifactId>
-				<version>1.8.3</version>
+				<version>${beanutils.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>commons-collections</groupId>
 				<artifactId>commons-collections</artifactId>
-				<version>3.2</version>
+				<version>${collections.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>commons-fileupload</groupId>
 				<artifactId>commons-fileupload</artifactId>
-				<version>1.2</version>
+				<version>${fileupload.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>commons-io</groupId>
 				<artifactId>commons-io</artifactId>
-				<version>1.4</version>
+				<version>${io.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>commons-lang</groupId>
 				<artifactId>commons-lang</artifactId>
-				<version>2.5</version>
+				<version>${lang.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>commons-logging</groupId>
 				<artifactId>commons-logging</artifactId>
-				<version>1.1.1</version>
+				<version>${logging.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>commons-modeler</groupId>
 				<artifactId>commons-modeler</artifactId>
-				<version>2.0</version>
+				<version>${modeler.version}</version>
 				<exclusions>
 					<exclusion>
 						<groupId>mx4j</groupId>
@@ -200,7 +267,7 @@
 			<dependency>
 				<groupId>displaytag</groupId>
 				<artifactId>displaytag</artifactId>
-				<version>1.2</version>
+				<version>${displaytag.version}</version>
 				<exclusions>
 					<exclusion>
 						<groupId>com.lowagie</groupId>
@@ -211,7 +278,7 @@
 			<dependency>
 				<groupId>jaxen</groupId>
 				<artifactId>jaxen</artifactId>
-				<version>1.1.1</version>
+				<version>${jaxen.version}</version>
 				<exclusions>
 					<exclusion>
 						<groupId>dom4j</groupId>
@@ -238,27 +305,27 @@
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-beans</artifactId>
-				<version>2.5.6.SEC03</version>
+				<version>${spring.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-context</artifactId>
-				<version>2.5.6.SEC03</version>
+				<version>${spring.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-webmvc</artifactId>
-				<version>2.5.6.SEC03</version>
+				<version>${spring.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-tx</artifactId>
-				<version>2.5.6.SEC03</version>
+				<version>${spring.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework.security</groupId>
 				<artifactId>spring-security-core</artifactId>
-				<version>2.0.8.RELEASE</version>
+				<version>${spring-sec.version}</version>
 				<exclusions>
 					<exclusion>
 						<groupId>org.springframework</groupId>
@@ -273,52 +340,52 @@
 			<dependency>
 				<groupId>javainetlocator</groupId>
 				<artifactId>inetaddresslocator</artifactId>
-				<version>2.18</version>
+				<version>${inetaddresslocator.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>javax.transaction</groupId>
 				<artifactId>jta</artifactId>
-				<version>1.0.1B</version>
+				<version>${jta.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>opensymphony</groupId>
 				<artifactId>quartz</artifactId>
-				<version>1.6.0</version>
+				<version>${quartz.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>opensymphony</groupId>
 				<artifactId>sitemesh</artifactId>
-				<version>2.4</version>
+				<version>${sitemesh.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>javax.management</groupId>
 				<artifactId>jmxri</artifactId>
-				<version>1.2.1</version>
+				<version>${jmxrmi.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>xpp3</groupId>
 				<artifactId>xpp3_min</artifactId>
-				<version>1.1.3.4.O</version>
+				<version>${xpp3.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.thoughtworks.xstream</groupId>
 				<artifactId>xstream</artifactId>
-				<version>1.2.2</version>
+				<version>${xstream.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.uwyn</groupId>
 				<artifactId>jhighlight</artifactId>
-				<version>1.0</version>
+				<version>${jhighlight.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>c3p0</groupId>
 				<artifactId>c3p0</artifactId>
-				<version>0.9.0</version>
+				<version>${c3p0.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>commons-dbcp</groupId>
 				<artifactId>commons-dbcp</artifactId>
-				<version>1.2.1</version>
+				<version>${dbcp.version}</version>
 				<exclusions>
 					<exclusion>
 						<groupId>xerces</groupId>
@@ -329,12 +396,12 @@
 			<dependency>
 				<groupId>tanukisoft</groupId>
 				<artifactId>wrapper</artifactId>
-				<version>3.2.0</version>
+				<version>${wrapper.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>jfree</groupId>
 				<artifactId>jfreechart</artifactId>
-				<version>1.0.4</version>
+				<version>${jfreechart.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -345,17 +412,17 @@
 				<plugin>
 					<groupId>org.owasp</groupId>
 					<artifactId>dependency-check-maven</artifactId>
-					<version>1.2.10</version>
+					<version>${owasp.dependency-check.version}</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-project-info-reports-plugin</artifactId>
-					<version>2.8</version>
+					<version>${maven.project-info.version}</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-surefire-plugin</artifactId>
-					<version>2.4.3</version>
+					<version>${maven.surefire.version}</version>
 					<configuration>
 						<includes>
 							<include>**/*Tests.java</include>
@@ -368,17 +435,17 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
-					<version>2.0.2</version>
+					<version>${maven.compiler.version}</version>
 					<configuration>
-						<source>1.4</source>
-						<target>1.4</target>
+						<source>${jdk14.version}</source>
+						<target>${jdk14.version}</target>
 						<encoding>UTF-8</encoding>
 					</configuration>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-resources-plugin</artifactId>
-					<version>2.6</version>
+					<version>${maven.resources.version}</version>
 					<configuration>
 						<encoding>UTF-8</encoding>
 					</configuration>
@@ -386,7 +453,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-jar-plugin</artifactId>
-					<version>2.2</version>
+					<version>${maven.jar.version}</version>
 					<configuration>
 						<archive>
 							<manifest>
@@ -398,7 +465,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-war-plugin</artifactId>
-					<version>2.1.1</version>
+					<version>${maven.war.version}</version>
 					<configuration>
 						<excludes>**/test/**,**/.git/**</excludes>
 						<archive>
@@ -415,7 +482,7 @@
 				<plugin>
 					<groupId>org.jasig.mojo.jspc</groupId>
 					<artifactId>jspc-maven-plugin</artifactId>
-					<version>2.0.0</version>
+					<version>${jspc.version}</version>
 					<configuration>
 						<compile>false</compile>
 						<includeInProject>false</includeInProject>
@@ -431,7 +498,7 @@
 						<dependency>
 							<groupId>org.jasig.mojo.jspc</groupId>
 							<artifactId>jspc-compiler-tomcat5</artifactId>
-							<version>2.0.0</version>
+							<version>${jspc.version}</version>
 						</dependency>
 					</dependencies>
 				</plugin>
@@ -451,6 +518,20 @@
 					<reportSet>
 						<reports>
 							<report>aggregate</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>versions-maven-plugin</artifactId>
+				<version>${versions.version}</version>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>dependency-updates-report</report>
+							<report>plugin-updates-report</report>
+							<report>property-updates-report</report>
 						</reports>
 					</reportSet>
 				</reportSets>

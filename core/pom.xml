@@ -19,19 +19,19 @@
 		<dependency>
 			<groupId>tomcat</groupId>
 			<artifactId>catalina</artifactId>
-			<version>5.5.23</version>
+			<version>${tomcat55.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>tomcat</groupId>
 			<artifactId>jasper-compiler</artifactId>
-			<version>5.5.23</version>
+			<version>${tomcat55.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>tomcat</groupId>
 			<artifactId>jasper-runtime</artifactId>
-			<version>5.5.23</version>
+			<version>${tomcat55.version}</version>
 			<scope>provided</scope>
 			<exclusions>
 				<exclusion>
@@ -43,19 +43,19 @@
 		<dependency>
 			<groupId>tomcat</groupId>
 			<artifactId>naming-factory</artifactId>
-			<version>5.5.23</version>
+			<version>${tomcat55.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>tomcat</groupId>
 			<artifactId>naming-factory-dbcp</artifactId>
-			<version>5.5.23</version>
+			<version>${tomcat55.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>tomcat</groupId>
 			<artifactId>naming-resources</artifactId>
-			<version>5.5.23</version>
+			<version>${tomcat55.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<!--  tomcat libs end -->
