@@ -32,8 +32,8 @@ public class VisualScoreTag extends BodyTagSupport {
 
 	protected Log log = LogFactory.getLog(getClass());
 
-    private double value = 0;
-    private double value2 = 0;
+    private double value = 0; // Busy
+    private double value2 = 0; // Established
     private double minValue = 0;
     private double maxValue = 100;
     private int partialBlocks = 1;
