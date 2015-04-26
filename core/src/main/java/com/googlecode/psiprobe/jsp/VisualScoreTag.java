@@ -29,15 +29,44 @@ import org.apache.commons.logging.LogFactory;
 public class VisualScoreTag extends BodyTagSupport {
 
 	private static final long serialVersionUID = -5653846466205838602L;
+	
+	private static final String WHITE_LEFT_BORDER = "a0";
+	private static final String RED_LEFT_BORDER = "a1";
+	private static final String BLUE_LEFT_BORDER = "a2";
+	
+	private static final String WHITE_RIGHT_BORDER = "b0";
+	private static final String RED_RIGHT_BORDER = "b1";
+	private static final String BLUE_RIGHT_BORDER = "b2";
 
 	protected Log log = LogFactory.getLog(getClass());
 
-    private double value = 0; // Busy
-    private double value2 = 0; // Established
+    /**
+     * Red value.
+     */
+    private double value = 0;
+    
+    /**
+     * Blue value.
+     */
+    private double value2 = 0;
+    
     private double minValue = 0;
     private double maxValue = 100;
+    
+    /**
+     * Number of parts in one block.<br>
+     * It always must be 5 to match the 5 different gifs available
+     * at /src/main/webapp/css/classic/gifs
+     */
     private int partialBlocks = 1;
+    
+    /**
+     * Total number of blocks.<br>
+     * fullBlocks + 2 img elements will be added to the page.<br>
+     * The plus 2 is due the left and right border.
+     */
     private int fullBlocks = 5;
+    
     private boolean showEmptyBlocks=false;
     private boolean showA = false;
     private boolean showB = false;
@@ -89,11 +118,11 @@ public class VisualScoreTag extends BodyTagSupport {
 	
 	    // Beginning
 	    if (showA) {
-	        String format = "a0";
+	        String format = WHITE_LEFT_BORDER;
 	        if (fullRedBlockCount > 0 || partialRedBlockIndex > 0) {
-	            format = "a1";
+	            format = RED_LEFT_BORDER;
 	        } else if (partialBlueBlockIndex1 == 0 && (fullBlueBlockCount > 0 || partialBlueBlockIndex2 > 0)) {
-	            format = "a2";
+	            format = BLUE_LEFT_BORDER;
 	        }
 	        buf.append(MessageFormat.format(body, new Object[]{format}));
 	    }
@@ -133,11 +162,11 @@ public class VisualScoreTag extends BodyTagSupport {
 	
 	    // End
 	    if (showB) {
-	        String format = "b0";
+	        String format = WHITE_RIGHT_BORDER;
 	        if (fullRedBlockCount == fullBlocks) {
-	            format = "b1";
+	            format = RED_RIGHT_BORDER;
 	        } else if (fullRedBlockCount + (partialRedBlockIndex + partialBlueBlockIndex1 == partialBlocks ? 1 : 0) + fullBlueBlockCount == fullBlocks) {
-	            format = "b2";
+	            format = BLUE_RIGHT_BORDER;
 	        }
 	        buf.append(MessageFormat.format(body, new Object[]{format}));
 	    }
