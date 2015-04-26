@@ -111,7 +111,7 @@ public class VisualScoreTag extends BodyTagSupport {
 	    int fullRedBlockCount = (int) Math.floor(value / blockWidth);
 	    int partialRedBlockIndex = (int) Math.floor((value - fullRedBlockCount * blockWidth) / unitSize);
 	    int partialBlueBlockIndex1 = (partialRedBlockIndex > 0 ? Math.min((int) Math.floor(value2 / unitSize), partialBlocks - partialRedBlockIndex) : 0);
-	    int fullBlueBlockCount = Math.max(0, (int) Math.floor(value2 / blockWidth) - (partialRedBlockIndex > 0 ? 1 : 0));
+	    int fullBlueBlockCount = Math.max(0, (int) Math.ceil(value2 / blockWidth) - (partialRedBlockIndex > 0 ? 1 : 0));
 	    int partialBlueBlockIndex2 = (int) Math.floor((value2 - (fullBlueBlockCount * blockWidth) - (partialBlueBlockIndex1 * unitSize)) / unitSize);
 	    
 	    StringBuffer buf = new StringBuffer();
