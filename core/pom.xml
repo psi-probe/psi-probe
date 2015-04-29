@@ -166,7 +166,7 @@
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
-			<groupId>jfree</groupId>
+			<groupId>org.jfree</groupId>
 			<artifactId>jfreechart</artifactId>
 			<scope>compile</scope>
 		</dependency>
