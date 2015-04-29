@@ -54,17 +54,6 @@
 	</modules>
 	<repositories>
 		<repository>
-			<!-- Required for jta -->
-			<snapshots>
-				<enabled>false</enabled>
-				<updatePolicy>never</updatePolicy>
-			</snapshots>
-			<id>download.java.net</id>
-			<name>download.java.net</name>
-			<url>http://download.java.net/maven/2/</url>
-			<layout>default</layout>
-		</repository>
-		<repository>
 			<!-- Required for jmxri -->
 			<snapshots>
 				<enabled>false</enabled>
@@ -284,7 +273,7 @@
 			<dependency>
 				<groupId>javax.transaction</groupId>
 				<artifactId>jta</artifactId>
-				<version>1.0.1B</version>
+				<version>1.1</version>
 			</dependency>
 			<dependency>
 				<groupId>opensymphony</groupId>

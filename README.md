@@ -21,3 +21,7 @@
 		mvn package
 
 	This will create a deployable file at `web/target/probe.war`.
+
+# User Group
+
+Please follow the user group on google groups: [psi-probe](http://groups.google.com/group/psi-probe/)
