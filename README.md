@@ -1,5 +1,7 @@
 # How to build PSI Probe [![Build Status](https://travis-ci.org/psi-probe/psi-probe.svg?branch=master)](https://travis-ci.org/psi-probe/psi-probe)
 
+[![Join the chat at https://gitter.im/psi-probe/psi-probe](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/psi-probe/psi-probe?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 1.	**Clone PSI Probe's git repository.**
 
 	*Note: If you plan to contribute to PSI Probe, you should create your own fork on GitHub first and clone that.  Otherwise, follow these steps to build the latest version of PSI Probe for yourself.*
