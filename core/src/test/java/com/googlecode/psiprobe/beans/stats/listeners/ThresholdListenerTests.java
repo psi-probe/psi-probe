@@ -10,14 +10,14 @@
  */
 package com.googlecode.psiprobe.beans.stats.listeners;
 
-import junit.framework.Assert;
-import junit.framework.TestCase;
+import org.junit.Assert;
+import org.junit.Test;
 
 /**
  *
  * @author Mark Lewis
  */
-public class ThresholdListenerTests extends TestCase {
+public class ThresholdListenerTests {
 
     private final long defaultThreshold = 10;
 
@@ -25,46 +25,52 @@ public class ThresholdListenerTests extends TestCase {
     private StatsCollectionEvent belowThreshold = new StatsCollectionEvent("test", 0, 0);
     private StatsCollectionEvent aboveThreshold = new StatsCollectionEvent("test", 0, 20);
 
+    @Test
     public void testFirstBelowThreshold() {
         listener.reset();
         listener.statsCollected(belowThreshold);
         Assert.assertTrue(listener.isRemainedBelowThreshold());
     }
-    
+
+    @Test
     public void testFirstAboveThreshold() {
         listener.reset();
         listener.statsCollected(aboveThreshold);
         Assert.assertTrue(listener.isCrossedAboveThreshold());
     }
-    
+
+    @Test
     public void testRemainBelowThreshold() {
         listener.reset();
         listener.statsCollected(belowThreshold);
         listener.statsCollected(belowThreshold);
         Assert.assertTrue(listener.isRemainedBelowThreshold());
     }
-    
+
+    @Test
     public void testRemainAboveThreshold() {
         listener.reset();
         listener.statsCollected(aboveThreshold);
         listener.statsCollected(aboveThreshold);
         Assert.assertTrue(listener.isRemainedAboveThreshold());
     }
-    
+
+    @Test
     public void testCrossedBelowThreshold() {
         listener.reset();
         listener.statsCollected(aboveThreshold);
         listener.statsCollected(belowThreshold);
         Assert.assertTrue(listener.isCrossedBelowThreshold());
     }
-    
+
+    @Test
     public void testCrossedAboveThreshold() {
         listener.reset();
         listener.statsCollected(belowThreshold);
         listener.statsCollected(aboveThreshold);
         Assert.assertTrue(listener.isCrossedAboveThreshold());
     }
-    
+
     public static class MockThresholdListener extends ThresholdListener {
 
         private final long threshold;
