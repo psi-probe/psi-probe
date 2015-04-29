@@ -22,6 +22,7 @@
 
 	This will create a deployable file at `web/target/probe.war`.
 
-# User Group
+## User Groups
 
-Please follow the user group on google groups: [psi-probe](http://groups.google.com/group/psi-probe/)
+* [Announcements](http://groups.google.com/group/psi-probe/)
+* [Discussions](http://groups.google.com/group/psi-probe-discuss/)
