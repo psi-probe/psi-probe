@@ -463,7 +463,7 @@
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<properties>
-				<probe.version>${project.version} (built at ${timestamp})</probe.version>
+				<probe.version>${project.version} (built at ${maven.build.timestamp})</probe.version>
 			</properties>
 		</profile>
 	</profiles>
