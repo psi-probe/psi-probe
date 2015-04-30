@@ -23,7 +23,7 @@
 
 	<tlib-version>1.1</tlib-version>
 	<short-name>probe</short-name>
-	<uri>http://psi-probe.googlecode.com/jsp/tags</uri>
+	<uri>https://github.com/psi-probe/psi-probe/jsp/tags</uri>
 
 	<tag>
 		<description>
