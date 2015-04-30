@@ -24,5 +24,5 @@
 
 ## User Groups
 
-* [Announcements](http://groups.google.com/group/psi-probe/)
-* [Discussions](http://groups.google.com/group/psi-probe-discuss/)
+* <a href="http://groups.google.com/group/psi-probe/" target="_blank">Announcements</a>
+* <a href="http://groups.google.com/group/psi-probe-discuss/" target="_blank">Discussions</a>
