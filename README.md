@@ -1,4 +1,18 @@
-# How to build PSI Probe [![Build Status](https://travis-ci.org/psi-probe/psi-probe.svg?branch=master)](https://travis-ci.org/psi-probe/psi-probe)
+# PSI Probe [![Build Status](https://travis-ci.org/psi-probe/psi-probe.svg?branch=master)](https://travis-ci.org/psi-probe/psi-probe)
+
+## Contributions ##
+
+Please follow [GitHub Flow](https://guides.github.com/introduction/flow/), with the following suggestions:
+
+*	Ensure an [issue](//github.com/psi-probe/psi-probe/issues) exists before you begin work. If not, file one.
+	*	You can get input from others before you begin.
+	*	Issues power the release changelogs, so your change will be made known to users after it's done.
+*	Keep changes minimal, and keep the scope narrow.
+	*	Avoid making formatting changes alongside functionality changes.
+	*	Avoid bumping version numbers or correcting spelling errors along with your changes unless they're necessary or in close proximity.
+	*	Feel free to make these sorts of corrections in a separate PR, though!
+
+## Building from Source ##
 
 1.	**Clone PSI Probe's git repository.**
 
