@@ -81,6 +81,12 @@
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>jasper</artifactId>
 			<scope>provided</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>ecj</artifactId>
+					<groupId>org.eclipse.jdt.core.compiler</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 	</dependencies>
 	<build>
