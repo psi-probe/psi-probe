@@ -12,15 +12,16 @@ package com.googlecode.psiprobe.beans.stats.collectors;
 
 import com.googlecode.psiprobe.TomcatContainer;
 import com.googlecode.psiprobe.beans.ContainerWrapperBean;
-import com.googlecode.psiprobe.tools.ApplicationUtils;
 import com.googlecode.psiprobe.model.Application;
-import java.util.List;
-import java.util.Iterator;
-import javax.servlet.ServletContext;
+import com.googlecode.psiprobe.tools.ApplicationUtils;
+import org.apache.catalina.Context;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.catalina.Context;
 import org.springframework.web.context.ServletContextAware;
+
+import javax.servlet.ServletContext;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * Collects application statistics

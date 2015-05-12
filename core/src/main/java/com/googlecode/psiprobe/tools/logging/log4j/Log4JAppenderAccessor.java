@@ -11,6 +11,7 @@
 package com.googlecode.psiprobe.tools.logging.log4j;
 
 import com.googlecode.psiprobe.tools.logging.AbstractLogDestination;
+
 import java.io.File;
 
 /**

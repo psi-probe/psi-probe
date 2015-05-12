@@ -10,26 +10,13 @@
  */
 package com.googlecode.psiprobe;
 
-import java.io.File;
-import java.lang.reflect.InvocationTargetException;
-import java.net.URL;
-import java.net.URLClassLoader;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletContext;
-import javax.naming.NamingException;
-
+import com.googlecode.psiprobe.model.jsp.Item;
+import com.googlecode.psiprobe.model.jsp.Summary;
 import org.apache.catalina.Container;
 import org.apache.catalina.Context;
 import org.apache.catalina.Engine;
 import org.apache.catalina.Host;
 import org.apache.catalina.core.StandardContext;
-import org.apache.naming.ContextBindings;
 import org.apache.commons.lang.reflect.MethodUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -38,10 +25,17 @@ import org.apache.jasper.JasperException;
 import org.apache.jasper.JspCompilationContext;
 import org.apache.jasper.Options;
 import org.apache.jasper.compiler.JspRuntimeContext;
+import org.apache.naming.ContextBindings;
 import org.springframework.util.ClassUtils;
 
-import com.googlecode.psiprobe.model.jsp.Item;
-import com.googlecode.psiprobe.model.jsp.Summary;
+import javax.naming.NamingException;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
+import java.io.File;
+import java.lang.reflect.InvocationTargetException;
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.util.*;
 
 /**
  * Abstraction layer to implement some functionality, which is common between different container adaptors.

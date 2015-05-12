@@ -10,43 +10,26 @@
  */
 package com.googlecode.psiprobe;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Enumeration;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import com.googlecode.psiprobe.model.ApplicationParam;
+import com.googlecode.psiprobe.model.ApplicationResource;
+import com.googlecode.psiprobe.model.FilterInfo;
+import com.googlecode.psiprobe.model.FilterMapping;
+import org.apache.catalina.*;
+import org.apache.catalina.deploy.*;
+import org.apache.commons.modeler.Registry;
+import org.apache.naming.resources.Resource;
+import org.apache.naming.resources.ResourceAttributes;
 
 import javax.management.MBeanServer;
 import javax.management.MalformedObjectNameException;
 import javax.management.ObjectName;
 import javax.naming.NamingException;
 import javax.servlet.ServletContext;
-
-import org.apache.catalina.Container;
-import org.apache.catalina.Context;
-import org.apache.catalina.Host;
-import org.apache.catalina.Lifecycle;
-import org.apache.catalina.Valve;
-import org.apache.catalina.Wrapper;
-import org.apache.catalina.deploy.ApplicationParameter;
-import org.apache.catalina.deploy.ContextResource;
-import org.apache.catalina.deploy.ContextResourceLink;
-import org.apache.catalina.deploy.FilterDef;
-import org.apache.catalina.deploy.FilterMap;
-import org.apache.catalina.deploy.NamingResources;
-import org.apache.commons.modeler.Registry;
-import org.apache.naming.resources.Resource;
-import org.apache.naming.resources.ResourceAttributes;
-
-import com.googlecode.psiprobe.model.ApplicationParam;
-import com.googlecode.psiprobe.model.ApplicationResource;
-import com.googlecode.psiprobe.model.FilterInfo;
-import com.googlecode.psiprobe.model.FilterMapping;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.util.*;
 
 /**
  * 

@@ -11,6 +11,7 @@
 package com.googlecode.psiprobe.beans.stats.listeners;
 
 import com.googlecode.psiprobe.Utils;
+
 import java.util.HashMap;
 import java.util.LinkedList;
 

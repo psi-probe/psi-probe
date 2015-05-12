@@ -13,11 +13,6 @@ package com.googlecode.psiprobe.controllers.deploy;
 import com.googlecode.psiprobe.controllers.TomcatContainerController;
 import com.googlecode.psiprobe.controllers.jsp.DisplayJspController;
 import com.googlecode.psiprobe.model.jsp.Summary;
-import java.io.File;
-import java.net.URL;
-import java.util.Iterator;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import org.apache.catalina.Context;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileItemFactory;
@@ -29,6 +24,12 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.InternalResourceView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.net.URL;
+import java.util.Iterator;
 
 /**
  * Uploads and installs web application from a .WAR.

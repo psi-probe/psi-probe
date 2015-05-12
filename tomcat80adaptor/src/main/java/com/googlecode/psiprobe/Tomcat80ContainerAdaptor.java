@@ -10,46 +10,31 @@
  */
 package com.googlecode.psiprobe;
 
+import com.googlecode.psiprobe.model.ApplicationParam;
+import com.googlecode.psiprobe.model.ApplicationResource;
+import com.googlecode.psiprobe.model.FilterInfo;
+import com.googlecode.psiprobe.model.FilterMapping;
+import org.apache.catalina.*;
+import org.apache.catalina.deploy.NamingResourcesImpl;
+import org.apache.commons.modeler.Registry;
+import org.apache.jasper.JspCompilationContext;
+import org.apache.jasper.Options;
+import org.apache.jasper.compiler.JspRuntimeContext;
+import org.apache.naming.ContextAccessController;
+import org.apache.naming.ContextBindings;
+import org.apache.tomcat.util.descriptor.web.*;
+
+import javax.management.MBeanServer;
+import javax.management.MalformedObjectNameException;
+import javax.management.ObjectName;
+import javax.naming.NamingException;
+import javax.servlet.ServletContext;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Enumeration;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import javax.management.MBeanServer;
-import javax.management.MalformedObjectNameException;
-import javax.management.ObjectName;
-import javax.servlet.ServletContext;
-import javax.naming.NamingException;
-import org.apache.catalina.Container;
-import org.apache.catalina.Context;
-import org.apache.catalina.Host;
-import org.apache.catalina.Lifecycle;
-import org.apache.catalina.Valve;
-import org.apache.catalina.WebResource;
-import org.apache.catalina.Wrapper;
-import org.apache.catalina.deploy.NamingResourcesImpl;
-import org.apache.naming.ContextBindings;
-import org.apache.naming.ContextAccessController;
-import org.apache.commons.modeler.Registry;
-import org.apache.jasper.JspCompilationContext;
-import org.apache.jasper.Options;
-import org.apache.jasper.compiler.JspRuntimeContext;
-import org.apache.tomcat.util.descriptor.web.ApplicationParameter;
-import org.apache.tomcat.util.descriptor.web.ContextResource;
-import org.apache.tomcat.util.descriptor.web.ContextResourceLink;
-import org.apache.tomcat.util.descriptor.web.FilterDef;
-import org.apache.tomcat.util.descriptor.web.FilterMap;
-
-import com.googlecode.psiprobe.model.ApplicationParam;
-import com.googlecode.psiprobe.model.ApplicationResource;
-import com.googlecode.psiprobe.model.FilterInfo;
-import com.googlecode.psiprobe.model.FilterMapping;
+import java.util.*;
 
 /**
  *

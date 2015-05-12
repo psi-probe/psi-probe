@@ -10,23 +10,20 @@
  */
 package com.googlecode.psiprobe.tools;
 
-import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import javax.mail.internet.*;
+import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
 
 /**
  * Facade for sending emails with the JavaMail API.

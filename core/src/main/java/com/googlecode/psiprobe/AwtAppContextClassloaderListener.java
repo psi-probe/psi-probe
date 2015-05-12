@@ -1,11 +1,11 @@
 package com.googlecode.psiprobe;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import javax.imageio.ImageIO;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * Prevents a classloader leak as suggested by <a href="https://cdivilly.wordpress.com/2012/04/23/permgen-memory-leak/">Colm Divilly</a>

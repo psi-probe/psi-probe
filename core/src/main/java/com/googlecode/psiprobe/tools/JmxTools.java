@@ -10,14 +10,11 @@
  */
 package com.googlecode.psiprobe.tools;
 
-import javax.management.AttributeNotFoundException;
-import javax.management.MBeanAttributeInfo;
-import javax.management.MBeanInfo;
-import javax.management.MBeanServer;
-import javax.management.ObjectName;
-import javax.management.openmbean.CompositeData;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import javax.management.*;
+import javax.management.openmbean.CompositeData;
 
 /**
  * 

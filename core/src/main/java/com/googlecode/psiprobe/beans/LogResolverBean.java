@@ -22,23 +22,17 @@ import com.googlecode.psiprobe.tools.logging.jdk.Jdk14LoggerAccessor;
 import com.googlecode.psiprobe.tools.logging.jdk.Jdk14ManagerAccessor;
 import com.googlecode.psiprobe.tools.logging.log4j.Log4JLoggerAccessor;
 import com.googlecode.psiprobe.tools.logging.log4j.Log4JManagerAccessor;
-import com.googlecode.psiprobe.tools.logging.logback.LogbackLoggerAccessor;
 import com.googlecode.psiprobe.tools.logging.logback.LogbackFactoryAccessor;
+import com.googlecode.psiprobe.tools.logging.logback.LogbackLoggerAccessor;
 import com.googlecode.psiprobe.tools.logging.tomcatSlf4jLogback.TomcatSlf4jLogbackFactoryAccessor;
 import com.googlecode.psiprobe.tools.logging.tomcatSlf4jLogback.TomcatSlf4jLogbackLoggerAccessor;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-
 import org.apache.catalina.Context;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.util.ClassUtils;
+
+import java.io.File;
+import java.util.*;
 
 /**
  *
