@@ -16,21 +16,15 @@ import com.googlecode.psiprobe.model.ThreadPool;
 import com.googlecode.psiprobe.model.jmx.ThreadPoolObjectName;
 import com.googlecode.psiprobe.tools.JmxTools;
 import net.sf.javainetlocator.InetAddressLocator;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import javax.management.*;
 import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-import javax.management.InstanceNotFoundException;
-import javax.management.MBeanServer;
-import javax.management.MBeanServerNotification;
-import javax.management.Notification;
-import javax.management.NotificationListener;
-import javax.management.ObjectInstance;
-import javax.management.ObjectName;
-import javax.management.RuntimeOperationsException;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * This class interfaces Tomcat JMX functionality to read connection status. The

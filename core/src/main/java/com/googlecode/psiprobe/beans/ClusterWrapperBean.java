@@ -10,17 +10,14 @@
  */
 package com.googlecode.psiprobe.beans;
 
-import com.googlecode.psiprobe.model.jmx.AsyncClusterSender;
-import com.googlecode.psiprobe.model.jmx.Cluster;
-import com.googlecode.psiprobe.model.jmx.ClusterSender;
-import com.googlecode.psiprobe.model.jmx.PooledClusterSender;
-import com.googlecode.psiprobe.model.jmx.SyncClusterSender;
+import com.googlecode.psiprobe.model.jmx.*;
 import com.googlecode.psiprobe.tools.JmxTools;
-import java.util.Set;
+import org.apache.commons.modeler.Registry;
+
 import javax.management.MBeanServer;
 import javax.management.ObjectInstance;
 import javax.management.ObjectName;
-import org.apache.commons.modeler.Registry;
+import java.util.Set;
 
 /**
  * 

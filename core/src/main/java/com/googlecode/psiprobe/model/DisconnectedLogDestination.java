@@ -11,6 +11,7 @@
 package com.googlecode.psiprobe.model;
 
 import com.googlecode.psiprobe.tools.logging.LogDestination;
+
 import java.io.File;
 import java.io.Serializable;
 import java.sql.Timestamp;

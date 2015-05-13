@@ -15,8 +15,9 @@ import com.opensymphony.module.sitemesh.Decorator;
 import com.opensymphony.module.sitemesh.DecoratorMapper;
 import com.opensymphony.module.sitemesh.Page;
 import com.opensymphony.module.sitemesh.mapper.AbstractDecoratorMapper;
-import java.util.Properties;
+
 import javax.servlet.http.HttpServletRequest;
+import java.util.Properties;
 
 /**
  * The AjaxDecoratorMapper will exclude all "ajax" requests from being decorated. It will also make sure

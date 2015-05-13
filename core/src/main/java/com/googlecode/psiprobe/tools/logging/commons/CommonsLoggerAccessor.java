@@ -12,6 +12,7 @@ package com.googlecode.psiprobe.tools.logging.commons;
 
 import com.googlecode.psiprobe.tools.logging.DefaultAccessor;
 import com.googlecode.psiprobe.tools.logging.LogDestination;
+
 import java.util.List;
 
 /**

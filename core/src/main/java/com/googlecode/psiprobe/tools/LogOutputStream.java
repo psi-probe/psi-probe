@@ -10,9 +10,10 @@
  */
 package com.googlecode.psiprobe.tools;
 
+import org.apache.commons.logging.Log;
+
 import java.io.OutputStream;
 import java.io.PrintStream;
-import org.apache.commons.logging.Log;
 
 /**
  * An {@code OutputStream} which writes to a commons-logging {@code Log} at a

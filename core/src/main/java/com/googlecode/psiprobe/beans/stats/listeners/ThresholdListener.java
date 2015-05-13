@@ -12,6 +12,7 @@ package com.googlecode.psiprobe.beans.stats.listeners;
 
 import com.googlecode.psiprobe.Utils;
 import com.googlecode.psiprobe.tools.SizeExpression;
+
 import java.util.HashMap;
 
 /**

@@ -11,14 +11,11 @@
 package com.googlecode.psiprobe.tools;
 
 import com.googlecode.psiprobe.tools.Whois.Response;
+import junit.framework.TestCase;
+import org.junit.Assert;
+import org.junit.Test;
 
 import java.io.IOException;
-import java.net.InetAddress;
-
-import org.junit.Test;
-import org.junit.Assert;
-
-import junit.framework.TestCase;
 
 /**
  *
