@@ -84,6 +84,12 @@
 					<dependency>
 						<!-- Required for displaytag -->
 						<groupId>org.slf4j</groupId>
+						<artifactId>jcl104-over-slf4j</artifactId>
+						<version>1.4.2</version>
+					</dependency>
+					<dependency>
+						<!-- Required for displaytag -->
+						<groupId>org.slf4j</groupId>
 						<artifactId>slf4j-nop</artifactId>
 						<version>1.4.2</version>
 					</dependency>
