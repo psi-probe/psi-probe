@@ -386,9 +386,9 @@
 					<version>3.4</version>
 				</plugin>
 				<plugin>
-					<groupId>org.codehaus.mojo</groupId>
+					<groupId>com.googlecode.l10n-maven-plugin</groupId>
 					<artifactId>l10n-maven-plugin</artifactId>
-					<version>1.0-alpha-2</version>
+					<version>1.8</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -491,7 +491,7 @@
 				</configuration>
 			</plugin>
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
+				<groupId>com.googlecode.l10n-maven-plugin</groupId>
 				<artifactId>l10n-maven-plugin</artifactId>
 				<configuration>
 					<aggregate>true</aggregate>
