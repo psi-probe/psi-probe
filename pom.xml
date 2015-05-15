@@ -83,6 +83,7 @@
 		<maven.compiler.testTarget>1.5</maven.compiler.testTarget>
 
 		<copyright>2015</copyright>
+		<git.relative.path></git.relative.path>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
@@ -342,6 +343,19 @@
 					<version>1.2.11</version>
 				</plugin>
 				<plugin>
+					<groupId>pl.project13.maven</groupId>
+					<artifactId>git-commit-id-plugin</artifactId>
+					<version>2.1.13</version>
+					<configuration>
+						<dotGitDirectory>${git.relative.path}.git</dotGitDirectory>
+						<!-- Fixes occassional issue in commit id plugin - see 
+							https://github.com/ktoso/maven-git-commit-id-plugin/issues/61 -->
+						<gitDescribe>
+							<skip>true</skip>
+						</gitDescribe>
+					</configuration>
+				</plugin>
+				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-changelog-plugin</artifactId>
 					<version>2.3</version>
@@ -475,6 +489,21 @@
 				</plugin>
 			</plugins>
 		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>pl.project13.maven</groupId>
+				<artifactId>git-commit-id-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>git-commit-id</id>
+						<goals>
+							<goal>revision</goal>
+						</goals>
+						<phase>validate</phase>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
 	</build>
 	<reporting>
 		<plugins>
