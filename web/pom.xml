@@ -114,12 +114,8 @@
 				<configuration>
 					<webResources>
 						<resource>
-							<directory>src/main/conf-filtered</directory>
-							<filtering>true</filtering>
-						</resource>
-						<resource>
 							<directory>src/main/conf</directory>
-							<filtering>false</filtering>
+							<filtering>true</filtering>
 						</resource>
 						<resource>
 							<!-- Required for JBoss -->
