@@ -1,15 +1,19 @@
-# PSI Probe [![Build Status](https://travis-ci.org/psi-probe/psi-probe.svg?branch=master)](https://travis-ci.org/psi-probe/psi-probe)
+# PSI Probe
+
+[![Build Status](https://travis-ci.org/psi-probe/psi-probe.svg?branch=master)](https://travis-ci.org/psi-probe/psi-probe)
+[![Project Stats](https://www.openhub.net/p/psi-probe/widgets/project_thin_badge.gif)](https://www.openhub.net/p/psi-probe)
 
 ## Contributions ##
 
-Please follow [GitHub Flow](https://guides.github.com/introduction/flow/), with the following suggestions:
+Please follow [GitHub Flow](https://guides.github.com/introduction/flow/), with the following additions:
 
-*	Ensure an [issue](//github.com/psi-probe/psi-probe/issues) exists before you begin work. If not, file one.
+*	**Ensure an [issue](//github.com/psi-probe/psi-probe/issues) exists** before you begin work. If not, file one.
 	*	You can get input from others before you begin.
 	*	Issues power the release changelogs, so your change will be made known to users after it's done.
-*	Keep changes minimal, and keep the scope narrow.
-	*	Avoid making formatting changes alongside functionality changes.
-	*	Avoid bumping version numbers or correcting spelling errors along with your changes unless they're necessary or in close proximity.
+*	**One PR per issue.** Include the issue number in your commit(s) and PR so that merging it will close the issue.
+*	**One issue per PR.** Keep changes minimal, and keep the scope narrow.
+	*	Avoid making formatting changes alongside functionality changes. This is a recipe for conflicts.
+	*	Avoid bumping version numbers or correcting spelling errors along with your changes unless they're necessary.
 	*	Feel free to make these sorts of corrections in a separate PR, though!
 
 ## Building from Source ##
