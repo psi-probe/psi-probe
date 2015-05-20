@@ -14,6 +14,14 @@
 	<description>
 		Web view, message resources, and configuration
 	</description>
+	<scm>
+		<connection>scm:git:ssh://git@github.com:psi-probe/psi-probe.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com:psi-probe/psi-probe.git</developerConnection>
+		<url>https://github.com/psi-probe/psi-probe/</url>
+	</scm>
+	<properties>
+		<git.relative.path>../</git.relative.path>
+	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
@@ -81,6 +89,12 @@
 				<groupId>org.jasig.mojo.jspc</groupId>
 				<artifactId>jspc-maven-plugin</artifactId>
 				<dependencies>
+					<dependency>
+						<!-- Required for displaytag -->
+						<groupId>org.slf4j</groupId>
+						<artifactId>jcl104-over-slf4j</artifactId>
+						<version>1.4.2</version>
+					</dependency>
 					<dependency>
 						<!-- Required for displaytag -->
 						<groupId>org.slf4j</groupId>
