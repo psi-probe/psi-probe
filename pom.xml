@@ -135,6 +135,11 @@
 				<version>7.0.61</version>
 			</dependency>
 			<dependency>
+				<groupId>org.apache.openejb</groupId>
+				<artifactId>openejb-core</artifactId>
+				<version>4.7.1</version>
+			</dependency>
+			<dependency>
 				<groupId>com.jolbox</groupId>
 				<artifactId>bonecp</artifactId>
 				<version>0.8.0.RELEASE</version>
