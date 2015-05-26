@@ -142,12 +142,12 @@
 				<artifactId>tomcat-jdbc</artifactId>
 				<version>7.0.61</version>
 			</dependency>
-			<!-- This requires java 1.6 -->
 			<dependency>
 				<groupId>org.apache.openejb</groupId>
 				<artifactId>openejb-core</artifactId>
 				<version>4.7.1</version>
 			</dependency>
+			<!-- This requires java 1.6 -->
 			<dependency>
 				<groupId>com.jolbox</groupId>
 				<artifactId>bonecp</artifactId>
@@ -353,7 +353,7 @@
 					<version>2.1.13</version>
 					<configuration>
 						<dotGitDirectory>${git.relative.path}.git</dotGitDirectory>
-						<!-- Fixes occassional issue in commit id plugin - see 
+						<!-- Fixes occassional issue in commit id plugin - see
 							https://github.com/ktoso/maven-git-commit-id-plugin/issues/61 -->
 						<gitDescribe>
 							<skip>true</skip>
