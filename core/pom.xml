@@ -14,6 +14,14 @@
 	<description>
 		Core logic, data models, and controllers
 	</description>
+	<scm>
+		<connection>scm:git:ssh://git@github.com:psi-probe/psi-probe.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com:psi-probe/psi-probe.git</developerConnection>
+		<url>https://github.com/psi-probe/psi-probe/</url>
+	</scm>
+	<properties>
+		<git.relative.path>../</git.relative.path>
+	</properties>
 	<dependencies>
 		<!--  tomcat libs start -->
 		<dependency>
@@ -171,7 +179,7 @@
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
-			<groupId>jfree</groupId>
+			<groupId>org.jfree</groupId>
 			<artifactId>jfreechart</artifactId>
 			<scope>compile</scope>
 		</dependency>

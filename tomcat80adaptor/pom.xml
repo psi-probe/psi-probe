@@ -14,6 +14,14 @@
 	<description>
 		Implementation of features specific to Apache Tomcat 8.0.x
 	</description>
+	<scm>
+		<connection>scm:git:ssh://git@github.com:psi-probe/psi-probe.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com:psi-probe/psi-probe.git</developerConnection>
+		<url>https://github.com/psi-probe/psi-probe/</url>
+	</scm>
+	<properties>
+		<git.relative.path>../</git.relative.path>
+	</properties>
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -74,8 +82,9 @@
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
 					<configuration>
-						<source>1.5</source>
-						<target>1.5</target>
+						<!-- This should be 1.7 but lets keep it 1.6 for travis ci jdk 6 build -->
+						<source>1.6</source>
+						<target>1.6</target>
 						<encoding>UTF-8</encoding>
 					</configuration>
 				</plugin>
