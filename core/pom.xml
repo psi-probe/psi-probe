@@ -111,6 +111,11 @@
 			<artifactId>wrapper</artifactId>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.openejb</groupId>
+			<artifactId>openejb-core</artifactId>
+			<scope>provided</scope>
+		</dependency>
 		<!--  misc -->
 		<dependency>
 			<groupId>com.thoughtworks.xstream</groupId>
