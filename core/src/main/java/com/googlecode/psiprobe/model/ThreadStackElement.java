@@ -11,7 +11,6 @@
 package com.googlecode.psiprobe.model;
 
 /**
- * 
  * @author Vlad Ilyushchenko
  */
 public class ThreadStackElement {

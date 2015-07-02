@@ -11,20 +11,21 @@
 package com.googlecode.psiprobe;
 
 import com.googlecode.psiprobe.beans.ContainerWrapperBean;
+import org.apache.catalina.ContainerServlet;
+import org.apache.catalina.Wrapper;
+import org.springframework.web.servlet.DispatcherServlet;
+
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.catalina.ContainerServlet;
-import org.apache.catalina.Wrapper;
-import org.springframework.web.servlet.DispatcherServlet;
 
 /**
  * Main dispatcher servlet. Spring default dispatcher servlet had to be
  * superceeded to handle "privileged" application context features. The actual
  * requirement is to capture passed Wrapper instance into ContainerWrapperBean.
  * Wrapper instance is our gateway to Tomcat.
- * 
+ *
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */

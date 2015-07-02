@@ -13,19 +13,19 @@ package com.googlecode.psiprobe.controllers.logs;
 import com.googlecode.psiprobe.tools.BackwardsFileStream;
 import com.googlecode.psiprobe.tools.BackwardsLineReader;
 import com.googlecode.psiprobe.tools.logging.LogDestination;
-import java.io.File;
-import java.util.LinkedList;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.util.LinkedList;
+
 /**
- * 
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */
-public class FollowController extends LogHandlerController  {
+public class FollowController extends LogHandlerController {
 
     protected ModelAndView handleLogFile(HttpServletRequest request, HttpServletResponse response, LogDestination logDest) throws Exception {
 
@@ -56,7 +56,7 @@ public class FollowController extends LogHandlerController  {
                 long totalReadSize = currentLength - lastKnownLength;
                 String s;
                 while (readSize < totalReadSize && (s = br.readLine()) != null) {
-                    if (!s.equals("")){
+                    if (!s.equals("")) {
                         lines.addFirst(s);
                         readSize += s.length();
                     } else {
@@ -73,7 +73,7 @@ public class FollowController extends LogHandlerController  {
             } finally {
                 bfs.close();
             }
-            
+
             mv.addObject("lines", lines);
         }
         return mv;

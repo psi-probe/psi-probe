@@ -15,17 +15,14 @@ import com.googlecode.psiprobe.tools.logging.jdk.Jdk14HandlerAccessor;
 import com.googlecode.psiprobe.tools.logging.log4j.Log4JAppenderAccessor;
 import com.googlecode.psiprobe.tools.logging.logback.LogbackAppenderAccessor;
 import com.googlecode.psiprobe.tools.logging.tomcatSlf4jLogback.TomcatSlf4jLogbackAppenderAccessor;
-
-import java.util.Arrays;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Arrays;
+
 /**
- *
  * @author Mark Lewis
  */
 public class ChangeLogLevelController extends LogHandlerController {

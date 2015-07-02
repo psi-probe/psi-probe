@@ -11,7 +11,6 @@
 package com.googlecode.psiprobe.jsp;
 
 /**
- *
  * @author Mark Lewis
  */
 public class Functions {

@@ -14,7 +14,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- *
  * @author Mark Lewis
  */
 public class FlapListenerTests {
@@ -142,7 +141,7 @@ public class FlapListenerTests {
     public static class MockFlapListener extends FlapListener {
 
         private final long threshold;
-        
+
         private boolean flappingStarted;
         private boolean aboveThresholdFlappingStopped;
         private boolean belowThresholdFlappingStopped;
@@ -157,7 +156,7 @@ public class FlapListenerTests {
             setDefaultFlapLowWeight(lowWeight);
             setDefaultFlapHighWeight(highWeight);
         }
-        
+
         public void statsCollected(StatsCollectionEvent sce) {
             resetFlags();
             super.statsCollected(sce);
@@ -182,7 +181,7 @@ public class FlapListenerTests {
         protected void belowThresholdNotFlapping(StatsCollectionEvent sce) {
             belowThresholdNotFlapping = true;
         }
-        
+
         public long getThreshold(String name) {
             return threshold;
         }

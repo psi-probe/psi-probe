@@ -10,18 +10,14 @@
  */
 package com.googlecode.psiprobe.tokenizer;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.Vector;
+import java.util.*;
 
 /**
  * <code>UniqueList</code> is a successor of <code>java.util.Vector</code> to provide a collection that
  * contains no duplicate elements, more formally such that e1.compareTo(e2) == 0. <p>
- *
+ * <p/>
  * As from above, the collection implies that all its elements must implement <code>Comparable</code> interface.
- * <p>
+ * <p/>
  * The collection is kept ordered whenever elements added or removed and besides uniqueness it is to provide fast
  * element search based again on e1.compareTo(e2) values.
  *
@@ -36,8 +32,7 @@ public class UniqueList extends Vector {
     protected synchronized boolean add(Object obj, Comparator c) {
         if (size() == 0) {
             return super.add(obj);
-        }
-        else {
+        } else {
             int index;
             index = c == null ? Collections.binarySearch(this, obj) : Collections.binarySearch(this, obj, c);
             if (index < 0) {

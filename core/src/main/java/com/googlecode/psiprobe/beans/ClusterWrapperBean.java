@@ -10,20 +10,16 @@
  */
 package com.googlecode.psiprobe.beans;
 
-import com.googlecode.psiprobe.model.jmx.AsyncClusterSender;
-import com.googlecode.psiprobe.model.jmx.Cluster;
-import com.googlecode.psiprobe.model.jmx.ClusterSender;
-import com.googlecode.psiprobe.model.jmx.PooledClusterSender;
-import com.googlecode.psiprobe.model.jmx.SyncClusterSender;
+import com.googlecode.psiprobe.model.jmx.*;
 import com.googlecode.psiprobe.tools.JmxTools;
-import java.util.Set;
+import org.apache.commons.modeler.Registry;
+
 import javax.management.MBeanServer;
 import javax.management.ObjectInstance;
 import javax.management.ObjectName;
-import org.apache.commons.modeler.Registry;
+import java.util.Set;
 
 /**
- * 
  * @author Vlad Ilyushchenko
  */
 public class ClusterWrapperBean {
@@ -32,9 +28,9 @@ public class ClusterWrapperBean {
         Cluster cluster = null;
 
         MBeanServer mBeanServer = new Registry().getMBeanServer();
-        ObjectName membershipOName = new ObjectName(serverName +":type=ClusterMembership,host=" + hostName);
-        ObjectName receiverOName = new ObjectName(serverName +":type=ClusterReceiver,host=" + hostName);
-        ObjectName senderOName = new ObjectName(serverName +":type=ClusterSender,host=" + hostName);
+        ObjectName membershipOName = new ObjectName(serverName + ":type=ClusterMembership,host=" + hostName);
+        ObjectName receiverOName = new ObjectName(serverName + ":type=ClusterReceiver,host=" + hostName);
+        ObjectName senderOName = new ObjectName(serverName + ":type=ClusterSender,host=" + hostName);
 
         //
         // should be just one set, this is just to find out if this instance

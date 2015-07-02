@@ -13,7 +13,6 @@ package com.googlecode.psiprobe.beans.stats.listeners;
 import org.jfree.data.xy.XYDataItem;
 
 /**
- *
  * @author Mark Lewis
  */
 public class StatsCollectionEvent {

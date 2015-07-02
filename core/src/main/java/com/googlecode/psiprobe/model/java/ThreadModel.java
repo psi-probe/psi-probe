@@ -11,7 +11,6 @@
 package com.googlecode.psiprobe.model.java;
 
 /**
- * 
  * @author Vlad Ilyushchenko
  */
 public class ThreadModel {

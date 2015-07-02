@@ -12,19 +12,16 @@ package com.googlecode.psiprobe.beans;
 
 import com.googlecode.psiprobe.TomcatContainer;
 import com.googlecode.psiprobe.model.ApplicationResource;
-
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
 import org.apache.catalina.Context;
 import org.apache.catalina.Wrapper;
 import org.apache.catalina.util.ServerInfo;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 /**
  * This class wires support for Tomcat "privileged" context functionality into
@@ -34,7 +31,7 @@ import org.apache.commons.logging.LogFactory;
  * helps the Probe to interpret the wrapper. Container adaptors are required
  * because internal wrapper structure is quite different between Tomcat 5.5.x
  * and Tomcat 5.0.x
- * 
+ *
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */

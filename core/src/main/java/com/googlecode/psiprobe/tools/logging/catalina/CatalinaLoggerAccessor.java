@@ -12,12 +12,12 @@ package com.googlecode.psiprobe.tools.logging.catalina;
 
 import com.googlecode.psiprobe.tools.Instruments;
 import com.googlecode.psiprobe.tools.logging.AbstractLogDestination;
+
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * 
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */
@@ -39,7 +39,7 @@ public class CatalinaLoggerAccessor extends AbstractLogDestination {
         String dir = (String) invokeMethod(getTarget(), "getDirectory", null, null);
         String prefix = (String) invokeMethod(getTarget(), "getPrefix", null, null);
         String suffix = (String) invokeMethod(getTarget(), "getSuffix", null, null);
-        boolean timestamp = ((Boolean)Instruments.getField(getTarget(), "timestamp")).booleanValue();
+        boolean timestamp = ((Boolean) Instruments.getField(getTarget(), "timestamp")).booleanValue();
         String date = timestamp ? new SimpleDateFormat("yyyy-MM-dd").format(new Date()) : "";
 
         File file = (date != null && dir != null && prefix != null && suffix != null ? new File(dir, prefix + date + suffix) : null);

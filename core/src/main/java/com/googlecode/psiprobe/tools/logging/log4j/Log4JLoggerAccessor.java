@@ -11,13 +11,13 @@
 package com.googlecode.psiprobe.tools.logging.log4j;
 
 import com.googlecode.psiprobe.tools.logging.DefaultAccessor;
+import org.apache.commons.beanutils.MethodUtils;
+
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
-import org.apache.commons.beanutils.MethodUtils;
 
 /**
- * 
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */
@@ -29,7 +29,7 @@ public class Log4JLoggerAccessor extends DefaultAccessor {
         List appenders = new ArrayList();
         try {
             Enumeration e = (Enumeration) MethodUtils.invokeMethod(getTarget(), "getAllAppenders", null);
-            while(e.hasMoreElements()) {
+            while (e.hasMoreElements()) {
                 Log4JAppenderAccessor appender = wrapAppender(e.nextElement());
                 if (appender != null) {
                     appenders.add(appender);

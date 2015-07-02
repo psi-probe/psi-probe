@@ -19,7 +19,7 @@ import java.util.regex.PatternSyntaxException;
 /**
  * Data model class used by session search feature of application session
  * screen.
- * 
+ *
  * @author Andy Shapoval
  * @author Vlad Ilyushchenko
  */
@@ -62,7 +62,7 @@ public class SessionSearchInfo implements Serializable {
     }
 
     public boolean isAttrNameValid() {
-        return attrName == null || ! attrNamePatterns.isEmpty();
+        return attrName == null || !attrNamePatterns.isEmpty();
     }
 
     public boolean isAgeFromValid() {
@@ -88,7 +88,7 @@ public class SessionSearchInfo implements Serializable {
     }
 
     public boolean isUseSearch() {
-        return isApply() && ! isEmpty() && isValid();
+        return isApply() && !isEmpty() && isValid();
     }
 
     public boolean isUseSessionId() {
@@ -96,7 +96,7 @@ public class SessionSearchInfo implements Serializable {
     }
 
     public boolean isUseAttrName() {
-        return ! attrNamePatterns.isEmpty();
+        return !attrNamePatterns.isEmpty();
     }
 
     public boolean isUseAttr() {
@@ -183,7 +183,7 @@ public class SessionSearchInfo implements Serializable {
 
         if (attrName != null) {
             String[] a = attrName.split(",");
-            if (a.length == 0 && ! attrName.equals("")) {
+            if (a.length == 0 && !attrName.equals("")) {
                 attrNameMsgs.add("");
             } else {
                 for (int i = 0; i < a.length; i++) {

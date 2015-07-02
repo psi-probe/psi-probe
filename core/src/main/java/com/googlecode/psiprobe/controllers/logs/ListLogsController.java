@@ -11,15 +11,15 @@
 package com.googlecode.psiprobe.controllers.logs;
 
 import com.googlecode.psiprobe.beans.LogResolverBean;
-import java.util.List;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.List;
+
 /**
- * 
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */

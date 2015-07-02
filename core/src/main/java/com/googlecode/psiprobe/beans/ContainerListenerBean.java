@@ -16,26 +16,20 @@ import com.googlecode.psiprobe.model.ThreadPool;
 import com.googlecode.psiprobe.model.jmx.ThreadPoolObjectName;
 import com.googlecode.psiprobe.tools.JmxTools;
 import net.sf.javainetlocator.InetAddressLocator;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import javax.management.*;
 import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-import javax.management.InstanceNotFoundException;
-import javax.management.MBeanServer;
-import javax.management.MBeanServerNotification;
-import javax.management.Notification;
-import javax.management.NotificationListener;
-import javax.management.ObjectInstance;
-import javax.management.ObjectName;
-import javax.management.RuntimeOperationsException;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * This class interfaces Tomcat JMX functionality to read connection status. The
  * class essentially provides and maintains the list of connection ThreadPools.
- * 
+ *
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */
@@ -64,14 +58,13 @@ public class ContainerListenerBean implements NotificationListener {
 
     /**
      * Finds ThreadPoolObjectName by its string name.
-
-     * @param name - pool name
      *
+     * @param name - pool name
      * @return null if the input name is null or ThreadPoolObjectName is not found
      */
     private ThreadPoolObjectName findPool(String name) {
         if (name != null && isInitialized()) {
-            for (Iterator it = poolNames.iterator(); it.hasNext();) {
+            for (Iterator it = poolNames.iterator(); it.hasNext(); ) {
                 ThreadPoolObjectName threadPoolObjectName = (ThreadPoolObjectName) it.next();
                 if (name.equals(threadPoolObjectName.getThreadPoolName().getKeyProperty("name"))) {
                     return threadPoolObjectName;
@@ -121,7 +114,7 @@ public class ContainerListenerBean implements NotificationListener {
         String serverName = getContainerWrapper().getTomcatContainer().getName();
         Set threadPools = server.queryMBeans(new ObjectName(serverName + ":type=ThreadPool,*"), null);
         poolNames = new ArrayList(threadPools.size());
-        for (Iterator it = threadPools.iterator(); it.hasNext();) {
+        for (Iterator it = threadPools.iterator(); it.hasNext(); ) {
 
             ThreadPoolObjectName threadPoolObjectName = new ThreadPoolObjectName();
             ObjectName threadPoolName = ((ObjectInstance) it.next()).getObjectName();
@@ -139,7 +132,7 @@ public class ContainerListenerBean implements NotificationListener {
             //
             Set workers = server.queryMBeans(new ObjectName(threadPoolName.getDomain() + ":type=RequestProcessor,*"), null);
 
-            for (Iterator wrkIt = workers.iterator(); wrkIt.hasNext();) {
+            for (Iterator wrkIt = workers.iterator(); wrkIt.hasNext(); ) {
                 ObjectName wrkName = ((ObjectInstance) wrkIt.next()).getObjectName();
                 if (name.equals(wrkName.getKeyProperty("worker"))) {
                     threadPoolObjectName.getRequestProcessorNames().add(wrkName);
@@ -151,7 +144,7 @@ public class ContainerListenerBean implements NotificationListener {
 
         Set executors = server.queryMBeans(new ObjectName(serverName + ":type=Executor,*"), null);
         executorNames = new ArrayList(executors.size());
-        for (Iterator it = executors.iterator(); it.hasNext();) {
+        for (Iterator it = executors.iterator(); it.hasNext(); ) {
             ObjectName executorName = ((ObjectInstance) it.next()).getObjectName();
             executorNames.add(executorName);
         }
@@ -171,7 +164,7 @@ public class ContainerListenerBean implements NotificationListener {
 
         MBeanServer server = getContainerWrapper().getResourceResolver().getMBeanServer();
 
-        for (Iterator it = executorNames.iterator(); it.hasNext();) {
+        for (Iterator it = executorNames.iterator(); it.hasNext(); ) {
             ObjectName executorName = (ObjectName) it.next();
 
             ThreadPool threadPool = new ThreadPool();
@@ -185,7 +178,7 @@ public class ContainerListenerBean implements NotificationListener {
             threadPools.add(threadPool);
         }
 
-        for (Iterator it = poolNames.iterator(); it.hasNext();) {
+        for (Iterator it = poolNames.iterator(); it.hasNext(); ) {
 
             ThreadPoolObjectName threadPoolObjectName = (ThreadPoolObjectName) it.next();
             try {
@@ -227,7 +220,7 @@ public class ContainerListenerBean implements NotificationListener {
 
         MBeanServer server = getContainerWrapper().getResourceResolver().getMBeanServer();
 
-        for (Iterator it = poolNames.iterator(); it.hasNext();) {
+        for (Iterator it = poolNames.iterator(); it.hasNext(); ) {
 
             ThreadPoolObjectName threadPoolObjectName = (ThreadPoolObjectName) it.next();
             boolean remoteAddrAvailable = true;
@@ -247,7 +240,7 @@ public class ContainerListenerBean implements NotificationListener {
                 connector.setErrorCount(JmxTools.getIntAttr(server, grpName, "errorCount"));
 
                 if (includeRequestProcessors) {
-                    for (Iterator wrkIt = threadPoolObjectName.getRequestProcessorNames().iterator(); wrkIt.hasNext();) {
+                    for (Iterator wrkIt = threadPoolObjectName.getRequestProcessorNames().iterator(); wrkIt.hasNext(); ) {
                         ObjectName wrkName = (ObjectName) wrkIt.next();
 
                         try {

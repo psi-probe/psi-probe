@@ -12,7 +12,7 @@ package com.googlecode.psiprobe.model;
 
 /**
  * POJO representing application "resource" in Tomcat
- * 
+ *
  * @author Vlad Ilyushchenko
  */
 public class ApplicationResource {

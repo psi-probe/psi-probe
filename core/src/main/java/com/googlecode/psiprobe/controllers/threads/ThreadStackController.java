@@ -12,20 +12,20 @@ package com.googlecode.psiprobe.controllers.threads;
 
 import com.googlecode.psiprobe.model.ThreadStackElement;
 import com.googlecode.psiprobe.tools.JmxTools;
-import java.util.ArrayList;
-import java.util.List;
-import javax.management.MBeanServer;
-import javax.management.ObjectName;
-import javax.management.openmbean.CompositeData;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.modeler.Registry;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
 
+import javax.management.MBeanServer;
+import javax.management.ObjectName;
+import javax.management.openmbean.CompositeData;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
- * 
  * @author Vlad Ilyushchenko
  */
 public class ThreadStackController extends ParameterizableViewController {
@@ -54,7 +54,7 @@ public class ThreadStackController extends ParameterizableViewController {
             long[] allIds = (long[]) mBeanServer.getAttribute(threadingOName, "AllThreadIds");
             for (int i = 0; i < allIds.length; i++) {
                 CompositeData cd = (CompositeData) mBeanServer.invoke(threadingOName, "getThreadInfo",
-                        new Object[]{new Long(allIds[i])}, new String[] {"long"});
+                        new Object[]{new Long(allIds[i])}, new String[]{"long"});
                 String name = JmxTools.getStringAttr(cd, "threadName");
                 if (threadName.equals(name)) {
                     threadID = allIds[i];
@@ -66,7 +66,7 @@ public class ThreadStackController extends ParameterizableViewController {
         if (mBeanServer.queryMBeans(threadingOName, null) != null && threadID != -1) {
 
             CompositeData cd = (CompositeData) mBeanServer.invoke(threadingOName, "getThreadInfo",
-                    new Object[]{new Long(threadID), new Integer(stackElementCount)}, new String[] {"long", "int"});
+                    new Object[]{new Long(threadID), new Integer(stackElementCount)}, new String[]{"long", "int"});
             if (cd != null) {
                 CompositeData[] elements = (CompositeData[]) cd.get("stackTrace");
                 threadName = JmxTools.getStringAttr(cd, "threadName");

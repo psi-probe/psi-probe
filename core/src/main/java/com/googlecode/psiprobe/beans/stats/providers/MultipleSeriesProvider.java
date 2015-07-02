@@ -11,16 +11,11 @@
 package com.googlecode.psiprobe.beans.stats.providers;
 
 import com.googlecode.psiprobe.model.stats.StatsCollection;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
-import java.util.Map;
-import javax.servlet.http.HttpServletRequest;
 import org.jfree.data.xy.DefaultTableXYDataset;
 import org.jfree.data.xy.XYDataItem;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.*;
 
 /**
  * Retrieves stats series with names that start with the statNamePrefix.
@@ -53,7 +48,7 @@ public class MultipleSeriesProvider extends AbstractSeriesProvider {
 
     /**
      * @param top - the number of top series to retrieve. If this value is greater than 0,
-     * only this many series with the greatest max moving avg values are retrieved.
+     *            only this many series with the greatest max moving avg values are retrieved.
      */
     public void setTop(int top) {
         this.top = top;
@@ -65,9 +60,9 @@ public class MultipleSeriesProvider extends AbstractSeriesProvider {
 
     /**
      * @param movingAvgFrame - if this value is greater than 0, a moving avg value is calculated for every series using
-     * every Nth value, where N % movingAvgFrame == 0. Top series are identified based on a max moving avg
-     * value of each series. If the movingAvgFrame equals to 0, top series are determined based on a simple avg
-     * of all series values.
+     *                       every Nth value, where N % movingAvgFrame == 0. Top series are identified based on a max moving avg
+     *                       value of each series. If the movingAvgFrame equals to 0, top series are determined based on a simple avg
+     *                       of all series values.
      */
     public void setMovingAvgFrame(int movingAvgFrame) {
         this.movingAvgFrame = movingAvgFrame;
@@ -78,7 +73,7 @@ public class MultipleSeriesProvider extends AbstractSeriesProvider {
         boolean useTop = getTop() > 0 && getTop() < statMap.size();
         List seriesList = new ArrayList();
 
-        for(Iterator i = statMap.entrySet().iterator(); i.hasNext();) {
+        for (Iterator i = statMap.entrySet().iterator(); i.hasNext(); ) {
             Series ser = new Series((Map.Entry) i.next());
             if (useTop) {
                 ser.calculateAvg();
@@ -97,7 +92,7 @@ public class MultipleSeriesProvider extends AbstractSeriesProvider {
             });
 
             // keeping only the top series in the list
-            for (ListIterator i = seriesList.listIterator(getTop()); i.hasNext();) {
+            for (ListIterator i = seriesList.listIterator(getTop()); i.hasNext(); ) {
                 i.next();
                 i.remove();
             }
@@ -106,11 +101,11 @@ public class MultipleSeriesProvider extends AbstractSeriesProvider {
         // sorting the remaining series by name
         Collections.sort(seriesList, new Comparator() {
             public int compare(Object o1, Object o2) {
-                return (((Series)o1).key).compareTo(((Series)o2).key);
+                return (((Series) o1).key).compareTo(((Series) o2).key);
             }
         });
 
-        for (Iterator i = seriesList.iterator(); i.hasNext();) {
+        for (Iterator i = seriesList.iterator(); i.hasNext(); ) {
             Series ser = (Series) i.next();
             dataset.addSeries(toSeries(ser.key, ser.stats));
         }
@@ -135,11 +130,11 @@ public class MultipleSeriesProvider extends AbstractSeriesProvider {
             synchronized (stats) {
                 boolean useMovingAvg = getMovingAvgFrame() > 0 && getMovingAvgFrame() < stats.size();
 
-                for (Iterator i = stats.iterator(); i.hasNext();) {
+                for (Iterator i = stats.iterator(); i.hasNext(); ) {
                     XYDataItem xy = (XYDataItem) i.next();
                     sum += xy.getY().longValue();
 
-                    if ((useMovingAvg && count % getMovingAvgFrame() == 0) || ! i.hasNext()) {
+                    if ((useMovingAvg && count % getMovingAvgFrame() == 0) || !i.hasNext()) {
                         double a = (double) sum / count;
                         if (a > avg) {
                             avg = a;

@@ -11,19 +11,20 @@
 package com.googlecode.psiprobe.controllers.sql;
 
 import com.googlecode.psiprobe.model.sql.DataSourceTestInfo;
-import java.util.List;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * Displays a result set cached in an attribute of HttpSession object to support
  * result set pagination feature without re-executing a query that created the
  * result set.
- * 
+ *
  * @author Andy Shapoval
  */
 public class CachedRecordSetController extends ParameterizableViewController {
@@ -43,16 +44,16 @@ public class CachedRecordSetController extends ParameterizableViewController {
                 request.setAttribute("errorMessage", getMessageSourceAccessor().getMessage("probe.src.dataSourceTest.cachedResultSet.failure"));
                 logger.error("Cannot retrieve a cached result set. " + DataSourceTestInfo.DS_TEST_SESS_ATTR + " session attribute is NULL.");
             } else {
-                synchronized(sess) {
-                    sessData.setRowsPerPage(rowsPerPage);    
+                synchronized (sess) {
+                    sessData.setRowsPerPage(rowsPerPage);
                 }
 
-                results  = sessData.getResults();
+                results = sessData.getResults();
 
                 if (results == null) {
                     request.setAttribute("errorMessage", getMessageSourceAccessor().getMessage("probe.src.dataSourceTest.cachedResultSet.failure"));
                     logger.error("Cached results set is NULL.");
-                }  else {
+                } else {
                     rowsAffected = results.size();
                 }
             }

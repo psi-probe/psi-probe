@@ -20,7 +20,7 @@ public class TomcatTestReport {
     public static final int TEST_PASSED = 1;
     public static final int TEST_FAILED = 2;
 
-    private int defaultMemorySize = 1024*1024; // 1MB
+    private int defaultMemorySize = 1024 * 1024; // 1MB
     private int defaultFileCount = 10;
 
     private String contextName;

@@ -11,10 +11,9 @@
 package com.googlecode.psiprobe.tokenizer;
 
 /**
- * 
  * @author Vlad Ilyushchenko
  */
-public class TokenizerSymbol implements Comparable{
+public class TokenizerSymbol implements Comparable {
     final String name;
     final String startText;
     final String tailText;

@@ -12,11 +12,11 @@ package com.googlecode.psiprobe.beans.stats.collectors;
 
 import com.googlecode.psiprobe.beans.JvmMemoryInfoAccessorBean;
 import com.googlecode.psiprobe.model.jmx.MemoryPool;
+
 import java.util.Iterator;
 import java.util.List;
 
 /**
- * 
  * @author Vlad Ilyushchenko
  */
 public class JvmMemoryStatsCollectorBean extends AbstractStatsCollectorBean {
@@ -35,7 +35,7 @@ public class JvmMemoryStatsCollectorBean extends AbstractStatsCollectorBean {
         long time = System.currentTimeMillis();
         for (Iterator it = pools.iterator(); it.hasNext(); ) {
             MemoryPool pool = (MemoryPool) it.next();
-            buildAbsoluteStats("memory.pool."+pool.getName(), pool.getUsed(), time);
+            buildAbsoluteStats("memory.pool." + pool.getName(), pool.getUsed(), time);
         }
     }
 }

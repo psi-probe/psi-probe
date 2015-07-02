@@ -12,14 +12,14 @@ package com.googlecode.psiprobe.beans;
 
 import com.googlecode.psiprobe.model.jmx.RuntimeInformation;
 import com.googlecode.psiprobe.tools.JmxTools;
-import javax.management.MBeanServer;
-import javax.management.ObjectName;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.commons.modeler.Registry;
 
+import javax.management.MBeanServer;
+import javax.management.ObjectName;
+
 /**
- * 
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */
@@ -35,13 +35,13 @@ public class RuntimeInfoAccessorBean {
             ObjectName runtimeOName = new ObjectName("java.lang:type=Runtime");
             ri.setStartTime(JmxTools.getLongAttr(mBeanServer, runtimeOName, "StartTime"));
             ri.setUptime(JmxTools.getLongAttr(mBeanServer, runtimeOName, "Uptime"));
-            ri.setVmVendor(JmxTools.getStringAttr(mBeanServer,runtimeOName,"VmVendor"));
+            ri.setVmVendor(JmxTools.getStringAttr(mBeanServer, runtimeOName, "VmVendor"));
 
             ObjectName osOName = new ObjectName("java.lang:type=OperatingSystem");
             ri.setOsName(JmxTools.getStringAttr(mBeanServer, osOName, "Name"));
             ri.setOsVersion(JmxTools.getStringAttr(mBeanServer, osOName, "Version"));
 
-            if(!ri.getVmVendor().startsWith("IBM Corporation")){
+            if (!ri.getVmVendor().startsWith("IBM Corporation")) {
                 ri.setTotalPhysicalMemorySize(JmxTools.getLongAttr(mBeanServer, osOName, "TotalPhysicalMemorySize"));
                 ri.setCommittedVirtualMemorySize(JmxTools.getLongAttr(mBeanServer, osOName, "CommittedVirtualMemorySize"));
                 ri.setFreePhysicalMemorySize(JmxTools.getLongAttr(mBeanServer, osOName, "FreePhysicalMemorySize"));

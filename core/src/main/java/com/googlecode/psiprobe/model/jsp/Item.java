@@ -15,7 +15,6 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 /**
- * 
  * @author Vlad Ilyushchenko
  */
 public class Item implements Serializable {

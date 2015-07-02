@@ -12,19 +12,20 @@ package com.googlecode.psiprobe.beans.stats.collectors;
 
 import com.googlecode.psiprobe.TomcatContainer;
 import com.googlecode.psiprobe.beans.ContainerWrapperBean;
-import com.googlecode.psiprobe.tools.ApplicationUtils;
 import com.googlecode.psiprobe.model.Application;
-import java.util.List;
-import java.util.Iterator;
-import javax.servlet.ServletContext;
+import com.googlecode.psiprobe.tools.ApplicationUtils;
+import org.apache.catalina.Context;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.catalina.Context;
 import org.springframework.web.context.ServletContextAware;
+
+import javax.servlet.ServletContext;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * Collects application statistics
- * 
+ *
  * @author Andy Shapoval
  * @author Mark Lewis
  */
@@ -91,7 +92,7 @@ public class AppStatsCollectorBean extends AbstractStatsCollectorBean implements
                         long procTimeDelta = buildDeltaStats("app.proc_time." + appName, app.getProcessingTime(), currentTime);
 
                         long avgProcTime = reqDelta == 0 ? 0 : procTimeDelta / reqDelta;
-                        buildAbsoluteStats( "app.avg_proc_time." + appName, avgProcTime, currentTime);
+                        buildAbsoluteStats("app.avg_proc_time." + appName, avgProcTime, currentTime);
 
                         // make sure applications that did not serve any requests
                         // do not participate in average response time equasion thus diluting the value

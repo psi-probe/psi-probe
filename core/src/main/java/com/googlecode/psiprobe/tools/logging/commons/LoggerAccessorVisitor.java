@@ -16,7 +16,6 @@ import com.googlecode.psiprobe.tools.logging.jdk.Jdk14LoggerAccessor;
 import com.googlecode.psiprobe.tools.logging.log4j.Log4JLoggerAccessor;
 
 /**
- *
  * @author Mark Lewis
  */
 public abstract class LoggerAccessorVisitor extends DefaultAccessor {
@@ -52,6 +51,7 @@ public abstract class LoggerAccessorVisitor extends DefaultAccessor {
     }
 
     public abstract void visit(Log4JLoggerAccessor accessor);
+
     public abstract void visit(Jdk14LoggerAccessor accessor);
 
 }

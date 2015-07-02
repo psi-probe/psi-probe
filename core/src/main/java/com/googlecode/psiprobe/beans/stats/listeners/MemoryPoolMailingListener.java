@@ -12,23 +12,23 @@ package com.googlecode.psiprobe.beans.stats.listeners;
 
 import com.googlecode.psiprobe.tools.MailMessage;
 import com.googlecode.psiprobe.tools.Mailer;
-import javax.mail.MessagingException;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.MessageSource;
 import org.springframework.context.MessageSourceAware;
 import org.springframework.context.support.MessageSourceAccessor;
 
+import javax.mail.MessagingException;
+
 /**
- *
  * @author Mark Lewis
  */
 public class MemoryPoolMailingListener extends FlapListener implements MessageSourceAware, InitializingBean {
-    
+
     private static final String BASE_PROPERTY = "probe.src.stats.listener.memory.pool.";
-    
+
     private MessageSourceAccessor messageSourceAccessor;
     private Mailer mailer;
-    
+
     public MemoryPoolMailingListener() {
     }
 
@@ -89,10 +89,10 @@ public class MemoryPoolMailingListener extends FlapListener implements MessageSo
         String bodyPrefix = "";
         if (flappingStop) {
             subjectInfix = getMessageSourceAccessor().getMessage(BASE_PROPERTY + "flappingStop.subject.infix");
-            bodyPrefix   = getMessageSourceAccessor().getMessage(BASE_PROPERTY + "flappingStop.body.prefix");
+            bodyPrefix = getMessageSourceAccessor().getMessage(BASE_PROPERTY + "flappingStop.body.prefix");
         }
-        String subject = getMessageSourceAccessor().getMessage(BASE_PROPERTY + message + ".subject", new Object[] {subjectInfix, name, value, threshold});
-        String body    = getMessageSourceAccessor().getMessage(BASE_PROPERTY + message + ".body",    new Object[] {bodyPrefix, name, value, threshold});
+        String subject = getMessageSourceAccessor().getMessage(BASE_PROPERTY + message + ".subject", new Object[]{subjectInfix, name, value, threshold});
+        String body = getMessageSourceAccessor().getMessage(BASE_PROPERTY + message + ".body", new Object[]{bodyPrefix, name, value, threshold});
         MailMessage mail = new MailMessage(null, subject, body);
         try {
             getMailer().send(mail);

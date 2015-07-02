@@ -14,6 +14,11 @@ import com.googlecode.psiprobe.beans.ContainerListenerBean;
 import com.googlecode.psiprobe.model.ApplicationResource;
 import com.googlecode.psiprobe.model.DataSourceInfo;
 import com.googlecode.psiprobe.model.TomcatTestReport;
+import org.apache.catalina.Context;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -21,14 +26,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import org.apache.catalina.Context;
-import org.springframework.web.servlet.ModelAndView;
 
 /**
  * "Quick check" controller.
- * 
+ *
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */
@@ -56,7 +57,7 @@ public class TomcatAvailabilityController extends TomcatContainerController {
 
         boolean allContextsAvailable = true;
         if (getContainerWrapper().getResourceResolver().supportsPrivateResources()) {
-            for (Iterator it = getContainerWrapper().getTomcatContainer().findContexts().iterator(); it.hasNext();) {
+            for (Iterator it = getContainerWrapper().getTomcatContainer().findContexts().iterator(); it.hasNext(); ) {
                 //
                 // make sure we skip ROOT application
                 //
@@ -66,7 +67,7 @@ public class TomcatAvailabilityController extends TomcatContainerController {
 
                 List applicationResources = getContainerWrapper().getResourceResolver().getApplicationResources(appContext, getContainerWrapper());
 
-                for (Iterator it2 = applicationResources.iterator(); it2.hasNext();) {
+                for (Iterator it2 = applicationResources.iterator(); it2.hasNext(); ) {
 
                     ApplicationResource appResource = (ApplicationResource) it2.next();
 
@@ -85,7 +86,7 @@ public class TomcatAvailabilityController extends TomcatContainerController {
         } else {
             List l = getContainerWrapper().getResourceResolver().getApplicationResources();
             for (int i = 0; i < l.size(); i++) {
-                ApplicationResource resource = (ApplicationResource)l.get(i);
+                ApplicationResource resource = (ApplicationResource) l.get(i);
                 DataSourceInfo dsi = resource.getDataSourceInfo();
                 if (dsi != null && dsi.getBusyScore() > tomcatTestReport.getDatasourceUsageScore()) {
                     tomcatTestReport.setDatasourceUsageScore(dsi.getBusyScore());
@@ -103,7 +104,7 @@ public class TomcatAvailabilityController extends TomcatContainerController {
 
         try {
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            for (; count > 0; count --) {
+            for (; count > 0; count--) {
                 bos.write(word.getBytes());
             }
             tomcatTestReport.setMemoryTest(TomcatTestReport.TEST_PASSED);
@@ -126,7 +127,7 @@ public class TomcatAvailabilityController extends TomcatContainerController {
         List fileStreams = new ArrayList();
 
         try {
-            for (; fileCount > 0; fileCount --) {
+            for (; fileCount > 0; fileCount--) {
                 File file = new File(tmpDir, "tctest_" + fileCount);
                 FileOutputStream fos = new FileOutputStream(file);
                 files.add(file);

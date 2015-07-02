@@ -11,24 +11,25 @@
 package com.googlecode.psiprobe.controllers.apps;
 
 import com.googlecode.psiprobe.controllers.ContextHandlerController;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import org.apache.catalina.Context;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * Reloads application context.
- * 
+ *
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */
 public class AjaxReloadContextController extends ContextHandlerController {
 
     protected ModelAndView handleContext(String contextName, Context context,
-                                             HttpServletRequest request, HttpServletResponse response) throws Exception {
+                                         HttpServletRequest request, HttpServletResponse response) throws Exception {
         if (!request.getContextPath().equals(contextName) && context != null) {
             try {
-                logger.info(request.getRemoteAddr() + " requested RELOAD of "+contextName);
+                logger.info(request.getRemoteAddr() + " requested RELOAD of " + contextName);
                 context.reload();
             } catch (Throwable e) {
                 logger.error(e);

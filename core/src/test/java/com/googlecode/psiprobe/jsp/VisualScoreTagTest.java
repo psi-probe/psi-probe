@@ -18,7 +18,7 @@ public class VisualScoreTagTest extends TestCase {
     }
 
     private void doTestRangeScan(int fullBlocks, int partialBlocks,
-            boolean invertLoopIndexes) {
+                                 boolean invertLoopIndexes) {
         int value = 0;
         int value2 = 0;
         int count = 0;
@@ -66,7 +66,7 @@ public class VisualScoreTagTest extends TestCase {
     }
 
     private String[] callCalculateSuffix(int value, int value2, int fullBlocks,
-            int partialBlocks) {
+                                         int partialBlocks) {
         String body = "{0} ";
 
         VisualScoreTag visualScoreTag = new VisualScoreTag();

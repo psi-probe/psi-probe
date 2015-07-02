@@ -10,16 +10,17 @@
  */
 package com.googlecode.psiprobe.controllers.system;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * Advises Java to run GC asap.
- * 
+ *
  * @author Vlad Ilyushchenko
  */
 public class AdviseGCController extends ParameterizableViewController {
@@ -51,7 +52,7 @@ public class AdviseGCController extends ParameterizableViewController {
             Runtime.getRuntime().gc();
             logger.debug("Advised Garbage Collection");
         }
-        logger.debug("Redirected to "+redirectURL);
+        logger.debug("Redirected to " + redirectURL);
         return new ModelAndView(new RedirectView(redirectURL));
     }
 }

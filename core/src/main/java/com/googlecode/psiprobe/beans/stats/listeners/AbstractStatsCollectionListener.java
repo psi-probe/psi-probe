@@ -14,7 +14,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- *
  * @author Mark Lewis
  */
 public abstract class AbstractStatsCollectionListener implements StatsCollectionListener {
@@ -61,7 +60,7 @@ public abstract class AbstractStatsCollectionListener implements StatsCollection
         }
         return result;
     }
-    
+
     protected String getPropertyValue(String key) {
         return System.getProperty(key);
     }

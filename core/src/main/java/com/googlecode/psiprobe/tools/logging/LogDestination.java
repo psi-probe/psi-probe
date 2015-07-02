@@ -11,24 +11,33 @@
 package com.googlecode.psiprobe.tools.logging;
 
 import com.googlecode.psiprobe.model.Application;
+
 import java.io.File;
 import java.sql.Timestamp;
 
 /**
- * 
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */
 public interface LogDestination {
     Application getApplication();
+
     boolean isRoot();
+
     boolean isContext();
+
     String getName();
+
     String getIndex();
+
     String getTargetClass();
+
     String getConversionPattern();
+
     File getFile();
+
     long getSize();
+
     Timestamp getLastModified();
 
     /**
@@ -37,6 +46,8 @@ public interface LogDestination {
      * @return the class of the log
      */
     String getLogType();
+
     String getLevel();
+
     String[] getValidLevels();
 }

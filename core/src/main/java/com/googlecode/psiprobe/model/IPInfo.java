@@ -13,7 +13,6 @@ package com.googlecode.psiprobe.model;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- *
  * @author Mark Lewis
  */
 public class IPInfo {

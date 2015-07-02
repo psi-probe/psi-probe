@@ -10,14 +10,14 @@
  */
 package com.googlecode.psiprobe.controllers.wrapper;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
 import org.tanukisoftware.wrapper.WrapperManager;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
- * 
  * @author Vlad Ilyushchenko
  */
 public class RestartJvmController extends ParameterizableViewController {
@@ -25,7 +25,7 @@ public class RestartJvmController extends ParameterizableViewController {
         boolean done = false;
         try {
             Class.forName("org.tanukisoftware.wrapper.WrapperManager");
-            logger.info("JVM is RESTARTED by "+request.getRemoteAddr());
+            logger.info("JVM is RESTARTED by " + request.getRemoteAddr());
             WrapperManager.restartAndReturn();
             done = true;
         } catch (ClassNotFoundException e) {

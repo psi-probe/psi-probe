@@ -10,17 +10,13 @@
  */
 package com.googlecode.psiprobe.tools;
 
-import javax.management.AttributeNotFoundException;
-import javax.management.MBeanAttributeInfo;
-import javax.management.MBeanInfo;
-import javax.management.MBeanServer;
-import javax.management.ObjectName;
-import javax.management.openmbean.CompositeData;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import javax.management.*;
+import javax.management.openmbean.CompositeData;
+
 /**
- * 
  * @author Vlad Ilyushchenko
  */
 public class JmxTools {
@@ -31,7 +27,7 @@ public class JmxTools {
         try {
             return mBeanServer.getAttribute(oName, attrName);
         } catch (AttributeNotFoundException e) {
-            logger.error(oName + " does not have \""+attrName+"\" attribute");
+            logger.error(oName + " does not have \"" + attrName + "\" attribute");
             return null;
         }
     }
@@ -61,7 +57,7 @@ public class JmxTools {
     public static long getLongAttr(CompositeData cds, String name) {
         Object o = cds.get(name);
         if (o != null && o instanceof Long) {
-            return ((Long)o).longValue();
+            return ((Long) o).longValue();
         } else {
             return 0;
         }
@@ -81,7 +77,7 @@ public class JmxTools {
         Object o = cds.get(name);
 
         if (o != null && o instanceof Integer) {
-            return ((Integer)o).intValue();
+            return ((Integer) o).intValue();
         } else {
             return defaultValue;
         }

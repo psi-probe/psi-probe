@@ -14,7 +14,6 @@ import com.googlecode.psiprobe.beans.RuntimeInfoAccessorBean;
 import com.googlecode.psiprobe.model.jmx.RuntimeInformation;
 
 /**
- * 
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */
@@ -33,9 +32,9 @@ public class RuntimeStatsCollectorBean extends AbstractStatsCollectorBean {
         RuntimeInformation ri = runtimeInfoAccessorBean.getRuntimeInformation();
         if (ri != null) {
             long time = System.currentTimeMillis();
-            buildAbsoluteStats("os.memory.committed", ri.getCommittedVirtualMemorySize()/1024, time);
-            buildAbsoluteStats("os.memory.physical", (ri.getTotalPhysicalMemorySize() - ri.getFreePhysicalMemorySize())/1024, time);
-            buildAbsoluteStats("os.memory.swap", (ri.getTotalSwapSpaceSize() - ri.getFreeSwapSpaceSize())/1024, time);
+            buildAbsoluteStats("os.memory.committed", ri.getCommittedVirtualMemorySize() / 1024, time);
+            buildAbsoluteStats("os.memory.physical", (ri.getTotalPhysicalMemorySize() - ri.getFreePhysicalMemorySize()) / 1024, time);
+            buildAbsoluteStats("os.memory.swap", (ri.getTotalSwapSpaceSize() - ri.getFreeSwapSpaceSize()) / 1024, time);
 
             buildAbsoluteStats("os.fd.open", ri.getOpenFDCount(), time);
             buildAbsoluteStats("os.fd.max", ri.getMaxFDCount(), time);

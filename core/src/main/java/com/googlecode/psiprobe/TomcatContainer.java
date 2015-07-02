@@ -11,18 +11,18 @@
 package com.googlecode.psiprobe;
 
 import com.googlecode.psiprobe.model.jsp.Summary;
+import org.apache.catalina.Context;
+import org.apache.catalina.Wrapper;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.List;
-import org.apache.catalina.Context;
-import org.apache.catalina.Wrapper;
 
 /**
  * Part of Tomcat container version abstraction layer.
- * 
+ *
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */
@@ -46,7 +46,7 @@ public interface TomcatContainer {
      * Installs .war file at the given context name.
      *
      * @param name the name of the context
-     * @param url pointer to .war file to be deployed
+     * @param url  pointer to .war file to be deployed
      * @throws Exception
      */
     void installWar(String name, URL url) throws Exception;
@@ -83,19 +83,19 @@ public interface TomcatContainer {
     String getServletFileNameForJsp(Context context, String jspName);
 
     List getApplicationFilterMaps(Context context);
-    
+
     boolean getAvailable(Context context);
-    
+
     public void addContextResource(Context context, List resourceList,
-			boolean contextBound);
-    
+                                   boolean contextBound);
+
     public void addContextResourceLink(Context context, List resourceList,
-			boolean contextBound);
-    
+                                       boolean contextBound);
+
     public List getApplicationFilters(Context context);
-    
+
     public List getApplicationInitParams(Context context);
-    
+
     boolean resourceExists(String name, Context context);
 
     InputStream getResourceStream(String name, Context context) throws IOException;

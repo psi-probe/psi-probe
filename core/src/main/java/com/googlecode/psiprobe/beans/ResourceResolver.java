@@ -10,18 +10,17 @@
  */
 package com.googlecode.psiprobe.beans;
 
-import java.util.List;
+import org.apache.catalina.Context;
 
 import javax.management.MBeanServer;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-
-import org.apache.catalina.Context;
+import java.util.List;
 
 /**
  * Interface of beans that retrieve information about "resources" of application server. Typically those resources would
  * be datasources.
- * 
+ *
  * @author Vlad Ilyushchenko
  * @author Andy Shapoval
  * @author Mark Lewis
@@ -34,7 +33,6 @@ public interface ResourceResolver {
      * resources, which alters the way resource information is displayed (and accessed).
      *
      * @return true if datasources can be associated with applications, otherwise false.
-     *
      * @see #getApplicationResources(org.apache.catalina.Context)
      */
     boolean supportsPrivateResources();
@@ -44,8 +42,7 @@ public interface ResourceResolver {
      * not, this returns false.
      *
      * @return true if the servlet container supports global resources,
-     *         otherwise false.
-     *
+     * otherwise false.
      * @see #getApplicationResources()
      */
     boolean supportsGlobalResources();
@@ -54,16 +51,15 @@ public interface ResourceResolver {
      * Indicates whether this servlet container exposes datasources via JNDI.
      *
      * @return true if the servlet container supports datasource lookup
-     *
      * @see #lookupDataSource(org.apache.catalina.Context, java.lang.String, com.googlecode.psiprobe.beans.ContainerWrapperBean)
      */
     boolean supportsDataSourceLookup();
 
     List getApplicationResources() throws NamingException;
 
-    List getApplicationResources (Context context, ContainerWrapperBean containerWrapper) throws NamingException;
+    List getApplicationResources(Context context, ContainerWrapperBean containerWrapper) throws NamingException;
 
-    boolean resetResource (Context context, String resourceName, ContainerWrapperBean containerWrapper) throws NamingException;
+    boolean resetResource(Context context, String resourceName, ContainerWrapperBean containerWrapper) throws NamingException;
 
     DataSource lookupDataSource(Context context, String resourceName, ContainerWrapperBean containerWrapper) throws NamingException;
 
@@ -71,7 +67,7 @@ public interface ResourceResolver {
      * Method that gets {@link MBeanServer} instance that is "default" for the
      * current environment. It is preferably to use this method to locate the
      * "default" {@link MBeanServer} implementation.
-     * 
+     *
      * @return "default" {@link MBeanServer} instance for the current environment
      */
     MBeanServer getMBeanServer();

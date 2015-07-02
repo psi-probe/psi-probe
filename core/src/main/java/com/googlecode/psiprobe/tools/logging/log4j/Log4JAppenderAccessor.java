@@ -11,10 +11,10 @@
 package com.googlecode.psiprobe.tools.logging.log4j;
 
 import com.googlecode.psiprobe.tools.logging.AbstractLogDestination;
+
 import java.io.File;
 
 /**
- * 
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */
@@ -68,7 +68,7 @@ public class Log4JAppenderAccessor extends AbstractLogDestination {
     }
 
     public String[] getValidLevels() {
-        return new String[] {"OFF", "FATAL", "ERROR", "WARN", "INFO", "DEBUG", "TRACE", "ALL"};
+        return new String[]{"OFF", "FATAL", "ERROR", "WARN", "INFO", "DEBUG", "TRACE", "ALL"};
     }
-    
+
 }

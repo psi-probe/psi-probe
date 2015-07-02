@@ -16,7 +16,6 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * 
  * @author Vlad Ilyushchenko
  */
 public class Tokenizer {
@@ -27,10 +26,10 @@ public class Tokenizer {
 
     private Reader reader;
     private final List symbols;
-/*
-    private boolean enableHidden;
-    private boolean hideNonSymbols;
-*/
+    /*
+        private boolean enableHidden;
+        private boolean hideNonSymbols;
+    */
     private int pushCount = 0;
     //
     private final TokenizerToken token;
@@ -59,11 +58,11 @@ public class Tokenizer {
 
     private void loadCache(int count) throws IOException {
         int charToRead = count == 0 ? 0 : count - 1;
-        if(cachePosition + charToRead  >= cacheSize) {
+        if (cachePosition + charToRead >= cacheSize) {
             if (cacheSize == 0) {
                 cacheSize = reader.read(cacheBuffer, 0, cacheBuffer.length);
                 cachePosition = 0;
-            } else if (cacheSize == cacheBuffer.length){
+            } else if (cacheSize == cacheBuffer.length) {
                 // make sure we do not read beyond the stream
                 int halfCacheSize = cacheSize / 2;
                 // copy the lower half into the upper half
@@ -109,7 +108,7 @@ public class Tokenizer {
                 if (symbolIndex != -1) {
                     // we have found a symbol
                     TokenizerToken workToken = token.type == Tokenizer.TT_TOKEN && token.text.length() > 0 ? upcomingToken : token;
-                    TokenizerSymbol symbol = ((TokenizerSymbol)symbols.get(symbolIndex));
+                    TokenizerSymbol symbol = ((TokenizerSymbol) symbols.get(symbolIndex));
                     boolean hideSymbol = symbol.hidden;
 
                     if (!hideSymbol) {
@@ -163,11 +162,11 @@ public class Tokenizer {
     }
 
     private boolean compare(char[] chars, int offs) throws IOException {
-        char[] b = new char[chars.length-offs];
+        char[] b = new char[chars.length - offs];
         cachePinPosition = cachePosition;
         read(b, b.length);
-        for (int i=0; i < b.length; i++) {
-            if (b[i] != chars[i+offs]) {
+        for (int i = 0; i < b.length; i++) {
+            if (b[i] != chars[i + offs]) {
                 cachePosition = cachePinPosition;
                 cachePinPosition = -1;
                 return false;
@@ -185,7 +184,7 @@ public class Tokenizer {
         if (index >= 0) {
             // the index could be anywhere within a group of sybols with the same first letter
             // so we need to scroll up the group to make sure we start test from the beginning
-            while (index > 0 && ((TokenizerSymbol) symbols.get(index-1)).compareTo(c) == 0) {
+            while (index > 0 && ((TokenizerSymbol) symbols.get(index - 1)).compareTo(c) == 0) {
                 index--;
             }
             while (index < symbols.size()) {
@@ -211,7 +210,7 @@ public class Tokenizer {
         if (cachePosition <= endPoint) {
             System.arraycopy(cacheBuffer, cachePosition, b, 0, endPoint - cachePosition + 1);
         }
-        cachePosition = endPoint+1;
+        cachePosition = endPoint + 1;
     }
 
     public boolean hasMore() throws IOException {
@@ -258,7 +257,7 @@ public class Tokenizer {
     }
 }
 
-class TokenizerToken implements Token{
+class TokenizerToken implements Token {
     final StringBuffer text = new StringBuffer();
     final StringBuffer innerText = new StringBuffer();
     String name = "";

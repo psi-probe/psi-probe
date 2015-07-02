@@ -15,15 +15,16 @@ import com.googlecode.psiprobe.model.Application;
 import com.googlecode.psiprobe.model.stats.StatsCollection;
 import com.googlecode.psiprobe.tools.ApplicationUtils;
 import com.googlecode.psiprobe.tools.SecurityUtils;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import org.apache.catalina.Context;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * Retrieves Application model object populated with application information.
- * 
+ *
  * @author Andy Shapoval
  * @author Vlad Ilyushchenko
  * @author Mark Lewis

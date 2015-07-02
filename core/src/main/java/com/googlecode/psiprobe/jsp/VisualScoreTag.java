@@ -10,17 +10,17 @@
  */
 package com.googlecode.psiprobe.jsp;
 
-import java.io.IOException;
-import java.text.MessageFormat;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.BodyContent;
 import javax.servlet.jsp.tagext.BodyTagSupport;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import java.io.IOException;
+import java.text.MessageFormat;
 
 /**
- * 
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */
@@ -65,7 +65,7 @@ public class VisualScoreTag extends BodyTagSupport {
      */
     private int fullBlocks = 5;
 
-    private boolean showEmptyBlocks=false;
+    private boolean showEmptyBlocks = false;
     private boolean showA = false;
     private boolean showB = false;
 
@@ -166,7 +166,7 @@ public class VisualScoreTag extends BodyTagSupport {
             } else if (fullRedBlockCount + (partialRedBlockIndex + partialBlueBlockIndex1 == partialBlocks ? 1 : 0) + fullBlueBlockCount == fullBlocks) {
                 format = BLUE_RIGHT_BORDER;
             }
-            buf.append(MessageFormat.format(body, new Object[] { format }));
+            buf.append(MessageFormat.format(body, new Object[]{format}));
         }
 
         return buf;

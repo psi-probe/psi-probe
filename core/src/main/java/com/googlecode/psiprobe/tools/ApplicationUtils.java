@@ -10,46 +10,28 @@
  */
 package com.googlecode.psiprobe.tools;
 
-import java.io.Serializable;
-import java.net.InetAddress;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Enumeration;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
-
-import javax.naming.NamingException;
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpSession;
-
+import com.googlecode.psiprobe.beans.ContainerWrapperBean;
+import com.googlecode.psiprobe.beans.ResourceResolver;
+import com.googlecode.psiprobe.model.*;
 import net.sf.javainetlocator.InetAddressLocator;
-
 import org.apache.catalina.Container;
 import org.apache.catalina.Context;
 import org.apache.catalina.Session;
 import org.apache.catalina.Wrapper;
 import org.apache.catalina.core.StandardWrapper;
-import org.apache.catalina.deploy.ApplicationParameter;
 import org.apache.catalina.deploy.FilterDef;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.util.ClassUtils;
 
-import com.googlecode.psiprobe.beans.ContainerWrapperBean;
-import com.googlecode.psiprobe.beans.ResourceResolver;
-import com.googlecode.psiprobe.model.Application;
-import com.googlecode.psiprobe.model.ApplicationParam;
-import com.googlecode.psiprobe.model.ApplicationResource;
-import com.googlecode.psiprobe.model.ApplicationSession;
-import com.googlecode.psiprobe.model.Attribute;
-import com.googlecode.psiprobe.model.FilterInfo;
-import com.googlecode.psiprobe.model.ServletInfo;
-import com.googlecode.psiprobe.model.ServletMapping;
+import javax.naming.NamingException;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
+import java.io.Serializable;
+import java.net.InetAddress;
+import java.util.*;
 
 /**
- * 
  * @author Vlad Ilyushchenko
  * @author Andy Shapoval
  * @author Mark Lewis
@@ -57,7 +39,7 @@ import com.googlecode.psiprobe.model.ServletMapping;
 public class ApplicationUtils {
 
     private static Log logger = LogFactory.getLog(ApplicationUtils.class);
-    
+
     public static Application getApplication(Context context, ContainerWrapperBean containerWrapper) {
         return getApplication(context, null, false, containerWrapper);
     }
@@ -82,7 +64,7 @@ public class ApplicationUtils {
         app.setName(context.getName().length() > 0 ? context.getName() : "/");
         app.setDocBase(context.getDocBase());
         app.setDisplayName(context.getDisplayName());
-       
+
         app.setAvailable(containerWrapper.getTomcatContainer().getAvailable(context));
         app.setDistributable(context.getDistributable());
         app.setSessionTimeout(context.getSessionTimeout());
@@ -176,14 +158,14 @@ public class ApplicationUtils {
     public static int[] getApplicationDataSourceUsageScores(Context context, ResourceResolver resolver, ContainerWrapperBean containerWrapper) {
         logger.debug("Calculating datasource usage score");
 
-        int[] scores = new int[] {0, 0};
+        int[] scores = new int[]{0, 0};
         List appResources;
         try {
             appResources = resolver.getApplicationResources(context, containerWrapper);
         } catch (NamingException e) {
             throw new RuntimeException(e);
         }
-        for (Iterator it = appResources.iterator(); it.hasNext();) {
+        for (Iterator it = appResources.iterator(); it.hasNext(); ) {
             ApplicationResource appResource = (ApplicationResource) it.next();
             if (appResource.getDataSourceInfo() != null) {
                 scores[0] = Math.max(scores[0], appResource.getDataSourceInfo().getBusyScore());
@@ -212,11 +194,11 @@ public class ApplicationUtils {
 
             HttpSession httpSession = session.getSession();
             Set processedObjects = new HashSet(1000);
-            
+
             //Exclude references back to the session itself
             processedObjects.add(httpSession);
             try {
-                for (Enumeration e = httpSession.getAttributeNames(); e.hasMoreElements();) {
+                for (Enumeration e = httpSession.getAttributeNames(); e.hasMoreElements(); ) {
                     String name = (String) e.nextElement();
                     Object o = httpSession.getAttribute(name);
                     sessionSerializable = sessionSerializable && o instanceof Serializable;
@@ -256,7 +238,7 @@ public class ApplicationUtils {
                 try {
                     sbean.setLastAccessedIPLocale(InetAddressLocator.getLocale(InetAddress.getByName(lastAccessedIP).getAddress()));
                 } catch (Throwable e) {
-                    logger.error("Cannot determine Locale of "+lastAccessedIP);
+                    logger.error("Cannot determine Locale of " + lastAccessedIP);
                     //
                     // make sure we always re-throw ThreadDeath
                     //
@@ -295,7 +277,7 @@ public class ApplicationUtils {
     }
 
     public static List getApplicationInitParams(Context context, ContainerWrapperBean containerWrapper) {
-    	return containerWrapper.getTomcatContainer().getApplicationInitParams(context);
+        return containerWrapper.getTomcatContainer().getApplicationInitParams(context);
     }
 
     public static ServletInfo getApplicationServlet(Context context, String servletName) {
@@ -314,7 +296,7 @@ public class ApplicationUtils {
         si.setApplicationName(contextName.length() > 0 ? contextName : "/");
         si.setServletName(w.getName());
         si.setServletClass(w.getServletClass());
-        si.setAvailable(! w.isUnavailable());
+        si.setAvailable(!w.isUnavailable());
         si.setLoadOnStartup(w.getLoadOnStartup());
         si.setRunAs(w.getRunAs());
         String[] ms = w.findMappings();
@@ -351,7 +333,7 @@ public class ApplicationUtils {
     public static List getApplicationServletMaps(Context context) {
         String[] sms = context.findServletMappings();
         List servletMaps = new ArrayList(sms.length);
-        for(int i = 0; i < sms.length; i++) {
+        for (int i = 0; i < sms.length; i++) {
             if (sms[i] != null) {
                 String sn = context.findServletMapping(sms[i]);
                 if (sn != null) {
@@ -363,7 +345,7 @@ public class ApplicationUtils {
                     if (c instanceof Wrapper) {
                         Wrapper w = (Wrapper) c;
                         sm.setServletClass(w.getServletClass());
-                        sm.setAvailable(! w.isUnavailable());
+                        sm.setAvailable(!w.isUnavailable());
                     }
                     servletMaps.add(sm);
                 }
@@ -380,7 +362,7 @@ public class ApplicationUtils {
             return null;
         }
     }
-    
+
     private static FilterInfo getFilterInfo(FilterDef fd) {
         FilterInfo fi = new FilterInfo();
         fi.setFilterName(fd.getFilterName());
@@ -388,8 +370,8 @@ public class ApplicationUtils {
         fi.setFilterDesc(fd.getDescription());
         return fi;
     }
-    
+
     public static List getApplicationFilters(Context context, ContainerWrapperBean containerWrapper) {
-    	return containerWrapper.getTomcatContainer().getApplicationFilters(context);
+        return containerWrapper.getTomcatContainer().getApplicationFilters(context);
     }
 }

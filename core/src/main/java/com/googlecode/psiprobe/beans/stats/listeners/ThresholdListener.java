@@ -12,17 +12,17 @@ package com.googlecode.psiprobe.beans.stats.listeners;
 
 import com.googlecode.psiprobe.Utils;
 import com.googlecode.psiprobe.tools.SizeExpression;
+
 import java.util.HashMap;
 
 /**
- *
  * @author Mark Lewis
  */
 public abstract class ThresholdListener extends AbstractStatsCollectionListener {
-    
+
     public static final long DEFAULT_THRESHOLD = Long.MAX_VALUE;
     public static final long DEFAULT_VALUE = Long.MIN_VALUE;
-    
+
     private HashMap/*String, Long*/ previousValues = new HashMap();
     private HashMap/*String, Boolean*/ seriesDisabled = new HashMap();
 
@@ -74,7 +74,7 @@ public abstract class ThresholdListener extends AbstractStatsCollectionListener 
         long threshold = getThreshold(name);
         return value > threshold;
     }
-    
+
     protected long getThreshold(String name) {
         String threshold = getPropertyValue(name, "threshold");
         if (threshold == null && !isSeriesDisabled(name)) {

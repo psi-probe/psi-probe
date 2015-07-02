@@ -11,6 +11,12 @@
 package com.googlecode.psiprobe.controllers;
 
 import com.googlecode.psiprobe.tools.Whois;
+import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.ParameterizableViewController;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -19,14 +25,8 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import org.springframework.web.bind.ServletRequestUtils;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.ParameterizableViewController;
 
 /**
- * 
  * @author Vlad Ilyushchenko
  */
 public class WhoisController extends ParameterizableViewController {
@@ -78,7 +78,7 @@ public class WhoisController extends ParameterizableViewController {
             BufferedReader br = new BufferedReader(new InputStreamReader(new ByteArrayInputStream(wh.getSummary().getBytes())));
             try {
                 String line;
-                while ( (line = br.readLine()) != null) {
+                while ((line = br.readLine()) != null) {
                     lines.add(line);
                 }
             } finally {
@@ -90,12 +90,12 @@ public class WhoisController extends ParameterizableViewController {
             try {
                 reverseName = InetAddress.getByName(theIP).getCanonicalHostName();
             } catch (UnknownHostException e) {
-                logger.error("could not run a DNS query on "+theIP);
+                logger.error("could not run a DNS query on " + theIP);
             }
         }
         return new ModelAndView(getViewName(), "result", lines).
                 addObject("timeout", Boolean.valueOf(timeout)).
-                addObject("whoisServer", wh != null ? wh.getServer() + ":"+ wh.getPort() : defaultServer + ":" + defaultPort).
+                addObject("whoisServer", wh != null ? wh.getServer() + ":" + wh.getPort() : defaultServer + ":" + defaultPort).
                 addObject("domainName", reverseName);
     }
 }

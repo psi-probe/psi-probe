@@ -10,15 +10,16 @@
  */
 package com.googlecode.psiprobe.jsp;
 
-import java.io.IOException;
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.tagext.TagSupport;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.tagext.TagSupport;
+import java.io.IOException;
+
 /**
  * Silly JSP tag to display duration in milliseconds as hours:minutes:seconds.milliseconds
- * 
+ *
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */
@@ -55,11 +56,11 @@ public class DurationTag extends TagSupport {
     }
 
     private static String long2Str(long l) {
-        return l < 10 ? "0"+l : Long.toString(l);
+        return l < 10 ? "0" + l : Long.toString(l);
     }
 
     private static String long3Str(long l) {
-        return l < 10 ? "00"+l : l < 100 ? "0"+l : Long.toString(l);
+        return l < 10 ? "00" + l : l < 100 ? "0" + l : Long.toString(l);
     }
 
 }

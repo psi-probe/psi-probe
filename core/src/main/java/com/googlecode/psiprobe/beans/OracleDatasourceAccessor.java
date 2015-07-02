@@ -12,21 +12,22 @@ package com.googlecode.psiprobe.beans;
 
 import com.googlecode.psiprobe.Utils;
 import com.googlecode.psiprobe.model.DataSourceInfo;
-import java.util.Properties;
 import oracle.jdbc.pool.OracleConnectionCacheManager;
 import oracle.jdbc.pool.OracleDataSource;
 
+import java.util.Properties;
+
 /**
  * Accesses oracle.jdbc.pool.OracleDataSource.
- *
+ * <p/>
  * Oracle connection pool is quite different from any other available for Tomcat.
  * Datasources are run by static OracleConnectionCacheManager, whereby application context scope datasource
  * would have a named entry in OracleConnectionCacheManager.
- * 
+ * <p/>
  * Datasources do not have information about pool as such, therefore this accessor has to do quite tedious job
  * of verifying whether the datasource has a record in the cache manager or not. The pool information is subsequently
- * retrieved from the relevant cache manager entry. 
- * 
+ * retrieved from the relevant cache manager entry.
+ *
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */

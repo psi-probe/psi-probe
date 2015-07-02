@@ -10,9 +10,10 @@
  */
 package com.googlecode.psiprobe.tools;
 
+import org.apache.commons.logging.Log;
+
 import java.io.OutputStream;
 import java.io.PrintStream;
-import org.apache.commons.logging.Log;
 
 /**
  * An {@code OutputStream} which writes to a commons-logging {@code Log} at a
@@ -22,11 +23,11 @@ import org.apache.commons.logging.Log;
  */
 public class LogOutputStream extends OutputStream {
 
-    public static final int LEVEL_OFF   = 0;
+    public static final int LEVEL_OFF = 0;
     public static final int LEVEL_TRACE = 1;
     public static final int LEVEL_DEBUG = 2;
-    public static final int LEVEL_INFO  = 3;
-    public static final int LEVEL_WARN  = 4;
+    public static final int LEVEL_INFO = 3;
+    public static final int LEVEL_WARN = 4;
     public static final int LEVEL_ERROR = 5;
     public static final int LEVEL_FATAL = 6;
 
@@ -37,11 +38,9 @@ public class LogOutputStream extends OutputStream {
     /**
      * Creates a {@code PrintStream} with autoFlush enabled which will write to
      * the given {@code Log} at the given level.
-     * 
-     * @param log
-     *        the {@code Log} to which to write
-     * @param level
-     *        the level at which to write
+     *
+     * @param log   the {@code Log} to which to write
+     * @param level the level at which to write
      * @return a {@code PrintStream} that writes to the given log
      */
     public static PrintStream createPrintStream(Log log, int level) {
@@ -52,13 +51,10 @@ public class LogOutputStream extends OutputStream {
     /**
      * Creates a new instance of {@code LogOutputStream} which will write to
      * a given {@code Log} at the given level.
-     * 
-     * @param log
-     *        the {@code Log} to which to write
-     * @param level
-     *        the level at which to write
-     * @throws IllegalArgumentException
-     *         if {@code log} is null
+     *
+     * @param log   the {@code Log} to which to write
+     * @param level the level at which to write
+     * @throws IllegalArgumentException if {@code log} is null
      */
     private LogOutputStream(Log log, int level) {
         if (log == null) {
@@ -83,8 +79,7 @@ public class LogOutputStream extends OutputStream {
     /**
      * Writes the specified {@code byte} to this stream.
      *
-     * @param b
-     *        the {@code byte} to write
+     * @param b the {@code byte} to write
      */
     public void write(int b) {
         if (shouldWrite()) {
@@ -116,7 +111,7 @@ public class LogOutputStream extends OutputStream {
      * stream's level.
      *
      * @return {@code true} if the level of the underlying {@code Log} is equal
-     *         to or greater than the level assigned to this stream
+     * to or greater than the level assigned to this stream
      */
     private boolean shouldWrite() {
         switch (level) {
@@ -140,9 +135,8 @@ public class LogOutputStream extends OutputStream {
     /**
      * Writes the given message to this stream's {@code Log} at this stream's
      * level.
-     * 
-     * @param message
-     *        the message to be written
+     *
+     * @param message the message to be written
      */
     private void log(String message) {
         if (message == null || "".equals(message)) {

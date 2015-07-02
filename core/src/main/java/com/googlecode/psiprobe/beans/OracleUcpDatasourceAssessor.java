@@ -1,13 +1,12 @@
 package com.googlecode.psiprobe.beans;
 
+import com.googlecode.psiprobe.model.DataSourceInfo;
 import oracle.ucp.jdbc.JDBCConnectionPoolStatistics;
 import oracle.ucp.jdbc.PoolDataSource;
 
-import com.googlecode.psiprobe.model.DataSourceInfo;
-
 /**
  * Accesses an Oracle Universal Connection Pool (UCP) resource.
- * 
+ *
  * @author polaris.keith
  * @author Mark Lewis
  */

@@ -12,14 +12,15 @@ package com.googlecode.psiprobe.controllers.threads;
 
 import com.googlecode.psiprobe.beans.ContainerListenerBean;
 import com.googlecode.psiprobe.controllers.TomcatContainerController;
-import java.util.List;
+import org.springframework.web.servlet.ModelAndView;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.springframework.web.servlet.ModelAndView;
+import java.util.List;
 
 /**
  * Creates the list of http connection thread pools.
- * 
+ *
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */

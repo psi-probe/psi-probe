@@ -11,14 +11,14 @@
 package com.googlecode.psiprobe.controllers.logs;
 
 import com.googlecode.psiprobe.tools.logging.LogDestination;
-import java.io.File;
-import java.util.List;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.util.List;
+
 /**
- * 
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */

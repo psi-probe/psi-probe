@@ -11,13 +11,12 @@
 package com.googlecode.psiprobe.beans.stats.listeners;
 
 import com.googlecode.psiprobe.Utils;
+
 import java.util.HashMap;
 import java.util.LinkedList;
 
 /**
- *
  * @author Mark Lewis
- * 
  * @see <a href="http://nagios.sourceforge.net/docs/3_0/flapping.html">Detection and Handling of State Flapping (nagios)</a>
  */
 public abstract class FlapListener extends ThresholdListener {
@@ -61,7 +60,7 @@ public abstract class FlapListener extends ThresholdListener {
         flappingStates.clear();
         super.reset();
     }
-    
+
     protected void statsCollected(StatsCollectionEvent sce, boolean crossedThreshold, boolean above) {
         String name = sce.getName();
         boolean flappingStateChanged = checkFlappingStateChanged(name, crossedThreshold);
@@ -165,7 +164,7 @@ public abstract class FlapListener extends ThresholdListener {
         String lowWeight = getPropertyValue(name, "flapLowWeight");
         return Utils.toFloat(lowWeight, getDefaultFlapLowWeight());
     }
-    
+
     protected float getFlapHighWeight(String name) {
         String highWeight = getPropertyValue(name, "flapHighWeight");
         return Utils.toFloat(highWeight, getDefaultFlapHighWeight());

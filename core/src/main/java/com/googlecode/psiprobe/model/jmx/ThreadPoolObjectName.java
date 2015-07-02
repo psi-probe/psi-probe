@@ -10,9 +10,9 @@
  */
 package com.googlecode.psiprobe.model.jmx;
 
+import javax.management.ObjectName;
 import java.util.ArrayList;
 import java.util.List;
-import javax.management.ObjectName;
 
 /**
  * This bean represens a hierarchy of Tomcat's ObjectNames necessary to display
@@ -20,7 +20,7 @@ import javax.management.ObjectName;
  *
  * @author Vlad Ilyushchenko
  */
-public class ThreadPoolObjectName  {
+public class ThreadPoolObjectName {
 
     private ObjectName threadPoolName;
     private ObjectName globalRequestProcessorName;

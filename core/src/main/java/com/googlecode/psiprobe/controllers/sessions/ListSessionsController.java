@@ -16,13 +16,6 @@ import com.googlecode.psiprobe.model.Attribute;
 import com.googlecode.psiprobe.model.SessionSearchInfo;
 import com.googlecode.psiprobe.tools.ApplicationUtils;
 import com.googlecode.psiprobe.tools.SecurityUtils;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.regex.Pattern;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import org.apache.catalina.Context;
 import org.apache.catalina.Session;
 import org.apache.commons.lang.StringUtils;
@@ -30,10 +23,18 @@ import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.regex.Pattern;
+
 /**
  * Creates the list of sessions for a particular web application or all web
  * applications if a webapp request parameter is not set.
- * 
+ *
  * @author Vlad Ilyushchenko
  * @author Andy Shapoval
  */
@@ -82,7 +83,7 @@ public class ListSessionsController extends ContextHandlerController {
         }
 
         List sessionList = new ArrayList();
-        for (Iterator it = ctxs.iterator(); it.hasNext();) {
+        for (Iterator it = ctxs.iterator(); it.hasNext(); ) {
             Context ctx = (Context) it.next();
             if (ctx != null && ctx.getManager() != null && (!searchInfo.isApply() || searchInfo.isUseSearch())) {
                 Session[] sessions = ctx.getManager().findSessions();
@@ -123,12 +124,12 @@ public class ListSessionsController extends ContextHandlerController {
             searchInfo.setInfoMessage(msa.getMessage("probe.src.sessions.search.results.empty"));
         } else {
             if (!searchInfo.isSessionIdValid()) {
-                searchInfo.addErrorMessage(msa.getMessage("probe.src.sessions.search.invalid.sessionId", new Object[] {searchInfo.getSessionIdMsg()}));
+                searchInfo.addErrorMessage(msa.getMessage("probe.src.sessions.search.invalid.sessionId", new Object[]{searchInfo.getSessionIdMsg()}));
             }
             if (!searchInfo.isAttrNameValid()) {
-                for (Iterator i = searchInfo.getAttrNameMsgs().iterator(); i.hasNext();) {
+                for (Iterator i = searchInfo.getAttrNameMsgs().iterator(); i.hasNext(); ) {
                     String m = (String) i.next();
-                    searchInfo.addErrorMessage(msa.getMessage("probe.src.sessions.search.invalid.attrName", new Object[] {m}));
+                    searchInfo.addErrorMessage(msa.getMessage("probe.src.sessions.search.invalid.attrName", new Object[]{m}));
                 }
             }
             if (!searchInfo.isAgeFromValid()) {
@@ -176,11 +177,11 @@ public class ListSessionsController extends ContextHandlerController {
                 List a = new ArrayList();
                 a.addAll(searchInfo.getAttrNamePatterns());
 
-                for (Iterator i = appSession.getAttributes().iterator(); i.hasNext();) {
+                for (Iterator i = appSession.getAttributes().iterator(); i.hasNext(); ) {
                     String attrName = ((Attribute) i.next()).getName();
 
                     if (attrName != null) {
-                        for (Iterator j = a.iterator(); j.hasNext();) {
+                        for (Iterator j = a.iterator(); j.hasNext(); ) {
                             Pattern p = (Pattern) j.next();
                             if (p.matcher(attrName).matches()) {
                                 j.remove();

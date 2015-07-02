@@ -10,30 +10,27 @@
  */
 package com.googlecode.psiprobe.beans;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
+import com.googlecode.psiprobe.AbstractTomcatContainer;
+import com.googlecode.psiprobe.model.ApplicationResource;
+import com.googlecode.psiprobe.model.DataSourceInfo;
+import org.apache.catalina.Context;
+import org.apache.catalina.Server;
+import org.apache.catalina.core.StandardServer;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.commons.modeler.Registry;
 
 import javax.management.MBeanServer;
 import javax.management.ObjectName;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-
-import org.apache.catalina.Context;
-import org.apache.catalina.Server;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.apache.commons.modeler.Registry;
-import org.apache.catalina.core.StandardServer;
-
-import com.googlecode.psiprobe.model.ApplicationResource;
-import com.googlecode.psiprobe.model.DataSourceInfo;
-import com.googlecode.psiprobe.AbstractTomcatContainer;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
 
 /**
- * 
  * @author Vlad Ilyushchenko
  * @author Andy Shapoval
  * @author Mark Lewis
@@ -42,7 +39,7 @@ import com.googlecode.psiprobe.AbstractTomcatContainer;
 public class ResourceResolverBean implements ResourceResolver {
 
     private Log logger = LogFactory.getLog(getClass());
-    
+
 
     /**
      * The default resource prefix for JNDI objects in the global scope:
@@ -66,7 +63,7 @@ public class ResourceResolverBean implements ResourceResolver {
         if (server != null) {
             try {
                 Set dsNames = server.queryNames(new ObjectName("Catalina:type=Resource,resourcetype=Global,*"), null);
-                for (Iterator it = dsNames.iterator(); it.hasNext();) {
+                for (Iterator it = dsNames.iterator(); it.hasNext(); ) {
                     ObjectName objectName = (ObjectName) it.next();
                     ApplicationResource resource = new ApplicationResource();
 
@@ -98,7 +95,7 @@ public class ResourceResolverBean implements ResourceResolver {
             logger.info("Reading CONTEXT " + context.getName());
 
             boolean contextBound = false;
-			
+
             try {
                 ((AbstractTomcatContainer) containerWrapper.getTomcatContainer()).bindToContext(context);
                 contextBound = true;
@@ -108,16 +105,16 @@ public class ResourceResolverBean implements ResourceResolver {
             }
 
             try {
-            	containerWrapper.getTomcatContainer().addContextResource(context, resourceList, contextBound);
+                containerWrapper.getTomcatContainer().addContextResource(context, resourceList, contextBound);
 
-            	containerWrapper.getTomcatContainer().addContextResourceLink(context, resourceList, contextBound);
-            	for (int i = 0 ; i < resourceList.size() ; i++) {
-            		lookupResource((ApplicationResource) resourceList.get(i), contextBound, false);
-            	}
-            	
+                containerWrapper.getTomcatContainer().addContextResourceLink(context, resourceList, contextBound);
+                for (int i = 0; i < resourceList.size(); i++) {
+                    lookupResource((ApplicationResource) resourceList.get(i), contextBound, false);
+                }
+
             } finally {
                 if (contextBound) {
-					((AbstractTomcatContainer) containerWrapper.getTomcatContainer()).unbindFromContext(context);
+                    ((AbstractTomcatContainer) containerWrapper.getTomcatContainer()).unbindFromContext(context);
                 }
             }
         }
@@ -125,17 +122,16 @@ public class ResourceResolverBean implements ResourceResolver {
         return resourceList;
     }
 
-	
 
     public void lookupResource(ApplicationResource resource, boolean contextBound, boolean global) {
         DataSourceInfo dataSourceInfo = null;
         if (contextBound) {
             try {
-				javax.naming.Context ctx = !global ? new InitialContext() : getGlobalNamingContext();
+                javax.naming.Context ctx = !global ? new InitialContext() : getGlobalNamingContext();
                 String jndiName = resolveJndiName(resource.getName(), global);
                 Object o = ctx.lookup(jndiName);
                 resource.setLookedUp(true);
-                for (Iterator it = datasourceMappers.iterator(); it.hasNext();) {
+                for (Iterator it = datasourceMappers.iterator(); it.hasNext(); ) {
                     DatasourceAccessor accessor = (DatasourceAccessor) it.next();
                     dataSourceInfo = accessor.getInfo(o);
                     if (dataSourceInfo != null) {
@@ -145,7 +141,7 @@ public class ResourceResolverBean implements ResourceResolver {
 
             } catch (Throwable e) {
                 resource.setLookedUp(false);
-                dataSourceInfo = null;        
+                dataSourceInfo = null;
                 logger.error("Failed to lookup: " + resource.getName(), e);
                 //
                 // make sure we always re-throw ThreadDeath
@@ -172,15 +168,15 @@ public class ResourceResolverBean implements ResourceResolver {
     }
 
     public synchronized boolean resetResource(final Context context, String resourceName, ContainerWrapperBean containerWrapper) throws NamingException {
-		if (context != null) {
-			((AbstractTomcatContainer) containerWrapper.getTomcatContainer()).bindToContext(context);
+        if (context != null) {
+            ((AbstractTomcatContainer) containerWrapper.getTomcatContainer()).bindToContext(context);
         }
         try {
-			javax.naming.Context ctx = (context != null) ? new InitialContext() : getGlobalNamingContext();
+            javax.naming.Context ctx = (context != null) ? new InitialContext() : getGlobalNamingContext();
             String jndiName = resolveJndiName(resourceName, (context == null));
             Object o = ctx.lookup(jndiName);
             try {
-                for (Iterator it = datasourceMappers.iterator(); it.hasNext();) {
+                for (Iterator it = datasourceMappers.iterator(); it.hasNext(); ) {
                     DatasourceAccessor accessor = (DatasourceAccessor) it.next();
                     if (accessor.reset(o)) {
                         return true;
@@ -205,10 +201,10 @@ public class ResourceResolverBean implements ResourceResolver {
 
     public synchronized DataSource lookupDataSource(final Context context, String resourceName, ContainerWrapperBean containerWrapper) throws NamingException {
         if (context != null) {
-			((AbstractTomcatContainer) containerWrapper.getTomcatContainer()).bindToContext(context);
+            ((AbstractTomcatContainer) containerWrapper.getTomcatContainer()).bindToContext(context);
         }
         try {
-			javax.naming.Context ctx = (context != null) ? new InitialContext() : getGlobalNamingContext();
+            javax.naming.Context ctx = (context != null) ? new InitialContext() : getGlobalNamingContext();
             String jndiName = resolveJndiName(resourceName, (context == null));
             Object o = ctx.lookup(jndiName);
 
@@ -252,10 +248,8 @@ public class ResourceResolverBean implements ResourceResolver {
      * Resolves a JNDI resource name by prepending the scope-appropriate prefix.
      *
      * @param global whether to use the global prefix
-     * @param name the JNDI name of the resource
-     * 
+     * @param name   the JNDI name of the resource
      * @return the JNDI resource name with the prefix appended
-     *
      * @see #DEFAULT_GLOBAL_RESOURCE_PREFIX
      * @see #DEFAULT_RESOURCE_PREFIX
      */
@@ -271,29 +265,29 @@ public class ResourceResolverBean implements ResourceResolver {
             return null;
         }
     }
-	
-	/**
+
+    /**
      * Returns the Server's global naming context
      *
      * @return the global JNDI context
      */
-	protected javax.naming.Context getGlobalNamingContext() {
-		
-		javax.naming.Context globalContext = null;
-		MBeanServer mBeanServer = getMBeanServer();
-		if (mBeanServer != null) {
-			try {
-				ObjectName name = new ObjectName("Catalina:type=Server");
-				Server server = (Server) mBeanServer.getAttribute(name, "managedResource");
-				//getGlobalNamingContext() was added to Server interface in Tomcat 7.0.11
-				if (server instanceof StandardServer) {
-					globalContext = ((StandardServer) server).getGlobalNamingContext();
-				}
-			} catch (Exception e) {
-				logger.error("There was an error getting globalContext through JMX server:", e);
-			}
-		}
-		
-		return globalContext;
+    protected javax.naming.Context getGlobalNamingContext() {
+
+        javax.naming.Context globalContext = null;
+        MBeanServer mBeanServer = getMBeanServer();
+        if (mBeanServer != null) {
+            try {
+                ObjectName name = new ObjectName("Catalina:type=Server");
+                Server server = (Server) mBeanServer.getAttribute(name, "managedResource");
+                //getGlobalNamingContext() was added to Server interface in Tomcat 7.0.11
+                if (server instanceof StandardServer) {
+                    globalContext = ((StandardServer) server).getGlobalNamingContext();
+                }
+            } catch (Exception e) {
+                logger.error("There was an error getting globalContext through JMX server:", e);
+            }
+        }
+
+        return globalContext;
     }
 }

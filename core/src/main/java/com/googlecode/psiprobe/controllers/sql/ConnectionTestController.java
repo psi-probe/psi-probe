@@ -11,6 +11,14 @@
 package com.googlecode.psiprobe.controllers.sql;
 
 import com.googlecode.psiprobe.controllers.ContextHandlerController;
+import org.apache.catalina.Context;
+import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.naming.NamingException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.SQLException;
@@ -18,18 +26,11 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import javax.naming.NamingException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.sql.DataSource;
-import org.apache.catalina.Context;
-import org.springframework.web.bind.ServletRequestUtils;
-import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Verifies if a database connection can be established through a given
  * datasource. Displays basic information about the database.
- * 
+ *
  * @author Andy Shapoval
  * @author Vlad Ilyushchenko
  * @author jackdimm
@@ -68,7 +69,7 @@ public class ConnectionTestController extends ContextHandlerController {
                     conn.close();
                 }
             } catch (SQLException e) {
-                String message = getMessageSourceAccessor().getMessage("probe.src.dataSourceTest.connection.failure", new Object[] { e.getMessage() });
+                String message = getMessageSourceAccessor().getMessage("probe.src.dataSourceTest.connection.failure", new Object[]{e.getMessage()});
                 logger.error(message, e);
                 request.setAttribute("errorMessage", message);
             }

@@ -11,27 +11,28 @@
 package com.googlecode.psiprobe.tools.logging.tomcatSlf4jLogback;
 
 import com.googlecode.psiprobe.tools.logging.DefaultAccessor;
+import org.apache.commons.beanutils.MethodUtils;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import org.apache.commons.beanutils.MethodUtils;
 
 /**
  * A wrapper for a TomcatSlf4jLogback logger.
- * 
+ *
  * @author Jeremy Landis
  */
 public class TomcatSlf4jLogbackLoggerAccessor extends DefaultAccessor {
 
     /**
      * Returns all appenders of this logger.
-     * 
+     *
      * @return a list of {@link TomcatSlf4jLogbackAppenderAccessor}s
      */
     public List getAppenders() {
         List appenders = new ArrayList();
         try {
-            Iterator it =  (Iterator) MethodUtils.invokeMethod(getTarget(), "iteratorForAppenders", null);
+            Iterator it = (Iterator) MethodUtils.invokeMethod(getTarget(), "iteratorForAppenders", null);
             while (it.hasNext()) {
                 Object appender = it.next();
                 List siftedAppenders = getSiftedAppenders(appender);
@@ -52,10 +53,10 @@ public class TomcatSlf4jLogbackLoggerAccessor extends DefaultAccessor {
 
     /**
      * Returns the appender of this logger with the given name.
-     * 
+     *
      * @param name the name of the appender to return
      * @return the appender with the given name, or null if no such
-     *         appender exists for this logger
+     * appender exists for this logger
      */
     public TomcatSlf4jLogbackAppenderAccessor getAppender(String name) {
         try {
@@ -90,7 +91,7 @@ public class TomcatSlf4jLogbackLoggerAccessor extends DefaultAccessor {
 
     /**
      * Gets the log level of this logger.
-     * 
+     *
      * @return the level of this logger
      */
     public String getLevel() {
@@ -105,7 +106,7 @@ public class TomcatSlf4jLogbackLoggerAccessor extends DefaultAccessor {
 
     /**
      * Sets the log level of this logger.
-     * 
+     *
      * @param newLevelStr the name of the new level
      */
     public void setLevel(String newLevelStr) {

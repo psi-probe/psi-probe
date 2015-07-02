@@ -12,29 +12,26 @@ package com.googlecode.psiprobe.controllers.sql;
 
 import com.googlecode.psiprobe.controllers.ContextHandlerController;
 import com.googlecode.psiprobe.model.sql.DataSourceTestInfo;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import javax.naming.NamingException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.sql.DataSource;
 import org.apache.catalina.Context;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.HtmlUtils;
 
+import javax.naming.NamingException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.sql.DataSource;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * Executes an SQL query through a given datasource to test database
  * connectivity. Displays results returned by the query.
- * 
+ *
  * @author Andy Shapoval
  * @author Mark Lewis
  * @author jackdimm
@@ -60,7 +57,7 @@ public class ExecuteSqlController extends ContextHandlerController {
         HttpSession sess = request.getSession();
         DataSourceTestInfo sessData = (DataSourceTestInfo) sess.getAttribute(DataSourceTestInfo.DS_TEST_SESS_ATTR);
 
-        synchronized(sess) {
+        synchronized (sess) {
             if (sessData == null) {
                 sessData = new DataSourceTestInfo();
                 sess.setAttribute(DataSourceTestInfo.DS_TEST_SESS_ATTR, sessData);
@@ -97,7 +94,7 @@ public class ExecuteSqlController extends ContextHandlerController {
                     try {
                         boolean hasResultSet = stmt.execute();
 
-                        if (! hasResultSet) {
+                        if (!hasResultSet) {
                             rowsAffected = stmt.getUpdateCount();
                         } else {
                             results = new ArrayList();
@@ -106,7 +103,7 @@ public class ExecuteSqlController extends ContextHandlerController {
                             try {
                                 ResultSetMetaData metaData = rs.getMetaData();
 
-                                while(rs.next() && (maxRows < 0 || results.size() < maxRows)) {
+                                while (rs.next() && (maxRows < 0 || results.size() < maxRows)) {
                                     Map record = new LinkedHashMap();
 
                                     for (int i = 1; i <= metaData.getColumnCount(); i++) {
@@ -151,7 +148,7 @@ public class ExecuteSqlController extends ContextHandlerController {
                 // store the query results in the session attribute in order
                 // to support a result set pagination feature without re-executing the query
 
-                synchronized(sess) {
+                synchronized (sess) {
                     sessData.setResults(results);
                 }
 
@@ -161,7 +158,7 @@ public class ExecuteSqlController extends ContextHandlerController {
 
                 return mv;
             } catch (SQLException e) {
-                String message = getMessageSourceAccessor().getMessage("probe.src.dataSourceTest.sql.failure", new Object[] { e.getMessage() });
+                String message = getMessageSourceAccessor().getMessage("probe.src.dataSourceTest.sql.failure", new Object[]{e.getMessage()});
                 logger.error(message, e);
                 request.setAttribute("errorMessage", message);
             }

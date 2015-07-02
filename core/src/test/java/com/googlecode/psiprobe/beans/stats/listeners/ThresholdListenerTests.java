@@ -14,7 +14,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- *
  * @author Mark Lewis
  */
 public class ThresholdListenerTests {
@@ -83,7 +82,7 @@ public class ThresholdListenerTests {
         public MockThresholdListener(long threshold) {
             this.threshold = threshold;
         }
-        
+
         protected void crossedAboveThreshold(StatsCollectionEvent sce) {
             resetFlags();
             crossedAboveThreshold = true;

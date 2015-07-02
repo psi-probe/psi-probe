@@ -13,7 +13,6 @@ package com.googlecode.psiprobe.tools;
 import java.lang.reflect.Field;
 
 /**
- * 
  * @author Mark Lewis
  */
 public interface Accessor {

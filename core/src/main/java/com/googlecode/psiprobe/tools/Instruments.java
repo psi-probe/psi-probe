@@ -13,14 +13,9 @@ package com.googlecode.psiprobe.tools;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
- * 
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */
@@ -40,6 +35,7 @@ public class Instruments {
 
     private static final Accessor ACCESSOR = AccessorFactory.getInstance();
     private static final boolean IGNORE_NIO;
+
     static {
         String ignoreNIOProp = System.getProperty("com.googlecode.psiprobe.intruments.ignoreNIO");
         String os64bitProp = System.getProperty("sun.arch.data.model");
@@ -78,7 +74,7 @@ public class Instruments {
                 if (isInitialized()
                         && o != null
                         && (classLoader == null || classLoader == o.getClass().getClassLoader())
-                        && (!IGNORE_NIO || !o.getClass().getName().startsWith("java.nio.")) ) {
+                        && (!IGNORE_NIO || !o.getClass().getName().startsWith("java.nio."))) {
                     ObjectWrapper ow = new ObjectWrapper(o);
                     if (!processedObjects.contains(ow)) {
                         if (o.getClass().isArray()) {
