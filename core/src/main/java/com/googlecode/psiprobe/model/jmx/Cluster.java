@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 
  * @author Vlad Ilyushchenko
  */
 public class Cluster {

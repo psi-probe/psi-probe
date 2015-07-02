@@ -11,14 +11,14 @@
 package com.googlecode.psiprobe.tools.logging.log4j;
 
 import com.googlecode.psiprobe.tools.logging.DefaultAccessor;
+import org.apache.commons.beanutils.MethodUtils;
+
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
-import org.apache.commons.beanutils.MethodUtils;
 
 /**
- * 
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */
@@ -26,7 +26,7 @@ public class Log4JManagerAccessor extends DefaultAccessor {
 
     public Log4JManagerAccessor(ClassLoader cl) throws ClassNotFoundException {
         Class clazz = cl.loadClass("org.apache.log4j.LogManager");
-        Method m = MethodUtils.getAccessibleMethod(clazz, "exists", new Class[] {String.class});
+        Method m = MethodUtils.getAccessibleMethod(clazz, "exists", new Class[]{String.class});
         if (m == null) {
             throw new RuntimeException("The LogManager is part of the slf4j bridge.");
         }
@@ -54,8 +54,8 @@ public class Log4JManagerAccessor extends DefaultAccessor {
     public Log4JLoggerAccessor getLogger(String name) {
         try {
             Class clazz = (Class) getTarget();
-            Method m = MethodUtils.getAccessibleMethod(clazz, "getLogger", new Class[] {String.class});
-            Object logger = m.invoke(null, new Object[] {name});
+            Method m = MethodUtils.getAccessibleMethod(clazz, "getLogger", new Class[]{String.class});
+            Object logger = m.invoke(null, new Object[]{name});
             if (logger == null) {
                 throw new NullPointerException(getTarget().getClass().getName() + "#getLogger(\"" + name + "\") returned null");
             }

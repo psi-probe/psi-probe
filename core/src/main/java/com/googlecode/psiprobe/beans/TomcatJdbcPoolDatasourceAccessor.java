@@ -16,7 +16,7 @@ import org.apache.tomcat.jdbc.pool.DataSource;
 /**
  * Datasource accessor for the new
  * <a href="http://people.apache.org/~fhanik/jdbc-pool/jdbc-pool.html">Tomcat JDBC pool</a>.
- * 
+ * <p/>
  * <p>
  * Tomcat 6 can be configured to use the new pool for its datasources instead of
  * the old DBCP-based pool.  SpringSource tc Server uses this new pool

@@ -14,7 +14,6 @@ import com.googlecode.psiprobe.model.DataSourceInfo;
 import org.apache.tomcat.dbcp.dbcp.BasicDataSource;
 
 /**
- * 
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */

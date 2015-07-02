@@ -11,17 +11,13 @@
 package com.googlecode.psiprobe.tools;
 
 import com.googlecode.psiprobe.tools.Whois.Response;
+import junit.framework.TestCase;
+import org.junit.Assert;
+import org.junit.Test;
 
 import java.io.IOException;
-import java.net.InetAddress;
-
-import org.junit.Test;
-import org.junit.Assert;
-
-import junit.framework.TestCase;
 
 /**
- *
  * @author Mark Lewis
  */
 public class WhoisTests extends TestCase {
@@ -33,7 +29,7 @@ public class WhoisTests extends TestCase {
         int c = 0;
         int d = 1;
         String dotted = a + "." + b + "." + c + "." + d;
-        byte[] bytes = new byte[] {(byte) a, (byte) b, (byte) c, (byte) d};
+        byte[] bytes = new byte[]{(byte) a, (byte) b, (byte) c, (byte) d};
 
         Response response = Whois.lookup("whois.arin.net", 43, "n " + dotted, 5);
         Assert.assertEquals("SPECIAL-IPV4-LOOPBACK-IANA-RESERVED", response.getData().get("NetName"));
@@ -48,7 +44,7 @@ public class WhoisTests extends TestCase {
         int c = 45;
         int d = 100;
         String dotted = a + "." + b + "." + c + "." + d;
-        byte[] bytes = new byte[] {(byte) a, (byte) b, (byte) c, (byte) d};
+        byte[] bytes = new byte[]{(byte) a, (byte) b, (byte) c, (byte) d};
 
         Response response = Whois.lookup("whois.arin.net", 43, "n " + dotted, 5);
         Assert.assertEquals("GOOGLE", response.getData().get("NetName"));

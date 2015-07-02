@@ -11,14 +11,15 @@
 package com.googlecode.psiprobe.controllers.apps;
 
 import com.googlecode.psiprobe.controllers.ContextHandlerController;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import org.apache.catalina.Context;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * Stops a web application.
- * 
+ *
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */
@@ -28,10 +29,10 @@ public class AjaxToggleContextController extends ContextHandlerController {
         if (!request.getContextPath().equals(contextName) && context != null) {
             try {
                 if (context.getAvailable()) {
-                    logger.info(request.getRemoteAddr() + " requested STOP of "+contextName);
+                    logger.info(request.getRemoteAddr() + " requested STOP of " + contextName);
                     getContainerWrapper().getTomcatContainer().stop(contextName);
                 } else {
-                    logger.info(request.getRemoteAddr() + " requested START of "+contextName);
+                    logger.info(request.getRemoteAddr() + " requested START of " + contextName);
                     getContainerWrapper().getTomcatContainer().start(contextName);
                 }
             } catch (Throwable e) {

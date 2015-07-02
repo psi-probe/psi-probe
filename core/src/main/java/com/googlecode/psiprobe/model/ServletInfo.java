@@ -15,7 +15,7 @@ import java.util.List;
 
 /**
  * A model class representing a servlet.
- * 
+ *
  * @author Andy Shapoval
  * @author Mark Lewis
  */

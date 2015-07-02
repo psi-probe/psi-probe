@@ -14,19 +14,19 @@ import com.googlecode.psiprobe.Utils;
 import com.googlecode.psiprobe.controllers.ContextHandlerController;
 import com.googlecode.psiprobe.model.jsp.Item;
 import com.googlecode.psiprobe.model.jsp.Summary;
-import java.io.InputStream;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import org.apache.catalina.Context;
 import org.apache.jasper.EmbeddedServletOptions;
 import org.apache.jasper.Options;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.InputStream;
+
 /**
- * 
  * @author Vlad Ilyushchenko
  */
 public class ViewSourceController extends ContextHandlerController {
@@ -70,10 +70,10 @@ public class ViewSourceController extends ContextHandlerController {
                         // we have to read the JSP twice, once to figure out the content encoding
                         // the second time to read the actual content using the correct encoding
                         //
-						InputStream encodedStream = getContainerWrapper().getTomcatContainer().getResourceStream(jspName, context);
+                        InputStream encodedStream = getContainerWrapper().getTomcatContainer().getResourceStream(jspName, context);
                         item.setEncoding(Utils.getJSPEncoding(encodedStream));
                     }
-					InputStream jspStream = getContainerWrapper().getTomcatContainer().getResourceStream(jspName, context);
+                    InputStream jspStream = getContainerWrapper().getTomcatContainer().getResourceStream(jspName, context);
                     if (highlight) {
                         request.setAttribute("highlightedContent", Utils.highlightStream(jspName, jspStream, "xhtml", item.getEncoding()));
                     } else {

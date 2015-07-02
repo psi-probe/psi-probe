@@ -11,8 +11,6 @@
 package com.googlecode.psiprobe.controllers.sessions;
 
 import com.googlecode.psiprobe.controllers.TomcatContainerController;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import org.apache.catalina.Context;
 import org.apache.catalina.Manager;
 import org.apache.catalina.Session;
@@ -20,10 +18,13 @@ import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.InternalResourceView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * Expires a list of sessionIDs. Accepts a list of sid_webapp parameters that
  * are expected to be in a form of "sid;webapp"
- * 
+ *
  * @author Vlad Ilyushchenko
  * @author Andy Shapoval
  * @author Mark Lewis

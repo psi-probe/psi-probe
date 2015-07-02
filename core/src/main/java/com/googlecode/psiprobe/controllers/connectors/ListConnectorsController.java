@@ -14,16 +14,16 @@ import com.googlecode.psiprobe.beans.ContainerListenerBean;
 import com.googlecode.psiprobe.controllers.TomcatContainerController;
 import com.googlecode.psiprobe.model.Connector;
 import com.googlecode.psiprobe.model.RequestProcessor;
-import java.util.List;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.List;
+
 /**
- * 
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
- */ 
+ */
 public class ListConnectorsController extends TomcatContainerController {
     private ContainerListenerBean containerListenerBean;
     private boolean includeRequestProcessors;
@@ -57,8 +57,8 @@ public class ListConnectorsController extends TomcatContainerController {
         boolean workerThreadNameSupported = false;
         List connectors = containerListenerBean.getConnectors(includeRequestProcessors);
 
-        if (connectors.size() > 0 && ((Connector)connectors.get(0)).getRequestProcessors().size() > 0) {
-            workerThreadNameSupported = ((RequestProcessor)((Connector)connectors.get(0)).getRequestProcessors().get(0)).isWorkerThreadNameSupported();
+        if (connectors.size() > 0 && ((Connector) connectors.get(0)).getRequestProcessors().size() > 0) {
+            workerThreadNameSupported = ((RequestProcessor) ((Connector) connectors.get(0)).getRequestProcessors().get(0)).isWorkerThreadNameSupported();
         }
 
         return new ModelAndView(getViewName())

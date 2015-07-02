@@ -13,7 +13,6 @@ package com.googlecode.psiprobe.tools.url;
 import java.net.MalformedURLException;
 
 /**
- * 
  * @author Vlad Ilyushchenko
  */
 public class URLParser {
@@ -35,7 +34,7 @@ public class URLParser {
             String hostport;
 
             ppos = url.indexOf("/");
-            if (ppos >=0) {
+            if (ppos >= 0) {
                 hostport = url.substring(0, ppos);
                 path = url.substring(ppos + 1);
             } else {
@@ -49,7 +48,7 @@ public class URLParser {
                 try {
                     this.port = Integer.parseInt(port);
                 } catch (NumberFormatException e) {
-                    throw new MalformedURLException("Invalid port "+port);
+                    throw new MalformedURLException("Invalid port " + port);
                 }
             } else {
                 host = hostport;

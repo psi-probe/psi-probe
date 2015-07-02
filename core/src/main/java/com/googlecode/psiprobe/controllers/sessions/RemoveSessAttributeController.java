@@ -11,16 +11,16 @@
 package com.googlecode.psiprobe.controllers.sessions;
 
 import com.googlecode.psiprobe.controllers.ContextHandlerController;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import org.apache.catalina.Context;
 import org.apache.catalina.Session;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
- * 
  * @author Vlad Ilyushchenko
  */
 public class RemoveSessAttributeController extends ContextHandlerController {
@@ -37,6 +37,6 @@ public class RemoveSessAttributeController extends ContextHandlerController {
             session.getSession().removeAttribute(attrName);
         }
 
-        return new ModelAndView(new RedirectView(request.getContextPath() + getViewName() + "?"+request.getQueryString()));
+        return new ModelAndView(new RedirectView(request.getContextPath() + getViewName() + "?" + request.getQueryString()));
     }
 }

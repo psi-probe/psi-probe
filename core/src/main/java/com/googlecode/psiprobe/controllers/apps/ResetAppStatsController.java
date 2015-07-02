@@ -13,7 +13,6 @@ package com.googlecode.psiprobe.controllers.apps;
 import com.googlecode.psiprobe.beans.stats.collectors.AppStatsCollectorBean;
 
 /**
- *
  * @author Mark Lewis
  */
 public class ResetAppStatsController extends NoSelfContextHandlerController {

@@ -10,14 +10,14 @@
  */
 package com.googlecode.psiprobe.jsp;
 
-import java.io.IOException;
+import org.apache.commons.lang.StringEscapeUtils;
+
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.BodyTagSupport;
-import org.apache.commons.lang.StringEscapeUtils;
+import java.io.IOException;
 
 /**
- * 
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */
@@ -70,12 +70,12 @@ public class OutTag extends BodyTagSupport {
             if (maxLength != -1 && displayValue.length() > maxLength) {
                 String newValue;
                 if (ellipsisRight) {
-                    newValue = displayValue.substring(0, maxLength -3) + "...";
+                    newValue = displayValue.substring(0, maxLength - 3) + "...";
                 } else {
                     newValue = "..." + displayValue.substring(displayValue.length() - maxLength + 3);
                 }
                 String title = StringEscapeUtils.escapeHtml(displayValue);
-                out.print("<span title=\""+title+"\">"+newValue+"</span>");
+                out.print("<span title=\"" + title + "\">" + newValue + "</span>");
             } else {
                 out.print(displayValue);
             }

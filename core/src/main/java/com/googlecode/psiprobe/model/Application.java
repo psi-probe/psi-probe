@@ -14,7 +14,7 @@ import java.io.Serializable;
 
 /**
  * POJO representing Tomcat's web application.
- * 
+ *
  * @author Vlad Ilyushchenko
  * @author Andy Shapoval
  * @author Mark Lewis

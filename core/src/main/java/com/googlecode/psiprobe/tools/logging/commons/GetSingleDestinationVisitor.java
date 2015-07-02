@@ -15,7 +15,6 @@ import com.googlecode.psiprobe.tools.logging.jdk.Jdk14LoggerAccessor;
 import com.googlecode.psiprobe.tools.logging.log4j.Log4JLoggerAccessor;
 
 /**
- *
  * @author Mark Lewis
  */
 public class GetSingleDestinationVisitor extends LoggerAccessorVisitor {

@@ -17,7 +17,6 @@ import java.security.AccessController;
 import java.security.PrivilegedAction;
 
 /**
- *
  * @author Mark Lewis
  */
 public class ReflectiveAccessor implements Accessor {
@@ -34,7 +33,7 @@ public class ReflectiveAccessor implements Accessor {
         try {
             Object fieldAccessor = getFieldAccessor(f);
             if (fieldAccessor != null) {
-                return get.invoke(fieldAccessor, new Object[] {o});
+                return get.invoke(fieldAccessor, new Object[]{o});
             }
         } catch (Exception ex) {
             //ignore
@@ -44,9 +43,9 @@ public class ReflectiveAccessor implements Accessor {
 
     private static Object getFieldAccessor(Field f) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
         if (newFieldAccessor.getParameterTypes().length == 1) {
-            return newFieldAccessor.invoke(reflectionFactory, new Object[] {f});
+            return newFieldAccessor.invoke(reflectionFactory, new Object[]{f});
         } else {
-            return newFieldAccessor.invoke(reflectionFactory, new Object[] {f, Boolean.TRUE});
+            return newFieldAccessor.invoke(reflectionFactory, new Object[]{f, Boolean.TRUE});
         }
     }
 
@@ -54,20 +53,20 @@ public class ReflectiveAccessor implements Accessor {
         String vmVendor = System.getProperty("java.vm.vendor");
         if (vmVendor != null && (
                 vmVendor.indexOf("Sun Microsystems") != -1
-                || vmVendor.indexOf("Apple Computer") != -1
-                || vmVendor.indexOf("Apple Inc.") != -1
-                || vmVendor.indexOf("IBM Corporation") != -1)) {
+                        || vmVendor.indexOf("Apple Computer") != -1
+                        || vmVendor.indexOf("Apple Inc.") != -1
+                        || vmVendor.indexOf("IBM Corporation") != -1)) {
 
             reflectionFactory = getReflectionFactory();
             String vmVer = System.getProperty("java.runtime.version");
             Class[] paramTypes;
             if (vmVer.startsWith("1.4")) {
-                paramTypes = new Class[] {Field.class};
+                paramTypes = new Class[]{Field.class};
             } else {
-                paramTypes = new Class[] {Field.class, Boolean.TYPE};
+                paramTypes = new Class[]{Field.class, Boolean.TYPE};
             }
             newFieldAccessor = reflectionFactory.getClass().getMethod("newFieldAccessor", paramTypes);
-            get = newFieldAccessor.getReturnType().getMethod("get", new Class[] {Object.class});
+            get = newFieldAccessor.getReturnType().getMethod("get", new Class[]{Object.class});
         }
     }
 

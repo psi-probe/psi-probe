@@ -12,18 +12,19 @@ package com.googlecode.psiprobe.controllers.servlets;
 
 import com.googlecode.psiprobe.controllers.ContextHandlerController;
 import com.googlecode.psiprobe.tools.ApplicationUtils;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Iterator;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import org.apache.catalina.Context;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * Retrieves a list of servlet mappings for a particular web application or all
  * web applications if an application name is not passed in a query string.
- * 
+ *
  * @author Andy Shapoval
  */
 public class ListServletMapsController extends ContextHandlerController {
@@ -38,7 +39,7 @@ public class ListServletMapsController extends ContextHandlerController {
         }
 
         List servletMaps = new ArrayList();
-        for (Iterator i = ctxs.iterator(); i.hasNext();) {
+        for (Iterator i = ctxs.iterator(); i.hasNext(); ) {
             Context ctx = (Context) i.next();
             servletMaps.addAll(ApplicationUtils.getApplicationServletMaps(ctx));
         }

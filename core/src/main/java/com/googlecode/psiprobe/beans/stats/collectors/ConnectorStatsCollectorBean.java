@@ -12,11 +12,11 @@ package com.googlecode.psiprobe.beans.stats.collectors;
 
 import com.googlecode.psiprobe.beans.ContainerListenerBean;
 import com.googlecode.psiprobe.model.Connector;
+
 import java.util.Iterator;
 import java.util.List;
 
 /**
- * 
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */
@@ -34,7 +34,7 @@ public class ConnectorStatsCollectorBean extends AbstractStatsCollectorBean {
 
     public void collect() throws Exception {
         List connectors = listenerBean.getConnectors(false);
-        for (Iterator it = connectors.iterator(); it.hasNext();) {
+        for (Iterator it = connectors.iterator(); it.hasNext(); ) {
             Connector connector = (Connector) it.next();
             String statName = "stat.connector." + connector.getName();
             buildDeltaStats(statName + ".requests", connector.getRequestCount());
@@ -47,7 +47,7 @@ public class ConnectorStatsCollectorBean extends AbstractStatsCollectorBean {
 
     public void reset() throws Exception {
         List connectors = listenerBean.getConnectors(false);
-        for (Iterator it = connectors.iterator(); it.hasNext();) {
+        for (Iterator it = connectors.iterator(); it.hasNext(); ) {
             Connector connector = (Connector) it.next();
             reset(connector.getName());
         }

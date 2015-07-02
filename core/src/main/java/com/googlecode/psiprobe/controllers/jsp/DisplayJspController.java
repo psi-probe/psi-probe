@@ -12,16 +12,16 @@ package com.googlecode.psiprobe.controllers.jsp;
 
 import com.googlecode.psiprobe.controllers.ContextHandlerController;
 import com.googlecode.psiprobe.model.jsp.Summary;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import org.apache.catalina.Context;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 /**
- * 
  * @author Vlad Ilyushchenko
  */
 public class DisplayJspController extends ContextHandlerController {
@@ -34,7 +34,7 @@ public class DisplayJspController extends ContextHandlerController {
 
         HttpSession session = request.getSession(true);
         Summary summary = (Summary) session.getAttribute(SUMMARY_ATTRIBUTE);
-        if (summary == null || ! contextName.equals(summary.getName())) {
+        if (summary == null || !contextName.equals(summary.getName())) {
             summary = new Summary();
             summary.setName(contextName);
         }
@@ -43,7 +43,7 @@ public class DisplayJspController extends ContextHandlerController {
         session.setAttribute(SUMMARY_ATTRIBUTE, summary);
 
         if (compile) {
-            return new ModelAndView(new RedirectView(request.getRequestURI()+"?webapp="+(contextName.length() == 0 ? "/" : contextName)));
+            return new ModelAndView(new RedirectView(request.getRequestURI() + "?webapp=" + (contextName.length() == 0 ? "/" : contextName)));
         } else {
             return new ModelAndView(getViewName(), "summary", summary);
         }

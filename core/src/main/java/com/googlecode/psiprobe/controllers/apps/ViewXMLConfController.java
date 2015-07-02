@@ -12,18 +12,19 @@ package com.googlecode.psiprobe.controllers.apps;
 
 import com.googlecode.psiprobe.Utils;
 import com.googlecode.psiprobe.controllers.ContextHandlerController;
-import java.io.File;
-import java.io.FileInputStream;
+import org.apache.catalina.Context;
+import org.springframework.web.servlet.ModelAndView;
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.catalina.Context;
-import org.springframework.web.servlet.ModelAndView;
+import java.io.File;
+import java.io.FileInputStream;
 
 /**
  * Displays a deployment descriptor (web.xml) or a context descriptor
  * (context.xml) of a web application
- * 
+ *
  * @author Andy Shapoval
  * @author Vlad Ilyushchenko
  */
@@ -100,7 +101,7 @@ public class ViewXMLConfController extends ContextHandlerController {
                 logger.debug("File " + xmlPath + " of " + contextName + " application does not exists.");
             }
         } else {
-            logger.debug("Cannot determine path to " + getDisplayTarget() + " file of "  + contextName + " application.");
+            logger.debug("Cannot determine path to " + getDisplayTarget() + " file of " + contextName + " application.");
         }
 
         return mv;

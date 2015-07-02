@@ -11,13 +11,13 @@
 package com.googlecode.psiprobe.tools.logging.jdk;
 
 import com.googlecode.psiprobe.tools.logging.DefaultAccessor;
+import org.apache.commons.beanutils.MethodUtils;
+
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.commons.beanutils.MethodUtils;
 
 /**
- * 
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */
@@ -106,7 +106,7 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
         try {
             Class levelClass = getTarget().getClass().getClassLoader().loadClass("java.util.logging.Level");
             Method parse = MethodUtils.getAccessibleMethod(levelClass, "parse", String.class);
-            Object newLevel = parse.invoke(null, new Object[] {newLevelStr});
+            Object newLevel = parse.invoke(null, new Object[]{newLevelStr});
             MethodUtils.invokeMethod(getTarget(), "setLevel", newLevel);
         } catch (Exception e) {
             log.error(getTarget().getClass().getName() + "#setLevel(\"" + newLevelStr + "\") failed", e);
@@ -125,7 +125,7 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
             Jdk14HandlerAccessor handlerAccessor = null;
             if ("org.apache.juli.FileHandler".equals(handler.getClass().getName())) {
                 handlerAccessor = new JuliHandlerAccessor();
-            } else if ("java.util.logging.ConsoleHandler".equals(handler.getClass().getName())){
+            } else if ("java.util.logging.ConsoleHandler".equals(handler.getClass().getName())) {
                 handlerAccessor = new Jdk14HandlerAccessor();
             }
 

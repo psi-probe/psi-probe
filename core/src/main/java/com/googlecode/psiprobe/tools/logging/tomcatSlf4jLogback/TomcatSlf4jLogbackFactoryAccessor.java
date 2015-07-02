@@ -10,19 +10,18 @@
  */
 package com.googlecode.psiprobe.tools.logging.tomcatSlf4jLogback;
 
+import com.googlecode.psiprobe.tools.logging.DefaultAccessor;
+import org.apache.commons.beanutils.MethodUtils;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.commons.beanutils.MethodUtils;
-
-import com.googlecode.psiprobe.tools.logging.DefaultAccessor;
-
 /**
  * Wraps a TomcatSlf4jLogback logger factory from a given web application class loader.
- * 
+ * <p/>
  * <p>
  * All TomcatSlf4jLogback classes are loaded via the given class loader and not via psi-probe's own
  * class loader. For this reasons, all methods on TomcatSlf4jLogback objects are invoked via reflection.
@@ -30,14 +29,14 @@ import com.googlecode.psiprobe.tools.logging.DefaultAccessor;
  * <p>
  * This way, we can even handle different versions of TomcatSlf4jLogback embedded in different WARs.
  * </p>
- * 
+ *
  * @author Jeremy Landis
  */
 public class TomcatSlf4jLogbackFactoryAccessor extends DefaultAccessor {
 
     /**
      * Attempts to initialize a TomcatSlf4jLogback logger factory via the given class loader.
-     *  
+     *
      * @param cl the ClassLoader to use when fetching the factory
      */
     public TomcatSlf4jLogbackFactoryAccessor(ClassLoader cl) throws ClassNotFoundException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
@@ -58,7 +57,7 @@ public class TomcatSlf4jLogbackFactoryAccessor extends DefaultAccessor {
 
     /**
      * Returns the TomcatSlf4jLogback root logger.
-     * 
+     *
      * @return the root logger
      */
     public TomcatSlf4jLogbackLoggerAccessor getRootLogger() {
@@ -69,14 +68,14 @@ public class TomcatSlf4jLogbackFactoryAccessor extends DefaultAccessor {
 
     /**
      * Returns the TomcatSlf4jLogback logger with a given name.
-     * 
+     *
      * @return the Logger with the given name
      */
     public TomcatSlf4jLogbackLoggerAccessor getLogger(String name) {
         try {
             Class clazz = getTarget().getClass();
-            Method m = MethodUtils.getAccessibleMethod(clazz, "getLogger", new Class[] {String.class});
-            Object logger = m.invoke(getTarget(), new Object[] {name});
+            Method m = MethodUtils.getAccessibleMethod(clazz, "getLogger", new Class[]{String.class});
+            Object logger = m.invoke(getTarget(), new Object[]{name});
             if (logger == null) {
                 throw new NullPointerException(getTarget() + ".getLogger(\"" + name + "\") returned null");
             }
@@ -94,9 +93,9 @@ public class TomcatSlf4jLogbackFactoryAccessor extends DefaultAccessor {
     /**
      * Returns a list of wrappers for all TomcatSlf4jLogback appenders that have an
      * associated logger.
-     * 
+     *
      * @return a list of {@link TomcatSlf4jLogbackAppenderAccessor}s representing all
-     *         appenders that are in use
+     * appenders that are in use
      */
     public List getAppenders() {
         List appenders = new ArrayList();

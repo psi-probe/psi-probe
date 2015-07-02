@@ -17,7 +17,7 @@ import java.io.InputStream;
 
 /**
  * Reads lines from "backwards" InputStream. This class facilitates reading files from bottom up.
- *
+ * <p/>
  * This source code was kindly contributed by Kan Ogawa.
  *
  * @author Kan Ogawa - Original source code.

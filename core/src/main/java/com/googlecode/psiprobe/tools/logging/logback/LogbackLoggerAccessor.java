@@ -11,14 +11,15 @@
 package com.googlecode.psiprobe.tools.logging.logback;
 
 import com.googlecode.psiprobe.tools.logging.DefaultAccessor;
+import org.apache.commons.beanutils.MethodUtils;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import org.apache.commons.beanutils.MethodUtils;
 
 /**
  * A wrapper for a Logback logger.
- * 
+ *
  * @author Harald Wellmann
  * @author Mark Lewis
  */
@@ -26,13 +27,13 @@ public class LogbackLoggerAccessor extends DefaultAccessor {
 
     /**
      * Returns all appenders of this logger.
-     * 
+     *
      * @return a list of {@link LogbackAppenderAccessor}s
      */
     public List getAppenders() {
         List appenders = new ArrayList();
         try {
-            Iterator it =  (Iterator) MethodUtils.invokeMethod(getTarget(), "iteratorForAppenders", null);
+            Iterator it = (Iterator) MethodUtils.invokeMethod(getTarget(), "iteratorForAppenders", null);
             while (it.hasNext()) {
                 Object appender = it.next();
                 List siftedAppenders = getSiftedAppenders(appender);
@@ -53,10 +54,10 @@ public class LogbackLoggerAccessor extends DefaultAccessor {
 
     /**
      * Returns the appender of this logger with the given name.
-     * 
+     *
      * @param name the name of the appender to return
      * @return the appender with the given name, or null if no such
-     *         appender exists for this logger
+     * appender exists for this logger
      */
     public LogbackAppenderAccessor getAppender(String name) {
         try {
@@ -91,7 +92,7 @@ public class LogbackLoggerAccessor extends DefaultAccessor {
 
     /**
      * Gets the log level of this logger.
-     * 
+     *
      * @return the level of this logger
      */
     public String getLevel() {
@@ -106,7 +107,7 @@ public class LogbackLoggerAccessor extends DefaultAccessor {
 
     /**
      * Sets the log level of this logger.
-     * 
+     *
      * @param newLevelStr the name of the new level
      */
     public void setLevel(String newLevelStr) {

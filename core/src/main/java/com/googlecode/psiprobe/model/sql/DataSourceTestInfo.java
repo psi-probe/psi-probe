@@ -16,7 +16,7 @@ import java.util.List;
 
 /**
  * A class to store data source test tool related data in a session attribute.
- * 
+ *
  * @author Andy Shapoval
  */
 public class DataSourceTestInfo implements Serializable {
@@ -35,7 +35,7 @@ public class DataSourceTestInfo implements Serializable {
         queryHistory.remove(sql);
         queryHistory.addFirst(sql);
 
-        while(historySize >= 0 && queryHistory.size() > historySize) {
+        while (historySize >= 0 && queryHistory.size() > historySize) {
             queryHistory.removeLast();
         }
     }

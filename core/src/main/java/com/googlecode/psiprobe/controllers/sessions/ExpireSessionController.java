@@ -11,24 +11,25 @@
 package com.googlecode.psiprobe.controllers.sessions;
 
 import com.googlecode.psiprobe.controllers.ContextHandlerController;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.InternalResourceView;
-import org.springframework.web.bind.ServletRequestUtils;
 import org.apache.catalina.Context;
 import org.apache.catalina.Session;
+import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.InternalResourceView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * Expires a single session of a particular web application.
- * 
+ *
  * @author Andy Shapoval
  */
 public class ExpireSessionController extends ContextHandlerController {
 
     protected ModelAndView handleContext(String contextName, Context context,
                                          HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String sessionID= ServletRequestUtils.getStringParameter(request, "sid");
+        String sessionID = ServletRequestUtils.getStringParameter(request, "sid");
         Session session = context.getManager().findSession(sessionID);
         if (session != null) {
             session.expire();

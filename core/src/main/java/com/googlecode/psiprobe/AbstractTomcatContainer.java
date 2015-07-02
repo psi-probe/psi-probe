@@ -10,26 +10,13 @@
  */
 package com.googlecode.psiprobe;
 
-import java.io.File;
-import java.lang.reflect.InvocationTargetException;
-import java.net.URL;
-import java.net.URLClassLoader;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletContext;
-import javax.naming.NamingException;
-
+import com.googlecode.psiprobe.model.jsp.Item;
+import com.googlecode.psiprobe.model.jsp.Summary;
 import org.apache.catalina.Container;
 import org.apache.catalina.Context;
 import org.apache.catalina.Engine;
 import org.apache.catalina.Host;
 import org.apache.catalina.core.StandardContext;
-import org.apache.naming.ContextBindings;
 import org.apache.commons.lang.reflect.MethodUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -38,14 +25,21 @@ import org.apache.jasper.JasperException;
 import org.apache.jasper.JspCompilationContext;
 import org.apache.jasper.Options;
 import org.apache.jasper.compiler.JspRuntimeContext;
+import org.apache.naming.ContextBindings;
 import org.springframework.util.ClassUtils;
 
-import com.googlecode.psiprobe.model.jsp.Item;
-import com.googlecode.psiprobe.model.jsp.Summary;
+import javax.naming.NamingException;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
+import java.io.File;
+import java.lang.reflect.InvocationTargetException;
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.util.*;
 
 /**
  * Abstraction layer to implement some functionality, which is common between different container adaptors.
- * 
+ *
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */
@@ -106,28 +100,28 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
         }
     }
 
-	/**
+    /**
      * Binds a naming context to the current thread's classloader.
-     * 
+     *
      * @param context the catalina context
      */
-    public void bindToContext(Context context) 
-        throws NamingException {
-		Object token = null;
+    public void bindToContext(Context context)
+            throws NamingException {
+        Object token = null;
         ContextBindings.bindClassLoader(context, token, Thread.currentThread().getContextClassLoader());
     }
-	
-	/**
+
+    /**
      * Unbinds a naming context from the current thread's classloader.
-     * 
+     *
      * @param context the catalina context
      */
-    public void unbindFromContext(Context context) 
-        throws NamingException {
-		Object token = null;
+    public void unbindFromContext(Context context)
+            throws NamingException {
+        Object token = null;
         ContextBindings.unbindClassLoader(context, token, Thread.currentThread().getContextClassLoader());
     }
-	
+
     public Context findContext(String name) {
         String safeName = formatContextName(name);
         if (safeName == null) {
@@ -215,7 +209,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
                         // /WEB-INF/lib. JspCompilationContext would only take URLClassLoader, so we fake it
                         //
                         URLClassLoader classLoader = new URLClassLoader(new URL[]{}, context.getLoader().getClassLoader());
-                        for (Iterator it = names.iterator(); it.hasNext();) {
+                        for (Iterator it = names.iterator(); it.hasNext(); ) {
                             String name = (String) it.next();
                             long time = System.currentTimeMillis();
                             JspCompilationContext jcctx = createJspCompilationContext(name, false, opt, sctx, jrctx, classLoader);
@@ -278,7 +272,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
                     //
                     // mark all items as missing
                     //
-                    for (Iterator it = summary.getItems().keySet().iterator(); it.hasNext();) {
+                    for (Iterator it = summary.getItems().keySet().iterator(); it.hasNext(); ) {
                         Item item = (Item) summary.getItems().get(it.next());
                         item.setMissing(true);
                     }
@@ -298,7 +292,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
             // delete "missing" items by keeping "not missing" ones
             //
             Map hashMap = new HashMap();
-            for (Iterator it = summary.getItems().keySet().iterator(); it.hasNext();) {
+            for (Iterator it = summary.getItems().keySet().iterator(); it.hasNext(); ) {
                 Object key = it.next();
                 Item item = (Item) summary.getItems().get(key);
                 if (!item.isMissing()) {
@@ -361,14 +355,14 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
         Set paths = sctx.getResourcePaths(jspName);
 
         if (paths != null) {
-            for (Iterator it = paths.iterator(); it.hasNext();) {
+            for (Iterator it = paths.iterator(); it.hasNext(); ) {
                 String name = (String) it.next();
                 boolean isJsp = false;
 
                 try {
                     isJsp = name.endsWith(".jsp") || name.endsWith(".jspx") || opt.getJspConfig().isJspPage(name);
                 } catch (JasperException e) {
-                    logger.info("isJspPage() thrown an error for "+name, e);
+                    logger.info("isJspPage() thrown an error for " + name, e);
                 }
 
                 if (isJsp) {
@@ -385,9 +379,9 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
                         item.setLevel(level);
                         item.setCompileTime(-1);
 
-                        	Long objects[] = this.getResourceAttributes(name, ctx); 
-                            item.setSize(objects[0].longValue());
-                            item.setLastModified(objects[1].longValue());
+                        Long objects[] = this.getResourceAttributes(name, ctx);
+                        item.setSize(objects[0].longValue());
+                        item.setLastModified(objects[1].longValue());
 //                        } catch (NamingException e) {
 //                            logger.error("Cannot lookup attributes for " + name);
 //                        }

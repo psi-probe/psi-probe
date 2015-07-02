@@ -11,16 +11,17 @@
 package com.googlecode.psiprobe.controllers.deploy;
 
 import com.googlecode.psiprobe.controllers.ContextHandlerController;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import org.apache.catalina.Context;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.InternalResourceView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * Undeploys a web application.
- * 
+ *
  * @author Vlad Ilyushchenko
  * @author Andy Shapoval
  */
@@ -36,7 +37,7 @@ public class UndeployContextController extends ContextHandlerController {
     }
 
     protected ModelAndView handleContext(String contextName, Context context,
-                                             HttpServletRequest request, HttpServletResponse response) throws Exception {
+                                         HttpServletRequest request, HttpServletResponse response) throws Exception {
         try {
             if (request.getContextPath().equals(contextName)) {
                 throw new IllegalStateException(getMessageSourceAccessor().getMessage("probe.src.contextAction.cannotActOnSelf"));

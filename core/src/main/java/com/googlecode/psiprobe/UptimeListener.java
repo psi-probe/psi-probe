@@ -15,15 +15,15 @@ import javax.servlet.ServletContextListener;
 
 /**
  * Simple listener that registers its startup time in the ServletContext object.
- * 
+ *
  * @author Vlad Ilyushchenko
  * @author Adriano Machado
  * @author Mark Lewis
  */
 public class UptimeListener implements ServletContextListener {
-    
+
     public static final String START_TIME_KEY = "UPTIME_START";
-    
+
     public void contextInitialized(ServletContextEvent sce) {
         sce.getServletContext().setAttribute(START_TIME_KEY, new Long(System.currentTimeMillis()));
     }

@@ -11,6 +11,7 @@
 package com.googlecode.psiprobe.model;
 
 import com.googlecode.psiprobe.tools.logging.LogDestination;
+
 import java.io.File;
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -19,7 +20,7 @@ import java.sql.Timestamp;
  * This class holds attributes of any other LogDestination so that LogDestination can be serialized.
  * It is generally difficult to make just any LogDestination to be serializable as they more often then not
  * are connected to underlying Log implementation that are in many cases not serializable.
- * 
+ *
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */

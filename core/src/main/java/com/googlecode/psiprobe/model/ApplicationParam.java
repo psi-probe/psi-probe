@@ -12,7 +12,7 @@ package com.googlecode.psiprobe.model;
 
 /**
  * A model class representing an application initialization parameter
- * 
+ *
  * @author Andy Shapoval
  */
 public class ApplicationParam {

@@ -10,15 +10,14 @@
  */
 package com.googlecode.psiprobe.tools;
 
-import java.util.Locale;
-
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Locale;
+
 /**
- *
  * @author Mark Lewis
  */
 public class SizeExpressionTests {

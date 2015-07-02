@@ -10,16 +10,16 @@
  */
 package com.googlecode.psiprobe.jsp;
 
-import java.util.Enumeration;
-import java.io.IOException;
-import javax.servlet.jsp.tagext.TagSupport;
-import javax.servlet.jsp.JspException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.web.bind.ServletRequestUtils;
 
+import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.tagext.TagSupport;
+import java.io.IOException;
+import java.util.Enumeration;
+
 /**
- * 
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */
@@ -32,7 +32,7 @@ public class AddQueryParamTag extends TagSupport {
     public int doStartTag() throws JspException {
         StringBuffer query = new StringBuffer();
         query.append(param).append("=").append(value);
-        for (Enumeration en = pageContext.getRequest().getParameterNames(); en.hasMoreElements(); ){
+        for (Enumeration en = pageContext.getRequest().getParameterNames(); en.hasMoreElements(); ) {
             String name = (String) en.nextElement();
             if (!param.equals(name)) {
                 query.append("&").append(name).append("=").append(ServletRequestUtils.getStringParameter(pageContext.getRequest(), name, ""));

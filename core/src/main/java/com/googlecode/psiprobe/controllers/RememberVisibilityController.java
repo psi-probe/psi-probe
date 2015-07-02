@@ -11,16 +11,16 @@
 package com.googlecode.psiprobe.controllers;
 
 import com.googlecode.psiprobe.jsp.Functions;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
- * 
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */
@@ -36,7 +36,7 @@ public class RememberVisibilityController extends AbstractController {
             //
             // expire the cookis at the current date + 10years (roughly, nevermind leap years)
             //
-            response.addHeader("Set-Cookie", cookieName + "=" + state + "; Expires="+
+            response.addHeader("Set-Cookie", cookieName + "=" + state + "; Expires=" +
                     sdf.format(new Date(System.currentTimeMillis() + 315360000000L)));
         }
         return null;

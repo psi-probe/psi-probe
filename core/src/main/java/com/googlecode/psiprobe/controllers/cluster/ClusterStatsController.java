@@ -14,12 +14,12 @@ import com.googlecode.psiprobe.TomcatContainer;
 import com.googlecode.psiprobe.beans.ClusterWrapperBean;
 import com.googlecode.psiprobe.controllers.TomcatContainerController;
 import com.googlecode.psiprobe.model.jmx.Cluster;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
- * 
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */

@@ -16,7 +16,6 @@ import com.googlecode.psiprobe.beans.ContainerWrapperBean;
 import com.googlecode.psiprobe.model.jmx.Cluster;
 
 /**
- * 
  * @author Vlad Ilyushchenko
  */
 public class ClusterStatsCollectorBean extends AbstractStatsCollectorBean {

@@ -12,11 +12,11 @@ package com.googlecode.psiprobe.tools.logging.commons;
 
 import com.googlecode.psiprobe.tools.logging.jdk.Jdk14LoggerAccessor;
 import com.googlecode.psiprobe.tools.logging.log4j.Log4JLoggerAccessor;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
  * @author Mark Lewis
  */
 public class GetAllDestinationsVisitor extends LoggerAccessorVisitor {

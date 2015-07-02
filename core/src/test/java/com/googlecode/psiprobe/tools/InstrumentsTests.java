@@ -16,7 +16,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- *
  * @author Mark Lewis
  */
 public class InstrumentsTests {

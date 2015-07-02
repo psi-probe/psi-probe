@@ -14,14 +14,14 @@ import com.googlecode.psiprobe.Utils;
 import com.googlecode.psiprobe.beans.stats.listeners.StatsCollectionEvent;
 import com.googlecode.psiprobe.beans.stats.listeners.StatsCollectionListener;
 import com.googlecode.psiprobe.model.stats.StatsCollection;
+import org.jfree.data.xy.XYDataItem;
+
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-import org.jfree.data.xy.XYDataItem;
 
 /**
- * 
  * @author Vlad Ilyushchenko
  * @author Andy Shapoval
  * @author Mark Lewis
@@ -95,7 +95,7 @@ public abstract class AbstractStatsCollectorBean {
             }
             if (listeners != null) {
                 StatsCollectionEvent event = new StatsCollectionEvent(name, data);
-                for (Iterator it = listeners.iterator(); it.hasNext();) {
+                for (Iterator it = listeners.iterator(); it.hasNext(); ) {
                     Object o = it.next();
                     if (o instanceof StatsCollectionListener) {
                         StatsCollectionListener listener = (StatsCollectionListener) o;

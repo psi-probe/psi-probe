@@ -12,19 +12,19 @@ package com.googlecode.psiprobe.controllers;
 
 import com.googlecode.psiprobe.UptimeListener;
 import com.googlecode.psiprobe.Utils;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.ParameterizableViewController;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.ParameterizableViewController;
 
 /**
- * 
  * @author Vlad Ilyushchenko
  */
 public class DecoratorController extends ParameterizableViewController {
@@ -51,7 +51,7 @@ public class DecoratorController extends ParameterizableViewController {
 
         Object uptimeStart = getServletContext().getAttribute(UptimeListener.START_TIME_KEY);
         if (uptimeStart != null && uptimeStart instanceof Long) {
-            long l = ((Long)uptimeStart).longValue();
+            long l = ((Long) uptimeStart).longValue();
             long uptime = System.currentTimeMillis() - l;
             long uptime_days = uptime / (1000 * 60 * 60 * 24);
 
@@ -74,7 +74,7 @@ public class DecoratorController extends ParameterizableViewController {
         String lang = "en";
         for (Iterator it = fileNames.iterator(); it.hasNext(); ) {
             String f = (String) it.next();
-            if (getServletContext().getResource(f+".properties") != null) {
+            if (getServletContext().getResource(f + ".properties") != null) {
                 lang = f.substring(messagesBasename.length() + 1);
                 break;
             }

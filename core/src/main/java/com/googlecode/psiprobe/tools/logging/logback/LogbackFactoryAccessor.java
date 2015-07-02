@@ -10,19 +10,18 @@
  */
 package com.googlecode.psiprobe.tools.logging.logback;
 
+import com.googlecode.psiprobe.tools.logging.DefaultAccessor;
+import org.apache.commons.beanutils.MethodUtils;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.commons.beanutils.MethodUtils;
-
-import com.googlecode.psiprobe.tools.logging.DefaultAccessor;
-
 /**
  * Wraps a Logback logger factory from a given web application class loader.
- * 
+ * <p/>
  * <p>
  * All Logback classes are loaded via the given class loader and not via psi-probe's own
  * class loader. For this reasons, all methods on Logback objects are invoked via reflection.
@@ -30,14 +29,14 @@ import com.googlecode.psiprobe.tools.logging.DefaultAccessor;
  * <p>
  * This way, we can even handle different versions of Logback embedded in different WARs.
  * </p>
- * 
+ *
  * @author Harald Wellmann
  */
 public class LogbackFactoryAccessor extends DefaultAccessor {
 
     /**
      * Attempts to initialize a Logback logger factory via the given class loader.
-     *  
+     *
      * @param cl the ClassLoader to use when fetching the factory
      */
     public LogbackFactoryAccessor(ClassLoader cl) throws ClassNotFoundException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
@@ -50,7 +49,7 @@ public class LogbackFactoryAccessor extends DefaultAccessor {
         Object loggerFactory = m.invoke(singleton, null);
 
         // Check if the binding is indeed Logback
-        Class loggerFactoryClass = cl.loadClass("ch.qos.logback.classic.LoggerContext");            
+        Class loggerFactoryClass = cl.loadClass("ch.qos.logback.classic.LoggerContext");
         if (!loggerFactoryClass.isInstance(loggerFactory)) {
             throw new RuntimeException("The singleton SLF4J binding was not Logback");
         }
@@ -59,7 +58,7 @@ public class LogbackFactoryAccessor extends DefaultAccessor {
 
     /**
      * Returns the Logback root logger.
-     * 
+     *
      * @return the root logger
      */
     public LogbackLoggerAccessor getRootLogger() {
@@ -70,14 +69,14 @@ public class LogbackFactoryAccessor extends DefaultAccessor {
 
     /**
      * Returns the Logback logger with a given name.
-     * 
+     *
      * @return the Logger with the given name
      */
     public LogbackLoggerAccessor getLogger(String name) {
         try {
             Class clazz = getTarget().getClass();
-            Method m = MethodUtils.getAccessibleMethod(clazz, "getLogger", new Class[] {String.class});
-            Object logger = m.invoke(getTarget(), new Object[] {name});
+            Method m = MethodUtils.getAccessibleMethod(clazz, "getLogger", new Class[]{String.class});
+            Object logger = m.invoke(getTarget(), new Object[]{name});
             if (logger == null) {
                 throw new NullPointerException(getTarget() + ".getLogger(\"" + name + "\") returned null");
             }
@@ -95,9 +94,9 @@ public class LogbackFactoryAccessor extends DefaultAccessor {
     /**
      * Returns a list of wrappers for all Logback appenders that have an
      * associated logger.
-     * 
+     *
      * @return a list of {@link LogbackAppenderAccessor}s representing all
-     *         appenders that are in use
+     * appenders that are in use
      */
     public List getAppenders() {
         List appenders = new ArrayList();

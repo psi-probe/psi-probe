@@ -13,10 +13,10 @@ package com.googlecode.psiprobe.beans;
 import com.googlecode.psiprobe.model.DataSourceInfo;
 import com.jolbox.bonecp.BoneCP;
 import com.jolbox.bonecp.BoneCPDataSource;
+
 import java.lang.reflect.Field;
 
 /**
- *
  * @author akhawatrah
  * @author Mark Lewis
  */

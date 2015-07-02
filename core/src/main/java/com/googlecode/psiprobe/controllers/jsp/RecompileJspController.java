@@ -12,19 +12,19 @@ package com.googlecode.psiprobe.controllers.jsp;
 
 import com.googlecode.psiprobe.controllers.ContextHandlerController;
 import com.googlecode.psiprobe.model.jsp.Summary;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.List;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import org.apache.catalina.Context;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.List;
+
 /**
- * 
  * @author Vlad Ilyushchenko
  */
 public class RecompileJspController extends ContextHandlerController {
@@ -35,7 +35,7 @@ public class RecompileJspController extends ContextHandlerController {
         HttpSession session = request.getSession();
         Summary summary = session != null ? (Summary) session.getAttribute(DisplayJspController.SUMMARY_ATTRIBUTE) : null;
 
-        if (request.getMethod().equalsIgnoreCase("post") && summary != null ) {
+        if (request.getMethod().equalsIgnoreCase("post") && summary != null) {
             List names = new ArrayList();
             for (Enumeration e = request.getParameterNames(); e.hasMoreElements(); ) {
                 String name = (String) e.nextElement();
@@ -45,7 +45,7 @@ public class RecompileJspController extends ContextHandlerController {
             }
             getContainerWrapper().getTomcatContainer().recompileJsps(context, summary, names);
             session.setAttribute(DisplayJspController.SUMMARY_ATTRIBUTE, summary);
-        } else if ( summary != null && contextName.equals(summary.getName())) {
+        } else if (summary != null && contextName.equals(summary.getName())) {
             String name = ServletRequestUtils.getStringParameter(request, "source", null);
             if (name != null) {
                 List names = new ArrayList();

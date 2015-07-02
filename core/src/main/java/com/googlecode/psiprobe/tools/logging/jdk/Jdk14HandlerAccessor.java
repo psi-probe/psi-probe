@@ -14,7 +14,6 @@ import com.googlecode.psiprobe.tools.logging.AbstractLogDestination;
 import org.apache.commons.beanutils.MethodUtils;
 
 /**
- * 
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */
@@ -79,7 +78,7 @@ public class Jdk14HandlerAccessor extends AbstractLogDestination {
     }
 
     public String[] getValidLevels() {
-        return new String[] {"OFF", "SEVERE", "WARNING", "INFO", "CONFIG", "FINE", "FINER", "FINEST", "ALL"};
+        return new String[]{"OFF", "SEVERE", "WARNING", "INFO", "CONFIG", "FINE", "FINER", "FINEST", "ALL"};
     }
 
 }

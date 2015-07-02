@@ -12,7 +12,7 @@ package com.googlecode.psiprobe.model;
 
 /**
  * A model class representing a filter
- * 
+ *
  * @author Andy Shapoval
  */
 public class FilterInfo {

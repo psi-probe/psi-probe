@@ -11,19 +11,20 @@
 package com.googlecode.psiprobe.controllers.datasources;
 
 import com.googlecode.psiprobe.controllers.TomcatContainerController;
-import java.util.List;
+import org.springframework.web.servlet.ModelAndView;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.springframework.web.servlet.ModelAndView;
+import java.util.List;
 
 /**
  * Creates a list of all configured datasources for all web applications within
  * the container.
- * 
+ *
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */
-public class ListAllJdbcResourcesController extends TomcatContainerController{
+public class ListAllJdbcResourcesController extends TomcatContainerController {
 
     protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse httpServletResponse) throws Exception {
         boolean supportsGlobal = getContainerWrapper().getResourceResolver().supportsGlobalResources();

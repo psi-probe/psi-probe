@@ -10,14 +10,14 @@
  */
 package com.googlecode.psiprobe.controllers.wrapper;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
 import org.tanukisoftware.wrapper.WrapperManager;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
- * 
  * @author Vlad Ilyushchenko
  */
 public class StopJvmController extends ParameterizableViewController {
@@ -35,7 +35,7 @@ public class StopJvmController extends ParameterizableViewController {
         boolean done = false;
         try {
             Class.forName("org.tanukisoftware.wrapper.WrapperManager");
-            logger.info("JVM is STOPPED by "+request.getRemoteAddr());
+            logger.info("JVM is STOPPED by " + request.getRemoteAddr());
             WrapperManager.stop(stopExitCode);
             done = true;
         } catch (ClassNotFoundException e) {

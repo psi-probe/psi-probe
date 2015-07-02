@@ -12,18 +12,6 @@ package com.googlecode.psiprobe.model.stats;
 
 import com.googlecode.psiprobe.tools.UpdateCommitLock;
 import com.thoughtworks.xstream.XStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.jfree.data.xy.XYDataItem;
@@ -34,8 +22,10 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.io.*;
+import java.util.*;
+
 /**
- * 
  * @author Vlad Ilyushchenko
  * @author Andy Shapoval
  * @author Mark Lewis
@@ -100,7 +90,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
         long statValue = 0;
 
         List stats = getStats(statName);
-        if (stats != null && ! stats.isEmpty()) {
+        if (stats != null && !stats.isEmpty()) {
             XYDataItem xy = (XYDataItem) stats.get(stats.size() - 1);
             if (xy != null && xy.getY() != null) {
                 statValue = xy.getY().longValue();
@@ -112,14 +102,15 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
 
     /**
      * Returns series if stat name starts with the prefix.
+     *
      * @param statNamePrefix
      * @return a Map of matching stats. Map keys are stat names and map values are corresponding series.
      */
     public synchronized Map getStatsByPrefix(String statNamePrefix) {
         Map map = new HashMap();
-        for (Iterator i = statsData.entrySet().iterator(); i.hasNext();) {
+        for (Iterator i = statsData.entrySet().iterator(); i.hasNext(); ) {
             Map.Entry en = (Map.Entry) i.next();
-            if (((String)en.getKey()).startsWith(statNamePrefix)) {
+            if (((String) en.getKey()).startsWith(statNamePrefix)) {
                 map.put(en.getKey(), en.getValue());
             }
         }
@@ -184,7 +175,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
                         // and lets not bother about rotating stats;
                         // regular stats collection cycle will do it
 
-                        for (Iterator it = stats.keySet().iterator(); it.hasNext();) {
+                        for (Iterator it = stats.keySet().iterator(); it.hasNext(); ) {
                             List l = (List) stats.get(it.next());
                             if (l.size() > 0) {
                                 XYDataItem xy = (XYDataItem) l.get(l.size() - 1);

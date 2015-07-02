@@ -11,7 +11,6 @@
 package com.googlecode.psiprobe.model.jmx;
 
 /**
- * 
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */

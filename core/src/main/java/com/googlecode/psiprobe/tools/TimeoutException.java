@@ -13,7 +13,6 @@ package com.googlecode.psiprobe.tools;
 import java.io.IOException;
 
 /**
- * 
  * @author Vlad Ilyushchenko
  */
 public class TimeoutException extends IOException {

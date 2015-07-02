@@ -10,16 +10,16 @@
  */
 package com.googlecode.psiprobe.controllers;
 
-import com.thoughtworks.xstream.XStream;
 import com.googlecode.psiprobe.model.TransportableModel;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import com.thoughtworks.xstream.XStream;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
 import org.springframework.web.servlet.mvc.Controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
- * 
  * @author Vlad Ilyushchenko
  */
 public class BeanToXmlController extends AbstractController {
@@ -40,13 +40,13 @@ public class BeanToXmlController extends AbstractController {
 
         Controller controller = (Controller) getApplicationContext().getBean(internalPath);
         if (controller != null) {
-                ModelAndView modelAndView = controller.handleRequest(request, response);
-                if (modelAndView.getModel() != null) {
-                    TransportableModel tm = new TransportableModel();
-                    tm.putAll(modelAndView.getModel());
-                    XStream x = new XStream();
-                    x.toXML(tm, response.getWriter());
-                }
+            ModelAndView modelAndView = controller.handleRequest(request, response);
+            if (modelAndView.getModel() != null) {
+                TransportableModel tm = new TransportableModel();
+                tm.putAll(modelAndView.getModel());
+                XStream x = new XStream();
+                x.toXML(tm, response.getWriter());
+            }
         }
         return null;
     }

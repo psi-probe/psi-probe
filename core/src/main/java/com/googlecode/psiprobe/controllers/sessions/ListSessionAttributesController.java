@@ -14,15 +14,16 @@ import com.googlecode.psiprobe.controllers.ContextHandlerController;
 import com.googlecode.psiprobe.model.ApplicationSession;
 import com.googlecode.psiprobe.tools.ApplicationUtils;
 import com.googlecode.psiprobe.tools.SecurityUtils;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import org.apache.catalina.Context;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * Retrieves the list of attributes for given session.
- * 
+ *
  * @author Vlad Ilyushchenko
  */
 public class ListSessionAttributesController extends ContextHandlerController {

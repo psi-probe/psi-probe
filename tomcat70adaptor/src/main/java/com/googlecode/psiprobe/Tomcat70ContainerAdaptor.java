@@ -14,35 +14,8 @@ import com.googlecode.psiprobe.model.ApplicationParam;
 import com.googlecode.psiprobe.model.ApplicationResource;
 import com.googlecode.psiprobe.model.FilterInfo;
 import com.googlecode.psiprobe.model.FilterMapping;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.lang.reflect.InvocationTargetException;
-import java.net.URI;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Enumeration;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import javax.management.MBeanServer;
-import javax.management.MalformedObjectNameException;
-import javax.management.ObjectName;
-import javax.naming.NamingException;
-import javax.servlet.ServletContext;
-import org.apache.catalina.Container;
-import org.apache.catalina.Context;
-import org.apache.catalina.Host;
-import org.apache.catalina.Lifecycle;
-import org.apache.catalina.Valve;
-import org.apache.catalina.Wrapper;
-import org.apache.catalina.deploy.ApplicationParameter;
-import org.apache.catalina.deploy.ContextResource;
-import org.apache.catalina.deploy.ContextResourceLink;
-import org.apache.catalina.deploy.FilterDef;
-import org.apache.catalina.deploy.FilterMap;
-import org.apache.catalina.deploy.NamingResources;
+import org.apache.catalina.*;
+import org.apache.catalina.deploy.*;
 import org.apache.commons.beanutils.ConstructorUtils;
 import org.apache.commons.modeler.Registry;
 import org.apache.jasper.JspCompilationContext;
@@ -52,8 +25,20 @@ import org.apache.jasper.servlet.JspServletWrapper;
 import org.apache.naming.resources.Resource;
 import org.apache.naming.resources.ResourceAttributes;
 
+import javax.management.MBeanServer;
+import javax.management.MalformedObjectNameException;
+import javax.management.ObjectName;
+import javax.naming.NamingException;
+import javax.servlet.ServletContext;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
+import java.net.URI;
+import java.net.URL;
+import java.util.*;
+
 /**
- * 
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */
@@ -81,7 +66,7 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
 
     public boolean canBoundTo(String binding) {
         return binding != null && (binding.startsWith("Apache Tomcat/7.0")
-				|| binding.startsWith("Apache Tomcat (TomEE)/7.0")
+                || binding.startsWith("Apache Tomcat (TomEE)/7.0")
                 || binding.startsWith("JBoss Web/3.0")
                 || binding.startsWith("JBoss Web/7.0")
                 || binding.startsWith("NonStop(tm) Servlets For JavaServer Pages(tm) v7.0")
@@ -114,7 +99,7 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
 
     private void checkChanges(String name) throws Exception {
         Boolean result = (Boolean) mBeanServer.invoke(deployerOName,
-                        "isServiced", new String[]{name}, new String[]{"java.lang.String"});
+                "isServiced", new String[]{name}, new String[]{"java.lang.String"});
         if (!result.booleanValue()) {
             mBeanServer.invoke(deployerOName, "addServiced",
                     new String[]{name}, new String[]{"java.lang.String"});
@@ -142,7 +127,7 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
 
     public File getAppBase() {
         File base = new File(host.getAppBase());
-        if (! base.isAbsolute()) {
+        if (!base.isAbsolute()) {
             base = new File(System.getProperty("catalina.base"), host.getAppBase());
         }
         return base;
@@ -219,14 +204,14 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
             try {
                 jcctx = (JspCompilationContext) ConstructorUtils.invokeConstructor(
                         JspCompilationContext.class,
-                        new Object[] {name, false, opt, sctx, null, jrctx},
-                        new Class[] {
-                            String.class,
-                            Boolean.TYPE,
-                            Options.class,
-                            ServletContext.class,
-                            JspServletWrapper.class,
-                            JspRuntimeContext.class
+                        new Object[]{name, false, opt, sctx, null, jrctx},
+                        new Class[]{
+                                String.class,
+                                Boolean.TYPE,
+                                Options.class,
+                                ServletContext.class,
+                                JspServletWrapper.class,
+                                JspRuntimeContext.class
                         });
             } catch (NoSuchMethodException ex) {
                 throw new RuntimeException(ex);
@@ -249,7 +234,7 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
     }
 
     public void addContextResourceLink(Context context, List resourceList,
-            boolean contextBound) {
+                                       boolean contextBound) {
         ContextResourceLink[] resourceLinks = context.getNamingResources().findResourceLinks();
         for (int i = 0; i < resourceLinks.length; i++) {
             ContextResourceLink link = resourceLinks[i];
@@ -267,7 +252,7 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
     }
 
     public void addContextResource(Context context, List resourceList,
-            boolean contextBound) {
+                                   boolean contextBound) {
         NamingResources namingResources = context.getNamingResources();
         ContextResource[] resources = namingResources.findResources();
 
@@ -356,7 +341,7 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
     }
 
     public List getApplicationInitParams(Context context) {
-		// We'll try to determine if a parameter value comes from a deployment descriptor or a context descriptor.
+        // We'll try to determine if a parameter value comes from a deployment descriptor or a context descriptor.
         // assumption: Context.findParameter() returns only values of parameters that are declared in a deployment descriptor.
         // If a parameter is declared in a context descriptor with override=false and redeclared in a deployment descriptor,
         // Context.findParameter() still returns its value, even though the value is taken from a context descriptor.
@@ -375,7 +360,7 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
 
         List initParams = new ArrayList();
         ServletContext servletCtx = context.getServletContext();
-        for (Enumeration e = servletCtx.getInitParameterNames(); e.hasMoreElements();) {
+        for (Enumeration e = servletCtx.getInitParameterNames(); e.hasMoreElements(); ) {
             String paramName = (String) e.nextElement();
 
             ApplicationParam param = new ApplicationParam();
@@ -392,21 +377,21 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
 
     }
 
-	public boolean resourceExists(String name, Context context) {
-		try {
-			return context.getResources().lookup(name) != null;
-		} catch (NamingException ex) {
-			throw new RuntimeException(ex);
-		}
-	}
+    public boolean resourceExists(String name, Context context) {
+        try {
+            return context.getResources().lookup(name) != null;
+        } catch (NamingException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
 
-	public InputStream getResourceStream(String name, Context context) throws IOException {
-		try {
-			return ((Resource) context.getResources().lookup(name)).streamContent();
-		} catch (NamingException ex) {
-			throw new RuntimeException(ex);
-		}
-	}
+    public InputStream getResourceStream(String name, Context context) throws IOException {
+        try {
+            return ((Resource) context.getResources().lookup(name)).streamContent();
+        } catch (NamingException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
 
     public Long[] getResourceAttributes(String name, Context context) {
         Long result[] = new Long[2];

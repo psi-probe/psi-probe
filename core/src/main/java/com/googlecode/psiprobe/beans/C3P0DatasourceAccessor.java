@@ -22,11 +22,10 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
  */
 public class C3P0DatasourceAccessor implements DatasourceAccessor {
 
-    public DataSourceInfo getInfo(Object resource) throws Exception{
+    public DataSourceInfo getInfo(Object resource) throws Exception {
         DataSourceInfo dataSourceInfo = null;
 
-        if (canMap(resource))
-        {
+        if (canMap(resource)) {
             ComboPooledDataSource source = (ComboPooledDataSource) resource;
 
             dataSourceInfo = new DataSourceInfo();

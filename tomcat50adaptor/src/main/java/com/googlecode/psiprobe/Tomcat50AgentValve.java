@@ -12,18 +12,18 @@ package com.googlecode.psiprobe;
 
 import com.googlecode.psiprobe.model.ApplicationSession;
 import com.googlecode.psiprobe.model.IPInfo;
-import java.io.IOException;
+import org.apache.catalina.Request;
+import org.apache.catalina.Response;
+import org.apache.catalina.Valve;
+import org.apache.catalina.ValveContext;
+
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import org.apache.catalina.Valve;
-import org.apache.catalina.Request;
-import org.apache.catalina.Response;
-import org.apache.catalina.ValveContext;
+import java.io.IOException;
 
 /**
- * 
  * @author Vlad Ilyushchenko
  */
 public class Tomcat50AgentValve implements Valve {

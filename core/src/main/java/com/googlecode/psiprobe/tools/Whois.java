@@ -21,7 +21,6 @@ import java.util.Map;
 import java.util.TreeMap;
 
 /**
- * 
  * @author Vlad Ilyushchenko
  */
 public class Whois {
@@ -58,7 +57,7 @@ public class Whois {
                     while ((line = in.readLine()) != null) {
                         sb.append(line).append(lineSeparator);
                         line = line.trim();
-                        if (! line.startsWith("%") && ! line.startsWith("#")) {
+                        if (!line.startsWith("%") && !line.startsWith("#")) {
                             int fs = line.indexOf(":");
                             if (fs > 0) {
                                 String name = line.substring(0, fs);
@@ -81,7 +80,7 @@ public class Whois {
                             }
                         } catch (IOException e) {
                             //System.out.println("Could not contact " + referral);
-                        	
+
                         }
                     }
                     if (newResponse != null) {

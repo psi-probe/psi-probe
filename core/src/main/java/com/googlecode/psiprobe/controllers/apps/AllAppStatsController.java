@@ -10,13 +10,13 @@
  */
 package com.googlecode.psiprobe.controllers.apps;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
- *
  * @author Mark Lewis
  */
 public class AllAppStatsController extends ParameterizableViewController {

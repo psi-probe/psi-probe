@@ -12,20 +12,20 @@ package com.googlecode.psiprobe.beans;
 
 import com.googlecode.psiprobe.model.jmx.MemoryPool;
 import com.googlecode.psiprobe.tools.JmxTools;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
-import javax.management.MBeanServer;
-import javax.management.ObjectInstance;
-import javax.management.ObjectName;
-import javax.management.openmbean.CompositeDataSupport;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.commons.modeler.Registry;
 
+import javax.management.MBeanServer;
+import javax.management.ObjectInstance;
+import javax.management.ObjectName;
+import javax.management.openmbean.CompositeDataSupport;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
+
 /**
- * 
  * @author Vlad Ilyushchenko
  */
 public class JvmMemoryInfoAccessorBean {
@@ -46,7 +46,7 @@ public class JvmMemoryInfoAccessorBean {
         long totalUsed = 0;
         long totalCommitted = 0;
 
-        for (Iterator it = memoryOPools.iterator(); it.hasNext();) {
+        for (Iterator it = memoryOPools.iterator(); it.hasNext(); ) {
             ObjectInstance oi = (ObjectInstance) it.next();
             ObjectName oName = oi.getObjectName();
             MemoryPool memoryPool = new MemoryPool();
@@ -64,7 +64,7 @@ public class JvmMemoryInfoAccessorBean {
                 memoryPool.setInit(JmxTools.getLongAttr(cd, "init"));
                 memoryPool.setCommitted(JmxTools.getLongAttr(cd, "committed"));
             } else {
-                logger.error("Oops, JVM problem? "+oName.toString()+" \"Usage\" attribute is NULL!");
+                logger.error("Oops, JVM problem? " + oName.toString() + " \"Usage\" attribute is NULL!");
             }
 
             totalInit += memoryPool.getInit();
