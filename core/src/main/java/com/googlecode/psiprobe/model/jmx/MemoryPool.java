@@ -1,12 +1,12 @@
 /*
- * Licensed under the GPL License.  You may not use this file except in
- * compliance with the License.  You may obtain a copy of the License at
- *
- *     http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
- *
- * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED
- * WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
- * MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ * http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ * 
+ * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+ * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE.
  */
 package com.googlecode.psiprobe.model.jmx;
 
@@ -16,78 +16,80 @@ package com.googlecode.psiprobe.model.jmx;
  * @author Mark Lewis
  */
 public class MemoryPool {
-    private String name;
-    private long init = 0;
-    private long max = 0;
-    private long used = 0;
-    private long committed = 0;
-    private String type;
-    private String id;
 
-    public String getName() {
-        return name;
-    }
+  private String name;
+  private long init = 0;
+  private long max = 0;
+  private long used = 0;
+  private long committed = 0;
+  private String type;
+  private String id;
 
-    public void setName(String name) {
-        this.name = name;
-        this.id = name != null ? name.replaceAll(" ", "_").toLowerCase() : null;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public long getInit() {
-        return init;
-    }
+  public void setName(String name) {
+    this.name = name;
+    this.id = name != null ? name.replaceAll(" ", "_").toLowerCase() : null;
+  }
 
-    public void setInit(long init) {
-        this.init = init;
-    }
+  public long getInit() {
+    return init;
+  }
 
-    public long getMax() {
-        return max;
-    }
+  public void setInit(long init) {
+    this.init = init;
+  }
 
-    public void setMax(long max) {
-        this.max = max;
-    }
+  public long getMax() {
+    return max;
+  }
 
-    public long getUsed() {
-        return used;
-    }
+  public void setMax(long max) {
+    this.max = max;
+  }
 
-    public void setUsed(long used) {
-        this.used = used;
-    }
+  public long getUsed() {
+    return used;
+  }
 
-    public long getCommitted() {
-        return committed;
-    }
+  public void setUsed(long used) {
+    this.used = used;
+  }
 
-    public void setCommitted(long committed) {
-        this.committed = committed;
-    }
+  public long getCommitted() {
+    return committed;
+  }
 
-    public String getType() {
-        return type;
-    }
+  public void setCommitted(long committed) {
+    this.committed = committed;
+  }
 
-    public void setType(String type) {
-        this.type = type;
-    }
+  public String getType() {
+    return type;
+  }
 
-    public int getUsageScore() {
-        long div;
-        if (max == -1) {
-            /* 
-             * Some memory pools have an undefined maximum size.  In this case,
-             * report how much of the currently allocated memory is used.
-             */
-            div = committed;
-        } else {
-            div = max;
-        }
-        return div == 0 ? 0 : (int) (used * 100 / div);
-    }
+  public void setType(String type) {
+    this.type = type;
+  }
 
-    public String getId() {
-        return id;
+  public int getUsageScore() {
+    long div;
+    if (max == -1) {
+      /*
+       * Some memory pools have an undefined maximum size. In this case, report how much of the
+       * currently allocated memory is used.
+       */
+      div = committed;
+    } else {
+      div = max;
     }
+    return div == 0 ? 0 : (int) (used * 100 / div);
+  }
+
+  public String getId() {
+    return id;
+  }
+
 }

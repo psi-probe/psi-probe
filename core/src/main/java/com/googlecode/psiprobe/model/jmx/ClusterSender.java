@@ -1,12 +1,12 @@
 /*
- * Licensed under the GPL License.  You may not use this file except in
- * compliance with the License.  You may obtain a copy of the License at
- *
- *     http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
- *
- * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED
- * WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
- * MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ * http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ * 
+ * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+ * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE.
  */
 package com.googlecode.psiprobe.model.jmx;
 
@@ -15,112 +15,114 @@ package com.googlecode.psiprobe.model.jmx;
  * @author Vlad Ilyushchenko
  */
 public class ClusterSender {
-    private String address;
-    private int port;
-    private long avgMessageSize;
-    private long avgProcessingTime;
-    private long connectCounter;
-    private long disconnectCounter;
-    private boolean connected;
-    private long keepAliveTimeout;
-    private long nrOfRequests;
-    private long totalBytes;
-    private boolean resend;
-    private boolean suspect;
 
-    public String getAddress() {
-        return address;
-    }
+  private String address;
+  private int port;
+  private long avgMessageSize;
+  private long avgProcessingTime;
+  private long connectCounter;
+  private long disconnectCounter;
+  private boolean connected;
+  private long keepAliveTimeout;
+  private long nrOfRequests;
+  private long totalBytes;
+  private boolean resend;
+  private boolean suspect;
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
+  public String getAddress() {
+    return address;
+  }
 
-    public int getPort() {
-        return port;
-    }
+  public void setAddress(String address) {
+    this.address = address;
+  }
 
-    public void setPort(int port) {
-        this.port = port;
-    }
+  public int getPort() {
+    return port;
+  }
 
-    public long getAvgMessageSize() {
-        return avgMessageSize;
-    }
+  public void setPort(int port) {
+    this.port = port;
+  }
 
-    public void setAvgMessageSize(long avgMessageSize) {
-        this.avgMessageSize = avgMessageSize;
-    }
+  public long getAvgMessageSize() {
+    return avgMessageSize;
+  }
 
-    public long getConnectCounter() {
-        return connectCounter;
-    }
+  public void setAvgMessageSize(long avgMessageSize) {
+    this.avgMessageSize = avgMessageSize;
+  }
 
-    public void setConnectCounter(long connectCounter) {
-        this.connectCounter = connectCounter;
-    }
+  public long getConnectCounter() {
+    return connectCounter;
+  }
 
-    public long getDisconnectCounter() {
-        return disconnectCounter;
-    }
+  public void setConnectCounter(long connectCounter) {
+    this.connectCounter = connectCounter;
+  }
 
-    public void setDisconnectCounter(long disconnectCounter) {
-        this.disconnectCounter = disconnectCounter;
-    }
+  public long getDisconnectCounter() {
+    return disconnectCounter;
+  }
 
-    public boolean isConnected() {
-        return connected;
-    }
+  public void setDisconnectCounter(long disconnectCounter) {
+    this.disconnectCounter = disconnectCounter;
+  }
 
-    public void setConnected(boolean connected) {
-        this.connected = connected;
-    }
+  public boolean isConnected() {
+    return connected;
+  }
 
-    public long getKeepAliveTimeout() {
-        return keepAliveTimeout;
-    }
+  public void setConnected(boolean connected) {
+    this.connected = connected;
+  }
 
-    public void setKeepAliveTimeout(long keepAliveTimeout) {
-        this.keepAliveTimeout = keepAliveTimeout;
-    }
+  public long getKeepAliveTimeout() {
+    return keepAliveTimeout;
+  }
 
-    public long getNrOfRequests() {
-        return nrOfRequests;
-    }
+  public void setKeepAliveTimeout(long keepAliveTimeout) {
+    this.keepAliveTimeout = keepAliveTimeout;
+  }
 
-    public void setNrOfRequests(long nrOfRequests) {
-        this.nrOfRequests = nrOfRequests;
-    }
+  public long getNrOfRequests() {
+    return nrOfRequests;
+  }
 
-    public long getTotalBytes() {
-        return totalBytes;
-    }
+  public void setNrOfRequests(long nrOfRequests) {
+    this.nrOfRequests = nrOfRequests;
+  }
 
-    public void setTotalBytes(long totalBytes) {
-        this.totalBytes = totalBytes;
-    }
+  public long getTotalBytes() {
+    return totalBytes;
+  }
 
-    public boolean isResend() {
-        return resend;
-    }
+  public void setTotalBytes(long totalBytes) {
+    this.totalBytes = totalBytes;
+  }
 
-    public void setResend(boolean resend) {
-        this.resend = resend;
-    }
+  public boolean isResend() {
+    return resend;
+  }
 
-    public boolean isSuspect() {
-        return suspect;
-    }
+  public void setResend(boolean resend) {
+    this.resend = resend;
+  }
 
-    public void setSuspect(boolean suspect) {
-        this.suspect = suspect;
-    }
+  public boolean isSuspect() {
+    return suspect;
+  }
 
-    public long getAvgProcessingTime() {
-        return avgProcessingTime;
-    }
+  public void setSuspect(boolean suspect) {
+    this.suspect = suspect;
+  }
 
-    public void setAvgProcessingTime(long avgProcessingTime) {
-        this.avgProcessingTime = avgProcessingTime;
-    }
+  public long getAvgProcessingTime() {
+    return avgProcessingTime;
+  }
+
+  public void setAvgProcessingTime(long avgProcessingTime) {
+    this.avgProcessingTime = avgProcessingTime;
+  }
+
 }

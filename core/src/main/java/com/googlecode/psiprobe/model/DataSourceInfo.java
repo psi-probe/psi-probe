@@ -1,12 +1,12 @@
 /*
- * Licensed under the GPL License.  You may not use this file except in
- * compliance with the License.  You may obtain a copy of the License at
- *
- *     http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
- *
- * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED
- * WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
- * MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ * http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ * 
+ * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+ * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE.
  */
 package com.googlecode.psiprobe.model;
 
@@ -19,76 +19,77 @@ import com.googlecode.psiprobe.Utils;
  * @author Mark Lewis
  */
 public class DataSourceInfo {
-    private String jdbcURL;
-    private int busyConnections;
-    private int establishedConnections;
-    private int maxConnections;
-    private boolean resettable;
-    private String username;
-    private String type;
 
-    public String getJdbcURL() {
-        return jdbcURL;
-    }
+  private String jdbcURL;
+  private int busyConnections;
+  private int establishedConnections;
+  private int maxConnections;
+  private boolean resettable;
+  private String username;
+  private String type;
 
-    public void setJdbcURL(String jdbcURL) {
-        this.jdbcURL = jdbcURL;
-    }
+  public String getJdbcURL() {
+    return jdbcURL;
+  }
 
-    public int getBusyConnections() {
-        return busyConnections;
-    }
+  public void setJdbcURL(String jdbcURL) {
+    this.jdbcURL = jdbcURL;
+  }
 
-    public void setBusyConnections(int busyConnections) {
-        this.busyConnections = busyConnections;
-    }
+  public int getBusyConnections() {
+    return busyConnections;
+  }
 
-    public int getEstablishedConnections() {
-        return establishedConnections;
-    }
+  public void setBusyConnections(int busyConnections) {
+    this.busyConnections = busyConnections;
+  }
 
-    public void setEstablishedConnections(int establishedConnections) {
-        this.establishedConnections = establishedConnections;
-    }
+  public int getEstablishedConnections() {
+    return establishedConnections;
+  }
 
-    public int getMaxConnections() {
-        return maxConnections;
-    }
+  public void setEstablishedConnections(int establishedConnections) {
+    this.establishedConnections = establishedConnections;
+  }
 
-    public void setMaxConnections(int maxConnections) {
-        this.maxConnections = maxConnections;
-    }
+  public int getMaxConnections() {
+    return maxConnections;
+  }
 
-    public boolean isResettable() {
-        return resettable;
-    }
+  public void setMaxConnections(int maxConnections) {
+    this.maxConnections = maxConnections;
+  }
 
-    public void setResettable(boolean resettable) {
-        this.resettable = resettable;
-    }
+  public boolean isResettable() {
+    return resettable;
+  }
 
-    public String getUsername() {
-        return username;
-    }
+  public void setResettable(boolean resettable) {
+    this.resettable = resettable;
+  }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+  public String getUsername() {
+    return username;
+  }
 
-    public String getType() {
-        return type;
-    }
+  public void setUsername(String username) {
+    this.username = username;
+  }
 
-    public void setType(String type) {
-        this.type = type;
-    }
+  public String getType() {
+    return type;
+  }
 
-    public int getBusyScore() {
-        return Utils.calcPoolUsageScore(getMaxConnections(), getBusyConnections());
-    }
+  public void setType(String type) {
+    this.type = type;
+  }
 
-    public int getEstablishedScore() {
-        return Utils.calcPoolUsageScore(getMaxConnections(), getEstablishedConnections());
-    }
+  public int getBusyScore() {
+    return Utils.calcPoolUsageScore(getMaxConnections(), getBusyConnections());
+  }
+
+  public int getEstablishedScore() {
+    return Utils.calcPoolUsageScore(getMaxConnections(), getEstablishedConnections());
+  }
 
 }

@@ -1,12 +1,12 @@
 /*
- * Licensed under the GPL License.  You may not use this file except in
- * compliance with the License.  You may obtain a copy of the License at
- *
- *     http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
- *
- * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED
- * WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
- * MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ * http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ * 
+ * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+ * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE.
  */
 package com.googlecode.psiprobe.model;
 
@@ -15,103 +15,105 @@ package com.googlecode.psiprobe.model;
  * @author Vlad Ilyushchenko
  */
 public class SunThread {
-    private long id;
-    private String name;
-    private String state;
-    private boolean deadlocked;
-    private boolean suspended;
-    private boolean inNative;
-    private String lockName;
-    private String lockOwnerName;
-    private long waitedCount;
-    private long blockedCount;
-    private ThreadStackElement executionPoint;
 
-    public long getId() {
-        return id;
-    }
+  private long id;
+  private String name;
+  private String state;
+  private boolean deadlocked;
+  private boolean suspended;
+  private boolean inNative;
+  private String lockName;
+  private String lockOwnerName;
+  private long waitedCount;
+  private long blockedCount;
+  private ThreadStackElement executionPoint;
 
-    public void setId(long id) {
-        this.id = id;
-    }
+  public long getId() {
+    return id;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public void setId(long id) {
+    this.id = id;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public String getState() {
-        return state;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public void setState(String state) {
-        this.state = state;
-    }
+  public String getState() {
+    return state;
+  }
 
-    public boolean isDeadlocked() {
-        return deadlocked;
-    }
+  public void setState(String state) {
+    this.state = state;
+  }
 
-    public void setDeadlocked(boolean deadlocked) {
-        this.deadlocked = deadlocked;
-    }
+  public boolean isDeadlocked() {
+    return deadlocked;
+  }
 
-    public boolean isSuspended() {
-        return suspended;
-    }
+  public void setDeadlocked(boolean deadlocked) {
+    this.deadlocked = deadlocked;
+  }
 
-    public void setSuspended(boolean suspended) {
-        this.suspended = suspended;
-    }
+  public boolean isSuspended() {
+    return suspended;
+  }
 
-    public boolean isInNative() {
-        return inNative;
-    }
+  public void setSuspended(boolean suspended) {
+    this.suspended = suspended;
+  }
 
-    public void setInNative(boolean inNative) {
-        this.inNative = inNative;
-    }
+  public boolean isInNative() {
+    return inNative;
+  }
 
-    public String getLockName() {
-        return lockName;
-    }
+  public void setInNative(boolean inNative) {
+    this.inNative = inNative;
+  }
 
-    public void setLockName(String lockName) {
-        this.lockName = lockName;
-    }
+  public String getLockName() {
+    return lockName;
+  }
 
-    public String getLockOwnerName() {
-        return lockOwnerName;
-    }
+  public void setLockName(String lockName) {
+    this.lockName = lockName;
+  }
 
-    public void setLockOwnerName(String lockOwnerName) {
-        this.lockOwnerName = lockOwnerName;
-    }
+  public String getLockOwnerName() {
+    return lockOwnerName;
+  }
 
-    public long getWaitedCount() {
-        return waitedCount;
-    }
+  public void setLockOwnerName(String lockOwnerName) {
+    this.lockOwnerName = lockOwnerName;
+  }
 
-    public void setWaitedCount(long waitedCount) {
-        this.waitedCount = waitedCount;
-    }
+  public long getWaitedCount() {
+    return waitedCount;
+  }
 
-    public long getBlockedCount() {
-        return blockedCount;
-    }
+  public void setWaitedCount(long waitedCount) {
+    this.waitedCount = waitedCount;
+  }
 
-    public void setBlockedCount(long blockedCount) {
-        this.blockedCount = blockedCount;
-    }
+  public long getBlockedCount() {
+    return blockedCount;
+  }
 
-    public ThreadStackElement getExecutionPoint() {
-        return executionPoint;
-    }
+  public void setBlockedCount(long blockedCount) {
+    this.blockedCount = blockedCount;
+  }
 
-    public void setExecutionPoint(ThreadStackElement executionPoint) {
-        this.executionPoint = executionPoint;
-    }
+  public ThreadStackElement getExecutionPoint() {
+    return executionPoint;
+  }
+
+  public void setExecutionPoint(ThreadStackElement executionPoint) {
+    this.executionPoint = executionPoint;
+  }
+
 }

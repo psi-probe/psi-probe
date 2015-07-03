@@ -1,12 +1,12 @@
 /*
- * Licensed under the GPL License.  You may not use this file except in
- * compliance with the License.  You may obtain a copy of the License at
- *
- *     http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
- *
- * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED
- * WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
- * MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ * http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ * 
+ * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+ * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE.
  */
 package com.googlecode.psiprobe.controllers.system;
 
@@ -22,28 +22,33 @@ import org.springframework.web.servlet.mvc.ParameterizableViewController;
  * @author Mark Lewis
  */
 public class MemoryStatsController extends ParameterizableViewController {
-    private JvmMemoryInfoAccessorBean jvmMemoryInfoAccessorBean;
-    private long collectionPeriod;
 
-    public JvmMemoryInfoAccessorBean getJvmMemoryInfoAccessorBean() {
-        return jvmMemoryInfoAccessorBean;
-    }
+  private JvmMemoryInfoAccessorBean jvmMemoryInfoAccessorBean;
+  private long collectionPeriod;
 
-    public void setJvmMemoryInfoAccessorBean(JvmMemoryInfoAccessorBean jvmMemoryInfoAccessorBean) {
-        this.jvmMemoryInfoAccessorBean = jvmMemoryInfoAccessorBean;
-    }
+  public JvmMemoryInfoAccessorBean getJvmMemoryInfoAccessorBean() {
+    return jvmMemoryInfoAccessorBean;
+  }
 
-    public long getCollectionPeriod() {
-        return collectionPeriod;
-    }
+  public void setJvmMemoryInfoAccessorBean(JvmMemoryInfoAccessorBean jvmMemoryInfoAccessorBean) {
+    this.jvmMemoryInfoAccessorBean = jvmMemoryInfoAccessorBean;
+  }
 
-    public void setCollectionPeriod(long collectionPeriod) {
-        this.collectionPeriod = collectionPeriod;
-    }
+  public long getCollectionPeriod() {
+    return collectionPeriod;
+  }
 
-    protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        return new ModelAndView(getViewName())
-                .addObject("pools", getJvmMemoryInfoAccessorBean().getPools())
-                .addObject("collectionPeriod", new Long(getCollectionPeriod()));
-    }
+  public void setCollectionPeriod(long collectionPeriod) {
+    this.collectionPeriod = collectionPeriod;
+  }
+
+  protected ModelAndView handleRequestInternal(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+
+    ModelAndView mv = new ModelAndView(getViewName());
+    mv.addObject("pools", getJvmMemoryInfoAccessorBean().getPools());
+    mv.addObject("collectionPeriod", new Long(getCollectionPeriod()));
+    return mv;
+  }
+
 }

@@ -1,12 +1,12 @@
 /*
- * Licensed under the GPL License.  You may not use this file except in
- * compliance with the License.  You may obtain a copy of the License at
- *
- *     http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
- *
- * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED
- * WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
- * MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ * http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ * 
+ * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+ * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE.
  */
 package com.googlecode.psiprobe.model.sql;
 
@@ -20,60 +20,60 @@ import java.util.List;
  * @author Andy Shapoval
  */
 public class DataSourceTestInfo implements Serializable {
-    public static final String DS_TEST_SESS_ATTR = "dataSourceTestData";
 
-    List results = null;
-    LinkedList queryHistory = new LinkedList();
-    int maxRows = 0;
-    int rowsPerPage = 0;
-    int historySize = 0;
+  public static final String DS_TEST_SESS_ATTR = "dataSourceTestData";
 
-    public DataSourceTestInfo() {
+  List results = null;
+  LinkedList queryHistory = new LinkedList();
+  int maxRows = 0;
+  int rowsPerPage = 0;
+  int historySize = 0;
+
+  public DataSourceTestInfo() {}
+
+  public void addQueryToHistory(String sql) {
+    queryHistory.remove(sql);
+    queryHistory.addFirst(sql);
+
+    while (historySize >= 0 && queryHistory.size() > historySize) {
+      queryHistory.removeLast();
     }
+  }
 
-    public void addQueryToHistory(String sql) {
-        queryHistory.remove(sql);
-        queryHistory.addFirst(sql);
+  public List getResults() {
+    return results;
+  }
 
-        while(historySize >= 0 && queryHistory.size() > historySize) {
-            queryHistory.removeLast();
-        }
-    }
+  public void setResults(List results) {
+    this.results = results;
+  }
 
-    public List getResults() {
-        return results;
-    }
+  public List getQueryHistory() {
+    return queryHistory;
+  }
 
-    public void setResults(List results) {
-        this.results = results;
-    }
+  public int getMaxRows() {
+    return maxRows;
+  }
 
-    public List getQueryHistory() {
-        return queryHistory;
-    }
+  public void setMaxRows(int maxRows) {
+    this.maxRows = maxRows;
+  }
 
-    public int getMaxRows() {
-        return maxRows;
-    }
+  public int getRowsPerPage() {
+    return rowsPerPage;
+  }
 
-    public void setMaxRows(int maxRows) {
-        this.maxRows = maxRows;
-    }
+  public void setRowsPerPage(int rowsPerPage) {
+    this.rowsPerPage = rowsPerPage;
+  }
 
-    public int getRowsPerPage() {
-        return rowsPerPage;
-    }
+  public int getHistorySize() {
+    return historySize;
+  }
 
-    public void setRowsPerPage(int rowsPerPage) {
-        this.rowsPerPage = rowsPerPage;
-    }
-
-    public int getHistorySize() {
-        return historySize;
-    }
-
-    public void setHistorySize(int historySize) {
-        this.historySize = historySize;
-    }
+  public void setHistorySize(int historySize) {
+    this.historySize = historySize;
+  }
 
 }

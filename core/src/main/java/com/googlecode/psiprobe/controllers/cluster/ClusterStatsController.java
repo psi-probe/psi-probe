@@ -1,12 +1,12 @@
 /*
- * Licensed under the GPL License.  You may not use this file except in
- * compliance with the License.  You may obtain a copy of the License at
- *
- *     http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
- *
- * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED
- * WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
- * MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ * http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ * 
+ * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+ * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE.
  */
 package com.googlecode.psiprobe.controllers.cluster;
 
@@ -24,39 +24,44 @@ import org.springframework.web.servlet.ModelAndView;
  * @author Mark Lewis
  */
 public class ClusterStatsController extends TomcatContainerController {
-    private ClusterWrapperBean clusterWrapper;
-    private boolean loadMembers = true;
-    private long collectionPeriod;
 
-    public ClusterWrapperBean getClusterWrapper() {
-        return clusterWrapper;
-    }
+  private ClusterWrapperBean clusterWrapper;
+  private boolean loadMembers = true;
+  private long collectionPeriod;
 
-    public void setClusterWrapper(ClusterWrapperBean clusterWrapper) {
-        this.clusterWrapper = clusterWrapper;
-    }
+  public ClusterWrapperBean getClusterWrapper() {
+    return clusterWrapper;
+  }
 
-    public boolean isLoadMembers() {
-        return loadMembers;
-    }
+  public void setClusterWrapper(ClusterWrapperBean clusterWrapper) {
+    this.clusterWrapper = clusterWrapper;
+  }
 
-    public void setLoadMembers(boolean loadMembers) {
-        this.loadMembers = loadMembers;
-    }
+  public boolean isLoadMembers() {
+    return loadMembers;
+  }
 
-    public long getCollectionPeriod() {
-        return collectionPeriod;
-    }
+  public void setLoadMembers(boolean loadMembers) {
+    this.loadMembers = loadMembers;
+  }
 
-    public void setCollectionPeriod(long collectionPeriod) {
-        this.collectionPeriod = collectionPeriod;
-    }
+  public long getCollectionPeriod() {
+    return collectionPeriod;
+  }
 
-    protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        TomcatContainer container = getContainerWrapper().getTomcatContainer();
-        Cluster cluster = getClusterWrapper().getCluster(container.getName(), container.getHostName(), isLoadMembers());
-        return new ModelAndView(getViewName())
-                .addObject("cluster", cluster)
-                .addObject("collectionPeriod", new Long(getCollectionPeriod()));
-    }
+  public void setCollectionPeriod(long collectionPeriod) {
+    this.collectionPeriod = collectionPeriod;
+  }
+
+  protected ModelAndView handleRequestInternal(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+
+    TomcatContainer container = getContainerWrapper().getTomcatContainer();
+    Cluster cluster =
+        getClusterWrapper().getCluster(container.getName(), container.getHostName(),
+            isLoadMembers());
+    return new ModelAndView(getViewName()).addObject("cluster", cluster).addObject(
+        "collectionPeriod", new Long(getCollectionPeriod()));
+  }
+
 }

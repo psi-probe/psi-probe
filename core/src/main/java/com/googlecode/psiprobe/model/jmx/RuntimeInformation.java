@@ -1,12 +1,12 @@
 /*
- * Licensed under the GPL License.  You may not use this file except in
- * compliance with the License.  You may obtain a copy of the License at
- *
- *     http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
- *
- * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED
- * WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
- * MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ * http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ * 
+ * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+ * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE.
  */
 package com.googlecode.psiprobe.model.jmx;
 
@@ -16,131 +16,132 @@ package com.googlecode.psiprobe.model.jmx;
  * @author Mark Lewis
  */
 public class RuntimeInformation {
-    private String vmVendor;
-    private long committedVirtualMemorySize = 0;
-    private long freePhysicalMemorySize = 0;
-    private long freeSwapSpaceSize = 0;
-    private long processCpuTime = 0;
-    private int availableProcessors = 1;
-    private long totalPhysicalMemorySize = 0;
-    private long totalSwapSpaceSize = 0;
-    private String osName;
-    private String osVersion;
-    private long startTime;
-    private long uptime;
-    private long openFDCount;
-    private long maxFDCount;
 
-    public long getCommittedVirtualMemorySize() {
-        return committedVirtualMemorySize;
-    }
+  private String vmVendor;
+  private long committedVirtualMemorySize = 0;
+  private long freePhysicalMemorySize = 0;
+  private long freeSwapSpaceSize = 0;
+  private long processCpuTime = 0;
+  private int availableProcessors = 1;
+  private long totalPhysicalMemorySize = 0;
+  private long totalSwapSpaceSize = 0;
+  private String osName;
+  private String osVersion;
+  private long startTime;
+  private long uptime;
+  private long openFDCount;
+  private long maxFDCount;
 
-    public void setCommittedVirtualMemorySize(long committedVirtualMemorySize) {
-        this.committedVirtualMemorySize = committedVirtualMemorySize;
-    }
+  public long getCommittedVirtualMemorySize() {
+    return committedVirtualMemorySize;
+  }
 
-    public long getFreePhysicalMemorySize() {
-        return freePhysicalMemorySize;
-    }
+  public void setCommittedVirtualMemorySize(long committedVirtualMemorySize) {
+    this.committedVirtualMemorySize = committedVirtualMemorySize;
+  }
 
-    public void setFreePhysicalMemorySize(long freePhysicalMemorySize) {
-        this.freePhysicalMemorySize = freePhysicalMemorySize;
-    }
+  public long getFreePhysicalMemorySize() {
+    return freePhysicalMemorySize;
+  }
 
-    public long getFreeSwapSpaceSize() {
-        return freeSwapSpaceSize;
-    }
+  public void setFreePhysicalMemorySize(long freePhysicalMemorySize) {
+    this.freePhysicalMemorySize = freePhysicalMemorySize;
+  }
 
-    public void setFreeSwapSpaceSize(long freeSwapSpaceSize) {
-        this.freeSwapSpaceSize = freeSwapSpaceSize;
-    }
+  public long getFreeSwapSpaceSize() {
+    return freeSwapSpaceSize;
+  }
 
-    public long getProcessCpuTime() {
-        return processCpuTime;
-    }
+  public void setFreeSwapSpaceSize(long freeSwapSpaceSize) {
+    this.freeSwapSpaceSize = freeSwapSpaceSize;
+  }
 
-    public void setProcessCpuTime(long processCpuTime) {
-        this.processCpuTime = processCpuTime;
-    }
+  public long getProcessCpuTime() {
+    return processCpuTime;
+  }
 
-    public int getAvailableProcessors() {
-        return availableProcessors;
-    }
+  public void setProcessCpuTime(long processCpuTime) {
+    this.processCpuTime = processCpuTime;
+  }
 
-    public void setAvailableProcessors(int availableProcessors) {
-        this.availableProcessors = availableProcessors;
-    }
+  public int getAvailableProcessors() {
+    return availableProcessors;
+  }
 
-    public long getTotalPhysicalMemorySize() {
-        return totalPhysicalMemorySize;
-    }
+  public void setAvailableProcessors(int availableProcessors) {
+    this.availableProcessors = availableProcessors;
+  }
 
-    public void setTotalPhysicalMemorySize(long totalPhysicalMemorySize) {
-        this.totalPhysicalMemorySize = totalPhysicalMemorySize;
-    }
+  public long getTotalPhysicalMemorySize() {
+    return totalPhysicalMemorySize;
+  }
 
-    public long getTotalSwapSpaceSize() {
-        return totalSwapSpaceSize;
-    }
+  public void setTotalPhysicalMemorySize(long totalPhysicalMemorySize) {
+    this.totalPhysicalMemorySize = totalPhysicalMemorySize;
+  }
 
-    public void setTotalSwapSpaceSize(long totalSwapSpaceSize) {
-        this.totalSwapSpaceSize = totalSwapSpaceSize;
-    }
+  public long getTotalSwapSpaceSize() {
+    return totalSwapSpaceSize;
+  }
 
-    public String getOsName() {
-        return osName;
-    }
+  public void setTotalSwapSpaceSize(long totalSwapSpaceSize) {
+    this.totalSwapSpaceSize = totalSwapSpaceSize;
+  }
 
-    public void setOsName(String osName) {
-        this.osName = osName;
-    }
+  public String getOsName() {
+    return osName;
+  }
 
-    public String getOsVersion() {
-        return osVersion;
-    }
+  public void setOsName(String osName) {
+    this.osName = osName;
+  }
 
-    public void setOsVersion(String osVersion) {
-        this.osVersion = osVersion;
-    }
+  public String getOsVersion() {
+    return osVersion;
+  }
 
-    public long getStartTime() {
-        return startTime;
-    }
+  public void setOsVersion(String osVersion) {
+    this.osVersion = osVersion;
+  }
 
-    public void setStartTime(long startTime) {
-        this.startTime = startTime;
-    }
+  public long getStartTime() {
+    return startTime;
+  }
 
-    public long getUptime() {
-        return uptime;
-    }
+  public void setStartTime(long startTime) {
+    this.startTime = startTime;
+  }
 
-    public void setUptime(long uptime) {
-        this.uptime = uptime;
-    }
+  public long getUptime() {
+    return uptime;
+  }
 
-    public String getVmVendor() {
-        return vmVendor;
-    }
+  public void setUptime(long uptime) {
+    this.uptime = uptime;
+  }
 
-    public void setVmVendor(String vmVendor) {
-        this.vmVendor = vmVendor;
-    }
+  public String getVmVendor() {
+    return vmVendor;
+  }
 
-    public long getOpenFDCount() {
-        return openFDCount;
-    }
+  public void setVmVendor(String vmVendor) {
+    this.vmVendor = vmVendor;
+  }
 
-    public void setOpenFDCount(long openFDCount) {
-        this.openFDCount = openFDCount;
-    }
+  public long getOpenFDCount() {
+    return openFDCount;
+  }
 
-    public long getMaxFDCount() {
-        return maxFDCount;
-    }
+  public void setOpenFDCount(long openFDCount) {
+    this.openFDCount = openFDCount;
+  }
 
-    public void setMaxFDCount(long maxFDCount) {
-        this.maxFDCount = maxFDCount;
-    }
+  public long getMaxFDCount() {
+    return maxFDCount;
+  }
+
+  public void setMaxFDCount(long maxFDCount) {
+    this.maxFDCount = maxFDCount;
+  }
 
 }

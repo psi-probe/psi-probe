@@ -1,12 +1,12 @@
 /*
- * Licensed under the GPL License.  You may not use this file except in
- * compliance with the License.  You may obtain a copy of the License at
- *
- *     http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
- *
- * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED
- * WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
- * MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ * http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ * 
+ * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+ * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE.
  */
 package com.googlecode.psiprobe.model;
 
@@ -20,197 +20,199 @@ import java.io.Serializable;
  * @author Mark Lewis
  */
 public class Application implements Serializable {
-    private String name;
-    private String displayName;
-    private String docBase;
-    private boolean available;
-    private long sessionCount;
-    private long sessionAttributeCount;
-    private int contextAttributeCount;
-    private int dataSourceBusyScore;
-    private int dataSourceEstablishedScore;
-    private boolean distributable;
-    private int sessionTimeout;
-    private String servletVersion;
-    private boolean serializable;
-    private long size;
-    private int servletCount;
-    private int requestCount;
-    private long processingTime;
-    private int errorCount;
-    private long minTime;
-    private long maxTime;
-    private long avgTime;
 
-    public String getName() {
-        return name;
-    }
+  private String name;
+  private String displayName;
+  private String docBase;
+  private boolean available;
+  private long sessionCount;
+  private long sessionAttributeCount;
+  private int contextAttributeCount;
+  private int dataSourceBusyScore;
+  private int dataSourceEstablishedScore;
+  private boolean distributable;
+  private int sessionTimeout;
+  private String servletVersion;
+  private boolean serializable;
+  private long size;
+  private int servletCount;
+  private int requestCount;
+  private long processingTime;
+  private int errorCount;
+  private long minTime;
+  private long maxTime;
+  private long avgTime;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public String getDisplayName() {
-        return displayName;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public void setDisplayName(String displayName) {
-        this.displayName = displayName;
-    }
+  public String getDisplayName() {
+    return displayName;
+  }
 
-    public String getDocBase() {
-        return docBase;
-    }
+  public void setDisplayName(String displayName) {
+    this.displayName = displayName;
+  }
 
-    public void setDocBase(String docBase) {
-        this.docBase = docBase;
-    }
+  public String getDocBase() {
+    return docBase;
+  }
 
-    public boolean isAvailable() {
-        return available;
-    }
+  public void setDocBase(String docBase) {
+    this.docBase = docBase;
+  }
 
-    public void setAvailable(boolean available) {
-        this.available = available;
-    }
+  public boolean isAvailable() {
+    return available;
+  }
 
-    public long getSessionCount() {
-        return sessionCount;
-    }
+  public void setAvailable(boolean available) {
+    this.available = available;
+  }
 
-    public void setSessionCount(long sessionCount) {
-        this.sessionCount = sessionCount;
-    }
+  public long getSessionCount() {
+    return sessionCount;
+  }
 
-    public long getSessionAttributeCount() {
-        return sessionAttributeCount;
-    }
+  public void setSessionCount(long sessionCount) {
+    this.sessionCount = sessionCount;
+  }
 
-    public void setSessionAttributeCount(long sessionAttributeCount) {
-        this.sessionAttributeCount = sessionAttributeCount;
-    }
+  public long getSessionAttributeCount() {
+    return sessionAttributeCount;
+  }
 
-    public int getContextAttributeCount() {
-        return contextAttributeCount;
-    }
+  public void setSessionAttributeCount(long sessionAttributeCount) {
+    this.sessionAttributeCount = sessionAttributeCount;
+  }
 
-    public void setContextAttributeCount(int contextAttributeCount) {
-        this.contextAttributeCount = contextAttributeCount;
-    }
+  public int getContextAttributeCount() {
+    return contextAttributeCount;
+  }
 
-    public int getDataSourceBusyScore() {
-        return dataSourceBusyScore;
-    }
+  public void setContextAttributeCount(int contextAttributeCount) {
+    this.contextAttributeCount = contextAttributeCount;
+  }
 
-    public void setDataSourceBusyScore(int dataSourceBusyScore) {
-        this.dataSourceBusyScore = dataSourceBusyScore;
-    }
+  public int getDataSourceBusyScore() {
+    return dataSourceBusyScore;
+  }
 
-    public int getDataSourceEstablishedScore() {
-        return dataSourceEstablishedScore;
-    }
+  public void setDataSourceBusyScore(int dataSourceBusyScore) {
+    this.dataSourceBusyScore = dataSourceBusyScore;
+  }
 
-    public void setDataSourceEstablishedScore(int dataSourceEstablishedScore) {
-        this.dataSourceEstablishedScore = dataSourceEstablishedScore;
-    }
+  public int getDataSourceEstablishedScore() {
+    return dataSourceEstablishedScore;
+  }
 
-    public boolean isDistributable() {
-        return distributable;
-    }
+  public void setDataSourceEstablishedScore(int dataSourceEstablishedScore) {
+    this.dataSourceEstablishedScore = dataSourceEstablishedScore;
+  }
 
-    public void setDistributable(boolean distributable) {
-        this.distributable = distributable;
-    }
+  public boolean isDistributable() {
+    return distributable;
+  }
 
-    public int getSessionTimeout() {
-        return sessionTimeout;
-    }
+  public void setDistributable(boolean distributable) {
+    this.distributable = distributable;
+  }
 
-    public void setSessionTimeout(int sessionTimeout) {
-        this.sessionTimeout = sessionTimeout;
-    }
+  public int getSessionTimeout() {
+    return sessionTimeout;
+  }
 
-    public String getServletVersion() {
-        return servletVersion;
-    }
+  public void setSessionTimeout(int sessionTimeout) {
+    this.sessionTimeout = sessionTimeout;
+  }
 
-    public void setServletVersion(String servletVersion) {
-        this.servletVersion = servletVersion;
-    }
+  public String getServletVersion() {
+    return servletVersion;
+  }
 
-    public long getSize() {
-        return size;
-    }
+  public void setServletVersion(String servletVersion) {
+    this.servletVersion = servletVersion;
+  }
 
-    public void setSize(long size) {
-        this.size = size;
-    }
+  public long getSize() {
+    return size;
+  }
 
-    public void addSize(long size) {
-        this.size += size;
-    }
+  public void setSize(long size) {
+    this.size = size;
+  }
 
-    public boolean isSerializable() {
-        return serializable;
-    }
+  public void addSize(long size) {
+    this.size += size;
+  }
 
-    public void setSerializable(boolean serializable) {
-        this.serializable = serializable;
-    }
+  public boolean isSerializable() {
+    return serializable;
+  }
 
-    public int getServletCount() {
-        return servletCount;
-    }
+  public void setSerializable(boolean serializable) {
+    this.serializable = serializable;
+  }
 
-    public void setServletCount(int servletCount) {
-        this.servletCount = servletCount;
-    }
+  public int getServletCount() {
+    return servletCount;
+  }
 
-    public int getRequestCount() {
-        return requestCount;
-    }
+  public void setServletCount(int servletCount) {
+    this.servletCount = servletCount;
+  }
 
-    public void setRequestCount(int requestCount) {
-        this.requestCount = requestCount;
-    }
+  public int getRequestCount() {
+    return requestCount;
+  }
 
-    public long getProcessingTime() {
-        return processingTime;
-    }
+  public void setRequestCount(int requestCount) {
+    this.requestCount = requestCount;
+  }
 
-    public void setProcessingTime(long processingTime) {
-        this.processingTime = processingTime;
-    }
+  public long getProcessingTime() {
+    return processingTime;
+  }
 
-    public int getErrorCount() {
-        return errorCount;
-    }
+  public void setProcessingTime(long processingTime) {
+    this.processingTime = processingTime;
+  }
 
-    public void setErrorCount(int errorCount) {
-        this.errorCount = errorCount;
-    }
+  public int getErrorCount() {
+    return errorCount;
+  }
 
-    public long getMinTime() {
-        return minTime;
-    }
+  public void setErrorCount(int errorCount) {
+    this.errorCount = errorCount;
+  }
 
-    public void setMinTime(long minTime) {
-        this.minTime = minTime;
-    }
+  public long getMinTime() {
+    return minTime;
+  }
 
-    public long getMaxTime() {
-        return maxTime;
-    }
+  public void setMinTime(long minTime) {
+    this.minTime = minTime;
+  }
 
-    public void setMaxTime(long maxTime) {
-        this.maxTime = maxTime;
-    }
+  public long getMaxTime() {
+    return maxTime;
+  }
 
-    public long getAvgTime() {
-        return avgTime;
-    }
+  public void setMaxTime(long maxTime) {
+    this.maxTime = maxTime;
+  }
 
-    public void setAvgTime(long avgTime) {
-        this.avgTime = avgTime;
-    }
+  public long getAvgTime() {
+    return avgTime;
+  }
+
+  public void setAvgTime(long avgTime) {
+    this.avgTime = avgTime;
+  }
+
 }

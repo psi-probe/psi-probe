@@ -1,12 +1,12 @@
 /*
- * Licensed under the GPL License.  You may not use this file except in
- * compliance with the License.  You may obtain a copy of the License at
- *
- *     http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
- *
- * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED
- * WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
- * MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ * http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ * 
+ * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+ * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE.
  */
 package com.googlecode.psiprobe.controllers.system;
 
@@ -24,34 +24,37 @@ import org.springframework.web.servlet.view.RedirectView;
  */
 public class AdviseGCController extends ParameterizableViewController {
 
-    private String replacePattern;
+  private String replacePattern;
 
-    public String getReplacePattern() {
-        return replacePattern;
+  public String getReplacePattern() {
+    return replacePattern;
+  }
+
+  public void setReplacePattern(String replacePattern) {
+    this.replacePattern = replacePattern;
+  }
+
+  protected ModelAndView handleRequestInternal(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+
+    boolean finalization = ServletRequestUtils.getBooleanParameter(request, "fin", false);
+
+    String referer = request.getHeader("Referer");
+    String redirectURL;
+    if (referer != null) {
+      redirectURL = referer.replaceAll(replacePattern, "");
+    } else {
+      redirectURL = request.getContextPath() + getViewName();
     }
-
-    public void setReplacePattern(String replacePattern) {
-        this.replacePattern = replacePattern;
+    if (finalization) {
+      Runtime.getRuntime().runFinalization();
+      logger.debug("Advised finalization");
+    } else {
+      Runtime.getRuntime().gc();
+      logger.debug("Advised Garbage Collection");
     }
+    logger.debug("Redirected to " + redirectURL);
+    return new ModelAndView(new RedirectView(redirectURL));
+  }
 
-    protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        boolean finalization = ServletRequestUtils.getBooleanParameter(request, "fin", false);
-
-        String referer = request.getHeader("Referer");
-        String redirectURL;
-        if (referer != null) {
-            redirectURL = referer.replaceAll(replacePattern, "");
-        } else {
-            redirectURL = request.getContextPath() + getViewName();
-        }
-        if (finalization) {
-            Runtime.getRuntime().runFinalization();
-            logger.debug("Advised finalization");
-        } else {
-            Runtime.getRuntime().gc();
-            logger.debug("Advised Garbage Collection");
-        }
-        logger.debug("Redirected to "+redirectURL);
-        return new ModelAndView(new RedirectView(redirectURL));
-    }
 }

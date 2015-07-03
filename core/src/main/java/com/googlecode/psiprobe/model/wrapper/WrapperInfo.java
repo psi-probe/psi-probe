@@ -1,12 +1,12 @@
 /*
- * Licensed under the GPL License.  You may not use this file except in
- * compliance with the License.  You may obtain a copy of the License at
- *
- *     http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
- *
- * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED
- * WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
- * MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ * http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ * 
+ * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+ * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE.
  */
 package com.googlecode.psiprobe.model.wrapper;
 
@@ -17,94 +17,96 @@ import java.util.Set;
  * @author Vlad Ilyushchenko
  */
 public class WrapperInfo {
-    private String user;
-    private String interactiveUser;
-    private String version;
-    private int wrapperPid;
-    private int jvmPid;
-    private String buildTime;
-    private Set properties;
-    private boolean controlledByWrapper;
-    private boolean launchedAsService;
-    private boolean debugEnabled;
 
-    public String getUser() {
-        return user;
-    }
+  private String user;
+  private String interactiveUser;
+  private String version;
+  private int wrapperPid;
+  private int jvmPid;
+  private String buildTime;
+  private Set properties;
+  private boolean controlledByWrapper;
+  private boolean launchedAsService;
+  private boolean debugEnabled;
 
-    public void setUser(String user) {
-        this.user = user;
-    }
+  public String getUser() {
+    return user;
+  }
 
-    public String getInteractiveUser() {
-        return interactiveUser;
-    }
+  public void setUser(String user) {
+    this.user = user;
+  }
 
-    public void setInteractiveUser(String interactiveUser) {
-        this.interactiveUser = interactiveUser;
-    }
+  public String getInteractiveUser() {
+    return interactiveUser;
+  }
 
-    public String getVersion() {
-        return version;
-    }
+  public void setInteractiveUser(String interactiveUser) {
+    this.interactiveUser = interactiveUser;
+  }
 
-    public void setVersion(String version) {
-        this.version = version;
-    }
+  public String getVersion() {
+    return version;
+  }
 
-    public int getWrapperPid() {
-        return wrapperPid;
-    }
+  public void setVersion(String version) {
+    this.version = version;
+  }
 
-    public void setWrapperPid(int wrapperPid) {
-        this.wrapperPid = wrapperPid;
-    }
+  public int getWrapperPid() {
+    return wrapperPid;
+  }
 
-    public int getJvmPid() {
-        return jvmPid;
-    }
+  public void setWrapperPid(int wrapperPid) {
+    this.wrapperPid = wrapperPid;
+  }
 
-    public void setJvmPid(int jvmPid) {
-        this.jvmPid = jvmPid;
-    }
+  public int getJvmPid() {
+    return jvmPid;
+  }
 
-    public String getBuildTime() {
-        return buildTime;
-    }
+  public void setJvmPid(int jvmPid) {
+    this.jvmPid = jvmPid;
+  }
 
-    public void setBuildTime(String buildTime) {
-        this.buildTime = buildTime;
-    }
+  public String getBuildTime() {
+    return buildTime;
+  }
 
-    public Set getProperties() {
-        return properties;
-    }
+  public void setBuildTime(String buildTime) {
+    this.buildTime = buildTime;
+  }
 
-    public void setProperties(Set properties) {
-        this.properties = properties;
-    }
+  public Set getProperties() {
+    return properties;
+  }
 
-    public boolean isControlledByWrapper() {
-        return controlledByWrapper;
-    }
+  public void setProperties(Set properties) {
+    this.properties = properties;
+  }
 
-    public void setControlledByWrapper(boolean controlledByWrapper) {
-        this.controlledByWrapper = controlledByWrapper;
-    }
+  public boolean isControlledByWrapper() {
+    return controlledByWrapper;
+  }
 
-    public boolean isLaunchedAsService() {
-        return launchedAsService;
-    }
+  public void setControlledByWrapper(boolean controlledByWrapper) {
+    this.controlledByWrapper = controlledByWrapper;
+  }
 
-    public void setLaunchedAsService(boolean launchedAsService) {
-        this.launchedAsService = launchedAsService;
-    }
+  public boolean isLaunchedAsService() {
+    return launchedAsService;
+  }
 
-    public boolean isDebugEnabled() {
-        return debugEnabled;
-    }
+  public void setLaunchedAsService(boolean launchedAsService) {
+    this.launchedAsService = launchedAsService;
+  }
 
-    public void setDebugEnabled(boolean debugEnabled) {
-        this.debugEnabled = debugEnabled;
-    }
+  public boolean isDebugEnabled() {
+    return debugEnabled;
+  }
+
+  public void setDebugEnabled(boolean debugEnabled) {
+    this.debugEnabled = debugEnabled;
+  }
+
 }

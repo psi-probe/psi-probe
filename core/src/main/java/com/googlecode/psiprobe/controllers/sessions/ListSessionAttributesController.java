@@ -1,12 +1,12 @@
 /*
- * Licensed under the GPL License.  You may not use this file except in
- * compliance with the License.  You may obtain a copy of the License at
- *
- *     http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
- *
- * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED
- * WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
- * MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ * http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ * 
+ * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+ * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE.
  */
 package com.googlecode.psiprobe.controllers.sessions;
 
@@ -27,21 +27,24 @@ import org.springframework.web.servlet.ModelAndView;
  */
 public class ListSessionAttributesController extends ContextHandlerController {
 
-    protected ModelAndView handleContext(String contextName, Context context, HttpServletRequest request, HttpServletResponse response) throws Exception {
+  protected ModelAndView handleContext(String contextName, Context context,
+      HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        boolean privileged = SecurityUtils.hasAttributeValueRole(getServletContext(), request);
-        boolean calcSize = ServletRequestUtils.getBooleanParameter(request, "size", false)
-                && privileged;
-        String sid = ServletRequestUtils.getStringParameter(request, "sid");
+    boolean privileged = SecurityUtils.hasAttributeValueRole(getServletContext(), request);
+    boolean calcSize =
+        ServletRequestUtils.getBooleanParameter(request, "size", false) && privileged;
+    String sid = ServletRequestUtils.getStringParameter(request, "sid");
 
-        ApplicationSession appSession = ApplicationUtils.getApplicationSession(
-                context.getManager().findSession(sid), calcSize, true);
+    ApplicationSession appSession =
+        ApplicationUtils.getApplicationSession(context.getManager().findSession(sid), calcSize,
+            true);
 
-        if (appSession != null) {
-            appSession.setAllowedToViewValues(privileged);
-            return new ModelAndView(getViewName(), "session", appSession);
-        } else {
-            return new ModelAndView(getViewName());
-        }
+    if (appSession != null) {
+      appSession.setAllowedToViewValues(privileged);
+      return new ModelAndView(getViewName(), "session", appSession);
+    } else {
+      return new ModelAndView(getViewName());
     }
+  }
+
 }

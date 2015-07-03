@@ -1,12 +1,12 @@
 /*
- * Licensed under the GPL License.  You may not use this file except in
- * compliance with the License.  You may obtain a copy of the License at
- *
- *     http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
- *
- * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED
- * WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
- * MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ * http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ * 
+ * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+ * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE.
  */
 package com.googlecode.psiprobe.model;
 
@@ -18,130 +18,132 @@ import java.util.Locale;
  * @author Vlad Ilyushchenko
  */
 public class RequestProcessor {
-    private String name;
-    private int stage;
-    private long processingTime;
-    private long bytesSent;
-    private long bytesReceived;
-    private String remoteAddr;
-    private Locale remoteAddrLocale;
-    private String virtualHost;
-    private String method;
-    private String currentUri;
-    private String currentQueryString;
-    private String protocol;
-    private String workerThreadName;
-    private boolean workerThreadNameSupported = false;
 
-    public String getName() {
-        return name;
-    }
+  private String name;
+  private int stage;
+  private long processingTime;
+  private long bytesSent;
+  private long bytesReceived;
+  private String remoteAddr;
+  private Locale remoteAddrLocale;
+  private String virtualHost;
+  private String method;
+  private String currentUri;
+  private String currentQueryString;
+  private String protocol;
+  private String workerThreadName;
+  private boolean workerThreadNameSupported = false;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public int getStage() {
-        return stage;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public void setStage(int stage) {
-        this.stage = stage;
-    }
+  public int getStage() {
+    return stage;
+  }
 
-    public long getProcessingTime() {
-        return processingTime;
-    }
+  public void setStage(int stage) {
+    this.stage = stage;
+  }
 
-    public void setProcessingTime(long processingTime) {
-        this.processingTime = processingTime;
-    }
+  public long getProcessingTime() {
+    return processingTime;
+  }
 
-    public long getBytesSent() {
-        return bytesSent;
-    }
+  public void setProcessingTime(long processingTime) {
+    this.processingTime = processingTime;
+  }
 
-    public void setBytesSent(long bytesSent) {
-        this.bytesSent = bytesSent;
-    }
+  public long getBytesSent() {
+    return bytesSent;
+  }
 
-    public long getBytesReceived() {
-        return bytesReceived;
-    }
+  public void setBytesSent(long bytesSent) {
+    this.bytesSent = bytesSent;
+  }
 
-    public void setBytesReceived(long bytesReceived) {
-        this.bytesReceived = bytesReceived;
-    }
+  public long getBytesReceived() {
+    return bytesReceived;
+  }
 
-    public String getRemoteAddr() {
-        return remoteAddr;
-    }
+  public void setBytesReceived(long bytesReceived) {
+    this.bytesReceived = bytesReceived;
+  }
 
-    public void setRemoteAddr(String remoteAddr) {
-        this.remoteAddr = remoteAddr;
-    }
+  public String getRemoteAddr() {
+    return remoteAddr;
+  }
 
-    public String getVirtualHost() {
-        return virtualHost;
-    }
+  public void setRemoteAddr(String remoteAddr) {
+    this.remoteAddr = remoteAddr;
+  }
 
-    public void setVirtualHost(String virtualHost) {
-        this.virtualHost = virtualHost;
-    }
+  public String getVirtualHost() {
+    return virtualHost;
+  }
 
-    public String getMethod() {
-        return method;
-    }
+  public void setVirtualHost(String virtualHost) {
+    this.virtualHost = virtualHost;
+  }
 
-    public void setMethod(String method) {
-        this.method = method;
-    }
+  public String getMethod() {
+    return method;
+  }
 
-    public String getCurrentUri() {
-        return currentUri;
-    }
+  public void setMethod(String method) {
+    this.method = method;
+  }
 
-    public void setCurrentUri(String currentUri) {
-        this.currentUri = currentUri;
-    }
+  public String getCurrentUri() {
+    return currentUri;
+  }
 
-    public String getCurrentQueryString() {
-        return currentQueryString;
-    }
+  public void setCurrentUri(String currentUri) {
+    this.currentUri = currentUri;
+  }
 
-    public void setCurrentQueryString(String currentQueryString) {
-        this.currentQueryString = currentQueryString;
-    }
+  public String getCurrentQueryString() {
+    return currentQueryString;
+  }
 
-    public String getProtocol() {
-        return protocol;
-    }
+  public void setCurrentQueryString(String currentQueryString) {
+    this.currentQueryString = currentQueryString;
+  }
 
-    public void setProtocol(String protocol) {
-        this.protocol = protocol;
-    }
+  public String getProtocol() {
+    return protocol;
+  }
 
-    public Locale getRemoteAddrLocale() {
-        return remoteAddrLocale;
-    }
+  public void setProtocol(String protocol) {
+    this.protocol = protocol;
+  }
 
-    public void setRemoteAddrLocale(Locale remoteAddrLocale) {
-        this.remoteAddrLocale = remoteAddrLocale;
-    }
+  public Locale getRemoteAddrLocale() {
+    return remoteAddrLocale;
+  }
 
-    public String getWorkerThreadName() {
-        return workerThreadName;
-    }
+  public void setRemoteAddrLocale(Locale remoteAddrLocale) {
+    this.remoteAddrLocale = remoteAddrLocale;
+  }
 
-    public void setWorkerThreadName(String workerThreadName) {
-        this.workerThreadName = workerThreadName;
-    }
+  public String getWorkerThreadName() {
+    return workerThreadName;
+  }
 
-    public boolean isWorkerThreadNameSupported() {
-        return workerThreadNameSupported;
-    }
+  public void setWorkerThreadName(String workerThreadName) {
+    this.workerThreadName = workerThreadName;
+  }
 
-    public void setWorkerThreadNameSupported(boolean workerThreadNameSupported) {
-        this.workerThreadNameSupported = workerThreadNameSupported;
-    }
+  public boolean isWorkerThreadNameSupported() {
+    return workerThreadNameSupported;
+  }
+
+  public void setWorkerThreadNameSupported(boolean workerThreadNameSupported) {
+    this.workerThreadNameSupported = workerThreadNameSupported;
+  }
+
 }
