@@ -497,9 +497,21 @@
 						</dependency>
 					</dependencies>
 				</plugin>
+				<plugin>
+					<groupId>net.revelc.code</groupId>
+					<artifactId>formatter-maven-plugin</artifactId>
+					<version>0.5.2</version>
+					<configuration>
+						<configFile>${git.relative.path}/eclipse-java-google-style.xml</configFile>
+					</configuration>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 		<plugins>
+			<plugin>
+				<groupId>net.revelc.code</groupId>
+				<artifactId>formatter-maven-plugin</artifactId>
+			</plugin>
 			<plugin>
 				<groupId>pl.project13.maven</groupId>
 				<artifactId>git-commit-id-plugin</artifactId>
