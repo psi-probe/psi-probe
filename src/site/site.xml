@@ -3,7 +3,7 @@
     xsi:schemaLocation="http://maven.apache.org/DECORATION/1.4.0 http://maven.apache.org/xsd/decoration-1.4.0.xsd">
     <bannerLeft>
         <src>/images/psi-probe-banner.jpg</src>
-        <href>http://github.com/psi-probe</href>
+        <href>http://github.com/psi-probe/psi-probe</href>
     </bannerLeft>
     <bannerRight>
         <src>http://tomcat.apache.org/images/tomcat.png</src>
@@ -22,7 +22,7 @@
     </custom>
     <body>
         <links>
-            <item name="Psi-Probe" href="http://github.com/psi-probe" />
+            <item name="Psi-Probe" href="http://github.com/psi-probe/psi-probe" />
         </links>
         <menu ref="reports" />
     </body>
