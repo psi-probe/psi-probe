@@ -14,6 +14,7 @@ import com.googlecode.psiprobe.model.ApplicationParam;
 import com.googlecode.psiprobe.model.ApplicationResource;
 import com.googlecode.psiprobe.model.FilterInfo;
 import com.googlecode.psiprobe.model.FilterMapping;
+
 import org.apache.catalina.Container;
 import org.apache.catalina.Context;
 import org.apache.catalina.Host;
@@ -34,6 +35,7 @@ import org.apache.jasper.compiler.JspRuntimeContext;
 import org.apache.jasper.servlet.JspServletWrapper;
 import org.apache.naming.resources.Resource;
 import org.apache.naming.resources.ResourceAttributes;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -46,6 +48,7 @@ import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
 import javax.management.MBeanServer;
 import javax.management.MalformedObjectNameException;
 import javax.management.ObjectName;

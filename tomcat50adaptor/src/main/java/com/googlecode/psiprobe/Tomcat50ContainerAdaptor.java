@@ -14,6 +14,7 @@ import com.googlecode.psiprobe.model.ApplicationParam;
 import com.googlecode.psiprobe.model.ApplicationResource;
 import com.googlecode.psiprobe.model.FilterInfo;
 import com.googlecode.psiprobe.model.FilterMapping;
+
 import org.apache.catalina.Container;
 import org.apache.catalina.Context;
 import org.apache.catalina.Deployer;
@@ -28,6 +29,7 @@ import org.apache.catalina.deploy.FilterMap;
 import org.apache.catalina.deploy.NamingResources;
 import org.apache.naming.resources.Resource;
 import org.apache.naming.resources.ResourceAttributes;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -37,6 +39,7 @@ import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
 import javax.naming.NamingException;
 import javax.servlet.ServletContext;
 
