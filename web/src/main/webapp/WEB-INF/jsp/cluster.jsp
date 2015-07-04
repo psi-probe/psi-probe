@@ -22,9 +22,9 @@
 <html>
 	<head>
 		<title><spring:message code="probe.jsp.title.cluster"/></title>
-		<script type="text/javascript" language="javascript" src="<c:url value='/js/prototype.js'/>"></script>
-		<script type="text/javascript" language="javascript" src="<c:url value='/js/scriptaculous.js'/>"></script>
-		<script type="text/javascript" language="javascript" src="<c:url value='/js/func.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/js/scriptaculous.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/js/func.js'/>"></script>
 	</head>
 
 	<c:set var="navTabCluster" value="active" scope="request"/>

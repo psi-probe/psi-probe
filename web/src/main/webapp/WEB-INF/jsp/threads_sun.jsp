@@ -17,12 +17,12 @@
 <html>
 	<head>
 		<title><spring:message code="probe.jsp.title.threads"/></title>
-		<script type="text/javascript" language="javascript" src="<c:url value='/js/prototype.js'/>"></script>
-		<script type="text/javascript" language="javascript" src="<c:url value='/js/scriptaculous.js'/>"></script>
-		<script type="text/javascript" language="javascript" src="<c:url value='/js/effects.js'/>"></script>
-		<script type="text/javascript" language="javascript" src="<c:url value='/js/Tooltip.js'/>"></script>
-		<script type="text/javascript" language="javascript" src="<c:url value='/js/behaviour.js'/>"></script>
-		<script type="text/javascript" language="javascript" src="<c:url value='/js/func.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/js/scriptaculous.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/js/effects.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/js/Tooltip.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/js/behaviour.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/js/func.js'/>"></script>
 	</head>
 
 	<c:set var="navTabThreads" value="active" scope="request"/>

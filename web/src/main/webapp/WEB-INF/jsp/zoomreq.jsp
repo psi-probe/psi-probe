@@ -17,9 +17,9 @@
 <html>
 	<head>
 		<title>${param.cn}</title>
-		<script type="text/javascript" language="javascript" src="<c:url value='/js/prototype.js'/>"></script>
-		<script type="text/javascript" language="javascript" src="<c:url value='/js/scriptaculous.js'/>"></script>
-		<script type="text/javascript" language="javascript" src="<c:url value='/js/func.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/js/scriptaculous.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/js/func.js'/>"></script>
 	</head>
 
 	<c:set var="fullChartWidth" value="800"/>
@@ -79,7 +79,7 @@
 				<img id="img" class="scale-image" src="${imgurl}&xz=${fullChartWidth}&yz=${fullChartHeight}" width="${fullChartWidth}" height="${fullChartHeight}" alt=""/>
 			</div>
 
-			<script type="text/javascript" language="JavaScript">
+			<script type="text/javascript">
 
 				// "animate" our slider
 				var slider = new Control.Slider('handle', 'track', {axis:'horizontal', alignX: -5, increment: 2, sliderValue: 0});

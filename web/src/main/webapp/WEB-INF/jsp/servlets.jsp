@@ -34,7 +34,7 @@
 			</c:choose>
 		</title>
 		<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='servlets.css'/>"/>
-		<script type="text/javascript" language="javascript" src="<c:url value='/js/prototype.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>
 	</head>
 
 	<%--
