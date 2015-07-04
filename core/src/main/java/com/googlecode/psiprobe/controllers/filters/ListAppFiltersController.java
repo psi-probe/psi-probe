@@ -12,11 +12,14 @@ package com.googlecode.psiprobe.controllers.filters;
 
 import com.googlecode.psiprobe.controllers.ContextHandlerController;
 import com.googlecode.psiprobe.tools.ApplicationUtils;
-import java.util.List;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+
 import org.apache.catalina.Context;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * Retrieves a list of filter mappings or filter definitions of a web application.

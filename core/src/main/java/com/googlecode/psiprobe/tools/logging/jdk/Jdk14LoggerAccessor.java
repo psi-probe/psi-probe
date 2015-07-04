@@ -11,10 +11,12 @@
 package com.googlecode.psiprobe.tools.logging.jdk;
 
 import com.googlecode.psiprobe.tools.logging.DefaultAccessor;
+
+import org.apache.commons.beanutils.MethodUtils;
+
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.commons.beanutils.MethodUtils;
 
 /**
  * 

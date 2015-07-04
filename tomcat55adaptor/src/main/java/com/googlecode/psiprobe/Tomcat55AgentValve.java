@@ -12,13 +12,13 @@ package com.googlecode.psiprobe;
 
 import com.googlecode.psiprobe.model.ApplicationSession;
 import com.googlecode.psiprobe.model.IPInfo;
+import org.apache.catalina.connector.Request;
+import org.apache.catalina.connector.Response;
+import org.apache.catalina.valves.ValveBase;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import org.apache.catalina.connector.Request;
-import org.apache.catalina.connector.Response;
-import org.apache.catalina.valves.ValveBase;
 
 /**
  * 

@@ -11,6 +11,7 @@
 package com.googlecode.psiprobe.beans;
 
 import com.googlecode.psiprobe.model.DataSourceInfo;
+
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 /**

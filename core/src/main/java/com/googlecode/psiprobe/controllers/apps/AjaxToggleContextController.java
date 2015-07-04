@@ -11,10 +11,12 @@
 package com.googlecode.psiprobe.controllers.apps;
 
 import com.googlecode.psiprobe.controllers.ContextHandlerController;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+
 import org.apache.catalina.Context;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * Stops a web application.

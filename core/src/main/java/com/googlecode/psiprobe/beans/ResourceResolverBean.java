@@ -10,6 +10,17 @@
  */
 package com.googlecode.psiprobe.beans;
 
+import com.googlecode.psiprobe.AbstractTomcatContainer;
+import com.googlecode.psiprobe.model.ApplicationResource;
+import com.googlecode.psiprobe.model.DataSourceInfo;
+
+import org.apache.catalina.Context;
+import org.apache.catalina.Server;
+import org.apache.catalina.core.StandardServer;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.commons.modeler.Registry;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -20,17 +31,6 @@ import javax.management.ObjectName;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-
-import org.apache.catalina.Context;
-import org.apache.catalina.Server;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.apache.commons.modeler.Registry;
-import org.apache.catalina.core.StandardServer;
-
-import com.googlecode.psiprobe.model.ApplicationResource;
-import com.googlecode.psiprobe.model.DataSourceInfo;
-import com.googlecode.psiprobe.AbstractTomcatContainer;
 
 /**
  * 

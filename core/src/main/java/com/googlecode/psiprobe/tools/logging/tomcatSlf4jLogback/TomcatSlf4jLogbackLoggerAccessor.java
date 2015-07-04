@@ -11,10 +11,12 @@
 package com.googlecode.psiprobe.tools.logging.tomcatSlf4jLogback;
 
 import com.googlecode.psiprobe.tools.logging.DefaultAccessor;
+
+import org.apache.commons.beanutils.MethodUtils;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import org.apache.commons.beanutils.MethodUtils;
 
 /**
  * A wrapper for a TomcatSlf4jLogback logger.

@@ -16,19 +16,22 @@ import com.googlecode.psiprobe.model.Attribute;
 import com.googlecode.psiprobe.model.SessionSearchInfo;
 import com.googlecode.psiprobe.tools.ApplicationUtils;
 import com.googlecode.psiprobe.tools.SecurityUtils;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.regex.Pattern;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
 import org.apache.catalina.Context;
 import org.apache.catalina.Session;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.regex.Pattern;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Creates the list of sessions for a particular web application or all web applications if a webapp

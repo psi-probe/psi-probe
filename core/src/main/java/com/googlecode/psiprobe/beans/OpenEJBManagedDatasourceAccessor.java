@@ -11,6 +11,7 @@
 package com.googlecode.psiprobe.beans;
 
 import com.googlecode.psiprobe.model.DataSourceInfo;
+
 import org.apache.openejb.resource.jdbc.managed.local.ManagedDataSource;
 import org.apache.tomcat.jdbc.pool.DataSourceProxy;
 import org.apache.tomcat.jdbc.pool.PoolConfiguration;

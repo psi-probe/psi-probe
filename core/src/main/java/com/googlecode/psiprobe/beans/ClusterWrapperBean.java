@@ -16,11 +16,14 @@ import com.googlecode.psiprobe.model.jmx.ClusterSender;
 import com.googlecode.psiprobe.model.jmx.PooledClusterSender;
 import com.googlecode.psiprobe.model.jmx.SyncClusterSender;
 import com.googlecode.psiprobe.tools.JmxTools;
+
+import org.apache.commons.modeler.Registry;
+
 import java.util.Set;
+
 import javax.management.MBeanServer;
 import javax.management.ObjectInstance;
 import javax.management.ObjectName;
-import org.apache.commons.modeler.Registry;
 
 /**
  * 

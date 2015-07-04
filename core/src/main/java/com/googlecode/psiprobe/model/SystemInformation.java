@@ -10,12 +10,13 @@
  */
 package com.googlecode.psiprobe.model;
 
+import org.apache.catalina.util.ServerInfo;
+
 import java.io.File;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Map;
 import java.util.Set;
-import org.apache.catalina.util.ServerInfo;
 
 /**
  * POJO representing system information for "system infromation" tab.

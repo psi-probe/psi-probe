@@ -11,12 +11,15 @@
 package com.googlecode.psiprobe.beans.stats.providers;
 
 import com.googlecode.psiprobe.model.stats.StatsCollection;
+
+import org.jfree.data.xy.DefaultTableXYDataset;
+import org.springframework.web.bind.ServletRequestUtils;
+
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
-import org.jfree.data.xy.DefaultTableXYDataset;
-import org.springframework.web.bind.ServletRequestUtils;
 
 /**
  * 

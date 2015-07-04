@@ -12,13 +12,16 @@ package com.googlecode.psiprobe.controllers.servlets;
 
 import com.googlecode.psiprobe.controllers.ContextHandlerController;
 import com.googlecode.psiprobe.tools.ApplicationUtils;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Iterator;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+
 import org.apache.catalina.Context;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * Retrieves a list of servlet mappings for a particular web application or all web applications if

@@ -14,11 +14,13 @@ import com.googlecode.psiprobe.Utils;
 import com.googlecode.psiprobe.beans.stats.listeners.StatsCollectionEvent;
 import com.googlecode.psiprobe.beans.stats.listeners.StatsCollectionListener;
 import com.googlecode.psiprobe.model.stats.StatsCollection;
+
+import org.jfree.data.xy.XYDataItem;
+
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-import org.jfree.data.xy.XYDataItem;
 
 /**
  * 

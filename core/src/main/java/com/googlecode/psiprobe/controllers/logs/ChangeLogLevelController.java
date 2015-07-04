@@ -16,13 +16,13 @@ import com.googlecode.psiprobe.tools.logging.log4j.Log4JAppenderAccessor;
 import com.googlecode.psiprobe.tools.logging.logback.LogbackAppenderAccessor;
 import com.googlecode.psiprobe.tools.logging.tomcatSlf4jLogback.TomcatSlf4jLogbackAppenderAccessor;
 
+import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.servlet.ModelAndView;
+
 import java.util.Arrays;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.web.bind.ServletRequestUtils;
-import org.springframework.web.servlet.ModelAndView;
 
 /**
  *

@@ -11,6 +11,7 @@
 package com.googlecode.psiprobe.beans;
 
 import com.googlecode.psiprobe.model.DataSourceInfo;
+
 import org.apache.tomcat.jdbc.pool.DataSource;
 
 /**

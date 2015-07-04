@@ -11,11 +11,14 @@
 package com.googlecode.psiprobe.jsp;
 
 import com.googlecode.psiprobe.tools.SizeExpression;
-import java.io.IOException;
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.tagext.TagSupport;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import java.io.IOException;
+
+import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.tagext.TagSupport;
 
 /**
  * JSP tag to convert size from bytes into human readable form: KB, MB, GB or TB depending on how

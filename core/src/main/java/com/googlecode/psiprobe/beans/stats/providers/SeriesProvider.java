@@ -11,8 +11,10 @@
 package com.googlecode.psiprobe.beans.stats.providers;
 
 import com.googlecode.psiprobe.model.stats.StatsCollection;
-import javax.servlet.http.HttpServletRequest;
+
 import org.jfree.data.xy.DefaultTableXYDataset;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Classes implementing this interface can be wired up with RenderChartController to provide Series

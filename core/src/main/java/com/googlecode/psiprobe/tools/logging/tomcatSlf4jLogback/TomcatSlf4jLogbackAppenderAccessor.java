@@ -11,6 +11,7 @@
 package com.googlecode.psiprobe.tools.logging.tomcatSlf4jLogback;
 
 import com.googlecode.psiprobe.tools.logging.AbstractLogDestination;
+
 import java.io.File;
 
 /**

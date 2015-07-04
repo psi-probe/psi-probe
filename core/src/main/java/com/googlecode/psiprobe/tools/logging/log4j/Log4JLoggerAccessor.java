@@ -11,10 +11,12 @@
 package com.googlecode.psiprobe.tools.logging.log4j;
 
 import com.googlecode.psiprobe.tools.logging.DefaultAccessor;
+
+import org.apache.commons.beanutils.MethodUtils;
+
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
-import org.apache.commons.beanutils.MethodUtils;
 
 /**
  * 

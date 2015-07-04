@@ -12,17 +12,20 @@ package com.googlecode.psiprobe.controllers.threads;
 
 import com.googlecode.psiprobe.model.ThreadStackElement;
 import com.googlecode.psiprobe.tools.JmxTools;
+
+import org.apache.commons.modeler.Registry;
+import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.ParameterizableViewController;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.management.MBeanServer;
 import javax.management.ObjectName;
 import javax.management.openmbean.CompositeData;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.commons.modeler.Registry;
-import org.springframework.web.bind.ServletRequestUtils;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.ParameterizableViewController;
 
 /**
  * 

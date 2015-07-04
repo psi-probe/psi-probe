@@ -11,6 +11,7 @@
 package com.googlecode.psiprobe.tools.logging.jdk;
 
 import com.googlecode.psiprobe.tools.logging.AbstractLogDestination;
+
 import org.apache.commons.beanutils.MethodUtils;
 
 /**

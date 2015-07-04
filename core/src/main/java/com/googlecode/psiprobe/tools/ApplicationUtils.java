@@ -10,6 +10,27 @@
  */
 package com.googlecode.psiprobe.tools;
 
+import com.googlecode.psiprobe.beans.ContainerWrapperBean;
+import com.googlecode.psiprobe.beans.ResourceResolver;
+import com.googlecode.psiprobe.model.Application;
+import com.googlecode.psiprobe.model.ApplicationResource;
+import com.googlecode.psiprobe.model.ApplicationSession;
+import com.googlecode.psiprobe.model.Attribute;
+import com.googlecode.psiprobe.model.FilterInfo;
+import com.googlecode.psiprobe.model.ServletInfo;
+import com.googlecode.psiprobe.model.ServletMapping;
+
+import net.sf.javainetlocator.InetAddressLocator;
+import org.apache.catalina.Container;
+import org.apache.catalina.Context;
+import org.apache.catalina.Session;
+import org.apache.catalina.Wrapper;
+import org.apache.catalina.core.StandardWrapper;
+import org.apache.catalina.deploy.FilterDef;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.util.ClassUtils;
+
 import java.io.Serializable;
 import java.net.InetAddress;
 import java.util.ArrayList;
@@ -23,30 +44,6 @@ import java.util.Set;
 import javax.naming.NamingException;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
-
-import net.sf.javainetlocator.InetAddressLocator;
-
-import org.apache.catalina.Container;
-import org.apache.catalina.Context;
-import org.apache.catalina.Session;
-import org.apache.catalina.Wrapper;
-import org.apache.catalina.core.StandardWrapper;
-import org.apache.catalina.deploy.ApplicationParameter;
-import org.apache.catalina.deploy.FilterDef;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.springframework.util.ClassUtils;
-
-import com.googlecode.psiprobe.beans.ContainerWrapperBean;
-import com.googlecode.psiprobe.beans.ResourceResolver;
-import com.googlecode.psiprobe.model.Application;
-import com.googlecode.psiprobe.model.ApplicationParam;
-import com.googlecode.psiprobe.model.ApplicationResource;
-import com.googlecode.psiprobe.model.ApplicationSession;
-import com.googlecode.psiprobe.model.Attribute;
-import com.googlecode.psiprobe.model.FilterInfo;
-import com.googlecode.psiprobe.model.ServletInfo;
-import com.googlecode.psiprobe.model.ServletMapping;
 
 /**
  * 

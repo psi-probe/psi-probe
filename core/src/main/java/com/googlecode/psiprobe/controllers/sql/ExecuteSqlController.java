@@ -12,6 +12,12 @@ package com.googlecode.psiprobe.controllers.sql;
 
 import com.googlecode.psiprobe.controllers.ContextHandlerController;
 import com.googlecode.psiprobe.model.sql.DataSourceTestInfo;
+
+import org.apache.catalina.Context;
+import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.util.HtmlUtils;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,15 +27,12 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
-import org.apache.catalina.Context;
-import org.springframework.web.bind.ServletRequestUtils;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.util.HtmlUtils;
 
 /**
  * Executes an SQL query through a given datasource to test database connectivity. Displays results
