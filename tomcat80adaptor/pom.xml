@@ -38,12 +38,12 @@
 			<dependency>
 				<groupId>org.apache.tomcat</groupId>
 				<artifactId>tomcat-catalina</artifactId>
-				<version>8.0.21</version>
+				<version>8.0.23</version>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.tomcat</groupId>
 				<artifactId>tomcat-jasper</artifactId>
-				<version>8.0.21</version>
+				<version>8.0.23</version>
 				<exclusions>
 					<exclusion>
 						<artifactId>ecj</artifactId>
