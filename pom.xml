@@ -79,8 +79,8 @@
 		</repository>
 	</repositories>
 	<properties>
-		<maven.compiler.source>1.4</maven.compiler.source>
-		<maven.compiler.target>1.4</maven.compiler.target>
+		<maven.compiler.source>1.5</maven.compiler.source>
+		<maven.compiler.target>1.5</maven.compiler.target>
 		<maven.compiler.testSource>1.5</maven.compiler.testSource>
 		<maven.compiler.testTarget>1.5</maven.compiler.testTarget>
 
