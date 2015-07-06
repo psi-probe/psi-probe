@@ -129,12 +129,12 @@
 			<dependency>
 				<groupId>com.oracle</groupId>
 				<artifactId>ucp</artifactId>
-				<version>11.2.0.1.0</version>
+				<version>11.2.0.4.0</version>
 			</dependency>
 			<dependency>
 				<groupId>com.oracle</groupId>
-				<artifactId>ojdbc14</artifactId>
-				<version>10.2.0.3</version>
+				<artifactId>ojdbc6</artifactId>
+				<version>11.2.0.4.0</version>
 			</dependency>
 			<!-- This requires java 1.5 -->
 			<dependency>
