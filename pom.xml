@@ -45,6 +45,7 @@
 	</scm>
 	<modules>
 		<module>core</module>
+		<module>thirdParty</module>
 		<module>tomcat50adaptor</module>
 		<module>tomcat55adaptor</module>
 		<module>tomcat60adaptor</module>
@@ -52,30 +53,6 @@
 		<module>tomcat80adaptor</module>
 		<module>web</module>
 	</modules>
-	<repositories>
-		<repository>
-			<!-- Required for jmxri -->
-			<snapshots>
-				<enabled>false</enabled>
-				<updatePolicy>never</updatePolicy>
-			</snapshots>
-			<id>repository.jboss.org</id>
-			<name>repository.jboss.org</name>
-			<url>https://repository.jboss.org/nexus/content/repositories/deprecated/</url>
-			<layout>default</layout>
-		</repository>
-		<repository>
-			<!-- Required for ojdbc14 and ucp -->
-			<snapshots>
-				<enabled>false</enabled>
-				<updatePolicy>never</updatePolicy>
-			</snapshots>
-			<id>code.lds.org</id>
-			<name>code.lds.org</name>
-			<url>https://code.lds.org/nexus/content/repositories/main-repo/</url>
-			<layout>default</layout>
-		</repository>
-	</repositories>
 	<properties>
 		<maven.compiler.source>1.4</maven.compiler.source>
 		<maven.compiler.target>1.4</maven.compiler.target>
@@ -86,6 +63,8 @@
 		<git.relative.path></git.relative.path>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<!-- Clear maven warnings, this will be overridden based on run type -->
+		<jmxri.scope>provided</jmxri.scope>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -129,12 +108,12 @@
 			<dependency>
 				<groupId>com.oracle</groupId>
 				<artifactId>ucp</artifactId>
-				<version>11.2.0.1.0</version>
+				<version>11.2.0.4.0</version>
 			</dependency>
 			<dependency>
 				<groupId>com.oracle</groupId>
-				<artifactId>ojdbc14</artifactId>
-				<version>10.2.0.3</version>
+				<artifactId>ojdbc6</artifactId>
+				<version>11.2.0.4.0</version>
 			</dependency>
 			<!-- This requires java 1.5 -->
 			<dependency>

@@ -23,6 +23,14 @@
 		<git.relative.path>../</git.relative.path>
 	</properties>
 	<dependencies>
+		<!-- Fake out build in order to ensure order -->
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>thirdParty</artifactId>
+			<version>${project.version}</version>
+			<scope>compile</scope>
+			<type>pom</type>
+		</dependency>
 		<!--  tomcat libs start -->
 		<dependency>
 			<groupId>tomcat</groupId>
@@ -88,7 +96,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.oracle</groupId>
-			<artifactId>ojdbc14</artifactId>
+			<artifactId>ojdbc6</artifactId>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
