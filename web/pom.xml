@@ -114,12 +114,12 @@
 				<configuration>
 					<webResources>
 						<resource>
-							<directory>src/main/conf</directory>
+							<directory>src/main/webapp</directory>
 							<filtering>true</filtering>
 						</resource>
 						<resource>
 							<!-- Required for JBoss -->
-							<directory>src/main/conf/META-INF</directory>
+							<directory>src/main/webapp/META-INF</directory>
 							<includes>
 								<include>context.xml</include>
 							</includes>
