@@ -44,6 +44,7 @@
 				<groupId>org.apache.tomcat</groupId>
 				<artifactId>tomcat-jasper</artifactId>
 				<version>7.0.62</version>
+				<scope>provided</scope>
 				<exclusions>
 					<exclusion>
 						<artifactId>ecj</artifactId>
