@@ -39,11 +39,13 @@
 				<groupId>org.apache.tomcat</groupId>
 				<artifactId>tomcat-catalina</artifactId>
 				<version>8.0.23</version>
+				<scope>provided</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.tomcat</groupId>
 				<artifactId>tomcat-jasper</artifactId>
 				<version>8.0.23</version>
+				<scope>provided</scope>
 				<exclusions>
 					<exclusion>
 						<artifactId>ecj</artifactId>

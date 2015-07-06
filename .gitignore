@@ -12,3 +12,5 @@ target/
 
 # Project
 *.log
+psi-probe.iws
+psi-probe.ipr
