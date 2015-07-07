@@ -41,12 +41,6 @@
 			<artifactId>jasper-runtime</artifactId>
 			<version>5.5.23</version>
 			<scope>provided</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>javax.servlet</groupId>
-					<artifactId>servlet-api</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>tomcat</groupId>
@@ -115,6 +109,32 @@
 			<groupId>org.apache.openejb</groupId>
 			<artifactId>openejb-core</artifactId>
 			<scope>provided</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.apache.commons</groupId>
+					<artifactId>commons-lang3</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>commons-pool</groupId>
+					<artifactId>commons-pool</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.openwebbeans</groupId>
+					<artifactId>openwebbeans-impl</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.openejb.patch</groupId>
+					<artifactId>openjpa</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.activemq</groupId>
+					<artifactId>activemq-broker</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-api</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<!--  misc -->
 		<dependency>

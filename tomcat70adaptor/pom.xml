@@ -21,54 +21,38 @@
 	</scm>
 	<properties>
 		<git.relative.path>../</git.relative.path>
+		<tomcat.version>7.0.62</tomcat.version>
 	</properties>
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>${project.groupId}</groupId>
-				<artifactId>core</artifactId>
-				<version>${project.version}</version>
-				<exclusions>
-					<exclusion>
-						<groupId>javax.servlet</groupId>
-						<artifactId>servlet-api</artifactId>
-					</exclusion>
-				</exclusions>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.tomcat</groupId>
-				<artifactId>tomcat-catalina</artifactId>
-				<version>7.0.62</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.tomcat</groupId>
-				<artifactId>tomcat-jasper</artifactId>
-				<version>7.0.62</version>
-				<scope>provided</scope>
-				<exclusions>
-					<exclusion>
-						<artifactId>ecj</artifactId>
-						<groupId>org.eclipse.jdt.core.compiler</groupId>
-					</exclusion>
-				</exclusions>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
 	<dependencies>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>core</artifactId>
+			<version>${project.version}</version>
 			<scope>compile</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.servlet</groupId>
+					<artifactId>servlet-api</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-catalina</artifactId>
+			<version>${tomcat.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-jasper</artifactId>
+			<version>${tomcat.version}</version>
 			<scope>provided</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>ecj</artifactId>
+					<groupId>org.eclipse.jdt.core.compiler</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>commons-modeler</groupId>

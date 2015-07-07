@@ -21,6 +21,7 @@
 	</scm>
 	<properties>
 		<git.relative.path>../</git.relative.path>
+		<tomcat.version>5.0.28</tomcat.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -30,26 +31,26 @@
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
+			<groupId>tomcat</groupId>
+			<artifactId>catalina</artifactId>
+			<version>${tomcat.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>tomcat</groupId>
 			<artifactId>naming-factory</artifactId>
-			<version>5.0.28</version>
+			<version>${tomcat.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>tomcat</groupId>
 			<artifactId>naming-resources</artifactId>
-			<version>5.0.28</version>
+			<version>${tomcat.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>tomcat</groupId>
-			<artifactId>catalina</artifactId>
-			<version>5.0.28</version>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
