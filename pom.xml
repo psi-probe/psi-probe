@@ -9,6 +9,7 @@
 	<packaging>pom</packaging>
 	<name>PSI Probe</name>
 	<url>https://github.com/psi-probe/psi-probe/</url>
+	<inceptionYear>2009</inceptionYear>
 	<description>
 		Advanced manager and monitor for Tomcat, forked from Lambda Probe
 	</description>
@@ -23,6 +24,10 @@
 		<system>GitHub Issues</system>
 		<url>https://github.com/psi-probe/psi-probe/issues/</url>
 	</issueManagement>
+	<ciManagement>
+		<system>Travos</system>
+		<url>https://travis-ci.org/psi-probe/psi-probe/</url>
+	</ciManagement>
 	<mailingLists>
 		<mailingList>
 			<name>PSI Probe Announcements</name>
