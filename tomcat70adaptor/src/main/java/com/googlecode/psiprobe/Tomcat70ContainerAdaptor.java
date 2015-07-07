@@ -33,6 +33,7 @@ import org.apache.jasper.JspCompilationContext;
 import org.apache.jasper.Options;
 import org.apache.jasper.compiler.JspRuntimeContext;
 import org.apache.jasper.servlet.JspServletWrapper;
+import org.apache.naming.ContextBindings;
 import org.apache.naming.resources.Resource;
 import org.apache.naming.resources.ResourceAttributes;
 
@@ -436,4 +437,14 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
     return result;
   }
 
+  @Override
+  public void bindToContext(Context context) throws NamingException {
+    ContextBindings.bindClassLoader(context, context,
+        Thread.currentThread().getContextClassLoader());
+  }
+
+  public void unbindFromContext(Context context) throws NamingException {
+    ContextBindings.unbindClassLoader(context, context,
+        Thread.currentThread().getContextClassLoader());
+  }
 }
