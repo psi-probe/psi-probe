@@ -55,6 +55,12 @@
 			</exclusions>
 		</dependency>
 		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-dbcp</artifactId>
+			<version>${tomcat.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
 			<groupId>commons-modeler</groupId>
 			<artifactId>commons-modeler</artifactId>
 			<scope>compile</scope>
