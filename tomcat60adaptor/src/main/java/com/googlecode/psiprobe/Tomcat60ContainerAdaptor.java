@@ -28,6 +28,7 @@ import org.apache.catalina.deploy.FilterDef;
 import org.apache.catalina.deploy.FilterMap;
 import org.apache.catalina.deploy.NamingResources;
 import org.apache.commons.modeler.Registry;
+import org.apache.naming.ContextBindings;
 import org.apache.naming.resources.Resource;
 import org.apache.naming.resources.ResourceAttributes;
 
@@ -401,4 +402,14 @@ public class Tomcat60ContainerAdaptor extends AbstractTomcatContainer {
     return result;
   }
 
+  @Override
+  public void bindToContext(Context context) throws NamingException {
+    ContextBindings.bindClassLoader(context, context,
+        Thread.currentThread().getContextClassLoader());
+  }
+
+  public void unbindFromContext(Context context) throws NamingException {
+    ContextBindings.unbindClassLoader(context, context,
+        Thread.currentThread().getContextClassLoader());
+  }
 }
