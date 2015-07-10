@@ -118,7 +118,7 @@
 							<filtering>true</filtering>
 						</resource>
 						<resource>
-							<!-- Required for JBoss -->
+							<!-- Required for JBoss. See https://developer.jboss.org/wiki/Web-AppContextConfiguration -->
 							<directory>src/main/webapp/META-INF</directory>
 							<includes>
 								<include>context.xml</include>
