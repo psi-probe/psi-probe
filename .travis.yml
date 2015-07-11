@@ -4,3 +4,5 @@ jdk:
   - oraclejdk7
   - openjdk7
   - openjdk6
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
