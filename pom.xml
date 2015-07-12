@@ -110,8 +110,8 @@
 				<artifactId>jsp-api</artifactId>
 				<version>2.0</version>
 			</dependency>
-			<!-- Version 1.2 is not compatable with tomcat 5.0.28 -->
 			<dependency>
+				<!-- Version 1.2 is not compatable with tomcat 5.0.28 -->
 				<groupId>javax.servlet</groupId>
 				<artifactId>jstl</artifactId>
 				<version>1.1.2</version>
@@ -131,8 +131,8 @@
 				<artifactId>log4j</artifactId>
 				<version>1.2.17</version>
 			</dependency>
-			<!-- This requires java 1.5 -->
 			<dependency>
+				<!-- Requires java 1.5+ -->
 				<groupId>com.oracle</groupId>
 				<artifactId>ucp</artifactId>
 				<version>11.2.0.1.0</version>
@@ -142,8 +142,8 @@
 				<artifactId>ojdbc14</artifactId>
 				<version>10.2.0.3</version>
 			</dependency>
-			<!-- This requires java 1.5 -->
 			<dependency>
+				<!-- Requires java 1.5+ -->
 				<groupId>org.apache.tomcat</groupId>
 				<artifactId>tomcat-jdbc</artifactId>
 				<version>7.0.61</version>
@@ -153,8 +153,8 @@
 				<artifactId>openejb-core</artifactId>
 				<version>4.7.1</version>
 			</dependency>
-			<!-- This requires java 1.6 -->
 			<dependency>
+				<!-- Requires java 1.6+ -->
 				<groupId>com.jolbox</groupId>
 				<artifactId>bonecp</artifactId>
 				<version>0.8.0.RELEASE</version>
@@ -359,9 +359,8 @@
 					<version>2.1.13</version>
 					<configuration>
 						<dotGitDirectory>${git.relative.path}.git</dotGitDirectory>
-						<!-- Fixes occassional issue in commit id plugin - see
-							https://github.com/ktoso/maven-git-commit-id-plugin/issues/61 -->
 						<gitDescribe>
+							<!-- See https://github.com/ktoso/maven-git-commit-id-plugin/issues/61#issuecomment-27995746 -->
 							<skip>true</skip>
 						</gitDescribe>
 					</configuration>
