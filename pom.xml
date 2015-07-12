@@ -87,6 +87,7 @@
 		<maven.compiler.testSource>1.5</maven.compiler.testSource>
 		<maven.compiler.testTarget>1.5</maven.compiler.testTarget>
 
+		<checkstyle.configLocation>https://raw.githubusercontent.com/checkstyle/checkstyle/checkstyle-6.1.1/google_checks.xml</checkstyle.configLocation>
 		<copyright>2015</copyright>
 		<git.relative.path></git.relative.path>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -507,21 +508,9 @@
 					<artifactId>jacoco-maven-plugin</artifactId>
 					<version>0.5.8.201207111220</version>
 				</plugin>
-				<plugin>
-					<groupId>net.revelc.code</groupId>
-					<artifactId>formatter-maven-plugin</artifactId>
-					<version>0.5.2</version>
-					<configuration>
-						<configFile>${git.relative.path}/eclipse-java-google-style.xml</configFile>
-					</configuration>
-				</plugin>
 			</plugins>
 		</pluginManagement>
 		<plugins>
-			<plugin>
-				<groupId>net.revelc.code</groupId>
-				<artifactId>formatter-maven-plugin</artifactId>
-			</plugin>
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
@@ -587,6 +576,9 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-checkstyle-plugin</artifactId>
+				<configuration>
+					<configLocation>${checkstyle.configLocation}</configLocation>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
