@@ -38,6 +38,12 @@
 		</dependency>
 		<dependency>
 			<groupId>tomcat</groupId>
+			<artifactId>tomcat-util</artifactId>
+			<version>${tomcat.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>tomcat</groupId>
 			<artifactId>naming-factory-dbcp</artifactId>
 			<version>${tomcat.version}</version>
 			<scope>provided</scope>
