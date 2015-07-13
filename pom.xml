@@ -541,10 +541,6 @@
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-changelog-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-project-info-reports-plugin</artifactId>
 				<configuration>
 					<dependencyDetailsEnabled>false</dependencyDetailsEnabled>
@@ -571,6 +567,7 @@
 				<artifactId>cobertura-maven-plugin</artifactId>
 				<version>2.6</version>
 				<configuration>
+					<format>html</format>
 					<maxmem>256m</maxmem>
 					<aggregate>true</aggregate>
 				</configuration>
@@ -589,13 +586,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-pmd-plugin</artifactId>
-				<configuration>
-					<aggregate>true</aggregate>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>com.googlecode.l10n-maven-plugin</groupId>
-				<artifactId>l10n-maven-plugin</artifactId>
 				<configuration>
 					<aggregate>true</aggregate>
 				</configuration>
