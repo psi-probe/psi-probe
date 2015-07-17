@@ -113,12 +113,6 @@ public class Mailer {
 
   private MimeMessage createMimeMessage(Session session, MailMessage mailMessage)
       throws MessagingException {
-    InternetAddress[] to = createAddresses(mailMessage.getToArray());
-    InternetAddress[] cc = createAddresses(mailMessage.getCcArray());
-    InternetAddress[] bcc = createAddresses(mailMessage.getBccArray());
-    if (to.length == 0) {
-      to = InternetAddress.parse(defaultTo);
-    }
 
     String subject = mailMessage.getSubject();
     if (subjectPrefix != null && !subjectPrefix.equals("")) {
@@ -145,9 +139,19 @@ public class Mailer {
     } else {
       message.setFrom(new InternetAddress(from));
     }
+
+    InternetAddress[] to = createAddresses(mailMessage.getToArray());
+    if (to.length == 0) {
+      to = InternetAddress.parse(defaultTo);
+    }
     message.setRecipients(Message.RecipientType.TO, to);
+
+    InternetAddress[] cc = createAddresses(mailMessage.getCcArray());
     message.setRecipients(Message.RecipientType.CC, cc);
+
+    InternetAddress[] bcc = createAddresses(mailMessage.getBccArray());
     message.setRecipients(Message.RecipientType.BCC, bcc);
+
     message.setSubject(subject);
     message.setContent(content);
     return message;

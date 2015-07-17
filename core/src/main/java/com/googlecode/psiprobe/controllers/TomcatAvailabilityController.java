@@ -51,7 +51,7 @@ public class TomcatAvailabilityController extends TomcatContainerController {
   public ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 
-    long start = System.currentTimeMillis();
+    final long start = System.currentTimeMillis();
     TomcatTestReport tomcatTestReport = new TomcatTestReport();
 
     // check datasource status

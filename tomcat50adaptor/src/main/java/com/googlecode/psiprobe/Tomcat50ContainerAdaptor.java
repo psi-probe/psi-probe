@@ -215,13 +215,14 @@ public class Tomcat50ContainerAdaptor extends AbstractTomcatContainer {
    * @return a list containing a single {@link FilterMapping} object
    */
   protected List getFilterMappings(FilterMap fmap, String dm, String filterClass) {
-    List filterMappings = new ArrayList(1);
     FilterMapping fm = new FilterMapping();
     fm.setUrl(fmap.getURLPattern());
     fm.setServletName(fmap.getServletName());
     fm.setFilterName(fmap.getFilterName());
     fm.setDispatcherMap(dm);
     fm.setFilterClass(filterClass);
+    
+    List filterMappings = new ArrayList(1);
     filterMappings.add(fm);
     return filterMappings;
   }

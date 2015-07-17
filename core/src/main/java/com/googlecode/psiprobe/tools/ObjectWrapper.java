@@ -27,14 +27,14 @@ package com.googlecode.psiprobe.tools;
  */
 class ObjectWrapper {
 
-  private Object o;
+  private final Object wrappedObject;
 
   public ObjectWrapper(Object o) {
-    this.o = o;
+    this.wrappedObject = o;
   }
 
   public boolean equals(Object o1) {
-    if (o == null) {
+    if (wrappedObject == null) {
       return o1 == null;
     } else {
       ObjectWrapper ow = (ObjectWrapper) o1;
@@ -42,12 +42,12 @@ class ObjectWrapper {
        * I know, this condition may seem strange, but if "equals" is left out, sizeOf() may run into
        * an infinite loop on some objects
        */
-      return ow.o == o;// || o.equals(ow.o);
+      return ow.wrappedObject == wrappedObject;// || o.equals(ow.o);
     }
   }
 
   public int hashCode() {
-    return System.identityHashCode(o);
+    return System.identityHashCode(wrappedObject);
   }
 
 }

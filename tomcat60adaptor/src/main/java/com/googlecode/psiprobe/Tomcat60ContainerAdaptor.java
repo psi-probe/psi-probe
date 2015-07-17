@@ -59,7 +59,7 @@ public class Tomcat60ContainerAdaptor extends AbstractTomcatContainer {
 
   private Host host;
   private ObjectName deployerOName;
-  private MBeanServer mBeanServer;
+  private MBeanServer mbeanServer;
   private Valve valve = new Tomcat60AgentValve();
 
   public void setWrapper(Wrapper wrapper) {
@@ -72,7 +72,7 @@ public class Tomcat60ContainerAdaptor extends AbstractTomcatContainer {
         // do nothing here
       }
       host.getPipeline().addValve(valve);
-      mBeanServer = Registry.getRegistry(null, null).getMBeanServer();
+      mbeanServer = Registry.getRegistry(null, null).getMBeanServer();
     } else if (host != null) {
       host.getPipeline().removeValve(valve);
     }
@@ -116,17 +116,17 @@ public class Tomcat60ContainerAdaptor extends AbstractTomcatContainer {
 
   private void checkChanges(String name) throws Exception {
     Boolean result =
-        (Boolean) mBeanServer.invoke(deployerOName, "isServiced", new String[] {name},
+        (Boolean) mbeanServer.invoke(deployerOName, "isServiced", new String[] {name},
             new String[] {"java.lang.String"});
 
     if (!result.booleanValue()) {
-      mBeanServer.invoke(deployerOName, "addServiced", new String[] {name},
+      mbeanServer.invoke(deployerOName, "addServiced", new String[] {name},
           new String[] {"java.lang.String"});
       try {
-        mBeanServer.invoke(deployerOName, "check", new String[] {name},
+        mbeanServer.invoke(deployerOName, "check", new String[] {name},
             new String[] {"java.lang.String"});
       } finally {
-        mBeanServer.invoke(deployerOName, "removeServiced", new String[] {name},
+        mbeanServer.invoke(deployerOName, "removeServiced", new String[] {name},
             new String[] {"java.lang.String"});
       }
     }
