@@ -8,6 +8,7 @@
  * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
  * PURPOSE.
  */
+
 package com.googlecode.psiprobe.tools.logging.logback;
 
 import com.googlecode.psiprobe.tools.logging.DefaultAccessor;

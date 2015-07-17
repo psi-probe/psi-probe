@@ -8,6 +8,7 @@
  * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
  * PURPOSE.
  */
+
 package com.googlecode.psiprobe.beans.stats.providers;
 
 import com.googlecode.psiprobe.model.stats.StatsCollection;

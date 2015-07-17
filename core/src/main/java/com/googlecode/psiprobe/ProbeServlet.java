@@ -8,6 +8,7 @@
  * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
  * PURPOSE.
  */
+
 package com.googlecode.psiprobe;
 
 import com.googlecode.psiprobe.beans.ContainerWrapperBean;
@@ -42,6 +43,12 @@ public class ProbeServlet extends DispatcherServlet implements ContainerServlet 
     logger.info("setWrapper() called");
   }
 
+  /**
+   * Associates the {@link Wrapper} with the {@link ContainerWrapperBean}.
+   * 
+   * @param config this servlet's configuration and initialization parameters
+   * @throws ServletException 
+   */
   public void init(ServletConfig config) throws ServletException {
     super.init(config);
     if (wrapper != null) {

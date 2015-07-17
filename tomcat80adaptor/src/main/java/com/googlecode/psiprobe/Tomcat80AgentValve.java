@@ -8,6 +8,7 @@
  * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
  * PURPOSE.
  */
+
 package com.googlecode.psiprobe;
 
 import com.googlecode.psiprobe.model.ApplicationSession;
@@ -24,6 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
+ * Valve which inserts the client's IP address into the session for Tomcat 8.0.
  * 
  * @author Vlad Ilyushchenko
  * @author Mark Lewis

@@ -8,6 +8,7 @@
  * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
  * PURPOSE.
  */
+
 package com.googlecode.psiprobe;
 
 import com.googlecode.psiprobe.model.ApplicationParam;
@@ -66,6 +67,7 @@ public class Tomcat80ContainerAdaptor extends AbstractTomcatContainer {
   private MBeanServer mBeanServer;
   private Valve valve = new Tomcat80AgentValve();
 
+  @Override
   public void setWrapper(Wrapper wrapper) {
     if (wrapper != null) {
       host = (Host) wrapper.getParent().getParent();
@@ -82,6 +84,7 @@ public class Tomcat80ContainerAdaptor extends AbstractTomcatContainer {
     }
   }
 
+  @Override
   public boolean canBoundTo(String binding) {
     boolean canBind = false;
     if (binding != null) {
@@ -91,15 +94,18 @@ public class Tomcat80ContainerAdaptor extends AbstractTomcatContainer {
     return canBind;
   }
 
+  @Override
   protected Context findContextInternal(String name) {
     return (Context) host.findChild(name);
   }
 
+  @Override
   public List findContexts() {
     Container[] containers = host.findChildren();
     return Arrays.asList(containers);
   }
 
+  @Override
   public void stop(String name) throws Exception {
     Context ctx = findContext(name);
     if (ctx != null) {
@@ -107,6 +113,7 @@ public class Tomcat80ContainerAdaptor extends AbstractTomcatContainer {
     }
   }
 
+  @Override
   public void start(String name) throws Exception {
     Context ctx = findContext(name);
     if (ctx != null) {
@@ -131,18 +138,22 @@ public class Tomcat80ContainerAdaptor extends AbstractTomcatContainer {
     }
   }
 
+  @Override
   public void removeInternal(String name) throws Exception {
     checkChanges(name);
   }
 
+  @Override
   public void installWar(String name, URL url) throws Exception {
     checkChanges(name);
   }
 
+  @Override
   public void installContextInternal(String name, File config) throws Exception {
     checkChanges(name);
   }
 
+  @Override
   public File getAppBase() {
     File base = new File(host.getAppBase());
     if (!base.isAbsolute()) {
@@ -151,18 +162,22 @@ public class Tomcat80ContainerAdaptor extends AbstractTomcatContainer {
     return base;
   }
 
+  @Override
   public String getConfigBase() {
     return getConfigBase(host);
   }
 
+  @Override
   public Object getLogger(Context context) {
     return context.getLogger();
   }
 
+  @Override
   public String getHostName() {
     return host.getName();
   }
 
+  @Override
   public String getName() {
     return host.getParent().getName();
   }
@@ -190,6 +205,7 @@ public class Tomcat80ContainerAdaptor extends AbstractTomcatContainer {
     return filterMappings;
   }
 
+  @Override
   public File getConfigFile(Context ctx) {
     URL configUrl = ctx.getConfigFile();
     if (configUrl != null) {
@@ -205,17 +221,21 @@ public class Tomcat80ContainerAdaptor extends AbstractTomcatContainer {
     return null;
   }
 
-  protected JspCompilationContext createJspCompilationContext(String name, boolean isErrPage,
-      Options opt, ServletContext sctx, JspRuntimeContext jrctx, ClassLoader cl) {
+  @Override
+  protected JspCompilationContext createJspCompilationContext(String name, Options opt,
+      ServletContext sctx, JspRuntimeContext jrctx, ClassLoader classLoader) {
+    
     JspCompilationContext jcctx = new JspCompilationContext(name, opt, sctx, null, jrctx);
-    jcctx.setClassLoader(cl);
+    jcctx.setClassLoader(classLoader);
     return jcctx;
   }
 
+  @Override
   public boolean getAvailable(Context context) {
     return ((Lifecycle) context).getState().isAvailable();
   }
 
+  @Override
   public void addContextResourceLink(Context context, List resourceList, boolean contextBound) {
 
     ContextResourceLink[] resourceLinks = context.getNamingResources().findResourceLinks();
@@ -234,6 +254,7 @@ public class Tomcat80ContainerAdaptor extends AbstractTomcatContainer {
     }
   }
 
+  @Override
   public void addContextResource(Context context, List resourceList, boolean contextBound) {
     NamingResourcesImpl namingResources = context.getNamingResources();
     ContextResource[] resources = namingResources.findResources();
@@ -254,6 +275,7 @@ public class Tomcat80ContainerAdaptor extends AbstractTomcatContainer {
     }
   }
 
+  @Override
   public List getApplicationFilterMaps(Context context) {
     FilterMap[] fms = context.findFilterMaps();
     List filterMaps = new ArrayList(fms.length);
@@ -303,6 +325,7 @@ public class Tomcat80ContainerAdaptor extends AbstractTomcatContainer {
     return filterMaps;
   }
 
+  @Override
   public List getApplicationFilters(Context context) {
     FilterDef[] fds = context.findFilterDefs();
     List filterDefs = new ArrayList(fds.length);
@@ -323,6 +346,7 @@ public class Tomcat80ContainerAdaptor extends AbstractTomcatContainer {
     return fi;
   }
 
+  @Override
   public List getApplicationInitParams(Context context) {
     /*
      * We'll try to determine if a parameter value comes from a deployment descriptor or a context
@@ -372,15 +396,18 @@ public class Tomcat80ContainerAdaptor extends AbstractTomcatContainer {
     return initParams;
   }
 
+  @Override
   public boolean resourceExists(String name, Context context) {
     return context.getResources().getResource(name) != null;
   }
 
+  @Override
   public InputStream getResourceStream(String name, Context context) throws IOException {
     WebResource r = context.getResources().getResource(name);
     return r.getInputStream();
   }
 
+  @Override
   public Long[] getResourceAttributes(String name, Context context) {
     Long result[] = new Long[2];
     WebResource resource = context.getResources().getResource(name);
@@ -415,6 +442,7 @@ public class Tomcat80ContainerAdaptor extends AbstractTomcatContainer {
    * Binds a naming context to the current thread's classloader.
    * 
    * @param context the catalina context
+   * @throws NamingException
    */
   @Override
   public void bindToContext(Context context) throws NamingException {
@@ -426,6 +454,7 @@ public class Tomcat80ContainerAdaptor extends AbstractTomcatContainer {
    * Unbinds a naming context from the current thread's classloader.
    * 
    * @param context the catalina context
+   * @throws NamingException
    */
   @Override
   public void unbindFromContext(Context context) throws NamingException {

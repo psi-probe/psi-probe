@@ -8,12 +8,12 @@
  * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
  * PURPOSE.
  */
+
 package com.googlecode.psiprobe.beans;
 
-import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
-
-import com.googlecode.psiprobe.beans.DatasourceAccessor;
 import com.googlecode.psiprobe.model.DataSourceInfo;
+
+import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 
 /**
  * 

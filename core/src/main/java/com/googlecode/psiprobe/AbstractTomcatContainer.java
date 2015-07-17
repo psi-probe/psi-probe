@@ -8,6 +8,7 @@
  * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
  * PURPOSE.
  */
+
 package com.googlecode.psiprobe;
 
 import com.googlecode.psiprobe.model.jsp.Item;
@@ -54,14 +55,27 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
 
   protected Log logger = LogFactory.getLog(getClass());
 
+  /**
+   * Deploys a context, assuming an context descriptor file exists on the server already.
+   * 
+   * @param contextName the context path, which should match the filename
+   * @return {@code} true if deployment was successful
+   * @throws Exception if deployment fails spectacularly
+   */
   public boolean installContext(String contextName) throws Exception {
     contextName = formatContextName(contextName);
     String contextFilename = formatContextFilename(contextName);
-    File f = new File(getConfigBase(), contextFilename + ".xml");
-    installContextInternal(contextName, f);
+    File contextFile = new File(getConfigBase(), contextFilename + ".xml");
+    installContextInternal(contextName, contextFile);
     return findContext(contextName) != null;
   }
 
+  /**
+   * Undeploys a context.
+   * 
+   * @param contextName the context path
+   * @throws Exception if undeployment fails spectacularly
+   */
   public void remove(String contextName) throws Exception {
     contextName = formatContextName(contextName);
     Context ctx = findContext(contextName);
@@ -109,6 +123,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
    * Binds a naming context to the current thread's classloader.
    * 
    * @param context the catalina context
+   * @throws NamingException if binding fails
    */
   public void bindToContext(Context context) throws NamingException {
     Object token = null;
@@ -119,6 +134,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
    * Unbinds a naming context from the current thread's classloader.
    * 
    * @param context the catalina context
+   * @throws NamingException if unbinding fails
    */
   public void unbindFromContext(Context context) throws NamingException {
     Object token = null;
@@ -126,6 +142,12 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
         .getContextClassLoader());
   }
 
+  /**
+   * Finds a context based on its path.
+   * 
+   * @param name the context path
+   * @return the context deployed to that path
+   */
   public Context findContext(String name) {
     String safeName = formatContextName(name);
     if (safeName == null) {
@@ -138,6 +160,13 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     return result;
   }
 
+  /**
+   * Formats a context name to a path that the container will recognize. Usually this means
+   * prepending a {@code /} character, although there is special behavior for the root context.
+   * 
+   * @param name the context name
+   * @return the context name formatted as the container expects
+   */
   public String formatContextName(String name) {
     if (name == null) {
       return null;
@@ -152,6 +181,14 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     return result;
   }
 
+  /**
+   * Formats a context name so that it can be used as a step for the context descriptor .xml or
+   * deployed .war file. Usually this means stripping a leading {@code /} character, although there
+   * is special behavior for the root context.
+   * 
+   * @param contextName the context name
+   * @return the filename stem for this context
+   */
   public String formatContextFilename(String contextName) {
     if (contextName == null) {
       return null;
@@ -164,6 +201,11 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     }
   }
 
+  /**
+   * Deletes the "work" directory of the given context.
+   * 
+   * @param context the context
+   */
   public void discardWorkDir(Context context) {
     if (context instanceof StandardContext) {
       StandardContext standardContext = (StandardContext) context;
@@ -175,6 +217,13 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     }
   }
 
+  /**
+   * Returns the JSP servlet filename for the given JSP file.
+   * 
+   * @param context the context
+   * @param jspName the JSP filename
+   * @return the name of the JSP servlet
+   */
   public String getServletFileNameForJsp(Context context, String jspName) {
     String servletName = null;
 
@@ -184,7 +233,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
       Options opt = new EmbeddedServletOptions(servletConfig, sctx);
       JspRuntimeContext jrctx = new JspRuntimeContext(sctx, opt);
       JspCompilationContext jcctx =
-          createJspCompilationContext(jspName, false, opt, sctx, jrctx, null);
+          createJspCompilationContext(jspName, opt, sctx, jrctx, null);
       servletName = jcctx.getServletJavaFileName();
     } else {
       logger.error("Context " + context.getName() + " does not have \"jsp\" servlet");
@@ -196,9 +245,9 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
    * Compiles a list of JSPs. Names of JSP files are expected to be relative to the webapp root. The
    * method updates summary with compilation details.
    *
-   * @param context
-   * @param summary
-   * @param names
+   * @param context the context
+   * @param summary the summary in which the output is stored
+   * @param names the list of JSPs to compile
    */
   public void recompileJsps(Context context, Summary summary, List names) {
     ServletConfig servletConfig = (ServletConfig) context.findChild("jsp");
@@ -220,14 +269,14 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
               String name = (String) it.next();
               long time = System.currentTimeMillis();
               JspCompilationContext jcctx =
-                  createJspCompilationContext(name, false, opt, sctx, jrctx, classLoader);
+                  createJspCompilationContext(name, opt, sctx, jrctx, classLoader);
               ClassLoader prevCl = ClassUtils.overrideThreadContextClassLoader(classLoader);
               try {
                 Item item = (Item) summary.getItems().get(name);
                 if (item != null) {
                   try {
-                    org.apache.jasper.compiler.Compiler c = jcctx.createCompiler();
-                    c.compile();
+                    org.apache.jasper.compiler.Compiler compiler = jcctx.createCompiler();
+                    compiler.compile();
                     item.setState(Item.STATE_READY);
                     item.setException(null);
                     logger.info("Compiled " + name + ": OK");
@@ -260,12 +309,11 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
    * Lists and optionally compiles all JSPs for the given context. Compilation details are added to
    * the summary.
    *
-   * @param context
-   * @param summary
-   * @param compile
-   * @throws Exception
+   * @param context the context
+   * @param summary the summary in which the output is stored
+   * @param compile whether to compile all of the JSPs or not
    */
-  public void listContextJsps(Context context, Summary summary, boolean compile) throws Exception {
+  public void listContextJsps(Context context, Summary summary, boolean compile) {
     ServletConfig servletConfig = (ServletConfig) context.findChild("jsp");
     if (servletConfig != null) {
       synchronized (servletConfig) {
@@ -290,8 +338,10 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
            * we need to pass context classloader here, so the jsps can reference /WEB-INF/classes
            * and /WEB-INF/lib. JspCompilationContext would only take URLClassLoader, so we fake it
            */
-          compileItem("/", opt, context, jrctx, summary, new URLClassLoader(new URL[] {}, context
-              .getLoader().getClassLoader()), 0, compile);
+          URLClassLoader urlcl = new URLClassLoader(
+              new URL[] {}, context.getLoader().getClassLoader());
+          
+          compileItem("/", opt, context, jrctx, summary, urlcl, 0, compile);
         } finally {
           jrctx.destroy();
         }
@@ -315,8 +365,14 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     }
   }
 
-  public File getConfigFile(Context ctx) {
-    String configFilePath = ctx.getConfigFile();
+  /**
+   * Returns the context descriptor filename for the given context.
+   * 
+   * @param context the context
+   * @return the context descriptor filename, or {@code null}
+   */
+  public File getConfigFile(Context context) {
+    String configFilePath = context.getConfigFile();
     if (configFilePath != null) {
       return new File(configFilePath);
     } else {
@@ -324,6 +380,12 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     }
   }
 
+  /**
+   * Returns the path of where the context descriptors are stored.
+   * 
+   * @param container the container
+   * @return the path where context descriptors are stored
+   */
   protected String getConfigBase(Container container) {
     File configBase = new File(System.getProperty("catalina.base"), "conf");
     Container baseHost = null;
@@ -350,13 +412,13 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
    * Lists and optionally compiles a directory recursively.
    *
    * @param jspName name of JSP file or directory to be listed and compiled.
-   * @param opt
-   * @param ctx
-   * @param jrctx
-   * @param summary
-   * @param classLoader
-   * @param level
-   * @param compile
+   * @param opt the JSP compiler options
+   * @param ctx the context
+   * @param jrctx the runtime context used to create the compilation context
+   * @param summary the summary in which the output is stored
+   * @param classLoader the classloader used by the compiler
+   * @param level the depth in the tree at which the item was encountered
+   * @param compile whether or not to compile the item or just to check whether it's out of date
    */
   protected void compileItem(String jspName, Options opt, Context ctx, JspRuntimeContext jrctx,
       Summary summary, URLClassLoader classLoader, int level, boolean compile) {
@@ -369,15 +431,15 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
         boolean isJsp = false;
 
         try {
-          isJsp =
-              name.endsWith(".jsp") || name.endsWith(".jspx") || opt.getJspConfig().isJspPage(name);
+          isJsp = name.endsWith(".jsp") || name.endsWith(".jspx")
+              || opt.getJspConfig().isJspPage(name);
         } catch (JasperException e) {
           logger.info("isJspPage() thrown an error for " + name, e);
         }
 
         if (isJsp) {
           JspCompilationContext jcctx =
-              createJspCompilationContext(name, false, opt, sctx, jrctx, classLoader);
+              createJspCompilationContext(name, opt, sctx, jrctx, classLoader);
           ClassLoader prevCl = ClassUtils.overrideThreadContextClassLoader(classLoader);
           try {
             Item item = (Item) summary.getItems().get(name);
@@ -390,19 +452,19 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
             item.setLevel(level);
             item.setCompileTime(-1);
 
-            Long objects[] = this.getResourceAttributes(name, ctx);
+            Long[] objects = this.getResourceAttributes(name, ctx);
             item.setSize(objects[0].longValue());
             item.setLastModified(objects[1].longValue());
 
             long time = System.currentTimeMillis();
             try {
-              org.apache.jasper.compiler.Compiler c = jcctx.createCompiler();
+              org.apache.jasper.compiler.Compiler compiler = jcctx.createCompiler();
               if (compile) {
-                c.compile();
+                compiler.compile();
                 item.setState(Item.STATE_READY);
                 item.setException(null);
               } else {
-                if (!c.isOutDated()) {
+                if (!compiler.isOutDated()) {
                   item.setState(Item.STATE_READY);
                   item.setException(null);
                 } else if (item.getState() != Item.STATE_FAILED) {
@@ -433,17 +495,17 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     }
   }
 
-  protected JspCompilationContext createJspCompilationContext(String name, boolean isErrPage,
-      Options opt, ServletContext sctx, JspRuntimeContext jrctx, ClassLoader cl) {
+  protected JspCompilationContext createJspCompilationContext(String name, Options opt,
+      ServletContext sctx, JspRuntimeContext jrctx, ClassLoader classLoader) {
 
     JspCompilationContext jcctx = new JspCompilationContext(name, false, opt, sctx, null, jrctx);
-    if (cl != null && cl instanceof URLClassLoader) {
+    if (classLoader != null && classLoader instanceof URLClassLoader) {
       try {
-        jcctx.setClassLoader((URLClassLoader) cl);
+        jcctx.setClassLoader((URLClassLoader) classLoader);
       } catch (NoSuchMethodError err) {
         // JBoss Web 2.1 has a different method signature for setClassLoader().
         try {
-          MethodUtils.invokeMethod(jcctx, "setClassLoader", cl);
+          MethodUtils.invokeMethod(jcctx, "setClassLoader", classLoader);
         } catch (NoSuchMethodException ex) {
           throw new RuntimeException(ex);
         } catch (IllegalAccessException ex) {
@@ -458,7 +520,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
 
   protected abstract void removeInternal(String name) throws Exception;
 
-  protected abstract void installContextInternal(String contextName, File f) throws Exception;
+  protected abstract void installContextInternal(String contextName, File config) throws Exception;
 
   protected abstract Context findContextInternal(String contextName);
 

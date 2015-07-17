@@ -8,6 +8,7 @@
  * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
  * PURPOSE.
  */
+
 package com.googlecode.psiprobe;
 
 import org.apache.commons.logging.Log;
@@ -26,6 +27,12 @@ import javax.servlet.ServletContextListener;
  */
 public class AwtAppContextClassloaderListener implements ServletContextListener {
 
+  /**
+   * Forces the {@code sun.awt.AppContext} singleton to be created and initialized when the context
+   * is initialized.
+   * 
+   * @param sce the event containing the context being initialized
+   */
   public void contextInitialized(ServletContextEvent sce) {
     try {
       final ClassLoader active = Thread.currentThread().getContextClassLoader();

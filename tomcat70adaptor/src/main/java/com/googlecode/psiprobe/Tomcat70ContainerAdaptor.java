@@ -214,8 +214,9 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
   }
 
   @Override
-  protected JspCompilationContext createJspCompilationContext(String name, boolean isErrPage,
-      Options opt, ServletContext sctx, JspRuntimeContext jrctx, ClassLoader cl) {
+  protected JspCompilationContext createJspCompilationContext(String name, Options opt,
+      ServletContext sctx, JspRuntimeContext jrctx, ClassLoader classLoader) {
+
     JspCompilationContext jcctx;
     try {
       jcctx = new JspCompilationContext(name, opt, sctx, null, jrctx);
@@ -243,8 +244,8 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
         throw new RuntimeException(ex);
       }
     }
-    if (cl != null) {
-      jcctx.setClassLoader(cl);
+    if (classLoader != null) {
+      jcctx.setClassLoader(classLoader);
     }
     return jcctx;
   }
