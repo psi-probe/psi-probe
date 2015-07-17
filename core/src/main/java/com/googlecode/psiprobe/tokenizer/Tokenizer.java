@@ -258,65 +258,65 @@ public class Tokenizer {
       return defaultValue;
     }
   }
-}
 
+  private static class TokenizerToken implements Token {
 
-class TokenizerToken implements Token {
+    final StringBuffer text = new StringBuffer();
+    final StringBuffer innerText = new StringBuffer();
+    String name = "";
+    int type = Tokenizer.TT_ERROR;
+    int line = 0;
+    int col = 0;
 
-  final StringBuffer text = new StringBuffer();
-  final StringBuffer innerText = new StringBuffer();
-  String name = "";
-  int type = Tokenizer.TT_ERROR;
-  int line = 0;
-  int col = 0;
+    public TokenizerToken() {
+      type = Tokenizer.TT_ERROR;
+    }
 
-  public TokenizerToken() {
-    type = Tokenizer.TT_ERROR;
-  }
+    public String getText() {
+      return text.toString();
+    }
 
-  public String getText() {
-    return text.toString();
-  }
+    public String getInnerText() {
+      return type == Tokenizer.TT_BLOCK ? innerText.toString() : getText();
+    }
 
-  public String getInnerText() {
-    return type == Tokenizer.TT_BLOCK ? innerText.toString() : getText();
-  }
+    public String getName() {
+      return name;
+    }
 
-  public String getName() {
-    return name;
-  }
+    public int getType() {
+      return type;
+    }
 
-  public int getType() {
-    return type;
-  }
+    public int getLine() {
+      return line;
+    }
 
-  public int getLine() {
-    return line;
-  }
+    public int getCol() {
+      return col;
+    }
 
-  public int getCol() {
-    return col;
-  }
+    public String toString() {
+      return getText();
+    }
 
-  public String toString() {
-    return getText();
-  }
+    public void assign(TokenizerToken token) {
+      this.text.setLength(0);
+      this.text.append(token.text);
+      this.innerText.setLength(0);
+      this.innerText.append(token.innerText);
+      this.name = token.name;
+      this.type = token.type;
+      this.col = token.col;
+      this.line = token.line;
+    }
 
-  public void assign(TokenizerToken token) {
-    this.text.setLength(0);
-    this.text.append(token.text);
-    this.innerText.setLength(0);
-    this.innerText.append(token.innerText);
-    this.name = token.name;
-    this.type = token.type;
-    this.col = token.col;
-    this.line = token.line;
-  }
+    public void init() {
+      text.setLength(0);
+      innerText.setLength(0);
+      name = "";
+    }
 
-  public void init() {
-    text.setLength(0);
-    innerText.setLength(0);
-    name = "";
   }
 
 }

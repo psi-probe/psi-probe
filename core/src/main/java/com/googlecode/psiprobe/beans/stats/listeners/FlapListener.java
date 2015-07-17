@@ -19,7 +19,7 @@ import java.util.LinkedList;
 /**
  *
  * @author Mark Lewis
- * 
+ *
  * @see <a href="http://nagios.sourceforge.net/docs/3_0/flapping.html">Detection and Handling of
  *      State Flapping (nagios)</a>
  */

@@ -304,7 +304,9 @@ public class ApplicationUtils {
     return attrs;
   }
 
-  public static List getApplicationInitParams(Context context, ContainerWrapperBean containerWrapper) {
+  public static List getApplicationInitParams(Context context,
+      ContainerWrapperBean containerWrapper) {
+    
     return containerWrapper.getTomcatContainer().getApplicationInitParams(context);
   }
 

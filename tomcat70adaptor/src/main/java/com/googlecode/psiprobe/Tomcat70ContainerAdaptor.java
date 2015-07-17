@@ -8,6 +8,7 @@
  * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
  * PURPOSE.
  */
+
 package com.googlecode.psiprobe;
 
 import com.googlecode.psiprobe.model.ApplicationParam;
@@ -427,7 +428,7 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
   }
 
   public Long[] getResourceAttributes(String name, Context context) {
-    Long result[] = new Long[2];
+    Long[] result = new Long[2];
     try {
       ResourceAttributes resource = (ResourceAttributes) context.getResources().getAttributes(name);
       result[0] = resource.getContentLength();

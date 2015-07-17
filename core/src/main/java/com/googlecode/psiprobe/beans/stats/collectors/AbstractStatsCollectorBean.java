@@ -82,8 +82,9 @@ public abstract class AbstractStatsCollectorBean {
     buildAbsoluteStats(name, value, System.currentTimeMillis());
   }
 
-
-  protected void buildAbsoluteStats(String name, long value, long time) throws InterruptedException {
+  protected void buildAbsoluteStats(String name, long value, long time)
+      throws InterruptedException {
+    
     List stats = statsCollection.getStats(name);
     if (stats == null) {
       stats = statsCollection.newStats(name, maxSeries);

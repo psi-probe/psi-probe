@@ -101,7 +101,8 @@ public class ContainerListenerBean implements NotificationListener {
           }
         }
 
-      } else if (notification.getType().equals(MBeanServerNotification.UNREGISTRATION_NOTIFICATION)) {
+      } else if (notification.getType()
+          .equals(MBeanServerNotification.UNREGISTRATION_NOTIFICATION)) {
 
         if ("RequestProcessor".equals(objectName.getKeyProperty("type"))) {
           ThreadPoolObjectName threadPoolObjectName = findPool(objectName.getKeyProperty("worker"));

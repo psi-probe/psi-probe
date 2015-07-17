@@ -143,16 +143,24 @@ public class LogOutputStream extends OutputStream {
     switch (level) {
       case LEVEL_TRACE:
         log.trace(message);
+        break;
       case LEVEL_DEBUG:
         log.debug(message);
+        break;
       case LEVEL_INFO:
         log.info(message);
+        break;
       case LEVEL_WARN:
         log.warn(message);
+        break;
       case LEVEL_ERROR:
         log.error(message);
+        break;
       case LEVEL_FATAL:
         log.fatal(message);
+        break;
+      default:
+        //Don't log anything
     }
   }
 

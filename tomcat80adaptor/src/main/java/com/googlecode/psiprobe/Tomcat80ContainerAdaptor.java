@@ -409,7 +409,7 @@ public class Tomcat80ContainerAdaptor extends AbstractTomcatContainer {
 
   @Override
   public Long[] getResourceAttributes(String name, Context context) {
-    Long result[] = new Long[2];
+    Long[] result = new Long[2];
     WebResource resource = context.getResources().getResource(name);
     result[0] = resource.getContentLength();
     result[1] = resource.getLastModified();
@@ -420,7 +420,7 @@ public class Tomcat80ContainerAdaptor extends AbstractTomcatContainer {
    * Returns the security token required to bind to a naming context.
    *
    * @param context the catalina context
-   * 
+   *
    * @return the security token for use with <code>ContextBindings</code>
    */
   protected Object getNamingToken(Context context) {

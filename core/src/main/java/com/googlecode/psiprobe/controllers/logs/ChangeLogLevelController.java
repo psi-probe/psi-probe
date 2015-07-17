@@ -15,7 +15,7 @@ import com.googlecode.psiprobe.tools.logging.LogDestination;
 import com.googlecode.psiprobe.tools.logging.jdk.Jdk14HandlerAccessor;
 import com.googlecode.psiprobe.tools.logging.log4j.Log4JAppenderAccessor;
 import com.googlecode.psiprobe.tools.logging.logback.LogbackAppenderAccessor;
-import com.googlecode.psiprobe.tools.logging.tomcatSlf4jLogback.TomcatSlf4jLogbackAppenderAccessor;
+import com.googlecode.psiprobe.tools.logging.slf4jlogback.TomcatSlf4jLogbackAppenderAccessor;
 
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
@@ -35,7 +35,9 @@ public class ChangeLogLevelController extends LogHandlerController {
       LogDestination logDest) throws Exception {
 
     String level = ServletRequestUtils.getRequiredStringParameter(request, "level");
-    if (logDest.getValidLevels() != null && Arrays.asList(logDest.getValidLevels()).contains(level)) {
+    if (logDest.getValidLevels() != null
+        && Arrays.asList(logDest.getValidLevels()).contains(level)) {
+      
       if (logDest instanceof Log4JAppenderAccessor) {
         Log4JAppenderAccessor accessor = (Log4JAppenderAccessor) logDest;
         accessor.getLoggerAccessor().setLevel(level);

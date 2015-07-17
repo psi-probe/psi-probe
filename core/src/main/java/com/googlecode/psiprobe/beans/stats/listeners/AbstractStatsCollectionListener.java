@@ -43,6 +43,10 @@ public abstract class AbstractStatsCollectionListener implements StatsCollection
     return value;
   }
 
+  protected String getPropertyValue(String key) {
+    return System.getProperty(key);
+  }
+
   protected String getPropertyKey(String name, String attribute) {
     return getPropertyKey(getPropertyCategory(), name, attribute);
   }
@@ -61,10 +65,6 @@ public abstract class AbstractStatsCollectionListener implements StatsCollection
       throw new IllegalArgumentException("key cannot be null");
     }
     return result;
-  }
-
-  protected String getPropertyValue(String key) {
-    return System.getProperty(key);
   }
 
   public void reset() {}

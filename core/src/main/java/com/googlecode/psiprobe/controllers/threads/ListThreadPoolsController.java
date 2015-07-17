@@ -39,8 +39,9 @@ public class ListThreadPoolsController extends TomcatContainerController {
     this.containerListenerBean = containerListenerBean;
   }
 
-  public ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response)
-      throws Exception {
+  public ModelAndView handleRequestInternal(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    
     List pools = containerListenerBean.getThreadPools();
     return new ModelAndView(getViewName()).addObject("pools", pools);
   }

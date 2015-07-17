@@ -64,10 +64,12 @@ public class ListConnectorsController extends TomcatContainerController {
     boolean workerThreadNameSupported = false;
     List connectors = containerListenerBean.getConnectors(includeRequestProcessors);
 
-    if (connectors.size() > 0 && ((Connector) connectors.get(0)).getRequestProcessors().size() > 0) {
-      workerThreadNameSupported =
-          ((RequestProcessor) ((Connector) connectors.get(0)).getRequestProcessors().get(0))
-              .isWorkerThreadNameSupported();
+    if (connectors.size() > 0) {
+      List reqProcs = ((Connector) connectors.get(0)).getRequestProcessors();
+      if (reqProcs.size() > 0) {
+        RequestProcessor reqProc = (RequestProcessor) reqProcs.get(0);
+        workerThreadNameSupported = reqProc.isWorkerThreadNameSupported();
+      }
     }
 
     return new ModelAndView(getViewName()).addObject("connectors", connectors)

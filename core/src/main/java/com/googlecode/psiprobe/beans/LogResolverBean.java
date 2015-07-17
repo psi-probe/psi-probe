@@ -25,8 +25,8 @@ import com.googlecode.psiprobe.tools.logging.log4j.Log4JLoggerAccessor;
 import com.googlecode.psiprobe.tools.logging.log4j.Log4JManagerAccessor;
 import com.googlecode.psiprobe.tools.logging.logback.LogbackFactoryAccessor;
 import com.googlecode.psiprobe.tools.logging.logback.LogbackLoggerAccessor;
-import com.googlecode.psiprobe.tools.logging.tomcatSlf4jLogback.TomcatSlf4jLogbackFactoryAccessor;
-import com.googlecode.psiprobe.tools.logging.tomcatSlf4jLogback.TomcatSlf4jLogbackLoggerAccessor;
+import com.googlecode.psiprobe.tools.logging.slf4jlogback.TomcatSlf4jLogbackFactoryAccessor;
+import com.googlecode.psiprobe.tools.logging.slf4jlogback.TomcatSlf4jLogbackLoggerAccessor;
 
 import org.apache.catalina.Context;
 import org.apache.commons.logging.Log;
@@ -452,7 +452,7 @@ public class LogResolverBean {
     return null;
   }
 
-  private static abstract class LogComparator implements Comparator {
+  private abstract static class LogComparator implements Comparator {
 
     protected static final char DELIM = '!';
 

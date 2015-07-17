@@ -48,8 +48,8 @@ public class TomcatAvailabilityController extends TomcatContainerController {
     this.containerListenerBean = containerListenerBean;
   }
 
-  public ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response)
-      throws Exception {
+  public ModelAndView handleRequestInternal(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
 
     long start = System.currentTimeMillis();
     TomcatTestReport tomcatTestReport = new TomcatTestReport();
@@ -144,6 +144,7 @@ public class TomcatAvailabilityController extends TomcatContainerController {
         try {
           ((FileOutputStream) fileStreams.get(i)).close();
         } catch (IOException e) {
+          //ignore
         }
       }
 

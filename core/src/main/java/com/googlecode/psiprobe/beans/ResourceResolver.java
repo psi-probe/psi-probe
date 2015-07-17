@@ -52,12 +52,10 @@ public interface ResourceResolver {
   boolean supportsGlobalResources();
 
   /**
-   * Indicates whether this servlet container exposes datasources via JNDI.
+   * Indicates whether this servlet container exposes datasources via
+   * {@link #lookupDataSource(Context, String, ContainerWrapperBean) JNDI}.
    *
    * @return true if the servlet container supports datasource lookup
-   *
-   * @see #lookupDataSource(org.apache.catalina.Context, java.lang.String,
-   *      com.googlecode.psiprobe.beans.ContainerWrapperBean)
    */
   boolean supportsDataSourceLookup();
 

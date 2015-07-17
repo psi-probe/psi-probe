@@ -144,6 +144,12 @@ public class JBossResourceResolverBean implements ResourceResolver {
     return new ArrayList();
   }
 
+  public List getApplicationResources(Context context, ContainerWrapperBean containerWrapper)
+      throws NamingException {
+    
+    throw new UnsupportedOperationException("Not supported yet.");
+  }
+
   public boolean resetResource(Context context, String resourceName,
       ContainerWrapperBean containerWrapper) throws NamingException {
     try {
@@ -172,8 +178,4 @@ public class JBossResourceResolverBean implements ResourceResolver {
         "This feature has not been implemented for JBoss server yet.");
   }
 
-  public List getApplicationResources(Context context, ContainerWrapperBean containerWrapper)
-      throws NamingException {
-    throw new UnsupportedOperationException("Not supported yet.");
-  }
 }

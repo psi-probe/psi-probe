@@ -166,7 +166,9 @@ public class Mailer {
     return (InternetAddress[]) result.toArray(new InternetAddress[result.size()]);
   }
 
-  private static MimeBodyPart createAttachmentPart(DataSource attachment) throws MessagingException {
+  private static MimeBodyPart createAttachmentPart(DataSource attachment)
+      throws MessagingException {
+    
     MimeBodyPart attachmentPart = new MimeBodyPart();
     attachmentPart.setDataHandler(new DataHandler(attachment));
     attachmentPart.setDisposition(MimeBodyPart.ATTACHMENT);

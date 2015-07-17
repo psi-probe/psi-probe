@@ -95,7 +95,7 @@ public class ClusterWrapperBean {
       cluster.setSenderTotalBytes(JmxTools.getLongAttr(mBeanServer, senderOName, "totalBytes"));
 
       if (loadMembers) {
-        ObjectName senders[] =
+        ObjectName[] senders =
             (ObjectName[]) mBeanServer.getAttribute(senderOName, "senderObjectNames");
         for (int i = 0; i < senders.length; i++) {
 

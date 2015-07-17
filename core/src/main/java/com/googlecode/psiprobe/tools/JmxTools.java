@@ -51,6 +51,15 @@ public class JmxTools {
     }
   }
 
+  public static long getLongAttr(CompositeData cds, String name) {
+    Object o = cds.get(name);
+    if (o != null && o instanceof Long) {
+      return ((Long) o).longValue();
+    } else {
+      return 0;
+    }
+  }
+
   public static long getLongAttr(MBeanServer mBeanServer, ObjectName oName, String attrName)
       throws Exception {
 
@@ -63,20 +72,21 @@ public class JmxTools {
     return ((Integer) mBeanServer.getAttribute(oName, attrName)).intValue();
   }
 
+  public static int getIntAttr(CompositeData cds, String name, int defaultValue) {
+    Object o = cds.get(name);
+
+    if (o != null && o instanceof Integer) {
+      return ((Integer) o).intValue();
+    } else {
+      return defaultValue;
+    }
+  }
+
   public static String getStringAttr(MBeanServer mBeanServer, ObjectName oName, String attrName)
       throws Exception {
 
     Object o = getAttribute(mBeanServer, oName, attrName);
     return o == null ? null : o.toString();
-  }
-
-  public static long getLongAttr(CompositeData cds, String name) {
-    Object o = cds.get(name);
-    if (o != null && o instanceof Long) {
-      return ((Long) o).longValue();
-    } else {
-      return 0;
-    }
   }
 
   public static String getStringAttr(CompositeData cds, String name) {
@@ -87,16 +97,6 @@ public class JmxTools {
   public static boolean getBooleanAttr(CompositeData cds, String name) {
     Object o = cds.get(name);
     return o != null && o instanceof Boolean && ((Boolean) o).booleanValue();
-  }
-
-  public static int getIntAttr(CompositeData cds, String name, int defaultValue) {
-    Object o = cds.get(name);
-
-    if (o != null && o instanceof Integer) {
-      return ((Integer) o).intValue();
-    } else {
-      return defaultValue;
-    }
   }
 
   public static boolean hasAttribute(MBeanServer server, ObjectName mbean, String attrName)

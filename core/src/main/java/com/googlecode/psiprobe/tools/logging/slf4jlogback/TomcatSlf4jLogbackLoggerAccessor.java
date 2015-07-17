@@ -9,7 +9,7 @@
  * PURPOSE.
  */
 
-package com.googlecode.psiprobe.tools.logging.tomcatSlf4jLogback;
+package com.googlecode.psiprobe.tools.logging.slf4jlogback;
 
 import com.googlecode.psiprobe.tools.logging.DefaultAccessor;
 

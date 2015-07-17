@@ -19,7 +19,7 @@ import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
  * 
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
- * @author Diogo Sant'Ana <diogosantana@gmail.com>
+ * @author <a href="mailto:diogosantana@gmail.com">Diogo Sant'Ana</a>
  */
 public class Tomcat8DbcpDatasourceAccessor implements DatasourceAccessor {
 

@@ -383,7 +383,7 @@ public class Tomcat55ContainerAdaptor extends AbstractTomcatContainer {
   }
 
   public Long[] getResourceAttributes(String name, Context context) {
-    Long result[] = new Long[2];
+    Long[] result = new Long[2];
     try {
       ResourceAttributes resource = (ResourceAttributes) context.getResources().getAttributes(name);
       result[0] = Long.valueOf(resource.getContentLength());

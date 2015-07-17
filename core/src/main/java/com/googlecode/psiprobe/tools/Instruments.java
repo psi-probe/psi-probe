@@ -41,6 +41,7 @@ public class Instruments {
 
   private static final Accessor ACCESSOR = AccessorFactory.getInstance();
   private static final boolean IGNORE_NIO;
+  
   static {
     String ignoreNIOProp = System.getProperty("com.googlecode.psiprobe.intruments.ignoreNIO");
     String os64bitProp = System.getProperty("sun.arch.data.model");
@@ -106,7 +107,7 @@ public class Instruments {
     long size = SIZE_OBJECT;
     Class clazz = o.getClass();
     while (clazz != null) {
-      Field fields[] = clazz.getDeclaredFields();
+      Field[] fields = clazz.getDeclaredFields();
       for (int i = 0; i < fields.length; i++) {
         Field f = fields[i];
         if (!Modifier.isStatic(f.getModifiers())) {

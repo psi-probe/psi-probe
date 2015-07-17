@@ -137,6 +137,10 @@ public class Utils {
     return defaultValue;
   }
 
+  public static int toInt(Integer num, int defaultValue) {
+    return num == null ? defaultValue : num.intValue();
+  }
+
   public static int toIntHex(String num, int defaultValue) {
     try {
       if (num != null && num.startsWith("#")) {
@@ -146,10 +150,6 @@ public class Utils {
     } catch (NumberFormatException e) {
       return defaultValue;
     }
-  }
-
-  public static int toInt(Integer num, int defaultValue) {
-    return num == null ? defaultValue : num.intValue();
   }
 
   public static long toLong(String num, long defaultValue) {

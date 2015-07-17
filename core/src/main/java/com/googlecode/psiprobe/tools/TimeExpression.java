@@ -17,16 +17,16 @@ package com.googlecode.psiprobe.tools;
  */
 public class TimeExpression {
 
-  public static String cronExpression(String periodExpression, String phaseExpression) {
-    return cronExpression(inSeconds(periodExpression), inSeconds(phaseExpression));
-  }
-
   public static long dataPoints(String periodExpression, String spanExpression) {
     return dataPoints(inSeconds(periodExpression), inSeconds(spanExpression));
   }
 
   public static long dataPoints(long period, long span) {
     return span / period;
+  }
+
+  public static String cronExpression(String periodExpression, String phaseExpression) {
+    return cronExpression(inSeconds(periodExpression), inSeconds(phaseExpression));
   }
 
   public static String cronExpression(long period, long phase) {

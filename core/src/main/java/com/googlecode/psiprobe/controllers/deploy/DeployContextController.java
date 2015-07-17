@@ -27,8 +27,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class DeployContextController extends TomcatContainerController {
 
-  public ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response)
-      throws Exception {
+  public ModelAndView handleRequestInternal(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
 
     String contextName = ServletRequestUtils.getStringParameter(request, "context", null);
 

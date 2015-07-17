@@ -16,13 +16,13 @@ import com.googlecode.psiprobe.model.DataSourceInfo;
 import org.apache.tomcat.jdbc.pool.DataSource;
 
 /**
- * Datasource accessor for the new <a
- * href="http://people.apache.org/~fhanik/jdbc-pool/jdbc-pool.html">Tomcat JDBC pool</a>.
+ * Datasource accessor for the new
+ * <a href="http://people.apache.org/~fhanik/jdbc-pool/jdbc-pool.html">Tomcat JDBC pool</a>.
  * 
  * <p>
  * Tomcat 6 can be configured to use the new pool for its datasources instead of the old DBCP-based
- * pool. SpringSource tc Server uses this new pool <a
- * href="http://vigilbose.blogspot.com/2009/03/apache-commons-dbcp-and-tomcat-jdbc.html">by
+ * pool. SpringSource tc Server uses this new pool
+ * <a href="http://vigilbose.blogspot.com/2009/03/apache-commons-dbcp-and-tomcat-jdbc.html">by
  * default</a>.
  * </p>
  *

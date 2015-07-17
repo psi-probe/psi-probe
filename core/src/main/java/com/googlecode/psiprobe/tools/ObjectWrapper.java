@@ -22,7 +22,7 @@ package com.googlecode.psiprobe.tools;
  * 
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
- * 
+ *
  * @see Instruments
  */
 class ObjectWrapper {

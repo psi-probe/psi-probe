@@ -49,7 +49,8 @@ public class SizeExpression {
    * <tbody>
    * <tr>
    * <td>Base Number</td>
-   * <td>(Required) The mantissa or significand of the expression. This can include decimal values.</td>
+   * <td>(Required) The mantissa or significand of the expression. This can include decimal
+   * values.</td>
    * </tr>
    * <tr>
    * <td>Prefix</td>

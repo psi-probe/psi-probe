@@ -266,7 +266,7 @@ public class ResourceResolverBean implements ResourceResolver {
    *
    * @param global whether to use the global prefix
    * @param name the JNDI name of the resource
-   * 
+   *
    * @return the JNDI resource name with the prefix appended
    *
    * @see #DEFAULT_GLOBAL_RESOURCE_PREFIX
@@ -276,7 +276,9 @@ public class ResourceResolverBean implements ResourceResolver {
     return (global ? DEFAULT_GLOBAL_RESOURCE_PREFIX : DEFAULT_RESOURCE_PREFIX) + name;
   }
 
-  private String getStringAttribute(MBeanServer server, ObjectName objectName, String attributeName) {
+  private String getStringAttribute(MBeanServer server, ObjectName objectName,
+      String attributeName) {
+    
     try {
       return (String) server.getAttribute(objectName, attributeName);
     } catch (Exception e) {
