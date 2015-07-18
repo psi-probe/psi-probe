@@ -92,8 +92,8 @@ public class ListThreadsController extends TomcatContainerController {
     return threadList;
   }
 
-  private static String toUID(Object o) {
-    return o.getClass().getName() + "@" + o.hashCode();
+  private static String toUID(Object obj) {
+    return obj.getClass().getName() + "@" + obj.hashCode();
   }
 
 }

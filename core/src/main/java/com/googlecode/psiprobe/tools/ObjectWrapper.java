@@ -29,8 +29,8 @@ class ObjectWrapper {
 
   private final Object wrappedObject;
 
-  public ObjectWrapper(Object o) {
-    this.wrappedObject = o;
+  public ObjectWrapper(Object obj) {
+    this.wrappedObject = obj;
   }
 
   public boolean equals(Object o1) {

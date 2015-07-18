@@ -57,12 +57,18 @@ public class DurationTag extends TagSupport {
     return hours + ":" + long2Str(mins) + ":" + long2Str(sec) + "." + long3Str(millis);
   }
 
-  private static String long2Str(long l) {
-    return l < 10 ? "0" + l : Long.toString(l);
+  private static String long2Str(long value) {
+    return value < 10 ? "0" + value : Long.toString(value);
   }
 
-  private static String long3Str(long l) {
-    return l < 10 ? "00" + l : l < 100 ? "0" + l : Long.toString(l);
+  private static String long3Str(long value) {
+    if (value < 10) {
+      return "00" + value;
+    } else if (value < 100) {
+      return "0" + value;
+    } else {
+      return Long.toString(value);
+    }
   }
 
 }

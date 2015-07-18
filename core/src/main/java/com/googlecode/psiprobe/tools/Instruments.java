@@ -54,41 +54,41 @@ public class Instruments {
   private List nextQueue = new LinkedList();
   private ClassLoader classLoader = null;
 
-  public static long sizeOf(Object o) {
-    return new Instruments().internalSizeOf(o);
+  public static long sizeOf(Object obj) {
+    return new Instruments().internalSizeOf(obj);
   }
 
-  public static long sizeOf(Object o, ClassLoader cl) {
+  public static long sizeOf(Object obj, ClassLoader cl) {
     Instruments instruments = new Instruments();
     instruments.classLoader = cl;
-    return instruments.internalSizeOf(o);
+    return instruments.internalSizeOf(obj);
   }
 
-  public static long sizeOf(Object o, Set objects) {
+  public static long sizeOf(Object obj, Set objects) {
     Instruments instruments = new Instruments();
     instruments.processedObjects = objects;
-    return instruments.internalSizeOf(o);
+    return instruments.internalSizeOf(obj);
   }
 
-  private long internalSizeOf(Object obj) {
+  private long internalSizeOf(Object root) {
     long size = 0;
-    thisQueue.add(obj);
+    thisQueue.add(root);
     while (!thisQueue.isEmpty()) {
       Iterator it = thisQueue.iterator();
       while (it.hasNext()) {
-        Object o = it.next();
-        if (isInitialized() && o != null
-            && (classLoader == null || classLoader == o.getClass().getClassLoader())
-            && (!IGNORE_NIO || !o.getClass().getName().startsWith("java.nio."))) {
-          ObjectWrapper ow = new ObjectWrapper(o);
+        Object obj = it.next();
+        if (isInitialized() && obj != null
+            && (classLoader == null || classLoader == obj.getClass().getClassLoader())
+            && (!IGNORE_NIO || !obj.getClass().getName().startsWith("java.nio."))) {
+          ObjectWrapper ow = new ObjectWrapper(obj);
           if (!processedObjects.contains(ow)) {
-            if (o.getClass().isArray()) {
-              size += sizeOfArray(o);
-            } else if (o.getClass().isPrimitive()) {
-              size += sizeOfPrimitive(o.getClass());
+            if (obj.getClass().isArray()) {
+              size += sizeOfArray(obj);
+            } else if (obj.getClass().isPrimitive()) {
+              size += sizeOfPrimitive(obj.getClass());
             } else {
               processedObjects.add(ow);
-              size += sizeOfObject(o);
+              size += sizeOfObject(obj);
             }
           }
         }
@@ -103,19 +103,19 @@ public class Instruments {
     return size;
   }
 
-  private long sizeOfObject(Object o) {
+  private long sizeOfObject(Object obj) {
     long size = SIZE_OBJECT;
-    Class clazz = o.getClass();
+    Class clazz = obj.getClass();
     while (clazz != null) {
       Field[] fields = clazz.getDeclaredFields();
       for (int i = 0; i < fields.length; i++) {
-        Field f = fields[i];
-        if (!Modifier.isStatic(f.getModifiers())) {
-          if (f.getType().isPrimitive()) {
-            size += sizeOfPrimitive(f.getType());
+        Field field = fields[i];
+        if (!Modifier.isStatic(field.getModifiers())) {
+          if (field.getType().isPrimitive()) {
+            size += sizeOfPrimitive(field.getType());
           } else {
-            Object val = ACCESSOR.get(o, f);
-            if (f.getType().isArray()) {
+            Object val = ACCESSOR.get(obj, field);
+            if (field.getType().isArray()) {
               size += sizeOfArray(val);
             } else {
               size += SIZE_REFERENCE;
@@ -129,38 +129,38 @@ public class Instruments {
     return size;
   }
 
-  private long sizeOfArray(Object o) {
-    if (o != null) {
-      Class ct = o.getClass().getComponentType();
+  private long sizeOfArray(Object obj) {
+    if (obj != null) {
+      Class ct = obj.getClass().getComponentType();
       if (ct.isPrimitive()) {
-        return Array.getLength(o) * sizeOfPrimitive(ct);
+        return Array.getLength(obj) * sizeOfPrimitive(ct);
       } else {
-        for (int i = 0; i < Array.getLength(o); i++) {
-          nextQueue.add(Array.get(o, i));
+        for (int i = 0; i < Array.getLength(obj); i++) {
+          nextQueue.add(Array.get(obj, i));
         }
       }
     }
     return 0;
   }
 
-  private static long sizeOfPrimitive(Class t) {
-    if (t == Boolean.TYPE) {
+  private static long sizeOfPrimitive(Class type) {
+    if (type == Boolean.TYPE) {
       return SIZE_BOOLEAN;
-    } else if (t == Byte.TYPE) {
+    } else if (type == Byte.TYPE) {
       return SIZE_BYTE;
-    } else if (t == Character.TYPE) {
+    } else if (type == Character.TYPE) {
       return SIZE_CHAR;
-    } else if (t == Short.TYPE) {
+    } else if (type == Short.TYPE) {
       return SIZE_SHORT;
-    } else if (t == Integer.TYPE) {
+    } else if (type == Integer.TYPE) {
       return SIZE_INT;
-    } else if (t == Long.TYPE) {
+    } else if (type == Long.TYPE) {
       return SIZE_LONG;
-    } else if (t == Float.TYPE) {
+    } else if (type == Float.TYPE) {
       return SIZE_FLOAT;
-    } else if (t == Double.TYPE) {
+    } else if (type == Double.TYPE) {
       return SIZE_DOUBLE;
-    } else if (t == Void.TYPE) {
+    } else if (type == Void.TYPE) {
       return SIZE_VOID;
     } else {
       return SIZE_REFERENCE;
@@ -171,11 +171,11 @@ public class Instruments {
     return ACCESSOR != null;
   }
 
-  public static Object getField(Object o, String name) {
+  public static Object getField(Object obj, String name) {
     if (isInitialized()) {
-      Field f = findField(o.getClass(), name);
-      if (f != null) {
-        return ACCESSOR.get(o, f);
+      Field field = findField(obj.getClass(), name);
+      if (field != null) {
+        return ACCESSOR.get(obj, field);
       }
     }
     return null;

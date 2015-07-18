@@ -19,30 +19,32 @@ import java.lang.reflect.Field;
  */
 public class SimpleAccessor implements Accessor {
 
-  public Object get(Object o, Field f) {
-    boolean accessible = pre(f);
+  public Object get(Object obj, Field field) {
+    boolean accessible = pre(field);
     try {
-      return get0(o, f);
+      return get0(obj, field);
     } catch (Exception e) {
       return null;
     } finally {
-      post(f, accessible);
+      post(field, accessible);
     }
   }
 
-  private Object get0(Object o, Field f) throws IllegalArgumentException, IllegalAccessException {
-    if (f.isAccessible()) {
-      return f.get(o);
+  private Object get0(Object obj, Field field)
+      throws IllegalArgumentException, IllegalAccessException {
+    
+    if (field.isAccessible()) {
+      return field.get(obj);
     } else {
       return null;
     }
   }
 
-  private boolean pre(Field f) {
-    boolean accessible = f.isAccessible();
+  private boolean pre(Field field) {
+    boolean accessible = field.isAccessible();
     if (!accessible) {
       try {
-        f.setAccessible(true);
+        field.setAccessible(true);
       } catch (SecurityException ex) {
         // ignore
       }
@@ -50,10 +52,10 @@ public class SimpleAccessor implements Accessor {
     return accessible;
   }
 
-  private void post(Field f, boolean value) {
+  private void post(Field field, boolean value) {
     if (!value) {
       try {
-        f.setAccessible(false);
+        field.setAccessible(false);
       } catch (SecurityException ex) {
         // ignore
       }

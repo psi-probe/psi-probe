@@ -49,11 +49,13 @@ public class DefaultAccessor {
     return getTarget().getClass().getName();
   }
 
-  protected Object getProperty(Object o, String name, Object defaultValue) {
+  protected Object getProperty(Object obj, String name, Object defaultValue) {
     try {
-      return PropertyUtils.isReadable(o, name) ? PropertyUtils.getProperty(o, name) : defaultValue;
+      return PropertyUtils.isReadable(obj, name)
+          ? PropertyUtils.getProperty(obj, name)
+          : defaultValue;
     } catch (Exception e) {
-      log.debug("Could not access property \"" + name + "\" of object " + o, e);
+      log.debug("Could not access property \"" + name + "\" of object " + obj, e);
       return defaultValue;
     }
   }

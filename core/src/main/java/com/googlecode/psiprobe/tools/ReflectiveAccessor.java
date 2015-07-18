@@ -33,11 +33,11 @@ public class ReflectiveAccessor implements Accessor {
     init();
   }
 
-  public Object get(Object o, Field f) {
+  public Object get(Object obj, Field field) {
     try {
-      Object fieldAccessor = getFieldAccessor(f);
+      Object fieldAccessor = getFieldAccessor(field);
       if (fieldAccessor != null) {
-        return get.invoke(fieldAccessor, new Object[] {o});
+        return get.invoke(fieldAccessor, new Object[] {obj});
       }
     } catch (Exception ex) {
       // ignore
@@ -45,13 +45,13 @@ public class ReflectiveAccessor implements Accessor {
     return null;
   }
 
-  private static Object getFieldAccessor(Field f) throws IllegalAccessException,
+  private static Object getFieldAccessor(Field field) throws IllegalAccessException,
       IllegalArgumentException, InvocationTargetException {
 
     if (newFieldAccessor.getParameterTypes().length == 1) {
-      return newFieldAccessor.invoke(reflectionFactory, new Object[] {f});
+      return newFieldAccessor.invoke(reflectionFactory, new Object[] {field});
     } else {
-      return newFieldAccessor.invoke(reflectionFactory, new Object[] {f, Boolean.TRUE});
+      return newFieldAccessor.invoke(reflectionFactory, new Object[] {field, Boolean.TRUE});
     }
   }
 

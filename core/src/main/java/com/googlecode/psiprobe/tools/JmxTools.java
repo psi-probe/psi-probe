@@ -29,22 +29,22 @@ public class JmxTools {
 
   private static Log logger = LogFactory.getLog(JmxTools.class);
 
-  public static Object getAttribute(MBeanServer mBeanServer, ObjectName oName, String attrName)
+  public static Object getAttribute(MBeanServer mbeanServer, ObjectName objName, String attrName)
       throws Exception {
 
     try {
-      return mBeanServer.getAttribute(oName, attrName);
+      return mbeanServer.getAttribute(objName, attrName);
     } catch (AttributeNotFoundException e) {
-      logger.error(oName + " does not have \"" + attrName + "\" attribute");
+      logger.error(objName + " does not have \"" + attrName + "\" attribute");
       return null;
     }
   }
 
-  public static long getLongAttr(MBeanServer mBeanServer, ObjectName oName, String attrName,
+  public static long getLongAttr(MBeanServer mbeanServer, ObjectName objName, String attrName,
       long defaultValue) {
 
     try {
-      Object o = mBeanServer.getAttribute(oName, attrName);
+      Object o = mbeanServer.getAttribute(objName, attrName);
       return o == null ? defaultValue : ((Long) o).longValue();
     } catch (Exception e) {
       return defaultValue;
@@ -60,16 +60,16 @@ public class JmxTools {
     }
   }
 
-  public static long getLongAttr(MBeanServer mBeanServer, ObjectName oName, String attrName)
+  public static long getLongAttr(MBeanServer mbeanServer, ObjectName objName, String attrName)
       throws Exception {
 
-    return ((Long) mBeanServer.getAttribute(oName, attrName)).longValue();
+    return ((Long) mbeanServer.getAttribute(objName, attrName)).longValue();
   }
 
-  public static int getIntAttr(MBeanServer mBeanServer, ObjectName oName, String attrName)
+  public static int getIntAttr(MBeanServer mbeanServer, ObjectName objName, String attrName)
       throws Exception {
 
-    return ((Integer) mBeanServer.getAttribute(oName, attrName)).intValue();
+    return ((Integer) mbeanServer.getAttribute(objName, attrName)).intValue();
   }
 
   public static int getIntAttr(CompositeData cds, String name, int defaultValue) {
@@ -82,10 +82,10 @@ public class JmxTools {
     }
   }
 
-  public static String getStringAttr(MBeanServer mBeanServer, ObjectName oName, String attrName)
+  public static String getStringAttr(MBeanServer mbeanServer, ObjectName objName, String attrName)
       throws Exception {
 
-    Object o = getAttribute(mBeanServer, oName, attrName);
+    Object o = getAttribute(mbeanServer, objName, attrName);
     return o == null ? null : o.toString();
   }
 

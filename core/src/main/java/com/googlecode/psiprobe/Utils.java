@@ -110,19 +110,19 @@ public class Utils {
     return out.toString();
   }
 
-  public static void delete(File f) {
-    if (f != null && f.exists()) {
-      if (f.isDirectory()) {
-        File[] files = f.listFiles();
+  public static void delete(File file) {
+    if (file != null && file.exists()) {
+      if (file.isDirectory()) {
+        File[] files = file.listFiles();
         for (int i = 0; i < files.length; i++) {
           delete(files[i]);
         }
       }
-      if (!f.delete()) {
-        logger.debug("Cannot delete " + f.getAbsolutePath());
+      if (!file.delete()) {
+        logger.debug("Cannot delete " + file.getAbsolutePath());
       }
     } else {
-      logger.debug(f + " does not exist");
+      logger.debug(file + " does not exist");
     }
   }
 
@@ -390,14 +390,14 @@ public class Utils {
     return null;
   }
 
-  public static String leftPad(String s, int len, String fill) {
+  public static String leftPad(String str, int len, String fill) {
     StringBuffer sb = new StringBuffer(len);
-    if (s.length() < len) {
-      for (int i = s.length(); i < len; i++) {
+    if (str.length() < len) {
+      for (int i = str.length(); i < len; i++) {
         sb.append(fill);
       }
     }
-    sb.append(s);
+    sb.append(str);
     return sb.toString();
   }
 

@@ -321,20 +321,20 @@ public class ApplicationUtils {
     }
   }
 
-  private static ServletInfo getServletInfo(Wrapper w, String contextName) {
+  private static ServletInfo getServletInfo(Wrapper wrapper, String contextName) {
     ServletInfo si = new ServletInfo();
     si.setApplicationName(contextName.length() > 0 ? contextName : "/");
-    si.setServletName(w.getName());
-    si.setServletClass(w.getServletClass());
-    si.setAvailable(!w.isUnavailable());
-    si.setLoadOnStartup(w.getLoadOnStartup());
-    si.setRunAs(w.getRunAs());
-    String[] ms = w.findMappings();
+    si.setServletName(wrapper.getName());
+    si.setServletClass(wrapper.getServletClass());
+    si.setAvailable(!wrapper.isUnavailable());
+    si.setLoadOnStartup(wrapper.getLoadOnStartup());
+    si.setRunAs(wrapper.getRunAs());
+    String[] ms = wrapper.findMappings();
     for (int i = 0; i < ms.length; i++) {
       si.getMappings().add(ms[i]);
     }
-    if (w instanceof StandardWrapper) {
-      StandardWrapper sw = (StandardWrapper) w;
+    if (wrapper instanceof StandardWrapper) {
+      StandardWrapper sw = (StandardWrapper) wrapper;
       si.setAllocationCount(sw.getCountAllocated());
       si.setErrorCount(sw.getErrorCount());
       si.setLoadTime(sw.getLoadTime());

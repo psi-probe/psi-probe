@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.management.MBeanServer;
@@ -88,10 +89,10 @@ public class ListSunThreadsController extends ParameterizableViewController {
     return new ModelAndView(getViewName(), "threads", threads);
   }
 
-  private static boolean contains(long[] array, long e) {
-    if (array != null) {
-      for (int i = 0; i < array.length; i++) {
-        if (array[i] == e) {
+  private static boolean contains(long[] haystack, long needle) {
+    if (haystack != null) {
+      for (int i = 0; i < haystack.length; i++) {
+        if (haystack[i] == needle) {
           return true;
         }
       }

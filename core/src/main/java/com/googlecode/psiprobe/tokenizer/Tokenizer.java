@@ -178,10 +178,10 @@ public class Tokenizer {
     return true;
   }
 
-  private int lookupSymbol(char b) throws IOException {
+  private int lookupSymbol(char chr) throws IOException {
     int result = -1;
 
-    Character c = new Character(b);
+    Character c = new Character(chr);
     int index = Collections.binarySearch(symbols, c);
 
     if (index >= 0) {
@@ -207,11 +207,11 @@ public class Tokenizer {
     return result;
   }
 
-  private void read(char[] b, int count) throws IOException {
+  private void read(char[] chrs, int count) throws IOException {
     loadCache(count);
     int endPoint = cachePosition + count - 1 >= cacheSize ? cacheSize : cachePosition + count - 1;
     if (cachePosition <= endPoint) {
-      System.arraycopy(cacheBuffer, cachePosition, b, 0, endPoint - cachePosition + 1);
+      System.arraycopy(cacheBuffer, cachePosition, chrs, 0, endPoint - cachePosition + 1);
     }
     cachePosition = endPoint + 1;
   }

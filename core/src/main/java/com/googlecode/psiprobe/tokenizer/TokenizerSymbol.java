@@ -37,16 +37,16 @@ public class TokenizerSymbol implements Comparable {
     this.canBeNested = canBeNested;
   }
 
-  public int compareTo(Object o) {
-    if (o instanceof Character) {
-      return compareTo((Character) o);
+  public int compareTo(Object obj) {
+    if (obj instanceof Character) {
+      return compareTo((Character) obj);
     } else {
-      return compareTo((TokenizerSymbol) o);
+      return compareTo((TokenizerSymbol) obj);
     }
   }
 
-  public int compareTo(Character c) {
-    return c.charValue() - startText.charAt(0);
+  public int compareTo(Character chr) {
+    return chr.charValue() - startText.charAt(0);
   }
 
   public int compareTo(TokenizerSymbol symbol) {

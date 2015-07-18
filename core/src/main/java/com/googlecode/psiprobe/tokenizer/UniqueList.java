@@ -39,13 +39,14 @@ public class UniqueList extends Vector {
     return add(obj, null);
   }
 
-  protected synchronized boolean add(Object obj, Comparator c) {
+  protected synchronized boolean add(Object obj, Comparator comp) {
     if (size() == 0) {
       return super.add(obj);
     } else {
       int index;
-      index =
-          c == null ? Collections.binarySearch(this, obj) : Collections.binarySearch(this, obj, c);
+      index = comp == null
+          ? Collections.binarySearch(this, obj)
+          : Collections.binarySearch(this, obj, comp);
       if (index < 0) {
         if (-index - 1 >= size()) {
           super.add(obj);
@@ -61,10 +62,10 @@ public class UniqueList extends Vector {
     add(obj);
   }
 
-  public synchronized boolean addAll(Collection c) {
-    boolean ok = this != c;
+  public synchronized boolean addAll(Collection comp) {
+    boolean ok = this != comp;
     if (ok) {
-      Iterator iterator = c.iterator();
+      Iterator iterator = comp.iterator();
       while (iterator.hasNext()) {
         ok = this.add(iterator.next()) && ok;
       }

@@ -79,12 +79,12 @@ public class LogOutputStream extends OutputStream {
   /**
    * Writes the specified {@code byte} to this stream.
    *
-   * @param b the {@code byte} to write
+   * @param out the {@code byte} to write
    */
-  public void write(int b) {
+  public void write(int out) {
     if (shouldWrite()) {
-      char c = (char) b;
-      buf.append(c);
+      char chr = (char) out;
+      buf.append(chr);
     }
   }
 

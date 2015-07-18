@@ -29,8 +29,8 @@ public class StatsCollectionEvent {
     this.data = data;
   }
 
-  public StatsCollectionEvent(String name, long x, long y) {
-    this(name, new XYDataItem(x, y));
+  public StatsCollectionEvent(String name, long time, long data) {
+    this(name, new XYDataItem(time, data));
   }
 
   public String getName() {

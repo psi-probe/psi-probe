@@ -19,6 +19,6 @@ import java.lang.reflect.Field;
  */
 public interface Accessor {
 
-  Object get(Object o, Field f);
+  Object get(Object obj, Field field);
 
 }

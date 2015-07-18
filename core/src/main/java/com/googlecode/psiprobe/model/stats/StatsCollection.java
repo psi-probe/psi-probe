@@ -172,12 +172,12 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
     }
   }
 
-  private Map deserialize(File f) {
+  private Map deserialize(File file) {
     Map stats = null;
-    if (f.exists() && f.canRead()) {
+    if (file.exists() && file.canRead()) {
       long t = System.currentTimeMillis();
       try {
-        FileInputStream fis = new FileInputStream(f);
+        FileInputStream fis = new FileInputStream(file);
         try {
           stats = (Map) (new XStream().fromXML(fis));
 
@@ -204,7 +204,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
         }
         logger.debug("stats data read in " + (System.currentTimeMillis() - t) + "ms.");
       } catch (Throwable e) {
-        logger.error("Could not read stats data from " + f.getAbsolutePath(), e);
+        logger.error("Could not read stats data from " + file.getAbsolutePath(), e);
         //
         // make sure we always re-throw ThreadDeath
         //
