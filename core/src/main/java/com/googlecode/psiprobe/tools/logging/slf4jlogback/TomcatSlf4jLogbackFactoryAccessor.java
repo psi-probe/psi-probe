@@ -47,10 +47,12 @@ public class TomcatSlf4jLogbackFactoryAccessor extends DefaultAccessor {
 
     // Get the singleton SLF4J binding, which may or may not be Logback, depending on the binding.
     Class clazz = cl.loadClass("org.apache.juli.logging.org.slf4j.impl.StaticLoggerBinder");
-    Method m1 = MethodUtils.getAccessibleMethod(clazz, "getSingleton", new Class[] {});
-    Object singleton = m1.invoke(null, null);
-    Method m = MethodUtils.getAccessibleMethod(clazz, "getLoggerFactory", new Class[] {});
-    Object loggerFactory = m.invoke(singleton, null);
+    Method getSingleton = MethodUtils.getAccessibleMethod(clazz, "getSingleton", new Class[] {});
+    Object singleton = getSingleton.invoke(null, null);
+    Method getLoggerFactory = MethodUtils
+        .getAccessibleMethod(clazz, "getLoggerFactory", new Class[] {});
+    
+    Object loggerFactory = getLoggerFactory.invoke(singleton, null);
 
     // Check if the binding is indeed Logback
     Class loggerFactoryClass =
@@ -82,8 +84,10 @@ public class TomcatSlf4jLogbackFactoryAccessor extends DefaultAccessor {
   public TomcatSlf4jLogbackLoggerAccessor getLogger(String name) {
     try {
       Class clazz = getTarget().getClass();
-      Method m = MethodUtils.getAccessibleMethod(clazz, "getLogger", new Class[] {String.class});
-      Object logger = m.invoke(getTarget(), new Object[] {name});
+      Method getLogger = MethodUtils
+          .getAccessibleMethod(clazz, "getLogger", new Class[] {String.class});
+      
+      Object logger = getLogger.invoke(getTarget(), new Object[] {name});
       if (logger == null) {
         throw new NullPointerException(getTarget() + ".getLogger(\"" + name + "\") returned null");
       }
@@ -108,8 +112,10 @@ public class TomcatSlf4jLogbackFactoryAccessor extends DefaultAccessor {
     List appenders = new ArrayList();
     try {
       Class clazz = getTarget().getClass();
-      Method m = MethodUtils.getAccessibleMethod(clazz, "getLoggerList", new Class[] {});
-      List loggers = (List) m.invoke(getTarget(), null);
+      Method getLoggerList = MethodUtils
+          .getAccessibleMethod(clazz, "getLoggerList", new Class[] {});
+      
+      List loggers = (List) getLoggerList.invoke(getTarget(), null);
       Iterator it = loggers.iterator();
       while (it.hasNext()) {
         TomcatSlf4jLogbackLoggerAccessor accessor = new TomcatSlf4jLogbackLoggerAccessor();

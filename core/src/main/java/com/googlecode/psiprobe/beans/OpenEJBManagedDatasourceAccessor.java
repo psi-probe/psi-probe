@@ -47,10 +47,13 @@ public class OpenEJBManagedDatasourceAccessor implements DatasourceAccessor {
   }
 
   public boolean canMap(Object resource) {
-    Object w;
-    return resource.getClass().getName()
-        .equals("org.apache.openejb.resource.jdbc.managed.local.ManagedDataSource")
-        && (w = unwrap(resource)) instanceof DataSourceProxy && w instanceof PoolConfiguration;
+    if (resource.getClass().getName()
+        .equals("org.apache.openejb.resource.jdbc.managed.local.ManagedDataSource")) {
+      
+      Object wrapped = unwrap(resource);
+      return wrapped instanceof DataSourceProxy && wrapped instanceof PoolConfiguration;
+    }
+    return false;
   }
 
   private Object unwrap(Object resource) {

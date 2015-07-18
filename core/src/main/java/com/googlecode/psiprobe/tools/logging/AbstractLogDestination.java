@@ -37,8 +37,8 @@ public abstract class AbstractLogDestination extends DefaultAccessor implements 
   }
 
   protected File getStdoutFile() {
-    File f = new File(System.getProperty("catalina.base"), "logs/catalina.out");
-    return f.exists() ? f : new File("stdout");
+    File file = new File(System.getProperty("catalina.base"), "logs/catalina.out");
+    return file.exists() ? file : new File("stdout");
   }
 
   public File getFile() {
@@ -46,13 +46,13 @@ public abstract class AbstractLogDestination extends DefaultAccessor implements 
   }
 
   public long getSize() {
-    File f = getFile();
-    return f != null && f.exists() ? f.length() : 0;
+    File file = getFile();
+    return file != null && file.exists() ? file.length() : 0;
   }
 
   public Timestamp getLastModified() {
-    File f = getFile();
-    return f != null && f.exists() ? new Timestamp(f.lastModified()) : null;
+    File file = getFile();
+    return file != null && file.exists() ? new Timestamp(file.lastModified()) : null;
   }
 
   public String getLevel() {

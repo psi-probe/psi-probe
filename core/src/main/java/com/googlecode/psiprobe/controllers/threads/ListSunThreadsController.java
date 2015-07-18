@@ -41,19 +41,19 @@ public class ListSunThreadsController extends ParameterizableViewController {
     List threads = null;
     int executionStackDepth = 1;
 
-    MBeanServer mBeanServer = new Registry().getMBeanServer();
+    MBeanServer mbeanServer = new Registry().getMBeanServer();
     ObjectName threadingOName = new ObjectName("java.lang:type=Threading");
 
     long[] deadlockedIds =
-        (long[]) mBeanServer.invoke(threadingOName, "findMonitorDeadlockedThreads", null, null);
-    long[] allIds = (long[]) mBeanServer.getAttribute(threadingOName, "AllThreadIds");
+        (long[]) mbeanServer.invoke(threadingOName, "findMonitorDeadlockedThreads", null, null);
+    long[] allIds = (long[]) mbeanServer.getAttribute(threadingOName, "AllThreadIds");
 
     if (allIds != null) {
       threads = new ArrayList(allIds.length);
 
       for (int i = 0; i < allIds.length; i++) {
         CompositeData cd =
-            (CompositeData) mBeanServer.invoke(threadingOName, "getThreadInfo", new Object[] {
+            (CompositeData) mbeanServer.invoke(threadingOName, "getThreadInfo", new Object[] {
                 new Long(allIds[i]), new Integer(executionStackDepth)},
                 new String[] {"long", "int"});
 

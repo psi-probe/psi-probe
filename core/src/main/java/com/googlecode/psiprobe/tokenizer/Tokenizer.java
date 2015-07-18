@@ -101,11 +101,11 @@ public class Tokenizer {
       return token;
     } else {
       token.init();
-      char[] b = new char[1];
+      char[] chr = new char[1];
       while (hasMore()) {
-        read(b, 1);
+        read(chr, 1);
 
-        int symbolIndex = lookupSymbol(b[0]);
+        int symbolIndex = lookupSymbol(chr[0]);
 
         if (symbolIndex != -1) {
           // we have found a symbol
@@ -125,10 +125,10 @@ public class Tokenizer {
             // the symbol is a block
             // look for the tailText
             while (hasMore() && !compare(symbol.tailText.toCharArray(), 0)) {
-              read(b, 1);
+              read(chr, 1);
               if (!hideSymbol) {
-                workToken.text.append(b);
-                workToken.innerText.append(b);
+                workToken.text.append(chr);
+                workToken.innerText.append(chr);
               }
             }
 
@@ -143,7 +143,7 @@ public class Tokenizer {
             break;
           }
         } else {
-          token.text.append(b);
+          token.text.append(chr);
           token.type = Tokenizer.TT_TOKEN;
         }
       }
@@ -165,11 +165,11 @@ public class Tokenizer {
   }
 
   private boolean compare(char[] chars, int offs) throws IOException {
-    char[] b = new char[chars.length - offs];
+    char[] subStr = new char[chars.length - offs];
     cachePinPosition = cachePosition;
-    read(b, b.length);
-    for (int i = 0; i < b.length; i++) {
-      if (b[i] != chars[i + offs]) {
+    read(subStr, subStr.length);
+    for (int i = 0; i < subStr.length; i++) {
+      if (subStr[i] != chars[i + offs]) {
         cachePosition = cachePinPosition;
         cachePinPosition = -1;
         return false;
@@ -181,18 +181,18 @@ public class Tokenizer {
   private int lookupSymbol(char chr) throws IOException {
     int result = -1;
 
-    Character c = new Character(chr);
-    int index = Collections.binarySearch(symbols, c);
+    Character chrObj = new Character(chr);
+    int index = Collections.binarySearch(symbols, chrObj);
 
     if (index >= 0) {
       // the index could be anywhere within a group of sybols with the same first letter
       // so we need to scroll up the group to make sure we start test from the beginning
-      while (index > 0 && ((TokenizerSymbol) symbols.get(index - 1)).compareTo(c) == 0) {
+      while (index > 0 && ((TokenizerSymbol) symbols.get(index - 1)).compareTo(chrObj) == 0) {
         index--;
       }
       while (index < symbols.size()) {
         TokenizerSymbol symbol = ((TokenizerSymbol) symbols.get(index));
-        if (symbol.compareTo(c) == 0) {
+        if (symbol.compareTo(chrObj) == 0) {
           if (compare(symbol.startText.toCharArray(), 1)) {
             result = index;
             break;

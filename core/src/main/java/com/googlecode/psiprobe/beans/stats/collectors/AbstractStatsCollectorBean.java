@@ -100,9 +100,9 @@ public abstract class AbstractStatsCollectorBean {
       if (listeners != null) {
         StatsCollectionEvent event = new StatsCollectionEvent(name, data);
         for (Iterator it = listeners.iterator(); it.hasNext();) {
-          Object o = it.next();
-          if (o instanceof StatsCollectionListener) {
-            StatsCollectionListener listener = (StatsCollectionListener) o;
+          Object obj = it.next();
+          if (obj instanceof StatsCollectionListener) {
+            StatsCollectionListener listener = (StatsCollectionListener) obj;
             if (listener.isEnabled()) {
               listener.statsCollected(event);
             }

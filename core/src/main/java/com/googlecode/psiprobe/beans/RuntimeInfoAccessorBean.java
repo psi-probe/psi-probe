@@ -31,40 +31,40 @@ public class RuntimeInfoAccessorBean {
   private Log logger = LogFactory.getLog(RuntimeInfoAccessorBean.class);
 
   public RuntimeInformation getRuntimeInformation() throws Exception {
-    MBeanServer mBeanServer = new Registry().getMBeanServer();
+    MBeanServer mbeanServer = new Registry().getMBeanServer();
     RuntimeInformation ri = new RuntimeInformation();
 
     try {
       ObjectName runtimeOName = new ObjectName("java.lang:type=Runtime");
-      ri.setStartTime(JmxTools.getLongAttr(mBeanServer, runtimeOName, "StartTime"));
-      ri.setUptime(JmxTools.getLongAttr(mBeanServer, runtimeOName, "Uptime"));
-      ri.setVmVendor(JmxTools.getStringAttr(mBeanServer, runtimeOName, "VmVendor"));
+      ri.setStartTime(JmxTools.getLongAttr(mbeanServer, runtimeOName, "StartTime"));
+      ri.setUptime(JmxTools.getLongAttr(mbeanServer, runtimeOName, "Uptime"));
+      ri.setVmVendor(JmxTools.getStringAttr(mbeanServer, runtimeOName, "VmVendor"));
 
       ObjectName osOName = new ObjectName("java.lang:type=OperatingSystem");
-      ri.setOsName(JmxTools.getStringAttr(mBeanServer, osOName, "Name"));
-      ri.setOsVersion(JmxTools.getStringAttr(mBeanServer, osOName, "Version"));
+      ri.setOsName(JmxTools.getStringAttr(mbeanServer, osOName, "Name"));
+      ri.setOsVersion(JmxTools.getStringAttr(mbeanServer, osOName, "Version"));
 
       if (!ri.getVmVendor().startsWith("IBM Corporation")) {
-        ri.setTotalPhysicalMemorySize(JmxTools.getLongAttr(mBeanServer, osOName,
+        ri.setTotalPhysicalMemorySize(JmxTools.getLongAttr(mbeanServer, osOName,
             "TotalPhysicalMemorySize"));
-        ri.setCommittedVirtualMemorySize(JmxTools.getLongAttr(mBeanServer, osOName,
+        ri.setCommittedVirtualMemorySize(JmxTools.getLongAttr(mbeanServer, osOName,
             "CommittedVirtualMemorySize"));
-        ri.setFreePhysicalMemorySize(JmxTools.getLongAttr(mBeanServer, osOName,
+        ri.setFreePhysicalMemorySize(JmxTools.getLongAttr(mbeanServer, osOName,
             "FreePhysicalMemorySize"));
-        ri.setFreeSwapSpaceSize(JmxTools.getLongAttr(mBeanServer, osOName, "FreeSwapSpaceSize"));
-        ri.setTotalSwapSpaceSize(JmxTools.getLongAttr(mBeanServer, osOName, "TotalSwapSpaceSize"));
-        ri.setProcessCpuTime(JmxTools.getLongAttr(mBeanServer, osOName, "ProcessCpuTime"));
+        ri.setFreeSwapSpaceSize(JmxTools.getLongAttr(mbeanServer, osOName, "FreeSwapSpaceSize"));
+        ri.setTotalSwapSpaceSize(JmxTools.getLongAttr(mbeanServer, osOName, "TotalSwapSpaceSize"));
+        ri.setProcessCpuTime(JmxTools.getLongAttr(mbeanServer, osOName, "ProcessCpuTime"));
         ri.setAvailableProcessors(Runtime.getRuntime().availableProcessors());
       } else {
-        ri.setTotalPhysicalMemorySize(JmxTools.getLongAttr(mBeanServer, osOName,
+        ri.setTotalPhysicalMemorySize(JmxTools.getLongAttr(mbeanServer, osOName,
             "TotalPhysicalMemory"));
       }
 
-      if (JmxTools.hasAttribute(mBeanServer, osOName, "OpenFileDescriptorCount")
-          && JmxTools.hasAttribute(mBeanServer, osOName, "MaxFileDescriptorCount")) {
+      if (JmxTools.hasAttribute(mbeanServer, osOName, "OpenFileDescriptorCount")
+          && JmxTools.hasAttribute(mbeanServer, osOName, "MaxFileDescriptorCount")) {
 
-        ri.setOpenFDCount(JmxTools.getLongAttr(mBeanServer, osOName, "OpenFileDescriptorCount"));
-        ri.setMaxFDCount(JmxTools.getLongAttr(mBeanServer, osOName, "MaxFileDescriptorCount"));
+        ri.setOpenFDCount(JmxTools.getLongAttr(mbeanServer, osOName, "OpenFileDescriptorCount"));
+        ri.setMaxFDCount(JmxTools.getLongAttr(mbeanServer, osOName, "MaxFileDescriptorCount"));
       }
 
       return ri;

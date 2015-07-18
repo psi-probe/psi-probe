@@ -94,13 +94,13 @@ public abstract class ThresholdListener extends AbstractStatsCollectionListener 
   }
 
   protected long getPreviousValue(String name) {
-    Long l = (Long) previousValues.get(name);
-    return Utils.toLong(l, DEFAULT_VALUE);
+    Long value = (Long) previousValues.get(name);
+    return Utils.toLong(value, DEFAULT_VALUE);
   }
 
   protected void setPreviousValue(String name, long previousValue) {
-    Long l = new Long(previousValue);
-    previousValues.put(name, l);
+    Long value = new Long(previousValue);
+    previousValues.put(name, value);
   }
 
   protected boolean isSeriesDisabled(String name) {

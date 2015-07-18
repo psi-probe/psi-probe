@@ -144,9 +144,9 @@ public class ListSessionsController extends ContextHandlerController {
       }
       if (!searchInfo.isAttrNameValid()) {
         for (Iterator i = searchInfo.getAttrNameMsgs().iterator(); i.hasNext();) {
-          String m = (String) i.next();
+          String message = (String) i.next();
           searchInfo.addErrorMessage(msa.getMessage("probe.src.sessions.search.invalid.attrName",
-              new Object[] {m}));
+              new Object[] {message}));
         }
       }
       if (!searchInfo.isAgeFromValid()) {
@@ -194,21 +194,21 @@ public class ListSessionsController extends ContextHandlerController {
 
       if (sessionMatches && searchInfo.isUseAttrName()) {
         boolean attrMatches = false;
-        List a = new ArrayList();
-        a.addAll(searchInfo.getAttrNamePatterns());
+        List namePatterns = new ArrayList();
+        namePatterns.addAll(searchInfo.getAttrNamePatterns());
 
         for (Iterator i = appSession.getAttributes().iterator(); i.hasNext();) {
           String attrName = ((Attribute) i.next()).getName();
 
           if (attrName != null) {
-            for (Iterator j = a.iterator(); j.hasNext();) {
-              Pattern p = (Pattern) j.next();
-              if (p.matcher(attrName).matches()) {
-                j.remove();
+            for (Iterator it = namePatterns.iterator(); it.hasNext();) {
+              Pattern namePattern = (Pattern) it.next();
+              if (namePattern.matcher(attrName).matches()) {
+                it.remove();
               }
             }
 
-            if (a.isEmpty()) {
+            if (namePatterns.isEmpty()) {
               attrMatches = true;
               break;
             }

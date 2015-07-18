@@ -47,10 +47,11 @@ public class StandardSeriesProvider extends AbstractSeriesProvider {
       if (seriesParam != null) {
         statName = MessageFormat.format(statName, new Object[] {seriesParam});
       }
-      List l = statsCollection.getStats(statName);
-      if (l != null) {
-        dataset.addSeries(toSeries(
-            ServletRequestUtils.getStringParameter(request, "s" + (i + 1) + "l", "series" + i), l));
+      List stats = statsCollection.getStats(statName);
+      if (stats != null) {
+        String series =
+            ServletRequestUtils.getStringParameter(request, "s" + (i + 1) + "l", "series" + i);
+        dataset.addSeries(toSeries(series, stats));
       }
     }
   }

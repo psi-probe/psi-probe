@@ -49,8 +49,8 @@ public class BeanToXmlController extends AbstractController {
       if (modelAndView.getModel() != null) {
         TransportableModel tm = new TransportableModel();
         tm.putAll(modelAndView.getModel());
-        XStream x = new XStream();
-        x.toXML(tm, response.getWriter());
+        XStream stream = new XStream();
+        stream.toXML(tm, response.getWriter());
       }
     }
     return null;

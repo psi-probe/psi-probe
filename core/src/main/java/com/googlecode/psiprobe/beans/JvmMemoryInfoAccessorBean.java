@@ -39,8 +39,8 @@ public class JvmMemoryInfoAccessorBean {
   public List getPools() throws Exception {
 
     List memoryPools = new LinkedList();
-    MBeanServer mBeanServer = new Registry().getMBeanServer();
-    Set memoryOPools = mBeanServer.queryMBeans(new ObjectName("java.lang:type=MemoryPool,*"), null);
+    MBeanServer mbeanServer = new Registry().getMBeanServer();
+    Set memoryOPools = mbeanServer.queryMBeans(new ObjectName("java.lang:type=MemoryPool,*"), null);
 
     // totals
     long totalInit = 0;
@@ -50,12 +50,12 @@ public class JvmMemoryInfoAccessorBean {
 
     for (Iterator it = memoryOPools.iterator(); it.hasNext();) {
       ObjectInstance oi = (ObjectInstance) it.next();
-      ObjectName oName = oi.getObjectName();
+      ObjectName objName = oi.getObjectName();
       MemoryPool memoryPool = new MemoryPool();
-      memoryPool.setName(JmxTools.getStringAttr(mBeanServer, oName, "Name"));
-      memoryPool.setType(JmxTools.getStringAttr(mBeanServer, oName, "Type"));
+      memoryPool.setName(JmxTools.getStringAttr(mbeanServer, objName, "Name"));
+      memoryPool.setType(JmxTools.getStringAttr(mbeanServer, objName, "Type"));
 
-      CompositeDataSupport cd = (CompositeDataSupport) mBeanServer.getAttribute(oName, "Usage");
+      CompositeDataSupport cd = (CompositeDataSupport) mbeanServer.getAttribute(objName, "Usage");
       /*
        * It seems that "Usage" attribute of one of the pools may turn into null intermittently. We
        * better have a dip in the graph then an NPE though.
@@ -66,7 +66,7 @@ public class JvmMemoryInfoAccessorBean {
         memoryPool.setInit(JmxTools.getLongAttr(cd, "init"));
         memoryPool.setCommitted(JmxTools.getLongAttr(cd, "committed"));
       } else {
-        logger.error("Oops, JVM problem? " + oName.toString() + " \"Usage\" attribute is NULL!");
+        logger.error("Oops, JVM problem? " + objName.toString() + " \"Usage\" attribute is NULL!");
       }
 
       totalInit += memoryPool.getInit();

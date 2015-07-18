@@ -226,14 +226,14 @@ public class ApplicationUtils {
       try {
         for (Enumeration e = httpSession.getAttributeNames(); e.hasMoreElements();) {
           String name = (String) e.nextElement();
-          Object o = httpSession.getAttribute(name);
-          sessionSerializable = sessionSerializable && o instanceof Serializable;
+          Object obj = httpSession.getAttribute(name);
+          sessionSerializable = sessionSerializable && obj instanceof Serializable;
 
-          long oSize = 0;
+          long objSize = 0;
           if (calcSize) {
             try {
-              oSize += Instruments.sizeOf(name, processedObjects);
-              oSize += Instruments.sizeOf(o, processedObjects);
+              objSize += Instruments.sizeOf(name, processedObjects);
+              objSize += Instruments.sizeOf(obj, processedObjects);
             } catch (Throwable th) {
               logger.error("Cannot estimate size of attribute \"" + name + "\"", th);
               //
@@ -248,14 +248,14 @@ public class ApplicationUtils {
           if (addAttributes) {
             Attribute saBean = new Attribute();
             saBean.setName(name);
-            saBean.setType(ClassUtils.getQualifiedName(o.getClass()));
-            saBean.setValue(o);
-            saBean.setSize(oSize);
-            saBean.setSerializable(o instanceof Serializable);
+            saBean.setType(ClassUtils.getQualifiedName(obj.getClass()));
+            saBean.setValue(obj);
+            saBean.setSize(objSize);
+            saBean.setSerializable(obj instanceof Serializable);
             sbean.addAttribute(saBean);
           }
           attributeCount++;
-          size += oSize;
+          size += objSize;
         }
         String lastAccessedIP =
             (String) httpSession.getAttribute(ApplicationSession.LAST_ACCESSED_BY_IP);
@@ -311,11 +311,11 @@ public class ApplicationUtils {
   }
 
   public static ServletInfo getApplicationServlet(Context context, String servletName) {
-    Container c = context.findChild(servletName);
+    Container container = context.findChild(servletName);
 
-    if (c instanceof Wrapper) {
-      Wrapper w = (Wrapper) c;
-      return getServletInfo(w, context.getName());
+    if (container instanceof Wrapper) {
+      Wrapper wrapper = (Wrapper) container;
+      return getServletInfo(wrapper, context.getName());
     } else {
       return null;
     }
@@ -353,8 +353,8 @@ public class ApplicationUtils {
     List servlets = new ArrayList(cns.length);
     for (int i = 0; i < cns.length; i++) {
       if (cns[i] instanceof Wrapper) {
-        Wrapper w = (Wrapper) cns[i];
-        servlets.add(getServletInfo(w, context.getName()));
+        Wrapper wrapper = (Wrapper) cns[i];
+        servlets.add(getServletInfo(wrapper, context.getName()));
       }
     }
     return servlets;
@@ -371,11 +371,11 @@ public class ApplicationUtils {
           sm.setApplicationName(context.getName().length() > 0 ? context.getName() : "/");
           sm.setUrl(sms[i]);
           sm.setServletName(sn);
-          Container c = context.findChild(sn);
-          if (c instanceof Wrapper) {
-            Wrapper w = (Wrapper) c;
-            sm.setServletClass(w.getServletClass());
-            sm.setAvailable(!w.isUnavailable());
+          Container container = context.findChild(sn);
+          if (container instanceof Wrapper) {
+            Wrapper wrapper = (Wrapper) container;
+            sm.setServletClass(wrapper.getServletClass());
+            sm.setAvailable(!wrapper.isUnavailable());
           }
           servletMaps.add(sm);
         }

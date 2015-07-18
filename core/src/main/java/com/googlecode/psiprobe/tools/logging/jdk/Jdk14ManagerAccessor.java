@@ -64,9 +64,11 @@ public class Jdk14ManagerAccessor extends DefaultAccessor {
   public List getHandlers() {
     List allHandlers = new ArrayList();
     try {
-      Enumeration e = (Enumeration) MethodUtils.invokeMethod(getTarget(), "getLoggerNames", null);
-      while (e.hasMoreElements()) {
-        String name = (String) e.nextElement();
+      Enumeration names = (Enumeration) MethodUtils
+          .invokeMethod(getTarget(), "getLoggerNames", null);
+      
+      while (names.hasMoreElements()) {
+        String name = (String) names.nextElement();
         Jdk14LoggerAccessor accessor = getLogger(name);
         if (accessor != null) {
           allHandlers.addAll(accessor.getHandlers());

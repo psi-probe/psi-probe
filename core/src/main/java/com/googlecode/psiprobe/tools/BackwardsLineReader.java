@@ -45,14 +45,14 @@ public class BackwardsLineReader {
     ByteArrayOutputStream baos = new ByteArrayOutputStream(512);
     boolean empty = false;
     while (true) {
-      byte b = (byte) bis.read();
-      if (b != -1) {
-        if (b == '\n') {
+      byte chr = (byte) bis.read();
+      if (chr != -1) {
+        if (chr == '\n') {
           skipLF = false;
           // quit this loop
           break;
         }
-        if (b == '\r') {
+        if (chr == '\r') {
           if (skipLF) {
             // quit this loop. if the carriage return only was read
             break;
@@ -62,7 +62,7 @@ public class BackwardsLineReader {
             continue;
           }
         }
-        baos.write(b);
+        baos.write(chr);
       } else {
         // quit this loop, if the first of the backwards stream is
         // reached

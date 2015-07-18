@@ -59,19 +59,17 @@ public class TomcatAvailabilityController extends TomcatContainerController {
 
     boolean allContextsAvailable = true;
     if (getContainerWrapper().getResourceResolver().supportsPrivateResources()) {
-      for (Iterator it = getContainerWrapper().getTomcatContainer().findContexts().iterator(); it
-          .hasNext();) {
+      List contexts = getContainerWrapper().getTomcatContainer().findContexts();
+      for (Iterator it = contexts.iterator(); it.hasNext();) {
 
         // make sure we skip ROOT application
         Context appContext = (Context) it.next();
 
-        allContextsAvailable =
-            allContextsAvailable
+        allContextsAvailable = allContextsAvailable
                 && getContainerWrapper().getTomcatContainer().getAvailable(appContext);
 
-        List applicationResources =
-            getContainerWrapper().getResourceResolver().getApplicationResources(appContext,
-                getContainerWrapper());
+        List applicationResources = getContainerWrapper().getResourceResolver()
+            .getApplicationResources(appContext, getContainerWrapper());
 
         for (Iterator it2 = applicationResources.iterator(); it2.hasNext();) {
 
@@ -86,14 +84,14 @@ public class TomcatAvailabilityController extends TomcatContainerController {
         }
       }
 
-      tomcatTestReport
-          .setWebappAvailabilityTest(allContextsAvailable ? TomcatTestReport.TEST_PASSED
-              : TomcatTestReport.TEST_FAILED);
+      tomcatTestReport.setWebappAvailabilityTest(allContextsAvailable
+          ? TomcatTestReport.TEST_PASSED
+          : TomcatTestReport.TEST_FAILED);
 
     } else {
-      List l = getContainerWrapper().getResourceResolver().getApplicationResources();
-      for (int i = 0; i < l.size(); i++) {
-        ApplicationResource resource = (ApplicationResource) l.get(i);
+      List resources = getContainerWrapper().getResourceResolver().getApplicationResources();
+      for (int i = 0; i < resources.size(); i++) {
+        ApplicationResource resource = (ApplicationResource) resources.get(i);
         DataSourceInfo dsi = resource.getDataSourceInfo();
         if (dsi != null && dsi.getBusyScore() > tomcatTestReport.getDatasourceUsageScore()) {
           tomcatTestReport.setDatasourceUsageScore(dsi.getBusyScore());

@@ -57,19 +57,19 @@ public class DecoratorController extends ParameterizableViewController {
 
     Object uptimeStart = getServletContext().getAttribute(UptimeListener.START_TIME_KEY);
     if (uptimeStart != null && uptimeStart instanceof Long) {
-      long l = ((Long) uptimeStart).longValue();
-      long uptime = System.currentTimeMillis() - l;
-      long uptime_days = uptime / (1000 * 60 * 60 * 24);
+      long uptimeStartValue = ((Long) uptimeStart).longValue();
+      long uptime = System.currentTimeMillis() - uptimeStartValue;
+      long uptimeDays = uptime / (1000 * 60 * 60 * 24);
 
       uptime = uptime % (1000 * 60 * 60 * 24);
-      long uptime_hours = uptime / (1000 * 60 * 60);
+      long uptimeHours = uptime / (1000 * 60 * 60);
 
       uptime = uptime % (1000 * 60 * 60);
-      long uptime_mins = uptime / (1000 * 60);
+      long uptimeMins = uptime / (1000 * 60);
 
-      request.setAttribute("uptime_days", new Long(uptime_days));
-      request.setAttribute("uptime_hours", new Long(uptime_hours));
-      request.setAttribute("uptime_mins", new Long(uptime_mins));
+      request.setAttribute("uptime_days", new Long(uptimeDays));
+      request.setAttribute("uptime_hours", new Long(uptimeHours));
+      request.setAttribute("uptime_mins", new Long(uptimeMins));
     }
 
     //
@@ -79,9 +79,9 @@ public class DecoratorController extends ParameterizableViewController {
     List fileNames = getMessageFileNamesForLocale(request.getLocale());
     String lang = "en";
     for (Iterator it = fileNames.iterator(); it.hasNext();) {
-      String f = (String) it.next();
-      if (getServletContext().getResource(f + ".properties") != null) {
-        lang = f.substring(messagesBasename.length() + 1);
+      String fileName = (String) it.next();
+      if (getServletContext().getResource(fileName + ".properties") != null) {
+        lang = fileName.substring(messagesBasename.length() + 1);
         break;
       }
     }

@@ -73,12 +73,12 @@ public class ContainerWrapperBean {
           for (int i = 0; i < adaptorClasses.size(); i++) {
             String className = (String) adaptorClasses.get(i);
             try {
-              Object o = Class.forName(className).newInstance();
+              Object obj = Class.forName(className).newInstance();
               logger.debug("Testing container adaptor: " + className);
-              if (o instanceof TomcatContainer) {
-                if (forceFirstAdaptor || ((TomcatContainer) o).canBoundTo(serverInfo)) {
+              if (obj instanceof TomcatContainer) {
+                if (forceFirstAdaptor || ((TomcatContainer) obj).canBoundTo(serverInfo)) {
                   logger.info("Using " + className);
-                  tomcatContainer = (TomcatContainer) o;
+                  tomcatContainer = (TomcatContainer) obj;
                   tomcatContainer.setWrapper(wrapper);
                   break;
                 } else {

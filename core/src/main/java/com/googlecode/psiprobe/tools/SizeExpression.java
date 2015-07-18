@@ -90,14 +90,14 @@ public class SizeExpression {
   public static long parse(String expression) {
     String prefixClass =
         "[" + PREFIX_KILO + PREFIX_MEGA + PREFIX_GIGA + PREFIX_TERA + PREFIX_PETA + "]";
-    Pattern p =
+    Pattern expPattern =
         Pattern.compile("(\\d+|\\d*\\.\\d+)\\s*(" + prefixClass + ")?(" + UNIT_BASE + ")?",
             Pattern.CASE_INSENSITIVE);
-    Matcher m = p.matcher(expression);
-    if (m.matches()) {
-      String value = m.group(1);
-      String unitPrefix = m.group(2);
-      String unitBase = m.group(3);
+    Matcher expMatcher = expPattern.matcher(expression);
+    if (expMatcher.matches()) {
+      String value = expMatcher.group(1);
+      String unitPrefix = expMatcher.group(2);
+      String unitBase = expMatcher.group(3);
       double multiplier = 1;
       if (unitPrefix != null) {
         multiplier = multiplier(unitPrefix.charAt(0), unitBase != null);

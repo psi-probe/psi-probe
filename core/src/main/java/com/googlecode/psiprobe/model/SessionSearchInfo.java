@@ -180,13 +180,13 @@ public class SessionSearchInfo implements Serializable {
     attrNameMsgs.clear();
 
     if (attrName != null) {
-      String[] a = attrName.split(",");
-      if (a.length == 0 && !attrName.equals("")) {
+      String[] attrNames = attrName.split(",");
+      if (attrNames.length == 0 && !attrName.equals("")) {
         attrNameMsgs.add("");
       } else {
-        for (int i = 0; i < a.length; i++) {
+        for (int i = 0; i < attrNames.length; i++) {
           try {
-            attrNamePatterns.add(Pattern.compile(a[i]));
+            attrNamePatterns.add(Pattern.compile(attrNames[i]));
           } catch (PatternSyntaxException e) {
             attrNameMsgs.add(e.getDescription());
           }

@@ -97,14 +97,14 @@ public class Utils {
     }
 
     StringBuffer out = new StringBuffer();
-    BufferedReader r = new BufferedReader(new InputStreamReader(is, charset), 4096);
+    BufferedReader reader = new BufferedReader(new InputStreamReader(is, charset), 4096);
     try {
-      String b;
-      while ((b = r.readLine()) != null) {
-        out.append(b).append("\n");
+      String line;
+      while ((line = reader.readLine()) != null) {
+        out.append(line).append("\n");
       }
     } finally {
-      r.close();
+      reader.close();
     }
 
     return out.toString();
@@ -212,8 +212,8 @@ public class Utils {
           if (directiveTokenizer.hasMore()
               && directiveTokenizer.nextToken().getText().equals("page")) {
             while (directiveTokenizer.hasMore()) {
-              Token dTk = directiveTokenizer.nextToken();
-              if ("pageEncoding".equals(dTk.getText())) {
+              Token directiveToken = directiveTokenizer.nextToken();
+              if ("pageEncoding".equals(directiveToken.getText())) {
                 if (directiveTokenizer.hasMore()
                     && "=".equals(directiveTokenizer.nextToken().getText())) {
                   if (directiveTokenizer.hasMore()) {
@@ -221,7 +221,7 @@ public class Utils {
                     break;
                   }
                 }
-              } else if ("contentType".equals(dTk.getText())) {
+              } else if ("contentType".equals(directiveToken.getText())) {
                 if (directiveTokenizer.hasMore()
                     && "=".equals(directiveTokenizer.nextToken().getText())) {
                   if (directiveTokenizer.hasMore()) {
@@ -428,10 +428,10 @@ public class Utils {
 
   public static boolean isThreadingEnabled() {
     try {
-      MBeanServer mBeanServer = new Registry().getMBeanServer();
+      MBeanServer mbeanServer = new Registry().getMBeanServer();
       ObjectName threadingOName = new ObjectName("java.lang:type=Threading");
-      Set s = mBeanServer.queryMBeans(threadingOName, null);
-      return s != null && s.size() > 0;
+      Set threading = mbeanServer.queryMBeans(threadingOName, null);
+      return threading != null && threading.size() > 0;
     } catch (MalformedObjectNameException e) {
       return false;
     }

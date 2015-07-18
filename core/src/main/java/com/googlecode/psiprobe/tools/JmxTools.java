@@ -44,17 +44,17 @@ public class JmxTools {
       long defaultValue) {
 
     try {
-      Object o = mbeanServer.getAttribute(objName, attrName);
-      return o == null ? defaultValue : ((Long) o).longValue();
+      Object obj = mbeanServer.getAttribute(objName, attrName);
+      return obj == null ? defaultValue : ((Long) obj).longValue();
     } catch (Exception e) {
       return defaultValue;
     }
   }
 
   public static long getLongAttr(CompositeData cds, String name) {
-    Object o = cds.get(name);
-    if (o != null && o instanceof Long) {
-      return ((Long) o).longValue();
+    Object obj = cds.get(name);
+    if (obj != null && obj instanceof Long) {
+      return ((Long) obj).longValue();
     } else {
       return 0;
     }
@@ -73,10 +73,10 @@ public class JmxTools {
   }
 
   public static int getIntAttr(CompositeData cds, String name, int defaultValue) {
-    Object o = cds.get(name);
+    Object obj = cds.get(name);
 
-    if (o != null && o instanceof Integer) {
-      return ((Integer) o).intValue();
+    if (obj != null && obj instanceof Integer) {
+      return ((Integer) obj).intValue();
     } else {
       return defaultValue;
     }
@@ -85,18 +85,18 @@ public class JmxTools {
   public static String getStringAttr(MBeanServer mbeanServer, ObjectName objName, String attrName)
       throws Exception {
 
-    Object o = getAttribute(mbeanServer, objName, attrName);
-    return o == null ? null : o.toString();
+    Object obj = getAttribute(mbeanServer, objName, attrName);
+    return obj == null ? null : obj.toString();
   }
 
   public static String getStringAttr(CompositeData cds, String name) {
-    Object o = cds.get(name);
-    return o != null ? o.toString() : null;
+    Object obj = cds.get(name);
+    return obj != null ? obj.toString() : null;
   }
 
   public static boolean getBooleanAttr(CompositeData cds, String name) {
-    Object o = cds.get(name);
-    return o != null && o instanceof Boolean && ((Boolean) o).booleanValue();
+    Object obj = cds.get(name);
+    return obj != null && obj instanceof Boolean && ((Boolean) obj).booleanValue();
   }
 
   public static boolean hasAttribute(MBeanServer server, ObjectName mbean, String attrName)

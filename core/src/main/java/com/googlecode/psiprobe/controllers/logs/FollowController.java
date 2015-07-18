@@ -58,11 +58,11 @@ public class FollowController extends LogHandlerController {
         BackwardsLineReader br = new BackwardsLineReader(bfs);
         long readSize = 0;
         long totalReadSize = currentLength - lastKnownLength;
-        String s;
-        while (readSize < totalReadSize && (s = br.readLine()) != null) {
-          if (!s.equals("")) {
-            lines.addFirst(s);
-            readSize += s.length();
+        String line;
+        while (readSize < totalReadSize && (line = br.readLine()) != null) {
+          if (!line.equals("")) {
+            lines.addFirst(line);
+            readSize += line.length();
           } else {
             readSize++;
           }

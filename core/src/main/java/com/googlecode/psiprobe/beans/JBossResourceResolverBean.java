@@ -108,20 +108,20 @@ public class JBossResourceResolverBean implements ResourceResolver {
           if (elm != null) {
             NodeList nl = elm.getChildNodes();
             for (int i = 0; i < nl.getLength(); i++) {
-              Node n = nl.item(i);
-              Node na = n.getAttributes().getNamedItem("name");
+              Node node = nl.item(i);
+              Node na = node.getAttributes().getNamedItem("name");
               if (na != null) {
                 if ("ConnectionURL".equals(na.getNodeValue())) {
-                  dsInfo.setJdbcURL(n.getFirstChild().getNodeValue());
+                  dsInfo.setJdbcURL(node.getFirstChild().getNodeValue());
                 }
 
                 if ("UserName".equals(na.getNodeValue())) {
-                  dsInfo.setUsername(n.getFirstChild().getNodeValue());
+                  dsInfo.setUsername(node.getFirstChild().getNodeValue());
                 }
 
                 // JMS datasource
                 if ("JmsProviderAdapterJNDI".equals(na.getNodeValue())) {
-                  dsInfo.setJdbcURL(n.getFirstChild().getNodeValue());
+                  dsInfo.setJdbcURL(node.getFirstChild().getNodeValue());
                   resource.setType("jms");
                 }
               }

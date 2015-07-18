@@ -39,9 +39,9 @@ public class ConnectorSeriesProvider extends AbstractSeriesProvider {
     String series1Legend = ServletRequestUtils.getStringParameter(request, "sl", "");
 
     if (connectorName != null && statType != null) {
-      List l = statsCollection.getStats("stat.connector." + connectorName + "." + statType);
-      if (l != null) {
-        dataset.addSeries(toSeries(series1Legend, l));
+      List stats = statsCollection.getStats("stat.connector." + connectorName + "." + statType);
+      if (stats != null) {
+        dataset.addSeries(toSeries(series1Legend, stats));
       }
     }
   }

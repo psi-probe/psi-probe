@@ -155,7 +155,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
    */
   public synchronized void serialize() throws IOException, InterruptedException {
     lock.lockForCommit();
-    long t = System.currentTimeMillis();
+    long start = System.currentTimeMillis();
     try {
       shiftFiles(0);
       OutputStream os = new FileOutputStream(makeFile());
@@ -168,14 +168,14 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
       logger.error("Could not write stats data to " + makeFile().getAbsolutePath(), e);
     } finally {
       lock.releaseCommitLock();
-      logger.debug("stats serialized in " + (System.currentTimeMillis() - t) + "ms.");
+      logger.debug("stats serialized in " + (System.currentTimeMillis() - start) + "ms.");
     }
   }
 
   private Map deserialize(File file) {
     Map stats = null;
     if (file.exists() && file.canRead()) {
-      long t = System.currentTimeMillis();
+      long start = System.currentTimeMillis();
       try {
         FileInputStream fis = new FileInputStream(file);
         try {
@@ -191,18 +191,18 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
             // regular stats collection cycle will do it
 
             for (Iterator it = stats.keySet().iterator(); it.hasNext();) {
-              List l = (List) stats.get(it.next());
-              if (l.size() > 0) {
-                XYDataItem xy = (XYDataItem) l.get(l.size() - 1);
-                l.add(new XYDataItem(xy.getX().longValue() + 1, 0));
-                l.add(new XYDataItem(System.currentTimeMillis(), 0));
+              List list = (List) stats.get(it.next());
+              if (list.size() > 0) {
+                XYDataItem xy = (XYDataItem) list.get(list.size() - 1);
+                list.add(new XYDataItem(xy.getX().longValue() + 1, 0));
+                list.add(new XYDataItem(System.currentTimeMillis(), 0));
               }
             }
           }
         } finally {
           fis.close();
         }
-        logger.debug("stats data read in " + (System.currentTimeMillis() - t) + "ms.");
+        logger.debug("stats data read in " + (System.currentTimeMillis() - start) + "ms.");
       } catch (Throwable e) {
         logger.error("Could not read stats data from " + file.getAbsolutePath(), e);
         //
@@ -235,8 +235,8 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
     Map stats;
 
     while (true) {
-      File f = index == 0 ? makeFile() : new File(makeFile().getAbsolutePath() + "." + index);
-      stats = deserialize(f);
+      File file = index == 0 ? makeFile() : new File(makeFile().getAbsolutePath() + "." + index);
+      stats = deserialize(file);
       index += 1;
       if (stats != null || index >= maxFiles - 1) {
         break;

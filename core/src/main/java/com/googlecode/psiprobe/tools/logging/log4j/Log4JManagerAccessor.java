@@ -29,8 +29,8 @@ public class Log4JManagerAccessor extends DefaultAccessor {
 
   public Log4JManagerAccessor(ClassLoader cl) throws ClassNotFoundException {
     Class clazz = cl.loadClass("org.apache.log4j.LogManager");
-    Method m = MethodUtils.getAccessibleMethod(clazz, "exists", new Class[] {String.class});
-    if (m == null) {
+    Method exists = MethodUtils.getAccessibleMethod(clazz, "exists", new Class[] {String.class});
+    if (exists == null) {
       throw new RuntimeException("The LogManager is part of the slf4j bridge.");
     }
     setTarget(clazz);
@@ -39,8 +39,10 @@ public class Log4JManagerAccessor extends DefaultAccessor {
   public Log4JLoggerAccessor getRootLogger() {
     try {
       Class clazz = (Class) getTarget();
-      Method m = MethodUtils.getAccessibleMethod(clazz, "getRootLogger", new Class[] {});
-      Object logger = m.invoke(null, null);
+      Method getRootLogger = MethodUtils
+          .getAccessibleMethod(clazz, "getRootLogger", new Class[] {});
+      
+      Object logger = getRootLogger.invoke(null, null);
       if (logger == null) {
         throw new NullPointerException(getTarget().getClass().getName()
             + "#getRootLogger() returned null");
@@ -58,8 +60,10 @@ public class Log4JManagerAccessor extends DefaultAccessor {
   public Log4JLoggerAccessor getLogger(String name) {
     try {
       Class clazz = (Class) getTarget();
-      Method m = MethodUtils.getAccessibleMethod(clazz, "getLogger", new Class[] {String.class});
-      Object logger = m.invoke(null, new Object[] {name});
+      Method getLogger = MethodUtils
+          .getAccessibleMethod(clazz, "getLogger", new Class[] {String.class});
+      
+      Object logger = getLogger.invoke(null, new Object[] {name});
       if (logger == null) {
         throw new NullPointerException(getTarget().getClass().getName() + "#getLogger(\"" + name
             + "\") returned null");
@@ -80,11 +84,13 @@ public class Log4JManagerAccessor extends DefaultAccessor {
       appenders.addAll(getRootLogger().getAppenders());
 
       Class clazz = (Class) getTarget();
-      Method m = MethodUtils.getAccessibleMethod(clazz, "getCurrentLoggers", new Class[] {});
-      Enumeration e = (Enumeration) m.invoke(null, null);
-      while (e.hasMoreElements()) {
+      Method getCurrentLoggers = MethodUtils
+          .getAccessibleMethod(clazz, "getCurrentLoggers", new Class[] {});
+      
+      Enumeration currentLoggers = (Enumeration) getCurrentLoggers.invoke(null, null);
+      while (currentLoggers.hasMoreElements()) {
         Log4JLoggerAccessor accessor = new Log4JLoggerAccessor();
-        accessor.setTarget(e.nextElement());
+        accessor.setTarget(currentLoggers.nextElement());
         accessor.setApplication(getApplication());
 
         appenders.addAll(accessor.getAppenders());
