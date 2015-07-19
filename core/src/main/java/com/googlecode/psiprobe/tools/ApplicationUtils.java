@@ -69,9 +69,10 @@ public class ApplicationUtils {
    * (c3p0) are known to be prone to internal deadlocks, so this method can also hang is datasource
    * usage stats is to be collected.
    *
-   * @param context
-   * @param resourceResolver
-   * @param calcSize
+   * @param context the context from which to create the Application
+   * @param resourceResolver the resolver to use for resources associated with the given context
+   * @param calcSize flag which controls whether to calculate session size
+   * @param containerWrapper the wrapper for the context's root containing server
    * @return Application object
    */
   public static Application getApplication(Context context, ResourceResolver resourceResolver,
@@ -140,12 +141,12 @@ public class ApplicationUtils {
   }
 
   /**
-   * Calculates Sum of requestCount, errorCount and processingTime for all servlets for the give
+   * Calculates Sum of requestCount, errorCount and processingTime for all servlets for the given
    * application. It also works out minimum value of minTime and maximum value for maxTime for all
    * servlets.
    *
-   * @param context
-   * @param app
+   * @param context the context whose stats will be collected
+   * @param app the application in which to store the collected stats
    */
   public static void collectApplicationServletStats(Context context, Application app) {
     int svltCount = 0;

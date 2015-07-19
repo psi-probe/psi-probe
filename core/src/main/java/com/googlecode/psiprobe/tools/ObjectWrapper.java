@@ -16,9 +16,11 @@ package com.googlecode.psiprobe.tools;
  * {@link Object#hashCode() hashCode()} methods so it reverts to the default behavior for
  * {@link Object} instead.
  * 
+ * <p>
  * This allows us to (1) use {@link java.util.Collection#contains(Object)} to filter out unique
  * instances when calculating object sizes and (2) call {@link Object#hashCode() hashCode()} without
  * fear of an exception or infinite loop.
+ * </p>
  * 
  * @author Vlad Ilyushchenko
  * @author Mark Lewis

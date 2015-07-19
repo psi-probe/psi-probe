@@ -132,10 +132,10 @@ public abstract class AbstractStatsCollectorBean {
    * - T1) * 100 is the percentage of all time the system spent being busy.
    * </p>
    *
-   * @param name
-   * @param value time in milliseconds
-   * @param time
-   * @throws InterruptedException
+   * @param name the name of the value, which allows the collector to be used for multiple values
+   * @param value time spent on the task in milliseconds (A or B in the example above)
+   * @param time system time in milliseconds (T1 or T2 in the example above)
+   * @throws InterruptedException if a lock could not be obtained
    */
   protected void buildTimePercentageStats(String name, long value, long time)
       throws InterruptedException {

@@ -47,7 +47,7 @@ public class ProbeServlet extends DispatcherServlet implements ContainerServlet 
    * Associates the {@link Wrapper} with the {@link ContainerWrapperBean}.
    * 
    * @param config this servlet's configuration and initialization parameters
-   * @throws ServletException 
+   * @throws ServletException if the wrapper is null or another servlet-interrupting error occurs
    */
   public void init(ServletConfig config) throws ServletException {
     super.init(config);

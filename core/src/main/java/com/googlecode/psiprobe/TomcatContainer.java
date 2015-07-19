@@ -49,7 +49,7 @@ public interface TomcatContainer {
    *
    * @param name the name of the context
    * @param url pointer to .war file to be deployed
-   * @throws Exception
+   * @throws Exception if installing the .war fails spectacularly
    */
   void installWar(String name, URL url) throws Exception;
 

@@ -116,7 +116,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
   /**
    * Returns series if stat name starts with the prefix.
    * 
-   * @param statNamePrefix
+   * @param statNamePrefix they key under which the stats are stored
    * @return a Map of matching stats. Map keys are stat names and map values are corresponding
    *         series.
    */
@@ -150,10 +150,9 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
   /**
    * Writes stats data to file on disk.
    *
-   * @throws IOException
-   * @throws InterruptedException
+   * @throws InterruptedException if a lock cannot be obtained
    */
-  public synchronized void serialize() throws IOException, InterruptedException {
+  public synchronized void serialize() throws InterruptedException {
     lock.lockForCommit();
     long start = System.currentTimeMillis();
     try {
@@ -227,10 +226,8 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
 
   /**
    * Reads stats data from file on disk.
-   *
-   * @throws Exception
    */
-  public synchronized void afterPropertiesSet() throws Exception {
+  public synchronized void afterPropertiesSet() {
     int index = 0;
     Map stats;
 

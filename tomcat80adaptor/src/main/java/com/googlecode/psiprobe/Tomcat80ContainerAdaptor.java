@@ -442,25 +442,32 @@ public class Tomcat80ContainerAdaptor extends AbstractTomcatContainer {
    * Binds a naming context to the current thread's classloader.
    * 
    * @param context the catalina context
-   * @throws NamingException
+   * @throws NamingException if binding the classloader fails
    */
   @Override
   public void bindToContext(Context context) throws NamingException {
-    Object token = getNamingToken(context);
-    ContextBindings.bindClassLoader(context, token, Thread.currentThread().getContextClassLoader());
+    changeContextBinding(context, true);
   }
 
   /**
    * Unbinds a naming context from the current thread's classloader.
    * 
    * @param context the catalina context
-   * @throws NamingException
+   * @throws NamingException if unbinding the classloader fails
    */
   @Override
   public void unbindFromContext(Context context) throws NamingException {
+    changeContextBinding(context, false);
+  }
+  
+  private void changeContextBinding(Context context, boolean bind) throws NamingException {
     Object token = getNamingToken(context);
-    ContextBindings.unbindClassLoader(context, token, Thread.currentThread()
-        .getContextClassLoader());
+    ClassLoader loader = Thread.currentThread().getContextClassLoader();
+    if (bind) {
+      ContextBindings.bindClassLoader(context, token, loader);
+    } else {
+      ContextBindings.unbindClassLoader(context, token, loader);
+    }
   }
 
 }

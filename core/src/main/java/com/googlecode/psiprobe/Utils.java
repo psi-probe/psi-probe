@@ -80,11 +80,15 @@ public class Utils {
   /**
    * Reads strings from the intput stream using the given charset. This method closes the input
    * stream after it has been consumed.
+   * 
+   * <p>
+   * This method uses the system's default charset if the given one is unsupported.
+   * </p>
    *
-   * @param is
-   * @param charsetName
+   * @param is the stream from which to read
+   * @param charsetName the charset to use when reading the stream
    * @return the contents of the given input stream
-   * @throws IOException
+   * @throws IOException if reading from the stream fails spectacularly
    */
   public static String readStream(InputStream is, String charsetName) throws IOException {
 
