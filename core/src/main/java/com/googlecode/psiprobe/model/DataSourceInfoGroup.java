@@ -22,14 +22,14 @@ public class DataSourceInfoGroup extends DataSourceInfo {
   private int dataSourceCount = 0;
 
   public DataSourceInfoGroup() {
-    this.setJdbcURL(null);
+    this.setJdbcUrl(null);
     this.setBusyConnections(0);
     this.setEstablishedConnections(0);
     this.setMaxConnections(0);
   }
 
   public DataSourceInfoGroup(DataSourceInfo dataSourceInfo) {
-    this.setJdbcURL(dataSourceInfo.getJdbcURL());
+    this.setJdbcUrl(dataSourceInfo.getJdbcUrl());
     this.setBusyConnections(dataSourceInfo.getBusyConnections());
     this.setEstablishedConnections(dataSourceInfo.getEstablishedConnections());
     this.setMaxConnections(dataSourceInfo.getMaxConnections());

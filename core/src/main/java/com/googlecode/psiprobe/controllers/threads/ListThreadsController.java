@@ -44,7 +44,7 @@ public class ListThreadsController extends TomcatContainerController {
     for (int i = 0; i < contexts.size(); i++) {
       Context context = (Context) contexts.get(i);
       if (context.getLoader() != null && context.getLoader().getClassLoader() != null) {
-        classLoaderMap.put(toUID(context.getLoader().getClassLoader()), context.getName());
+        classLoaderMap.put(toUid(context.getLoader().getClassLoader()), context.getName());
       }
     }
 
@@ -83,16 +83,16 @@ public class ListThreadsController extends TomcatContainerController {
       ClassLoader cl = threads[i].getContextClassLoader();
       if (cl != null) {
         if (classLoaderMap != null) {
-          threadModel.setAppName((String) classLoaderMap.get(toUID(cl)));
+          threadModel.setAppName((String) classLoaderMap.get(toUid(cl)));
         }
-        threadModel.setClassLoader(toUID(cl));
+        threadModel.setClassLoader(toUid(cl));
       }
       threadList.add(threadModel);
     }
     return threadList;
   }
 
-  private static String toUID(Object obj) {
+  private static String toUid(Object obj) {
     return obj.getClass().getName() + "@" + obj.hashCode();
   }
 

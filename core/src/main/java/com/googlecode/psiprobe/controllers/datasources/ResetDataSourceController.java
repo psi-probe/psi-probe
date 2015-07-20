@@ -45,11 +45,11 @@ public class ResetDataSourceController extends ContextHandlerController {
 
     String resourceName = ServletRequestUtils.getStringParameter(request, "resource", null);
     String referer = request.getHeader("Referer");
-    String redirectURL;
+    String redirectUrl;
     if (referer != null) {
-      redirectURL = referer.replaceAll(replacePattern, "");
+      redirectUrl = referer.replaceAll(replacePattern, "");
     } else {
-      redirectURL = request.getContextPath() + getViewName();
+      redirectUrl = request.getContextPath() + getViewName();
     }
 
     if (resourceName != null && resourceName.length() > 0) {
@@ -70,8 +70,8 @@ public class ResetDataSourceController extends ContextHandlerController {
       }
 
     }
-    logger.debug("Redirected to " + redirectURL);
-    return new ModelAndView(new RedirectView(redirectURL));
+    logger.debug("Redirected to " + redirectUrl);
+    return new ModelAndView(new RedirectView(redirectUrl));
   }
 
   protected boolean isContextOptional() {

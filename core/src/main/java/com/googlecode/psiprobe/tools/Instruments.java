@@ -43,9 +43,9 @@ public class Instruments {
   private static final boolean IGNORE_NIO;
   
   static {
-    String ignoreNIOProp = System.getProperty("com.googlecode.psiprobe.intruments.ignoreNIO");
+    String ignoreNioProp = System.getProperty("com.googlecode.psiprobe.intruments.ignoreNIO");
     String os64bitProp = System.getProperty("sun.arch.data.model");
-    IGNORE_NIO = (ignoreNIOProp == null || "true".equalsIgnoreCase(ignoreNIOProp));
+    IGNORE_NIO = (ignoreNioProp == null || "true".equalsIgnoreCase(ignoreNioProp));
     SIZE_REFERENCE = ("64".equals(os64bitProp) ? 8 : 4);
   }
 

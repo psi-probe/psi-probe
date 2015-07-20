@@ -29,7 +29,7 @@ import java.io.InputStream;
 public class BackwardsLineReader {
 
   private BufferedInputStream bis;
-  private boolean skipLF = true;
+  private boolean skipLineFeed = true;
   private String encoding;
 
   public BackwardsLineReader(InputStream is) {
@@ -48,12 +48,12 @@ public class BackwardsLineReader {
       byte chr = (byte) bis.read();
       if (chr != -1) {
         if (chr == '\n') {
-          skipLF = false;
+          skipLineFeed = false;
           // quit this loop
           break;
         }
         if (chr == '\r') {
-          if (skipLF) {
+          if (skipLineFeed) {
             // quit this loop. if the carriage return only was read
             break;
           } else {

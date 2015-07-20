@@ -53,7 +53,7 @@
 								<c:when test="${resource.dataSourceInfo != null}">
 									<div class="dbConnAdditionalInfo">
 										<spring:message code="probe.jsp.resources.info.title"/>
-										<b>${resource.dataSourceInfo.jdbcURL}</b>
+										<b>${resource.dataSourceInfo.jdbcUrl}</b>
 										<spring:message code="probe.jsp.resources.info.max"/>&nbsp;<b>${resource.dataSourceInfo.maxConnections}</b>
 										<spring:message code="probe.jsp.resources.info.busy"/>&nbsp;<b>${resource.dataSourceInfo.busyConnections}</b>
 										<spring:message code="probe.jsp.resources.info.established"/>&nbsp;<b>${resource.dataSourceInfo.establishedConnections}</b>

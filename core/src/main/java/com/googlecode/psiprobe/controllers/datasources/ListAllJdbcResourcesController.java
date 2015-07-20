@@ -34,14 +34,14 @@ public class ListAllJdbcResourcesController extends TomcatContainerController {
     boolean supportsGlobal = getContainerWrapper().getResourceResolver().supportsGlobalResources();
     boolean supportsPrivate =
         getContainerWrapper().getResourceResolver().supportsPrivateResources();
-    boolean supportsDSLookup =
+    boolean supportsDataSourceLookup =
         getContainerWrapper().getResourceResolver().supportsDataSourceLookup();
     List privateResources = getContainerWrapper().getPrivateDataSources();
     List globalResources = getContainerWrapper().getGlobalDataSources();
     return new ModelAndView(getViewName())
         .addObject("supportsGlobal", Boolean.valueOf(supportsGlobal))
         .addObject("supportsPrivate", Boolean.valueOf(supportsPrivate))
-        .addObject("supportsDSLookup", Boolean.valueOf(supportsDSLookup))
+        .addObject("supportsDSLookup", Boolean.valueOf(supportsDataSourceLookup))
         .addObject("privateResources", privateResources)
         .addObject("globalResources", globalResources);
   }

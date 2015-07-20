@@ -70,7 +70,7 @@ public class ClusterWrapperBean {
       cluster.setMcastPort(JmxTools.getIntAttr(mbeanServer, membershipOName, "mcastPort"));
       cluster
           .setMcastSoTimeout(JmxTools.getIntAttr(mbeanServer, membershipOName, "mcastSoTimeout"));
-      cluster.setMcastTTL(JmxTools.getIntAttr(mbeanServer, membershipOName, "mcastTTL"));
+      cluster.setMcastTtl(JmxTools.getIntAttr(mbeanServer, membershipOName, "mcastTTL"));
 
       cluster.setTcpListenAddress(JmxTools.getStringAttr(mbeanServer, receiverOName,
           "tcpListenAddress"));

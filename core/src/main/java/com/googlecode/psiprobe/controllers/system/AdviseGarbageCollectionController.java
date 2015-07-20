@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
  * 
  * @author Vlad Ilyushchenko
  */
-public class AdviseGCController extends ParameterizableViewController {
+public class AdviseGarbageCollectionController extends ParameterizableViewController {
 
   private String replacePattern;
 
@@ -42,11 +42,11 @@ public class AdviseGCController extends ParameterizableViewController {
     boolean finalization = ServletRequestUtils.getBooleanParameter(request, "fin", false);
 
     String referer = request.getHeader("Referer");
-    String redirectURL;
+    String redirectUrl;
     if (referer != null) {
-      redirectURL = referer.replaceAll(replacePattern, "");
+      redirectUrl = referer.replaceAll(replacePattern, "");
     } else {
-      redirectURL = request.getContextPath() + getViewName();
+      redirectUrl = request.getContextPath() + getViewName();
     }
     if (finalization) {
       Runtime.getRuntime().runFinalization();
@@ -55,8 +55,8 @@ public class AdviseGCController extends ParameterizableViewController {
       Runtime.getRuntime().gc();
       logger.debug("Advised Garbage Collection");
     }
-    logger.debug("Redirected to " + redirectURL);
-    return new ModelAndView(new RedirectView(redirectURL));
+    logger.debug("Redirected to " + redirectUrl);
+    return new ModelAndView(new RedirectView(redirectUrl));
   }
 
 }

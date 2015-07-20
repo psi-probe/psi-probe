@@ -30,7 +30,7 @@ public class Cluster {
   private long mcastFrequency;
   private int mcastPort;
   private int mcastSoTimeout;
-  private int mcastTTL;
+  private int mcastTtl;
   private List members = new ArrayList();
   private int tcpThreadCount;
   private String tcpListenAddress;
@@ -214,12 +214,12 @@ public class Cluster {
     this.mcastSoTimeout = mcastSoTimeout;
   }
 
-  public int getMcastTTL() {
-    return mcastTTL;
+  public int getMcastTtl() {
+    return mcastTtl;
   }
 
-  public void setMcastTTL(int mcastTTL) {
-    this.mcastTTL = mcastTTL;
+  public void setMcastTtl(int mcastTtl) {
+    this.mcastTtl = mcastTtl;
   }
 
   public int getTcpThreadCount() {

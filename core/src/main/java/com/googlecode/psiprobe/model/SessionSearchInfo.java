@@ -47,13 +47,13 @@ public class SessionSearchInfo implements Serializable {
   private Integer idleTimeFromSec;
   private String idleTimeTo;
   private Integer idleTimeToSec;
-  private String lastIP;
+  private String lastIp;
   private String infoMessage;
   private List errorMessages = new ArrayList();
 
   public boolean isEmpty() {
     return sessionId == null && attrName == null && ageFrom == null && ageTo == null
-        && idleTimeFrom == null && idleTimeTo == null && lastIP == null;
+        && idleTimeFrom == null && idleTimeTo == null && lastIp == null;
   }
 
   public boolean isSessionIdValid() {
@@ -117,8 +117,8 @@ public class SessionSearchInfo implements Serializable {
     return idleTimeToSec != null;
   }
 
-  public boolean isUseLastIP() {
-    return lastIP != null;
+  public boolean isUseLastIp() {
+    return lastIp != null;
   }
 
   public String getSearchAction() {
@@ -287,12 +287,12 @@ public class SessionSearchInfo implements Serializable {
     return idleTimeToSec;
   }
 
-  public String getLastIP() {
-    return lastIP;
+  public String getLastIp() {
+    return lastIp;
   }
 
-  public void setLastIP(String lastIP) {
-    this.lastIP = lastIP;
+  public void setLastIp(String lastIp) {
+    this.lastIp = lastIp;
   }
 
   public String getInfoMessage() {

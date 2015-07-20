@@ -63,7 +63,7 @@ public class OracleDatasourceAccessor implements DatasourceAccessor {
         }
 
         dataSourceInfo.setMaxConnections(Utils.toInt(cacheProperties.getProperty("MaxLimit"), -1));
-        dataSourceInfo.setJdbcURL(source.getURL());
+        dataSourceInfo.setJdbcUrl(source.getURL());
         dataSourceInfo.setUsername(source.getUser());
         dataSourceInfo.setResettable(true);
         dataSourceInfo.setType("oracle-jdbc");

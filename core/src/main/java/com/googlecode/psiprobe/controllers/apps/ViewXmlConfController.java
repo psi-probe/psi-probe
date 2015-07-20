@@ -31,7 +31,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Andy Shapoval
  * @author Vlad Ilyushchenko
  */
-public class ViewXMLConfController extends ContextHandlerController {
+public class ViewXmlConfController extends ContextHandlerController {
 
   public static final String TARGET_WEB_XML = "web.xml";
   public static final String TARGET_CONTEXT_XML = "context.xml";

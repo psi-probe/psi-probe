@@ -17,14 +17,14 @@ import java.net.MalformedURLException;
  * 
  * @author Vlad Ilyushchenko
  */
-public class URLParser {
+public class UrlParser {
 
   private String protocol = null;
   private String host = null;
   private int port = -1;
   private String path = null;
 
-  public URLParser(String url) throws MalformedURLException {
+  public UrlParser(String url) throws MalformedURLException {
     if (url != null && url.length() > 0) {
       int ppos = url.indexOf("://");
 

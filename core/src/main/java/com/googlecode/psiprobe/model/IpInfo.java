@@ -17,14 +17,14 @@ import javax.servlet.http.HttpServletRequest;
  *
  * @author Mark Lewis
  */
-public class IPInfo {
+public class IpInfo {
 
   private String address;
   private boolean forwarded;
 
-  public IPInfo() {}
+  public IpInfo() {}
 
-  public IPInfo(HttpServletRequest request) {
+  public IpInfo(HttpServletRequest request) {
     this.address = getClientAddress(request);
     if (!address.equals(request.getRemoteAddr())) {
       this.forwarded = true;

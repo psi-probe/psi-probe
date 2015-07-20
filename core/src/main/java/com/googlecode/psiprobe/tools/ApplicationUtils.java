@@ -258,16 +258,16 @@ public class ApplicationUtils {
           attributeCount++;
           size += objSize;
         }
-        String lastAccessedIP =
+        String lastAccessedIp =
             (String) httpSession.getAttribute(ApplicationSession.LAST_ACCESSED_BY_IP);
-        if (lastAccessedIP != null) {
-          sbean.setLastAccessedIP(lastAccessedIP);
+        if (lastAccessedIp != null) {
+          sbean.setLastAccessedIp(lastAccessedIp);
         }
         try {
-          sbean.setLastAccessedIPLocale(InetAddressLocator.getLocale(InetAddress.getByName(
-              lastAccessedIP).getAddress()));
+          sbean.setLastAccessedIpLocale(InetAddressLocator.getLocale(InetAddress.getByName(
+              lastAccessedIp).getAddress()));
         } catch (Throwable e) {
-          logger.error("Cannot determine Locale of " + lastAccessedIP);
+          logger.error("Cannot determine Locale of " + lastAccessedIp);
           //
           // make sure we always re-throw ThreadDeath
           //

@@ -39,7 +39,7 @@ public class TomcatJdbcPoolDatasourceAccessor implements DatasourceAccessor {
       dataSourceInfo.setBusyConnections(source.getNumActive());
       dataSourceInfo.setEstablishedConnections(source.getNumIdle() + source.getNumActive());
       dataSourceInfo.setMaxConnections(source.getMaxActive());
-      dataSourceInfo.setJdbcURL(source.getUrl());
+      dataSourceInfo.setJdbcUrl(source.getUrl());
       dataSourceInfo.setUsername(source.getUsername());
       dataSourceInfo.setResettable(false);
       dataSourceInfo.setType("tomcat-jdbc");

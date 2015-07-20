@@ -39,8 +39,8 @@ public class ApplicationSession {
   private List attributes = new ArrayList();
   private long size;
   private boolean allowedToViewValues = false;
-  private String lastAccessedIP;
-  private Locale lastAccessedIPLocale;
+  private String lastAccessedIp;
+  private Locale lastAccessedIpLocale;
 
   public String getId() {
     return id;
@@ -174,20 +174,20 @@ public class ApplicationSession {
     this.allowedToViewValues = allowedToViewValues;
   }
 
-  public String getLastAccessedIP() {
-    return lastAccessedIP;
+  public String getLastAccessedIp() {
+    return lastAccessedIp;
   }
 
-  public void setLastAccessedIP(String lastAccessedIP) {
-    this.lastAccessedIP = lastAccessedIP;
+  public void setLastAccessedIp(String lastAccessedIp) {
+    this.lastAccessedIp = lastAccessedIp;
   }
 
-  public Locale getLastAccessedIPLocale() {
-    return lastAccessedIPLocale;
+  public Locale getLastAccessedIpLocale() {
+    return lastAccessedIpLocale;
   }
 
-  public void setLastAccessedIPLocale(Locale lastAccessedIPLocale) {
-    this.lastAccessedIPLocale = lastAccessedIPLocale;
+  public void setLastAccessedIpLocale(Locale lastAccessedIpLocale) {
+    this.lastAccessedIpLocale = lastAccessedIpLocale;
   }
 
 }

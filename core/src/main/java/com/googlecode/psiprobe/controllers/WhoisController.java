@@ -70,11 +70,11 @@ public class WhoisController extends ParameterizableViewController {
     boolean timeout = false;
     String reverseName = null;
 
-    String theIP = ServletRequestUtils.getStringParameter(request, "ip", null);
+    String ipAddress = ServletRequestUtils.getStringParameter(request, "ip", null);
 
     Whois.Response wh = null;
     try {
-      wh = Whois.lookup(getDefaultServer(), getDefaultPort(), theIP, getLookupTimeout());
+      wh = Whois.lookup(getDefaultServer(), getDefaultPort(), ipAddress, getLookupTimeout());
     } catch (IOException e) {
       timeout = true;
     }
@@ -94,11 +94,11 @@ public class WhoisController extends ParameterizableViewController {
       }
     }
 
-    if (theIP != null) {
+    if (ipAddress != null) {
       try {
-        reverseName = InetAddress.getByName(theIP).getCanonicalHostName();
+        reverseName = InetAddress.getByName(ipAddress).getCanonicalHostName();
       } catch (UnknownHostException e) {
-        logger.error("could not run a DNS query on " + theIP);
+        logger.error("could not run a DNS query on " + ipAddress);
       }
     }
     return new ModelAndView(getViewName(), "result", lines)

@@ -46,11 +46,11 @@ public class DataSourceTestController extends ParameterizableViewController {
     }
 
     String referer = request.getHeader("Referer");
-    String backURL;
+    String backUrl;
     if (referer != null) {
-      backURL = referer.replaceAll(replacePattern, "");
+      backUrl = referer.replaceAll(replacePattern, "");
     } else {
-      backURL = null;
+      backUrl = null;
     }
 
     return new ModelAndView(getViewName())
@@ -60,7 +60,7 @@ public class DataSourceTestController extends ParameterizableViewController {
             String.valueOf(sessData == null ? getRowsPerPage() : sessData.getRowsPerPage()))
         .addObject("historySize",
             String.valueOf(sessData == null ? getHistorySize() : sessData.getHistorySize()))
-        .addObject("backURL", backURL)
+        .addObject("backURL", backUrl)
         .addObject("collectionPeriod", new Long(getCollectionPeriod()));
   }
 

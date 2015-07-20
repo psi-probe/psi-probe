@@ -68,21 +68,21 @@ public class RenderChartController extends AbstractController {
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 
-    final int SERIES_NUM = 9; // the max number of series
+    final int seriesMaxCount = 9; // the max number of series
 
     // get Series Color from the request
-    int[] seriesColor = new int[SERIES_NUM];
+    int[] seriesColor = new int[seriesMaxCount];
     seriesColor[0] = Utils.toIntHex(request.getParameter("s1c"), 0x9bd2fb);
     seriesColor[1] = Utils.toIntHex(request.getParameter("s2c"), 0xFF0606);
-    for (int i = 2; i < SERIES_NUM; i++) {
+    for (int i = 2; i < seriesMaxCount; i++) {
       seriesColor[i] = Utils.toIntHex(request.getParameter("s" + (i + 1) + "c"), -1);
     }
 
     // get Series Outline Color from the request
-    int[] seriesOutlineColor = new int[SERIES_NUM];
+    int[] seriesOutlineColor = new int[seriesMaxCount];
     seriesOutlineColor[0] = Utils.toIntHex(request.getParameter("s1o"), 0x0665aa);
     seriesOutlineColor[1] = Utils.toIntHex(request.getParameter("s2o"), 0x9d0000);
-    for (int i = 2; i < SERIES_NUM; i++) {
+    for (int i = 2; i < seriesMaxCount; i++) {
       seriesOutlineColor[i] = Utils.toIntHex(request.getParameter("s" + (i + 1) + "o"), -1);
     }
 
@@ -156,7 +156,7 @@ public class RenderChartController extends AbstractController {
     if (chart != null) {
       chart.setAntiAlias(true);
       chart.setBackgroundPaint(new Color(backgroundColor));
-      for (int i = 0; i < SERIES_NUM; i++) {
+      for (int i = 0; i < seriesMaxCount; i++) {
         if (seriesColor[i] >= 0) {
           chart.getXYPlot().getRenderer().setSeriesPaint(i, new Color(seriesColor[i]));
         }

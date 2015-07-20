@@ -112,7 +112,7 @@ public class JBossResourceResolverBean implements ResourceResolver {
               Node na = node.getAttributes().getNamedItem("name");
               if (na != null) {
                 if ("ConnectionURL".equals(na.getNodeValue())) {
-                  dsInfo.setJdbcURL(node.getFirstChild().getNodeValue());
+                  dsInfo.setJdbcUrl(node.getFirstChild().getNodeValue());
                 }
 
                 if ("UserName".equals(na.getNodeValue())) {
@@ -121,7 +121,7 @@ public class JBossResourceResolverBean implements ResourceResolver {
 
                 // JMS datasource
                 if ("JmsProviderAdapterJNDI".equals(na.getNodeValue())) {
-                  dsInfo.setJdbcURL(node.getFirstChild().getNodeValue());
+                  dsInfo.setJdbcUrl(node.getFirstChild().getNodeValue());
                   resource.setType("jms");
                 }
               }

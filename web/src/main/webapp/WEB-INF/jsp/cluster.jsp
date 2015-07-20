@@ -80,7 +80,7 @@
 								<spring:message code="probe.jsp.cluster.manager"/>&nbsp;<span class="value">${cluster.managerClassName}</span>
 								<spring:message code="probe.jsp.cluster.mode"/>&nbsp;<span class="value">${cluster.senderReplicationMode}</span>
 								<spring:message code="probe.jsp.cluster.mcastAddress"/>&nbsp;<span class="value">${cluster.mcastAddress}:${cluster.mcastPort}</span>
-								<spring:message code="probe.jsp.cluster.mcastTTL"/>&nbsp;<span class="value">${cluster.mcastTTL}</span>
+								<spring:message code="probe.jsp.cluster.mcastTtl"/>&nbsp;<span class="value">${cluster.mcastTtl}</span>
 								<spring:message code="probe.jsp.cluster.mcastBindAddress"/>&nbsp;
 								<span class="value">
 									<c:choose>

@@ -44,7 +44,7 @@ public class OracleUcpDatasourceAssessor implements DatasourceAccessor {
         dataSourceInfo.setEstablishedConnections(0);
       }
       dataSourceInfo.setMaxConnections(source.getMaxPoolSize());
-      dataSourceInfo.setJdbcURL(source.getURL());
+      dataSourceInfo.setJdbcUrl(source.getURL());
       dataSourceInfo.setUsername(source.getUser());
       dataSourceInfo.setResettable(false);
       dataSourceInfo.setType("oracle-ucp");

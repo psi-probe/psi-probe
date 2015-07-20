@@ -74,7 +74,7 @@ public class ViewSourceController extends ContextHandlerController {
              */
             InputStream encodedStream =
                 getContainerWrapper().getTomcatContainer().getResourceStream(jspName, context);
-            item.setEncoding(Utils.getJSPEncoding(encodedStream));
+            item.setEncoding(Utils.getJspEncoding(encodedStream));
           }
           InputStream jspStream =
               getContainerWrapper().getTomcatContainer().getResourceStream(jspName, context);

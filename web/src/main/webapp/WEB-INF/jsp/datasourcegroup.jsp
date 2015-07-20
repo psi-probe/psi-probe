@@ -49,7 +49,7 @@
 					</div>
 
 					<display:table class="genericTbl" cellspacing="0" name="dataSourceGroups" uid="dataSourceGroup" requestURI="">
-						<display:column property="jdbcURL" class="leftmost" sortable="true" maxLength="50" nulls="true"
+						<display:column property="jdbcUrl" class="leftmost" sortable="true" maxLength="50" nulls="true"
 								titleKey="probe.jsp.dataSourceGroups.list.col.url"/>
 
 						<display:column sortable="true" sortProperty="busyScore"

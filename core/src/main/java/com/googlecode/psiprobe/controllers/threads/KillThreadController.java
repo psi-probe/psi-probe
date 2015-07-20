@@ -53,13 +53,13 @@ public class KillThreadController extends ParameterizableViewController {
     }
 
     String referer = request.getHeader("Referer");
-    String redirectURL;
+    String redirectUrl;
     if (referer != null) {
-      redirectURL = referer.replaceAll(replacePattern, "");
+      redirectUrl = referer.replaceAll(replacePattern, "");
     } else {
-      redirectURL = request.getContextPath() + getViewName();
+      redirectUrl = request.getContextPath() + getViewName();
     }
-    return new ModelAndView(new RedirectView(redirectURL));
+    return new ModelAndView(new RedirectView(redirectUrl));
   }
 
 }

@@ -30,8 +30,8 @@ public class RuntimeInformation {
   private String osVersion;
   private long startTime;
   private long uptime;
-  private long openFDCount;
-  private long maxFDCount;
+  private long openFileDescriptorCount;
+  private long maxFileDescriptorCount;
 
   public long getCommittedVirtualMemorySize() {
     return committedVirtualMemorySize;
@@ -129,20 +129,20 @@ public class RuntimeInformation {
     this.vmVendor = vmVendor;
   }
 
-  public long getOpenFDCount() {
-    return openFDCount;
+  public long getOpenFileDescriptorCount() {
+    return openFileDescriptorCount;
   }
 
-  public void setOpenFDCount(long openFDCount) {
-    this.openFDCount = openFDCount;
+  public void setOpenFileDescriptorCount(long openFileDescriptorCount) {
+    this.openFileDescriptorCount = openFileDescriptorCount;
   }
 
-  public long getMaxFDCount() {
-    return maxFDCount;
+  public long getMaxFileDescriptorCount() {
+    return maxFileDescriptorCount;
   }
 
-  public void setMaxFDCount(long maxFDCount) {
-    this.maxFDCount = maxFDCount;
+  public void setMaxFileDescriptorCount(long maxFileDescriptorCount) {
+    this.maxFileDescriptorCount = maxFileDescriptorCount;
   }
 
 }

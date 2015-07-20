@@ -58,7 +58,7 @@ public class ListSessionsController extends ContextHandlerController {
     if (searchInfo.isApply()) {
       searchInfo.setSessionId(StringUtils.trimToNull(ServletRequestUtils.getStringParameter(
           request, "searchSessionId")));
-      searchInfo.setLastIP(StringUtils.trimToNull(ServletRequestUtils.getStringParameter(request,
+      searchInfo.setLastIp(StringUtils.trimToNull(ServletRequestUtils.getStringParameter(request,
           "searchLastIP")));
 
       searchInfo.setAgeFrom(StringUtils.trimToNull(ServletRequestUtils.getStringParameter(request,
@@ -188,8 +188,8 @@ public class ListSessionsController extends ContextHandlerController {
         sessionMatches =
             appSession.getIdleTime() <= searchInfo.getIdleTimeToSec().longValue() * 1000;
       }
-      if (searchInfo.isUseLastIP() && appSession.getLastAccessedIP() != null) {
-        sessionMatches = appSession.getLastAccessedIP().indexOf(searchInfo.getLastIP()) > -1;
+      if (searchInfo.isUseLastIp() && appSession.getLastAccessedIp() != null) {
+        sessionMatches = appSession.getLastAccessedIp().indexOf(searchInfo.getLastIp()) > -1;
       }
 
       if (sessionMatches && searchInfo.isUseAttrName()) {

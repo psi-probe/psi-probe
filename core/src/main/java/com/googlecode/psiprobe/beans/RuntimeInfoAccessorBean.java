@@ -63,8 +63,10 @@ public class RuntimeInfoAccessorBean {
       if (JmxTools.hasAttribute(mbeanServer, osOName, "OpenFileDescriptorCount")
           && JmxTools.hasAttribute(mbeanServer, osOName, "MaxFileDescriptorCount")) {
 
-        ri.setOpenFDCount(JmxTools.getLongAttr(mbeanServer, osOName, "OpenFileDescriptorCount"));
-        ri.setMaxFDCount(JmxTools.getLongAttr(mbeanServer, osOName, "MaxFileDescriptorCount"));
+        ri.setOpenFileDescriptorCount(JmxTools.getLongAttr(mbeanServer, osOName,
+            "OpenFileDescriptorCount"));
+        ri.setMaxFileDescriptorCount(JmxTools.getLongAttr(mbeanServer, osOName,
+            "MaxFileDescriptorCount"));
       }
 
       return ri;

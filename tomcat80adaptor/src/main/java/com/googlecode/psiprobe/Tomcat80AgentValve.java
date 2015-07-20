@@ -12,7 +12,7 @@
 package com.googlecode.psiprobe;
 
 import com.googlecode.psiprobe.model.ApplicationSession;
-import com.googlecode.psiprobe.model.IPInfo;
+import com.googlecode.psiprobe.model.IpInfo;
 
 import org.apache.catalina.connector.Request;
 import org.apache.catalina.connector.Response;
@@ -43,7 +43,7 @@ public class Tomcat80AgentValve extends ValveBase {
     HttpServletRequest servletRequest = request.getRequest();
     HttpSession session = servletRequest.getSession(false);
     if (session != null) {
-      String ip = IPInfo.getClientAddress(servletRequest);
+      String ip = IpInfo.getClientAddress(servletRequest);
       session.setAttribute(ApplicationSession.LAST_ACCESSED_BY_IP, ip);
     }
   }

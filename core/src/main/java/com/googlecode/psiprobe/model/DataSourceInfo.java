@@ -21,7 +21,7 @@ import com.googlecode.psiprobe.Utils;
  */
 public class DataSourceInfo {
 
-  private String jdbcURL;
+  private String jdbcUrl;
   private int busyConnections;
   private int establishedConnections;
   private int maxConnections;
@@ -29,12 +29,12 @@ public class DataSourceInfo {
   private String username;
   private String type;
 
-  public String getJdbcURL() {
-    return jdbcURL;
+  public String getJdbcUrl() {
+    return jdbcUrl;
   }
 
-  public void setJdbcURL(String jdbcURL) {
-    this.jdbcURL = jdbcURL;
+  public void setJdbcUrl(String jdbcUrl) {
+    this.jdbcUrl = jdbcUrl;
   }
 
   public int getBusyConnections() {

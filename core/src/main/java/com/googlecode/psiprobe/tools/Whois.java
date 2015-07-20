@@ -11,7 +11,7 @@
 
 package com.googlecode.psiprobe.tools;
 
-import com.googlecode.psiprobe.tools.url.URLParser;
+import com.googlecode.psiprobe.tools.url.UrlParser;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -78,7 +78,7 @@ public class Whois {
 
           if (referral != null) {
             try {
-              URLParser url = new URLParser(referral);
+              UrlParser url = new UrlParser(referral);
               if ("whois".equals(url.getProtocol())) {
                 newResponse =
                     lookup(url.getHost(), url.getPort() == -1 ? 43 : url.getPort(), query, timeout,

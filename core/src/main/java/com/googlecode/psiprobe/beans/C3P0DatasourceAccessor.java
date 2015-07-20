@@ -32,7 +32,7 @@ public class C3P0DatasourceAccessor implements DatasourceAccessor {
       dataSourceInfo.setBusyConnections(source.getNumBusyConnections());
       dataSourceInfo.setEstablishedConnections(source.getNumConnections());
       dataSourceInfo.setMaxConnections(source.getMaxPoolSize());
-      dataSourceInfo.setJdbcURL(source.getJdbcUrl());
+      dataSourceInfo.setJdbcUrl(source.getJdbcUrl());
       dataSourceInfo.setUsername(source.getUser());
       dataSourceInfo.setResettable(true);
       dataSourceInfo.setType("c3p0");

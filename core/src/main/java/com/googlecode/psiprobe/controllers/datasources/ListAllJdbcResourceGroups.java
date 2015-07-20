@@ -53,12 +53,12 @@ public class ListAllJdbcResourceGroups extends TomcatContainerController {
     // sort datasources by JDBC URL
     Collections.sort(dataSources, new Comparator() {
       public int compare(Object o1, Object o2) {
-        String jdbcURL1 = ((DataSourceInfo) o1).getJdbcURL();
-        String jdbcURL2 = ((DataSourceInfo) o2).getJdbcURL();
+        String jdbcUrl1 = ((DataSourceInfo) o1).getJdbcUrl();
+        String jdbcUrl2 = ((DataSourceInfo) o2).getJdbcUrl();
 
         // here we rely on the the filter not to add any datasources with a null jdbcUrl to the list
 
-        return jdbcURL1.compareToIgnoreCase(jdbcURL2);
+        return jdbcUrl1.compareToIgnoreCase(jdbcUrl2);
       }
     });
 
@@ -67,7 +67,7 @@ public class ListAllJdbcResourceGroups extends TomcatContainerController {
     for (Iterator i = dataSources.iterator(); i.hasNext();) {
       DataSourceInfo ds = (DataSourceInfo) i.next();
 
-      if (dsGroup == null || !dsGroup.getJdbcURL().equalsIgnoreCase(ds.getJdbcURL())) {
+      if (dsGroup == null || !dsGroup.getJdbcUrl().equalsIgnoreCase(ds.getJdbcUrl())) {
         dsGroup = new DataSourceInfoGroup(ds);
         dataSourceGroups.add(dsGroup);
       } else {
@@ -82,7 +82,7 @@ public class ListAllJdbcResourceGroups extends TomcatContainerController {
     for (Iterator i = resources.iterator(); i.hasNext();) {
       ApplicationResource res = (ApplicationResource) i.next();
       if (res.isLookedUp() && res.getDataSourceInfo() != null
-          && res.getDataSourceInfo().getJdbcURL() != null) {
+          && res.getDataSourceInfo().getJdbcUrl() != null) {
         dataSources.add(res.getDataSourceInfo());
       }
     }

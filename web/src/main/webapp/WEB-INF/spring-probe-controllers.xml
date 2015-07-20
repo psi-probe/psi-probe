@@ -144,7 +144,7 @@
 		<property name="viewName" value="ajax/osinfo"/>
 	</bean>
 
-	<bean name="/adm/advisegc.htm" class="com.googlecode.psiprobe.controllers.system.AdviseGCController">
+	<bean name="/adm/advisegc.htm" class="com.googlecode.psiprobe.controllers.system.AdviseGarbageCollectionController">
 		<property name="replacePattern" value="^http(s)?://[a-zA-Z\-\.0-9]+(:[0-9]+)?"/>
 		<property name="viewName" value="/sysinfo.htm"/>
 	</bean>
@@ -319,26 +319,26 @@
 		<property name="statsCollection" ref="statsCollection"/>
 	</bean>
 
-	<bean name="/app/viewwebxml.htm" class="com.googlecode.psiprobe.controllers.apps.ViewXMLConfController">
+	<bean name="/app/viewwebxml.htm" class="com.googlecode.psiprobe.controllers.apps.ViewXmlConfController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="viewName" value="view_xml_conf"/>
 		<property name="displayTarget" value="web.xml"/>
 		<property name="downloadUrl" value="/app/downloadwebxml.htm"/>
 	</bean>
 
-	<bean name="/adm/viewcontextxml.htm" class="com.googlecode.psiprobe.controllers.apps.ViewXMLConfController">
+	<bean name="/adm/viewcontextxml.htm" class="com.googlecode.psiprobe.controllers.apps.ViewXmlConfController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="viewName" value="view_xml_conf"/>
 		<property name="displayTarget" value="context.xml"/>
 		<property name="downloadUrl" value="/adm/downloadcontextxml.htm"/>
 	</bean>
 
-	<bean name="/app/downloadwebxml.htm" class="com.googlecode.psiprobe.controllers.apps.DownloadXMLConfController">
+	<bean name="/app/downloadwebxml.htm" class="com.googlecode.psiprobe.controllers.apps.DownloadXmlConfController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="downloadTarget" value="web.xml"/>
 	</bean>
 
-	<bean name="/adm/downloadcontextxml.htm" class="com.googlecode.psiprobe.controllers.apps.DownloadXMLConfController">
+	<bean name="/adm/downloadcontextxml.htm" class="com.googlecode.psiprobe.controllers.apps.DownloadXmlConfController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="downloadTarget" value="context.xml"/>
 	</bean>

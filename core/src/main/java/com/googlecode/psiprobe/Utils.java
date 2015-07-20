@@ -182,7 +182,7 @@ public class Utils {
     return defaultValue;
   }
 
-  public static String getJSPEncoding(InputStream is) throws IOException {
+  public static String getJspEncoding(InputStream is) throws IOException {
 
     String encoding = null;
     String contentType = null;

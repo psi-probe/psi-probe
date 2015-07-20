@@ -22,7 +22,7 @@ import org.apache.tomcat.jdbc.pool.PoolConfiguration;
  *
  * @author Dusan Jakub
  */
-public class OpenEJBManagedDatasourceAccessor implements DatasourceAccessor {
+public class OpenEjbManagedDatasourceAccessor implements DatasourceAccessor {
 
   public DataSourceInfo getInfo(Object resource) throws Exception {
     DataSourceInfo dataSourceInfo = null;
@@ -34,7 +34,7 @@ public class OpenEJBManagedDatasourceAccessor implements DatasourceAccessor {
       dataSourceInfo.setBusyConnections(proxy.getNumActive());
       dataSourceInfo.setEstablishedConnections(proxy.getNumIdle() + proxy.getNumActive());
       dataSourceInfo.setMaxConnections(conf.getMaxActive());
-      dataSourceInfo.setJdbcURL(conf.getUrl());
+      dataSourceInfo.setJdbcUrl(conf.getUrl());
       dataSourceInfo.setUsername(conf.getUsername());
       dataSourceInfo.setResettable(false);
       dataSourceInfo.setType("tomee-jdbc");

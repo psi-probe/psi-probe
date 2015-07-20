@@ -29,7 +29,7 @@ import javax.servlet.http.HttpServletResponse;
  * 
  * @author Andy Shapoval
  */
-public class DownloadXMLConfController extends ContextHandlerController {
+public class DownloadXmlConfController extends ContextHandlerController {
 
   public static final String TARGET_WEB_XML = "web.xml";
   public static final String TARGET_CONTEXT_XML = "context.xml";

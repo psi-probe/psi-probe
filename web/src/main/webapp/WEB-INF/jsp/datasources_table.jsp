@@ -44,7 +44,7 @@
 				<c:param name="webapp" value="${resource.applicationName}"/>
 			</c:url>
 			<a href="${application_url}">
-				<c:if test="${!resource.lookedUp || resource.dataSourceInfo.jdbcURL == null}">
+				<c:if test="${!resource.lookedUp || resource.dataSourceInfo.jdbcUrl == null}">
 					<img border="0" src="${pageContext.request.contextPath}<spring:theme code='exclamation.gif'/>"
 							alt="<spring:message code='probe.jsp.datasources.list.misconfigured.alt'/>"/>
 				</c:if>
@@ -92,7 +92,7 @@
 	<!--
 	this does have to be one liner due to the tag forcing maxLength
 	-->
-	<display:column titleKey="probe.jsp.datasources.list.col.url"             sortable="true" property="dataSourceInfo.jdbcURL" nulls="true" maxLength="50"/>
+	<display:column titleKey="probe.jsp.datasources.list.col.url"             sortable="true" property="dataSourceInfo.jdbcUrl" nulls="true" maxLength="50"/>
 
 	<display:column titleKey="probe.jsp.datasources.list.col.description"     sortable="true" sortProperty="description" maxLength="50">
 		${resource.description}&nbsp;

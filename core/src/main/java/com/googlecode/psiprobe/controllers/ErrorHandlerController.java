@@ -55,8 +55,8 @@ public class ErrorHandlerController extends AbstractController {
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 
-    String originalURI = (String) request.getAttribute("javax.servlet.error.request_uri");
-    if (originalURI != null && originalURI.endsWith(ajaxExtension)) {
+    String originalUri = (String) request.getAttribute("javax.servlet.error.request_uri");
+    if (originalUri != null && originalUri.endsWith(ajaxExtension)) {
       return new ModelAndView(ajaxViewName);
     } else {
       return new ModelAndView(viewName);

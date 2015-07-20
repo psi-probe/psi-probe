@@ -23,7 +23,7 @@ import java.lang.reflect.Field;
  * @author akhawatrah
  * @author Mark Lewis
  */
-public class BoneCPDatasourceAccessor implements DatasourceAccessor {
+public class BoneCpDatasourceAccessor implements DatasourceAccessor {
 
   public DataSourceInfo getInfo(final Object resource) throws Exception {
     DataSourceInfo dataSourceInfo = null;
@@ -44,7 +44,7 @@ public class BoneCPDatasourceAccessor implements DatasourceAccessor {
       dataSourceInfo.setEstablishedConnections(pool.getTotalCreatedConnections());
       dataSourceInfo.setMaxConnections(source.getPartitionCount()
           * source.getMaxConnectionsPerPartition());
-      dataSourceInfo.setJdbcURL(source.getJdbcUrl());
+      dataSourceInfo.setJdbcUrl(source.getJdbcUrl());
       dataSourceInfo.setUsername(source.getUsername());
       dataSourceInfo.setResettable(false);
       dataSourceInfo.setType("bonecp");

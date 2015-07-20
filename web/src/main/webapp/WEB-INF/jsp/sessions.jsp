@@ -144,10 +144,10 @@
 							<input id="searchSessionId" name="searchSessionId" type="text" value="${searchInfo.sessionId}" class="txtInput" size="40"/>
 						</td>
 						<td class="labelCell">
-							<spring:message code="probe.jsp.sessions.search.lastIP"/>
+							<spring:message code="probe.jsp.sessions.search.lastIp"/>
 						</td>
 						<td class="inputCell">
-							<input name="searchLastIP" type="text" value="${searchInfo.lastIP}" class="txtInput" size="30"/>
+							<input name="searchLastIP" type="text" value="${searchInfo.lastIp}" class="txtInput" size="30"/>
 						</td>
 					</tr>
 					<tr>
@@ -221,12 +221,12 @@
 								</a>
 							</display:column>
 
-							<display:column titleKey="probe.jsp.sessions.col.lastIP" sortProperty="lastAccessedIP" sortable="true">
+							<display:column titleKey="probe.jsp.sessions.col.lastIp" sortProperty="lastAccessedIp" sortable="true">
 								<c:choose>
-									<c:when test="${! empty session.lastAccessedIP}">
-										<a id='ip_${session_rowNum}' href="#">${session.lastAccessedIP}</a>
+									<c:when test="${! empty session.lastAccessedIp}">
+										<a id='ip_${session_rowNum}' href="#">${session.lastAccessedIp}</a>
 										<script type="text/javascript">
-											addAjaxTooltip('ip_${session_rowNum}', 'ttdiv', '<c:url value="/whois.ajax?ip=${session.lastAccessedIP}"/>');
+											addAjaxTooltip('ip_${session_rowNum}', 'ttdiv', '<c:url value="/whois.ajax?ip=${session.lastAccessedIp}"/>');
 										</script>
 
 									</c:when>
@@ -238,10 +238,10 @@
 
 							<display:column title="&nbsp;" style="width:18px;">
 								<c:choose>
-									<c:when test="${! empty session.lastAccessedIPLocale.country && session.lastAccessedIPLocale.country != '**'}">
-										<img border="0" src="<c:url value='/flags/${fn:toLowerCase(session.lastAccessedIPLocale.country)}.gif'/>"
-												alt="${session.lastAccessedIPLocale.country}"
-												title="${session.lastAccessedIPLocale.displayCountry}"/>
+									<c:when test="${! empty session.lastAccessedIpLocale.country && session.lastAccessedIpLocale.country != '**'}">
+										<img border="0" src="<c:url value='/flags/${fn:toLowerCase(session.lastAccessedIpLocale.country)}.gif'/>"
+												alt="${session.lastAccessedIpLocale.country}"
+												title="${session.lastAccessedIpLocale.displayCountry}"/>
 									</c:when>
 									<c:otherwise>
 										&nbsp;
