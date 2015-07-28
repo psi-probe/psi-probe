@@ -25,7 +25,7 @@
 		<url>https://github.com/psi-probe/psi-probe/issues/</url>
 	</issueManagement>
 	<ciManagement>
-		<system>Travos</system>
+		<system>Travis</system>
 		<url>https://travis-ci.org/psi-probe/psi-probe/</url>
 	</ciManagement>
 	<mailingLists>
