@@ -77,9 +77,6 @@
 			<list>
 			    <value>com.googlecode.psiprobe.Tomcat80ContainerAdaptor</value>
 				<value>com.googlecode.psiprobe.Tomcat70ContainerAdaptor</value>
-				<value>com.googlecode.psiprobe.Tomcat60ContainerAdaptor</value>
-				<value>com.googlecode.psiprobe.Tomcat55ContainerAdaptor</value>
-				<value>com.googlecode.psiprobe.Tomcat50ContainerAdaptor</value>
 			</list>
 		</property>
 		<property name="resourceResolvers">
