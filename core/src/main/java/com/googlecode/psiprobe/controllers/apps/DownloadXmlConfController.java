@@ -60,7 +60,7 @@ public class DownloadXmlConfController extends ContextHandlerController {
       ServletContext sctx = context.getServletContext();
       xmlPath = sctx.getRealPath("/WEB-INF/web.xml");
     } else if (TARGET_CONTEXT_XML.equals(downloadTarget)) {
-      xmlPath = context.getConfigFile();
+      xmlPath = this.getContainerWrapper().getTomcatContainer().getConfigFile(context).getPath();
     } else {
       throw new RuntimeException("Unknown download target " + getDownloadTarget());
     }

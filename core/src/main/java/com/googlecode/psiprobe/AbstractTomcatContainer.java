@@ -19,7 +19,6 @@ import org.apache.catalina.Context;
 import org.apache.catalina.Engine;
 import org.apache.catalina.Host;
 import org.apache.catalina.core.StandardContext;
-import org.apache.commons.lang.reflect.MethodUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.jasper.EmbeddedServletOptions;
@@ -31,7 +30,7 @@ import org.apache.naming.ContextBindings;
 import org.springframework.util.ClassUtils;
 
 import java.io.File;
-import java.lang.reflect.InvocationTargetException;
+import java.net.URI;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.HashMap;
@@ -372,12 +371,18 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
    * @return the context descriptor filename, or {@code null}
    */
   public File getConfigFile(Context context) {
-    String configFilePath = context.getConfigFile();
-    if (configFilePath != null) {
-      return new File(configFilePath);
-    } else {
-      return null;
+    URL configUrl = context.getConfigFile();
+    if (configUrl != null) {
+      try {
+        URI configUri = configUrl.toURI();
+        if ("file".equals(configUri.getScheme())) {
+          return new File(configUri.getPath());
+        }
+      } catch (Exception ex) {
+        logger.error("Could not convert URL to URI: " + configUrl, ex);
+      }
     }
+    return null;
   }
 
   /**
@@ -495,28 +500,8 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     }
   }
 
-  protected JspCompilationContext createJspCompilationContext(String name, Options opt,
-      ServletContext sctx, JspRuntimeContext jrctx, ClassLoader classLoader) {
-
-    JspCompilationContext jcctx = new JspCompilationContext(name, false, opt, sctx, null, jrctx);
-    if (classLoader != null && classLoader instanceof URLClassLoader) {
-      try {
-        jcctx.setClassLoader((URLClassLoader) classLoader);
-      } catch (NoSuchMethodError err) {
-        // JBoss Web 2.1 has a different method signature for setClassLoader().
-        try {
-          MethodUtils.invokeMethod(jcctx, "setClassLoader", classLoader);
-        } catch (NoSuchMethodException ex) {
-          throw new RuntimeException(ex);
-        } catch (IllegalAccessException ex) {
-          throw new RuntimeException(ex);
-        } catch (InvocationTargetException ex) {
-          throw new RuntimeException(ex);
-        }
-      }
-    }
-    return jcctx;
-  }
+  protected abstract JspCompilationContext createJspCompilationContext(String name, Options opt,
+      ServletContext sctx, JspRuntimeContext jrctx, ClassLoader classLoader);
 
   protected abstract void removeInternal(String name) throws Exception;
 

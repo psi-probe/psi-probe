@@ -42,7 +42,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
-import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -196,22 +195,6 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
       filterMappings.add(fm);
     }
     return filterMappings;
-  }
-
-  @Override
-  public File getConfigFile(Context ctx) {
-    URL configUrl = ctx.getConfigFile();
-    if (configUrl != null) {
-      try {
-        URI configUri = configUrl.toURI();
-        if ("file".equals(configUri.getScheme())) {
-          return new File(configUri.getPath());
-        }
-      } catch (Exception ex) {
-        logger.error("Could not convert URL to URI: " + configUrl, ex);
-      }
-    }
-    return null;
   }
 
   @Override

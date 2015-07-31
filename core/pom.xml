@@ -25,40 +25,22 @@
 	<dependencies>
 		<!--  tomcat libs start -->
 		<dependency>
-			<groupId>tomcat</groupId>
-			<artifactId>catalina</artifactId>
-			<version>5.5.23</version>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-catalina</artifactId>
+			<version>7.0.62</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>tomcat</groupId>
-			<artifactId>jasper-compiler</artifactId>
-			<version>5.5.23</version>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-jasper</artifactId>
+			<version>7.0.62</version>
 			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>tomcat</groupId>
-			<artifactId>jasper-runtime</artifactId>
-			<version>5.5.23</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>tomcat</groupId>
-			<artifactId>naming-factory</artifactId>
-			<version>5.5.23</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>tomcat</groupId>
-			<artifactId>naming-factory-dbcp</artifactId>
-			<version>5.5.23</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>tomcat</groupId>
-			<artifactId>naming-resources</artifactId>
-			<version>5.5.23</version>
-			<scope>provided</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.eclipse.jdt.core.compiler</groupId>
+					<artifactId>ecj</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<!--  tomcat libs end -->
 		<dependency>
