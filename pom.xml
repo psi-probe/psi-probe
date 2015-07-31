@@ -79,8 +79,8 @@
 		</repository>
 	</repositories>
 	<properties>
-		<maven.compiler.source>1.4</maven.compiler.source>
-		<maven.compiler.target>1.4</maven.compiler.target>
+		<maven.compiler.source>1.5</maven.compiler.source>
+		<maven.compiler.target>1.5</maven.compiler.target>
 		<maven.compiler.testSource>1.5</maven.compiler.testSource>
 		<maven.compiler.testTarget>1.5</maven.compiler.testTarget>
 
@@ -242,37 +242,42 @@
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-beans</artifactId>
-				<version>2.5.6.SEC03</version>
+				<version>3.2.14.RELEASE</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-context</artifactId>
-				<version>2.5.6.SEC03</version>
+				<version>3.2.14.RELEASE</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context-support</artifactId>
+				<version>3.2.14.RELEASE</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-webmvc</artifactId>
-				<version>2.5.6.SEC03</version>
+				<version>3.2.14.RELEASE</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-tx</artifactId>
-				<version>2.5.6.SEC03</version>
+				<version>3.2.14.RELEASE</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-config</artifactId>
+				<version>3.2.7.RELEASE</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework.security</groupId>
 				<artifactId>spring-security-core</artifactId>
-				<version>2.0.8.RELEASE</version>
-				<exclusions>
-					<exclusion>
-						<groupId>org.springframework</groupId>
-						<artifactId>spring-core</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>org.springframework</groupId>
-						<artifactId>spring-support</artifactId>
-					</exclusion>
-				</exclusions>
+				<version>3.2.7.RELEASE</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-web</artifactId>
+				<version>3.2.7.RELEASE</version>
 			</dependency>
 			<dependency>
 				<groupId>javainetlocator</groupId>
