@@ -58,7 +58,7 @@ public class DecoratorController extends ParameterizableViewController {
 
     Object uptimeStart = getServletContext().getAttribute(UptimeListener.START_TIME_KEY);
     if (uptimeStart != null && uptimeStart instanceof Long) {
-      long uptimeStartValue = ((Long) uptimeStart).longValue();
+      long uptimeStartValue = ((Long) uptimeStart);
       long uptime = System.currentTimeMillis() - uptimeStartValue;
       long uptimeDays = uptime / (1000 * 60 * 60 * 24);
 
@@ -68,9 +68,9 @@ public class DecoratorController extends ParameterizableViewController {
       uptime = uptime % (1000 * 60 * 60);
       long uptimeMins = uptime / (1000 * 60);
 
-      request.setAttribute("uptime_days", new Long(uptimeDays));
-      request.setAttribute("uptime_hours", new Long(uptimeHours));
-      request.setAttribute("uptime_mins", new Long(uptimeMins));
+      request.setAttribute("uptime_days", uptimeDays);
+      request.setAttribute("uptime_hours", uptimeHours);
+      request.setAttribute("uptime_mins", uptimeMins);
     }
 
     //

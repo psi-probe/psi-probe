@@ -73,7 +73,7 @@ public abstract class AbstractStatsCollectorBean {
       delta = value - previousValue;
       delta = delta > 0 ? delta : 0;
       buildAbsoluteStats(name, delta, time);
-      previousData.put(name, new Long(value));
+      previousData.put(name, value);
     }
     return delta;
   }

@@ -43,7 +43,7 @@ public class CatalinaLoggerAccessor extends AbstractLogDestination {
     String dir = (String) invokeMethod(getTarget(), "getDirectory", null, null);
     String prefix = (String) invokeMethod(getTarget(), "getPrefix", null, null);
     String suffix = (String) invokeMethod(getTarget(), "getSuffix", null, null);
-    boolean timestamp = ((Boolean) Instruments.getField(getTarget(), "timestamp")).booleanValue();
+    boolean timestamp = ((Boolean) Instruments.getField(getTarget(), "timestamp"));
     String date = timestamp ? new SimpleDateFormat("yyyy-MM-dd").format(new Date()) : "";
 
     File file =

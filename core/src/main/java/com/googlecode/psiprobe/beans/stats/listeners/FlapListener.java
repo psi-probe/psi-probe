@@ -109,7 +109,7 @@ public abstract class FlapListener extends ThresholdListener {
     float weightRange = highWeight - lowWeight;
     float result = 0;
     for (int i = list.size() - 1; i >= 0; i--) {
-      boolean thisFlap = ((Boolean) list.get(i)).booleanValue();
+      boolean thisFlap = ((Boolean) list.get(i));
       if (flapping != thisFlap) {
         float weight = lowWeight + (weightRange * i / (flapInterval - 1));
         result += weight;
@@ -121,7 +121,7 @@ public abstract class FlapListener extends ThresholdListener {
   protected void addFlap(String name, boolean flap) {
     int flapInterval = getFlapInterval(name);
     LinkedList list = getFlaps(name);
-    Boolean value = Boolean.valueOf(flap);
+    Boolean value = flap;
     list.addLast(value);
     while (list.size() > flapInterval) {
       list.removeFirst();
@@ -134,11 +134,11 @@ public abstract class FlapListener extends ThresholdListener {
       flapping = Boolean.FALSE;
       setFlappingState(name, false);
     }
-    return flapping.booleanValue();
+    return flapping;
   }
 
   protected void setFlappingState(String name, boolean flapping) {
-    flappingStates.put(name, Boolean.valueOf(flapping));
+    flappingStates.put(name, flapping);
   }
 
   protected LinkedList getFlaps(String name) {

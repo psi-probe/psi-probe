@@ -103,7 +103,7 @@ public class WhoisController extends ParameterizableViewController {
       }
     }
     return new ModelAndView(getViewName(), "result", lines)
-        .addObject("timeout", Boolean.valueOf(timeout))
+        .addObject("timeout", timeout)
         .addObject("whoisServer",
             wh != null ? wh.getServer() + ":" + wh.getPort() : defaultServer + ":" + defaultPort)
         .addObject("domainName", reverseName);

@@ -37,8 +37,7 @@ public class AllAppStatsController extends ParameterizableViewController {
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 
-    return super.handleRequestInternal(request, response).addObject("collectionPeriod",
-        new Long(getCollectionPeriod()));
+    return super.handleRequestInternal(request, response).addObject("collectionPeriod", getCollectionPeriod());
   }
 
 }

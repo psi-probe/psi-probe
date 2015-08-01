@@ -100,7 +100,7 @@ public abstract class ThresholdListener extends AbstractStatsCollectionListener 
   }
 
   protected void setPreviousValue(String name, long previousValue) {
-    Long value = new Long(previousValue);
+    Long value = previousValue;
     previousValues.put(name, value);
   }
 
@@ -109,11 +109,11 @@ public abstract class ThresholdListener extends AbstractStatsCollectionListener 
     if (disabled == null) {
       disabled = Boolean.FALSE;
     }
-    return disabled.booleanValue();
+    return disabled;
   }
 
   protected void setSeriesDisabled(String name, boolean disabled) {
-    seriesDisabled.put(name, Boolean.valueOf(disabled));
+    seriesDisabled.put(name, disabled);
   }
 
 }

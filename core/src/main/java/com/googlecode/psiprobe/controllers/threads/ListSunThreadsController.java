@@ -55,7 +55,7 @@ public class ListSunThreadsController extends ParameterizableViewController {
       for (long id : allIds) {
         CompositeData cd =
             (CompositeData) mbeanServer.invoke(threadingOName, "getThreadInfo", new Object[] {
-                new Long(id), new Integer(executionStackDepth)},
+              id, executionStackDepth},
                 new String[] {"long", "int"});
 
         if (cd != null) {

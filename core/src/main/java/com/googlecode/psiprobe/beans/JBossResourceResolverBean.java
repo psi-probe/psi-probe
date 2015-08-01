@@ -90,9 +90,9 @@ public class JBossResourceResolverBean implements ResourceResolver {
           }
           DataSourceInfo dsInfo = new DataSourceInfo();
           dsInfo.setMaxConnections(((Integer) server.getAttribute(managedConnectionPoolOName,
-              "MaxSize")).intValue());
+              "MaxSize")));
           dsInfo.setEstablishedConnections(((Integer) server.getAttribute(
-              managedConnectionPoolOName, "ConnectionCount")).intValue());
+              managedConnectionPoolOName, "ConnectionCount")));
           dsInfo.setBusyConnections(((Long) server.getAttribute(managedConnectionPoolOName,
               "InUseConnectionCount")).intValue());
 

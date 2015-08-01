@@ -86,8 +86,8 @@ public class MemoryPoolMailingListener extends FlapListener implements MessageSo
     if (isSeriesDisabled(name)) {
       return;
     }
-    Long value = new Long(sce.getValue());
-    Long threshold = new Long(this.getThreshold(name));
+    Long value = sce.getValue();
+    Long threshold = this.getThreshold(name);
     String subjectInfix = "";
     String bodyPrefix = "";
     if (flappingStop) {

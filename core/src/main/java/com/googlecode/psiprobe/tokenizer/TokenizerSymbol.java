@@ -46,7 +46,7 @@ public class TokenizerSymbol implements Comparable {
   }
 
   public int compareTo(Character chr) {
-    return chr.charValue() - startText.charAt(0);
+    return chr - startText.charAt(0);
   }
 
   public int compareTo(TokenizerSymbol symbol) {

@@ -45,7 +45,7 @@ public class JmxTools {
 
     try {
       Object obj = mbeanServer.getAttribute(objName, attrName);
-      return obj == null ? defaultValue : ((Long) obj).longValue();
+      return obj == null ? defaultValue : ((Long) obj);
     } catch (Exception e) {
       return defaultValue;
     }
@@ -54,7 +54,7 @@ public class JmxTools {
   public static long getLongAttr(CompositeData cds, String name) {
     Object obj = cds.get(name);
     if (obj != null && obj instanceof Long) {
-      return ((Long) obj).longValue();
+      return ((Long) obj);
     } else {
       return 0;
     }
@@ -63,20 +63,20 @@ public class JmxTools {
   public static long getLongAttr(MBeanServer mbeanServer, ObjectName objName, String attrName)
       throws Exception {
 
-    return ((Long) mbeanServer.getAttribute(objName, attrName)).longValue();
+    return ((Long) mbeanServer.getAttribute(objName, attrName));
   }
 
   public static int getIntAttr(MBeanServer mbeanServer, ObjectName objName, String attrName)
       throws Exception {
 
-    return ((Integer) mbeanServer.getAttribute(objName, attrName)).intValue();
+    return ((Integer) mbeanServer.getAttribute(objName, attrName));
   }
 
   public static int getIntAttr(CompositeData cds, String name, int defaultValue) {
     Object obj = cds.get(name);
 
     if (obj != null && obj instanceof Integer) {
-      return ((Integer) obj).intValue();
+      return ((Integer) obj);
     } else {
       return defaultValue;
     }
@@ -96,7 +96,7 @@ public class JmxTools {
 
   public static boolean getBooleanAttr(CompositeData cds, String name) {
     Object obj = cds.get(name);
-    return obj != null && obj instanceof Boolean && ((Boolean) obj).booleanValue();
+    return obj != null && obj instanceof Boolean && ((Boolean) obj);
   }
 
   public static boolean hasAttribute(MBeanServer server, ObjectName mbean, String attrName)

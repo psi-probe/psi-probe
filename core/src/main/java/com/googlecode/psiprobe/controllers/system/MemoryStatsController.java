@@ -51,7 +51,7 @@ public class MemoryStatsController extends ParameterizableViewController {
 
     ModelAndView mv = new ModelAndView(getViewName());
     mv.addObject("pools", getJvmMemoryInfoAccessorBean().getPools());
-    mv.addObject("collectionPeriod", new Long(getCollectionPeriod()));
+    mv.addObject("collectionPeriod", getCollectionPeriod());
     return mv;
   }
 

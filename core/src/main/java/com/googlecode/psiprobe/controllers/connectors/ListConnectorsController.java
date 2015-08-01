@@ -73,8 +73,8 @@ public class ListConnectorsController extends TomcatContainerController {
     }
 
     return new ModelAndView(getViewName()).addObject("connectors", connectors)
-        .addObject("workerThreadNameSupported", Boolean.valueOf(workerThreadNameSupported))
-        .addObject("collectionPeriod", new Long(getCollectionPeriod()));
+        .addObject("workerThreadNameSupported", workerThreadNameSupported)
+        .addObject("collectionPeriod", getCollectionPeriod());
   }
 
 }

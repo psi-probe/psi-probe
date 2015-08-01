@@ -82,11 +82,8 @@ public class GetApplicationController extends ContextHandlerController {
 
     return new ModelAndView(getViewName())
         .addObject("app", app)
-        .addObject(
-            "no_resources",
-            Boolean
-                .valueOf(!getContainerWrapper().getResourceResolver().supportsPrivateResources()))
-        .addObject("collectionPeriod", new Long(getCollectionPeriod()));
+        .addObject("no_resources", !getContainerWrapper().getResourceResolver().supportsPrivateResources())
+        .addObject("collectionPeriod", getCollectionPeriod());
   }
 
 }

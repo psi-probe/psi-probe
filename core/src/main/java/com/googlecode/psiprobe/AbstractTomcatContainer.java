@@ -458,8 +458,8 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
             item.setCompileTime(-1);
 
             Long[] objects = this.getResourceAttributes(name, ctx);
-            item.setSize(objects[0].longValue());
-            item.setLastModified(objects[1].longValue());
+            item.setSize(objects[0]);
+            item.setLastModified(objects[1]);
 
             long time = System.currentTimeMillis();
             try {

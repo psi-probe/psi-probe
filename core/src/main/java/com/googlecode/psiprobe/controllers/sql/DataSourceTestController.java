@@ -62,7 +62,7 @@ public class DataSourceTestController extends ParameterizableViewController {
         .addObject("historySize",
             String.valueOf(sessData == null ? getHistorySize() : sessData.getHistorySize()))
         .addObject("backURL", backUrl)
-        .addObject("collectionPeriod", new Long(getCollectionPeriod()));
+        .addObject("collectionPeriod", getCollectionPeriod());
   }
 
   public long getCollectionPeriod() {

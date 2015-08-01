@@ -37,7 +37,7 @@ public class RestartJvmController extends ParameterizableViewController {
     } catch (ClassNotFoundException e) {
       logger.info("WrapperManager not found. Do you have wrapper.jar in the classpath?");
     }
-    return new ModelAndView(getViewName(), "done", Boolean.valueOf(done));
+    return new ModelAndView(getViewName(), "done", done);
   }
 
 }

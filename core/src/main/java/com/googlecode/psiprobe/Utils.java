@@ -141,7 +141,7 @@ public class Utils {
   }
 
   public static int toInt(Integer num, int defaultValue) {
-    return num == null ? defaultValue : num.intValue();
+    return num == null ? defaultValue : num;
   }
 
   public static int toIntHex(String num, int defaultValue) {
@@ -167,7 +167,7 @@ public class Utils {
   }
 
   public static long toLong(Long num, long defaultValue) {
-    return num == null ? defaultValue : num.longValue();
+    return num == null ? defaultValue : num;
   }
 
   public static float toFloat(String num, float defaultValue) {

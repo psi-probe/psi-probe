@@ -85,7 +85,7 @@ public class SysInfoController extends TomcatContainerController {
     ModelAndView mv = new ModelAndView(getViewName());
     mv.addObject("systemInformation", systemInformation);
     mv.addObject("runtime", getRuntimeInfoAccessor().getRuntimeInformation());
-    mv.addObject("collectionPeriod", new Long(getCollectionPeriod()));
+    mv.addObject("collectionPeriod", getCollectionPeriod());
     return mv;
   }
 

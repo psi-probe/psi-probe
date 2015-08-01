@@ -85,8 +85,7 @@ public class ClusterWrapperBean {
       // JmxTools.getIntAttr(mBeanServer, receiverOName, "tcpThreadCount"));
 
       cluster.setSenderAckTimeout(JmxTools.getLongAttr(mbeanServer, senderOName, "ackTimeout"));
-      cluster.setSenderAutoConnect(((Boolean) mbeanServer.getAttribute(senderOName, "autoConnect"))
-          .booleanValue());
+      cluster.setSenderAutoConnect(((Boolean) mbeanServer.getAttribute(senderOName, "autoConnect")));
       cluster.setSenderFailureCounter(JmxTools.getLongAttr(mbeanServer, senderOName,
           "failureCounter"));
       cluster.setSenderNrOfRequests(JmxTools.getLongAttr(mbeanServer, senderOName, "nrOfRequests"));
@@ -123,17 +122,14 @@ public class ClusterWrapperBean {
               "connectCounter"));
           sender.setDisconnectCounter(JmxTools.getLongAttr(mbeanServer, localSenderOName,
               "disconnectCounter"));
-          sender.setConnected(((Boolean) mbeanServer.getAttribute(localSenderOName, "connected"))
-              .booleanValue());
+          sender.setConnected(((Boolean) mbeanServer.getAttribute(localSenderOName, "connected")));
           sender.setKeepAliveTimeout(JmxTools.getLongAttr(mbeanServer, localSenderOName,
               "keepAliveTimeout"));
           sender.setNrOfRequests(JmxTools
               .getLongAttr(mbeanServer, localSenderOName, "nrOfRequests"));
           sender.setTotalBytes(JmxTools.getLongAttr(mbeanServer, localSenderOName, "totalBytes"));
-          sender.setResend(((Boolean) mbeanServer.getAttribute(localSenderOName, "resend"))
-              .booleanValue());
-          sender.setSuspect(((Boolean) mbeanServer.getAttribute(localSenderOName, "suspect"))
-              .booleanValue());
+          sender.setResend(((Boolean) mbeanServer.getAttribute(localSenderOName, "resend")));
+          sender.setSuspect(((Boolean) mbeanServer.getAttribute(localSenderOName, "suspect")));
 
           if (sender instanceof PooledClusterSender) {
             ((PooledClusterSender) sender).setMaxPoolSocketLimit(JmxTools.getIntAttr(mbeanServer,
