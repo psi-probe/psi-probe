@@ -34,6 +34,7 @@ public class DataSourceTestController extends ParameterizableViewController {
   private String replacePattern;
   private long collectionPeriod;
 
+  @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 

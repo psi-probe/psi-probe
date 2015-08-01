@@ -47,6 +47,7 @@ public class VolumeTag extends TagSupport {
     this.fractions = fractions;
   }
 
+  @Override
   public int doStartTag() throws JspException {
     String title = Long.toString(value);
     String newValue = SizeExpression.format(value, fractions, true);

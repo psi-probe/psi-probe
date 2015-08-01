@@ -54,6 +54,7 @@ public class OutTag extends BodyTagSupport {
     this.ellipsisRight = ellipsisRight;
   }
 
+  @Override
   public int doStartTag() throws JspException {
     if (value != null) {
       print(value.toString(), pageContext.getOut());
@@ -63,6 +64,7 @@ public class OutTag extends BodyTagSupport {
     }
   }
 
+  @Override
   public int doAfterBody() throws JspException {
     print(getBodyContent().getString().trim(), getBodyContent().getEnclosingWriter());
     return SKIP_BODY;

@@ -43,6 +43,7 @@ public class DecoratorController extends ParameterizableViewController {
     this.messagesBasename = messagesBasename;
   }
 
+  @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 

@@ -31,6 +31,7 @@ public class FileLogAccessor extends AbstractLogDestination {
     this.name = name;
   }
 
+  @Override
   public String getTargetClass() {
     return "stdout";
   }
@@ -39,10 +40,12 @@ public class FileLogAccessor extends AbstractLogDestination {
     return "stdout";
   }
 
+  @Override
   public String getConversionPattern() {
     return "";
   }
 
+  @Override
   public File getFile() {
     return file;
   }

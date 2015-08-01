@@ -296,6 +296,7 @@ public class Tokenizer {
       return col;
     }
 
+    @Override
     public String toString() {
       return getText();
     }

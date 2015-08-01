@@ -31,10 +31,12 @@ public class Log4JAppenderAccessor extends AbstractLogDestination {
     this.loggerAccessor = loggerAccessor;
   }
 
+  @Override
   public boolean isContext() {
     return getLoggerAccessor().isContext();
   }
 
+  @Override
   public boolean isRoot() {
     return getLoggerAccessor().isRoot();
   }
@@ -47,10 +49,12 @@ public class Log4JAppenderAccessor extends AbstractLogDestination {
     return "log4j";
   }
 
+  @Override
   public String getIndex() {
     return (String) getProperty(getTarget(), "name", null);
   }
 
+  @Override
   public String getConversionPattern() {
     Object layout = getProperty(getTarget(), "layout", null);
     if (layout != null && "org.apache.log4j.PatternLayout".equals(layout.getClass().getName())) {
@@ -60,15 +64,18 @@ public class Log4JAppenderAccessor extends AbstractLogDestination {
     }
   }
 
+  @Override
   public File getFile() {
     String fileName = (String) getProperty(getTarget(), "file", null);
     return fileName != null ? new File(fileName) : getStdoutFile();
   }
 
+  @Override
   public String getLevel() {
     return getLoggerAccessor().getLevel();
   }
 
+  @Override
   public String[] getValidLevels() {
     return new String[] {"OFF", "FATAL", "ERROR", "WARN", "INFO", "DEBUG", "TRACE", "ALL"};
   }

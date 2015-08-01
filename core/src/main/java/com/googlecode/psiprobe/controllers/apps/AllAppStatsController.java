@@ -33,6 +33,7 @@ public class AllAppStatsController extends ParameterizableViewController {
     this.collectionPeriod = collectionPeriod;
   }
 
+  @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 

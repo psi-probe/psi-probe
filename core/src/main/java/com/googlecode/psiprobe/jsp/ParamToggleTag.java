@@ -33,6 +33,7 @@ public class ParamToggleTag extends TagSupport {
   private Log logger = LogFactory.getLog(getClass());
   private String param = "size";
 
+  @Override
   public int doStartTag() throws JspException {
     boolean getSize =
         ServletRequestUtils.getBooleanParameter(pageContext.getRequest(), param, false);

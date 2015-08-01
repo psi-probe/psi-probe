@@ -35,6 +35,7 @@ public class DurationTag extends TagSupport {
     this.value = value;
   }
 
+  @Override
   public int doStartTag() throws JspException {
     try {
       pageContext.getOut().write(duration(value));

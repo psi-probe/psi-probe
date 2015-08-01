@@ -221,6 +221,7 @@ public class ListSessionsController extends ContextHandlerController {
     return sessionMatches;
   }
 
+  @Override
   protected boolean isContextOptional() {
     return true;
   }

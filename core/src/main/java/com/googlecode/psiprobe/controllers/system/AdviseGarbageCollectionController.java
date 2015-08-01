@@ -36,6 +36,7 @@ public class AdviseGarbageCollectionController extends ParameterizableViewContro
     this.replacePattern = replacePattern;
   }
 
+  @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 

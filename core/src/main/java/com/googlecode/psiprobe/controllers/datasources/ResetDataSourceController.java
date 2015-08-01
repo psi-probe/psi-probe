@@ -74,6 +74,7 @@ public class ResetDataSourceController extends ContextHandlerController {
     return new ModelAndView(new RedirectView(redirectUrl));
   }
 
+  @Override
   protected boolean isContextOptional() {
     return !getContainerWrapper().getResourceResolver().supportsPrivateResources();
   }

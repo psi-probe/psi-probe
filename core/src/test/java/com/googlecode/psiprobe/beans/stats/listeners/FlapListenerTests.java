@@ -162,6 +162,7 @@ public class FlapListenerTests {
       setDefaultFlapHighWeight(highWeight);
     }
 
+    @Override
     public void statsCollected(StatsCollectionEvent sce) {
       resetFlags();
       super.statsCollected(sce);
@@ -187,10 +188,12 @@ public class FlapListenerTests {
       belowThresholdNotFlapping = true;
     }
 
+    @Override
     public long getThreshold(String name) {
       return threshold;
     }
 
+    @Override
     public void reset() {
       resetFlags();
       super.reset();

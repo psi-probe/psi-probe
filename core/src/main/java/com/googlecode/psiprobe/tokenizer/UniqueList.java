@@ -35,6 +35,7 @@ import java.util.Vector;
  */
 public class UniqueList extends Vector {
 
+  @Override
   public synchronized boolean add(Object obj) {
     return add(obj, null);
   }
@@ -58,10 +59,12 @@ public class UniqueList extends Vector {
     }
   }
 
+  @Override
   public synchronized void insertElementAt(Object obj, int index) {
     add(obj);
   }
 
+  @Override
   public synchronized boolean addAll(Collection comp) {
     boolean ok = this != comp;
     if (ok) {

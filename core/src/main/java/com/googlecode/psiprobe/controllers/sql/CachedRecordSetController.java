@@ -30,6 +30,7 @@ import javax.servlet.http.HttpSession;
  * @author Andy Shapoval
  */
 public class CachedRecordSetController extends ParameterizableViewController {
+  @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 

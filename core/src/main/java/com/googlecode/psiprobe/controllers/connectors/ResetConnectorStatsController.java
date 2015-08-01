@@ -37,6 +37,7 @@ public class ResetConnectorStatsController extends ParameterizableViewController
     this.collectorBean = collectorBean;
   }
 
+  @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 

@@ -190,6 +190,7 @@ public class ExecuteSqlController extends ContextHandlerController {
     return new ModelAndView(getViewName());
   }
 
+  @Override
   protected boolean isContextOptional() {
     return true;
   }

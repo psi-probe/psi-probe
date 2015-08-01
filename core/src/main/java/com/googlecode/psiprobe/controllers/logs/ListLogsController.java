@@ -48,6 +48,7 @@ public class ListLogsController extends ParameterizableViewController {
     this.logResolver = logResolver;
   }
 
+  @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 

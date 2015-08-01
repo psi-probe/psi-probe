@@ -72,6 +72,7 @@ public class VisualScoreTag extends BodyTagSupport {
   private boolean showA = false;
   private boolean showB = false;
 
+  @Override
   public int doAfterBody() throws JspException {
     BodyContent bc = getBodyContent();
     String body = bc.getString().trim();

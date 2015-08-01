@@ -63,6 +63,7 @@ public class WhoisController extends ParameterizableViewController {
     this.defaultPort = defaultPort;
   }
 
+  @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 

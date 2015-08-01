@@ -52,6 +52,7 @@ public class ListServletMapsController extends ContextHandlerController {
     return new ModelAndView(getViewName(), "servletMaps", servletMaps);
   }
 
+  @Override
   protected boolean isContextOptional() {
     return true;
   }

@@ -31,6 +31,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class FollowController extends LogHandlerController {
 
+  @Override
   protected ModelAndView handleLogFile(HttpServletRequest request, HttpServletResponse response,
       LogDestination logDest) throws Exception {
 

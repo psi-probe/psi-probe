@@ -29,6 +29,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class GetClassLoaderUrlsController extends ParameterizableViewController {
 
+  @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 

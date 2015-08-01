@@ -32,10 +32,12 @@ public class LogbackAppenderAccessor extends AbstractLogDestination {
     this.loggerAccessor = loggerAccessor;
   }
 
+  @Override
   public boolean isContext() {
     return getLoggerAccessor().isContext();
   }
 
+  @Override
   public boolean isRoot() {
     return getLoggerAccessor().isRoot();
   }
@@ -59,6 +61,7 @@ public class LogbackAppenderAccessor extends AbstractLogDestination {
    * 
    * @return the name of this appender.
    */
+  @Override
   public String getIndex() {
     return (String) getProperty(getTarget(), "name", null);
   }
@@ -74,6 +77,7 @@ public class LogbackAppenderAccessor extends AbstractLogDestination {
    * 
    * @return the file this appender writes to
    */
+  @Override
   public File getFile() {
     String fileName = (String) getProperty(getTarget(), "file", null);
     return fileName != null ? new File(fileName) : getStdoutFile();
@@ -84,6 +88,7 @@ public class LogbackAppenderAccessor extends AbstractLogDestination {
    * 
    * @return the logger's level
    */
+  @Override
   public String getLevel() {
     return getLoggerAccessor().getLevel();
   }
@@ -97,6 +102,7 @@ public class LogbackAppenderAccessor extends AbstractLogDestination {
    * 
    * @return the valid log level names
    */
+  @Override
   public String[] getValidLevels() {
     return new String[] {"OFF", "ERROR", "WARN", "INFO", "DEBUG", "TRACE", "ALL"};
   }

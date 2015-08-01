@@ -49,6 +49,7 @@ public class ProbeServlet extends DispatcherServlet implements ContainerServlet 
    * @param config this servlet's configuration and initialization parameters
    * @throws ServletException if the wrapper is null or another servlet-interrupting error occurs
    */
+  @Override
   public void init(ServletConfig config) throws ServletException {
     super.init(config);
     if (wrapper != null) {
@@ -58,6 +59,7 @@ public class ProbeServlet extends DispatcherServlet implements ContainerServlet 
     }
   }
 
+  @Override
   protected void doDispatch(HttpServletRequest httpServletRequest,
       HttpServletResponse httpServletResponse) throws Exception {
 
@@ -65,6 +67,7 @@ public class ProbeServlet extends DispatcherServlet implements ContainerServlet 
     super.doDispatch(httpServletRequest, httpServletResponse);
   }
 
+  @Override
   public void destroy() {
     getContainerWrapperBean().setWrapper(null);
     super.destroy();

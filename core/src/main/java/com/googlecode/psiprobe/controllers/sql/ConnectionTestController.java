@@ -98,6 +98,7 @@ public class ConnectionTestController extends ContextHandlerController {
     return new ModelAndView(getViewName());
   }
 
+  @Override
   protected boolean isContextOptional() {
     return true;
   }

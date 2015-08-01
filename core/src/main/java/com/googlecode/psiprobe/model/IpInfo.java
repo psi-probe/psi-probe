@@ -47,6 +47,7 @@ public class IpInfo {
     this.address = address;
   }
 
+  @Override
   public String toString() {
     return address;
   }

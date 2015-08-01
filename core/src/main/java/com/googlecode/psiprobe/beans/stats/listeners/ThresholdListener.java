@@ -58,6 +58,7 @@ public abstract class ThresholdListener extends AbstractStatsCollectionListener 
     setPreviousValue(name, value);
   }
 
+  @Override
   public void reset() {
     previousValues.clear();
     super.reset();

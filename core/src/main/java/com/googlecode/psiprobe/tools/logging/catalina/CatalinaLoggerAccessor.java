@@ -25,6 +25,7 @@ import java.util.Date;
  */
 public class CatalinaLoggerAccessor extends AbstractLogDestination {
 
+  @Override
   public boolean isContext() {
     return true;
   }
@@ -37,6 +38,7 @@ public class CatalinaLoggerAccessor extends AbstractLogDestination {
     return "catalina";
   }
 
+  @Override
   public File getFile() {
     String dir = (String) invokeMethod(getTarget(), "getDirectory", null, null);
     String prefix = (String) invokeMethod(getTarget(), "getPrefix", null, null);

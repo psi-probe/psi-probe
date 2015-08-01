@@ -29,6 +29,7 @@ import javax.servlet.http.HttpSession;
  */
 public class QueryHistoryController extends ParameterizableViewController {
 
+  @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 

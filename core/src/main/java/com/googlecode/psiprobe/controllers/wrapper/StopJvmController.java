@@ -34,6 +34,7 @@ public class StopJvmController extends ParameterizableViewController {
     this.stopExitCode = stopExitCode;
   }
 
+  @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 

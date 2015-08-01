@@ -38,6 +38,7 @@ public class KillThreadController extends ParameterizableViewController {
     this.replacePattern = replacePattern;
   }
 
+  @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 

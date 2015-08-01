@@ -59,6 +59,7 @@ public abstract class FlapListener extends ThresholdListener {
     statsCollected(sce, false, false);
   }
 
+  @Override
   public void reset() {
     flaps.clear();
     flappingStates.clear();

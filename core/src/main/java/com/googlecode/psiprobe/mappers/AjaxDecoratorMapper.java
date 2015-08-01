@@ -31,6 +31,7 @@ public class AjaxDecoratorMapper extends AbstractDecoratorMapper {
 
   private String ajaxExtension = ".ajax";
 
+  @Override
   public void init(Config config, Properties properties, DecoratorMapper decoratorMapper)
       throws InstantiationException {
 
@@ -40,6 +41,7 @@ public class AjaxDecoratorMapper extends AbstractDecoratorMapper {
     }
   }
 
+  @Override
   public Decorator getDecorator(HttpServletRequest request, Page page) {
 
     boolean callMapperChain;

@@ -61,6 +61,7 @@ public class ListServletsController extends ContextHandlerController {
     return new ModelAndView(getViewName(), "servlets", servlets);
   }
 
+  @Override
   protected boolean isContextOptional() {
     return true;
   }

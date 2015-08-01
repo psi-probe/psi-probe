@@ -38,6 +38,7 @@ public class LogHandlerController extends ParameterizableViewController {
     this.logResolver = logResolver;
   }
 
+  @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 

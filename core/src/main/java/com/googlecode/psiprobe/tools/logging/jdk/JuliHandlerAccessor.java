@@ -22,6 +22,7 @@ import java.io.File;
  */
 public class JuliHandlerAccessor extends Jdk14HandlerAccessor {
 
+  @Override
   public File getFile() {
     String dir = (String) Instruments.getField(getTarget(), "directory");
     String prefix = (String) Instruments.getField(getTarget(), "prefix");

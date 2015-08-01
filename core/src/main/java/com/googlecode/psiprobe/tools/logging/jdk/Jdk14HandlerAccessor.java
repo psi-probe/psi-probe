@@ -33,10 +33,12 @@ public class Jdk14HandlerAccessor extends AbstractLogDestination {
     this.loggerAccessor = loggerAccessor;
   }
 
+  @Override
   public boolean isContext() {
     return getLoggerAccessor().isContext();
   }
 
+  @Override
   public boolean isRoot() {
     return getLoggerAccessor().isRoot();
   }
@@ -45,6 +47,7 @@ public class Jdk14HandlerAccessor extends AbstractLogDestination {
     return getLoggerAccessor().getName();
   }
 
+  @Override
   public String getIndex() {
     return index;
   }
@@ -57,6 +60,7 @@ public class Jdk14HandlerAccessor extends AbstractLogDestination {
     return "jdk";
   }
 
+  @Override
   public String getLevel() {
     return getLoggerAccessor().getLevel();
   }
@@ -71,6 +75,7 @@ public class Jdk14HandlerAccessor extends AbstractLogDestination {
     }
   }
 
+  @Override
   public String[] getValidLevels() {
     return new String[] {"OFF", "SEVERE", "WARNING", "INFO", "CONFIG", "FINE", "FINER", "FINEST",
         "ALL"};

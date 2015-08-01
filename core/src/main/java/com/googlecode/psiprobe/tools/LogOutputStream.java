@@ -68,6 +68,7 @@ public class LogOutputStream extends OutputStream {
   /**
    * Flushes the contents of this stream to its {@link Log}.
    */
+  @Override
   public void flush() {
     if (shouldWrite()) {
       String message = buf.toString();

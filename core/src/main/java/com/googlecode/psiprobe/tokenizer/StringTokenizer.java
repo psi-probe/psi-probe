@@ -30,6 +30,7 @@ public class StringTokenizer extends Tokenizer {
     setReader(new StringReader(str));
   }
 
+  @Override
   public boolean hasMore() {
     try {
       return super.hasMore();
@@ -38,6 +39,7 @@ public class StringTokenizer extends Tokenizer {
     }
   }
 
+  @Override
   public Token getToken() {
     try {
       return super.getToken();
@@ -46,6 +48,7 @@ public class StringTokenizer extends Tokenizer {
     }
   }
 
+  @Override
   public Token nextToken() {
     try {
       return super.nextToken();

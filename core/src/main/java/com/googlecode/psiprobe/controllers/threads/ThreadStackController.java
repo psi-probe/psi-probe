@@ -44,6 +44,7 @@ public class ThreadStackController extends ParameterizableViewController {
     this.stackElementCount = stackElementCount;
   }
 
+  @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 

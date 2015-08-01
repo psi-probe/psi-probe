@@ -104,10 +104,12 @@ public class ThresholdListenerTests {
       remainedBelowThreshold = true;
     }
 
+    @Override
     public long getThreshold(String name) {
       return threshold;
     }
 
+    @Override
     public void reset() {
       resetFlags();
       super.reset();

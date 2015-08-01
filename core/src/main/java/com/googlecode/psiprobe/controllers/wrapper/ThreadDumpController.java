@@ -24,6 +24,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ThreadDumpController extends ParameterizableViewController {
 
+  @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 
