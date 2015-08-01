@@ -33,8 +33,7 @@ public class SecurityUtils {
       HttpServletRequest request) {
 
     String[] privilegedRoles = getPrivilegedRoles(servletContext).split(",");
-    for (int i = 0; i < privilegedRoles.length; i++) {
-      String privilegedRole = privilegedRoles[i];
+    for (String privilegedRole : privilegedRoles) {
       if (userHasRole(privilegedRole)) {
         return true;
       }

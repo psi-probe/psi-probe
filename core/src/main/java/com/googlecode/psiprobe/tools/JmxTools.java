@@ -104,8 +104,8 @@ public class JmxTools {
 
     MBeanInfo info = server.getMBeanInfo(mbean);
     MBeanAttributeInfo[] ai = info.getAttributes();
-    for (int i = 0; i < ai.length; i++) {
-      if (ai[i].getName().equals(attrName)) {
+    for (MBeanAttributeInfo attribInfo : ai) {
+      if (attribInfo.getName().equals(attrName)) {
         return true;
       }
     }

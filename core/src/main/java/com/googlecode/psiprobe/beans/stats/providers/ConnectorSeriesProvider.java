@@ -14,6 +14,7 @@ package com.googlecode.psiprobe.beans.stats.providers;
 import com.googlecode.psiprobe.model.stats.StatsCollection;
 
 import org.jfree.data.xy.DefaultTableXYDataset;
+import org.jfree.data.xy.XYDataItem;
 import org.springframework.web.bind.ServletRequestUtils;
 
 import java.util.List;
@@ -39,7 +40,7 @@ public class ConnectorSeriesProvider extends AbstractSeriesProvider {
     String series1Legend = ServletRequestUtils.getStringParameter(request, "sl", "");
 
     if (connectorName != null && statType != null) {
-      List stats = statsCollection.getStats("stat.connector." + connectorName + "." + statType);
+      List<XYDataItem> stats = statsCollection.getStats("stat.connector." + connectorName + "." + statType);
       if (stats != null) {
         dataset.addSeries(toSeries(series1Legend, stats));
       }

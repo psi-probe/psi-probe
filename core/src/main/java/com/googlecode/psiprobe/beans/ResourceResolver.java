@@ -11,6 +11,8 @@
 
 package com.googlecode.psiprobe.beans;
 
+import com.googlecode.psiprobe.model.ApplicationResource;
+
 import org.apache.catalina.Context;
 
 import java.util.List;
@@ -59,7 +61,7 @@ public interface ResourceResolver {
    */
   boolean supportsDataSourceLookup();
 
-  List getApplicationResources() throws NamingException;
+  List<ApplicationResource> getApplicationResources() throws NamingException;
 
   List getApplicationResources(Context context, ContainerWrapperBean containerWrapper)
       throws NamingException;

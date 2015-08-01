@@ -27,12 +27,10 @@ import org.springframework.web.context.WebApplicationContext;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -47,7 +45,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
 
   private Log logger = LogFactory.getLog(this.getClass());
 
-  private Map statsData = new TreeMap();
+  private Map<String, List<XYDataItem>> statsData = new TreeMap<String, List<XYDataItem>>();
   private String swapFileName;
   private String storagePath = null;
   private File contextTempDir;
@@ -83,7 +81,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
   }
 
   public synchronized List newStats(String name, int maxElements) {
-    List stats = Collections.synchronizedList(new ArrayList(maxElements));
+    List<XYDataItem> stats = Collections.synchronizedList(new ArrayList<XYDataItem>(maxElements));
     statsData.put(name, stats);
     return stats;
   }
@@ -95,16 +93,16 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
     }
   }
 
-  public synchronized List getStats(String name) {
-    return (List) statsData.get(name);
+  public synchronized List<XYDataItem> getStats(String name) {
+    return statsData.get(name);
   }
 
   public long getLastValueForStat(String statName) {
     long statValue = 0;
 
-    List stats = getStats(statName);
+    List<XYDataItem> stats = getStats(statName);
     if (stats != null && !stats.isEmpty()) {
-      XYDataItem xy = (XYDataItem) stats.get(stats.size() - 1);
+      XYDataItem xy = stats.get(stats.size() - 1);
       if (xy != null && xy.getY() != null) {
         statValue = xy.getY().longValue();
       }
@@ -120,11 +118,10 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
    * @return a Map of matching stats. Map keys are stat names and map values are corresponding
    *         series.
    */
-  public synchronized Map getStatsByPrefix(String statNamePrefix) {
-    Map map = new HashMap();
-    for (Iterator i = statsData.entrySet().iterator(); i.hasNext();) {
-      Map.Entry en = (Map.Entry) i.next();
-      if (((String) en.getKey()).startsWith(statNamePrefix)) {
+  public synchronized Map<String, List<XYDataItem>> getStatsByPrefix(String statNamePrefix) {
+    Map<String, List<XYDataItem>> map = new HashMap<String, List<XYDataItem>>();
+    for (Map.Entry<String, List<XYDataItem>> en : statsData.entrySet()) {
+      if (en.getKey().startsWith(statNamePrefix)) {
         map.put(en.getKey(), en.getValue());
       }
     }
@@ -171,14 +168,14 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
     }
   }
 
-  private Map deserialize(File file) {
-    Map stats = null;
+  private Map<String, List<XYDataItem>> deserialize(File file) {
+    Map<String, List<XYDataItem>> stats = null;
     if (file.exists() && file.canRead()) {
       long start = System.currentTimeMillis();
       try {
         FileInputStream fis = new FileInputStream(file);
         try {
-          stats = (Map) (new XStream().fromXML(fis));
+          stats = (Map<String, List<XYDataItem>>) (new XStream().fromXML(fis));
 
           if (stats != null) {
             // adjust stats data so that charts look realistic.
@@ -189,10 +186,10 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
             // and lets not bother about rotating stats;
             // regular stats collection cycle will do it
 
-            for (Iterator it = stats.keySet().iterator(); it.hasNext();) {
-              List list = (List) stats.get(it.next());
+            for (String key : stats.keySet()) {
+              List<XYDataItem> list = stats.get(key);
               if (list.size() > 0) {
-                XYDataItem xy = (XYDataItem) list.get(list.size() - 1);
+                XYDataItem xy = list.get(list.size() - 1);
                 list.add(new XYDataItem(xy.getX().longValue() + 1, 0));
                 list.add(new XYDataItem(System.currentTimeMillis(), 0));
               }
@@ -229,7 +226,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
    */
   public synchronized void afterPropertiesSet() {
     int index = 0;
-    Map stats;
+    Map<String, List<XYDataItem>> stats;
 
     while (true) {
       File file = index == 0 ? makeFile() : new File(makeFile().getAbsolutePath() + "." + index);
@@ -247,7 +244,6 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
     }
 
   }
-
 
   public void destroy() throws Exception {
     serialize();

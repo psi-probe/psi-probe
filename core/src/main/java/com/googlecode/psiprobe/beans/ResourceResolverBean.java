@@ -58,9 +58,9 @@ public class ResourceResolverBean implements ResourceResolver {
 
   private List datasourceMappers;
 
-  public List getApplicationResources() throws NamingException {
+  public List<ApplicationResource> getApplicationResources() throws NamingException {
     logger.info("Reading GLOBAL resources");
-    List resources = new ArrayList();
+    List<ApplicationResource> resources = new ArrayList<ApplicationResource>();
 
     MBeanServer server = getMBeanServer();
     if (server != null) {
@@ -92,7 +92,7 @@ public class ResourceResolverBean implements ResourceResolver {
   public synchronized List getApplicationResources(Context context,
       ContainerWrapperBean containerWrapper) throws NamingException {
 
-    List resourceList = new ArrayList();
+    List<ApplicationResource> resourceList = new ArrayList<ApplicationResource>();
 
     boolean contextAvailable = containerWrapper.getTomcatContainer().getAvailable(context);
     if (contextAvailable) {
@@ -116,8 +116,8 @@ public class ResourceResolverBean implements ResourceResolver {
         containerWrapper.getTomcatContainer()
             .addContextResourceLink(context, resourceList, contextBound);
 
-        for (int i = 0; i < resourceList.size(); i++) {
-          lookupResource((ApplicationResource) resourceList.get(i), contextBound, false);
+        for (ApplicationResource resourceList1 : resourceList) {
+          lookupResource(resourceList1, contextBound, false);
         }
 
       } finally {

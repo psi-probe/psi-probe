@@ -46,8 +46,8 @@ import javax.management.RuntimeOperationsException;
 public class ContainerListenerBean implements NotificationListener {
 
   private Log logger = LogFactory.getLog(getClass());
-  private List poolNames = null;
-  private List executorNames = null;
+  private List<ThreadPoolObjectName> poolNames = null;
+  private List<ObjectName> executorNames = null;
 
   /**
    * Used to obtain required {@link MBeanServer} instance.
@@ -231,20 +231,20 @@ public class ContainerListenerBean implements NotificationListener {
     return threadPools;
   }
 
-  public synchronized List getConnectors(boolean includeRequestProcessors) throws Exception {
+  public synchronized List<Connector> getConnectors(boolean includeRequestProcessors)
+      throws Exception {
+
     boolean workerThreadNameSupported = true;
 
     if (!isInitialized()) {
       initialize();
     }
 
-    List connectors = new ArrayList(poolNames.size());
+    List<Connector> connectors = new ArrayList<Connector>(poolNames.size());
 
     MBeanServer server = getContainerWrapper().getResourceResolver().getMBeanServer();
 
-    for (Iterator it = poolNames.iterator(); it.hasNext();) {
-
-      ThreadPoolObjectName threadPoolObjectName = (ThreadPoolObjectName) it.next();
+    for (ThreadPoolObjectName threadPoolObjectName : poolNames) {
       boolean remoteAddrAvailable = true;
       try {
         ObjectName poolName = threadPoolObjectName.getThreadPoolName();

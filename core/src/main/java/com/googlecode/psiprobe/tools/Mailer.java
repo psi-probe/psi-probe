@@ -16,6 +16,7 @@ import org.apache.commons.logging.LogFactory;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 
@@ -123,8 +124,7 @@ public class Mailer {
 
     // Create attachments
     DataSource[] attachments = mailMessage.getAttachmentsArray();
-    for (int i = 0; i < attachments.length; i++) {
-      DataSource attachment = attachments[i];
+    for (DataSource attachment : attachments) {
       MimeBodyPart attachmentPart = createAttachmentPart(attachment);
       content.addBodyPart(attachmentPart);
     }
@@ -159,13 +159,9 @@ public class Mailer {
 
   private static InternetAddress[] createAddresses(String[] addresses) throws AddressException {
     List/* InternetAddress */result = new ArrayList(addresses.length);
-    for (int i = 0; i < addresses.length; i++) {
-      String address = addresses[i];
+    for (String address : addresses) {
       InternetAddress[] parsedAddresses = InternetAddress.parse(address);
-      for (int j = 0; j < parsedAddresses.length; j++) {
-        InternetAddress parsedAddress = parsedAddresses[j];
-        result.add(parsedAddress);
-      }
+      result.addAll(Arrays.asList(parsedAddresses));
     }
     return (InternetAddress[]) result.toArray(new InternetAddress[result.size()]);
   }

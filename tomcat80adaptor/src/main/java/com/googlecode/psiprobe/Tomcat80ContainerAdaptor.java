@@ -186,17 +186,17 @@ public class Tomcat80ContainerAdaptor extends AbstractTomcatContainer {
     String[] urls = fmap.getURLPatterns();
     String[] servlets = fmap.getServletNames();
     List filterMappings = new ArrayList(urls.length + servlets.length);
-    for (int i = 0; i < urls.length; i++) {
+    for (String url : urls) {
       FilterMapping fm = new FilterMapping();
-      fm.setUrl(urls[i]);
+      fm.setUrl(url);
       fm.setFilterName(fmap.getFilterName());
       fm.setDispatcherMap(dm);
       fm.setFilterClass(filterClass);
       filterMappings.add(fm);
     }
-    for (int i = 0; i < servlets.length; i++) {
+    for (String servlet : servlets) {
       FilterMapping fm = new FilterMapping();
-      fm.setServletName(servlets[i]);
+      fm.setServletName(servlet);
       fm.setFilterName(fmap.getFilterName());
       fm.setDispatcherMap(dm);
       fm.setFilterClass(filterClass);
@@ -237,11 +237,7 @@ public class Tomcat80ContainerAdaptor extends AbstractTomcatContainer {
 
   @Override
   public void addContextResourceLink(Context context, List resourceList, boolean contextBound) {
-
-    ContextResourceLink[] resourceLinks = context.getNamingResources().findResourceLinks();
-    for (int i = 0; i < resourceLinks.length; i++) {
-      ContextResourceLink link = resourceLinks[i];
-
+    for (ContextResourceLink link : context.getNamingResources().findResourceLinks()) {
       ApplicationResource resource = new ApplicationResource();
       logger.debug("reading resourceLink: " + link.getName());
       resource.setApplicationName(context.getName());
@@ -257,9 +253,7 @@ public class Tomcat80ContainerAdaptor extends AbstractTomcatContainer {
   @Override
   public void addContextResource(Context context, List resourceList, boolean contextBound) {
     NamingResourcesImpl namingResources = context.getNamingResources();
-    ContextResource[] resources = namingResources.findResources();
-    for (int i = 0; i < resources.length; i++) {
-      ContextResource contextResource = resources[i];
+    for (ContextResource contextResource : namingResources.findResources()) {
       ApplicationResource resource = new ApplicationResource();
 
       logger.info("reading resource: " + contextResource.getName());
@@ -279,10 +273,10 @@ public class Tomcat80ContainerAdaptor extends AbstractTomcatContainer {
   public List getApplicationFilterMaps(Context context) {
     FilterMap[] fms = context.findFilterMaps();
     List filterMaps = new ArrayList(fms.length);
-    for (int i = 0; i < fms.length; i++) {
-      if (fms[i] != null) {
+    for (FilterMap filterMap : fms) {
+      if (filterMap != null) {
         String dm;
-        switch (fms[i].getDispatcherMapping()) {
+        switch (filterMap.getDispatcherMapping()) {
           case FilterMap.ERROR:
             dm = "ERROR";
             break;
@@ -312,13 +306,12 @@ public class Tomcat80ContainerAdaptor extends AbstractTomcatContainer {
         }
 
         String filterClass = "";
-        org.apache.tomcat.util.descriptor.web.FilterDef fd =
-            context.findFilterDef(fms[i].getFilterName());
+        FilterDef fd = context.findFilterDef(filterMap.getFilterName());
         if (fd != null) {
           filterClass = fd.getFilterClass();
         }
 
-        List filterMappings = getFilterMappings(fms[i], dm, filterClass);
+        List filterMappings = getFilterMappings(filterMap, dm, filterClass);
         filterMaps.addAll(filterMappings);
       }
     }
@@ -329,9 +322,9 @@ public class Tomcat80ContainerAdaptor extends AbstractTomcatContainer {
   public List getApplicationFilters(Context context) {
     FilterDef[] fds = context.findFilterDefs();
     List filterDefs = new ArrayList(fds.length);
-    for (int i = 0; i < fds.length; i++) {
-      if (fds[i] != null) {
-        FilterInfo fi = getFilterInfo(fds[i]);
+    for (FilterDef filterDef : fds) {
+      if (filterDef != null) {
+        FilterInfo fi = getFilterInfo(filterDef);
         filterDefs.add(fi);
       }
     }
@@ -369,10 +362,9 @@ public class Tomcat80ContainerAdaptor extends AbstractTomcatContainer {
      * ovevridden in a deployment descriptor.
      */
     Set nonOverridableParams = new HashSet();
-    ApplicationParameter[] appParams = context.findApplicationParameters();
-    for (int i = 0; i < appParams.length; i++) {
-      if (appParams[i] != null && !appParams[i].getOverride()) {
-        nonOverridableParams.add(appParams[i].getName());
+    for (ApplicationParameter appParam : context.findApplicationParameters()) {
+      if (appParam != null && !appParam.getOverride()) {
+        nonOverridableParams.add(appParam.getName());
       }
     }
 

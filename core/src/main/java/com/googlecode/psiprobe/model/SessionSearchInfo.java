@@ -184,10 +184,10 @@ public class SessionSearchInfo implements Serializable {
       if (attrNames.length == 0 && !attrName.equals("")) {
         attrNameMsgs.add("");
       } else {
-        for (int i = 0; i < attrNames.length; i++) {
+        for (String regex : attrNames) {
           try {
-            attrNamePatterns.add(Pattern.compile(attrNames[i]));
-          } catch (PatternSyntaxException e) {
+            attrNamePatterns.add(Pattern.compile(regex));
+          }catch (PatternSyntaxException e) {
             attrNameMsgs.add(e.getDescription());
           }
         }

@@ -45,7 +45,7 @@ public class ContainerWrapperBean {
   /**
    * List of class names to adapt particular Tomcat implementation to TomcatContainer interface
    */
-  private List adaptorClasses;
+  private List<String> adaptorClasses;
 
   private ResourceResolver resourceResolver;
 
@@ -70,8 +70,7 @@ public class ContainerWrapperBean {
 
           String serverInfo = ServerInfo.getServerInfo();
           logger.info("Server info: " + serverInfo);
-          for (int i = 0; i < adaptorClasses.size(); i++) {
-            String className = (String) adaptorClasses.get(i);
+          for (String className : adaptorClasses) {
             try {
               Object obj = Class.forName(className).newInstance();
               logger.debug("Testing container adaptor: " + className);
@@ -129,11 +128,11 @@ public class ContainerWrapperBean {
     return tomcatContainer;
   }
 
-  public List getAdaptorClasses() {
+  public List<String> getAdaptorClasses() {
     return adaptorClasses;
   }
 
-  public void setAdaptorClasses(List adaptorClasses) {
+  public void setAdaptorClasses(List<String> adaptorClasses) {
     this.adaptorClasses = adaptorClasses;
   }
 
@@ -158,8 +157,8 @@ public class ContainerWrapperBean {
     this.resourceResolvers = resourceResolvers;
   }
 
-  public List getDataSources() throws Exception {
-    List resources = new ArrayList();
+  public List<ApplicationResource> getDataSources() throws Exception {
+    List<ApplicationResource> resources = new ArrayList<ApplicationResource>();
     resources.addAll(getPrivateDataSources());
     resources.addAll(getGlobalDataSources());
     return resources;
@@ -168,11 +167,8 @@ public class ContainerWrapperBean {
   public List getPrivateDataSources() throws Exception {
     List resources = new ArrayList();
     if (tomcatContainer != null && getResourceResolver().supportsPrivateResources()) {
-      List apps = getTomcatContainer().findContexts();
-
-      for (int i = 0; i < apps.size(); i++) {
-        List appResources =
-            getResourceResolver().getApplicationResources((Context) apps.get(i), this);
+      for (Context app : getTomcatContainer().findContexts()) {
+        List appResources = getResourceResolver().getApplicationResources(app, this);
         // add only those resources that have data source info
         filterDataSources(appResources, resources);
       }

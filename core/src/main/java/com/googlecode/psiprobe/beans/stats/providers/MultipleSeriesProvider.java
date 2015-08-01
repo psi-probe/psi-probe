@@ -79,12 +79,12 @@ public class MultipleSeriesProvider extends AbstractSeriesProvider {
   public void populate(DefaultTableXYDataset dataset, StatsCollection statsCollection,
       HttpServletRequest request) {
 
-    Map statMap = statsCollection.getStatsByPrefix(statNamePrefix);
+    Map<String, List<XYDataItem>> statMap = statsCollection.getStatsByPrefix(statNamePrefix);
     boolean useTop = getTop() > 0 && getTop() < statMap.size();
-    List seriesList = new ArrayList();
+    List<Series> seriesList = new ArrayList<Series>();
 
-    for (Iterator i = statMap.entrySet().iterator(); i.hasNext();) {
-      Series ser = new Series((Map.Entry) i.next());
+    for (Map.Entry<String, List<XYDataItem>> entry : statMap.entrySet()) {
+      Series ser = new Series(entry);
       if (useTop) {
         ser.calculateAvg();
       }
@@ -93,10 +93,8 @@ public class MultipleSeriesProvider extends AbstractSeriesProvider {
 
     if (useTop) {
       // sorting stats by the avg value to identify the top series
-      Collections.sort(seriesList, new Comparator() {
-        public int compare(Object o1, Object o2) {
-          Series s1 = (Series) o1;
-          Series s2 = (Series) o2;
+      Collections.sort(seriesList, new Comparator<Series>() {
+        public int compare(Series s1, Series s2) {
           return s1.avg == s2.avg ? s1.key.compareTo(s2.key) : (s1.avg > s2.avg ? -1 : 1);
         }
       });
@@ -109,14 +107,13 @@ public class MultipleSeriesProvider extends AbstractSeriesProvider {
     }
 
     // sorting the remaining series by name
-    Collections.sort(seriesList, new Comparator() {
-      public int compare(Object o1, Object o2) {
-        return (((Series) o1).key).compareTo(((Series) o2).key);
+    Collections.sort(seriesList, new Comparator<Series>() {
+      public int compare(Series s1, Series s2) {
+        return (s1.key).compareTo(s2.key);
       }
     });
 
-    for (Iterator i = seriesList.iterator(); i.hasNext();) {
-      Series ser = (Series) i.next();
+    for (Series ser : seriesList) {
       dataset.addSeries(toSeries(ser.key, ser.stats));
     }
   }

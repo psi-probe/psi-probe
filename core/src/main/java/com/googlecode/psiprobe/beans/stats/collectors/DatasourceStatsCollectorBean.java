@@ -45,9 +45,7 @@ public class DatasourceStatsCollectorBean extends AbstractStatsCollectorBean {
     if (containerWrapper == null) {
       logger.error("Cannot collect data source stats. Container wrapper is not set.");
     } else {
-      List dataSources = getContainerWrapper().getDataSources();
-      for (int i = 0; i < dataSources.size(); i++) {
-        ApplicationResource ds = (ApplicationResource) dataSources.get(i);
+      for (ApplicationResource ds : getContainerWrapper().getDataSources()) {
         String appName = ds.getApplicationName();
         String name = (appName == null ? "" : appName) + "/" + ds.getName();
         DataSourceInfo dsi = ds.getDataSourceInfo();
@@ -66,9 +64,7 @@ public class DatasourceStatsCollectorBean extends AbstractStatsCollectorBean {
     if (containerWrapper == null) {
       logger.error("Cannot reset application stats. Container wrapper is not set.");
     } else {
-      List dataSources = getContainerWrapper().getDataSources();
-      for (int i = 0; i < dataSources.size(); i++) {
-        ApplicationResource ds = (ApplicationResource) dataSources.get(i);
+      for (ApplicationResource ds : getContainerWrapper().getDataSources()) {
         reset(ds.getName());
       }
     }

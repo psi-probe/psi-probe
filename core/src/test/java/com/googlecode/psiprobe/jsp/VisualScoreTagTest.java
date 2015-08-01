@@ -18,8 +18,8 @@ public class VisualScoreTagTest extends TestCase {
   }
 
   private void doTestRangeScan(int fullBlocks, int partialBlocks, boolean invertLoopIndexes) {
-    int value = 0;
-    int value2 = 0;
+    int value;
+    int value2;
     int count = 0;
     for (int i = 0; i <= 100; i++) {
       for (int j = 0; j <= 100; j++) {
@@ -31,19 +31,17 @@ public class VisualScoreTagTest extends TestCase {
           value2 = j;
         }
         String[] split = callCalculateSuffix(value, value2, fullBlocks, partialBlocks);
-        for (int k = 0; k < split.length; k++) {
+        for (String suffix : split) {
           // System.out.println(split[k]);
-          String[] values = split[k].split("\\+");
-
+          String[] values = suffix.split("\\+");
           if (values.length > 1) {
             value = Integer.valueOf(values[0]).intValue();
             value2 = Integer.valueOf(values[1]).intValue();
-
             if (value > 5 || value2 > 5) {
               count++;
               StringBuffer msg = new StringBuffer();
               msg.append("Found incorrect value ");
-              msg.append(split[k]);
+              msg.append(suffix);
               msg.append(". value = ");
               msg.append(invertLoopIndexes ? j : i);
               msg.append(" value2 = ");

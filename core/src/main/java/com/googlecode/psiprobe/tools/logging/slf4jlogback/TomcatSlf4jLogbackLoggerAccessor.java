@@ -31,16 +31,17 @@ public class TomcatSlf4jLogbackLoggerAccessor extends DefaultAccessor {
    * 
    * @return a list of {@link TomcatSlf4jLogbackAppenderAccessor}s
    */
-  public List getAppenders() {
-    List appenders = new ArrayList();
+  public List<TomcatSlf4jLogbackAppenderAccessor> getAppenders() {
+    List<TomcatSlf4jLogbackAppenderAccessor> appenders =
+        new ArrayList<TomcatSlf4jLogbackAppenderAccessor>();
+
     try {
       Iterator it = (Iterator) MethodUtils.invokeMethod(getTarget(), "iteratorForAppenders", null);
       while (it.hasNext()) {
         Object appender = it.next();
         List siftedAppenders = getSiftedAppenders(appender);
         if (siftedAppenders != null) {
-          for (int i = 0; i < siftedAppenders.size(); i++) {
-            Object siftedAppender = siftedAppenders.get(i);
+          for (Object siftedAppender : siftedAppenders) {
             wrapAndAddAppender(siftedAppender, appenders);
           }
         } else {
@@ -64,10 +65,8 @@ public class TomcatSlf4jLogbackLoggerAccessor extends DefaultAccessor {
       Object appender = MethodUtils.invokeMethod(getTarget(), "getAppender", name);
       if (appender == null) {
         List appenders = getAppenders();
-        for (int i = 0; i < appenders.size(); i++) {
-          TomcatSlf4jLogbackAppenderAccessor wrappedAppender =
-              (TomcatSlf4jLogbackAppenderAccessor) appenders.get(i);
-
+        for (Object appender1 : appenders) {
+          TomcatSlf4jLogbackAppenderAccessor wrappedAppender = (TomcatSlf4jLogbackAppenderAccessor) appender1;
           if (wrappedAppender.getIndex().equals(name)) {
             return wrappedAppender;
           }
@@ -137,7 +136,9 @@ public class TomcatSlf4jLogbackLoggerAccessor extends DefaultAccessor {
     }
   }
 
-  private void wrapAndAddAppender(Object appender, List appenders) {
+  private void wrapAndAddAppender(Object appender,
+      List<TomcatSlf4jLogbackAppenderAccessor> appenders) {
+
     TomcatSlf4jLogbackAppenderAccessor appenderAccessor = wrapAppender(appender);
     if (appenderAccessor != null) {
       appenders.add(appenderAccessor);

@@ -44,8 +44,7 @@ public class JBossResourceResolverBean implements ResourceResolver {
   protected Log logger = LogFactory.getLog(getClass());
 
   public MBeanServer getMBeanServer() {
-    for (Iterator it = MBeanServerFactory.findMBeanServer(null).iterator(); it.hasNext();) {
-      MBeanServer server = (MBeanServer) it.next();
+    for (MBeanServer server : MBeanServerFactory.findMBeanServer(null)) {
       if ("jboss".equals(server.getDefaultDomain())
           || "DefaultDomain".equals(server.getDefaultDomain())) {
         return server;
@@ -66,9 +65,9 @@ public class JBossResourceResolverBean implements ResourceResolver {
     return false;
   }
 
-  public List getApplicationResources() throws NamingException {
+  public List<ApplicationResource> getApplicationResources() throws NamingException {
 
-    List resources = new ArrayList();
+    List<ApplicationResource> resources = new ArrayList<ApplicationResource>();
 
     MBeanServer server = getMBeanServer();
     if (server != null) {

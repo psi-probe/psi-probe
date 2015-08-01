@@ -32,16 +32,15 @@ public class LogbackLoggerAccessor extends DefaultAccessor {
    * 
    * @return a list of {@link LogbackAppenderAccessor}s
    */
-  public List getAppenders() {
-    List appenders = new ArrayList();
+  public List<LogbackAppenderAccessor> getAppenders() {
+    List<LogbackAppenderAccessor> appenders = new ArrayList<LogbackAppenderAccessor>();
     try {
       Iterator it = (Iterator) MethodUtils.invokeMethod(getTarget(), "iteratorForAppenders", null);
       while (it.hasNext()) {
         Object appender = it.next();
         List siftedAppenders = getSiftedAppenders(appender);
         if (siftedAppenders != null) {
-          for (int i = 0; i < siftedAppenders.size(); i++) {
-            Object siftedAppender = siftedAppenders.get(i);
+          for (Object siftedAppender : siftedAppenders) {
             wrapAndAddAppender(siftedAppender, appenders);
           }
         } else {
@@ -64,9 +63,8 @@ public class LogbackLoggerAccessor extends DefaultAccessor {
     try {
       Object appender = MethodUtils.invokeMethod(getTarget(), "getAppender", name);
       if (appender == null) {
-        List appenders = getAppenders();
-        for (int i = 0; i < appenders.size(); i++) {
-          LogbackAppenderAccessor wrappedAppender = (LogbackAppenderAccessor) appenders.get(i);
+        List<LogbackAppenderAccessor> appenders = getAppenders();
+        for (LogbackAppenderAccessor wrappedAppender : appenders) {
           if (wrappedAppender.getIndex().equals(name)) {
             return wrappedAppender;
           }
@@ -134,7 +132,7 @@ public class LogbackLoggerAccessor extends DefaultAccessor {
     }
   }
 
-  private void wrapAndAddAppender(Object appender, List appenders) {
+  private void wrapAndAddAppender(Object appender, List<LogbackAppenderAccessor> appenders) {
     LogbackAppenderAccessor appenderAccessor = wrapAppender(appender);
     if (appenderAccessor != null) {
       appenders.add(appenderAccessor);

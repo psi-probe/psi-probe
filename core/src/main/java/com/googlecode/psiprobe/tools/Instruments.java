@@ -108,8 +108,7 @@ public class Instruments {
     Class clazz = obj.getClass();
     while (clazz != null) {
       Field[] fields = clazz.getDeclaredFields();
-      for (int i = 0; i < fields.length; i++) {
-        Field field = fields[i];
+      for (Field field : fields) {
         if (!Modifier.isStatic(field.getModifiers())) {
           if (field.getType().isPrimitive()) {
             size += sizeOfPrimitive(field.getType());
@@ -183,9 +182,9 @@ public class Instruments {
 
   public static Field findField(Class clazz, String name) {
     Field[] fields = clazz.getDeclaredFields();
-    for (int i = 0; i < fields.length; i++) {
-      if (name.equals(fields[i].getName())) {
-        return fields[i];
+    for (Field field : fields) {
+      if (name.equals(field.getName())) {
+        return field;
       }
     }
     Class superClass = clazz.getSuperclass();

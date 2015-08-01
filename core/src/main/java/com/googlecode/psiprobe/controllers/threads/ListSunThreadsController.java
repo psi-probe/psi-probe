@@ -51,10 +51,10 @@ public class ListSunThreadsController extends ParameterizableViewController {
     if (allIds != null) {
       threads = new ArrayList(allIds.length);
 
-      for (int i = 0; i < allIds.length; i++) {
+      for (long id : allIds) {
         CompositeData cd =
             (CompositeData) mbeanServer.invoke(threadingOName, "getThreadInfo", new Object[] {
-                new Long(allIds[i]), new Integer(executionStackDepth)},
+                new Long(id), new Integer(executionStackDepth)},
                 new String[] {"long", "int"});
 
         if (cd != null) {
@@ -91,8 +91,8 @@ public class ListSunThreadsController extends ParameterizableViewController {
 
   private static boolean contains(long[] haystack, long needle) {
     if (haystack != null) {
-      for (int i = 0; i < haystack.length; i++) {
-        if (haystack[i] == needle) {
+      for (long hay : haystack) {
+        if (hay == needle) {
           return true;
         }
       }

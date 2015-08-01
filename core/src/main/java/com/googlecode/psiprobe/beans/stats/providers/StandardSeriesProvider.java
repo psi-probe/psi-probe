@@ -14,6 +14,7 @@ package com.googlecode.psiprobe.beans.stats.providers;
 import com.googlecode.psiprobe.model.stats.StatsCollection;
 
 import org.jfree.data.xy.DefaultTableXYDataset;
+import org.jfree.data.xy.XYDataItem;
 import org.springframework.web.bind.ServletRequestUtils;
 
 import java.text.MessageFormat;
@@ -28,13 +29,13 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class StandardSeriesProvider extends AbstractSeriesProvider {
 
-  private List statNames = new ArrayList(2);
+  private List<String> statNames = new ArrayList(2);
 
-  public List getStatNames() {
+  public List<String> getStatNames() {
     return statNames;
   }
 
-  public void setStatNames(List statNames) {
+  public void setStatNames(List<String> statNames) {
     this.statNames = statNames;
   }
 
@@ -43,11 +44,11 @@ public class StandardSeriesProvider extends AbstractSeriesProvider {
 
     String seriesParam = ServletRequestUtils.getStringParameter(request, "sp", null);
     for (int i = 0; i < statNames.size(); i++) {
-      String statName = (String) statNames.get(i);
+      String statName = statNames.get(i);
       if (seriesParam != null) {
         statName = MessageFormat.format(statName, new Object[] {seriesParam});
       }
-      List stats = statsCollection.getStats(statName);
+      List<XYDataItem> stats = statsCollection.getStats(statName);
       if (stats != null) {
         String series =
             ServletRequestUtils.getStringParameter(request, "s" + (i + 1) + "l", "series" + i);

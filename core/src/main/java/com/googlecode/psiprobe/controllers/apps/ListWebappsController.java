@@ -12,6 +12,7 @@
 package com.googlecode.psiprobe.controllers.apps;
 
 import com.googlecode.psiprobe.controllers.TomcatContainerController;
+import com.googlecode.psiprobe.model.Application;
 import com.googlecode.psiprobe.tools.ApplicationUtils;
 import com.googlecode.psiprobe.tools.SecurityUtils;
 
@@ -41,22 +42,20 @@ public class ListWebappsController extends TomcatContainerController {
         ServletRequestUtils.getBooleanParameter(request, "size", false)
             && SecurityUtils.hasAttributeValueRole(getServletContext(), request);
 
-    List apps;
+    List<Context> apps;
     try {
       apps = getContainerWrapper().getTomcatContainer().findContexts();
     } catch (NullPointerException ex) {
       throw new IllegalStateException("No container found for your server: "
           + getServletContext().getServerInfo(), ex);
     }
-    List applications = new ArrayList(apps.size());
+    List<Application> applications = new ArrayList<Application>(apps.size());
     boolean showResources = getContainerWrapper().getResourceResolver().supportsPrivateResources();
-    for (int i = 0; i < apps.size(); i++) {
-      Context appContext = (Context) apps.get(i);
-
+    for (Context appContext : apps) {
       // check if this is not the ROOT webapp
       if (appContext.getName() != null) {
-        applications.add(ApplicationUtils.getApplication(appContext, getContainerWrapper()
-            .getResourceResolver(), calcSize, getContainerWrapper()));
+        applications.add(ApplicationUtils.getApplication(appContext,
+                getContainerWrapper().getResourceResolver(), calcSize, getContainerWrapper()));
       }
     }
     if (!applications.isEmpty() && !showResources) {

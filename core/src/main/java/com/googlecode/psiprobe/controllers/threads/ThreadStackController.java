@@ -54,17 +54,15 @@ public class ThreadStackController extends ParameterizableViewController {
     MBeanServer mbeanServer = new Registry().getMBeanServer();
     ObjectName threadingOName = new ObjectName("java.lang:type=Threading");
 
-
     if (threadId == -1 && threadName != null) {
       // find thread by name
-      long[] allIds = (long[]) mbeanServer.getAttribute(threadingOName, "AllThreadIds");
-      for (int i = 0; i < allIds.length; i++) {
+      for (long id : (long[]) mbeanServer.getAttribute(threadingOName, "AllThreadIds")) {
         CompositeData cd =
             (CompositeData) mbeanServer.invoke(threadingOName, "getThreadInfo",
-                new Object[] {new Long(allIds[i])}, new String[] {"long"});
+                new Object[] {new Long(id)}, new String[] {"long"});
         String name = JmxTools.getStringAttr(cd, "threadName");
         if (threadName.equals(name)) {
-          threadId = allIds[i];
+          threadId = id;
           break;
         }
       }
@@ -81,8 +79,7 @@ public class ThreadStackController extends ParameterizableViewController {
 
         stack = new ArrayList(elements.length);
 
-        for (int i = 0; i < elements.length; i++) {
-          CompositeData cd2 = elements[i];
+        for (CompositeData cd2 : elements) {
           ThreadStackElement tse = new ThreadStackElement();
           tse.setClassName(JmxTools.getStringAttr(cd2, "className"));
           tse.setFileName(JmxTools.getStringAttr(cd2, "fileName"));

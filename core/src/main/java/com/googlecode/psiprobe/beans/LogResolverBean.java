@@ -69,7 +69,7 @@ public class LogResolverBean {
   }
 
   public List getLogDestinations(boolean all) {
-    List allAppenders = getAllLogDestinations();
+    List<LogDestination> allAppenders = getAllLogDestinations();
 
     if (allAppenders != null) {
       //
@@ -79,8 +79,7 @@ public class LogResolverBean {
       LogComparator cmp = new LogDestinationComparator(all);
 
       Collections.sort(allAppenders, cmp);
-      for (int i = 0; i < allAppenders.size(); i++) {
-        LogDestination dest = (LogDestination) allAppenders.get(i);
+      for (LogDestination dest : allAppenders) {
         if (Collections.binarySearch(uniqueList, dest, cmp) < 0) {
           if (all || dest.getFile() == null || dest.getFile().exists()) {
             uniqueList.add(new DisconnectedLogDestination(dest));
@@ -95,8 +94,8 @@ public class LogResolverBean {
   public List getLogSources(File logFile) {
     List filtered = new LinkedList();
     List sources = getLogSources();
-    for (int i = 0; i < sources.size(); i++) {
-      LogDestination dest = (LogDestination) sources.get(i);
+    for (Object source : sources) {
+      LogDestination dest = (LogDestination) source;
       if (logFile.equals(dest.getFile())) {
         filtered.add(dest);
       }
@@ -112,8 +111,8 @@ public class LogResolverBean {
       LogComparator cmp = new LogSourceComparator();
 
       Collections.sort(allAppenders, cmp);
-      for (int i = 0; i < allAppenders.size(); i++) {
-        LogDestination dest = (LogDestination) allAppenders.get(i);
+      for (Object allAppender : allAppenders) {
+        LogDestination dest = (LogDestination) allAppender;
         if (Collections.binarySearch(sources, dest, cmp) < 0) {
           sources.add(new DisconnectedLogDestination(dest));
         }
@@ -122,9 +121,9 @@ public class LogResolverBean {
     return sources;
   }
 
-  private List getAllLogDestinations() {
+  private List<LogDestination> getAllLogDestinations() {
     if (Instruments.isInitialized()) {
-      List allAppenders = new ArrayList();
+      List<LogDestination> allAppenders = new ArrayList<LogDestination>();
 
       //
       // interrogate classloader hierarchy
@@ -143,9 +142,8 @@ public class LogResolverBean {
       //
       // interrogate webapp classloaders and available loggers
       //
-      List contexts = getContainerWrapper().getTomcatContainer().findContexts();
-      for (int i = 0; i < contexts.size(); i++) {
-        Context ctx = (Context) contexts.get(i);
+      List<Context> contexts = getContainerWrapper().getTomcatContainer().findContexts();
+      for (Context ctx : contexts) {
         interrogateContext(ctx, allAppenders);
       }
 

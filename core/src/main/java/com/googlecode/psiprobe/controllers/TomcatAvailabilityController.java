@@ -89,9 +89,9 @@ public class TomcatAvailabilityController extends TomcatContainerController {
           : TomcatTestReport.TEST_FAILED);
 
     } else {
-      List resources = getContainerWrapper().getResourceResolver().getApplicationResources();
-      for (int i = 0; i < resources.size(); i++) {
-        ApplicationResource resource = (ApplicationResource) resources.get(i);
+      List<ApplicationResource> resources =
+          getContainerWrapper().getResourceResolver().getApplicationResources();
+      for (ApplicationResource resource : resources) {
         DataSourceInfo dsi = resource.getDataSourceInfo();
         if (dsi != null && dsi.getBusyScore() > tomcatTestReport.getDatasourceUsageScore()) {
           tomcatTestReport.setDatasourceUsageScore(dsi.getBusyScore());
@@ -123,8 +123,8 @@ public class TomcatAvailabilityController extends TomcatContainerController {
     // try to open some files
     File tmpDir = new File(System.getProperty("java.io.tmpdir"));
     int fileCount = tomcatTestReport.getDefaultFileCount();
-    List files = new ArrayList();
-    List fileStreams = new ArrayList();
+    List<File> files = new ArrayList<File>();
+    List<FileOutputStream> fileStreams = new ArrayList<FileOutputStream>();
 
     try {
       for (; fileCount > 0; fileCount--) {
@@ -138,16 +138,15 @@ public class TomcatAvailabilityController extends TomcatContainerController {
     } catch (IOException e) {
       tomcatTestReport.setFileTest(TomcatTestReport.TEST_FAILED);
     } finally {
-      for (int i = 0; i < fileStreams.size(); i++) {
+      for (FileOutputStream fileStream : fileStreams) {
         try {
-          ((FileOutputStream) fileStreams.get(i)).close();
-        } catch (IOException e) {
+          fileStream.close();
+        }catch (IOException e) {
           //ignore
         }
       }
-
-      for (int i = 0; i < files.size(); i++) {
-        ((File) files.get(i)).delete();
+      for (File file : files) {
+        file.delete();
       }
     }
 

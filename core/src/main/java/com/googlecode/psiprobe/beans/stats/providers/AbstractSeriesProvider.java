@@ -27,11 +27,10 @@ public abstract class AbstractSeriesProvider implements SeriesProvider {
 
   protected Log logger = LogFactory.getLog(getClass());
 
-  protected XYSeries toSeries(String legend, List stats) {
+  protected XYSeries toSeries(String legend, List<XYDataItem> stats) {
     XYSeries xySeries = new XYSeries(legend, true, false);
     synchronized (stats) {
-      for (int i = 0; i < stats.size(); i++) {
-        XYDataItem item = (XYDataItem) stats.get(i);
+      for (XYDataItem item : stats) {
         xySeries.addOrUpdate(item.getX(), item.getY());
       }
     }

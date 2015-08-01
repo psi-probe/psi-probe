@@ -97,8 +97,7 @@ public class ClusterWrapperBean {
       if (loadMembers) {
         ObjectName[] senders =
             (ObjectName[]) mbeanServer.getAttribute(senderOName, "senderObjectNames");
-        for (int i = 0; i < senders.length; i++) {
-
+        for (ObjectName localSenderOName : senders) {
           ClusterSender sender;
 
           if ("pooled".equals(cluster.getSenderReplicationMode())) {
@@ -111,7 +110,6 @@ public class ClusterWrapperBean {
           } else {
             sender = new ClusterSender();
           }
-          ObjectName localSenderOName = senders[i];
 
           sender.setAddress(JmxTools.getStringAttr(mbeanServer, localSenderOName, "address"));
           sender.setPort(JmxTools.getIntAttr(mbeanServer, localSenderOName, "port"));

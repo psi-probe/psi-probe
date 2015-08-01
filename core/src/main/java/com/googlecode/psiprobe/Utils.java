@@ -117,9 +117,8 @@ public class Utils {
   public static void delete(File file) {
     if (file != null && file.exists()) {
       if (file.isDirectory()) {
-        File[] files = file.listFiles();
-        for (int i = 0; i < files.length; i++) {
-          delete(files[i]);
+        for (File child : file.listFiles()) {
+          delete(child);
         }
       }
       if (!file.delete()) {

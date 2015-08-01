@@ -102,8 +102,7 @@ public class ListSessionsController extends ContextHandlerController {
       if (ctx != null && ctx.getManager() != null
           && (!searchInfo.isApply() || searchInfo.isUseSearch())) {
         Session[] sessions = ctx.getManager().findSessions();
-        for (int i = 0; i < sessions.length; i++) {
-          Session session = sessions[i];
+        for (Session session : sessions) {
           ApplicationSession appSession =
               ApplicationUtils.getApplicationSession(session, calcSize, searchInfo.isUseAttr());
           if (appSession != null && matchSession(appSession, searchInfo)) {

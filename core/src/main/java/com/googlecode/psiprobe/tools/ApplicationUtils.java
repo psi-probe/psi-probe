@@ -35,6 +35,7 @@ import org.springframework.util.ClassUtils;
 import java.io.Serializable;
 import java.net.InetAddress;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashSet;
@@ -111,9 +112,8 @@ public class ApplicationUtils {
         int sessionAttributeCount = 0;
         long size = 0;
 
-        Session[] sessions = context.getManager().findSessions();
-        for (int i = 0; i < sessions.length; i++) {
-          ApplicationSession appSession = getApplicationSession(sessions[i], calcSize, false);
+        for (Session session : context.getManager().findSessions()) {
+          ApplicationSession appSession = getApplicationSession(session, calcSize, false);
           if (appSession != null) {
             sessionAttributeCount += appSession.getObjectCount();
             serializable = serializable && appSession.isSerializable();
@@ -156,10 +156,9 @@ public class ApplicationUtils {
     long minTime = Long.MAX_VALUE;
     long maxTime = 0;
 
-    Container[] cns = context.findChildren();
-    for (int i = 0; i < cns.length; i++) {
-      if (cns[i] instanceof StandardWrapper) {
-        StandardWrapper sw = (StandardWrapper) cns[i];
+    for (Container container : context.findChildren()) {
+      if (container instanceof StandardWrapper) {
+        StandardWrapper sw = (StandardWrapper) container;
         svltCount++;
         reqCount += sw.getRequestCount();
         errCount += sw.getErrorCount();
@@ -330,10 +329,7 @@ public class ApplicationUtils {
     si.setAvailable(!wrapper.isUnavailable());
     si.setLoadOnStartup(wrapper.getLoadOnStartup());
     si.setRunAs(wrapper.getRunAs());
-    String[] ms = wrapper.findMappings();
-    for (int i = 0; i < ms.length; i++) {
-      si.getMappings().add(ms[i]);
-    }
+    si.getMappings().addAll(Arrays.asList(wrapper.findMappings()));
     if (wrapper instanceof StandardWrapper) {
       StandardWrapper sw = (StandardWrapper) wrapper;
       si.setAllocationCount(sw.getCountAllocated());
@@ -352,9 +348,9 @@ public class ApplicationUtils {
   public static List getApplicationServlets(Context context) {
     Container[] cns = context.findChildren();
     List servlets = new ArrayList(cns.length);
-    for (int i = 0; i < cns.length; i++) {
-      if (cns[i] instanceof Wrapper) {
-        Wrapper wrapper = (Wrapper) cns[i];
+    for (Container container : cns) {
+      if (container instanceof Wrapper) {
+        Wrapper wrapper = (Wrapper) container;
         servlets.add(getServletInfo(wrapper, context.getName()));
       }
     }
@@ -364,13 +360,13 @@ public class ApplicationUtils {
   public static List getApplicationServletMaps(Context context) {
     String[] sms = context.findServletMappings();
     List servletMaps = new ArrayList(sms.length);
-    for (int i = 0; i < sms.length; i++) {
-      if (sms[i] != null) {
-        String sn = context.findServletMapping(sms[i]);
+    for (String servletMapping : sms) {
+      if (servletMapping != null) {
+        String sn = context.findServletMapping(servletMapping);
         if (sn != null) {
           ServletMapping sm = new ServletMapping();
           sm.setApplicationName(context.getName().length() > 0 ? context.getName() : "/");
-          sm.setUrl(sms[i]);
+          sm.setUrl(servletMapping);
           sm.setServletName(sn);
           Container container = context.findChild(sn);
           if (container instanceof Wrapper) {
