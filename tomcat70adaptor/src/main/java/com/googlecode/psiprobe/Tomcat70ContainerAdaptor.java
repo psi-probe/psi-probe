@@ -95,6 +95,7 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
       canBind |= binding.startsWith("NonStop(tm) Servlets For JavaServer Pages(tm) v7.0");
       canBind |= (binding.startsWith("SpringSource tc") && binding.contains("/7.0"));
       canBind |= (binding.startsWith("VMware vFabric tc") && binding.contains("/7.0"));
+      canBind |= (binding.startsWith("Pivotal tc") && binding.contains("/7.0"));
     }
     return canBind;
   }
