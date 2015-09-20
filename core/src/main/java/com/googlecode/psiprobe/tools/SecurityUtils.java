@@ -47,7 +47,7 @@ public class SecurityUtils {
     boolean result = false;
     Iterator<? extends GrantedAuthority> iterator = authorities.iterator();
     while (iterator.hasNext()) {
-      if (privilegedRole.equals(iterator.next())) {
+      if (privilegedRole.equals(iterator.next().getAuthority())) {
         result = true;
         break;
       }
