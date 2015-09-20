@@ -11,6 +11,7 @@
 
 package com.googlecode.psiprobe.controllers.apps;
 
+import com.googlecode.psiprobe.beans.ResourceResolver;
 import com.googlecode.psiprobe.controllers.ContextHandlerController;
 import com.googlecode.psiprobe.model.Application;
 import com.googlecode.psiprobe.model.stats.StatsCollection;
@@ -71,9 +72,9 @@ public class GetApplicationController extends ContextHandlerController {
         ServletRequestUtils.getBooleanParameter(request, "size", false)
             && SecurityUtils.hasAttributeValueRole(getServletContext(), request);
 
-    Application app =
-        ApplicationUtils.getApplication(context, isExtendedInfo() ? getContainerWrapper()
-            .getResourceResolver() : null, calcSize, getContainerWrapper());
+    ResourceResolver resourceResolver = getContainerWrapper().getResourceResolver();
+    Application app = ApplicationUtils.getApplication(
+        context, isExtendedInfo() ? resourceResolver : null, calcSize, getContainerWrapper());
 
     if (isExtendedInfo() && getStatsCollection() != null) {
       String avgStatisticName = "app.avg_proc_time." + app.getName();
@@ -82,7 +83,7 @@ public class GetApplicationController extends ContextHandlerController {
 
     return new ModelAndView(getViewName())
         .addObject("app", app)
-        .addObject("no_resources", !getContainerWrapper().getResourceResolver().supportsPrivateResources())
+        .addObject("no_resources", !resourceResolver.supportsPrivateResources())
         .addObject("collectionPeriod", getCollectionPeriod());
   }
 

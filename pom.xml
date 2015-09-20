@@ -84,7 +84,7 @@
 		<maven.compiler.testSource>1.5</maven.compiler.testSource>
 		<maven.compiler.testTarget>1.5</maven.compiler.testTarget>
 
-		<checkstyle.configLocation>https://raw.githubusercontent.com/checkstyle/checkstyle/checkstyle-6.7/src/main/resources/google_checks.xml</checkstyle.configLocation>
+		<checkstyle.configLocation>google_checks.xml</checkstyle.configLocation>
 		<copyright>2015</copyright>
 		<git.relative.path></git.relative.path>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -391,7 +391,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-checkstyle-plugin</artifactId>
-					<version>2.15</version>
+					<version>2.16</version>
 					<configuration>
 						<configLocation>${checkstyle.configLocation}</configLocation>
 					</configuration>
@@ -399,7 +399,7 @@
 						<dependency>
 							<groupId>com.puppycrawl.tools</groupId>
 							<artifactId>checkstyle</artifactId>
-							<version>6.8.1</version>
+							<version>6.10.1</version>
 						</dependency>
 					</dependencies>
 				</plugin>

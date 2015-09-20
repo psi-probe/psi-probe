@@ -42,7 +42,8 @@ public class SecurityUtils {
   }
 
   private static boolean userHasRole(String privilegedRole) {
-    Collection<? extends GrantedAuthority> authorities = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+    Collection<? extends GrantedAuthority> authorities =
+        SecurityContextHolder.getContext().getAuthentication().getAuthorities();
 
     boolean result = false;
     Iterator<? extends GrantedAuthority> iterator = authorities.iterator();

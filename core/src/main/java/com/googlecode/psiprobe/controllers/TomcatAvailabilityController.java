@@ -132,7 +132,7 @@ public class TomcatAvailabilityController extends TomcatContainerController {
       for (FileOutputStream fileStream : fileStreams) {
         try {
           fileStream.close();
-        }catch (IOException e) {
+        } catch (IOException e) {
           //ignore
         }
       }

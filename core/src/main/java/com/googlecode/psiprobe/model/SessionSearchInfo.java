@@ -187,7 +187,7 @@ public class SessionSearchInfo implements Serializable {
         for (String regex : attrNames) {
           try {
             attrNamePatterns.add(Pattern.compile(regex));
-          }catch (PatternSyntaxException e) {
+          } catch (PatternSyntaxException e) {
             attrNameMsgs.add(e.getDescription());
           }
         }
