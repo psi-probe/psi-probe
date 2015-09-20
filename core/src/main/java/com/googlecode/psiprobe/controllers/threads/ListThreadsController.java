@@ -50,7 +50,7 @@ public class ListThreadsController extends TomcatContainerController {
     return new ModelAndView(getViewName(), "threads", enumerateThreads(classLoaderMap));
   }
 
-  private List enumerateThreads(final Map classLoaderMap) {
+  private List<ThreadModel> enumerateThreads(final Map<String, String> classLoaderMap) {
 
     // get top ThreadGroup
     ThreadGroup masterGroup = Thread.currentThread().getThreadGroup();
@@ -59,7 +59,7 @@ public class ListThreadsController extends TomcatContainerController {
     }
 
     // enumerate all Threads starting from top
-    List threadList = new ArrayList();
+    List<ThreadModel> threadList = new ArrayList<ThreadModel>();
 
     Thread[] threads = new Thread[masterGroup.activeCount()];
     int numThreads = masterGroup.enumerate(threads);
@@ -82,7 +82,7 @@ public class ListThreadsController extends TomcatContainerController {
       ClassLoader cl = threads[i].getContextClassLoader();
       if (cl != null) {
         if (classLoaderMap != null) {
-          threadModel.setAppName((String) classLoaderMap.get(toUid(cl)));
+          threadModel.setAppName(classLoaderMap.get(toUid(cl)));
         }
         threadModel.setClassLoader(toUid(cl));
       }

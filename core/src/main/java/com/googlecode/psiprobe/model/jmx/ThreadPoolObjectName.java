@@ -26,7 +26,7 @@ public class ThreadPoolObjectName {
 
   private ObjectName threadPoolName;
   private ObjectName globalRequestProcessorName;
-  private List requestProcessorNames = new ArrayList();
+  private List<ObjectName> requestProcessorNames = new ArrayList<ObjectName>();
 
   public ObjectName getThreadPoolName() {
     return threadPoolName;
@@ -36,7 +36,7 @@ public class ThreadPoolObjectName {
     return globalRequestProcessorName;
   }
 
-  public List getRequestProcessorNames() {
+  public List<ObjectName> getRequestProcessorNames() {
     return requestProcessorNames;
   }
 
@@ -48,7 +48,7 @@ public class ThreadPoolObjectName {
     this.globalRequestProcessorName = globalRequestProcessorName;
   }
 
-  public void setRequestProcessorNames(List requestProcessorNames) {
+  public void setRequestProcessorNames(List<ObjectName> requestProcessorNames) {
     this.requestProcessorNames = requestProcessorNames;
   }
 

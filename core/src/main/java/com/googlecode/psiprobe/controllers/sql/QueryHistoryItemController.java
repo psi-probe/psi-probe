@@ -42,7 +42,7 @@ public class QueryHistoryItemController extends AbstractController {
           (DataSourceTestInfo) sess.getAttribute(DataSourceTestInfo.DS_TEST_SESS_ATTR);
 
       if (sessData != null) {
-        List queryHistory = sessData.getQueryHistory();
+        List<String> queryHistory = sessData.getQueryHistory();
 
         if (queryHistory != null) {
           try {

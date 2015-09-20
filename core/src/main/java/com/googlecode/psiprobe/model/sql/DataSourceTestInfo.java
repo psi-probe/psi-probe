@@ -14,6 +14,7 @@ package com.googlecode.psiprobe.model.sql;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A class to store data source test tool related data in a session attribute.
@@ -24,8 +25,8 @@ public class DataSourceTestInfo implements Serializable {
 
   public static final String DS_TEST_SESS_ATTR = "dataSourceTestData";
 
-  List results = null;
-  LinkedList queryHistory = new LinkedList();
+  List<Map<String, String>> results = null;
+  LinkedList<String> queryHistory = new LinkedList<String>();
   int maxRows = 0;
   int rowsPerPage = 0;
   int historySize = 0;
@@ -41,15 +42,15 @@ public class DataSourceTestInfo implements Serializable {
     }
   }
 
-  public List getResults() {
+  public List<Map<String, String>> getResults() {
     return results;
   }
 
-  public void setResults(List results) {
+  public void setResults(List<Map<String, String>> results) {
     this.results = results;
   }
 
-  public List getQueryHistory() {
+  public List<String> getQueryHistory() {
     return queryHistory;
   }
 

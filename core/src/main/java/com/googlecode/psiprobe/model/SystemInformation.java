@@ -28,7 +28,7 @@ public class SystemInformation implements Serializable {
 
   private String appBase;
   private String configBase;
-  private Map systemProperties;
+  private Map<String, String> systemProperties;
 
   public long getMaxMemory() {
     return Runtime.getRuntime().maxMemory();
@@ -74,15 +74,15 @@ public class SystemInformation implements Serializable {
     this.configBase = configBase;
   }
 
-  public Map getSystemProperties() {
+  public Map<String, String> getSystemProperties() {
     return systemProperties;
   }
 
-  public void setSystemProperties(Map systemProperties) {
+  public void setSystemProperties(Map<String, String> systemProperties) {
     this.systemProperties = systemProperties;
   }
 
-  public Set getSystemPropertySet() {
+  public Set<Map.Entry<String, String>> getSystemPropertySet() {
     return systemProperties.entrySet();
   }
 

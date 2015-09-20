@@ -108,15 +108,16 @@ public class TomcatSlf4jLogbackFactoryAccessor extends DefaultAccessor {
    * @return a list of {@link TomcatSlf4jLogbackAppenderAccessor}s representing all appenders that
    *         are in use
    */
-  public List getAppenders() {
-    List appenders = new ArrayList();
+  public List<TomcatSlf4jLogbackAppenderAccessor> getAppenders() {
+    List<TomcatSlf4jLogbackAppenderAccessor> appenders =
+        new ArrayList<TomcatSlf4jLogbackAppenderAccessor>();
     try {
       Class clazz = getTarget().getClass();
       Method getLoggerList = MethodUtils
           .getAccessibleMethod(clazz, "getLoggerList", new Class[] {});
       
-      List loggers = (List) getLoggerList.invoke(getTarget(), null);
-      Iterator it = loggers.iterator();
+      List<Object> loggers = (List<Object>) getLoggerList.invoke(getTarget(), null);
+      Iterator<Object> it = loggers.iterator();
       while (it.hasNext()) {
         TomcatSlf4jLogbackLoggerAccessor accessor = new TomcatSlf4jLogbackLoggerAccessor();
         accessor.setTarget(it.next());

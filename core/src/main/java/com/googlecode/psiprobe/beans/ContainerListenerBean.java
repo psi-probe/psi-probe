@@ -23,7 +23,6 @@ import org.apache.commons.logging.LogFactory;
 
 import java.net.InetAddress;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -75,8 +74,7 @@ public class ContainerListenerBean implements NotificationListener {
    */
   private ThreadPoolObjectName findPool(String name) {
     if (name != null && isInitialized()) {
-      for (Iterator it = poolNames.iterator(); it.hasNext();) {
-        ThreadPoolObjectName threadPoolObjectName = (ThreadPoolObjectName) it.next();
+      for (ThreadPoolObjectName threadPoolObjectName : poolNames) {
         if (name.equals(threadPoolObjectName.getThreadPoolName().getKeyProperty("name"))) {
           return threadPoolObjectName;
         }
@@ -125,12 +123,13 @@ public class ContainerListenerBean implements NotificationListener {
 
     MBeanServer server = getContainerWrapper().getResourceResolver().getMBeanServer();
     String serverName = getContainerWrapper().getTomcatContainer().getName();
-    Set threadPools = server.queryMBeans(new ObjectName(serverName + ":type=ThreadPool,*"), null);
-    poolNames = new ArrayList(threadPools.size());
-    for (Iterator it = threadPools.iterator(); it.hasNext();) {
+    Set<ObjectInstance> threadPools =
+        server.queryMBeans(new ObjectName(serverName + ":type=ThreadPool,*"), null);
+    poolNames = new ArrayList<ThreadPoolObjectName>(threadPools.size());
+    for (ObjectInstance threadPool : threadPools) {
 
       ThreadPoolObjectName threadPoolObjectName = new ThreadPoolObjectName();
-      ObjectName threadPoolName = ((ObjectInstance) it.next()).getObjectName();
+      ObjectName threadPoolName = threadPool.getObjectName();
 
       String name = threadPoolName.getKeyProperty("name");
 
@@ -145,12 +144,12 @@ public class ContainerListenerBean implements NotificationListener {
        * unfortunately exact workers could not be found at the time of testing so we filter out the
        * relevant workers within the loop
        */
-      Set workers =
+      Set<ObjectInstance> workers =
           server.queryMBeans(
               new ObjectName(threadPoolName.getDomain() + ":type=RequestProcessor,*"), null);
 
-      for (Iterator wrkIt = workers.iterator(); wrkIt.hasNext();) {
-        ObjectName wrkName = ((ObjectInstance) wrkIt.next()).getObjectName();
+      for (ObjectInstance worker : workers) {
+        ObjectName wrkName = worker.getObjectName();
         if (name.equals(wrkName.getKeyProperty("worker"))) {
           threadPoolObjectName.getRequestProcessorNames().add(wrkName);
         }
@@ -159,10 +158,11 @@ public class ContainerListenerBean implements NotificationListener {
       poolNames.add(threadPoolObjectName);
     }
 
-    Set executors = server.queryMBeans(new ObjectName(serverName + ":type=Executor,*"), null);
-    executorNames = new ArrayList(executors.size());
-    for (Iterator it = executors.iterator(); it.hasNext();) {
-      ObjectName executorName = ((ObjectInstance) it.next()).getObjectName();
+    Set<ObjectInstance> executors =
+        server.queryMBeans(new ObjectName(serverName + ":type=Executor,*"), null);
+    executorNames = new ArrayList<ObjectName>(executors.size());
+    for (ObjectInstance executor : executors) {
+      ObjectName executorName = executor.getObjectName();
       executorNames.add(executorName);
     }
 
@@ -172,19 +172,16 @@ public class ContainerListenerBean implements NotificationListener {
 
   }
 
-  public synchronized List getThreadPools() throws Exception {
-
+  public synchronized List<ThreadPool> getThreadPools() throws Exception {
     if (!isInitialized()) {
       initialize();
     }
 
-    List threadPools = new ArrayList(poolNames.size());
+    List<ThreadPool> threadPools = new ArrayList<ThreadPool>(poolNames.size());
 
     MBeanServer server = getContainerWrapper().getResourceResolver().getMBeanServer();
 
-    for (Iterator it = executorNames.iterator(); it.hasNext();) {
-      ObjectName executorName = (ObjectName) it.next();
-
+    for (ObjectName executorName : executorNames) {
       ThreadPool threadPool = new ThreadPool();
       threadPool.setName(executorName.getKeyProperty("name"));
       threadPool.setMaxThreads(JmxTools.getIntAttr(server, executorName, "maxThreads"));
@@ -192,13 +189,10 @@ public class ContainerListenerBean implements NotificationListener {
       threadPool.setMinSpareThreads(JmxTools.getIntAttr(server, executorName, "minSpareThreads"));
       threadPool.setCurrentThreadsBusy(JmxTools.getIntAttr(server, executorName, "activeCount"));
       threadPool.setCurrentThreadCount(JmxTools.getIntAttr(server, executorName, "poolSize"));
-
       threadPools.add(threadPool);
     }
 
-    for (Iterator it = poolNames.iterator(); it.hasNext();) {
-
-      ThreadPoolObjectName threadPoolObjectName = (ThreadPoolObjectName) it.next();
+    for (ThreadPoolObjectName threadPoolObjectName : poolNames) {
       try {
         ObjectName poolName = threadPoolObjectName.getThreadPoolName();
 
@@ -262,10 +256,8 @@ public class ContainerListenerBean implements NotificationListener {
         connector.setErrorCount(JmxTools.getIntAttr(server, grpName, "errorCount"));
 
         if (includeRequestProcessors) {
-          for (Iterator wrkIt = threadPoolObjectName.getRequestProcessorNames().iterator(); wrkIt
-              .hasNext();) {
-            ObjectName wrkName = (ObjectName) wrkIt.next();
-
+          List<ObjectName> wrkNames = threadPoolObjectName.getRequestProcessorNames();
+          for (ObjectName wrkName : wrkNames) {
             try {
               RequestProcessor rp = new RequestProcessor();
               rp.setName(wrkName.getKeyProperty("name"));

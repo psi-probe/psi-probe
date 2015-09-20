@@ -28,7 +28,7 @@ public class Connector {
   private int errorCount;
   private long bytesReceived;
   private long bytesSent;
-  private List requestProcessors = new ArrayList();
+  private List<RequestProcessor> requestProcessors = new ArrayList<RequestProcessor>();
 
   public String getName() {
     return name;
@@ -86,11 +86,11 @@ public class Connector {
     this.errorCount = errorCount;
   }
 
-  public List getRequestProcessors() {
+  public List<RequestProcessor> getRequestProcessors() {
     return requestProcessors;
   }
 
-  public void setRequestProcessors(List requestProcessors) {
+  public void setRequestProcessors(List<RequestProcessor> requestProcessors) {
     this.requestProcessors = requestProcessors;
   }
 

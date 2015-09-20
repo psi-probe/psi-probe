@@ -19,7 +19,6 @@ import org.jfree.data.xy.XYDataItem;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
@@ -100,7 +99,7 @@ public class MultipleSeriesProvider extends AbstractSeriesProvider {
       });
 
       // keeping only the top series in the list
-      for (ListIterator i = seriesList.listIterator(getTop()); i.hasNext();) {
+      for (ListIterator<Series> i = seriesList.listIterator(getTop()); i.hasNext();) {
         i.next();
         i.remove();
       }
@@ -121,12 +120,12 @@ public class MultipleSeriesProvider extends AbstractSeriesProvider {
   // a helper class that holds series and calculates an avg value
   private class Series {
     final String key;
-    final List stats;
+    final List<XYDataItem> stats;
     double avg = 0;
 
-    Series(Map.Entry en) {
-      key = ((String) en.getKey()).substring(statNamePrefix.length());
-      stats = (List) en.getValue();
+    Series(Map.Entry<String, List<XYDataItem>> en) {
+      key = en.getKey().substring(statNamePrefix.length());
+      stats = en.getValue();
     }
 
     // calculating an avg value that is used for identifying the top series
@@ -137,11 +136,11 @@ public class MultipleSeriesProvider extends AbstractSeriesProvider {
       synchronized (stats) {
         boolean useMovingAvg = getMovingAvgFrame() > 0 && getMovingAvgFrame() < stats.size();
 
-        for (Iterator i = stats.iterator(); i.hasNext();) {
-          XYDataItem xy = (XYDataItem) i.next();
+        for (ListIterator<XYDataItem> it = stats.listIterator(); it.hasNext();) {
+          XYDataItem xy = it.next();
           sum += xy.getY().longValue();
 
-          if ((useMovingAvg && count % getMovingAvgFrame() == 0) || !i.hasNext()) {
+          if ((useMovingAvg && count % getMovingAvgFrame() == 0) || !it.hasNext()) {
             double thisAvg = (double) sum / count;
             if (thisAvg > avg) {
               avg = thisAvg;

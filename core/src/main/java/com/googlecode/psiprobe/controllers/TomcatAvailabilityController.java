@@ -24,7 +24,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -59,22 +58,14 @@ public class TomcatAvailabilityController extends TomcatContainerController {
 
     boolean allContextsAvailable = true;
     if (getContainerWrapper().getResourceResolver().supportsPrivateResources()) {
-      List contexts = getContainerWrapper().getTomcatContainer().findContexts();
-      for (Iterator it = contexts.iterator(); it.hasNext();) {
-
-        // make sure we skip ROOT application
-        Context appContext = (Context) it.next();
-
+      for (Context appContext : getContainerWrapper().getTomcatContainer().findContexts()) {
         allContextsAvailable = allContextsAvailable
-                && getContainerWrapper().getTomcatContainer().getAvailable(appContext);
-
-        List applicationResources = getContainerWrapper().getResourceResolver()
+            && getContainerWrapper().getTomcatContainer().getAvailable(appContext);
+        
+        List<ApplicationResource> applicationResources = getContainerWrapper().getResourceResolver()
             .getApplicationResources(appContext, getContainerWrapper());
 
-        for (Iterator it2 = applicationResources.iterator(); it2.hasNext();) {
-
-          ApplicationResource appResource = (ApplicationResource) it2.next();
-
+        for (ApplicationResource appResource : applicationResources) {
           DataSourceInfo dsi = appResource.getDataSourceInfo();
           if (dsi != null && dsi.getBusyScore() > tomcatTestReport.getDatasourceUsageScore()) {
             tomcatTestReport.setContextName(appContext.getName());

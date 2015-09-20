@@ -12,6 +12,7 @@
 package com.googlecode.psiprobe.controllers.apps;
 
 import com.googlecode.psiprobe.controllers.ContextHandlerController;
+import com.googlecode.psiprobe.model.Attribute;
 import com.googlecode.psiprobe.tools.ApplicationUtils;
 import com.googlecode.psiprobe.tools.SecurityUtils;
 
@@ -33,7 +34,7 @@ public class ListAppAttributesController extends ContextHandlerController {
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-    List appAttrs = ApplicationUtils.getApplicationAttributes(context);
+    List<Attribute> appAttrs = ApplicationUtils.getApplicationAttributes(context);
     ModelAndView mv = new ModelAndView(getViewName(), "appAttributes", appAttrs);
 
     if (SecurityUtils.hasAttributeValueRole(getServletContext(), request)) {

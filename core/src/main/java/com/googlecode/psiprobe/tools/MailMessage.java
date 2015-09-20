@@ -24,10 +24,10 @@ import javax.activation.FileDataSource;
  */
 public class MailMessage {
 
-  private List/* String */to = new ArrayList();
-  private List/* String */cc = new ArrayList();
-  private List/* String */bcc = new ArrayList();
-  private List/* DataSource */attachments = new ArrayList();
+  private List<String> to = new ArrayList<String>();
+  private List<String> cc = new ArrayList<String>();
+  private List<String> bcc = new ArrayList<String>();
+  private List<DataSource> attachments = new ArrayList<DataSource>();
   private String subject = "";
   private String body = "";
   private boolean bodyHtml;
@@ -134,19 +134,19 @@ public class MailMessage {
     return this;
   }
 
-  protected List getTo() {
+  protected List<String> getTo() {
     return to;
   }
 
-  protected List getCc() {
+  protected List<String> getCc() {
     return cc;
   }
 
-  protected List getBcc() {
+  protected List<String> getBcc() {
     return bcc;
   }
 
-  protected List getAttachments() {
+  protected List<DataSource> getAttachments() {
     return attachments;
   }
 

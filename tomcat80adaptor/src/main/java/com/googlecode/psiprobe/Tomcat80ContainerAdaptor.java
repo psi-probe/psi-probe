@@ -19,7 +19,6 @@ import com.googlecode.psiprobe.model.FilterMapping;
 import org.apache.catalina.Container;
 import org.apache.catalina.Context;
 import org.apache.catalina.Host;
-import org.apache.catalina.Lifecycle;
 import org.apache.catalina.Valve;
 import org.apache.catalina.WebResource;
 import org.apache.catalina.Wrapper;
@@ -42,7 +41,6 @@ import java.io.InputStream;
 import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.List;
@@ -65,7 +63,7 @@ public class Tomcat80ContainerAdaptor extends AbstractTomcatContainer {
   private Host host;
   private ObjectName deployerOName;
   private MBeanServer mbeanServer;
-  private Valve valve = new Tomcat80AgentValve();
+  private final Valve valve = new Tomcat80AgentValve();
 
   @Override
   public void setWrapper(Wrapper wrapper) {
@@ -101,16 +99,21 @@ public class Tomcat80ContainerAdaptor extends AbstractTomcatContainer {
   }
 
   @Override
-  public List findContexts() {
-    Container[] containers = host.findChildren();
-    return Arrays.asList(containers);
+  public List<Context> findContexts() {
+    ArrayList<Context> results = new ArrayList<Context>();
+    for (Container child : host.findChildren()) {
+      if (child instanceof Context) {
+        results.add((Context) child);
+      }
+    }
+    return results;
   }
 
   @Override
   public void stop(String name) throws Exception {
     Context ctx = findContext(name);
     if (ctx != null) {
-      ((Lifecycle) ctx).stop();
+      ctx.stop();
     }
   }
 
@@ -118,7 +121,7 @@ public class Tomcat80ContainerAdaptor extends AbstractTomcatContainer {
   public void start(String name) throws Exception {
     Context ctx = findContext(name);
     if (ctx != null) {
-      ((Lifecycle) ctx).start();
+      ctx.start();
     }
   }
 
@@ -126,7 +129,7 @@ public class Tomcat80ContainerAdaptor extends AbstractTomcatContainer {
     Boolean result =
         (Boolean) mbeanServer.invoke(deployerOName, "isServiced", new String[] {name},
             new String[] {"java.lang.String"});
-    if (!result.booleanValue()) {
+    if (!result) {
       mbeanServer.invoke(deployerOName, "addServiced", new String[] {name},
           new String[] {"java.lang.String"});
       try {
@@ -183,17 +186,17 @@ public class Tomcat80ContainerAdaptor extends AbstractTomcatContainer {
     return host.getParent().getName();
   }
 
-  protected List getFilterMappings(FilterMap fmap, String dm, String filterClass) {
+  protected List<FilterMapping> getFilterMappings(FilterMap fmap, String dm, String filterClass) {
     String[] urls = fmap.getURLPatterns();
     String[] servlets = fmap.getServletNames();
-    List filterMappings = new ArrayList(urls.length + servlets.length);
+    List<FilterMapping> results = new ArrayList<FilterMapping>(urls.length + servlets.length);
     for (String url : urls) {
       FilterMapping fm = new FilterMapping();
       fm.setUrl(url);
       fm.setFilterName(fmap.getFilterName());
       fm.setDispatcherMap(dm);
       fm.setFilterClass(filterClass);
-      filterMappings.add(fm);
+      results.add(fm);
     }
     for (String servlet : servlets) {
       FilterMapping fm = new FilterMapping();
@@ -201,9 +204,9 @@ public class Tomcat80ContainerAdaptor extends AbstractTomcatContainer {
       fm.setFilterName(fmap.getFilterName());
       fm.setDispatcherMap(dm);
       fm.setFilterClass(filterClass);
-      filterMappings.add(fm);
+      results.add(fm);
     }
-    return filterMappings;
+    return results;
   }
 
   @Override
@@ -233,11 +236,13 @@ public class Tomcat80ContainerAdaptor extends AbstractTomcatContainer {
 
   @Override
   public boolean getAvailable(Context context) {
-    return ((Lifecycle) context).getState().isAvailable();
+    return context.getState().isAvailable();
   }
 
   @Override
-  public void addContextResourceLink(Context context, List resourceList, boolean contextBound) {
+  public void addContextResourceLink(Context context, List<ApplicationResource> resourceList,
+      boolean contextBound) {
+
     for (ContextResourceLink link : context.getNamingResources().findResourceLinks()) {
       ApplicationResource resource = new ApplicationResource();
       logger.debug("reading resourceLink: " + link.getName());
@@ -252,7 +257,9 @@ public class Tomcat80ContainerAdaptor extends AbstractTomcatContainer {
   }
 
   @Override
-  public void addContextResource(Context context, List resourceList, boolean contextBound) {
+  public void addContextResource(Context context, List<ApplicationResource> resourceList,
+      boolean contextBound) {
+
     NamingResourcesImpl namingResources = context.getNamingResources();
     for (ContextResource contextResource : namingResources.findResources()) {
       ApplicationResource resource = new ApplicationResource();
@@ -271,9 +278,9 @@ public class Tomcat80ContainerAdaptor extends AbstractTomcatContainer {
   }
 
   @Override
-  public List getApplicationFilterMaps(Context context) {
+  public List<FilterMapping> getApplicationFilterMaps(Context context) {
     FilterMap[] fms = context.findFilterMaps();
-    List filterMaps = new ArrayList(fms.length);
+    List<FilterMapping> filterMaps = new ArrayList<FilterMapping>(fms.length);
     for (FilterMap filterMap : fms) {
       if (filterMap != null) {
         String dm;
@@ -312,7 +319,7 @@ public class Tomcat80ContainerAdaptor extends AbstractTomcatContainer {
           filterClass = fd.getFilterClass();
         }
 
-        List filterMappings = getFilterMappings(filterMap, dm, filterClass);
+        List<FilterMapping> filterMappings = getFilterMappings(filterMap, dm, filterClass);
         filterMaps.addAll(filterMappings);
       }
     }
@@ -320,9 +327,9 @@ public class Tomcat80ContainerAdaptor extends AbstractTomcatContainer {
   }
 
   @Override
-  public List getApplicationFilters(Context context) {
+  public List<FilterInfo> getApplicationFilters(Context context) {
     FilterDef[] fds = context.findFilterDefs();
-    List filterDefs = new ArrayList(fds.length);
+    List<FilterInfo> filterDefs = new ArrayList<FilterInfo>(fds.length);
     for (FilterDef filterDef : fds) {
       if (filterDef != null) {
         FilterInfo fi = getFilterInfo(filterDef);
@@ -341,7 +348,7 @@ public class Tomcat80ContainerAdaptor extends AbstractTomcatContainer {
   }
 
   @Override
-  public List getApplicationInitParams(Context context) {
+  public List<ApplicationParam> getApplicationInitParams(Context context) {
     /*
      * We'll try to determine if a parameter value comes from a deployment descriptor or a context
      * descriptor.
@@ -362,14 +369,14 @@ public class Tomcat80ContainerAdaptor extends AbstractTomcatContainer {
      * creating a set of parameter names that are declared in a context descriptor and can not be
      * ovevridden in a deployment descriptor.
      */
-    Set nonOverridableParams = new HashSet();
+    Set<String> nonOverridableParams = new HashSet<String>();
     for (ApplicationParameter appParam : context.findApplicationParameters()) {
       if (appParam != null && !appParam.getOverride()) {
         nonOverridableParams.add(appParam.getName());
       }
     }
 
-    List initParams = new ArrayList();
+    List<ApplicationParam> initParams = new ArrayList<ApplicationParam>();
     ServletContext servletCtx = context.getServletContext();
     for (Enumeration e = servletCtx.getInitParameterNames(); e.hasMoreElements();) {
       String paramName = (String) e.nextElement();

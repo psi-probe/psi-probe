@@ -23,7 +23,7 @@ import java.util.List;
  */
 public class CommonsLoggerAccessor extends DefaultAccessor {
 
-  public List getDestinations() {
+  public List<LogDestination> getDestinations() {
     GetAllDestinationsVisitor visitor = new GetAllDestinationsVisitor();
     visitor.setTarget(getTarget());
     visitor.setApplication(getApplication());

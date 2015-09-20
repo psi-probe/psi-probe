@@ -36,10 +36,11 @@ public class TomcatSlf4jLogbackLoggerAccessor extends DefaultAccessor {
         new ArrayList<TomcatSlf4jLogbackAppenderAccessor>();
 
     try {
-      Iterator it = (Iterator) MethodUtils.invokeMethod(getTarget(), "iteratorForAppenders", null);
+      Iterator<Object> it =
+          (Iterator<Object>) MethodUtils.invokeMethod(getTarget(), "iteratorForAppenders", null);
       while (it.hasNext()) {
         Object appender = it.next();
-        List siftedAppenders = getSiftedAppenders(appender);
+        List<Object> siftedAppenders = getSiftedAppenders(appender);
         if (siftedAppenders != null) {
           for (Object siftedAppender : siftedAppenders) {
             wrapAndAddAppender(siftedAppender, appenders);
@@ -64,9 +65,9 @@ public class TomcatSlf4jLogbackLoggerAccessor extends DefaultAccessor {
     try {
       Object appender = MethodUtils.invokeMethod(getTarget(), "getAppender", name);
       if (appender == null) {
-        List appenders = getAppenders();
-        for (Object appender1 : appenders) {
-          TomcatSlf4jLogbackAppenderAccessor wrappedAppender = (TomcatSlf4jLogbackAppenderAccessor) appender1;
+        List<TomcatSlf4jLogbackAppenderAccessor> appenders = getAppenders();
+        for (TomcatSlf4jLogbackAppenderAccessor appender1 : appenders) {
+          TomcatSlf4jLogbackAppenderAccessor wrappedAppender = appender1;
           if (wrappedAppender.getIndex().equals(name)) {
             return wrappedAppender;
           }
@@ -121,15 +122,15 @@ public class TomcatSlf4jLogbackLoggerAccessor extends DefaultAccessor {
     }
   }
 
-  private List getSiftedAppenders(Object appender) throws Exception {
+  private List<Object> getSiftedAppenders(Object appender) throws Exception {
     if ("org.apache.juli.logging.ch.qos.logback.classic.sift.SiftingAppender".equals(appender
         .getClass().getName())) {
 
       Object tracker = MethodUtils.invokeMethod(appender, "getAppenderTracker", null);
       if (tracker != null) {
-        return (List) MethodUtils.invokeMethod(tracker, "valueList", null);
+        return (List<Object>) MethodUtils.invokeMethod(tracker, "valueList", null);
       } else {
-        return new ArrayList();
+        return new ArrayList<Object>();
       }
     } else {
       return null;

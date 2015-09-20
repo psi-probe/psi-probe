@@ -35,10 +35,11 @@ public class LogbackLoggerAccessor extends DefaultAccessor {
   public List<LogbackAppenderAccessor> getAppenders() {
     List<LogbackAppenderAccessor> appenders = new ArrayList<LogbackAppenderAccessor>();
     try {
-      Iterator it = (Iterator) MethodUtils.invokeMethod(getTarget(), "iteratorForAppenders", null);
+      Iterator<Object> it =
+          (Iterator<Object>) MethodUtils.invokeMethod(getTarget(), "iteratorForAppenders", null);
       while (it.hasNext()) {
         Object appender = it.next();
-        List siftedAppenders = getSiftedAppenders(appender);
+        List<Object> siftedAppenders = getSiftedAppenders(appender);
         if (siftedAppenders != null) {
           for (Object siftedAppender : siftedAppenders) {
             wrapAndAddAppender(siftedAppender, appenders);
@@ -119,13 +120,13 @@ public class LogbackLoggerAccessor extends DefaultAccessor {
     }
   }
 
-  private List getSiftedAppenders(Object appender) throws Exception {
+  private List<Object> getSiftedAppenders(Object appender) throws Exception {
     if ("ch.qos.logback.classic.sift.SiftingAppender".equals(appender.getClass().getName())) {
       Object tracker = MethodUtils.invokeMethod(appender, "getAppenderTracker", null);
       if (tracker != null) {
-        return (List) MethodUtils.invokeMethod(tracker, "valueList", null);
+        return (List<Object>) MethodUtils.invokeMethod(tracker, "valueList", null);
       } else {
-        return new ArrayList();
+        return new ArrayList<Object>();
       }
     } else {
       return null;

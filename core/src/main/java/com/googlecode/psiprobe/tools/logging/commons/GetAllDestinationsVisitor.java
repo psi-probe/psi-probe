@@ -11,6 +11,7 @@
 
 package com.googlecode.psiprobe.tools.logging.commons;
 
+import com.googlecode.psiprobe.tools.logging.LogDestination;
 import com.googlecode.psiprobe.tools.logging.jdk.Jdk14LoggerAccessor;
 import com.googlecode.psiprobe.tools.logging.log4j.Log4JLoggerAccessor;
 
@@ -23,9 +24,9 @@ import java.util.List;
  */
 public class GetAllDestinationsVisitor extends LoggerAccessorVisitor {
 
-  private List destinations = new ArrayList();
+  private List<LogDestination> destinations = new ArrayList<LogDestination>();
 
-  public List getDestinations() {
+  public List<LogDestination> getDestinations() {
     return destinations;
   }
 

@@ -19,7 +19,6 @@ import org.springframework.web.servlet.mvc.ParameterizableViewController;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
@@ -77,10 +76,8 @@ public class DecoratorController extends ParameterizableViewController {
     // Work out the language of the interface by matching resource files that we have
     // to the request locale.
     //
-    List fileNames = getMessageFileNamesForLocale(request.getLocale());
     String lang = "en";
-    for (Iterator it = fileNames.iterator(); it.hasNext();) {
-      String fileName = (String) it.next();
+    for (String fileName : getMessageFileNamesForLocale(request.getLocale())) {
       if (getServletContext().getResource(fileName + ".properties") != null) {
         lang = fileName.substring(messagesBasename.length() + 1);
         break;
@@ -92,7 +89,7 @@ public class DecoratorController extends ParameterizableViewController {
     return super.handleRequestInternal(request, response);
   }
 
-  private List getMessageFileNamesForLocale(Locale locale) {
+  private List<String> getMessageFileNamesForLocale(Locale locale) {
     return Utils.getNamesForLocale(messagesBasename, locale);
   }
 }

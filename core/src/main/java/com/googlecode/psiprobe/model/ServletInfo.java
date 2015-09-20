@@ -37,7 +37,7 @@ public class ServletInfo {
   private boolean singleThreaded;
   private int allocationCount;
   private int maxInstances;
-  private List mappings = new ArrayList();
+  private List<String> mappings = new ArrayList<String>();
 
   public String getApplicationName() {
     return applicationName;
@@ -159,11 +159,11 @@ public class ServletInfo {
     this.maxInstances = maxInstances;
   }
 
-  public List getMappings() {
+  public List<String> getMappings() {
     return mappings;
   }
 
-  public void setMappings(List mappings) {
+  public void setMappings(List<String> mappings) {
     this.mappings = mappings;
   }
 

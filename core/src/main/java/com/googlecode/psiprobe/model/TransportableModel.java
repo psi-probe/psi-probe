@@ -15,23 +15,23 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * A wrapper class to assist marshalling of ModelAndView.getModel() Map to XML representation.
+ * A wrapper class to assist marshalling of ModelAndView.getModel() map to XML representation.
  * 
  * @author Vlad Ilyushchenko
  */
 public class TransportableModel {
 
-  private Map items = new HashMap();
+  private Map<String, Object> items = new HashMap<String, Object>();
 
-  public Map getItems() {
+  public Map<String, Object> getItems() {
     return items;
   }
 
-  public void setItems(Map items) {
+  public void setItems(Map<String, Object> items) {
     this.items = items;
   }
 
-  public void putAll(Map map) {
+  public void putAll(Map<String, Object> map) {
     items.putAll(map);
   }
 

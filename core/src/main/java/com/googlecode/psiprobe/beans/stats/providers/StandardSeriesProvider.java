@@ -29,7 +29,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class StandardSeriesProvider extends AbstractSeriesProvider {
 
-  private List<String> statNames = new ArrayList(2);
+  private List<String> statNames = new ArrayList<String>(2);
 
   public List<String> getStatNames() {
     return statNames;

@@ -19,10 +19,9 @@ import com.googlecode.psiprobe.tools.SecurityUtils;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -35,15 +34,15 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class SysInfoController extends TomcatContainerController {
 
-  private List filterOutKeys = new ArrayList();
+  private List<String> filterOutKeys = new ArrayList<String>();
   private RuntimeInfoAccessorBean runtimeInfoAccessor;
   private long collectionPeriod;
 
-  public List getFilterOutKeys() {
+  public List<String> getFilterOutKeys() {
     return filterOutKeys;
   }
 
-  public void setFilterOutKeys(List filterOutKeys) {
+  public void setFilterOutKeys(List<String> filterOutKeys) {
     this.filterOutKeys = filterOutKeys;
   }
 
@@ -71,12 +70,15 @@ public class SysInfoController extends TomcatContainerController {
         .getAbsolutePath());
     systemInformation.setConfigBase(getContainerWrapper().getTomcatContainer().getConfigBase());
 
-    Map sysProps = new Properties();
-    sysProps.putAll(System.getProperties());
+    Map<String, String> sysProps = new HashMap<String, String>();
+    for (String propertyName : System.getProperties().stringPropertyNames()) {
+      String propertyValue = System.getProperties().getProperty(propertyName);
+      sysProps.put(propertyName, propertyValue);
+    }
 
     if (!SecurityUtils.hasAttributeValueRole(getServletContext(), request)) {
-      for (Iterator it = filterOutKeys.iterator(); it.hasNext();) {
-        sysProps.remove(it.next());
+      for (String key : filterOutKeys) {
+        sysProps.remove(key);
       }
     }
 

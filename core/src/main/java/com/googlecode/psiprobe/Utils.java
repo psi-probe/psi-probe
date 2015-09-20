@@ -41,6 +41,7 @@ import java.util.Set;
 
 import javax.management.MBeanServer;
 import javax.management.MalformedObjectNameException;
+import javax.management.ObjectInstance;
 import javax.management.ObjectName;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -404,8 +405,8 @@ public class Utils {
     return sb.toString();
   }
 
-  public static List getNamesForLocale(String baseName, Locale locale) {
-    List result = new ArrayList(3);
+  public static List<String> getNamesForLocale(String baseName, Locale locale) {
+    List<String> result = new ArrayList<String>(3);
     String language = locale.getLanguage();
     String country = locale.getCountry();
     String variant = locale.getVariant();
@@ -433,7 +434,7 @@ public class Utils {
     try {
       MBeanServer mbeanServer = new Registry().getMBeanServer();
       ObjectName threadingOName = new ObjectName("java.lang:type=Threading");
-      Set threading = mbeanServer.queryMBeans(threadingOName, null);
+      Set<ObjectInstance> threading = mbeanServer.queryMBeans(threadingOName, null);
       return threading != null && threading.size() > 0;
     } catch (MalformedObjectNameException e) {
       return false;

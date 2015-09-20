@@ -20,7 +20,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.management.MBeanServer;
@@ -39,7 +38,7 @@ public class ListSunThreadsController extends ParameterizableViewController {
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 
-    List threads = null;
+    List<SunThread> threads = null;
     int executionStackDepth = 1;
 
     MBeanServer mbeanServer = new Registry().getMBeanServer();
@@ -50,7 +49,7 @@ public class ListSunThreadsController extends ParameterizableViewController {
     long[] allIds = (long[]) mbeanServer.getAttribute(threadingOName, "AllThreadIds");
 
     if (allIds != null) {
-      threads = new ArrayList(allIds.length);
+      threads = new ArrayList<SunThread>(allIds.length);
 
       for (long id : allIds) {
         CompositeData cd =

@@ -29,7 +29,7 @@ import org.springframework.web.servlet.view.InternalResourceView;
 
 import java.io.File;
 import java.net.URL;
-import java.util.Iterator;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -60,8 +60,8 @@ public class UploadWarController extends TomcatContainerController {
       upload.setSizeMax(-1);
       upload.setHeaderEncoding("UTF8");
       try {
-        for (Iterator it = upload.parseRequest(request).iterator(); it.hasNext();) {
-          FileItem fi = (FileItem) it.next();
+        List<FileItem> fileItems = upload.parseRequest(request);
+        for (FileItem fi : fileItems) {
           if (!fi.isFormField()) {
             if (fi.getName() != null && fi.getName().length() > 0) {
               tmpWar =

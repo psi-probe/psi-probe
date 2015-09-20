@@ -108,7 +108,7 @@ public class Whois {
   public static class Response {
 
     private String summary;
-    private Map data = new TreeMap();
+    private Map<String, String> data = new TreeMap<String, String>();
     private String server;
     private int port;
 
@@ -116,7 +116,7 @@ public class Whois {
       return summary;
     }
 
-    public Map getData() {
+    public Map<String, String> getData() {
       return data;
     }
 

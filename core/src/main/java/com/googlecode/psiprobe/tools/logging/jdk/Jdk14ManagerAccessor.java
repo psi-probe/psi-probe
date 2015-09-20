@@ -12,6 +12,7 @@
 package com.googlecode.psiprobe.tools.logging.jdk;
 
 import com.googlecode.psiprobe.tools.logging.DefaultAccessor;
+import com.googlecode.psiprobe.tools.logging.LogDestination;
 
 import org.apache.commons.beanutils.MethodUtils;
 
@@ -61,8 +62,8 @@ public class Jdk14ManagerAccessor extends DefaultAccessor {
     return null;
   }
 
-  public List getHandlers() {
-    List allHandlers = new ArrayList();
+  public List<LogDestination> getHandlers() {
+    List<LogDestination> allHandlers = new ArrayList<LogDestination>();
     try {
       Enumeration names = (Enumeration) MethodUtils
           .invokeMethod(getTarget(), "getLoggerNames", null);

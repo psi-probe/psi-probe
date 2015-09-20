@@ -49,9 +49,9 @@ public class Instruments {
     SIZE_REFERENCE = ("64".equals(os64bitProp) ? 8 : 4);
   }
 
-  private Set processedObjects = new HashSet(2048);
-  private List thisQueue = new LinkedList();
-  private List nextQueue = new LinkedList();
+  private Set<Object> processedObjects = new HashSet(2048);
+  private final List<Object> thisQueue = new LinkedList<Object>();
+  private final List<Object> nextQueue = new LinkedList<Object>();
   private ClassLoader classLoader = null;
 
   public static long sizeOf(Object obj) {
@@ -64,7 +64,7 @@ public class Instruments {
     return instruments.internalSizeOf(obj);
   }
 
-  public static long sizeOf(Object obj, Set objects) {
+  public static long sizeOf(Object obj, Set<Object> objects) {
     Instruments instruments = new Instruments();
     instruments.processedObjects = objects;
     return instruments.internalSizeOf(obj);
@@ -74,7 +74,7 @@ public class Instruments {
     long size = 0;
     thisQueue.add(root);
     while (!thisQueue.isEmpty()) {
-      Iterator it = thisQueue.iterator();
+      Iterator<Object> it = thisQueue.iterator();
       while (it.hasNext()) {
         Object obj = it.next();
         if (isInitialized() && obj != null

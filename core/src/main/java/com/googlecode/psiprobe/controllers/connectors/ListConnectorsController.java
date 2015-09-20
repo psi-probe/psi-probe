@@ -62,12 +62,12 @@ public class ListConnectorsController extends TomcatContainerController {
       HttpServletResponse response) throws Exception {
 
     boolean workerThreadNameSupported = false;
-    List connectors = containerListenerBean.getConnectors(includeRequestProcessors);
+    List<Connector> connectors = containerListenerBean.getConnectors(includeRequestProcessors);
 
     if (connectors.size() > 0) {
-      List reqProcs = ((Connector) connectors.get(0)).getRequestProcessors();
+      List<RequestProcessor> reqProcs = connectors.get(0).getRequestProcessors();
       if (reqProcs.size() > 0) {
-        RequestProcessor reqProc = (RequestProcessor) reqProcs.get(0);
+        RequestProcessor reqProc = reqProcs.get(0);
         workerThreadNameSupported = reqProc.isWorkerThreadNameSupported();
       }
     }

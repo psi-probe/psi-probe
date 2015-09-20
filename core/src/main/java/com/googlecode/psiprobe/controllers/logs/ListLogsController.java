@@ -12,6 +12,7 @@
 package com.googlecode.psiprobe.controllers.logs;
 
 import com.googlecode.psiprobe.beans.LogResolverBean;
+import com.googlecode.psiprobe.tools.logging.LogDestination;
 
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
@@ -53,7 +54,7 @@ public class ListLogsController extends ParameterizableViewController {
       HttpServletResponse response) throws Exception {
 
     boolean showAll = ServletRequestUtils.getBooleanParameter(request, "apps", false);
-    List uniqueList = logResolver.getLogDestinations(showAll);
+    List<LogDestination> uniqueList = logResolver.getLogDestinations(showAll);
     if (uniqueList != null) {
       return new ModelAndView(getViewName()).addObject("logs", uniqueList);
     } else {

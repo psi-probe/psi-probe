@@ -37,7 +37,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -50,7 +49,7 @@ public class LogResolverBean {
   protected final Log logger = LogFactory.getLog(getClass());
 
   private ContainerWrapperBean containerWrapper;
-  private List stdoutFiles = new ArrayList();
+  private List<String> stdoutFiles = new ArrayList<String>();
 
   public ContainerWrapperBean getContainerWrapper() {
     return containerWrapper;
@@ -60,22 +59,22 @@ public class LogResolverBean {
     this.containerWrapper = containerWrapper;
   }
 
-  public List getStdoutFiles() {
+  public List<String> getStdoutFiles() {
     return stdoutFiles;
   }
 
-  public void setStdoutFiles(List stdoutFiles) {
+  public void setStdoutFiles(List<String> stdoutFiles) {
     this.stdoutFiles = stdoutFiles;
   }
 
-  public List getLogDestinations(boolean all) {
+  public List<LogDestination> getLogDestinations(boolean all) {
     List<LogDestination> allAppenders = getAllLogDestinations();
 
     if (allAppenders != null) {
       //
       // this list has to guarantee the order in which elements are added
       //
-      List uniqueList = new LinkedList();
+      List<LogDestination> uniqueList = new LinkedList<LogDestination>();
       LogComparator cmp = new LogDestinationComparator(all);
 
       Collections.sort(allAppenders, cmp);
@@ -91,11 +90,10 @@ public class LogResolverBean {
     return null;
   }
 
-  public List getLogSources(File logFile) {
-    List filtered = new LinkedList();
-    List sources = getLogSources();
-    for (Object source : sources) {
-      LogDestination dest = (LogDestination) source;
+  public List<LogDestination> getLogSources(File logFile) {
+    List<LogDestination> filtered = new LinkedList<LogDestination>();
+    List<LogDestination> sources = getLogSources();
+    for (LogDestination dest : sources) {
       if (logFile.equals(dest.getFile())) {
         filtered.add(dest);
       }
@@ -103,16 +101,15 @@ public class LogResolverBean {
     return filtered;
   }
 
-  public List getLogSources() {
-    List sources = new LinkedList();
+  public List<LogDestination> getLogSources() {
+    List<LogDestination> sources = new LinkedList<LogDestination>();
 
-    List allAppenders = getAllLogDestinations();
+    List<LogDestination> allAppenders = getAllLogDestinations();
     if (allAppenders != null) {
       LogComparator cmp = new LogSourceComparator();
 
       Collections.sort(allAppenders, cmp);
-      for (Object allAppender : allAppenders) {
-        LogDestination dest = (LogDestination) allAppender;
+      for (LogDestination dest : allAppenders) {
         if (Collections.binarySearch(sources, dest, cmp) < 0) {
           sources.add(new DisconnectedLogDestination(dest));
         }
@@ -203,7 +200,7 @@ public class LogResolverBean {
     return null;
   }
 
-  private void interrogateContext(Context ctx, List allAppenders) {
+  private void interrogateContext(Context ctx, List<LogDestination> allAppenders) {
     Application application = ApplicationUtils.getApplication(ctx, getContainerWrapper());
     ClassLoader cl = ctx.getLoader().getClassLoader();
 
@@ -248,7 +245,9 @@ public class LogResolverBean {
     }
   }
 
-  private void interrogateClassLoader(ClassLoader cl, Application application, List appenders) {
+  private void interrogateClassLoader(ClassLoader cl, Application application,
+      List<LogDestination> appenders) {
+
     String applicationName =
         (application != null ? "application \"" + application.getName() + "\"" : "server");
 
@@ -312,9 +311,8 @@ public class LogResolverBean {
     }
   }
 
-  private void interrogateStdOutFiles(List appenders) {
-    for (Iterator it = stdoutFiles.iterator(); it.hasNext();) {
-      String fileName = (String) it.next();
+  private void interrogateStdOutFiles(List<LogDestination> appenders) {
+    for (String fileName : stdoutFiles) {
       FileLogAccessor fla = resolveStdoutLogDestination(fileName);
       if (fla != null) {
         appenders.add(fla);
@@ -323,8 +321,7 @@ public class LogResolverBean {
   }
 
   private LogDestination getStdoutLogDestination(String logName) {
-    for (Iterator it = stdoutFiles.iterator(); it.hasNext();) {
-      String fileName = (String) it.next();
+    for (String fileName : stdoutFiles) {
       if (fileName.equals(logName)) {
         FileLogAccessor fla = resolveStdoutLogDestination(fileName);
         if (fla != null) {
@@ -450,13 +447,13 @@ public class LogResolverBean {
     return null;
   }
 
-  private abstract static class LogComparator implements Comparator {
+  private abstract static class LogComparator implements Comparator<LogDestination> {
 
     protected static final char DELIM = '!';
 
-    public final int compare(Object o1, Object o2) {
-      String name1 = convertToString((LogDestination) o1);
-      String name2 = convertToString((LogDestination) o2);
+    public final int compare(LogDestination o1, LogDestination o2) {
+      String name1 = convertToString(o1);
+      String name2 = convertToString(o2);
       return name1.compareTo(name2);
     }
 

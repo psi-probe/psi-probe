@@ -158,7 +158,7 @@ public class Mailer {
   }
 
   private static InternetAddress[] createAddresses(String[] addresses) throws AddressException {
-    List/* InternetAddress */result = new ArrayList(addresses.length);
+    List<InternetAddress> result = new ArrayList<InternetAddress>(addresses.length);
     for (String address : addresses) {
       InternetAddress[] parsedAddresses = InternetAddress.parse(address);
       result.addAll(Arrays.asList(parsedAddresses));

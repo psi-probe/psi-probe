@@ -13,6 +13,7 @@ package com.googlecode.psiprobe.controllers.threads;
 
 import com.googlecode.psiprobe.beans.ContainerListenerBean;
 import com.googlecode.psiprobe.controllers.TomcatContainerController;
+import com.googlecode.psiprobe.model.ThreadPool;
 
 import org.springframework.web.servlet.ModelAndView;
 
@@ -42,7 +43,7 @@ public class ListThreadPoolsController extends TomcatContainerController {
   public ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
     
-    List pools = containerListenerBean.getThreadPools();
+    List<ThreadPool> pools = containerListenerBean.getThreadPools();
     return new ModelAndView(getViewName()).addObject("pools", pools);
   }
 

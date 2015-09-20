@@ -37,8 +37,8 @@ public class SessionSearchInfo implements Serializable {
   private Pattern sessionIdPattern;
   private String sessionIdMsg;
   private String attrName;
-  private List attrNamePatterns = new ArrayList();
-  private List attrNameMsgs = new ArrayList();
+  private List<Pattern> attrNamePatterns = new ArrayList<Pattern>();
+  private List<String> attrNameMsgs = new ArrayList<String>();
   private String ageFrom;
   private Integer ageFromSec;
   private String ageTo;
@@ -49,7 +49,7 @@ public class SessionSearchInfo implements Serializable {
   private Integer idleTimeToSec;
   private String lastIp;
   private String infoMessage;
-  private List errorMessages = new ArrayList();
+  private List<String> errorMessages = new ArrayList<String>();
 
   public boolean isEmpty() {
     return sessionId == null && attrName == null && ageFrom == null && ageTo == null
@@ -195,11 +195,11 @@ public class SessionSearchInfo implements Serializable {
     }
   }
 
-  public List getAttrNamePatterns() {
+  public List<Pattern> getAttrNamePatterns() {
     return attrNamePatterns;
   }
 
-  public List getAttrNameMsgs() {
+  public List<String> getAttrNameMsgs() {
     return attrNameMsgs;
   }
 
@@ -303,7 +303,7 @@ public class SessionSearchInfo implements Serializable {
     this.infoMessage = infoMessage;
   }
 
-  public List getErrorMessages() {
+  public List<String> getErrorMessages() {
     return errorMessages;
   }
 

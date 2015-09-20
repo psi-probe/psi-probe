@@ -88,17 +88,16 @@ public class ListSessionsController extends ContextHandlerController {
 
     // context is not specified we'll retrieve all sessions of the container
 
-    List ctxs;
+    List<Context> ctxs;
     if (context == null) {
       ctxs = getContainerWrapper().getTomcatContainer().findContexts();
     } else {
-      ctxs = new ArrayList();
+      ctxs = new ArrayList<Context>();
       ctxs.add(context);
     }
 
-    List sessionList = new ArrayList();
-    for (Iterator it = ctxs.iterator(); it.hasNext();) {
-      Context ctx = (Context) it.next();
+    List<ApplicationSession> sessionList = new ArrayList<ApplicationSession>();
+    for (Context ctx : ctxs) {
       if (ctx != null && ctx.getManager() != null
           && (!searchInfo.isApply() || searchInfo.isUseSearch())) {
         Session[] sessions = ctx.getManager().findSessions();
@@ -142,8 +141,7 @@ public class ListSessionsController extends ContextHandlerController {
             new Object[] {searchInfo.getSessionIdMsg()}));
       }
       if (!searchInfo.isAttrNameValid()) {
-        for (Iterator i = searchInfo.getAttrNameMsgs().iterator(); i.hasNext();) {
-          String message = (String) i.next();
+        for (String message : searchInfo.getAttrNameMsgs()) {
           searchInfo.addErrorMessage(msa.getMessage("probe.src.sessions.search.invalid.attrName",
               new Object[] {message}));
         }
@@ -188,21 +186,20 @@ public class ListSessionsController extends ContextHandlerController {
             appSession.getIdleTime() <= searchInfo.getIdleTimeToSec().longValue() * 1000;
       }
       if (searchInfo.isUseLastIp() && appSession.getLastAccessedIp() != null) {
-        sessionMatches = appSession.getLastAccessedIp().indexOf(searchInfo.getLastIp()) > -1;
+        sessionMatches = appSession.getLastAccessedIp().contains(searchInfo.getLastIp());
       }
 
       if (sessionMatches && searchInfo.isUseAttrName()) {
         boolean attrMatches = false;
-        List namePatterns = new ArrayList();
+        List<Pattern> namePatterns = new ArrayList<Pattern>();
         namePatterns.addAll(searchInfo.getAttrNamePatterns());
 
-        for (Iterator i = appSession.getAttributes().iterator(); i.hasNext();) {
-          String attrName = ((Attribute) i.next()).getName();
+        for (Attribute attr : appSession.getAttributes()) {
+          String attrName = attr.getName();
 
           if (attrName != null) {
-            for (Iterator it = namePatterns.iterator(); it.hasNext();) {
-              Pattern namePattern = (Pattern) it.next();
-              if (namePattern.matcher(attrName).matches()) {
+            for (Iterator<Pattern> it = namePatterns.iterator(); it.hasNext();) {
+              if (it.next().matcher(attrName).matches()) {
                 it.remove();
               }
             }

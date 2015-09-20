@@ -33,7 +33,7 @@ public class SetupFollowController extends LogHandlerController {
       LogDestination logDest) throws Exception {
 
     File logFile = logDest.getFile();
-    List sources = getLogResolver().getLogSources(logFile);
+    List<LogDestination> sources = getLogResolver().getLogSources(logFile);
     return new ModelAndView(getViewName()).addObject("log", logDest).addObject("sources", sources);
   }
 

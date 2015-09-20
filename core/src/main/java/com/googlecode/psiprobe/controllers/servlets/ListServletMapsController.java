@@ -12,13 +12,13 @@
 package com.googlecode.psiprobe.controllers.servlets;
 
 import com.googlecode.psiprobe.controllers.ContextHandlerController;
+import com.googlecode.psiprobe.model.ServletMapping;
 import com.googlecode.psiprobe.tools.ApplicationUtils;
 
 import org.apache.catalina.Context;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -35,17 +35,16 @@ public class ListServletMapsController extends ContextHandlerController {
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-    List ctxs;
+    List<Context> ctxs;
     if (context == null) {
       ctxs = getContainerWrapper().getTomcatContainer().findContexts();
     } else {
-      ctxs = new ArrayList();
+      ctxs = new ArrayList<Context>();
       ctxs.add(context);
     }
 
-    List servletMaps = new ArrayList();
-    for (Iterator i = ctxs.iterator(); i.hasNext();) {
-      Context ctx = (Context) i.next();
+    List<ServletMapping> servletMaps = new ArrayList<ServletMapping>();
+    for (Context ctx : ctxs) {
       servletMaps.addAll(ApplicationUtils.getApplicationServletMaps(ctx));
     }
 

@@ -80,14 +80,14 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
     this.maxFiles = maxFiles > 0 ? maxFiles : 2;
   }
 
-  public synchronized List newStats(String name, int maxElements) {
+  public synchronized List<XYDataItem> newStats(String name, int maxElements) {
     List<XYDataItem> stats = Collections.synchronizedList(new ArrayList<XYDataItem>(maxElements));
     statsData.put(name, stats);
     return stats;
   }
 
   public synchronized void resetStats(String name) {
-    List stats = getStats(name);
+    List<XYDataItem> stats = getStats(name);
     if (stats != null) {
       stats.clear();
     }

@@ -21,7 +21,7 @@ import java.util.Map;
 public class Summary implements Serializable {
 
   private String name;
-  private Map items;
+  private Map<String, Item> items;
   private int outOfDateCount;
 
   public String getName() {
@@ -32,11 +32,11 @@ public class Summary implements Serializable {
     this.name = name;
   }
 
-  public Map getItems() {
+  public Map<String, Item> getItems() {
     return items;
   }
 
-  public void setItems(Map items) {
+  public void setItems(Map<String, Item> items) {
     this.items = items;
   }
 

@@ -18,7 +18,6 @@ import com.googlecode.psiprobe.model.stats.StatsCollection;
 
 import org.jfree.data.xy.XYDataItem;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -33,8 +32,9 @@ public abstract class AbstractStatsCollectorBean {
 
   private StatsCollection statsCollection;
   private int maxSeries = 240;
-  private List listeners;
-  private Map previousData = new TreeMap();
+  private List<StatsCollectionListener> listeners;
+  private Map<String, Long> previousData = new TreeMap<String, Long>();
+  private Map<String, Entry> previousData2D = new TreeMap<String, Entry>();
 
   public StatsCollection getStatsCollection() {
     return statsCollection;
@@ -52,11 +52,11 @@ public abstract class AbstractStatsCollectorBean {
     this.maxSeries = maxSeries;
   }
 
-  public List getListeners() {
+  public List<StatsCollectionListener> getListeners() {
     return listeners;
   }
 
-  public void setListeners(List listeners) {
+  public void setListeners(List<StatsCollectionListener> listeners) {
     this.listeners = listeners;
   }
 
@@ -69,7 +69,7 @@ public abstract class AbstractStatsCollectorBean {
   protected long buildDeltaStats(String name, long value, long time) throws InterruptedException {
     long delta = 0;
     if (statsCollection != null) {
-      long previousValue = Utils.toLong((Long) previousData.get(name), 0);
+      long previousValue = Utils.toLong(previousData.get(name), 0);
       delta = value - previousValue;
       delta = delta > 0 ? delta : 0;
       buildAbsoluteStats(name, delta, time);
@@ -85,7 +85,7 @@ public abstract class AbstractStatsCollectorBean {
   protected void buildAbsoluteStats(String name, long value, long time)
       throws InterruptedException {
     
-    List stats = statsCollection.getStats(name);
+    List<XYDataItem> stats = statsCollection.getStats(name);
     if (stats == null) {
       stats = statsCollection.newStats(name, maxSeries);
     } else {
@@ -99,13 +99,9 @@ public abstract class AbstractStatsCollectorBean {
       }
       if (listeners != null) {
         StatsCollectionEvent event = new StatsCollectionEvent(name, data);
-        for (Iterator it = listeners.iterator(); it.hasNext();) {
-          Object obj = it.next();
-          if (obj instanceof StatsCollectionListener) {
-            StatsCollectionListener listener = (StatsCollectionListener) obj;
-            if (listener.isEnabled()) {
-              listener.statsCollected(event);
-            }
+        for (StatsCollectionListener listener : listeners) {
+          if (listener.isEnabled()) {
+            listener.statsCollected(event);
           }
         }
       }
@@ -140,19 +136,19 @@ public abstract class AbstractStatsCollectorBean {
   protected void buildTimePercentageStats(String name, long value, long time)
       throws InterruptedException {
 
-    Entry entry = (Entry) previousData.get(name);
+    Entry entry = previousData2D.get(name);
     if (entry == null) {
       entry = new Entry();
       entry.value = value;
       entry.time = time;
-      previousData.put(name, entry);
+      previousData2D.put(name, entry);
     } else {
       double valueDelta = value - entry.value;
       double timeDelta = time - entry.time;
       double statValue = valueDelta * 100 / timeDelta;
       statsCollection.lockForUpdate();
       try {
-        List stats = statsCollection.getStats(name);
+        List<XYDataItem> stats = statsCollection.getStats(name);
         if (stats == null) {
           stats = statsCollection.newStats(name, maxSeries);
         }
@@ -168,7 +164,7 @@ public abstract class AbstractStatsCollectorBean {
     statsCollection.resetStats(name);
   }
 
-  private void houseKeepStats(List stats) {
+  private void houseKeepStats(List<XYDataItem> stats) {
     while (stats.size() > maxSeries) {
       stats.remove(0);
     }

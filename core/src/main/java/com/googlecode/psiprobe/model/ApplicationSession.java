@@ -36,7 +36,7 @@ public class ApplicationSession {
   private long objectCount;
   private String info;
   private String managerType;
-  private List attributes = new ArrayList();
+  private List<Attribute> attributes = new ArrayList<Attribute>();
   private long size;
   private boolean allowedToViewValues = false;
   private String lastAccessedIp;
@@ -98,11 +98,11 @@ public class ApplicationSession {
     this.objectCount = objectCount;
   }
 
-  public List getAttributes() {
+  public List<Attribute> getAttributes() {
     return attributes;
   }
 
-  public void setAttributes(List attributes) {
+  public void setAttributes(List<Attribute> attributes) {
     this.attributes = attributes;
   }
 

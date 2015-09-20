@@ -11,6 +11,10 @@
 
 package com.googlecode.psiprobe;
 
+import com.googlecode.psiprobe.model.ApplicationParam;
+import com.googlecode.psiprobe.model.ApplicationResource;
+import com.googlecode.psiprobe.model.FilterInfo;
+import com.googlecode.psiprobe.model.FilterMapping;
 import com.googlecode.psiprobe.model.jsp.Summary;
 
 import org.apache.catalina.Context;
@@ -72,7 +76,7 @@ public interface TomcatContainer {
 
   void listContextJsps(Context context, Summary summary, boolean compile) throws Exception;
 
-  void recompileJsps(Context context, Summary summary, List names);
+  void recompileJsps(Context context, Summary summary, List<String> names);
 
   void discardWorkDir(Context context);
 
@@ -84,17 +88,19 @@ public interface TomcatContainer {
 
   String getServletFileNameForJsp(Context context, String jspName);
 
-  List getApplicationFilterMaps(Context context);
+  List<FilterMapping> getApplicationFilterMaps(Context context);
 
   boolean getAvailable(Context context);
 
-  public void addContextResource(Context context, List resourceList, boolean contextBound);
+  public void addContextResource(Context context, List<ApplicationResource> resourceList,
+      boolean contextBound);
 
-  public void addContextResourceLink(Context context, List resourceList, boolean contextBound);
+  public void addContextResourceLink(Context context, List<ApplicationResource> resourceList,
+      boolean contextBound);
 
-  public List getApplicationFilters(Context context);
+  public List<FilterInfo> getApplicationFilters(Context context);
 
-  public List getApplicationInitParams(Context context);
+  public List<ApplicationParam> getApplicationInitParams(Context context);
 
   boolean resourceExists(String name, Context context);
 

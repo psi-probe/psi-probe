@@ -21,7 +21,6 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -38,11 +37,12 @@ public class ListAllJdbcResourceGroups extends TomcatContainerController {
 
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
-    List dataSourceGroups = new ArrayList();
-    List dataSources = new ArrayList();
+    
+    List<DataSourceInfoGroup> dataSourceGroups = new ArrayList<DataSourceInfoGroup>();
+    List<DataSourceInfo> dataSources = new ArrayList<DataSourceInfo>();
 
-    List privateResources = getContainerWrapper().getPrivateDataSources();
-    List globalResources = getContainerWrapper().getGlobalDataSources();
+    List<ApplicationResource> privateResources = getContainerWrapper().getPrivateDataSources();
+    List<ApplicationResource> globalResources = getContainerWrapper().getGlobalDataSources();
 
     // filter out anything that is not a datasource
     // and use only those datasources that are properly configured
@@ -51,10 +51,10 @@ public class ListAllJdbcResourceGroups extends TomcatContainerController {
     filterValidDataSources(globalResources, dataSources);
 
     // sort datasources by JDBC URL
-    Collections.sort(dataSources, new Comparator() {
-      public int compare(Object o1, Object o2) {
-        String jdbcUrl1 = ((DataSourceInfo) o1).getJdbcUrl();
-        String jdbcUrl2 = ((DataSourceInfo) o2).getJdbcUrl();
+    Collections.sort(dataSources, new Comparator<DataSourceInfo>() {
+      public int compare(DataSourceInfo ds1, DataSourceInfo ds2) {
+        String jdbcUrl1 = ds1.getJdbcUrl();
+        String jdbcUrl2 = ds2.getJdbcUrl();
 
         // here we rely on the the filter not to add any datasources with a null jdbcUrl to the list
 
@@ -64,9 +64,7 @@ public class ListAllJdbcResourceGroups extends TomcatContainerController {
 
     // group datasources by JDBC URL and calculate aggregated totals
     DataSourceInfoGroup dsGroup = null;
-    for (Iterator i = dataSources.iterator(); i.hasNext();) {
-      DataSourceInfo ds = (DataSourceInfo) i.next();
-
+    for (DataSourceInfo ds : dataSources) {
       if (dsGroup == null || !dsGroup.getJdbcUrl().equalsIgnoreCase(ds.getJdbcUrl())) {
         dsGroup = new DataSourceInfoGroup(ds);
         dataSourceGroups.add(dsGroup);
@@ -78,9 +76,10 @@ public class ListAllJdbcResourceGroups extends TomcatContainerController {
     return new ModelAndView(getViewName(), "dataSourceGroups", dataSourceGroups);
   }
 
-  protected void filterValidDataSources(List resources, List dataSources) {
-    for (Iterator i = resources.iterator(); i.hasNext();) {
-      ApplicationResource res = (ApplicationResource) i.next();
+  protected void filterValidDataSources(List<ApplicationResource> resources,
+      List<DataSourceInfo> dataSources) {
+
+    for (ApplicationResource res : resources) {
       if (res.isLookedUp() && res.getDataSourceInfo() != null
           && res.getDataSourceInfo().getJdbcUrl() != null) {
         dataSources.add(res.getDataSourceInfo());

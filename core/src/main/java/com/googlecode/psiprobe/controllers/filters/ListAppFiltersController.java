@@ -12,6 +12,7 @@
 package com.googlecode.psiprobe.controllers.filters;
 
 import com.googlecode.psiprobe.controllers.ContextHandlerController;
+import com.googlecode.psiprobe.model.FilterInfo;
 import com.googlecode.psiprobe.tools.ApplicationUtils;
 
 import org.apache.catalina.Context;
@@ -32,7 +33,9 @@ public class ListAppFiltersController extends ContextHandlerController {
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-    List appFilters = ApplicationUtils.getApplicationFilters(context, getContainerWrapper());
+    List<FilterInfo> appFilters =
+        ApplicationUtils.getApplicationFilters(context, getContainerWrapper());
+
     return new ModelAndView(getViewName(), "appFilters", appFilters);
   }
 

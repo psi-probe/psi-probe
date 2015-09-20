@@ -11,36 +11,32 @@
 
 package com.googlecode.psiprobe.tokenizer;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
-import java.util.Vector;
 
 /**
  * <code>UniqueList</code> is a successor of <code>java.util.Vector</code> to provide a collection
  * that contains no duplicate elements, more formally such that e1.compareTo(e2) == 0.
  *
  * <p>
- * As from above, the collection implies that all its elements must implement
- * <code>Comparable</code> interface.
- * </p>
- * 
- * <p>
  * The collection is kept ordered whenever elements added or removed and besides uniqueness it is to
  * provide fast element search based again on e1.compareTo(e2) values.
  * </p>
  *
  * @author Vlad Ilyushchenko
+ * @author Mark Lewis
  */
-public class UniqueList extends Vector {
+public class UniqueList<T extends Comparable<? super T>> extends ArrayList<T> {
 
   @Override
-  public synchronized boolean add(Object obj) {
+  public synchronized boolean add(T obj) {
     return add(obj, null);
   }
 
-  protected synchronized boolean add(Object obj, Comparator comp) {
+  protected synchronized boolean add(T obj, Comparator<? super T> comp) {
     if (size() == 0) {
       return super.add(obj);
     } else {
@@ -49,10 +45,11 @@ public class UniqueList extends Vector {
           ? Collections.binarySearch(this, obj)
           : Collections.binarySearch(this, obj, comp);
       if (index < 0) {
-        if (-index - 1 >= size()) {
+        int insertionPoint = -index - 1;
+        if (insertionPoint >= size()) {
           super.add(obj);
         } else {
-          super.insertElementAt(obj, -index - 1);
+          super.add(insertionPoint, obj);
         }
       }
       return index < 0;
@@ -60,17 +57,17 @@ public class UniqueList extends Vector {
   }
 
   @Override
-  public synchronized void insertElementAt(Object obj, int index) {
+  public synchronized void add(int index, T obj) {
     add(obj);
   }
 
   @Override
-  public synchronized boolean addAll(Collection comp) {
+  public synchronized boolean addAll(Collection<? extends T> comp) {
     boolean ok = this != comp;
     if (ok) {
-      Iterator iterator = comp.iterator();
+      Iterator<? extends T> iterator = comp.iterator();
       while (iterator.hasNext()) {
-        ok = this.add(iterator.next()) && ok;
+        ok &= this.add(iterator.next());
       }
     }
     return ok;

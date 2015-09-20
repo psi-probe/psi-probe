@@ -67,7 +67,7 @@ public class WhoisController extends ParameterizableViewController {
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 
-    List lines = null;
+    List<String> lines = null;
     boolean timeout = false;
     String reverseName = null;
 
@@ -81,7 +81,7 @@ public class WhoisController extends ParameterizableViewController {
     }
 
     if (wh != null) {
-      lines = new ArrayList(50);
+      lines = new ArrayList<String>(50);
       BufferedReader br =
           new BufferedReader(new InputStreamReader(new ByteArrayInputStream(wh.getSummary()
               .getBytes())));

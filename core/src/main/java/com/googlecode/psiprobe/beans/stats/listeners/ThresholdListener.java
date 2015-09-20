@@ -25,8 +25,8 @@ public abstract class ThresholdListener extends AbstractStatsCollectionListener 
   public static final long DEFAULT_THRESHOLD = Long.MAX_VALUE;
   public static final long DEFAULT_VALUE = Long.MIN_VALUE;
 
-  private HashMap/* String, Long */previousValues = new HashMap();
-  private HashMap/* String, Boolean */seriesDisabled = new HashMap();
+  private HashMap<String, Long> previousValues = new HashMap<String, Long>();
+  private HashMap<String, Boolean> seriesDisabled = new HashMap<String, Boolean>();
 
   protected abstract void crossedAboveThreshold(StatsCollectionEvent sce);
 
@@ -95,7 +95,7 @@ public abstract class ThresholdListener extends AbstractStatsCollectionListener 
   }
 
   protected long getPreviousValue(String name) {
-    Long value = (Long) previousValues.get(name);
+    Long value = previousValues.get(name);
     return Utils.toLong(value, DEFAULT_VALUE);
   }
 
@@ -105,7 +105,7 @@ public abstract class ThresholdListener extends AbstractStatsCollectionListener 
   }
 
   protected boolean isSeriesDisabled(String name) {
-    Boolean disabled = (Boolean) seriesDisabled.get(name);
+    Boolean disabled = seriesDisabled.get(name);
     if (disabled == null) {
       disabled = Boolean.FALSE;
     }

@@ -21,7 +21,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -51,7 +50,7 @@ public class ContainerWrapperBean {
 
   private boolean forceFirstAdaptor = false;
 
-  private Map resourceResolvers;
+  private Map<String, ResourceResolver> resourceResolvers;
 
   public boolean isForceFirstAdaptor() {
     return forceFirstAdaptor;
@@ -139,21 +138,21 @@ public class ContainerWrapperBean {
   public ResourceResolver getResourceResolver() {
     if (resourceResolver == null) {
       if (System.getProperty("jboss.server.name") != null) {
-        resourceResolver = (ResourceResolver) resourceResolvers.get("jboss");
+        resourceResolver = resourceResolvers.get("jboss");
         logger.info("Using JBOSS resource resolver");
       } else {
-        resourceResolver = (ResourceResolver) resourceResolvers.get("default");
+        resourceResolver = resourceResolvers.get("default");
         logger.info("Using DEFAULT resource resolver");
       }
     }
     return resourceResolver;
   }
 
-  public Map getResourceResolvers() {
+  public Map<String, ResourceResolver> getResourceResolvers() {
     return resourceResolvers;
   }
 
-  public void setResourceResolvers(Map resourceResolvers) {
+  public void setResourceResolvers(Map<String, ResourceResolver> resourceResolvers) {
     this.resourceResolvers = resourceResolvers;
   }
 
@@ -164,11 +163,12 @@ public class ContainerWrapperBean {
     return resources;
   }
 
-  public List getPrivateDataSources() throws Exception {
-    List resources = new ArrayList();
+  public List<ApplicationResource> getPrivateDataSources() throws Exception {
+    List<ApplicationResource> resources = new ArrayList<ApplicationResource>();
     if (tomcatContainer != null && getResourceResolver().supportsPrivateResources()) {
       for (Context app : getTomcatContainer().findContexts()) {
-        List appResources = getResourceResolver().getApplicationResources(app, this);
+        List<ApplicationResource> appResources =
+            getResourceResolver().getApplicationResources(app, this);
         // add only those resources that have data source info
         filterDataSources(appResources, resources);
       }
@@ -176,19 +176,20 @@ public class ContainerWrapperBean {
     return resources;
   }
 
-  public List getGlobalDataSources() throws Exception {
-    List resources = new ArrayList();
+  public List<ApplicationResource> getGlobalDataSources() throws Exception {
+    List<ApplicationResource> resources = new ArrayList<ApplicationResource>();
     if (getResourceResolver().supportsGlobalResources()) {
-      List globalResources = getResourceResolver().getApplicationResources();
+      List<ApplicationResource> globalResources = getResourceResolver().getApplicationResources();
       // add only those resources that have data source info
       filterDataSources(globalResources, resources);
     }
     return resources;
   }
 
-  protected void filterDataSources(List resources, List dataSources) {
-    for (Iterator it = resources.iterator(); it.hasNext();) {
-      ApplicationResource res = (ApplicationResource) it.next();
+  protected void filterDataSources(List<ApplicationResource> resources,
+      List<ApplicationResource> dataSources) {
+
+    for (ApplicationResource res : resources) {
       if (res.getDataSourceInfo() != null) {
         dataSources.add(res);
       }

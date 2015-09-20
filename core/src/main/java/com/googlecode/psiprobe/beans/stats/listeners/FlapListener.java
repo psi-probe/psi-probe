@@ -30,8 +30,8 @@ public abstract class FlapListener extends ThresholdListener {
   private float defaultFlapStopThreshold;
   private float defaultFlapLowWeight;
   private float defaultFlapHighWeight;
-  private HashMap/* String, LinkedList */flaps = new HashMap();
-  private HashMap/* String, Boolean */flappingStates = new HashMap();
+  private HashMap<String, LinkedList<Boolean>> flaps = new HashMap<String, LinkedList<Boolean>>();
+  private HashMap<String, Boolean> flappingStates = new HashMap<String, Boolean>();
 
   protected abstract void flappingStarted(StatsCollectionEvent sce);
 
@@ -103,13 +103,13 @@ public abstract class FlapListener extends ThresholdListener {
 
   protected float calculateStateTransitionPercentage(String name, boolean flapping) {
     int flapInterval = getFlapInterval(name);
-    LinkedList list = getFlaps(name);
+    LinkedList<Boolean> list = getFlaps(name);
     float lowWeight = getFlapLowWeight(name);
     float highWeight = getFlapHighWeight(name);
     float weightRange = highWeight - lowWeight;
     float result = 0;
     for (int i = list.size() - 1; i >= 0; i--) {
-      boolean thisFlap = ((Boolean) list.get(i));
+      boolean thisFlap = (list.get(i));
       if (flapping != thisFlap) {
         float weight = lowWeight + (weightRange * i / (flapInterval - 1));
         result += weight;
@@ -120,7 +120,7 @@ public abstract class FlapListener extends ThresholdListener {
 
   protected void addFlap(String name, boolean flap) {
     int flapInterval = getFlapInterval(name);
-    LinkedList list = getFlaps(name);
+    LinkedList<Boolean> list = getFlaps(name);
     Boolean value = flap;
     list.addLast(value);
     while (list.size() > flapInterval) {
@@ -129,7 +129,7 @@ public abstract class FlapListener extends ThresholdListener {
   }
 
   protected boolean getFlappingState(String name) {
-    Boolean flapping = (Boolean) flappingStates.get(name);
+    Boolean flapping = flappingStates.get(name);
     if (flapping == null) {
       flapping = Boolean.FALSE;
       setFlappingState(name, false);
@@ -141,10 +141,10 @@ public abstract class FlapListener extends ThresholdListener {
     flappingStates.put(name, flapping);
   }
 
-  protected LinkedList getFlaps(String name) {
-    LinkedList list = (LinkedList) flaps.get(name);
+  protected LinkedList<Boolean> getFlaps(String name) {
+    LinkedList<Boolean> list = flaps.get(name);
     if (list == null) {
-      list = new LinkedList();
+      list = new LinkedList<Boolean>();
       flaps.put(name, list);
     }
     return list;

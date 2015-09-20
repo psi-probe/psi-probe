@@ -103,15 +103,15 @@ public class LogbackFactoryAccessor extends DefaultAccessor {
    * 
    * @return a list of {@link LogbackAppenderAccessor}s representing all appenders that are in use
    */
-  public List getAppenders() {
-    List appenders = new ArrayList();
+  public List<LogbackAppenderAccessor> getAppenders() {
+    List<LogbackAppenderAccessor> appenders = new ArrayList<LogbackAppenderAccessor>();
     try {
       Class clazz = getTarget().getClass();
       Method getLoggerList = MethodUtils
           .getAccessibleMethod(clazz, "getLoggerList", new Class[] {});
       
-      List loggers = (List) getLoggerList.invoke(getTarget(), null);
-      Iterator it = loggers.iterator();
+      List<Object> loggers = (List<Object>) getLoggerList.invoke(getTarget(), null);
+      Iterator<Object> it = loggers.iterator();
       while (it.hasNext()) {
         LogbackLoggerAccessor accessor = new LogbackLoggerAccessor();
         accessor.setTarget(it.next());

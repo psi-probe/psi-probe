@@ -34,7 +34,6 @@ import java.net.URI;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -248,7 +247,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
    * @param summary the summary in which the output is stored
    * @param names the list of JSPs to compile
    */
-  public void recompileJsps(Context context, Summary summary, List names) {
+  public void recompileJsps(Context context, Summary summary, List<String> names) {
     ServletConfig servletConfig = (ServletConfig) context.findChild("jsp");
     if (servletConfig != null) {
       if (summary != null) {
@@ -264,8 +263,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
              */
             URLClassLoader classLoader =
                 new URLClassLoader(new URL[] {}, context.getLoader().getClassLoader());
-            for (Iterator it = names.iterator(); it.hasNext();) {
-              String name = (String) it.next();
+            for (String name : names) {
               long time = System.currentTimeMillis();
               JspCompilationContext jcctx =
                   createJspCompilationContext(name, opt, sctx, jrctx, classLoader);
@@ -322,14 +320,13 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
         JspRuntimeContext jrctx = new JspRuntimeContext(sctx, opt);
         try {
           if (summary.getItems() == null) {
-            summary.setItems(new HashMap());
+            summary.setItems(new HashMap<String, Item>());
           }
 
           /*
            * mark all items as missing
            */
-          for (Iterator it = summary.getItems().keySet().iterator(); it.hasNext();) {
-            Item item = (Item) summary.getItems().get(it.next());
+          for (Item item : summary.getItems().values()) {
             item.setMissing(true);
           }
 
@@ -349,10 +346,9 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
       //
       // delete "missing" items by keeping "not missing" ones
       //
-      Map hashMap = new HashMap();
-      for (Iterator it = summary.getItems().keySet().iterator(); it.hasNext();) {
-        Object key = it.next();
-        Item item = (Item) summary.getItems().get(key);
+      Map<String, Item> hashMap = new HashMap<String, Item>();
+      for (String key : summary.getItems().keySet()) {
+        Item item = summary.getItems().get(key);
         if (!item.isMissing()) {
           hashMap.put(key, item);
         }
@@ -428,11 +424,10 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
   protected void compileItem(String jspName, Options opt, Context ctx, JspRuntimeContext jrctx,
       Summary summary, URLClassLoader classLoader, int level, boolean compile) {
     ServletContext sctx = ctx.getServletContext();
-    Set paths = sctx.getResourcePaths(jspName);
+    Set<String> paths = sctx.getResourcePaths(jspName);
 
     if (paths != null) {
-      for (Iterator it = paths.iterator(); it.hasNext();) {
-        String name = (String) it.next();
+      for (String name : paths) {
         boolean isJsp = false;
 
         try {

@@ -51,7 +51,7 @@ public class ThreadStackController extends ParameterizableViewController {
     long threadId = ServletRequestUtils.getLongParameter(request, "id", -1);
     String threadName = ServletRequestUtils.getStringParameter(request, "name", null);
 
-    List stack = null;
+    List<ThreadStackElement> stack = null;
     MBeanServer mbeanServer = new Registry().getMBeanServer();
     ObjectName threadingOName = new ObjectName("java.lang:type=Threading");
 
@@ -78,7 +78,7 @@ public class ThreadStackController extends ParameterizableViewController {
         CompositeData[] elements = (CompositeData[]) cd.get("stackTrace");
         threadName = JmxTools.getStringAttr(cd, "threadName");
 
-        stack = new ArrayList(elements.length);
+        stack = new ArrayList<ThreadStackElement>(elements.length);
 
         for (CompositeData cd2 : elements) {
           ThreadStackElement tse = new ThreadStackElement();

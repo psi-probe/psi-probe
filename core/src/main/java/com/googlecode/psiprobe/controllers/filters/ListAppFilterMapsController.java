@@ -12,6 +12,7 @@
 package com.googlecode.psiprobe.controllers.filters;
 
 import com.googlecode.psiprobe.controllers.ContextHandlerController;
+import com.googlecode.psiprobe.model.FilterMapping;
 
 import org.apache.catalina.Context;
 import org.springframework.web.servlet.ModelAndView;
@@ -33,7 +34,9 @@ public class ListAppFilterMapsController extends ContextHandlerController {
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-    List filterMaps = getContainerWrapper().getTomcatContainer().getApplicationFilterMaps(context);
+    List<FilterMapping> filterMaps = getContainerWrapper().getTomcatContainer()
+        .getApplicationFilterMaps(context);
+    
     return new ModelAndView(getViewName(), "filterMaps", filterMaps);
   }
 

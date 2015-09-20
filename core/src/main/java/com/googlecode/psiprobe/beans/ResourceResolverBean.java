@@ -23,7 +23,6 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.commons.modeler.Registry;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -56,7 +55,7 @@ public class ResourceResolverBean implements ResourceResolver {
   public static final String DEFAULT_RESOURCE_PREFIX = DEFAULT_GLOBAL_RESOURCE_PREFIX
       + "java:comp/env/";
 
-  private List datasourceMappers;
+  private List<DatasourceAccessor> datasourceMappers;
 
   public List<ApplicationResource> getApplicationResources() throws NamingException {
     logger.info("Reading GLOBAL resources");
@@ -65,10 +64,9 @@ public class ResourceResolverBean implements ResourceResolver {
     MBeanServer server = getMBeanServer();
     if (server != null) {
       try {
-        Set dsNames =
+        Set<ObjectName> dsNames =
             server.queryNames(new ObjectName("Catalina:type=Resource,resourcetype=Global,*"), null);
-        for (Iterator it = dsNames.iterator(); it.hasNext();) {
-          ObjectName objectName = (ObjectName) it.next();
+        for (ObjectName objectName : dsNames) {
           ApplicationResource resource = new ApplicationResource();
 
           logger.info("reading resource: " + objectName);
@@ -89,7 +87,7 @@ public class ResourceResolverBean implements ResourceResolver {
     return resources;
   }
 
-  public synchronized List getApplicationResources(Context context,
+  public synchronized List<ApplicationResource> getApplicationResources(Context context,
       ContainerWrapperBean containerWrapper) throws NamingException {
 
     List<ApplicationResource> resourceList = new ArrayList<ApplicationResource>();
@@ -141,8 +139,7 @@ public class ResourceResolverBean implements ResourceResolver {
         String jndiName = resolveJndiName(resource.getName(), global);
         Object obj = ctx.lookup(jndiName);
         resource.setLookedUp(true);
-        for (Iterator it = datasourceMappers.iterator(); it.hasNext();) {
-          DatasourceAccessor accessor = (DatasourceAccessor) it.next();
+        for (DatasourceAccessor accessor : datasourceMappers) {
           dataSourceInfo = accessor.getInfo(obj);
           if (dataSourceInfo != null) {
             break;
@@ -189,8 +186,7 @@ public class ResourceResolverBean implements ResourceResolver {
       String jndiName = resolveJndiName(resourceName, (context == null));
       Object obj = ctx.lookup(jndiName);
       try {
-        for (Iterator it = datasourceMappers.iterator(); it.hasNext();) {
-          DatasourceAccessor accessor = (DatasourceAccessor) it.next();
+        for (DatasourceAccessor accessor : datasourceMappers) {
           if (accessor.reset(obj)) {
             return true;
           }
@@ -238,11 +234,11 @@ public class ResourceResolverBean implements ResourceResolver {
     }
   }
 
-  public List getDatasourceMappers() {
+  public List<DatasourceAccessor> getDatasourceMappers() {
     return datasourceMappers;
   }
 
-  public void setDatasourceMappers(List datasourceMappers) {
+  public void setDatasourceMappers(List<DatasourceAccessor> datasourceMappers) {
     this.datasourceMappers = datasourceMappers;
   }
 

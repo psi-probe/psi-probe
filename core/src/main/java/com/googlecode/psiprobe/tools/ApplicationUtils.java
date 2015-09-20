@@ -14,6 +14,7 @@ package com.googlecode.psiprobe.tools;
 import com.googlecode.psiprobe.beans.ContainerWrapperBean;
 import com.googlecode.psiprobe.beans.ResourceResolver;
 import com.googlecode.psiprobe.model.Application;
+import com.googlecode.psiprobe.model.ApplicationParam;
 import com.googlecode.psiprobe.model.ApplicationResource;
 import com.googlecode.psiprobe.model.ApplicationSession;
 import com.googlecode.psiprobe.model.Attribute;
@@ -39,7 +40,6 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -183,14 +183,13 @@ public class ApplicationUtils {
     logger.debug("Calculating datasource usage score");
 
     int[] scores = new int[] {0, 0};
-    List appResources;
+    List<ApplicationResource> appResources;
     try {
       appResources = resolver.getApplicationResources(context, containerWrapper);
     } catch (NamingException e) {
       throw new RuntimeException(e);
     }
-    for (Iterator it = appResources.iterator(); it.hasNext();) {
-      ApplicationResource appResource = (ApplicationResource) it.next();
+    for (ApplicationResource appResource : appResources) {
       if (appResource.getDataSourceInfo() != null) {
         scores[0] = Math.max(scores[0], appResource.getDataSourceInfo().getBusyScore());
         scores[1] = Math.max(scores[1], appResource.getDataSourceInfo().getEstablishedScore());
@@ -219,7 +218,7 @@ public class ApplicationUtils {
       long size = 0;
 
       HttpSession httpSession = session.getSession();
-      Set processedObjects = new HashSet(1000);
+      Set<Object> processedObjects = new HashSet<Object>(1000);
 
       // Exclude references back to the session itself
       processedObjects.add(httpSession);
@@ -288,8 +287,8 @@ public class ApplicationUtils {
     return sbean;
   }
 
-  public static List getApplicationAttributes(Context context) {
-    List attrs = new ArrayList();
+  public static List<Attribute> getApplicationAttributes(Context context) {
+    List<Attribute> attrs = new ArrayList<Attribute>();
     ServletContext servletCtx = context.getServletContext();
     for (Enumeration e = servletCtx.getAttributeNames(); e.hasMoreElements();) {
       String attrName = (String) e.nextElement();
@@ -304,7 +303,7 @@ public class ApplicationUtils {
     return attrs;
   }
 
-  public static List getApplicationInitParams(Context context,
+  public static List<ApplicationParam> getApplicationInitParams(Context context,
       ContainerWrapperBean containerWrapper) {
     
     return containerWrapper.getTomcatContainer().getApplicationInitParams(context);
@@ -345,9 +344,9 @@ public class ApplicationUtils {
     return si;
   }
 
-  public static List getApplicationServlets(Context context) {
+  public static List<ServletInfo> getApplicationServlets(Context context) {
     Container[] cns = context.findChildren();
-    List servlets = new ArrayList(cns.length);
+    List<ServletInfo> servlets = new ArrayList<ServletInfo>(cns.length);
     for (Container container : cns) {
       if (container instanceof Wrapper) {
         Wrapper wrapper = (Wrapper) container;
@@ -357,9 +356,9 @@ public class ApplicationUtils {
     return servlets;
   }
 
-  public static List getApplicationServletMaps(Context context) {
+  public static List<ServletMapping> getApplicationServletMaps(Context context) {
     String[] sms = context.findServletMappings();
-    List servletMaps = new ArrayList(sms.length);
+    List<ServletMapping> servletMaps = new ArrayList<ServletMapping>(sms.length);
     for (String servletMapping : sms) {
       if (servletMapping != null) {
         String sn = context.findServletMapping(servletMapping);

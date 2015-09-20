@@ -21,9 +21,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.web.context.ServletContextAware;
 
-import java.util.Iterator;
-import java.util.List;
-
 import javax.servlet.ServletContext;
 
 /**
@@ -81,10 +78,7 @@ public class AppStatsCollectorBean extends AbstractStatsCollectorBean implements
         long totalAvgProcTime = 0;
         int participatingAppCount = 0;
 
-        List contexts = tomcatContainer.findContexts();
-        for (Iterator i = contexts.iterator(); i.hasNext();) {
-          Context ctx = (Context) i.next();
-
+        for (Context ctx : tomcatContainer.findContexts()) {
           if (ctx != null && ctx.getName() != null) {
             Application app = new Application();
             ApplicationUtils.collectApplicationServletStats(ctx, app);
@@ -134,10 +128,7 @@ public class AppStatsCollectorBean extends AbstractStatsCollectorBean implements
     } else {
       TomcatContainer tomcatContainer = getContainerWrapper().getTomcatContainer();
       if (tomcatContainer != null) {
-        List contexts = tomcatContainer.findContexts();
-        for (Iterator i = contexts.iterator(); i.hasNext();) {
-          Context ctx = (Context) i.next();
-
+        for (Context ctx : tomcatContainer.findContexts()) {
           if (ctx != null && ctx.getName() != null) {
             String appName = "".equals(ctx.getName()) ? "/" : ctx.getName();
             reset(appName);

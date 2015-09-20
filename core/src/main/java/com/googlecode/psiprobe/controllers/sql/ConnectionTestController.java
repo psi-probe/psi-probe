@@ -69,7 +69,7 @@ public class ConnectionTestController extends ContextHandlerController {
         try {
           DatabaseMetaData md = conn.getMetaData();
 
-          List dbMetaData = new ArrayList();
+          List<Map<String, String>> dbMetaData = new ArrayList<Map<String, String>>();
 
           addDbMetaDataEntry(dbMetaData, "probe.jsp.dataSourceTest.dbMetaData.dbProdName",
               md.getDatabaseProductName());
@@ -103,8 +103,8 @@ public class ConnectionTestController extends ContextHandlerController {
     return true;
   }
 
-  private void addDbMetaDataEntry(List list, String name, String value) {
-    Map entry = new LinkedHashMap();
+  private void addDbMetaDataEntry(List<Map<String, String>> list, String name, String value) {
+    Map<String, String> entry = new LinkedHashMap<String, String>();
     entry.put("propertyName", getMessageSourceAccessor().getMessage(name));
     entry.put("propertyValue", value);
     list.add(entry);

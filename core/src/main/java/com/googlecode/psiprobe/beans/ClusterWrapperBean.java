@@ -48,10 +48,11 @@ public class ClusterWrapperBean {
      * should be just one set, this is just to find out if this instance is cluster-enabled and the
      * cluster supports JMX
      */
-    Set clusters = mbeanServer.queryMBeans(new ObjectName("*:type=Cluster,host=" + hostName), null);
-    Set membership = mbeanServer.queryMBeans(membershipOName, null);
+    Set<ObjectInstance> clusters =
+        mbeanServer.queryMBeans(new ObjectName("*:type=Cluster,host=" + hostName), null);
+    Set<ObjectInstance> membership = mbeanServer.queryMBeans(membershipOName, null);
     if (clusters != null && clusters.size() > 0 && membership != null && membership.size() > 0) {
-      ObjectName clusterOName = ((ObjectInstance) clusters.iterator().next()).getObjectName();
+      ObjectName clusterOName = clusters.iterator().next().getObjectName();
       cluster = new Cluster();
 
       cluster.setName(JmxTools.getStringAttr(mbeanServer, clusterOName, "clusterName"));
@@ -85,7 +86,7 @@ public class ClusterWrapperBean {
       // JmxTools.getIntAttr(mBeanServer, receiverOName, "tcpThreadCount"));
 
       cluster.setSenderAckTimeout(JmxTools.getLongAttr(mbeanServer, senderOName, "ackTimeout"));
-      cluster.setSenderAutoConnect(((Boolean) mbeanServer.getAttribute(senderOName, "autoConnect")));
+      cluster.setSenderAutoConnect((Boolean) mbeanServer.getAttribute(senderOName, "autoConnect"));
       cluster.setSenderFailureCounter(JmxTools.getLongAttr(mbeanServer, senderOName,
           "failureCounter"));
       cluster.setSenderNrOfRequests(JmxTools.getLongAttr(mbeanServer, senderOName, "nrOfRequests"));

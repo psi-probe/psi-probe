@@ -18,7 +18,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.commons.modeler.Registry;
 
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -36,11 +35,12 @@ public class JvmMemoryInfoAccessorBean {
 
   private Log logger = LogFactory.getLog(this.getClass());
 
-  public List getPools() throws Exception {
+  public List<MemoryPool> getPools() throws Exception {
 
-    List memoryPools = new LinkedList();
+    List<MemoryPool> memoryPools = new LinkedList<MemoryPool>();
     MBeanServer mbeanServer = new Registry().getMBeanServer();
-    Set memoryOPools = mbeanServer.queryMBeans(new ObjectName("java.lang:type=MemoryPool,*"), null);
+    Set<ObjectInstance> memoryOPools =
+        mbeanServer.queryMBeans(new ObjectName("java.lang:type=MemoryPool,*"), null);
 
     // totals
     long totalInit = 0;
@@ -48,8 +48,7 @@ public class JvmMemoryInfoAccessorBean {
     long totalUsed = 0;
     long totalCommitted = 0;
 
-    for (Iterator it = memoryOPools.iterator(); it.hasNext();) {
-      ObjectInstance oi = (ObjectInstance) it.next();
+    for (ObjectInstance oi : memoryOPools) {
       ObjectName objName = oi.getObjectName();
       MemoryPool memoryPool = new MemoryPool();
       memoryPool.setName(JmxTools.getStringAttr(mbeanServer, objName, "Name"));

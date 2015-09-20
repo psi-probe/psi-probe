@@ -31,7 +31,7 @@ public class Cluster {
   private int mcastPort;
   private int mcastSoTimeout;
   private int mcastTtl;
-  private List members = new ArrayList();
+  private List<ClusterSender> members = new ArrayList<ClusterSender>();
   private int tcpThreadCount;
   private String tcpListenAddress;
   private int tcpListenPort;
@@ -94,11 +94,11 @@ public class Cluster {
   }
 
 
-  public List getMembers() {
+  public List<ClusterSender> getMembers() {
     return members;
   }
 
-  public void setMembers(List members) {
+  public void setMembers(List<ClusterSender> members) {
     this.members = members;
   }
 

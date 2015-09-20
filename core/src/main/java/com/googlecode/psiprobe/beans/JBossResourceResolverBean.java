@@ -22,7 +22,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -72,11 +71,9 @@ public class JBossResourceResolverBean implements ResourceResolver {
     MBeanServer server = getMBeanServer();
     if (server != null) {
       try {
-        Set dsNames =
+        Set<ObjectName> dsNames =
             server.queryNames(new ObjectName("jboss.jca:service=ManagedConnectionPool,*"), null);
-        for (Iterator it = dsNames.iterator(); it.hasNext();) {
-          ObjectName managedConnectionPoolOName = (ObjectName) it.next();
-
+        for (ObjectName managedConnectionPoolOName : dsNames) {
           ApplicationResource resource = new ApplicationResource();
           resource.setName(managedConnectionPoolOName.getKeyProperty("name"));
           resource.setType("jboss");
@@ -95,8 +92,6 @@ public class JBossResourceResolverBean implements ResourceResolver {
               managedConnectionPoolOName, "ConnectionCount")));
           dsInfo.setBusyConnections(((Long) server.getAttribute(managedConnectionPoolOName,
               "InUseConnectionCount")).intValue());
-
-
           ObjectName connectionFactoryOName =
               new ObjectName("jboss.jca:service=ManagedConnectionFactory,name="
                   + resource.getName());
@@ -139,12 +134,12 @@ public class JBossResourceResolverBean implements ResourceResolver {
     return resources;
   }
 
-  public List getApplicationResources(Context context) throws NamingException {
-    return new ArrayList();
+  public List<ApplicationResource> getApplicationResources(Context context) throws NamingException {
+    return new ArrayList<ApplicationResource>();
   }
 
-  public List getApplicationResources(Context context, ContainerWrapperBean containerWrapper)
-      throws NamingException {
+  public List<ApplicationResource> getApplicationResources(Context context,
+      ContainerWrapperBean containerWrapper) throws NamingException {
     
     throw new UnsupportedOperationException("Not supported yet.");
   }

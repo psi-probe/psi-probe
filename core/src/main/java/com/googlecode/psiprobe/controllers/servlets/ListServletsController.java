@@ -20,7 +20,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -37,21 +36,19 @@ public class ListServletsController extends ContextHandlerController {
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-    List ctxs;
+    List<Context> ctxs;
     if (context == null) {
       ctxs = getContainerWrapper().getTomcatContainer().findContexts();
     } else {
-      ctxs = new ArrayList();
+      ctxs = new ArrayList<Context>();
       ctxs.add(context);
     }
 
-    List servlets = new ArrayList();
-    for (Iterator i = ctxs.iterator(); i.hasNext();) {
-      Context ctx = (Context) i.next();
+    List<ServletInfo> servlets = new ArrayList<ServletInfo>();
+    for (Context ctx : ctxs) {
       if (ctx != null) {
-        List appServlets = ApplicationUtils.getApplicationServlets(ctx);
-        for (Iterator j = appServlets.iterator(); j.hasNext();) {
-          ServletInfo svlt = (ServletInfo) j.next();
+        List<ServletInfo> appServlets = ApplicationUtils.getApplicationServlets(ctx);
+        for (ServletInfo svlt : appServlets) {
           Collections.sort(svlt.getMappings());
         }
         servlets.addAll(appServlets);

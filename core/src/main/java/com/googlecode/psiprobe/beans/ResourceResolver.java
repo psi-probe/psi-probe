@@ -63,8 +63,8 @@ public interface ResourceResolver {
 
   List<ApplicationResource> getApplicationResources() throws NamingException;
 
-  List getApplicationResources(Context context, ContainerWrapperBean containerWrapper)
-      throws NamingException;
+  List<ApplicationResource> getApplicationResources(Context context,
+      ContainerWrapperBean containerWrapper) throws NamingException;
 
   boolean resetResource(Context context, String resourceName, ContainerWrapperBean containerWrapper)
       throws NamingException;

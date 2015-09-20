@@ -34,7 +34,7 @@ public class QueryHistoryController extends ParameterizableViewController {
       HttpServletResponse response) throws Exception {
 
     HttpSession sess = request.getSession(false);
-    List queryHistory = null;
+    List<String> queryHistory = null;
 
     if (sess != null) {
       DataSourceTestInfo sessData =

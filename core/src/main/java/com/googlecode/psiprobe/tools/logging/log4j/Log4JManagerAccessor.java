@@ -78,8 +78,8 @@ public class Log4JManagerAccessor extends DefaultAccessor {
     return null;
   }
 
-  public List getAppenders() {
-    List appenders = new ArrayList();
+  public List<Log4JAppenderAccessor> getAppenders() {
+    List<Log4JAppenderAccessor> appenders = new ArrayList<Log4JAppenderAccessor>();
     try {
       appenders.addAll(getRootLogger().getAppenders());
 

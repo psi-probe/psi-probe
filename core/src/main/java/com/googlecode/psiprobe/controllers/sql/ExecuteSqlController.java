@@ -99,7 +99,7 @@ public class ExecuteSqlController extends ContextHandlerController {
           getMessageSourceAccessor().getMessage("probe.src.dataSourceTest.resource.lookup.failure",
               new Object[] {resourceName}));
     } else {
-      List results = null;
+      List<Map<String, String>> results = null;
       int rowsAffected = 0;
 
       try {
@@ -116,14 +116,14 @@ public class ExecuteSqlController extends ContextHandlerController {
             if (!hasResultSet) {
               rowsAffected = stmt.getUpdateCount();
             } else {
-              results = new ArrayList();
+              results = new ArrayList<Map<String, String>>();
               ResultSet rs = stmt.getResultSet();
 
               try {
                 ResultSetMetaData metaData = rs.getMetaData();
 
                 while (rs.next() && (maxRows < 0 || results.size() < maxRows)) {
-                  Map record = new LinkedHashMap();
+                  Map<String, String> record = new LinkedHashMap<String, String>();
 
                   for (int i = 1; i <= metaData.getColumnCount(); i++) {
                     String value = rs.getString(i);
