@@ -33,7 +33,6 @@ import org.apache.jasper.JspCompilationContext;
 import org.apache.jasper.Options;
 import org.apache.jasper.compiler.JspRuntimeContext;
 import org.apache.jasper.servlet.JspServletWrapper;
-import org.apache.juli.logging.Log;
 import org.apache.naming.ContextBindings;
 import org.apache.naming.resources.Resource;
 import org.apache.naming.resources.ResourceAttributes;
@@ -42,7 +41,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashSet;
@@ -65,8 +63,9 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
   private Host host;
   private ObjectName deployerOName;
   private MBeanServer mbeanServer;
-  private Valve valve = new Tomcat70AgentValve();
+  private final Valve valve = new Tomcat70AgentValve();
 
+  @Override
   public void setWrapper(Wrapper wrapper) {
     if (wrapper != null) {
       host = (Host) wrapper.getParent().getParent();
@@ -83,6 +82,7 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
     }
   }
 
+  @Override
   public boolean canBoundTo(String binding) {
     boolean canBind = false;
     if (binding != null) {
@@ -98,10 +98,12 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
     return canBind;
   }
 
+  @Override
   protected Context findContextInternal(String name) {
     return (Context) host.findChild(name);
   }
 
+  @Override
   public List<Context> findContexts() {
     List<Context> results = new ArrayList<Context>();
     for (Container child : host.findChildren()) {
@@ -112,21 +114,8 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
     return results;
   }
 
-  public void stop(String name) throws Exception {
-    Context ctx = findContext(name);
-    if (ctx != null) {
-      ctx.stop();
-    }
-  }
-
-  public void start(String name) throws Exception {
-    Context ctx = findContext(name);
-    if (ctx != null) {
-      ctx.start();
-    }
-  }
-
-  private void checkChanges(String name) throws Exception {
+  @Override
+  protected void checkChanges(String name) throws Exception {
     Boolean result =
         (Boolean) mbeanServer.invoke(deployerOName, "isServiced", new String[] {name},
             new String[] {"java.lang.String"});
@@ -143,18 +132,7 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
     }
   }
 
-  public void removeInternal(String name) throws Exception {
-    checkChanges(name);
-  }
-
-  public void installWar(String name, URL url) throws Exception {
-    checkChanges(name);
-  }
-
-  public void installContextInternal(String name, File config) throws Exception {
-    checkChanges(name);
-  }
-
+  @Override
   public File getAppBase() {
     File base = new File(host.getAppBase());
     if (!base.isAbsolute()) {
@@ -163,18 +141,17 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
     return base;
   }
 
+  @Override
   public String getConfigBase() {
     return getConfigBase(host);
   }
 
-  public Log getLogger(Context context) {
-    return context.getLogger();
-  }
-
+  @Override
   public String getHostName() {
     return host.getName();
   }
 
+  @Override
   public String getName() {
     return host.getParent().getName();
   }
@@ -239,10 +216,7 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
     return jcctx;
   }
 
-  public boolean getAvailable(Context context) {
-    return context.getAvailable();
-  }
-
+  @Override
   public void addContextResourceLink(Context context, List<ApplicationResource> resourceList,
       boolean contextBound) {
 
@@ -259,6 +233,7 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
     }
   }
 
+  @Override
   public void addContextResource(Context context, List<ApplicationResource> resourceList,
       boolean contextBound) {
 
@@ -281,6 +256,7 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
     }
   }
 
+  @Override
   public List<FilterMapping> getApplicationFilterMaps(Context context) {
     FilterMap[] fms = context.findFilterMaps();
     List<FilterMapping> filterMaps = new ArrayList<FilterMapping>(fms.length);
@@ -329,6 +305,7 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
     return filterMaps;
   }
 
+  @Override
   public List<FilterInfo> getApplicationFilters(Context context) {
     FilterDef[] fds = context.findFilterDefs();
     List<FilterInfo> filterDefs = new ArrayList<FilterInfo>(fds.length);
@@ -349,6 +326,7 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
     return fi;
   }
 
+  @Override
   public List<ApplicationParam> getApplicationInitParams(Context context) {
     /*
      * We'll try to determine if a parameter value comes from a deployment descriptor or a context
@@ -398,6 +376,7 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
 
   }
 
+  @Override
   public boolean resourceExists(String name, Context context) {
     try {
       return context.getResources().lookup(name) != null;
@@ -406,6 +385,7 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
     }
   }
 
+  @Override
   public InputStream getResourceStream(String name, Context context) throws IOException {
     try {
       return ((Resource) context.getResources().lookup(name)).streamContent();
@@ -414,6 +394,7 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
     }
   }
 
+  @Override
   public Long[] getResourceAttributes(String name, Context context) {
     Long[] result = new Long[2];
     try {
@@ -432,6 +413,7 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
         Thread.currentThread().getContextClassLoader());
   }
 
+  @Override
   public void unbindFromContext(Context context) throws NamingException {
     ContextBindings.unbindClassLoader(context, context,
         Thread.currentThread().getContextClassLoader());

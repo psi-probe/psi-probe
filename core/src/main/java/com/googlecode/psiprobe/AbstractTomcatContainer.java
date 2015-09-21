@@ -68,6 +68,20 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     return findContext(contextName) != null;
   }
 
+  public void stop(String name) throws Exception {
+    Context ctx = findContext(name);
+    if (ctx != null) {
+      ctx.stop();
+    }
+  }
+
+  public void start(String name) throws Exception {
+    Context ctx = findContext(name);
+    if (ctx != null) {
+      ctx.start();
+    }
+  }
+
   /**
    * Undeploys a context.
    * 
@@ -115,6 +129,18 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
 
       removeInternal(contextName);
     }
+  }
+
+  public void removeInternal(String name) throws Exception {
+    checkChanges(name);
+  }
+
+  public void installWar(String name, URL url) throws Exception {
+    checkChanges(name);
+  }
+
+  public void installContextInternal(String name, File config) throws Exception {
+    checkChanges(name);
   }
 
   /**
@@ -360,6 +386,16 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     }
   }
 
+  @Override
+  public org.apache.juli.logging.Log getLogger(Context context) {
+    return context.getLogger();
+  }
+
+  @Override
+  public boolean getAvailable(Context context) {
+    return context.getState().isAvailable();
+  }
+
   /**
    * Returns the context descriptor filename for the given context.
    * 
@@ -498,10 +534,8 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
   protected abstract JspCompilationContext createJspCompilationContext(String name, Options opt,
       ServletContext sctx, JspRuntimeContext jrctx, ClassLoader classLoader);
 
-  protected abstract void removeInternal(String name) throws Exception;
-
-  protected abstract void installContextInternal(String contextName, File config) throws Exception;
-
   protected abstract Context findContextInternal(String contextName);
+  
+  protected abstract void checkChanges(String name) throws Exception;
 
 }

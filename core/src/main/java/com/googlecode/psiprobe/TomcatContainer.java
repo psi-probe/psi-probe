@@ -92,19 +92,19 @@ public interface TomcatContainer {
 
   boolean getAvailable(Context context);
 
-  public void addContextResource(Context context, List<ApplicationResource> resourceList,
+  void addContextResource(Context context, List<ApplicationResource> resourceList,
       boolean contextBound);
 
-  public void addContextResourceLink(Context context, List<ApplicationResource> resourceList,
+  void addContextResourceLink(Context context, List<ApplicationResource> resourceList,
       boolean contextBound);
 
-  public List<FilterInfo> getApplicationFilters(Context context);
+  List<FilterInfo> getApplicationFilters(Context context);
 
-  public List<ApplicationParam> getApplicationInitParams(Context context);
+  List<ApplicationParam> getApplicationInitParams(Context context);
 
   boolean resourceExists(String name, Context context);
 
   InputStream getResourceStream(String name, Context context) throws IOException;
 
-  public Long[] getResourceAttributes(String name, Context context);
+  Long[] getResourceAttributes(String name, Context context);
 }

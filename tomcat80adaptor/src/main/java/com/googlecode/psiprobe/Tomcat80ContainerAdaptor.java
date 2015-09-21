@@ -38,8 +38,6 @@ import org.apache.tomcat.util.descriptor.web.FilterMap;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URI;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashSet;
@@ -110,22 +108,7 @@ public class Tomcat80ContainerAdaptor extends AbstractTomcatContainer {
   }
 
   @Override
-  public void stop(String name) throws Exception {
-    Context ctx = findContext(name);
-    if (ctx != null) {
-      ctx.stop();
-    }
-  }
-
-  @Override
-  public void start(String name) throws Exception {
-    Context ctx = findContext(name);
-    if (ctx != null) {
-      ctx.start();
-    }
-  }
-
-  private void checkChanges(String name) throws Exception {
+  protected void checkChanges(String name) throws Exception {
     Boolean result =
         (Boolean) mbeanServer.invoke(deployerOName, "isServiced", new String[] {name},
             new String[] {"java.lang.String"});
@@ -143,21 +126,6 @@ public class Tomcat80ContainerAdaptor extends AbstractTomcatContainer {
   }
 
   @Override
-  public void removeInternal(String name) throws Exception {
-    checkChanges(name);
-  }
-
-  @Override
-  public void installWar(String name, URL url) throws Exception {
-    checkChanges(name);
-  }
-
-  @Override
-  public void installContextInternal(String name, File config) throws Exception {
-    checkChanges(name);
-  }
-
-  @Override
   public File getAppBase() {
     File base = new File(host.getAppBase());
     if (!base.isAbsolute()) {
@@ -169,11 +137,6 @@ public class Tomcat80ContainerAdaptor extends AbstractTomcatContainer {
   @Override
   public String getConfigBase() {
     return getConfigBase(host);
-  }
-
-  @Override
-  public Object getLogger(Context context) {
-    return context.getLogger();
   }
 
   @Override
@@ -210,33 +173,12 @@ public class Tomcat80ContainerAdaptor extends AbstractTomcatContainer {
   }
 
   @Override
-  public File getConfigFile(Context ctx) {
-    URL configUrl = ctx.getConfigFile();
-    if (configUrl != null) {
-      try {
-        URI configUri = configUrl.toURI();
-        if ("file".equals(configUri.getScheme())) {
-          return new File(configUri.getPath());
-        }
-      } catch (Exception ex) {
-        logger.error("Could not convert URL to URI: " + configUrl, ex);
-      }
-    }
-    return null;
-  }
-
-  @Override
   protected JspCompilationContext createJspCompilationContext(String name, Options opt,
       ServletContext sctx, JspRuntimeContext jrctx, ClassLoader classLoader) {
     
     JspCompilationContext jcctx = new JspCompilationContext(name, opt, sctx, null, jrctx);
     jcctx.setClassLoader(classLoader);
     return jcctx;
-  }
-
-  @Override
-  public boolean getAvailable(Context context) {
-    return context.getState().isAvailable();
   }
 
   @Override
