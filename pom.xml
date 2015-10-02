@@ -374,13 +374,7 @@
 			<dependency>
 				<groupId>org.jfree</groupId>
 				<artifactId>jfreechart</artifactId>
-				<version>1.0.15</version>
-				<exclusions>
-					<exclusion>
-						<groupId>com.lowagie</groupId>
-						<artifactId>itext</artifactId>
-					</exclusion>
-				</exclusions>
+				<version>1.0.19</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
