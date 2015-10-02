@@ -385,7 +385,7 @@
 						<dotGitDirectory>${git.relative.path}.git</dotGitDirectory>
 						<gitDescribe>
 							<!-- See https://github.com/ktoso/maven-git-commit-id-plugin/issues/61#issuecomment-27995746 -->
-							<skip>true</skip>
+							<always>true</always>
 						</gitDescribe>
 					</configuration>
 				</plugin>
