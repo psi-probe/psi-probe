@@ -60,9 +60,9 @@
 			<type>jar</type>
 		</dependency>
 		<dependency>
-			<groupId>taglibs</groupId>
-			<artifactId>standard</artifactId>
-			<type>jar</type>
+			<groupId>javax.el</groupId>
+			<artifactId>javax.el-api</artifactId>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>displaytag</groupId>
