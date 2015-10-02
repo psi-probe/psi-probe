@@ -109,7 +109,6 @@
 				<version>2.0</version>
 			</dependency>
 			<dependency>
-				<!-- Version 1.2 is not compatable with tomcat 5.0.28 -->
 				<groupId>javax.servlet</groupId>
 				<artifactId>jstl</artifactId>
 				<version>1.1.2</version>
@@ -130,7 +129,6 @@
 				<version>1.2.17</version>
 			</dependency>
 			<dependency>
-				<!-- Requires java 1.5+ -->
 				<groupId>com.oracle</groupId>
 				<artifactId>ucp</artifactId>
 				<version>11.2.0.3</version>
@@ -141,7 +139,6 @@
 				<version>11.2.0.3</version>
 			</dependency>
 			<dependency>
-				<!-- Requires java 1.5+ -->
 				<groupId>org.apache.tomcat</groupId>
 				<artifactId>tomcat-jdbc</artifactId>
 				<version>7.0.67</version>
@@ -152,7 +149,6 @@
 				<version>4.7.1</version>
 			</dependency>
 			<dependency>
-				<!-- Requires java 1.6+ -->
 				<groupId>com.jolbox</groupId>
 				<artifactId>bonecp</artifactId>
 				<version>0.8.0.RELEASE</version>
