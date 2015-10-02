@@ -349,7 +349,7 @@
 			<dependency>
 				<groupId>com.thoughtworks.xstream</groupId>
 				<artifactId>xstream</artifactId>
-				<version>1.4.1</version>
+				<version>1.4.8</version>
 			</dependency>
 			<dependency>
 				<groupId>org.codelibs</groupId>
