@@ -129,7 +129,7 @@
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.uwyn</groupId>
+			<groupId>org.codelibs</groupId>
 			<artifactId>jhighlight</artifactId>
 			<scope>compile</scope>
 			<exclusions>

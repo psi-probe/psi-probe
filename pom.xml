@@ -352,9 +352,9 @@
 				<version>1.4.1</version>
 			</dependency>
 			<dependency>
-				<groupId>com.uwyn</groupId>
+				<groupId>org.codelibs</groupId>
 				<artifactId>jhighlight</artifactId>
-				<version>1.0</version>
+				<version>1.0.2</version>
 			</dependency>
 			<dependency>
 				<groupId>com.mchange</groupId>
