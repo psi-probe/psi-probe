@@ -256,22 +256,27 @@ public class FlapListenerTests {
       super.statsCollected(sce);
     }
 
+    @Override
     protected void flappingStarted(StatsCollectionEvent sce) {
       flappingStarted = true;
     }
 
+    @Override
     protected void aboveThresholdFlappingStopped(StatsCollectionEvent sce) {
       aboveThresholdFlappingStopped = true;
     }
 
+    @Override
     protected void belowThresholdFlappingStopped(StatsCollectionEvent sce) {
       belowThresholdFlappingStopped = true;
     }
 
+    @Override
     protected void aboveThresholdNotFlapping(StatsCollectionEvent sce) {
       aboveThresholdNotFlapping = true;
     }
 
+    @Override
     protected void belowThresholdNotFlapping(StatsCollectionEvent sce) {
       belowThresholdNotFlapping = true;
     }

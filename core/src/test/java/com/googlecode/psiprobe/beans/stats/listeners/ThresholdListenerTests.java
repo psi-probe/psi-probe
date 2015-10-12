@@ -133,21 +133,25 @@ public class ThresholdListenerTests {
       this.threshold = threshold;
     }
 
+    @Override
     protected void crossedAboveThreshold(StatsCollectionEvent sce) {
       resetFlags();
       crossedAboveThreshold = true;
     }
 
+    @Override
     protected void crossedBelowThreshold(StatsCollectionEvent sce) {
       resetFlags();
       crossedBelowThreshold = true;
     }
 
+    @Override
     protected void remainedAboveThreshold(StatsCollectionEvent sce) {
       resetFlags();
       remainedAboveThreshold = true;
     }
 
+    @Override
     protected void remainedBelowThreshold(StatsCollectionEvent sce) {
       resetFlags();
       remainedBelowThreshold = true;
