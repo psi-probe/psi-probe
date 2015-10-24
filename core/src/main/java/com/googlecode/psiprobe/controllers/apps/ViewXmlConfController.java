@@ -33,35 +33,57 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ViewXmlConfController extends ContextHandlerController {
 
+  /** The Constant TARGET_WEB_XML. */
   public static final String TARGET_WEB_XML = "web.xml";
+  
+  /** The Constant TARGET_CONTEXT_XML. */
   public static final String TARGET_CONTEXT_XML = "context.xml";
 
-  /**
-   * Type of a file to be displayed
-   */
+  /** Type of a file to be displayed. */
   private String displayTarget;
 
-  /**
-   * Url that will be used in the view to download the file
-   */
+  /** Url that will be used in the view to download the file. */
   private String downloadUrl;
 
+  /**
+   * Gets the display target.
+   *
+   * @return the display target
+   */
   public String getDisplayTarget() {
     return displayTarget;
   }
 
+  /**
+   * Sets the display target.
+   *
+   * @param displayTarget the new display target
+   */
   public void setDisplayTarget(String displayTarget) {
     this.displayTarget = displayTarget;
   }
 
+  /**
+   * Gets the download url.
+   *
+   * @return the download url
+   */
   public String getDownloadUrl() {
     return downloadUrl;
   }
 
+  /**
+   * Sets the download url.
+   *
+   * @param downloadUrl the new download url
+   */
   public void setDownloadUrl(String downloadUrl) {
     this.downloadUrl = downloadUrl;
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.controllers.ContextHandlerController#handleContext(java.lang.String, org.apache.catalina.Context, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+   */
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 

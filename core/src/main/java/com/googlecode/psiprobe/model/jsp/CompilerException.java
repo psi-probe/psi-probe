@@ -12,21 +12,41 @@
 package com.googlecode.psiprobe.model.jsp;
 
 /**
- * 
+ * The Class CompilerException.
+ *
  * @author Vlad Ilyushchenko
  */
 public class CompilerException extends Exception {
 
+  /**
+   * Instantiates a new compiler exception.
+   */
   public CompilerException() {}
 
+  /**
+   * Instantiates a new compiler exception.
+   *
+   * @param message the message
+   */
   public CompilerException(String message) {
     super(message);
   }
 
+  /**
+   * Instantiates a new compiler exception.
+   *
+   * @param cause the cause
+   */
   public CompilerException(Throwable cause) {
     super(cause);
   }
 
+  /**
+   * Instantiates a new compiler exception.
+   *
+   * @param message the message
+   * @param cause the cause
+   */
   public CompilerException(String message, Throwable cause) {
     super(message, cause);
   }

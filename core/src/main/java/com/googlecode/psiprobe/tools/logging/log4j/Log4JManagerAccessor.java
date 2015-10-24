@@ -21,12 +21,19 @@ import java.util.Enumeration;
 import java.util.List;
 
 /**
- * 
+ * The Class Log4JManagerAccessor.
+ *
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */
 public class Log4JManagerAccessor extends DefaultAccessor {
 
+  /**
+   * Instantiates a new log4 j manager accessor.
+   *
+   * @param cl the cl
+   * @throws ClassNotFoundException the class not found exception
+   */
   public Log4JManagerAccessor(ClassLoader cl) throws ClassNotFoundException {
     Class clazz = cl.loadClass("org.apache.log4j.LogManager");
     Method exists = MethodUtils.getAccessibleMethod(clazz, "exists", new Class[] {String.class});
@@ -36,6 +43,11 @@ public class Log4JManagerAccessor extends DefaultAccessor {
     setTarget(clazz);
   }
 
+  /**
+   * Gets the root logger.
+   *
+   * @return the root logger
+   */
   public Log4JLoggerAccessor getRootLogger() {
     try {
       Class clazz = (Class) getTarget();
@@ -57,6 +69,12 @@ public class Log4JManagerAccessor extends DefaultAccessor {
     return null;
   }
 
+  /**
+   * Gets the logger.
+   *
+   * @param name the name
+   * @return the logger
+   */
   public Log4JLoggerAccessor getLogger(String name) {
     try {
       Class clazz = (Class) getTarget();
@@ -78,6 +96,11 @@ public class Log4JManagerAccessor extends DefaultAccessor {
     return null;
   }
 
+  /**
+   * Gets the appenders.
+   *
+   * @return the appenders
+   */
   public List<Log4JAppenderAccessor> getAppenders() {
     List<Log4JAppenderAccessor> appenders = new ArrayList<Log4JAppenderAccessor>();
     try {

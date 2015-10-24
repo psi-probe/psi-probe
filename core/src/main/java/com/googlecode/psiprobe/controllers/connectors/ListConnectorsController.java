@@ -24,40 +24,79 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * 
+ * The Class ListConnectorsController.
+ *
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */
 public class ListConnectorsController extends TomcatContainerController {
 
+  /** The container listener bean. */
   private ContainerListenerBean containerListenerBean;
+  
+  /** The include request processors. */
   private boolean includeRequestProcessors;
+  
+  /** The collection period. */
   private long collectionPeriod;
 
+  /**
+   * Gets the container listener bean.
+   *
+   * @return the container listener bean
+   */
   public ContainerListenerBean getContainerListenerBean() {
     return containerListenerBean;
   }
 
+  /**
+   * Sets the container listener bean.
+   *
+   * @param containerListenerBean the new container listener bean
+   */
   public void setContainerListenerBean(ContainerListenerBean containerListenerBean) {
     this.containerListenerBean = containerListenerBean;
   }
 
+  /**
+   * Gets the collection period.
+   *
+   * @return the collection period
+   */
   public long getCollectionPeriod() {
     return collectionPeriod;
   }
 
+  /**
+   * Sets the collection period.
+   *
+   * @param collectionPeriod the new collection period
+   */
   public void setCollectionPeriod(long collectionPeriod) {
     this.collectionPeriod = collectionPeriod;
   }
 
+  /**
+   * Checks if is include request processors.
+   *
+   * @return true, if is include request processors
+   */
   public boolean isIncludeRequestProcessors() {
     return includeRequestProcessors;
   }
 
+  /**
+   * Sets the include request processors.
+   *
+   * @param includeRequestProcessors the new include request processors
+   */
   public void setIncludeRequestProcessors(boolean includeRequestProcessors) {
     this.includeRequestProcessors = includeRequestProcessors;
   }
 
+  /* (non-Javadoc)
+   * @see org.springframework.web.servlet.mvc.AbstractController#handleRequestInternal(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+   */
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 

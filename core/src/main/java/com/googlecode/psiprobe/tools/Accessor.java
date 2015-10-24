@@ -14,11 +14,19 @@ package com.googlecode.psiprobe.tools;
 import java.lang.reflect.Field;
 
 /**
- * 
+ * The Interface Accessor.
+ *
  * @author Mark Lewis
  */
 public interface Accessor {
 
+  /**
+   * Gets the.
+   *
+   * @param obj the obj
+   * @param field the field
+   * @return the object
+   */
   Object get(Object obj, Field field);
 
 }

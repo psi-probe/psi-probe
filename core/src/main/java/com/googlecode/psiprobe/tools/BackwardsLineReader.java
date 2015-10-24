@@ -28,19 +28,41 @@ import java.io.InputStream;
  */
 public class BackwardsLineReader {
 
+  /** The bis. */
   private BufferedInputStream bis;
+  
+  /** The skip line feed. */
   private boolean skipLineFeed = true;
+  
+  /** The encoding. */
   private String encoding;
 
+  /**
+   * Instantiates a new backwards line reader.
+   *
+   * @param is the is
+   */
   public BackwardsLineReader(InputStream is) {
     this(is, null);
   }
 
+  /**
+   * Instantiates a new backwards line reader.
+   *
+   * @param is the is
+   * @param encoding the encoding
+   */
   public BackwardsLineReader(InputStream is, String encoding) {
     this.bis = new BufferedInputStream(is, 8192);
     this.encoding = encoding;
   }
 
+  /**
+   * Read line.
+   *
+   * @return the string
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
   public String readLine() throws IOException {
     ByteArrayOutputStream baos = new ByteArrayOutputStream(512);
     boolean empty = false;
@@ -82,12 +104,22 @@ public class BackwardsLineReader {
     }
   }
 
+  /**
+   * Close.
+   *
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
   public void close() throws IOException {
     if (bis != null) {
       bis.close();
     }
   }
 
+  /**
+   * Reverse.
+   *
+   * @param byteArray the byte array
+   */
   private void reverse(byte[] byteArray) {
     for (int i = 0; i < byteArray.length / 2; i++) {
       byte temp = byteArray[i];

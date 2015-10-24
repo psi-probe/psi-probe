@@ -16,11 +16,13 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
+ * The Class InstrumentsTests.
  *
  * @author Mark Lewis
  */
 public class InstrumentsTests {
 
+  /** The sun arch data model property. */
   private String sunArchDataModelProperty;
 
   /**
@@ -40,6 +42,9 @@ public class InstrumentsTests {
     System.setProperty("sun.arch.data.model", this.sunArchDataModelProperty);
   }
 
+  /**
+   * Test object.
+   */
   @Test
   public void testObject() {
     Object o = new Object();
@@ -47,6 +52,9 @@ public class InstrumentsTests {
     Assert.assertEquals(Instruments.SIZE_OBJECT, objectSize);
   }
 
+  /**
+   * Test boolean.
+   */
   @Test
   public void testBoolean() {
     boolean b = false;
@@ -54,6 +62,9 @@ public class InstrumentsTests {
     Assert.assertEquals(Instruments.SIZE_BOOLEAN, booleanSize);
   }
 
+  /**
+   * Test byte.
+   */
   @Test
   public void testByte() {
     byte b = 0x00;
@@ -61,6 +72,9 @@ public class InstrumentsTests {
     Assert.assertEquals(Instruments.SIZE_BYTE, byteSize);
   }
 
+  /**
+   * Test char.
+   */
   @Test
   public void testChar() {
     char c = '\0';
@@ -68,6 +82,9 @@ public class InstrumentsTests {
     Assert.assertEquals(Instruments.SIZE_CHAR, charSize);
   }
 
+  /**
+   * Test short.
+   */
   @Test
   public void testShort() {
     short s = 0;
@@ -75,6 +92,9 @@ public class InstrumentsTests {
     Assert.assertEquals(Instruments.SIZE_SHORT, shortSize);
   }
 
+  /**
+   * Test int.
+   */
   @Test
   public void testInt() {
     int i = 0;
@@ -82,6 +102,9 @@ public class InstrumentsTests {
     Assert.assertEquals(Instruments.SIZE_INT, intSize);
   }
 
+  /**
+   * Test long.
+   */
   @Test
   public void testLong() {
     long l = 0;
@@ -89,6 +112,9 @@ public class InstrumentsTests {
     Assert.assertEquals(Instruments.SIZE_LONG, longSize);
   }
 
+  /**
+   * Test float.
+   */
   @Test
   public void testFloat() {
     float f = 0.0f;
@@ -96,6 +122,9 @@ public class InstrumentsTests {
     Assert.assertEquals(Instruments.SIZE_FLOAT, floatSize);
   }
 
+  /**
+   * Test double.
+   */
   @Test
   public void testDouble() {
     double d = 0.0;

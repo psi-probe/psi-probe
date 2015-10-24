@@ -17,25 +17,61 @@ import com.googlecode.psiprobe.tools.SizeExpression;
 import java.util.HashMap;
 
 /**
+ * The listener interface for receiving threshold events.
+ * The class that is interested in processing a threshold
+ * event implements this interface, and the object created
+ * with that class is registered with a component using the
+ * component's <code>addThresholdListener<code> method. When
+ * the threshold event occurs, that object's appropriate
+ * method is invoked.
  *
  * @author Mark Lewis
  */
 public abstract class ThresholdListener extends AbstractStatsCollectionListener {
 
+  /** The Constant DEFAULT_THRESHOLD. */
   public static final long DEFAULT_THRESHOLD = Long.MAX_VALUE;
+  
+  /** The Constant DEFAULT_VALUE. */
   public static final long DEFAULT_VALUE = Long.MIN_VALUE;
 
+  /** The previous values. */
   private HashMap<String, Long> previousValues = new HashMap<String, Long>();
+  
+  /** The series disabled. */
   private HashMap<String, Boolean> seriesDisabled = new HashMap<String, Boolean>();
 
+  /**
+   * Crossed above threshold.
+   *
+   * @param sce the sce
+   */
   protected abstract void crossedAboveThreshold(StatsCollectionEvent sce);
 
+  /**
+   * Crossed below threshold.
+   *
+   * @param sce the sce
+   */
   protected abstract void crossedBelowThreshold(StatsCollectionEvent sce);
 
+  /**
+   * Remained above threshold.
+   *
+   * @param sce the sce
+   */
   protected abstract void remainedAboveThreshold(StatsCollectionEvent sce);
 
+  /**
+   * Remained below threshold.
+   *
+   * @param sce the sce
+   */
   protected abstract void remainedBelowThreshold(StatsCollectionEvent sce);
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.beans.stats.listeners.StatsCollectionListener#statsCollected(com.googlecode.psiprobe.beans.stats.listeners.StatsCollectionEvent)
+   */
   public void statsCollected(StatsCollectionEvent sce) {
     String name = sce.getName();
     if (isSeriesDisabled(name)) {
@@ -58,12 +94,21 @@ public abstract class ThresholdListener extends AbstractStatsCollectionListener 
     setPreviousValue(name, value);
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.beans.stats.listeners.AbstractStatsCollectionListener#reset()
+   */
   @Override
   public void reset() {
     previousValues.clear();
     super.reset();
   }
 
+  /**
+   * Checks if is previous value above threshold.
+   *
+   * @param sce the sce
+   * @return true, if is previous value above threshold
+   */
   protected boolean isPreviousValueAboveThreshold(StatsCollectionEvent sce) {
     String name = sce.getName();
     long threshold = getThreshold(name);
@@ -71,6 +116,12 @@ public abstract class ThresholdListener extends AbstractStatsCollectionListener 
     return previousValue != DEFAULT_VALUE && previousValue > threshold;
   }
 
+  /**
+   * Checks if is value above threshold.
+   *
+   * @param sce the sce
+   * @return true, if is value above threshold
+   */
   protected boolean isValueAboveThreshold(StatsCollectionEvent sce) {
     String name = sce.getName();
     long value = sce.getValue();
@@ -78,6 +129,12 @@ public abstract class ThresholdListener extends AbstractStatsCollectionListener 
     return value > threshold;
   }
 
+  /**
+   * Gets the threshold.
+   *
+   * @param name the name
+   * @return the threshold
+   */
   protected long getThreshold(String name) {
     String threshold = getPropertyValue(name, "threshold");
     if (threshold == null && !isSeriesDisabled(name)) {
@@ -94,16 +151,34 @@ public abstract class ThresholdListener extends AbstractStatsCollectionListener 
     }
   }
 
+  /**
+   * Gets the previous value.
+   *
+   * @param name the name
+   * @return the previous value
+   */
   protected long getPreviousValue(String name) {
     Long value = previousValues.get(name);
     return Utils.toLong(value, DEFAULT_VALUE);
   }
 
+  /**
+   * Sets the previous value.
+   *
+   * @param name the name
+   * @param previousValue the previous value
+   */
   protected void setPreviousValue(String name, long previousValue) {
     Long value = previousValue;
     previousValues.put(name, value);
   }
 
+  /**
+   * Checks if is series disabled.
+   *
+   * @param name the name
+   * @return true, if is series disabled
+   */
   protected boolean isSeriesDisabled(String name) {
     Boolean disabled = seriesDisabled.get(name);
     if (disabled == null) {
@@ -112,6 +187,12 @@ public abstract class ThresholdListener extends AbstractStatsCollectionListener 
     return disabled;
   }
 
+  /**
+   * Sets the series disabled.
+   *
+   * @param name the name
+   * @param disabled the disabled
+   */
   protected void setSeriesDisabled(String name, boolean disabled) {
     seriesDisabled.put(name, disabled);
   }

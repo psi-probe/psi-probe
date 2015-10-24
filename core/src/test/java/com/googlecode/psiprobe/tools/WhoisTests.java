@@ -19,11 +19,17 @@ import org.junit.Test;
 import java.io.IOException;
 
 /**
+ * The Class WhoisTests.
  *
  * @author Mark Lewis
  */
 public class WhoisTests extends TestCase {
 
+  /**
+   * Test localhost.
+   *
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
   @Test
   public void testLocalhost() throws IOException {
     int a = 127;
@@ -39,6 +45,11 @@ public class WhoisTests extends TestCase {
     // System.out.println(InetAddress.getByAddress(bytes).getHostName());
   }
 
+  /**
+   * Test google.
+   *
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
   @Test
   public void testGoogle() throws IOException {
     int a = 74;

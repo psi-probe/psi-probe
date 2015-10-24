@@ -40,6 +40,9 @@ import javax.sql.DataSource;
  */
 public class ConnectionTestController extends ContextHandlerController {
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.controllers.ContextHandlerController#handleContext(java.lang.String, org.apache.catalina.Context, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+   */
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 
@@ -98,11 +101,21 @@ public class ConnectionTestController extends ContextHandlerController {
     return new ModelAndView(getViewName());
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.controllers.ContextHandlerController#isContextOptional()
+   */
   @Override
   protected boolean isContextOptional() {
     return true;
   }
 
+  /**
+   * Adds the db meta data entry.
+   *
+   * @param list the list
+   * @param name the name
+   * @param value the value
+   */
   private void addDbMetaDataEntry(List<Map<String, String>> list, String name, String value) {
     Map<String, String> entry = new LinkedHashMap<String, String>();
     entry.put("propertyName", getMessageSourceAccessor().getMessage(name));

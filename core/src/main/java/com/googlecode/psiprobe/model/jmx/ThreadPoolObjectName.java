@@ -24,30 +24,65 @@ import javax.management.ObjectName;
  */
 public class ThreadPoolObjectName {
 
+  /** The thread pool name. */
   private ObjectName threadPoolName;
+  
+  /** The global request processor name. */
   private ObjectName globalRequestProcessorName;
+  
+  /** The request processor names. */
   private List<ObjectName> requestProcessorNames = new ArrayList<ObjectName>();
 
+  /**
+   * Gets the thread pool name.
+   *
+   * @return the thread pool name
+   */
   public ObjectName getThreadPoolName() {
     return threadPoolName;
   }
 
+  /**
+   * Gets the global request processor name.
+   *
+   * @return the global request processor name
+   */
   public ObjectName getGlobalRequestProcessorName() {
     return globalRequestProcessorName;
   }
 
+  /**
+   * Gets the request processor names.
+   *
+   * @return the request processor names
+   */
   public List<ObjectName> getRequestProcessorNames() {
     return requestProcessorNames;
   }
 
+  /**
+   * Sets the thread pool name.
+   *
+   * @param threadPoolName the new thread pool name
+   */
   public void setThreadPoolName(ObjectName threadPoolName) {
     this.threadPoolName = threadPoolName;
   }
 
+  /**
+   * Sets the global request processor name.
+   *
+   * @param globalRequestProcessorName the new global request processor name
+   */
   public void setGlobalRequestProcessorName(ObjectName globalRequestProcessorName) {
     this.globalRequestProcessorName = globalRequestProcessorName;
   }
 
+  /**
+   * Sets the request processor names.
+   *
+   * @param requestProcessorNames the new request processor names
+   */
   public void setRequestProcessorNames(List<ObjectName> requestProcessorNames) {
     this.requestProcessorNames = requestProcessorNames;
   }

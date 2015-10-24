@@ -30,6 +30,9 @@ import javax.servlet.http.HttpSession;
  */
 public class QueryHistoryItemController extends AbstractController {
 
+  /* (non-Javadoc)
+   * @see org.springframework.web.servlet.mvc.AbstractController#handleRequestInternal(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+   */
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 

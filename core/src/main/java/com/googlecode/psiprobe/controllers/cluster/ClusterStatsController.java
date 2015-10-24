@@ -22,40 +22,79 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * 
+ * The Class ClusterStatsController.
+ *
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */
 public class ClusterStatsController extends TomcatContainerController {
 
+  /** The cluster wrapper. */
   private ClusterWrapperBean clusterWrapper;
+  
+  /** The load members. */
   private boolean loadMembers = true;
+  
+  /** The collection period. */
   private long collectionPeriod;
 
+  /**
+   * Gets the cluster wrapper.
+   *
+   * @return the cluster wrapper
+   */
   public ClusterWrapperBean getClusterWrapper() {
     return clusterWrapper;
   }
 
+  /**
+   * Sets the cluster wrapper.
+   *
+   * @param clusterWrapper the new cluster wrapper
+   */
   public void setClusterWrapper(ClusterWrapperBean clusterWrapper) {
     this.clusterWrapper = clusterWrapper;
   }
 
+  /**
+   * Checks if is load members.
+   *
+   * @return true, if is load members
+   */
   public boolean isLoadMembers() {
     return loadMembers;
   }
 
+  /**
+   * Sets the load members.
+   *
+   * @param loadMembers the new load members
+   */
   public void setLoadMembers(boolean loadMembers) {
     this.loadMembers = loadMembers;
   }
 
+  /**
+   * Gets the collection period.
+   *
+   * @return the collection period
+   */
   public long getCollectionPeriod() {
     return collectionPeriod;
   }
 
+  /**
+   * Sets the collection period.
+   *
+   * @param collectionPeriod the new collection period
+   */
   public void setCollectionPeriod(long collectionPeriod) {
     this.collectionPeriod = collectionPeriod;
   }
 
+  /* (non-Javadoc)
+   * @see org.springframework.web.servlet.mvc.AbstractController#handleRequestInternal(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+   */
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 

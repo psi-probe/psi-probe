@@ -24,21 +24,36 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * 
+ * The Class StandardSeriesProvider.
+ *
  * @author Vlad Ilyushchenko
  */
 public class StandardSeriesProvider extends AbstractSeriesProvider {
 
+  /** The stat names. */
   private List<String> statNames = new ArrayList<String>(2);
 
+  /**
+   * Gets the stat names.
+   *
+   * @return the stat names
+   */
   public List<String> getStatNames() {
     return statNames;
   }
 
+  /**
+   * Sets the stat names.
+   *
+   * @param statNames the new stat names
+   */
   public void setStatNames(List<String> statNames) {
     this.statNames = statNames;
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.beans.stats.providers.SeriesProvider#populate(org.jfree.data.xy.DefaultTableXYDataset, com.googlecode.psiprobe.model.stats.StatsCollection, javax.servlet.http.HttpServletRequest)
+   */
   public void populate(DefaultTableXYDataset dataset, StatsCollection statsCollection,
       HttpServletRequest request) {
 

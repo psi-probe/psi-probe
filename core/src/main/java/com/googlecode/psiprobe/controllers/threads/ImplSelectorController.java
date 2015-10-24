@@ -21,30 +21,57 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * 
+ * The Class ImplSelectorController.
+ *
  * @author Vlad Ilyushchenko
  */
 public class ImplSelectorController extends AbstractController {
 
+  /** The impl1 controller. */
   private String impl1Controller;
+  
+  /** The impl2 controller. */
   private String impl2Controller;
 
+  /**
+   * Gets the impl1 controller.
+   *
+   * @return the impl1 controller
+   */
   public String getImpl1Controller() {
     return impl1Controller;
   }
 
+  /**
+   * Sets the impl1 controller.
+   *
+   * @param impl1Controller the new impl1 controller
+   */
   public void setImpl1Controller(String impl1Controller) {
     this.impl1Controller = impl1Controller;
   }
 
+  /**
+   * Gets the impl2 controller.
+   *
+   * @return the impl2 controller
+   */
   public String getImpl2Controller() {
     return impl2Controller;
   }
 
+  /**
+   * Sets the impl2 controller.
+   *
+   * @param impl2Controller the new impl2 controller
+   */
   public void setImpl2Controller(String impl2Controller) {
     this.impl2Controller = impl2Controller;
   }
 
+  /* (non-Javadoc)
+   * @see org.springframework.web.servlet.mvc.AbstractController#handleRequestInternal(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+   */
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
     boolean forceOld = ServletRequestUtils.getBooleanParameter(request, "forceold", false);

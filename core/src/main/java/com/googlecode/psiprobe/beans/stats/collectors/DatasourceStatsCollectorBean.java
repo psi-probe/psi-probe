@@ -21,25 +21,45 @@ import org.apache.commons.logging.LogFactory;
 import java.util.List;
 
 /**
+ * The Class DatasourceStatsCollectorBean.
  *
  * @author Mark Lewis
  */
 public class DatasourceStatsCollectorBean extends AbstractStatsCollectorBean {
 
+  /** The Constant PREFIX_ESTABLISHED. */
   private static final String PREFIX_ESTABLISHED = "ds.est.";
+  
+  /** The Constant PREFIX_BUSY. */
   private static final String PREFIX_BUSY = "ds.busy.";
 
+  /** The logger. */
   private Log logger = LogFactory.getLog(DatasourceStatsCollectorBean.class);
+  
+  /** The container wrapper. */
   private ContainerWrapperBean containerWrapper;
 
+  /**
+   * Gets the container wrapper.
+   *
+   * @return the container wrapper
+   */
   public ContainerWrapperBean getContainerWrapper() {
     return containerWrapper;
   }
 
+  /**
+   * Sets the container wrapper.
+   *
+   * @param containerWrapper the new container wrapper
+   */
   public void setContainerWrapper(ContainerWrapperBean containerWrapper) {
     this.containerWrapper = containerWrapper;
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.beans.stats.collectors.AbstractStatsCollectorBean#collect()
+   */
   public void collect() throws Exception {
     long currentTime = System.currentTimeMillis();
     if (containerWrapper == null) {
@@ -60,6 +80,11 @@ public class DatasourceStatsCollectorBean extends AbstractStatsCollectorBean {
     }
   }
 
+  /**
+   * Reset.
+   *
+   * @throws Exception the exception
+   */
   public void reset() throws Exception {
     if (containerWrapper == null) {
       logger.error("Cannot reset application stats. Container wrapper is not set.");
@@ -70,6 +95,12 @@ public class DatasourceStatsCollectorBean extends AbstractStatsCollectorBean {
     }
   }
 
+  /**
+   * Reset.
+   *
+   * @param name the name
+   * @throws Exception the exception
+   */
   public void reset(String name) throws Exception {
     resetStats(PREFIX_ESTABLISHED + name);
     resetStats(PREFIX_BUSY + name);

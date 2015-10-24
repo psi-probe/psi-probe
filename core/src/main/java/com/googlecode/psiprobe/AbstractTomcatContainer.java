@@ -51,6 +51,7 @@ import javax.servlet.ServletContext;
  */
 public abstract class AbstractTomcatContainer implements TomcatContainer {
 
+  /** The logger. */
   protected Log logger = LogFactory.getLog(getClass());
 
   /**
@@ -68,6 +69,9 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     return findContext(contextName) != null;
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.TomcatContainer#stop(java.lang.String)
+   */
   public void stop(String name) throws Exception {
     Context ctx = findContext(name);
     if (ctx != null) {
@@ -75,6 +79,9 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     }
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.TomcatContainer#start(java.lang.String)
+   */
   public void start(String name) throws Exception {
     Context ctx = findContext(name);
     if (ctx != null) {
@@ -131,14 +138,30 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     }
   }
 
+  /**
+   * Removes the internal.
+   *
+   * @param name the name
+   * @throws Exception the exception
+   */
   public void removeInternal(String name) throws Exception {
     checkChanges(name);
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.TomcatContainer#installWar(java.lang.String, java.net.URL)
+   */
   public void installWar(String name, URL url) throws Exception {
     checkChanges(name);
   }
 
+  /**
+   * Install context internal.
+   *
+   * @param name the name
+   * @param config the config
+   * @throws Exception the exception
+   */
   public void installContextInternal(String name, File config) throws Exception {
     checkChanges(name);
   }
@@ -386,11 +409,17 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     }
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.TomcatContainer#getLogger(org.apache.catalina.Context)
+   */
   @Override
   public org.apache.juli.logging.Log getLogger(Context context) {
     return context.getLogger();
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.TomcatContainer#getAvailable(org.apache.catalina.Context)
+   */
   @Override
   public boolean getAvailable(Context context) {
     return context.getState().isAvailable();
@@ -531,11 +560,33 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     }
   }
 
+  /**
+   * Creates the jsp compilation context.
+   *
+   * @param name the name
+   * @param opt the opt
+   * @param sctx the sctx
+   * @param jrctx the jrctx
+   * @param classLoader the class loader
+   * @return the jsp compilation context
+   */
   protected abstract JspCompilationContext createJspCompilationContext(String name, Options opt,
       ServletContext sctx, JspRuntimeContext jrctx, ClassLoader classLoader);
 
+  /**
+   * Find context internal.
+   *
+   * @param contextName the context name
+   * @return the context
+   */
   protected abstract Context findContextInternal(String contextName);
   
+  /**
+   * Check changes.
+   *
+   * @param name the name
+   * @throws Exception the exception
+   */
   protected abstract void checkChanges(String name) throws Exception;
 
 }

@@ -16,12 +16,16 @@ import com.googlecode.psiprobe.tools.Instruments;
 import java.io.File;
 
 /**
- * 
+ * The Class JuliHandlerAccessor.
+ *
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */
 public class JuliHandlerAccessor extends Jdk14HandlerAccessor {
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.tools.logging.AbstractLogDestination#getFile()
+   */
   @Override
   public File getFile() {
     String dir = (String) Instruments.getField(getTarget(), "directory");

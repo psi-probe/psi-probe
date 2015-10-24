@@ -22,21 +22,36 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
+ * The Class ResetConnectorStatsController.
  *
  * @author Mark Lewis
  */
 public class ResetConnectorStatsController extends ParameterizableViewController {
 
+  /** The collector bean. */
   ConnectorStatsCollectorBean collectorBean;
 
+  /**
+   * Gets the collector bean.
+   *
+   * @return the collector bean
+   */
   public ConnectorStatsCollectorBean getCollectorBean() {
     return collectorBean;
   }
 
+  /**
+   * Sets the collector bean.
+   *
+   * @param collectorBean the new collector bean
+   */
   public void setCollectorBean(ConnectorStatsCollectorBean collectorBean) {
     this.collectorBean = collectorBean;
   }
 
+  /* (non-Javadoc)
+   * @see org.springframework.web.servlet.mvc.ParameterizableViewController#handleRequestInternal(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+   */
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {

@@ -15,35 +15,71 @@ import java.io.Serializable;
 import java.util.Map;
 
 /**
- * 
+ * The Class Summary.
+ *
  * @author Vlad Ilyushchenko
  */
 public class Summary implements Serializable {
 
+  /** The name. */
   private String name;
+  
+  /** The items. */
   private Map<String, Item> items;
+  
+  /** The out of date count. */
   private int outOfDateCount;
 
+  /**
+   * Gets the name.
+   *
+   * @return the name
+   */
   public String getName() {
     return name;
   }
 
+  /**
+   * Sets the name.
+   *
+   * @param name the new name
+   */
   public void setName(String name) {
     this.name = name;
   }
 
+  /**
+   * Gets the items.
+   *
+   * @return the items
+   */
   public Map<String, Item> getItems() {
     return items;
   }
 
+  /**
+   * Sets the items.
+   *
+   * @param items the items
+   */
   public void setItems(Map<String, Item> items) {
     this.items = items;
   }
 
+  /**
+   * Gets the out of date count.
+   *
+   * @return the out of date count
+   */
   public int getOutOfDateCount() {
     return outOfDateCount;
   }
 
+  /**
+   * Sets the out of date count.
+   *
+   * @param outOfDateCount the new out of date count
+   */
   public void setOutOfDateCount(int outOfDateCount) {
     this.outOfDateCount = outOfDateCount;
   }

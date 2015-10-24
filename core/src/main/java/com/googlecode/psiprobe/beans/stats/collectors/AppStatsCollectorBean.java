@@ -24,44 +24,81 @@ import org.springframework.web.context.ServletContextAware;
 import javax.servlet.ServletContext;
 
 /**
- * Collects application statistics
- * 
+ * Collects application statistics.
+ *
  * @author Andy Shapoval
  * @author Mark Lewis
  */
 public class AppStatsCollectorBean extends AbstractStatsCollectorBean implements
     ServletContextAware {
 
+  /** The logger. */
   private Log logger = LogFactory.getLog(AppStatsCollectorBean.class);
 
+  /** The container wrapper. */
   private ContainerWrapperBean containerWrapper;
+  
+  /** The servlet context. */
   private ServletContext servletContext;
+  
+  /** The self ignored. */
   private boolean selfIgnored;
 
+  /**
+   * Gets the container wrapper.
+   *
+   * @return the container wrapper
+   */
   public ContainerWrapperBean getContainerWrapper() {
     return containerWrapper;
   }
 
+  /**
+   * Sets the container wrapper.
+   *
+   * @param containerWrapper the new container wrapper
+   */
   public void setContainerWrapper(ContainerWrapperBean containerWrapper) {
     this.containerWrapper = containerWrapper;
   }
 
+  /**
+   * Checks if is self ignored.
+   *
+   * @return true, if is self ignored
+   */
   public boolean isSelfIgnored() {
     return selfIgnored;
   }
 
+  /**
+   * Sets the self ignored.
+   *
+   * @param selfIgnored the new self ignored
+   */
   public void setSelfIgnored(boolean selfIgnored) {
     this.selfIgnored = selfIgnored;
   }
 
+  /**
+   * Gets the servlet context.
+   *
+   * @return the servlet context
+   */
   protected ServletContext getServletContext() {
     return servletContext;
   }
 
+  /* (non-Javadoc)
+   * @see org.springframework.web.context.ServletContextAware#setServletContext(javax.servlet.ServletContext)
+   */
   public void setServletContext(ServletContext servletContext) {
     this.servletContext = servletContext;
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.beans.stats.collectors.AbstractStatsCollectorBean#collect()
+   */
   public void collect() throws Exception {
 
     long currentTime = System.currentTimeMillis();
@@ -118,10 +155,19 @@ public class AppStatsCollectorBean extends AbstractStatsCollectorBean implements
     }
   }
 
+  /**
+   * Exclude from total.
+   *
+   * @param ctx the ctx
+   * @return true, if successful
+   */
   private boolean excludeFromTotal(Context ctx) {
     return isSelfIgnored() && getServletContext().equals(ctx.getServletContext());
   }
 
+  /**
+   * Reset.
+   */
   public void reset() {
     if (containerWrapper == null) {
       logger.error("Cannot reset application stats. Container wrapper is not set.");
@@ -141,6 +187,11 @@ public class AppStatsCollectorBean extends AbstractStatsCollectorBean implements
     resetStats("total.avg_proc_time");
   }
 
+  /**
+   * Reset.
+   *
+   * @param appName the app name
+   */
   public void reset(String appName) {
     resetStats("app.requests." + appName);
     resetStats("app.proc_time." + appName);

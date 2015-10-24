@@ -21,14 +21,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 
+ * The Class Jdk14LoggerAccessor.
+ *
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */
 public class Jdk14LoggerAccessor extends DefaultAccessor {
 
+  /** The context. */
   private boolean context = false;
 
+  /**
+   * Gets the handlers.
+   *
+   * @return the handlers
+   */
   public List<LogDestination> getHandlers() {
     List<LogDestination> handlerAccessors = new ArrayList<LogDestination>();
     try {
@@ -46,26 +53,57 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
     return handlerAccessors;
   }
 
+  /**
+   * Checks if is context.
+   *
+   * @return true, if is context
+   */
   public boolean isContext() {
     return context;
   }
 
+  /**
+   * Sets the context.
+   *
+   * @param context the new context
+   */
   public void setContext(boolean context) {
     this.context = context;
   }
 
+  /**
+   * Checks if is root.
+   *
+   * @return true, if is root
+   */
   public boolean isRoot() {
     return "".equals(getName()) || isJuliRoot();
   }
 
+  /**
+   * Checks if is juli root.
+   *
+   * @return true, if is juli root
+   */
   public boolean isJuliRoot() {
     return "org.apache.juli.ClassLoaderLogManager$RootLogger".equals(getTargetClass());
   }
 
+  /**
+   * Gets the name.
+   *
+   * @return the name
+   */
   public String getName() {
     return (String) getProperty(getTarget(), "name", null);
   }
 
+  /**
+   * Gets the handler.
+   *
+   * @param logIndex the log index
+   * @return the handler
+   */
   public Jdk14HandlerAccessor getHandler(String logIndex) {
     int index = 0;
     try {
@@ -76,6 +114,12 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
     return getHandler(index);
   }
 
+  /**
+   * Gets the handler.
+   *
+   * @param index the index
+   * @return the handler
+   */
   public Jdk14HandlerAccessor getHandler(int index) {
     try {
       Object[] handlers = (Object[]) MethodUtils.invokeMethod(getTarget(), "getHandlers", null);
@@ -86,6 +130,11 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
     return null;
   }
 
+  /**
+   * Gets the level.
+   *
+   * @return the level
+   */
   public String getLevel() {
     try {
       Object level = null;
@@ -105,6 +154,11 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
     return null;
   }
 
+  /**
+   * Sets the level.
+   *
+   * @param newLevelStr the new level
+   */
   public void setLevel(String newLevelStr) {
     try {
       Class levelClass =
@@ -117,10 +171,24 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
     }
   }
 
+  /**
+   * Gets the level internal.
+   *
+   * @param target the target
+   * @return the level internal
+   * @throws Exception the exception
+   */
   private Object getLevelInternal(Object target) throws Exception {
     return MethodUtils.invokeMethod(target, "getLevel", null);
   }
 
+  /**
+   * Wrap handler.
+   *
+   * @param handler the handler
+   * @param index the index
+   * @return the jdk14 handler accessor
+   */
   private Jdk14HandlerAccessor wrapHandler(Object handler, int index) {
     try {
       if (handler == null) {

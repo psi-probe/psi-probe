@@ -30,16 +30,30 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ResetDataSourceController extends ContextHandlerController {
 
+  /** The replace pattern. */
   private String replacePattern;
 
+  /**
+   * Gets the replace pattern.
+   *
+   * @return the replace pattern
+   */
   public String getReplacePattern() {
     return replacePattern;
   }
 
+  /**
+   * Sets the replace pattern.
+   *
+   * @param replacePattern the new replace pattern
+   */
   public void setReplacePattern(String replacePattern) {
     this.replacePattern = replacePattern;
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.controllers.ContextHandlerController#handleContext(java.lang.String, org.apache.catalina.Context, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+   */
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 
@@ -74,6 +88,9 @@ public class ResetDataSourceController extends ContextHandlerController {
     return new ModelAndView(new RedirectView(redirectUrl));
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.controllers.ContextHandlerController#isContextOptional()
+   */
   @Override
   protected boolean isContextOptional() {
     return !getContainerWrapper().getResourceResolver().supportsPrivateResources();

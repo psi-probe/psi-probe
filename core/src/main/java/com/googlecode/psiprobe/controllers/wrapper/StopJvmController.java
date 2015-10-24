@@ -19,21 +19,36 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * 
+ * The Class StopJvmController.
+ *
  * @author Vlad Ilyushchenko
  */
 public class StopJvmController extends ParameterizableViewController {
 
+  /** The stop exit code. */
   private int stopExitCode = 1;
 
+  /**
+   * Gets the stop exit code.
+   *
+   * @return the stop exit code
+   */
   public int getStopExitCode() {
     return stopExitCode;
   }
 
+  /**
+   * Sets the stop exit code.
+   *
+   * @param stopExitCode the new stop exit code
+   */
   public void setStopExitCode(int stopExitCode) {
     this.stopExitCode = stopExitCode;
   }
 
+  /* (non-Javadoc)
+   * @see org.springframework.web.servlet.mvc.ParameterizableViewController#handleRequestInternal(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+   */
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {

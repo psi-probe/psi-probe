@@ -17,29 +17,57 @@ import com.googlecode.psiprobe.beans.ContainerWrapperBean;
 import com.googlecode.psiprobe.model.jmx.Cluster;
 
 /**
- * 
+ * The Class ClusterStatsCollectorBean.
+ *
  * @author Vlad Ilyushchenko
  */
 public class ClusterStatsCollectorBean extends AbstractStatsCollectorBean {
+  
+  /** The container wrapper. */
   private ContainerWrapperBean containerWrapper;
+  
+  /** The cluster wrapper. */
   private ClusterWrapperBean clusterWrapper;
 
+  /**
+   * Gets the container wrapper.
+   *
+   * @return the container wrapper
+   */
   public ContainerWrapperBean getContainerWrapper() {
     return containerWrapper;
   }
 
+  /**
+   * Sets the container wrapper.
+   *
+   * @param containerWrapper the new container wrapper
+   */
   public void setContainerWrapper(ContainerWrapperBean containerWrapper) {
     this.containerWrapper = containerWrapper;
   }
 
+  /**
+   * Gets the cluster wrapper.
+   *
+   * @return the cluster wrapper
+   */
   public ClusterWrapperBean getClusterWrapper() {
     return clusterWrapper;
   }
 
+  /**
+   * Sets the cluster wrapper.
+   *
+   * @param clusterWrapper the new cluster wrapper
+   */
   public void setClusterWrapper(ClusterWrapperBean clusterWrapper) {
     this.clusterWrapper = clusterWrapper;
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.beans.stats.collectors.AbstractStatsCollectorBean#collect()
+   */
   public void collect() throws Exception {
     // Job can be called before the servlet finished intialisation. Make sure
     // we dont get an NPE.

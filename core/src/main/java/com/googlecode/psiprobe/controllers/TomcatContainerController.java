@@ -22,21 +22,44 @@ import org.springframework.web.servlet.mvc.AbstractController;
  */
 public abstract class TomcatContainerController extends AbstractController {
 
+  /** The container wrapper. */
   private ContainerWrapperBean containerWrapper;
+  
+  /** The view name. */
   private String viewName;
 
+  /**
+   * Gets the container wrapper.
+   *
+   * @return the container wrapper
+   */
   public ContainerWrapperBean getContainerWrapper() {
     return containerWrapper;
   }
 
+  /**
+   * Sets the container wrapper.
+   *
+   * @param containerWrapper the new container wrapper
+   */
   public void setContainerWrapper(ContainerWrapperBean containerWrapper) {
     this.containerWrapper = containerWrapper;
   }
 
+  /**
+   * Gets the view name.
+   *
+   * @return the view name
+   */
   public String getViewName() {
     return viewName;
   }
 
+  /**
+   * Sets the view name.
+   *
+   * @param viewName the new view name
+   */
   public void setViewName(String viewName) {
     this.viewName = viewName;
   }

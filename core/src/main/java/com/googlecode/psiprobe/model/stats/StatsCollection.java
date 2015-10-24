@@ -36,56 +36,117 @@ import java.util.Map;
 import java.util.TreeMap;
 
 /**
- * 
+ * The Class StatsCollection.
+ *
  * @author Vlad Ilyushchenko
  * @author Andy Shapoval
  * @author Mark Lewis
  */
 public class StatsCollection implements InitializingBean, DisposableBean, ApplicationContextAware {
 
+  /** The logger. */
   private Log logger = LogFactory.getLog(this.getClass());
 
+  /** The stats data. */
   private Map<String, List<XYDataItem>> statsData = new TreeMap<String, List<XYDataItem>>();
+  
+  /** The swap file name. */
   private String swapFileName;
+  
+  /** The storage path. */
   private String storagePath = null;
+  
+  /** The context temp dir. */
   private File contextTempDir;
+  
+  /** The max files. */
   private int maxFiles = 2;
+  
+  /** The lock. */
   private final UpdateCommitLock lock = new UpdateCommitLock();
 
+  /**
+   * Gets the swap file name.
+   *
+   * @return the swap file name
+   */
   public String getSwapFileName() {
     return swapFileName;
   }
 
+  /**
+   * Sets the swap file name.
+   *
+   * @param swapFileName the new swap file name
+   */
   public void setSwapFileName(String swapFileName) {
     this.swapFileName = swapFileName;
   }
 
+  /**
+   * Gets the storage path.
+   *
+   * @return the storage path
+   */
   public String getStoragePath() {
     return storagePath;
   }
 
+  /**
+   * Sets the storage path.
+   *
+   * @param storagePath the new storage path
+   */
   public void setStoragePath(String storagePath) {
     this.storagePath = storagePath;
   }
 
+  /**
+   * Checks if is collected.
+   *
+   * @param statsName the stats name
+   * @return true, if is collected
+   */
   public boolean isCollected(String statsName) {
     return statsData.get(statsName) != null;
   }
 
+  /**
+   * Gets the max files.
+   *
+   * @return the max files
+   */
   public int getMaxFiles() {
     return maxFiles;
   }
 
+  /**
+   * Sets the max files.
+   *
+   * @param maxFiles the new max files
+   */
   public void setMaxFiles(int maxFiles) {
     this.maxFiles = maxFiles > 0 ? maxFiles : 2;
   }
 
+  /**
+   * New stats.
+   *
+   * @param name the name
+   * @param maxElements the max elements
+   * @return the list
+   */
   public synchronized List<XYDataItem> newStats(String name, int maxElements) {
     List<XYDataItem> stats = Collections.synchronizedList(new ArrayList<XYDataItem>(maxElements));
     statsData.put(name, stats);
     return stats;
   }
 
+  /**
+   * Reset stats.
+   *
+   * @param name the name
+   */
   public synchronized void resetStats(String name) {
     List<XYDataItem> stats = getStats(name);
     if (stats != null) {
@@ -93,10 +154,22 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
     }
   }
 
+  /**
+   * Gets the stats.
+   *
+   * @param name the name
+   * @return the stats
+   */
   public synchronized List<XYDataItem> getStats(String name) {
     return statsData.get(name);
   }
 
+  /**
+   * Gets the last value for stat.
+   *
+   * @param statName the stat name
+   * @return the last value for stat
+   */
   public long getLastValueForStat(String statName) {
     long statValue = 0;
 
@@ -128,11 +201,21 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
     return map;
   }
 
+  /**
+   * Make file.
+   *
+   * @return the file
+   */
   private File makeFile() {
     return storagePath == null ? new File(contextTempDir, swapFileName) : new File(storagePath,
         swapFileName);
   }
 
+  /**
+   * Shift files.
+   *
+   * @param index the index
+   */
   private void shiftFiles(int index) {
     if (index >= maxFiles - 1) {
       new File(makeFile().getAbsolutePath() + "." + index).delete();
@@ -168,6 +251,12 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
     }
   }
 
+  /**
+   * Deserialize.
+   *
+   * @param file the file
+   * @return the map
+   */
   private Map<String, List<XYDataItem>> deserialize(File file) {
     Map<String, List<XYDataItem>> stats = null;
     if (file.exists() && file.canRead()) {
@@ -213,10 +302,18 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
     return stats;
   }
 
+  /**
+   * Lock for update.
+   *
+   * @throws InterruptedException the interrupted exception
+   */
   public void lockForUpdate() throws InterruptedException {
     lock.lockForUpdate();
   }
 
+  /**
+   * Release lock.
+   */
   public void releaseLock() {
     lock.releaseUpdateLock();
   }
@@ -245,10 +342,16 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
 
   }
 
+  /* (non-Javadoc)
+   * @see org.springframework.beans.factory.DisposableBean#destroy()
+   */
   public void destroy() throws Exception {
     serialize();
   }
 
+  /* (non-Javadoc)
+   * @see org.springframework.context.ApplicationContextAware#setApplicationContext(org.springframework.context.ApplicationContext)
+   */
   public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
     WebApplicationContext wac = (WebApplicationContext) applicationContext;
     contextTempDir = (File) wac.getServletContext().getAttribute("javax.servlet.context.tempdir");

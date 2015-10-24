@@ -15,21 +15,38 @@ import java.io.IOException;
 import java.io.StringReader;
 
 /**
- * 
+ * The Class StringTokenizer.
+ *
  * @author Vlad Ilyushchenko
  */
 public class StringTokenizer extends Tokenizer {
 
+  /**
+   * Instantiates a new string tokenizer.
+   */
   public StringTokenizer() {}
 
+  /**
+   * Instantiates a new string tokenizer.
+   *
+   * @param str the str
+   */
   public StringTokenizer(final String str) {
     setString(str);
   }
 
+  /**
+   * Sets the string.
+   *
+   * @param str the new string
+   */
   public void setString(final String str) {
     setReader(new StringReader(str));
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.tokenizer.Tokenizer#hasMore()
+   */
   @Override
   public boolean hasMore() {
     try {
@@ -39,6 +56,9 @@ public class StringTokenizer extends Tokenizer {
     }
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.tokenizer.Tokenizer#getToken()
+   */
   @Override
   public Token getToken() {
     try {
@@ -48,6 +68,9 @@ public class StringTokenizer extends Tokenizer {
     }
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.tokenizer.Tokenizer#nextToken()
+   */
   @Override
   public Token nextToken() {
     try {

@@ -36,30 +36,50 @@ import java.util.Map;
  */
 public class ContainerWrapperBean {
 
+  /** The logger. */
   private Log logger = LogFactory.getLog(getClass());
 
+  /** The tomcat container. */
   private TomcatContainer tomcatContainer = null;
+  
+  /** The lock. */
   private final Object lock = new Object();
 
-  /**
-   * List of class names to adapt particular Tomcat implementation to TomcatContainer interface
-   */
+  /** List of class names to adapt particular Tomcat implementation to TomcatContainer interface. */
   private List<String> adaptorClasses;
 
+  /** The resource resolver. */
   private ResourceResolver resourceResolver;
 
+  /** The force first adaptor. */
   private boolean forceFirstAdaptor = false;
 
+  /** The resource resolvers. */
   private Map<String, ResourceResolver> resourceResolvers;
 
+  /**
+   * Checks if is force first adaptor.
+   *
+   * @return true, if is force first adaptor
+   */
   public boolean isForceFirstAdaptor() {
     return forceFirstAdaptor;
   }
 
+  /**
+   * Sets the force first adaptor.
+   *
+   * @param forceFirstAdaptor the new force first adaptor
+   */
   public void setForceFirstAdaptor(boolean forceFirstAdaptor) {
     this.forceFirstAdaptor = forceFirstAdaptor;
   }
 
+  /**
+   * Sets the wrapper.
+   *
+   * @param wrapper the new wrapper
+   */
   public void setWrapper(Wrapper wrapper) {
     if (tomcatContainer == null) {
 
@@ -123,18 +143,38 @@ public class ContainerWrapperBean {
     }
   }
 
+  /**
+   * Gets the tomcat container.
+   *
+   * @return the tomcat container
+   */
   public TomcatContainer getTomcatContainer() {
     return tomcatContainer;
   }
 
+  /**
+   * Gets the adaptor classes.
+   *
+   * @return the adaptor classes
+   */
   public List<String> getAdaptorClasses() {
     return adaptorClasses;
   }
 
+  /**
+   * Sets the adaptor classes.
+   *
+   * @param adaptorClasses the new adaptor classes
+   */
   public void setAdaptorClasses(List<String> adaptorClasses) {
     this.adaptorClasses = adaptorClasses;
   }
 
+  /**
+   * Gets the resource resolver.
+   *
+   * @return the resource resolver
+   */
   public ResourceResolver getResourceResolver() {
     if (resourceResolver == null) {
       if (System.getProperty("jboss.server.name") != null) {
@@ -148,14 +188,30 @@ public class ContainerWrapperBean {
     return resourceResolver;
   }
 
+  /**
+   * Gets the resource resolvers.
+   *
+   * @return the resource resolvers
+   */
   public Map<String, ResourceResolver> getResourceResolvers() {
     return resourceResolvers;
   }
 
+  /**
+   * Sets the resource resolvers.
+   *
+   * @param resourceResolvers the resource resolvers
+   */
   public void setResourceResolvers(Map<String, ResourceResolver> resourceResolvers) {
     this.resourceResolvers = resourceResolvers;
   }
 
+  /**
+   * Gets the data sources.
+   *
+   * @return the data sources
+   * @throws Exception the exception
+   */
   public List<ApplicationResource> getDataSources() throws Exception {
     List<ApplicationResource> resources = new ArrayList<ApplicationResource>();
     resources.addAll(getPrivateDataSources());
@@ -163,6 +219,12 @@ public class ContainerWrapperBean {
     return resources;
   }
 
+  /**
+   * Gets the private data sources.
+   *
+   * @return the private data sources
+   * @throws Exception the exception
+   */
   public List<ApplicationResource> getPrivateDataSources() throws Exception {
     List<ApplicationResource> resources = new ArrayList<ApplicationResource>();
     if (tomcatContainer != null && getResourceResolver().supportsPrivateResources()) {
@@ -176,6 +238,12 @@ public class ContainerWrapperBean {
     return resources;
   }
 
+  /**
+   * Gets the global data sources.
+   *
+   * @return the global data sources
+   * @throws Exception the exception
+   */
   public List<ApplicationResource> getGlobalDataSources() throws Exception {
     List<ApplicationResource> resources = new ArrayList<ApplicationResource>();
     if (getResourceResolver().supportsGlobalResources()) {
@@ -186,6 +254,12 @@ public class ContainerWrapperBean {
     return resources;
   }
 
+  /**
+   * Filter data sources.
+   *
+   * @param resources the resources
+   * @param dataSources the data sources
+   */
   protected void filterDataSources(List<ApplicationResource> resources,
       List<ApplicationResource> dataSources) {
 

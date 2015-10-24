@@ -22,11 +22,15 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * 
+ * The Class ConnectorSeriesProvider.
+ *
  * @author Vlad Ilyushchenko
  */
 public class ConnectorSeriesProvider extends AbstractSeriesProvider {
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.beans.stats.providers.SeriesProvider#populate(org.jfree.data.xy.DefaultTableXYDataset, com.googlecode.psiprobe.model.stats.StatsCollection, javax.servlet.http.HttpServletRequest)
+   */
   public void populate(DefaultTableXYDataset dataset, StatsCollection statsCollection,
       HttpServletRequest request) {
 

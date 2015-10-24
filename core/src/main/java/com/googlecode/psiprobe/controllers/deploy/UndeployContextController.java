@@ -29,16 +29,30 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class UndeployContextController extends ContextHandlerController {
 
+  /** The failure view name. */
   private String failureViewName = null;
 
+  /**
+   * Gets the failure view name.
+   *
+   * @return the failure view name
+   */
   public String getFailureViewName() {
     return failureViewName;
   }
 
+  /**
+   * Sets the failure view name.
+   *
+   * @param failureViewName the new failure view name
+   */
   public void setFailureViewName(String failureViewName) {
     this.failureViewName = failureViewName;
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.controllers.ContextHandlerController#handleContext(java.lang.String, org.apache.catalina.Context, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+   */
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
     try {
@@ -58,6 +72,12 @@ public class UndeployContextController extends ContextHandlerController {
     return new ModelAndView(new RedirectView(request.getContextPath() + getViewName()));
   }
 
+  /**
+   * Execute action.
+   *
+   * @param contextName the context name
+   * @throws Exception the exception
+   */
   protected void executeAction(String contextName) throws Exception {}
 
 }

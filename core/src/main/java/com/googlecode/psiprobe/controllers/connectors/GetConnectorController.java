@@ -24,22 +24,37 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * 
+ * The Class GetConnectorController.
+ *
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */
 public class GetConnectorController extends TomcatContainerController {
 
+  /** The container listener bean. */
   private ContainerListenerBean containerListenerBean;
 
+  /**
+   * Gets the container listener bean.
+   *
+   * @return the container listener bean
+   */
   public ContainerListenerBean getContainerListenerBean() {
     return containerListenerBean;
   }
 
+  /**
+   * Sets the container listener bean.
+   *
+   * @param containerListenerBean the new container listener bean
+   */
   public void setContainerListenerBean(ContainerListenerBean containerListenerBean) {
     this.containerListenerBean = containerListenerBean;
   }
 
+  /* (non-Javadoc)
+   * @see org.springframework.web.servlet.mvc.AbstractController#handleRequestInternal(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+   */
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
     String connectorName = ServletRequestUtils.getStringParameter(request, "cn", null);

@@ -21,16 +21,32 @@ import java.util.Map;
  */
 public class TransportableModel {
 
+  /** The items. */
   private Map<String, Object> items = new HashMap<String, Object>();
 
+  /**
+   * Gets the items.
+   *
+   * @return the items
+   */
   public Map<String, Object> getItems() {
     return items;
   }
 
+  /**
+   * Sets the items.
+   *
+   * @param items the items
+   */
   public void setItems(Map<String, Object> items) {
     this.items = items;
   }
 
+  /**
+   * Put all.
+   *
+   * @param map the map
+   */
   public void putAll(Map<String, Object> map) {
     items.putAll(map);
   }

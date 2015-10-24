@@ -24,31 +24,58 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * 
+ * The Class ListLogsController.
+ *
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */
 public class ListLogsController extends ParameterizableViewController {
 
+  /** The error view. */
   private String errorView;
+  
+  /** The log resolver. */
   private LogResolverBean logResolver;
 
+  /**
+   * Gets the error view.
+   *
+   * @return the error view
+   */
   public String getErrorView() {
     return errorView;
   }
 
+  /**
+   * Sets the error view.
+   *
+   * @param errorView the new error view
+   */
   public void setErrorView(String errorView) {
     this.errorView = errorView;
   }
 
+  /**
+   * Gets the log resolver.
+   *
+   * @return the log resolver
+   */
   public LogResolverBean getLogResolver() {
     return logResolver;
   }
 
+  /**
+   * Sets the log resolver.
+   *
+   * @param logResolver the new log resolver
+   */
   public void setLogResolver(LogResolverBean logResolver) {
     this.logResolver = logResolver;
   }
 
+  /* (non-Javadoc)
+   * @see org.springframework.web.servlet.mvc.ParameterizableViewController#handleRequestInternal(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+   */
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {

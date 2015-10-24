@@ -30,39 +30,78 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * 
+ * The Class WhoisController.
+ *
  * @author Vlad Ilyushchenko
  */
 public class WhoisController extends ParameterizableViewController {
 
+  /** The lookup timeout. */
   private long lookupTimeout = 5;
+  
+  /** The default server. */
   private String defaultServer = "whois.arin.net";
+  
+  /** The default port. */
   private int defaultPort = 43;
 
+  /**
+   * Gets the lookup timeout.
+   *
+   * @return the lookup timeout
+   */
   public long getLookupTimeout() {
     return lookupTimeout;
   }
 
+  /**
+   * Sets the lookup timeout.
+   *
+   * @param lookupTimeout the new lookup timeout
+   */
   public void setLookupTimeout(long lookupTimeout) {
     this.lookupTimeout = lookupTimeout;
   }
 
+  /**
+   * Gets the default server.
+   *
+   * @return the default server
+   */
   public String getDefaultServer() {
     return defaultServer;
   }
 
+  /**
+   * Sets the default server.
+   *
+   * @param defaultServer the new default server
+   */
   public void setDefaultServer(String defaultServer) {
     this.defaultServer = defaultServer;
   }
 
+  /**
+   * Gets the default port.
+   *
+   * @return the default port
+   */
   public int getDefaultPort() {
     return defaultPort;
   }
 
+  /**
+   * Sets the default port.
+   *
+   * @param defaultPort the new default port
+   */
   public void setDefaultPort(int defaultPort) {
     this.defaultPort = defaultPort;
   }
 
+  /* (non-Javadoc)
+   * @see org.springframework.web.servlet.mvc.ParameterizableViewController#handleRequestInternal(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+   */
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {

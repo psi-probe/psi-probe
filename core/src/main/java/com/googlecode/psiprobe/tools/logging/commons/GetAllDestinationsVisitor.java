@@ -19,21 +19,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * The Class GetAllDestinationsVisitor.
  *
  * @author Mark Lewis
  */
 public class GetAllDestinationsVisitor extends LoggerAccessorVisitor {
 
+  /** The destinations. */
   private List<LogDestination> destinations = new ArrayList<LogDestination>();
 
+  /**
+   * Gets the destinations.
+   *
+   * @return the destinations
+   */
   public List<LogDestination> getDestinations() {
     return destinations;
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.tools.logging.commons.LoggerAccessorVisitor#visit(com.googlecode.psiprobe.tools.logging.log4j.Log4JLoggerAccessor)
+   */
   public void visit(Log4JLoggerAccessor accessor) {
     destinations.addAll(accessor.getAppenders());
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.tools.logging.commons.LoggerAccessorVisitor#visit(com.googlecode.psiprobe.tools.logging.jdk.Jdk14LoggerAccessor)
+   */
   public void visit(Jdk14LoggerAccessor accessor) {
     destinations.addAll(accessor.getHandlers());
   }

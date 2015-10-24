@@ -17,39 +17,78 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * 
+ * The Class Tokenizer.
+ *
  * @author Vlad Ilyushchenko
  */
 public class Tokenizer {
 
+  /** The Constant TT_TOKEN. */
   public static final int TT_TOKEN = 0;
+  
+  /** The Constant TT_SYMBOL. */
   public static final int TT_SYMBOL = 1;
+  
+  /** The Constant TT_BLOCK. */
   public static final int TT_BLOCK = 2;
+  
+  /** The Constant TT_ERROR. */
   public static final int TT_ERROR = 3;
 
+  /** The reader. */
   private Reader reader;
+  
+  /** The symbols. */
   private final List symbols;
+  
+  /** The push count. */
   /*
    * private boolean enableHidden; private boolean hideNonSymbols;
    */
   private int pushCount = 0;
+  
+  /** The token. */
   //
   private final TokenizerToken token;
+  
+  /** The upcoming token. */
   private final TokenizerToken upcomingToken;
+  
+  /** The cache position. */
   //
   private int cachePosition;
+  
+  /** The cache size. */
   private int cacheSize;
+  
+  /** The cache buffer. */
   private final char[] cacheBuffer;
+  
+  /** The cache pin position. */
   private int cachePinPosition;
 
+  /**
+   * Instantiates a new tokenizer.
+   */
   public Tokenizer() {
     this(null, 4096);
   }
 
+  /**
+   * Instantiates a new tokenizer.
+   *
+   * @param reader the reader
+   */
   public Tokenizer(Reader reader) {
     this(reader, 4096);
   }
 
+  /**
+   * Instantiates a new tokenizer.
+   *
+   * @param reader the reader
+   * @param cacheBufferSize the cache buffer size
+   */
   public Tokenizer(Reader reader, int cacheBufferSize) {
     symbols = new UniqueList();
     token = new TokenizerToken();
@@ -58,6 +97,12 @@ public class Tokenizer {
     setReader(reader);
   }
 
+  /**
+   * Load cache.
+   *
+   * @param count the count
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
   private void loadCache(int count) throws IOException {
     int charToRead = count == 0 ? 0 : count - 1;
     if (cachePosition + charToRead >= cacheSize) {
@@ -84,6 +129,12 @@ public class Tokenizer {
     }
   }
 
+  /**
+   * Gets the token.
+   *
+   * @return the token
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
   public Token getToken() throws IOException {
     if (token.type == Tokenizer.TT_ERROR) {
       return nextToken();
@@ -91,6 +142,12 @@ public class Tokenizer {
     return token;
   }
 
+  /**
+   * Next token.
+   *
+   * @return the token
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
   public Token nextToken() throws IOException {
     if (pushCount > 0) {
       pushCount--;
@@ -151,10 +208,18 @@ public class Tokenizer {
     return token;
   }
 
+  /**
+   * Push back.
+   */
   public void pushBack() {
     pushCount++;
   }
 
+  /**
+   * Sets the reader.
+   *
+   * @param reader the new reader
+   */
   public void setReader(Reader reader) {
     this.reader = reader;
     cachePosition = 0;
@@ -164,6 +229,14 @@ public class Tokenizer {
     upcomingToken.type = TT_ERROR;
   }
 
+  /**
+   * Compare.
+   *
+   * @param chars the chars
+   * @param offs the offs
+   * @return true, if successful
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
   private boolean compare(char[] chars, int offs) throws IOException {
     char[] subStr = new char[chars.length - offs];
     cachePinPosition = cachePosition;
@@ -178,6 +251,13 @@ public class Tokenizer {
     return true;
   }
 
+  /**
+   * Lookup symbol.
+   *
+   * @param chr the chr
+   * @return the int
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
   private int lookupSymbol(char chr) throws IOException {
     int result = -1;
 
@@ -207,6 +287,13 @@ public class Tokenizer {
     return result;
   }
 
+  /**
+   * Read.
+   *
+   * @param chrs the chrs
+   * @param count the count
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
   private void read(char[] chrs, int count) throws IOException {
     loadCache(count);
     int endPoint = cachePosition + count - 1 >= cacheSize ? cacheSize : cachePosition + count - 1;
@@ -216,35 +303,86 @@ public class Tokenizer {
     cachePosition = endPoint + 1;
   }
 
+  /**
+   * Checks for more.
+   *
+   * @return true, if successful
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
   public boolean hasMore() throws IOException {
     loadCache(0);
     return (cachePosition < cacheSize) || upcomingToken.type != Tokenizer.TT_ERROR || pushCount > 0;
   }
 
+  /**
+   * Adds the symbol.
+   *
+   * @param text the text
+   */
   public void addSymbol(String text) {
     symbols.add(new TokenizerSymbol(null, text, null, false, false, true, false));
   }
 
+  /**
+   * Adds the symbol.
+   *
+   * @param text the text
+   * @param hidden the hidden
+   */
   public void addSymbol(String text, boolean hidden) {
     symbols.add(new TokenizerSymbol(null, text, null, hidden, false, true, false));
   }
 
+  /**
+   * Adds the symbol.
+   *
+   * @param startText the start text
+   * @param endText the end text
+   * @param hidden the hidden
+   */
   public void addSymbol(String startText, String endText, boolean hidden) {
     symbols.add(new TokenizerSymbol(null, startText, endText, hidden, false, true, false));
   }
 
+  /**
+   * Adds the symbol.
+   *
+   * @param symbol the symbol
+   */
   public void addSymbol(TokenizerSymbol symbol) {
     symbols.add(symbol);
   }
 
+  /**
+   * Gets the next string.
+   *
+   * @param defaultValue the default value
+   * @return the next string
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
   public String getNextString(String defaultValue) throws IOException {
     return hasMore() ? nextToken().getInnerText() : defaultValue;
   }
 
+  /**
+   * Gets the next boolean.
+   *
+   * @param trueValue the true value
+   * @param defaultValue the default value
+   * @return the next boolean
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
   public boolean getNextBoolean(String trueValue, boolean defaultValue) throws IOException {
     return hasMore() ? trueValue.equalsIgnoreCase(nextToken().getInnerText()) : defaultValue;
   }
 
+  /**
+   * Gets the next long.
+   *
+   * @param defaultValue the default value
+   * @return the next long
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
   public long getNextLong(long defaultValue) throws IOException {
     String stval = getNextString(null);
 
@@ -259,48 +397,91 @@ public class Tokenizer {
     }
   }
 
+  /**
+   * The Class TokenizerToken.
+   */
   private static class TokenizerToken implements Token {
 
+    /** The text. */
     final StringBuffer text = new StringBuffer();
+    
+    /** The inner text. */
     final StringBuffer innerText = new StringBuffer();
+    
+    /** The name. */
     String name = "";
+    
+    /** The type. */
     int type = Tokenizer.TT_ERROR;
+    
+    /** The line. */
     int line = 0;
+    
+    /** The col. */
     int col = 0;
 
+    /**
+     * Instantiates a new tokenizer token.
+     */
     public TokenizerToken() {
       type = Tokenizer.TT_ERROR;
     }
 
+    /* (non-Javadoc)
+     * @see com.googlecode.psiprobe.tokenizer.Token#getText()
+     */
     public String getText() {
       return text.toString();
     }
 
+    /* (non-Javadoc)
+     * @see com.googlecode.psiprobe.tokenizer.Token#getInnerText()
+     */
     public String getInnerText() {
       return type == Tokenizer.TT_BLOCK ? innerText.toString() : getText();
     }
 
+    /* (non-Javadoc)
+     * @see com.googlecode.psiprobe.tokenizer.Token#getName()
+     */
     public String getName() {
       return name;
     }
 
+    /* (non-Javadoc)
+     * @see com.googlecode.psiprobe.tokenizer.Token#getType()
+     */
     public int getType() {
       return type;
     }
 
+    /* (non-Javadoc)
+     * @see com.googlecode.psiprobe.tokenizer.Token#getLine()
+     */
     public int getLine() {
       return line;
     }
 
+    /* (non-Javadoc)
+     * @see com.googlecode.psiprobe.tokenizer.Token#getCol()
+     */
     public int getCol() {
       return col;
     }
 
+    /* (non-Javadoc)
+     * @see java.lang.Object#toString()
+     */
     @Override
     public String toString() {
       return getText();
     }
 
+    /**
+     * Assign.
+     *
+     * @param token the token
+     */
     public void assign(TokenizerToken token) {
       this.text.setLength(0);
       this.text.append(token.text);
@@ -312,6 +493,9 @@ public class Tokenizer {
       this.line = token.line;
     }
 
+    /**
+     * Inits the.
+     */
     public void init() {
       text.setLength(0);
       innerText.setLength(0);

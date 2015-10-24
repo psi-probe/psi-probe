@@ -22,21 +22,36 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * 
+ * The Class BeanToXmlController.
+ *
  * @author Vlad Ilyushchenko
  */
 public class BeanToXmlController extends AbstractController {
 
+  /** The xml marker. */
   private String xmlMarker = ".oxml";
 
+  /**
+   * Gets the xml marker.
+   *
+   * @return the xml marker
+   */
   public String getXmlMarker() {
     return xmlMarker;
   }
 
+  /**
+   * Sets the xml marker.
+   *
+   * @param xmlMarker the new xml marker
+   */
   public void setXmlMarker(String xmlMarker) {
     this.xmlMarker = xmlMarker;
   }
 
+  /* (non-Javadoc)
+   * @see org.springframework.web.servlet.mvc.AbstractController#handleRequestInternal(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+   */
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 

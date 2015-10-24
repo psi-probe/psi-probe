@@ -22,16 +22,25 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 
 /**
- * 
+ * The Class AddQueryParamTag.
+ *
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */
 public class AddQueryParamTag extends TagSupport {
 
+  /** The logger. */
   private Log logger = LogFactory.getLog(getClass());
+  
+  /** The param. */
   private String param;
+  
+  /** The value. */
   private String value;
 
+  /* (non-Javadoc)
+   * @see javax.servlet.jsp.tagext.TagSupport#doStartTag()
+   */
   @Override
   public int doStartTag() throws JspException {
     StringBuffer query = new StringBuffer();
@@ -52,19 +61,39 @@ public class AddQueryParamTag extends TagSupport {
     return EVAL_BODY_INCLUDE;
   }
 
+  /**
+   * Gets the param.
+   *
+   * @return the param
+   */
   public String getParam() {
     return param;
   }
 
+  /**
+   * Sets the param.
+   *
+   * @param param the new param
+   */
   public void setParam(String param) {
     this.param = param;
   }
 
 
+  /**
+   * Gets the value.
+   *
+   * @return the value
+   */
   public String getValue() {
     return value;
   }
 
+  /**
+   * Sets the value.
+   *
+   * @param value the new value
+   */
   public void setValue(String value) {
     this.value = value;
   }

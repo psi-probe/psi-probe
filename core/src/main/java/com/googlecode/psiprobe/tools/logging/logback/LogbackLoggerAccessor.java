@@ -78,14 +78,29 @@ public class LogbackLoggerAccessor extends DefaultAccessor {
     return null;
   }
 
+  /**
+   * Checks if is context.
+   *
+   * @return true, if is context
+   */
   public boolean isContext() {
     return false;
   }
 
+  /**
+   * Checks if is root.
+   *
+   * @return true, if is root
+   */
   public boolean isRoot() {
     return "ROOT".equals(getName());
   }
 
+  /**
+   * Gets the name.
+   *
+   * @return the name
+   */
   public String getName() {
     return (String) getProperty(getTarget(), "name", null);
   }
@@ -120,6 +135,13 @@ public class LogbackLoggerAccessor extends DefaultAccessor {
     }
   }
 
+  /**
+   * Gets the sifted appenders.
+   *
+   * @param appender the appender
+   * @return the sifted appenders
+   * @throws Exception the exception
+   */
   private List<Object> getSiftedAppenders(Object appender) throws Exception {
     if ("ch.qos.logback.classic.sift.SiftingAppender".equals(appender.getClass().getName())) {
       Object tracker = MethodUtils.invokeMethod(appender, "getAppenderTracker", null);
@@ -133,6 +155,12 @@ public class LogbackLoggerAccessor extends DefaultAccessor {
     }
   }
 
+  /**
+   * Wrap and add appender.
+   *
+   * @param appender the appender
+   * @param appenders the appenders
+   */
   private void wrapAndAddAppender(Object appender, List<LogbackAppenderAccessor> appenders) {
     LogbackAppenderAccessor appenderAccessor = wrapAppender(appender);
     if (appenderAccessor != null) {
@@ -140,6 +168,12 @@ public class LogbackLoggerAccessor extends DefaultAccessor {
     }
   }
 
+  /**
+   * Wrap appender.
+   *
+   * @param appender the appender
+   * @return the logback appender accessor
+   */
   private LogbackAppenderAccessor wrapAppender(Object appender) {
     try {
       if (appender == null) {

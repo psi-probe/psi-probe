@@ -34,37 +34,72 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class GetApplicationController extends ContextHandlerController {
 
-  /**
-   * denotes whether extended application information and statistics should be collected
-   */
+  /** denotes whether extended application information and statistics should be collected. */
   private boolean extendedInfo = false;
+  
+  /** The stats collection. */
   private StatsCollection statsCollection;
+  
+  /** The collection period. */
   private long collectionPeriod;
 
+  /**
+   * Checks if is extended info.
+   *
+   * @return true, if is extended info
+   */
   public boolean isExtendedInfo() {
     return extendedInfo;
   }
 
+  /**
+   * Sets the extended info.
+   *
+   * @param extendedInfo the new extended info
+   */
   public void setExtendedInfo(boolean extendedInfo) {
     this.extendedInfo = extendedInfo;
   }
 
+  /**
+   * Gets the stats collection.
+   *
+   * @return the stats collection
+   */
   public StatsCollection getStatsCollection() {
     return statsCollection;
   }
 
+  /**
+   * Sets the stats collection.
+   *
+   * @param statsCollection the new stats collection
+   */
   public void setStatsCollection(StatsCollection statsCollection) {
     this.statsCollection = statsCollection;
   }
 
+  /**
+   * Gets the collection period.
+   *
+   * @return the collection period
+   */
   public long getCollectionPeriod() {
     return collectionPeriod;
   }
 
+  /**
+   * Sets the collection period.
+   *
+   * @param collectionPeriod the new collection period
+   */
   public void setCollectionPeriod(long collectionPeriod) {
     this.collectionPeriod = collectionPeriod;
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.controllers.ContextHandlerController#handleContext(java.lang.String, org.apache.catalina.Context, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+   */
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 

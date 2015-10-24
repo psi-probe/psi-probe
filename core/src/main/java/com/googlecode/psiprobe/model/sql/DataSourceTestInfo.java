@@ -23,16 +23,34 @@ import java.util.Map;
  */
 public class DataSourceTestInfo implements Serializable {
 
+  /** The Constant DS_TEST_SESS_ATTR. */
   public static final String DS_TEST_SESS_ATTR = "dataSourceTestData";
 
+  /** The results. */
   List<Map<String, String>> results = null;
+  
+  /** The query history. */
   LinkedList<String> queryHistory = new LinkedList<String>();
+  
+  /** The max rows. */
   int maxRows = 0;
+  
+  /** The rows per page. */
   int rowsPerPage = 0;
+  
+  /** The history size. */
   int historySize = 0;
 
+  /**
+   * Instantiates a new data source test info.
+   */
   public DataSourceTestInfo() {}
 
+  /**
+   * Adds the query to history.
+   *
+   * @param sql the sql
+   */
   public void addQueryToHistory(String sql) {
     queryHistory.remove(sql);
     queryHistory.addFirst(sql);
@@ -42,38 +60,83 @@ public class DataSourceTestInfo implements Serializable {
     }
   }
 
+  /**
+   * Gets the results.
+   *
+   * @return the results
+   */
   public List<Map<String, String>> getResults() {
     return results;
   }
 
+  /**
+   * Sets the results.
+   *
+   * @param results the results
+   */
   public void setResults(List<Map<String, String>> results) {
     this.results = results;
   }
 
+  /**
+   * Gets the query history.
+   *
+   * @return the query history
+   */
   public List<String> getQueryHistory() {
     return queryHistory;
   }
 
+  /**
+   * Gets the max rows.
+   *
+   * @return the max rows
+   */
   public int getMaxRows() {
     return maxRows;
   }
 
+  /**
+   * Sets the max rows.
+   *
+   * @param maxRows the new max rows
+   */
   public void setMaxRows(int maxRows) {
     this.maxRows = maxRows;
   }
 
+  /**
+   * Gets the rows per page.
+   *
+   * @return the rows per page
+   */
   public int getRowsPerPage() {
     return rowsPerPage;
   }
 
+  /**
+   * Sets the rows per page.
+   *
+   * @param rowsPerPage the new rows per page
+   */
   public void setRowsPerPage(int rowsPerPage) {
     this.rowsPerPage = rowsPerPage;
   }
 
+  /**
+   * Gets the history size.
+   *
+   * @return the history size
+   */
   public int getHistorySize() {
     return historySize;
   }
 
+  /**
+   * Sets the history size.
+   *
+   * @param historySize the new history size
+   */
   public void setHistorySize(int historySize) {
     this.historySize = historySize;
   }

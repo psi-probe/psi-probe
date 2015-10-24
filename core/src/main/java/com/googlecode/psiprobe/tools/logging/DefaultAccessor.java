@@ -19,36 +19,75 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * 
+ * The Class DefaultAccessor.
+ *
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */
 public class DefaultAccessor {
 
+  /** The log. */
   protected final Log log = LogFactory.getLog(getClass());
+  
+  /** The application. */
   private Application application;
+  
+  /** The target. */
   private Object target;
 
+  /**
+   * Gets the application.
+   *
+   * @return the application
+   */
   public Application getApplication() {
     return application;
   }
 
+  /**
+   * Sets the application.
+   *
+   * @param application the new application
+   */
   public void setApplication(Application application) {
     this.application = application;
   }
 
+  /**
+   * Gets the target.
+   *
+   * @return the target
+   */
   public Object getTarget() {
     return target;
   }
 
+  /**
+   * Sets the target.
+   *
+   * @param target the new target
+   */
   public void setTarget(Object target) {
     this.target = target;
   }
 
+  /**
+   * Gets the target class.
+   *
+   * @return the target class
+   */
   public String getTargetClass() {
     return getTarget().getClass().getName();
   }
 
+  /**
+   * Gets the property.
+   *
+   * @param obj the obj
+   * @param name the name
+   * @param defaultValue the default value
+   * @return the property
+   */
   protected Object getProperty(Object obj, String name, Object defaultValue) {
     try {
       return PropertyUtils.isReadable(obj, name)
@@ -60,6 +99,15 @@ public class DefaultAccessor {
     }
   }
 
+  /**
+   * Invoke method.
+   *
+   * @param object the object
+   * @param name the name
+   * @param param the param
+   * @param defaultValue the default value
+   * @return the object
+   */
   protected Object invokeMethod(Object object, String name, Object param, Object defaultValue) {
     try {
       if (param == null) {

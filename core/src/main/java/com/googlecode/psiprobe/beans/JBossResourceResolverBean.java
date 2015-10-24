@@ -40,8 +40,12 @@ import javax.sql.DataSource;
  */
 public class JBossResourceResolverBean implements ResourceResolver {
 
+  /** The logger. */
   protected Log logger = LogFactory.getLog(getClass());
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.beans.ResourceResolver#getMBeanServer()
+   */
   public MBeanServer getMBeanServer() {
     for (MBeanServer server : MBeanServerFactory.findMBeanServer(null)) {
       if ("jboss".equals(server.getDefaultDomain())
@@ -52,18 +56,30 @@ public class JBossResourceResolverBean implements ResourceResolver {
     return null;
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.beans.ResourceResolver#supportsPrivateResources()
+   */
   public boolean supportsPrivateResources() {
     return false;
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.beans.ResourceResolver#supportsGlobalResources()
+   */
   public boolean supportsGlobalResources() {
     return true;
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.beans.ResourceResolver#supportsDataSourceLookup()
+   */
   public boolean supportsDataSourceLookup() {
     return false;
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.beans.ResourceResolver#getApplicationResources()
+   */
   public List<ApplicationResource> getApplicationResources() throws NamingException {
 
     List<ApplicationResource> resources = new ArrayList<ApplicationResource>();
@@ -134,16 +150,29 @@ public class JBossResourceResolverBean implements ResourceResolver {
     return resources;
   }
 
+  /**
+   * Gets the application resources.
+   *
+   * @param context the context
+   * @return the application resources
+   * @throws NamingException the naming exception
+   */
   public List<ApplicationResource> getApplicationResources(Context context) throws NamingException {
     return new ArrayList<ApplicationResource>();
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.beans.ResourceResolver#getApplicationResources(org.apache.catalina.Context, com.googlecode.psiprobe.beans.ContainerWrapperBean)
+   */
   public List<ApplicationResource> getApplicationResources(Context context,
       ContainerWrapperBean containerWrapper) throws NamingException {
     
     throw new UnsupportedOperationException("Not supported yet.");
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.beans.ResourceResolver#resetResource(org.apache.catalina.Context, java.lang.String, com.googlecode.psiprobe.beans.ContainerWrapperBean)
+   */
   public boolean resetResource(Context context, String resourceName,
       ContainerWrapperBean containerWrapper) throws NamingException {
     try {
@@ -166,6 +195,9 @@ public class JBossResourceResolverBean implements ResourceResolver {
     }
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.beans.ResourceResolver#lookupDataSource(org.apache.catalina.Context, java.lang.String, com.googlecode.psiprobe.beans.ContainerWrapperBean)
+   */
   public DataSource lookupDataSource(Context context, String resourceName,
       ContainerWrapperBean containerWrapper) throws NamingException {
     throw new UnsupportedOperationException(

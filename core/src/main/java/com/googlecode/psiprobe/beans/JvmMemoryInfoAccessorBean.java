@@ -28,13 +28,21 @@ import javax.management.ObjectName;
 import javax.management.openmbean.CompositeDataSupport;
 
 /**
- * 
+ * The Class JvmMemoryInfoAccessorBean.
+ *
  * @author Vlad Ilyushchenko
  */
 public class JvmMemoryInfoAccessorBean {
 
+  /** The logger. */
   private Log logger = LogFactory.getLog(this.getClass());
 
+  /**
+   * Gets the pools.
+   *
+   * @return the pools
+   * @throws Exception the exception
+   */
   public List<MemoryPool> getPools() throws Exception {
 
     List<MemoryPool> memoryPools = new LinkedList<MemoryPool>();

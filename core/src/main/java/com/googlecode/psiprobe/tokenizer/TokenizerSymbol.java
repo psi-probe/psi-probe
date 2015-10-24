@@ -12,19 +12,44 @@
 package com.googlecode.psiprobe.tokenizer;
 
 /**
- * 
+ * The Class TokenizerSymbol.
+ *
  * @author Vlad Ilyushchenko
  */
 public class TokenizerSymbol implements Comparable {
 
+  /** The name. */
   final String name;
+  
+  /** The start text. */
   final String startText;
+  
+  /** The tail text. */
   final String tailText;
+  
+  /** The hidden. */
   final boolean hidden;
+  
+  /** The decode paired. */
   final boolean decodePaired;
+  
+  /** The enabled. */
   final boolean enabled;
+  
+  /** The can be nested. */
   final boolean canBeNested;
 
+  /**
+   * Instantiates a new tokenizer symbol.
+   *
+   * @param name the name
+   * @param startText the start text
+   * @param tailText the tail text
+   * @param hidden the hidden
+   * @param decodePaired the decode paired
+   * @param enabled the enabled
+   * @param canBeNested the can be nested
+   */
   public TokenizerSymbol(String name, String startText, String tailText, boolean hidden,
       boolean decodePaired, boolean enabled, boolean canBeNested) {
 
@@ -37,6 +62,9 @@ public class TokenizerSymbol implements Comparable {
     this.canBeNested = canBeNested;
   }
 
+  /* (non-Javadoc)
+   * @see java.lang.Comparable#compareTo(java.lang.Object)
+   */
   public int compareTo(Object obj) {
     if (obj instanceof Character) {
       return compareTo((Character) obj);
@@ -45,10 +73,22 @@ public class TokenizerSymbol implements Comparable {
     }
   }
 
+  /**
+   * Compare to.
+   *
+   * @param chr the chr
+   * @return the int
+   */
   public int compareTo(Character chr) {
     return chr - startText.charAt(0);
   }
 
+  /**
+   * Compare to.
+   *
+   * @param symbol the symbol
+   * @return the int
+   */
   public int compareTo(TokenizerSymbol symbol) {
     return symbol.startText.compareTo(startText);
   }

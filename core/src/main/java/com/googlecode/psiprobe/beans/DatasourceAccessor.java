@@ -20,9 +20,30 @@ import com.googlecode.psiprobe.model.DataSourceInfo;
  * @author Vlad Ilyushchenko
  */
 public interface DatasourceAccessor {
+  
+  /**
+   * Gets the info.
+   *
+   * @param resource the resource
+   * @return the info
+   * @throws Exception the exception
+   */
   DataSourceInfo getInfo(Object resource) throws Exception;
 
+  /**
+   * Reset.
+   *
+   * @param resource the resource
+   * @return true, if successful
+   * @throws Exception the exception
+   */
   boolean reset(Object resource) throws Exception;
 
+  /**
+   * Can map.
+   *
+   * @param resource the resource
+   * @return true, if successful
+   */
   boolean canMap(Object resource);
 }

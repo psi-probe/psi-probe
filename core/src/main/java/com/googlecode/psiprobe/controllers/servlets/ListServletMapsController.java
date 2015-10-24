@@ -32,6 +32,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ListServletMapsController extends ContextHandlerController {
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.controllers.ContextHandlerController#handleContext(java.lang.String, org.apache.catalina.Context, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+   */
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 
@@ -51,6 +54,9 @@ public class ListServletMapsController extends ContextHandlerController {
     return new ModelAndView(getViewName(), "servletMaps", servletMaps);
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.controllers.ContextHandlerController#isContextOptional()
+   */
   @Override
   protected boolean isContextOptional() {
     return true;

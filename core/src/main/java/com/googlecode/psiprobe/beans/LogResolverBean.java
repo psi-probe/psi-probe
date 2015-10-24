@@ -41,32 +41,63 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
+ * The Class LogResolverBean.
  *
  * @author Mark Lewis
  */
 public class LogResolverBean {
 
+  /** The logger. */
   protected final Log logger = LogFactory.getLog(getClass());
 
+  /** The container wrapper. */
   private ContainerWrapperBean containerWrapper;
+  
+  /** The stdout files. */
   private List<String> stdoutFiles = new ArrayList<String>();
 
+  /**
+   * Gets the container wrapper.
+   *
+   * @return the container wrapper
+   */
   public ContainerWrapperBean getContainerWrapper() {
     return containerWrapper;
   }
 
+  /**
+   * Sets the container wrapper.
+   *
+   * @param containerWrapper the new container wrapper
+   */
   public void setContainerWrapper(ContainerWrapperBean containerWrapper) {
     this.containerWrapper = containerWrapper;
   }
 
+  /**
+   * Gets the stdout files.
+   *
+   * @return the stdout files
+   */
   public List<String> getStdoutFiles() {
     return stdoutFiles;
   }
 
+  /**
+   * Sets the stdout files.
+   *
+   * @param stdoutFiles the new stdout files
+   */
   public void setStdoutFiles(List<String> stdoutFiles) {
     this.stdoutFiles = stdoutFiles;
   }
 
+  /**
+   * Gets the log destinations.
+   *
+   * @param all the all
+   * @return the log destinations
+   */
   public List<LogDestination> getLogDestinations(boolean all) {
     List<LogDestination> allAppenders = getAllLogDestinations();
 
@@ -90,6 +121,12 @@ public class LogResolverBean {
     return null;
   }
 
+  /**
+   * Gets the log sources.
+   *
+   * @param logFile the log file
+   * @return the log sources
+   */
   public List<LogDestination> getLogSources(File logFile) {
     List<LogDestination> filtered = new LinkedList<LogDestination>();
     List<LogDestination> sources = getLogSources();
@@ -101,6 +138,11 @@ public class LogResolverBean {
     return filtered;
   }
 
+  /**
+   * Gets the log sources.
+   *
+   * @return the log sources
+   */
   public List<LogDestination> getLogSources() {
     List<LogDestination> sources = new LinkedList<LogDestination>();
 
@@ -118,6 +160,11 @@ public class LogResolverBean {
     return sources;
   }
 
+  /**
+   * Gets the all log destinations.
+   *
+   * @return the all log destinations
+   */
   private List<LogDestination> getAllLogDestinations() {
     if (Instruments.isInitialized()) {
       List<LogDestination> allAppenders = new ArrayList<LogDestination>();
@@ -149,6 +196,17 @@ public class LogResolverBean {
     return null;
   }
 
+  /**
+   * Gets the log destination.
+   *
+   * @param logType the log type
+   * @param webapp the webapp
+   * @param context the context
+   * @param root the root
+   * @param logName the log name
+   * @param logIndex the log index
+   * @return the log destination
+   */
   public LogDestination getLogDestination(String logType, String webapp, boolean context,
       boolean root, String logName, String logIndex) {
 
@@ -200,6 +258,12 @@ public class LogResolverBean {
     return null;
   }
 
+  /**
+   * Interrogate context.
+   *
+   * @param ctx the ctx
+   * @param allAppenders the all appenders
+   */
   private void interrogateContext(Context ctx, List<LogDestination> allAppenders) {
     Application application = ApplicationUtils.getApplication(ctx, getContainerWrapper());
     ClassLoader cl = ctx.getLoader().getClassLoader();
@@ -245,6 +309,13 @@ public class LogResolverBean {
     }
   }
 
+  /**
+   * Interrogate class loader.
+   *
+   * @param cl the cl
+   * @param application the application
+   * @param appenders the appenders
+   */
   private void interrogateClassLoader(ClassLoader cl, Application application,
       List<LogDestination> appenders) {
 
@@ -311,6 +382,11 @@ public class LogResolverBean {
     }
   }
 
+  /**
+   * Interrogate std out files.
+   *
+   * @param appenders the appenders
+   */
   private void interrogateStdOutFiles(List<LogDestination> appenders) {
     for (String fileName : stdoutFiles) {
       FileLogAccessor fla = resolveStdoutLogDestination(fileName);
@@ -320,6 +396,12 @@ public class LogResolverBean {
     }
   }
 
+  /**
+   * Gets the stdout log destination.
+   *
+   * @param logName the log name
+   * @return the stdout log destination
+   */
   private LogDestination getStdoutLogDestination(String logName) {
     for (String fileName : stdoutFiles) {
       if (fileName.equals(logName)) {
@@ -332,6 +414,12 @@ public class LogResolverBean {
     return null;
   }
 
+  /**
+   * Resolve stdout log destination.
+   *
+   * @param fileName the file name
+   * @return the file log accessor
+   */
   private FileLogAccessor resolveStdoutLogDestination(String fileName) {
     File stdout = new File(System.getProperty("catalina.base"), "logs/" + fileName);
     if (stdout.exists()) {
@@ -343,6 +431,13 @@ public class LogResolverBean {
     return null;
   }
 
+  /**
+   * Gets the catalina log destination.
+   *
+   * @param ctx the ctx
+   * @param application the application
+   * @return the catalina log destination
+   */
   private LogDestination getCatalinaLogDestination(Context ctx, Application application) {
     Object log = getContainerWrapper().getTomcatContainer().getLogger(ctx);
     if (log != null) {
@@ -356,6 +451,14 @@ public class LogResolverBean {
     return null;
   }
 
+  /**
+   * Gets the commons log destination.
+   *
+   * @param ctx the ctx
+   * @param application the application
+   * @param logIndex the log index
+   * @return the commons log destination
+   */
   private LogDestination getCommonsLogDestination(Context ctx, Application application,
       String logIndex) {
 
@@ -366,6 +469,16 @@ public class LogResolverBean {
     return commonsAccessor.getDestination(logIndex);
   }
 
+  /**
+   * Gets the jdk14 log destination.
+   *
+   * @param cl the cl
+   * @param application the application
+   * @param root the root
+   * @param logName the log name
+   * @param handlerIndex the handler index
+   * @return the jdk14 log destination
+   */
   private LogDestination getJdk14LogDestination(ClassLoader cl, Application application,
       boolean root, String logName, String handlerIndex) {
 
@@ -386,6 +499,16 @@ public class LogResolverBean {
     return null;
   }
 
+  /**
+   * Gets the log4 j log destination.
+   *
+   * @param cl the cl
+   * @param application the application
+   * @param root the root
+   * @param logName the log name
+   * @param appenderName the appender name
+   * @return the log4 j log destination
+   */
   private LogDestination getLog4JLogDestination(ClassLoader cl, Application application,
       boolean root, String logName, String appenderName) {
 
@@ -406,6 +529,16 @@ public class LogResolverBean {
     return null;
   }
 
+  /**
+   * Gets the logback log destination.
+   *
+   * @param cl the cl
+   * @param application the application
+   * @param root the root
+   * @param logName the log name
+   * @param appenderName the appender name
+   * @return the logback log destination
+   */
   private LogDestination getLogbackLogDestination(ClassLoader cl, Application application,
       boolean root, String logName, String appenderName) {
 
@@ -426,6 +559,16 @@ public class LogResolverBean {
     return null;
   }
 
+  /**
+   * Gets the logback tomcat juli log destination.
+   *
+   * @param cl the cl
+   * @param application the application
+   * @param root the root
+   * @param logName the log name
+   * @param appenderName the appender name
+   * @return the logback tomcat juli log destination
+   */
   private LogDestination getLogbackTomcatJuliLogDestination(ClassLoader cl,
       Application application, boolean root, String logName, String appenderName) {
 
@@ -447,28 +590,53 @@ public class LogResolverBean {
     return null;
   }
 
+  /**
+   * The Class LogComparator.
+   */
   private abstract static class LogComparator implements Comparator<LogDestination> {
 
+    /** The Constant DELIM. */
     protected static final char DELIM = '!';
 
+    /* (non-Javadoc)
+     * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
+     */
     public final int compare(LogDestination o1, LogDestination o2) {
       String name1 = convertToString(o1);
       String name2 = convertToString(o2);
       return name1.compareTo(name2);
     }
 
+    /**
+     * Convert to string.
+     *
+     * @param d1 the d1
+     * @return the string
+     */
     protected abstract String convertToString(LogDestination d1);
 
   }
 
+  /**
+   * The Class LogDestinationComparator.
+   */
   private static class LogDestinationComparator extends LogComparator {
 
+    /** The all. */
     private boolean all;
 
+    /**
+     * Instantiates a new log destination comparator.
+     *
+     * @param all the all
+     */
     public LogDestinationComparator(boolean all) {
       this.all = all;
     }
 
+    /* (non-Javadoc)
+     * @see com.googlecode.psiprobe.beans.LogResolverBean.LogComparator#convertToString(com.googlecode.psiprobe.tools.logging.LogDestination)
+     */
     protected String convertToString(LogDestination dest) {
       File file = dest.getFile();
       String fileName = (file == null ? "" : file.getAbsolutePath());
@@ -488,8 +656,14 @@ public class LogResolverBean {
 
   }
 
+  /**
+   * The Class LogSourceComparator.
+   */
   private static class LogSourceComparator extends LogComparator {
 
+    /* (non-Javadoc)
+     * @see com.googlecode.psiprobe.beans.LogResolverBean.LogComparator#convertToString(com.googlecode.psiprobe.tools.logging.LogDestination)
+     */
     protected String convertToString(LogDestination dest) {
       File file = dest.getFile();
       String fileName = (file == null ? "" : file.getAbsolutePath());

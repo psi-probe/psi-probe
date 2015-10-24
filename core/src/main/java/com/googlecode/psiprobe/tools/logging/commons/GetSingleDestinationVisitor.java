@@ -16,22 +16,39 @@ import com.googlecode.psiprobe.tools.logging.jdk.Jdk14LoggerAccessor;
 import com.googlecode.psiprobe.tools.logging.log4j.Log4JLoggerAccessor;
 
 /**
+ * The Class GetSingleDestinationVisitor.
  *
  * @author Mark Lewis
  */
 public class GetSingleDestinationVisitor extends LoggerAccessorVisitor {
 
+  /** The log index. */
   private String logIndex;
+  
+  /** The destination. */
   private LogDestination destination;
 
+  /**
+   * Instantiates a new gets the single destination visitor.
+   *
+   * @param logIndex the log index
+   */
   public GetSingleDestinationVisitor(String logIndex) {
     this.logIndex = logIndex;
   }
 
+  /**
+   * Gets the destination.
+   *
+   * @return the destination
+   */
   public LogDestination getDestination() {
     return destination;
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.tools.logging.commons.LoggerAccessorVisitor#visit(com.googlecode.psiprobe.tools.logging.log4j.Log4JLoggerAccessor)
+   */
   public void visit(Log4JLoggerAccessor accessor) {
     LogDestination dest = accessor.getAppender(logIndex);
     if (dest != null) {
@@ -39,6 +56,9 @@ public class GetSingleDestinationVisitor extends LoggerAccessorVisitor {
     }
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.tools.logging.commons.LoggerAccessorVisitor#visit(com.googlecode.psiprobe.tools.logging.jdk.Jdk14LoggerAccessor)
+   */
   public void visit(Jdk14LoggerAccessor accessor) {
     LogDestination dest = accessor.getHandler(logIndex);
     if (dest != null) {

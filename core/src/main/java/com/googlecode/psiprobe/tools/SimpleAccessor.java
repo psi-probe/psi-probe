@@ -14,11 +14,15 @@ package com.googlecode.psiprobe.tools;
 import java.lang.reflect.Field;
 
 /**
+ * The Class SimpleAccessor.
  *
  * @author Mark Lewis
  */
 public class SimpleAccessor implements Accessor {
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.tools.Accessor#get(java.lang.Object, java.lang.reflect.Field)
+   */
   public Object get(Object obj, Field field) {
     boolean accessible = pre(field);
     try {
@@ -30,6 +34,15 @@ public class SimpleAccessor implements Accessor {
     }
   }
 
+  /**
+   * Gets the 0.
+   *
+   * @param obj the obj
+   * @param field the field
+   * @return the 0
+   * @throws IllegalArgumentException the illegal argument exception
+   * @throws IllegalAccessException the illegal access exception
+   */
   private Object get0(Object obj, Field field)
       throws IllegalArgumentException, IllegalAccessException {
     
@@ -40,6 +53,12 @@ public class SimpleAccessor implements Accessor {
     }
   }
 
+  /**
+   * Pre.
+   *
+   * @param field the field
+   * @return true, if successful
+   */
   private boolean pre(Field field) {
     boolean accessible = field.isAccessible();
     if (!accessible) {
@@ -52,6 +71,12 @@ public class SimpleAccessor implements Accessor {
     return accessible;
   }
 
+  /**
+   * Post.
+   *
+   * @param field the field
+   * @param value the value
+   */
   private void post(Field field, boolean value) {
     if (!value) {
       try {

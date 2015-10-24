@@ -48,15 +48,24 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 /**
- * 
+ * The Class ApplicationUtils.
+ *
  * @author Vlad Ilyushchenko
  * @author Andy Shapoval
  * @author Mark Lewis
  */
 public class ApplicationUtils {
 
+  /** The logger. */
   private static Log logger = LogFactory.getLog(ApplicationUtils.class);
 
+  /**
+   * Gets the application.
+   *
+   * @param context the context
+   * @param containerWrapper the container wrapper
+   * @return the application
+   */
   public static Application getApplication(Context context, ContainerWrapperBean containerWrapper) {
     return getApplication(context, null, false, containerWrapper);
   }
@@ -177,6 +186,14 @@ public class ApplicationUtils {
     app.setMaxTime(maxTime);
   }
 
+  /**
+   * Gets the application data source usage scores.
+   *
+   * @param context the context
+   * @param resolver the resolver
+   * @param containerWrapper the container wrapper
+   * @return the application data source usage scores
+   */
   public static int[] getApplicationDataSourceUsageScores(Context context,
       ResourceResolver resolver, ContainerWrapperBean containerWrapper) {
 
@@ -198,6 +215,14 @@ public class ApplicationUtils {
     return scores;
   }
 
+  /**
+   * Gets the application session.
+   *
+   * @param session the session
+   * @param calcSize the calc size
+   * @param addAttributes the add attributes
+   * @return the application session
+   */
   public static ApplicationSession getApplicationSession(Session session, boolean calcSize,
       boolean addAttributes) {
 
@@ -287,6 +312,12 @@ public class ApplicationUtils {
     return sbean;
   }
 
+  /**
+   * Gets the application attributes.
+   *
+   * @param context the context
+   * @return the application attributes
+   */
   public static List<Attribute> getApplicationAttributes(Context context) {
     List<Attribute> attrs = new ArrayList<Attribute>();
     ServletContext servletCtx = context.getServletContext();
@@ -303,12 +334,26 @@ public class ApplicationUtils {
     return attrs;
   }
 
+  /**
+   * Gets the application init params.
+   *
+   * @param context the context
+   * @param containerWrapper the container wrapper
+   * @return the application init params
+   */
   public static List<ApplicationParam> getApplicationInitParams(Context context,
       ContainerWrapperBean containerWrapper) {
     
     return containerWrapper.getTomcatContainer().getApplicationInitParams(context);
   }
 
+  /**
+   * Gets the application servlet.
+   *
+   * @param context the context
+   * @param servletName the servlet name
+   * @return the application servlet
+   */
   public static ServletInfo getApplicationServlet(Context context, String servletName) {
     Container container = context.findChild(servletName);
 
@@ -320,6 +365,13 @@ public class ApplicationUtils {
     }
   }
 
+  /**
+   * Gets the servlet info.
+   *
+   * @param wrapper the wrapper
+   * @param contextName the context name
+   * @return the servlet info
+   */
   private static ServletInfo getServletInfo(Wrapper wrapper, String contextName) {
     ServletInfo si = new ServletInfo();
     si.setApplicationName(contextName.length() > 0 ? contextName : "/");
@@ -344,6 +396,12 @@ public class ApplicationUtils {
     return si;
   }
 
+  /**
+   * Gets the application servlets.
+   *
+   * @param context the context
+   * @return the application servlets
+   */
   public static List<ServletInfo> getApplicationServlets(Context context) {
     Container[] cns = context.findChildren();
     List<ServletInfo> servlets = new ArrayList<ServletInfo>(cns.length);
@@ -356,6 +414,12 @@ public class ApplicationUtils {
     return servlets;
   }
 
+  /**
+   * Gets the application servlet maps.
+   *
+   * @param context the context
+   * @return the application servlet maps
+   */
   public static List<ServletMapping> getApplicationServletMaps(Context context) {
     String[] sms = context.findServletMappings();
     List<ServletMapping> servletMaps = new ArrayList<ServletMapping>(sms.length);
@@ -380,6 +444,13 @@ public class ApplicationUtils {
     return servletMaps;
   }
 
+  /**
+   * Gets the application filter.
+   *
+   * @param context the context
+   * @param filterName the filter name
+   * @return the application filter
+   */
   public static FilterInfo getApplicationFilter(Context context, String filterName) {
     FilterDef fd = context.findFilterDef(filterName);
     if (fd != null) {
@@ -389,6 +460,12 @@ public class ApplicationUtils {
     }
   }
 
+  /**
+   * Gets the filter info.
+   *
+   * @param fd the fd
+   * @return the filter info
+   */
   private static FilterInfo getFilterInfo(FilterDef fd) {
     FilterInfo fi = new FilterInfo();
     fi.setFilterName(fd.getFilterName());
@@ -397,6 +474,13 @@ public class ApplicationUtils {
     return fi;
   }
 
+  /**
+   * Gets the application filters.
+   *
+   * @param context the context
+   * @param containerWrapper the container wrapper
+   * @return the application filters
+   */
   public static List getApplicationFilters(Context context, ContainerWrapperBean containerWrapper) {
     return containerWrapper.getTomcatContainer().getApplicationFilters(context);
   }

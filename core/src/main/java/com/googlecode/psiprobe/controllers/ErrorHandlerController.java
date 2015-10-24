@@ -24,34 +24,73 @@ import javax.servlet.http.HttpServletResponse;
  * @author Vlad Ilyushchenko.
  */
 public class ErrorHandlerController extends AbstractController {
+  
+  /** The view name. */
   private String viewName;
+  
+  /** The ajax view name. */
   private String ajaxViewName;
+  
+  /** The ajax extension. */
   private String ajaxExtension = ".ajax";
 
+  /**
+   * Gets the view name.
+   *
+   * @return the view name
+   */
   public String getViewName() {
     return viewName;
   }
 
+  /**
+   * Sets the view name.
+   *
+   * @param viewName the new view name
+   */
   public void setViewName(String viewName) {
     this.viewName = viewName;
   }
 
+  /**
+   * Gets the ajax view name.
+   *
+   * @return the ajax view name
+   */
   public String getAjaxViewName() {
     return ajaxViewName;
   }
 
+  /**
+   * Sets the ajax view name.
+   *
+   * @param ajaxViewName the new ajax view name
+   */
   public void setAjaxViewName(String ajaxViewName) {
     this.ajaxViewName = ajaxViewName;
   }
 
+  /**
+   * Gets the ajax extension.
+   *
+   * @return the ajax extension
+   */
   public String getAjaxExtension() {
     return ajaxExtension;
   }
 
+  /**
+   * Sets the ajax extension.
+   *
+   * @param ajaxExtension the new ajax extension
+   */
   public void setAjaxExtension(String ajaxExtension) {
     this.ajaxExtension = ajaxExtension;
   }
 
+  /* (non-Javadoc)
+   * @see org.springframework.web.servlet.mvc.AbstractController#handleRequestInternal(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+   */
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 

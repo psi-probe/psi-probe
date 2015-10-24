@@ -34,26 +34,46 @@ import javax.servlet.http.HttpServletRequest;
  * @author Andy Shapoval
  */
 public class MultipleSeriesProvider extends AbstractSeriesProvider {
+  
+  /** The stat name prefix. */
   private String statNamePrefix;
+  
+  /** The top. */
   private int top = 0;
+  
+  /** The moving avg frame. */
   private int movingAvgFrame = 0;
 
+  /**
+   * Gets the stat name prefix.
+   *
+   * @return the stat name prefix
+   */
   public String getStatNamePrefix() {
     return statNamePrefix;
   }
 
   /**
+   * Sets the stat name prefix.
+   *
    * @param statNamePrefix - only series with names that start with statNamePrefix are retrieved.
    */
   public void setStatNamePrefix(String statNamePrefix) {
     this.statNamePrefix = statNamePrefix;
   }
 
+  /**
+   * Gets the top.
+   *
+   * @return the top
+   */
   public int getTop() {
     return top;
   }
 
   /**
+   * Sets the top.
+   *
    * @param top - the number of top series to retrieve. If this value is greater than 0, only this
    *        many series with the greatest max moving avg values are retrieved.
    */
@@ -61,11 +81,18 @@ public class MultipleSeriesProvider extends AbstractSeriesProvider {
     this.top = top;
   }
 
+  /**
+   * Gets the moving avg frame.
+   *
+   * @return the moving avg frame
+   */
   public int getMovingAvgFrame() {
     return movingAvgFrame;
   }
 
   /**
+   * Sets the moving avg frame.
+   *
    * @param movingAvgFrame - if this value is greater than 0, a moving avg value is calculated for
    *        every series using every Nth value, where N % movingAvgFrame == 0. Top series are
    *        identified based on a max moving avg value of each series. If the movingAvgFrame equals
@@ -75,6 +102,9 @@ public class MultipleSeriesProvider extends AbstractSeriesProvider {
     this.movingAvgFrame = movingAvgFrame;
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.beans.stats.providers.SeriesProvider#populate(org.jfree.data.xy.DefaultTableXYDataset, com.googlecode.psiprobe.model.stats.StatsCollection, javax.servlet.http.HttpServletRequest)
+   */
   public void populate(DefaultTableXYDataset dataset, StatsCollection statsCollection,
       HttpServletRequest request) {
 
@@ -117,17 +147,34 @@ public class MultipleSeriesProvider extends AbstractSeriesProvider {
     }
   }
 
+  /**
+   * The Class Series.
+   */
   // a helper class that holds series and calculates an avg value
   private class Series {
+    
+    /** The key. */
     final String key;
+    
+    /** The stats. */
     final List<XYDataItem> stats;
+    
+    /** The avg. */
     double avg = 0;
 
+    /**
+     * Instantiates a new series.
+     *
+     * @param en the en
+     */
     Series(Map.Entry<String, List<XYDataItem>> en) {
       key = en.getKey().substring(statNamePrefix.length());
       stats = en.getValue();
     }
 
+    /**
+     * Calculate avg.
+     */
     // calculating an avg value that is used for identifying the top series
     void calculateAvg() {
       long sum = 0;

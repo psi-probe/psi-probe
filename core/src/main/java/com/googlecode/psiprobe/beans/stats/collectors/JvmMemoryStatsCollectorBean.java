@@ -17,20 +17,36 @@ import com.googlecode.psiprobe.model.jmx.MemoryPool;
 import java.util.List;
 
 /**
- * 
+ * The Class JvmMemoryStatsCollectorBean.
+ *
  * @author Vlad Ilyushchenko
  */
 public class JvmMemoryStatsCollectorBean extends AbstractStatsCollectorBean {
+  
+  /** The jvm memory info accessor. */
   private JvmMemoryInfoAccessorBean jvmMemoryInfoAccessor;
 
+  /**
+   * Gets the jvm memory info accessor.
+   *
+   * @return the jvm memory info accessor
+   */
   public JvmMemoryInfoAccessorBean getJvmMemoryInfoAccessor() {
     return jvmMemoryInfoAccessor;
   }
 
+  /**
+   * Sets the jvm memory info accessor.
+   *
+   * @param jvmMemoryInfoAccessor the new jvm memory info accessor
+   */
   public void setJvmMemoryInfoAccessor(JvmMemoryInfoAccessorBean jvmMemoryInfoAccessor) {
     this.jvmMemoryInfoAccessor = jvmMemoryInfoAccessor;
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.beans.stats.collectors.AbstractStatsCollectorBean#collect()
+   */
   public void collect() throws Exception {
     List<MemoryPool> pools = jvmMemoryInfoAccessor.getPools();
     long time = System.currentTimeMillis();

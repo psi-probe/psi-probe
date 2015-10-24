@@ -22,22 +22,37 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * 
+ * The Class LogHandlerController.
+ *
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */
 public class LogHandlerController extends ParameterizableViewController {
 
+  /** The log resolver. */
   private LogResolverBean logResolver;
 
+  /**
+   * Gets the log resolver.
+   *
+   * @return the log resolver
+   */
   public LogResolverBean getLogResolver() {
     return logResolver;
   }
 
+  /**
+   * Sets the log resolver.
+   *
+   * @param logResolver the new log resolver
+   */
   public void setLogResolver(LogResolverBean logResolver) {
     this.logResolver = logResolver;
   }
 
+  /* (non-Javadoc)
+   * @see org.springframework.web.servlet.mvc.ParameterizableViewController#handleRequestInternal(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+   */
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
@@ -73,6 +88,15 @@ public class LogHandlerController extends ParameterizableViewController {
     return modelAndView;
   }
 
+  /**
+   * Handle log file.
+   *
+   * @param request the request
+   * @param response the response
+   * @param logDest the log dest
+   * @return the model and view
+   * @throws Exception the exception
+   */
   protected ModelAndView handleLogFile(HttpServletRequest request, HttpServletResponse response,
       LogDestination logDest) throws Exception {
 

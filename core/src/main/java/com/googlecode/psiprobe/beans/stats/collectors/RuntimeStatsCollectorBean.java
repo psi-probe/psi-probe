@@ -15,21 +15,37 @@ import com.googlecode.psiprobe.beans.RuntimeInfoAccessorBean;
 import com.googlecode.psiprobe.model.jmx.RuntimeInformation;
 
 /**
- * 
+ * The Class RuntimeStatsCollectorBean.
+ *
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */
 public class RuntimeStatsCollectorBean extends AbstractStatsCollectorBean {
+  
+  /** The runtime info accessor bean. */
   private RuntimeInfoAccessorBean runtimeInfoAccessorBean;
 
+  /**
+   * Gets the runtime info accessor bean.
+   *
+   * @return the runtime info accessor bean
+   */
   public RuntimeInfoAccessorBean getRuntimeInfoAccessorBean() {
     return runtimeInfoAccessorBean;
   }
 
+  /**
+   * Sets the runtime info accessor bean.
+   *
+   * @param runtimeInfoAccessorBean the new runtime info accessor bean
+   */
   public void setRuntimeInfoAccessorBean(RuntimeInfoAccessorBean runtimeInfoAccessorBean) {
     this.runtimeInfoAccessorBean = runtimeInfoAccessorBean;
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.beans.stats.collectors.AbstractStatsCollectorBean#collect()
+   */
   public void collect() throws Exception {
     RuntimeInformation ri = runtimeInfoAccessorBean.getRuntimeInformation();
     if (ri != null) {
