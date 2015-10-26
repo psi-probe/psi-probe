@@ -72,6 +72,12 @@
 			<artifactId>commons-dbcp</artifactId>
 			<scope>provided</scope>
 		</dependency>
+                <dependency>
+                        <groupId>org.apache.tomcat</groupId>
+                        <artifactId>tomcat-dbcp</artifactId>
+                        <version>7.0.65</version>
+                        <scope>provided</scope>                        
+                </dependency>                
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-jdbc</artifactId>
