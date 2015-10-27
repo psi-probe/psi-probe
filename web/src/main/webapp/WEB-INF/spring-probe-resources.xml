@@ -40,7 +40,7 @@
 				<bean class="com.googlecode.psiprobe.beans.BoneCpDatasourceAccessor"/>
 				<bean class="com.googlecode.psiprobe.beans.C3P0DatasourceAccessor"/>
 				<bean class="com.googlecode.psiprobe.beans.DbcpDatasourceAccessor"/>
-                                <bean class="com.googlecode.psiprobe.beans.TomcatDbcpDatasourceAccessor"/>
+                                <bean class="com.googlecode.psiprobe.beans.Tomcat7DbcpDatasourceAccessor"/>
 				<bean class="com.googlecode.psiprobe.beans.Tomcat8DbcpDatasourceAccessor"/>
 				<bean class="com.googlecode.psiprobe.beans.TomcatJdbcPoolDatasourceAccessor"/>
 				<bean class="com.googlecode.psiprobe.beans.OracleDatasourceAccessor"/>
