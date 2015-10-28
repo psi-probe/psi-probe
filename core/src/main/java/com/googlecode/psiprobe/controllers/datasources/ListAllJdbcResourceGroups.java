@@ -35,6 +35,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ListAllJdbcResourceGroups extends TomcatContainerController {
 
+  /* (non-Javadoc)
+   * @see org.springframework.web.servlet.mvc.AbstractController#handleRequestInternal(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+   */
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
     
@@ -76,6 +79,12 @@ public class ListAllJdbcResourceGroups extends TomcatContainerController {
     return new ModelAndView(getViewName(), "dataSourceGroups", dataSourceGroups);
   }
 
+  /**
+   * Filter valid data sources.
+   *
+   * @param resources the resources
+   * @param dataSources the data sources
+   */
   protected void filterValidDataSources(List<ApplicationResource> resources,
       List<DataSourceInfo> dataSources) {
 

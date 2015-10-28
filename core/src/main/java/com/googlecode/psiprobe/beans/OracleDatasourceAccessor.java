@@ -39,6 +39,9 @@ import java.util.Properties;
  */
 public class OracleDatasourceAccessor implements DatasourceAccessor {
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.beans.DatasourceAccessor#getInfo(java.lang.Object)
+   */
   public DataSourceInfo getInfo(Object resource) throws Exception {
     DataSourceInfo dataSourceInfo = null;
 
@@ -72,6 +75,9 @@ public class OracleDatasourceAccessor implements DatasourceAccessor {
     return dataSourceInfo;
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.beans.DatasourceAccessor#reset(java.lang.Object)
+   */
   public boolean reset(Object resource) throws Exception {
     if (canMap(resource)) {
       ((OracleDataSource) resource).close();
@@ -80,6 +86,9 @@ public class OracleDatasourceAccessor implements DatasourceAccessor {
     return false;
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.beans.DatasourceAccessor#canMap(java.lang.Object)
+   */
   public boolean canMap(Object resource) {
     return "oracle.jdbc.pool.OracleDataSource".equals(resource.getClass().getName())
         && resource instanceof OracleDataSource;

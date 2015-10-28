@@ -44,8 +44,13 @@ import javax.management.RuntimeOperationsException;
  */
 public class ContainerListenerBean implements NotificationListener {
 
+  /** The logger. */
   private Log logger = LogFactory.getLog(getClass());
+  
+  /** The pool names. */
   private List<ThreadPoolObjectName> poolNames = null;
+  
+  /** The executor names. */
   private List<ObjectName> executorNames = null;
 
   /**
@@ -53,14 +58,29 @@ public class ContainerListenerBean implements NotificationListener {
    */
   private ContainerWrapperBean containerWrapper;
 
+  /**
+   * Gets the container wrapper.
+   *
+   * @return the container wrapper
+   */
   public ContainerWrapperBean getContainerWrapper() {
     return containerWrapper;
   }
 
+  /**
+   * Sets the container wrapper.
+   *
+   * @param containerWrapper the new container wrapper
+   */
   public void setContainerWrapper(ContainerWrapperBean containerWrapper) {
     this.containerWrapper = containerWrapper;
   }
 
+  /**
+   * Checks if is initialized.
+   *
+   * @return true, if is initialized
+   */
   private boolean isInitialized() {
     return poolNames != null && poolNames.size() > 0;
   }
@@ -85,6 +105,9 @@ public class ContainerListenerBean implements NotificationListener {
 
   /**
    * Handles creation and deletion of new "worker" threads.
+   *
+   * @param notification the notification
+   * @param object the object
    */
   public synchronized void handleNotification(Notification notification, Object object) {
     if (notification instanceof MBeanServerNotification) {
@@ -172,6 +195,12 @@ public class ContainerListenerBean implements NotificationListener {
 
   }
 
+  /**
+   * Gets the thread pools.
+   *
+   * @return the thread pools
+   * @throws Exception the exception
+   */
   public synchronized List<ThreadPool> getThreadPools() throws Exception {
     if (!isInitialized()) {
       initialize();
@@ -225,6 +254,13 @@ public class ContainerListenerBean implements NotificationListener {
     return threadPools;
   }
 
+  /**
+   * Gets the connectors.
+   *
+   * @param includeRequestProcessors the include request processors
+   * @return the connectors
+   * @throws Exception the exception
+   */
   public synchronized List<Connector> getConnectors(boolean includeRequestProcessors)
       throws Exception {
 

@@ -14,16 +14,28 @@ package com.googlecode.psiprobe.model;
 import javax.servlet.http.HttpServletRequest;
 
 /**
+ * The Class IpInfo.
  *
  * @author Mark Lewis
  */
 public class IpInfo {
 
+  /** The address. */
   private String address;
+  
+  /** The forwarded. */
   private boolean forwarded;
 
+  /**
+   * Instantiates a new ip info.
+   */
   public IpInfo() {}
 
+  /**
+   * Instantiates a new ip info.
+   *
+   * @param request the request
+   */
   public IpInfo(HttpServletRequest request) {
     this.address = getClientAddress(request);
     if (!address.equals(request.getRemoteAddr())) {
@@ -31,27 +43,56 @@ public class IpInfo {
     }
   }
 
+  /**
+   * Checks if is forwarded.
+   *
+   * @return true, if is forwarded
+   */
   public boolean isForwarded() {
     return forwarded;
   }
 
+  /**
+   * Sets the forwarded.
+   *
+   * @param forwarded the new forwarded
+   */
   public void setForwarded(boolean forwarded) {
     this.forwarded = forwarded;
   }
 
+  /**
+   * Gets the address.
+   *
+   * @return the address
+   */
   public String getAddress() {
     return address;
   }
 
+  /**
+   * Sets the address.
+   *
+   * @param address the new address
+   */
   public void setAddress(String address) {
     this.address = address;
   }
 
+  /* (non-Javadoc)
+   * @see java.lang.Object#toString()
+   */
   @Override
   public String toString() {
     return address;
   }
 
+  /**
+   * Gets the client address.
+   *
+   * @param request the request
+   * @return the client address
+   */
   public static String getClientAddress(HttpServletRequest request) {
     String addr = request.getRemoteAddr();
     String fwdHeader = request.getHeader("X-Forwarded-For");

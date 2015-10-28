@@ -27,21 +27,36 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * 
+ * The Class DecoratorController.
+ *
  * @author Vlad Ilyushchenko
  */
 public class DecoratorController extends ParameterizableViewController {
 
+  /** The messages basename. */
   private String messagesBasename;
 
+  /**
+   * Gets the messages basename.
+   *
+   * @return the messages basename
+   */
   public String getMessagesBasename() {
     return messagesBasename;
   }
 
+  /**
+   * Sets the messages basename.
+   *
+   * @param messagesBasename the new messages basename
+   */
   public void setMessagesBasename(String messagesBasename) {
     this.messagesBasename = messagesBasename;
   }
 
+  /* (non-Javadoc)
+   * @see org.springframework.web.servlet.mvc.ParameterizableViewController#handleRequestInternal(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+   */
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
@@ -89,6 +104,12 @@ public class DecoratorController extends ParameterizableViewController {
     return super.handleRequestInternal(request, response);
   }
 
+  /**
+   * Gets the message file names for locale.
+   *
+   * @param locale the locale
+   * @return the message file names for locale
+   */
   private List<String> getMessageFileNamesForLocale(Locale locale) {
     return Utils.getNamesForLocale(messagesBasename, locale);
   }

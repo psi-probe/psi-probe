@@ -12,23 +12,52 @@
 package com.googlecode.psiprobe.tools;
 
 /**
+ * The Class TimeExpression.
  *
  * @author Mark Lewis
  */
 public class TimeExpression {
 
+  /**
+   * Data points.
+   *
+   * @param periodExpression the period expression
+   * @param spanExpression the span expression
+   * @return the long
+   */
   public static long dataPoints(String periodExpression, String spanExpression) {
     return dataPoints(inSeconds(periodExpression), inSeconds(spanExpression));
   }
 
+  /**
+   * Data points.
+   *
+   * @param period the period
+   * @param span the span
+   * @return the long
+   */
   public static long dataPoints(long period, long span) {
     return span / period;
   }
 
+  /**
+   * Cron expression.
+   *
+   * @param periodExpression the period expression
+   * @param phaseExpression the phase expression
+   * @return the string
+   */
   public static String cronExpression(String periodExpression, String phaseExpression) {
     return cronExpression(inSeconds(periodExpression), inSeconds(phaseExpression));
   }
 
+  /**
+   * Cron expression.
+   *
+   * @param period the period
+   * @param phase the phase
+   * @return the string
+   */
   public static String cronExpression(long period, long phase) {
     while (phase >= period) {
       phase = phase - period;
@@ -74,6 +103,13 @@ public class TimeExpression {
         + " " + dowCron;
   }
 
+  /**
+   * Cron subexpression.
+   *
+   * @param period the period
+   * @param phase the phase
+   * @return the string
+   */
   private static String cronSubexpression(long period, long phase) {
     if (period == 0) {
       return Long.toString(phase);
@@ -84,6 +120,12 @@ public class TimeExpression {
     }
   }
 
+  /**
+   * In seconds.
+   *
+   * @param expression the expression
+   * @return the long
+   */
   public static long inSeconds(String expression) {
     if (expression == null || expression.equals("")) {
       return 0;
@@ -103,6 +145,12 @@ public class TimeExpression {
     }
   }
 
+  /**
+   * Multiplier.
+   *
+   * @param unit the unit
+   * @return the int
+   */
   private static int multiplier(char unit) {
     switch (unit) {
       case 's':

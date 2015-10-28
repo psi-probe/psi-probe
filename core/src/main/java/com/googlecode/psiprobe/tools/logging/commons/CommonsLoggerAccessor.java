@@ -17,12 +17,18 @@ import com.googlecode.psiprobe.tools.logging.LogDestination;
 import java.util.List;
 
 /**
- * 
+ * The Class CommonsLoggerAccessor.
+ *
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */
 public class CommonsLoggerAccessor extends DefaultAccessor {
 
+  /**
+   * Gets the destinations.
+   *
+   * @return the destinations
+   */
   public List<LogDestination> getDestinations() {
     GetAllDestinationsVisitor visitor = new GetAllDestinationsVisitor();
     visitor.setTarget(getTarget());
@@ -31,6 +37,12 @@ public class CommonsLoggerAccessor extends DefaultAccessor {
     return visitor.getDestinations();
   }
 
+  /**
+   * Gets the destination.
+   *
+   * @param logIndex the log index
+   * @return the destination
+   */
   public LogDestination getDestination(String logIndex) {
     GetSingleDestinationVisitor visitor = new GetSingleDestinationVisitor(logIndex);
     visitor.setTarget(getTarget());

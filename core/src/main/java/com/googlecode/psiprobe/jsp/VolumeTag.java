@@ -30,23 +30,45 @@ import javax.servlet.jsp.tagext.TagSupport;
  */
 public class VolumeTag extends TagSupport {
 
+  /** The logger. */
   private Log logger = LogFactory.getLog(getClass());
 
+  /** The value. */
   private long value;
+  
+  /** The fractions. */
   private int fractions = 0;
 
+  /**
+   * Sets the value.
+   *
+   * @param value the new value
+   */
   public void setValue(long value) {
     this.value = value;
   }
 
+  /**
+   * Gets the fractions.
+   *
+   * @return the fractions
+   */
   public int getFractions() {
     return fractions;
   }
 
+  /**
+   * Sets the fractions.
+   *
+   * @param fractions the new fractions
+   */
   public void setFractions(int fractions) {
     this.fractions = fractions;
   }
 
+  /* (non-Javadoc)
+   * @see javax.servlet.jsp.tagext.TagSupport#doStartTag()
+   */
   @Override
   public int doStartTag() throws JspException {
     String title = Long.toString(value);

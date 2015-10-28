@@ -12,17 +12,31 @@
 package com.googlecode.psiprobe.tools;
 
 /**
- * 
+ * A factory for creating Accessor objects.
+ *
  * @author Mark Lewis
  */
 public class AccessorFactory {
 
+  /**
+   * Instantiates a new accessor factory.
+   */
   private AccessorFactory() {}
 
+  /**
+   * Gets the single instance of AccessorFactory.
+   *
+   * @return single instance of AccessorFactory
+   */
   public static Accessor getInstance() {
     return getSimple();
   }
 
+  /**
+   * Gets the reflective.
+   *
+   * @return the reflective
+   */
   private static Accessor getReflective() {
     try {
       return new ReflectiveAccessor();
@@ -31,6 +45,11 @@ public class AccessorFactory {
     }
   }
 
+  /**
+   * Gets the simple.
+   *
+   * @return the simple
+   */
   private static Accessor getSimple() {
     return new SimpleAccessor();
   }

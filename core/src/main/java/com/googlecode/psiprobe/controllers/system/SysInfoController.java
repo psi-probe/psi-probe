@@ -34,34 +34,72 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class SysInfoController extends TomcatContainerController {
 
+  /** The filter out keys. */
   private List<String> filterOutKeys = new ArrayList<String>();
+  
+  /** The runtime info accessor. */
   private RuntimeInfoAccessorBean runtimeInfoAccessor;
+  
+  /** The collection period. */
   private long collectionPeriod;
 
+  /**
+   * Gets the filter out keys.
+   *
+   * @return the filter out keys
+   */
   public List<String> getFilterOutKeys() {
     return filterOutKeys;
   }
 
+  /**
+   * Sets the filter out keys.
+   *
+   * @param filterOutKeys the new filter out keys
+   */
   public void setFilterOutKeys(List<String> filterOutKeys) {
     this.filterOutKeys = filterOutKeys;
   }
 
+  /**
+   * Gets the runtime info accessor.
+   *
+   * @return the runtime info accessor
+   */
   public RuntimeInfoAccessorBean getRuntimeInfoAccessor() {
     return runtimeInfoAccessor;
   }
 
+  /**
+   * Sets the runtime info accessor.
+   *
+   * @param runtimeInfoAccessor the new runtime info accessor
+   */
   public void setRuntimeInfoAccessor(RuntimeInfoAccessorBean runtimeInfoAccessor) {
     this.runtimeInfoAccessor = runtimeInfoAccessor;
   }
 
+  /**
+   * Gets the collection period.
+   *
+   * @return the collection period
+   */
   public long getCollectionPeriod() {
     return collectionPeriod;
   }
 
+  /**
+   * Sets the collection period.
+   *
+   * @param collectionPeriod the new collection period
+   */
   public void setCollectionPeriod(long collectionPeriod) {
     this.collectionPeriod = collectionPeriod;
   }
 
+  /* (non-Javadoc)
+   * @see org.springframework.web.servlet.mvc.AbstractController#handleRequestInternal(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+   */
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 

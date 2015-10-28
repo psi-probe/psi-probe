@@ -32,12 +32,19 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ProbeServlet extends DispatcherServlet implements ContainerServlet {
 
+  /** The wrapper. */
   private Wrapper wrapper;
 
+  /* (non-Javadoc)
+   * @see org.apache.catalina.ContainerServlet#getWrapper()
+   */
   public Wrapper getWrapper() {
     return wrapper;
   }
 
+  /* (non-Javadoc)
+   * @see org.apache.catalina.ContainerServlet#setWrapper(org.apache.catalina.Wrapper)
+   */
   public void setWrapper(Wrapper wrapper) {
     this.wrapper = wrapper;
     logger.info("setWrapper() called");
@@ -59,6 +66,9 @@ public class ProbeServlet extends DispatcherServlet implements ContainerServlet 
     }
   }
 
+  /* (non-Javadoc)
+   * @see org.springframework.web.servlet.DispatcherServlet#doDispatch(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+   */
   @Override
   protected void doDispatch(HttpServletRequest httpServletRequest,
       HttpServletResponse httpServletResponse) throws Exception {
@@ -67,12 +77,20 @@ public class ProbeServlet extends DispatcherServlet implements ContainerServlet 
     super.doDispatch(httpServletRequest, httpServletResponse);
   }
 
+  /* (non-Javadoc)
+   * @see org.springframework.web.servlet.FrameworkServlet#destroy()
+   */
   @Override
   public void destroy() {
     getContainerWrapperBean().setWrapper(null);
     super.destroy();
   }
 
+  /**
+   * Gets the container wrapper bean.
+   *
+   * @return the container wrapper bean
+   */
   protected ContainerWrapperBean getContainerWrapperBean() {
     return (ContainerWrapperBean) getWebApplicationContext().getBean("containerWrapper");
   }

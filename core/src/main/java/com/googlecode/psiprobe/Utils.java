@@ -54,8 +54,16 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class Utils {
 
+  /** The logger. */
   private static Log logger = LogFactory.getLog(Utils.class.getName());
 
+  /**
+   * Calc pool usage score.
+   *
+   * @param max the max
+   * @param value the value
+   * @return the int
+   */
   public static int calcPoolUsageScore(int max, int value) {
     return max > 0 ? Math.max(0, value) * 100 / max : 0;
   }
@@ -65,7 +73,9 @@ public class Utils {
    * property)
    *
    * @param file to be read
+   * @param charsetName the charset name
    * @return String representation of the file contents
+   * @throws IOException Signals that an I/O exception has occurred.
    */
   public static String readFile(File file, String charsetName) throws IOException {
     String result = null;
@@ -115,6 +125,11 @@ public class Utils {
     return out.toString();
   }
 
+  /**
+   * Delete.
+   *
+   * @param file the file
+   */
   public static void delete(File file) {
     if (file != null && file.exists()) {
       if (file.isDirectory()) {
@@ -130,6 +145,13 @@ public class Utils {
     }
   }
 
+  /**
+   * To int.
+   *
+   * @param num the num
+   * @param defaultValue the default value
+   * @return the int
+   */
   public static int toInt(String num, int defaultValue) {
     if (num != null) {
       try {
@@ -141,10 +163,24 @@ public class Utils {
     return defaultValue;
   }
 
+  /**
+   * To int.
+   *
+   * @param num the num
+   * @param defaultValue the default value
+   * @return the int
+   */
   public static int toInt(Integer num, int defaultValue) {
     return num == null ? defaultValue : num;
   }
 
+  /**
+   * To int hex.
+   *
+   * @param num the num
+   * @param defaultValue the default value
+   * @return the int
+   */
   public static int toIntHex(String num, int defaultValue) {
     try {
       if (num != null && num.startsWith("#")) {
@@ -156,6 +192,13 @@ public class Utils {
     }
   }
 
+  /**
+   * To long.
+   *
+   * @param num the num
+   * @param defaultValue the default value
+   * @return the long
+   */
   public static long toLong(String num, long defaultValue) {
     if (num != null) {
       try {
@@ -167,10 +210,24 @@ public class Utils {
     return defaultValue;
   }
 
+  /**
+   * To long.
+   *
+   * @param num the num
+   * @param defaultValue the default value
+   * @return the long
+   */
   public static long toLong(Long num, long defaultValue) {
     return num == null ? defaultValue : num;
   }
 
+  /**
+   * To float.
+   *
+   * @param num the num
+   * @param defaultValue the default value
+   * @return the float
+   */
   public static float toFloat(String num, float defaultValue) {
     if (num != null) {
       try {
@@ -182,6 +239,13 @@ public class Utils {
     return defaultValue;
   }
 
+  /**
+   * Gets the jsp encoding.
+   *
+   * @param is the is
+   * @return the jsp encoding
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
   public static String getJspEncoding(InputStream is) throws IOException {
 
     String encoding = null;
@@ -255,6 +319,14 @@ public class Utils {
     return encoding != null ? encoding : "ISO-8859-1";
   }
 
+  /**
+   * Send file.
+   *
+   * @param request the request
+   * @param response the response
+   * @param file the file
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
   public static void sendFile(HttpServletRequest request, HttpServletResponse response, File file)
       throws IOException {
 
@@ -333,6 +405,12 @@ public class Utils {
     }
   }
 
+  /**
+   * Gets the thread by name.
+   *
+   * @param name the name
+   * @return the thread by name
+   */
   public static Thread getThreadByName(String name) {
     if (name != null) {
       // get top ThreadGroup
@@ -354,6 +432,16 @@ public class Utils {
     return null;
   }
 
+  /**
+   * Highlight stream.
+   *
+   * @param name the name
+   * @param input the input
+   * @param rendererName the renderer name
+   * @param encoding the encoding
+   * @return the string
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
   public static String highlightStream(String name, InputStream input, String rendererName,
       String encoding) throws IOException {
 
@@ -394,6 +482,14 @@ public class Utils {
     return null;
   }
 
+  /**
+   * Left pad.
+   *
+   * @param str the str
+   * @param len the len
+   * @param fill the fill
+   * @return the string
+   */
   public static String leftPad(String str, int len, String fill) {
     StringBuffer sb = new StringBuffer(len);
     if (str.length() < len) {
@@ -405,6 +501,13 @@ public class Utils {
     return sb.toString();
   }
 
+  /**
+   * Gets the names for locale.
+   *
+   * @param baseName the base name
+   * @param locale the locale
+   * @return the names for locale
+   */
   public static List<String> getNamesForLocale(String baseName, Locale locale) {
     List<String> result = new ArrayList<String>(3);
     String language = locale.getLanguage();
@@ -430,6 +533,11 @@ public class Utils {
     return result;
   }
 
+  /**
+   * Checks if is threading enabled.
+   *
+   * @return true, if is threading enabled
+   */
   public static boolean isThreadingEnabled() {
     try {
       MBeanServer mbeanServer = new Registry().getMBeanServer();

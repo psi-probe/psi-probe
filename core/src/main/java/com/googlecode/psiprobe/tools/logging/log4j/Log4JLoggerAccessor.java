@@ -20,14 +20,21 @@ import java.util.Enumeration;
 import java.util.List;
 
 /**
- * 
+ * The Class Log4JLoggerAccessor.
+ *
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */
 public class Log4JLoggerAccessor extends DefaultAccessor {
 
+  /** The context. */
   private boolean context = false;
 
+  /**
+   * Gets the appenders.
+   *
+   * @return the appenders
+   */
   public List<Log4JAppenderAccessor> getAppenders() {
     List<Log4JAppenderAccessor> appenders = new ArrayList<Log4JAppenderAccessor>();
     try {
@@ -46,6 +53,12 @@ public class Log4JLoggerAccessor extends DefaultAccessor {
     return appenders;
   }
 
+  /**
+   * Gets the appender.
+   *
+   * @param name the name
+   * @return the appender
+   */
   public Log4JAppenderAccessor getAppender(String name) {
     try {
       Object appender = MethodUtils.invokeMethod(getTarget(), "getAppender", name);
@@ -56,22 +69,47 @@ public class Log4JLoggerAccessor extends DefaultAccessor {
     return null;
   }
 
+  /**
+   * Checks if is context.
+   *
+   * @return true, if is context
+   */
   public boolean isContext() {
     return context;
   }
 
+  /**
+   * Sets the context.
+   *
+   * @param context the new context
+   */
   public void setContext(boolean context) {
     this.context = context;
   }
 
+  /**
+   * Checks if is root.
+   *
+   * @return true, if is root
+   */
   public boolean isRoot() {
     return "root".equals(getName()) && "org.apache.log4j.spi.RootLogger".equals(getTargetClass());
   }
 
+  /**
+   * Gets the name.
+   *
+   * @return the name
+   */
   public String getName() {
     return (String) getProperty(getTarget(), "name", null);
   }
 
+  /**
+   * Gets the level.
+   *
+   * @return the level
+   */
   public String getLevel() {
     try {
       Object level = MethodUtils.invokeMethod(getTarget(), "getLevel", null);
@@ -82,6 +120,11 @@ public class Log4JLoggerAccessor extends DefaultAccessor {
     return null;
   }
 
+  /**
+   * Sets the level.
+   *
+   * @param newLevelStr the new level
+   */
   public void setLevel(String newLevelStr) {
     try {
       Object level = MethodUtils.invokeMethod(getTarget(), "getLevel", null);
@@ -92,6 +135,12 @@ public class Log4JLoggerAccessor extends DefaultAccessor {
     }
   }
 
+  /**
+   * Wrap appender.
+   *
+   * @param appender the appender
+   * @return the log4 j appender accessor
+   */
   private Log4JAppenderAccessor wrapAppender(Object appender) {
     try {
       if (appender == null) {

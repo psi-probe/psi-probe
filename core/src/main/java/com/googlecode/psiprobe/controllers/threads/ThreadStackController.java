@@ -29,21 +29,36 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * 
+ * The Class ThreadStackController.
+ *
  * @author Vlad Ilyushchenko
  */
 public class ThreadStackController extends ParameterizableViewController {
 
+  /** The stack element count. */
   private int stackElementCount = 20;
 
+  /**
+   * Gets the stack element count.
+   *
+   * @return the stack element count
+   */
   public int getStackElementCount() {
     return stackElementCount;
   }
 
+  /**
+   * Sets the stack element count.
+   *
+   * @param stackElementCount the new stack element count
+   */
   public void setStackElementCount(int stackElementCount) {
     this.stackElementCount = stackElementCount;
   }
 
+  /* (non-Javadoc)
+   * @see org.springframework.web.servlet.mvc.ParameterizableViewController#handleRequestInternal(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+   */
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {

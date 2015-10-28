@@ -25,10 +25,20 @@ package com.googlecode.psiprobe.tools;
  */
 public class UpdateCommitLock {
 
+  /** The update count. */
   private int updateCount = 0;
+  
+  /** The commit count. */
   private int commitCount = 0;
+  
+  /** The commit requests. */
   private int commitRequests = 0;
 
+  /**
+   * Lock for update.
+   *
+   * @throws InterruptedException the interrupted exception
+   */
   public synchronized void lockForUpdate() throws InterruptedException {
     while (commitCount > 0 || commitRequests > 0) {
       wait();
@@ -36,11 +46,19 @@ public class UpdateCommitLock {
     updateCount++;
   }
 
+  /**
+   * Release update lock.
+   */
   public synchronized void releaseUpdateLock() {
     updateCount--;
     notifyAll();
   }
 
+  /**
+   * Lock for commit.
+   *
+   * @throws InterruptedException the interrupted exception
+   */
   public synchronized void lockForCommit() throws InterruptedException {
     commitRequests++;
     while (updateCount > 0 || commitCount > 0) {
@@ -50,6 +68,9 @@ public class UpdateCommitLock {
     commitCount++;
   }
 
+  /**
+   * Release commit lock.
+   */
   public synchronized void releaseCommitLock() {
     commitCount--;
     notifyAll();

@@ -38,8 +38,12 @@ public class LogbackFactoryAccessor extends DefaultAccessor {
 
   /**
    * Attempts to initialize a Logback logger factory via the given class loader.
-   * 
+   *
    * @param cl the ClassLoader to use when fetching the factory
+   * @throws ClassNotFoundException the class not found exception
+   * @throws IllegalAccessException the illegal access exception
+   * @throws IllegalArgumentException the illegal argument exception
+   * @throws InvocationTargetException the invocation target exception
    */
   public LogbackFactoryAccessor(ClassLoader cl) throws ClassNotFoundException,
       IllegalAccessException, IllegalArgumentException, InvocationTargetException {
@@ -74,7 +78,8 @@ public class LogbackFactoryAccessor extends DefaultAccessor {
 
   /**
    * Returns the Logback logger with a given name.
-   * 
+   *
+   * @param name the name
    * @return the Logger with the given name
    */
   public LogbackLoggerAccessor getLogger(String name) {

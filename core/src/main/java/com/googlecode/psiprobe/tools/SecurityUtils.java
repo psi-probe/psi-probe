@@ -21,14 +21,25 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * 
+ * The Class SecurityUtils.
+ *
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */
 public class SecurityUtils {
 
+  /**
+   * Instantiates a new security utils.
+   */
   private SecurityUtils() {}
 
+  /**
+   * Checks for attribute value role.
+   *
+   * @param servletContext the servlet context
+   * @param request the request
+   * @return true, if successful
+   */
   public static boolean hasAttributeValueRole(ServletContext servletContext,
       HttpServletRequest request) {
 
@@ -41,6 +52,12 @@ public class SecurityUtils {
     return false;
   }
 
+  /**
+   * User has role.
+   *
+   * @param privilegedRole the privileged role
+   * @return true, if successful
+   */
   private static boolean userHasRole(String privilegedRole) {
     Collection<? extends GrantedAuthority> authorities =
         SecurityContextHolder.getContext().getAuthentication().getAuthorities();
@@ -56,10 +73,23 @@ public class SecurityUtils {
     return result;
   }
 
+  /**
+   * User has role.
+   *
+   * @param privilegedRole the privileged role
+   * @param request the request
+   * @return true, if successful
+   */
   private static boolean userHasRole(String privilegedRole, HttpServletRequest request) {
     return request.isUserInRole(privilegedRole);
   }
 
+  /**
+   * Gets the privileged roles.
+   *
+   * @param servletContext the servlet context
+   * @return the privileged roles
+   */
   private static String getPrivilegedRoles(ServletContext servletContext) {
     return servletContext.getInitParameter("attribute.value.roles");
   }

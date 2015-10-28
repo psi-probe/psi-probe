@@ -26,11 +26,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
+ * The Class ChangeLogLevelController.
  *
  * @author Mark Lewis
  */
 public class ChangeLogLevelController extends LogHandlerController {
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.controllers.logs.LogHandlerController#handleLogFile(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, com.googlecode.psiprobe.tools.logging.LogDestination)
+   */
   @Override
   protected ModelAndView handleLogFile(HttpServletRequest request, HttpServletResponse response,
       LogDestination logDest) throws Exception {

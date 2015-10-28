@@ -33,7 +33,8 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 /**
- * 
+ * The Class ResourceResolverBean.
+ *
  * @author Vlad Ilyushchenko
  * @author Andy Shapoval
  * @author Mark Lewis
@@ -41,6 +42,7 @@ import javax.sql.DataSource;
  */
 public class ResourceResolverBean implements ResourceResolver {
 
+  /** The logger. */
   private Log logger = LogFactory.getLog(getClass());
 
   /**
@@ -55,8 +57,12 @@ public class ResourceResolverBean implements ResourceResolver {
   public static final String DEFAULT_RESOURCE_PREFIX = DEFAULT_GLOBAL_RESOURCE_PREFIX
       + "java:comp/env/";
 
+  /** The datasource mappers. */
   private List<DatasourceAccessor> datasourceMappers;
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.beans.ResourceResolver#getApplicationResources()
+   */
   public List<ApplicationResource> getApplicationResources() throws NamingException {
     logger.info("Reading GLOBAL resources");
     List<ApplicationResource> resources = new ArrayList<ApplicationResource>();
@@ -87,6 +93,9 @@ public class ResourceResolverBean implements ResourceResolver {
     return resources;
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.beans.ResourceResolver#getApplicationResources(org.apache.catalina.Context, com.googlecode.psiprobe.beans.ContainerWrapperBean)
+   */
   public synchronized List<ApplicationResource> getApplicationResources(Context context,
       ContainerWrapperBean containerWrapper) throws NamingException {
 
@@ -131,6 +140,13 @@ public class ResourceResolverBean implements ResourceResolver {
 
 
 
+  /**
+   * Lookup resource.
+   *
+   * @param resource the resource
+   * @param contextBound the context bound
+   * @param global the global
+   */
   public void lookupResource(ApplicationResource resource, boolean contextBound, boolean global) {
     DataSourceInfo dataSourceInfo = null;
     if (contextBound) {
@@ -174,6 +190,9 @@ public class ResourceResolverBean implements ResourceResolver {
     }
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.beans.ResourceResolver#resetResource(org.apache.catalina.Context, java.lang.String, com.googlecode.psiprobe.beans.ContainerWrapperBean)
+   */
   public synchronized boolean resetResource(final Context context, String resourceName,
       ContainerWrapperBean containerWrapper) throws NamingException {
 
@@ -209,6 +228,9 @@ public class ResourceResolverBean implements ResourceResolver {
     }
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.beans.ResourceResolver#lookupDataSource(org.apache.catalina.Context, java.lang.String, com.googlecode.psiprobe.beans.ContainerWrapperBean)
+   */
   public synchronized DataSource lookupDataSource(final Context context, String resourceName,
       ContainerWrapperBean containerWrapper) throws NamingException {
 
@@ -234,26 +256,48 @@ public class ResourceResolverBean implements ResourceResolver {
     }
   }
 
+  /**
+   * Gets the datasource mappers.
+   *
+   * @return the datasource mappers
+   */
   public List<DatasourceAccessor> getDatasourceMappers() {
     return datasourceMappers;
   }
 
+  /**
+   * Sets the datasource mappers.
+   *
+   * @param datasourceMappers the new datasource mappers
+   */
   public void setDatasourceMappers(List<DatasourceAccessor> datasourceMappers) {
     this.datasourceMappers = datasourceMappers;
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.beans.ResourceResolver#supportsPrivateResources()
+   */
   public boolean supportsPrivateResources() {
     return true;
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.beans.ResourceResolver#supportsGlobalResources()
+   */
   public boolean supportsGlobalResources() {
     return true;
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.beans.ResourceResolver#supportsDataSourceLookup()
+   */
   public boolean supportsDataSourceLookup() {
     return true;
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.beans.ResourceResolver#getMBeanServer()
+   */
   public MBeanServer getMBeanServer() {
     return new Registry().getMBeanServer();
   }
@@ -261,11 +305,9 @@ public class ResourceResolverBean implements ResourceResolver {
   /**
    * Resolves a JNDI resource name by prepending the scope-appropriate prefix.
    *
-   * @param global whether to use the global prefix
    * @param name the JNDI name of the resource
-   *
+   * @param global whether to use the global prefix
    * @return the JNDI resource name with the prefix appended
-   *
    * @see #DEFAULT_GLOBAL_RESOURCE_PREFIX
    * @see #DEFAULT_RESOURCE_PREFIX
    */
@@ -273,6 +315,14 @@ public class ResourceResolverBean implements ResourceResolver {
     return (global ? DEFAULT_GLOBAL_RESOURCE_PREFIX : DEFAULT_RESOURCE_PREFIX) + name;
   }
 
+  /**
+   * Gets the string attribute.
+   *
+   * @param server the server
+   * @param objectName the object name
+   * @param attributeName the attribute name
+   * @return the string attribute
+   */
   private String getStringAttribute(MBeanServer server, ObjectName objectName,
       String attributeName) {
     
@@ -285,7 +335,7 @@ public class ResourceResolverBean implements ResourceResolver {
   }
 
   /**
-   * Returns the Server's global naming context
+   * Returns the Server's global naming context.
    *
    * @return the global JNDI context
    */

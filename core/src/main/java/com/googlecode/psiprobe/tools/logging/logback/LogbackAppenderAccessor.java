@@ -22,26 +22,46 @@ import java.io.File;
  */
 public class LogbackAppenderAccessor extends AbstractLogDestination {
 
+  /** The logger accessor. */
   private LogbackLoggerAccessor loggerAccessor;
 
+  /**
+   * Gets the logger accessor.
+   *
+   * @return the logger accessor
+   */
   public LogbackLoggerAccessor getLoggerAccessor() {
     return loggerAccessor;
   }
 
+  /**
+   * Sets the logger accessor.
+   *
+   * @param loggerAccessor the new logger accessor
+   */
   public void setLoggerAccessor(LogbackLoggerAccessor loggerAccessor) {
     this.loggerAccessor = loggerAccessor;
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.tools.logging.AbstractLogDestination#isContext()
+   */
   @Override
   public boolean isContext() {
     return getLoggerAccessor().isContext();
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.tools.logging.AbstractLogDestination#isRoot()
+   */
   @Override
   public boolean isRoot() {
     return getLoggerAccessor().isRoot();
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.tools.logging.LogDestination#getName()
+   */
   public String getName() {
     return getLoggerAccessor().getName();
   }

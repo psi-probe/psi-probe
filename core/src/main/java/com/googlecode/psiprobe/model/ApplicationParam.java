@@ -12,40 +12,71 @@
 package com.googlecode.psiprobe.model;
 
 /**
- * A model class representing an application initialization parameter
- * 
+ * A model class representing an application initialization parameter.
+ *
  * @author Andy Shapoval
  */
 public class ApplicationParam {
 
+  /** The name. */
   private String name;
+  
+  /** The value. */
   private Object value;
 
-  /**
-   * denotes whether the value is taken from a deployment descriptor
-   */
+  /** denotes whether the value is taken from a deployment descriptor. */
   public boolean fromDeplDescr;
 
+  /**
+   * Gets the name.
+   *
+   * @return the name
+   */
   public String getName() {
     return name;
   }
 
+  /**
+   * Sets the name.
+   *
+   * @param name the new name
+   */
   public void setName(String name) {
     this.name = name;
   }
 
+  /**
+   * Gets the value.
+   *
+   * @return the value
+   */
   public Object getValue() {
     return value;
   }
 
+  /**
+   * Sets the value.
+   *
+   * @param value the new value
+   */
   public void setValue(Object value) {
     this.value = value;
   }
 
+  /**
+   * Checks if is from depl descr.
+   *
+   * @return true, if is from depl descr
+   */
   public boolean isFromDeplDescr() {
     return fromDeplDescr;
   }
 
+  /**
+   * Sets the from depl descr.
+   *
+   * @param fromDeplDescr the new from depl descr
+   */
   public void setFromDeplDescr(boolean fromDeplDescr) {
     this.fromDeplDescr = fromDeplDescr;
   }

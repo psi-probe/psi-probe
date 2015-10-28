@@ -21,25 +21,50 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * 
+ * The Class Instruments.
+ *
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */
 public class Instruments {
 
+  /** The Constant SIZE_VOID. */
   public static final long SIZE_VOID = 0;
+  
+  /** The Constant SIZE_BOOLEAN. */
   public static final long SIZE_BOOLEAN = 1;
+  
+  /** The Constant SIZE_BYTE. */
   public static final long SIZE_BYTE = 1;
+  
+  /** The Constant SIZE_CHAR. */
   public static final long SIZE_CHAR = 2;
+  
+  /** The Constant SIZE_SHORT. */
   public static final long SIZE_SHORT = 2;
+  
+  /** The Constant SIZE_INT. */
   public static final long SIZE_INT = 4;
+  
+  /** The Constant SIZE_LONG. */
   public static final long SIZE_LONG = 8;
+  
+  /** The Constant SIZE_FLOAT. */
   public static final long SIZE_FLOAT = 4;
+  
+  /** The Constant SIZE_DOUBLE. */
   public static final long SIZE_DOUBLE = 8;
+  
+  /** The Constant SIZE_OBJECT. */
   public static final long SIZE_OBJECT = 8;
+  
+  /** The Constant SIZE_REFERENCE. */
   public static final long SIZE_REFERENCE;
 
+  /** The Constant ACCESSOR. */
   private static final Accessor ACCESSOR = AccessorFactory.getInstance();
+  
+  /** The Constant IGNORE_NIO. */
   private static final boolean IGNORE_NIO;
   
   static {
@@ -49,27 +74,60 @@ public class Instruments {
     SIZE_REFERENCE = ("64".equals(os64bitProp) ? 8 : 4);
   }
 
+  /** The processed objects. */
   private Set<Object> processedObjects = new HashSet(2048);
+  
+  /** The this queue. */
   private final List<Object> thisQueue = new LinkedList<Object>();
+  
+  /** The next queue. */
   private final List<Object> nextQueue = new LinkedList<Object>();
+  
+  /** The class loader. */
   private ClassLoader classLoader = null;
 
+  /**
+   * Size of.
+   *
+   * @param obj the obj
+   * @return the long
+   */
   public static long sizeOf(Object obj) {
     return new Instruments().internalSizeOf(obj);
   }
 
+  /**
+   * Size of.
+   *
+   * @param obj the obj
+   * @param cl the cl
+   * @return the long
+   */
   public static long sizeOf(Object obj, ClassLoader cl) {
     Instruments instruments = new Instruments();
     instruments.classLoader = cl;
     return instruments.internalSizeOf(obj);
   }
 
+  /**
+   * Size of.
+   *
+   * @param obj the obj
+   * @param objects the objects
+   * @return the long
+   */
   public static long sizeOf(Object obj, Set<Object> objects) {
     Instruments instruments = new Instruments();
     instruments.processedObjects = objects;
     return instruments.internalSizeOf(obj);
   }
 
+  /**
+   * Internal size of.
+   *
+   * @param root the root
+   * @return the long
+   */
   private long internalSizeOf(Object root) {
     long size = 0;
     thisQueue.add(root);
@@ -103,6 +161,12 @@ public class Instruments {
     return size;
   }
 
+  /**
+   * Size of object.
+   *
+   * @param obj the obj
+   * @return the long
+   */
   private long sizeOfObject(Object obj) {
     long size = SIZE_OBJECT;
     Class clazz = obj.getClass();
@@ -128,6 +192,12 @@ public class Instruments {
     return size;
   }
 
+  /**
+   * Size of array.
+   *
+   * @param obj the obj
+   * @return the long
+   */
   private long sizeOfArray(Object obj) {
     if (obj != null) {
       Class ct = obj.getClass().getComponentType();
@@ -142,6 +212,12 @@ public class Instruments {
     return 0;
   }
 
+  /**
+   * Size of primitive.
+   *
+   * @param type the type
+   * @return the long
+   */
   private static long sizeOfPrimitive(Class type) {
     if (type == Boolean.TYPE) {
       return SIZE_BOOLEAN;
@@ -166,10 +242,22 @@ public class Instruments {
     }
   }
 
+  /**
+   * Checks if is initialized.
+   *
+   * @return true, if is initialized
+   */
   public static boolean isInitialized() {
     return ACCESSOR != null;
   }
 
+  /**
+   * Gets the field.
+   *
+   * @param obj the obj
+   * @param name the name
+   * @return the field
+   */
   public static Object getField(Object obj, String name) {
     if (isInitialized()) {
       Field field = findField(obj.getClass(), name);
@@ -180,6 +268,13 @@ public class Instruments {
     return null;
   }
 
+  /**
+   * Find field.
+   *
+   * @param clazz the clazz
+   * @param name the name
+   * @return the field
+   */
   public static Field findField(Class clazz, String name) {
     Field[] fields = clazz.getDeclaredFields();
     for (Field field : fields) {

@@ -15,22 +15,37 @@ import com.googlecode.psiprobe.beans.ContainerListenerBean;
 import com.googlecode.psiprobe.model.Connector;
 
 /**
- * 
+ * The Class ConnectorStatsCollectorBean.
+ *
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */
 public class ConnectorStatsCollectorBean extends AbstractStatsCollectorBean {
 
+  /** The listener bean. */
   private ContainerListenerBean listenerBean;
 
+  /**
+   * Gets the listener bean.
+   *
+   * @return the listener bean
+   */
   public ContainerListenerBean getListenerBean() {
     return listenerBean;
   }
 
+  /**
+   * Sets the listener bean.
+   *
+   * @param listenerBean the new listener bean
+   */
   public void setListenerBean(ContainerListenerBean listenerBean) {
     this.listenerBean = listenerBean;
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.beans.stats.collectors.AbstractStatsCollectorBean#collect()
+   */
   public void collect() throws Exception {
     for (Connector connector : listenerBean.getConnectors(false)) {
       String statName = "stat.connector." + connector.getName();
@@ -42,12 +57,22 @@ public class ConnectorStatsCollectorBean extends AbstractStatsCollectorBean {
     }
   }
 
+  /**
+   * Reset.
+   *
+   * @throws Exception the exception
+   */
   public void reset() throws Exception {
     for (Connector connector : listenerBean.getConnectors(false)) {
       reset(connector.getName());
     }
   }
 
+  /**
+   * Reset.
+   *
+   * @param connectorName the connector name
+   */
   public void reset(String connectorName) {
     String statName = "stat.connector." + connectorName;
     resetStats(statName + ".requests");

@@ -27,14 +27,24 @@ import javax.servlet.jsp.tagext.TagSupport;
  */
 public class DurationTag extends TagSupport {
 
+  /** The logger. */
   private static Log logger = LogFactory.getLog(DurationTag.class);
 
+  /** The value. */
   private long value;
 
+  /**
+   * Sets the value.
+   *
+   * @param value the new value
+   */
   public void setValue(long value) {
     this.value = value;
   }
 
+  /* (non-Javadoc)
+   * @see javax.servlet.jsp.tagext.TagSupport#doStartTag()
+   */
   @Override
   public int doStartTag() throws JspException {
     try {
@@ -46,6 +56,12 @@ public class DurationTag extends TagSupport {
     return EVAL_BODY_INCLUDE;
   }
 
+  /**
+   * Duration.
+   *
+   * @param value the value
+   * @return the string
+   */
   public static String duration(long value) {
     long millis = value % 1000;
     long sec = value / 1000;
@@ -58,10 +74,22 @@ public class DurationTag extends TagSupport {
     return hours + ":" + long2Str(mins) + ":" + long2Str(sec) + "." + long3Str(millis);
   }
 
+  /**
+   * Long2 str.
+   *
+   * @param value the value
+   * @return the string
+   */
   private static String long2Str(long value) {
     return value < 10 ? "0" + value : Long.toString(value);
   }
 
+  /**
+   * Long3 str.
+   *
+   * @param value the value
+   * @return the string
+   */
   private static String long3Str(long value) {
     if (value < 10) {
       return "00" + value;

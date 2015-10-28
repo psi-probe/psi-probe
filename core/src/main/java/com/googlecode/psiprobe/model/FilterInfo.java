@@ -12,36 +12,71 @@
 package com.googlecode.psiprobe.model;
 
 /**
- * A model class representing a filter
- * 
+ * A model class representing a filter.
+ *
  * @author Andy Shapoval
  */
 public class FilterInfo {
 
+  /** The filter name. */
   private String filterName;
+  
+  /** The filter class. */
   private String filterClass;
+  
+  /** The filter desc. */
   private String filterDesc;
 
+  /**
+   * Gets the filter name.
+   *
+   * @return the filter name
+   */
   public String getFilterName() {
     return filterName;
   }
 
+  /**
+   * Sets the filter name.
+   *
+   * @param filterName the new filter name
+   */
   public void setFilterName(String filterName) {
     this.filterName = filterName;
   }
 
+  /**
+   * Gets the filter class.
+   *
+   * @return the filter class
+   */
   public String getFilterClass() {
     return filterClass;
   }
 
+  /**
+   * Sets the filter class.
+   *
+   * @param filterClass the new filter class
+   */
   public void setFilterClass(String filterClass) {
     this.filterClass = filterClass;
   }
 
+  /**
+   * Gets the filter desc.
+   *
+   * @return the filter desc
+   */
   public String getFilterDesc() {
     return filterDesc;
   }
 
+  /**
+   * Sets the filter desc.
+   *
+   * @param filterDesc the new filter desc
+   */
   public void setFilterDesc(String filterDesc) {
     this.filterDesc = filterDesc;
   }

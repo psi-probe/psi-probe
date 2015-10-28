@@ -20,40 +20,79 @@ import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
 /**
- * 
+ * The Class OutTag.
+ *
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */
 public class OutTag extends BodyTagSupport {
 
+  /** The max length. */
   private int maxLength = -1;
+  
+  /** The ellipsis right. */
   private boolean ellipsisRight = true;
+  
+  /** The value. */
   private Object value = null;
 
+  /**
+   * Gets the value.
+   *
+   * @return the value
+   */
   public Object getValue() {
     return value;
   }
 
+  /**
+   * Sets the value.
+   *
+   * @param value the new value
+   */
   public void setValue(Object value) {
     this.value = value;
   }
 
+  /**
+   * Gets the max length.
+   *
+   * @return the max length
+   */
   public int getMaxLength() {
     return maxLength;
   }
 
+  /**
+   * Sets the max length.
+   *
+   * @param maxLength the new max length
+   */
   public void setMaxLength(int maxLength) {
     this.maxLength = maxLength;
   }
 
+  /**
+   * Checks if is ellipsis right.
+   *
+   * @return true, if is ellipsis right
+   */
   public boolean isEllipsisRight() {
     return ellipsisRight;
   }
 
+  /**
+   * Sets the ellipsis right.
+   *
+   * @param ellipsisRight the new ellipsis right
+   */
   public void setEllipsisRight(boolean ellipsisRight) {
     this.ellipsisRight = ellipsisRight;
   }
 
+  /* (non-Javadoc)
+   * @see javax.servlet.jsp.tagext.BodyTagSupport#doStartTag()
+   */
   @Override
   public int doStartTag() throws JspException {
     if (value != null) {
@@ -64,12 +103,22 @@ public class OutTag extends BodyTagSupport {
     }
   }
 
+  /* (non-Javadoc)
+   * @see javax.servlet.jsp.tagext.BodyTagSupport#doAfterBody()
+   */
   @Override
   public int doAfterBody() throws JspException {
     print(getBodyContent().getString().trim(), getBodyContent().getEnclosingWriter());
     return SKIP_BODY;
   }
 
+  /**
+   * Prints the.
+   *
+   * @param displayValue the display value
+   * @param out the out
+   * @throws JspException the jsp exception
+   */
   private void print(String displayValue, JspWriter out) throws JspException {
     try {
       if (maxLength != -1 && displayValue.length() > maxLength) {

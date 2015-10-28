@@ -22,21 +22,52 @@ import java.util.Map;
 import java.util.TreeMap;
 
 /**
- * 
+ * The Class Whois.
+ *
  * @author Vlad Ilyushchenko
  */
 public class Whois {
 
+  /**
+   * Lookup.
+   *
+   * @param server the server
+   * @param port the port
+   * @param query the query
+   * @return the response
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
   public static Response lookup(String server, int port, String query) throws IOException {
     return lookup(server, port, query, 5);
   }
 
+  /**
+   * Lookup.
+   *
+   * @param server the server
+   * @param port the port
+   * @param query the query
+   * @param timeout the timeout
+   * @return the response
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
   public static Response lookup(String server, int port, String query, long timeout)
       throws IOException {
 
     return lookup(server, port, query, timeout, System.getProperty("line.separator"));
   }
 
+  /**
+   * Lookup.
+   *
+   * @param server the server
+   * @param port the port
+   * @param query the query
+   * @param timeout the timeout
+   * @param lineSeparator the line separator
+   * @return the response
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
   public static Response lookup(String server, int port, String query, long timeout,
       String lineSeparator) throws IOException {
 
@@ -105,25 +136,55 @@ public class Whois {
     return response;
   }
 
+  /**
+   * The Class Response.
+   */
   public static class Response {
 
+    /** The summary. */
     private String summary;
+    
+    /** The data. */
     private Map<String, String> data = new TreeMap<String, String>();
+    
+    /** The server. */
     private String server;
+    
+    /** The port. */
     private int port;
 
+    /**
+     * Gets the summary.
+     *
+     * @return the summary
+     */
     public String getSummary() {
       return summary;
     }
 
+    /**
+     * Gets the data.
+     *
+     * @return the data
+     */
     public Map<String, String> getData() {
       return data;
     }
 
+    /**
+     * Gets the server.
+     *
+     * @return the server
+     */
     public String getServer() {
       return server;
     }
 
+    /**
+     * Gets the port.
+     *
+     * @return the port
+     */
     public int getPort() {
       return port;
     }

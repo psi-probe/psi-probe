@@ -12,13 +12,30 @@
 package com.googlecode.psiprobe.beans.stats.listeners;
 
 /**
+ * The listener interface for receiving statsCollection events.
+ * The class that is interested in processing a statsCollection
+ * event implements this interface, and the object created
+ * with that class is registered with a component using the
+ * component's <code>addStatsCollectionListener<code> method. When
+ * the statsCollection event occurs, that object's appropriate
+ * method is invoked.
  *
  * @author Mark Lewis
  */
 public interface StatsCollectionListener {
 
+  /**
+   * Stats collected.
+   *
+   * @param sce the sce
+   */
   void statsCollected(StatsCollectionEvent sce);
 
+  /**
+   * Checks if is enabled.
+   *
+   * @return true, if is enabled
+   */
   boolean isEnabled();
 
 }

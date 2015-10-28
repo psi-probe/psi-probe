@@ -29,16 +29,30 @@ import javax.servlet.http.HttpServletResponse;
  */
 public abstract class NoSelfContextHandlerController extends ContextHandlerController {
 
+  /** The pass query string. */
   private boolean passQueryString = false;
 
+  /**
+   * Checks if is pass query string.
+   *
+   * @return true, if is pass query string
+   */
   public boolean isPassQueryString() {
     return passQueryString;
   }
 
+  /**
+   * Sets the pass query string.
+   *
+   * @param passQueryString the new pass query string
+   */
   public void setPassQueryString(boolean passQueryString) {
     this.passQueryString = passQueryString;
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.controllers.ContextHandlerController#handleContext(java.lang.String, org.apache.catalina.Context, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+   */
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 
@@ -58,6 +72,12 @@ public abstract class NoSelfContextHandlerController extends ContextHandlerContr
         + (isPassQueryString() ? "?" + request.getQueryString() : "")));
   }
 
+  /**
+   * Execute action.
+   *
+   * @param contextName the context name
+   * @throws Exception the exception
+   */
   protected abstract void executeAction(String contextName) throws Exception;
 
 }

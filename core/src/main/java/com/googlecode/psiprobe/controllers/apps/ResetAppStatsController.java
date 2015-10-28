@@ -14,21 +14,36 @@ package com.googlecode.psiprobe.controllers.apps;
 import com.googlecode.psiprobe.beans.stats.collectors.AppStatsCollectorBean;
 
 /**
+ * The Class ResetAppStatsController.
  *
  * @author Mark Lewis
  */
 public class ResetAppStatsController extends NoSelfContextHandlerController {
 
+  /** The stats collector. */
   private AppStatsCollectorBean statsCollector;
 
+  /**
+   * Gets the stats collector.
+   *
+   * @return the stats collector
+   */
   public AppStatsCollectorBean getStatsCollector() {
     return statsCollector;
   }
 
+  /**
+   * Sets the stats collector.
+   *
+   * @param statsCollector the new stats collector
+   */
   public void setStatsCollector(AppStatsCollectorBean statsCollector) {
     this.statsCollector = statsCollector;
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.controllers.apps.NoSelfContextHandlerController#executeAction(java.lang.String)
+   */
   protected void executeAction(String contextName) throws Exception {
     statsCollector.reset(contextName);
   }

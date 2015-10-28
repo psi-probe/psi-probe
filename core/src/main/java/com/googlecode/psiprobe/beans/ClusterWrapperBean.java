@@ -27,11 +27,21 @@ import javax.management.ObjectInstance;
 import javax.management.ObjectName;
 
 /**
- * 
+ * The Class ClusterWrapperBean.
+ *
  * @author Vlad Ilyushchenko
  */
 public class ClusterWrapperBean {
 
+  /**
+   * Gets the cluster.
+   *
+   * @param serverName the server name
+   * @param hostName the host name
+   * @param loadMembers the load members
+   * @return the cluster
+   * @throws Exception the exception
+   */
   public Cluster getCluster(String serverName, String hostName, boolean loadMembers)
       throws Exception {
 

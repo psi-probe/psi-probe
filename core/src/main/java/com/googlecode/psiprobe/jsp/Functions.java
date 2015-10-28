@@ -12,11 +12,18 @@
 package com.googlecode.psiprobe.jsp;
 
 /**
+ * The Class Functions.
  *
  * @author Mark Lewis
  */
 public class Functions {
 
+  /**
+   * Safe cookie name.
+   *
+   * @param cookieName the cookie name
+   * @return the string
+   */
   public static String safeCookieName(String cookieName) {
     return cookieName.replaceAll("\"", "");
   }

@@ -24,15 +24,22 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 
 /**
- * 
+ * The Class ParamToggleTag.
+ *
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */
 public class ParamToggleTag extends TagSupport {
 
+  /** The logger. */
   private Log logger = LogFactory.getLog(getClass());
+  
+  /** The param. */
   private String param = "size";
 
+  /* (non-Javadoc)
+   * @see javax.servlet.jsp.tagext.TagSupport#doStartTag()
+   */
   @Override
   public int doStartTag() throws JspException {
     boolean getSize =
@@ -61,10 +68,20 @@ public class ParamToggleTag extends TagSupport {
     return EVAL_BODY_INCLUDE;
   }
 
+  /**
+   * Gets the param.
+   *
+   * @return the param
+   */
   public String getParam() {
     return param;
   }
 
+  /**
+   * Sets the param.
+   *
+   * @param param the new param
+   */
   public void setParam(String param) {
     this.param = param;
   }

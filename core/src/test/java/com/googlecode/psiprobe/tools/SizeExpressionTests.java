@@ -18,24 +18,39 @@ import org.junit.Test;
 import java.util.Locale;
 
 /**
+ * The Class SizeExpressionTests.
  *
  * @author Mark Lewis
  */
 public class SizeExpressionTests {
 
+  /** The default locale. */
   private Locale defaultLocale;
 
+  /**
+   * Sets the up.
+   *
+   * @throws Exception the exception
+   */
   @Before
   public void setUp() throws Exception {
     this.defaultLocale = Locale.getDefault();
     Locale.setDefault(Locale.US);
   }
 
+  /**
+   * Tear down.
+   *
+   * @throws Exception the exception
+   */
   @After
   public void tearDown() throws Exception {
     Locale.setDefault(defaultLocale);
   }
 
+  /**
+   * Test format no decimal base2.
+   */
   @Test
   public void testFormatNoDecimalBase2() {
     Assert.assertEquals("1 B", SizeExpression.format(1, 0, true));
@@ -48,6 +63,9 @@ public class SizeExpressionTests {
     Assert.assertEquals("10 KB", SizeExpression.format(10250, 0, true));
   }
 
+  /**
+   * Test format no decimal base10.
+   */
   @Test
   public void testFormatNoDecimalBase10() {
     Assert.assertEquals("1", SizeExpression.format(1, 0, false));
@@ -60,6 +78,9 @@ public class SizeExpressionTests {
     Assert.assertEquals("10K", SizeExpression.format(10250, 0, false));
   }
 
+  /**
+   * Test format one decimal base2.
+   */
   @Test
   public void testFormatOneDecimalBase2() {
     Assert.assertEquals("1 B", SizeExpression.format(1, 1, true));
@@ -72,6 +93,9 @@ public class SizeExpressionTests {
     Assert.assertEquals("10.0 KB", SizeExpression.format(10250, 1, true));
   }
 
+  /**
+   * Test format one decimal base10.
+   */
   @Test
   public void testFormatOneDecimalBase10() {
     Assert.assertEquals("1", SizeExpression.format(1, 1, false));
@@ -84,6 +108,9 @@ public class SizeExpressionTests {
     Assert.assertEquals("10.3K", SizeExpression.format(10250, 1, false));
   }
 
+  /**
+   * Test format all prefixes base2.
+   */
   @Test
   public void testFormatAllPrefixesBase2() {
     Assert.assertEquals("1 B", SizeExpression.format(1, 0, true));
@@ -94,6 +121,9 @@ public class SizeExpressionTests {
     Assert.assertEquals("1 PB", SizeExpression.format(1125899906842624L, 0, true));
   }
 
+  /**
+   * Test format all prefixes base10.
+   */
   @Test
   public void testFormatAllPrefixesBase10() {
     Assert.assertEquals("1", SizeExpression.format(1, 0, false));
@@ -104,6 +134,9 @@ public class SizeExpressionTests {
     Assert.assertEquals("1P", SizeExpression.format(1000000000000000L, 0, false));
   }
 
+  /**
+   * Test parse with unit.
+   */
   @Test
   public void testParseWithUnit() {
     Assert.assertEquals(1, SizeExpression.parse("1B"));
@@ -120,6 +153,9 @@ public class SizeExpressionTests {
     Assert.assertEquals(1125899906842624L, SizeExpression.parse("1PB"));
   }
 
+  /**
+   * Test parse without unit.
+   */
   @Test
   public void testParseWithoutUnit() {
     Assert.assertEquals(1, SizeExpression.parse("1"));

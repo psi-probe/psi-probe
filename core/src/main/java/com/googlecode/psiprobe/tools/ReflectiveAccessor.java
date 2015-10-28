@@ -18,21 +18,38 @@ import java.security.AccessController;
 import java.security.PrivilegedAction;
 
 /**
+ * The Class ReflectiveAccessor.
  *
  * @author Mark Lewis
  */
 public class ReflectiveAccessor implements Accessor {
 
+  /** The reflection factory. */
   private static Object reflectionFactory;
+  
+  /** The new field accessor. */
   private static Method newFieldAccessor;
+  
+  /** The get. */
   private static Method get;
 
+  /**
+   * Instantiates a new reflective accessor.
+   *
+   * @throws ClassNotFoundException the class not found exception
+   * @throws InstantiationException the instantiation exception
+   * @throws IllegalAccessException the illegal access exception
+   * @throws NoSuchMethodException the no such method exception
+   */
   ReflectiveAccessor() throws ClassNotFoundException, InstantiationException,
       IllegalAccessException, NoSuchMethodException {
 
     init();
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.tools.Accessor#get(java.lang.Object, java.lang.reflect.Field)
+   */
   public Object get(Object obj, Field field) {
     try {
       Object fieldAccessor = getFieldAccessor(field);
@@ -45,6 +62,15 @@ public class ReflectiveAccessor implements Accessor {
     return null;
   }
 
+  /**
+   * Gets the field accessor.
+   *
+   * @param field the field
+   * @return the field accessor
+   * @throws IllegalAccessException the illegal access exception
+   * @throws IllegalArgumentException the illegal argument exception
+   * @throws InvocationTargetException the invocation target exception
+   */
   private static Object getFieldAccessor(Field field) throws IllegalAccessException,
       IllegalArgumentException, InvocationTargetException {
 
@@ -55,6 +81,14 @@ public class ReflectiveAccessor implements Accessor {
     }
   }
 
+  /**
+   * Inits the.
+   *
+   * @throws ClassNotFoundException the class not found exception
+   * @throws InstantiationException the instantiation exception
+   * @throws IllegalAccessException the illegal access exception
+   * @throws NoSuchMethodException the no such method exception
+   */
   private static final void init() throws ClassNotFoundException, InstantiationException,
       IllegalAccessException, NoSuchMethodException {
 
@@ -76,6 +110,14 @@ public class ReflectiveAccessor implements Accessor {
     }
   }
 
+  /**
+   * Gets the reflection factory.
+   *
+   * @return the reflection factory
+   * @throws ClassNotFoundException the class not found exception
+   * @throws InstantiationException the instantiation exception
+   * @throws IllegalAccessException the illegal access exception
+   */
   private static Object getReflectionFactory() throws ClassNotFoundException,
       InstantiationException, IllegalAccessException {
 

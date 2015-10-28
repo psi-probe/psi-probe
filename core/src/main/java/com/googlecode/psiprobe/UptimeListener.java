@@ -23,12 +23,19 @@ import javax.servlet.ServletContextListener;
  */
 public class UptimeListener implements ServletContextListener {
 
+  /** The Constant START_TIME_KEY. */
   public static final String START_TIME_KEY = "UPTIME_START";
 
+  /* (non-Javadoc)
+   * @see javax.servlet.ServletContextListener#contextInitialized(javax.servlet.ServletContextEvent)
+   */
   public void contextInitialized(ServletContextEvent sce) {
     sce.getServletContext().setAttribute(START_TIME_KEY, System.currentTimeMillis());
   }
 
+  /* (non-Javadoc)
+   * @see javax.servlet.ServletContextListener#contextDestroyed(javax.servlet.ServletContextEvent)
+   */
   public void contextDestroyed(ServletContextEvent sce) {
     sce.getServletContext().removeAttribute(START_TIME_KEY);
   }

@@ -27,11 +27,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * 
+ * The Class ListThreadsController.
+ *
  * @author Vlad Ilyushchenko
  */
 public class ListThreadsController extends TomcatContainerController {
 
+  /* (non-Javadoc)
+   * @see org.springframework.web.servlet.mvc.AbstractController#handleRequestInternal(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+   */
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 
@@ -50,6 +54,12 @@ public class ListThreadsController extends TomcatContainerController {
     return new ModelAndView(getViewName(), "threads", enumerateThreads(classLoaderMap));
   }
 
+  /**
+   * Enumerate threads.
+   *
+   * @param classLoaderMap the class loader map
+   * @return the list
+   */
   private List<ThreadModel> enumerateThreads(final Map<String, String> classLoaderMap) {
 
     // get top ThreadGroup
@@ -91,6 +101,12 @@ public class ListThreadsController extends TomcatContainerController {
     return threadList;
   }
 
+  /**
+   * To uid.
+   *
+   * @param obj the obj
+   * @return the string
+   */
   private static String toUid(Object obj) {
     return obj.getClass().getName() + "@" + obj.hashCode();
   }

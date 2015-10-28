@@ -2,8 +2,14 @@ package com.googlecode.psiprobe.jsp;
 
 import junit.framework.TestCase;
 
+/**
+ * The Class VisualScoreTagTest.
+ */
 public class VisualScoreTagTest extends TestCase {
 
+  /**
+   * Test range scan.
+   */
   public void testRangeScan() {
     // As used in appRuntimeInfo.jsp
     doTestRangeScan(8, 5, false);
@@ -17,6 +23,13 @@ public class VisualScoreTagTest extends TestCase {
     doTestRangeScan(10, 5, true);
   }
 
+  /**
+   * Do test range scan.
+   *
+   * @param fullBlocks the full blocks
+   * @param partialBlocks the partial blocks
+   * @param invertLoopIndexes the invert loop indexes
+   */
   private void doTestRangeScan(int fullBlocks, int partialBlocks, boolean invertLoopIndexes) {
     int value;
     int value2;
@@ -61,6 +74,15 @@ public class VisualScoreTagTest extends TestCase {
     }
   }
 
+  /**
+   * Call calculate suffix.
+   *
+   * @param value the value
+   * @param value2 the value2
+   * @param fullBlocks the full blocks
+   * @param partialBlocks the partial blocks
+   * @return the string[]
+   */
   private String[] callCalculateSuffix(int value, int value2, int fullBlocks, int partialBlocks) {
     String body = "{0} ";
 

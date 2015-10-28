@@ -22,35 +22,70 @@ import org.springframework.context.support.MessageSourceAccessor;
 import javax.mail.MessagingException;
 
 /**
+ * The listener interface for receiving memoryPoolMailing events.
+ * The class that is interested in processing a memoryPoolMailing
+ * event implements this interface, and the object created
+ * with that class is registered with a component using the
+ * component's <code>addMemoryPoolMailingListener<code> method. When
+ * the memoryPoolMailing event occurs, that object's appropriate
+ * method is invoked.
  *
  * @author Mark Lewis
  */
 public class MemoryPoolMailingListener extends FlapListener implements MessageSourceAware,
     InitializingBean {
 
+  /** The Constant BASE_PROPERTY. */
   private static final String BASE_PROPERTY = "probe.src.stats.listener.memory.pool.";
 
+  /** The message source accessor. */
   private MessageSourceAccessor messageSourceAccessor;
+  
+  /** The mailer. */
   private Mailer mailer;
 
+  /**
+   * Instantiates a new memory pool mailing listener.
+   */
   public MemoryPoolMailingListener() {}
 
+  /**
+   * Gets the message source accessor.
+   *
+   * @return the message source accessor
+   */
   public MessageSourceAccessor getMessageSourceAccessor() {
     return messageSourceAccessor;
   }
 
+  /* (non-Javadoc)
+   * @see org.springframework.context.MessageSourceAware#setMessageSource(org.springframework.context.MessageSource)
+   */
   public void setMessageSource(MessageSource messageSource) {
     this.messageSourceAccessor = new MessageSourceAccessor(messageSource);
   }
 
+  /**
+   * Gets the mailer.
+   *
+   * @return the mailer
+   */
   public Mailer getMailer() {
     return mailer;
   }
 
+  /**
+   * Sets the mailer.
+   *
+   * @param mailer the new mailer
+   */
   public void setMailer(Mailer mailer) {
     this.mailer = mailer;
   }
 
+  /* (non-Javadoc)
+   * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet()
+   */
   public void afterPropertiesSet() throws Exception {
     if (getMailer().getSmtp() == null) {
       logger.info("Mailer SMTP host is not set.  Disabling listener.");
@@ -61,26 +96,48 @@ public class MemoryPoolMailingListener extends FlapListener implements MessageSo
     }
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.beans.stats.listeners.FlapListener#flappingStarted(com.googlecode.psiprobe.beans.stats.listeners.StatsCollectionEvent)
+   */
   protected void flappingStarted(StatsCollectionEvent sce) {
     sendMail(sce, "flappingStart", false);
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.beans.stats.listeners.FlapListener#aboveThresholdFlappingStopped(com.googlecode.psiprobe.beans.stats.listeners.StatsCollectionEvent)
+   */
   protected void aboveThresholdFlappingStopped(StatsCollectionEvent sce) {
     sendMail(sce, "aboveThreshold", true);
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.beans.stats.listeners.FlapListener#belowThresholdFlappingStopped(com.googlecode.psiprobe.beans.stats.listeners.StatsCollectionEvent)
+   */
   protected void belowThresholdFlappingStopped(StatsCollectionEvent sce) {
     sendMail(sce, "belowThreshold", true);
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.beans.stats.listeners.FlapListener#aboveThresholdNotFlapping(com.googlecode.psiprobe.beans.stats.listeners.StatsCollectionEvent)
+   */
   protected void aboveThresholdNotFlapping(StatsCollectionEvent sce) {
     sendMail(sce, "aboveThreshold", false);
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.beans.stats.listeners.FlapListener#belowThresholdNotFlapping(com.googlecode.psiprobe.beans.stats.listeners.StatsCollectionEvent)
+   */
   protected void belowThresholdNotFlapping(StatsCollectionEvent sce) {
     sendMail(sce, "belowThreshold", false);
   }
 
+  /**
+   * Send mail.
+   *
+   * @param sce the sce
+   * @param message the message
+   * @param flappingStop the flapping stop
+   */
   protected void sendMail(StatsCollectionEvent sce, String message, boolean flappingStop) {
     String name = sce.getName();
     if (isSeriesDisabled(name)) {

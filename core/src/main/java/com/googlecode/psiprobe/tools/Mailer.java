@@ -39,31 +39,65 @@ import javax.mail.internet.MimeMultipart;
  */
 public class Mailer {
 
+  /** The Constant PROPERTY_KEY_SMTP. */
   public static final String PROPERTY_KEY_SMTP = "mail.smtp.host";
 
+  /** The log. */
   private Log log = LogFactory.getLog(this.getClass());
+  
+  /** The from. */
   private String from;
+  
+  /** The smtp. */
   private String smtp;
+  
+  /** The default to. */
   private String defaultTo;
+  
+  /** The subject prefix. */
   private String subjectPrefix;
 
+  /**
+   * Instantiates a new mailer.
+   */
   public Mailer() {
     this(null);
   }
 
+  /**
+   * Instantiates a new mailer.
+   *
+   * @param from the from
+   */
   public Mailer(String from) {
     this(from, null);
   }
 
+  /**
+   * Instantiates a new mailer.
+   *
+   * @param from the from
+   * @param smtp the smtp
+   */
   public Mailer(String from, String smtp) {
     this.smtp = smtp;
     this.from = from;
   }
 
+  /**
+   * Gets the from.
+   *
+   * @return the from
+   */
   public String getFrom() {
     return from;
   }
 
+  /**
+   * Gets the smtp.
+   *
+   * @return the smtp
+   */
   public String getSmtp() {
     if (smtp == null) {
       return System.getProperty(PROPERTY_KEY_SMTP);
@@ -72,30 +106,66 @@ public class Mailer {
     }
   }
 
+  /**
+   * Sets the from.
+   *
+   * @param from the new from
+   */
   public void setFrom(String from) {
     this.from = from;
   }
 
+  /**
+   * Sets the smtp.
+   *
+   * @param smtp the new smtp
+   */
   public void setSmtp(String smtp) {
     this.smtp = smtp;
   }
 
+  /**
+   * Gets the default to.
+   *
+   * @return the default to
+   */
   public String getDefaultTo() {
     return defaultTo;
   }
 
+  /**
+   * Sets the default to.
+   *
+   * @param defaultTo the new default to
+   */
   public void setDefaultTo(String defaultTo) {
     this.defaultTo = defaultTo;
   }
 
+  /**
+   * Gets the subject prefix.
+   *
+   * @return the subject prefix
+   */
   public String getSubjectPrefix() {
     return subjectPrefix;
   }
 
+  /**
+   * Sets the subject prefix.
+   *
+   * @param subjectPrefix the new subject prefix
+   */
   public void setSubjectPrefix(String subjectPrefix) {
     this.subjectPrefix = subjectPrefix;
   }
 
+  /**
+   * Send.
+   *
+   * @param mailMessage the mail message
+   * @throws MessagingException the messaging exception
+   */
   public void send(MailMessage mailMessage) throws MessagingException {
     Properties props = (Properties) System.getProperties().clone();
     if (smtp != null) {
@@ -112,6 +182,14 @@ public class Mailer {
     Transport.send(message);
   }
 
+  /**
+   * Creates the mime message.
+   *
+   * @param session the session
+   * @param mailMessage the mail message
+   * @return the mime message
+   * @throws MessagingException the messaging exception
+   */
   private MimeMessage createMimeMessage(Session session, MailMessage mailMessage)
       throws MessagingException {
 
@@ -157,6 +235,13 @@ public class Mailer {
     return message;
   }
 
+  /**
+   * Creates the addresses.
+   *
+   * @param addresses the addresses
+   * @return the internet address[]
+   * @throws AddressException the address exception
+   */
   private static InternetAddress[] createAddresses(String[] addresses) throws AddressException {
     List<InternetAddress> result = new ArrayList<InternetAddress>(addresses.length);
     for (String address : addresses) {
@@ -166,6 +251,13 @@ public class Mailer {
     return (InternetAddress[]) result.toArray(new InternetAddress[result.size()]);
   }
 
+  /**
+   * Creates the attachment part.
+   *
+   * @param attachment the attachment
+   * @return the mime body part
+   * @throws MessagingException the messaging exception
+   */
   private static MimeBodyPart createAttachmentPart(DataSource attachment)
       throws MessagingException {
     
@@ -176,6 +268,14 @@ public class Mailer {
     return attachmentPart;
   }
 
+  /**
+   * Creates the message body part.
+   *
+   * @param body the body
+   * @param html the html
+   * @return the mime body part
+   * @throws MessagingException the messaging exception
+   */
   private static MimeBodyPart createMessageBodyPart(String body, boolean html)
       throws MessagingException {
     MimeBodyPart bodyPart = new MimeBodyPart();

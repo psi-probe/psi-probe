@@ -31,22 +31,36 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class DownloadXmlConfController extends ContextHandlerController {
 
+  /** The Constant TARGET_WEB_XML. */
   public static final String TARGET_WEB_XML = "web.xml";
+  
+  /** The Constant TARGET_CONTEXT_XML. */
   public static final String TARGET_CONTEXT_XML = "context.xml";
 
-  /**
-   * Type of a configuration file to be downloaded
-   */
+  /** Type of a configuration file to be downloaded. */
   private String downloadTarget;
 
+  /**
+   * Gets the download target.
+   *
+   * @return the download target
+   */
   public String getDownloadTarget() {
     return downloadTarget;
   }
 
+  /**
+   * Sets the download target.
+   *
+   * @param downloadTarget the new download target
+   */
   public void setDownloadTarget(String downloadTarget) {
     this.downloadTarget = downloadTarget;
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.controllers.ContextHandlerController#handleContext(java.lang.String, org.apache.catalina.Context, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+   */
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 

@@ -22,22 +22,37 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * 
+ * The Class KillThreadController.
+ *
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */
 public class KillThreadController extends ParameterizableViewController {
 
+  /** The replace pattern. */
   private String replacePattern;
 
+  /**
+   * Gets the replace pattern.
+   *
+   * @return the replace pattern
+   */
   public String getReplacePattern() {
     return replacePattern;
   }
 
+  /**
+   * Sets the replace pattern.
+   *
+   * @param replacePattern the new replace pattern
+   */
   public void setReplacePattern(String replacePattern) {
     this.replacePattern = replacePattern;
   }
 
+  /* (non-Javadoc)
+   * @see org.springframework.web.servlet.mvc.ParameterizableViewController#handleRequestInternal(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+   */
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {

@@ -12,21 +12,52 @@
 package com.googlecode.psiprobe.tokenizer;
 
 /**
- * 
+ * The Interface Token.
+ *
  * @author Vlad Ilyushchenko
  */
 public interface Token {
 
+  /**
+   * Gets the text.
+   *
+   * @return the text
+   */
   String getText();
 
+  /**
+   * Gets the inner text.
+   *
+   * @return the inner text
+   */
   String getInnerText();
 
+  /**
+   * Gets the name.
+   *
+   * @return the name
+   */
   String getName();
 
+  /**
+   * Gets the type.
+   *
+   * @return the type
+   */
   int getType();
 
+  /**
+   * Gets the line.
+   *
+   * @return the line
+   */
   int getLine();
 
+  /**
+   * Gets the col.
+   *
+   * @return the col
+   */
   int getCol();
 
 }

@@ -43,6 +43,9 @@ import javax.servlet.http.HttpSession;
  */
 public class ListSessionsController extends ContextHandlerController {
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.controllers.ContextHandlerController#handleContext(java.lang.String, org.apache.catalina.Context, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+   */
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 
@@ -126,6 +129,11 @@ public class ListSessionsController extends ContextHandlerController {
     return modelAndView;
   }
 
+  /**
+   * Populate search messages.
+   *
+   * @param searchInfo the search info
+   */
   private void populateSearchMessages(SessionSearchInfo searchInfo) {
     MessageSourceAccessor msa = getMessageSourceAccessor();
 
@@ -165,6 +173,13 @@ public class ListSessionsController extends ContextHandlerController {
     }
   }
 
+  /**
+   * Match session.
+   *
+   * @param appSession the app session
+   * @param searchInfo the search info
+   * @return true, if successful
+   */
   private boolean matchSession(ApplicationSession appSession, SessionSearchInfo searchInfo) {
     boolean sessionMatches = true;
     if (searchInfo.isUseSearch()) {
@@ -218,6 +233,9 @@ public class ListSessionsController extends ContextHandlerController {
     return sessionMatches;
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.controllers.ContextHandlerController#isContextOptional()
+   */
   @Override
   protected boolean isContextOptional() {
     return true;

@@ -16,13 +16,17 @@ import com.googlecode.psiprobe.model.DataSourceInfo;
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 
 /**
- * 
+ * The Class Tomcat8DbcpDatasourceAccessor.
+ *
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  * @author <a href="mailto:diogosantana@gmail.com">Diogo Sant'Ana</a>
  */
 public class Tomcat8DbcpDatasourceAccessor implements DatasourceAccessor {
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.beans.DatasourceAccessor#getInfo(java.lang.Object)
+   */
   public DataSourceInfo getInfo(Object resource) throws Exception {
     DataSourceInfo dataSourceInfo = null;
     if (canMap(resource)) {
@@ -39,10 +43,16 @@ public class Tomcat8DbcpDatasourceAccessor implements DatasourceAccessor {
     return dataSourceInfo;
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.beans.DatasourceAccessor#reset(java.lang.Object)
+   */
   public boolean reset(Object resource) throws Exception {
     return false;
   }
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.beans.DatasourceAccessor#canMap(java.lang.Object)
+   */
   public boolean canMap(Object resource) {
     return "org.apache.tomcat.dbcp.dbcp2.BasicDataSource".equals(resource.getClass().getName())
         && resource instanceof BasicDataSource;

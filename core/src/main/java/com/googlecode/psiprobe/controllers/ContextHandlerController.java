@@ -26,6 +26,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 public abstract class ContextHandlerController extends TomcatContainerController {
 
+  /* (non-Javadoc)
+   * @see org.springframework.web.servlet.mvc.AbstractController#handleRequestInternal(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+   */
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 
@@ -50,10 +53,25 @@ public abstract class ContextHandlerController extends TomcatContainerController
     }
   }
 
+  /**
+   * Checks if is context optional.
+   *
+   * @return true, if is context optional
+   */
   protected boolean isContextOptional() {
     return false;
   }
 
+  /**
+   * Handle context.
+   *
+   * @param contextName the context name
+   * @param context the context
+   * @param request the request
+   * @param response the response
+   * @return the model and view
+   * @throws Exception the exception
+   */
   protected abstract ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception;
 }

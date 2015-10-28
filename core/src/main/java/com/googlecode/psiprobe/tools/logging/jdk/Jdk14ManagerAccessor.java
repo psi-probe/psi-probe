@@ -23,12 +23,22 @@ import java.util.Enumeration;
 import java.util.List;
 
 /**
- * 
+ * The Class Jdk14ManagerAccessor.
+ *
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */
 public class Jdk14ManagerAccessor extends DefaultAccessor {
 
+  /**
+   * Instantiates a new jdk14 manager accessor.
+   *
+   * @param cl the cl
+   * @throws ClassNotFoundException the class not found exception
+   * @throws IllegalAccessException the illegal access exception
+   * @throws IllegalArgumentException the illegal argument exception
+   * @throws InvocationTargetException the invocation target exception
+   */
   public Jdk14ManagerAccessor(ClassLoader cl) throws ClassNotFoundException,
       IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 
@@ -41,10 +51,21 @@ public class Jdk14ManagerAccessor extends DefaultAccessor {
     setTarget(manager);
   }
 
+  /**
+   * Gets the root logger.
+   *
+   * @return the root logger
+   */
   public Jdk14LoggerAccessor getRootLogger() {
     return getLogger("");
   }
 
+  /**
+   * Gets the logger.
+   *
+   * @param name the name
+   * @return the logger
+   */
   public Jdk14LoggerAccessor getLogger(String name) {
     try {
       Object logger = MethodUtils.invokeMethod(getTarget(), "getLogger", name);
@@ -62,6 +83,11 @@ public class Jdk14ManagerAccessor extends DefaultAccessor {
     return null;
   }
 
+  /**
+   * Gets the handlers.
+   *
+   * @return the handlers
+   */
   public List<LogDestination> getHandlers() {
     List<LogDestination> allHandlers = new ArrayList<LogDestination>();
     try {

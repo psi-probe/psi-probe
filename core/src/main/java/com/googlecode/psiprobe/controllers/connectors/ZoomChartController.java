@@ -18,21 +18,36 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
+ * The Class ZoomChartController.
  *
  * @author Mark Lewis
  */
 public class ZoomChartController extends ParameterizableViewController {
 
+  /** The collection period. */
   private long collectionPeriod;
 
+  /**
+   * Gets the collection period.
+   *
+   * @return the collection period
+   */
   public long getCollectionPeriod() {
     return collectionPeriod;
   }
 
+  /**
+   * Sets the collection period.
+   *
+   * @param collectionPeriod the new collection period
+   */
   public void setCollectionPeriod(long collectionPeriod) {
     this.collectionPeriod = collectionPeriod;
   }
 
+  /* (non-Javadoc)
+   * @see org.springframework.web.servlet.mvc.ParameterizableViewController#handleRequestInternal(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+   */
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {

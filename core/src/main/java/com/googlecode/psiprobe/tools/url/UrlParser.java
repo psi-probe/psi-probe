@@ -14,16 +14,30 @@ package com.googlecode.psiprobe.tools.url;
 import java.net.MalformedURLException;
 
 /**
- * 
+ * The Class UrlParser.
+ *
  * @author Vlad Ilyushchenko
  */
 public class UrlParser {
 
+  /** The protocol. */
   private String protocol = null;
+  
+  /** The host. */
   private String host = null;
+  
+  /** The port. */
   private int port = -1;
+  
+  /** The path. */
   private String path = null;
 
+  /**
+   * Instantiates a new url parser.
+   *
+   * @param url the url
+   * @throws MalformedURLException the malformed url exception
+   */
   public UrlParser(String url) throws MalformedURLException {
     if (url != null && url.length() > 0) {
       int ppos = url.indexOf("://");
@@ -61,34 +75,74 @@ public class UrlParser {
     }
   }
 
+  /**
+   * Gets the protocol.
+   *
+   * @return the protocol
+   */
   public String getProtocol() {
     return protocol;
   }
 
+  /**
+   * Sets the protocol.
+   *
+   * @param protocol the new protocol
+   */
   public void setProtocol(String protocol) {
     this.protocol = protocol;
   }
 
+  /**
+   * Gets the host.
+   *
+   * @return the host
+   */
   public String getHost() {
     return host;
   }
 
+  /**
+   * Sets the host.
+   *
+   * @param host the new host
+   */
   public void setHost(String host) {
     this.host = host;
   }
 
+  /**
+   * Gets the port.
+   *
+   * @return the port
+   */
   public int getPort() {
     return port;
   }
 
+  /**
+   * Sets the port.
+   *
+   * @param port the new port
+   */
   public void setPort(int port) {
     this.port = port;
   }
 
+  /**
+   * Gets the path.
+   *
+   * @return the path
+   */
   public String getPath() {
     return path;
   }
 
+  /**
+   * Sets the path.
+   *
+   * @param path the new path
+   */
   public void setPath(String path) {
     this.path = path;
   }

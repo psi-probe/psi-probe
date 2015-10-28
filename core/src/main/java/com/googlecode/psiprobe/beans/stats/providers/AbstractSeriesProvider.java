@@ -19,14 +19,23 @@ import org.jfree.data.xy.XYSeries;
 import java.util.List;
 
 /**
- * 
+ * The Class AbstractSeriesProvider.
+ *
  * @author Vlad Ilyushchenko
  * @author Andy Shapoval
  */
 public abstract class AbstractSeriesProvider implements SeriesProvider {
 
+  /** The logger. */
   protected Log logger = LogFactory.getLog(getClass());
 
+  /**
+   * To series.
+   *
+   * @param legend the legend
+   * @param stats the stats
+   * @return the XY series
+   */
   protected XYSeries toSeries(String legend, List<XYDataItem> stats) {
     XYSeries xySeries = new XYSeries(legend, true, false);
     synchronized (stats) {

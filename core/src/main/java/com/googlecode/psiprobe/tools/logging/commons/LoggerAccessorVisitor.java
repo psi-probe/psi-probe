@@ -17,11 +17,15 @@ import com.googlecode.psiprobe.tools.logging.jdk.Jdk14LoggerAccessor;
 import com.googlecode.psiprobe.tools.logging.log4j.Log4JLoggerAccessor;
 
 /**
+ * The Class LoggerAccessorVisitor.
  *
  * @author Mark Lewis
  */
 public abstract class LoggerAccessorVisitor extends DefaultAccessor {
 
+  /**
+   * Visit.
+   */
   public void visit() {
     Object logger = Instruments.getField(getTarget(), "logger");
     if (logger != null) {
@@ -52,8 +56,18 @@ public abstract class LoggerAccessorVisitor extends DefaultAccessor {
     }
   }
 
+  /**
+   * Visit.
+   *
+   * @param accessor the accessor
+   */
   public abstract void visit(Log4JLoggerAccessor accessor);
 
+  /**
+   * Visit.
+   *
+   * @param accessor the accessor
+   */
   public abstract void visit(Jdk14LoggerAccessor accessor);
 
 }

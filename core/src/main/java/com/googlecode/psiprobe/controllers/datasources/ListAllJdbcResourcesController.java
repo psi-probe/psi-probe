@@ -29,6 +29,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ListAllJdbcResourcesController extends TomcatContainerController {
 
+  /* (non-Javadoc)
+   * @see org.springframework.web.servlet.mvc.AbstractController#handleRequestInternal(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+   */
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse httpServletResponse) throws Exception {
 

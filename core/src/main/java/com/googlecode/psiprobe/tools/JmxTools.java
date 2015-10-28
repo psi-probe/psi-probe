@@ -22,13 +22,24 @@ import javax.management.ObjectName;
 import javax.management.openmbean.CompositeData;
 
 /**
- * 
+ * The Class JmxTools.
+ *
  * @author Vlad Ilyushchenko
  */
 public class JmxTools {
 
+  /** The logger. */
   private static Log logger = LogFactory.getLog(JmxTools.class);
 
+  /**
+   * Gets the attribute.
+   *
+   * @param mbeanServer the mbean server
+   * @param objName the obj name
+   * @param attrName the attr name
+   * @return the attribute
+   * @throws Exception the exception
+   */
   public static Object getAttribute(MBeanServer mbeanServer, ObjectName objName, String attrName)
       throws Exception {
 
@@ -40,6 +51,15 @@ public class JmxTools {
     }
   }
 
+  /**
+   * Gets the long attr.
+   *
+   * @param mbeanServer the mbean server
+   * @param objName the obj name
+   * @param attrName the attr name
+   * @param defaultValue the default value
+   * @return the long attr
+   */
   public static long getLongAttr(MBeanServer mbeanServer, ObjectName objName, String attrName,
       long defaultValue) {
 
@@ -51,6 +71,13 @@ public class JmxTools {
     }
   }
 
+  /**
+   * Gets the long attr.
+   *
+   * @param cds the cds
+   * @param name the name
+   * @return the long attr
+   */
   public static long getLongAttr(CompositeData cds, String name) {
     Object obj = cds.get(name);
     if (obj != null && obj instanceof Long) {
@@ -60,18 +87,44 @@ public class JmxTools {
     }
   }
 
+  /**
+   * Gets the long attr.
+   *
+   * @param mbeanServer the mbean server
+   * @param objName the obj name
+   * @param attrName the attr name
+   * @return the long attr
+   * @throws Exception the exception
+   */
   public static long getLongAttr(MBeanServer mbeanServer, ObjectName objName, String attrName)
       throws Exception {
 
     return ((Long) mbeanServer.getAttribute(objName, attrName));
   }
 
+  /**
+   * Gets the int attr.
+   *
+   * @param mbeanServer the mbean server
+   * @param objName the obj name
+   * @param attrName the attr name
+   * @return the int attr
+   * @throws Exception the exception
+   */
   public static int getIntAttr(MBeanServer mbeanServer, ObjectName objName, String attrName)
       throws Exception {
 
     return ((Integer) mbeanServer.getAttribute(objName, attrName));
   }
 
+  /**
+   * Gets the int attr.
+   *
+   * @param cds the cds
+   * @param name the name
+   * @param defaultValue the default value
+   * @return the int attr
+   */
   public static int getIntAttr(CompositeData cds, String name, int defaultValue) {
     Object obj = cds.get(name);
 
@@ -82,6 +135,15 @@ public class JmxTools {
     }
   }
 
+  /**
+   * Gets the string attr.
+   *
+   * @param mbeanServer the mbean server
+   * @param objName the obj name
+   * @param attrName the attr name
+   * @return the string attr
+   * @throws Exception the exception
+   */
   public static String getStringAttr(MBeanServer mbeanServer, ObjectName objName, String attrName)
       throws Exception {
 
@@ -89,16 +151,39 @@ public class JmxTools {
     return obj == null ? null : obj.toString();
   }
 
+  /**
+   * Gets the string attr.
+   *
+   * @param cds the cds
+   * @param name the name
+   * @return the string attr
+   */
   public static String getStringAttr(CompositeData cds, String name) {
     Object obj = cds.get(name);
     return obj != null ? obj.toString() : null;
   }
 
+  /**
+   * Gets the boolean attr.
+   *
+   * @param cds the cds
+   * @param name the name
+   * @return the boolean attr
+   */
   public static boolean getBooleanAttr(CompositeData cds, String name) {
     Object obj = cds.get(name);
     return obj != null && obj instanceof Boolean && ((Boolean) obj);
   }
 
+  /**
+   * Checks for attribute.
+   *
+   * @param server the server
+   * @param mbean the mbean
+   * @param attrName the attr name
+   * @return true, if successful
+   * @throws Exception the exception
+   */
   public static boolean hasAttribute(MBeanServer server, ObjectName mbean, String attrName)
       throws Exception {
 

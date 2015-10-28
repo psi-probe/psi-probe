@@ -55,16 +55,30 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class RenderChartController extends AbstractController {
 
+  /** The stats collection. */
   private StatsCollection statsCollection;
 
+  /**
+   * Gets the stats collection.
+   *
+   * @return the stats collection
+   */
   public StatsCollection getStatsCollection() {
     return statsCollection;
   }
 
+  /**
+   * Sets the stats collection.
+   *
+   * @param statsCollection the new stats collection
+   */
   public void setStatsCollection(StatsCollection statsCollection) {
     this.statsCollection = statsCollection;
   }
 
+  /* (non-Javadoc)
+   * @see org.springframework.web.servlet.mvc.AbstractController#handleRequestInternal(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+   */
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 

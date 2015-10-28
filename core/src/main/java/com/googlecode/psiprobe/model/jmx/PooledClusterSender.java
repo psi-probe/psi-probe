@@ -12,17 +12,29 @@
 package com.googlecode.psiprobe.model.jmx;
 
 /**
- * 
+ * The Class PooledClusterSender.
+ *
  * @author Vlad Ilyushchenko
  */
 public class PooledClusterSender extends ClusterSender {
 
+  /** The max pool socket limit. */
   private int maxPoolSocketLimit;
 
+  /**
+   * Gets the max pool socket limit.
+   *
+   * @return the max pool socket limit
+   */
   public int getMaxPoolSocketLimit() {
     return maxPoolSocketLimit;
   }
 
+  /**
+   * Sets the max pool socket limit.
+   *
+   * @param maxPoolSocketLimit the new max pool socket limit
+   */
   public void setMaxPoolSocketLimit(int maxPoolSocketLimit) {
     this.maxPoolSocketLimit = maxPoolSocketLimit;
   }

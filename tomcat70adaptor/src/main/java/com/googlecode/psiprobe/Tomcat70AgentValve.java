@@ -32,14 +32,23 @@ import javax.servlet.http.HttpSession;
  */
 public class Tomcat70AgentValve extends ValveBase {
 
+  /**
+   * Instantiates a new tomcat70 agent valve.
+   */
   public Tomcat70AgentValve() {
     super(true);
   }
 
+  /* (non-Javadoc)
+   * @see org.apache.catalina.valves.ValveBase#getInfo()
+   */
   public String getInfo() {
     return info;
   }
 
+  /* (non-Javadoc)
+   * @see org.apache.catalina.valves.ValveBase#invoke(org.apache.catalina.connector.Request, org.apache.catalina.connector.Response)
+   */
   public void invoke(Request request, Response response) throws IOException, ServletException {
     getNext().invoke(request, response);
 

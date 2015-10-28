@@ -20,7 +20,7 @@ import java.util.Iterator;
 /**
  * <code>UniqueList</code> is a successor of <code>java.util.Vector</code> to provide a collection
  * that contains no duplicate elements, more formally such that e1.compareTo(e2) == 0.
- *
+ * 
  * <p>
  * The collection is kept ordered whenever elements added or removed and besides uniqueness it is to
  * provide fast element search based again on e1.compareTo(e2) values.
@@ -28,14 +28,25 @@ import java.util.Iterator;
  *
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
+ * @param <T> the generic type
  */
 public class UniqueList<T extends Comparable<? super T>> extends ArrayList<T> {
 
+  /* (non-Javadoc)
+   * @see java.util.ArrayList#add(java.lang.Object)
+   */
   @Override
   public synchronized boolean add(T obj) {
     return add(obj, null);
   }
 
+  /**
+   * Adds the.
+   *
+   * @param obj the obj
+   * @param comp the comp
+   * @return true, if successful
+   */
   protected synchronized boolean add(T obj, Comparator<? super T> comp) {
     if (size() == 0) {
       return super.add(obj);
@@ -56,11 +67,17 @@ public class UniqueList<T extends Comparable<? super T>> extends ArrayList<T> {
     }
   }
 
+  /* (non-Javadoc)
+   * @see java.util.ArrayList#add(int, java.lang.Object)
+   */
   @Override
   public synchronized void add(int index, T obj) {
     add(obj);
   }
 
+  /* (non-Javadoc)
+   * @see java.util.ArrayList#addAll(java.util.Collection)
+   */
   @Override
   public synchronized boolean addAll(Collection<? extends T> comp) {
     boolean ok = this != comp;

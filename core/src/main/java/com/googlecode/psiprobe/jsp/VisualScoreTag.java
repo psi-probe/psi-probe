@@ -23,22 +23,35 @@ import javax.servlet.jsp.tagext.BodyContent;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
 /**
- * 
+ * The Class VisualScoreTag.
+ *
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */
 public class VisualScoreTag extends BodyTagSupport {
 
+  /** The Constant serialVersionUID. */
   private static final long serialVersionUID = -5653846466205838602L;
 
+  /** The Constant WHITE_LEFT_BORDER. */
   private static final String WHITE_LEFT_BORDER = "a0";
+  
+  /** The Constant RED_LEFT_BORDER. */
   private static final String RED_LEFT_BORDER = "a1";
+  
+  /** The Constant BLUE_LEFT_BORDER. */
   private static final String BLUE_LEFT_BORDER = "a2";
 
+  /** The Constant WHITE_RIGHT_BORDER. */
   private static final String WHITE_RIGHT_BORDER = "b0";
+  
+  /** The Constant RED_RIGHT_BORDER. */
   private static final String RED_RIGHT_BORDER = "b1";
+  
+  /** The Constant BLUE_RIGHT_BORDER. */
   private static final String BLUE_RIGHT_BORDER = "b2";
 
+  /** The log. */
   protected Log log = LogFactory.getLog(getClass());
 
   /**
@@ -51,7 +64,10 @@ public class VisualScoreTag extends BodyTagSupport {
    */
   private double value2 = 0;
 
+  /** The min value. */
   private double minValue = 0;
+  
+  /** The max value. */
   private double maxValue = 100;
 
   /**
@@ -68,10 +84,18 @@ public class VisualScoreTag extends BodyTagSupport {
    */
   private int fullBlocks = 5;
 
+  /** The show empty blocks. */
   private boolean showEmptyBlocks = false;
+  
+  /** The show a. */
   private boolean showA = false;
+  
+  /** The show b. */
   private boolean showB = false;
 
+  /* (non-Javadoc)
+   * @see javax.servlet.jsp.tagext.BodyTagSupport#doAfterBody()
+   */
   @Override
   public int doAfterBody() throws JspException {
     BodyContent bc = getBodyContent();
@@ -89,6 +113,12 @@ public class VisualScoreTag extends BodyTagSupport {
     return SKIP_BODY;
   }
 
+  /**
+   * Calculate suffix.
+   *
+   * @param body the body
+   * @return the string buffer
+   */
   StringBuffer calculateSuffix(String body) {
     if (value < minValue) {
       log.info("value " + value + " is less than min value " + minValue);
@@ -185,74 +215,164 @@ public class VisualScoreTag extends BodyTagSupport {
     return buf;
   }
 
+  /**
+   * Gets the value.
+   *
+   * @return the value
+   */
   public double getValue() {
     return value;
   }
 
+  /**
+   * Sets the value.
+   *
+   * @param value the new value
+   */
   public void setValue(double value) {
     this.value = value;
   }
 
+  /**
+   * Gets the value2.
+   *
+   * @return the value2
+   */
   public double getValue2() {
     return value2;
   }
 
+  /**
+   * Sets the value2.
+   *
+   * @param value2 the new value2
+   */
   public void setValue2(double value2) {
     this.value2 = value2;
   }
 
+  /**
+   * Gets the min value.
+   *
+   * @return the min value
+   */
   public double getMinValue() {
     return minValue;
   }
 
+  /**
+   * Sets the min value.
+   *
+   * @param minValue the new min value
+   */
   public void setMinValue(double minValue) {
     this.minValue = minValue;
   }
 
+  /**
+   * Gets the max value.
+   *
+   * @return the max value
+   */
   public double getMaxValue() {
     return maxValue;
   }
 
+  /**
+   * Sets the max value.
+   *
+   * @param maxValue the new max value
+   */
   public void setMaxValue(double maxValue) {
     this.maxValue = maxValue;
   }
 
+  /**
+   * Gets the partial blocks.
+   *
+   * @return the partial blocks
+   */
   public int getPartialBlocks() {
     return partialBlocks;
   }
 
+  /**
+   * Sets the partial blocks.
+   *
+   * @param partialBlocks the new partial blocks
+   */
   public void setPartialBlocks(int partialBlocks) {
     this.partialBlocks = partialBlocks;
   }
 
+  /**
+   * Gets the full blocks.
+   *
+   * @return the full blocks
+   */
   public int getFullBlocks() {
     return fullBlocks;
   }
 
+  /**
+   * Sets the full blocks.
+   *
+   * @param fullBlocks the new full blocks
+   */
   public void setFullBlocks(int fullBlocks) {
     this.fullBlocks = fullBlocks;
   }
 
+  /**
+   * Checks if is show empty blocks.
+   *
+   * @return true, if is show empty blocks
+   */
   public boolean isShowEmptyBlocks() {
     return showEmptyBlocks;
   }
 
+  /**
+   * Sets the show empty blocks.
+   *
+   * @param showEmptyBlocks the new show empty blocks
+   */
   public void setShowEmptyBlocks(boolean showEmptyBlocks) {
     this.showEmptyBlocks = showEmptyBlocks;
   }
 
+  /**
+   * Checks if is show a.
+   *
+   * @return true, if is show a
+   */
   public boolean isShowA() {
     return showA;
   }
 
+  /**
+   * Sets the show a.
+   *
+   * @param showA the new show a
+   */
   public void setShowA(boolean showA) {
     this.showA = showA;
   }
 
+  /**
+   * Checks if is show b.
+   *
+   * @return true, if is show b
+   */
   public boolean isShowB() {
     return showB;
   }
 
+  /**
+   * Sets the show b.
+   *
+   * @param showB the new show b
+   */
   public void setShowB(boolean showB) {
     this.showB = showB;
   }

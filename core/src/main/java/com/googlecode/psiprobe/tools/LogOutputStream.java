@@ -23,16 +23,34 @@ import java.io.PrintStream;
  */
 public class LogOutputStream extends OutputStream {
 
+  /** The Constant LEVEL_OFF. */
   public static final int LEVEL_OFF = 0;
+  
+  /** The Constant LEVEL_TRACE. */
   public static final int LEVEL_TRACE = 1;
+  
+  /** The Constant LEVEL_DEBUG. */
   public static final int LEVEL_DEBUG = 2;
+  
+  /** The Constant LEVEL_INFO. */
   public static final int LEVEL_INFO = 3;
+  
+  /** The Constant LEVEL_WARN. */
   public static final int LEVEL_WARN = 4;
+  
+  /** The Constant LEVEL_ERROR. */
   public static final int LEVEL_ERROR = 5;
+  
+  /** The Constant LEVEL_FATAL. */
   public static final int LEVEL_FATAL = 6;
 
+  /** The log. */
   private Log log;
+  
+  /** The level. */
   private int level;
+  
+  /** The buf. */
   private StringBuffer buf = new StringBuffer();
 
   /**

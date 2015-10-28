@@ -22,14 +22,22 @@ import javax.management.MBeanServer;
 import javax.management.ObjectName;
 
 /**
- * 
+ * The Class RuntimeInfoAccessorBean.
+ *
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  */
 public class RuntimeInfoAccessorBean {
 
+  /** The logger. */
   private Log logger = LogFactory.getLog(RuntimeInfoAccessorBean.class);
 
+  /**
+   * Gets the runtime information.
+   *
+   * @return the runtime information
+   * @throws Exception the exception
+   */
   public RuntimeInformation getRuntimeInformation() throws Exception {
     MBeanServer mbeanServer = new Registry().getMBeanServer();
     RuntimeInformation ri = new RuntimeInformation();

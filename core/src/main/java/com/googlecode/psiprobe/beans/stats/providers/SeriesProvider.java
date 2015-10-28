@@ -24,6 +24,14 @@ import javax.servlet.http.HttpServletRequest;
  * @author Vlad Ilyushchenko
  */
 public interface SeriesProvider {
+  
+  /**
+   * Populate.
+   *
+   * @param dataset the dataset
+   * @param statsCollection the stats collection
+   * @param request the request
+   */
   void populate(DefaultTableXYDataset dataset, StatsCollection statsCollection,
       HttpServletRequest request);
 }

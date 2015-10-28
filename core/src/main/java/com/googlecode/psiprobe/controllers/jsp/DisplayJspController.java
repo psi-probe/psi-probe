@@ -24,13 +24,18 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * 
+ * The Class DisplayJspController.
+ *
  * @author Vlad Ilyushchenko
  */
 public class DisplayJspController extends ContextHandlerController {
 
+  /** The Constant SUMMARY_ATTRIBUTE. */
   public static final String SUMMARY_ATTRIBUTE = "jsp.summary";
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.controllers.ContextHandlerController#handleContext(java.lang.String, org.apache.catalina.Context, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+   */
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
     boolean compile = ServletRequestUtils.getBooleanParameter(request, "compile", false);

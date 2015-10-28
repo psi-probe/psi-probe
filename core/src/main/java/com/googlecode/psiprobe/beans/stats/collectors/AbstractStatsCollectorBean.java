@@ -23,49 +23,111 @@ import java.util.Map;
 import java.util.TreeMap;
 
 /**
- * 
+ * The Class AbstractStatsCollectorBean.
+ *
  * @author Vlad Ilyushchenko
  * @author Andy Shapoval
  * @author Mark Lewis
  */
 public abstract class AbstractStatsCollectorBean {
 
+  /** The stats collection. */
   private StatsCollection statsCollection;
+  
+  /** The max series. */
   private int maxSeries = 240;
+  
+  /** The listeners. */
   private List<StatsCollectionListener> listeners;
+  
+  /** The previous data. */
   private Map<String, Long> previousData = new TreeMap<String, Long>();
+  
+  /** The previous data2 d. */
   private Map<String, Entry> previousData2D = new TreeMap<String, Entry>();
 
+  /**
+   * Gets the stats collection.
+   *
+   * @return the stats collection
+   */
   public StatsCollection getStatsCollection() {
     return statsCollection;
   }
 
+  /**
+   * Sets the stats collection.
+   *
+   * @param statsCollection the new stats collection
+   */
   public void setStatsCollection(StatsCollection statsCollection) {
     this.statsCollection = statsCollection;
   }
 
+  /**
+   * Gets the max series.
+   *
+   * @return the max series
+   */
   public int getMaxSeries() {
     return maxSeries;
   }
 
+  /**
+   * Sets the max series.
+   *
+   * @param maxSeries the new max series
+   */
   public void setMaxSeries(int maxSeries) {
     this.maxSeries = maxSeries;
   }
 
+  /**
+   * Gets the listeners.
+   *
+   * @return the listeners
+   */
   public List<StatsCollectionListener> getListeners() {
     return listeners;
   }
 
+  /**
+   * Sets the listeners.
+   *
+   * @param listeners the new listeners
+   */
   public void setListeners(List<StatsCollectionListener> listeners) {
     this.listeners = listeners;
   }
 
+  /**
+   * Collect.
+   *
+   * @throws Exception the exception
+   */
   public abstract void collect() throws Exception;
 
+  /**
+   * Builds the delta stats.
+   *
+   * @param name the name
+   * @param value the value
+   * @return the long
+   * @throws InterruptedException the interrupted exception
+   */
   protected long buildDeltaStats(String name, long value) throws InterruptedException {
     return buildDeltaStats(name, value, System.currentTimeMillis());
   }
 
+  /**
+   * Builds the delta stats.
+   *
+   * @param name the name
+   * @param value the value
+   * @param time the time
+   * @return the long
+   * @throws InterruptedException the interrupted exception
+   */
   protected long buildDeltaStats(String name, long value, long time) throws InterruptedException {
     long delta = 0;
     if (statsCollection != null) {
@@ -78,10 +140,25 @@ public abstract class AbstractStatsCollectorBean {
     return delta;
   }
 
+  /**
+   * Builds the absolute stats.
+   *
+   * @param name the name
+   * @param value the value
+   * @throws InterruptedException the interrupted exception
+   */
   protected void buildAbsoluteStats(String name, long value) throws InterruptedException {
     buildAbsoluteStats(name, value, System.currentTimeMillis());
   }
 
+  /**
+   * Builds the absolute stats.
+   *
+   * @param name the name
+   * @param value the value
+   * @param time the time
+   * @throws InterruptedException the interrupted exception
+   */
   protected void buildAbsoluteStats(String name, long value, long time)
       throws InterruptedException {
     
@@ -108,8 +185,15 @@ public abstract class AbstractStatsCollectorBean {
     }
   }
 
+  /**
+   * The Class Entry.
+   */
   private class Entry {
+    
+    /** The time. */
     long time;
+    
+    /** The value. */
     long value;
   }
 
@@ -160,10 +244,20 @@ public abstract class AbstractStatsCollectorBean {
     }
   }
 
+  /**
+   * Reset stats.
+   *
+   * @param name the name
+   */
   protected void resetStats(String name) {
     statsCollection.resetStats(name);
   }
 
+  /**
+   * House keep stats.
+   *
+   * @param stats the stats
+   */
   private void houseKeepStats(List<XYDataItem> stats) {
     while (stats.size() > maxSeries) {
       stats.remove(0);

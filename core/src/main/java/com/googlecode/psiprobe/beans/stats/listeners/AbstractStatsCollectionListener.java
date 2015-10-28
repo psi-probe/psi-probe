@@ -15,23 +15,50 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
+ * The listener interface for receiving abstractStatsCollection events.
+ * The class that is interested in processing a abstractStatsCollection
+ * event implements this interface, and the object created
+ * with that class is registered with a component using the
+ * component's <code>addAbstractStatsCollectionListener<code> method. When
+ * the abstractStatsCollection event occurs, that object's appropriate
+ * method is invoked.
  *
  * @author Mark Lewis
  */
 public abstract class AbstractStatsCollectionListener implements StatsCollectionListener {
 
+  /** The logger. */
   protected Log logger = LogFactory.getLog(getClass());
+  
+  /** The property category. */
   private String propertyCategory;
+  
+  /** The enabled. */
   private boolean enabled = true;
 
+  /* (non-Javadoc)
+   * @see com.googlecode.psiprobe.beans.stats.listeners.StatsCollectionListener#isEnabled()
+   */
   public boolean isEnabled() {
     return enabled;
   }
 
+  /**
+   * Sets the enabled.
+   *
+   * @param enabled the new enabled
+   */
   protected void setEnabled(boolean enabled) {
     this.enabled = enabled;
   }
 
+  /**
+   * Gets the property value.
+   *
+   * @param name the name
+   * @param attribute the attribute
+   * @return the property value
+   */
   protected String getPropertyValue(String name, String attribute) {
     String value = getPropertyValue(getPropertyKey(name, attribute));
     if (value == null) {
@@ -43,14 +70,35 @@ public abstract class AbstractStatsCollectionListener implements StatsCollection
     return value;
   }
 
+  /**
+   * Gets the property value.
+   *
+   * @param key the key
+   * @return the property value
+   */
   protected String getPropertyValue(String key) {
     return System.getProperty(key);
   }
 
+  /**
+   * Gets the property key.
+   *
+   * @param name the name
+   * @param attribute the attribute
+   * @return the property key
+   */
   protected String getPropertyKey(String name, String attribute) {
     return getPropertyKey(getPropertyCategory(), name, attribute);
   }
 
+  /**
+   * Gets the property key.
+   *
+   * @param category the category
+   * @param name the name
+   * @param attribute the attribute
+   * @return the property key
+   */
   private String getPropertyKey(String category, String name, String attribute) {
     String result = getClass().getPackage().getName();
     if (category != null) {
@@ -67,12 +115,25 @@ public abstract class AbstractStatsCollectionListener implements StatsCollection
     return result;
   }
 
+  /**
+   * Reset.
+   */
   public void reset() {}
 
+  /**
+   * Gets the property category.
+   *
+   * @return the property category
+   */
   public String getPropertyCategory() {
     return propertyCategory;
   }
 
+  /**
+   * Sets the property category.
+   *
+   * @param propertyCategory the new property category
+   */
   public void setPropertyCategory(String propertyCategory) {
     this.propertyCategory = propertyCategory;
   }

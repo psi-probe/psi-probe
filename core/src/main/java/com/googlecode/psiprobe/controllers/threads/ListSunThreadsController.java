@@ -29,11 +29,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * 
+ * The Class ListSunThreadsController.
+ *
  * @author Vlad Ilyushchenko
  */
 public class ListSunThreadsController extends ParameterizableViewController {
 
+  /* (non-Javadoc)
+   * @see org.springframework.web.servlet.mvc.ParameterizableViewController#handleRequestInternal(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+   */
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
@@ -89,6 +93,13 @@ public class ListSunThreadsController extends ParameterizableViewController {
     return new ModelAndView(getViewName(), "threads", threads);
   }
 
+  /**
+   * Contains.
+   *
+   * @param haystack the haystack
+   * @param needle the needle
+   * @return true, if successful
+   */
   private static boolean contains(long[] haystack, long needle) {
     if (haystack != null) {
       for (long hay : haystack) {
