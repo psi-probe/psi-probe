@@ -43,9 +43,6 @@ import javax.servlet.http.HttpSession;
  */
 public class ListSessionsController extends ContextHandlerController {
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.controllers.ContextHandlerController#handleContext(java.lang.String, org.apache.catalina.Context, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
-   */
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 
@@ -233,9 +230,6 @@ public class ListSessionsController extends ContextHandlerController {
     return sessionMatches;
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.controllers.ContextHandlerController#isContextOptional()
-   */
   @Override
   protected boolean isContextOptional() {
     return true;

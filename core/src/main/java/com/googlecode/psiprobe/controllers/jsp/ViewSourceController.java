@@ -36,9 +36,6 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ViewSourceController extends ContextHandlerController {
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.controllers.ContextHandlerController#handleContext(java.lang.String, org.apache.catalina.Context, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
-   */
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 

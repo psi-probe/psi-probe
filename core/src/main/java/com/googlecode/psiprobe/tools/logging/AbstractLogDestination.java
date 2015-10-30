@@ -21,30 +21,18 @@ import java.sql.Timestamp;
  */
 public abstract class AbstractLogDestination extends DefaultAccessor implements LogDestination {
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.tools.logging.LogDestination#isRoot()
-   */
   public boolean isRoot() {
     return false;
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.tools.logging.LogDestination#isContext()
-   */
   public boolean isContext() {
     return false;
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.tools.logging.LogDestination#getIndex()
-   */
   public String getIndex() {
     return null;
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.tools.logging.LogDestination#getConversionPattern()
-   */
   public String getConversionPattern() {
     return null;
   }
@@ -59,39 +47,24 @@ public abstract class AbstractLogDestination extends DefaultAccessor implements 
     return file.exists() ? file : new File("stdout");
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.tools.logging.LogDestination#getFile()
-   */
   public File getFile() {
     return getStdoutFile();
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.tools.logging.LogDestination#getSize()
-   */
   public long getSize() {
     File file = getFile();
     return file != null && file.exists() ? file.length() : 0;
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.tools.logging.LogDestination#getLastModified()
-   */
   public Timestamp getLastModified() {
     File file = getFile();
     return file != null && file.exists() ? new Timestamp(file.lastModified()) : null;
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.tools.logging.LogDestination#getLevel()
-   */
   public String getLevel() {
     return null;
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.tools.logging.LogDestination#getValidLevels()
-   */
   public String[] getValidLevels() {
     return null;
   }

@@ -66,9 +66,6 @@ public class VolumeTag extends TagSupport {
     this.fractions = fractions;
   }
 
-  /* (non-Javadoc)
-   * @see javax.servlet.jsp.tagext.TagSupport#doStartTag()
-   */
   @Override
   public int doStartTag() throws JspException {
     String title = Long.toString(value);

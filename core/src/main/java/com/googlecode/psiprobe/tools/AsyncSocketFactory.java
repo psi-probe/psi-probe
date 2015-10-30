@@ -166,9 +166,6 @@ public class AsyncSocketFactory {
       this.sync = sync;
     }
 
-    /* (non-Javadoc)
-     * @see java.lang.Runnable#run()
-     */
     public void run() {
       try {
         socketWrapper.setSocket(new Socket(socketWrapper.getServer(), socketWrapper.getPort()));
@@ -208,9 +205,6 @@ public class AsyncSocketFactory {
       this.timeout = timeout;
     }
 
-    /* (non-Javadoc)
-     * @see java.lang.Runnable#run()
-     */
     public void run() {
       try {
         Thread.sleep(timeout);

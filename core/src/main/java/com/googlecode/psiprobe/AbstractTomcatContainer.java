@@ -69,9 +69,6 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     return findContext(contextName) != null;
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.TomcatContainer#stop(java.lang.String)
-   */
   public void stop(String name) throws Exception {
     Context ctx = findContext(name);
     if (ctx != null) {
@@ -79,9 +76,6 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     }
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.TomcatContainer#start(java.lang.String)
-   */
   public void start(String name) throws Exception {
     Context ctx = findContext(name);
     if (ctx != null) {
@@ -89,12 +83,6 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     }
   }
 
-  /**
-   * Undeploys a context.
-   * 
-   * @param contextName the context path
-   * @throws Exception if undeployment fails spectacularly
-   */
   public void remove(String contextName) throws Exception {
     contextName = formatContextName(contextName);
     Context ctx = findContext(contextName);
@@ -148,9 +136,6 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     checkChanges(name);
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.TomcatContainer#installWar(java.lang.String, java.net.URL)
-   */
   public void installWar(String name, URL url) throws Exception {
     checkChanges(name);
   }
@@ -409,17 +394,11 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     }
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.TomcatContainer#getLogger(org.apache.catalina.Context)
-   */
   @Override
   public org.apache.juli.logging.Log getLogger(Context context) {
     return context.getLogger();
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.TomcatContainer#getAvailable(org.apache.catalina.Context)
-   */
   @Override
   public boolean getAvailable(Context context) {
     return context.getState().isAvailable();

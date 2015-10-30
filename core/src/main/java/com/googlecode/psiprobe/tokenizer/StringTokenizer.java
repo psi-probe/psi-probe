@@ -44,9 +44,6 @@ public class StringTokenizer extends Tokenizer {
     setReader(new StringReader(str));
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.tokenizer.Tokenizer#hasMore()
-   */
   @Override
   public boolean hasMore() {
     try {
@@ -56,9 +53,6 @@ public class StringTokenizer extends Tokenizer {
     }
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.tokenizer.Tokenizer#getToken()
-   */
   @Override
   public Token getToken() {
     try {
@@ -68,9 +62,6 @@ public class StringTokenizer extends Tokenizer {
     }
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.tokenizer.Tokenizer#nextToken()
-   */
   @Override
   public Token nextToken() {
     try {

@@ -598,9 +598,6 @@ public class LogResolverBean {
     /** The Constant DELIM. */
     protected static final char DELIM = '!';
 
-    /* (non-Javadoc)
-     * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
-     */
     public final int compare(LogDestination o1, LogDestination o2) {
       String name1 = convertToString(o1);
       String name2 = convertToString(o2);
@@ -634,9 +631,6 @@ public class LogResolverBean {
       this.all = all;
     }
 
-    /* (non-Javadoc)
-     * @see com.googlecode.psiprobe.beans.LogResolverBean.LogComparator#convertToString(com.googlecode.psiprobe.tools.logging.LogDestination)
-     */
     protected String convertToString(LogDestination dest) {
       File file = dest.getFile();
       String fileName = (file == null ? "" : file.getAbsolutePath());
@@ -661,9 +655,6 @@ public class LogResolverBean {
    */
   private static class LogSourceComparator extends LogComparator {
 
-    /* (non-Javadoc)
-     * @see com.googlecode.psiprobe.beans.LogResolverBean.LogComparator#convertToString(com.googlecode.psiprobe.tools.logging.LogDestination)
-     */
     protected String convertToString(LogDestination dest) {
       File file = dest.getFile();
       String fileName = (file == null ? "" : file.getAbsolutePath());

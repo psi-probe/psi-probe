@@ -43,9 +43,6 @@ public class RuntimeStatsCollectorBean extends AbstractStatsCollectorBean {
     this.runtimeInfoAccessorBean = runtimeInfoAccessorBean;
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.beans.stats.collectors.AbstractStatsCollectorBean#collect()
-   */
   public void collect() throws Exception {
     RuntimeInformation ri = runtimeInfoAccessorBean.getRuntimeInformation();
     if (ri != null) {

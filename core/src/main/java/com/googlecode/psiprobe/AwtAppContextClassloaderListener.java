@@ -62,9 +62,6 @@ public class AwtAppContextClassloaderListener implements ServletContextListener 
     }
   }
 
-  /* (non-Javadoc)
-   * @see javax.servlet.ServletContextListener#contextDestroyed(javax.servlet.ServletContextEvent)
-   */
   public void contextDestroyed(ServletContextEvent sce) {}
 
 }

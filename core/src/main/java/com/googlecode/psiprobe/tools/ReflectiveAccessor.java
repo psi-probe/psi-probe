@@ -47,9 +47,6 @@ public class ReflectiveAccessor implements Accessor {
     init();
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.tools.Accessor#get(java.lang.Object, java.lang.reflect.Field)
-   */
   public Object get(Object obj, Field field) {
     try {
       Object fieldAccessor = getFieldAccessor(field);

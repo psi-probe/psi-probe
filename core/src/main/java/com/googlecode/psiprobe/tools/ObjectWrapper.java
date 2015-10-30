@@ -41,9 +41,6 @@ class ObjectWrapper {
     this.wrappedObject = obj;
   }
 
-  /* (non-Javadoc)
-   * @see java.lang.Object#equals(java.lang.Object)
-   */
   @Override
   public boolean equals(Object o1) {
     if (wrappedObject == null) {
@@ -58,9 +55,6 @@ class ObjectWrapper {
     }
   }
 
-  /* (non-Javadoc)
-   * @see java.lang.Object#hashCode()
-   */
   @Override
   public int hashCode() {
     return System.identityHashCode(wrappedObject);

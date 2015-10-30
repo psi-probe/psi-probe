@@ -32,9 +32,6 @@ public class AjaxDecoratorMapper extends AbstractDecoratorMapper {
   /** The ajax extension. */
   private String ajaxExtension = ".ajax";
 
-  /* (non-Javadoc)
-   * @see com.opensymphony.module.sitemesh.mapper.AbstractDecoratorMapper#init(com.opensymphony.module.sitemesh.Config, java.util.Properties, com.opensymphony.module.sitemesh.DecoratorMapper)
-   */
   @Override
   public void init(Config config, Properties properties, DecoratorMapper decoratorMapper)
       throws InstantiationException {
@@ -45,9 +42,6 @@ public class AjaxDecoratorMapper extends AbstractDecoratorMapper {
     }
   }
 
-  /* (non-Javadoc)
-   * @see com.opensymphony.module.sitemesh.mapper.AbstractDecoratorMapper#getDecorator(javax.servlet.http.HttpServletRequest, com.opensymphony.module.sitemesh.Page)
-   */
   @Override
   public Decorator getDecorator(HttpServletRequest request, Page page) {
 

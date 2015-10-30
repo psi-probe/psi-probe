@@ -60,9 +60,6 @@ public class ResourceResolverBean implements ResourceResolver {
   /** The datasource mappers. */
   private List<DatasourceAccessor> datasourceMappers;
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.beans.ResourceResolver#getApplicationResources()
-   */
   public List<ApplicationResource> getApplicationResources() throws NamingException {
     logger.info("Reading GLOBAL resources");
     List<ApplicationResource> resources = new ArrayList<ApplicationResource>();
@@ -93,9 +90,6 @@ public class ResourceResolverBean implements ResourceResolver {
     return resources;
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.beans.ResourceResolver#getApplicationResources(org.apache.catalina.Context, com.googlecode.psiprobe.beans.ContainerWrapperBean)
-   */
   public synchronized List<ApplicationResource> getApplicationResources(Context context,
       ContainerWrapperBean containerWrapper) throws NamingException {
 
@@ -190,9 +184,6 @@ public class ResourceResolverBean implements ResourceResolver {
     }
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.beans.ResourceResolver#resetResource(org.apache.catalina.Context, java.lang.String, com.googlecode.psiprobe.beans.ContainerWrapperBean)
-   */
   public synchronized boolean resetResource(final Context context, String resourceName,
       ContainerWrapperBean containerWrapper) throws NamingException {
 
@@ -228,9 +219,6 @@ public class ResourceResolverBean implements ResourceResolver {
     }
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.beans.ResourceResolver#lookupDataSource(org.apache.catalina.Context, java.lang.String, com.googlecode.psiprobe.beans.ContainerWrapperBean)
-   */
   public synchronized DataSource lookupDataSource(final Context context, String resourceName,
       ContainerWrapperBean containerWrapper) throws NamingException {
 
@@ -274,30 +262,18 @@ public class ResourceResolverBean implements ResourceResolver {
     this.datasourceMappers = datasourceMappers;
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.beans.ResourceResolver#supportsPrivateResources()
-   */
   public boolean supportsPrivateResources() {
     return true;
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.beans.ResourceResolver#supportsGlobalResources()
-   */
   public boolean supportsGlobalResources() {
     return true;
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.beans.ResourceResolver#supportsDataSourceLookup()
-   */
   public boolean supportsDataSourceLookup() {
     return true;
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.beans.ResourceResolver#getMBeanServer()
-   */
   public MBeanServer getMBeanServer() {
     return new Registry().getMBeanServer();
   }

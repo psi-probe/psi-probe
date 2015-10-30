@@ -19,7 +19,7 @@ import org.apache.commons.logging.LogFactory;
  * The class that is interested in processing a abstractStatsCollection
  * event implements this interface, and the object created
  * with that class is registered with a component using the
- * component's <code>addAbstractStatsCollectionListener<code> method. When
+ * component's {@code addAbstractStatsCollectionListener} method. When
  * the abstractStatsCollection event occurs, that object's appropriate
  * method is invoked.
  *
@@ -36,9 +36,6 @@ public abstract class AbstractStatsCollectionListener implements StatsCollection
   /** The enabled. */
   private boolean enabled = true;
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.beans.stats.listeners.StatsCollectionListener#isEnabled()
-   */
   public boolean isEnabled() {
     return enabled;
   }

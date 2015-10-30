@@ -21,7 +21,7 @@ import java.util.HashMap;
  * The class that is interested in processing a threshold
  * event implements this interface, and the object created
  * with that class is registered with a component using the
- * component's <code>addThresholdListener<code> method. When
+ * component's {@code addThresholdListener} method. When
  * the threshold event occurs, that object's appropriate
  * method is invoked.
  *
@@ -69,9 +69,6 @@ public abstract class ThresholdListener extends AbstractStatsCollectionListener 
    */
   protected abstract void remainedBelowThreshold(StatsCollectionEvent sce);
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.beans.stats.listeners.StatsCollectionListener#statsCollected(com.googlecode.psiprobe.beans.stats.listeners.StatsCollectionEvent)
-   */
   public void statsCollected(StatsCollectionEvent sce) {
     String name = sce.getName();
     if (isSeriesDisabled(name)) {
@@ -94,9 +91,6 @@ public abstract class ThresholdListener extends AbstractStatsCollectionListener 
     setPreviousValue(name, value);
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.beans.stats.listeners.AbstractStatsCollectionListener#reset()
-   */
   @Override
   public void reset() {
     previousValues.clear();

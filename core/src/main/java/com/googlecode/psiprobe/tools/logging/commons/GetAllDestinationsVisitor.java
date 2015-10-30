@@ -37,16 +37,10 @@ public class GetAllDestinationsVisitor extends LoggerAccessorVisitor {
     return destinations;
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.tools.logging.commons.LoggerAccessorVisitor#visit(com.googlecode.psiprobe.tools.logging.log4j.Log4JLoggerAccessor)
-   */
   public void visit(Log4JLoggerAccessor accessor) {
     destinations.addAll(accessor.getAppenders());
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.tools.logging.commons.LoggerAccessorVisitor#visit(com.googlecode.psiprobe.tools.logging.jdk.Jdk14LoggerAccessor)
-   */
   public void visit(Jdk14LoggerAccessor accessor) {
     destinations.addAll(accessor.getHandlers());
   }

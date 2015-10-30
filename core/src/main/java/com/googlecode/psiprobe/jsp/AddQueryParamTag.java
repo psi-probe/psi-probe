@@ -38,9 +38,6 @@ public class AddQueryParamTag extends TagSupport {
   /** The value. */
   private String value;
 
-  /* (non-Javadoc)
-   * @see javax.servlet.jsp.tagext.TagSupport#doStartTag()
-   */
   @Override
   public int doStartTag() throws JspException {
     StringBuffer query = new StringBuffer();

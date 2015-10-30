@@ -93,9 +93,6 @@ public class VisualScoreTag extends BodyTagSupport {
   /** The show b. */
   private boolean showB = false;
 
-  /* (non-Javadoc)
-   * @see javax.servlet.jsp.tagext.BodyTagSupport#doAfterBody()
-   */
   @Override
   public int doAfterBody() throws JspException {
     BodyContent bc = getBodyContent();

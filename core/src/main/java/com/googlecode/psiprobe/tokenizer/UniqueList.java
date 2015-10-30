@@ -32,9 +32,6 @@ import java.util.Iterator;
  */
 public class UniqueList<T extends Comparable<? super T>> extends ArrayList<T> {
 
-  /* (non-Javadoc)
-   * @see java.util.ArrayList#add(java.lang.Object)
-   */
   @Override
   public synchronized boolean add(T obj) {
     return add(obj, null);
@@ -67,17 +64,11 @@ public class UniqueList<T extends Comparable<? super T>> extends ArrayList<T> {
     }
   }
 
-  /* (non-Javadoc)
-   * @see java.util.ArrayList#add(int, java.lang.Object)
-   */
   @Override
   public synchronized void add(int index, T obj) {
     add(obj);
   }
 
-  /* (non-Javadoc)
-   * @see java.util.ArrayList#addAll(java.util.Collection)
-   */
   @Override
   public synchronized boolean addAll(Collection<? extends T> comp) {
     boolean ok = this != comp;

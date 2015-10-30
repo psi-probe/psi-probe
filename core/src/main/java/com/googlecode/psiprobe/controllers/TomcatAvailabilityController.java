@@ -58,9 +58,6 @@ public class TomcatAvailabilityController extends TomcatContainerController {
     this.containerListenerBean = containerListenerBean;
   }
 
-  /* (non-Javadoc)
-   * @see org.springframework.web.servlet.mvc.AbstractController#handleRequestInternal(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
-   */
   public ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 

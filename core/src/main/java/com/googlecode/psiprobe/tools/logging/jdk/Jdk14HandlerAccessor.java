@@ -47,32 +47,20 @@ public class Jdk14HandlerAccessor extends AbstractLogDestination {
     this.loggerAccessor = loggerAccessor;
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.tools.logging.AbstractLogDestination#isContext()
-   */
   @Override
   public boolean isContext() {
     return getLoggerAccessor().isContext();
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.tools.logging.AbstractLogDestination#isRoot()
-   */
   @Override
   public boolean isRoot() {
     return getLoggerAccessor().isRoot();
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.tools.logging.LogDestination#getName()
-   */
   public String getName() {
     return getLoggerAccessor().getName();
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.tools.logging.AbstractLogDestination#getIndex()
-   */
   @Override
   public String getIndex() {
     return index;
@@ -87,16 +75,10 @@ public class Jdk14HandlerAccessor extends AbstractLogDestination {
     this.index = index;
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.tools.logging.LogDestination#getLogType()
-   */
   public String getLogType() {
     return "jdk";
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.tools.logging.AbstractLogDestination#getLevel()
-   */
   @Override
   public String getLevel() {
     return getLoggerAccessor().getLevel();
@@ -117,9 +99,6 @@ public class Jdk14HandlerAccessor extends AbstractLogDestination {
     }
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.tools.logging.AbstractLogDestination#getValidLevels()
-   */
   @Override
   public String[] getValidLevels() {
     return new String[] {"OFF", "SEVERE", "WARNING", "INFO", "CONFIG", "FINE", "FINER", "FINEST",

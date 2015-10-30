@@ -37,9 +37,6 @@ public class ParamToggleTag extends TagSupport {
   /** The param. */
   private String param = "size";
 
-  /* (non-Javadoc)
-   * @see javax.servlet.jsp.tagext.TagSupport#doStartTag()
-   */
   @Override
   public int doStartTag() throws JspException {
     boolean getSize =

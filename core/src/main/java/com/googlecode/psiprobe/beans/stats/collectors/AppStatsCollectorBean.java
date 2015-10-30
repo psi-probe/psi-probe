@@ -89,16 +89,10 @@ public class AppStatsCollectorBean extends AbstractStatsCollectorBean implements
     return servletContext;
   }
 
-  /* (non-Javadoc)
-   * @see org.springframework.web.context.ServletContextAware#setServletContext(javax.servlet.ServletContext)
-   */
   public void setServletContext(ServletContext servletContext) {
     this.servletContext = servletContext;
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.beans.stats.collectors.AbstractStatsCollectorBean#collect()
-   */
   public void collect() throws Exception {
 
     long currentTime = System.currentTimeMillis();

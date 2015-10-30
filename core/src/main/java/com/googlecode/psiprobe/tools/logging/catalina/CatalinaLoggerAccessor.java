@@ -26,31 +26,19 @@ import java.util.Date;
  */
 public class CatalinaLoggerAccessor extends AbstractLogDestination {
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.tools.logging.AbstractLogDestination#isContext()
-   */
   @Override
   public boolean isContext() {
     return true;
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.tools.logging.LogDestination#getName()
-   */
   public String getName() {
     return null;
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.tools.logging.LogDestination#getLogType()
-   */
   public String getLogType() {
     return "catalina";
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.tools.logging.AbstractLogDestination#getFile()
-   */
   @Override
   public File getFile() {
     String dir = (String) invokeMethod(getTarget(), "getDirectory", null, null);

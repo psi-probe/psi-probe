@@ -27,9 +27,6 @@ public class FileLogAccessor extends AbstractLogDestination {
   /** The file. */
   private File file;
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.tools.logging.LogDestination#getName()
-   */
   public String getName() {
     return name;
   }
@@ -43,32 +40,20 @@ public class FileLogAccessor extends AbstractLogDestination {
     this.name = name;
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.tools.logging.DefaultAccessor#getTargetClass()
-   */
   @Override
   public String getTargetClass() {
     return "stdout";
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.tools.logging.LogDestination#getLogType()
-   */
   public String getLogType() {
     return "stdout";
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.tools.logging.AbstractLogDestination#getConversionPattern()
-   */
   @Override
   public String getConversionPattern() {
     return "";
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.tools.logging.AbstractLogDestination#getFile()
-   */
   @Override
   public File getFile() {
     return file;

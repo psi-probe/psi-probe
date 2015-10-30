@@ -26,7 +26,7 @@ import javax.mail.MessagingException;
  * The class that is interested in processing a memoryPoolMailing
  * event implements this interface, and the object created
  * with that class is registered with a component using the
- * component's <code>addMemoryPoolMailingListener<code> method. When
+ * component's {@code addMemoryPoolMailingListener} method. When
  * the memoryPoolMailing event occurs, that object's appropriate
  * method is invoked.
  *
@@ -58,9 +58,6 @@ public class MemoryPoolMailingListener extends FlapListener implements MessageSo
     return messageSourceAccessor;
   }
 
-  /* (non-Javadoc)
-   * @see org.springframework.context.MessageSourceAware#setMessageSource(org.springframework.context.MessageSource)
-   */
   public void setMessageSource(MessageSource messageSource) {
     this.messageSourceAccessor = new MessageSourceAccessor(messageSource);
   }
@@ -83,9 +80,6 @@ public class MemoryPoolMailingListener extends FlapListener implements MessageSo
     this.mailer = mailer;
   }
 
-  /* (non-Javadoc)
-   * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet()
-   */
   public void afterPropertiesSet() throws Exception {
     if (getMailer().getSmtp() == null) {
       logger.info("Mailer SMTP host is not set.  Disabling listener.");
@@ -96,37 +90,22 @@ public class MemoryPoolMailingListener extends FlapListener implements MessageSo
     }
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.beans.stats.listeners.FlapListener#flappingStarted(com.googlecode.psiprobe.beans.stats.listeners.StatsCollectionEvent)
-   */
   protected void flappingStarted(StatsCollectionEvent sce) {
     sendMail(sce, "flappingStart", false);
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.beans.stats.listeners.FlapListener#aboveThresholdFlappingStopped(com.googlecode.psiprobe.beans.stats.listeners.StatsCollectionEvent)
-   */
   protected void aboveThresholdFlappingStopped(StatsCollectionEvent sce) {
     sendMail(sce, "aboveThreshold", true);
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.beans.stats.listeners.FlapListener#belowThresholdFlappingStopped(com.googlecode.psiprobe.beans.stats.listeners.StatsCollectionEvent)
-   */
   protected void belowThresholdFlappingStopped(StatsCollectionEvent sce) {
     sendMail(sce, "belowThreshold", true);
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.beans.stats.listeners.FlapListener#aboveThresholdNotFlapping(com.googlecode.psiprobe.beans.stats.listeners.StatsCollectionEvent)
-   */
   protected void aboveThresholdNotFlapping(StatsCollectionEvent sce) {
     sendMail(sce, "aboveThreshold", false);
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.beans.stats.listeners.FlapListener#belowThresholdNotFlapping(com.googlecode.psiprobe.beans.stats.listeners.StatsCollectionEvent)
-   */
   protected void belowThresholdNotFlapping(StatsCollectionEvent sce) {
     sendMail(sce, "belowThreshold", false);
   }

@@ -20,9 +20,6 @@ import org.apache.catalina.Context;
  */
 public class ReloadContextController extends NoSelfContextHandlerController {
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.controllers.apps.NoSelfContextHandlerController#executeAction(java.lang.String)
-   */
   protected void executeAction(String contextName) throws Exception {
     Context context = getContainerWrapper().getTomcatContainer().findContext(contextName);
     if (context != null) {

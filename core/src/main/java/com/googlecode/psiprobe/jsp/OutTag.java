@@ -90,9 +90,6 @@ public class OutTag extends BodyTagSupport {
     this.ellipsisRight = ellipsisRight;
   }
 
-  /* (non-Javadoc)
-   * @see javax.servlet.jsp.tagext.BodyTagSupport#doStartTag()
-   */
   @Override
   public int doStartTag() throws JspException {
     if (value != null) {
@@ -103,9 +100,6 @@ public class OutTag extends BodyTagSupport {
     }
   }
 
-  /* (non-Javadoc)
-   * @see javax.servlet.jsp.tagext.BodyTagSupport#doAfterBody()
-   */
   @Override
   public int doAfterBody() throws JspException {
     print(getBodyContent().getString().trim(), getBodyContent().getEnclosingWriter());

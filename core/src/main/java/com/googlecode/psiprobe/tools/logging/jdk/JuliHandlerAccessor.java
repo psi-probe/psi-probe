@@ -23,9 +23,6 @@ import java.io.File;
  */
 public class JuliHandlerAccessor extends Jdk14HandlerAccessor {
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.tools.logging.AbstractLogDestination#getFile()
-   */
   @Override
   public File getFile() {
     String dir = (String) Instruments.getField(getTarget(), "directory");

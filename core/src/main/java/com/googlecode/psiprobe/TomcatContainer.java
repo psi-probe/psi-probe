@@ -82,10 +82,10 @@ public interface TomcatContainer {
   void start(String name) throws Exception;
 
   /**
-   * Removes the.
-   *
-   * @param name the name
-   * @throws Exception the exception
+   * Undeploys a context.
+   * 
+   * @param name the context path
+   * @throws Exception if undeployment fails spectacularly
    */
   void remove(String name) throws Exception;
 
@@ -136,11 +136,11 @@ public interface TomcatContainer {
   boolean canBoundTo(String binding);
 
   /**
-   * Install context.
-   *
-   * @param contextName the context name
-   * @return true, if successful
-   * @throws Exception the exception
+   * Deploys a context, assuming an context descriptor file exists on the server already.
+   * 
+   * @param contextName the context path, which should match the filename
+   * @return {@code true} if deployment was successful
+   * @throws Exception if deployment fails spectacularly
    */
   boolean installContext(String contextName) throws Exception;
 

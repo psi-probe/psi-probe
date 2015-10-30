@@ -87,93 +87,54 @@ public class DisconnectedLogDestination implements LogDestination, Serializable 
     this.validLevels = destination.getValidLevels();
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.tools.logging.LogDestination#getApplication()
-   */
   public Application getApplication() {
     return application;
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.tools.logging.LogDestination#isRoot()
-   */
   public boolean isRoot() {
     return root;
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.tools.logging.LogDestination#isContext()
-   */
   public boolean isContext() {
     return context;
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.tools.logging.LogDestination#getName()
-   */
   public String getName() {
     return name;
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.tools.logging.LogDestination#getIndex()
-   */
   public String getIndex() {
     return index;
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.tools.logging.LogDestination#getTargetClass()
-   */
   public String getTargetClass() {
     return targetClass;
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.tools.logging.LogDestination#getConversionPattern()
-   */
   public String getConversionPattern() {
     return conversionPattern;
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.tools.logging.LogDestination#getFile()
-   */
   public File getFile() {
     return file;
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.tools.logging.LogDestination#getLogType()
-   */
   public String getLogType() {
     return logType;
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.tools.logging.LogDestination#getSize()
-   */
   public long getSize() {
     return size;
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.tools.logging.LogDestination#getLastModified()
-   */
   public Timestamp getLastModified() {
     return lastModified;
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.tools.logging.LogDestination#getLevel()
-   */
   public String getLevel() {
     return level;
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.tools.logging.LogDestination#getValidLevels()
-   */
   public String[] getValidLevels() {
     return validLevels;
   }

@@ -133,49 +133,31 @@ public class ThresholdListenerTests {
       this.threshold = threshold;
     }
 
-    /* (non-Javadoc)
-     * @see com.googlecode.psiprobe.beans.stats.listeners.ThresholdListener#crossedAboveThreshold(com.googlecode.psiprobe.beans.stats.listeners.StatsCollectionEvent)
-     */
     protected void crossedAboveThreshold(StatsCollectionEvent sce) {
       resetFlags();
       crossedAboveThreshold = true;
     }
 
-    /* (non-Javadoc)
-     * @see com.googlecode.psiprobe.beans.stats.listeners.ThresholdListener#crossedBelowThreshold(com.googlecode.psiprobe.beans.stats.listeners.StatsCollectionEvent)
-     */
     protected void crossedBelowThreshold(StatsCollectionEvent sce) {
       resetFlags();
       crossedBelowThreshold = true;
     }
 
-    /* (non-Javadoc)
-     * @see com.googlecode.psiprobe.beans.stats.listeners.ThresholdListener#remainedAboveThreshold(com.googlecode.psiprobe.beans.stats.listeners.StatsCollectionEvent)
-     */
     protected void remainedAboveThreshold(StatsCollectionEvent sce) {
       resetFlags();
       remainedAboveThreshold = true;
     }
 
-    /* (non-Javadoc)
-     * @see com.googlecode.psiprobe.beans.stats.listeners.ThresholdListener#remainedBelowThreshold(com.googlecode.psiprobe.beans.stats.listeners.StatsCollectionEvent)
-     */
     protected void remainedBelowThreshold(StatsCollectionEvent sce) {
       resetFlags();
       remainedBelowThreshold = true;
     }
 
-    /* (non-Javadoc)
-     * @see com.googlecode.psiprobe.beans.stats.listeners.ThresholdListener#getThreshold(java.lang.String)
-     */
     @Override
     public long getThreshold(String name) {
       return threshold;
     }
 
-    /* (non-Javadoc)
-     * @see com.googlecode.psiprobe.beans.stats.listeners.ThresholdListener#reset()
-     */
     @Override
     public void reset() {
       resetFlags();

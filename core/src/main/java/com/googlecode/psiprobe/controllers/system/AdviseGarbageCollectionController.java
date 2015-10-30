@@ -47,9 +47,6 @@ public class AdviseGarbageCollectionController extends ParameterizableViewContro
     this.replacePattern = replacePattern;
   }
 
-  /* (non-Javadoc)
-   * @see org.springframework.web.servlet.mvc.ParameterizableViewController#handleRequestInternal(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
-   */
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {

@@ -46,9 +46,6 @@ public class GetSingleDestinationVisitor extends LoggerAccessorVisitor {
     return destination;
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.tools.logging.commons.LoggerAccessorVisitor#visit(com.googlecode.psiprobe.tools.logging.log4j.Log4JLoggerAccessor)
-   */
   public void visit(Log4JLoggerAccessor accessor) {
     LogDestination dest = accessor.getAppender(logIndex);
     if (dest != null) {
@@ -56,9 +53,6 @@ public class GetSingleDestinationVisitor extends LoggerAccessorVisitor {
     }
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.tools.logging.commons.LoggerAccessorVisitor#visit(com.googlecode.psiprobe.tools.logging.jdk.Jdk14LoggerAccessor)
-   */
   public void visit(Jdk14LoggerAccessor accessor) {
     LogDestination dest = accessor.getHandler(logIndex);
     if (dest != null) {

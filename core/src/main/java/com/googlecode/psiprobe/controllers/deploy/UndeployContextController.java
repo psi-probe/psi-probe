@@ -50,9 +50,6 @@ public class UndeployContextController extends ContextHandlerController {
     this.failureViewName = failureViewName;
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.controllers.ContextHandlerController#handleContext(java.lang.String, org.apache.catalina.Context, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
-   */
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
     try {

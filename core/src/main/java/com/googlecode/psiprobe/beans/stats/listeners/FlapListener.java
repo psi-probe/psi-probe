@@ -21,7 +21,7 @@ import java.util.LinkedList;
  * The class that is interested in processing a flap
  * event implements this interface, and the object created
  * with that class is registered with a component using the
- * component's <code>addFlapListener<code> method. When
+ * component's {@code addFlapListener} method. When
  * the flap event occurs, that object's appropriate
  * method is invoked.
  *
@@ -87,37 +87,22 @@ public abstract class FlapListener extends ThresholdListener {
    */
   protected abstract void belowThresholdNotFlapping(StatsCollectionEvent sce);
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.beans.stats.listeners.ThresholdListener#crossedAboveThreshold(com.googlecode.psiprobe.beans.stats.listeners.StatsCollectionEvent)
-   */
   protected void crossedAboveThreshold(StatsCollectionEvent sce) {
     statsCollected(sce, true, true);
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.beans.stats.listeners.ThresholdListener#crossedBelowThreshold(com.googlecode.psiprobe.beans.stats.listeners.StatsCollectionEvent)
-   */
   protected void crossedBelowThreshold(StatsCollectionEvent sce) {
     statsCollected(sce, true, false);
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.beans.stats.listeners.ThresholdListener#remainedAboveThreshold(com.googlecode.psiprobe.beans.stats.listeners.StatsCollectionEvent)
-   */
   protected void remainedAboveThreshold(StatsCollectionEvent sce) {
     statsCollected(sce, false, true);
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.beans.stats.listeners.ThresholdListener#remainedBelowThreshold(com.googlecode.psiprobe.beans.stats.listeners.StatsCollectionEvent)
-   */
   protected void remainedBelowThreshold(StatsCollectionEvent sce) {
     statsCollected(sce, false, false);
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.beans.stats.listeners.ThresholdListener#reset()
-   */
   @Override
   public void reset() {
     flaps.clear();

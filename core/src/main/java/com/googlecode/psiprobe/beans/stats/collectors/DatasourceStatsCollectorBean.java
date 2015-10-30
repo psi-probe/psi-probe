@@ -57,9 +57,6 @@ public class DatasourceStatsCollectorBean extends AbstractStatsCollectorBean {
     this.containerWrapper = containerWrapper;
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.beans.stats.collectors.AbstractStatsCollectorBean#collect()
-   */
   public void collect() throws Exception {
     long currentTime = System.currentTimeMillis();
     if (containerWrapper == null) {

@@ -342,16 +342,10 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
 
   }
 
-  /* (non-Javadoc)
-   * @see org.springframework.beans.factory.DisposableBean#destroy()
-   */
   public void destroy() throws Exception {
     serialize();
   }
 
-  /* (non-Javadoc)
-   * @see org.springframework.context.ApplicationContextAware#setApplicationContext(org.springframework.context.ApplicationContext)
-   */
   public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
     WebApplicationContext wac = (WebApplicationContext) applicationContext;
     contextTempDir = (File) wac.getServletContext().getAttribute("javax.servlet.context.tempdir");

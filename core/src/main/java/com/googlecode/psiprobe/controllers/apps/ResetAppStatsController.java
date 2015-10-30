@@ -41,9 +41,6 @@ public class ResetAppStatsController extends NoSelfContextHandlerController {
     this.statsCollector = statsCollector;
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.controllers.apps.NoSelfContextHandlerController#executeAction(java.lang.String)
-   */
   protected void executeAction(String contextName) throws Exception {
     statsCollector.reset(contextName);
   }

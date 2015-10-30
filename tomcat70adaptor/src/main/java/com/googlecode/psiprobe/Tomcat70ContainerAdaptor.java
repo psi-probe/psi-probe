@@ -73,8 +73,10 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
   /** The valve. */
   private final Valve valve = new Tomcat70AgentValve();
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.TomcatContainer#setWrapper(org.apache.catalina.Wrapper)
+  /**
+   * {@inheritDoc}
+   * 
+   * @param wrapper the wrapper
    */
   @Override
   public void setWrapper(Wrapper wrapper) {
@@ -93,8 +95,11 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
     }
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.TomcatContainer#canBoundTo(java.lang.String)
+  /**
+   * {@inheritDoc}
+   * 
+   * @param binding the ServerInfo of the hosting server
+   * @return true if this adapter can be used for the hosting server
    */
   @Override
   public boolean canBoundTo(String binding) {
@@ -112,16 +117,21 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
     return canBind;
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.AbstractTomcatContainer#findContextInternal(java.lang.String)
+  /**
+   * {@inheritDoc}
+   * 
+   * @param name the name
+   * @return the context with the given name
    */
   @Override
   protected Context findContextInternal(String name) {
     return (Context) host.findChild(name);
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.TomcatContainer#findContexts()
+  /**
+   * {@inheritDoc}
+   * 
+   * @return all contexts
    */
   @Override
   public List<Context> findContexts() {
@@ -134,8 +144,11 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
     return results;
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.AbstractTomcatContainer#checkChanges(java.lang.String)
+  /**
+   * {@inheritDoc}
+   * 
+   * @param name the name
+   * @throws Exception if any interaction with the JMX server fails
    */
   @Override
   protected void checkChanges(String name) throws Exception {
@@ -155,8 +168,10 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
     }
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.TomcatContainer#getAppBase()
+  /**
+   * Gets the app base.
+   * 
+   * @return the local directory where contexts are deployed
    */
   @Override
   public File getAppBase() {
@@ -167,25 +182,21 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
     return base;
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.TomcatContainer#getConfigBase()
+  /**
+   * Gets the config base.
+   * 
+   * @return the local directory where the configs are stored
    */
   @Override
   public String getConfigBase() {
     return getConfigBase(host);
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.TomcatContainer#getHostName()
-   */
   @Override
   public String getHostName() {
     return host.getName();
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.TomcatContainer#getName()
-   */
   @Override
   public String getName() {
     return host.getParent().getName();
@@ -222,9 +233,6 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
     return results;
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.AbstractTomcatContainer#createJspCompilationContext(java.lang.String, org.apache.jasper.Options, javax.servlet.ServletContext, org.apache.jasper.compiler.JspRuntimeContext, java.lang.ClassLoader)
-   */
   @Override
   protected JspCompilationContext createJspCompilationContext(String name, Options opt,
       ServletContext sctx, JspRuntimeContext jrctx, ClassLoader classLoader) {
@@ -262,9 +270,6 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
     return jcctx;
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.TomcatContainer#addContextResourceLink(org.apache.catalina.Context, java.util.List, boolean)
-   */
   @Override
   public void addContextResourceLink(Context context, List<ApplicationResource> resourceList,
       boolean contextBound) {
@@ -282,9 +287,6 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
     }
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.TomcatContainer#addContextResource(org.apache.catalina.Context, java.util.List, boolean)
-   */
   @Override
   public void addContextResource(Context context, List<ApplicationResource> resourceList,
       boolean contextBound) {
@@ -308,9 +310,6 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
     }
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.TomcatContainer#getApplicationFilterMaps(org.apache.catalina.Context)
-   */
   @Override
   public List<FilterMapping> getApplicationFilterMaps(Context context) {
     FilterMap[] fms = context.findFilterMaps();
@@ -360,9 +359,6 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
     return filterMaps;
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.TomcatContainer#getApplicationFilters(org.apache.catalina.Context)
-   */
   @Override
   public List<FilterInfo> getApplicationFilters(Context context) {
     FilterDef[] fds = context.findFilterDefs();
@@ -390,9 +386,6 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
     return fi;
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.TomcatContainer#getApplicationInitParams(org.apache.catalina.Context)
-   */
   @Override
   public List<ApplicationParam> getApplicationInitParams(Context context) {
     /*
@@ -443,9 +436,6 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
 
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.TomcatContainer#resourceExists(java.lang.String, org.apache.catalina.Context)
-   */
   @Override
   public boolean resourceExists(String name, Context context) {
     try {
@@ -455,9 +445,6 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
     }
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.TomcatContainer#getResourceStream(java.lang.String, org.apache.catalina.Context)
-   */
   @Override
   public InputStream getResourceStream(String name, Context context) throws IOException {
     try {
@@ -467,9 +454,6 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
     }
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.TomcatContainer#getResourceAttributes(java.lang.String, org.apache.catalina.Context)
-   */
   @Override
   public Long[] getResourceAttributes(String name, Context context) {
     Long[] result = new Long[2];
@@ -483,18 +467,12 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
     return result;
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.AbstractTomcatContainer#bindToContext(org.apache.catalina.Context)
-   */
   @Override
   public void bindToContext(Context context) throws NamingException {
     ContextBindings.bindClassLoader(context, context,
         Thread.currentThread().getContextClassLoader());
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.AbstractTomcatContainer#unbindFromContext(org.apache.catalina.Context)
-   */
   @Override
   public void unbindFromContext(Context context) throws NamingException {
     ContextBindings.unbindClassLoader(context, context,

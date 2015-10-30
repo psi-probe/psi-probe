@@ -16,7 +16,7 @@ package com.googlecode.psiprobe.beans.stats.listeners;
  * The class that is interested in processing a statsCollection
  * event implements this interface, and the object created
  * with that class is registered with a component using the
- * component's <code>addStatsCollectionListener<code> method. When
+ * component's {@code addStatsCollectionListener} method. When
  * the statsCollection event occurs, that object's appropriate
  * method is invoked.
  *

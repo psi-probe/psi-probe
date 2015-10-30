@@ -43,25 +43,16 @@ public class LogbackAppenderAccessor extends AbstractLogDestination {
     this.loggerAccessor = loggerAccessor;
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.tools.logging.AbstractLogDestination#isContext()
-   */
   @Override
   public boolean isContext() {
     return getLoggerAccessor().isContext();
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.tools.logging.AbstractLogDestination#isRoot()
-   */
   @Override
   public boolean isRoot() {
     return getLoggerAccessor().isRoot();
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.tools.logging.LogDestination#getName()
-   */
   public String getName() {
     return getLoggerAccessor().getName();
   }

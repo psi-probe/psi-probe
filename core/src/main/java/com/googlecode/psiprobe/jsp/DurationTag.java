@@ -42,9 +42,6 @@ public class DurationTag extends TagSupport {
     this.value = value;
   }
 
-  /* (non-Javadoc)
-   * @see javax.servlet.jsp.tagext.TagSupport#doStartTag()
-   */
   @Override
   public int doStartTag() throws JspException {
     try {

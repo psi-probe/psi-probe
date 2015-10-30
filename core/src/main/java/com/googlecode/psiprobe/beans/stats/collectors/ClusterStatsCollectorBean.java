@@ -65,9 +65,6 @@ public class ClusterStatsCollectorBean extends AbstractStatsCollectorBean {
     this.clusterWrapper = clusterWrapper;
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.beans.stats.collectors.AbstractStatsCollectorBean#collect()
-   */
   public void collect() throws Exception {
     // Job can be called before the servlet finished intialisation. Make sure
     // we dont get an NPE.

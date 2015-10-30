@@ -94,9 +94,6 @@ public class ListConnectorsController extends TomcatContainerController {
     this.includeRequestProcessors = includeRequestProcessors;
   }
 
-  /* (non-Javadoc)
-   * @see org.springframework.web.servlet.mvc.AbstractController#handleRequestInternal(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
-   */
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 

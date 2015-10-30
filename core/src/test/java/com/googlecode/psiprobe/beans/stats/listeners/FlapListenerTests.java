@@ -250,61 +250,37 @@ public class FlapListenerTests {
       setDefaultFlapHighWeight(highWeight);
     }
 
-    /* (non-Javadoc)
-     * @see com.googlecode.psiprobe.beans.stats.listeners.ThresholdListener#statsCollected(com.googlecode.psiprobe.beans.stats.listeners.StatsCollectionEvent)
-     */
     @Override
     public void statsCollected(StatsCollectionEvent sce) {
       resetFlags();
       super.statsCollected(sce);
     }
 
-    /* (non-Javadoc)
-     * @see com.googlecode.psiprobe.beans.stats.listeners.FlapListener#flappingStarted(com.googlecode.psiprobe.beans.stats.listeners.StatsCollectionEvent)
-     */
     protected void flappingStarted(StatsCollectionEvent sce) {
       flappingStarted = true;
     }
 
-    /* (non-Javadoc)
-     * @see com.googlecode.psiprobe.beans.stats.listeners.FlapListener#aboveThresholdFlappingStopped(com.googlecode.psiprobe.beans.stats.listeners.StatsCollectionEvent)
-     */
     protected void aboveThresholdFlappingStopped(StatsCollectionEvent sce) {
       aboveThresholdFlappingStopped = true;
     }
 
-    /* (non-Javadoc)
-     * @see com.googlecode.psiprobe.beans.stats.listeners.FlapListener#belowThresholdFlappingStopped(com.googlecode.psiprobe.beans.stats.listeners.StatsCollectionEvent)
-     */
     protected void belowThresholdFlappingStopped(StatsCollectionEvent sce) {
       belowThresholdFlappingStopped = true;
     }
 
-    /* (non-Javadoc)
-     * @see com.googlecode.psiprobe.beans.stats.listeners.FlapListener#aboveThresholdNotFlapping(com.googlecode.psiprobe.beans.stats.listeners.StatsCollectionEvent)
-     */
     protected void aboveThresholdNotFlapping(StatsCollectionEvent sce) {
       aboveThresholdNotFlapping = true;
     }
 
-    /* (non-Javadoc)
-     * @see com.googlecode.psiprobe.beans.stats.listeners.FlapListener#belowThresholdNotFlapping(com.googlecode.psiprobe.beans.stats.listeners.StatsCollectionEvent)
-     */
     protected void belowThresholdNotFlapping(StatsCollectionEvent sce) {
       belowThresholdNotFlapping = true;
     }
 
-    /* (non-Javadoc)
-     * @see com.googlecode.psiprobe.beans.stats.listeners.ThresholdListener#getThreshold(java.lang.String)
-     */
     @Override
     public long getThreshold(String name) {
       return threshold;
     }
 
-    /* (non-Javadoc)
-     * @see com.googlecode.psiprobe.beans.stats.listeners.FlapListener#reset()
-     */
     @Override
     public void reset() {
       resetFlags();

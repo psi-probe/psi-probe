@@ -26,9 +26,6 @@ import java.lang.reflect.Field;
  */
 public class BoneCpDatasourceAccessor implements DatasourceAccessor {
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.beans.DatasourceAccessor#getInfo(java.lang.Object)
-   */
   public DataSourceInfo getInfo(final Object resource) throws Exception {
     DataSourceInfo dataSourceInfo = null;
     if (canMap(resource)) {
@@ -56,16 +53,10 @@ public class BoneCpDatasourceAccessor implements DatasourceAccessor {
     return dataSourceInfo;
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.beans.DatasourceAccessor#reset(java.lang.Object)
-   */
   public boolean reset(final Object resource) throws Exception {
     return false;
   }
 
-  /* (non-Javadoc)
-   * @see com.googlecode.psiprobe.beans.DatasourceAccessor#canMap(java.lang.Object)
-   */
   public boolean canMap(final Object resource) {
     return "com.jolbox.bonecp.BoneCPDataSource".equals(resource.getClass().getName())
         && resource instanceof BoneCPDataSource;

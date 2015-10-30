@@ -69,9 +69,6 @@ public class ImplSelectorController extends AbstractController {
     this.impl2Controller = impl2Controller;
   }
 
-  /* (non-Javadoc)
-   * @see org.springframework.web.servlet.mvc.AbstractController#handleRequestInternal(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
-   */
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
     boolean forceOld = ServletRequestUtils.getBooleanParameter(request, "forceold", false);

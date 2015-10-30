@@ -427,51 +427,30 @@ public class Tokenizer {
       type = Tokenizer.TT_ERROR;
     }
 
-    /* (non-Javadoc)
-     * @see com.googlecode.psiprobe.tokenizer.Token#getText()
-     */
     public String getText() {
       return text.toString();
     }
 
-    /* (non-Javadoc)
-     * @see com.googlecode.psiprobe.tokenizer.Token#getInnerText()
-     */
     public String getInnerText() {
       return type == Tokenizer.TT_BLOCK ? innerText.toString() : getText();
     }
 
-    /* (non-Javadoc)
-     * @see com.googlecode.psiprobe.tokenizer.Token#getName()
-     */
     public String getName() {
       return name;
     }
 
-    /* (non-Javadoc)
-     * @see com.googlecode.psiprobe.tokenizer.Token#getType()
-     */
     public int getType() {
       return type;
     }
 
-    /* (non-Javadoc)
-     * @see com.googlecode.psiprobe.tokenizer.Token#getLine()
-     */
     public int getLine() {
       return line;
     }
 
-    /* (non-Javadoc)
-     * @see com.googlecode.psiprobe.tokenizer.Token#getCol()
-     */
     public int getCol() {
       return col;
     }
 
-    /* (non-Javadoc)
-     * @see java.lang.Object#toString()
-     */
     @Override
     public String toString() {
       return getText();
