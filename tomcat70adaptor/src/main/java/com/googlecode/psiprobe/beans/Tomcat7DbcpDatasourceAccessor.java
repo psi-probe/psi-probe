@@ -11,7 +11,6 @@
 
 package com.googlecode.psiprobe.beans;
 
-import com.googlecode.psiprobe.beans.DatasourceAccessor;
 import com.googlecode.psiprobe.model.DataSourceInfo;
 
 import org.apache.tomcat.dbcp.dbcp.BasicDataSource;
@@ -23,6 +22,8 @@ import org.apache.tomcat.dbcp.dbcp.BasicDataSource;
  * @author Mark Lewis
  */
 public class Tomcat7DbcpDatasourceAccessor implements DatasourceAccessor {
+
+  @Override
   public DataSourceInfo getInfo(Object resource) throws Exception {
     DataSourceInfo dataSourceInfo = null;
     if (canMap(resource)) {
@@ -39,12 +40,15 @@ public class Tomcat7DbcpDatasourceAccessor implements DatasourceAccessor {
     return dataSourceInfo;
   }
 
+  @Override
   public boolean reset(Object resource) throws Exception {
     return false;
   }
 
+  @Override
   public boolean canMap(Object resource) {
     return "org.apache.tomcat.dbcp.dbcp.BasicDataSource".equals(resource.getClass().getName())
         && resource instanceof BasicDataSource;
   }
+
 }

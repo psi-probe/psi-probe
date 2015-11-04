@@ -44,6 +44,7 @@ public class JvmMemoryStatsCollectorBean extends AbstractStatsCollectorBean {
     this.jvmMemoryInfoAccessor = jvmMemoryInfoAccessor;
   }
 
+  @Override
   public void collect() throws Exception {
     List<MemoryPool> pools = jvmMemoryInfoAccessor.getPools();
     long time = System.currentTimeMillis();

@@ -102,6 +102,7 @@ public class MultipleSeriesProvider extends AbstractSeriesProvider {
     this.movingAvgFrame = movingAvgFrame;
   }
 
+  @Override
   public void populate(DefaultTableXYDataset dataset, StatsCollection statsCollection,
       HttpServletRequest request) {
 

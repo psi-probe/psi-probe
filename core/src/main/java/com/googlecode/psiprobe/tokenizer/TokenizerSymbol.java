@@ -62,6 +62,7 @@ public class TokenizerSymbol implements Comparable {
     this.canBeNested = canBeNested;
   }
 
+  @Override
   public int compareTo(Object obj) {
     if (obj instanceof Character) {
       return compareTo((Character) obj);

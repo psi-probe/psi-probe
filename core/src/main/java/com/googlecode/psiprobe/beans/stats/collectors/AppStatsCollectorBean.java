@@ -89,10 +89,12 @@ public class AppStatsCollectorBean extends AbstractStatsCollectorBean implements
     return servletContext;
   }
 
+  @Override
   public void setServletContext(ServletContext servletContext) {
     this.servletContext = servletContext;
   }
 
+  @Override
   public void collect() throws Exception {
 
     long currentTime = System.currentTimeMillis();

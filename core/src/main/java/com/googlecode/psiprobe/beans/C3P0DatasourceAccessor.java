@@ -23,6 +23,7 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
  */
 public class C3P0DatasourceAccessor implements DatasourceAccessor {
 
+  @Override
   public DataSourceInfo getInfo(Object resource) throws Exception {
     DataSourceInfo dataSourceInfo = null;
     if (canMap(resource)) {
@@ -40,6 +41,7 @@ public class C3P0DatasourceAccessor implements DatasourceAccessor {
     return dataSourceInfo;
   }
 
+  @Override
   public boolean reset(Object resource) throws Exception {
     if (canMap(resource)) {
       ((ComboPooledDataSource) resource).hardReset();
@@ -48,6 +50,7 @@ public class C3P0DatasourceAccessor implements DatasourceAccessor {
     return false;
   }
 
+  @Override
   public boolean canMap(Object resource) {
     return "com.mchange.v2.c3p0.ComboPooledDataSource".equals(resource.getClass().getName())
         && resource instanceof ComboPooledDataSource;

@@ -58,6 +58,7 @@ public class MemoryPoolMailingListener extends FlapListener implements MessageSo
     return messageSourceAccessor;
   }
 
+  @Override
   public void setMessageSource(MessageSource messageSource) {
     this.messageSourceAccessor = new MessageSourceAccessor(messageSource);
   }
@@ -80,6 +81,7 @@ public class MemoryPoolMailingListener extends FlapListener implements MessageSo
     this.mailer = mailer;
   }
 
+  @Override
   public void afterPropertiesSet() throws Exception {
     if (getMailer().getSmtp() == null) {
       logger.info("Mailer SMTP host is not set.  Disabling listener.");
@@ -90,22 +92,27 @@ public class MemoryPoolMailingListener extends FlapListener implements MessageSo
     }
   }
 
+  @Override
   protected void flappingStarted(StatsCollectionEvent sce) {
     sendMail(sce, "flappingStart", false);
   }
 
+  @Override
   protected void aboveThresholdFlappingStopped(StatsCollectionEvent sce) {
     sendMail(sce, "aboveThreshold", true);
   }
 
+  @Override
   protected void belowThresholdFlappingStopped(StatsCollectionEvent sce) {
     sendMail(sce, "belowThreshold", true);
   }
 
+  @Override
   protected void aboveThresholdNotFlapping(StatsCollectionEvent sce) {
     sendMail(sce, "aboveThreshold", false);
   }
 
+  @Override
   protected void belowThresholdNotFlapping(StatsCollectionEvent sce) {
     sendMail(sce, "belowThreshold", false);
   }

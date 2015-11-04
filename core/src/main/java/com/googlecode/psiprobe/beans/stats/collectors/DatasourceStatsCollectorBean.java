@@ -57,6 +57,7 @@ public class DatasourceStatsCollectorBean extends AbstractStatsCollectorBean {
     this.containerWrapper = containerWrapper;
   }
 
+  @Override
   public void collect() throws Exception {
     long currentTime = System.currentTimeMillis();
     if (containerWrapper == null) {

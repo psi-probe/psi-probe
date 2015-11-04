@@ -24,6 +24,7 @@ import oracle.ucp.jdbc.PoolDataSource;
  */
 public class OracleUcpDatasourceAssessor implements DatasourceAccessor {
 
+  @Override
   public DataSourceInfo getInfo(Object resource) throws Exception {
     DataSourceInfo dataSourceInfo = null;
     if (canMap(resource)) {
@@ -52,10 +53,12 @@ public class OracleUcpDatasourceAssessor implements DatasourceAccessor {
     return dataSourceInfo;
   }
 
+  @Override
   public boolean reset(Object resource) throws Exception {
     return false;
   }
 
+  @Override
   public boolean canMap(Object resource) {
     return ("oracle.ucp.jdbc.PoolDataSourceImpl".equals(resource.getClass().getName())
         || "oracle.ucp.jdbc.PoolXADataSourceImpl".equals(resource.getClass().getName()))

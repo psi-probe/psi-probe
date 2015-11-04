@@ -23,6 +23,7 @@ import org.apache.commons.dbcp.BasicDataSource;
  */
 public class DbcpDatasourceAccessor implements DatasourceAccessor {
   
+  @Override
   public DataSourceInfo getInfo(Object resource) throws Exception {
     DataSourceInfo dataSourceInfo = null;
     if (canMap(resource)) {
@@ -39,10 +40,12 @@ public class DbcpDatasourceAccessor implements DatasourceAccessor {
     return dataSourceInfo;
   }
 
+  @Override
   public boolean reset(Object resource) throws Exception {
     return false;
   }
 
+  @Override
   public boolean canMap(Object resource) {
     return "org.apache.commons.dbcp.BasicDataSource".equals(resource.getClass().getName())
         && resource instanceof BasicDataSource;

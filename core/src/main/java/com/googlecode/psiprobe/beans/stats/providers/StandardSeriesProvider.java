@@ -51,6 +51,7 @@ public class StandardSeriesProvider extends AbstractSeriesProvider {
     this.statNames = statNames;
   }
 
+  @Override
   public void populate(DefaultTableXYDataset dataset, StatsCollection statsCollection,
       HttpServletRequest request) {
 

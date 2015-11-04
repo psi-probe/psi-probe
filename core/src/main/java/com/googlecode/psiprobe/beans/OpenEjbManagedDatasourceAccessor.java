@@ -24,6 +24,7 @@ import org.apache.tomcat.jdbc.pool.PoolConfiguration;
  */
 public class OpenEjbManagedDatasourceAccessor implements DatasourceAccessor {
 
+  @Override
   public DataSourceInfo getInfo(Object resource) throws Exception {
     DataSourceInfo dataSourceInfo = null;
     if (canMap(resource)) {
@@ -42,10 +43,12 @@ public class OpenEjbManagedDatasourceAccessor implements DatasourceAccessor {
     return dataSourceInfo;
   }
 
+  @Override
   public boolean reset(Object resource) throws Exception {
     return false;
   }
 
+  @Override
   public boolean canMap(Object resource) {
     if (resource.getClass().getName()
         .equals("org.apache.openejb.resource.jdbc.managed.local.ManagedDataSource")) {

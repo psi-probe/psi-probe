@@ -69,6 +69,7 @@ public abstract class ThresholdListener extends AbstractStatsCollectionListener 
    */
   protected abstract void remainedBelowThreshold(StatsCollectionEvent sce);
 
+  @Override
   public void statsCollected(StatsCollectionEvent sce) {
     String name = sce.getName();
     if (isSeriesDisabled(name)) {

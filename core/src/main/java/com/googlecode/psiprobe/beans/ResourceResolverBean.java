@@ -11,7 +11,6 @@
 
 package com.googlecode.psiprobe.beans;
 
-import com.googlecode.psiprobe.AbstractTomcatContainer;
 import com.googlecode.psiprobe.model.ApplicationResource;
 import com.googlecode.psiprobe.model.DataSourceInfo;
 
@@ -60,6 +59,7 @@ public class ResourceResolverBean implements ResourceResolver {
   /** The datasource mappers. */
   private List<DatasourceAccessor> datasourceMappers;
 
+  @Override
   public List<ApplicationResource> getApplicationResources() throws NamingException {
     logger.info("Reading GLOBAL resources");
     List<ApplicationResource> resources = new ArrayList<ApplicationResource>();
@@ -90,6 +90,7 @@ public class ResourceResolverBean implements ResourceResolver {
     return resources;
   }
 
+  @Override
   public synchronized List<ApplicationResource> getApplicationResources(Context context,
       ContainerWrapperBean containerWrapper) throws NamingException {
 
@@ -183,6 +184,7 @@ public class ResourceResolverBean implements ResourceResolver {
     }
   }
 
+  @Override
   public synchronized boolean resetResource(final Context context, String resourceName,
       ContainerWrapperBean containerWrapper) throws NamingException {
 
@@ -217,6 +219,7 @@ public class ResourceResolverBean implements ResourceResolver {
     }
   }
 
+  @Override
   public synchronized DataSource lookupDataSource(final Context context, String resourceName,
       ContainerWrapperBean containerWrapper) throws NamingException {
 
@@ -259,18 +262,22 @@ public class ResourceResolverBean implements ResourceResolver {
     this.datasourceMappers = datasourceMappers;
   }
 
+  @Override
   public boolean supportsPrivateResources() {
     return true;
   }
 
+  @Override
   public boolean supportsGlobalResources() {
     return true;
   }
 
+  @Override
   public boolean supportsDataSourceLookup() {
     return true;
   }
 
+  @Override
   public MBeanServer getMBeanServer() {
     return new Registry().getMBeanServer();
   }

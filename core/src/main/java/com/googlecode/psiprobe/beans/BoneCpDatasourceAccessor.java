@@ -26,6 +26,7 @@ import java.lang.reflect.Field;
  */
 public class BoneCpDatasourceAccessor implements DatasourceAccessor {
 
+  @Override
   public DataSourceInfo getInfo(final Object resource) throws Exception {
     DataSourceInfo dataSourceInfo = null;
     if (canMap(resource)) {
@@ -53,10 +54,12 @@ public class BoneCpDatasourceAccessor implements DatasourceAccessor {
     return dataSourceInfo;
   }
 
+  @Override
   public boolean reset(final Object resource) throws Exception {
     return false;
   }
 
+  @Override
   public boolean canMap(final Object resource) {
     return "com.jolbox.bonecp.BoneCPDataSource".equals(resource.getClass().getName())
         && resource instanceof BoneCPDataSource;

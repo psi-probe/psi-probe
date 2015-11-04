@@ -47,6 +47,7 @@ public class ReflectiveAccessor implements Accessor {
     init();
   }
 
+  @Override
   public Object get(Object obj, Field field) {
     try {
       Object fieldAccessor = getFieldAccessor(field);

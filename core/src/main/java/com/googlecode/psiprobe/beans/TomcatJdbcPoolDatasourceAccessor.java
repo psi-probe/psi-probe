@@ -31,6 +31,7 @@ import org.apache.tomcat.jdbc.pool.DataSource;
  */
 public class TomcatJdbcPoolDatasourceAccessor implements DatasourceAccessor {
 
+  @Override
   public DataSourceInfo getInfo(Object resource) throws Exception {
     DataSourceInfo dataSourceInfo = null;
     if (canMap(resource)) {
@@ -47,10 +48,12 @@ public class TomcatJdbcPoolDatasourceAccessor implements DatasourceAccessor {
     return dataSourceInfo;
   }
 
+  @Override
   public boolean reset(Object resource) throws Exception {
     return false;
   }
 
+  @Override
   public boolean canMap(Object resource) {
     return resource.getClass().getName().equals("org.apache.tomcat.jdbc.pool.DataSource")
         && resource instanceof DataSource;

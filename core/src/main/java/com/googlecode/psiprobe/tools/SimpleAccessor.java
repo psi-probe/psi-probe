@@ -20,6 +20,7 @@ import java.lang.reflect.Field;
  */
 public class SimpleAccessor implements Accessor {
 
+  @Override
   public Object get(Object obj, Field field) {
     boolean accessible = pre(field);
     try {

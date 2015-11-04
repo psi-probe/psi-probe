@@ -39,6 +39,7 @@ import java.util.Properties;
  */
 public class OracleDatasourceAccessor implements DatasourceAccessor {
 
+  @Override
   public DataSourceInfo getInfo(Object resource) throws Exception {
     DataSourceInfo dataSourceInfo = null;
 
@@ -72,6 +73,7 @@ public class OracleDatasourceAccessor implements DatasourceAccessor {
     return dataSourceInfo;
   }
 
+  @Override
   public boolean reset(Object resource) throws Exception {
     if (canMap(resource)) {
       ((OracleDataSource) resource).close();
@@ -80,6 +82,7 @@ public class OracleDatasourceAccessor implements DatasourceAccessor {
     return false;
   }
 
+  @Override
   public boolean canMap(Object resource) {
     return "oracle.jdbc.pool.OracleDataSource".equals(resource.getClass().getName())
         && resource instanceof OracleDataSource;

@@ -52,6 +52,7 @@ public class BackwardsFileStream extends InputStream {
     seekPos = pos;
   }
 
+  @Override
   public int read() throws IOException {
     if (seekPos > 0) {
       raf.seek(--seekPos);

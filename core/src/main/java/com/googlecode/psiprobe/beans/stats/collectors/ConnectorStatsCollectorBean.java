@@ -43,6 +43,7 @@ public class ConnectorStatsCollectorBean extends AbstractStatsCollectorBean {
     this.listenerBean = listenerBean;
   }
 
+  @Override
   public void collect() throws Exception {
     for (Connector connector : listenerBean.getConnectors(false)) {
       String statName = "stat.connector." + connector.getName();

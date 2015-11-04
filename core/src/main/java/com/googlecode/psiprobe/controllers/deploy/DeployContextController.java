@@ -27,6 +27,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class DeployContextController extends TomcatContainerController {
 
+  @Override
   public ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 

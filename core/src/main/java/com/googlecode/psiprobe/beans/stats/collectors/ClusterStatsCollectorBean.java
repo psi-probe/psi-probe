@@ -65,6 +65,7 @@ public class ClusterStatsCollectorBean extends AbstractStatsCollectorBean {
     this.clusterWrapper = clusterWrapper;
   }
 
+  @Override
   public void collect() throws Exception {
     // Job can be called before the servlet finished intialisation. Make sure
     // we dont get an NPE.
