@@ -79,10 +79,10 @@
 		</repository>
 	</repositories>
 	<properties>
-		<maven.compiler.source>1.5</maven.compiler.source>
-		<maven.compiler.target>1.5</maven.compiler.target>
-		<maven.compiler.testSource>1.5</maven.compiler.testSource>
-		<maven.compiler.testTarget>1.5</maven.compiler.testTarget>
+		<maven.compiler.source>1.6</maven.compiler.source>
+		<maven.compiler.target>1.6</maven.compiler.target>
+		<maven.compiler.testSource>1.6</maven.compiler.testSource>
+		<maven.compiler.testTarget>1.6</maven.compiler.testTarget>
 
 		<checkstyle.configLocation>google_checks.xml</checkstyle.configLocation>
 		<copyright>2015</copyright>
@@ -593,6 +593,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>2.16</version>
 				<configuration>
 					<configLocation>${checkstyle.configLocation}</configLocation>
 				</configuration>
