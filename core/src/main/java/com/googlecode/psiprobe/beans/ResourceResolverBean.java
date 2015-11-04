@@ -103,7 +103,7 @@ public class ResourceResolverBean implements ResourceResolver {
       boolean contextBound = false;
 
       try {
-        ((AbstractTomcatContainer) containerWrapper.getTomcatContainer()).bindToContext(context);
+        containerWrapper.getTomcatContainer().bindToContext(context);
         contextBound = true;
       } catch (NamingException e) {
         logger.error("Cannot bind to context. useNaming=false ?");
@@ -123,8 +123,7 @@ public class ResourceResolverBean implements ResourceResolver {
 
       } finally {
         if (contextBound) {
-          ((AbstractTomcatContainer) containerWrapper.getTomcatContainer())
-              .unbindFromContext(context);
+          containerWrapper.getTomcatContainer().unbindFromContext(context);
         }
       }
     }
@@ -188,7 +187,7 @@ public class ResourceResolverBean implements ResourceResolver {
       ContainerWrapperBean containerWrapper) throws NamingException {
 
     if (context != null) {
-      ((AbstractTomcatContainer) containerWrapper.getTomcatContainer()).bindToContext(context);
+      containerWrapper.getTomcatContainer().bindToContext(context);
     }
     try {
       javax.naming.Context ctx =
@@ -213,8 +212,7 @@ public class ResourceResolverBean implements ResourceResolver {
       }
     } finally {
       if (context != null) {
-        ((AbstractTomcatContainer) containerWrapper.getTomcatContainer())
-            .unbindFromContext(context);
+        containerWrapper.getTomcatContainer().unbindFromContext(context);
       }
     }
   }
@@ -223,7 +221,7 @@ public class ResourceResolverBean implements ResourceResolver {
       ContainerWrapperBean containerWrapper) throws NamingException {
 
     if (context != null) {
-      ((AbstractTomcatContainer) containerWrapper.getTomcatContainer()).bindToContext(context);
+      containerWrapper.getTomcatContainer().bindToContext(context);
     }
     try {
       javax.naming.Context ctx =
@@ -238,8 +236,7 @@ public class ResourceResolverBean implements ResourceResolver {
       }
     } finally {
       if (context != null) {
-        ((AbstractTomcatContainer) containerWrapper.getTomcatContainer())
-            .unbindFromContext(context);
+        containerWrapper.getTomcatContainer().unbindFromContext(context);
       }
     }
   }

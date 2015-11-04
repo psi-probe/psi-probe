@@ -11,6 +11,8 @@
 
 package com.googlecode.psiprobe;
 
+import com.googlecode.psiprobe.model.ApplicationParam;
+import com.googlecode.psiprobe.model.ApplicationResource;
 import com.googlecode.psiprobe.model.jsp.Item;
 import com.googlecode.psiprobe.model.jsp.Summary;
 
@@ -18,9 +20,16 @@ import org.apache.catalina.Container;
 import org.apache.catalina.Context;
 import org.apache.catalina.Engine;
 import org.apache.catalina.Host;
+import org.apache.catalina.Valve;
+import org.apache.catalina.Wrapper;
 import org.apache.catalina.core.StandardContext;
+import org.apache.catalina.deploy.ApplicationParameter;
+import org.apache.catalina.deploy.ContextResource;
+import org.apache.catalina.deploy.ContextResourceLink;
+import org.apache.catalina.deploy.NamingResources;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.commons.modeler.Registry;
 import org.apache.jasper.EmbeddedServletOptions;
 import org.apache.jasper.JasperException;
 import org.apache.jasper.JspCompilationContext;
@@ -33,11 +42,17 @@ import java.io.File;
 import java.net.URI;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.management.MBeanServer;
+import javax.management.MalformedObjectNameException;
+import javax.management.ObjectName;
 import javax.naming.NamingException;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -54,6 +69,99 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
   /** The logger. */
   protected Log logger = LogFactory.getLog(getClass());
 
+  /** The host. */
+  protected Host host;
+  
+  /** The deployer o name. */
+  protected ObjectName deployerOName;
+  
+  /** The mbean server. */
+  protected MBeanServer mbeanServer;
+  
+  /**
+   * Sets the wrapper.
+   *
+   * @param wrapper the wrapper
+   */
+  public void setWrapper(Wrapper wrapper) {
+    Valve valve = createValve();
+    if (wrapper != null) {
+      host = (Host) wrapper.getParent().getParent();
+      try {
+        deployerOName =
+            new ObjectName(host.getParent().getName() + ":type=Deployer,host=" + host.getName());
+      } catch (MalformedObjectNameException e) {
+        // do nothing here
+      }
+      host.getPipeline().addValve(valve);
+      mbeanServer = Registry.getRegistry(null, null).getMBeanServer();
+    } else if (host != null) {
+      host.getPipeline().removeValve(valve);
+    }
+  }
+  
+  /**
+   * Gets the app base.
+   * 
+   * @return the local directory where contexts are deployed
+   */
+  @Override
+  public File getAppBase() {
+    File base = new File(host.getAppBase());
+    if (!base.isAbsolute()) {
+      base = new File(System.getProperty("catalina.base"), host.getAppBase());
+    }
+    return base;
+  }
+
+  /**
+   * Gets the config base.
+   * 
+   * @return the local directory where the configs are stored
+   */
+  @Override
+  public String getConfigBase() {
+    File configBase = new File(System.getProperty("catalina.base"), "conf");
+    Container baseHost = null;
+    Container thisContainer = host;
+    while (thisContainer != null) {
+      if (thisContainer instanceof Host) {
+        baseHost = thisContainer;
+      }
+      thisContainer = thisContainer.getParent();
+    }
+    if (baseHost != null) {
+      configBase = new File(configBase, baseHost.getName());
+    }
+    return configBase.getAbsolutePath();
+  }
+
+  @Override
+  public String getHostName() {
+    return host.getName();
+  }
+
+  @Override
+  public String getName() {
+    return host.getParent().getName();
+  }
+
+  /**
+   * Find contexts.
+   * 
+   * @return all contexts
+   */
+  @Override
+  public List<Context> findContexts() {
+    ArrayList<Context> results = new ArrayList<Context>();
+    for (Container child : host.findChildren()) {
+      if (child instanceof Context) {
+        results.add((Context) child);
+      }
+    }
+    return results;
+  }
+
   /**
    * Deploys a context, assuming an context descriptor file exists on the server already.
    * 
@@ -69,6 +177,12 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     return findContext(contextName) != null;
   }
 
+  /**
+   * Stops the context with the given name.
+   * 
+   * @param name the name of the context to stop
+   * @throws Exception if stopping the context fails spectacularly
+   */
   public void stop(String name) throws Exception {
     Context ctx = findContext(name);
     if (ctx != null) {
@@ -76,6 +190,12 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     }
   }
 
+  /**
+   * Starts the context with the given name.
+   * 
+   * @param name the name of the context to start
+   * @throws Exception if starting the context fails spectacularly
+   */
   public void start(String name) throws Exception {
     Context ctx = findContext(name);
     if (ctx != null) {
@@ -83,16 +203,22 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     }
   }
 
-  public void remove(String contextName) throws Exception {
-    contextName = formatContextName(contextName);
-    Context ctx = findContext(contextName);
+  /**
+   * Removes the context from this host.
+   * 
+   * @param name the name of the context to remove
+   * @throws Exception if removing the context fails spectacularly
+   */
+  public void remove(String name) throws Exception {
+    name = formatContextName(name);
+    Context ctx = findContext(name);
 
     if (ctx != null) {
 
       try {
-        stop(contextName);
+        stop(name);
       } catch (Throwable e) {
-        logger.info("Stopping " + contextName + " threw this exception:", e);
+        logger.info("Stopping " + name + " threw this exception:", e);
         // make sure we always re-throw ThreadDeath
         if (e instanceof ThreadDeath) {
           throw (ThreadDeath) e;
@@ -111,7 +237,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
       logger.debug("Deleting " + appDir.getAbsolutePath());
       Utils.delete(appDir);
 
-      String warFilename = formatContextFilename(contextName);
+      String warFilename = formatContextFilename(name);
       File warFile = new File(getAppBase(), warFilename + ".war");
       logger.debug("Deleting " + warFile.getAbsolutePath());
       Utils.delete(warFile);
@@ -122,7 +248,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
         Utils.delete(configFile);
       }
 
-      removeInternal(contextName);
+      removeInternal(name);
     }
   }
 
@@ -132,7 +258,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
    * @param name the name
    * @throws Exception the exception
    */
-  public void removeInternal(String name) throws Exception {
+  private void removeInternal(String name) throws Exception {
     checkChanges(name);
   }
 
@@ -147,31 +273,8 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
    * @param config the config
    * @throws Exception the exception
    */
-  public void installContextInternal(String name, File config) throws Exception {
+  private void installContextInternal(String name, File config) throws Exception {
     checkChanges(name);
-  }
-
-  /**
-   * Binds a naming context to the current thread's classloader.
-   * 
-   * @param context the catalina context
-   * @throws NamingException if binding fails
-   */
-  public void bindToContext(Context context) throws NamingException {
-    Object token = null;
-    ContextBindings.bindClassLoader(context, token, Thread.currentThread().getContextClassLoader());
-  }
-
-  /**
-   * Unbinds a naming context from the current thread's classloader.
-   * 
-   * @param context the catalina context
-   * @throws NamingException if unbinding fails
-   */
-  public void unbindFromContext(Context context) throws NamingException {
-    Object token = null;
-    ContextBindings.unbindClassLoader(context, token, Thread.currentThread()
-        .getContextClassLoader());
   }
 
   /**
@@ -426,31 +529,164 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
   }
 
   /**
-   * Returns the path of where the context descriptors are stored.
-   * 
-   * @param container the container
-   * @return the path where context descriptors are stored
+   * Gets the application init params.
+   *
+   * @param context the context
+   * @return the application init params
    */
-  protected String getConfigBase(Container container) {
-    File configBase = new File(System.getProperty("catalina.base"), "conf");
-    Container baseHost = null;
-    Container baseEngine = null;
-    while (container != null) {
-      if (container instanceof Host) {
-        baseHost = container;
+  public List<ApplicationParam> getApplicationInitParams(Context context) {
+    /*
+     * We'll try to determine if a parameter value comes from a deployment descriptor or a context
+     * descriptor.
+     *
+     * Assumption: context.findParameter() returns only values of parameters that are declared in a
+     * deployment descriptor.
+     *
+     * If a parameter is declared in a context descriptor with override=false and redeclared in a
+     * deployment descriptor, context.findParameter() still returns its value, even though the value
+     * is taken from a context descriptor.
+     *
+     * context.findApplicationParameters() returns all parameters that are declared in a context
+     * descriptor regardless of whether they are overridden in a deployment descriptor or not or
+     * not.
+     */
+    /*
+     * creating a set of parameter names that are declared in a context descriptor and can not be
+     * ovevridden in a deployment descriptor.
+     */
+    Set<String> nonOverridableParams = new HashSet<String>();
+    for (ApplicationParameter appParam : context.findApplicationParameters()) {
+      if (appParam != null && !appParam.getOverride()) {
+        nonOverridableParams.add(appParam.getName());
       }
-      if (container instanceof Engine) {
-        baseEngine = container;
-      }
-      container = container.getParent();
     }
-    if (baseEngine != null) {
-      configBase = new File(configBase, baseEngine.getName());
+    List<ApplicationParam> initParams = new ArrayList<ApplicationParam>();
+    ServletContext servletCtx = context.getServletContext();
+    for (Enumeration e = servletCtx.getInitParameterNames(); e.hasMoreElements();) {
+      String paramName = (String) e.nextElement();
+      ApplicationParam param = new ApplicationParam();
+      param.setName(paramName);
+      param.setValue(servletCtx.getInitParameter(paramName));
+      /*
+       * if the parameter is declared in a deployment descriptor and it is not declared in a context
+       * descriptor with override=false, the value comes from the deployment descriptor
+       */
+      param.setFromDeplDescr(context.findParameter(paramName) != null
+          && !nonOverridableParams.contains(paramName));
+      initParams.add(param);
     }
-    if (baseHost != null) {
-      configBase = new File(configBase, baseHost.getName());
+    return initParams;
+  }
+
+  /**
+   * Adds the context resource link.
+   *
+   * @param context the context
+   * @param resourceList the resource list
+   * @param contextBound the context bound
+   */
+  public void addContextResourceLink(Context context, List<ApplicationResource> resourceList,
+      boolean contextBound) {
+    for (ContextResourceLink link : context.getNamingResources().findResourceLinks()) {
+      ApplicationResource resource = new ApplicationResource();
+      logger.debug("reading resourceLink: " + link.getName());
+      resource.setApplicationName(context.getName());
+      resource.setName(link.getName());
+      resource.setType(link.getType());
+      resource.setLinkTo(link.getGlobal());
+      // lookupResource(resource, contextBound, false);
+      resourceList.add(resource);
     }
-    return configBase.getAbsolutePath();
+  }
+
+  /**
+   * Adds the context resource.
+   *
+   * @param context the context
+   * @param resourceList the resource list
+   * @param contextBound the context bound
+   */
+  public void addContextResource(Context context, List<ApplicationResource> resourceList,
+      boolean contextBound) {
+    NamingResources namingResources = context.getNamingResources();
+    for (ContextResource contextResource : namingResources.findResources()) {
+      ApplicationResource resource = new ApplicationResource();
+      logger.info("reading resource: " + contextResource.getName());
+      resource.setApplicationName(context.getName());
+      resource.setName(contextResource.getName());
+      resource.setType(contextResource.getType());
+      resource.setScope(contextResource.getScope());
+      resource.setAuth(contextResource.getAuth());
+      resource.setDescription(contextResource.getDescription());
+      // lookupResource(resource, contextBound, false);
+      resourceList.add(resource);
+    }
+  }
+
+  /**
+   * Binds a naming context to the current thread's classloader.
+   * 
+   * @param context the catalina context
+   * @throws NamingException if binding the classloader fails
+   */
+  @Override
+  public void bindToContext(Context context) throws NamingException {
+    changeContextBinding(context, true);
+  }
+
+  /**
+   * Unbinds a naming context from the current thread's classloader.
+   * 
+   * @param context the catalina context
+   * @throws NamingException if unbinding the classloader fails
+   */
+  @Override
+  public void unbindFromContext(Context context) throws NamingException {
+    changeContextBinding(context, false);
+  }
+  
+  /**
+   * Change context binding.
+   *
+   * @param context the context
+   * @param bind the bind
+   * @throws NamingException the naming exception
+   */
+  private void changeContextBinding(Context context, boolean bind) throws NamingException {
+    Object token = getNamingToken(context);
+    ClassLoader loader = Thread.currentThread().getContextClassLoader();
+    if (bind) {
+      ContextBindings.bindClassLoader(context, token, loader);
+    } else {
+      ContextBindings.unbindClassLoader(context, token, loader);
+    }
+  }
+
+  /**
+   * Returns the security token required to bind to a naming context.
+   *
+   * @param context the catalina context
+   *
+   * @return the security token for use with <code>ContextBindings</code>
+   */
+  protected abstract Object getNamingToken(Context context);
+
+  /**
+   * Creates the jsp compilation context.
+   *
+   * @param name the name
+   * @param opt the opt
+   * @param sctx the sctx
+   * @param jrctx the jrctx
+   * @param classLoader the class loader
+   * @return the jsp compilation context
+   */
+  protected JspCompilationContext createJspCompilationContext(String name, Options opt,
+      ServletContext sctx, JspRuntimeContext jrctx, ClassLoader classLoader) {
+    
+    JspCompilationContext jcctx = new JspCompilationContext(name, opt, sctx, null, jrctx);
+    jcctx.setClassLoader(classLoader);
+    return jcctx;
   }
 
   /**
@@ -540,32 +776,38 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
   }
 
   /**
-   * Creates the jsp compilation context.
-   *
-   * @param name the name
-   * @param opt the opt
-   * @param sctx the sctx
-   * @param jrctx the jrctx
-   * @param classLoader the class loader
-   * @return the jsp compilation context
-   */
-  protected abstract JspCompilationContext createJspCompilationContext(String name, Options opt,
-      ServletContext sctx, JspRuntimeContext jrctx, ClassLoader classLoader);
-
-  /**
    * Find context internal.
    *
-   * @param contextName the context name
+   * @param name the context name
    * @return the context
    */
-  protected abstract Context findContextInternal(String contextName);
-  
+  protected Context findContextInternal(String name) {
+    return (Context) host.findChild(name);
+  }
+
   /**
    * Check changes.
    *
    * @param name the name
    * @throws Exception the exception
    */
-  protected abstract void checkChanges(String name) throws Exception;
+  protected void checkChanges(String name) throws Exception {
+    Boolean result =
+        (Boolean) mbeanServer.invoke(deployerOName, "isServiced", new String[] {name},
+            new String[] {"java.lang.String"});
+    if (!result) {
+      mbeanServer.invoke(deployerOName, "addServiced", new String[] {name},
+          new String[] {"java.lang.String"});
+      try {
+        mbeanServer.invoke(deployerOName, "check", new String[] {name},
+            new String[] {"java.lang.String"});
+      } finally {
+        mbeanServer.invoke(deployerOName, "removeServiced", new String[] {name},
+            new String[] {"java.lang.String"});
+      }
+    }
+  }
+
+  protected abstract Valve createValve();
 
 }

@@ -26,6 +26,8 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.List;
 
+import javax.naming.NamingException;
+
 /**
  * Part of Tomcat container version abstraction layer.
  * 
@@ -128,10 +130,10 @@ public interface TomcatContainer {
   void setWrapper(Wrapper wrapper);
 
   /**
-   * Can bound to.
+   * Indicates whether this adapter can bind to the container.
    *
-   * @param binding the binding
-   * @return true, if successful
+   * @param binding the ServerInfo of the container
+   * @return true if binding is possible
    */
   boolean canBoundTo(String binding);
 
@@ -280,4 +282,20 @@ public interface TomcatContainer {
    * @return the resource attributes
    */
   Long[] getResourceAttributes(String name, Context context);
+
+  /**
+   * Binds a naming context to the current thread's classloader.
+   *
+   * @param context the catalina context
+   * @throws NamingException if binding fails
+   */
+  void bindToContext(Context context) throws NamingException;
+
+  /**
+   * Unbinds a naming context from the current thread's classloader.
+   *
+   * @param context the catalina context
+   * @throws NamingException if unbinding fails
+   */
+  void unbindFromContext(Context context) throws NamingException;
 }

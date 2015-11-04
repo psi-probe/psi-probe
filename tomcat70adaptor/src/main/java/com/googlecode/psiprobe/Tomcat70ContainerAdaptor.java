@@ -11,45 +11,27 @@
 
 package com.googlecode.psiprobe;
 
-import com.googlecode.psiprobe.model.ApplicationParam;
-import com.googlecode.psiprobe.model.ApplicationResource;
 import com.googlecode.psiprobe.model.FilterInfo;
 import com.googlecode.psiprobe.model.FilterMapping;
 
-import org.apache.catalina.Container;
 import org.apache.catalina.Context;
-import org.apache.catalina.Host;
 import org.apache.catalina.Valve;
-import org.apache.catalina.Wrapper;
-import org.apache.catalina.deploy.ApplicationParameter;
-import org.apache.catalina.deploy.ContextResource;
-import org.apache.catalina.deploy.ContextResourceLink;
 import org.apache.catalina.deploy.FilterDef;
 import org.apache.catalina.deploy.FilterMap;
-import org.apache.catalina.deploy.NamingResources;
 import org.apache.commons.beanutils.ConstructorUtils;
-import org.apache.commons.modeler.Registry;
 import org.apache.jasper.JspCompilationContext;
 import org.apache.jasper.Options;
 import org.apache.jasper.compiler.JspRuntimeContext;
 import org.apache.jasper.servlet.JspServletWrapper;
-import org.apache.naming.ContextBindings;
 import org.apache.naming.resources.Resource;
 import org.apache.naming.resources.ResourceAttributes;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
-import javax.management.MBeanServer;
-import javax.management.MalformedObjectNameException;
-import javax.management.ObjectName;
 import javax.naming.NamingException;
 import javax.servlet.ServletContext;
 
@@ -61,45 +43,16 @@ import javax.servlet.ServletContext;
  */
 public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
 
-  /** The host. */
-  private Host host;
-  
-  /** The deployer o name. */
-  private ObjectName deployerOName;
-  
-  /** The mbean server. */
-  private MBeanServer mbeanServer;
-  
-  /** The valve. */
-  private final Valve valve = new Tomcat70AgentValve();
-
-  /**
-   * {@inheritDoc}
-   * 
-   * @param wrapper the wrapper
-   */
   @Override
-  public void setWrapper(Wrapper wrapper) {
-    if (wrapper != null) {
-      host = (Host) wrapper.getParent().getParent();
-      try {
-        deployerOName =
-            new ObjectName(host.getParent().getName() + ":type=Deployer,host=" + host.getName());
-      } catch (MalformedObjectNameException e) {
-        // do nothing here
-      }
-      host.getPipeline().addValve(valve);
-      mbeanServer = Registry.getRegistry(null, null).getMBeanServer();
-    } else if (host != null) {
-      host.getPipeline().removeValve(valve);
-    }
+  protected Valve createValve() {
+    return new Tomcat70AgentValve();
   }
 
   /**
-   * {@inheritDoc}
-   * 
-   * @param binding the ServerInfo of the hosting server
-   * @return true if this adapter can be used for the hosting server
+   * Indicates whether this adapter can bind to the container.
+   *
+   * @param binding the ServerInfo of the container
+   * @return true if binding is possible
    */
   @Override
   public boolean canBoundTo(String binding) {
@@ -115,91 +68,6 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
       canBind |= (binding.startsWith("Pivotal tc") && binding.contains("/7.0"));
     }
     return canBind;
-  }
-
-  /**
-   * {@inheritDoc}
-   * 
-   * @param name the name
-   * @return the context with the given name
-   */
-  @Override
-  protected Context findContextInternal(String name) {
-    return (Context) host.findChild(name);
-  }
-
-  /**
-   * {@inheritDoc}
-   * 
-   * @return all contexts
-   */
-  @Override
-  public List<Context> findContexts() {
-    List<Context> results = new ArrayList<Context>();
-    for (Container child : host.findChildren()) {
-      if (child instanceof Context) {
-        results.add((Context) child);
-      }
-    }
-    return results;
-  }
-
-  /**
-   * {@inheritDoc}
-   * 
-   * @param name the name
-   * @throws Exception if any interaction with the JMX server fails
-   */
-  @Override
-  protected void checkChanges(String name) throws Exception {
-    Boolean result =
-        (Boolean) mbeanServer.invoke(deployerOName, "isServiced", new String[] {name},
-            new String[] {"java.lang.String"});
-    if (!result) {
-      mbeanServer.invoke(deployerOName, "addServiced", new String[] {name},
-          new String[] {"java.lang.String"});
-      try {
-        mbeanServer.invoke(deployerOName, "check", new String[] {name},
-            new String[] {"java.lang.String"});
-      } finally {
-        mbeanServer.invoke(deployerOName, "removeServiced", new String[] {name},
-            new String[] {"java.lang.String"});
-      }
-    }
-  }
-
-  /**
-   * Gets the app base.
-   * 
-   * @return the local directory where contexts are deployed
-   */
-  @Override
-  public File getAppBase() {
-    File base = new File(host.getAppBase());
-    if (!base.isAbsolute()) {
-      base = new File(System.getProperty("catalina.base"), host.getAppBase());
-    }
-    return base;
-  }
-
-  /**
-   * Gets the config base.
-   * 
-   * @return the local directory where the configs are stored
-   */
-  @Override
-  public String getConfigBase() {
-    return getConfigBase(host);
-  }
-
-  @Override
-  public String getHostName() {
-    return host.getName();
-  }
-
-  @Override
-  public String getName() {
-    return host.getParent().getName();
   }
 
   /**
@@ -222,9 +90,9 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
       fm.setFilterClass(filterClass);
       results.add(fm);
     }
-    for (String servletName : servlets) {
+    for (String servlet : servlets) {
       FilterMapping fm = new FilterMapping();
-      fm.setServletName(servletName);
+      fm.setServletName(servlet);
       fm.setFilterName(fmap.getFilterName());
       fm.setDispatcherMap(dm);
       fm.setFilterClass(filterClass);
@@ -237,9 +105,8 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
   protected JspCompilationContext createJspCompilationContext(String name, Options opt,
       ServletContext sctx, JspRuntimeContext jrctx, ClassLoader classLoader) {
 
-    JspCompilationContext jcctx;
     try {
-      jcctx = new JspCompilationContext(name, opt, sctx, null, jrctx);
+      return super.createJspCompilationContext(name, opt, sctx, jrctx, classLoader);
     } catch (NoSuchMethodError err) {
       /*
        * The above constructor's signature changed in Tomcat 7.0.16:
@@ -249,11 +116,13 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
        * reflection to create this object.
        */
       try {
-        jcctx =
+        JspCompilationContext jcctx =
             (JspCompilationContext) ConstructorUtils.invokeConstructor(JspCompilationContext.class,
                 new Object[] {name, false, opt, sctx, null, jrctx}, new Class[] {String.class,
                     Boolean.TYPE, Options.class, ServletContext.class, JspServletWrapper.class,
                     JspRuntimeContext.class});
+        jcctx.setClassLoader(classLoader);
+        return jcctx;
       } catch (NoSuchMethodException ex) {
         throw new RuntimeException(ex);
       } catch (IllegalAccessException ex) {
@@ -263,50 +132,6 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
       } catch (InstantiationException ex) {
         throw new RuntimeException(ex);
       }
-    }
-    if (classLoader != null) {
-      jcctx.setClassLoader(classLoader);
-    }
-    return jcctx;
-  }
-
-  @Override
-  public void addContextResourceLink(Context context, List<ApplicationResource> resourceList,
-      boolean contextBound) {
-
-    for (ContextResourceLink link : context.getNamingResources().findResourceLinks()) {
-      ApplicationResource resource = new ApplicationResource();
-      logger.debug("reading resourceLink: " + link.getName());
-      resource.setApplicationName(context.getName());
-      resource.setName(link.getName());
-      resource.setType(link.getType());
-      resource.setLinkTo(link.getGlobal());
-
-      // lookupResource(resource, contextBound, false);
-      resourceList.add(resource);
-    }
-  }
-
-  @Override
-  public void addContextResource(Context context, List<ApplicationResource> resourceList,
-      boolean contextBound) {
-
-    NamingResources namingResources = context.getNamingResources();
-    ContextResource[] resources = namingResources.findResources();
-
-    for (ContextResource contextResource : resources) {
-      ApplicationResource resource = new ApplicationResource();
-
-      logger.info("reading resource: " + contextResource.getName());
-      resource.setApplicationName(context.getName());
-      resource.setName(contextResource.getName());
-      resource.setType(contextResource.getType());
-      resource.setScope(contextResource.getScope());
-      resource.setAuth(contextResource.getAuth());
-      resource.setDescription(contextResource.getDescription());
-
-      // lookupResource(resource, contextBound, false);
-      resourceList.add(resource);
     }
   }
 
@@ -387,56 +212,6 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
   }
 
   @Override
-  public List<ApplicationParam> getApplicationInitParams(Context context) {
-    /*
-     * We'll try to determine if a parameter value comes from a deployment descriptor or a context
-     * descriptor.
-     * 
-     * Assumption: context.findParameter() returns only values of parameters that are declared in a
-     * deployment descriptor.
-     * 
-     * If a parameter is declared in a context descriptor with override=false and redeclared in a
-     * deployment descriptor, context.findParameter() still returns its value, even though the value
-     * is taken from a context descriptor.
-     * 
-     * context.findApplicationParameters() returns all parameters that are declared in a context
-     * descriptor regardless of whether they are overridden in a deployment descriptor or not or
-     * not.
-     */
-
-    /*
-     * creating a set of parameter names that are declared in a context descriptor and can not be
-     * ovevridden in a deployment descriptor.
-     */
-    Set<String> nonOverridableParams = new HashSet<String>();
-    for (ApplicationParameter appParam : context.findApplicationParameters()) {
-      if (appParam != null && !appParam.getOverride()) {
-        nonOverridableParams.add(appParam.getName());
-      }
-    }
-
-    List<ApplicationParam> initParams = new ArrayList<ApplicationParam>();
-    ServletContext servletCtx = context.getServletContext();
-    for (Enumeration e = servletCtx.getInitParameterNames(); e.hasMoreElements();) {
-      String paramName = (String) e.nextElement();
-
-      ApplicationParam param = new ApplicationParam();
-      param.setName(paramName);
-      param.setValue(servletCtx.getInitParameter(paramName));
-      /*
-       * if the parameter is declared in a deployment descriptor and it is not declared in a context
-       * descriptor with override=false, the value comes from the deployment descriptor
-       */
-      param.setFromDeplDescr(context.findParameter(paramName) != null
-          && !nonOverridableParams.contains(paramName));
-      initParams.add(param);
-    }
-
-    return initParams;
-
-  }
-
-  @Override
   public boolean resourceExists(String name, Context context) {
     try {
       return context.getResources().lookup(name) != null;
@@ -468,14 +243,8 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
   }
 
   @Override
-  public void bindToContext(Context context) throws NamingException {
-    ContextBindings.bindClassLoader(context, context,
-        Thread.currentThread().getContextClassLoader());
+  protected Object getNamingToken(Context context) {
+    return context;
   }
 
-  @Override
-  public void unbindFromContext(Context context) throws NamingException {
-    ContextBindings.unbindClassLoader(context, context,
-        Thread.currentThread().getContextClassLoader());
-  }
 }
