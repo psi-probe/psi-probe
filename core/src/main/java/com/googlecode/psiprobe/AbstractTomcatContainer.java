@@ -18,15 +18,12 @@ import com.googlecode.psiprobe.model.jsp.Summary;
 
 import org.apache.catalina.Container;
 import org.apache.catalina.Context;
-import org.apache.catalina.Engine;
 import org.apache.catalina.Host;
 import org.apache.catalina.Valve;
 import org.apache.catalina.Wrapper;
 import org.apache.catalina.core.StandardContext;
 import org.apache.catalina.deploy.ApplicationParameter;
-import org.apache.catalina.deploy.ContextResource;
 import org.apache.catalina.deploy.ContextResourceLink;
-import org.apache.catalina.deploy.NamingResources;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.commons.modeler.Registry;
@@ -78,11 +75,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
   /** The mbean server. */
   protected MBeanServer mbeanServer;
   
-  /**
-   * Sets the wrapper.
-   *
-   * @param wrapper the wrapper
-   */
+  @Override
   public void setWrapper(Wrapper wrapper) {
     Valve valve = createValve();
     if (wrapper != null) {
@@ -100,11 +93,6 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     }
   }
   
-  /**
-   * Gets the app base.
-   * 
-   * @return the local directory where contexts are deployed
-   */
   @Override
   public File getAppBase() {
     File base = new File(host.getAppBase());
@@ -114,11 +102,6 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     return base;
   }
 
-  /**
-   * Gets the config base.
-   * 
-   * @return the local directory where the configs are stored
-   */
   @Override
   public String getConfigBase() {
     File configBase = new File(System.getProperty("catalina.base"), "conf");
@@ -146,11 +129,6 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     return host.getParent().getName();
   }
 
-  /**
-   * Find contexts.
-   * 
-   * @return all contexts
-   */
   @Override
   public List<Context> findContexts() {
     ArrayList<Context> results = new ArrayList<Context>();
@@ -162,13 +140,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     return results;
   }
 
-  /**
-   * Deploys a context, assuming an context descriptor file exists on the server already.
-   * 
-   * @param contextName the context path, which should match the filename
-   * @return {@code} true if deployment was successful
-   * @throws Exception if deployment fails spectacularly
-   */
+  @Override
   public boolean installContext(String contextName) throws Exception {
     contextName = formatContextName(contextName);
     String contextFilename = formatContextFilename(contextName);
@@ -177,12 +149,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     return findContext(contextName) != null;
   }
 
-  /**
-   * Stops the context with the given name.
-   * 
-   * @param name the name of the context to stop
-   * @throws Exception if stopping the context fails spectacularly
-   */
+  @Override
   public void stop(String name) throws Exception {
     Context ctx = findContext(name);
     if (ctx != null) {
@@ -190,12 +157,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     }
   }
 
-  /**
-   * Starts the context with the given name.
-   * 
-   * @param name the name of the context to start
-   * @throws Exception if starting the context fails spectacularly
-   */
+  @Override
   public void start(String name) throws Exception {
     Context ctx = findContext(name);
     if (ctx != null) {
@@ -203,12 +165,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     }
   }
 
-  /**
-   * Removes the context from this host.
-   * 
-   * @param name the name of the context to remove
-   * @throws Exception if removing the context fails spectacularly
-   */
+  @Override
   public void remove(String name) throws Exception {
     name = formatContextName(name);
     Context ctx = findContext(name);
@@ -262,6 +219,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     checkChanges(name);
   }
 
+  @Override
   public void installWar(String name, URL url) throws Exception {
     checkChanges(name);
   }
@@ -277,12 +235,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     checkChanges(name);
   }
 
-  /**
-   * Finds a context based on its path.
-   * 
-   * @param name the context path
-   * @return the context deployed to that path
-   */
+  @Override
   public Context findContext(String name) {
     String safeName = formatContextName(name);
     if (safeName == null) {
@@ -295,13 +248,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     return result;
   }
 
-  /**
-   * Formats a context name to a path that the container will recognize. Usually this means
-   * prepending a {@code /} character, although there is special behavior for the root context.
-   * 
-   * @param name the context name
-   * @return the context name formatted as the container expects
-   */
+  @Override
   public String formatContextName(String name) {
     if (name == null) {
       return null;
@@ -316,14 +263,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     return result;
   }
 
-  /**
-   * Formats a context name so that it can be used as a step for the context descriptor .xml or
-   * deployed .war file. Usually this means stripping a leading {@code /} character, although there
-   * is special behavior for the root context.
-   * 
-   * @param contextName the context name
-   * @return the filename stem for this context
-   */
+  @Override
   public String formatContextFilename(String contextName) {
     if (contextName == null) {
       return null;
@@ -336,11 +276,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     }
   }
 
-  /**
-   * Deletes the "work" directory of the given context.
-   * 
-   * @param context the context
-   */
+  @Override
   public void discardWorkDir(Context context) {
     if (context instanceof StandardContext) {
       StandardContext standardContext = (StandardContext) context;
@@ -352,13 +288,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     }
   }
 
-  /**
-   * Returns the JSP servlet filename for the given JSP file.
-   * 
-   * @param context the context
-   * @param jspName the JSP filename
-   * @return the name of the JSP servlet
-   */
+  @Override
   public String getServletFileNameForJsp(Context context, String jspName) {
     String servletName = null;
 
@@ -376,14 +306,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     return servletName;
   }
 
-  /**
-   * Compiles a list of JSPs. Names of JSP files are expected to be relative to the webapp root. The
-   * method updates summary with compilation details.
-   *
-   * @param context the context
-   * @param summary the summary in which the output is stored
-   * @param names the list of JSPs to compile
-   */
+  @Override
   public void recompileJsps(Context context, Summary summary, List<String> names) {
     ServletConfig servletConfig = (ServletConfig) context.findChild("jsp");
     if (servletConfig != null) {
@@ -439,14 +362,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     }
   }
 
-  /**
-   * Lists and optionally compiles all JSPs for the given context. Compilation details are added to
-   * the summary.
-   *
-   * @param context the context
-   * @param summary the summary in which the output is stored
-   * @param compile whether to compile all of the JSPs or not
-   */
+  @Override
   public void listContextJsps(Context context, Summary summary, boolean compile) {
     ServletConfig servletConfig = (ServletConfig) context.findChild("jsp");
     if (servletConfig != null) {
@@ -507,12 +423,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     return context.getState().isAvailable();
   }
 
-  /**
-   * Returns the context descriptor filename for the given context.
-   * 
-   * @param context the context
-   * @return the context descriptor filename, or {@code null}
-   */
+  @Override
   public File getConfigFile(Context context) {
     URL configUrl = context.getConfigFile();
     if (configUrl != null) {
@@ -528,12 +439,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     return null;
   }
 
-  /**
-   * Gets the application init params.
-   *
-   * @param context the context
-   * @return the application init params
-   */
+  @Override
   public List<ApplicationParam> getApplicationInitParams(Context context) {
     /*
      * We'll try to determine if a parameter value comes from a deployment descriptor or a context
@@ -578,13 +484,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     return initParams;
   }
 
-  /**
-   * Adds the context resource link.
-   *
-   * @param context the context
-   * @param resourceList the resource list
-   * @param contextBound the context bound
-   */
+  @Override
   public void addContextResourceLink(Context context, List<ApplicationResource> resourceList,
       boolean contextBound) {
     for (ContextResourceLink link : context.getNamingResources().findResourceLinks()) {
@@ -599,47 +499,11 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     }
   }
 
-  /**
-   * Adds the context resource.
-   *
-   * @param context the context
-   * @param resourceList the resource list
-   * @param contextBound the context bound
-   */
-  public void addContextResource(Context context, List<ApplicationResource> resourceList,
-      boolean contextBound) {
-    NamingResources namingResources = context.getNamingResources();
-    for (ContextResource contextResource : namingResources.findResources()) {
-      ApplicationResource resource = new ApplicationResource();
-      logger.info("reading resource: " + contextResource.getName());
-      resource.setApplicationName(context.getName());
-      resource.setName(contextResource.getName());
-      resource.setType(contextResource.getType());
-      resource.setScope(contextResource.getScope());
-      resource.setAuth(contextResource.getAuth());
-      resource.setDescription(contextResource.getDescription());
-      // lookupResource(resource, contextBound, false);
-      resourceList.add(resource);
-    }
-  }
-
-  /**
-   * Binds a naming context to the current thread's classloader.
-   * 
-   * @param context the catalina context
-   * @throws NamingException if binding the classloader fails
-   */
   @Override
   public void bindToContext(Context context) throws NamingException {
     changeContextBinding(context, true);
   }
 
-  /**
-   * Unbinds a naming context from the current thread's classloader.
-   * 
-   * @param context the catalina context
-   * @throws NamingException if unbinding the classloader fails
-   */
   @Override
   public void unbindFromContext(Context context) throws NamingException {
     changeContextBinding(context, false);
@@ -660,33 +524,6 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     } else {
       ContextBindings.unbindClassLoader(context, token, loader);
     }
-  }
-
-  /**
-   * Returns the security token required to bind to a naming context.
-   *
-   * @param context the catalina context
-   *
-   * @return the security token for use with <code>ContextBindings</code>
-   */
-  protected abstract Object getNamingToken(Context context);
-
-  /**
-   * Creates the jsp compilation context.
-   *
-   * @param name the name
-   * @param opt the opt
-   * @param sctx the sctx
-   * @param jrctx the jrctx
-   * @param classLoader the class loader
-   * @return the jsp compilation context
-   */
-  protected JspCompilationContext createJspCompilationContext(String name, Options opt,
-      ServletContext sctx, JspRuntimeContext jrctx, ClassLoader classLoader) {
-    
-    JspCompilationContext jcctx = new JspCompilationContext(name, opt, sctx, null, jrctx);
-    jcctx.setClassLoader(classLoader);
-    return jcctx;
   }
 
   /**
@@ -807,6 +644,28 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
       }
     }
   }
+
+  /**
+   * Returns the security token required to bind to a naming context.
+   *
+   * @param context the catalina context
+   *
+   * @return the security token for use with <code>ContextBindings</code>
+   */
+  protected abstract Object getNamingToken(Context context);
+
+  /**
+   * Creates the jsp compilation context.
+   *
+   * @param name the name
+   * @param opt the opt
+   * @param sctx the sctx
+   * @param jrctx the jrctx
+   * @param classLoader the class loader
+   * @return the jsp compilation context
+   */
+  protected abstract JspCompilationContext createJspCompilationContext(String name, Options opt,
+      ServletContext sctx, JspRuntimeContext jrctx, ClassLoader classLoader);
 
   protected abstract Valve createValve();
 

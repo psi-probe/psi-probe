@@ -11,13 +11,16 @@
 
 package com.googlecode.psiprobe;
 
+import com.googlecode.psiprobe.model.ApplicationResource;
 import com.googlecode.psiprobe.model.FilterInfo;
 import com.googlecode.psiprobe.model.FilterMapping;
 
 import org.apache.catalina.Context;
 import org.apache.catalina.Valve;
+import org.apache.catalina.deploy.ContextResource;
 import org.apache.catalina.deploy.FilterDef;
 import org.apache.catalina.deploy.FilterMap;
+import org.apache.catalina.deploy.NamingResources;
 import org.apache.commons.beanutils.ConstructorUtils;
 import org.apache.jasper.JspCompilationContext;
 import org.apache.jasper.Options;
@@ -48,12 +51,6 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
     return new Tomcat70AgentValve();
   }
 
-  /**
-   * Indicates whether this adapter can bind to the container.
-   *
-   * @param binding the ServerInfo of the container
-   * @return true if binding is possible
-   */
   @Override
   public boolean canBoundTo(String binding) {
     boolean canBind = false;
@@ -105,8 +102,9 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
   protected JspCompilationContext createJspCompilationContext(String name, Options opt,
       ServletContext sctx, JspRuntimeContext jrctx, ClassLoader classLoader) {
 
+    JspCompilationContext jcctx;
     try {
-      return super.createJspCompilationContext(name, opt, sctx, jrctx, classLoader);
+      jcctx = new JspCompilationContext(name, opt, sctx, null, jrctx);
     } catch (NoSuchMethodError err) {
       /*
        * The above constructor's signature changed in Tomcat 7.0.16:
@@ -116,12 +114,11 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
        * reflection to create this object.
        */
       try {
-        JspCompilationContext jcctx =
+        jcctx =
             (JspCompilationContext) ConstructorUtils.invokeConstructor(JspCompilationContext.class,
                 new Object[] {name, false, opt, sctx, null, jrctx}, new Class[] {String.class,
                     Boolean.TYPE, Options.class, ServletContext.class, JspServletWrapper.class,
                     JspRuntimeContext.class});
-        jcctx.setClassLoader(classLoader);
         return jcctx;
       } catch (NoSuchMethodException ex) {
         throw new RuntimeException(ex);
@@ -132,6 +129,28 @@ public class Tomcat70ContainerAdaptor extends AbstractTomcatContainer {
       } catch (InstantiationException ex) {
         throw new RuntimeException(ex);
       }
+    }
+    if (classLoader != null) {
+      jcctx.setClassLoader(classLoader);
+    }
+    return jcctx;
+  }
+
+  @Override
+  public void addContextResource(Context context, List<ApplicationResource> resourceList,
+      boolean contextBound) {
+    NamingResources namingResources = context.getNamingResources();
+    for (ContextResource contextResource : namingResources.findResources()) {
+      ApplicationResource resource = new ApplicationResource();
+      logger.info("reading resource: " + contextResource.getName());
+      resource.setApplicationName(context.getName());
+      resource.setName(contextResource.getName());
+      resource.setType(contextResource.getType());
+      resource.setScope(contextResource.getScope());
+      resource.setAuth(contextResource.getAuth());
+      resource.setDescription(contextResource.getDescription());
+      // lookupResource(resource, contextBound, false);
+      resourceList.add(resource);
     }
   }
 

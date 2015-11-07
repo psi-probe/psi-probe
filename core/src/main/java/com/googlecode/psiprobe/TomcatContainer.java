@@ -37,49 +37,52 @@ import javax.naming.NamingException;
 public interface TomcatContainer {
 
   /**
-   * Find context.
+   * Finds a context based on its path.
    *
-   * @param name the name
-   * @return the context
+   * @param name the context path
+   * @return the context deployed to that path
    */
   Context findContext(String name);
 
   /**
-   * Format context name.
+   * Formats a context name to a path that the container will recognize. Usually this means
+   * prepending a {@code /} character, although there is special behavior for the root context.
    *
-   * @param name the name
-   * @return the string
+   * @param name the context name
+   * @return the context name formatted as the container expects
    */
   String formatContextName(String name);
 
   /**
-   * Format context filename.
+   * Formats a context name so that it can be used as a step for the context descriptor .xml or
+   * deployed .war file. Usually this means stripping a leading {@code /} character, although there
+   * is special behavior for the root context.
    *
    * @param contextName the context name
-   * @return the string
+   * @return the filename stem for this context
    */
   String formatContextFilename(String contextName);
 
   /**
    * Find contexts.
    *
-   * @return the list
+   * @return all contexts
    */
   List<Context> findContexts();
 
   /**
-   * Stop.
+   * Stops the context with the given name.
    *
-   * @param name the name
-   * @throws Exception the exception
+   * @param name the name of the context to stop
+   * @throws Exception if stopping the context fails spectacularly
    */
   void stop(String name) throws Exception;
 
   /**
-   * Start.
+   * Starts the context with the given name.
    *
-   * @param name the name
-   * @throws Exception the exception
+   * @param name the name of the context to start
+   * @throws Exception if starting the context fails spectacularly
    */
   void start(String name) throws Exception;
 
@@ -108,12 +111,12 @@ public interface TomcatContainer {
   File getAppBase();
 
   /**
-   * Gets the config file.
+   * Returns the context descriptor filename for the given context.
    *
-   * @param ctx the ctx
-   * @return the config file
+   * @param context the context
+   * @return the context descriptor filename, or {@code null}
    */
-  File getConfigFile(Context ctx);
+  File getConfigFile(Context context);
 
   /**
    * Gets the config base.
@@ -147,26 +150,27 @@ public interface TomcatContainer {
   boolean installContext(String contextName) throws Exception;
 
   /**
-   * List context jsps.
+   * Lists and optionally compiles all JSPs for the given context. Compilation details are added to
+   * the summary.
    *
    * @param context the context
-   * @param summary the summary
-   * @param compile the compile
-   * @throws Exception the exception
+   * @param summary the summary in which the output is stored
+   * @param compile whether to compile all of the JSPs or not
    */
-  void listContextJsps(Context context, Summary summary, boolean compile) throws Exception;
+  void listContextJsps(Context context, Summary summary, boolean compile);
 
   /**
-   * Recompile jsps.
+   * Compiles a list of JSPs. Names of JSP files are expected to be relative to the webapp root. The
+   * method updates summary with compilation details.
    *
    * @param context the context
-   * @param summary the summary
-   * @param names the names
+   * @param summary the summary in which the output is stored
+   * @param names the list of JSPs to compile
    */
   void recompileJsps(Context context, Summary summary, List<String> names);
 
   /**
-   * Discard work dir.
+   * Deletes the "work" directory of the given context.
    *
    * @param context the context
    */
@@ -195,11 +199,11 @@ public interface TomcatContainer {
   String getName();
 
   /**
-   * Gets the servlet file name for jsp.
+   * Returns the JSP servlet filename for the given JSP file.
    *
    * @param context the context
-   * @param jspName the jsp name
-   * @return the servlet file name for jsp
+   * @param jspName the JSP filename
+   * @return the name of the JSP servlet
    */
   String getServletFileNameForJsp(Context context, String jspName);
 
@@ -287,7 +291,7 @@ public interface TomcatContainer {
    * Binds a naming context to the current thread's classloader.
    *
    * @param context the catalina context
-   * @throws NamingException if binding fails
+   * @throws NamingException if binding the classloader fails
    */
   void bindToContext(Context context) throws NamingException;
 
@@ -295,7 +299,7 @@ public interface TomcatContainer {
    * Unbinds a naming context from the current thread's classloader.
    *
    * @param context the catalina context
-   * @throws NamingException if unbinding fails
+   * @throws NamingException if unbinding the classloader fails
    */
   void unbindFromContext(Context context) throws NamingException;
 }

@@ -11,13 +11,19 @@
 
 package com.googlecode.psiprobe;
 
+import com.googlecode.psiprobe.model.ApplicationResource;
 import com.googlecode.psiprobe.model.FilterInfo;
 import com.googlecode.psiprobe.model.FilterMapping;
 
 import org.apache.catalina.Context;
 import org.apache.catalina.Valve;
 import org.apache.catalina.WebResource;
+import org.apache.catalina.deploy.NamingResourcesImpl;
+import org.apache.jasper.JspCompilationContext;
+import org.apache.jasper.Options;
+import org.apache.jasper.compiler.JspRuntimeContext;
 import org.apache.naming.ContextAccessController;
+import org.apache.tomcat.util.descriptor.web.ContextResource;
 import org.apache.tomcat.util.descriptor.web.FilterDef;
 import org.apache.tomcat.util.descriptor.web.FilterMap;
 
@@ -25,6 +31,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.ServletContext;
 
 
 /**
@@ -41,12 +49,6 @@ public class Tomcat80ContainerAdaptor extends AbstractTomcatContainer {
     return new Tomcat80AgentValve();
   }
 
-  /**
-   * Indicates whether this adapter can bind to the container.
-   *
-   * @param binding the ServerInfo of the container
-   * @return true if binding is possible
-   */
   @Override
   public boolean canBoundTo(String binding) {
     boolean canBind = false;
@@ -87,6 +89,36 @@ public class Tomcat80ContainerAdaptor extends AbstractTomcatContainer {
       results.add(fm);
     }
     return results;
+  }
+
+  @Override
+  protected JspCompilationContext createJspCompilationContext(String name, Options opt,
+      ServletContext sctx, JspRuntimeContext jrctx, ClassLoader classLoader) {
+    
+    JspCompilationContext jcctx = new JspCompilationContext(name, opt, sctx, null, jrctx);
+    jcctx.setClassLoader(classLoader);
+    return jcctx;
+  }
+
+  @Override
+  public void addContextResource(Context context, List<ApplicationResource> resourceList,
+      boolean contextBound) {
+
+    NamingResourcesImpl namingResources = context.getNamingResources();
+    for (ContextResource contextResource : namingResources.findResources()) {
+      ApplicationResource resource = new ApplicationResource();
+
+      logger.info("reading resource: " + contextResource.getName());
+      resource.setApplicationName(context.getName());
+      resource.setName(contextResource.getName());
+      resource.setType(contextResource.getType());
+      resource.setScope(contextResource.getScope());
+      resource.setAuth(contextResource.getAuth());
+      resource.setDescription(contextResource.getDescription());
+
+      // lookupResource(resource, contextBound, false);
+      resourceList.add(resource);
+    }
   }
 
   @Override
