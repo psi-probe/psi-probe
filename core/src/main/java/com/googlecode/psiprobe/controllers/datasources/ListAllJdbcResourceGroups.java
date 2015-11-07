@@ -35,6 +35,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ListAllJdbcResourceGroups extends TomcatContainerController {
 
+  @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
     
@@ -52,6 +53,7 @@ public class ListAllJdbcResourceGroups extends TomcatContainerController {
 
     // sort datasources by JDBC URL
     Collections.sort(dataSources, new Comparator<DataSourceInfo>() {
+      @Override
       public int compare(DataSourceInfo ds1, DataSourceInfo ds2) {
         String jdbcUrl1 = ds1.getJdbcUrl();
         String jdbcUrl2 = ds2.getJdbcUrl();

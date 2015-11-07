@@ -40,6 +40,7 @@ import javax.sql.DataSource;
  */
 public class ConnectionTestController extends ContextHandlerController {
 
+  @Override
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 

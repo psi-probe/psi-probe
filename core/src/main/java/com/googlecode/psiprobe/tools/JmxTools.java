@@ -29,7 +29,7 @@ import javax.management.openmbean.CompositeData;
 public class JmxTools {
 
   /** The logger. */
-  private static Log logger = LogFactory.getLog(JmxTools.class);
+  private static final Log logger = LogFactory.getLog(JmxTools.class);
 
   /**
    * Gets the attribute.

@@ -86,13 +86,12 @@ public class TimeExpression {
     } else {
       throw new IllegalArgumentException("Phase is too large: " + phase);
     }
-    String secondsCron = "*";
+    String secondsCron = cronSubexpression(secondsPeriod, secondsPhase);
     String minutesCron = "*";
     String hoursCron = "*";
     String daysCron = "*";
     String monthsCron = "*";
     String dowCron = "?";
-    secondsCron = cronSubexpression(secondsPeriod, secondsPhase);
     if (secondsPeriod == 0) {
       minutesCron = cronSubexpression(minutesPeriod, minutesPhase);
       if (minutesPeriod == 0) {

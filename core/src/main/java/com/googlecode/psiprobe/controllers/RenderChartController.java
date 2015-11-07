@@ -76,6 +76,7 @@ public class RenderChartController extends AbstractController {
     this.statsCollection = statsCollection;
   }
 
+  @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 

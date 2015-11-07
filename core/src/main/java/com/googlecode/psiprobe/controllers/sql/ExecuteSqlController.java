@@ -45,6 +45,7 @@ import javax.sql.DataSource;
  */
 public class ExecuteSqlController extends ContextHandlerController {
 
+  @Override
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 

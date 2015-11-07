@@ -33,6 +33,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ListThreadsController extends TomcatContainerController {
 
+  @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 

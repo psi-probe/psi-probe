@@ -42,7 +42,7 @@ import javax.sql.DataSource;
 public class ResourceResolverBean implements ResourceResolver {
 
   /** The logger. */
-  private Log logger = LogFactory.getLog(getClass());
+  private final Log logger = LogFactory.getLog(getClass());
 
   /**
    * The default resource prefix for JNDI objects in the global scope: <code>java:</code>.

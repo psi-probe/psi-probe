@@ -31,7 +31,7 @@ import javax.servlet.jsp.tagext.TagSupport;
 public class VolumeTag extends TagSupport {
 
   /** The logger. */
-  private Log logger = LogFactory.getLog(getClass());
+  private final Log logger = LogFactory.getLog(getClass());
 
   /** The value. */
   private long value;

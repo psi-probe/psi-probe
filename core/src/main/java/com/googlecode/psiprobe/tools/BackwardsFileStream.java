@@ -24,7 +24,7 @@ import java.io.RandomAccessFile;
 public class BackwardsFileStream extends InputStream {
 
   /** The raf. */
-  private RandomAccessFile raf;
+  private final RandomAccessFile raf;
   
   /** The seek pos. */
   private long seekPos;

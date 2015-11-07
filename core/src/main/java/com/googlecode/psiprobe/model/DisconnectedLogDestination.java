@@ -28,43 +28,43 @@ import java.sql.Timestamp;
 public class DisconnectedLogDestination implements LogDestination, Serializable {
 
   /** The application. */
-  private Application application;
+  private final Application application;
   
   /** The root. */
-  private boolean root;
+  private final boolean root;
   
   /** The context. */
-  private boolean context;
+  private final boolean context;
   
   /** The name. */
-  private String name;
+  private final String name;
   
   /** The index. */
-  private String index;
+  private final String index;
   
   /** The target class. */
-  private String targetClass;
+  private final String targetClass;
   
   /** The conversion pattern. */
-  private String conversionPattern;
+  private final String conversionPattern;
   
   /** The file. */
-  private File file;
+  private final File file;
   
   /** The log type. */
-  private String logType;
+  private final String logType;
   
   /** The size. */
-  private long size;
+  private final long size;
   
   /** The last modified. */
-  private Timestamp lastModified;
+  private final Timestamp lastModified;
   
   /** The level. */
-  private String level;
+  private final String level;
   
   /** The valid levels. */
-  private String[] validLevels;
+  private final String[] validLevels;
 
   /**
    * Instantiates a new disconnected log destination.
@@ -87,54 +87,67 @@ public class DisconnectedLogDestination implements LogDestination, Serializable 
     this.validLevels = destination.getValidLevels();
   }
 
+  @Override
   public Application getApplication() {
     return application;
   }
 
+  @Override
   public boolean isRoot() {
     return root;
   }
 
+  @Override
   public boolean isContext() {
     return context;
   }
 
+  @Override
   public String getName() {
     return name;
   }
 
+  @Override
   public String getIndex() {
     return index;
   }
 
+  @Override
   public String getTargetClass() {
     return targetClass;
   }
 
+  @Override
   public String getConversionPattern() {
     return conversionPattern;
   }
 
+  @Override
   public File getFile() {
     return file;
   }
 
+  @Override
   public String getLogType() {
     return logType;
   }
 
+  @Override
   public long getSize() {
     return size;
   }
 
+  @Override
   public Timestamp getLastModified() {
     return lastModified;
   }
 
+  @Override
   public String getLevel() {
     return level;
   }
 
+  @Override
   public String[] getValidLevels() {
     return validLevels;
   }

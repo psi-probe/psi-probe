@@ -29,6 +29,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ListAllJdbcResourcesController extends TomcatContainerController {
 
+  @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse httpServletResponse) throws Exception {
 

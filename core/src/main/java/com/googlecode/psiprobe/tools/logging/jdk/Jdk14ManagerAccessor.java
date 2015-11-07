@@ -44,7 +44,7 @@ public class Jdk14ManagerAccessor extends DefaultAccessor {
 
     Class clazz = cl.loadClass("java.util.logging.LogManager");
     Method getManager = MethodUtils.getAccessibleMethod(clazz, "getLogManager", new Class[] {});
-    Object manager = getManager.invoke(null, null);
+    Object manager = getManager.invoke(null);
     if (manager == null) {
       throw new NullPointerException(clazz.getName() + ".getLogManager() returned null");
     }

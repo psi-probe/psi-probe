@@ -88,6 +88,7 @@ public class ErrorHandlerController extends AbstractController {
     this.ajaxExtension = ajaxExtension;
   }
 
+  @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 

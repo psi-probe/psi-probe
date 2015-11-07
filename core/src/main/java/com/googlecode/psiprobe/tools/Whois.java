@@ -87,7 +87,7 @@ public class Whois {
         BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
         try {
           out.println(query);
-          StringBuffer sb = new StringBuffer();
+          StringBuilder sb = new StringBuilder();
 
           String line;
           while ((line = in.readLine()) != null) {

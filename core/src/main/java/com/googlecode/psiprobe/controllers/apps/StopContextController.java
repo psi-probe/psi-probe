@@ -18,6 +18,7 @@ package com.googlecode.psiprobe.controllers.apps;
  */
 public class StopContextController extends NoSelfContextHandlerController {
 
+  @Override
   protected void executeAction(String contextName) throws Exception {
     getContainerWrapper().getTomcatContainer().stop(contextName);
   }

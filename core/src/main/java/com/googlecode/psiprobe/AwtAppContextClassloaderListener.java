@@ -33,6 +33,7 @@ public class AwtAppContextClassloaderListener implements ServletContextListener 
    * 
    * @param sce the event containing the context being initialized
    */
+  @Override
   public void contextInitialized(ServletContextEvent sce) {
     try {
       final ClassLoader active = Thread.currentThread().getContextClassLoader();
@@ -62,6 +63,7 @@ public class AwtAppContextClassloaderListener implements ServletContextListener 
     }
   }
 
+  @Override
   public void contextDestroyed(ServletContextEvent sce) {}
 
 }

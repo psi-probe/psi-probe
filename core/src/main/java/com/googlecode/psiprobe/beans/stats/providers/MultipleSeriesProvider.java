@@ -121,6 +121,7 @@ public class MultipleSeriesProvider extends AbstractSeriesProvider {
     if (useTop) {
       // sorting stats by the avg value to identify the top series
       Collections.sort(seriesList, new Comparator<Series>() {
+        @Override
         public int compare(Series s1, Series s2) {
           return s1.avg == s2.avg ? s1.key.compareTo(s2.key) : (s1.avg > s2.avg ? -1 : 1);
         }
@@ -135,6 +136,7 @@ public class MultipleSeriesProvider extends AbstractSeriesProvider {
 
     // sorting the remaining series by name
     Collections.sort(seriesList, new Comparator<Series>() {
+      @Override
       public int compare(Series s1, Series s2) {
         return (s1.key).compareTo(s2.key);
       }

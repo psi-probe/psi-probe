@@ -36,6 +36,7 @@ public abstract class AbstractStatsCollectionListener implements StatsCollection
   /** The enabled. */
   private boolean enabled = true;
 
+  @Override
   public boolean isEnabled() {
     return enabled;
   }

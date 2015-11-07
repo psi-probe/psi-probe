@@ -34,13 +34,12 @@ import javax.servlet.http.HttpSession;
  */
 public class RecompileJspController extends ContextHandlerController {
 
+  @Override
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-    HttpSession session = request.getSession();
-    Summary summary =
-        session != null ? (Summary) session.getAttribute(DisplayJspController.SUMMARY_ATTRIBUTE)
-            : null;
+    HttpSession session = request.getSession(true);
+    Summary summary = (Summary) session.getAttribute(DisplayJspController.SUMMARY_ATTRIBUTE);
 
     if (request.getMethod().equalsIgnoreCase("post") && summary != null) {
       List<String> names = new ArrayList<String>();

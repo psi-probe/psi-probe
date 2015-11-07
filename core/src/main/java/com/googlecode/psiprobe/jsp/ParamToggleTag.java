@@ -32,7 +32,7 @@ import javax.servlet.jsp.tagext.TagSupport;
 public class ParamToggleTag extends TagSupport {
 
   /** The logger. */
-  private Log logger = LogFactory.getLog(getClass());
+  private final Log logger = LogFactory.getLog(getClass());
   
   /** The param. */
   private String param = "size";

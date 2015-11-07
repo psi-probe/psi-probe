@@ -28,7 +28,7 @@ import javax.servlet.jsp.tagext.TagSupport;
 public class DurationTag extends TagSupport {
 
   /** The logger. */
-  private static Log logger = LogFactory.getLog(DurationTag.class);
+  private static final Log logger = LogFactory.getLog(DurationTag.class);
 
   /** The value. */
   private long value;

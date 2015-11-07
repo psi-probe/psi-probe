@@ -58,6 +58,7 @@ public class DownloadXmlConfController extends ContextHandlerController {
     this.downloadTarget = downloadTarget;
   }
 
+  @Override
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 

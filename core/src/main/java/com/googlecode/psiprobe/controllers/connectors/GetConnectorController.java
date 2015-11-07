@@ -52,6 +52,7 @@ public class GetConnectorController extends TomcatContainerController {
     this.containerListenerBean = containerListenerBean;
   }
 
+  @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
     String connectorName = ServletRequestUtils.getStringParameter(request, "cn", null);

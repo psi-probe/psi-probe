@@ -26,16 +26,16 @@ import javax.activation.FileDataSource;
 public class MailMessage {
 
   /** The to. */
-  private List<String> to = new ArrayList<String>();
+  private final List<String> to = new ArrayList<String>();
   
   /** The cc. */
-  private List<String> cc = new ArrayList<String>();
+  private final List<String> cc = new ArrayList<String>();
   
   /** The bcc. */
-  private List<String> bcc = new ArrayList<String>();
+  private final List<String> bcc = new ArrayList<String>();
   
   /** The attachments. */
-  private List<DataSource> attachments = new ArrayList<DataSource>();
+  private final List<DataSource> attachments = new ArrayList<DataSource>();
   
   /** The subject. */
   private String subject = "";

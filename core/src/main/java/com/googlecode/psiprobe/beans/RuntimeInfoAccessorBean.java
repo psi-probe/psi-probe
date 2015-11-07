@@ -30,7 +30,7 @@ import javax.management.ObjectName;
 public class RuntimeInfoAccessorBean {
 
   /** The logger. */
-  private Log logger = LogFactory.getLog(RuntimeInfoAccessorBean.class);
+  private final Log logger = LogFactory.getLog(RuntimeInfoAccessorBean.class);
 
   /**
    * Gets the runtime information.

@@ -69,6 +69,7 @@ public class ImplSelectorController extends AbstractController {
     this.impl2Controller = impl2Controller;
   }
 
+  @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
     boolean forceOld = ServletRequestUtils.getBooleanParameter(request, "forceold", false);

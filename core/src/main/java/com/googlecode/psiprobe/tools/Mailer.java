@@ -43,7 +43,7 @@ public class Mailer {
   public static final String PROPERTY_KEY_SMTP = "mail.smtp.host";
 
   /** The log. */
-  private Log log = LogFactory.getLog(this.getClass());
+  private final Log log = LogFactory.getLog(this.getClass());
   
   /** The from. */
   private String from;

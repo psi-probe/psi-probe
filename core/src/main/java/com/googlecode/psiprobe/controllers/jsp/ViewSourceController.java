@@ -36,6 +36,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ViewSourceController extends ContextHandlerController {
 
+  @Override
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 
@@ -54,7 +55,7 @@ public class ViewSourceController extends ContextHandlerController {
         jspName = jspName.replaceAll("\\\\", "/");
 
         // remove cheeky "../" from the path to avoid exploits
-        while (jspName.indexOf("../") != -1) {
+        while (jspName.contains("../")) {
           jspName = jspName.replaceAll("\\.\\./", "");
         }
 

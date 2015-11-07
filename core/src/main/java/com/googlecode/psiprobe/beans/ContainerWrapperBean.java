@@ -37,7 +37,7 @@ import java.util.Map;
 public class ContainerWrapperBean {
 
   /** The logger. */
-  private Log logger = LogFactory.getLog(getClass());
+  private final Log logger = LogFactory.getLog(getClass());
 
   /** The tomcat container. */
   private TomcatContainer tomcatContainer = null;
@@ -105,17 +105,11 @@ public class ContainerWrapperBean {
               } else {
                 logger.error(className + " does not implement " + TomcatContainer.class.getName());
               }
-            } catch (Throwable e) {
+            } catch (Exception e) {
               if (logger.isDebugEnabled()) {
                 logger.debug("Failed to load " + className, e);
               } else {
                 logger.info("Failed to load " + className);
-              }
-              //
-              // make sure we always re-throw ThreadDeath
-              //
-              if (e instanceof ThreadDeath) {
-                throw (ThreadDeath) e;
               }
             }
           }

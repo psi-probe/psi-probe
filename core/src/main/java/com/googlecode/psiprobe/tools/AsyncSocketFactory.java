@@ -150,7 +150,7 @@ public class AsyncSocketFactory {
   static class SocketRunnable implements Runnable {
 
     /** The socket wrapper. */
-    private SocketWrapper socketWrapper;
+    private final SocketWrapper socketWrapper;
     
     /** The sync. */
     private final Object sync;
@@ -166,6 +166,7 @@ public class AsyncSocketFactory {
       this.sync = sync;
     }
 
+    @Override
     public void run() {
       try {
         socketWrapper.setSocket(new Socket(socketWrapper.getServer(), socketWrapper.getPort()));
@@ -192,7 +193,7 @@ public class AsyncSocketFactory {
     private final Object sync;
     
     /** The timeout. */
-    private long timeout;
+    private final long timeout;
 
     /**
      * Instantiates a new timeout runnable.
@@ -205,6 +206,7 @@ public class AsyncSocketFactory {
       this.timeout = timeout;
     }
 
+    @Override
     public void run() {
       try {
         Thread.sleep(timeout);

@@ -36,10 +36,10 @@ public abstract class ThresholdListener extends AbstractStatsCollectionListener 
   public static final long DEFAULT_VALUE = Long.MIN_VALUE;
 
   /** The previous values. */
-  private HashMap<String, Long> previousValues = new HashMap<String, Long>();
+  private final HashMap<String, Long> previousValues = new HashMap<String, Long>();
   
   /** The series disabled. */
-  private HashMap<String, Boolean> seriesDisabled = new HashMap<String, Boolean>();
+  private final HashMap<String, Boolean> seriesDisabled = new HashMap<String, Boolean>();
 
   /**
    * Crossed above threshold.

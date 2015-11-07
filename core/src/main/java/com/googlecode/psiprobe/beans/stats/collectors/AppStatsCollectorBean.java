@@ -33,7 +33,7 @@ public class AppStatsCollectorBean extends AbstractStatsCollectorBean implements
     ServletContextAware {
 
   /** The logger. */
-  private Log logger = LogFactory.getLog(AppStatsCollectorBean.class);
+  private final Log logger = LogFactory.getLog(AppStatsCollectorBean.class);
 
   /** The container wrapper. */
   private ContainerWrapperBean containerWrapper;

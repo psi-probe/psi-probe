@@ -26,6 +26,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public abstract class ContextHandlerController extends TomcatContainerController {
 
+  @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 

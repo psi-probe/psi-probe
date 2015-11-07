@@ -31,10 +31,12 @@ public class CatalinaLoggerAccessor extends AbstractLogDestination {
     return true;
   }
 
+  @Override
   public String getName() {
     return null;
   }
 
+  @Override
   public String getLogType() {
     return "catalina";
   }

@@ -26,10 +26,12 @@ public class UptimeListener implements ServletContextListener {
   /** The Constant START_TIME_KEY. */
   public static final String START_TIME_KEY = "UPTIME_START";
 
+  @Override
   public void contextInitialized(ServletContextEvent sce) {
     sce.getServletContext().setAttribute(START_TIME_KEY, System.currentTimeMillis());
   }
 
+  @Override
   public void contextDestroyed(ServletContextEvent sce) {
     sce.getServletContext().removeAttribute(START_TIME_KEY);
   }

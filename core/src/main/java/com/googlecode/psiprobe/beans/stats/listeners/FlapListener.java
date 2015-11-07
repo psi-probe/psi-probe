@@ -47,10 +47,11 @@ public abstract class FlapListener extends ThresholdListener {
   private float defaultFlapHighWeight;
   
   /** The flaps. */
-  private HashMap<String, LinkedList<Boolean>> flaps = new HashMap<String, LinkedList<Boolean>>();
+  private final HashMap<String, LinkedList<Boolean>> flaps =
+      new HashMap<String, LinkedList<Boolean>>();
   
   /** The flapping states. */
-  private HashMap<String, Boolean> flappingStates = new HashMap<String, Boolean>();
+  private final HashMap<String, Boolean> flappingStates = new HashMap<String, Boolean>();
 
   /**
    * Flapping started.
@@ -87,18 +88,22 @@ public abstract class FlapListener extends ThresholdListener {
    */
   protected abstract void belowThresholdNotFlapping(StatsCollectionEvent sce);
 
+  @Override
   protected void crossedAboveThreshold(StatsCollectionEvent sce) {
     statsCollected(sce, true, true);
   }
 
+  @Override
   protected void crossedBelowThreshold(StatsCollectionEvent sce) {
     statsCollected(sce, true, false);
   }
 
+  @Override
   protected void remainedAboveThreshold(StatsCollectionEvent sce) {
     statsCollected(sce, false, true);
   }
 
+  @Override
   protected void remainedBelowThreshold(StatsCollectionEvent sce) {
     statsCollected(sce, false, false);
   }

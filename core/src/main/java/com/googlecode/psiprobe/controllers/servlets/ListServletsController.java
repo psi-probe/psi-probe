@@ -33,6 +33,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ListServletsController extends ContextHandlerController {
 
+  @Override
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 

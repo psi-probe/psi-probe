@@ -26,7 +26,7 @@ import java.util.List;
 public class GetAllDestinationsVisitor extends LoggerAccessorVisitor {
 
   /** The destinations. */
-  private List<LogDestination> destinations = new ArrayList<LogDestination>();
+  private final List<LogDestination> destinations = new ArrayList<LogDestination>();
 
   /**
    * Gets the destinations.
@@ -37,10 +37,12 @@ public class GetAllDestinationsVisitor extends LoggerAccessorVisitor {
     return destinations;
   }
 
+  @Override
   public void visit(Log4JLoggerAccessor accessor) {
     destinations.addAll(accessor.getAppenders());
   }
 
+  @Override
   public void visit(Jdk14LoggerAccessor accessor) {
     destinations.addAll(accessor.getHandlers());
   }

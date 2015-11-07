@@ -35,7 +35,7 @@ import javax.management.openmbean.CompositeDataSupport;
 public class JvmMemoryInfoAccessorBean {
 
   /** The logger. */
-  private Log logger = LogFactory.getLog(this.getClass());
+  private final Log logger = LogFactory.getLog(this.getClass());
 
   /**
    * Gets the pools.

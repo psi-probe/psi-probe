@@ -61,11 +61,11 @@ public class UrlParser {
       ppos = hostport.indexOf(":");
       if (ppos >= 0) {
         host = hostport.substring(0, ppos);
-        String port = hostport.substring(ppos + 1);
+        String portString = hostport.substring(ppos + 1);
         try {
-          this.port = Integer.parseInt(port);
+          this.port = Integer.parseInt(portString);
         } catch (NumberFormatException e) {
-          throw new MalformedURLException("Invalid port " + port);
+          throw new MalformedURLException("Invalid port " + portString);
         }
       } else {
         host = hostport;

@@ -18,8 +18,6 @@ import com.googlecode.psiprobe.model.DataSourceInfo;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import java.util.List;
-
 /**
  * The Class DatasourceStatsCollectorBean.
  *
@@ -34,7 +32,7 @@ public class DatasourceStatsCollectorBean extends AbstractStatsCollectorBean {
   private static final String PREFIX_BUSY = "ds.busy.";
 
   /** The logger. */
-  private Log logger = LogFactory.getLog(DatasourceStatsCollectorBean.class);
+  private final Log logger = LogFactory.getLog(DatasourceStatsCollectorBean.class);
   
   /** The container wrapper. */
   private ContainerWrapperBean containerWrapper;

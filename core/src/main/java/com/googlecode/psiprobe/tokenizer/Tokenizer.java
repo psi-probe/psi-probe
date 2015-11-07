@@ -427,26 +427,32 @@ public class Tokenizer {
       type = Tokenizer.TT_ERROR;
     }
 
+    @Override
     public String getText() {
       return text.toString();
     }
 
+    @Override
     public String getInnerText() {
       return type == Tokenizer.TT_BLOCK ? innerText.toString() : getText();
     }
 
+    @Override
     public String getName() {
       return name;
     }
 
+    @Override
     public int getType() {
       return type;
     }
 
+    @Override
     public int getLine() {
       return line;
     }
 
+    @Override
     public int getCol() {
       return col;
     }

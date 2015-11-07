@@ -45,13 +45,13 @@ public class LogOutputStream extends OutputStream {
   public static final int LEVEL_FATAL = 6;
 
   /** The log. */
-  private Log log;
+  private final Log log;
   
   /** The level. */
-  private int level;
+  private final int level;
   
   /** The buf. */
-  private StringBuffer buf = new StringBuffer();
+  private final StringBuffer buf = new StringBuffer();
 
   /**
    * Creates a {@code PrintStream} with autoFlush enabled which will write to the given {@code Log}
@@ -100,6 +100,7 @@ public class LogOutputStream extends OutputStream {
    *
    * @param out the {@code byte} to write
    */
+  @Override
   public void write(int out) {
     if (shouldWrite()) {
       char chr = (char) out;

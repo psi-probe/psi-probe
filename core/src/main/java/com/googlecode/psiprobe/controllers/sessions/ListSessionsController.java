@@ -43,6 +43,7 @@ import javax.servlet.http.HttpSession;
  */
 public class ListSessionsController extends ContextHandlerController {
 
+  @Override
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 

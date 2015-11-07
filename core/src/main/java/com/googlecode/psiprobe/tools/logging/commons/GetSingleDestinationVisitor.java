@@ -23,7 +23,7 @@ import com.googlecode.psiprobe.tools.logging.log4j.Log4JLoggerAccessor;
 public class GetSingleDestinationVisitor extends LoggerAccessorVisitor {
 
   /** The log index. */
-  private String logIndex;
+  private final String logIndex;
   
   /** The destination. */
   private LogDestination destination;

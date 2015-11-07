@@ -35,6 +35,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ListWebappsController extends TomcatContainerController {
 
+  @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 

@@ -87,13 +87,13 @@ public class ReflectiveAccessor implements Accessor {
    * @throws IllegalAccessException the illegal access exception
    * @throws NoSuchMethodException the no such method exception
    */
-  private static final void init() throws ClassNotFoundException, InstantiationException,
+  private static void init() throws ClassNotFoundException, InstantiationException,
       IllegalAccessException, NoSuchMethodException {
 
     String vmVendor = System.getProperty("java.vm.vendor");
     if (vmVendor != null
-        && (vmVendor.indexOf("Sun Microsystems") != -1 || vmVendor.indexOf("Apple Computer") != -1
-            || vmVendor.indexOf("Apple Inc.") != -1 || vmVendor.indexOf("IBM Corporation") != -1)) {
+        && (vmVendor.contains("Sun Microsystems") || vmVendor.contains("Apple Computer")
+            || vmVendor.contains("Apple Inc.") || vmVendor.contains("IBM Corporation"))) {
 
       reflectionFactory = getReflectionFactory();
       String vmVer = System.getProperty("java.runtime.version");

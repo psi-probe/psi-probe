@@ -45,7 +45,7 @@ import javax.management.RuntimeOperationsException;
 public class ContainerListenerBean implements NotificationListener {
 
   /** The logger. */
-  private Log logger = LogFactory.getLog(getClass());
+  private final Log logger = LogFactory.getLog(getClass());
   
   /** The pool names. */
   private List<ThreadPoolObjectName> poolNames = null;
@@ -109,6 +109,7 @@ public class ContainerListenerBean implements NotificationListener {
    * @param notification the notification
    * @param object the object
    */
+  @Override
   public synchronized void handleNotification(Notification notification, Object object) {
     if (notification instanceof MBeanServerNotification) {
       ObjectName objectName = ((MBeanServerNotification) notification).getMBeanName();

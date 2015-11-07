@@ -57,7 +57,7 @@ import javax.servlet.http.HttpSession;
 public class ApplicationUtils {
 
   /** The logger. */
-  private static Log logger = LogFactory.getLog(ApplicationUtils.class);
+  private static final Log logger = LogFactory.getLog(ApplicationUtils.class);
 
   /**
    * Gets the application.

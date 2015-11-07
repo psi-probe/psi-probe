@@ -30,6 +30,7 @@ import javax.servlet.http.HttpSession;
  */
 public class QueryHistoryItemController extends AbstractController {
 
+  @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 
