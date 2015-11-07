@@ -27,8 +27,8 @@ import java.util.Map;
 /**
  * This class wires support for Tomcat "privileged" context functionality into Spring. If
  * application context is privileged Tomcat would always call servlet.setWrapper method on each
- * request. ContainerWrapperBean wires the passed wrapper to the relevant Tomcat container adaptor
- * class, which in turn helps the Probe to interpret the wrapper. Container adaptors are required
+ * request. ContainerWrapperBean wires the passed wrapper to the relevant Tomcat container adapter
+ * class, which in turn helps the Probe to interpret the wrapper. Container adapters are required
  * because internal wrapper structure is quite different between Tomcat 5.5.x and Tomcat 5.0.x
  * 
  * @author Vlad Ilyushchenko
@@ -46,33 +46,33 @@ public class ContainerWrapperBean {
   private final Object lock = new Object();
 
   /** List of class names to adapt particular Tomcat implementation to TomcatContainer interface. */
-  private List<String> adaptorClasses;
+  private List<String> adapterClasses;
 
   /** The resource resolver. */
   private ResourceResolver resourceResolver;
 
-  /** The force first adaptor. */
-  private boolean forceFirstAdaptor = false;
+  /** The force first adapter. */
+  private boolean forceFirstAdapter = false;
 
   /** The resource resolvers. */
   private Map<String, ResourceResolver> resourceResolvers;
 
   /**
-   * Checks if is force first adaptor.
+   * Checks if is force first adapter.
    *
-   * @return true, if is force first adaptor
+   * @return true, if is force first adapter
    */
-  public boolean isForceFirstAdaptor() {
-    return forceFirstAdaptor;
+  public boolean isForceFirstAdapter() {
+    return forceFirstAdapter;
   }
 
   /**
-   * Sets the force first adaptor.
+   * Sets the force first adapter.
    *
-   * @param forceFirstAdaptor the new force first adaptor
+   * @param forceFirstAdapter the new force first adapter
    */
-  public void setForceFirstAdaptor(boolean forceFirstAdaptor) {
-    this.forceFirstAdaptor = forceFirstAdaptor;
+  public void setForceFirstAdapter(boolean forceFirstAdapter) {
+    this.forceFirstAdapter = forceFirstAdapter;
   }
 
   /**
@@ -89,12 +89,12 @@ public class ContainerWrapperBean {
 
           String serverInfo = ServerInfo.getServerInfo();
           logger.info("Server info: " + serverInfo);
-          for (String className : adaptorClasses) {
+          for (String className : adapterClasses) {
             try {
               Object obj = Class.forName(className).newInstance();
-              logger.debug("Testing container adaptor: " + className);
+              logger.debug("Testing container adapter: " + className);
               if (obj instanceof TomcatContainer) {
-                if (forceFirstAdaptor || ((TomcatContainer) obj).canBoundTo(serverInfo)) {
+                if (forceFirstAdapter || ((TomcatContainer) obj).canBoundTo(serverInfo)) {
                   logger.info("Using " + className);
                   tomcatContainer = (TomcatContainer) obj;
                   tomcatContainer.setWrapper(wrapper);
@@ -115,7 +115,7 @@ public class ContainerWrapperBean {
           }
 
           if (tomcatContainer == null) {
-            logger.fatal("No suitable container adaptor found!");
+            logger.fatal("No suitable container adapter found!");
           }
         }
       }
@@ -123,11 +123,11 @@ public class ContainerWrapperBean {
 
     try {
       if (tomcatContainer != null && wrapper == null) {
-        logger.info("Unregistering container adaptor");
+        logger.info("Unregistering container adapter");
         tomcatContainer.setWrapper(null);
       }
     } catch (Throwable e) {
-      logger.error("Could not unregister container adaptor", e);
+      logger.error("Could not unregister container adapter", e);
       //
       // make sure we always re-throw ThreadDeath
       //
@@ -147,21 +147,21 @@ public class ContainerWrapperBean {
   }
 
   /**
-   * Gets the adaptor classes.
+   * Gets the adapter classes.
    *
-   * @return the adaptor classes
+   * @return the adapter classes
    */
-  public List<String> getAdaptorClasses() {
-    return adaptorClasses;
+  public List<String> getAdapterClasses() {
+    return adapterClasses;
   }
 
   /**
-   * Sets the adaptor classes.
+   * Sets the adapter classes.
    *
-   * @param adaptorClasses the new adaptor classes
+   * @param adapterClasses the new adapter classes
    */
-  public void setAdaptorClasses(List<String> adaptorClasses) {
-    this.adaptorClasses = adaptorClasses;
+  public void setAdapterClasses(List<String> adapterClasses) {
+    this.adapterClasses = adapterClasses;
   }
 
   /**

@@ -56,7 +56,7 @@ import javax.servlet.ServletContext;
 
 /**
  * Abstraction layer to implement some functionality, which is common between different container
- * adaptors.
+ * adapters.
  * 
  * @author Vlad Ilyushchenko
  * @author Mark Lewis

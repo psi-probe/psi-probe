@@ -31,12 +31,12 @@
 		</dependency>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>tomcat70adaptor</artifactId>
+			<artifactId>tomcat70adapter</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>tomcat80adaptor</artifactId>
+			<artifactId>tomcat80adapter</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>

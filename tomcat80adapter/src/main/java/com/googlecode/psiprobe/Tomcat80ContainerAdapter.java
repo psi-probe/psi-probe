@@ -36,13 +36,13 @@ import javax.servlet.ServletContext;
 
 
 /**
- * The Class Tomcat80ContainerAdaptor.
+ * The Class Tomcat80ContainerAdapter.
  *
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
  * @author Andre Sollie
  */
-public class Tomcat80ContainerAdaptor extends AbstractTomcatContainer {
+public class Tomcat80ContainerAdapter extends AbstractTomcatContainer {
 
   @Override
   protected Valve createValve() {

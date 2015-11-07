@@ -33,7 +33,7 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 /**
- * An Adaptor to convert information retrieved from JBoss JMX beans into internal resource model.
+ * An Adapter to convert information retrieved from JBoss JMX beans into internal resource model.
  * 
  * @author Vlad Ilyushchenko
  * @author Mark Lewis

@@ -8,9 +8,9 @@
 		<artifactId>psi-probe</artifactId>
 		<version>3.0.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>tomcat80adaptor</artifactId>
+	<artifactId>tomcat80adapter</artifactId>
 	<packaging>jar</packaging>
-	<name>PSI Probe Tomcat 8.0.x Adaptor</name>
+	<name>PSI Probe Tomcat 8.0.x Adapter</name>
 	<description>
 		Implementation of features specific to Apache Tomcat 8.0.x
 	</description>

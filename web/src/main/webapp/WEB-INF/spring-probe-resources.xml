@@ -70,14 +70,14 @@
 	<bean id="containerWrapper" class="com.googlecode.psiprobe.beans.ContainerWrapperBean">
 		<!--
 			Setting this property to true will override the server polling each
-			adaptor performs to test for compatibility.  Instead, it will use
+			adapter performs to test for compatibility.  Instead, it will use
 			the first one in the list below.  Reorder those values if necessary.
 		-->
-		<property name="forceFirstAdaptor" value="false"/>
-		<property name="adaptorClasses">
+		<property name="forceFirstAdapter" value="false"/>
+		<property name="adapterClasses">
 			<list>
-				<value>com.googlecode.psiprobe.Tomcat80ContainerAdaptor</value>
-				<value>com.googlecode.psiprobe.Tomcat70ContainerAdaptor</value>
+				<value>com.googlecode.psiprobe.Tomcat80ContainerAdapter</value>
+				<value>com.googlecode.psiprobe.Tomcat70ContainerAdapter</value>
 			</list>
 		</property>
 		<property name="resourceResolvers">

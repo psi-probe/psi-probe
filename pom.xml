@@ -50,8 +50,8 @@
 	</scm>
 	<modules>
 		<module>core</module>
-		<module>tomcat70adaptor</module>
-		<module>tomcat80adaptor</module>
+		<module>tomcat70adapter</module>
+		<module>tomcat80adapter</module>
 		<module>web</module>
 	</modules>
 	<repositories>
