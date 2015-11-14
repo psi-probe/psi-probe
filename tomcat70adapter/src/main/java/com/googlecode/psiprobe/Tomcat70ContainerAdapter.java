@@ -11,13 +11,16 @@
 
 package com.googlecode.psiprobe;
 
+import com.googlecode.psiprobe.model.ApplicationParam;
 import com.googlecode.psiprobe.model.ApplicationResource;
 import com.googlecode.psiprobe.model.FilterInfo;
 import com.googlecode.psiprobe.model.FilterMapping;
 
 import org.apache.catalina.Context;
 import org.apache.catalina.Valve;
+import org.apache.catalina.deploy.ApplicationParameter;
 import org.apache.catalina.deploy.ContextResource;
+import org.apache.catalina.deploy.ContextResourceLink;
 import org.apache.catalina.deploy.FilterDef;
 import org.apache.catalina.deploy.FilterMap;
 import org.apache.catalina.deploy.NamingResources;
@@ -33,7 +36,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.naming.NamingException;
 import javax.servlet.ServletContext;
@@ -137,6 +143,23 @@ public class Tomcat70ContainerAdapter extends AbstractTomcatContainer {
   }
 
   @Override
+  public void addContextResourceLink(Context context, List<ApplicationResource> resourceList,
+      boolean contextBound) {
+    
+    NamingResources namingResources = context.getNamingResources();
+    for (ContextResourceLink link : namingResources.findResourceLinks()) {
+      ApplicationResource resource = new ApplicationResource();
+      logger.debug("reading resourceLink: " + link.getName());
+      resource.setApplicationName(context.getName());
+      resource.setName(link.getName());
+      resource.setType(link.getType());
+      resource.setLinkTo(link.getGlobal());
+      // lookupResource(resource, contextBound, false);
+      resourceList.add(resource);
+    }
+  }
+
+  @Override
   public void addContextResource(Context context, List<ApplicationResource> resourceList,
       boolean contextBound) {
     NamingResources namingResources = context.getNamingResources();
@@ -228,6 +251,51 @@ public class Tomcat70ContainerAdapter extends AbstractTomcatContainer {
     fi.setFilterClass(fd.getFilterClass());
     fi.setFilterDesc(fd.getDescription());
     return fi;
+  }
+
+  @Override
+  public List<ApplicationParam> getApplicationInitParams(Context context) {
+    /*
+     * We'll try to determine if a parameter value comes from a deployment descriptor or a context
+     * descriptor.
+     *
+     * Assumption: context.findParameter() returns only values of parameters that are declared in a
+     * deployment descriptor.
+     *
+     * If a parameter is declared in a context descriptor with override=false and redeclared in a
+     * deployment descriptor, context.findParameter() still returns its value, even though the value
+     * is taken from a context descriptor.
+     *
+     * context.findApplicationParameters() returns all parameters that are declared in a context
+     * descriptor regardless of whether they are overridden in a deployment descriptor or not or
+     * not.
+     */
+    /*
+     * creating a set of parameter names that are declared in a context descriptor and can not be
+     * ovevridden in a deployment descriptor.
+     */
+    Set<String> nonOverridableParams = new HashSet<String>();
+    for (ApplicationParameter appParam : context.findApplicationParameters()) {
+      if (appParam != null && !appParam.getOverride()) {
+        nonOverridableParams.add(appParam.getName());
+      }
+    }
+    List<ApplicationParam> initParams = new ArrayList<ApplicationParam>();
+    ServletContext servletCtx = context.getServletContext();
+    for (Enumeration e = servletCtx.getInitParameterNames(); e.hasMoreElements();) {
+      String paramName = (String) e.nextElement();
+      ApplicationParam param = new ApplicationParam();
+      param.setName(paramName);
+      param.setValue(servletCtx.getInitParameter(paramName));
+      /*
+       * if the parameter is declared in a deployment descriptor and it is not declared in a context
+       * descriptor with override=false, the value comes from the deployment descriptor
+       */
+      param.setFromDeplDescr(context.findParameter(paramName) != null
+          && !nonOverridableParams.contains(paramName));
+      initParams.add(param);
+    }
+    return initParams;
   }
 
   @Override
