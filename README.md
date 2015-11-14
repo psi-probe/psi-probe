@@ -1,7 +1,7 @@
 # PSI Probe
 
 [![Build Status](https://travis-ci.org/psi-probe/psi-probe.svg?branch=master)](https://travis-ci.org/psi-probe/psi-probe)
-[![GPLv2 License](http://img.shields.io/badge/license-GPLv2-green.svg) ](http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
+[![GPLv2 License](http://img.shields.io/badge/license-GPLv2-green.svg)](http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
 [![Project Stats](https://www.openhub.net/p/psi-probe/widgets/project_thin_badge.gif)](https://www.openhub.net/p/psi-probe)
 
 ## Contributions ##
