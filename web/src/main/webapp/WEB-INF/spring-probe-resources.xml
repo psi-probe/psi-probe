@@ -42,6 +42,7 @@
 				<bean class="com.googlecode.psiprobe.beans.DbcpDatasourceAccessor"/>
                                 <bean class="com.googlecode.psiprobe.beans.Tomcat7DbcpDatasourceAccessor"/>
 				<bean class="com.googlecode.psiprobe.beans.Tomcat8DbcpDatasourceAccessor"/>
+				<bean class="com.googlecode.psiprobe.beans.Tomcat9DbcpDatasourceAccessor"/>
 				<bean class="com.googlecode.psiprobe.beans.TomcatJdbcPoolDatasourceAccessor"/>
 				<bean class="com.googlecode.psiprobe.beans.OracleDatasourceAccessor"/>
 				<bean class="com.googlecode.psiprobe.beans.OracleUcpDatasourceAssessor"/>
@@ -76,6 +77,7 @@
 		<property name="forceFirstAdapter" value="false"/>
 		<property name="adapterClasses">
 			<list>
+				<value>com.googlecode.psiprobe.Tomcat90ContainerAdapter</value>
 				<value>com.googlecode.psiprobe.Tomcat80ContainerAdapter</value>
 				<value>com.googlecode.psiprobe.Tomcat70ContainerAdapter</value>
 			</list>
