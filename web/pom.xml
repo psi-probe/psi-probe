@@ -72,8 +72,8 @@
 			<artifactId>displaytag</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>jaxen</groupId>
@@ -137,13 +137,13 @@
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<properties>
-				<probe.log4j.path>${catalina.base}/logs</probe.log4j.path>
+				<probe.log.path>${catalina.base}/logs</probe.log.path>
 			</properties>
 		</profile>
 		<profile>
 			<id>jboss</id>
 			<properties>
-				<probe.log4j.path>${jboss.server.log.dir}</probe.log4j.path>
+				<probe.log.path>${jboss.server.log.dir}</probe.log.path>
 			</properties>
 		</profile>
 	</profiles>
