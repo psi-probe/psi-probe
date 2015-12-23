@@ -67,8 +67,6 @@
 		<constructor-arg value="/WEB-INF/web.xml"/>
 	</bean>
 
-	<bean id="servletContext" class="org.springframework.web.context.support.ServletContextFactoryBean"/>
-
 	<bean id="etf" class="org.springframework.security.web.access.ExceptionTranslationFilter">
 		<property name="authenticationEntryPoint" ref="preAuthenticatedProcessingFilterEntryPoint"/>
 	</bean>
