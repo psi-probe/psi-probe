@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="windows-1252"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans"  xmlns:sec="http://www.springframework.org/schema/security"
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		xsi:schemaLocation="http://www.springframework.org/schema/beans    http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		xsi:schemaLocation="http://www.springframework.org/schema/beans    http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
 		                    http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 	<bean id="filterChainProxy" class="org.springframework.security.web.FilterChainProxy">
 		<sec:filter-chain-map path-type="ant">
@@ -13,7 +13,7 @@
 	<bean id="authenticationManager" class="org.springframework.security.authentication.ProviderManager">
 		<property name="providers">
 			<list>
-				<ref local="preAuthenticatedAuthenticationProvider"/>
+				<ref bean="preAuthenticatedAuthenticationProvider"/>
 			</list>
 		</property>
 	</bean>
