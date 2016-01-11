@@ -52,6 +52,7 @@
 		<module>core</module>
 		<module>tomcat70adapter</module>
 		<module>tomcat80adapter</module>
+		<module>tomcat90adapter</module>
 		<module>web</module>
 	</modules>
 	<repositories>
