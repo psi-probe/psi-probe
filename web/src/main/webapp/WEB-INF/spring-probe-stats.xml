@@ -365,7 +365,7 @@
 		<property name="concurrent" value="false"/>
 	</bean>
 
-	<bean id="connectorStatsTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+	<bean id="connectorStatsTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
 		<property name="jobDetail" ref="connectorStatsJobDetail"/>
 		<property name="cronExpression">
 			<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
@@ -381,7 +381,7 @@
 		</property>
 	</bean>
 
-	<bean id="clusterStatsTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+	<bean id="clusterStatsTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
 		<property name="jobDetail" ref="clusterStatsJobDetail"/>
 		<property name="cronExpression">
 			<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
@@ -397,7 +397,7 @@
 		</property>
 	</bean>
 
-	<bean id="memoryStatsTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+	<bean id="memoryStatsTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
 		<property name="jobDetail" ref="memoryStatsJobDetail"/>
 		<property name="cronExpression">
 			<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
@@ -413,7 +413,7 @@
 		</property>
 	</bean>
 
-	<bean id="runtimeStatsTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+	<bean id="runtimeStatsTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
 		<property name="jobDetail" ref="runtimeStatsJobDetail"/>
 		<property name="cronExpression">
 			<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
@@ -429,7 +429,7 @@
 		</property>
 	</bean>
 
-	<bean id="appStatsTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+	<bean id="appStatsTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
 		<property name="jobDetail" ref="appStatsJobDetail"/>
 		<property name="cronExpression">
 			<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
@@ -445,7 +445,7 @@
 		</property>
 	</bean>
 
-	<bean id="datasourceStatsTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+	<bean id="datasourceStatsTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
 		<property name="jobDetail" ref="datasourceStatsJobDetail"/>
 		<property name="cronExpression">
 			<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
@@ -461,7 +461,7 @@
 		</property>
 	</bean>
 
-	<bean id="statsSerializerTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+	<bean id="statsSerializerTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
 		<property name="jobDetail" ref="statsSerializerJobDetail"/>
 		<property name="cronExpression">
 			<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
