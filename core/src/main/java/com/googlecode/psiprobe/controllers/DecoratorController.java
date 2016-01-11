@@ -11,9 +11,8 @@
 
 package com.googlecode.psiprobe.controllers;
 
-import com.googlecode.psiprobe.UptimeListener;
 import com.googlecode.psiprobe.Utils;
-
+import java.lang.management.ManagementFactory;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
 
@@ -67,23 +66,20 @@ public class DecoratorController extends ParameterizableViewController {
     Properties version = (Properties) getApplicationContext().getBean("version");
     request.setAttribute("version", version.getProperty("probe.version"));
 
-    Object uptimeStart = getServletContext().getAttribute(UptimeListener.START_TIME_KEY);
-    if (uptimeStart != null && uptimeStart instanceof Long) {
-      long uptimeStartValue = ((Long) uptimeStart);
-      long uptime = System.currentTimeMillis() - uptimeStartValue;
-      long uptimeDays = uptime / (1000 * 60 * 60 * 24);
+    
+    long uptimeStartValue = ManagementFactory.getRuntimeMXBean().getStartTime();;
+    long uptime = System.currentTimeMillis() - uptimeStartValue;
+    long uptimeDays = uptime / (1000 * 60 * 60 * 24);
 
-      uptime = uptime % (1000 * 60 * 60 * 24);
-      long uptimeHours = uptime / (1000 * 60 * 60);
+    uptime = uptime % (1000 * 60 * 60 * 24);
+    long uptimeHours = uptime / (1000 * 60 * 60);
 
-      uptime = uptime % (1000 * 60 * 60);
-      long uptimeMins = uptime / (1000 * 60);
+    uptime = uptime % (1000 * 60 * 60);
+    long uptimeMins = uptime / (1000 * 60);
 
-      request.setAttribute("uptime_days", uptimeDays);
-      request.setAttribute("uptime_hours", uptimeHours);
-      request.setAttribute("uptime_mins", uptimeMins);
-    }
-
+    request.setAttribute("uptime_days", uptimeDays);
+    request.setAttribute("uptime_hours", uptimeHours);
+    request.setAttribute("uptime_mins", uptimeMins);    
     //
     // Work out the language of the interface by matching resource files that we have
     // to the request locale.
