@@ -8,11 +8,11 @@
 		<artifactId>psi-probe</artifactId>
 		<version>3.0.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>tomcat80adapter</artifactId>
+	<artifactId>tomcat90adapter</artifactId>
 	<packaging>jar</packaging>
-	<name>PSI Probe Tomcat 8.0.x Adapter</name>
+	<name>PSI Probe Tomcat 9.0.x Adapter</name>
 	<description>
-		Implementation of features specific to Apache Tomcat 8.0.x
+		Implementation of features specific to Apache Tomcat 9.0.x
 	</description>
 	<scm>
 		<connection>scm:git:ssh://git@github.com:psi-probe/psi-probe.git</connection>
@@ -21,7 +21,7 @@
 	</scm>
 	<properties>
 		<git.relative.path>../</git.relative.path>
-		<tomcat.version>8.0.30</tomcat.version>
+		<tomcat.version>9.0.0.M1</tomcat.version>
 	</properties>
 	<dependencies>
 		<dependency>

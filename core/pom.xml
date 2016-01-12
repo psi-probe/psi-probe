@@ -27,13 +27,13 @@
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-catalina</artifactId>
-			<version>7.0.64</version>
+			<version>7.0.67</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-jasper</artifactId>
-			<version>7.0.64</version>
+			<version>7.0.67</version>
 			<scope>provided</scope>
 			<exclusions>
 				<exclusion>
@@ -191,7 +191,7 @@
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
-			<groupId>opensymphony</groupId>
+			<groupId>org.quartz-scheduler</groupId>
 			<artifactId>quartz</artifactId>
 			<scope>compile</scope>
 		</dependency>
