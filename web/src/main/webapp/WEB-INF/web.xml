@@ -34,10 +34,6 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
-	<listener>
-		<listener-class>com.googlecode.psiprobe.UptimeListener</listener-class>
-	</listener>
-
 	<!--
 		Core dispatcher servlet
 	-->
