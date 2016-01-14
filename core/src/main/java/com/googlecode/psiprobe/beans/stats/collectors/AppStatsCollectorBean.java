@@ -19,6 +19,7 @@ import com.googlecode.psiprobe.tools.ApplicationUtils;
 import org.apache.catalina.Context;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.ServletContextAware;
 
 import javax.servlet.ServletContext;
@@ -39,6 +40,7 @@ public class AppStatsCollectorBean extends AbstractStatsCollectorBean implements
   private ContainerWrapperBean containerWrapper;
   
   /** The servlet context. */
+  @Autowired
   private ServletContext servletContext;
   
   /** The self ignored. */

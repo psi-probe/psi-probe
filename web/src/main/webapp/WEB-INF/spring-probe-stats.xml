@@ -12,7 +12,7 @@
 
 <beans xmlns="http://www.springframework.org/schema/beans"
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd"
 		default-lazy-init="false">
 
 	<!--
@@ -481,13 +481,13 @@
 	<bean name="scheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
 		<property name="triggers">
 			<list>
-				<ref local="connectorStatsTrigger"/>
-				<ref local="clusterStatsTrigger"/>
-				<ref local="memoryStatsTrigger"/>
-				<ref local="runtimeStatsTrigger"/>
-				<ref local="appStatsTrigger"/>
-				<ref local="datasourceStatsTrigger"/>
-				<ref local="statsSerializerTrigger"/>
+				<ref bean="connectorStatsTrigger"/>
+				<ref bean="clusterStatsTrigger"/>
+				<ref bean="memoryStatsTrigger"/>
+				<ref bean="runtimeStatsTrigger"/>
+				<ref bean="appStatsTrigger"/>
+				<ref bean="datasourceStatsTrigger"/>
+				<ref bean="statsSerializerTrigger"/>
 			</list>
 		</property>
 	</bean>
