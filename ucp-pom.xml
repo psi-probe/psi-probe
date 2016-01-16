@@ -5,10 +5,10 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.oracle</groupId>
 	<artifactId>ucp</artifactId>
-	<version>11.2.0.1.0</version>
+	<version>11.2.0.3</version>
 	<packaging>jar</packaging>
 	<name>Oracle Database Universal Connection Pool</name>
-	<url>http://www.oracle.com/technetwork/database/enterprise-edition/jdbc-10201-088211.html</url>
+	<url>http://www.oracle.com/technetwork/database/enterprise-edition/downloads/ucp-112010-099129.html</url>
 	<licenses>
 		<license>
 			<name>Oracle Technology Network Development and Distribution License</name>

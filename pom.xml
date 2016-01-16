@@ -68,7 +68,7 @@
 			<layout>default</layout>
 		</repository>
 		<repository>
-			<!-- Required for ojdbc14 and ucp -->
+			<!-- Required for ojdbc6 and ucp -->
 			<snapshots>
 				<enabled>false</enabled>
 				<updatePolicy>never</updatePolicy>
@@ -133,12 +133,12 @@
 				<!-- Requires java 1.5+ -->
 				<groupId>com.oracle</groupId>
 				<artifactId>ucp</artifactId>
-				<version>11.2.0.1.0</version>
+				<version>11.2.0.3</version>
 			</dependency>
 			<dependency>
 				<groupId>com.oracle</groupId>
-				<artifactId>ojdbc14</artifactId>
-				<version>10.2.0.3</version>
+				<artifactId>ojdbc6</artifactId>
+				<version>11.2.0.3</version>
 			</dependency>
 			<dependency>
 				<!-- Requires java 1.5+ -->
