@@ -109,9 +109,9 @@
 				<version>2.2.1</version>
 			</dependency>
 			<dependency>
-				<groupId>javax.servlet</groupId>
-				<artifactId>jstl</artifactId>
-				<version>1.1.2</version>
+				<groupId>javax.servlet.jsp.jstl</groupId>
+				<artifactId>javax.servlet.jsp.jstl-api</artifactId>
+				<version>1.2.1</version>
 			</dependency>
 			<dependency>
 				<groupId>javax.mail</groupId>
@@ -119,9 +119,19 @@
 				<version>1.4.7</version>
 			</dependency>
 			<dependency>
-				<groupId>taglibs</groupId>
-				<artifactId>standard</artifactId>
-				<version>1.1.2</version>
+				<groupId>org.glassfish.web</groupId>
+				<artifactId>javax.servlet.jsp.jstl</artifactId>
+				<version>1.2.4</version>
+				<exclusions>
+					<exclusion>
+						<artifactId>jsp-api</artifactId>
+						<groupId>javax.servlet.jsp</groupId>
+					</exclusion>
+					<exclusion>
+						<artifactId>jstl-api</artifactId>
+						<groupId>javax.servlet.jsp.jstl</groupId>
+					</exclusion>
+				</exclusions>
 			</dependency>
 			<dependency>
 				<groupId>javax.el</groupId>
