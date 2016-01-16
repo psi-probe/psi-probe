@@ -86,7 +86,7 @@
 		<maven.compiler.testTarget>1.6</maven.compiler.testTarget>
 
 		<checkstyle.configLocation>google_checks.xml</checkstyle.configLocation>
-		<copyright>2015</copyright>
+		<copyright>2016</copyright>
 		<git.relative.path></git.relative.path>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -109,7 +109,6 @@
 				<version>2.0</version>
 			</dependency>
 			<dependency>
-				<!-- Version 1.2 is not compatable with tomcat 5.0.28 -->
 				<groupId>javax.servlet</groupId>
 				<artifactId>jstl</artifactId>
 				<version>1.1.2</version>
@@ -130,7 +129,6 @@
 				<version>1.2.17</version>
 			</dependency>
 			<dependency>
-				<!-- Requires java 1.5+ -->
 				<groupId>com.oracle</groupId>
 				<artifactId>ucp</artifactId>
 				<version>11.2.0.3</version>
@@ -141,7 +139,6 @@
 				<version>11.2.0.3</version>
 			</dependency>
 			<dependency>
-				<!-- Requires java 1.5+ -->
 				<groupId>org.apache.tomcat</groupId>
 				<artifactId>tomcat-jdbc</artifactId>
 				<version>7.0.67</version>
@@ -152,7 +149,6 @@
 				<version>4.7.1</version>
 			</dependency>
 			<dependency>
-				<!-- Requires java 1.6+ -->
 				<groupId>com.jolbox</groupId>
 				<artifactId>bonecp</artifactId>
 				<version>0.8.0.RELEASE</version>
@@ -384,12 +380,12 @@
 				<plugin>
 					<groupId>pl.project13.maven</groupId>
 					<artifactId>git-commit-id-plugin</artifactId>
-					<version>2.1.13</version>
+					<version>2.1.15</version>
 					<configuration>
 						<dotGitDirectory>${git.relative.path}.git</dotGitDirectory>
 						<gitDescribe>
 							<!-- See https://github.com/ktoso/maven-git-commit-id-plugin/issues/61#issuecomment-27995746 -->
-							<skip>true</skip>
+							<always>true</always>
 						</gitDescribe>
 					</configuration>
 				</plugin>
@@ -401,7 +397,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-project-info-reports-plugin</artifactId>
-					<version>2.8</version>
+					<version>2.8.1</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -426,7 +422,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-surefire-plugin</artifactId>
-					<version>2.19</version>
+					<version>2.19.1</version>
 					<configuration>
 						<includes>
 							<include>**/*Tests.java</include>
@@ -439,7 +435,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-surefire-report-plugin</artifactId>
-					<version>2.19</version>
+					<version>2.19.1</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -452,7 +448,7 @@
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>findbugs-maven-plugin</artifactId>
-					<version>3.0.2</version>
+					<version>3.0.3</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -552,7 +548,7 @@
 				<plugin>
 					<groupId>org.eluder.coveralls</groupId>
 					<artifactId>coveralls-maven-plugin</artifactId>
-					<version>3.1.0</version>
+					<version>3.2.1</version>
 					<configuration>
 						<sourceEncoding>UTF-8</sourceEncoding>
 					</configuration>
@@ -603,7 +599,7 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>cobertura-maven-plugin</artifactId>
-				<version>2.6</version>
+				<version>2.7</version>
 				<configuration>
 					<format>html</format>
 					<maxmem>256m</maxmem>
