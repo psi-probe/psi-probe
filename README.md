@@ -1,8 +1,12 @@
 # PSI Probe
 
 [![Build Status](https://travis-ci.org/psi-probe/psi-probe.svg?branch=master)](https://travis-ci.org/psi-probe/psi-probe)
+[![Coverage Status](https://coveralls.io/repos/psi-probe/psi-probe/badge.svg?branch=master&service=github)](https://coveralls.io/github/psi-probe/psi-probe?branch=master)
+[![Dependency Status](https://www.versioneye.com/user/projects/569bd2562025a60031000001/badge.svg?style=flat)](https://www.versioneye.com/user/projects/569bd2562025a60031000001)
 [![GPLv2 License](http://img.shields.io/badge/license-GPLv2-green.svg)](http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
 [![Project Stats](https://www.openhub.net/p/psi-probe/widgets/project_thin_badge.gif)](https://www.openhub.net/p/psi-probe)
+
+![waffle](src/site/resources/images/psi-probe-banner.jpg)
 
 ## Contributions ##
 
@@ -29,11 +33,13 @@ Please follow [GitHub Flow](https://guides.github.com/introduction/flow/), with 
 
 	This will create directory called `psi-probe`. Subsequent steps will refer to this as "your PSI Probe base directory."
 
-2.	**Download and install Maven 3.**
+2.  Minimum JDK version required to run build is JDK7.  Project still targets JDK6.  The raise to JDK7 is a direct result of early Tomcat 9 support and maven plugins moving to JDK7.
+	
+3.	**Download and install Maven 3.**
 
 	You may download it from the [Apache Maven website](http://maven.apache.org/download.cgi).
 
-3.	**Run Maven.**
+4.	**Run Maven.**
 
 	Execute the following command from your PSI Probe base directory:
 
