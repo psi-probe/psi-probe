@@ -24,6 +24,7 @@ import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.Part;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.AddressException;
@@ -262,7 +263,7 @@ public class Mailer {
     
     MimeBodyPart attachmentPart = new MimeBodyPart();
     attachmentPart.setDataHandler(new DataHandler(attachment));
-    attachmentPart.setDisposition(MimeBodyPart.ATTACHMENT);
+    attachmentPart.setDisposition(Part.ATTACHMENT);
     attachmentPart.setFileName(attachment.getName());
     return attachmentPart;
   }

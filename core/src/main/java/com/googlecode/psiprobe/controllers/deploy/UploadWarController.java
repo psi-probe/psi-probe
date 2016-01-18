@@ -18,7 +18,7 @@ import com.googlecode.psiprobe.model.jsp.Summary;
 import org.apache.catalina.Context;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileItemFactory;
-import org.apache.commons.fileupload.FileUpload;
+import org.apache.commons.fileupload.FileUploadBase;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.fileupload.servlet.ServletRequestContext;
@@ -46,7 +46,7 @@ public class UploadWarController extends TomcatContainerController {
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 
-    if (FileUpload.isMultipartContent(new ServletRequestContext(request))) {
+    if (FileUploadBase.isMultipartContent(new ServletRequestContext(request))) {
 
       File tmpWar = null;
       String contextName = null;
