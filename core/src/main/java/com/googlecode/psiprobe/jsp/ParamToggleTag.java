@@ -44,8 +44,8 @@ public class ParamToggleTag extends TagSupport {
     StringBuffer query = new StringBuffer();
     query.append(param).append("=").append(!getSize);
     String encoding = pageContext.getResponse().getCharacterEncoding();
-    for (Enumeration en = pageContext.getRequest().getParameterNames(); en.hasMoreElements();) {
-      String name = (String) en.nextElement();
+    for (Enumeration<String> en = pageContext.getRequest().getParameterNames(); en.hasMoreElements();) {
+      String name = en.nextElement();
       if (!param.equals(name)) {
         try {
           String value = ServletRequestUtils.getStringParameter(pageContext.getRequest(), name, "");

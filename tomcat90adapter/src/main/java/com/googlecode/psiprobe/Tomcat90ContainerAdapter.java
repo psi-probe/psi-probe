@@ -250,8 +250,8 @@ public class Tomcat90ContainerAdapter extends AbstractTomcatContainer {
     }
     List<ApplicationParam> initParams = new ArrayList<ApplicationParam>();
     ServletContext servletCtx = context.getServletContext();
-    for (Enumeration e = servletCtx.getInitParameterNames(); e.hasMoreElements();) {
-      String paramName = (String) e.nextElement();
+    for (Enumeration<String> e = servletCtx.getInitParameterNames(); e.hasMoreElements();) {
+      String paramName = e.nextElement();
       ApplicationParam param = new ApplicationParam();
       param.setName(paramName);
       param.setValue(servletCtx.getInitParameter(paramName));

@@ -106,7 +106,7 @@ public class ApplicationUtils {
       logger.debug("counting servlet attributes");
 
       int ctxAttrCount = 0;
-      for (Enumeration e = context.getServletContext().getAttributeNames(); e.hasMoreElements(); e
+      for (Enumeration<String> e = context.getServletContext().getAttributeNames(); e.hasMoreElements(); e
           .nextElement()) {
         ctxAttrCount++;
       }
@@ -248,8 +248,8 @@ public class ApplicationUtils {
       // Exclude references back to the session itself
       processedObjects.add(httpSession);
       try {
-        for (Enumeration e = httpSession.getAttributeNames(); e.hasMoreElements();) {
-          String name = (String) e.nextElement();
+        for (Enumeration<String> e = httpSession.getAttributeNames(); e.hasMoreElements();) {
+          String name = e.nextElement();
           Object obj = httpSession.getAttribute(name);
           sessionSerializable = sessionSerializable && obj instanceof Serializable;
 
@@ -321,8 +321,8 @@ public class ApplicationUtils {
   public static List<Attribute> getApplicationAttributes(Context context) {
     List<Attribute> attrs = new ArrayList<Attribute>();
     ServletContext servletCtx = context.getServletContext();
-    for (Enumeration e = servletCtx.getAttributeNames(); e.hasMoreElements();) {
-      String attrName = (String) e.nextElement();
+    for (Enumeration<String> e = servletCtx.getAttributeNames(); e.hasMoreElements();) {
+      String attrName = e.nextElement();
       Object attrValue = servletCtx.getAttribute(attrName);
 
       Attribute attr = new Attribute();

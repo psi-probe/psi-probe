@@ -42,8 +42,8 @@ public class AddQueryParamTag extends TagSupport {
   public int doStartTag() throws JspException {
     StringBuffer query = new StringBuffer();
     query.append(param).append("=").append(value);
-    for (Enumeration en = pageContext.getRequest().getParameterNames(); en.hasMoreElements();) {
-      String name = (String) en.nextElement();
+    for (Enumeration<String> en = pageContext.getRequest().getParameterNames(); en.hasMoreElements();) {
+      String name = en.nextElement();
       if (!param.equals(name)) {
         query.append("&").append(name).append("=")
             .append(ServletRequestUtils.getStringParameter(pageContext.getRequest(), name, ""));
