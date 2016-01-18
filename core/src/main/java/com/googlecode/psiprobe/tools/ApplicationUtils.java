@@ -479,7 +479,7 @@ public class ApplicationUtils {
    * @param containerWrapper the container wrapper
    * @return the application filters
    */
-  public static List getApplicationFilters(Context context, ContainerWrapperBean containerWrapper) {
+  public static List<FilterInfo> getApplicationFilters(Context context, ContainerWrapperBean containerWrapper) {
     return containerWrapper.getTomcatContainer().getApplicationFilters(context);
   }
 

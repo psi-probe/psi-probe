@@ -16,7 +16,7 @@ package com.googlecode.psiprobe.tokenizer;
  *
  * @author Vlad Ilyushchenko
  */
-public class TokenizerSymbol implements Comparable {
+public class TokenizerSymbol implements Comparable<Object> {
 
   /** The name. */
   final String name;
