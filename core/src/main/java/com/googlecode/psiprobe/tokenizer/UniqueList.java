@@ -47,21 +47,20 @@ public class UniqueList<T extends Comparable<? super T>> extends ArrayList<T> {
   protected synchronized boolean add(T obj, Comparator<? super T> comp) {
     if (size() == 0) {
       return super.add(obj);
-    } else {
-      int index;
-      index = comp == null
-          ? Collections.binarySearch(this, obj)
-          : Collections.binarySearch(this, obj, comp);
-      if (index < 0) {
-        int insertionPoint = -index - 1;
-        if (insertionPoint >= size()) {
-          super.add(obj);
-        } else {
-          super.add(insertionPoint, obj);
-        }
-      }
-      return index < 0;
     }
+    int index;
+    index = comp == null
+        ? Collections.binarySearch(this, obj)
+        : Collections.binarySearch(this, obj, comp);
+    if (index < 0) {
+      int insertionPoint = -index - 1;
+      if (insertionPoint >= size()) {
+        super.add(obj);
+      } else {
+        super.add(insertionPoint, obj);
+      }
+    }
+    return index < 0;
   }
 
   @Override

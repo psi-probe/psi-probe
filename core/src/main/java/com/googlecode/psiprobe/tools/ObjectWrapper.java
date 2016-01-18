@@ -45,14 +45,13 @@ class ObjectWrapper {
   public boolean equals(Object o1) {
     if (wrappedObject == null) {
       return o1 == null;
-    } else {
-      ObjectWrapper ow = (ObjectWrapper) o1;
-      /*
-       * I know, this condition may seem strange, but if "equals" is left out, sizeOf() may run into
-       * an infinite loop on some objects
-       */
-      return ow.wrappedObject == wrappedObject;// || o.equals(ow.o);
     }
+    ObjectWrapper ow = (ObjectWrapper) o1;
+    /*
+     * I know, this condition may seem strange, but if "equals" is left out, sizeOf() may run into
+     * an infinite loop on some objects
+     */
+    return ow.wrappedObject == wrappedObject;// || o.equals(ow.o);
   }
 
   @Override

@@ -95,9 +95,8 @@ public class OutTag extends BodyTagSupport {
     if (value != null) {
       print(value.toString(), pageContext.getOut());
       return SKIP_BODY;
-    } else {
-      return super.doStartTag();
     }
+    return super.doStartTag();
   }
 
   @Override

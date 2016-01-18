@@ -137,12 +137,11 @@ public abstract class ThresholdListener extends AbstractStatsCollectionListener 
           + " is not defined or inherited.  Disabling listener for \"" + name + "\" series.");
       setSeriesDisabled(name, true);
       return DEFAULT_THRESHOLD;
-    } else {
-      try {
-        return SizeExpression.parse(threshold);
-      } catch (NumberFormatException ex) {
-        return DEFAULT_THRESHOLD;
-      }
+    }
+    try {
+      return SizeExpression.parse(threshold);
+    } catch (NumberFormatException ex) {
+      return DEFAULT_THRESHOLD;
     }
   }
 

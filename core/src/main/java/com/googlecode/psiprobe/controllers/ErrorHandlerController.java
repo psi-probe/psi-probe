@@ -95,8 +95,7 @@ public class ErrorHandlerController extends AbstractController {
     String originalUri = (String) request.getAttribute("javax.servlet.error.request_uri");
     if (originalUri != null && originalUri.endsWith(ajaxExtension)) {
       return new ModelAndView(ajaxViewName);
-    } else {
-      return new ModelAndView(viewName);
     }
+    return new ModelAndView(viewName);
   }
 }

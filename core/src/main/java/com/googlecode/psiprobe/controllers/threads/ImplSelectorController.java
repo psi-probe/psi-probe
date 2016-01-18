@@ -75,9 +75,8 @@ public class ImplSelectorController extends AbstractController {
     boolean forceOld = ServletRequestUtils.getBooleanParameter(request, "forceold", false);
     if (!forceOld && Utils.isThreadingEnabled()) {
       return new ModelAndView(impl2Controller);
-    } else {
-      return new ModelAndView(impl1Controller);
     }
+    return new ModelAndView(impl1Controller);
   }
 
 }

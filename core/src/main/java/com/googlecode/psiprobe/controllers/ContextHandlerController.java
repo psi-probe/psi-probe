@@ -39,16 +39,15 @@ public abstract class ContextHandlerController extends TomcatContainerController
 
     if (context != null || isContextOptional()) {
       return handleContext(contextName, context, request, response);
-    } else {
-      if (contextName != null) {
-        request.setAttribute(
-            "errorMessage",
-            getMessageSourceAccessor().getMessage("probe.src.contextDoesntExist",
-                new Object[] {contextName}));
-      }
-
-      return new ModelAndView("errors/paramerror");
     }
+    if (contextName != null) {
+      request.setAttribute(
+          "errorMessage",
+          getMessageSourceAccessor().getMessage("probe.src.contextDoesntExist",
+              new Object[] {contextName}));
+    }
+
+    return new ModelAndView("errors/paramerror");
   }
 
   /**

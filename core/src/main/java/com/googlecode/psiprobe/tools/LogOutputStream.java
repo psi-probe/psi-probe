@@ -77,9 +77,8 @@ public class LogOutputStream extends OutputStream {
   private LogOutputStream(Log log, int level) {
     if (log == null) {
       throw new IllegalArgumentException("Log cannot be null");
-    } else {
-      this.log = log;
     }
+    this.log = log;
     this.level = level;
   }
 

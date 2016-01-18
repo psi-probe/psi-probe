@@ -112,9 +112,8 @@ public class DefaultAccessor {
     try {
       if (param == null) {
         return MethodUtils.invokeMethod(object, name, new Object[] {});
-      } else {
-        return MethodUtils.invokeMethod(object, name, param);
       }
+      return MethodUtils.invokeMethod(object, name, param);
     } catch (Exception e) {
       return defaultValue;
     }

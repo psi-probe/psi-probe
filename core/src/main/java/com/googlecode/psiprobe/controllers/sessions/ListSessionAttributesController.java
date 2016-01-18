@@ -46,9 +46,8 @@ public class ListSessionAttributesController extends ContextHandlerController {
     if (appSession != null) {
       appSession.setAllowedToViewValues(privileged);
       return new ModelAndView(getViewName(), "session", appSession);
-    } else {
-      return new ModelAndView(getViewName());
     }
+    return new ModelAndView(getViewName());
   }
 
 }

@@ -139,9 +139,8 @@ public class TimeExpression {
         throw new IllegalArgumentException("Invalid value in expression: " + expression);
       }
       return value * multiplier;
-    } else {
-      throw new IllegalArgumentException("Invalid expression format: " + expression);
     }
+    throw new IllegalArgumentException("Invalid expression format: " + expression);
   }
 
   /**

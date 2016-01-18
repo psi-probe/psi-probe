@@ -147,12 +147,10 @@ public class LogbackLoggerAccessor extends DefaultAccessor {
       Object tracker = MethodUtils.invokeMethod(appender, "getAppenderTracker", null);
       if (tracker != null) {
         return (List<Object>) MethodUtils.invokeMethod(tracker, "valueList", null);
-      } else {
-        return new ArrayList<Object>();
       }
-    } else {
-      return null;
+      return new ArrayList<Object>();
     }
+    return null;
   }
 
   /**

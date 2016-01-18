@@ -119,9 +119,8 @@ public class SizeExpression {
       }
       double rawValue = Double.parseDouble(value);
       return (long) (rawValue * multiplier);
-    } else {
-      throw new NumberFormatException("Invalid expression format: " + expression);
     }
+    throw new NumberFormatException("Invalid expression format: " + expression);
   }
 
   /**

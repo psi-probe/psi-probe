@@ -78,11 +78,10 @@ public class BackwardsLineReader {
           if (skipLineFeed) {
             // quit this loop. if the carriage return only was read
             break;
-          } else {
-            // go to next loop, if both the carriage return and
-            // the line feed were read
-            continue;
           }
+          // go to next loop, if both the carriage return and
+          // the line feed were read
+          continue;
         }
         baos.write(chr);
       } else {
@@ -98,10 +97,9 @@ public class BackwardsLineReader {
       byte[] byteArray = baos.toByteArray();
       reverse(byteArray);
       return encoding == null ? new String(byteArray) : new String(byteArray, encoding);
-    } else {
-      // return null if the end of the stream has been reached
-      return null;
     }
+    // return null if the end of the stream has been reached
+    return null;
   }
 
   /**

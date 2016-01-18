@@ -234,9 +234,8 @@ public class ResourceResolverBean implements ResourceResolver {
 
       if (obj instanceof DataSource) {
         return (DataSource) obj;
-      } else {
-        return null;
       }
+      return null;
     } finally {
       if (context != null) {
         containerWrapper.getTomcatContainer().unbindFromContext(context);

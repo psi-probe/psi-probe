@@ -101,9 +101,8 @@ public class Mailer {
   public String getSmtp() {
     if (smtp == null) {
       return System.getProperty(PROPERTY_KEY_SMTP);
-    } else {
-      return smtp;
     }
+    return smtp;
   }
 
   /**

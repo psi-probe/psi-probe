@@ -54,9 +54,8 @@ public class CatalinaLoggerAccessor extends AbstractLogDestination {
             + date + suffix) : null);
     if (file != null && !file.isAbsolute()) {
       return new File(System.getProperty("catalina.base"), file.getPath());
-    } else {
-      return file;
     }
+    return file;
   }
 
 }
