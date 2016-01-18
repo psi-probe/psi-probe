@@ -74,19 +74,19 @@ public class AsyncSocketFactory {
   static class SocketWrapper {
 
     /** The socket. */
-    private Socket socket = null;
+    Socket socket = null;
     
     /** The server. */
-    private String server;
+    String server;
     
     /** The port. */
-    private int port;
+    int port;
     
     /** The exception. */
-    private IOException exception;
+    IOException exception;
     
     /** The valid. */
-    private boolean valid = true;
+    boolean valid = true;
 
     /**
      * Gets the socket.
