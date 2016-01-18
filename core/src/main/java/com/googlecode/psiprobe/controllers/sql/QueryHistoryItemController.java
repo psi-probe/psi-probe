@@ -47,7 +47,7 @@ public class QueryHistoryItemController extends AbstractController {
 
         if (queryHistory != null) {
           try {
-            String sql = (String) queryHistory.get(sqlId);
+            String sql = queryHistory.get(sqlId);
             response.setCharacterEncoding("UTF-8");
             response.getWriter().print(sql);
           } catch (IndexOutOfBoundsException e) {

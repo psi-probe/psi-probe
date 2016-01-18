@@ -65,7 +65,7 @@ public class MailMessage {
    * @return the to array
    */
   public String[] getToArray() {
-    return (String[]) to.toArray(new String[to.size()]);
+    return to.toArray(new String[to.size()]);
   }
 
   /**
@@ -74,7 +74,7 @@ public class MailMessage {
    * @return the cc array
    */
   public String[] getCcArray() {
-    return (String[]) cc.toArray(new String[cc.size()]);
+    return cc.toArray(new String[cc.size()]);
   }
 
   /**
@@ -83,7 +83,7 @@ public class MailMessage {
    * @return the bcc array
    */
   public String[] getBccArray() {
-    return (String[]) bcc.toArray(new String[bcc.size()]);
+    return bcc.toArray(new String[bcc.size()]);
   }
 
   /**
@@ -92,7 +92,7 @@ public class MailMessage {
    * @return the attachments array
    */
   public DataSource[] getAttachmentsArray() {
-    return (DataSource[]) attachments.toArray(new DataSource[attachments.size()]);
+    return attachments.toArray(new DataSource[attachments.size()]);
   }
 
   /**

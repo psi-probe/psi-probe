@@ -48,7 +48,7 @@ public class ViewSourceController extends ContextHandlerController {
 
     if (jspName != null && summary != null && contextName.equals(summary.getName())) {
 
-      Item item = (Item) summary.getItems().get(jspName);
+      Item item = summary.getItems().get(jspName);
 
       if (item != null) {
         // replace "\" with "/"

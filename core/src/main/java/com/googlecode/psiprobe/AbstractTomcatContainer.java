@@ -323,7 +323,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
                   createJspCompilationContext(name, opt, sctx, jrctx, classLoader);
               ClassLoader prevCl = ClassUtils.overrideThreadContextClassLoader(classLoader);
               try {
-                Item item = (Item) summary.getItems().get(name);
+                Item item = summary.getItems().get(name);
                 if (item != null) {
                   try {
                     org.apache.jasper.compiler.Compiler compiler = jcctx.createCompiler();
@@ -493,7 +493,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
               createJspCompilationContext(name, opt, sctx, jrctx, classLoader);
           ClassLoader prevCl = ClassUtils.overrideThreadContextClassLoader(classLoader);
           try {
-            Item item = (Item) summary.getItems().get(name);
+            Item item = summary.getItems().get(name);
 
             if (item == null) {
               item = new Item();

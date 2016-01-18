@@ -121,7 +121,7 @@ public class Tomcat70ContainerAdapter extends AbstractTomcatContainer {
        */
       try {
         jcctx =
-            (JspCompilationContext) ConstructorUtils.invokeConstructor(JspCompilationContext.class,
+            ConstructorUtils.invokeConstructor(JspCompilationContext.class,
                 new Object[] {name, false, opt, sctx, null, jrctx}, new Class[] {String.class,
                     Boolean.TYPE, Options.class, ServletContext.class, JspServletWrapper.class,
                     JspRuntimeContext.class});
