@@ -2,6 +2,7 @@
 .settings
 .classpath
 .project
+.factorypath
 
 # Intellij
 .idea
