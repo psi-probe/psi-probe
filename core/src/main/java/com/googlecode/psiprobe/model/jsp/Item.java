@@ -22,22 +22,16 @@ import java.util.Date;
  */
 public class Item implements Serializable {
 
-  /**
-   * Item is Out Of Date and requires recompilation.
-   */
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = 1L;
 
+  /** Item is Out Of Date and requires recompilation. */
   public static final int STATE_OOD = 1;
 
-  /**
-   * Item is compiled and ready to use.
-   */
+  /** Item is compiled and ready to use. */
   public static final int STATE_READY = 2;
 
-  /**
-   * Item failed to compile.
-   */
+  /** Item failed to compile. */
   public static final int STATE_FAILED = 3;
 
   /** The name. */

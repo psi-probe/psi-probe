@@ -79,7 +79,7 @@ public class DecoratorController extends ParameterizableViewController {
 
     request.setAttribute("uptime_days", uptimeDays);
     request.setAttribute("uptime_hours", uptimeHours);
-    request.setAttribute("uptime_mins", uptimeMins);    
+    request.setAttribute("uptime_mins", uptimeMins);
     //
     // Work out the language of the interface by matching resource files that we have
     // to the request locale.
