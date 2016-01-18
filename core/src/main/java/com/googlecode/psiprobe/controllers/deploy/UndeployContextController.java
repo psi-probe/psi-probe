@@ -76,6 +76,8 @@ public class UndeployContextController extends ContextHandlerController {
    * @param contextName the context name
    * @throws Exception the exception
    */
-  protected void executeAction(String contextName) throws Exception {}
+  protected void executeAction(String contextName) throws Exception {
+    // Not Implemented
+  }
 
 }

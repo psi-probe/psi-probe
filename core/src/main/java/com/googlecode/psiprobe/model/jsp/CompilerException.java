@@ -24,7 +24,9 @@ public class CompilerException extends Exception {
   /**
    * Instantiates a new compiler exception.
    */
-  public CompilerException() {}
+  public CompilerException() {
+    // Required due to override
+  }
 
   /**
    * Instantiates a new compiler exception.
