@@ -48,8 +48,8 @@ public class VisualScoreTagTest extends TestCase {
           // System.out.println(split[k]);
           String[] values = suffix.split("\\+");
           if (values.length > 1) {
-            value = Integer.valueOf(values[0]);
-            value2 = Integer.valueOf(values[1]);
+            value = Integer.parseInt(values[0]);
+            value2 = Integer.parseInt(values[1]);
             if (value > 5 || value2 > 5) {
               count++;
               StringBuffer msg = new StringBuffer();
