@@ -22,6 +22,9 @@ import java.io.Serializable;
  */
 public class Application implements Serializable {
 
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
+
   /** The name. */
   private String name;
   

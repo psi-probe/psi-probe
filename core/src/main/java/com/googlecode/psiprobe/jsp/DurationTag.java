@@ -27,6 +27,9 @@ import javax.servlet.jsp.tagext.TagSupport;
  */
 public class DurationTag extends TagSupport {
 
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
+
   /** The logger. */
   private static final Log logger = LogFactory.getLog(DurationTag.class);
 

@@ -32,6 +32,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ProbeServlet extends DispatcherServlet implements ContainerServlet {
 
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
+
   /** The wrapper. */
   private Wrapper wrapper;
 

@@ -27,6 +27,9 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
  */
 public class OutTag extends BodyTagSupport {
 
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
+
   /** The max length. */
   private int maxLength = -1;
   

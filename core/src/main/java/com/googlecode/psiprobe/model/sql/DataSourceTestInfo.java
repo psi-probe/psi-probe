@@ -23,6 +23,9 @@ import java.util.Map;
  */
 public class DataSourceTestInfo implements Serializable {
 
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
+
   /** The Constant DS_TEST_SESS_ATTR. */
   public static final String DS_TEST_SESS_ATTR = "dataSourceTestData";
 

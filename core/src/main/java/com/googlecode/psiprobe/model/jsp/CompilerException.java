@@ -18,6 +18,9 @@ package com.googlecode.psiprobe.model.jsp;
  */
 public class CompilerException extends Exception {
 
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
+
   /**
    * Instantiates a new compiler exception.
    */

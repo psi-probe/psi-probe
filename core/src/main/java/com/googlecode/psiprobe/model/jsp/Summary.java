@@ -21,6 +21,9 @@ import java.util.Map;
  */
 public class Summary implements Serializable {
 
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
+
   /** The name. */
   private String name;
   
