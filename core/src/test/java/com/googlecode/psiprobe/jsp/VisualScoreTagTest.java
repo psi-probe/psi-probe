@@ -52,7 +52,7 @@ public class VisualScoreTagTest extends TestCase {
             value2 = Integer.parseInt(values[1]);
             if (value > 5 || value2 > 5) {
               count++;
-              StringBuffer msg = new StringBuffer();
+              StringBuilder msg = new StringBuilder();
               msg.append("Found incorrect value ");
               msg.append(suffix);
               msg.append(". value = ");
@@ -98,9 +98,9 @@ public class VisualScoreTagTest extends TestCase {
     visualScoreTag.setValue(value);
     visualScoreTag.setValue2(value2);
 
-    StringBuffer buf = visualScoreTag.calculateSuffix(body);
+    String buf = visualScoreTag.calculateSuffix(body);
 
-    return buf.toString().split(" ");
+    return buf.split(" ");
   }
 
 }
