@@ -485,7 +485,7 @@ public class LogResolverBean {
     try {
       Jdk14ManagerAccessor manager = new Jdk14ManagerAccessor(cl);
       manager.setApplication(application);
-      Jdk14LoggerAccessor log = (root ? manager.getRootLogger() : manager.getLogger(logName));
+      Jdk14LoggerAccessor log = root ? manager.getRootLogger() : manager.getLogger(logName);
       if (log != null) {
         return log.getHandler(handlerIndex);
       }
@@ -515,7 +515,7 @@ public class LogResolverBean {
     try {
       Log4JManagerAccessor manager = new Log4JManagerAccessor(cl);
       manager.setApplication(application);
-      Log4JLoggerAccessor log = (root ? manager.getRootLogger() : manager.getLogger(logName));
+      Log4JLoggerAccessor log = root ? manager.getRootLogger() : manager.getLogger(logName);
       if (log != null) {
         return log.getAppender(appenderName);
       }
@@ -545,7 +545,7 @@ public class LogResolverBean {
     try {
       LogbackFactoryAccessor manager = new LogbackFactoryAccessor(cl);
       manager.setApplication(application);
-      LogbackLoggerAccessor log = (root ? manager.getRootLogger() : manager.getLogger(logName));
+      LogbackLoggerAccessor log = root ? manager.getRootLogger() : manager.getLogger(logName);
       if (log != null) {
         return log.getAppender(appenderName);
       }
@@ -635,13 +635,13 @@ public class LogResolverBean {
     @Override
     protected String convertToString(LogDestination dest) {
       File file = dest.getFile();
-      String fileName = (file == null ? "" : file.getAbsolutePath());
+      String fileName = file == null ? "" : file.getAbsolutePath();
       String name;
       if (all) {
         Application app = dest.getApplication();
-        String appName = (app == null ? "" + DELIM : app.getName());
-        String context = (dest.isContext() ? "is" : "not");
-        String root = (dest.isRoot() ? "is" : "not");
+        String appName = app == null ? "" + DELIM : app.getName();
+        String context = dest.isContext() ? "is" : "not";
+        String root = dest.isRoot() ? "is" : "not";
         String logType = dest.getLogType();
         name = appName + DELIM + context + DELIM + root + DELIM + logType + DELIM + fileName;
       } else {
@@ -660,12 +660,12 @@ public class LogResolverBean {
     @Override
     protected String convertToString(LogDestination dest) {
       File file = dest.getFile();
-      String fileName = (file == null ? "" : file.getAbsolutePath());
+      String fileName = file == null ? "" : file.getAbsolutePath();
       Application app = dest.getApplication();
-      String appName = (app == null ? "" + DELIM : app.getName());
+      String appName = app == null ? "" + DELIM : app.getName();
       String logType = dest.getLogType();
-      String context = (dest.isContext() ? "is" : "not");
-      String root = (dest.isRoot() ? "is" : "not");
+      String context = dest.isContext() ? "is" : "not";
+      String root = dest.isRoot() ? "is" : "not";
       String logName = dest.getName();
       return appName + DELIM + logType + DELIM + context + DELIM + root + DELIM + logName + DELIM
           + fileName;

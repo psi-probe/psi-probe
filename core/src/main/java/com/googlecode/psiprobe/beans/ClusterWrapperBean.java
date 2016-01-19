@@ -133,14 +133,14 @@ public class ClusterWrapperBean {
               "connectCounter"));
           sender.setDisconnectCounter(JmxTools.getLongAttr(mbeanServer, localSenderOName,
               "disconnectCounter"));
-          sender.setConnected(((Boolean) mbeanServer.getAttribute(localSenderOName, "connected")));
+          sender.setConnected((Boolean) mbeanServer.getAttribute(localSenderOName, "connected"));
           sender.setKeepAliveTimeout(JmxTools.getLongAttr(mbeanServer, localSenderOName,
               "keepAliveTimeout"));
           sender.setNrOfRequests(JmxTools
               .getLongAttr(mbeanServer, localSenderOName, "nrOfRequests"));
           sender.setTotalBytes(JmxTools.getLongAttr(mbeanServer, localSenderOName, "totalBytes"));
-          sender.setResend(((Boolean) mbeanServer.getAttribute(localSenderOName, "resend")));
-          sender.setSuspect(((Boolean) mbeanServer.getAttribute(localSenderOName, "suspect")));
+          sender.setResend((Boolean) mbeanServer.getAttribute(localSenderOName, "resend"));
+          sender.setSuspect((Boolean) mbeanServer.getAttribute(localSenderOName, "suspect"));
 
           if (sender instanceof PooledClusterSender) {
             ((PooledClusterSender) sender).setMaxPoolSocketLimit(JmxTools.getIntAttr(mbeanServer,

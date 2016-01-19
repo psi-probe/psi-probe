@@ -92,10 +92,10 @@ public class JBossResourceResolverBean implements ResourceResolver {
             resource.setAuth("Container");
           }
           DataSourceInfo dsInfo = new DataSourceInfo();
-          dsInfo.setMaxConnections(((Integer) server.getAttribute(managedConnectionPoolOName,
-              "MaxSize")));
-          dsInfo.setEstablishedConnections(((Integer) server.getAttribute(
-              managedConnectionPoolOName, "ConnectionCount")));
+          dsInfo.setMaxConnections((Integer) server.getAttribute(managedConnectionPoolOName,
+              "MaxSize"));
+          dsInfo.setEstablishedConnections((Integer) server.getAttribute(
+              managedConnectionPoolOName, "ConnectionCount"));
           dsInfo.setBusyConnections(((Long) server.getAttribute(managedConnectionPoolOName,
               "InUseConnectionCount")).intValue());
           ObjectName connectionFactoryOName =

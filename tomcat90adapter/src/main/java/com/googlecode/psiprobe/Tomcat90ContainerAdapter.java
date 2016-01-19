@@ -62,7 +62,7 @@ public class Tomcat90ContainerAdapter extends AbstractTomcatContainer {
     if (binding != null) {
       canBind |= binding.startsWith("Apache Tomcat/9.0");
       canBind |= binding.startsWith("Apache Tomcat (TomEE)/9.0");
-      canBind |= (binding.startsWith("Pivotal tc") && binding.contains("/9.0"));
+      canBind |= binding.startsWith("Pivotal tc") && binding.contains("/9.0");
     }
     return canBind;
   }
