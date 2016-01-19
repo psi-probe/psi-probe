@@ -101,9 +101,9 @@ public class ListConnectorsController extends TomcatContainerController {
     boolean workerThreadNameSupported = false;
     List<Connector> connectors = containerListenerBean.getConnectors(includeRequestProcessors);
 
-    if (connectors.size() > 0) {
+    if (!connectors.isEmpty()) {
       List<RequestProcessor> reqProcs = connectors.get(0).getRequestProcessors();
-      if (reqProcs.size() > 0) {
+      if (!reqProcs.isEmpty()) {
         RequestProcessor reqProc = reqProcs.get(0);
         workerThreadNameSupported = reqProc.isWorkerThreadNameSupported();
       }

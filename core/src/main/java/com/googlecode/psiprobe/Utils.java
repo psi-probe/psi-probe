@@ -543,7 +543,7 @@ public class Utils {
       MBeanServer mbeanServer = new Registry().getMBeanServer();
       ObjectName threadingOName = new ObjectName("java.lang:type=Threading");
       Set<ObjectInstance> threading = mbeanServer.queryMBeans(threadingOName, null);
-      return threading != null && threading.size() > 0;
+      return threading != null && !threading.isEmpty();
     } catch (MalformedObjectNameException e) {
       return false;
     }
