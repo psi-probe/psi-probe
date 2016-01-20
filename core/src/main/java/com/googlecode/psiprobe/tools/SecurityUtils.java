@@ -29,11 +29,6 @@ import javax.servlet.http.HttpServletRequest;
 public class SecurityUtils {
 
   /**
-   * Instantiates a new security utils.
-   */
-  private SecurityUtils() {}
-
-  /**
    * Checks for attribute value role.
    *
    * @param servletContext the servlet context

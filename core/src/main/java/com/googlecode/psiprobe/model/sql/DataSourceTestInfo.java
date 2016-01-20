@@ -45,11 +45,6 @@ public class DataSourceTestInfo implements Serializable {
   int historySize = 0;
 
   /**
-   * Instantiates a new data source test info.
-   */
-  public DataSourceTestInfo() {}
-
-  /**
    * Adds the query to history.
    *
    * @param sql the sql

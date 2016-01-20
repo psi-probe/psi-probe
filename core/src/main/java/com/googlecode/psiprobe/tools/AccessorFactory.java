@@ -19,11 +19,6 @@ package com.googlecode.psiprobe.tools;
 public class AccessorFactory {
 
   /**
-   * Instantiates a new accessor factory.
-   */
-  private AccessorFactory() {}
-
-  /**
    * Gets the single instance of AccessorFactory.
    *
    * @return single instance of AccessorFactory
