@@ -29,7 +29,9 @@ public class StatsCollectionEvent {
   /**
    * Instantiates a new stats collection event.
    */
-  public StatsCollectionEvent() {}
+  public StatsCollectionEvent() {
+    // Required due to override
+  }
 
   /**
    * Instantiates a new stats collection event.
