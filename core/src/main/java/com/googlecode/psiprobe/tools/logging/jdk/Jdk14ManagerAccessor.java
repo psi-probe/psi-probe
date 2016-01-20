@@ -43,7 +43,7 @@ public class Jdk14ManagerAccessor extends DefaultAccessor {
       IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 
     Class clazz = cl.loadClass("java.util.logging.LogManager");
-    Method getManager = MethodUtils.getAccessibleMethod(clazz, "getLogManager", new Class[] {});
+    Method getManager = MethodUtils.getAccessibleMethod(clazz, "getLogManager", new Class[0]);
     Object manager = getManager.invoke(null);
     if (manager == null) {
       throw new NullPointerException(clazz.getName() + ".getLogManager() returned null");
