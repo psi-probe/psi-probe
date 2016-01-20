@@ -46,9 +46,8 @@ public class SimpleAccessor implements Accessor {
     
     if (field.isAccessible()) {
       return field.get(obj);
-    } else {
-      return null;
     }
+    return null;
   }
 
   /**

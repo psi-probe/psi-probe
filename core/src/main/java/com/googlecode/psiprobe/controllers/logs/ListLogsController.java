@@ -81,9 +81,8 @@ public class ListLogsController extends ParameterizableViewController {
     List<LogDestination> uniqueList = logResolver.getLogDestinations(showAll);
     if (uniqueList != null) {
       return new ModelAndView(getViewName()).addObject("logs", uniqueList);
-    } else {
-      return new ModelAndView(errorView);
     }
+    return new ModelAndView(errorView);
   }
 
 }

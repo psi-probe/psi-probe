@@ -82,9 +82,8 @@ public class JmxTools {
     Object obj = cds.get(name);
     if (obj != null && obj instanceof Long) {
       return ((Long) obj);
-    } else {
-      return 0;
     }
+    return 0;
   }
 
   /**
@@ -130,9 +129,8 @@ public class JmxTools {
 
     if (obj != null && obj instanceof Integer) {
       return ((Integer) obj);
-    } else {
-      return defaultValue;
     }
+    return defaultValue;
   }
 
   /**

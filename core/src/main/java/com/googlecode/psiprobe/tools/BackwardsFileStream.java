@@ -57,10 +57,9 @@ public class BackwardsFileStream extends InputStream {
     if (seekPos > 0) {
       raf.seek(--seekPos);
       return raf.read();
-    } else {
-      // return EOF (so to speak)
-      return -1;
     }
+    // return EOF (so to speak)
+    return -1;
   }
 
   @Override

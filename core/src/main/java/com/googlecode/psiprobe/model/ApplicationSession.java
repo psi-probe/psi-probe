@@ -269,9 +269,8 @@ public class ApplicationSession {
   public long getAge() {
     if (creationTime == null) {
       return 0;
-    } else {
-      return System.currentTimeMillis() - creationTime.getTime();
     }
+    return System.currentTimeMillis() - creationTime.getTime();
   }
 
   /**
@@ -282,9 +281,8 @@ public class ApplicationSession {
   public long getIdleTime() {
     if (lastAccessTime == null) {
       return getAge();
-    } else {
-      return System.currentTimeMillis() - lastAccessTime.getTime();
     }
+    return System.currentTimeMillis() - lastAccessTime.getTime();
   }
 
   /**
@@ -295,9 +293,8 @@ public class ApplicationSession {
   public Date getExpiryTime() {
     if (getMaxIdleTime() <= 0) {
       return null;
-    } else {
-      return new Date(System.currentTimeMillis() + getMaxIdleTime() - getIdleTime());
     }
+    return new Date(System.currentTimeMillis() + getMaxIdleTime() - getIdleTime());
   }
 
   /**

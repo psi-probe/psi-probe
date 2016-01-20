@@ -145,9 +145,8 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
       }
       if (level == null && isJuliRoot()) {
         return "INFO";
-      } else {
-        return (String) MethodUtils.invokeMethod(level, "getName", null);
       }
+      return (String) MethodUtils.invokeMethod(level, "getName", null);
     } catch (Exception e) {
       log.error(getTarget().getClass().getName() + "#getLevel() failed", e);
     }

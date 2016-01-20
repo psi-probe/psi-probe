@@ -276,9 +276,8 @@ public class Tokenizer {
           if (compare(symbol.startText.toCharArray(), 1)) {
             result = index;
             break;
-          } else {
-            index++;
           }
+          index++;
         } else {
           break;
         }

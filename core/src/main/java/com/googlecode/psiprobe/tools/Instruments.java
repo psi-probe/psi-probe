@@ -203,10 +203,9 @@ public class Instruments {
       Class ct = obj.getClass().getComponentType();
       if (ct.isPrimitive()) {
         return Array.getLength(obj) * sizeOfPrimitive(ct);
-      } else {
-        for (int i = 0; i < Array.getLength(obj); i++) {
-          nextQueue.add(Array.get(obj, i));
-        }
+      }
+      for (int i = 0; i < Array.getLength(obj); i++) {
+        nextQueue.add(Array.get(obj, i));
       }
     }
     return 0;
@@ -285,9 +284,8 @@ public class Instruments {
     Class superClass = clazz.getSuperclass();
     if (superClass != null) {
       return findField(superClass, name);
-    } else {
-      return null;
     }
+    return null;
   }
 
 }

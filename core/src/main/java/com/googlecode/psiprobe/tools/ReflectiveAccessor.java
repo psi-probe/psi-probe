@@ -74,9 +74,8 @@ public class ReflectiveAccessor implements Accessor {
 
     if (newFieldAccessor.getParameterTypes().length == 1) {
       return newFieldAccessor.invoke(reflectionFactory, new Object[] {field});
-    } else {
-      return newFieldAccessor.invoke(reflectionFactory, new Object[] {field, Boolean.TRUE});
     }
+    return newFieldAccessor.invoke(reflectionFactory, new Object[] {field, Boolean.TRUE});
   }
 
   /**

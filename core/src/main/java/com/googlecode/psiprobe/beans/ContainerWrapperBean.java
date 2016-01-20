@@ -99,9 +99,8 @@ public class ContainerWrapperBean {
                   tomcatContainer = (TomcatContainer) obj;
                   tomcatContainer.setWrapper(wrapper);
                   break;
-                } else {
-                  logger.debug("Cannot bind " + className + " to " + serverInfo);
                 }
+                logger.debug("Cannot bind " + className + " to " + serverInfo);
               } else {
                 logger.error(className + " does not implement " + TomcatContainer.class.getName());
               }

@@ -360,9 +360,8 @@ public class ApplicationUtils {
     if (container instanceof Wrapper) {
       Wrapper wrapper = (Wrapper) container;
       return getServletInfo(wrapper, context.getName());
-    } else {
-      return null;
     }
+    return null;
   }
 
   /**
@@ -455,9 +454,8 @@ public class ApplicationUtils {
     FilterDef fd = context.findFilterDef(filterName);
     if (fd != null) {
       return getFilterInfo(fd);
-    } else {
-      return null;
     }
+    return null;
   }
 
   /**
