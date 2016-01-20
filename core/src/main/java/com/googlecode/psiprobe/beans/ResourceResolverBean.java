@@ -155,17 +155,12 @@ public class ResourceResolverBean implements ResourceResolver {
             break;
           }
         }
-
+      } catch (ThreadDeath e) {
+          throw e;
       } catch (Throwable e) {
         resource.setLookedUp(false);
         dataSourceInfo = null;
         logger.error("Failed to lookup: " + resource.getName(), e);
-        //
-        // make sure we always re-throw ThreadDeath
-        //
-        if (e instanceof ThreadDeath) {
-          throw (ThreadDeath) e;
-        }
       }
     } else {
       resource.setLookedUp(false);

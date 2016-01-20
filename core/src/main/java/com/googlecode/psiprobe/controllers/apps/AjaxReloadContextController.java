@@ -35,13 +35,10 @@ public class AjaxReloadContextController extends ContextHandlerController {
       try {
         logger.info(request.getRemoteAddr() + " requested RELOAD of " + contextName);
         context.reload();
+      } catch (ThreadDeath e) {
+          throw e;
       } catch (Throwable e) {
         logger.error(e);
-
-        // make sure we always re-throw ThreadDeath
-        if (e instanceof ThreadDeath) {
-          throw (ThreadDeath) e;
-        }
       }
     }
     return new ModelAndView(getViewName(), "available", context != null
