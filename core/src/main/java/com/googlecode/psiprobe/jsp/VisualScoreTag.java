@@ -98,11 +98,11 @@ public class VisualScoreTag extends BodyTagSupport {
     BodyContent bc = getBodyContent();
     String body = bc.getString().trim();
 
-    StringBuffer buf = calculateSuffix(body);
+    String buf = calculateSuffix(body);
 
     try {
       JspWriter out = bc.getEnclosingWriter();
-      out.print(buf.toString());
+      out.print(buf);
     } catch (IOException ioe) {
       throw new JspException("Error:IOException while writing to client" + ioe.getMessage());
     }
@@ -116,7 +116,7 @@ public class VisualScoreTag extends BodyTagSupport {
    * @param body the body
    * @return the string buffer
    */
-  StringBuffer calculateSuffix(String body) {
+  String calculateSuffix(String body) {
     if (value < minValue) {
       log.info("value " + value + " is less than min value " + minValue);
       value = minValue;
@@ -146,7 +146,7 @@ public class VisualScoreTag extends BodyTagSupport {
     int bluePart2 = (int) Math.floor(
         (value2 - (blueWhole * blockWidth) - (bluePart1 * unitSize)) / unitSize);
 
-    StringBuffer buf = new StringBuffer();
+    StringBuilder buf = new StringBuilder();
 
     // Beginning
     if (showA) {
@@ -209,7 +209,7 @@ public class VisualScoreTag extends BodyTagSupport {
       buf.append(MessageFormat.format(body, new Object[] {format}));
     }
 
-    return buf;
+    return buf.toString();
   }
 
   /**
