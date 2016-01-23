@@ -137,7 +137,7 @@ public class SizeExpression {
     nf.setMinimumFractionDigits(decimalPlaces);
 
     double doubleResult;
-    String unit = (base2 ? UNIT_BASE : "");
+    String unit = base2 ? UNIT_BASE : "";
     double multiplierKilo = multiplier(PREFIX_KILO, base2);
     double multiplierMega = multiplier(PREFIX_MEGA, base2);
     double multiplierGiga = multiplier(PREFIX_GIGA, base2);
@@ -186,7 +186,7 @@ public class SizeExpression {
    */
   private static double multiplier(char unitPrefix, boolean base2) {
     long result;
-    long multiplier = (base2 ? MULTIPLIER_2 : MULTIPLIER_10);
+    long multiplier = base2 ? MULTIPLIER_2 : MULTIPLIER_10;
     switch (Character.toUpperCase(unitPrefix)) {
       case PREFIX_KILO:
         result = multiplier;

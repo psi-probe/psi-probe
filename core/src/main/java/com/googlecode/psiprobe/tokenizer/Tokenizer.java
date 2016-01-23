@@ -168,7 +168,7 @@ public class Tokenizer {
           // we have found a symbol
           TokenizerToken workToken =
               token.type == Tokenizer.TT_TOKEN && token.text.length() > 0 ? upcomingToken : token;
-          TokenizerSymbol symbol = (symbols.get(symbolIndex));
+          TokenizerSymbol symbol = symbols.get(symbolIndex);
           boolean hideSymbol = symbol.hidden;
 
           if (!hideSymbol) {
@@ -271,7 +271,7 @@ public class Tokenizer {
         index--;
       }
       while (index < symbols.size()) {
-        TokenizerSymbol symbol = (symbols.get(index));
+        TokenizerSymbol symbol = symbols.get(index);
         if (symbol.compareTo(chrObj) == 0) {
           if (compare(symbol.startText.toCharArray(), 1)) {
             result = index;

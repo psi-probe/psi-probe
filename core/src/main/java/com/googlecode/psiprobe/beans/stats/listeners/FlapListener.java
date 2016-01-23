@@ -156,9 +156,9 @@ public abstract class FlapListener extends ThresholdListener {
     float transitionPercent = calculateStateTransitionPercentage(name, oldFlappingState);
     boolean newFlappingState;
     if (oldFlappingState) {
-      newFlappingState = (transitionPercent <= getFlapStopThreshold(name));
+      newFlappingState = transitionPercent <= getFlapStopThreshold(name);
     } else {
-      newFlappingState = (transitionPercent > getFlapStartThreshold(name));
+      newFlappingState = transitionPercent > getFlapStartThreshold(name);
     }
     setFlappingState(name, newFlappingState);
     return oldFlappingState != newFlappingState;
@@ -179,7 +179,7 @@ public abstract class FlapListener extends ThresholdListener {
     float weightRange = highWeight - lowWeight;
     float result = 0;
     for (int i = list.size() - 1; i >= 0; i--) {
-      boolean thisFlap = (list.get(i));
+      boolean thisFlap = list.get(i);
       if (flapping != thisFlap) {
         float weight = lowWeight + (weightRange * i / (flapInterval - 1));
         result += weight;
