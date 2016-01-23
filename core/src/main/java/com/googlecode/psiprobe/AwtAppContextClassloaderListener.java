@@ -64,6 +64,8 @@ public class AwtAppContextClassloaderListener implements ServletContextListener 
   }
 
   @Override
-  public void contextDestroyed(ServletContextEvent sce) {}
+  public void contextDestroyed(ServletContextEvent sce) {
+    // Not Implemented
+  }
 
 }

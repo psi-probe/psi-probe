@@ -11,6 +11,7 @@
 
 package com.googlecode.psiprobe.model.wrapper;
 
+import java.util.Map.Entry;
 import java.util.Set;
 
 /**
@@ -39,7 +40,7 @@ public class WrapperInfo {
   private String buildTime;
   
   /** The properties. */
-  private Set properties;
+  private Set<Entry<Object, Object>> properties;
   
   /** The controlled by wrapper. */
   private boolean controlledByWrapper;
@@ -163,7 +164,7 @@ public class WrapperInfo {
    *
    * @return the properties
    */
-  public Set getProperties() {
+  public Set<Entry<Object, Object>> getProperties() {
     return properties;
   }
 
@@ -172,7 +173,7 @@ public class WrapperInfo {
    *
    * @param properties the new properties
    */
-  public void setProperties(Set properties) {
+  public void setProperties(Set<Entry<Object, Object>> properties) {
     this.properties = properties;
   }
 

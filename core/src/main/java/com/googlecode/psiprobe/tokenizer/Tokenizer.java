@@ -39,7 +39,7 @@ public class Tokenizer {
   private Reader reader;
   
   /** The symbols. */
-  private final List symbols;
+  private final List<TokenizerSymbol> symbols;
   
   /** The push count. */
   /*
@@ -90,7 +90,7 @@ public class Tokenizer {
    * @param cacheBufferSize the cache buffer size
    */
   public Tokenizer(Reader reader, int cacheBufferSize) {
-    symbols = new UniqueList();
+    symbols = new UniqueList<TokenizerSymbol>();
     token = new TokenizerToken();
     upcomingToken = new TokenizerToken();
     cacheBuffer = new char[cacheBufferSize];
@@ -168,7 +168,7 @@ public class Tokenizer {
           // we have found a symbol
           TokenizerToken workToken =
               token.type == Tokenizer.TT_TOKEN && token.text.length() > 0 ? upcomingToken : token;
-          TokenizerSymbol symbol = ((TokenizerSymbol) symbols.get(symbolIndex));
+          TokenizerSymbol symbol = (symbols.get(symbolIndex));
           boolean hideSymbol = symbol.hidden;
 
           if (!hideSymbol) {
@@ -267,11 +267,11 @@ public class Tokenizer {
     if (index >= 0) {
       // the index could be anywhere within a group of sybols with the same first letter
       // so we need to scroll up the group to make sure we start test from the beginning
-      while (index > 0 && ((TokenizerSymbol) symbols.get(index - 1)).compareTo(chrObj) == 0) {
+      while (index > 0 && symbols.get(index - 1).compareTo(chrObj) == 0) {
         index--;
       }
       while (index < symbols.size()) {
-        TokenizerSymbol symbol = ((TokenizerSymbol) symbols.get(index));
+        TokenizerSymbol symbol = (symbols.get(index));
         if (symbol.compareTo(chrObj) == 0) {
           if (compare(symbol.startText.toCharArray(), 1)) {
             result = index;

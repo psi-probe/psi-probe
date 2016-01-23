@@ -116,7 +116,9 @@ public abstract class AbstractStatsCollectionListener implements StatsCollection
   /**
    * Reset.
    */
-  public void reset() {}
+  public void reset() {
+    // Not Implemented;
+  }
 
   /**
    * Gets the property category.

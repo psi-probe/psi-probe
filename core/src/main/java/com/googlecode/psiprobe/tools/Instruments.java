@@ -75,7 +75,7 @@ public class Instruments {
   }
 
   /** The processed objects. */
-  private Set<Object> processedObjects = new HashSet(2048);
+  private Set<Object> processedObjects = new HashSet<Object>(2048);
   
   /** The this queue. */
   private final List<Object> thisQueue = new LinkedList<Object>();
