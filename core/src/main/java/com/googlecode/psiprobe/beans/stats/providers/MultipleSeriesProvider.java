@@ -36,7 +36,7 @@ import javax.servlet.http.HttpServletRequest;
 public class MultipleSeriesProvider extends AbstractSeriesProvider {
   
   /** The stat name prefix. */
-  private String statNamePrefix;
+  String statNamePrefix;
   
   /** The top. */
   private int top = 0;

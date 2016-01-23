@@ -142,16 +142,16 @@ public class Whois {
   public static class Response {
 
     /** The summary. */
-    private String summary;
+    String summary;
     
     /** The data. */
-    private Map<String, String> data = new TreeMap<String, String>();
+    Map<String, String> data = new TreeMap<String, String>();
     
     /** The server. */
-    private String server;
+    String server;
     
     /** The port. */
-    private int port;
+    int port;
 
     /**
      * Gets the summary.
