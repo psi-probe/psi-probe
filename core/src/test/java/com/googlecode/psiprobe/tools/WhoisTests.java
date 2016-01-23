@@ -12,7 +12,6 @@ package com.googlecode.psiprobe.tools;
 
 import com.googlecode.psiprobe.tools.Whois.Response;
 
-import junit.framework.TestCase;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -23,7 +22,7 @@ import java.io.IOException;
  *
  * @author Mark Lewis
  */
-public class WhoisTests extends TestCase {
+public class WhoisTests {
 
   /**
    * Test localhost.
