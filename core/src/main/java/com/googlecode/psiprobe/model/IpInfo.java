@@ -29,7 +29,9 @@ public class IpInfo {
   /**
    * Instantiates a new ip info.
    */
-  public IpInfo() {}
+  public IpInfo() {
+    // Required due to override
+  }
 
   /**
    * Instantiates a new ip info.

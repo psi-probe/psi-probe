@@ -316,7 +316,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
              * and /WEB-INF/lib. JspCompilationContext would only take URLClassLoader, so we fake it
              */
             URLClassLoader classLoader =
-                new URLClassLoader(new URL[] {}, context.getLoader().getClassLoader());
+                new URLClassLoader(new URL[0], context.getLoader().getClassLoader());
             for (String name : names) {
               long time = System.currentTimeMillis();
               JspCompilationContext jcctx =
@@ -382,7 +382,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
            * and /WEB-INF/lib. JspCompilationContext would only take URLClassLoader, so we fake it
            */
           URLClassLoader urlcl = new URLClassLoader(
-              new URL[] {}, context.getLoader().getClassLoader());
+              new URL[0], context.getLoader().getClassLoader());
           
           compileItem("/", opt, context, jrctx, summary, urlcl, 0, compile);
         } finally {

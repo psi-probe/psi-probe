@@ -24,7 +24,9 @@ public class StringTokenizer extends Tokenizer {
   /**
    * Instantiates a new string tokenizer.
    */
-  public StringTokenizer() {}
+  public StringTokenizer() {
+    // Required due to override
+  }
 
   /**
    * Instantiates a new string tokenizer.

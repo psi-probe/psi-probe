@@ -45,11 +45,6 @@ public class MemoryPoolMailingListener extends FlapListener implements MessageSo
   private Mailer mailer;
 
   /**
-   * Instantiates a new memory pool mailing listener.
-   */
-  public MemoryPoolMailingListener() {}
-
-  /**
    * Gets the message source accessor.
    *
    * @return the message source accessor
