@@ -114,13 +114,10 @@ public class TomcatAvailabilityController extends TomcatContainerController {
         bos.write(word.getBytes());
       }
       tomcatTestReport.setMemoryTest(TomcatTestReport.TEST_PASSED);
+    } catch (ThreadDeath e) {
+        throw e;
     } catch (Throwable e) {
       tomcatTestReport.setMemoryTest(TomcatTestReport.TEST_FAILED);
-
-      // make sure we always re-throw ThreadDeath
-      if (e instanceof ThreadDeath) {
-        throw (ThreadDeath) e;
-      }
     }
 
     // try to open some files

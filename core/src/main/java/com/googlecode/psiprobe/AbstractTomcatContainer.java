@@ -168,12 +168,10 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
 
       try {
         stop(name);
+      } catch (ThreadDeath e) {
+          throw e;
       } catch (Throwable e) {
         logger.info("Stopping " + name + " threw this exception:", e);
-        // make sure we always re-throw ThreadDeath
-        if (e instanceof ThreadDeath) {
-          throw (ThreadDeath) e;
-        }
       }
 
       File appDir;

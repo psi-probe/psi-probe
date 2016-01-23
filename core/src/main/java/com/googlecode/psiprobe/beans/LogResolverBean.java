@@ -283,14 +283,12 @@ public class LogResolverBean {
           allAppenders.add(catalinaAccessor);
         }
       }
+    } catch (ThreadDeath e) {
+        throw e;
     } catch (Throwable e) {
       logger.error("Could not interrogate context logger for " + ctx.getName()
           + ". Enable debug logging to see the trace stack");
       logger.debug("  Stack trace:", e);
-      // make sure we always re-throw ThreadDeath
-      if (e instanceof ThreadDeath) {
-        throw (ThreadDeath) e;
-      }
     }
 
     if (application.isAvailable()) {

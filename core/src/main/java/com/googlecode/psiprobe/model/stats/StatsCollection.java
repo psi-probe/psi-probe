@@ -288,14 +288,10 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
           fis.close();
         }
         logger.debug("stats data read in " + (System.currentTimeMillis() - start) + "ms.");
+      } catch (ThreadDeath e) {
+          throw e;
       } catch (Throwable e) {
         logger.error("Could not read stats data from " + file.getAbsolutePath(), e);
-        //
-        // make sure we always re-throw ThreadDeath
-        //
-        if (e instanceof ThreadDeath) {
-          throw (ThreadDeath) e;
-        }
       }
     }
 

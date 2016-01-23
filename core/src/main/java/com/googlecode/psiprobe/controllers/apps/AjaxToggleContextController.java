@@ -40,13 +40,10 @@ public class AjaxToggleContextController extends ContextHandlerController {
           logger.info(request.getRemoteAddr() + " requested START of " + contextName);
           getContainerWrapper().getTomcatContainer().start(contextName);
         }
+      } catch (ThreadDeath e) {
+          throw e;
       } catch (Throwable e) {
         logger.error(e);
-
-        // make sure we always re-throw ThreadDeath
-        if (e instanceof ThreadDeath) {
-          throw (ThreadDeath) e;
-        }
       }
     }
     return new ModelAndView(getViewName(), "available", context != null
