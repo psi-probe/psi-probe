@@ -378,6 +378,13 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
 	<build>
 		<defaultGoal>package</defaultGoal>
 		<pluginManagement>
@@ -440,6 +447,7 @@
 					<version>2.19.1</version>
 					<configuration>
 						<includes>
+							<include>**/*Test.java</include>
 							<include>**/*Tests.java</include>
 						</includes>
 						<excludes>
