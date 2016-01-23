@@ -82,7 +82,7 @@ public class ContainerListenerBean implements NotificationListener {
    * @return true, if is initialized
    */
   private boolean isInitialized() {
-    return poolNames != null && poolNames.size() > 0;
+    return poolNames != null && !poolNames.isEmpty();
   }
 
   /**

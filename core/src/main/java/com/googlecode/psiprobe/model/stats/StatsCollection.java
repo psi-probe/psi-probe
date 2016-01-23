@@ -277,7 +277,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
 
             for (String key : stats.keySet()) {
               List<XYDataItem> list = stats.get(key);
-              if (list.size() > 0) {
+              if (!list.isEmpty()) {
                 XYDataItem xy = list.get(list.size() - 1);
                 list.add(new XYDataItem(xy.getX().longValue() + 1, 0));
                 list.add(new XYDataItem(System.currentTimeMillis(), 0));
