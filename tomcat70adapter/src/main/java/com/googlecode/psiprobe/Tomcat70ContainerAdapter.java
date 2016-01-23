@@ -121,7 +121,7 @@ public class Tomcat70ContainerAdapter extends AbstractTomcatContainer {
        */
       try {
         jcctx =
-            (JspCompilationContext) ConstructorUtils.invokeConstructor(JspCompilationContext.class,
+            ConstructorUtils.invokeConstructor(JspCompilationContext.class,
                 new Object[] {name, false, opt, sctx, null, jrctx}, new Class[] {String.class,
                     Boolean.TYPE, Options.class, ServletContext.class, JspServletWrapper.class,
                     JspRuntimeContext.class});
@@ -282,8 +282,8 @@ public class Tomcat70ContainerAdapter extends AbstractTomcatContainer {
     }
     List<ApplicationParam> initParams = new ArrayList<ApplicationParam>();
     ServletContext servletCtx = context.getServletContext();
-    for (Enumeration e = servletCtx.getInitParameterNames(); e.hasMoreElements();) {
-      String paramName = (String) e.nextElement();
+    for (Enumeration<String> e = servletCtx.getInitParameterNames(); e.hasMoreElements();) {
+      String paramName = e.nextElement();
       ApplicationParam param = new ApplicationParam();
       param.setName(paramName);
       param.setValue(servletCtx.getInitParameter(paramName));

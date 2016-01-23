@@ -43,8 +43,8 @@ public class RecompileJspController extends ContextHandlerController {
 
     if (request.getMethod().equalsIgnoreCase("post") && summary != null) {
       List<String> names = new ArrayList<String>();
-      for (Enumeration e = request.getParameterNames(); e.hasMoreElements();) {
-        String name = (String) e.nextElement();
+      for (Enumeration<String> e = request.getParameterNames(); e.hasMoreElements();) {
+        String name = e.nextElement();
         if ("on".equals(request.getParameter(name))) {
           names.add(name);
         }

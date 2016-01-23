@@ -105,7 +105,7 @@ public class Whois {
           response.summary = sb.toString();
 
           Response newResponse = null;
-          String referral = (String) response.getData().get("ReferralServer");
+          String referral = response.getData().get("ReferralServer");
 
           if (referral != null) {
             try {

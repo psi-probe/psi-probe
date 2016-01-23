@@ -247,7 +247,7 @@ public class Mailer {
       InternetAddress[] parsedAddresses = InternetAddress.parse(address);
       result.addAll(Arrays.asList(parsedAddresses));
     }
-    return (InternetAddress[]) result.toArray(new InternetAddress[result.size()]);
+    return result.toArray(new InternetAddress[result.size()]);
   }
 
   /**
