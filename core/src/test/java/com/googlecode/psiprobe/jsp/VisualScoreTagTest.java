@@ -5,17 +5,27 @@ import static org.junit.Assert.fail;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import com.codebox.bean.JavaBeanTester;
+
 /**
  * The Class VisualScoreTagTest.
  */
-// TODO 1/18/16 This test was not previously used. It causes a lot of output
-// and crashes travis CI.  Review it's need.
-@Ignore
 public class VisualScoreTagTest {
+
+  /**
+   * Javabean tester.
+   */
+  @Test
+  public void javabeanTester() {
+    JavaBeanTester.builder(VisualScoreTag.class).loadData().test();
+  }
 
   /**
    * Test range scan.
    */
+  // TODO 1/18/16 This test was not previously used. It causes a lot of output
+  // and crashes travis CI.  Review it's need.
+  @Ignore
   @Test
   public void testRangeScan() {
     // As used in appRuntimeInfo.jsp
@@ -37,7 +47,7 @@ public class VisualScoreTagTest {
    * @param partialBlocks the partial blocks
    * @param invertLoopIndexes the invert loop indexes
    */
-  private void doTestRangeScan(int fullBlocks, int partialBlocks, boolean invertLoopIndexes) {
+  private static void doTestRangeScan(int fullBlocks, int partialBlocks, boolean invertLoopIndexes) {
     int value;
     int value2;
     int count = 0;
@@ -90,7 +100,7 @@ public class VisualScoreTagTest {
    * @param partialBlocks the partial blocks
    * @return the string[]
    */
-  private String[] callCalculateSuffix(int value, int value2, int fullBlocks, int partialBlocks) {
+  private static String[] callCalculateSuffix(int value, int value2, int fullBlocks, int partialBlocks) {
     String body = "{0} ";
 
     VisualScoreTag visualScoreTag = new VisualScoreTag();

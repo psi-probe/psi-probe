@@ -48,6 +48,13 @@ public class MailMessage {
 
   /**
    * Instantiates a new mail message.
+   */
+  public MailMessage() {
+    // Require Due To Override
+  }
+
+  /**
+   * Instantiates a new mail message.
    *
    * @param to the to
    * @param subject the subject
