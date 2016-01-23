@@ -30,6 +30,9 @@ import javax.servlet.jsp.tagext.TagSupport;
  */
 public class VolumeTag extends TagSupport {
 
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
+
   /** The logger. */
   private final Log logger = LogFactory.getLog(getClass());
 

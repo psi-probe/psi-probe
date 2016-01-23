@@ -25,6 +25,9 @@ public class Item implements Serializable {
   /**
    * Item is Out Of Date and requires recompilation.
    */
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
+
   public static final int STATE_OOD = 1;
 
   /**

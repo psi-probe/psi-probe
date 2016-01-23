@@ -25,6 +25,9 @@ import java.util.regex.PatternSyntaxException;
  */
 public class SessionSearchInfo implements Serializable {
 
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
+
   /** The Constant SESS_ATTR_NAME. */
   public static final String SESS_ATTR_NAME = "sessionSearchInfo";
   

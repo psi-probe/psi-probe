@@ -32,6 +32,9 @@ import java.util.Iterator;
  */
 public class UniqueList<T extends Comparable<? super T>> extends ArrayList<T> {
 
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
+
   @Override
   public synchronized boolean add(T obj) {
     return add(obj, null);
