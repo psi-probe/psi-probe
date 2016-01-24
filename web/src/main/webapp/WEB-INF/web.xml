@@ -100,6 +100,13 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
+	<session-config>
+		<session-timeout>15</session-timeout>
+		<cookie-config>
+			<secure>true</secure>
+		</cookie-config>
+	</session-config>
+
 	<!-- no access error -->
 	<error-page>
 		<error-code>403</error-code>
