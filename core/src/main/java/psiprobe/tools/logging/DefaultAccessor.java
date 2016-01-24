@@ -13,8 +13,8 @@ package psiprobe.tools.logging;
 
 import org.apache.commons.beanutils.MethodUtils;
 import org.apache.commons.beanutils.PropertyUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import psiprobe.model.Application;
 
@@ -26,8 +26,8 @@ import psiprobe.model.Application;
  */
 public class DefaultAccessor {
 
-  /** The log. */
-  protected final Log log = LogFactory.getLog(getClass());
+  /** The logger. */
+  protected static final Logger logger = LoggerFactory.getLogger(DefaultAccessor.class);
   
   /** The application. */
   private Application application;
@@ -94,7 +94,7 @@ public class DefaultAccessor {
           ? PropertyUtils.getProperty(obj, name)
           : defaultValue;
     } catch (Exception e) {
-      log.debug("Could not access property \"" + name + "\" of object " + obj, e);
+      logger.debug("Could not access property \"" + name + "\" of object " + obj, e);
       return defaultValue;
     }
   }

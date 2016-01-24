@@ -11,9 +11,9 @@
 
 package psiprobe.beans;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.commons.modeler.Registry;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import psiprobe.model.jmx.MemoryPool;
 import psiprobe.tools.JmxTools;
@@ -35,7 +35,7 @@ import javax.management.openmbean.CompositeDataSupport;
 public class JvmMemoryInfoAccessorBean {
 
   /** The logger. */
-  private final Log logger = LogFactory.getLog(this.getClass());
+  private static final Logger logger = LoggerFactory.getLogger(JvmMemoryInfoAccessorBean.class);
 
   /**
    * Gets the pools.

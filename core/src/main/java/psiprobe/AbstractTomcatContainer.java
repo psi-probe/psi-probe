@@ -17,8 +17,6 @@ import org.apache.catalina.Host;
 import org.apache.catalina.Valve;
 import org.apache.catalina.Wrapper;
 import org.apache.catalina.core.StandardContext;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.commons.modeler.Registry;
 import org.apache.jasper.EmbeddedServletOptions;
 import org.apache.jasper.JasperException;
@@ -26,6 +24,8 @@ import org.apache.jasper.JspCompilationContext;
 import org.apache.jasper.Options;
 import org.apache.jasper.compiler.JspRuntimeContext;
 import org.apache.naming.ContextBindings;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.util.ClassUtils;
 
 import psiprobe.model.jsp.Item;
@@ -58,7 +58,7 @@ import javax.servlet.ServletContext;
 public abstract class AbstractTomcatContainer implements TomcatContainer {
 
   /** The logger. */
-  protected Log logger = LogFactory.getLog(getClass());
+  protected final Logger logger = LoggerFactory.getLogger(getClass());
 
   /** The host. */
   protected Host host;

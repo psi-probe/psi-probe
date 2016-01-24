@@ -11,8 +11,8 @@
 
 package psiprobe.beans.stats.collectors;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import psiprobe.beans.ContainerWrapperBean;
 import psiprobe.model.ApplicationResource;
@@ -32,7 +32,7 @@ public class DatasourceStatsCollectorBean extends AbstractStatsCollectorBean {
   private static final String PREFIX_BUSY = "ds.busy.";
 
   /** The logger. */
-  private final Log logger = LogFactory.getLog(DatasourceStatsCollectorBean.class);
+  private static final Logger logger = LoggerFactory.getLogger(DatasourceStatsCollectorBean.class);
   
   /** The container wrapper. */
   private ContainerWrapperBean containerWrapper;

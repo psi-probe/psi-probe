@@ -11,8 +11,8 @@
 
 package psiprobe.jsp;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import psiprobe.tools.SizeExpression;
 
@@ -34,7 +34,7 @@ public class VolumeTag extends TagSupport {
   private static final long serialVersionUID = 1L;
 
   /** The logger. */
-  private final Log logger = LogFactory.getLog(getClass());
+  private static final Logger logger = LoggerFactory.getLogger(VolumeTag.class);
 
   /** The value. */
   private long value;

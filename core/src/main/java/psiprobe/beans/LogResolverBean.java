@@ -12,8 +12,8 @@
 package psiprobe.beans;
 
 import org.apache.catalina.Context;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.util.ClassUtils;
 
 import psiprobe.model.Application;
@@ -48,7 +48,7 @@ import java.util.List;
 public class LogResolverBean {
 
   /** The logger. */
-  protected final Log logger = LogFactory.getLog(getClass());
+  protected static final Logger logger = LoggerFactory.getLogger(LogResolverBean.class);
 
   /** The container wrapper. */
   private ContainerWrapperBean containerWrapper;
