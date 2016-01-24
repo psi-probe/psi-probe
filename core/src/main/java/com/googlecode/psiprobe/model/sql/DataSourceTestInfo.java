@@ -30,19 +30,19 @@ public class DataSourceTestInfo implements Serializable {
   public static final String DS_TEST_SESS_ATTR = "dataSourceTestData";
 
   /** The results. */
-  List<Map<String, String>> results = null;
+  private List<Map<String, String>> results;
   
   /** The query history. */
-  LinkedList<String> queryHistory = new LinkedList<String>();
+  private LinkedList<String> queryHistory = new LinkedList<String>();
   
   /** The max rows. */
-  int maxRows = 0;
+  private int maxRows;
   
   /** The rows per page. */
-  int rowsPerPage = 0;
+  private int rowsPerPage;
   
   /** The history size. */
-  int historySize = 0;
+  private int historySize;
 
   /**
    * Adds the query to history.

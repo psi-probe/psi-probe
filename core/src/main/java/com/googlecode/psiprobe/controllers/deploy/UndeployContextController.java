@@ -30,7 +30,7 @@ import javax.servlet.http.HttpServletResponse;
 public class UndeployContextController extends ContextHandlerController {
 
   /** The failure view name. */
-  private String failureViewName = null;
+  private String failureViewName;
 
   /**
    * Gets the failure view name.

@@ -28,7 +28,7 @@ import java.util.List;
 public class Log4JLoggerAccessor extends DefaultAccessor {
 
   /** The context. */
-  private boolean context = false;
+  private boolean context;
 
   /**
    * Gets the appenders.

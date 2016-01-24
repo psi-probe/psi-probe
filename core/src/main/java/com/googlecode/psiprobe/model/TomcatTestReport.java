@@ -27,8 +27,8 @@ public class TomcatTestReport {
   /** The Constant TEST_FAILED. */
   public static final int TEST_FAILED = 2;
 
-  /** The default memory size. */
-  private final int defaultMemorySize = 1024 * 1024; // 1MB
+  /** The default memory size. 1 MB */
+  private final int defaultMemorySize = 1024 * 1024;
   
   /** The default file count. */
   private final int defaultFileCount = 10;

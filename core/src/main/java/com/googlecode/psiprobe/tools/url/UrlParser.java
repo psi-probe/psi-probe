@@ -21,16 +21,16 @@ import java.net.MalformedURLException;
 public class UrlParser {
 
   /** The protocol. */
-  private String protocol = null;
+  private String protocol;
   
   /** The host. */
-  private String host = null;
+  private String host;
   
   /** The port. */
   private int port = -1;
   
   /** The path. */
-  private String path = null;
+  private String path;
 
   /**
    * Instantiates a new url parser.

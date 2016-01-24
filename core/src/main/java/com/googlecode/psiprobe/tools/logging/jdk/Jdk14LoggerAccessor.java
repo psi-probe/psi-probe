@@ -29,7 +29,7 @@ import java.util.List;
 public class Jdk14LoggerAccessor extends DefaultAccessor {
 
   /** The context. */
-  private boolean context = false;
+  private boolean context;
 
   /**
    * Gets the handlers.

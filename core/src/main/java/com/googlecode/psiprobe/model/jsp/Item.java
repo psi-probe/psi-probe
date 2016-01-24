@@ -62,7 +62,7 @@ public class Item implements Serializable {
   private Date timestamp;
   
   /** The encoding. */
-  private String encoding = null;
+  private String encoding;
 
   /**
    * Gets the name.

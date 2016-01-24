@@ -37,7 +37,7 @@ public class OutTag extends BodyTagSupport {
   private boolean ellipsisRight = true;
   
   /** The value. */
-  private Object value = null;
+  private Object value;
 
   /**
    * Gets the value.

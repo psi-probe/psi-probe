@@ -85,13 +85,13 @@ public class VisualScoreTag extends BodyTagSupport {
   private int fullBlocks = 5;
 
   /** The show empty blocks. */
-  private boolean showEmptyBlocks = false;
+  private boolean showEmptyBlocks;
   
   /** The show a. */
-  private boolean showA = false;
+  private boolean showA;
   
   /** The show b. */
-  private boolean showB = false;
+  private boolean showB;
 
   @Override
   public int doAfterBody() throws JspException {

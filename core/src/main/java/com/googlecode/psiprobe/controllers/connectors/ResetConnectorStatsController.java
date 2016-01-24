@@ -29,7 +29,7 @@ import javax.servlet.http.HttpServletResponse;
 public class ResetConnectorStatsController extends ParameterizableViewController {
 
   /** The collector bean. */
-  ConnectorStatsCollectorBean collectorBean;
+  private ConnectorStatsCollectorBean collectorBean;
 
   /**
    * Gets the collector bean.

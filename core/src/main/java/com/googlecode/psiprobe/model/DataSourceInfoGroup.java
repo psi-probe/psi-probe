@@ -20,7 +20,7 @@ package com.googlecode.psiprobe.model;
 public class DataSourceInfoGroup extends DataSourceInfo {
 
   /** The data source count. */
-  private int dataSourceCount = 0;
+  private int dataSourceCount;
 
   /**
    * Instantiates a new data source info group.
