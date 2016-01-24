@@ -57,13 +57,13 @@ public class Tomcat80ContainerAdapter extends AbstractTomcatContainer {
 
   @Override
   public boolean canBoundTo(String binding) {
-    boolean canBind = false;
-    if (binding != null) {
-      canBind |= binding.startsWith("Apache Tomcat/8.0");
-      canBind |= binding.startsWith("Apache Tomcat (TomEE)/8.0");
-      canBind |= binding.startsWith("Pivotal tc") && binding.contains("/8.0");
+    if (binding == null) {
+      return false;
     }
-    return canBind;
+    return binding.startsWith("Apache Tomcat/8.0")
+      // Neither of the next two currently exist
+      || binding.startsWith("Apache Tomcat (TomEE)/8.0")
+      || binding.startsWith("Pivotal tc") && binding.contains("/8.0");
   }
 
   /**

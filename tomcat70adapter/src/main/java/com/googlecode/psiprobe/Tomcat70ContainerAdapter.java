@@ -59,18 +59,20 @@ public class Tomcat70ContainerAdapter extends AbstractTomcatContainer {
 
   @Override
   public boolean canBoundTo(String binding) {
-    boolean canBind = false;
-    if (binding != null) {
-      canBind |= binding.startsWith("Apache Tomcat/7.0");
-      canBind |= binding.startsWith("Apache Tomcat (TomEE)/7.0");
-      canBind |= binding.startsWith("JBoss Web/3.0");
-      canBind |= binding.startsWith("JBoss Web/7.0");
-      canBind |= binding.startsWith("NonStop(tm) Servlets For JavaServer Pages(tm) v7.0");
-      canBind |= binding.startsWith("SpringSource tc") && binding.contains("/7.0");
-      canBind |= binding.startsWith("VMware vFabric tc") && binding.contains("/7.0");
-      canBind |= binding.startsWith("Pivotal tc") && binding.contains("/7.0");
+    if (binding == null) {
+      return false;
     }
-    return canBind;
+    return binding.startsWith("Apache Tomcat/7.0")
+      || binding.startsWith("Apache Tomcat (TomEE)/7.0")
+      // JBoss Dropped Tomcat in favor of Undertow after these versions
+      || binding.startsWith("JBoss Web/3.0")
+      || binding.startsWith("JBoss Web/7.0")
+      // HP Nonstop plans to support Tomcat 8 in late 2016
+      || binding.startsWith("NonStop(tm) Servlets For JavaServer Pages(tm) v7.0")
+      // Next three are all really the same re-bundled as springsource evolved to pivotal
+      || binding.startsWith("SpringSource tc") && binding.contains("/7.0")
+      || binding.startsWith("VMware vFabric tc") && binding.contains("/7.0")
+      || binding.startsWith("Pivotal tc") && binding.contains("/7.0");
   }
 
   /**

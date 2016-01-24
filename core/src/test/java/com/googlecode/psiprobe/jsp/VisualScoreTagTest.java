@@ -1,15 +1,22 @@
 package com.googlecode.psiprobe.jsp;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.fail;
+
+import org.junit.Ignore;
+import org.junit.Test;
 
 /**
  * The Class VisualScoreTagTest.
  */
-public class VisualScoreTagTest extends TestCase {
+// TODO 1/18/16 This test was not previously used. It causes a lot of output
+// and crashes travis CI.  Review it's need.
+@Ignore
+public class VisualScoreTagTest {
 
   /**
    * Test range scan.
    */
+  @Test
   public void testRangeScan() {
     // As used in appRuntimeInfo.jsp
     doTestRangeScan(8, 5, false);
