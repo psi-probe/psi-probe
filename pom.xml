@@ -99,6 +99,11 @@
 				<version>4.12</version>
 			</dependency>
 			<dependency>
+				<groupId>com.github.hazendaz</groupId>
+				<artifactId>javabean-tester</artifactId>
+				<version>1.4.0</version>
+			</dependency>
+			<dependency>
 				<groupId>javax.servlet</groupId>
 				<artifactId>javax.servlet-api</artifactId>
 				<version>3.0.1</version>
@@ -382,6 +387,11 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.github.hazendaz</groupId>
+			<artifactId>javabean-tester</artifactId>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
