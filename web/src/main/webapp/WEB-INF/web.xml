@@ -28,7 +28,7 @@
 	</context-param>
 
 	<listener>
-		<listener-class>com.googlecode.psiprobe.AwtAppContextClassloaderListener</listener-class>
+		<listener-class>psiprobe.AwtAppContextClassloaderListener</listener-class>
 	</listener>
 	
 	<listener>
@@ -40,7 +40,7 @@
 	-->
 	<servlet>
 		<servlet-name>probe</servlet-name>
-		<servlet-class>com.googlecode.psiprobe.ProbeServlet</servlet-class>
+		<servlet-class>psiprobe.ProbeServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>

@@ -22,7 +22,7 @@
 	</page-parsers>
 
 	<decorator-mappers>
-		<mapper class="com.googlecode.psiprobe.mappers.AjaxDecoratorMapper">
+		<mapper class="psiprobe.mappers.AjaxDecoratorMapper">
 			<param name="ajaxExtension" value=".ajax"/>
 		</mapper>
 

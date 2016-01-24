@@ -3,15 +3,15 @@
 		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.googlecode.psiprobe</groupId>
+	<groupId>com.github.psi-probe</groupId>
 	<artifactId>psi-probe</artifactId>
 	<version>3.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>PSI Probe</name>
+	<name>psi-probe</name>
 	<url>https://github.com/psi-probe/psi-probe/</url>
 	<inceptionYear>2009</inceptionYear>
 	<description>
-		Advanced manager and monitor for Tomcat, forked from Lambda Probe
+		Psi Probe - Advanced manager and monitor for Tomcat, forked from Lambda Probe
 	</description>
 	<licenses>
 		<license>
@@ -49,6 +49,7 @@
 		<url>https://github.com/psi-probe/psi-probe/</url>
 	</scm>
 	<modules>
+		<!-- Rename Folders in Phase 2 -->
 		<module>core</module>
 		<module>tomcat70adapter</module>
 		<module>tomcat80adapter</module>

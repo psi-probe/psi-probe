@@ -4,16 +4,16 @@
 		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.googlecode.psiprobe</groupId>
+		<groupId>com.github.psi-probe</groupId>
 		<artifactId>psi-probe</artifactId>
 		<version>3.0.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>web</artifactId>
+	<artifactId>psi-probe-web</artifactId>
 	<packaging>war</packaging>
-	<name>PSI Probe Web Application</name>
+	<name>psi-probe-web</name>
 	<url>https://github.com/psi-probe/psi-probe/</url>
 	<description>
-		Web view, message resources, and configuration
+		PSI Probe Web Application - Web view, message resources, and configuration
 	</description>
 	<scm>
 		<connection>scm:git:ssh://git@github.com:psi-probe/psi-probe.git</connection>
@@ -26,22 +26,22 @@
 	<dependencies>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>core</artifactId>
+			<artifactId>psi-probe-core</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>tomcat70adapter</artifactId>
+			<artifactId>psi-probe-tomcat7</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>tomcat80adapter</artifactId>
+			<artifactId>psi-probe-tomcat8</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>tomcat90adapter</artifactId>
+			<artifactId>psi-probe-tomcat9</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
@@ -101,7 +101,7 @@
 					</dependency>
 					<dependency>
 						<groupId>${project.groupId}</groupId>
-						<artifactId>core</artifactId>
+						<artifactId>psi-probe-core</artifactId>
 						<version>${project.version}</version>
 					</dependency>
 				</dependencies>
@@ -112,12 +112,12 @@
 				<configuration>
 					<webResources>
 						<resource>
-							<directory>src/main/webapp</directory>
+							<directory>${project.basedir}/src/main/webapp</directory>
 							<filtering>true</filtering>
 						</resource>
 						<resource>
 							<!-- Required for JBoss. See https://developer.jboss.org/wiki/Web-AppContextConfiguration -->
-							<directory>src/main/webapp/META-INF</directory>
+							<directory>${project.basedir}/src/main/webapp/META-INF</directory>
 							<includes>
 								<include>context.xml</include>
 							</includes>
@@ -125,7 +125,7 @@
 							<filtering>false</filtering>
 						</resource>
 					</webResources>
-					<webappDirectory>target/war_exploded</webappDirectory>
+					<webappDirectory>${project.build.directory}/target/war_exploded</webappDirectory>
 					<warName>probe</warName>
 				</configuration>
 			</plugin>

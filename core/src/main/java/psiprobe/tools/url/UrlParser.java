@@ -1,0 +1,150 @@
+/*
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ * http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ * 
+ * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+ * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE.
+ */
+
+package psiprobe.tools.url;
+
+import java.net.MalformedURLException;
+
+/**
+ * The Class UrlParser.
+ *
+ * @author Vlad Ilyushchenko
+ */
+public class UrlParser {
+
+  /** The protocol. */
+  private String protocol;
+  
+  /** The host. */
+  private String host;
+  
+  /** The port. */
+  private int port = -1;
+  
+  /** The path. */
+  private String path;
+
+  /**
+   * Instantiates a new url parser.
+   *
+   * @param url the url
+   * @throws MalformedURLException the malformed url exception
+   */
+  public UrlParser(String url) throws MalformedURLException {
+    if (url != null && url.length() > 0) {
+      int ppos = url.indexOf("://");
+
+      // get protocol first
+      if (ppos >= 0) {
+        protocol = url.substring(0, ppos);
+        url = url.substring(ppos + 3);
+      }
+
+      String hostport;
+
+      ppos = url.indexOf("/");
+      if (ppos >= 0) {
+        hostport = url.substring(0, ppos);
+        path = url.substring(ppos + 1);
+      } else {
+        hostport = url;
+      }
+
+      ppos = hostport.indexOf(":");
+      if (ppos >= 0) {
+        host = hostport.substring(0, ppos);
+        String portString = hostport.substring(ppos + 1);
+        try {
+          this.port = Integer.parseInt(portString);
+        } catch (NumberFormatException e) {
+          throw new MalformedURLException("Invalid port " + portString);
+        }
+      } else {
+        host = hostport;
+      }
+    } else {
+      throw new MalformedURLException("Empty URL");
+    }
+  }
+
+  /**
+   * Gets the protocol.
+   *
+   * @return the protocol
+   */
+  public String getProtocol() {
+    return protocol;
+  }
+
+  /**
+   * Sets the protocol.
+   *
+   * @param protocol the new protocol
+   */
+  public void setProtocol(String protocol) {
+    this.protocol = protocol;
+  }
+
+  /**
+   * Gets the host.
+   *
+   * @return the host
+   */
+  public String getHost() {
+    return host;
+  }
+
+  /**
+   * Sets the host.
+   *
+   * @param host the new host
+   */
+  public void setHost(String host) {
+    this.host = host;
+  }
+
+  /**
+   * Gets the port.
+   *
+   * @return the port
+   */
+  public int getPort() {
+    return port;
+  }
+
+  /**
+   * Sets the port.
+   *
+   * @param port the new port
+   */
+  public void setPort(int port) {
+    this.port = port;
+  }
+
+  /**
+   * Gets the path.
+   *
+   * @return the path
+   */
+  public String getPath() {
+    return path;
+  }
+
+  /**
+   * Sets the path.
+   *
+   * @param path the new path
+   */
+  public void setPath(String path) {
+    this.path = path;
+  }
+
+}
