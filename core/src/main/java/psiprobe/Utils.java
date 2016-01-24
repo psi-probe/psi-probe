@@ -19,9 +19,9 @@ import psiprobe.tokenizer.Token;
 import psiprobe.tokenizer.Tokenizer;
 import psiprobe.tokenizer.TokenizerSymbol;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.commons.modeler.Registry;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -56,7 +56,7 @@ import javax.servlet.http.HttpServletResponse;
 public class Utils {
 
   /** The logger. */
-  private static Log logger = LogFactory.getLog(Utils.class.getName());
+  private static final Logger logger = LoggerFactory.getLogger(Utils.class);
 
   /**
    * Calc pool usage score.

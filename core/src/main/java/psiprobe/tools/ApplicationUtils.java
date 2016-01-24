@@ -29,8 +29,8 @@ import org.apache.catalina.Session;
 import org.apache.catalina.Wrapper;
 import org.apache.catalina.core.StandardWrapper;
 import org.apache.catalina.deploy.FilterDef;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.util.ClassUtils;
 
 import java.io.Serializable;
@@ -57,7 +57,7 @@ import javax.servlet.http.HttpSession;
 public class ApplicationUtils {
 
   /** The logger. */
-  private static final Log logger = LogFactory.getLog(ApplicationUtils.class);
+  private static final Logger logger = LoggerFactory.getLogger(ApplicationUtils.class);
 
   /**
    * Gets the application.

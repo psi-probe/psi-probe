@@ -11,9 +11,9 @@
 
 package psiprobe.beans;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.commons.modeler.Registry;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import psiprobe.model.jmx.RuntimeInformation;
 import psiprobe.tools.JmxTools;
@@ -30,7 +30,7 @@ import javax.management.ObjectName;
 public class RuntimeInfoAccessorBean {
 
   /** The logger. */
-  private final Log logger = LogFactory.getLog(RuntimeInfoAccessorBean.class);
+  private static final Logger logger = LoggerFactory.getLogger(RuntimeInfoAccessorBean.class);
 
   /**
    * Gets the runtime information.

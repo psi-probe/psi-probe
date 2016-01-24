@@ -11,8 +11,8 @@
 
 package psiprobe.jsp;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
@@ -31,7 +31,7 @@ public class DurationTag extends TagSupport {
   private static final long serialVersionUID = 1L;
 
   /** The logger. */
-  private static final Log logger = LogFactory.getLog(DurationTag.class);
+  private static final Logger logger = LoggerFactory.getLogger(DurationTag.class);
 
   /** The value. */
   private long value;

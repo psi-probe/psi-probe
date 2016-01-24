@@ -48,7 +48,7 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
         }
       }
     } catch (Exception e) {
-      log.error(getTarget().getClass().getName() + "#handlers inaccessible", e);
+      logger.error(getTarget().getClass().getName() + "#handlers inaccessible", e);
     }
     return handlerAccessors;
   }
@@ -109,7 +109,7 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
     try {
       index = Integer.parseInt(logIndex);
     } catch (Exception e) {
-      log.info("Could not parse integer from: " + logIndex + ".  Assuming 0.");
+      logger.info("Could not parse integer from: " + logIndex + ".  Assuming 0.");
     }
     return getHandler(index);
   }
@@ -125,7 +125,7 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
       Object[] handlers = (Object[]) MethodUtils.invokeMethod(getTarget(), "getHandlers", null);
       return wrapHandler(handlers[index], index);
     } catch (Exception e) {
-      log.error(getTarget().getClass().getName() + "#handlers inaccessible", e);
+      logger.error(getTarget().getClass().getName() + "#handlers inaccessible", e);
     }
     return null;
   }
@@ -148,7 +148,7 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
       }
       return (String) MethodUtils.invokeMethod(level, "getName", null);
     } catch (Exception e) {
-      log.error(getTarget().getClass().getName() + "#getLevel() failed", e);
+      logger.error(getTarget().getClass().getName() + "#getLevel() failed", e);
     }
     return null;
   }
@@ -166,7 +166,7 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
       Object newLevel = parse.invoke(null, new Object[] {newLevelStr});
       MethodUtils.invokeMethod(getTarget(), "setLevel", newLevel);
     } catch (Exception e) {
-      log.error(getTarget().getClass().getName() + "#setLevel(\"" + newLevelStr + "\") failed", e);
+      logger.error(getTarget().getClass().getName() + "#setLevel(\"" + newLevelStr + "\") failed", e);
     }
   }
 
@@ -208,7 +208,7 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
       }
       return handlerAccessor;
     } catch (Exception e) {
-      log.error("Could not wrap handler: " + handler, e);
+      logger.error("Could not wrap handler: " + handler, e);
     }
     return null;
   }

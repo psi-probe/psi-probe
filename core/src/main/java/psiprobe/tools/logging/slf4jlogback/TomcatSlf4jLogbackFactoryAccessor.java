@@ -102,7 +102,7 @@ public class TomcatSlf4jLogbackFactoryAccessor extends DefaultAccessor {
       return accessor;
 
     } catch (Exception e) {
-      log.error(getTarget() + ".getLogger(\"" + name + "\") failed", e);
+      logger.error(getTarget() + ".getLogger(\"" + name + "\") failed", e);
     }
     return null;
   }
@@ -131,7 +131,7 @@ public class TomcatSlf4jLogbackFactoryAccessor extends DefaultAccessor {
         appenders.addAll(accessor.getAppenders());
       }
     } catch (Exception e) {
-      log.error(getTarget() + ".getLoggerList() failed", e);
+      logger.error(getTarget() + ".getLoggerList() failed", e);
     }
     return appenders;
   }
