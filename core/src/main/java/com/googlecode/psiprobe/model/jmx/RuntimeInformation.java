@@ -23,25 +23,25 @@ public class RuntimeInformation {
   private String vmVendor;
   
   /** The committed virtual memory size. */
-  private long committedVirtualMemorySize = 0;
+  private long committedVirtualMemorySize;
   
   /** The free physical memory size. */
-  private long freePhysicalMemorySize = 0;
+  private long freePhysicalMemorySize;
   
   /** The free swap space size. */
-  private long freeSwapSpaceSize = 0;
+  private long freeSwapSpaceSize;
   
   /** The process cpu time. */
-  private long processCpuTime = 0;
+  private long processCpuTime;
   
   /** The available processors. */
   private int availableProcessors = 1;
   
   /** The total physical memory size. */
-  private long totalPhysicalMemorySize = 0;
+  private long totalPhysicalMemorySize;
   
   /** The total swap space size. */
-  private long totalSwapSpaceSize = 0;
+  private long totalSwapSpaceSize;
   
   /** The os name. */
   private String osName;

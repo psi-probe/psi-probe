@@ -54,7 +54,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
   private String swapFileName;
   
   /** The storage path. */
-  private String storagePath = null;
+  private String storagePath;
   
   /** The context temp dir. */
   private File contextTempDir;

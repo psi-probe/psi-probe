@@ -40,7 +40,7 @@ public class ContainerWrapperBean {
   private final Log logger = LogFactory.getLog(getClass());
 
   /** The tomcat container. */
-  private TomcatContainer tomcatContainer = null;
+  private TomcatContainer tomcatContainer;
   
   /** The lock. */
   private final Object lock = new Object();
@@ -52,7 +52,7 @@ public class ContainerWrapperBean {
   private ResourceResolver resourceResolver;
 
   /** The force first adapter. */
-  private boolean forceFirstAdapter = false;
+  private boolean forceFirstAdapter;
 
   /** The resource resolvers. */
   private Map<String, ResourceResolver> resourceResolvers;

@@ -64,7 +64,7 @@ public class ApplicationSession {
   private long size;
   
   /** The allowed to view values. */
-  private boolean allowedToViewValues = false;
+  private boolean allowedToViewValues;
   
   /** The last accessed ip. */
   private String lastAccessedIp;

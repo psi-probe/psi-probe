@@ -23,16 +23,16 @@ public class MemoryPool {
   private String name;
   
   /** The init. */
-  private long init = 0;
+  private long init;
   
   /** The max. */
-  private long max = 0;
+  private long max;
   
   /** The used. */
-  private long used = 0;
+  private long used;
   
   /** The committed. */
-  private long committed = 0;
+  private long committed;
   
   /** The type. */
   private String type;

@@ -60,7 +60,7 @@ public class RequestProcessor {
   private String workerThreadName;
   
   /** The worker thread name supported. */
-  private boolean workerThreadNameSupported = false;
+  private boolean workerThreadNameSupported;
 
   /**
    * Gets the name.

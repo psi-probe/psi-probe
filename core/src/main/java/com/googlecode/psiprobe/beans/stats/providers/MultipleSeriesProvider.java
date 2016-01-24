@@ -39,10 +39,10 @@ public class MultipleSeriesProvider extends AbstractSeriesProvider {
   String statNamePrefix;
   
   /** The top. */
-  private int top = 0;
+  private int top;
   
   /** The moving avg frame. */
-  private int movingAvgFrame = 0;
+  private int movingAvgFrame;
 
   /**
    * Gets the stat name prefix.

@@ -26,13 +26,13 @@ package com.googlecode.psiprobe.tools;
 public class UpdateCommitLock {
 
   /** The update count. */
-  private int updateCount = 0;
+  private int updateCount;
   
   /** The commit count. */
-  private int commitCount = 0;
+  private int commitCount;
   
   /** The commit requests. */
-  private int commitRequests = 0;
+  private int commitRequests;
 
   /**
    * Lock for update.

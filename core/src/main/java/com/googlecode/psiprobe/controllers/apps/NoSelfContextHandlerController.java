@@ -30,7 +30,7 @@ import javax.servlet.http.HttpServletResponse;
 public abstract class NoSelfContextHandlerController extends ContextHandlerController {
 
   /** The pass query string. */
-  private boolean passQueryString = false;
+  private boolean passQueryString;
 
   /**
    * Checks if is pass query string.

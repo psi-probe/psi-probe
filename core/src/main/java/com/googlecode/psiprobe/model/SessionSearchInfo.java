@@ -44,10 +44,10 @@ public class SessionSearchInfo implements Serializable {
   private String searchAction = ACTION_NONE;
   
   /** The apply. */
-  private boolean apply = false;
+  private boolean apply;
   
   /** The clear. */
-  private boolean clear = false;
+  private boolean clear;
   
   /** The session id. */
   private String sessionId;
