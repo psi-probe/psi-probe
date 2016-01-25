@@ -24,17 +24,14 @@ import org.apache.catalina.deploy.ContextResourceLink;
 import org.apache.catalina.deploy.FilterDef;
 import org.apache.catalina.deploy.FilterMap;
 import org.apache.catalina.deploy.NamingResources;
-import org.apache.commons.beanutils.ConstructorUtils;
 import org.apache.jasper.JspCompilationContext;
 import org.apache.jasper.Options;
 import org.apache.jasper.compiler.JspRuntimeContext;
-import org.apache.jasper.servlet.JspServletWrapper;
 import org.apache.naming.resources.Resource;
 import org.apache.naming.resources.ResourceAttributes;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashSet;
@@ -110,37 +107,8 @@ public class Tomcat70ContainerAdapter extends AbstractTomcatContainer {
   protected JspCompilationContext createJspCompilationContext(String name, Options opt,
       ServletContext sctx, JspRuntimeContext jrctx, ClassLoader classLoader) {
 
-    JspCompilationContext jcctx;
-    try {
-      jcctx = new JspCompilationContext(name, opt, sctx, null, jrctx);
-    } catch (NoSuchMethodError err) {
-      /*
-       * The above constructor's signature changed in Tomcat 7.0.16:
-       * http://svn.apache.org/viewvc?view=revision&revision=1124719
-       * 
-       * If we reach this point, we are running on a prior version of Tomcat 7 and must use
-       * reflection to create this object.
-       */
-      try {
-        jcctx =
-            ConstructorUtils.invokeConstructor(JspCompilationContext.class,
-                new Object[] {name, false, opt, sctx, null, jrctx}, new Class[] {String.class,
-                    Boolean.TYPE, Options.class, ServletContext.class, JspServletWrapper.class,
-                    JspRuntimeContext.class});
-        return jcctx;
-      } catch (NoSuchMethodException ex) {
-        throw new RuntimeException(ex);
-      } catch (IllegalAccessException ex) {
-        throw new RuntimeException(ex);
-      } catch (InvocationTargetException ex) {
-        throw new RuntimeException(ex);
-      } catch (InstantiationException ex) {
-        throw new RuntimeException(ex);
-      }
-    }
-    if (classLoader != null) {
-      jcctx.setClassLoader(classLoader);
-    }
+    JspCompilationContext jcctx = new JspCompilationContext(name, opt, sctx, null, jrctx);
+    jcctx.setClassLoader(classLoader);
     return jcctx;
   }
 
