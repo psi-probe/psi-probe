@@ -25,7 +25,9 @@ public class SimpleAccessor implements Accessor {
     boolean accessible = pre(field);
     try {
       return get0(obj, field);
-    } catch (Exception e) {
+    } catch (IllegalArgumentException e) {
+      return null;
+    } catch (IllegalAccessException e) {
       return null;
     } finally {
       post(field, accessible);
