@@ -258,10 +258,8 @@ public class ApplicationUtils {
             try {
               objSize += Instruments.sizeOf(name, processedObjects);
               objSize += Instruments.sizeOf(obj, processedObjects);
-            } catch (ThreadDeath td) {
-                throw td;
-            } catch (Throwable th) {
-              logger.error("Cannot estimate size of attribute \"" + name + "\"", th);
+            } catch (Exception ex) {
+              logger.error("Cannot estimate size of attribute '{}' {}", name, ex);
             }
           }
 
@@ -285,9 +283,7 @@ public class ApplicationUtils {
         try {
           sbean.setLastAccessedIpLocale(InetAddressLocator.getLocale(InetAddress.getByName(
               lastAccessedIp).getAddress()));
-        } catch (ThreadDeath e) {
-            throw e;
-        } catch (Throwable e) {
+        } catch (Exception e) {
           logger.error("Cannot determine Locale of " + lastAccessedIp);
         }
 

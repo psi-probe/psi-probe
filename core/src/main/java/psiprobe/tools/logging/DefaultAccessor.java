@@ -11,6 +11,8 @@
 
 package psiprobe.tools.logging;
 
+import java.lang.reflect.InvocationTargetException;
+
 import org.apache.commons.beanutils.MethodUtils;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.slf4j.Logger;
@@ -93,10 +95,17 @@ public class DefaultAccessor {
       return PropertyUtils.isReadable(obj, name)
           ? PropertyUtils.getProperty(obj, name)
           : defaultValue;
-    } catch (Exception e) {
-      logger.debug("Could not access property \"" + name + "\" of object " + obj, e);
-      return defaultValue;
+    } catch (IllegalArgumentException e) {
+      logger.error("{}", e);
+    } catch (IllegalAccessException e) {
+      logger.error("{}", e);
+    } catch (InvocationTargetException e) {
+      logger.error("{}", e);
+    } catch (NoSuchMethodException e) {
+      logger.error("{}", e);
     }
+    logger.debug("Could not access property '{}' of object '{}'", name, obj);
+    return defaultValue;
   }
 
   /**
@@ -114,9 +123,14 @@ public class DefaultAccessor {
         return MethodUtils.invokeMethod(object, name, new Object[0]);
       }
       return MethodUtils.invokeMethod(object, name, param);
-    } catch (Exception e) {
-      return defaultValue;
+    } catch (NoSuchMethodException e) {
+      logger.error("{}", e);
+    } catch (IllegalAccessException e) {
+      logger.error("{}", e);
+    } catch (InvocationTargetException e) {
+      logger.error("{}", e);
     }
+    return defaultValue;
   }
 
 }

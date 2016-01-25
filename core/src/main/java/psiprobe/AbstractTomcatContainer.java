@@ -33,6 +33,7 @@ import psiprobe.model.jsp.Summary;
 
 import java.io.File;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
@@ -168,9 +169,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
 
       try {
         stop(name);
-      } catch (ThreadDeath e) {
-          throw e;
-      } catch (Throwable e) {
+      } catch (Exception e) {
         logger.info("Stopping " + name + " threw this exception:", e);
       }
 
@@ -424,7 +423,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
         if ("file".equals(configUri.getScheme())) {
           return new File(configUri.getPath());
         }
-      } catch (Exception ex) {
+      } catch (URISyntaxException ex) {
         logger.error("Could not convert URL to URI: " + configUrl, ex);
       }
     }

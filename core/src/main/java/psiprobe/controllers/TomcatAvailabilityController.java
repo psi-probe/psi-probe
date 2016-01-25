@@ -114,9 +114,7 @@ public class TomcatAvailabilityController extends TomcatContainerController {
         bos.write(word.getBytes());
       }
       tomcatTestReport.setMemoryTest(TomcatTestReport.TEST_PASSED);
-    } catch (ThreadDeath e) {
-        throw e;
-    } catch (Throwable e) {
+    } catch (IOException e) {
       tomcatTestReport.setMemoryTest(TomcatTestReport.TEST_FAILED);
     }
 

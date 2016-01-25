@@ -190,7 +190,7 @@ public class TomcatSlf4jLogbackLoggerAccessor extends DefaultAccessor {
       appenderAccessor.setLoggerAccessor(this);
       appenderAccessor.setApplication(getApplication());
       return appenderAccessor;
-    } catch (Exception e) {
+    } catch (IllegalArgumentException e) {
       logger.error("Could not wrap appender: " + appender, e);
     }
     return null;
