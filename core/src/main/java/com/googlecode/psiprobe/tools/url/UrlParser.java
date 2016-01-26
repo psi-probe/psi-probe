@@ -34,13 +34,6 @@ public class UrlParser {
 
   /**
    * Instantiates a new url parser.
-   */
-  public UrlParser() {
-    // Required due to override
-  }
-
-  /**
-   * Instantiates a new url parser.
    *
    * @param url the url
    * @throws MalformedURLException the malformed url exception

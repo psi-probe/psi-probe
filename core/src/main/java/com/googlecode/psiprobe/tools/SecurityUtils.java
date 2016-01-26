@@ -29,6 +29,13 @@ import javax.servlet.http.HttpServletRequest;
 public class SecurityUtils {
 
   /**
+   * Prevent Instantiation of security utils.
+   */
+  private SecurityUtils() {
+    // Prevent Instantiation
+  }
+
+  /**
    * Checks for attribute value role.
    *
    * @param servletContext the servlet context
@@ -75,6 +82,7 @@ public class SecurityUtils {
    * @param request the request
    * @return true, if successful
    */
+  @SuppressWarnings("unused")
   private static boolean userHasRole(String privilegedRole, HttpServletRequest request) {
     return request.isUserInRole(privilegedRole);
   }

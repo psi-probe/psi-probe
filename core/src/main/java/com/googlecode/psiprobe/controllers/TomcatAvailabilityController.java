@@ -106,7 +106,7 @@ public class TomcatAvailabilityController extends TomcatContainerController {
 
     // try to allocate some memory
     String word = "hello";
-    int count = tomcatTestReport.getDefaultMemorySize() / word.length();
+    int count = TomcatTestReport.DEFAULT_MEMORY_SIZE / word.length();
 
     try {
       ByteArrayOutputStream bos = new ByteArrayOutputStream();

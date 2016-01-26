@@ -19,6 +19,13 @@ package com.googlecode.psiprobe.tools;
 public class AccessorFactory {
 
   /**
+   * Prevent Instantiation of accessor factory.
+   */
+  private AccessorFactory() {
+    // Prevent Instantiation
+  }
+
+  /**
    * Gets the single instance of AccessorFactory.
    *
    * @return single instance of AccessorFactory
@@ -32,6 +39,7 @@ public class AccessorFactory {
    *
    * @return the reflective
    */
+  @SuppressWarnings("unused")
   private static Accessor getReflective() {
     try {
       return new ReflectiveAccessor();

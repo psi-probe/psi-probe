@@ -6,7 +6,7 @@
 [![GPLv2 License](http://img.shields.io/badge/license-GPLv2-green.svg)](http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
 [![Project Stats](https://www.openhub.net/p/psi-probe/widgets/project_thin_badge.gif)](https://www.openhub.net/p/psi-probe)
 
-![waffle](src/site/resources/images/psi-probe-banner.jpg)
+![psi-probe](src/site/resources/images/psi-probe-banner.jpg)
 
 ## Contributions ##
 
