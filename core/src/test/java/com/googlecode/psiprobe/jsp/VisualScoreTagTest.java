@@ -2,7 +2,6 @@ package com.googlecode.psiprobe.jsp;
 
 import static org.junit.Assert.fail;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.codebox.bean.JavaBeanTester;
@@ -23,9 +22,6 @@ public class VisualScoreTagTest {
   /**
    * Test range scan.
    */
-  // TODO 1/18/16 This test was not previously used. It causes a lot of output
-  // and crashes travis CI.  Review it's need.
-  @Ignore
   @Test
   public void testRangeScan() {
     // As used in appRuntimeInfo.jsp
