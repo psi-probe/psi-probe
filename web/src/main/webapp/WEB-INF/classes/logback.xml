@@ -7,7 +7,7 @@
     <append>true</append>
     <encoder>
       <charset>utf-8</charset>
-      <pattern>%d{HH:mm:ss.SSS} %-5level {%thread} [%logger{40}] : %msg%n</pattern>
+      <pattern>%d{HH:mm:ss.SSS} %-5level {%thread} [%logger{40}] %msg%n</pattern>
     </encoder>
     <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
       <fileNamePattern>${probe.log.path}/archive/probe-%d{yyyyMMdd}-%i.log.zip</fileNamePattern>
