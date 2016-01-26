@@ -188,11 +188,6 @@
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
-			<groupId>javax.management</groupId>
-			<artifactId>jmxri</artifactId>
-			<scope>${jmxri.scope}</scope>
-		</dependency>
-		<dependency>
 			<groupId>xpp3</groupId>
 			<artifactId>xpp3_min</artifactId>
 			<scope>compile</scope>
@@ -250,20 +245,4 @@
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
-	<profiles>
-		<profile>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<properties>
-				<jmxri.scope>compile</jmxri.scope>
-			</properties>
-		</profile>
-		<profile>
-			<id>jboss</id>
-			<properties>
-				<jmxri.scope>provided</jmxri.scope>
-			</properties>
-		</profile>
-	</profiles>
 </project>
