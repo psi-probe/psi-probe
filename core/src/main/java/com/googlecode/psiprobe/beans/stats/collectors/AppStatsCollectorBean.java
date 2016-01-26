@@ -17,8 +17,8 @@ import com.googlecode.psiprobe.model.Application;
 import com.googlecode.psiprobe.tools.ApplicationUtils;
 
 import org.apache.catalina.Context;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.ServletContextAware;
 
@@ -34,7 +34,7 @@ public class AppStatsCollectorBean extends AbstractStatsCollectorBean implements
     ServletContextAware {
 
   /** The logger. */
-  private final Log logger = LogFactory.getLog(AppStatsCollectorBean.class);
+  private final Logger logger = LoggerFactory.getLogger(AppStatsCollectorBean.class);
 
   /** The container wrapper. */
   private ContainerWrapperBean containerWrapper;

@@ -15,8 +15,8 @@ import com.googlecode.psiprobe.model.Application;
 
 import org.apache.commons.beanutils.MethodUtils;
 import org.apache.commons.beanutils.PropertyUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The Class DefaultAccessor.
@@ -27,7 +27,7 @@ import org.apache.commons.logging.LogFactory;
 public class DefaultAccessor {
 
   /** The log. */
-  protected final Log log = LogFactory.getLog(getClass());
+  protected final Logger log = LoggerFactory.getLogger(getClass());
   
   /** The application. */
   private Application application;

@@ -101,7 +101,7 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
   /**
    * Gets the handler.
    *
-   * @param logIndex the log index
+   * @param logIndex the Logger index
    * @return the handler
    */
   public Jdk14HandlerAccessor getHandler(String logIndex) {

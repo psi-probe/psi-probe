@@ -11,8 +11,8 @@
 
 package com.googlecode.psiprobe;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletContextEvent;
@@ -58,7 +58,7 @@ public class AwtAppContextClassloaderListener implements ServletContextListener 
         Thread.currentThread().setContextClassLoader(active);
       }
     } catch (Throwable t) {
-      Log logger = LogFactory.getLog(AwtAppContextClassloaderListener.class.getName());
+      Logger logger = LoggerFactory.getLogger(AwtAppContextClassloaderListener.class.getName());
       logger.error("Failed to address PermGen leak.", t);
     }
   }

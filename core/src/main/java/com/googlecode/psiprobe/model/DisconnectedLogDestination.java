@@ -20,7 +20,7 @@ import java.sql.Timestamp;
 /**
  * This class holds attributes of any other LogDestination so that LogDestination can be serialized.
  * It is generally difficult to make just any LogDestination to be serializable as they more often
- * than not are connected to underlying Log implementation that are in many cases not serializable.
+ * than not are connected to underlying Logger implementation that are in many cases not serializable.
  * 
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
@@ -54,7 +54,7 @@ public class DisconnectedLogDestination implements LogDestination, Serializable 
   /** The file. */
   private final File file;
   
-  /** The log type. */
+  /** The Logger type. */
   private final String logType;
   
   /** The size. */
@@ -70,7 +70,7 @@ public class DisconnectedLogDestination implements LogDestination, Serializable 
   private final String[] validLevels;
 
   /**
-   * Instantiates a new disconnected log destination.
+   * Instantiates a new disconnected Logger destination.
    *
    * @param destination the destination
    */

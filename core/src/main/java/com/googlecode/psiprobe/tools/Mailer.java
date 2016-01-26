@@ -11,8 +11,8 @@
 
 package com.googlecode.psiprobe.tools;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -44,7 +44,7 @@ public class Mailer {
   public static final String PROPERTY_KEY_SMTP = "mail.smtp.host";
 
   /** The log. */
-  private final Log log = LogFactory.getLog(this.getClass());
+  private final Logger log = LoggerFactory.getLogger(this.getClass());
   
   /** The from. */
   private String from;

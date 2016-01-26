@@ -14,8 +14,8 @@ package com.googlecode.psiprobe.beans;
 import com.googlecode.psiprobe.model.jmx.RuntimeInformation;
 import com.googlecode.psiprobe.tools.JmxTools;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.apache.commons.modeler.Registry;
 
 import javax.management.MBeanServer;
@@ -30,7 +30,7 @@ import javax.management.ObjectName;
 public class RuntimeInfoAccessorBean {
 
   /** The logger. */
-  private final Log logger = LogFactory.getLog(RuntimeInfoAccessorBean.class);
+  private final Logger logger = LoggerFactory.getLogger(RuntimeInfoAccessorBean.class);
 
   /**
    * Gets the runtime information.

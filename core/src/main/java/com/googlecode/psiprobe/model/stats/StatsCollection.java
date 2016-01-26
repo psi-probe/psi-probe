@@ -14,8 +14,8 @@ package com.googlecode.psiprobe.model.stats;
 import com.googlecode.psiprobe.tools.UpdateCommitLock;
 
 import com.thoughtworks.xstream.XStream;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.jfree.data.xy.XYDataItem;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.DisposableBean;
@@ -45,7 +45,7 @@ import java.util.TreeMap;
 public class StatsCollection implements InitializingBean, DisposableBean, ApplicationContextAware {
 
   /** The logger. */
-  private final Log logger = LogFactory.getLog(this.getClass());
+  private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
   /** The stats data. */
   private Map<String, List<XYDataItem>> statsData = new TreeMap<String, List<XYDataItem>>();

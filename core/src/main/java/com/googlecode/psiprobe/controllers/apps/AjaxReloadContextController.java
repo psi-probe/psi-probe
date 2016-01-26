@@ -38,7 +38,7 @@ public class AjaxReloadContextController extends ContextHandlerController {
       } catch (ThreadDeath e) {
           throw e;
       } catch (Throwable e) {
-        logger.error(e);
+        logger.error("Error during ajax request to RELOAD of " + contextName, e);
       }
     }
     return new ModelAndView(getViewName(), "available", context != null

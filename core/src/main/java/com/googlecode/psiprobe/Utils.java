@@ -18,8 +18,8 @@ import com.googlecode.psiprobe.tokenizer.TokenizerSymbol;
 
 import com.uwyn.jhighlight.renderer.Renderer;
 import com.uwyn.jhighlight.renderer.XhtmlRendererFactory;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.apache.commons.modeler.Registry;
 
 import java.io.BufferedReader;
@@ -55,7 +55,7 @@ import javax.servlet.http.HttpServletResponse;
 public class Utils {
 
   /** The logger. */
-  private static Log logger = LogFactory.getLog(Utils.class.getName());
+  private static Logger logger = LoggerFactory.getLogger(Utils.class.getName());
 
   /**
    * Calc pool usage score.

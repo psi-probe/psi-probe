@@ -14,6 +14,8 @@ package com.googlecode.psiprobe.controllers.logs;
 import com.googlecode.psiprobe.beans.LogResolverBean;
 import com.googlecode.psiprobe.tools.logging.LogDestination;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
@@ -29,22 +31,25 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class LogHandlerController extends ParameterizableViewController {
 
-  /** The log resolver. */
+  /** The logger. */
+  protected Logger logger = LoggerFactory.getLogger(getClass());
+
+  /** The Logger resolver. */
   private LogResolverBean logResolver;
 
   /**
-   * Gets the log resolver.
+   * Gets the Logger resolver.
    *
-   * @return the log resolver
+   * @return the Logger resolver
    */
   public LogResolverBean getLogResolver() {
     return logResolver;
   }
 
   /**
-   * Sets the log resolver.
+   * Sets the Logger resolver.
    *
-   * @param logResolver the new log resolver
+   * @param logResolver the new Logger resolver
    */
   public void setLogResolver(LogResolverBean logResolver) {
     this.logResolver = logResolver;
@@ -86,11 +91,11 @@ public class LogHandlerController extends ParameterizableViewController {
   }
 
   /**
-   * Handle log file.
+   * Handle Logger file.
    *
    * @param request the request
    * @param response the response
-   * @param logDest the log dest
+   * @param logDest the Logger dest
    * @return the model and view
    * @throws Exception the exception
    */
