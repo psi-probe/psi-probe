@@ -137,7 +137,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
 
   @Override
   public List<Context> findContexts() {
-    ArrayList<Context> results = new ArrayList<>();
+    List<Context> results = new ArrayList<>();
     for (Container child : host.findChildren()) {
       if (child instanceof Context) {
         results.add((Context) child);

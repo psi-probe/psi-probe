@@ -46,6 +46,9 @@ class ObjectWrapper {
     if (wrappedObject == null) {
       return o1 == null;
     }
+    if (this.getClass() != o1.getClass()) {
+        return false;
+    }
     ObjectWrapper ow = (ObjectWrapper) o1;
     /*
      * I know, this condition may seem strange, but if "equals" is left out, sizeOf() may run into
