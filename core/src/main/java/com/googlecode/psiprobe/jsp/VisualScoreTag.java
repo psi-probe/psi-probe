@@ -11,9 +11,6 @@
 
 package com.googlecode.psiprobe.jsp;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 import java.io.IOException;
 import java.text.MessageFormat;
 
@@ -50,9 +47,6 @@ public class VisualScoreTag extends BodyTagSupport {
   
   /** The Constant BLUE_RIGHT_BORDER. */
   private static final String BLUE_RIGHT_BORDER = "b2";
-
-  /** The log. */
-  protected Log log = LogFactory.getLog(getClass());
 
   /**
    * Red value.
@@ -118,19 +112,15 @@ public class VisualScoreTag extends BodyTagSupport {
    */
   String calculateSuffix(String body) {
     if (value < minValue) {
-      log.info("value " + value + " is less than min value " + minValue);
       value = minValue;
     }
     if (value > maxValue) {
-      log.info("value " + value + " is greater than max value " + maxValue);
       value = maxValue;
     }
     if (value + value2 < minValue || value2 < 0) {
-      log.info("value2 " + value2 + " is less than min value");
       value2 = 0;
     }
     if (value + value2 > maxValue) {
-      log.info("value2 " + value2 + " is greater than max value");
       value2 = maxValue - value;
     }
 
