@@ -39,6 +39,7 @@ public class AccessorFactory {
    *
    * @return the reflective
    */
+  @SuppressWarnings("unused")
   private static Accessor getReflective() {
     try {
       return new ReflectiveAccessor();
