@@ -63,7 +63,7 @@ public abstract class NoSelfContextHandlerController extends ContextHandlerContr
       executeAction(contextName);
     } catch (Exception e) {
       request.setAttribute("errorMessage", e.getMessage());
-      logger.error(e);
+      logger.error("Error during invocation", e);
       return new ModelAndView(new InternalResourceView(getViewName()));
     }
     return new ModelAndView(new RedirectView(request.getContextPath() + getViewName()

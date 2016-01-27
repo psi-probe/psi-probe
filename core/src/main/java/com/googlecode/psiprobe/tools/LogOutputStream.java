@@ -11,10 +11,10 @@
 
 package com.googlecode.psiprobe.tools;
 
-import org.apache.commons.logging.Log;
-
 import java.io.OutputStream;
 import java.io.PrintStream;
+
+import org.slf4j.Logger;
 
 /**
  * An {@code OutputStream} which writes to a commons-logging {@code Log} at a particular level.
@@ -41,11 +41,8 @@ public class LogOutputStream extends OutputStream {
   /** The Constant LEVEL_ERROR. */
   public static final int LEVEL_ERROR = 5;
   
-  /** The Constant LEVEL_FATAL. */
-  public static final int LEVEL_FATAL = 6;
-
   /** The log. */
-  private final Log log;
+  private final Logger log;
   
   /** The level. */
   private final int level;
@@ -61,7 +58,7 @@ public class LogOutputStream extends OutputStream {
    * @param level the level at which to write
    * @return a {@code PrintStream} that writes to the given log
    */
-  public static PrintStream createPrintStream(Log log, int level) {
+  public static PrintStream createPrintStream(Logger log, int level) {
     LogOutputStream logStream = new LogOutputStream(log, level);
     return new PrintStream(logStream, true);
   }
@@ -74,7 +71,7 @@ public class LogOutputStream extends OutputStream {
    * @param level the level at which to write
    * @throws IllegalArgumentException if {@code log} is null
    */
-  private LogOutputStream(Log log, int level) {
+  private LogOutputStream(Logger log, int level) {
     if (log == null) {
       throw new IllegalArgumentException("Log cannot be null");
     }
@@ -112,7 +109,7 @@ public class LogOutputStream extends OutputStream {
    *
    * @return the {@code Log} to which this stream writes
    */
-  public Log getLog() {
+  public Logger getLog() {
     return log;
   }
 
@@ -143,8 +140,6 @@ public class LogOutputStream extends OutputStream {
         return log.isWarnEnabled();
       case LEVEL_ERROR:
         return log.isErrorEnabled();
-      case LEVEL_FATAL:
-        return log.isFatalEnabled();
       default:
         return false;
     }
@@ -174,9 +169,6 @@ public class LogOutputStream extends OutputStream {
         break;
       case LEVEL_ERROR:
         log.error(message);
-        break;
-      case LEVEL_FATAL:
-        log.fatal(message);
         break;
       default:
         //Don't log anything

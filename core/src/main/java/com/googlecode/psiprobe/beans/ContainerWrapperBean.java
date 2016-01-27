@@ -17,8 +17,8 @@ import com.googlecode.psiprobe.model.ApplicationResource;
 import org.apache.catalina.Context;
 import org.apache.catalina.Wrapper;
 import org.apache.catalina.util.ServerInfo;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +37,7 @@ import java.util.Map;
 public class ContainerWrapperBean {
 
   /** The logger. */
-  private final Log logger = LogFactory.getLog(getClass());
+  private final Logger logger = LoggerFactory.getLogger(getClass());
 
   /** The tomcat container. */
   private TomcatContainer tomcatContainer;
@@ -114,7 +114,7 @@ public class ContainerWrapperBean {
           }
 
           if (tomcatContainer == null) {
-            logger.fatal("No suitable container adapter found!");
+            logger.error("No suitable container adapter found!");
           }
         }
       }

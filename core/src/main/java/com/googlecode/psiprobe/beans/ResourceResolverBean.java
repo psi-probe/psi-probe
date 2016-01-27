@@ -17,8 +17,8 @@ import com.googlecode.psiprobe.model.DataSourceInfo;
 import org.apache.catalina.Context;
 import org.apache.catalina.Server;
 import org.apache.catalina.core.StandardServer;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.apache.commons.modeler.Registry;
 
 import java.util.ArrayList;
@@ -42,7 +42,7 @@ import javax.sql.DataSource;
 public class ResourceResolverBean implements ResourceResolver {
 
   /** The logger. */
-  private final Log logger = LogFactory.getLog(getClass());
+  private final Logger logger = LoggerFactory.getLogger(getClass());
 
   /**
    * The default resource prefix for JNDI objects in the global scope: <code>java:</code>.

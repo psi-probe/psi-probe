@@ -59,10 +59,10 @@ public class TomcatSlf4jLogbackAppenderAccessor extends AbstractLogDestination {
   }
 
   /**
-   * Returns the log type, to distinguish tomcatSlf4jLogback appenders from other types like log4j
+   * Returns the Logger type, to distinguish tomcatSlf4jLogback appenders from other types like log4j
    * appenders or jdk handlers.
    * 
-   * @return the log type
+   * @return the Logger type
    */
   @Override
   public String getLogType() {
@@ -107,13 +107,13 @@ public class TomcatSlf4jLogbackAppenderAccessor extends AbstractLogDestination {
   }
 
   /**
-   * Returns the valid log level names.
+   * Returns the valid Logger level names.
    * 
    * <p>
    * Note that Logback has no FATAL level.
    * </p>
    * 
-   * @return the valid log level names
+   * @return the valid Logger level names
    */
   @Override
   public String[] getValidLevels() {

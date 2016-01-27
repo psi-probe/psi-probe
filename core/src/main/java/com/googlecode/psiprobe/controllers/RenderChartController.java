@@ -24,6 +24,8 @@ import org.jfree.chart.renderer.xy.XYAreaRenderer;
 import org.jfree.chart.renderer.xy.XYLine3DRenderer;
 import org.jfree.data.xy.DefaultTableXYDataset;
 import org.jfree.ui.RectangleInsets;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
@@ -54,6 +56,9 @@ import javax.servlet.http.HttpServletResponse;
  * @author Vlad Ilyushchenko
  */
 public class RenderChartController extends AbstractController {
+
+  /** The logger. */
+  protected Logger logger = LoggerFactory.getLogger(getClass());
 
   /** The stats collection. */
   private StatsCollection statsCollection;

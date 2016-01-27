@@ -15,6 +15,8 @@ import com.googlecode.psiprobe.beans.ContainerWrapperBean;
 
 import org.apache.catalina.ContainerServlet;
 import org.apache.catalina.Wrapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.DispatcherServlet;
 
 import javax.servlet.ServletConfig;
@@ -31,6 +33,9 @@ import javax.servlet.http.HttpServletResponse;
  * @author Mark Lewis
  */
 public class ProbeServlet extends DispatcherServlet implements ContainerServlet {
+
+  /** The logger. */
+  protected Logger logger = LoggerFactory.getLogger(getClass());
 
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = 1L;

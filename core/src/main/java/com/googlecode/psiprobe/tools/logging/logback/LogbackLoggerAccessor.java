@@ -106,7 +106,7 @@ public class LogbackLoggerAccessor extends DefaultAccessor {
   }
 
   /**
-   * Gets the log level of this logger.
+   * Gets the Logger level of this logger.
    * 
    * @return the level of this logger
    */
@@ -121,7 +121,7 @@ public class LogbackLoggerAccessor extends DefaultAccessor {
   }
 
   /**
-   * Sets the log level of this logger.
+   * Sets the Logger level of this logger.
    * 
    * @param newLevelStr the name of the new level
    */

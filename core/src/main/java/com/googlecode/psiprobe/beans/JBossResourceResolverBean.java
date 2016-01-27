@@ -15,8 +15,8 @@ import com.googlecode.psiprobe.model.ApplicationResource;
 import com.googlecode.psiprobe.model.DataSourceInfo;
 
 import org.apache.catalina.Context;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -41,7 +41,7 @@ import javax.sql.DataSource;
 public class JBossResourceResolverBean implements ResourceResolver {
 
   /** The logger. */
-  protected Log logger = LogFactory.getLog(getClass());
+  protected Logger logger = LoggerFactory.getLogger(getClass());
 
   @Override
   public MBeanServer getMBeanServer() {
@@ -134,7 +134,7 @@ public class JBossResourceResolverBean implements ResourceResolver {
           resources.add(resource);
         }
       } catch (Exception e) {
-        logger.fatal("There was an error querying JBoss JMX server:", e);
+        logger.error("There was an error querying JBoss JMX server:", e);
       }
     }
     return resources;

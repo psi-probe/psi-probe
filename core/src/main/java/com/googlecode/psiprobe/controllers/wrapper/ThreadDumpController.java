@@ -11,6 +11,8 @@
 
 package com.googlecode.psiprobe.controllers.wrapper;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
 import org.tanukisoftware.wrapper.WrapperManager;
@@ -24,6 +26,9 @@ import javax.servlet.http.HttpServletResponse;
  * @author Vlad Ilyushchenko
  */
 public class ThreadDumpController extends ParameterizableViewController {
+
+  /** The logger. */
+  protected Logger logger = LoggerFactory.getLogger(getClass());
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,

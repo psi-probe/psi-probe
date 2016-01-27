@@ -18,8 +18,8 @@ import com.googlecode.psiprobe.model.jmx.ThreadPoolObjectName;
 import com.googlecode.psiprobe.tools.JmxTools;
 
 import net.sf.javainetlocator.InetAddressLocator;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.InetAddress;
 import java.util.ArrayList;
@@ -45,7 +45,7 @@ import javax.management.RuntimeOperationsException;
 public class ContainerListenerBean implements NotificationListener {
 
   /** The logger. */
-  private final Log logger = LogFactory.getLog(getClass());
+  private final Logger logger = LoggerFactory.getLogger(getClass());
   
   /** The pool names. */
   private List<ThreadPoolObjectName> poolNames = null;

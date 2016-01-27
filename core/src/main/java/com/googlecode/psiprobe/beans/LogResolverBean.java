@@ -29,8 +29,8 @@ import com.googlecode.psiprobe.tools.logging.slf4jlogback.TomcatSlf4jLogbackFact
 import com.googlecode.psiprobe.tools.logging.slf4jlogback.TomcatSlf4jLogbackLoggerAccessor;
 
 import org.apache.catalina.Context;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.util.ClassUtils;
 
 import java.io.File;
@@ -48,7 +48,7 @@ import java.util.List;
 public class LogResolverBean {
 
   /** The logger. */
-  protected final Log logger = LogFactory.getLog(getClass());
+  protected final Logger logger = LoggerFactory.getLogger(getClass());
 
   /** The container wrapper. */
   private ContainerWrapperBean containerWrapper;
