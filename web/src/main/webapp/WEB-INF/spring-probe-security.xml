@@ -6,7 +6,7 @@
 							http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd">
 	<bean id="filterChainProxy" class="org.springframework.security.web.FilterChainProxy">
 		<sec:filter-chain-map request-matcher="ant">
-			<sec:filter-chain pattern="/**" filters="j2eePreAuthenticatedProcessingFilter,logoutFilter,etf,fsi"/>
+			<sec:filter-chain pattern="/**" filters="sif,j2eePreAuthenticatedProcessingFilter,logoutFilter,etf,fsi"/>
 		</sec:filter-chain-map>
 	</bean>
 
@@ -18,7 +18,7 @@
 		</constructor-arg>
 	</bean>
 
-	<bean id="sif" class="org.springframework.security.web.context.HttpSessionSecurityContextRepository"/>
+	<bean id="sif" class="org.springframework.security.web.context.SecurityContextPersistenceFilter"/>
 
 	<bean id="preAuthenticatedAuthenticationProvider" class="org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationProvider">
 		<property name="preAuthenticatedUserDetailsService" ref="preAuthenticatedUserDetailsService"/>
