@@ -280,7 +280,7 @@ public class Mailer {
       throws MessagingException {
     MimeBodyPart bodyPart = new MimeBodyPart();
     bodyPart.setText(body);
-    bodyPart.setHeader("content-type", (html ? "text/html" : "text/plain"));
+    bodyPart.setHeader("content-type", html ? "text/html" : "text/plain");
     return bodyPart;
   }
 
