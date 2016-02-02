@@ -33,7 +33,7 @@
 	</bean>
 
 	<bean id="preAuthenticatedProcessingFilterEntryPoint"
-		  class="org.springframework.security.web.authentication.Http403ForbiddenEntryPoint"/>
+		class="org.springframework.security.web.authentication.Http403ForbiddenEntryPoint"/>
 
 	<bean id="logoutFilter" class="org.springframework.security.web.authentication.logout.LogoutFilter">
 		<constructor-arg value="/"/>
@@ -53,19 +53,7 @@
 		<property name="convertAttributeToUpperCase" value="true"/>
 	</bean>
 
-	<bean id="j2eeMappableRolesRetriever" class="org.springframework.security.web.authentication.preauth.j2ee.WebXmlMappableAttributesRetriever">
-		<!-- Do we need this?
-        <property name="webXmlInputStream">
-			<bean factory-bean="webXmlResource" factory-method="getInputStream"/>
-		</property>
-        -->
-	</bean>
-
-    <!--  Now not used -->
-	<bean id="webXmlResource" class="org.springframework.web.context.support.ServletContextResource">
-		<constructor-arg ref="servletContext"/>
-		<constructor-arg value="/WEB-INF/web.xml"/>
-	</bean>
+	<bean id="j2eeMappableRolesRetriever" class="org.springframework.security.web.authentication.preauth.j2ee.WebXmlMappableAttributesRetriever" />
 
 	<bean id="etf" class="org.springframework.security.web.access.ExceptionTranslationFilter">
 		<constructor-arg name="authenticationEntryPoint" ref="preAuthenticatedProcessingFilterEntryPoint"/>
@@ -96,10 +84,6 @@
 
 	<bean id="roleVoter" class="org.springframework.security.access.vote.RoleVoter"/>
 
-	<bean id="securityContextHolderAwareRequestFilter" class="org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter">
-		<!-- Do we need this?
-        <property name="wrapperClass" value="org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestWrapper"/>
-        -->
-	</bean>
+	<bean id="securityContextHolderAwareRequestFilter" class="org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter" />
 
 </beans>
