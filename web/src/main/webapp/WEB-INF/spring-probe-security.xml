@@ -2,8 +2,8 @@
 
 <beans xmlns="http://www.springframework.org/schema/beans"  xmlns:sec="http://www.springframework.org/schema/security"
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		xsi:schemaLocation="http://www.springframework.org/schema/beans    http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
-		                    http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+							http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd">
 	<bean id="filterChainProxy" class="org.springframework.security.web.FilterChainProxy">
 		<sec:filter-chain-map request-matcher="ant">
 			<sec:filter-chain pattern="/**" filters="j2eePreAuthenticatedProcessingFilter,logoutFilter,etf,fsi"/>
@@ -11,11 +11,11 @@
 	</bean>
 
 	<bean id="authenticationManager" class="org.springframework.security.authentication.ProviderManager">
-		<property name="providers">
+		<constructor-arg>
 			<list>
 				<ref bean="preAuthenticatedAuthenticationProvider"/>
 			</list>
-		</property>
+		</constructor-arg>
 	</bean>
 
 	<bean id="sif" class="org.springframework.security.web.context.HttpSessionSecurityContextRepository"/>
@@ -68,29 +68,29 @@
 	</bean>
 
 	<bean id="etf" class="org.springframework.security.web.access.ExceptionTranslationFilter">
-		<property name="authenticationEntryPoint" ref="preAuthenticatedProcessingFilterEntryPoint"/>
+		<constructor-arg name="authenticationEntryPoint" ref="preAuthenticatedProcessingFilterEntryPoint"/>
 	</bean>
 
 	<bean id="httpRequestAccessDecisionManager" class="org.springframework.security.access.vote.AffirmativeBased">
 		<property name="allowIfAllAbstainDecisions" value="false"/>
-		<property name="decisionVoters">
+		<constructor-arg name="decisionVoters">
 			<list>
 				<ref bean="roleVoter"/>
 			</list>
-		</property>
+		</constructor-arg>
 	</bean>
 
 	<bean id="fsi" class="org.springframework.security.web.access.intercept.FilterSecurityInterceptor">
 		<property name="authenticationManager" ref="authenticationManager"/>
 		<property name="accessDecisionManager" ref="httpRequestAccessDecisionManager"/>
 		<property name="securityMetadataSource">
-			<sec:filter-invocation-definition-source>
+			<sec:filter-security-metadata-source use-expressions="false">
 				<sec:intercept-url pattern="/adm/**"  access="ROLE_MANAGER,ROLE_MANAGER-GUI"/>
 				<sec:intercept-url pattern="/adm/restartvm.ajax" access="ROLE_POWERUSERPLUS,ROLE_MANAGER,ROLE_MANAGER-GUI"/>
 				<sec:intercept-url pattern="/sql/**"  access="ROLE_POWERUSERPLUS,ROLE_MANAGER,ROLE_MANAGER-GUI"/>
 				<sec:intercept-url pattern="/app/**"  access="ROLE_POWERUSER,ROLE_POWERUSERPLUS,ROLE_MANAGER,ROLE_MANAGER-GUI"/>
 				<sec:intercept-url pattern="/**"      access="ROLE_PROBEUSER,ROLE_POWERUSER,ROLE_POWERUSERPLUS,ROLE_MANAGER,ROLE_MANAGER-GUI"/>
-			</sec:filter-invocation-definition-source>
+			</sec:filter-security-metadata-source>
 		</property>
 	</bean>
 
