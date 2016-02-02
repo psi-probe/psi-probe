@@ -318,7 +318,7 @@ public class LogResolverBean {
       List<LogDestination> appenders) {
 
     String applicationName =
-        (application != null ? "application \"" + application.getName() + "\"" : "server");
+        application != null ? "application \"" + application.getName() + "\"" : "server";
 
     // check for JDK loggers
     try {
@@ -574,7 +574,7 @@ public class LogResolverBean {
       TomcatSlf4jLogbackFactoryAccessor manager = new TomcatSlf4jLogbackFactoryAccessor(cl);
       manager.setApplication(application);
       TomcatSlf4jLogbackLoggerAccessor log =
-          (root ? manager.getRootLogger() : manager.getLogger(logName));
+          root ? manager.getRootLogger() : manager.getLogger(logName);
       if (log != null) {
         return log.getAppender(appenderName);
       }
