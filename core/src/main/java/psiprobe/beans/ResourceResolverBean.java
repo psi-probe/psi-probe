@@ -198,13 +198,10 @@ public class ResourceResolverBean implements ResourceResolver {
           }
         }
         return false;
-      } catch (Throwable e) {
-        //
+      } catch (ThreadDeath t) {
         // make sure we always re-throw ThreadDeath
-        //
-        if (e instanceof ThreadDeath) {
-          throw (ThreadDeath) e;
-        }
+        throw (ThreadDeath) t;
+      }catch (Throwable e) {
         return false;
       }
     } finally {
