@@ -81,7 +81,7 @@ public class JmxTools {
   public static long getLongAttr(CompositeData cds, String name) {
     Object obj = cds.get(name);
     if (obj != null && obj instanceof Long) {
-      return ((Long) obj);
+      return (Long) obj;
     }
     return 0;
   }
@@ -98,7 +98,7 @@ public class JmxTools {
   public static long getLongAttr(MBeanServer mbeanServer, ObjectName objName, String attrName)
       throws Exception {
 
-    return ((Long) mbeanServer.getAttribute(objName, attrName));
+    return (Long) mbeanServer.getAttribute(objName, attrName);
   }
 
   /**
@@ -113,7 +113,7 @@ public class JmxTools {
   public static int getIntAttr(MBeanServer mbeanServer, ObjectName objName, String attrName)
       throws Exception {
 
-    return ((Integer) mbeanServer.getAttribute(objName, attrName));
+    return (Integer) mbeanServer.getAttribute(objName, attrName);
   }
 
   /**
@@ -128,7 +128,7 @@ public class JmxTools {
     Object obj = cds.get(name);
 
     if (obj != null && obj instanceof Integer) {
-      return ((Integer) obj);
+      return (Integer) obj;
     }
     return defaultValue;
   }
