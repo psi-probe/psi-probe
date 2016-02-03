@@ -200,7 +200,7 @@ public class ResourceResolverBean implements ResourceResolver {
         return false;
       } catch (ThreadDeath t) {
         // make sure we always re-throw ThreadDeath
-        throw (ThreadDeath) t;
+        throw t;
       }catch (Throwable e) {
         return false;
       }
