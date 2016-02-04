@@ -115,4 +115,10 @@ public interface LogDestination {
    */
   String[] getValidLevels();
 
+  /**
+   * Gets the encoding of the file.
+   * 
+   * @return the encoding name
+   */
+  String getEncoding();
 }

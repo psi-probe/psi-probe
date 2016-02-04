@@ -78,4 +78,8 @@ public abstract class AbstractLogDestination extends DefaultAccessor implements 
     return null;
   }
 
+  @Override
+  public String getEncoding() {
+    return null;
+  }
 }
