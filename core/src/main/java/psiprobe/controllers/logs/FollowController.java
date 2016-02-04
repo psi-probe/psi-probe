@@ -57,7 +57,12 @@ public class FollowController extends LogHandlerController {
 
       BackwardsFileStream bfs = new BackwardsFileStream(file, currentLength);
       try {
-        BackwardsLineReader br = new BackwardsLineReader(bfs);
+        BackwardsLineReader br;
+        if (logDest.getEncoding() != null) {
+          br = new BackwardsLineReader(bfs, logDest.getEncoding());
+        } else {
+          br = new BackwardsLineReader(bfs);
+        }
         long readSize = 0;
         long totalReadSize = currentLength - lastKnownLength;
         String line;
