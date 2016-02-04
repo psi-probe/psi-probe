@@ -33,7 +33,7 @@ public class AjaxToggleContextController extends ContextHandlerController {
 
     if (!request.getContextPath().equals(contextName) && context != null) {
       try {
-        if (context.getAvailable()) {
+        if (context.getState().isAvailable()) {
           logger.info(request.getRemoteAddr() + " requested STOP of " + contextName);
           getContainerWrapper().getTomcatContainer().stop(contextName);
         } else {
