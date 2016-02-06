@@ -112,6 +112,14 @@
 				<configuration>
 					<webResources>
 						<resource>
+							<directory>${project.basedir}/src/main/resources</directory>
+							<includes>
+								<include>logback.xml</include>
+							</includes>
+							<targetPath>WEB-INF/classes</targetPath>
+							<filtering>true</filtering>
+						</resource>
+						<resource>
 							<directory>${project.basedir}/src/main/webapp</directory>
 							<filtering>true</filtering>
 						</resource>
