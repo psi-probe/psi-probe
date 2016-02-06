@@ -134,6 +134,9 @@
 						<a class="imglink" href="${downloadUrl}"><img
 								class="lnk" src="${pageContext.request.contextPath}<spring:theme code='download.png'/>"
 								alt="<spring:message code='probe.jsp.logs.download.alt'/>"/></a>
+						<a class="imglink" title="download compressed" href="${downloadUrl}&compressed=true"><img
+								class="lnk" src="${pageContext.request.contextPath}<spring:theme code='download_compressed.png'/>"
+								alt="<spring:message code='probe.jsp.logs.download.alt'/>"/></a>
 					</c:if>
 				</display:column>
 
