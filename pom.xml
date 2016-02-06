@@ -69,6 +69,21 @@
 			<layout>default</layout>
 		</repository>
 	</repositories>
+	<distributionManagement>
+		<site>
+			<id>gh-pages</id>
+			<name>Psi-Probe GitHub Pages</name>
+			<url>github:http://psi-probe.github.io/psi-probe/</url>
+		</site>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+	</distributionManagement>
 	<properties>
 		<maven.compiler.source>1.6</maven.compiler.source>
 		<maven.compiler.target>1.6</maven.compiler.target>
