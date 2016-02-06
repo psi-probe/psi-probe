@@ -46,3 +46,4 @@ Please download latest snapshots from [here] (https://oss.sonatype.org/content/r
 
 * [Announcements](http://groups.google.com/group/psi-probe/)
 * [Discussions](http://groups.google.com/group/psi-probe-discuss/)
+* [Slack](https://psi-probe.slack.com/)
