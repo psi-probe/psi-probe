@@ -57,8 +57,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class RenderChartController extends AbstractController {
 
-  /** The logger. */
-  protected Logger logger = LoggerFactory.getLogger(getClass());
+  /** The Constant logger. */
+  private static final Logger logger = LoggerFactory.getLogger(RenderChartController.class);
 
   /** The stats collection. */
   private StatsCollection statsCollection;

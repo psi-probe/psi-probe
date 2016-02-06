@@ -28,8 +28,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class AdviseGarbageCollectionController extends ParameterizableViewController {
 
-  /** The logger. */
-  protected Logger logger = LoggerFactory.getLogger(getClass());
+  /** The Constant logger. */
+  private static final Logger logger = LoggerFactory.getLogger(AdviseGarbageCollectionController.class);
 
   /** The replace pattern. */
   private String replacePattern;

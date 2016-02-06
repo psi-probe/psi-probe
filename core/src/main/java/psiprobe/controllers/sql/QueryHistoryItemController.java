@@ -32,8 +32,8 @@ import javax.servlet.http.HttpSession;
  */
 public class QueryHistoryItemController extends AbstractController {
 
-  /** The logger. */
-  protected Logger logger = LoggerFactory.getLogger(getClass());
+  /** The Constant logger. */
+  private static final Logger logger = LoggerFactory.getLogger(QueryHistoryItemController.class);
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,

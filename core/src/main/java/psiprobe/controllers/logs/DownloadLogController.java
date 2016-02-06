@@ -11,6 +11,8 @@
 
 package psiprobe.controllers.logs;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -29,6 +31,9 @@ import javax.servlet.http.HttpServletResponse;
  * @author Mark Lewis
  */
 public class DownloadLogController extends LogHandlerController {
+
+  /** The Constant logger. */
+  private static final Logger logger = LoggerFactory.getLogger(DownloadLogController.class);
 
   @Override
   protected ModelAndView handleLogFile(HttpServletRequest request, HttpServletResponse response,
