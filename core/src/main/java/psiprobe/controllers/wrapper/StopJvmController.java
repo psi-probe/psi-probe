@@ -27,8 +27,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class StopJvmController extends ParameterizableViewController {
 
-  /** The logger. */
-  protected Logger logger = LoggerFactory.getLogger(getClass());
+  /** The Constant logger. */
+  private static final Logger logger = LoggerFactory.getLogger(StopJvmController.class);
 
   /** The stop exit code. */
   private int stopExitCode = 1;

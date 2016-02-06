@@ -14,6 +14,8 @@ package psiprobe.controllers.jsp;
 import org.apache.catalina.Context;
 import org.apache.jasper.EmbeddedServletOptions;
 import org.apache.jasper.Options;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -35,6 +37,9 @@ import javax.servlet.http.HttpServletResponse;
  * @author Vlad Ilyushchenko
  */
 public class ViewSourceController extends ContextHandlerController {
+
+  /** The Constant logger. */
+  private static final Logger logger = LoggerFactory.getLogger(ViewSourceController.class);
 
   @Override
   protected ModelAndView handleContext(String contextName, Context context,

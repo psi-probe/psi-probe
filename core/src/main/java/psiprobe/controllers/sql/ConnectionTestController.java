@@ -12,6 +12,8 @@
 package psiprobe.controllers.sql;
 
 import org.apache.catalina.Context;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -39,6 +41,9 @@ import javax.sql.DataSource;
  * @author jackdimm
  */
 public class ConnectionTestController extends ContextHandlerController {
+
+  /** The Constant logger. */
+  private static final Logger logger = LoggerFactory.getLogger(ConnectionTestController.class);
 
   @Override
   protected ModelAndView handleContext(String contextName, Context context,

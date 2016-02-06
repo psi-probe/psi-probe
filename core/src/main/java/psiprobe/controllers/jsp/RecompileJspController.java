@@ -12,6 +12,8 @@
 package psiprobe.controllers.jsp;
 
 import org.apache.catalina.Context;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
@@ -33,6 +35,9 @@ import javax.servlet.http.HttpSession;
  * @author Vlad Ilyushchenko
  */
 public class RecompileJspController extends ContextHandlerController {
+
+  /** The Constant logger. */
+  private static final Logger logger = LoggerFactory.getLogger(RecompileJspController.class);
 
   @Override
   protected ModelAndView handleContext(String contextName, Context context,

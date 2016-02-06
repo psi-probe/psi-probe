@@ -38,8 +38,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class WhoisController extends ParameterizableViewController {
 
-  /** The logger. */
-  protected Logger logger = LoggerFactory.getLogger(getClass());
+  /** The Constant logger. */
+  private static final Logger logger = LoggerFactory.getLogger(WhoisController.class);
 
   /** The lookup timeout. */
   private long lookupTimeout = 5;

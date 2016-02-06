@@ -11,6 +11,8 @@
 
 package psiprobe.controllers.logs;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
@@ -28,6 +30,9 @@ import javax.servlet.http.HttpServletResponse;
  * @author Mark Lewis
  */
 public class LogHandlerController extends ParameterizableViewController {
+
+  /** The Constant logger. */
+  private static final Logger logger = LoggerFactory.getLogger(LogHandlerController.class);
 
   /** The log resolver. */
   private LogResolverBean logResolver;

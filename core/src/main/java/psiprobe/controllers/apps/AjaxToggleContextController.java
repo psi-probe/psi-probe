@@ -12,6 +12,8 @@
 package psiprobe.controllers.apps;
 
 import org.apache.catalina.Context;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.ModelAndView;
 
 import psiprobe.controllers.ContextHandlerController;
@@ -26,6 +28,9 @@ import javax.servlet.http.HttpServletResponse;
  * @author Mark Lewis
  */
 public class AjaxToggleContextController extends ContextHandlerController {
+
+  /** The Constant logger. */
+  private static final Logger logger = LoggerFactory.getLogger(AjaxReloadContextController.class);
 
   @Override
   protected ModelAndView handleContext(String contextName, Context context,

@@ -12,6 +12,8 @@
 package psiprobe.controllers.apps;
 
 import org.apache.catalina.Context;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.ModelAndView;
 
 import psiprobe.Utils;
@@ -30,6 +32,9 @@ import javax.servlet.http.HttpServletResponse;
  * @author Andy Shapoval
  */
 public class DownloadXmlConfController extends ContextHandlerController {
+
+  /** The Constant logger. */
+  private static final Logger logger = LoggerFactory.getLogger(DownloadXmlConfController.class);
 
   /** The Constant TARGET_WEB_XML. */
   public static final String TARGET_WEB_XML = "web.xml";
