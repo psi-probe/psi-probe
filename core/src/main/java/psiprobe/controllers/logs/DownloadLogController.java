@@ -11,6 +11,7 @@
 
 package psiprobe.controllers.logs;
 
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
 import psiprobe.Utils;
@@ -33,10 +34,16 @@ public class DownloadLogController extends LogHandlerController {
   protected ModelAndView handleLogFile(HttpServletRequest request, HttpServletResponse response,
       LogDestination logDest) throws Exception {
 
+    boolean compressed = "true".equals(ServletRequestUtils.getStringParameter(request, "compressed"));
+    
     File file = logDest.getFile();
-    logger.info("Sending " + file + " to " + request.getRemoteAddr() + "("
+    logger.info("Sending " + file + (compressed ? " compressed" : "") + " to " + request.getRemoteAddr() + "("
         + request.getRemoteUser() + ")");
-    Utils.sendFile(request, response, file);
+    if (compressed) {
+      Utils.sendCompressedFile(request, response, file);
+    } else {
+      Utils.sendFile(request, response, file);
+    }
     return null;
   }
 
