@@ -68,6 +68,9 @@ public class DisconnectedLogDestination implements LogDestination, Serializable 
   
   /** The valid levels. */
   private final String[] validLevels;
+  
+  /** The file encoding name. */
+  private final String encoding;
 
   /**
    * Instantiates a new disconnected log destination.
@@ -88,6 +91,7 @@ public class DisconnectedLogDestination implements LogDestination, Serializable 
     this.lastModified = destination.getLastModified();
     this.level = destination.getLevel();
     this.validLevels = destination.getValidLevels();
+    this.encoding = destination.getEncoding();
   }
 
   @Override
@@ -155,4 +159,8 @@ public class DisconnectedLogDestination implements LogDestination, Serializable 
     return validLevels;
   }
 
+  @Override
+  public String getEncoding() {
+    return encoding;
+  }
 }
