@@ -97,7 +97,7 @@ public class Jdk14HandlerAccessor extends AbstractLogDestination {
       Object newLevel = MethodUtils.invokeMethod(level, "parse", newLevelStr);
       MethodUtils.invokeMethod(getTarget(), "setLevel", newLevel);
     } catch (Exception e) {
-      log.error(getTarget().getClass().getName() + "#setLevel(\"" + newLevelStr + "\") failed", e);
+      logger.error(getTarget().getClass().getName() + "#setLevel(\"" + newLevelStr + "\") failed", e);
     }
   }
 
