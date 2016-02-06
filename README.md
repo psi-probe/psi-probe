@@ -21,6 +21,10 @@ Please follow [GitHub Flow](https://guides.github.com/introduction/flow/), with 
 	*	Avoid bumping version numbers or correcting spelling errors along with your changes unless they're necessary.
 	*	Feel free to make these sorts of corrections in a separate PR, though!
 
+## Latest Snapshot ##
+
+Please download latest snapshots from [here] (https://oss.sonatype.org/content/repositories/snapshots/com/github/psi-probe/)
+
 ## Building from Source ##
 
 1.	**Clone PSI Probe's git repository.**
