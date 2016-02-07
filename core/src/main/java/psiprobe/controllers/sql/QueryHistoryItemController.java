@@ -11,6 +11,8 @@
 
 package psiprobe.controllers.sql;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
@@ -29,6 +31,9 @@ import javax.servlet.http.HttpSession;
  * @author Andy Shapoval
  */
 public class QueryHistoryItemController extends AbstractController {
+
+  /** The logger. */
+  protected Logger logger = LoggerFactory.getLogger(getClass());
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,

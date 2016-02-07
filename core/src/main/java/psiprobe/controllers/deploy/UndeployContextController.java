@@ -63,7 +63,7 @@ public class UndeployContextController extends ContextHandlerController {
 
     } catch (Exception e) {
       request.setAttribute("errorMessage", e.getMessage());
-      logger.error(e);
+      logger.error("Error during undeploy of " + contextName, e);
       return new ModelAndView(new InternalResourceView(getFailureViewName() == null ? getViewName()
           : getFailureViewName()));
     }

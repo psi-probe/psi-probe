@@ -11,6 +11,8 @@
 
 package psiprobe.controllers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.mvc.AbstractController;
 
 import psiprobe.beans.ContainerWrapperBean;
@@ -21,6 +23,9 @@ import psiprobe.beans.ContainerWrapperBean;
  * @author Vlad Ilyushchenko
  */
 public abstract class TomcatContainerController extends AbstractController {
+
+  /** The logger. */
+  protected Logger logger = LoggerFactory.getLogger(getClass());
 
   /** The container wrapper. */
   private ContainerWrapperBean containerWrapper;
