@@ -269,7 +269,7 @@ public class LogResolverBean {
     ClassLoader cl = ctx.getLoader().getClassLoader();
 
     try {
-      Object contextLogger = getContainerWrapper().getTomcatContainer().getLogger(ctx);
+      Object contextLogger = ctx.getLogger();
       if (contextLogger != null) {
         if (contextLogger.getClass().getName().startsWith("org.apache.commons.logging")) {
           CommonsLoggerAccessor commonsAccessor = new CommonsLoggerAccessor();
@@ -413,7 +413,7 @@ public class LogResolverBean {
    * @return the catalina log destination
    */
   private LogDestination getCatalinaLogDestination(Context ctx, Application application) {
-    Object log = getContainerWrapper().getTomcatContainer().getLogger(ctx);
+    Object log = ctx.getLogger();
     if (log != null) {
       CatalinaLoggerAccessor logAccessor = new CatalinaLoggerAccessor();
       logAccessor.setTarget(log);
@@ -436,7 +436,7 @@ public class LogResolverBean {
   private LogDestination getCommonsLogDestination(Context ctx, Application application,
       String logIndex) {
 
-    Object contextLogger = getContainerWrapper().getTomcatContainer().getLogger(ctx);
+    Object contextLogger = ctx.getLogger();
     CommonsLoggerAccessor commonsAccessor = new CommonsLoggerAccessor();
     commonsAccessor.setTarget(contextLogger);
     commonsAccessor.setApplication(application);
