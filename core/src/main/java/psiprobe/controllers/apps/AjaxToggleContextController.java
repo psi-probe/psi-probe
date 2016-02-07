@@ -43,7 +43,7 @@ public class AjaxToggleContextController extends ContextHandlerController {
       } catch (ThreadDeath e) {
           throw e;
       } catch (Throwable e) {
-        logger.error(e);
+        logger.error("Error during ajax request to START/STOP of " + contextName, e);
       }
     }
     return new ModelAndView(getViewName(), "available", context != null

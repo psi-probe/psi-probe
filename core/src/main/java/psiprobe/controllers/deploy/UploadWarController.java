@@ -81,7 +81,7 @@ public class UploadWarController extends TomcatContainerController {
           }
         }
       } catch (Exception e) {
-        logger.fatal("Could not process file upload", e);
+        logger.error("Could not process file upload", e);
         request.setAttribute(
             "errorMessage",
             getMessageSourceAccessor().getMessage("probe.src.deploy.war.uploadfailure",
