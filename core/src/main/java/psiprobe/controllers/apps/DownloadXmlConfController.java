@@ -87,11 +87,10 @@ public class DownloadXmlConfController extends ContextHandlerController {
       if (xmlFile.exists()) {
         Utils.sendFile(request, response, xmlFile);
       } else {
-        logger.debug("File " + xmlPath + " of " + contextName + " application does not exists.");
+        logger.debug("File {} of {} application does not exists.", xmlPath, contextName);
       }
     } else {
-      logger.debug("Cannot determine path to " + getDownloadTarget() + " file of " + contextName
-          + " application.");
+      logger.debug("Cannot determine path to {} file of {} application.", getDownloadTarget(), contextName);
     }
     return null;
   }

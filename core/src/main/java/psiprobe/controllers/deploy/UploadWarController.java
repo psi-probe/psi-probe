@@ -120,7 +120,7 @@ public class UploadWarController extends TomcatContainerController {
             if (update
                 && getContainerWrapper().getTomcatContainer().findContext(contextName) != null) {
 
-              logger.debug("updating " + contextName + ": removing the old copy");
+              logger.debug("updating {}: removing the old copy", contextName);
               getContainerWrapper().getTomcatContainer().remove(contextName);
             }
 

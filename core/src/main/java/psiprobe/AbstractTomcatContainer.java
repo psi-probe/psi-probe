@@ -79,7 +79,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
         deployerOName =
             new ObjectName(host.getParent().getName() + ":type=Deployer,host=" + host.getName());
       } catch (MalformedObjectNameException e) {
-        // do nothing here
+        logger.trace("", e);
       }
       host.getPipeline().addValve(valve);
       mbeanServer = Registry.getRegistry(null, null).getMBeanServer();
@@ -170,7 +170,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
       try {
         stop(name);
       } catch (Exception e) {
-        logger.info("Stopping " + name + " threw this exception:", e);
+        logger.info("Stopping '{}' threw this exception:", name, e);
       }
 
       File appDir;
@@ -182,12 +182,12 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
         appDir = docBase;
       }
 
-      logger.debug("Deleting " + appDir.getAbsolutePath());
+      logger.debug("Deleting '{}'", appDir.getAbsolutePath());
       Utils.delete(appDir);
 
       String warFilename = formatContextFilename(name);
       File warFile = new File(getAppBase(), warFilename + ".war");
-      logger.debug("Deleting " + warFile.getAbsolutePath());
+      logger.debug("Deleting '{}'", warFile.getAbsolutePath());
       Utils.delete(warFile);
 
       File configFile = getConfigFile(ctx);
@@ -271,11 +271,11 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
   public void discardWorkDir(Context context) {
     if (context instanceof StandardContext) {
       StandardContext standardContext = (StandardContext) context;
-      logger.info("Discarding " + standardContext.getWorkPath());
+      logger.info("Discarding '{}'", standardContext.getWorkPath());
       Utils.delete(new File(standardContext.getWorkPath(), "org"));
     } else {
-      logger.error("context " + context.getName() + " is not an instance of "
-          + context.getClass().getName() + ", expected StandardContext");
+      logger.error("context '{}' is not an instance of '{}', expected StandardContext",
+              context.getName(), context.getClass().getName());
     }
   }
 
@@ -292,7 +292,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
           createJspCompilationContext(jspName, opt, sctx, jrctx, null);
       servletName = jcctx.getServletJavaFileName();
     } else {
-      logger.error("Context " + context.getName() + " does not have \"jsp\" servlet");
+      logger.error("Context '{}' does not have 'JSP' servlet", context.getName());
     }
     return servletName;
   }
@@ -327,15 +327,15 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
                     compiler.compile();
                     item.setState(Item.STATE_READY);
                     item.setException(null);
-                    logger.info("Compiled " + name + ": OK");
+                    logger.info("Compiled '{}': OK", name);
                   } catch (Exception e) {
                     item.setState(Item.STATE_FAILED);
                     item.setException(e);
-                    logger.info("Compiled " + name + ": FAILED", e);
+                    logger.info("Compiled '{}': FAILED", name, e);
                   }
                   item.setCompileTime(System.currentTimeMillis() - time);
                 } else {
-                  logger.error(name + " is not on the summary list, ignored");
+                  logger.error("{} is not on the summary list, ignored", name);
                 }
               } finally {
                 ClassUtils.overrideThreadContextClassLoader(prevCl);
@@ -346,10 +346,10 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
           }
         }
       } else {
-        logger.error("summary is null for " + context.getName() + ", request ignored");
+        logger.error("summary is null for '{}', request ignored", context.getName());
       }
     } else {
-      logger.error("Context " + context.getName() + " does not have \"jsp\" servlet");
+      logger.error("Context '{}' does not have 'JSP' servlet", context.getName());
     }
   }
 
@@ -400,7 +400,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
 
       summary.setItems(hashMap);
     } else {
-      logger.error("Context " + context.getName() + " does not have \"jsp\" servlet");
+      logger.error("Context '{}' does not have 'JSP' servlet", context.getName());
     }
   }
 
@@ -419,7 +419,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
           return new File(configUri.getPath());
         }
       } catch (URISyntaxException ex) {
-        logger.error("Could not convert URL to URI: " + configUrl, ex);
+        logger.error("Could not convert URL to URI: '{}'", configUrl, ex);
       }
     }
     return null;
@@ -477,7 +477,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
           isJsp = name.endsWith(".jsp") || name.endsWith(".jspx")
               || opt.getJspConfig().isJspPage(name);
         } catch (JasperException e) {
-          logger.info("isJspPage() thrown an error for " + name, e);
+          logger.info("isJspPage() thrown an error for '{}'", name, e);
         }
 
         if (isJsp) {
@@ -515,11 +515,11 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
                   item.setException(null);
                 }
               }
-              logger.info("Compiled " + name + ": OK");
+              logger.info("Compiled '{}': OK", name);
             } catch (Exception e) {
               item.setState(Item.STATE_FAILED);
               item.setException(e);
-              logger.info("Compiled " + name + ": FAILED", e);
+              logger.info("Compiled '{}': FAILED", name, e);
             }
             if (compile) {
               item.setCompileTime(System.currentTimeMillis() - time);
@@ -534,7 +534,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
         }
       }
     } else {
-      logger.debug("getResourcePaths() is null for " + jspName + ". Empty dir? Or Tomcat bug?");
+      logger.debug("getResourcePaths() is null for '{}'. Empty dir? Or Tomcat bug?", jspName);
     }
   }
 

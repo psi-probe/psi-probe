@@ -48,7 +48,7 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
         }
       }
     } catch (Exception e) {
-      logger.error(getTarget().getClass().getName() + "#handlers inaccessible", e);
+      logger.error("{}#handlers inaccessible", getTarget().getClass().getName(), e);
     }
     return handlerAccessors;
   }
@@ -109,7 +109,8 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
     try {
       index = Integer.parseInt(logIndex);
     } catch (Exception e) {
-      logger.info("Could not parse integer from: " + logIndex + ".  Assuming 0.");
+      logger.info("Could not parse integer from: {}.  Assuming 0.", logIndex);
+      logger.trace("", e);
     }
     return getHandler(index);
   }
@@ -125,7 +126,7 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
       Object[] handlers = (Object[]) MethodUtils.invokeMethod(getTarget(), "getHandlers", null);
       return wrapHandler(handlers[index], index);
     } catch (Exception e) {
-      logger.error(getTarget().getClass().getName() + "#handlers inaccessible", e);
+      logger.error("{}#handlers inaccessible", getTarget().getClass().getName(), e);
     }
     return null;
   }
@@ -148,7 +149,7 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
       }
       return (String) MethodUtils.invokeMethod(level, "getName", null);
     } catch (Exception e) {
-      logger.error(getTarget().getClass().getName() + "#getLevel() failed", e);
+      logger.error("{}#getLevel() failed", getTarget().getClass().getName(), e);
     }
     return null;
   }
@@ -166,7 +167,7 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
       Object newLevel = parse.invoke(null, new Object[] {newLevelStr});
       MethodUtils.invokeMethod(getTarget(), "setLevel", newLevel);
     } catch (Exception e) {
-      logger.error(getTarget().getClass().getName() + "#setLevel(\"" + newLevelStr + "\") failed", e);
+      logger.error("{}#setLevel('{}') failed", getTarget().getClass().getName(), newLevelStr, e);
     }
   }
 
@@ -208,7 +209,7 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
       }
       return handlerAccessor;
     } catch (Exception e) {
-      logger.error("Could not wrap handler: " + handler, e);
+      logger.error("Could not wrap handler: '{}'", handler, e);
     }
     return null;
   }

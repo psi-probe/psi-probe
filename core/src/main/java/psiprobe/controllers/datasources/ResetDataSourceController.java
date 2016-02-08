@@ -80,6 +80,7 @@ public class ResetDataSourceController extends ContextHandlerController {
             "errorMessage",
             getMessageSourceAccessor().getMessage("probe.src.reset.datasource.notfound",
                 new Object[] {resourceName}));
+        logger.trace("", e);
       }
       if (!reset) {
         request.setAttribute("errorMessage",
@@ -87,7 +88,7 @@ public class ResetDataSourceController extends ContextHandlerController {
       }
 
     }
-    logger.debug("Redirected to " + redirectUrl);
+    logger.debug("Redirected to {}", redirectUrl);
     return new ModelAndView(new RedirectView(redirectUrl));
   }
 

@@ -11,12 +11,18 @@
 
 package psiprobe.tools;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * A factory for creating Accessor objects.
  *
  * @author Mark Lewis
  */
 public class AccessorFactory {
+
+  /** The Constant Logger. */
+  private static final Logger logger = LoggerFactory.getLogger(AccessorFactory.class);
 
   /**
    * Prevent Instantiation of accessor factory.
@@ -44,12 +50,16 @@ public class AccessorFactory {
     try {
       return new ReflectiveAccessor();
     } catch (ClassNotFoundException e) {
+      logger.trace("", e);
       return null;
     } catch (InstantiationException e) {
+      logger.trace("", e);
       return null;
     } catch (IllegalAccessException e) {
+      logger.trace("", e);
       return null;
     } catch (NoSuchMethodException e) {
+      logger.trace("", e);
       return null;
     }
   }

@@ -18,6 +18,9 @@ import psiprobe.model.DataSourceInfo;
 
 import java.lang.reflect.Field;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * The Class BoneCpDatasourceAccessor.
  *
@@ -25,6 +28,9 @@ import java.lang.reflect.Field;
  * @author Mark Lewis
  */
 public class BoneCpDatasourceAccessor implements DatasourceAccessor {
+
+  /** The Constant Logger. */
+  private static final Logger logger = LoggerFactory.getLogger(BoneCpDatasourceAccessor.class);
 
   @Override
   public DataSourceInfo getInfo(final Object resource) throws Exception {
@@ -35,6 +41,7 @@ public class BoneCpDatasourceAccessor implements DatasourceAccessor {
       try {
         pool = source.getPool();
       } catch (NoSuchMethodError ex) {
+        logger.trace("", ex);
         // This is an older version of BoneCP (pre-0.8.0)
         final Field poolField = BoneCPDataSource.class.getDeclaredField("pool");
         poolField.setAccessible(true);

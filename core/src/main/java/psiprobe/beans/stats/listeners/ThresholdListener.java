@@ -133,14 +133,15 @@ public abstract class ThresholdListener extends AbstractStatsCollectionListener 
   protected long getThreshold(String name) {
     String threshold = getPropertyValue(name, "threshold");
     if (threshold == null && !isSeriesDisabled(name)) {
-      logger.info("Required property " + getPropertyKey(name, "threshold")
-          + " is not defined or inherited.  Disabling listener for \"" + name + "\" series.");
+      logger.info("Required property '{}' is not defined or inherited.  Disabling listener for '{}' series",
+              getPropertyKey(name, "threshold"), name);
       setSeriesDisabled(name, true);
       return DEFAULT_THRESHOLD;
     }
     try {
       return SizeExpression.parse(threshold);
     } catch (NumberFormatException ex) {
+      logger.trace("", ex);
       return DEFAULT_THRESHOLD;
     }
   }

@@ -19,6 +19,9 @@ import java.net.Socket;
 import java.util.Map;
 import java.util.TreeMap;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import psiprobe.tools.url.UrlParser;
 
 /**
@@ -27,6 +30,9 @@ import psiprobe.tools.url.UrlParser;
  * @author Vlad Ilyushchenko
  */
 public class Whois {
+
+  /** The Constant Logger. */
+  private static final Logger logger = LoggerFactory.getLogger(Whois.class);
 
   /**
    * Lookup.
@@ -116,8 +122,7 @@ public class Whois {
                         lineSeparator);
               }
             } catch (IOException e) {
-              // System.out.println("Could not contact " + referral);
-
+              logger.trace("Could not contact '{}'", referral, e);
             }
           }
           if (newResponse != null) {

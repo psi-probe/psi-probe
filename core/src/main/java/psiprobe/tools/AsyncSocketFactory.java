@@ -14,12 +14,18 @@ package psiprobe.tools;
 import java.io.IOException;
 import java.net.Socket;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * A factory for creating AsyncSocket objects.
  *
  * @author Vlad Ilyushchenko
  */
 public class AsyncSocketFactory {
+
+  /** The Constant Logger. */
+  private static final Logger logger = LoggerFactory.getLogger(AsyncSocketFactory.class);
 
   /**
    * Creates a new AsyncSocket object.
@@ -49,7 +55,7 @@ public class AsyncSocketFactory {
         try {
           sync.wait(timeout * 1000);
         } catch (InterruptedException e) {
-          //
+          logger.trace("", e);
         }
       }
     }
@@ -175,6 +181,7 @@ public class AsyncSocketFactory {
           socketWrapper.setSocket(null);
         }
       } catch (IOException e) {
+        logger.trace("", e);
         socketWrapper.setException(e);
       }
       synchronized (sync) {
@@ -214,7 +221,7 @@ public class AsyncSocketFactory {
           sync.notify();
         }
       } catch (InterruptedException e) {
-        //
+        logger.trace("", e);
       }
     }
 

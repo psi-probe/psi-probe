@@ -132,11 +132,10 @@ public class ViewXmlConfController extends ContextHandlerController {
           fis.close();
         }
       } else {
-        logger.debug("File " + xmlPath + " of " + contextName + " application does not exists.");
+        logger.debug("File {} of {} application does not exists.", xmlPath, contextName);
       }
     } else {
-      logger.debug("Cannot determine path to " + getDisplayTarget() + " file of " + contextName
-          + " application.");
+      logger.debug("Cannot determine path to {} file of {} application.", getDisplayTarget(), contextName);
     }
 
     return mv;

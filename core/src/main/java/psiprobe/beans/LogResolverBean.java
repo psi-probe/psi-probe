@@ -284,8 +284,8 @@ public class LogResolverBean {
         }
       }
     } catch (Exception e) {
-      logger.error("Could not interrogate context logger for " + ctx.getName()
-          + ". Enable debug logging to see the trace stack");
+      logger.error("Could not interrogate context logger for {}. Enable debug logging to see the trace stack",
+              ctx.getName());
       logger.debug("  Stack trace:", e);
     }
 
@@ -294,8 +294,8 @@ public class LogResolverBean {
       try {
         interrogateClassLoader(cl, application, allAppenders);
       } catch (Exception e) {
-        logger.error("Could not interrogate classloader loggers for " + ctx.getName()
-            + ". Enable debug logging to see the trace stack");
+        logger.error("Could not interrogate classloader loggers for {}. Enable debug logging to see the trace stack",
+                ctx.getName());
         logger.debug("  Stack trace:", e);
       } finally {
         if (prevCl != null) {
@@ -324,7 +324,7 @@ public class LogResolverBean {
       jdk14accessor.setApplication(application);
       appenders.addAll(jdk14accessor.getHandlers());
     } catch (Exception e) {
-      logger.debug("Could not resolve JDK loggers for '{}' {}", applicationName, e);
+      logger.debug("Could not resolve JDK loggers for '{}'", applicationName, e);
     }
 
     // check for Log4J loggers
@@ -333,7 +333,7 @@ public class LogResolverBean {
       log4JAccessor.setApplication(application);
       appenders.addAll(log4JAccessor.getAppenders());
     } catch (Exception e) {
-      logger.debug("Could not resolve log4j loggers for '{}' {}", applicationName, e);
+      logger.debug("Could not resolve log4j loggers for '{}'", applicationName, e);
     }
 
     // check for Logback loggers
@@ -342,7 +342,7 @@ public class LogResolverBean {
       logbackAccessor.setApplication(application);
       appenders.addAll(logbackAccessor.getAppenders());
     } catch (Exception e) {
-      logger.debug("Could not resolve logback loggers for '{}' {}", applicationName, e);
+      logger.debug("Could not resolve logback loggers for '{}'", applicationName, e);
     }
 
     // check for Logback loggers for tomcat-slf4j-logback
@@ -352,7 +352,7 @@ public class LogResolverBean {
       tomcatSlf4jLogbackAccessor.setApplication(application);
       appenders.addAll(tomcatSlf4jLogbackAccessor.getAppenders());
     } catch (Exception e) {
-      logger.debug("Could not resolve tomcat-slf4j-logback loggers for '{}' {}", applicationName, e);
+      logger.debug("Could not resolve tomcat-slf4j-logback loggers for '{}'", applicationName, e);
     }
   }
 

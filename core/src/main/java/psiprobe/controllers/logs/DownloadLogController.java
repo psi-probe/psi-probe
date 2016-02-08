@@ -42,8 +42,8 @@ public class DownloadLogController extends LogHandlerController {
     boolean compressed = "true".equals(ServletRequestUtils.getStringParameter(request, "compressed"));
     
     File file = logDest.getFile();
-    logger.info("Sending " + file + (compressed ? " compressed" : "") + " to " + request.getRemoteAddr() + "("
-        + request.getRemoteUser() + ")");
+    logger.info("Sending {}{} to {} ({})", file, (compressed ? " compressed" : ""), request.getRemoteAddr(),
+        request.getRemoteUser());
     if (compressed) {
       Utils.sendCompressedFile(request, response, file);
     } else {

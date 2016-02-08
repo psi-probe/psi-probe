@@ -49,8 +49,7 @@ public class GetClassLoaderUrlsController extends ParameterizableViewController 
         try {
           request.setAttribute("urls", Arrays.asList(((URLClassLoader) cl).getURLs()));
         } catch (Exception e) {
-          logger.error("There was an exception querying classloader for thread \"" + threadName
-              + "\"", e);
+          logger.error("There was an exception querying classloader for thread '{}'", threadName, e);
         }
       }
     }

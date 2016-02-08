@@ -54,6 +54,7 @@ public class WrapperInfoController extends ParameterizableViewController {
       wi.setLaunchedAsService(WrapperManager.isLaunchedAsService());
     } catch (ClassNotFoundException e) {
       logger.info("Could not find WrapperManager class. Is wrapper.jar in the classpath?");
+      logger.trace("", e);
       wi.setControlledByWrapper(false);
     }
     return new ModelAndView(getViewName(), "wrapperInfo", wi);
