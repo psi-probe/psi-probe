@@ -11,10 +11,10 @@
 
 package psiprobe.tools;
 
-import org.apache.commons.logging.Log;
-
 import java.io.OutputStream;
 import java.io.PrintStream;
+
+import org.slf4j.Logger;
 
 /**
  * An {@code OutputStream} which writes to a commons-logging {@code Log} at a particular level.
@@ -44,8 +44,8 @@ public class LogOutputStream extends OutputStream {
   /** The Constant LEVEL_FATAL. */
   public static final int LEVEL_FATAL = 6;
 
-  /** The log. */
-  private final Log log;
+  /** The logger. */
+  private final Logger logger;
   
   /** The level. */
   private final int level;
@@ -61,7 +61,7 @@ public class LogOutputStream extends OutputStream {
    * @param level the level at which to write
    * @return a {@code PrintStream} that writes to the given log
    */
-  public static PrintStream createPrintStream(Log log, int level) {
+  public static PrintStream createPrintStream(Logger log, int level) {
     LogOutputStream logStream = new LogOutputStream(log, level);
     return new PrintStream(logStream, true);
   }
@@ -74,11 +74,11 @@ public class LogOutputStream extends OutputStream {
    * @param level the level at which to write
    * @throws IllegalArgumentException if {@code log} is null
    */
-  private LogOutputStream(Log log, int level) {
+  private LogOutputStream(Logger log, int level) {
     if (log == null) {
       throw new IllegalArgumentException("Log cannot be null");
     }
-    this.log = log;
+    this.logger = log;
     this.level = level;
   }
 
@@ -112,8 +112,8 @@ public class LogOutputStream extends OutputStream {
    *
    * @return the {@code Log} to which this stream writes
    */
-  public Log getLog() {
-    return log;
+  public Logger getLog() {
+    return logger;
   }
 
   /**
@@ -134,17 +134,15 @@ public class LogOutputStream extends OutputStream {
   private boolean shouldWrite() {
     switch (level) {
       case LEVEL_TRACE:
-        return log.isTraceEnabled();
+        return logger.isTraceEnabled();
       case LEVEL_DEBUG:
-        return log.isDebugEnabled();
+        return logger.isDebugEnabled();
       case LEVEL_INFO:
-        return log.isInfoEnabled();
+        return logger.isInfoEnabled();
       case LEVEL_WARN:
-        return log.isWarnEnabled();
+        return logger.isWarnEnabled();
       case LEVEL_ERROR:
-        return log.isErrorEnabled();
-      case LEVEL_FATAL:
-        return log.isFatalEnabled();
+        return logger.isErrorEnabled();
       default:
         return false;
     }
@@ -161,22 +159,19 @@ public class LogOutputStream extends OutputStream {
     }
     switch (level) {
       case LEVEL_TRACE:
-        log.trace(message);
+        logger.trace(message);
         break;
       case LEVEL_DEBUG:
-        log.debug(message);
+        logger.debug(message);
         break;
       case LEVEL_INFO:
-        log.info(message);
+        logger.info(message);
         break;
       case LEVEL_WARN:
-        log.warn(message);
+        logger.warn(message);
         break;
       case LEVEL_ERROR:
-        log.error(message);
-        break;
-      case LEVEL_FATAL:
-        log.fatal(message);
+        logger.error(message);
         break;
       default:
         //Don't log anything

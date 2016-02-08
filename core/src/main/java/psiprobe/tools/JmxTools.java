@@ -11,8 +11,8 @@
 
 package psiprobe.tools;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.management.AttributeNotFoundException;
 import javax.management.MBeanAttributeInfo;
@@ -29,7 +29,7 @@ import javax.management.openmbean.CompositeData;
 public class JmxTools {
 
   /** The logger. */
-  private static final Log logger = LogFactory.getLog(JmxTools.class);
+  private static final Logger logger = LoggerFactory.getLogger(JmxTools.class);
 
   /**
    * Gets the attribute.

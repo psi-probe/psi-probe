@@ -11,8 +11,8 @@
 
 package psiprobe.beans.stats.listeners;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The listener interface for receiving abstractStatsCollection events.
@@ -28,7 +28,7 @@ import org.apache.commons.logging.LogFactory;
 public abstract class AbstractStatsCollectionListener implements StatsCollectionListener {
 
   /** The logger. */
-  protected Log logger = LogFactory.getLog(getClass());
+  protected final Logger logger = LoggerFactory.getLogger(getClass());
   
   /** The property category. */
   private String propertyCategory;

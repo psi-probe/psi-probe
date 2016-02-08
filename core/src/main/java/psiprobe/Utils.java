@@ -19,10 +19,11 @@ import psiprobe.tokenizer.Token;
 import psiprobe.tokenizer.Tokenizer;
 import psiprobe.tokenizer.TokenizerSymbol;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.commons.modeler.Registry;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -39,6 +40,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 import javax.management.MBeanServer;
 import javax.management.MalformedObjectNameException;
@@ -56,7 +59,7 @@ import javax.servlet.http.HttpServletResponse;
 public class Utils {
 
   /** The logger. */
-  private static Log logger = LogFactory.getLog(Utils.class.getName());
+  private static final Logger logger = LoggerFactory.getLogger(Utils.class);
 
   /**
    * Calc pool usage score.
@@ -481,6 +484,40 @@ public class Utils {
       return buffer.toString();
     }
     return null;
+  }
+
+  /**
+   * Send compressed file.
+   *
+   * @param request the request
+   * @param response the response
+   * @param file the file
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
+  public static void sendCompressedFile(HttpServletRequest request, HttpServletResponse response, File file)
+      throws IOException {
+    
+    ZipOutputStream zip = new ZipOutputStream(response.getOutputStream());
+    InputStream fileInput = new BufferedInputStream(new FileInputStream(file));
+    try {
+      // set some headers
+      response.setContentType("application/zip");
+      response.setHeader("Content-Disposition", "attachment; filename=" + file.getName() + ".zip");
+      
+      zip.putNextEntry(new ZipEntry(file.getName()));
+      
+      // send the file
+      byte[] buffer = new byte[4096];
+      long len;
+      
+      while ((len = fileInput.read(buffer)) > 0) {
+          zip.write(buffer, 0, (int) len);
+      }
+      zip.closeEntry();
+      zip.close();
+    } finally {
+      fileInput.close();
+    }
   }
 
   /**

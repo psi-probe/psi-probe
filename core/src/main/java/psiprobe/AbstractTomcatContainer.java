@@ -17,8 +17,6 @@ import org.apache.catalina.Host;
 import org.apache.catalina.Valve;
 import org.apache.catalina.Wrapper;
 import org.apache.catalina.core.StandardContext;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.commons.modeler.Registry;
 import org.apache.jasper.EmbeddedServletOptions;
 import org.apache.jasper.JasperException;
@@ -26,6 +24,8 @@ import org.apache.jasper.JspCompilationContext;
 import org.apache.jasper.Options;
 import org.apache.jasper.compiler.JspRuntimeContext;
 import org.apache.naming.ContextBindings;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.util.ClassUtils;
 
 import psiprobe.model.jsp.Item;
@@ -33,6 +33,7 @@ import psiprobe.model.jsp.Summary;
 
 import java.io.File;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
@@ -58,7 +59,7 @@ import javax.servlet.ServletContext;
 public abstract class AbstractTomcatContainer implements TomcatContainer {
 
   /** The logger. */
-  protected Log logger = LogFactory.getLog(getClass());
+  protected final Logger logger = LoggerFactory.getLogger(getClass());
 
   /** The host. */
   protected Host host;
@@ -168,9 +169,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
 
       try {
         stop(name);
-      } catch (ThreadDeath e) {
-          throw e;
-      } catch (Throwable e) {
+      } catch (Exception e) {
         logger.info("Stopping " + name + " threw this exception:", e);
       }
 
@@ -406,7 +405,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
   }
 
   @Override
-  public org.apache.juli.logging.Log getLogger(Context context) {
+  public Object getLogger(Context context) {
     return context.getLogger();
   }
 
@@ -424,7 +423,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
         if ("file".equals(configUri.getScheme())) {
           return new File(configUri.getPath());
         }
-      } catch (Exception ex) {
+      } catch (URISyntaxException ex) {
         logger.error("Could not convert URL to URI: " + configUrl, ex);
       }
     }

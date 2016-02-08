@@ -300,7 +300,7 @@ public class Tomcat90ContainerAdapter extends AbstractTomcatContainer {
     Object token = null;
     if (!ContextAccessController.checkSecurityToken(context, token)) {
       // namingToken added to Context and Server interfaces in 8.0.6
-      // Used by NamingContextListener when settinp up JNDI context
+      // Used by NamingContextListener when setting up JNDI context
       token = context.getNamingToken();
       if (!ContextAccessController.checkSecurityToken(context, token)) {
         logger.error("Couldn't get a valid security token. ClassLoader binding will fail.");

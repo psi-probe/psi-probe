@@ -15,9 +15,9 @@ import com.thoughtworks.xstream.XStream;
 
 import psiprobe.tools.UpdateCommitLock;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.jfree.data.xy.XYDataItem;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
@@ -46,7 +46,7 @@ import java.util.TreeMap;
 public class StatsCollection implements InitializingBean, DisposableBean, ApplicationContextAware {
 
   /** The logger. */
-  private final Log logger = LogFactory.getLog(this.getClass());
+  private static final Logger logger = LoggerFactory.getLogger(StatsCollection.class);
 
   /** The stats data. */
   private Map<String, List<XYDataItem>> statsData = new TreeMap<String, List<XYDataItem>>();
@@ -289,9 +289,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
           fis.close();
         }
         logger.debug("stats data read in " + (System.currentTimeMillis() - start) + "ms.");
-      } catch (ThreadDeath e) {
-          throw e;
-      } catch (Throwable e) {
+      } catch (Exception e) {
         logger.error("Could not read stats data from " + file.getAbsolutePath(), e);
       }
     }

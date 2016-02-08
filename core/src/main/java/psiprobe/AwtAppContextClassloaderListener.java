@@ -11,8 +11,8 @@
 
 package psiprobe;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletContextEvent;
@@ -27,6 +27,8 @@ import javax.servlet.ServletContextListener;
  */
 public class AwtAppContextClassloaderListener implements ServletContextListener {
 
+  private static final Logger logger = LoggerFactory.getLogger(AwtAppContextClassloaderListener.class);
+    
   /**
    * Forces the {@code sun.awt.AppContext} singleton to be created and initialized when the context
    * is initialized.
@@ -57,9 +59,8 @@ public class AwtAppContextClassloaderListener implements ServletContextListener 
         // restore the class loader
         Thread.currentThread().setContextClassLoader(active);
       }
-    } catch (Throwable t) {
-      Log logger = LogFactory.getLog(AwtAppContextClassloaderListener.class.getName());
-      logger.error("Failed to address PermGen leak.", t);
+    } catch (Exception e) {
+      logger.error("Failed to address PermGen leak.", e);
     }
   }
 

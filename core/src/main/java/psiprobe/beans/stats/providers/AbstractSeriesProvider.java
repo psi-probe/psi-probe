@@ -11,10 +11,10 @@
 
 package psiprobe.beans.stats.providers;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.jfree.data.xy.XYDataItem;
 import org.jfree.data.xy.XYSeries;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
@@ -27,7 +27,7 @@ import java.util.List;
 public abstract class AbstractSeriesProvider implements SeriesProvider {
 
   /** The logger. */
-  protected Log logger = LogFactory.getLog(getClass());
+  protected final Logger logger = LoggerFactory.getLogger(getClass());
 
   /**
    * To series.

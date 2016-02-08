@@ -12,8 +12,8 @@
 package psiprobe.beans;
 
 import org.apache.catalina.Context;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.util.ClassUtils;
 
 import psiprobe.model.Application;
@@ -48,7 +48,7 @@ import java.util.List;
 public class LogResolverBean {
 
   /** The logger. */
-  protected final Log logger = LogFactory.getLog(getClass());
+  protected static final Logger logger = LoggerFactory.getLogger(LogResolverBean.class);
 
   /** The container wrapper. */
   private ContainerWrapperBean containerWrapper;
@@ -283,9 +283,7 @@ public class LogResolverBean {
           allAppenders.add(catalinaAccessor);
         }
       }
-    } catch (ThreadDeath e) {
-        throw e;
-    } catch (Throwable e) {
+    } catch (Exception e) {
       logger.error("Could not interrogate context logger for " + ctx.getName()
           + ". Enable debug logging to see the trace stack");
       logger.debug("  Stack trace:", e);
@@ -325,12 +323,8 @@ public class LogResolverBean {
       Jdk14ManagerAccessor jdk14accessor = new Jdk14ManagerAccessor(cl);
       jdk14accessor.setApplication(application);
       appenders.addAll(jdk14accessor.getHandlers());
-    } catch (Throwable t) {
-      // make sure we always re-throw ThreadDeath
-      if (t instanceof ThreadDeath) {
-        throw (ThreadDeath) t;
-      }
-      logger.debug("Could not resolve JDK loggers for " + applicationName, t);
+    } catch (Exception e) {
+      logger.debug("Could not resolve JDK loggers for '{}' {}", applicationName, e);
     }
 
     // check for Log4J loggers
@@ -338,14 +332,8 @@ public class LogResolverBean {
       Log4JManagerAccessor log4JAccessor = new Log4JManagerAccessor(cl);
       log4JAccessor.setApplication(application);
       appenders.addAll(log4JAccessor.getAppenders());
-    } catch (Throwable t) {
-      //
-      // make sure we always re-throw ThreadDeath
-      //
-      if (t instanceof ThreadDeath) {
-        throw (ThreadDeath) t;
-      }
-      logger.debug("Could not resolve log4j loggers for " + applicationName, t);
+    } catch (Exception e) {
+      logger.debug("Could not resolve log4j loggers for '{}' {}", applicationName, e);
     }
 
     // check for Logback loggers
@@ -353,14 +341,8 @@ public class LogResolverBean {
       LogbackFactoryAccessor logbackAccessor = new LogbackFactoryAccessor(cl);
       logbackAccessor.setApplication(application);
       appenders.addAll(logbackAccessor.getAppenders());
-    } catch (Throwable t) {
-      //
-      // make sure we always re-throw ThreadDeath
-      //
-      if (t instanceof ThreadDeath) {
-        throw (ThreadDeath) t;
-      }
-      logger.debug("Could not resolve logback loggers for " + applicationName, t);
+    } catch (Exception e) {
+      logger.debug("Could not resolve logback loggers for '{}' {}", applicationName, e);
     }
 
     // check for Logback loggers for tomcat-slf4j-logback
@@ -369,14 +351,8 @@ public class LogResolverBean {
           new TomcatSlf4jLogbackFactoryAccessor(cl);
       tomcatSlf4jLogbackAccessor.setApplication(application);
       appenders.addAll(tomcatSlf4jLogbackAccessor.getAppenders());
-    } catch (Throwable t) {
-      //
-      // make sure we always re-throw ThreadDeath
-      //
-      if (t instanceof ThreadDeath) {
-        throw (ThreadDeath) t;
-      }
-      logger.debug("Could not resolve tomcat-slf4j-logback loggers for " + applicationName, t);
+    } catch (Exception e) {
+      logger.debug("Could not resolve tomcat-slf4j-logback loggers for '{}' {}", applicationName, e);
     }
   }
 
@@ -487,12 +463,8 @@ public class LogResolverBean {
       if (log != null) {
         return log.getHandler(handlerIndex);
       }
-    } catch (Throwable t) {
-      // always re-throw ThreadDeath when catching Throwable
-      if (t instanceof ThreadDeath) {
-        throw (ThreadDeath) t;
-      }
-      logger.debug("getJdk14LogDestination failed", t);
+    } catch (Exception e) {
+      logger.debug("getJdk14LogDestination failed", e);
     }
     return null;
   }
@@ -517,12 +489,8 @@ public class LogResolverBean {
       if (log != null) {
         return log.getAppender(appenderName);
       }
-    } catch (Throwable t) {
-      // always re-throw ThreadDeath when catching Throwable
-      if (t instanceof ThreadDeath) {
-        throw (ThreadDeath) t;
-      }
-      logger.debug("getLog4JLogDestination failed", t);
+    } catch (Exception e) {
+      logger.debug("getLog4JLogDestination failed", e);
     }
     return null;
   }
@@ -547,12 +515,8 @@ public class LogResolverBean {
       if (log != null) {
         return log.getAppender(appenderName);
       }
-    } catch (Throwable t) {
-      // always re-throw ThreadDeath when catching Throwable
-      if (t instanceof ThreadDeath) {
-        throw (ThreadDeath) t;
-      }
-      logger.debug("getLogbackLogDestination failed", t);
+    } catch (Exception e) {
+      logger.debug("getLogbackLogDestination failed", e);
     }
     return null;
   }
@@ -578,12 +542,8 @@ public class LogResolverBean {
       if (log != null) {
         return log.getAppender(appenderName);
       }
-    } catch (Throwable t) {
-      // always re-throw ThreadDeath when catching Throwable
-      if (t instanceof ThreadDeath) {
-        throw (ThreadDeath) t;
-      }
-      logger.debug("getTomcatSlf4jLogbackLogDestination failed", t);
+    } catch (Exception e) {
+      logger.debug("getTomcatSlf4jLogbackLogDestination failed", e);
     }
     return null;
   }

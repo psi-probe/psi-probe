@@ -14,8 +14,8 @@ package psiprobe.beans;
 import org.apache.catalina.Context;
 import org.apache.catalina.Wrapper;
 import org.apache.catalina.util.ServerInfo;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import psiprobe.TomcatContainer;
 import psiprobe.model.ApplicationResource;
@@ -37,7 +37,7 @@ import java.util.Map;
 public class ContainerWrapperBean {
 
   /** The logger. */
-  private final Log logger = LogFactory.getLog(getClass());
+  private static final Logger logger = LoggerFactory.getLogger(ContainerWrapperBean.class);
 
   /** The tomcat container. */
   private TomcatContainer tomcatContainer;
@@ -114,7 +114,7 @@ public class ContainerWrapperBean {
           }
 
           if (tomcatContainer == null) {
-            logger.fatal("No suitable container adapter found!");
+            logger.error("No suitable container adapter found!");
           }
         }
       }
@@ -125,9 +125,7 @@ public class ContainerWrapperBean {
         logger.info("Unregistering container adapter");
         tomcatContainer.setWrapper(null);
       }
-    } catch (ThreadDeath e) {
-      throw e;
-    } catch (Throwable e) {
+    } catch (Exception e) {
       logger.error("Could not unregister container adapter", e);
     }
   }

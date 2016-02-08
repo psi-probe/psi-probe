@@ -11,8 +11,8 @@
 
 package psiprobe.tools;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -43,8 +43,8 @@ public class Mailer {
   /** The Constant PROPERTY_KEY_SMTP. */
   public static final String PROPERTY_KEY_SMTP = "mail.smtp.host";
 
-  /** The log. */
-  private final Log log = LogFactory.getLog(this.getClass());
+  /** The logger. */
+  private static final Logger logger = LoggerFactory.getLogger(Mailer.class);
   
   /** The from. */
   private String from;
@@ -171,14 +171,14 @@ public class Mailer {
     if (smtp != null) {
       props.put(PROPERTY_KEY_SMTP, smtp);
     }
-    PrintStream debugOut = LogOutputStream.createPrintStream(log, LogOutputStream.LEVEL_DEBUG);
+    PrintStream debugOut = LogOutputStream.createPrintStream(logger, LogOutputStream.LEVEL_DEBUG);
 
     Session session = Session.getDefaultInstance(props);
     session.setDebug(true);
     session.setDebugOut(debugOut);
 
     MimeMessage message = createMimeMessage(session, mailMessage);
-    log.debug("Sending message");
+    logger.debug("Sending message");
     Transport.send(message);
   }
 
