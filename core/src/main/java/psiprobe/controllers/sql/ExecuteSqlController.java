@@ -70,7 +70,7 @@ public class ExecuteSqlController extends ContextHandlerController {
 
     // store current option values and query history in a session attribute
 
-    HttpSession sess = request.getSession();
+    HttpSession sess = request.getSession(false);
     DataSourceTestInfo sessData =
         (DataSourceTestInfo) sess.getAttribute(DataSourceTestInfo.DS_TEST_SESS_ATTR);
 

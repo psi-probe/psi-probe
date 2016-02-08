@@ -43,7 +43,7 @@ public class RecompileJspController extends ContextHandlerController {
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-    HttpSession session = request.getSession(true);
+    HttpSession session = request.getSession(false);
     Summary summary = (Summary) session.getAttribute(DisplayJspController.SUMMARY_ATTRIBUTE);
 
     if (request.getMethod().equalsIgnoreCase("post") && summary != null) {
