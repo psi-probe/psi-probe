@@ -406,7 +406,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
   }
 
   @Override
-  public org.apache.juli.logging.Log getLogger(Context context) {
+  public Object getLogger(Context context) {
     return context.getLogger();
   }
 
