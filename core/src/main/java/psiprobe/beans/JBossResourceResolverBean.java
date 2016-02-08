@@ -171,11 +171,12 @@ public class JBossResourceResolverBean implements ResourceResolver {
           server.invoke(poolOName, "start", null, null);
           return true;
         } catch (Exception e) {
-          logger.error("Could not reset resource \"" + resourceName + "\"", e);
+          logger.error("Could not reset resource '{}'", resourceName, e);
         }
       }
       return false;
     } catch (MalformedObjectNameException e) {
+      logger.trace("", e);
       throw new NamingException("Resource name: \"" + resourceName
           + "\" makes a malformed ObjectName");
     }

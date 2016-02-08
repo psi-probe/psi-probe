@@ -119,6 +119,7 @@ public class WhoisController extends ParameterizableViewController {
       wh = Whois.lookup(getDefaultServer(), getDefaultPort(), ipAddress, getLookupTimeout());
     } catch (IOException e) {
       timeout = true;
+      logger.trace("", e);
     }
 
     if (wh != null) {
@@ -140,7 +141,8 @@ public class WhoisController extends ParameterizableViewController {
       try {
         reverseName = InetAddress.getByName(ipAddress).getCanonicalHostName();
       } catch (UnknownHostException e) {
-        logger.error("could not run a DNS query on " + ipAddress);
+        logger.error("could not run a DNS query on {}", ipAddress);
+        logger.trace("", e);
       }
     }
     return new ModelAndView(getViewName(), "result", lines)

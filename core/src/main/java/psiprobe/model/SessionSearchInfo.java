@@ -17,6 +17,9 @@ import java.util.List;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * Data model class used by session search feature of application session screen.
  * 
@@ -27,6 +30,9 @@ public class SessionSearchInfo implements Serializable {
 
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = 1L;
+
+  /** The Constant Logger. */
+  private static final Logger logger = LoggerFactory.getLogger(SessionSearchInfo.class);
 
   /** The Constant SESS_ATTR_NAME. */
   public static final String SESS_ATTR_NAME = "sessionSearchInfo";
@@ -321,6 +327,7 @@ public class SessionSearchInfo implements Serializable {
       try {
         sessionIdPattern = Pattern.compile(sessionId);
       } catch (PatternSyntaxException e) {
+        logger.trace("", e);
         sessionIdMsg = e.getDescription();
       }
     }
@@ -372,6 +379,7 @@ public class SessionSearchInfo implements Serializable {
           try {
             attrNamePatterns.add(Pattern.compile(regex));
           } catch (PatternSyntaxException e) {
+            logger.trace("", e);
             attrNameMsgs.add(e.getDescription());
           }
         }
@@ -419,7 +427,7 @@ public class SessionSearchInfo implements Serializable {
       try {
         ageFromSec = Integer.valueOf(ageFrom);
       } catch (NumberFormatException e) {
-        // ignore
+        logger.trace("", e);
       }
     }
   }
@@ -455,7 +463,7 @@ public class SessionSearchInfo implements Serializable {
       try {
         ageToSec = Integer.valueOf(ageTo);
       } catch (NumberFormatException e) {
-        // ignore
+        logger.trace("", e);
       }
     }
   }
@@ -491,7 +499,7 @@ public class SessionSearchInfo implements Serializable {
       try {
         idleTimeFromSec = Integer.valueOf(idleTimeFrom);
       } catch (NumberFormatException e) {
-        // ignore
+        logger.trace("", e);
       }
     }
   }
@@ -527,7 +535,7 @@ public class SessionSearchInfo implements Serializable {
       try {
         idleTimeToSec = Integer.valueOf(idleTimeTo);
       } catch (NumberFormatException e) {
-        // ignore
+        logger.trace("", e);
       }
     }
   }

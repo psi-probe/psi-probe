@@ -17,12 +17,18 @@ import java.lang.reflect.Method;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * The Class ReflectiveAccessor.
  *
  * @author Mark Lewis
  */
 public class ReflectiveAccessor implements Accessor {
+
+  /** The Constant Logger. */
+  private static final Logger logger = LoggerFactory.getLogger(ReflectiveAccessor.class);
 
   /** The reflection factory. */
   private static Object reflectionFactory;
@@ -55,11 +61,11 @@ public class ReflectiveAccessor implements Accessor {
         return get.invoke(fieldAccessor, new Object[] {obj});
       }
     } catch (IllegalArgumentException e) {
-      // ignore
+      logger.trace("", e);
     } catch (IllegalAccessException e) {
-      // ignore
+      logger.trace("", e);
     } catch (InvocationTargetException e) {
-      // ignore
+      logger.trace("", e);
     }
     return null;
   }

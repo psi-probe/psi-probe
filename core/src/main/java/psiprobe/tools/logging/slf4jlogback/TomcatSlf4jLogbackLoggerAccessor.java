@@ -50,7 +50,7 @@ public class TomcatSlf4jLogbackLoggerAccessor extends DefaultAccessor {
         }
       }
     } catch (Exception e) {
-      logger.error(getTarget().getClass().getName() + "#getAppenders() failed", e);
+      logger.error("{}#getAppenders() failed", getTarget().getClass().getName(), e);
     }
     return appenders;
   }
@@ -75,7 +75,7 @@ public class TomcatSlf4jLogbackLoggerAccessor extends DefaultAccessor {
       }
       return wrapAppender(appender);
     } catch (Exception e) {
-      logger.error(getTarget().getClass().getName() + "#getAppender() failed", e);
+      logger.error("{}#getAppender() failed", getTarget().getClass().getName(), e);
     }
     return null;
   }
@@ -117,7 +117,7 @@ public class TomcatSlf4jLogbackLoggerAccessor extends DefaultAccessor {
       Object level = MethodUtils.invokeMethod(getTarget(), "getLevel", null);
       return (String) MethodUtils.invokeMethod(level, "toString", null);
     } catch (Exception e) {
-      logger.error(getTarget().getClass().getName() + "#getLevel() failed", e);
+      logger.error("{}#getLevel() failed", getTarget().getClass().getName(), e);
     }
     return null;
   }
@@ -133,7 +133,7 @@ public class TomcatSlf4jLogbackLoggerAccessor extends DefaultAccessor {
       Object newLevel = MethodUtils.invokeMethod(level, "toLevel", newLevelStr);
       MethodUtils.invokeMethod(getTarget(), "setLevel", newLevel);
     } catch (Exception e) {
-      logger.error(getTarget().getClass().getName() + "#setLevel(\"" + newLevelStr + "\") failed", e);
+      logger.error("{}#setLevel('{}') failed", getTarget().getClass().getName(), newLevelStr, e);
     }
   }
 
@@ -191,7 +191,7 @@ public class TomcatSlf4jLogbackLoggerAccessor extends DefaultAccessor {
       appenderAccessor.setApplication(getApplication());
       return appenderAccessor;
     } catch (IllegalArgumentException e) {
-      logger.error("Could not wrap appender: " + appender, e);
+      logger.error("Could not wrap appender: '{}'", appender, e);
     }
     return null;
   }

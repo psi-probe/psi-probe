@@ -138,8 +138,8 @@ public class RenderChartController extends AbstractController {
       if (series instanceof SeriesProvider) {
         ((SeriesProvider) series).populate(ds, statsCollection, request);
       } else {
-        logger.error("SeriesProvider \"" + provider + "\" does not implement "
-            + SeriesProvider.class);
+        logger.error("SeriesProvider '{}' does not implement '{}'", provider,
+            SeriesProvider.class);
       }
 
     }

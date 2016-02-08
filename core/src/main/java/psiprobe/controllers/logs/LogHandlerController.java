@@ -78,11 +78,10 @@ public class LogHandlerController extends ParameterizableViewController {
         modelAndView = handleLogFile(request, response, dest);
         logFound = true;
       } else {
-        logger.error(dest.getFile() + ": file not found");
+        logger.error("{}: file not found", dest.getFile());
       }
     } else {
-      logger.error(logType + (root ? " root" : "") + " log" + (root ? "" : " \"" + logName + "\"")
-          + " not found");
+      logger.error("{}{} log{} not found", logType, (root ? " root" : ""), (root ? "" : " '" + logName + "'"));
     }
     if (!logFound) {
       response.sendError(404);

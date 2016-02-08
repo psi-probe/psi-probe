@@ -73,7 +73,7 @@ public class JvmMemoryInfoAccessorBean {
         memoryPool.setInit(JmxTools.getLongAttr(cd, "init"));
         memoryPool.setCommitted(JmxTools.getLongAttr(cd, "committed"));
       } else {
-        logger.error("Oops, JVM problem? " + objName.toString() + " \"Usage\" attribute is NULL!");
+        logger.error("Oops, JVM problem? {} 'Usage' attribute is NULL!", objName);
       }
 
       totalInit += memoryPool.getInit();

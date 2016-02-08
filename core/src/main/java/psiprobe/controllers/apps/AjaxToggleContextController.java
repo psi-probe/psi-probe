@@ -39,14 +39,14 @@ public class AjaxToggleContextController extends ContextHandlerController {
     if (!request.getContextPath().equals(contextName) && context != null) {
       try {
         if (context.getState().isAvailable()) {
-          logger.info(request.getRemoteAddr() + " requested STOP of " + contextName);
+          logger.info("{} requested STOP of {}", request.getRemoteAddr(), contextName);
           getContainerWrapper().getTomcatContainer().stop(contextName);
         } else {
-          logger.info(request.getRemoteAddr() + " requested START of " + contextName);
+          logger.info("{} requested START of {}", request.getRemoteAddr(), contextName);
           getContainerWrapper().getTomcatContainer().start(contextName);
         }
       } catch (Exception e) {
-        logger.error("Error during ajax request to START/STOP of " + contextName, e);
+        logger.error("Error during ajax request to START/STOP of '{}'", contextName, e);
       }
     }
     return new ModelAndView(getViewName(), "available", context != null

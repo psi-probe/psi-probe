@@ -72,7 +72,7 @@ public class ResourceResolverBean implements ResourceResolver {
         for (ObjectName objectName : dsNames) {
           ApplicationResource resource = new ApplicationResource();
 
-          logger.info("reading resource: " + objectName);
+          logger.info("reading resource: {}", objectName);
           resource.setName(getStringAttribute(server, objectName, "name"));
           resource.setType(getStringAttribute(server, objectName, "type"));
           resource.setScope(getStringAttribute(server, objectName, "scope"));
@@ -99,7 +99,7 @@ public class ResourceResolverBean implements ResourceResolver {
     boolean contextAvailable = containerWrapper.getTomcatContainer().getAvailable(context);
     if (contextAvailable) {
 
-      logger.info("Reading CONTEXT " + context.getName());
+      logger.info("Reading CONTEXT {}", context.getName());
 
       boolean contextBound = false;
 
@@ -158,7 +158,7 @@ public class ResourceResolverBean implements ResourceResolver {
       } catch (Exception e) {
         resource.setLookedUp(false);
         dataSourceInfo = null;
-        logger.error("Failed to lookup: " + resource.getName(), e);
+        logger.error("Failed to lookup: '{}'", resource.getName(), e);
       }
     } else {
       resource.setLookedUp(false);
@@ -197,6 +197,7 @@ public class ResourceResolverBean implements ResourceResolver {
         }
         return false;
       } catch (Exception e) {
+        logger.trace("", e);
         return false;
       }
     } finally {
@@ -295,7 +296,7 @@ public class ResourceResolverBean implements ResourceResolver {
     try {
       return (String) server.getAttribute(objectName, attributeName);
     } catch (Exception e) {
-      logger.error("Error getting attribute '" + attributeName + "' from '" + objectName + "'", e);
+      logger.error("Error getting attribute '{}' from '{}'", attributeName, objectName, e);
       return null;
     }
   }

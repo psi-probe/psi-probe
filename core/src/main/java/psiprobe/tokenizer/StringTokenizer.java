@@ -14,12 +14,18 @@ package psiprobe.tokenizer;
 import java.io.IOException;
 import java.io.StringReader;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * The Class StringTokenizer.
  *
  * @author Vlad Ilyushchenko
  */
 public class StringTokenizer extends Tokenizer {
+
+  /** The Constant Logger. */
+  private static final Logger logger = LoggerFactory.getLogger(StringTokenizer.class);
 
   /**
    * Instantiates a new string tokenizer.
@@ -51,6 +57,7 @@ public class StringTokenizer extends Tokenizer {
     try {
       return super.hasMore();
     } catch (IOException e) {
+      logger.trace("", e);
       return false;
     }
   }
@@ -60,6 +67,7 @@ public class StringTokenizer extends Tokenizer {
     try {
       return super.getToken();
     } catch (IOException e) {
+      logger.trace("", e);
       return null;
     }
   }
@@ -69,6 +77,7 @@ public class StringTokenizer extends Tokenizer {
     try {
       return super.nextToken();
     } catch (IOException e) {
+      logger.trace("", e);
       return null;
     }
   }

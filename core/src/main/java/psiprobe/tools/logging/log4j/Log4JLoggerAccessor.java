@@ -48,7 +48,7 @@ public class Log4JLoggerAccessor extends DefaultAccessor {
         }
       }
     } catch (Exception e) {
-      logger.error(getTarget().getClass().getName() + "#getAllAppenders() failed", e);
+      logger.error("{}#getAllAppenders() failed", getTarget().getClass().getName(), e);
     }
     return appenders;
   }
@@ -64,7 +64,7 @@ public class Log4JLoggerAccessor extends DefaultAccessor {
       Object appender = MethodUtils.invokeMethod(getTarget(), "getAppender", name);
       return wrapAppender(appender);
     } catch (Exception e) {
-      logger.error(getTarget().getClass().getName() + "#getAppender() failed", e);
+      logger.error("{}#getAppender() failed", getTarget().getClass().getName(), e);
     }
     return null;
   }
@@ -115,7 +115,7 @@ public class Log4JLoggerAccessor extends DefaultAccessor {
       Object level = MethodUtils.invokeMethod(getTarget(), "getLevel", null);
       return (String) MethodUtils.invokeMethod(level, "toString", null);
     } catch (Exception e) {
-      logger.error(getTarget().getClass().getName() + "#getLevel() failed", e);
+      logger.error("{}#getLevel() failed", getTarget().getClass().getName(), e);
     }
     return null;
   }
@@ -131,7 +131,7 @@ public class Log4JLoggerAccessor extends DefaultAccessor {
       Object newLevel = MethodUtils.invokeMethod(level, "toLevel", newLevelStr);
       MethodUtils.invokeMethod(getTarget(), "setLevel", newLevel);
     } catch (Exception e) {
-      logger.error(getTarget().getClass().getName() + "#setLevel(\"" + newLevelStr + "\") failed", e);
+      logger.error("{}#setLevel('{}') failed",getTarget().getClass().getName(), newLevelStr, e);
     }
   }
 
@@ -152,7 +152,7 @@ public class Log4JLoggerAccessor extends DefaultAccessor {
       appenderAccessor.setApplication(getApplication());
       return appenderAccessor;
     } catch (Exception e) {
-      logger.error("Could not wrap appender: " + appender, e);
+      logger.error("Could not wrap appender: {}", appender, e);
     }
     return null;
   }

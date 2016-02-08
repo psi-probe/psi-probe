@@ -67,12 +67,11 @@ public class DatasourceStatsCollectorBean extends AbstractStatsCollectorBean {
         DataSourceInfo dsi = ds.getDataSourceInfo();
         int numEstablished = dsi.getEstablishedConnections();
         int numBusy = dsi.getBusyConnections();
-        logger.trace("Collecting stats for datasource: " + name);
+        logger.trace("Collecting stats for datasource: {}", name);
         buildAbsoluteStats(PREFIX_ESTABLISHED + name, numEstablished, currentTime);
         buildAbsoluteStats(PREFIX_BUSY + name, numBusy, currentTime);
       }
-      logger.debug("datasource stats collected in " + (System.currentTimeMillis() - currentTime)
-          + "ms");
+      logger.debug("datasource stats collected in {}ms", (System.currentTimeMillis() - currentTime));
     }
   }
 

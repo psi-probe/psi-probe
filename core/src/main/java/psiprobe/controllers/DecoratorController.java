@@ -62,6 +62,7 @@ public class DecoratorController extends ParameterizableViewController {
       request.setAttribute("hostname", InetAddress.getLocalHost().getHostName());
     } catch (UnknownHostException e) {
       request.setAttribute("hostname", "unknown");
+      logger.trace("", e);
     }
 
     Properties version = (Properties) getApplicationContext().getBean("version");

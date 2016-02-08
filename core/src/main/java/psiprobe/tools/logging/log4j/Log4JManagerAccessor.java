@@ -64,7 +64,7 @@ public class Log4JManagerAccessor extends DefaultAccessor {
       accessor.setApplication(getApplication());
       return accessor;
     } catch (Exception e) {
-      logger.error(getTarget().getClass().getName() + "#getRootLogger() failed", e);
+      logger.error("{}#getRootLogger() failed", getTarget().getClass().getName(), e);
     }
     return null;
   }
@@ -91,7 +91,7 @@ public class Log4JManagerAccessor extends DefaultAccessor {
       accessor.setApplication(getApplication());
       return accessor;
     } catch (Exception e) {
-      logger.error(getTarget().getClass().getName() + "#getLogger(\"" + name + "\") failed", e);
+      logger.error("{}#getLogger('{}') failed", getTarget().getClass().getName(), name, e);
     }
     return null;
   }
@@ -119,7 +119,7 @@ public class Log4JManagerAccessor extends DefaultAccessor {
         appenders.addAll(accessor.getAppenders());
       }
     } catch (Exception e) {
-      logger.error(getTarget().getClass().getName() + "#getCurrentLoggers() failed", e);
+      logger.error("{}#getCurrentLoggers() failed", getTarget().getClass().getName(), e);
     }
     return appenders;
   }

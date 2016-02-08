@@ -97,6 +97,7 @@ public class ExecuteSqlController extends ContextHandlerController {
           "errorMessage",
           getMessageSourceAccessor().getMessage("probe.src.dataSourceTest.resource.lookup.failure",
               new Object[] {resourceName}));
+      logger.trace("", e);
     }
 
     if (dataSource == null) {
