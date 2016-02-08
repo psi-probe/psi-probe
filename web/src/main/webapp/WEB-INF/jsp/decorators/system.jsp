@@ -44,6 +44,11 @@
 				<spring:message code="probe.jsp.decorator.system.wrapper"/>
 			</a>
 		</li>
+		<li>
+			<a class="${systemTabTrustStore}" href="<c:url value='/truststore.htm'/>">
+				<spring:message code="probe.jsp.decorator.system.truststore"/>
+			</a>
+		</li>
 	</ul>
 </div>
 
