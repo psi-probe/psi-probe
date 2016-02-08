@@ -54,7 +54,11 @@ public class ReflectiveAccessor implements Accessor {
       if (fieldAccessor != null) {
         return get.invoke(fieldAccessor, new Object[] {obj});
       }
-    } catch (Exception ex) {
+    } catch (IllegalArgumentException e) {
+      // ignore
+    } catch (IllegalAccessException e) {
+      // ignore
+    } catch (InvocationTargetException e) {
       // ignore
     }
     return null;

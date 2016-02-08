@@ -43,7 +43,13 @@ public class AccessorFactory {
   private static Accessor getReflective() {
     try {
       return new ReflectiveAccessor();
-    } catch (Exception ex) {
+    } catch (ClassNotFoundException e) {
+      return null;
+    } catch (InstantiationException e) {
+      return null;
+    } catch (IllegalAccessException e) {
+      return null;
+    } catch (NoSuchMethodException e) {
       return null;
     }
   }

@@ -125,9 +125,7 @@ public class ContainerWrapperBean {
         logger.info("Unregistering container adapter");
         tomcatContainer.setWrapper(null);
       }
-    } catch (ThreadDeath e) {
-      throw e;
-    } catch (Throwable e) {
+    } catch (Exception e) {
       logger.error("Could not unregister container adapter", e);
     }
   }

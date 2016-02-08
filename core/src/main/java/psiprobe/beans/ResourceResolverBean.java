@@ -155,9 +155,7 @@ public class ResourceResolverBean implements ResourceResolver {
             break;
           }
         }
-      } catch (ThreadDeath e) {
-          throw e;
-      } catch (Throwable e) {
+      } catch (Exception e) {
         resource.setLookedUp(false);
         dataSourceInfo = null;
         logger.error("Failed to lookup: " + resource.getName(), e);
@@ -198,10 +196,7 @@ public class ResourceResolverBean implements ResourceResolver {
           }
         }
         return false;
-      } catch (ThreadDeath t) {
-        // make sure we always re-throw ThreadDeath
-        throw t;
-      }catch (Throwable e) {
+      } catch (Exception e) {
         return false;
       }
     } finally {
