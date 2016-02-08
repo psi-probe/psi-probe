@@ -120,6 +120,10 @@
 		</property>
 		<property name="viewName" value="system_properties"/>
 	</bean>
+	
+	<bean name="/truststore.htm" class="psiprobe.controllers.truststore.TrustStoreController">
+		<property name="viewName" value="truststore"/>
+	</bean>
 
 	<bean name="/adm/osinfo.htm" class="psiprobe.controllers.system.SysInfoController">
 		<property name="containerWrapper" ref="containerWrapper"/>
