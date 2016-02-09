@@ -102,9 +102,13 @@
 
 	<session-config>
 		<session-timeout>15</session-timeout>
+		<!-- Disable secure cookie until http session issues can be resolved. While tomcat
+		will handle this normally with http, spring has been shown to continually create new
+		sessions.  This may not be related to spring security but rather spring web mvc.
 		<cookie-config>
 			<secure>true</secure>
 		</cookie-config>
+		-->
 	</session-config>
 
 	<!-- no access error -->
