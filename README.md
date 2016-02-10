@@ -20,6 +20,10 @@ Please follow [GitHub Flow](https://guides.github.com/introduction/flow/), with 
 	*	Avoid making formatting changes alongside functionality changes. This is a recipe for conflicts.
 	*	Avoid bumping version numbers or correcting spelling errors along with your changes unless they're necessary.
 	*	Feel free to make these sorts of corrections in a separate PR, though!
+*   **Ensure commits are clean.** Please rebase before submitting PR. This will save time and ensure quicker merge. Use steps similar to following.
+    *   git pull --rebase upstream master
+	*   git push origin +master
+	
 
 ## Latest Snapshot ##
 
