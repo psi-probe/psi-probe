@@ -177,14 +177,6 @@ public interface TomcatContainer {
   void discardWorkDir(Context context);
 
   /**
-   * Gets the logger.
-   *
-   * @param context the context
-   * @return the logger
-   */
-  Object getLogger(Context context);
-
-  /**
    * Gets the host name.
    *
    * @return the host name

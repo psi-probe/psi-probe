@@ -405,11 +405,6 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
   }
 
   @Override
-  public Object getLogger(Context context) {
-    return context.getLogger();
-  }
-
-  @Override
   public boolean getAvailable(Context context) {
     return context.getState().isAvailable();
   }
