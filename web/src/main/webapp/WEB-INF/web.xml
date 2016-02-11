@@ -109,6 +109,7 @@
 			<secure>true</secure>
 		</cookie-config>
 		-->
+		<tracking-mode>COOKIE</tracking-mode>
 	</session-config>
 
 	<!-- no access error -->
