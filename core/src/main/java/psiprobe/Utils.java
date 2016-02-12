@@ -27,6 +27,7 @@ import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.Closeable;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -570,6 +571,21 @@ public class Utils {
     } catch (MalformedObjectNameException e) {
       logger.trace("", e);
       return false;
+    }
+  }
+  
+  /**
+   * Safely closes the stream. 
+   * 
+   * @param stream to be closed
+   */
+  public static void closeStream(Closeable stream) {
+    if (stream != null) {
+      try {
+        stream.close();
+      } catch (IOException e) {
+        logger.error(e.getMessage());
+      }
     }
   }
 }
