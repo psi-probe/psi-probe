@@ -13,6 +13,7 @@ package psiprobe;
 
 import org.apache.catalina.Context;
 import org.apache.catalina.Wrapper;
+import org.apache.catalina.connector.Connector;
 
 import psiprobe.model.ApplicationParam;
 import psiprobe.model.ApplicationResource;
@@ -69,6 +70,13 @@ public interface TomcatContainer {
    * @return all contexts
    */
   List<Context> findContexts();
+
+  /**
+   * Find connectors.
+   *
+   * @return all connectors
+   */
+  List<Connector> findConnectors();
 
   /**
    * Stops the context with the given name.
