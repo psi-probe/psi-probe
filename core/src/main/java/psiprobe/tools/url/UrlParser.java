@@ -13,12 +13,18 @@ package psiprobe.tools.url;
 
 import java.net.MalformedURLException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * The Class UrlParser.
  *
  * @author Vlad Ilyushchenko
  */
 public class UrlParser {
+
+  /** The Constant Logger. */
+  private static final Logger logger = LoggerFactory.getLogger(UrlParser.class);
 
   /** The protocol. */
   private String protocol;
@@ -65,6 +71,7 @@ public class UrlParser {
         try {
           this.port = Integer.parseInt(portString);
         } catch (NumberFormatException e) {
+          logger.trace("", e);
           throw new MalformedURLException("Invalid port " + portString);
         }
       } else {

@@ -248,7 +248,7 @@ public class ContainerListenerBean implements NotificationListener {
           threadPools.add(threadPool);
         }
       } catch (InstanceNotFoundException e) {
-        logger.error("Failed to query entire thread pool " + threadPoolObjectName);
+        logger.error("Failed to query entire thread pool {}", threadPoolObjectName);
         logger.debug("  Stack trace:", e);
       }
     }
@@ -308,6 +308,7 @@ public class ContainerListenerBean implements NotificationListener {
                 rp.setRemoteAddrLocale(InetAddressLocator.getLocale(InetAddress.getByName(
                     remoteAddr).getAddress()));
               } catch (RuntimeOperationsException ex) {
+                logger.trace("", ex);
                 /*
                  * if it's not available for this request processor, then it's not available for any
                  * request processor in this thread pool
@@ -338,7 +339,7 @@ public class ContainerListenerBean implements NotificationListener {
               }
               connector.addRequestProcessor(rp);
             } catch (InstanceNotFoundException e) {
-              logger.info("Failed to query RequestProcessor " + wrkName);
+              logger.info("Failed to query RequestProcessor {}", wrkName);
               logger.debug("  Stack trace:", e);
             }
           }
@@ -346,7 +347,7 @@ public class ContainerListenerBean implements NotificationListener {
 
         connectors.add(connector);
       } catch (InstanceNotFoundException e) {
-        logger.error("Failed to query entire thread pool " + threadPoolObjectName);
+        logger.error("Failed to query entire thread pool {}", threadPoolObjectName);
         logger.debug("  Stack trace:", e);
       }
     }

@@ -58,11 +58,12 @@ public class StopJvmController extends ParameterizableViewController {
     boolean done = false;
     try {
       Class.forName("org.tanukisoftware.wrapper.WrapperManager");
-      logger.info("JVM is STOPPED by " + request.getRemoteAddr());
+      logger.info("JVM is STOPPED by {}", request.getRemoteAddr());
       WrapperManager.stop(stopExitCode);
       done = true;
     } catch (ClassNotFoundException e) {
       logger.info("WrapperManager not found. Do you have wrapper.jar in the classpath?");
+      logger.trace("", e);
     }
     return new ModelAndView(getViewName(), "done", done);
   }

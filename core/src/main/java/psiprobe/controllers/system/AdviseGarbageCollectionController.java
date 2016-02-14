@@ -72,7 +72,7 @@ public class AdviseGarbageCollectionController extends ParameterizableViewContro
       Runtime.getRuntime().gc();
       logger.debug("Advised Garbage Collection");
     }
-    logger.debug("Redirected to " + redirectUrl);
+    logger.debug("Redirected to {}", redirectUrl);
     return new ModelAndView(new RedirectView(redirectUrl));
   }
 

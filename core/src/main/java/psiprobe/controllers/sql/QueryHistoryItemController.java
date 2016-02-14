@@ -56,7 +56,8 @@ public class QueryHistoryItemController extends AbstractController {
             response.setCharacterEncoding("UTF-8");
             response.getWriter().print(sql);
           } catch (IndexOutOfBoundsException e) {
-            logger.error("Cannot find a query history entry for history item id = " + sqlId);
+            logger.error("Cannot find a query history entry for history item id = {}", sqlId);
+            logger.trace("", e);
           }
         }
       }

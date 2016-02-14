@@ -116,6 +116,7 @@ public class TomcatAvailabilityController extends TomcatContainerController {
       tomcatTestReport.setMemoryTest(TomcatTestReport.TEST_PASSED);
     } catch (IOException e) {
       tomcatTestReport.setMemoryTest(TomcatTestReport.TEST_FAILED);
+      logger.trace("", e);
     }
 
     // try to open some files
@@ -135,12 +136,13 @@ public class TomcatAvailabilityController extends TomcatContainerController {
       tomcatTestReport.setFileTest(TomcatTestReport.TEST_PASSED);
     } catch (IOException e) {
       tomcatTestReport.setFileTest(TomcatTestReport.TEST_FAILED);
+      logger.trace("", e);
     } finally {
       for (FileOutputStream fileStream : fileStreams) {
         try {
           fileStream.close();
         } catch (IOException e) {
-          //ignore
+          logger.trace("", e);
         }
       }
       for (File file : files) {

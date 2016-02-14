@@ -38,10 +38,10 @@ public class AjaxReloadContextController extends ContextHandlerController {
 
     if (!request.getContextPath().equals(contextName) && context != null) {
       try {
-        logger.info(request.getRemoteAddr() + " requested RELOAD of " + contextName);
+        logger.info("{} requested RELOAD of {}", request.getRemoteAddr(), contextName);
         context.reload();
       } catch (Exception e) {
-        logger.error("Error during ajax request to RELOAD of " + contextName, e);
+        logger.error("Error during ajax request to RELOAD of '{}'", contextName, e);
       }
     }
     return new ModelAndView(getViewName(), "available", context != null

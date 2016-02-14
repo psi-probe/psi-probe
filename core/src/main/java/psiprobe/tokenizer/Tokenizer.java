@@ -16,12 +16,18 @@ import java.io.Reader;
 import java.util.Collections;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * The Class Tokenizer.
  *
  * @author Vlad Ilyushchenko
  */
 public class Tokenizer {
+
+  /** The Constant Logger. */
+  private static final Logger logger = LoggerFactory.getLogger(Tokenizer.class);
 
   /** The Constant TT_TOKEN. */
   public static final int TT_TOKEN = 0;
@@ -392,6 +398,7 @@ public class Tokenizer {
     try {
       return Long.parseLong(stval);
     } catch (NumberFormatException e) {
+      logger.trace("", e);
       return defaultValue;
     }
   }

@@ -89,7 +89,7 @@ public class ApplicationUtils {
       boolean calcSize, ContainerWrapperBean containerWrapper) {
 
     // ContainerWrapperBean containerWrapper
-    logger.debug("Querying webapp: " + context.getName());
+    logger.debug("Querying webapp: {}", context.getName());
 
     Application app = new Application();
     app.setName(context.getName().length() > 0 ? context.getName() : "/");
@@ -259,7 +259,7 @@ public class ApplicationUtils {
               objSize += Instruments.sizeOf(name, processedObjects);
               objSize += Instruments.sizeOf(obj, processedObjects);
             } catch (Exception ex) {
-              logger.error("Cannot estimate size of attribute '{}' {}", name, ex);
+              logger.error("Cannot estimate size of attribute '{}'", name, ex);
             }
           }
 
@@ -284,12 +284,14 @@ public class ApplicationUtils {
           sbean.setLastAccessedIpLocale(InetAddressLocator.getLocale(InetAddress.getByName(
               lastAccessedIp).getAddress()));
         } catch (Exception e) {
-          logger.error("Cannot determine Locale of " + lastAccessedIp);
+          logger.error("Cannot determine Locale of {}", lastAccessedIp);
+          logger.trace("", e);
         }
 
 
       } catch (IllegalStateException e) {
         logger.info("Session appears to be invalidated, ignore");
+        logger.trace("", e);
       }
 
       sbean.setObjectCount(attributeCount);

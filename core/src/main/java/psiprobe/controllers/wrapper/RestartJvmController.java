@@ -37,11 +37,12 @@ public class RestartJvmController extends ParameterizableViewController {
     boolean done = false;
     try {
       Class.forName("org.tanukisoftware.wrapper.WrapperManager");
-      logger.info("JVM is RESTARTED by " + request.getRemoteAddr());
+      logger.info("JVM is RESTARTED by {}", request.getRemoteAddr());
       WrapperManager.restartAndReturn();
       done = true;
     } catch (ClassNotFoundException e) {
       logger.info("WrapperManager not found. Do you have wrapper.jar in the classpath?");
+      logger.trace("", e);
     }
     return new ModelAndView(getViewName(), "done", done);
   }

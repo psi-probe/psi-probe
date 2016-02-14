@@ -142,10 +142,10 @@ public class Utils {
         }
       }
       if (!file.delete()) {
-        logger.debug("Cannot delete " + file.getAbsolutePath());
+        logger.debug("Cannot delete '{}'", file.getAbsolutePath());
       }
     } else {
-      logger.debug(file + " does not exist");
+      logger.debug("'{}' does not exist", file);
     }
   }
 
@@ -161,7 +161,7 @@ public class Utils {
       try {
         return Integer.parseInt(num);
       } catch (NumberFormatException e) {
-        // ignore
+        logger.trace("", e);
       }
     }
     return defaultValue;
@@ -192,6 +192,7 @@ public class Utils {
       }
       return Integer.parseInt(num, 16);
     } catch (NumberFormatException e) {
+      logger.trace("", e);
       return defaultValue;
     }
   }
@@ -208,7 +209,7 @@ public class Utils {
       try {
         return Long.parseLong(num);
       } catch (NumberFormatException e) {
-        // ignore
+        logger.trace("", e);
       }
     }
     return defaultValue;
@@ -237,7 +238,7 @@ public class Utils {
       try {
         return Float.parseFloat(num);
       } catch (NumberFormatException e) {
-        // ignore
+        logger.trace("", e);
       }
     }
     return defaultValue;
@@ -353,7 +354,8 @@ public class Utils {
             rangeStart = 0;
           }
         } catch (NumberFormatException e) {
-          // ignore the exception, keep rangeStart unchanged
+          // keep rangeStart unchanged
+          logger.trace("", e);
         }
 
         if (rangeSep < pureRange.length() - 1) {
@@ -363,7 +365,7 @@ public class Utils {
               rangeFinish = fileSize - 1;
             }
           } catch (NumberFormatException e) {
-            // ignore the exception
+            logger.trace("", e);
           }
         }
       }
@@ -583,6 +585,7 @@ public class Utils {
       Set<ObjectInstance> threading = mbeanServer.queryMBeans(threadingOName, null);
       return threading != null && !threading.isEmpty();
     } catch (MalformedObjectNameException e) {
+      logger.trace("", e);
       return false;
     }
   }

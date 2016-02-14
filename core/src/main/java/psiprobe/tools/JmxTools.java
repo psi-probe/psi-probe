@@ -46,7 +46,8 @@ public class JmxTools {
     try {
       return mbeanServer.getAttribute(objName, attrName);
     } catch (AttributeNotFoundException e) {
-      logger.error(objName + " does not have \"" + attrName + "\" attribute");
+      logger.error("{} does not have '{}' attribute", objName, attrName);
+      logger.trace("", e);
       return null;
     }
   }
@@ -67,6 +68,7 @@ public class JmxTools {
       Object obj = mbeanServer.getAttribute(objName, attrName);
       return obj == null ? defaultValue : ((Long) obj);
     } catch (Exception e) {
+      logger.trace("", e);
       return defaultValue;
     }
   }

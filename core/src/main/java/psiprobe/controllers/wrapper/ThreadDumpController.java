@@ -37,11 +37,12 @@ public class ThreadDumpController extends ParameterizableViewController {
     boolean done = false;
     try {
       Class.forName("org.tanukisoftware.wrapper.WrapperManager");
-      logger.info("ThreadDump requested by " + request.getRemoteAddr());
+      logger.info("ThreadDump requested by {}", request.getRemoteAddr());
       WrapperManager.requestThreadDump();
       done = true;
     } catch (ClassNotFoundException e) {
       logger.info("WrapperManager not found. Do you have wrapper.jar in the classpath?");
+      logger.trace("", e);
     }
     return new ModelAndView(getViewName(), "done", done);
   }

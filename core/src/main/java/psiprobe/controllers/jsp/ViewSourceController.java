@@ -93,7 +93,7 @@ public class ViewSourceController extends ContextHandlerController {
           }
 
         } else {
-          logger.error(jspName + " does not exist");
+          logger.error("{} does not exist", jspName);
         }
 
         request.setAttribute("item", item);
@@ -103,7 +103,7 @@ public class ViewSourceController extends ContextHandlerController {
       }
     } else {
       if (jspName == null) {
-        logger.error("Passed empty \"source\" parameter");
+        logger.error("Passed empty 'source' parameter");
       }
       if (summary == null) {
         logger.error("Session has expired or there is no summary");

@@ -98,7 +98,7 @@ public class LogbackFactoryAccessor extends DefaultAccessor {
       return accessor;
 
     } catch (Exception e) {
-      logger.error(getTarget() + ".getLogger(\"" + name + "\") failed", e);
+      logger.error("{}.getLogger('{}') failed", getTarget(), name, e);
     }
     return null;
   }
@@ -125,7 +125,7 @@ public class LogbackFactoryAccessor extends DefaultAccessor {
         appenders.addAll(accessor.getAppenders());
       }
     } catch (Exception e) {
-      logger.error(getTarget() + ".getLoggerList() failed", e);
+      logger.error("{}.getLoggerList() failed", getTarget(), e);
     }
     return appenders;
   }

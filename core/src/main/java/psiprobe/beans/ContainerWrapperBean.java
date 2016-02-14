@@ -88,28 +88,25 @@ public class ContainerWrapperBean {
         if (tomcatContainer == null) {
 
           String serverInfo = ServerInfo.getServerInfo();
-          logger.info("Server info: " + serverInfo);
+          logger.info("Server info: {}", serverInfo);
           for (String className : adapterClasses) {
             try {
               Object obj = Class.forName(className).newInstance();
-              logger.debug("Testing container adapter: " + className);
+              logger.debug("Testing container adapter: {}", className);
               if (obj instanceof TomcatContainer) {
                 if (forceFirstAdapter || ((TomcatContainer) obj).canBoundTo(serverInfo)) {
-                  logger.info("Using " + className);
+                  logger.info("Using {}", className);
                   tomcatContainer = (TomcatContainer) obj;
                   tomcatContainer.setWrapper(wrapper);
                   break;
                 }
-                logger.debug("Cannot bind " + className + " to " + serverInfo);
+                logger.debug("Cannot bind {} to {}", className, serverInfo);
               } else {
-                logger.error(className + " does not implement " + TomcatContainer.class.getName());
+                logger.error("{} does not implement {}", className, TomcatContainer.class.getName());
               }
             } catch (Exception e) {
-              if (logger.isDebugEnabled()) {
-                logger.debug("Failed to load " + className, e);
-              } else {
-                logger.info("Failed to load " + className);
-              }
+              logger.debug("", e);
+              logger.info("Failed to load {}", className);
             }
           }
 
