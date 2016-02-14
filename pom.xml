@@ -645,9 +645,9 @@
 	<reporting>
 		<plugins>
 			<plugin>
-				<groupId>com.github.marschall</groupId>
-				<artifactId>jdeps-maven-plugin</artifactId>
-				<version>0.4.0</version>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jdeps-plugin</artifactId>
+				<version>3.0.0</version>
 				<configuration>
 					<profile>true</profile>
 				</configuration>
