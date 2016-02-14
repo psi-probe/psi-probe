@@ -27,8 +27,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class RestartJvmController extends ParameterizableViewController {
 
-  /** The logger. */
-  protected Logger logger = LoggerFactory.getLogger(getClass());
+  /** The Constant logger. */
+  private static final Logger logger = LoggerFactory.getLogger(RestartJvmController.class);
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,

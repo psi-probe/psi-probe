@@ -37,8 +37,8 @@ public class ProbeServlet extends DispatcherServlet implements ContainerServlet 
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = 1L;
 
-  /** The logger. */
-  protected Logger logger = LoggerFactory.getLogger(getClass());
+  /** The Constant logger. */
+  private static final Logger logger = LoggerFactory.getLogger(ProbeServlet.class);
 
   /** The wrapper. */
   private Wrapper wrapper;

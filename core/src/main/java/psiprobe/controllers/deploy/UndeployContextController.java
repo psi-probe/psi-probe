@@ -12,6 +12,8 @@
 package psiprobe.controllers.deploy;
 
 import org.apache.catalina.Context;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.InternalResourceView;
 import org.springframework.web.servlet.view.RedirectView;
@@ -28,6 +30,9 @@ import javax.servlet.http.HttpServletResponse;
  * @author Andy Shapoval
  */
 public class UndeployContextController extends ContextHandlerController {
+
+  /** The Constant logger. */
+  private static final Logger logger = LoggerFactory.getLogger(UndeployContextController.class);
 
   /** The failure view name. */
   private String failureViewName;

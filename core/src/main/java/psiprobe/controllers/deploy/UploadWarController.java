@@ -20,6 +20,8 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.fileupload.servlet.ServletRequestContext;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.InternalResourceView;
 
@@ -41,6 +43,9 @@ import javax.servlet.http.HttpServletResponse;
  * @author Mark Lewis
  */
 public class UploadWarController extends TomcatContainerController {
+
+  /** The Constant logger. */
+  private static final Logger logger = LoggerFactory.getLogger(UploadWarController.class);
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,

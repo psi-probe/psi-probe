@@ -29,8 +29,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class WrapperInfoController extends ParameterizableViewController {
 
-  /** The logger. */
-  protected Logger logger = LoggerFactory.getLogger(getClass());
+  /** The Constant logger. */
+  private static final Logger logger = LoggerFactory.getLogger(WrapperInfoController.class);
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,

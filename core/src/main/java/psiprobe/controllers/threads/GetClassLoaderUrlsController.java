@@ -32,8 +32,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class GetClassLoaderUrlsController extends ParameterizableViewController {
 
-  /** The logger. */
-  protected Logger logger = LoggerFactory.getLogger(getClass());
+  /** The Constant logger. */
+  private static final Logger logger = LoggerFactory.getLogger(GetClassLoaderUrlsController.class);
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
