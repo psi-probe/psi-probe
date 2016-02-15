@@ -55,7 +55,7 @@ public class Cluster {
   private int mcastTtl;
   
   /** The members. */
-  private List<ClusterSender> members = new ArrayList<ClusterSender>();
+  private List<ClusterSender> members = new ArrayList<>();
   
   /** The tcp thread count. */
   private int tcpThreadCount;

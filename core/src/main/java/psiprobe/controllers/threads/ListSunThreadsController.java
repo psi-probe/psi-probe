@@ -50,7 +50,7 @@ public class ListSunThreadsController extends ParameterizableViewController {
     long[] allIds = (long[]) mbeanServer.getAttribute(threadingOName, "AllThreadIds");
 
     if (allIds != null) {
-      threads = new ArrayList<SunThread>(allIds.length);
+      threads = new ArrayList<>(allIds.length);
 
       for (long id : allIds) {
         CompositeData cd =

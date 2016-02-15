@@ -43,7 +43,7 @@ public class Connector {
   private long bytesSent;
   
   /** The request processors. */
-  private List<RequestProcessor> requestProcessors = new ArrayList<RequestProcessor>();
+  private List<RequestProcessor> requestProcessors = new ArrayList<>();
 
   /**
    * Gets the name.

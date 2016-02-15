@@ -26,7 +26,7 @@ import psiprobe.tools.logging.log4j.Log4JLoggerAccessor;
 public class GetAllDestinationsVisitor extends LoggerAccessorVisitor {
 
   /** The destinations. */
-  private final List<LogDestination> destinations = new ArrayList<LogDestination>();
+  private final List<LogDestination> destinations = new ArrayList<>();
 
   /**
    * Gets the destinations.

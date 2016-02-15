@@ -37,7 +37,7 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
    * @return the handlers
    */
   public List<LogDestination> getHandlers() {
-    List<LogDestination> handlerAccessors = new ArrayList<LogDestination>();
+    List<LogDestination> handlerAccessors = new ArrayList<>();
     try {
       Object[] handlers = (Object[]) MethodUtils.invokeMethod(getTarget(), "getHandlers", null);
       for (int h = 0; h < handlers.length; h++) {

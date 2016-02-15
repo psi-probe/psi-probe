@@ -48,10 +48,10 @@ public abstract class FlapListener extends ThresholdListener {
   
   /** The flaps. */
   private final HashMap<String, LinkedList<Boolean>> flaps =
-      new HashMap<String, LinkedList<Boolean>>();
+      new HashMap<>();
   
   /** The flapping states. */
-  private final HashMap<String, Boolean> flappingStates = new HashMap<String, Boolean>();
+  private final HashMap<String, Boolean> flappingStates = new HashMap<>();
 
   /**
    * Flapping started.
@@ -238,7 +238,7 @@ public abstract class FlapListener extends ThresholdListener {
   protected LinkedList<Boolean> getFlaps(String name) {
     LinkedList<Boolean> list = flaps.get(name);
     if (list == null) {
-      list = new LinkedList<Boolean>();
+      list = new LinkedList<>();
       flaps.put(name, list);
     }
     return list;

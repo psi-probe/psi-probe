@@ -47,7 +47,7 @@ public class RecompileJspController extends ContextHandlerController {
     Summary summary = (Summary) session.getAttribute(DisplayJspController.SUMMARY_ATTRIBUTE);
 
     if (request.getMethod().equalsIgnoreCase("post") && summary != null) {
-      List<String> names = new ArrayList<String>();
+      List<String> names = new ArrayList<>();
       for (Enumeration<String> e = request.getParameterNames(); e.hasMoreElements();) {
         String name = e.nextElement();
         if ("on".equals(request.getParameter(name))) {
@@ -59,7 +59,7 @@ public class RecompileJspController extends ContextHandlerController {
     } else if (summary != null && contextName.equals(summary.getName())) {
       String name = ServletRequestUtils.getStringParameter(request, "source", null);
       if (name != null) {
-        List<String> names = new ArrayList<String>();
+        List<String> names = new ArrayList<>();
         names.add(name);
         getContainerWrapper().getTomcatContainer().recompileJsps(context, summary, names);
         session.setAttribute(DisplayJspController.SUMMARY_ATTRIBUTE, summary);

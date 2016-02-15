@@ -76,7 +76,7 @@ public class ConnectionTestController extends ContextHandlerController {
         try {
           DatabaseMetaData md = conn.getMetaData();
 
-          List<Map<String, String>> dbMetaData = new ArrayList<Map<String, String>>();
+          List<Map<String, String>> dbMetaData = new ArrayList<>();
 
           addDbMetaDataEntry(dbMetaData, "probe.jsp.dataSourceTest.dbMetaData.dbProdName",
               md.getDatabaseProductName());
@@ -118,7 +118,7 @@ public class ConnectionTestController extends ContextHandlerController {
    * @param value the value
    */
   private void addDbMetaDataEntry(List<Map<String, String>> list, String name, String value) {
-    Map<String, String> entry = new LinkedHashMap<String, String>();
+    Map<String, String> entry = new LinkedHashMap<>();
     entry.put("propertyName", getMessageSourceAccessor().getMessage(name));
     entry.put("propertyValue", value);
     list.add(entry);

@@ -33,7 +33,7 @@ public class TomcatSlf4jLogbackLoggerAccessor extends DefaultAccessor {
    */
   public List<TomcatSlf4jLogbackAppenderAccessor> getAppenders() {
     List<TomcatSlf4jLogbackAppenderAccessor> appenders =
-        new ArrayList<TomcatSlf4jLogbackAppenderAccessor>();
+        new ArrayList<>();
 
     try {
       Iterator<Object> it =
@@ -152,7 +152,7 @@ public class TomcatSlf4jLogbackLoggerAccessor extends DefaultAccessor {
       if (tracker != null) {
         return (List<Object>) MethodUtils.invokeMethod(tracker, "valueList", null);
       }
-      return new ArrayList<Object>();
+      return new ArrayList<>();
     }
     return null;
   }

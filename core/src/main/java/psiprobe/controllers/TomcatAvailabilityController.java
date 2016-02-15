@@ -122,8 +122,8 @@ public class TomcatAvailabilityController extends TomcatContainerController {
     // try to open some files
     File tmpDir = new File(System.getProperty("java.io.tmpdir"));
     int fileCount = tomcatTestReport.getDefaultFileCount();
-    List<File> files = new ArrayList<File>();
-    List<FileOutputStream> fileStreams = new ArrayList<FileOutputStream>();
+    List<File> files = new ArrayList<>();
+    List<FileOutputStream> fileStreams = new ArrayList<>();
 
     try {
       for (; fileCount > 0; fileCount--) {

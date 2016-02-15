@@ -84,7 +84,7 @@ public class Tomcat70ContainerAdapter extends AbstractTomcatContainer {
   protected List<FilterMapping> getFilterMappings(FilterMap fmap, String dm, String filterClass) {
     String[] urls = fmap.getURLPatterns();
     String[] servlets = fmap.getServletNames();
-    List<FilterMapping> results = new ArrayList<FilterMapping>(urls.length + servlets.length);
+    List<FilterMapping> results = new ArrayList<>(urls.length + servlets.length);
     for (String url : urls) {
       FilterMapping fm = new FilterMapping();
       fm.setUrl(url);
@@ -151,7 +151,7 @@ public class Tomcat70ContainerAdapter extends AbstractTomcatContainer {
   @Override
   public List<FilterMapping> getApplicationFilterMaps(Context context) {
     FilterMap[] fms = context.findFilterMaps();
-    List<FilterMapping> filterMaps = new ArrayList<FilterMapping>(fms.length);
+    List<FilterMapping> filterMaps = new ArrayList<>(fms.length);
     for (FilterMap filterMap : fms) {
       if (filterMap != null) {
         String dm;
@@ -200,7 +200,7 @@ public class Tomcat70ContainerAdapter extends AbstractTomcatContainer {
   @Override
   public List<FilterInfo> getApplicationFilters(Context context) {
     FilterDef[] fds = context.findFilterDefs();
-    List<FilterInfo> filterDefs = new ArrayList<FilterInfo>(fds.length);
+    List<FilterInfo> filterDefs = new ArrayList<>(fds.length);
     for (FilterDef filterDef : fds) {
       if (filterDef != null) {
         FilterInfo fi = getFilterInfo(filterDef);
@@ -245,13 +245,13 @@ public class Tomcat70ContainerAdapter extends AbstractTomcatContainer {
      * creating a set of parameter names that are declared in a context descriptor and can not be
      * ovevridden in a deployment descriptor.
      */
-    Set<String> nonOverridableParams = new HashSet<String>();
+    Set<String> nonOverridableParams = new HashSet<>();
     for (ApplicationParameter appParam : context.findApplicationParameters()) {
       if (appParam != null && !appParam.getOverride()) {
         nonOverridableParams.add(appParam.getName());
       }
     }
-    List<ApplicationParam> initParams = new ArrayList<ApplicationParam>();
+    List<ApplicationParam> initParams = new ArrayList<>();
     ServletContext servletCtx = context.getServletContext();
     for (Enumeration<String> e = servletCtx.getInitParameterNames(); e.hasMoreElements();) {
       String paramName = e.nextElement();

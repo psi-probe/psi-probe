@@ -54,7 +54,7 @@ public class LogResolverBean {
   private ContainerWrapperBean containerWrapper;
   
   /** The stdout files. */
-  private List<String> stdoutFiles = new ArrayList<String>();
+  private List<String> stdoutFiles = new ArrayList<>();
 
   /**
    * Gets the container wrapper.
@@ -105,7 +105,7 @@ public class LogResolverBean {
       //
       // this list has to guarantee the order in which elements are added
       //
-      List<LogDestination> uniqueList = new LinkedList<LogDestination>();
+      List<LogDestination> uniqueList = new LinkedList<>();
       LogComparator cmp = new LogDestinationComparator(all);
 
       Collections.sort(allAppenders, cmp);
@@ -128,7 +128,7 @@ public class LogResolverBean {
    * @return the log sources
    */
   public List<LogDestination> getLogSources(File logFile) {
-    List<LogDestination> filtered = new LinkedList<LogDestination>();
+    List<LogDestination> filtered = new LinkedList<>();
     List<LogDestination> sources = getLogSources();
     for (LogDestination dest : sources) {
       if (logFile.equals(dest.getFile())) {
@@ -144,7 +144,7 @@ public class LogResolverBean {
    * @return the log sources
    */
   public List<LogDestination> getLogSources() {
-    List<LogDestination> sources = new LinkedList<LogDestination>();
+    List<LogDestination> sources = new LinkedList<>();
 
     List<LogDestination> allAppenders = getAllLogDestinations();
     if (allAppenders != null) {
@@ -167,7 +167,7 @@ public class LogResolverBean {
    */
   private List<LogDestination> getAllLogDestinations() {
     if (Instruments.isInitialized()) {
-      List<LogDestination> allAppenders = new ArrayList<LogDestination>();
+      List<LogDestination> allAppenders = new ArrayList<>();
 
       //
       // interrogate classloader hierarchy

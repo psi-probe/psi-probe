@@ -35,7 +35,7 @@ import javax.servlet.http.HttpServletResponse;
 public class SysInfoController extends TomcatContainerController {
 
   /** The filter out keys. */
-  private List<String> filterOutKeys = new ArrayList<String>();
+  private List<String> filterOutKeys = new ArrayList<>();
   
   /** The runtime info accessor. */
   private RuntimeInfoAccessorBean runtimeInfoAccessor;
@@ -106,7 +106,7 @@ public class SysInfoController extends TomcatContainerController {
         .getAbsolutePath());
     systemInformation.setConfigBase(getContainerWrapper().getTomcatContainer().getConfigBase());
 
-    Map<String, String> sysProps = new HashMap<String, String>();
+    Map<String, String> sysProps = new HashMap<>();
     for (String propertyName : System.getProperties().stringPropertyNames()) {
       String propertyValue = System.getProperties().getProperty(propertyName);
       sysProps.put(propertyName, propertyValue);

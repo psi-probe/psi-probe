@@ -109,7 +109,7 @@ public class LogbackFactoryAccessor extends DefaultAccessor {
    * @return a list of {@link LogbackAppenderAccessor}s representing all appenders that are in use
    */
   public List<LogbackAppenderAccessor> getAppenders() {
-    List<LogbackAppenderAccessor> appenders = new ArrayList<LogbackAppenderAccessor>();
+    List<LogbackAppenderAccessor> appenders = new ArrayList<>();
     try {
       Class clazz = getTarget().getClass();
       Method getLoggerList = MethodUtils

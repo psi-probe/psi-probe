@@ -33,7 +33,7 @@ public class DataSourceTestInfo implements Serializable {
   private List<Map<String, String>> results;
   
   /** The query history. */
-  private LinkedList<String> queryHistory = new LinkedList<String>();
+  private LinkedList<String> queryHistory = new LinkedList<>();
   
   /** The max rows. */
   private int maxRows;

@@ -108,7 +108,7 @@ public class MultipleSeriesProvider extends AbstractSeriesProvider {
 
     Map<String, List<XYDataItem>> statMap = statsCollection.getStatsByPrefix(statNamePrefix);
     boolean useTop = getTop() > 0 && getTop() < statMap.size();
-    List<Series> seriesList = new ArrayList<Series>();
+    List<Series> seriesList = new ArrayList<>();
 
     for (Map.Entry<String, List<XYDataItem>> entry : statMap.entrySet()) {
       Series ser = new Series(entry);
