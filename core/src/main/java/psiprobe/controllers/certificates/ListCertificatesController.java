@@ -55,7 +55,20 @@ public class ListCertificatesController extends TomcatContainerController {
       }
     }
 
-    return new ModelAndView(getViewName()).addObject("connectors", infos);
+    ModelAndView modelAndView = new ModelAndView(getViewName());
+
+    // Acquiring System configured Trust Store
+    String trustStore = System.getProperty("javax.net.ssl.trustStore");
+    String trustStorePassword = System.getProperty("javax.net.ssl.trustStorePassword");
+    if (trustStore != null && !"".equals(trustStore)) {
+      File trustStoreFile = new File(trustStore);
+      if (trustStoreFile.exists()) {
+        List<Cert> certs = getCertificates(null, trustStoreFile, trustStorePassword);
+        modelAndView.addObject("systemCerts", certs);
+      }
+    }
+
+    return modelAndView.addObject("connectors", infos);
   }
 
   public List<Cert> getCertificates(String storeType, File storeFile, String storePassword) {
@@ -84,9 +97,9 @@ public class ListCertificatesController extends TomcatContainerController {
       Enumeration<String> keystoreAliases = keyStore.aliases();
       while (keystoreAliases.hasMoreElements()) {
         String alias = keystoreAliases.nextElement();
-        
+
         Certificate[] certificateChain = keyStore.getCertificateChain(alias);
-        
+
         if (certificateChain != null) {
           for (int i = 0; i < certificateChain.length; i++) {
             X509Certificate x509Cert = (X509Certificate) certificateChain[i];

@@ -33,13 +33,20 @@
 	<body>
 
 		<div id="certificates">
+			<c:if test="${systemCerts != null}">
+				<c:set var="certs" value="${systemCerts}" scope="request" />
+				<p>System Trust Store</p>
+				<jsp:include page="certificates_table.jsp" />
+			</c:if>
+
 			<c:forEach items="${connectors}" var="connector">
-			
+
 				<c:if test="${connector.keyStoreCerts != null}">
 					<c:set var="certs" value="${connector.keyStoreCerts}" scope="request" />
 					<p>Key Store</p>
 					<jsp:include page="certificates_table.jsp" />
 				</c:if>
+
 				<c:if test="${connector.trustStoreCerts != null}">
 					<c:set var="certs" value="${connector.trustStoreCerts}" scope="request" />
 					<p>Trust Store</p>
