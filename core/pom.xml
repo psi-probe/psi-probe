@@ -156,8 +156,8 @@
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.jboss.spec.javax.transaction</groupId>
-			<artifactId>jboss-transaction-api_1.2_spec</artifactId>
+			<groupId>javax.transaction</groupId>
+			<artifactId>javax.transaction-api</artifactId>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
