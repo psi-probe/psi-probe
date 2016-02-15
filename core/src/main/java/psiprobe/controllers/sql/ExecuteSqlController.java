@@ -111,22 +111,18 @@ public class ExecuteSqlController extends ContextHandlerController {
 
       try {
         // TODO: use Spring's jdbc template?
-        Connection conn = dataSource.getConnection();
-
-        try {
+        try (Connection conn = dataSource.getConnection()){
           conn.setAutoCommit(true);
-          PreparedStatement stmt = conn.prepareStatement(sql);
 
-          try {
+          try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             boolean hasResultSet = stmt.execute();
 
             if (!hasResultSet) {
               rowsAffected = stmt.getUpdateCount();
             } else {
               results = new ArrayList<>();
-              ResultSet rs = stmt.getResultSet();
 
-              try {
+              try (ResultSet rs = stmt.getResultSet()) {
                 ResultSetMetaData metaData = rs.getMetaData();
 
                 while (rs.next() && (maxRows < 0 || results.size() < maxRows)) {
@@ -160,17 +156,11 @@ public class ExecuteSqlController extends ContextHandlerController {
 
                   results.add(record);
                 }
-              } finally {
-                rs.close();
               }
 
               rowsAffected = results.size();
             }
-          } finally {
-            stmt.close();
           }
-        } finally {
-          conn.close();
         }
 
         // store the query results in the session attribute in order

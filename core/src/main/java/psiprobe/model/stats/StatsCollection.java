@@ -238,11 +238,8 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
     long start = System.currentTimeMillis();
     try {
       shiftFiles(0);
-      OutputStream os = new FileOutputStream(makeFile());
-      try {
+      try (OutputStream os = new FileOutputStream(makeFile())) {
         new XStream().toXML(statsData, os);
-      } finally {
-        os.close();
       }
     } catch (Exception e) {
       logger.error("Could not write stats data to '{}'", makeFile().getAbsolutePath(), e);
@@ -263,8 +260,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
     if (file.exists() && file.canRead()) {
       long start = System.currentTimeMillis();
       try {
-        FileInputStream fis = new FileInputStream(file);
-        try {
+        try (FileInputStream fis = new FileInputStream(file)) {
           stats = (Map<String, List<XYDataItem>>) (new XStream().fromXML(fis));
 
           if (stats != null) {
@@ -285,8 +281,6 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
               }
             }
           }
-        } finally {
-          fis.close();
         }
         logger.debug("stats data read in {}ms", (System.currentTimeMillis() - start));
       } catch (Exception e) {
