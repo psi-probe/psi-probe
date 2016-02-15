@@ -31,10 +31,7 @@ public class SimpleAccessor implements Accessor {
     boolean accessible = pre(field);
     try {
       return get0(obj, field);
-    } catch (IllegalArgumentException e) {
-      logger.trace("", e);
-      return null;
-    } catch (IllegalAccessException e) {
+    } catch (IllegalArgumentException | IllegalAccessException e) {
       logger.trace("", e);
       return null;
     } finally {
