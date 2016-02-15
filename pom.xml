@@ -85,10 +85,10 @@
 		</repository>
 	</distributionManagement>
 	<properties>
-		<maven.compiler.source>1.6</maven.compiler.source>
-		<maven.compiler.target>1.6</maven.compiler.target>
-		<maven.compiler.testSource>1.6</maven.compiler.testSource>
-		<maven.compiler.testTarget>1.6</maven.compiler.testTarget>
+		<maven.compiler.source>1.7</maven.compiler.source>
+		<maven.compiler.target>1.7</maven.compiler.target>
+		<maven.compiler.testSource>1.7</maven.compiler.testSource>
+		<maven.compiler.testTarget>1.7</maven.compiler.testTarget>
 
 		<checkstyle.configLocation>google_checks.xml</checkstyle.configLocation>
 		<copyright>2016</copyright>
