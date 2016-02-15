@@ -33,7 +33,7 @@ public class LogbackLoggerAccessor extends DefaultAccessor {
    * @return a list of {@link LogbackAppenderAccessor}s
    */
   public List<LogbackAppenderAccessor> getAppenders() {
-    List<LogbackAppenderAccessor> appenders = new ArrayList<LogbackAppenderAccessor>();
+    List<LogbackAppenderAccessor> appenders = new ArrayList<>();
     try {
       Iterator<Object> it =
           (Iterator<Object>) MethodUtils.invokeMethod(getTarget(), "iteratorForAppenders", null);
@@ -154,7 +154,7 @@ public class LogbackLoggerAccessor extends DefaultAccessor {
             return (List<Object>) MethodUtils.invokeMethod(tracker, "valueList", null);
         }
       }
-      return new ArrayList<Object>();
+      return new ArrayList<>();
     }
     return null;
   }

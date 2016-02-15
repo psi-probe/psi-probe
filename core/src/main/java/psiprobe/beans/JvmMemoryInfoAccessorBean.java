@@ -45,7 +45,7 @@ public class JvmMemoryInfoAccessorBean {
    */
   public List<MemoryPool> getPools() throws Exception {
 
-    List<MemoryPool> memoryPools = new LinkedList<MemoryPool>();
+    List<MemoryPool> memoryPools = new LinkedList<>();
     MBeanServer mbeanServer = new Registry().getMBeanServer();
     Set<ObjectInstance> memoryOPools =
         mbeanServer.queryMBeans(new ObjectName("java.lang:type=MemoryPool,*"), null);

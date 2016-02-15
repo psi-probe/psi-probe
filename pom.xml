@@ -85,10 +85,10 @@
 		</repository>
 	</distributionManagement>
 	<properties>
-		<maven.compiler.source>1.6</maven.compiler.source>
-		<maven.compiler.target>1.6</maven.compiler.target>
-		<maven.compiler.testSource>1.6</maven.compiler.testSource>
-		<maven.compiler.testTarget>1.6</maven.compiler.testTarget>
+		<maven.compiler.source>1.7</maven.compiler.source>
+		<maven.compiler.target>1.7</maven.compiler.target>
+		<maven.compiler.testSource>1.7</maven.compiler.testSource>
+		<maven.compiler.testTarget>1.7</maven.compiler.testTarget>
 
 		<checkstyle.configLocation>google_checks.xml</checkstyle.configLocation>
 		<copyright>2016</copyright>
@@ -344,9 +344,9 @@
 				<version>2.18</version>
 			</dependency>
 			<dependency>
-				<groupId>org.jboss.spec.javax.transaction</groupId>
-				<artifactId>jboss-transaction-api_1.2_spec</artifactId>
-				<version>1.0.0.Final</version>
+				<groupId>javax.transaction</groupId>
+				<artifactId>javax.transaction-api</artifactId>
+				<version>1.2</version>
 			</dependency>
 			<dependency>
 				<groupId>org.quartz-scheduler</groupId>

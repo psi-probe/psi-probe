@@ -53,11 +53,8 @@ public class ViewServletSourceController extends ContextHandlerController {
       if (servletName != null) {
         File servletFile = new File(servletName);
         if (servletFile.exists()) {
-          FileInputStream fis = new FileInputStream(servletFile);
-          try {
+          try (FileInputStream fis = new FileInputStream(servletFile)) {
             content = Utils.highlightStream(jspName, fis, "java", encoding);
-          } finally {
-            fis.close();
           }
         }
       }

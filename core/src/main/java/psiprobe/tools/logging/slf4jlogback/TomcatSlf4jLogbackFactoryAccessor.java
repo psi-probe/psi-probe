@@ -115,7 +115,7 @@ public class TomcatSlf4jLogbackFactoryAccessor extends DefaultAccessor {
    */
   public List<TomcatSlf4jLogbackAppenderAccessor> getAppenders() {
     List<TomcatSlf4jLogbackAppenderAccessor> appenders =
-        new ArrayList<TomcatSlf4jLogbackAppenderAccessor>();
+        new ArrayList<>();
     try {
       Class clazz = getTarget().getClass();
       Method getLoggerList = MethodUtils

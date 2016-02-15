@@ -41,10 +41,10 @@ public abstract class AbstractStatsCollectorBean {
   private List<StatsCollectionListener> listeners;
   
   /** The previous data. */
-  private final Map<String, Long> previousData = new TreeMap<String, Long>();
+  private final Map<String, Long> previousData = new TreeMap<>();
   
   /** The previous data2 d. */
-  private final Map<String, Entry> previousData2D = new TreeMap<String, Entry>();
+  private final Map<String, Entry> previousData2D = new TreeMap<>();
 
   /**
    * Gets the stats collection.

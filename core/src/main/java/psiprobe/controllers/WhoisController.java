@@ -123,17 +123,14 @@ public class WhoisController extends ParameterizableViewController {
     }
 
     if (wh != null) {
-      lines = new ArrayList<String>(50);
-      BufferedReader br =
+      lines = new ArrayList<>(50);
+      try (BufferedReader br =
           new BufferedReader(new InputStreamReader(new ByteArrayInputStream(wh.getSummary()
-              .getBytes())));
-      try {
+              .getBytes())))) {
         String line;
         while ((line = br.readLine()) != null) {
           lines.add(line);
         }
-      } finally {
-        br.close();
       }
     }
 

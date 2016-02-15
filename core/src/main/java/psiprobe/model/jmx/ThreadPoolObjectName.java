@@ -31,7 +31,7 @@ public class ThreadPoolObjectName {
   private ObjectName globalRequestProcessorName;
   
   /** The request processor names. */
-  private List<ObjectName> requestProcessorNames = new ArrayList<ObjectName>();
+  private List<ObjectName> requestProcessorNames = new ArrayList<>();
 
   /**
    * Gets the thread pool name.

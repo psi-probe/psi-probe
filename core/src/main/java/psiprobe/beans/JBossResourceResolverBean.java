@@ -72,7 +72,7 @@ public class JBossResourceResolverBean implements ResourceResolver {
   @Override
   public List<ApplicationResource> getApplicationResources() throws NamingException {
 
-    List<ApplicationResource> resources = new ArrayList<ApplicationResource>();
+    List<ApplicationResource> resources = new ArrayList<>();
 
     MBeanServer server = getMBeanServer();
     if (server != null) {
@@ -148,7 +148,7 @@ public class JBossResourceResolverBean implements ResourceResolver {
    * @throws NamingException the naming exception
    */
   public List<ApplicationResource> getApplicationResources(Context context) throws NamingException {
-    return new ArrayList<ApplicationResource>();
+    return new ArrayList<>();
   }
 
   @Override

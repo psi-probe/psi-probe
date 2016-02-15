@@ -40,7 +40,7 @@ public class FollowController extends LogHandlerController {
     File file = logDest.getFile();
 
     if (file.exists()) {
-      LinkedList<String> lines = new LinkedList<String>();
+      LinkedList<String> lines = new LinkedList<>();
       long actualLength = file.length();
       long lastKnownLength = ServletRequestUtils.getLongParameter(request, "lastKnownLength", 0);
       long currentLength =
@@ -55,8 +55,7 @@ public class FollowController extends LogHandlerController {
         lines.add(" ------------- THE FILE HAS BEEN TRUNCATED --------------");
       }
 
-      BackwardsFileStream bfs = new BackwardsFileStream(file, currentLength);
-      try {
+      try (BackwardsFileStream bfs = new BackwardsFileStream(file, currentLength)){
         BackwardsLineReader br;
         if (logDest.getEncoding() != null) {
           br = new BackwardsLineReader(bfs, logDest.getEncoding());
@@ -81,8 +80,6 @@ public class FollowController extends LogHandlerController {
         if (lastKnownLength != 0 && readSize > totalReadSize) {
           lines.removeFirst();
         }
-      } finally {
-        bfs.close();
       }
 
       mv.addObject("lines", lines);

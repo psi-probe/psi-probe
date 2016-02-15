@@ -68,7 +68,7 @@ public class ServletInfo {
   private int maxInstances;
   
   /** The mappings. */
-  private List<String> mappings = new ArrayList<String>();
+  private List<String> mappings = new ArrayList<>();
 
   /**
    * Gets the application name.

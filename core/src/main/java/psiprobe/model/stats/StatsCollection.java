@@ -49,7 +49,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
   private static final Logger logger = LoggerFactory.getLogger(StatsCollection.class);
 
   /** The stats data. */
-  private Map<String, List<XYDataItem>> statsData = new TreeMap<String, List<XYDataItem>>();
+  private Map<String, List<XYDataItem>> statsData = new TreeMap<>();
   
   /** The swap file name. */
   private String swapFileName;
@@ -193,7 +193,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
    *         series.
    */
   public synchronized Map<String, List<XYDataItem>> getStatsByPrefix(String statNamePrefix) {
-    Map<String, List<XYDataItem>> map = new HashMap<String, List<XYDataItem>>();
+    Map<String, List<XYDataItem>> map = new HashMap<>();
     for (Map.Entry<String, List<XYDataItem>> en : statsData.entrySet()) {
       if (en.getKey().startsWith(statNamePrefix)) {
         map.put(en.getKey(), en.getValue());
@@ -238,11 +238,8 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
     long start = System.currentTimeMillis();
     try {
       shiftFiles(0);
-      OutputStream os = new FileOutputStream(makeFile());
-      try {
+      try (OutputStream os = new FileOutputStream(makeFile())) {
         new XStream().toXML(statsData, os);
-      } finally {
-        os.close();
       }
     } catch (Exception e) {
       logger.error("Could not write stats data to '{}'", makeFile().getAbsolutePath(), e);
@@ -263,8 +260,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
     if (file.exists() && file.canRead()) {
       long start = System.currentTimeMillis();
       try {
-        FileInputStream fis = new FileInputStream(file);
-        try {
+        try (FileInputStream fis = new FileInputStream(file)) {
           stats = (Map<String, List<XYDataItem>>) (new XStream().fromXML(fis));
 
           if (stats != null) {
@@ -285,8 +281,6 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
               }
             }
           }
-        } finally {
-          fis.close();
         }
         logger.debug("stats data read in {}ms", (System.currentTimeMillis() - start));
       } catch (Exception e) {

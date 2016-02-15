@@ -83,11 +83,8 @@ public class Utils {
    */
   public static String readFile(File file, String charsetName) throws IOException {
     String result = null;
-    FileInputStream fis = new FileInputStream(file);
-    try {
+    try (FileInputStream fis = new FileInputStream(file)) {
       result = readStream(fis, charsetName);
-    } finally {
-      fis.close();
     }
     return result;
   }
@@ -116,14 +113,11 @@ public class Utils {
     }
 
     StringBuilder out = new StringBuilder();
-    BufferedReader reader = new BufferedReader(new InputStreamReader(is, charset), 4096);
-    try {
+    try (BufferedReader reader = new BufferedReader(new InputStreamReader(is, charset), 4096)) {
       String line;
       while ((line = reader.readLine()) != null) {
         out.append(line).append("\n");
       }
-    } finally {
-      reader.close();
     }
 
     return out.toString();
@@ -275,8 +269,7 @@ public class Utils {
     contentTypeTokenizer.addSymbol(";", true);
 
 
-    Reader reader = new InputStreamReader(is, "ISO-8859-1");
-    try {
+    try (Reader reader = new InputStreamReader(is, "ISO-8859-1")) {
       jspTokenizer.setReader(reader);
       while (jspTokenizer.hasMore()) {
         Token token = jspTokenizer.nextToken();
@@ -306,8 +299,6 @@ public class Utils {
           }
         }
       }
-    } finally {
-      reader.close();
     }
 
     if (encoding == null && contentType != null) {
@@ -335,9 +326,8 @@ public class Utils {
   public static void sendFile(HttpServletRequest request, HttpServletResponse response, File file)
       throws IOException {
 
-    OutputStream out = response.getOutputStream();
-    RandomAccessFile raf = new RandomAccessFile(file, "r");
-    try {
+    try (OutputStream out = response.getOutputStream();
+            RandomAccessFile raf = new RandomAccessFile(file, "r")) {
       long fileSize = raf.length();
       long rangeStart = 0;
       long rangeFinish = fileSize - 1;
@@ -406,8 +396,6 @@ public class Utils {
           break;
         }
       }
-    } finally {
-      raf.close();
     }
   }
 
@@ -498,10 +486,8 @@ public class Utils {
    */
   public static void sendCompressedFile(HttpServletRequest request, HttpServletResponse response, File file)
       throws IOException {
-    
-    ZipOutputStream zip = new ZipOutputStream(response.getOutputStream());
-    InputStream fileInput = new BufferedInputStream(new FileInputStream(file));
-    try {
+    try (ZipOutputStream zip = new ZipOutputStream(response.getOutputStream());
+            InputStream fileInput = new BufferedInputStream(new FileInputStream(file))) {
       // set some headers
       response.setContentType("application/zip");
       response.setHeader("Content-Disposition", "attachment; filename=" + file.getName() + ".zip");
@@ -516,9 +502,6 @@ public class Utils {
           zip.write(buffer, 0, (int) len);
       }
       zip.closeEntry();
-      zip.close();
-    } finally {
-      fileInput.close();
     }
   }
 
@@ -549,7 +532,7 @@ public class Utils {
    * @return the names for locale
    */
   public static List<String> getNamesForLocale(String baseName, Locale locale) {
-    List<String> result = new ArrayList<String>(3);
+    List<String> result = new ArrayList<>(3);
     String language = locale.getLanguage();
     String country = locale.getCountry();
     String variant = locale.getVariant();

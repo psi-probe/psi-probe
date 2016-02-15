@@ -243,7 +243,7 @@ public class ApplicationUtils {
       long size = 0;
 
       HttpSession httpSession = session.getSession();
-      Set<Object> processedObjects = new HashSet<Object>(1000);
+      Set<Object> processedObjects = new HashSet<>(1000);
 
       // Exclude references back to the session itself
       processedObjects.add(httpSession);
@@ -309,7 +309,7 @@ public class ApplicationUtils {
    * @return the application attributes
    */
   public static List<Attribute> getApplicationAttributes(Context context) {
-    List<Attribute> attrs = new ArrayList<Attribute>();
+    List<Attribute> attrs = new ArrayList<>();
     ServletContext servletCtx = context.getServletContext();
     for (Enumeration<String> e = servletCtx.getAttributeNames(); e.hasMoreElements();) {
       String attrName = e.nextElement();
@@ -393,7 +393,7 @@ public class ApplicationUtils {
    */
   public static List<ServletInfo> getApplicationServlets(Context context) {
     Container[] cns = context.findChildren();
-    List<ServletInfo> servlets = new ArrayList<ServletInfo>(cns.length);
+    List<ServletInfo> servlets = new ArrayList<>(cns.length);
     for (Container container : cns) {
       if (container instanceof Wrapper) {
         Wrapper wrapper = (Wrapper) container;
@@ -411,7 +411,7 @@ public class ApplicationUtils {
    */
   public static List<ServletMapping> getApplicationServletMaps(Context context) {
     String[] sms = context.findServletMappings();
-    List<ServletMapping> servletMaps = new ArrayList<ServletMapping>(sms.length);
+    List<ServletMapping> servletMaps = new ArrayList<>(sms.length);
     for (String servletMapping : sms) {
       if (servletMapping != null) {
         String sn = context.findServletMapping(servletMapping);

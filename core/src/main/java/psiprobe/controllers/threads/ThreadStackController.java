@@ -90,7 +90,7 @@ public class ThreadStackController extends ParameterizableViewController {
         CompositeData[] elements = (CompositeData[]) cd.get("stackTrace");
         threadName = JmxTools.getStringAttr(cd, "threadName");
 
-        stack = new ArrayList<ThreadStackElement>(elements.length);
+        stack = new ArrayList<>(elements.length);
 
         for (CompositeData cd2 : elements) {
           ThreadStackElement tse = new ThreadStackElement();

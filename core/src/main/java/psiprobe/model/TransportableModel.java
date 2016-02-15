@@ -22,7 +22,7 @@ import java.util.Map;
 public class TransportableModel {
 
   /** The items. */
-  private Map<String, Object> items = new HashMap<String, Object>();
+  private Map<String, Object> items = new HashMap<>();
 
   /**
    * Gets the items.

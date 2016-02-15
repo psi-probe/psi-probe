@@ -36,7 +36,7 @@ public class Log4JLoggerAccessor extends DefaultAccessor {
    * @return the appenders
    */
   public List<Log4JAppenderAccessor> getAppenders() {
-    List<Log4JAppenderAccessor> appenders = new ArrayList<Log4JAppenderAccessor>();
+    List<Log4JAppenderAccessor> appenders = new ArrayList<>();
     try {
       Enumeration allAppenders = (Enumeration) MethodUtils
           .invokeMethod(getTarget(), "getAllAppenders", null);
