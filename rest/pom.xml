@@ -12,7 +12,7 @@
     <packaging>jar</packaging>
     <name>psi-probe-rest</name>
     <description>
-        PSI Probe Core - Core logic, data models, and controllers
+        PSI Probe Rest - RESTful service endpoints.
     </description>
     <scm>
         <connection>scm:git:ssh://git@github.com:psi-probe/psi-probe.git</connection>
