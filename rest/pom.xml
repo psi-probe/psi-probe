@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.github.psi-probe</groupId>
+        <artifactId>psi-probe</artifactId>
+        <version>3.0.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>psi-probe-rest</artifactId>
+    <packaging>jar</packaging>
+    <name>psi-probe-rest</name>
+    <description>
+        PSI Probe REST - RESTful services to provide information about running container.
+    </description>
+    <scm>
+        <connection>scm:git:ssh://git@github.com:psi-probe/psi-probe.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com:psi-probe/psi-probe.git</developerConnection>
+        <url>https://github.com/psi-probe/psi-probe/</url>
+    </scm>
+    <properties>
+        <git.relative.path>../</git.relative.path>
+    </properties>
+    <dependencies>
+
+    </dependencies>
+</project>
