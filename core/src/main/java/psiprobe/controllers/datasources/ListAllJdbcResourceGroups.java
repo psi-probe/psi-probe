@@ -39,8 +39,8 @@ public class ListAllJdbcResourceGroups extends TomcatContainerController {
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
     
-    List<DataSourceInfoGroup> dataSourceGroups = new ArrayList<DataSourceInfoGroup>();
-    List<DataSourceInfo> dataSources = new ArrayList<DataSourceInfo>();
+    List<DataSourceInfoGroup> dataSourceGroups = new ArrayList<>();
+    List<DataSourceInfo> dataSources = new ArrayList<>();
 
     List<ApplicationResource> privateResources = getContainerWrapper().getPrivateDataSources();
     List<ApplicationResource> globalResources = getContainerWrapper().getGlobalDataSources();

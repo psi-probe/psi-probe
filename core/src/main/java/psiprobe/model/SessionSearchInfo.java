@@ -68,10 +68,10 @@ public class SessionSearchInfo implements Serializable {
   private String attrName;
   
   /** The attr name patterns. */
-  private final List<Pattern> attrNamePatterns = new ArrayList<Pattern>();
+  private final List<Pattern> attrNamePatterns = new ArrayList<>();
   
   /** The attr name msgs. */
-  private final List<String> attrNameMsgs = new ArrayList<String>();
+  private final List<String> attrNameMsgs = new ArrayList<>();
   
   /** The age from. */
   private String ageFrom;
@@ -104,7 +104,7 @@ public class SessionSearchInfo implements Serializable {
   private String infoMessage;
   
   /** The error messages. */
-  private final List<String> errorMessages = new ArrayList<String>();
+  private final List<String> errorMessages = new ArrayList<>();
 
   /**
    * Checks if is empty.

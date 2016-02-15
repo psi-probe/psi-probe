@@ -549,7 +549,7 @@ public class Utils {
    * @return the names for locale
    */
   public static List<String> getNamesForLocale(String baseName, Locale locale) {
-    List<String> result = new ArrayList<String>(3);
+    List<String> result = new ArrayList<>(3);
     String language = locale.getLanguage();
     String country = locale.getCountry();
     String variant = locale.getVariant();

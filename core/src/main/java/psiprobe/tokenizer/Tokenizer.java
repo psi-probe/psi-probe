@@ -96,7 +96,7 @@ public class Tokenizer {
    * @param cacheBufferSize the cache buffer size
    */
   public Tokenizer(Reader reader, int cacheBufferSize) {
-    symbols = new UniqueList<TokenizerSymbol>();
+    symbols = new UniqueList<>();
     token = new TokenizerToken();
     upcomingToken = new TokenizerToken();
     cacheBuffer = new char[cacheBufferSize];

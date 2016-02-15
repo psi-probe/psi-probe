@@ -149,7 +149,7 @@ public class ContainerListenerBean implements NotificationListener {
     String serverName = getContainerWrapper().getTomcatContainer().getName();
     Set<ObjectInstance> threadPools =
         server.queryMBeans(new ObjectName(serverName + ":type=ThreadPool,*"), null);
-    poolNames = new ArrayList<ThreadPoolObjectName>(threadPools.size());
+    poolNames = new ArrayList<>(threadPools.size());
     for (ObjectInstance threadPool : threadPools) {
 
       ThreadPoolObjectName threadPoolObjectName = new ThreadPoolObjectName();
@@ -184,7 +184,7 @@ public class ContainerListenerBean implements NotificationListener {
 
     Set<ObjectInstance> executors =
         server.queryMBeans(new ObjectName(serverName + ":type=Executor,*"), null);
-    executorNames = new ArrayList<ObjectName>(executors.size());
+    executorNames = new ArrayList<>(executors.size());
     for (ObjectInstance executor : executors) {
       ObjectName executorName = executor.getObjectName();
       executorNames.add(executorName);
@@ -207,7 +207,7 @@ public class ContainerListenerBean implements NotificationListener {
       initialize();
     }
 
-    List<ThreadPool> threadPools = new ArrayList<ThreadPool>(poolNames.size());
+    List<ThreadPool> threadPools = new ArrayList<>(poolNames.size());
 
     MBeanServer server = getContainerWrapper().getResourceResolver().getMBeanServer();
 
@@ -271,7 +271,7 @@ public class ContainerListenerBean implements NotificationListener {
       initialize();
     }
 
-    List<Connector> connectors = new ArrayList<Connector>(poolNames.size());
+    List<Connector> connectors = new ArrayList<>(poolNames.size());
 
     MBeanServer server = getContainerWrapper().getResourceResolver().getMBeanServer();
 

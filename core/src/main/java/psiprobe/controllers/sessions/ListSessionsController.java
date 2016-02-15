@@ -93,11 +93,11 @@ public class ListSessionsController extends ContextHandlerController {
     if (context == null) {
       ctxs = getContainerWrapper().getTomcatContainer().findContexts();
     } else {
-      ctxs = new ArrayList<Context>();
+      ctxs = new ArrayList<>();
       ctxs.add(context);
     }
 
-    List<ApplicationSession> sessionList = new ArrayList<ApplicationSession>();
+    List<ApplicationSession> sessionList = new ArrayList<>();
     for (Context ctx : ctxs) {
       if (ctx != null && ctx.getManager() != null
           && (!searchInfo.isApply() || searchInfo.isUseSearch())) {
@@ -204,7 +204,7 @@ public class ListSessionsController extends ContextHandlerController {
 
       if (sessionMatches && searchInfo.isUseAttrName()) {
         boolean attrMatches = false;
-        List<Pattern> namePatterns = new ArrayList<Pattern>();
+        List<Pattern> namePatterns = new ArrayList<>();
         namePatterns.addAll(searchInfo.getAttrNamePatterns());
 
         for (Attribute attr : appSession.getAttributes()) {

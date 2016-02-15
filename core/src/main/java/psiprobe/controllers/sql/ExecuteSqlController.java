@@ -123,14 +123,14 @@ public class ExecuteSqlController extends ContextHandlerController {
             if (!hasResultSet) {
               rowsAffected = stmt.getUpdateCount();
             } else {
-              results = new ArrayList<Map<String, String>>();
+              results = new ArrayList<>();
               ResultSet rs = stmt.getResultSet();
 
               try {
                 ResultSetMetaData metaData = rs.getMetaData();
 
                 while (rs.next() && (maxRows < 0 || results.size() < maxRows)) {
-                  Map<String, String> record = new LinkedHashMap<String, String>();
+                  Map<String, String> record = new LinkedHashMap<>();
 
                   for (int i = 1; i <= metaData.getColumnCount(); i++) {
                     String value = rs.getString(i);

@@ -40,11 +40,11 @@ public class ListServletMapsController extends ContextHandlerController {
     if (context == null) {
       ctxs = getContainerWrapper().getTomcatContainer().findContexts();
     } else {
-      ctxs = new ArrayList<Context>();
+      ctxs = new ArrayList<>();
       ctxs.add(context);
     }
 
-    List<ServletMapping> servletMaps = new ArrayList<ServletMapping>();
+    List<ServletMapping> servletMaps = new ArrayList<>();
     for (Context ctx : ctxs) {
       servletMaps.addAll(ApplicationUtils.getApplicationServletMaps(ctx));
     }

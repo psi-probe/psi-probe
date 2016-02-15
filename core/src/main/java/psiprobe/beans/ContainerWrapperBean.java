@@ -197,7 +197,7 @@ public class ContainerWrapperBean {
    * @throws Exception the exception
    */
   public List<ApplicationResource> getDataSources() throws Exception {
-    List<ApplicationResource> resources = new ArrayList<ApplicationResource>();
+    List<ApplicationResource> resources = new ArrayList<>();
     resources.addAll(getPrivateDataSources());
     resources.addAll(getGlobalDataSources());
     return resources;
@@ -210,7 +210,7 @@ public class ContainerWrapperBean {
    * @throws Exception the exception
    */
   public List<ApplicationResource> getPrivateDataSources() throws Exception {
-    List<ApplicationResource> resources = new ArrayList<ApplicationResource>();
+    List<ApplicationResource> resources = new ArrayList<>();
     if (tomcatContainer != null && getResourceResolver().supportsPrivateResources()) {
       for (Context app : getTomcatContainer().findContexts()) {
         List<ApplicationResource> appResources =
@@ -229,7 +229,7 @@ public class ContainerWrapperBean {
    * @throws Exception the exception
    */
   public List<ApplicationResource> getGlobalDataSources() throws Exception {
-    List<ApplicationResource> resources = new ArrayList<ApplicationResource>();
+    List<ApplicationResource> resources = new ArrayList<>();
     if (getResourceResolver().supportsGlobalResources()) {
       List<ApplicationResource> globalResources = getResourceResolver().getApplicationResources();
       // add only those resources that have data source info

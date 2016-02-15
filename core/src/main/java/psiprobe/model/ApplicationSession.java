@@ -58,7 +58,7 @@ public class ApplicationSession {
   private String managerType;
   
   /** The attributes. */
-  private List<Attribute> attributes = new ArrayList<Attribute>();
+  private List<Attribute> attributes = new ArrayList<>();
   
   /** The size. */
   private long size;

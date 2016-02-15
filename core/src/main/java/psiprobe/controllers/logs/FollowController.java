@@ -40,7 +40,7 @@ public class FollowController extends LogHandlerController {
     File file = logDest.getFile();
 
     if (file.exists()) {
-      LinkedList<String> lines = new LinkedList<String>();
+      LinkedList<String> lines = new LinkedList<>();
       long actualLength = file.length();
       long lastKnownLength = ServletRequestUtils.getLongParameter(request, "lastKnownLength", 0);
       long currentLength =

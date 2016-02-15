@@ -89,7 +89,7 @@ public class Jdk14ManagerAccessor extends DefaultAccessor {
    * @return the handlers
    */
   public List<LogDestination> getHandlers() {
-    List<LogDestination> allHandlers = new ArrayList<LogDestination>();
+    List<LogDestination> allHandlers = new ArrayList<>();
     try {
       Enumeration names = (Enumeration) MethodUtils
           .invokeMethod(getTarget(), "getLoggerNames", null);

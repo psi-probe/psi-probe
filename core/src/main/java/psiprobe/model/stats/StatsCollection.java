@@ -49,7 +49,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
   private static final Logger logger = LoggerFactory.getLogger(StatsCollection.class);
 
   /** The stats data. */
-  private Map<String, List<XYDataItem>> statsData = new TreeMap<String, List<XYDataItem>>();
+  private Map<String, List<XYDataItem>> statsData = new TreeMap<>();
   
   /** The swap file name. */
   private String swapFileName;
@@ -193,7 +193,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
    *         series.
    */
   public synchronized Map<String, List<XYDataItem>> getStatsByPrefix(String statNamePrefix) {
-    Map<String, List<XYDataItem>> map = new HashMap<String, List<XYDataItem>>();
+    Map<String, List<XYDataItem>> map = new HashMap<>();
     for (Map.Entry<String, List<XYDataItem>> en : statsData.entrySet()) {
       if (en.getKey().startsWith(statNamePrefix)) {
         map.put(en.getKey(), en.getValue());

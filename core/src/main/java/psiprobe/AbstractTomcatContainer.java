@@ -126,7 +126,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
 
   @Override
   public List<Context> findContexts() {
-    ArrayList<Context> results = new ArrayList<Context>();
+    ArrayList<Context> results = new ArrayList<>();
     for (Container child : host.findChildren()) {
       if (child instanceof Context) {
         results.add((Context) child);
@@ -390,7 +390,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
       //
       // delete "missing" items by keeping "not missing" ones
       //
-      Map<String, Item> hashMap = new HashMap<String, Item>();
+      Map<String, Item> hashMap = new HashMap<>();
       for (String key : summary.getItems().keySet()) {
         Item item = summary.getItems().get(key);
         if (!item.isMissing()) {

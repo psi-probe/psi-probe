@@ -62,7 +62,7 @@ public class ResourceResolverBean implements ResourceResolver {
   @Override
   public List<ApplicationResource> getApplicationResources() throws NamingException {
     logger.info("Reading GLOBAL resources");
-    List<ApplicationResource> resources = new ArrayList<ApplicationResource>();
+    List<ApplicationResource> resources = new ArrayList<>();
 
     MBeanServer server = getMBeanServer();
     if (server != null) {
@@ -94,7 +94,7 @@ public class ResourceResolverBean implements ResourceResolver {
   public synchronized List<ApplicationResource> getApplicationResources(Context context,
       ContainerWrapperBean containerWrapper) throws NamingException {
 
-    List<ApplicationResource> resourceList = new ArrayList<ApplicationResource>();
+    List<ApplicationResource> resourceList = new ArrayList<>();
 
     boolean contextAvailable = containerWrapper.getTomcatContainer().getAvailable(context);
     if (contextAvailable) {

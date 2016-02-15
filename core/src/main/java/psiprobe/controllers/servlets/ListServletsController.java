@@ -41,11 +41,11 @@ public class ListServletsController extends ContextHandlerController {
     if (context == null) {
       ctxs = getContainerWrapper().getTomcatContainer().findContexts();
     } else {
-      ctxs = new ArrayList<Context>();
+      ctxs = new ArrayList<>();
       ctxs.add(context);
     }
 
-    List<ServletInfo> servlets = new ArrayList<ServletInfo>();
+    List<ServletInfo> servlets = new ArrayList<>();
     for (Context ctx : ctxs) {
       if (ctx != null) {
         List<ServletInfo> appServlets = ApplicationUtils.getApplicationServlets(ctx);

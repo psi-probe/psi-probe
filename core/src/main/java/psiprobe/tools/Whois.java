@@ -150,7 +150,7 @@ public class Whois {
     String summary;
     
     /** The data. */
-    Map<String, String> data = new TreeMap<String, String>();
+    Map<String, String> data = new TreeMap<>();
     
     /** The server. */
     String server;
