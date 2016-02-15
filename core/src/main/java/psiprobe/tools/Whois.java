@@ -86,12 +86,9 @@ public class Whois {
     response.server = server;
     response.port = port;
 
-    Socket connection = AsyncSocketFactory.createSocket(server, port, timeout);
-    try {
-      PrintStream out = new PrintStream(connection.getOutputStream());
-      try {
-        BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-        try {
+    try (Socket connection = AsyncSocketFactory.createSocket(server, port, timeout);
+            PrintStream out = new PrintStream(connection.getOutputStream());
+            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
           out.println(query);
           StringBuilder sb = new StringBuilder();
 
@@ -128,14 +125,6 @@ public class Whois {
           if (newResponse != null) {
             response = newResponse;
           }
-        } finally {
-          in.close();
-        }
-      } finally {
-        out.close();
-      }
-    } finally {
-      connection.close();
     }
 
     return response;

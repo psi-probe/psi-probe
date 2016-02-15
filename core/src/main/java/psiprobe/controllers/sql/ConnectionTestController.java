@@ -72,8 +72,7 @@ public class ConnectionTestController extends ContextHandlerController {
     } else {
       try {
         // TODO: use Spring's jdbc template?
-        Connection conn = dataSource.getConnection();
-        try {
+        try (Connection conn = dataSource.getConnection()) {
           DatabaseMetaData md = conn.getMetaData();
 
           List<Map<String, String>> dbMetaData = new ArrayList<>();
@@ -90,8 +89,6 @@ public class ConnectionTestController extends ContextHandlerController {
           // String.valueOf(md.getJDBCMajorVersion()));
 
           return new ModelAndView(getViewName(), "dbMetaData", dbMetaData);
-        } finally {
-          conn.close();
         }
       } catch (SQLException e) {
         String message =

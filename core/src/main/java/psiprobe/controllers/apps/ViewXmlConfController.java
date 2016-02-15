@@ -123,13 +123,10 @@ public class ViewXmlConfController extends ContextHandlerController {
     if (xmlFile != null) {
       mv.addObject("fileName", xmlFile.getName());
       if (xmlFile.exists()) {
-        FileInputStream fis = new FileInputStream(xmlFile);
-        try {
+        try (FileInputStream fis = new FileInputStream(xmlFile)){
           String encoding = System.getProperty("file.encoding");
           mv.addObject("content", Utils.highlightStream("web.xml", fis, "xml",
               encoding == null ? "ISO-8859-1" : encoding));
-        } finally {
-          fis.close();
         }
       } else {
         logger.debug("File {} of {} application does not exists.", xmlPath, contextName);
