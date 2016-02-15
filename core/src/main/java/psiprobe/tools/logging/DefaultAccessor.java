@@ -95,13 +95,7 @@ public class DefaultAccessor {
       return PropertyUtils.isReadable(obj, name)
           ? PropertyUtils.getProperty(obj, name)
           : defaultValue;
-    } catch (IllegalArgumentException e) {
-      logger.error("", e);
-    } catch (IllegalAccessException e) {
-      logger.error("", e);
-    } catch (InvocationTargetException e) {
-      logger.error("", e);
-    } catch (NoSuchMethodException e) {
+    } catch (IllegalArgumentException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
       logger.error("", e);
     }
     logger.debug("Could not access property '{}' of object '{}'", name, obj);
@@ -123,11 +117,7 @@ public class DefaultAccessor {
         return MethodUtils.invokeMethod(object, name, new Object[0]);
       }
       return MethodUtils.invokeMethod(object, name, param);
-    } catch (NoSuchMethodException e) {
-      logger.error("", e);
-    } catch (IllegalAccessException e) {
-      logger.error("", e);
-    } catch (InvocationTargetException e) {
+    } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
       logger.error("", e);
     }
     return defaultValue;

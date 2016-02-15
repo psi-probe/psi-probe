@@ -49,16 +49,7 @@ public class AccessorFactory {
   private static Accessor getReflective() {
     try {
       return new ReflectiveAccessor();
-    } catch (ClassNotFoundException e) {
-      logger.trace("", e);
-      return null;
-    } catch (InstantiationException e) {
-      logger.trace("", e);
-      return null;
-    } catch (IllegalAccessException e) {
-      logger.trace("", e);
-      return null;
-    } catch (NoSuchMethodException e) {
+    } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | NoSuchMethodException e) {
       logger.trace("", e);
       return null;
     }
