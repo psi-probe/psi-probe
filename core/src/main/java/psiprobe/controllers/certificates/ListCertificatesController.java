@@ -6,11 +6,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
-import java.security.Key;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
-import java.security.UnrecoverableKeyException;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
@@ -18,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 
+import javax.management.ObjectName;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -27,7 +26,6 @@ import org.apache.coyote.ProtocolHandler;
 import org.apache.coyote.http11.AbstractHttp11JsseProtocol;
 import org.springframework.web.servlet.ModelAndView;
 
-import psiprobe.Utils;
 import psiprobe.controllers.TomcatContainerController;
 import psiprobe.model.certificates.Cert;
 import psiprobe.model.certificates.ConnectorInfo;
@@ -37,6 +35,32 @@ public class ListCertificatesController extends TomcatContainerController {
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
+
+    ModelAndView modelAndView = new ModelAndView(getViewName());
+
+    // Acquiring System configured Key Store
+    String keyStore = System.getProperty("javax.net.ssl.keyStore");
+    if (keyStore != null && !"".equals(keyStore)) {
+      File trustStoreFile = new File(keyStore);
+      if (trustStoreFile.exists()) {
+        String keyStorePassword = System.getProperty("javax.net.ssl.keyStorePassword");
+        String keyStoreType = System.getProperty("javax.net.ssl.keyStoreType");
+        List<Cert> certs = getCertificates(keyStoreType, trustStoreFile, keyStorePassword);
+        modelAndView.addObject("systemKeyCerts", certs);
+      }
+    }
+
+    // Acquiring System configured Trust Store
+    String trustStore = System.getProperty("javax.net.ssl.trustStore");
+    if (trustStore != null && !"".equals(trustStore)) {
+      File trustStoreFile = new File(trustStore);
+      if (trustStoreFile.exists()) {
+        String trustStorePassword = System.getProperty("javax.net.ssl.trustStorePassword");
+        String trustStoreType = System.getProperty("javax.net.ssl.trustStoreType");
+        List<Cert> certs = getCertificates(trustStoreType, trustStoreFile, trustStorePassword);
+        modelAndView.addObject("systemTrustCerts", certs);
+      }
+    }
 
     List<Connector> connectors = getContainerWrapper().getTomcatContainer().findConnectors();
     // TODO diogo exception handle
@@ -55,26 +79,12 @@ public class ListCertificatesController extends TomcatContainerController {
       }
     }
 
-    ModelAndView modelAndView = new ModelAndView(getViewName());
-
-    // Acquiring System configured Trust Store
-    String trustStore = System.getProperty("javax.net.ssl.trustStore");
-    String trustStorePassword = System.getProperty("javax.net.ssl.trustStorePassword");
-    if (trustStore != null && !"".equals(trustStore)) {
-      File trustStoreFile = new File(trustStore);
-      if (trustStoreFile.exists()) {
-        List<Cert> certs = getCertificates(null, trustStoreFile, trustStorePassword);
-        modelAndView.addObject("systemCerts", certs);
-      }
-    }
-
     return modelAndView.addObject("connectors", infos);
   }
 
   public List<Cert> getCertificates(String storeType, File storeFile, String storePassword) {
-    InputStream storeInput = null;
     try {
-      List<Cert> certs = new ArrayList<Cert>();
+      List<Cert> certs = new ArrayList<>();
       KeyStore keyStore;
 
       // Get key store
@@ -91,8 +101,9 @@ public class ListCertificatesController extends TomcatContainerController {
       }
 
       // Load key store from file
-      storeInput = new FileInputStream(storeFile);
-      keyStore.load(storeInput, password);
+      try (InputStream storeInput = new FileInputStream(storeFile)) {
+        keyStore.load(storeInput, password);
+      }
 
       Enumeration<String> keystoreAliases = keyStore.aliases();
       while (keystoreAliases.hasMoreElements()) {
@@ -123,16 +134,13 @@ public class ListCertificatesController extends TomcatContainerController {
       e.printStackTrace();
     } catch (IOException e) {
       e.printStackTrace();
-    } finally {
-      // Please drop Java 1.6 support! lol
-      Utils.closeStream(storeInput);
     }
     return null;
   }
 
   private List<ConnectorInfo> getConnectorInfos(List<Connector> connectors)
       throws IllegalAccessException, InvocationTargetException {
-    List<ConnectorInfo> infos = new ArrayList<ConnectorInfo>();
+    List<ConnectorInfo> infos = new ArrayList<>();
     for (Connector connector : connectors) {
       if (!connector.getSecure()) {
         continue;
@@ -156,6 +164,7 @@ public class ListCertificatesController extends TomcatContainerController {
       throws IllegalAccessException, InvocationTargetException {
     ConnectorInfo info = new ConnectorInfo();
     BeanUtils.copyProperties(info, protocol);
+    info.setName(ObjectName.unquote(info.getName()));
 
     String keystoreFile = info.getKeystoreFile();
     if (keystoreFile != null && !"".equals(keystoreFile)) {
