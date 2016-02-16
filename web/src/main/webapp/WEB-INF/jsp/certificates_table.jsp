@@ -35,7 +35,7 @@
 	</display:column>
 
 	<display:column title="&nbsp;">
-		<img border="0" src="${pageContext.request.contextPath}<spring:theme code='magnifier.png'/>" title="<spring:message code='probe.jsp.certificates.jsp.viewCertDetails'/>">
+		<img border="0" src="${pageContext.request.contextPath}<spring:theme code='magnifier.png'/>" title="<spring:message code='probe.jsp.certificates.viewCertDetails'/>">
 	</display:column>
 
 </display:table>
