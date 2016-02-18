@@ -2,8 +2,11 @@ package psiprobe.controllers.certificates;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
+import java.net.URI;
+import java.net.URL;
 import java.security.KeyStore;
 import java.security.cert.Certificate;
 import java.security.cert.X509Certificate;
@@ -39,55 +42,29 @@ public class ListCertificatesController extends TomcatContainerController {
     ModelAndView modelAndView = new ModelAndView(getViewName());
 
     try {
-      // Acquiring System configured Key Store
-      String keyStore = System.getProperty("javax.net.ssl.keyStore");
-      if (keyStore != null && !"".equals(keyStore)) {
-        File trustStoreFile = new File(keyStore);
-        if (trustStoreFile.exists()) {
-          String keyStorePassword = System.getProperty("javax.net.ssl.keyStorePassword");
-          String keyStoreType = System.getProperty("javax.net.ssl.keyStoreType");
-          List<Cert> certs = getCertificates(keyStoreType, trustStoreFile, keyStorePassword);
-          modelAndView.addObject("systemKeyCerts", certs);
-        }
-      }
-
-      // Acquiring System configured Trust Store
-      String trustStore = System.getProperty("javax.net.ssl.trustStore");
-      if (trustStore != null && !"".equals(trustStore)) {
-        File trustStoreFile = new File(trustStore);
-        if (trustStoreFile.exists()) {
-          String trustStorePassword = System.getProperty("javax.net.ssl.trustStorePassword");
-          String trustStoreType = System.getProperty("javax.net.ssl.trustStoreType");
-          List<Cert> certs = getCertificates(trustStoreType, trustStoreFile, trustStorePassword);
-          modelAndView.addObject("systemTrustCerts", certs);
-        }
-      }
-
       List<Connector> connectors = getContainerWrapper().getTomcatContainer().findConnectors();
       List<ConnectorInfo> infos = getConnectorInfos(connectors);
 
       for (ConnectorInfo info : infos) {
-        if (info.getKeyStoreFile() != null) {
-          List<Cert> certs = getCertificates(info.getKeystoreType(), info.getKeyStoreFile(),
-              info.getKeystorePass());
-          info.setKeyStoreCerts(certs);
-        }
-        if (info.getTrustStoreFile() != null) {
-          List<Cert> certs = getCertificates(info.getTruststoreType(), info.getTrustStoreFile(),
-              info.getTruststorePass());
-          info.setTrustStoreCerts(certs);
-        }
+        List<Cert> certs =
+            getCertificates(info.getKeystoreType(), info.getKeystoreFile(), info.getKeystorePass());
+        info.setKeyStoreCerts(certs);
+
+        certs = getCertificates(info.getTruststoreType(), info.getTruststoreFile(),
+            info.getTruststorePass());
+        info.setTrustStoreCerts(certs);
       }
 
       modelAndView.addObject("connectors", infos);
     } catch (Exception e) {
-      logger.error("There was an exception listing certificates ", e);
+      logger.error("There was an exception listing certificates", e);
     }
 
     return modelAndView;
+
   }
 
-  public List<Cert> getCertificates(String storeType, File storeFile, String storePassword)
+  public List<Cert> getCertificates(String storeType, String storeFile, String storePassword)
       throws Exception {
     KeyStore keyStore;
 
@@ -105,8 +82,11 @@ public class ListCertificatesController extends TomcatContainerController {
     }
 
     // Load key store from file
-    try (InputStream storeInput = new FileInputStream(storeFile)) {
+    try (InputStream storeInput = getStoreInputStream(storeFile)) {
       keyStore.load(storeInput, password);
+    } catch (IOException e) {
+      logger.error("Erro loading store file " + storeFile, e);
+      return null;
     }
 
     List<Cert> certs = new ArrayList<>();
@@ -151,27 +131,40 @@ public class ListCertificatesController extends TomcatContainerController {
     return infos;
   }
 
+  /**
+   * Tries to open a InputStream the same way as
+   * {@link org.apache.tomcat.util.file.ConfigFileLoader.getInputStream(String)}
+   * 
+   * @param path the path of a store file (absolute or relative to CATALINA.BASE), or URI to store
+   *        file (absolute or relative to CATALINA.BASE).
+   * @return the input stream of the path file
+   * @throws IOException if path can not be resolved
+   */
+  private InputStream getStoreInputStream(String path) throws IOException {
+    File file = new File(path);
+    if (file.exists()) {
+      return new FileInputStream(file);
+    }
+
+    File catalinaBaseFolder = new File(System.getProperty("catalina.base"));
+    file = new File(catalinaBaseFolder, path);
+
+    if (file.exists()) {
+      return new FileInputStream(file);
+    }
+
+    URI uri = catalinaBaseFolder.toURI().resolve(path);
+
+    URL url = uri.toURL();
+
+    return url.openConnection().getInputStream();
+  }
+
   private ConnectorInfo toConnectorInfo(AbstractHttp11JsseProtocol<?> protocol)
       throws IllegalAccessException, InvocationTargetException {
     ConnectorInfo info = new ConnectorInfo();
     BeanUtils.copyProperties(info, protocol);
     info.setName(ObjectName.unquote(info.getName()));
-
-    String keystoreFile = info.getKeystoreFile();
-    if (keystoreFile != null && !"".equals(keystoreFile)) {
-      File file = new File(keystoreFile);
-      if (file.exists()) {
-        info.setKeyStoreFile(file);
-      }
-    }
-
-    String truststoreFile = info.getTruststoreFile();
-    if (truststoreFile != null && !"".equals(truststoreFile)) {
-      File file = new File(truststoreFile);
-      if (file.exists()) {
-        info.setTrustStoreFile(file);
-      }
-    }
     return info;
   }
 

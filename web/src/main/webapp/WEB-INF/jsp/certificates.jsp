@@ -33,24 +33,6 @@
 	<body>
 
 		<div id="certificates">
-			<c:if test="${systemKeyCerts != null || systemTrustCerts != null}">
-				<h3><spring:message code="probe.jsp.certificates.systemCertificates"/></h3>
-			</c:if>
-
-			<div class="connectorCertificates">
-				<c:if test="${systemKeyCerts != null}">
-					<c:set var="certs" value="${systemKeyCerts}" scope="request" />
-					<h4><spring:message code="probe.jsp.certificates.keyStore"/></h4>
-					<jsp:include page="certificates_table.jsp" />
-				</c:if>
-				<c:if test="${systemTrustCerts != null}">
-					<c:set var="certs" value="${systemTrustCerts}" scope="request" />
-					<h4><spring:message code="probe.jsp.certificates.trustStore"/></h4>
-					<jsp:include page="certificates_table.jsp" />
-				</c:if>
-			</div>
-
-			<h3 style="margin: 20px 0 0px 0"><spring:message code="probe.jsp.certificates.connectorsCertificates"/></h3>
 
 			<c:forEach items="${connectors}" var="connector">
 			

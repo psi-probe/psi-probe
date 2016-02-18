@@ -1,6 +1,5 @@
 package psiprobe.model.certificates;
 
-import java.io.File;
 import java.io.Serializable;
 import java.util.List;
 
@@ -9,9 +8,9 @@ public class ConnectorInfo implements Serializable {
   private static final long serialVersionUID = 5927447793822367835L;
 
   private List<Cert> keyStoreCerts;
-  
+
   private List<Cert> trustStoreCerts;
-  
+
   private String name;
 
   private String clientAuth;
@@ -38,8 +37,6 @@ public class ConnectorInfo implements Serializable {
 
   private String keystoreFile;
 
-  private File keyStoreFile;
-
   private String keystorePass;
 
   private String keystoreProvider;
@@ -47,8 +44,6 @@ public class ConnectorInfo implements Serializable {
   private String keystoreType;
 
   private String truststoreFile;
-
-  private File trustStoreFile;
 
   private String truststorePass;
 
@@ -224,22 +219,6 @@ public class ConnectorInfo implements Serializable {
 
   public void setTruststoreAlgorithm(String truststoreAlgorithm) {
     this.truststoreAlgorithm = truststoreAlgorithm;
-  }
-
-  public File getKeyStoreFile() {
-    return keyStoreFile;
-  }
-
-  public void setKeyStoreFile(File keyStoreFile) {
-    this.keyStoreFile = keyStoreFile;
-  }
-
-  public File getTrustStoreFile() {
-    return trustStoreFile;
-  }
-
-  public void setTrustStoreFile(File trustStoreFile) {
-    this.trustStoreFile = trustStoreFile;
   }
 
   public List<Cert> getKeyStoreCerts() {
