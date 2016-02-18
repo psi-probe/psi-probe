@@ -13,9 +13,12 @@ package psiprobe;
 
 import org.apache.catalina.Container;
 import org.apache.catalina.Context;
+import org.apache.catalina.Engine;
 import org.apache.catalina.Host;
+import org.apache.catalina.Service;
 import org.apache.catalina.Valve;
 import org.apache.catalina.Wrapper;
+import org.apache.catalina.connector.Connector;
 import org.apache.catalina.core.StandardContext;
 import org.apache.commons.modeler.Registry;
 import org.apache.jasper.EmbeddedServletOptions;
@@ -37,6 +40,8 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -64,6 +69,9 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
   /** The host. */
   protected Host host;
   
+  /** Connectors */
+  protected Connector[] connectors;
+  
   /** The deployer o name. */
   protected ObjectName deployerOName;
   
@@ -75,6 +83,9 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     Valve valve = createValve();
     if (wrapper != null) {
       host = (Host) wrapper.getParent().getParent();
+      Engine engine = (Engine) host.getParent();
+      Service service = engine.getService();
+      connectors = service.findConnectors();
       try {
         deployerOName =
             new ObjectName(host.getParent().getName() + ":type=Deployer,host=" + host.getName());
@@ -133,6 +144,11 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
       }
     }
     return results;
+  }
+  
+  @Override
+  public List<Connector> findConnectors() {
+    return Collections.unmodifiableList(Arrays.asList(connectors));
   }
 
   @Override
