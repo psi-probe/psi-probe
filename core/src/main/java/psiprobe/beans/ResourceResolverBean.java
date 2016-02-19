@@ -316,7 +316,7 @@ public class ResourceResolverBean implements ResourceResolver {
         Server server = (Server) mbeanServer.getAttribute(name, "managedResource");
         // getGlobalNamingContext() was added to Server interface in Tomcat 7.0.11
         if (server instanceof StandardServer) {
-          globalContext = ((StandardServer) server).getGlobalNamingContext();
+          globalContext = server.getGlobalNamingContext();
         }
       } catch (Exception e) {
         logger.error("There was an error getting globalContext through JMX server:", e);
