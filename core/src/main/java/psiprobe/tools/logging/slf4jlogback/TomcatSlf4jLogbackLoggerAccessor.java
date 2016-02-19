@@ -66,8 +66,7 @@ public class TomcatSlf4jLogbackLoggerAccessor extends DefaultAccessor {
       Object appender = MethodUtils.invokeMethod(getTarget(), "getAppender", name);
       if (appender == null) {
         List<TomcatSlf4jLogbackAppenderAccessor> appenders = getAppenders();
-        for (TomcatSlf4jLogbackAppenderAccessor appender1 : appenders) {
-          TomcatSlf4jLogbackAppenderAccessor wrappedAppender = appender1;
+        for (TomcatSlf4jLogbackAppenderAccessor wrappedAppender : appenders) {
           if (wrappedAppender.getIndex().equals(name)) {
             return wrappedAppender;
           }
