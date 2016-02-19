@@ -29,6 +29,16 @@ h3 {
 	margin: 10px 0 10px 0;
 }
 
+h4 {
+	color: #003366;
+	background: inherit;
+	font-size: 95%;
+	font-weight: bold;
+	text-transform: uppercase;
+	padding: 0;
+	margin: 2px 0 2px 0;
+}
+
 img {
 	border: none;
 }
@@ -825,4 +835,8 @@ td.inputCell {
 
 #locales {
 	margin-top: 10px;
+}
+
+.connectorCertificates {
+	padding-left: 20px;
 }

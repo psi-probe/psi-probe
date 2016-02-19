@@ -396,6 +396,11 @@
 		</property>
 	</bean>
 
+	<bean name="/certificates.htm" class="psiprobe.controllers.certificates.ListCertificatesController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="viewName" value="certificates" />
+	</bean>
+
 	<bean name="/zoomchart.htm" class="psiprobe.controllers.connectors.ZoomChartController">
 		<property name="viewName" value="zoomreq"/>
 		<property name="collectionPeriod">

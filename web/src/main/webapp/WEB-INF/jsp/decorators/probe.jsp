@@ -95,6 +95,11 @@
 					</a>
 				</li>
 				<li>
+					<a class="${navTabCertificates}" href="<c:url value='/certificates.htm'/>">
+						<spring:message code="probe.jsp.menu.certificates"/>
+					</a>
+				</li>
+				<li>
 					<a class="${navTabQuickCheck}" href="<c:url value='/adm/quickcheck.htm'/>">
 						<spring:message code="probe.jsp.menu.quickcheck"/>
 					</a>
@@ -155,6 +160,11 @@
 				<li>
 					<a href="<c:url value='/connectors.htm'/>">
 						<spring:message code="probe.jsp.menu.connectors"/>
+					</a>
+				</li>
+				<li>
+					<a href="<c:url value='/certificates.htm'/>">
+						<spring:message code="probe.jsp.menu.certificates"/>
 					</a>
 				</li>
 				<li class="last">
