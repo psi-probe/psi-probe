@@ -91,7 +91,7 @@ public class TomcatSlf4jLogbackFactoryAccessor extends DefaultAccessor {
       Method getLogger = MethodUtils
           .getAccessibleMethod(clazz, "getLogger", new Class[] {String.class});
       
-      Object logger = getLogger.invoke(getTarget(), new Object[] {name});
+      Object logger = getLogger.invoke(getTarget(), name);
       if (logger == null) {
         throw new NullPointerException(getTarget() + ".getLogger(\"" + name + "\") returned null");
       }

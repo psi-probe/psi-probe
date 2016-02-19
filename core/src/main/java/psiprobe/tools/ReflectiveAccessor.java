@@ -58,7 +58,7 @@ public class ReflectiveAccessor implements Accessor {
     try {
       Object fieldAccessor = getFieldAccessor(field);
       if (fieldAccessor != null) {
-        return get.invoke(fieldAccessor, new Object[] {obj});
+        return get.invoke(fieldAccessor, obj);
       }
     } catch (IllegalArgumentException | IllegalAccessException | InvocationTargetException e) {
       logger.trace("", e);
@@ -79,9 +79,9 @@ public class ReflectiveAccessor implements Accessor {
       IllegalArgumentException, InvocationTargetException {
 
     if (newFieldAccessor.getParameterTypes().length == 1) {
-      return newFieldAccessor.invoke(reflectionFactory, new Object[] {field});
+      return newFieldAccessor.invoke(reflectionFactory, field);
     }
-    return newFieldAccessor.invoke(reflectionFactory, new Object[] {field, Boolean.TRUE});
+    return newFieldAccessor.invoke(reflectionFactory, field, Boolean.TRUE);
   }
 
   /**
@@ -109,7 +109,7 @@ public class ReflectiveAccessor implements Accessor {
         paramTypes = new Class[] {Field.class, Boolean.TYPE};
       }
       newFieldAccessor = reflectionFactory.getClass().getMethod("newFieldAccessor", paramTypes);
-      get = newFieldAccessor.getReturnType().getMethod("get", new Class[] {Object.class});
+      get = newFieldAccessor.getReturnType().getMethod("get", Object.class);
     }
   }
 
