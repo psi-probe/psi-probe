@@ -57,7 +57,7 @@ public class VolumeTag extends TagSupport {
    * @return the fractions
    */
   public int getFractions() {
-    return fractions;
+    return this.fractions;
   }
 
   /**
@@ -71,10 +71,10 @@ public class VolumeTag extends TagSupport {
 
   @Override
   public int doStartTag() throws JspException {
-    String title = Long.toString(value);
-    String newValue = SizeExpression.format(value, fractions, true);
+    String title = Long.toString(this.value);
+    String newValue = SizeExpression.format(this.value, this.fractions, true);
     try {
-      pageContext.getOut().write("<span title=\"" + title + "\">" + newValue + "</span>");
+      this.pageContext.getOut().write("<span title=\"" + title + "\">" + newValue + "</span>");
     } catch (IOException e) {
       logger.debug("Exception writing value to JspWriter", e);
       throw new JspException(e);

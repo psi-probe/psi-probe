@@ -100,7 +100,7 @@ public class AsyncSocketFactory {
      * @return the socket
      */
     public Socket getSocket() {
-      return socket;
+      return this.socket;
     }
 
     /**
@@ -118,7 +118,7 @@ public class AsyncSocketFactory {
      * @return the server
      */
     public String getServer() {
-      return server;
+      return this.server;
     }
 
     /**
@@ -127,7 +127,7 @@ public class AsyncSocketFactory {
      * @return the port
      */
     public int getPort() {
-      return port;
+      return this.port;
     }
 
     /**
@@ -145,7 +145,7 @@ public class AsyncSocketFactory {
      * @return true, if is valid
      */
     public boolean isValid() {
-      return valid;
+      return this.valid;
     }
 
   }
@@ -175,17 +175,17 @@ public class AsyncSocketFactory {
     @Override
     public void run() {
       try {
-        socketWrapper.setSocket(new Socket(socketWrapper.getServer(), socketWrapper.getPort()));
-        if (!socketWrapper.isValid()) {
-          socketWrapper.getSocket().close();
-          socketWrapper.setSocket(null);
+        this.socketWrapper.setSocket(new Socket(this.socketWrapper.getServer(), this.socketWrapper.getPort()));
+        if (!this.socketWrapper.isValid()) {
+          this.socketWrapper.getSocket().close();
+          this.socketWrapper.setSocket(null);
         }
       } catch (IOException e) {
         logger.trace("", e);
-        socketWrapper.setException(e);
+        this.socketWrapper.setException(e);
       }
-      synchronized (sync) {
-        sync.notify();
+      synchronized (this.sync) {
+        this.sync.notify();
       }
     }
 
@@ -216,9 +216,9 @@ public class AsyncSocketFactory {
     @Override
     public void run() {
       try {
-        Thread.sleep(timeout);
-        synchronized (sync) {
-          sync.notify();
+        Thread.sleep(this.timeout);
+        synchronized (this.sync) {
+          this.sync.notify();
         }
       } catch (InterruptedException e) {
         logger.trace("", e);

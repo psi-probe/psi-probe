@@ -40,7 +40,7 @@ public class Attribute {
    * @return the name
    */
   public String getName() {
-    return name;
+    return this.name;
   }
 
   /**
@@ -58,7 +58,7 @@ public class Attribute {
    * @return the type
    */
   public String getType() {
-    return type;
+    return this.type;
   }
 
   /**
@@ -76,7 +76,7 @@ public class Attribute {
    * @return the value
    */
   public Object getValue() {
-    return value;
+    return this.value;
   }
 
   /**
@@ -94,7 +94,7 @@ public class Attribute {
    * @return true, if is serializable
    */
   public boolean isSerializable() {
-    return serializable;
+    return this.serializable;
   }
 
   /**
@@ -112,7 +112,7 @@ public class Attribute {
    * @return the size
    */
   public long getSize() {
-    return size;
+    return this.size;
   }
 
   /**

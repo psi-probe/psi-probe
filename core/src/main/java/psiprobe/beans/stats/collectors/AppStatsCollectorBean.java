@@ -52,7 +52,7 @@ public class AppStatsCollectorBean extends AbstractStatsCollectorBean implements
    * @return the container wrapper
    */
   public ContainerWrapperBean getContainerWrapper() {
-    return containerWrapper;
+    return this.containerWrapper;
   }
 
   /**
@@ -70,7 +70,7 @@ public class AppStatsCollectorBean extends AbstractStatsCollectorBean implements
    * @return true, if is self ignored
    */
   public boolean isSelfIgnored() {
-    return selfIgnored;
+    return this.selfIgnored;
   }
 
   /**
@@ -88,7 +88,7 @@ public class AppStatsCollectorBean extends AbstractStatsCollectorBean implements
    * @return the servlet context
    */
   protected ServletContext getServletContext() {
-    return servletContext;
+    return this.servletContext;
   }
 
   @Override
@@ -101,7 +101,7 @@ public class AppStatsCollectorBean extends AbstractStatsCollectorBean implements
 
     long currentTime = System.currentTimeMillis();
 
-    if (containerWrapper == null) {
+    if (this.containerWrapper == null) {
       logger.error("Cannot collect application stats. Container wrapper is not set.");
     } else {
       TomcatContainer tomcatContainer = getContainerWrapper().getTomcatContainer();
@@ -167,7 +167,7 @@ public class AppStatsCollectorBean extends AbstractStatsCollectorBean implements
    * Reset.
    */
   public void reset() {
-    if (containerWrapper == null) {
+    if (this.containerWrapper == null) {
       logger.error("Cannot reset application stats. Container wrapper is not set.");
     } else {
       TomcatContainer tomcatContainer = getContainerWrapper().getTomcatContainer();

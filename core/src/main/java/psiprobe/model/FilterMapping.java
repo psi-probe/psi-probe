@@ -39,7 +39,7 @@ public class FilterMapping {
    * @return the url
    */
   public String getUrl() {
-    return url;
+    return this.url;
   }
 
   /**
@@ -57,7 +57,7 @@ public class FilterMapping {
    * @return the servlet name
    */
   public String getServletName() {
-    return servletName;
+    return this.servletName;
   }
 
   /**
@@ -75,7 +75,7 @@ public class FilterMapping {
    * @return the filter name
    */
   public String getFilterName() {
-    return filterName;
+    return this.filterName;
   }
 
   /**
@@ -93,7 +93,7 @@ public class FilterMapping {
    * @return the dispatcher map
    */
   public String getDispatcherMap() {
-    return dispatcherMap;
+    return this.dispatcherMap;
   }
 
   /**
@@ -111,7 +111,7 @@ public class FilterMapping {
    * @return the filter class
    */
   public String getFilterClass() {
-    return filterClass;
+    return this.filterClass;
   }
 
   /**

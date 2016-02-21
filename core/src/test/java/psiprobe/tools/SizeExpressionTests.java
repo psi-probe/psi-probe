@@ -47,7 +47,7 @@ public class SizeExpressionTests {
    */
   @After
   public void tearDown() throws Exception {
-    Locale.setDefault(defaultLocale);
+    Locale.setDefault(this.defaultLocale);
   }
 
   /**

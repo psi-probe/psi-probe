@@ -62,7 +62,7 @@ public class LogResolverBean {
    * @return the container wrapper
    */
   public ContainerWrapperBean getContainerWrapper() {
-    return containerWrapper;
+    return this.containerWrapper;
   }
 
   /**
@@ -80,7 +80,7 @@ public class LogResolverBean {
    * @return the stdout files
    */
   public List<String> getStdoutFiles() {
-    return stdoutFiles;
+    return this.stdoutFiles;
   }
 
   /**
@@ -362,7 +362,7 @@ public class LogResolverBean {
    * @param appenders the appenders
    */
   private void interrogateStdOutFiles(List<LogDestination> appenders) {
-    for (String fileName : stdoutFiles) {
+    for (String fileName : this.stdoutFiles) {
       FileLogAccessor fla = resolveStdoutLogDestination(fileName);
       if (fla != null) {
         appenders.add(fla);
@@ -377,7 +377,7 @@ public class LogResolverBean {
    * @return the stdout log destination
    */
   private LogDestination getStdoutLogDestination(String logName) {
-    for (String fileName : stdoutFiles) {
+    for (String fileName : this.stdoutFiles) {
       if (fileName.equals(logName)) {
         FileLogAccessor fla = resolveStdoutLogDestination(fileName);
         if (fla != null) {
@@ -595,7 +595,7 @@ public class LogResolverBean {
       File file = dest.getFile();
       String fileName = file == null ? "" : file.getAbsolutePath();
       String name;
-      if (all) {
+      if (this.all) {
         Application app = dest.getApplication();
         String appName = app == null ? "" + DELIM : app.getName();
         String context = dest.isContext() ? "is" : "not";

@@ -38,7 +38,7 @@ public class BeanToXmlController extends AbstractController {
    * @return the xml marker
    */
   public String getXmlMarker() {
-    return xmlMarker;
+    return this.xmlMarker;
   }
 
   /**
@@ -55,7 +55,7 @@ public class BeanToXmlController extends AbstractController {
       HttpServletResponse response) throws Exception {
 
     String path = request.getServletPath();
-    String internalPath = path.replaceAll(xmlMarker, "");
+    String internalPath = path.replaceAll(this.xmlMarker, "");
 
     Controller controller = (Controller) getApplicationContext().getBean(internalPath);
     if (controller != null) {

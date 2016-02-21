@@ -39,7 +39,7 @@ public class ThreadPoolObjectName {
    * @return the thread pool name
    */
   public ObjectName getThreadPoolName() {
-    return threadPoolName;
+    return this.threadPoolName;
   }
 
   /**
@@ -48,7 +48,7 @@ public class ThreadPoolObjectName {
    * @return the global request processor name
    */
   public ObjectName getGlobalRequestProcessorName() {
-    return globalRequestProcessorName;
+    return this.globalRequestProcessorName;
   }
 
   /**
@@ -57,7 +57,7 @@ public class ThreadPoolObjectName {
    * @return the request processor names
    */
   public List<ObjectName> getRequestProcessorNames() {
-    return requestProcessorNames;
+    return this.requestProcessorNames;
   }
 
   /**

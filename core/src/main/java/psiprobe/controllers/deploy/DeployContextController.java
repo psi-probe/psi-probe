@@ -48,7 +48,7 @@ public class DeployContextController extends TomcatContainerController {
         }
       } catch (Exception e) {
         request.setAttribute("errorMessage", e.getMessage());
-        logger.trace("", e);
+        this.logger.trace("", e);
       }
     }
 

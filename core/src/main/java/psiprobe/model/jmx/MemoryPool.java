@@ -46,7 +46,7 @@ public class MemoryPool {
    * @return the name
    */
   public String getName() {
-    return name;
+    return this.name;
   }
 
   /**
@@ -65,7 +65,7 @@ public class MemoryPool {
    * @return the inits the
    */
   public long getInit() {
-    return init;
+    return this.init;
   }
 
   /**
@@ -83,7 +83,7 @@ public class MemoryPool {
    * @return the max
    */
   public long getMax() {
-    return max;
+    return this.max;
   }
 
   /**
@@ -101,7 +101,7 @@ public class MemoryPool {
    * @return the used
    */
   public long getUsed() {
-    return used;
+    return this.used;
   }
 
   /**
@@ -119,7 +119,7 @@ public class MemoryPool {
    * @return the committed
    */
   public long getCommitted() {
-    return committed;
+    return this.committed;
   }
 
   /**
@@ -137,7 +137,7 @@ public class MemoryPool {
    * @return the type
    */
   public String getType() {
-    return type;
+    return this.type;
   }
 
   /**
@@ -156,16 +156,16 @@ public class MemoryPool {
    */
   public int getUsageScore() {
     long div;
-    if (max == -1) {
+    if (this.max == -1) {
       /*
        * Some memory pools have an undefined maximum size. In this case, report how much of the
        * currently allocated memory is used.
        */
-      div = committed;
+      div = this.committed;
     } else {
-      div = max;
+      div = this.max;
     }
-    return div == 0 ? 0 : (int) (used * 100 / div);
+    return div == 0 ? 0 : (int) (this.used * 100 / div);
   }
 
   /**
@@ -174,7 +174,7 @@ public class MemoryPool {
    * @return the id
    */
   public String getId() {
-    return id;
+    return this.id;
   }
 
 }

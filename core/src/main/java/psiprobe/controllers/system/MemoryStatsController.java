@@ -39,7 +39,7 @@ public class MemoryStatsController extends ParameterizableViewController {
    * @return the jvm memory info accessor bean
    */
   public JvmMemoryInfoAccessorBean getJvmMemoryInfoAccessorBean() {
-    return jvmMemoryInfoAccessorBean;
+    return this.jvmMemoryInfoAccessorBean;
   }
 
   /**
@@ -57,7 +57,7 @@ public class MemoryStatsController extends ParameterizableViewController {
    * @return the collection period
    */
   public long getCollectionPeriod() {
-    return collectionPeriod;
+    return this.collectionPeriod;
   }
 
   /**

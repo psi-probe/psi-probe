@@ -72,7 +72,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
    * @return the swap file name
    */
   public String getSwapFileName() {
-    return swapFileName;
+    return this.swapFileName;
   }
 
   /**
@@ -90,7 +90,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
    * @return the storage path
    */
   public String getStoragePath() {
-    return storagePath;
+    return this.storagePath;
   }
 
   /**
@@ -109,7 +109,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
    * @return true, if is collected
    */
   public boolean isCollected(String statsName) {
-    return statsData.get(statsName) != null;
+    return this.statsData.get(statsName) != null;
   }
 
   /**
@@ -118,7 +118,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
    * @return the max files
    */
   public int getMaxFiles() {
-    return maxFiles;
+    return this.maxFiles;
   }
 
   /**
@@ -139,7 +139,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
    */
   public synchronized List<XYDataItem> newStats(String name, int maxElements) {
     List<XYDataItem> stats = Collections.synchronizedList(new ArrayList<XYDataItem>(maxElements));
-    statsData.put(name, stats);
+    this.statsData.put(name, stats);
     return stats;
   }
 
@@ -162,7 +162,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
    * @return the stats
    */
   public synchronized List<XYDataItem> getStats(String name) {
-    return statsData.get(name);
+    return this.statsData.get(name);
   }
 
   /**
@@ -194,7 +194,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
    */
   public synchronized Map<String, List<XYDataItem>> getStatsByPrefix(String statNamePrefix) {
     Map<String, List<XYDataItem>> map = new HashMap<>();
-    for (Map.Entry<String, List<XYDataItem>> en : statsData.entrySet()) {
+    for (Map.Entry<String, List<XYDataItem>> en : this.statsData.entrySet()) {
       if (en.getKey().startsWith(statNamePrefix)) {
         map.put(en.getKey(), en.getValue());
       }
@@ -208,8 +208,8 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
    * @return the file
    */
   private File makeFile() {
-    return storagePath == null ? new File(contextTempDir, swapFileName) : new File(storagePath,
-        swapFileName);
+    return this.storagePath == null ? new File(this.contextTempDir, this.swapFileName) : new File(this.storagePath,
+        this.swapFileName);
   }
 
   /**
@@ -218,7 +218,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
    * @param index the index
    */
   private void shiftFiles(int index) {
-    if (index >= maxFiles - 1) {
+    if (index >= this.maxFiles - 1) {
       new File(makeFile().getAbsolutePath() + "." + index).delete();
     } else {
       shiftFiles(index + 1);
@@ -234,17 +234,17 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
    * @throws InterruptedException if a lock cannot be obtained
    */
   public synchronized void serialize() throws InterruptedException {
-    lock.lockForCommit();
+    this.lock.lockForCommit();
     long start = System.currentTimeMillis();
     try {
       shiftFiles(0);
       try (OutputStream os = new FileOutputStream(makeFile())) {
-        new XStream().toXML(statsData, os);
+        new XStream().toXML(this.statsData, os);
       }
     } catch (Exception e) {
       logger.error("Could not write stats data to '{}'", makeFile().getAbsolutePath(), e);
     } finally {
-      lock.releaseCommitLock();
+      this.lock.releaseCommitLock();
       logger.debug("stats serialized in {}ms", (System.currentTimeMillis() - start));
     }
   }
@@ -297,14 +297,14 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
    * @throws InterruptedException the interrupted exception
    */
   public void lockForUpdate() throws InterruptedException {
-    lock.lockForUpdate();
+    this.lock.lockForUpdate();
   }
 
   /**
    * Release lock.
    */
   public void releaseLock() {
-    lock.releaseUpdateLock();
+    this.lock.releaseUpdateLock();
   }
 
   /**
@@ -319,13 +319,13 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
       File file = index == 0 ? makeFile() : new File(makeFile().getAbsolutePath() + "." + index);
       stats = deserialize(file);
       index += 1;
-      if (stats != null || index >= maxFiles - 1) {
+      if (stats != null || index >= this.maxFiles - 1) {
         break;
       }
     }
 
     if (stats != null) {
-      statsData = stats;
+      this.statsData = stats;
     } else {
       logger.debug("Stats data file not found. Empty file assumed.");
     }
@@ -340,7 +340,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
   @Override
   public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
     WebApplicationContext wac = (WebApplicationContext) applicationContext;
-    contextTempDir = (File) wac.getServletContext().getAttribute("javax.servlet.context.tempdir");
+    this.contextTempDir = (File) wac.getServletContext().getAttribute("javax.servlet.context.tempdir");
   }
 
 }

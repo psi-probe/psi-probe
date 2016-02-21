@@ -118,35 +118,35 @@ public class VisualScoreTag extends BodyTagSupport {
    * @return the string buffer
    */
   String calculateSuffix(String body) {
-    if (value < minValue) {
-      value = minValue;
+    if (this.value < this.minValue) {
+      this.value = this.minValue;
     }
-    if (value > maxValue) {
-      value = maxValue;
+    if (this.value > this.maxValue) {
+      this.value = this.maxValue;
     }
-    if (value + value2 < minValue || value2 < 0) {
-      value2 = 0;
+    if (this.value + this.value2 < this.minValue || this.value2 < 0) {
+      this.value2 = 0;
     }
-    if (value + value2 > maxValue) {
-      value2 = maxValue - value;
+    if (this.value + this.value2 > this.maxValue) {
+      this.value2 = this.maxValue - this.value;
     }
 
-    double unitSize = (maxValue - minValue) / (fullBlocks * partialBlocks);
-    double blockWidth = unitSize * partialBlocks;
+    double unitSize = (this.maxValue - this.minValue) / (this.fullBlocks * this.partialBlocks);
+    double blockWidth = unitSize * this.partialBlocks;
 
-    int redWhole = (int) Math.floor(value / blockWidth);
-    int redPart = (int) Math.floor((value - redWhole * blockWidth) / unitSize);
+    int redWhole = (int) Math.floor(this.value / blockWidth);
+    int redPart = (int) Math.floor((this.value - redWhole * blockWidth) / unitSize);
     int bluePart1 = redPart > 0
-        ? Math.min((int) Math.floor(value2 / unitSize), partialBlocks - redPart)
+        ? Math.min((int) Math.floor(this.value2 / unitSize), this.partialBlocks - redPart)
         : 0;
-    int blueWhole = (int) Math.max(0, Math.ceil(value2 / blockWidth) - (redPart > 0 ? 1 : 0));
+    int blueWhole = (int) Math.max(0, Math.ceil(this.value2 / blockWidth) - (redPart > 0 ? 1 : 0));
     int bluePart2 = (int) Math.floor(
-        (value2 - (blueWhole * blockWidth) - (bluePart1 * unitSize)) / unitSize);
+        (this.value2 - (blueWhole * blockWidth) - (bluePart1 * unitSize)) / unitSize);
 
     StringBuilder buf = new StringBuilder();
 
     // Beginning
-    if (showA) {
+    if (this.showA) {
       String format = WHITE_LEFT_BORDER;
       if (redWhole > 0 || redPart > 0) {
         format = RED_LEFT_BORDER;
@@ -159,7 +159,7 @@ public class VisualScoreTag extends BodyTagSupport {
     }
 
     // Full red blocks
-    String fullRedBody = MessageFormat.format(body, partialBlocks + "+0");
+    String fullRedBody = MessageFormat.format(body, this.partialBlocks + "+0");
     for (int i = 0; i < redWhole; i++) {
       buf.append(fullRedBody);
     }
@@ -171,7 +171,7 @@ public class VisualScoreTag extends BodyTagSupport {
     }
 
     // Full blue blocks
-    String fullBlueBody = MessageFormat.format(body, "0+" + partialBlocks);
+    String fullBlueBody = MessageFormat.format(body, "0+" + this.partialBlocks);
     for (int i = 0; i < blueWhole; i++) {
       buf.append(fullBlueBody);
     }
@@ -183,8 +183,8 @@ public class VisualScoreTag extends BodyTagSupport {
     }
 
     // Empty blocks
-    int emptyBlocks = showEmptyBlocks
-        ? fullBlocks - (redWhole + blueWhole + (redPart > 0 ? 1 : 0) + (bluePart2 > 0 ? 1 : 0))
+    int emptyBlocks = this.showEmptyBlocks
+        ? this.fullBlocks - (redWhole + blueWhole + (redPart > 0 ? 1 : 0) + (bluePart2 > 0 ? 1 : 0))
         : 0;
     if (emptyBlocks > 0) {
       String emptyBody = MessageFormat.format(body, "0+0");
@@ -194,13 +194,13 @@ public class VisualScoreTag extends BodyTagSupport {
     }
 
     // End
-    if (showB) {
+    if (this.showB) {
       String format = WHITE_RIGHT_BORDER;
-      if (redWhole == fullBlocks) {
+      if (redWhole == this.fullBlocks) {
         format = RED_RIGHT_BORDER;
       } else if (redWhole
-          + (redPart + bluePart1 == partialBlocks ? 1 : 0)
-          + blueWhole == fullBlocks) {
+          + (redPart + bluePart1 == this.partialBlocks ? 1 : 0)
+          + blueWhole == this.fullBlocks) {
         format = BLUE_RIGHT_BORDER;
       }
       buf.append(MessageFormat.format(body, new Object[] {format}));
@@ -215,7 +215,7 @@ public class VisualScoreTag extends BodyTagSupport {
    * @return the value
    */
   public double getValue() {
-    return value;
+    return this.value;
   }
 
   /**
@@ -233,7 +233,7 @@ public class VisualScoreTag extends BodyTagSupport {
    * @return the value2
    */
   public double getValue2() {
-    return value2;
+    return this.value2;
   }
 
   /**
@@ -251,7 +251,7 @@ public class VisualScoreTag extends BodyTagSupport {
    * @return the min value
    */
   public double getMinValue() {
-    return minValue;
+    return this.minValue;
   }
 
   /**
@@ -269,7 +269,7 @@ public class VisualScoreTag extends BodyTagSupport {
    * @return the max value
    */
   public double getMaxValue() {
-    return maxValue;
+    return this.maxValue;
   }
 
   /**
@@ -287,7 +287,7 @@ public class VisualScoreTag extends BodyTagSupport {
    * @return the partial blocks
    */
   public int getPartialBlocks() {
-    return partialBlocks;
+    return this.partialBlocks;
   }
 
   /**
@@ -305,7 +305,7 @@ public class VisualScoreTag extends BodyTagSupport {
    * @return the full blocks
    */
   public int getFullBlocks() {
-    return fullBlocks;
+    return this.fullBlocks;
   }
 
   /**
@@ -323,7 +323,7 @@ public class VisualScoreTag extends BodyTagSupport {
    * @return true, if is show empty blocks
    */
   public boolean isShowEmptyBlocks() {
-    return showEmptyBlocks;
+    return this.showEmptyBlocks;
   }
 
   /**
@@ -341,7 +341,7 @@ public class VisualScoreTag extends BodyTagSupport {
    * @return true, if is show a
    */
   public boolean isShowA() {
-    return showA;
+    return this.showA;
   }
 
   /**
@@ -359,7 +359,7 @@ public class VisualScoreTag extends BodyTagSupport {
    * @return true, if is show b
    */
   public boolean isShowB() {
-    return showB;
+    return this.showB;
   }
 
   /**

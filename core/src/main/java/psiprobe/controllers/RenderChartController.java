@@ -69,7 +69,7 @@ public class RenderChartController extends AbstractController {
    * @return the stats collection
    */
   public StatsCollection getStatsCollection() {
-    return statsCollection;
+    return this.statsCollection;
   }
 
   /**
@@ -136,7 +136,7 @@ public class RenderChartController extends AbstractController {
     if (provider != null) {
       Object series = getApplicationContext().getBean(provider);
       if (series instanceof SeriesProvider) {
-        ((SeriesProvider) series).populate(ds, statsCollection, request);
+        ((SeriesProvider) series).populate(ds, this.statsCollection, request);
       } else {
         logger.error("SeriesProvider '{}' does not implement '{}'", provider,
             SeriesProvider.class);

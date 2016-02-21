@@ -31,7 +31,7 @@ public class RuntimeStatsCollectorBean extends AbstractStatsCollectorBean {
    * @return the runtime info accessor bean
    */
   public RuntimeInfoAccessorBean getRuntimeInfoAccessorBean() {
-    return runtimeInfoAccessorBean;
+    return this.runtimeInfoAccessorBean;
   }
 
   /**
@@ -45,7 +45,7 @@ public class RuntimeStatsCollectorBean extends AbstractStatsCollectorBean {
 
   @Override
   public void collect() throws Exception {
-    RuntimeInformation ri = runtimeInfoAccessorBean.getRuntimeInformation();
+    RuntimeInformation ri = this.runtimeInfoAccessorBean.getRuntimeInformation();
     if (ri != null) {
       long time = System.currentTimeMillis();
       buildAbsoluteStats("os.memory.committed", ri.getCommittedVirtualMemorySize() / 1024, time);

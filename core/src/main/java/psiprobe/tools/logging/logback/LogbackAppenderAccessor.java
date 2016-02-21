@@ -34,7 +34,7 @@ public class LogbackAppenderAccessor extends AbstractLogDestination {
    * @return the logger accessor
    */
   public LogbackLoggerAccessor getLoggerAccessor() {
-    return loggerAccessor;
+    return this.loggerAccessor;
   }
 
   /**

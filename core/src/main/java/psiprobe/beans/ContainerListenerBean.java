@@ -64,7 +64,7 @@ public class ContainerListenerBean implements NotificationListener {
    * @return the container wrapper
    */
   public ContainerWrapperBean getContainerWrapper() {
-    return containerWrapper;
+    return this.containerWrapper;
   }
 
   /**
@@ -82,7 +82,7 @@ public class ContainerListenerBean implements NotificationListener {
    * @return true, if is initialized
    */
   private boolean isInitialized() {
-    return poolNames != null && !poolNames.isEmpty();
+    return this.poolNames != null && !this.poolNames.isEmpty();
   }
 
   /**
@@ -94,7 +94,7 @@ public class ContainerListenerBean implements NotificationListener {
    */
   private ThreadPoolObjectName findPool(String name) {
     if (name != null && isInitialized()) {
-      for (ThreadPoolObjectName threadPoolObjectName : poolNames) {
+      for (ThreadPoolObjectName threadPoolObjectName : this.poolNames) {
         if (name.equals(threadPoolObjectName.getThreadPoolName().getKeyProperty("name"))) {
           return threadPoolObjectName;
         }
@@ -149,7 +149,7 @@ public class ContainerListenerBean implements NotificationListener {
     String serverName = getContainerWrapper().getTomcatContainer().getName();
     Set<ObjectInstance> threadPools =
         server.queryMBeans(new ObjectName(serverName + ":type=ThreadPool,*"), null);
-    poolNames = new ArrayList<>(threadPools.size());
+    this.poolNames = new ArrayList<>(threadPools.size());
     for (ObjectInstance threadPool : threadPools) {
 
       ThreadPoolObjectName threadPoolObjectName = new ThreadPoolObjectName();
@@ -179,15 +179,15 @@ public class ContainerListenerBean implements NotificationListener {
         }
       }
 
-      poolNames.add(threadPoolObjectName);
+      this.poolNames.add(threadPoolObjectName);
     }
 
     Set<ObjectInstance> executors =
         server.queryMBeans(new ObjectName(serverName + ":type=Executor,*"), null);
-    executorNames = new ArrayList<>(executors.size());
+    this.executorNames = new ArrayList<>(executors.size());
     for (ObjectInstance executor : executors) {
       ObjectName executorName = executor.getObjectName();
-      executorNames.add(executorName);
+      this.executorNames.add(executorName);
     }
 
     // Register with MBean server
@@ -207,11 +207,11 @@ public class ContainerListenerBean implements NotificationListener {
       initialize();
     }
 
-    List<ThreadPool> threadPools = new ArrayList<>(poolNames.size());
+    List<ThreadPool> threadPools = new ArrayList<>(this.poolNames.size());
 
     MBeanServer server = getContainerWrapper().getResourceResolver().getMBeanServer();
 
-    for (ObjectName executorName : executorNames) {
+    for (ObjectName executorName : this.executorNames) {
       ThreadPool threadPool = new ThreadPool();
       threadPool.setName(executorName.getKeyProperty("name"));
       threadPool.setMaxThreads(JmxTools.getIntAttr(server, executorName, "maxThreads"));
@@ -222,7 +222,7 @@ public class ContainerListenerBean implements NotificationListener {
       threadPools.add(threadPool);
     }
 
-    for (ThreadPoolObjectName threadPoolObjectName : poolNames) {
+    for (ThreadPoolObjectName threadPoolObjectName : this.poolNames) {
       try {
         ObjectName poolName = threadPoolObjectName.getThreadPoolName();
 
@@ -271,11 +271,11 @@ public class ContainerListenerBean implements NotificationListener {
       initialize();
     }
 
-    List<Connector> connectors = new ArrayList<>(poolNames.size());
+    List<Connector> connectors = new ArrayList<>(this.poolNames.size());
 
     MBeanServer server = getContainerWrapper().getResourceResolver().getMBeanServer();
 
-    for (ThreadPoolObjectName threadPoolObjectName : poolNames) {
+    for (ThreadPoolObjectName threadPoolObjectName : this.poolNames) {
       boolean remoteAddrAvailable = true;
       try {
         ObjectName poolName = threadPoolObjectName.getThreadPoolName();

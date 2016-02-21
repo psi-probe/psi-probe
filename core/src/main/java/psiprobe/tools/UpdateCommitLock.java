@@ -40,17 +40,17 @@ public class UpdateCommitLock {
    * @throws InterruptedException the interrupted exception
    */
   public synchronized void lockForUpdate() throws InterruptedException {
-    while (commitCount > 0 || commitRequests > 0) {
+    while (this.commitCount > 0 || this.commitRequests > 0) {
       wait();
     }
-    updateCount++;
+    this.updateCount++;
   }
 
   /**
    * Release update lock.
    */
   public synchronized void releaseUpdateLock() {
-    updateCount--;
+    this.updateCount--;
     notifyAll();
   }
 
@@ -60,19 +60,19 @@ public class UpdateCommitLock {
    * @throws InterruptedException the interrupted exception
    */
   public synchronized void lockForCommit() throws InterruptedException {
-    commitRequests++;
-    while (updateCount > 0 || commitCount > 0) {
+    this.commitRequests++;
+    while (this.updateCount > 0 || this.commitCount > 0) {
       wait();
     }
-    commitRequests--;
-    commitCount++;
+    this.commitRequests--;
+    this.commitCount++;
   }
 
   /**
    * Release commit lock.
    */
   public synchronized void releaseCommitLock() {
-    commitCount--;
+    this.commitCount--;
     notifyAll();
   }
 

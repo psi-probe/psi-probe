@@ -29,7 +29,7 @@ public class ResetAppStatsController extends NoSelfContextHandlerController {
    * @return the stats collector
    */
   public AppStatsCollectorBean getStatsCollector() {
-    return statsCollector;
+    return this.statsCollector;
   }
 
   /**
@@ -43,7 +43,7 @@ public class ResetAppStatsController extends NoSelfContextHandlerController {
 
   @Override
   protected void executeAction(String contextName) throws Exception {
-    statsCollector.reset(contextName);
+    this.statsCollector.reset(contextName);
   }
 
 }

@@ -149,7 +149,7 @@ public class ResourceResolverBean implements ResourceResolver {
         String jndiName = resolveJndiName(resource.getName(), global);
         Object obj = ctx.lookup(jndiName);
         resource.setLookedUp(true);
-        for (DatasourceAccessor accessor : datasourceMappers) {
+        for (DatasourceAccessor accessor : this.datasourceMappers) {
           dataSourceInfo = accessor.getInfo(obj);
           if (dataSourceInfo != null) {
             break;
@@ -190,7 +190,7 @@ public class ResourceResolverBean implements ResourceResolver {
       String jndiName = resolveJndiName(resourceName, context == null);
       Object obj = ctx.lookup(jndiName);
       try {
-        for (DatasourceAccessor accessor : datasourceMappers) {
+        for (DatasourceAccessor accessor : this.datasourceMappers) {
           if (accessor.reset(obj)) {
             return true;
           }
@@ -237,7 +237,7 @@ public class ResourceResolverBean implements ResourceResolver {
    * @return the datasource mappers
    */
   public List<DatasourceAccessor> getDatasourceMappers() {
-    return datasourceMappers;
+    return this.datasourceMappers;
   }
 
   /**

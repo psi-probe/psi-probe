@@ -39,7 +39,7 @@ public class ListCertificatesControllerTest {
     ListCertificatesController controller = new ListCertificatesController();
 
     String storeType = "jks";
-    File storeFile = ctx.getResource("classpath:certs/localhost-truststore.jks").getFile();
+    File storeFile = this.ctx.getResource("classpath:certs/localhost-truststore.jks").getFile();
     String storePassword = "123456";
 
     List<Cert> certs = controller.getCertificates(storeType, storeFile.toString(), storePassword);
@@ -55,7 +55,7 @@ public class ListCertificatesControllerTest {
     ListCertificatesController controller = new ListCertificatesController();
     
     String storeType = "jks";
-    File certFolder = ctx.getResource("classpath:certs").getFile();
+    File certFolder = this.ctx.getResource("classpath:certs").getFile();
     System.setProperty("catalina.base", certFolder.getPath());
     
     String storePassword = "123456";
@@ -73,8 +73,8 @@ public class ListCertificatesControllerTest {
     ListCertificatesController controller = new ListCertificatesController();
     
     String storeType = "jks";
-    File storeFile = ctx.getResource("classpath:certs/localhost-truststore.jks").getFile();
-    File certFolder = ctx.getResource("classpath:certs").getFile();
+    File storeFile = this.ctx.getResource("classpath:certs/localhost-truststore.jks").getFile();
+    File certFolder = this.ctx.getResource("classpath:certs").getFile();
     System.setProperty("catalina.base", certFolder.getPath());
     
     String storePassword = "123456";
@@ -92,7 +92,7 @@ public class ListCertificatesControllerTest {
     ListCertificatesController controller = new ListCertificatesController();
     
     String storeType = "jks";
-    File certFolder = ctx.getResource("classpath:certs").getFile();
+    File certFolder = this.ctx.getResource("classpath:certs").getFile();
     System.setProperty("catalina.base", certFolder.getPath());
     
     String storePassword = "123456";

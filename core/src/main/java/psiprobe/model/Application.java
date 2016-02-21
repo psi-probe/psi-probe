@@ -94,7 +94,7 @@ public class Application implements Serializable {
    * @return the name
    */
   public String getName() {
-    return name;
+    return this.name;
   }
 
   /**
@@ -112,7 +112,7 @@ public class Application implements Serializable {
    * @return the display name
    */
   public String getDisplayName() {
-    return displayName;
+    return this.displayName;
   }
 
   /**
@@ -130,7 +130,7 @@ public class Application implements Serializable {
    * @return the doc base
    */
   public String getDocBase() {
-    return docBase;
+    return this.docBase;
   }
 
   /**
@@ -148,7 +148,7 @@ public class Application implements Serializable {
    * @return true, if is available
    */
   public boolean isAvailable() {
-    return available;
+    return this.available;
   }
 
   /**
@@ -166,7 +166,7 @@ public class Application implements Serializable {
    * @return the session count
    */
   public long getSessionCount() {
-    return sessionCount;
+    return this.sessionCount;
   }
 
   /**
@@ -184,7 +184,7 @@ public class Application implements Serializable {
    * @return the session attribute count
    */
   public long getSessionAttributeCount() {
-    return sessionAttributeCount;
+    return this.sessionAttributeCount;
   }
 
   /**
@@ -202,7 +202,7 @@ public class Application implements Serializable {
    * @return the context attribute count
    */
   public int getContextAttributeCount() {
-    return contextAttributeCount;
+    return this.contextAttributeCount;
   }
 
   /**
@@ -220,7 +220,7 @@ public class Application implements Serializable {
    * @return the data source busy score
    */
   public int getDataSourceBusyScore() {
-    return dataSourceBusyScore;
+    return this.dataSourceBusyScore;
   }
 
   /**
@@ -238,7 +238,7 @@ public class Application implements Serializable {
    * @return the data source established score
    */
   public int getDataSourceEstablishedScore() {
-    return dataSourceEstablishedScore;
+    return this.dataSourceEstablishedScore;
   }
 
   /**
@@ -256,7 +256,7 @@ public class Application implements Serializable {
    * @return true, if is distributable
    */
   public boolean isDistributable() {
-    return distributable;
+    return this.distributable;
   }
 
   /**
@@ -274,7 +274,7 @@ public class Application implements Serializable {
    * @return the session timeout
    */
   public int getSessionTimeout() {
-    return sessionTimeout;
+    return this.sessionTimeout;
   }
 
   /**
@@ -292,7 +292,7 @@ public class Application implements Serializable {
    * @return the servlet version
    */
   public String getServletVersion() {
-    return servletVersion;
+    return this.servletVersion;
   }
 
   /**
@@ -310,7 +310,7 @@ public class Application implements Serializable {
    * @return the size
    */
   public long getSize() {
-    return size;
+    return this.size;
   }
 
   /**
@@ -337,7 +337,7 @@ public class Application implements Serializable {
    * @return true, if is serializable
    */
   public boolean isSerializable() {
-    return serializable;
+    return this.serializable;
   }
 
   /**
@@ -355,7 +355,7 @@ public class Application implements Serializable {
    * @return the servlet count
    */
   public int getServletCount() {
-    return servletCount;
+    return this.servletCount;
   }
 
   /**
@@ -373,7 +373,7 @@ public class Application implements Serializable {
    * @return the request count
    */
   public int getRequestCount() {
-    return requestCount;
+    return this.requestCount;
   }
 
   /**
@@ -391,7 +391,7 @@ public class Application implements Serializable {
    * @return the processing time
    */
   public long getProcessingTime() {
-    return processingTime;
+    return this.processingTime;
   }
 
   /**
@@ -409,7 +409,7 @@ public class Application implements Serializable {
    * @return the error count
    */
   public int getErrorCount() {
-    return errorCount;
+    return this.errorCount;
   }
 
   /**
@@ -427,7 +427,7 @@ public class Application implements Serializable {
    * @return the min time
    */
   public long getMinTime() {
-    return minTime;
+    return this.minTime;
   }
 
   /**
@@ -445,7 +445,7 @@ public class Application implements Serializable {
    * @return the max time
    */
   public long getMaxTime() {
-    return maxTime;
+    return this.maxTime;
   }
 
   /**
@@ -463,7 +463,7 @@ public class Application implements Serializable {
    * @return the avg time
    */
   public long getAvgTime() {
-    return avgTime;
+    return this.avgTime;
   }
 
   /**

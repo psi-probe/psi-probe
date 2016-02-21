@@ -56,7 +56,7 @@ public class ViewXmlConfController extends ContextHandlerController {
    * @return the display target
    */
   public String getDisplayTarget() {
-    return displayTarget;
+    return this.displayTarget;
   }
 
   /**
@@ -74,7 +74,7 @@ public class ViewXmlConfController extends ContextHandlerController {
    * @return the download url
    */
   public String getDownloadUrl() {
-    return downloadUrl;
+    return this.downloadUrl;
   }
 
   /**
@@ -90,7 +90,7 @@ public class ViewXmlConfController extends ContextHandlerController {
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-    if (displayTarget == null) {
+    if (this.displayTarget == null) {
       throw new RuntimeException("Display target is not set for " + getClass().getName());
     }
 
@@ -98,13 +98,13 @@ public class ViewXmlConfController extends ContextHandlerController {
     File xmlFile = null;
     ModelAndView mv = new ModelAndView(getViewName());
 
-    if (TARGET_WEB_XML.equals(displayTarget)) {
+    if (TARGET_WEB_XML.equals(this.displayTarget)) {
       ServletContext sctx = context.getServletContext();
       xmlPath = sctx.getRealPath("/WEB-INF/web.xml");
       xmlFile = new File(xmlPath);
       mv.addObject("fileDesc",
           getMessageSourceAccessor().getMessage("probe.src.app.viewxmlconf.webxml.desc"));
-    } else if (TARGET_CONTEXT_XML.equals(displayTarget)) {
+    } else if (TARGET_CONTEXT_XML.equals(this.displayTarget)) {
       xmlFile = getContainerWrapper().getTomcatContainer().getConfigFile(context);
       if (xmlFile != null) {
         xmlPath = xmlFile.getPath();
@@ -117,8 +117,8 @@ public class ViewXmlConfController extends ContextHandlerController {
       throw new RuntimeException("Unknown display target " + getDisplayTarget());
     }
 
-    mv.addObject("displayTarget", displayTarget);
-    mv.addObject("downloadUrl", downloadUrl);
+    mv.addObject("displayTarget", this.displayTarget);
+    mv.addObject("downloadUrl", this.downloadUrl);
 
     if (xmlFile != null) {
       mv.addObject("fileName", xmlFile.getName());

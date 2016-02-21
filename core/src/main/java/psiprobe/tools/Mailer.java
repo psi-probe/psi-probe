@@ -91,7 +91,7 @@ public class Mailer {
    * @return the from
    */
   public String getFrom() {
-    return from;
+    return this.from;
   }
 
   /**
@@ -100,10 +100,10 @@ public class Mailer {
    * @return the smtp
    */
   public String getSmtp() {
-    if (smtp == null) {
+    if (this.smtp == null) {
       return System.getProperty(PROPERTY_KEY_SMTP);
     }
-    return smtp;
+    return this.smtp;
   }
 
   /**
@@ -130,7 +130,7 @@ public class Mailer {
    * @return the default to
    */
   public String getDefaultTo() {
-    return defaultTo;
+    return this.defaultTo;
   }
 
   /**
@@ -148,7 +148,7 @@ public class Mailer {
    * @return the subject prefix
    */
   public String getSubjectPrefix() {
-    return subjectPrefix;
+    return this.subjectPrefix;
   }
 
   /**
@@ -168,8 +168,8 @@ public class Mailer {
    */
   public void send(MailMessage mailMessage) throws MessagingException {
     Properties props = (Properties) System.getProperties().clone();
-    if (smtp != null) {
-      props.put(PROPERTY_KEY_SMTP, smtp);
+    if (this.smtp != null) {
+      props.put(PROPERTY_KEY_SMTP, this.smtp);
     }
     PrintStream debugOut = LogOutputStream.createPrintStream(logger, LogOutputStream.LEVEL_DEBUG);
 
@@ -194,8 +194,8 @@ public class Mailer {
       throws MessagingException {
 
     String subject = mailMessage.getSubject();
-    if (subjectPrefix != null && !subjectPrefix.equals("")) {
-      subject = subjectPrefix + " " + subject;
+    if (this.subjectPrefix != null && !this.subjectPrefix.equals("")) {
+      subject = this.subjectPrefix + " " + subject;
     }
 
     MimeMultipart content = new MimeMultipart("related");
@@ -212,15 +212,15 @@ public class Mailer {
     content.addBodyPart(bodyPart);
 
     MimeMessage message = new MimeMessage(session);
-    if (from == null) {
+    if (this.from == null) {
       message.setFrom(); // Uses mail.from property
     } else {
-      message.setFrom(new InternetAddress(from));
+      message.setFrom(new InternetAddress(this.from));
     }
 
     InternetAddress[] to = createAddresses(mailMessage.getToArray());
     if (to.length == 0) {
-      to = InternetAddress.parse(defaultTo);
+      to = InternetAddress.parse(this.defaultTo);
     }
     message.setRecipients(Message.RecipientType.TO, to);
 

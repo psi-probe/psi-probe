@@ -29,7 +29,7 @@ public class FileLogAccessor extends AbstractLogDestination {
 
   @Override
   public String getName() {
-    return name;
+    return this.name;
   }
 
   /**
@@ -58,7 +58,7 @@ public class FileLogAccessor extends AbstractLogDestination {
 
   @Override
   public File getFile() {
-    return file;
+    return this.file;
   }
 
   /**

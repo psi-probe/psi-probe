@@ -45,7 +45,7 @@ public class OutTag extends BodyTagSupport {
    * @return the value
    */
   public Object getValue() {
-    return value;
+    return this.value;
   }
 
   /**
@@ -63,7 +63,7 @@ public class OutTag extends BodyTagSupport {
    * @return the max length
    */
   public int getMaxLength() {
-    return maxLength;
+    return this.maxLength;
   }
 
   /**
@@ -81,7 +81,7 @@ public class OutTag extends BodyTagSupport {
    * @return true, if is ellipsis right
    */
   public boolean isEllipsisRight() {
-    return ellipsisRight;
+    return this.ellipsisRight;
   }
 
   /**
@@ -95,8 +95,8 @@ public class OutTag extends BodyTagSupport {
 
   @Override
   public int doStartTag() throws JspException {
-    if (value != null) {
-      print(value.toString(), pageContext.getOut());
+    if (this.value != null) {
+      print(this.value.toString(), this.pageContext.getOut());
       return SKIP_BODY;
     }
     return super.doStartTag();
@@ -117,12 +117,12 @@ public class OutTag extends BodyTagSupport {
    */
   private void print(String displayValue, JspWriter out) throws JspException {
     try {
-      if (maxLength != -1 && displayValue.length() > maxLength) {
+      if (this.maxLength != -1 && displayValue.length() > this.maxLength) {
         String newValue;
-        if (ellipsisRight) {
-          newValue = displayValue.substring(0, maxLength - 3) + "...";
+        if (this.ellipsisRight) {
+          newValue = displayValue.substring(0, this.maxLength - 3) + "...";
         } else {
-          newValue = "..." + displayValue.substring(displayValue.length() - maxLength + 3);
+          newValue = "..." + displayValue.substring(displayValue.length() - this.maxLength + 3);
         }
         String title = StringEscapeUtils.escapeHtml(displayValue);
         out.print("<span title=\"" + title + "\">" + newValue + "</span>");

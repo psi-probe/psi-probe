@@ -61,7 +61,7 @@ public class StatsCollectionEvent {
    * @return the name
    */
   public String getName() {
-    return name;
+    return this.name;
   }
 
   /**
@@ -79,7 +79,7 @@ public class StatsCollectionEvent {
    * @return the data
    */
   public XYDataItem getData() {
-    return data;
+    return this.data;
   }
 
   /**

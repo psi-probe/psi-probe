@@ -49,7 +49,7 @@ public class SysInfoController extends TomcatContainerController {
    * @return the filter out keys
    */
   public List<String> getFilterOutKeys() {
-    return filterOutKeys;
+    return this.filterOutKeys;
   }
 
   /**
@@ -67,7 +67,7 @@ public class SysInfoController extends TomcatContainerController {
    * @return the runtime info accessor
    */
   public RuntimeInfoAccessorBean getRuntimeInfoAccessor() {
-    return runtimeInfoAccessor;
+    return this.runtimeInfoAccessor;
   }
 
   /**
@@ -85,7 +85,7 @@ public class SysInfoController extends TomcatContainerController {
    * @return the collection period
    */
   public long getCollectionPeriod() {
-    return collectionPeriod;
+    return this.collectionPeriod;
   }
 
   /**
@@ -113,7 +113,7 @@ public class SysInfoController extends TomcatContainerController {
     }
 
     if (!SecurityUtils.hasAttributeValueRole(getServletContext(), request)) {
-      for (String key : filterOutKeys) {
+      for (String key : this.filterOutKeys) {
         sysProps.remove(key);
       }
     }

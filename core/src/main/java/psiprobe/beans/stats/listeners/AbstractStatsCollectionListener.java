@@ -38,7 +38,7 @@ public abstract class AbstractStatsCollectionListener implements StatsCollection
 
   @Override
   public boolean isEnabled() {
-    return enabled;
+    return this.enabled;
   }
 
   /**
@@ -126,7 +126,7 @@ public abstract class AbstractStatsCollectionListener implements StatsCollection
    * @return the property category
    */
   public String getPropertyCategory() {
-    return propertyCategory;
+    return this.propertyCategory;
   }
 
   /**

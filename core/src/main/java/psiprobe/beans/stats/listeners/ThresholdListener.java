@@ -94,7 +94,7 @@ public abstract class ThresholdListener extends AbstractStatsCollectionListener 
 
   @Override
   public void reset() {
-    previousValues.clear();
+    this.previousValues.clear();
     super.reset();
   }
 
@@ -133,7 +133,7 @@ public abstract class ThresholdListener extends AbstractStatsCollectionListener 
   protected long getThreshold(String name) {
     String threshold = getPropertyValue(name, "threshold");
     if (threshold == null && !isSeriesDisabled(name)) {
-      logger.info("Required property '{}' is not defined or inherited.  Disabling listener for '{}' series",
+      this.logger.info("Required property '{}' is not defined or inherited.  Disabling listener for '{}' series",
               getPropertyKey(name, "threshold"), name);
       setSeriesDisabled(name, true);
       return DEFAULT_THRESHOLD;
@@ -141,7 +141,7 @@ public abstract class ThresholdListener extends AbstractStatsCollectionListener 
     try {
       return SizeExpression.parse(threshold);
     } catch (NumberFormatException ex) {
-      logger.trace("", ex);
+      this.logger.trace("", ex);
       return DEFAULT_THRESHOLD;
     }
   }
@@ -153,7 +153,7 @@ public abstract class ThresholdListener extends AbstractStatsCollectionListener 
    * @return the previous value
    */
   protected long getPreviousValue(String name) {
-    Long value = previousValues.get(name);
+    Long value = this.previousValues.get(name);
     return Utils.toLong(value, DEFAULT_VALUE);
   }
 
@@ -165,7 +165,7 @@ public abstract class ThresholdListener extends AbstractStatsCollectionListener 
    */
   protected void setPreviousValue(String name, long previousValue) {
     Long value = previousValue;
-    previousValues.put(name, value);
+    this.previousValues.put(name, value);
   }
 
   /**
@@ -175,7 +175,7 @@ public abstract class ThresholdListener extends AbstractStatsCollectionListener 
    * @return true, if is series disabled
    */
   protected boolean isSeriesDisabled(String name) {
-    Boolean disabled = seriesDisabled.get(name);
+    Boolean disabled = this.seriesDisabled.get(name);
     if (disabled == null) {
       disabled = Boolean.FALSE;
     }
@@ -189,7 +189,7 @@ public abstract class ThresholdListener extends AbstractStatsCollectionListener 
    * @param disabled the disabled
    */
   protected void setSeriesDisabled(String name, boolean disabled) {
-    seriesDisabled.put(name, disabled);
+    this.seriesDisabled.put(name, disabled);
   }
 
 }

@@ -43,7 +43,7 @@ public class LogHandlerController extends ParameterizableViewController {
    * @return the log resolver
    */
   public LogResolverBean getLogResolver() {
-    return logResolver;
+    return this.logResolver;
   }
 
   /**
@@ -71,7 +71,7 @@ public class LogHandlerController extends ParameterizableViewController {
     String logIndex = ServletRequestUtils.getStringParameter(request, "logIndex");
 
     LogDestination dest =
-        logResolver.getLogDestination(logType, webapp, context, root, logName, logIndex);
+        this.logResolver.getLogDestination(logType, webapp, context, root, logName, logIndex);
 
     if (dest != null) {
       if (dest.getFile() != null && dest.getFile().exists()) {

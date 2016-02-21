@@ -27,7 +27,7 @@ public class PooledClusterSender extends ClusterSender {
    * @return the max pool socket limit
    */
   public int getMaxPoolSocketLimit() {
-    return maxPoolSocketLimit;
+    return this.maxPoolSocketLimit;
   }
 
   /**

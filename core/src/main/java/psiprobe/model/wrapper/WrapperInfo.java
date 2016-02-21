@@ -57,7 +57,7 @@ public class WrapperInfo {
    * @return the user
    */
   public String getUser() {
-    return user;
+    return this.user;
   }
 
   /**
@@ -75,7 +75,7 @@ public class WrapperInfo {
    * @return the interactive user
    */
   public String getInteractiveUser() {
-    return interactiveUser;
+    return this.interactiveUser;
   }
 
   /**
@@ -93,7 +93,7 @@ public class WrapperInfo {
    * @return the version
    */
   public String getVersion() {
-    return version;
+    return this.version;
   }
 
   /**
@@ -111,7 +111,7 @@ public class WrapperInfo {
    * @return the wrapper pid
    */
   public int getWrapperPid() {
-    return wrapperPid;
+    return this.wrapperPid;
   }
 
   /**
@@ -129,7 +129,7 @@ public class WrapperInfo {
    * @return the jvm pid
    */
   public int getJvmPid() {
-    return jvmPid;
+    return this.jvmPid;
   }
 
   /**
@@ -147,7 +147,7 @@ public class WrapperInfo {
    * @return the builds the time
    */
   public String getBuildTime() {
-    return buildTime;
+    return this.buildTime;
   }
 
   /**
@@ -165,7 +165,7 @@ public class WrapperInfo {
    * @return the properties
    */
   public Set<Entry<Object, Object>> getProperties() {
-    return properties;
+    return this.properties;
   }
 
   /**
@@ -183,7 +183,7 @@ public class WrapperInfo {
    * @return true, if is controlled by wrapper
    */
   public boolean isControlledByWrapper() {
-    return controlledByWrapper;
+    return this.controlledByWrapper;
   }
 
   /**
@@ -201,7 +201,7 @@ public class WrapperInfo {
    * @return true, if is launched as service
    */
   public boolean isLaunchedAsService() {
-    return launchedAsService;
+    return this.launchedAsService;
   }
 
   /**
@@ -219,7 +219,7 @@ public class WrapperInfo {
    * @return true, if is debug enabled
    */
   public boolean isDebugEnabled() {
-    return debugEnabled;
+    return this.debugEnabled;
   }
 
   /**

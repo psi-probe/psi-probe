@@ -59,7 +59,7 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
    * @return true, if is context
    */
   public boolean isContext() {
-    return context;
+    return this.context;
   }
 
   /**

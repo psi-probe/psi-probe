@@ -48,7 +48,7 @@ public class DataSourceInfo {
    * @return the jdbc url
    */
   public String getJdbcUrl() {
-    return jdbcUrl;
+    return this.jdbcUrl;
   }
 
   /**
@@ -66,7 +66,7 @@ public class DataSourceInfo {
    * @return the busy connections
    */
   public int getBusyConnections() {
-    return busyConnections;
+    return this.busyConnections;
   }
 
   /**
@@ -84,7 +84,7 @@ public class DataSourceInfo {
    * @return the established connections
    */
   public int getEstablishedConnections() {
-    return establishedConnections;
+    return this.establishedConnections;
   }
 
   /**
@@ -102,7 +102,7 @@ public class DataSourceInfo {
    * @return the max connections
    */
   public int getMaxConnections() {
-    return maxConnections;
+    return this.maxConnections;
   }
 
   /**
@@ -120,7 +120,7 @@ public class DataSourceInfo {
    * @return true, if is resettable
    */
   public boolean isResettable() {
-    return resettable;
+    return this.resettable;
   }
 
   /**
@@ -138,7 +138,7 @@ public class DataSourceInfo {
    * @return the username
    */
   public String getUsername() {
-    return username;
+    return this.username;
   }
 
   /**
@@ -156,7 +156,7 @@ public class DataSourceInfo {
    * @return the type
    */
   public String getType() {
-    return type;
+    return this.type;
   }
 
   /**

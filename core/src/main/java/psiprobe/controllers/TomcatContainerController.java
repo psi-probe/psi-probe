@@ -39,7 +39,7 @@ public abstract class TomcatContainerController extends AbstractController {
    * @return the container wrapper
    */
   public ContainerWrapperBean getContainerWrapper() {
-    return containerWrapper;
+    return this.containerWrapper;
   }
 
   /**
@@ -57,7 +57,7 @@ public abstract class TomcatContainerController extends AbstractController {
    * @return the view name
    */
   public String getViewName() {
-    return viewName;
+    return this.viewName;
   }
 
   /**

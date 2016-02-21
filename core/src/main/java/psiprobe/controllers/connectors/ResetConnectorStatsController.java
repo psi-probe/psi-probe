@@ -37,7 +37,7 @@ public class ResetConnectorStatsController extends ParameterizableViewController
    * @return the collector bean
    */
   public ConnectorStatsCollectorBean getCollectorBean() {
-    return collectorBean;
+    return this.collectorBean;
   }
 
   /**
@@ -54,7 +54,7 @@ public class ResetConnectorStatsController extends ParameterizableViewController
       HttpServletResponse response) throws Exception {
 
     String connectorName = ServletRequestUtils.getRequiredStringParameter(request, "cn");
-    collectorBean.reset(connectorName);
+    this.collectorBean.reset(connectorName);
     return new ModelAndView(new RedirectView(request.getContextPath() + getViewName()));
   }
 

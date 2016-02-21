@@ -42,7 +42,7 @@ public class DecoratorController extends ParameterizableViewController {
    * @return the messages basename
    */
   public String getMessagesBasename() {
-    return messagesBasename;
+    return this.messagesBasename;
   }
 
   /**
@@ -62,7 +62,7 @@ public class DecoratorController extends ParameterizableViewController {
       request.setAttribute("hostname", InetAddress.getLocalHost().getHostName());
     } catch (UnknownHostException e) {
       request.setAttribute("hostname", "unknown");
-      logger.trace("", e);
+      this.logger.trace("", e);
     }
 
     Properties version = (Properties) getApplicationContext().getBean("version");
@@ -89,7 +89,7 @@ public class DecoratorController extends ParameterizableViewController {
     String lang = "en";
     for (String fileName : getMessageFileNamesForLocale(request.getLocale())) {
       if (getServletContext().getResource(fileName + ".properties") != null) {
-        lang = fileName.substring(messagesBasename.length() + 1);
+        lang = fileName.substring(this.messagesBasename.length() + 1);
         break;
       }
     }
@@ -106,6 +106,6 @@ public class DecoratorController extends ParameterizableViewController {
    * @return the message file names for locale
    */
   private List<String> getMessageFileNamesForLocale(Locale locale) {
-    return Utils.getNamesForLocale(messagesBasename, locale);
+    return Utils.getNamesForLocale(this.messagesBasename, locale);
   }
 }

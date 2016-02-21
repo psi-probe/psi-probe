@@ -112,8 +112,8 @@ public class SessionSearchInfo implements Serializable {
    * @return true, if is empty
    */
   public boolean isEmpty() {
-    return sessionId == null && attrName == null && ageFrom == null && ageTo == null
-        && idleTimeFrom == null && idleTimeTo == null && lastIp == null;
+    return this.sessionId == null && this.attrName == null && this.ageFrom == null && this.ageTo == null
+        && this.idleTimeFrom == null && this.idleTimeTo == null && this.lastIp == null;
   }
 
   /**
@@ -122,7 +122,7 @@ public class SessionSearchInfo implements Serializable {
    * @return true, if is session id valid
    */
   public boolean isSessionIdValid() {
-    return sessionId == null || sessionIdPattern != null;
+    return this.sessionId == null || this.sessionIdPattern != null;
   }
 
   /**
@@ -131,7 +131,7 @@ public class SessionSearchInfo implements Serializable {
    * @return true, if is attr name valid
    */
   public boolean isAttrNameValid() {
-    return attrName == null || !attrNamePatterns.isEmpty();
+    return this.attrName == null || !this.attrNamePatterns.isEmpty();
   }
 
   /**
@@ -140,7 +140,7 @@ public class SessionSearchInfo implements Serializable {
    * @return true, if is age from valid
    */
   public boolean isAgeFromValid() {
-    return ageFrom == null || ageFromSec != null;
+    return this.ageFrom == null || this.ageFromSec != null;
   }
 
   /**
@@ -149,7 +149,7 @@ public class SessionSearchInfo implements Serializable {
    * @return true, if is age to valid
    */
   public boolean isAgeToValid() {
-    return ageTo == null || ageToSec != null;
+    return this.ageTo == null || this.ageToSec != null;
   }
 
   /**
@@ -158,7 +158,7 @@ public class SessionSearchInfo implements Serializable {
    * @return true, if is idle time from valid
    */
   public boolean isIdleTimeFromValid() {
-    return idleTimeFrom == null || idleTimeFromSec != null;
+    return this.idleTimeFrom == null || this.idleTimeFromSec != null;
   }
 
   /**
@@ -167,7 +167,7 @@ public class SessionSearchInfo implements Serializable {
    * @return true, if is idle time to valid
    */
   public boolean isIdleTimeToValid() {
-    return idleTimeTo == null || idleTimeToSec != null;
+    return this.idleTimeTo == null || this.idleTimeToSec != null;
   }
 
   /**
@@ -195,7 +195,7 @@ public class SessionSearchInfo implements Serializable {
    * @return true, if is use session id
    */
   public boolean isUseSessionId() {
-    return sessionIdPattern != null;
+    return this.sessionIdPattern != null;
   }
 
   /**
@@ -204,7 +204,7 @@ public class SessionSearchInfo implements Serializable {
    * @return true, if is use attr name
    */
   public boolean isUseAttrName() {
-    return !attrNamePatterns.isEmpty();
+    return !this.attrNamePatterns.isEmpty();
   }
 
   /**
@@ -222,7 +222,7 @@ public class SessionSearchInfo implements Serializable {
    * @return true, if is use age from
    */
   public boolean isUseAgeFrom() {
-    return ageFromSec != null;
+    return this.ageFromSec != null;
   }
 
   /**
@@ -231,7 +231,7 @@ public class SessionSearchInfo implements Serializable {
    * @return true, if is use age to
    */
   public boolean isUseAgeTo() {
-    return ageToSec != null;
+    return this.ageToSec != null;
   }
 
   /**
@@ -240,7 +240,7 @@ public class SessionSearchInfo implements Serializable {
    * @return true, if is use idle time from
    */
   public boolean isUseIdleTimeFrom() {
-    return idleTimeFromSec != null;
+    return this.idleTimeFromSec != null;
   }
 
   /**
@@ -249,7 +249,7 @@ public class SessionSearchInfo implements Serializable {
    * @return true, if is use idle time to
    */
   public boolean isUseIdleTimeTo() {
-    return idleTimeToSec != null;
+    return this.idleTimeToSec != null;
   }
 
   /**
@@ -258,7 +258,7 @@ public class SessionSearchInfo implements Serializable {
    * @return true, if is use last ip
    */
   public boolean isUseLastIp() {
-    return lastIp != null;
+    return this.lastIp != null;
   }
 
   /**
@@ -267,7 +267,7 @@ public class SessionSearchInfo implements Serializable {
    * @return the search action
    */
   public String getSearchAction() {
-    return searchAction;
+    return this.searchAction;
   }
 
   /**
@@ -278,11 +278,11 @@ public class SessionSearchInfo implements Serializable {
   public void setSearchAction(String searchAction) {
     this.searchAction = searchAction;
     if (searchAction == null) {
-      apply = false;
-      clear = false;
+      this.apply = false;
+      this.clear = false;
     } else {
-      apply = searchAction.equals(ACTION_APPLY);
-      clear = searchAction.equals(ACTION_CLEAR);
+      this.apply = searchAction.equals(ACTION_APPLY);
+      this.clear = searchAction.equals(ACTION_CLEAR);
     }
   }
 
@@ -292,7 +292,7 @@ public class SessionSearchInfo implements Serializable {
    * @return true, if is apply
    */
   public boolean isApply() {
-    return apply;
+    return this.apply;
   }
 
   /**
@@ -301,7 +301,7 @@ public class SessionSearchInfo implements Serializable {
    * @return true, if is clear
    */
   public boolean isClear() {
-    return clear;
+    return this.clear;
   }
 
   /**
@@ -310,7 +310,7 @@ public class SessionSearchInfo implements Serializable {
    * @return the session id
    */
   public String getSessionId() {
-    return sessionId;
+    return this.sessionId;
   }
 
   /**
@@ -320,15 +320,15 @@ public class SessionSearchInfo implements Serializable {
    */
   public void setSessionId(String sessionId) {
     this.sessionId = sessionId;
-    sessionIdPattern = null;
-    sessionIdMsg = null;
+    this.sessionIdPattern = null;
+    this.sessionIdMsg = null;
 
     if (sessionId != null) {
       try {
-        sessionIdPattern = Pattern.compile(sessionId);
+        this.sessionIdPattern = Pattern.compile(sessionId);
       } catch (PatternSyntaxException e) {
         logger.trace("", e);
-        sessionIdMsg = e.getDescription();
+        this.sessionIdMsg = e.getDescription();
       }
     }
   }
@@ -339,7 +339,7 @@ public class SessionSearchInfo implements Serializable {
    * @return the session id pattern
    */
   public Pattern getSessionIdPattern() {
-    return sessionIdPattern;
+    return this.sessionIdPattern;
   }
 
   /**
@@ -348,7 +348,7 @@ public class SessionSearchInfo implements Serializable {
    * @return the session id msg
    */
   public String getSessionIdMsg() {
-    return sessionIdMsg;
+    return this.sessionIdMsg;
   }
 
   /**
@@ -357,7 +357,7 @@ public class SessionSearchInfo implements Serializable {
    * @return the attr name
    */
   public String getAttrName() {
-    return attrName;
+    return this.attrName;
   }
 
   /**
@@ -367,20 +367,20 @@ public class SessionSearchInfo implements Serializable {
    */
   public void setAttrName(String attrName) {
     this.attrName = attrName;
-    attrNamePatterns.clear();
-    attrNameMsgs.clear();
+    this.attrNamePatterns.clear();
+    this.attrNameMsgs.clear();
 
     if (attrName != null) {
       String[] attrNames = attrName.split(",");
       if (attrNames.length == 0 && !attrName.equals("")) {
-        attrNameMsgs.add("");
+        this.attrNameMsgs.add("");
       } else {
         for (String regex : attrNames) {
           try {
-            attrNamePatterns.add(Pattern.compile(regex));
+            this.attrNamePatterns.add(Pattern.compile(regex));
           } catch (PatternSyntaxException e) {
             logger.trace("", e);
-            attrNameMsgs.add(e.getDescription());
+            this.attrNameMsgs.add(e.getDescription());
           }
         }
       }
@@ -393,7 +393,7 @@ public class SessionSearchInfo implements Serializable {
    * @return the attr name patterns
    */
   public List<Pattern> getAttrNamePatterns() {
-    return attrNamePatterns;
+    return this.attrNamePatterns;
   }
 
   /**
@@ -402,7 +402,7 @@ public class SessionSearchInfo implements Serializable {
    * @return the attr name msgs
    */
   public List<String> getAttrNameMsgs() {
-    return attrNameMsgs;
+    return this.attrNameMsgs;
   }
 
   /**
@@ -411,7 +411,7 @@ public class SessionSearchInfo implements Serializable {
    * @return the age from
    */
   public String getAgeFrom() {
-    return ageFrom;
+    return this.ageFrom;
   }
 
   /**
@@ -421,11 +421,11 @@ public class SessionSearchInfo implements Serializable {
    */
   public void setAgeFrom(String ageFrom) {
     this.ageFrom = ageFrom;
-    ageFromSec = null;
+    this.ageFromSec = null;
 
     if (ageFrom != null) {
       try {
-        ageFromSec = Integer.valueOf(ageFrom);
+        this.ageFromSec = Integer.valueOf(ageFrom);
       } catch (NumberFormatException e) {
         logger.trace("", e);
       }
@@ -438,7 +438,7 @@ public class SessionSearchInfo implements Serializable {
    * @return the age from sec
    */
   public Integer getAgeFromSec() {
-    return ageFromSec;
+    return this.ageFromSec;
   }
 
   /**
@@ -447,7 +447,7 @@ public class SessionSearchInfo implements Serializable {
    * @return the age to
    */
   public String getAgeTo() {
-    return ageTo;
+    return this.ageTo;
   }
 
   /**
@@ -457,11 +457,11 @@ public class SessionSearchInfo implements Serializable {
    */
   public void setAgeTo(String ageTo) {
     this.ageTo = ageTo;
-    ageToSec = null;
+    this.ageToSec = null;
 
     if (ageTo != null) {
       try {
-        ageToSec = Integer.valueOf(ageTo);
+        this.ageToSec = Integer.valueOf(ageTo);
       } catch (NumberFormatException e) {
         logger.trace("", e);
       }
@@ -474,7 +474,7 @@ public class SessionSearchInfo implements Serializable {
    * @return the age to sec
    */
   public Integer getAgeToSec() {
-    return ageToSec;
+    return this.ageToSec;
   }
 
   /**
@@ -483,7 +483,7 @@ public class SessionSearchInfo implements Serializable {
    * @return the idle time from
    */
   public String getIdleTimeFrom() {
-    return idleTimeFrom;
+    return this.idleTimeFrom;
   }
 
   /**
@@ -493,11 +493,11 @@ public class SessionSearchInfo implements Serializable {
    */
   public void setIdleTimeFrom(String idleTimeFrom) {
     this.idleTimeFrom = idleTimeFrom;
-    idleTimeFromSec = null;
+    this.idleTimeFromSec = null;
 
     if (idleTimeFrom != null) {
       try {
-        idleTimeFromSec = Integer.valueOf(idleTimeFrom);
+        this.idleTimeFromSec = Integer.valueOf(idleTimeFrom);
       } catch (NumberFormatException e) {
         logger.trace("", e);
       }
@@ -510,7 +510,7 @@ public class SessionSearchInfo implements Serializable {
    * @return the idle time from sec
    */
   public Integer getIdleTimeFromSec() {
-    return idleTimeFromSec;
+    return this.idleTimeFromSec;
   }
 
   /**
@@ -519,7 +519,7 @@ public class SessionSearchInfo implements Serializable {
    * @return the idle time to
    */
   public String getIdleTimeTo() {
-    return idleTimeTo;
+    return this.idleTimeTo;
   }
 
   /**
@@ -529,11 +529,11 @@ public class SessionSearchInfo implements Serializable {
    */
   public void setIdleTimeTo(String idleTimeTo) {
     this.idleTimeTo = idleTimeTo;
-    idleTimeToSec = null;
+    this.idleTimeToSec = null;
 
     if (idleTimeTo != null) {
       try {
-        idleTimeToSec = Integer.valueOf(idleTimeTo);
+        this.idleTimeToSec = Integer.valueOf(idleTimeTo);
       } catch (NumberFormatException e) {
         logger.trace("", e);
       }
@@ -546,7 +546,7 @@ public class SessionSearchInfo implements Serializable {
    * @return the idle time to sec
    */
   public Integer getIdleTimeToSec() {
-    return idleTimeToSec;
+    return this.idleTimeToSec;
   }
 
   /**
@@ -555,7 +555,7 @@ public class SessionSearchInfo implements Serializable {
    * @return the last ip
    */
   public String getLastIp() {
-    return lastIp;
+    return this.lastIp;
   }
 
   /**
@@ -573,7 +573,7 @@ public class SessionSearchInfo implements Serializable {
    * @return the info message
    */
   public String getInfoMessage() {
-    return infoMessage;
+    return this.infoMessage;
   }
 
   /**
@@ -591,7 +591,7 @@ public class SessionSearchInfo implements Serializable {
    * @return the error messages
    */
   public List<String> getErrorMessages() {
-    return errorMessages;
+    return this.errorMessages;
   }
 
   /**
@@ -600,7 +600,7 @@ public class SessionSearchInfo implements Serializable {
    * @param msg the msg
    */
   public void addErrorMessage(String msg) {
-    errorMessages.add(msg);
+    this.errorMessages.add(msg);
   }
 
 }

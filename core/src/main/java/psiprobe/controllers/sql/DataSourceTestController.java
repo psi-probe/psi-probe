@@ -59,7 +59,7 @@ public class DataSourceTestController extends ParameterizableViewController {
     String referer = request.getHeader("Referer");
     String backUrl;
     if (referer != null) {
-      backUrl = referer.replaceAll(replacePattern, "");
+      backUrl = referer.replaceAll(this.replacePattern, "");
     } else {
       backUrl = null;
     }
@@ -81,7 +81,7 @@ public class DataSourceTestController extends ParameterizableViewController {
    * @return the collection period
    */
   public long getCollectionPeriod() {
-    return collectionPeriod;
+    return this.collectionPeriod;
   }
 
   /**
@@ -99,7 +99,7 @@ public class DataSourceTestController extends ParameterizableViewController {
    * @return the max rows
    */
   public int getMaxRows() {
-    return maxRows;
+    return this.maxRows;
   }
 
   /**
@@ -117,7 +117,7 @@ public class DataSourceTestController extends ParameterizableViewController {
    * @return the rows per page
    */
   public int getRowsPerPage() {
-    return rowsPerPage;
+    return this.rowsPerPage;
   }
 
   /**
@@ -135,7 +135,7 @@ public class DataSourceTestController extends ParameterizableViewController {
    * @return the history size
    */
   public int getHistorySize() {
-    return historySize;
+    return this.historySize;
   }
 
   /**
@@ -153,7 +153,7 @@ public class DataSourceTestController extends ParameterizableViewController {
    * @return the replace pattern
    */
   public String getReplacePattern() {
-    return replacePattern;
+    return this.replacePattern;
   }
 
   /**

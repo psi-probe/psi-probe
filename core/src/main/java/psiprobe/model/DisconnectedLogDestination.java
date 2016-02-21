@@ -96,71 +96,71 @@ public class DisconnectedLogDestination implements LogDestination, Serializable 
 
   @Override
   public Application getApplication() {
-    return application;
+    return this.application;
   }
 
   @Override
   public boolean isRoot() {
-    return root;
+    return this.root;
   }
 
   @Override
   public boolean isContext() {
-    return context;
+    return this.context;
   }
 
   @Override
   public String getName() {
-    return name;
+    return this.name;
   }
 
   @Override
   public String getIndex() {
-    return index;
+    return this.index;
   }
 
   @Override
   public String getTargetClass() {
-    return targetClass;
+    return this.targetClass;
   }
 
   @Override
   public String getConversionPattern() {
-    return conversionPattern;
+    return this.conversionPattern;
   }
 
   @Override
   public File getFile() {
-    return file;
+    return this.file;
   }
 
   @Override
   public String getLogType() {
-    return logType;
+    return this.logType;
   }
 
   @Override
   public long getSize() {
-    return size;
+    return this.size;
   }
 
   @Override
   public Timestamp getLastModified() {
-    return lastModified;
+    return this.lastModified;
   }
 
   @Override
   public String getLevel() {
-    return level;
+    return this.level;
   }
 
   @Override
   public String[] getValidLevels() {
-    return validLevels;
+    return this.validLevels;
   }
 
   @Override
   public String getEncoding() {
-    return encoding;
+    return this.encoding;
   }
 }

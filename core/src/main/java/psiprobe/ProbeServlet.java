@@ -45,7 +45,7 @@ public class ProbeServlet extends DispatcherServlet implements ContainerServlet 
 
   @Override
   public Wrapper getWrapper() {
-    return wrapper;
+    return this.wrapper;
   }
 
   @Override
@@ -63,8 +63,8 @@ public class ProbeServlet extends DispatcherServlet implements ContainerServlet 
   @Override
   public void init(ServletConfig config) throws ServletException {
     super.init(config);
-    if (wrapper != null) {
-      getContainerWrapperBean().setWrapper(wrapper);
+    if (this.wrapper != null) {
+      getContainerWrapperBean().setWrapper(this.wrapper);
     } else {
       throw new ServletException("Wrapper is null");
     }

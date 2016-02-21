@@ -42,8 +42,8 @@ public class FlapListenerTests {
   private final float defaultHighWeight = 1.0f;
 
   /** The listener. */
-  private MockFlapListener listener = new MockFlapListener(defaultThreshold, defaultInterval,
-      defaultStartThreshold, defaultStopThreshold, defaultLowWeight, defaultHighWeight);
+  private MockFlapListener listener = new MockFlapListener(this.defaultThreshold, this.defaultInterval,
+      this.defaultStartThreshold, this.defaultStopThreshold, this.defaultLowWeight, this.defaultHighWeight);
 
   /** The below threshold. */
   private StatsCollectionEvent belowThreshold = new StatsCollectionEvent("test", 0, 0);
@@ -57,8 +57,8 @@ public class FlapListenerTests {
    * @param sce the sce
    */
   protected void fill(StatsCollectionEvent sce) {
-    listener.reset();
-    add(sce, defaultInterval);
+    this.listener.reset();
+    add(sce, this.defaultInterval);
   }
 
   /**
@@ -69,7 +69,7 @@ public class FlapListenerTests {
    */
   protected void add(StatsCollectionEvent sce, int quantity) {
     for (int i = 0; i < quantity; i++) {
-      listener.statsCollected(sce);
+      this.listener.statsCollected(sce);
     }
   }
 
@@ -78,10 +78,10 @@ public class FlapListenerTests {
    */
   @Test
   public void testBelowThresholdNotFlapping() {
-    listener.reset();
-    listener.statsCollected(aboveThreshold);
-    listener.statsCollected(belowThreshold);
-    Assert.assertTrue(listener.isBelowThresholdNotFlapping());
+    this.listener.reset();
+    this.listener.statsCollected(this.aboveThreshold);
+    this.listener.statsCollected(this.belowThreshold);
+    Assert.assertTrue(this.listener.isBelowThresholdNotFlapping());
   }
 
   /**
@@ -89,10 +89,10 @@ public class FlapListenerTests {
    */
   @Test
   public void testAboveThresholdNotFlapping() {
-    listener.reset();
-    listener.statsCollected(belowThreshold);
-    listener.statsCollected(aboveThreshold);
-    Assert.assertTrue(listener.isAboveThresholdNotFlapping());
+    this.listener.reset();
+    this.listener.statsCollected(this.belowThreshold);
+    this.listener.statsCollected(this.aboveThreshold);
+    Assert.assertTrue(this.listener.isAboveThresholdNotFlapping());
   }
 
   /**
@@ -100,11 +100,11 @@ public class FlapListenerTests {
    */
   @Test
   public void testStillBelowThreshold() {
-    listener.reset();
-    listener.statsCollected(belowThreshold);
-    for (int i = 0; i < defaultInterval; i++) {
-      listener.statsCollected(belowThreshold);
-      Assert.assertFalse(listener.isBelowThresholdNotFlapping());
+    this.listener.reset();
+    this.listener.statsCollected(this.belowThreshold);
+    for (int i = 0; i < this.defaultInterval; i++) {
+      this.listener.statsCollected(this.belowThreshold);
+      Assert.assertFalse(this.listener.isBelowThresholdNotFlapping());
     }
   }
 
@@ -113,11 +113,11 @@ public class FlapListenerTests {
    */
   @Test
   public void testStillAboveThreshold() {
-    listener.reset();
-    listener.statsCollected(aboveThreshold);
-    for (int i = 0; i < defaultInterval; i++) {
-      listener.statsCollected(aboveThreshold);
-      Assert.assertFalse(listener.isAboveThresholdNotFlapping());
+    this.listener.reset();
+    this.listener.statsCollected(this.aboveThreshold);
+    for (int i = 0; i < this.defaultInterval; i++) {
+      this.listener.statsCollected(this.aboveThreshold);
+      Assert.assertFalse(this.listener.isAboveThresholdNotFlapping());
     }
   }
 
@@ -126,11 +126,11 @@ public class FlapListenerTests {
    */
   @Test
   public void testFlappingStarted() {
-    fill(belowThreshold);
-    listener.statsCollected(aboveThreshold);
-    listener.statsCollected(belowThreshold);
-    listener.statsCollected(aboveThreshold);
-    Assert.assertTrue(listener.isFlappingStarted());
+    fill(this.belowThreshold);
+    this.listener.statsCollected(this.aboveThreshold);
+    this.listener.statsCollected(this.belowThreshold);
+    this.listener.statsCollected(this.aboveThreshold);
+    Assert.assertTrue(this.listener.isFlappingStarted());
   }
 
   /**
@@ -138,11 +138,11 @@ public class FlapListenerTests {
    */
   @Test
   public void testFlappingStarted2() {
-    fill(aboveThreshold);
-    listener.statsCollected(belowThreshold);
-    listener.statsCollected(aboveThreshold);
-    listener.statsCollected(belowThreshold);
-    Assert.assertTrue(listener.isFlappingStarted());
+    fill(this.aboveThreshold);
+    this.listener.statsCollected(this.belowThreshold);
+    this.listener.statsCollected(this.aboveThreshold);
+    this.listener.statsCollected(this.belowThreshold);
+    Assert.assertTrue(this.listener.isFlappingStarted());
   }
 
   /**
@@ -150,13 +150,13 @@ public class FlapListenerTests {
    */
   @Test
   public void testBelowThresholdFlappingStoppedBelow() {
-    fill(belowThreshold);
-    listener.statsCollected(aboveThreshold);
-    listener.statsCollected(belowThreshold);
-    listener.statsCollected(aboveThreshold);
-    Assert.assertTrue(listener.isFlappingStarted());
-    add(belowThreshold, 5);
-    Assert.assertTrue(listener.isBelowThresholdFlappingStopped());
+    fill(this.belowThreshold);
+    this.listener.statsCollected(this.aboveThreshold);
+    this.listener.statsCollected(this.belowThreshold);
+    this.listener.statsCollected(this.aboveThreshold);
+    Assert.assertTrue(this.listener.isFlappingStarted());
+    add(this.belowThreshold, 5);
+    Assert.assertTrue(this.listener.isBelowThresholdFlappingStopped());
   }
 
   /**
@@ -164,13 +164,13 @@ public class FlapListenerTests {
    */
   @Test
   public void testBelowThresholdFlappingStoppedAbove() {
-    fill(belowThreshold);
-    listener.statsCollected(aboveThreshold);
-    listener.statsCollected(belowThreshold);
-    listener.statsCollected(aboveThreshold);
-    Assert.assertTrue(listener.isFlappingStarted());
-    add(aboveThreshold, 5);
-    Assert.assertTrue(listener.isAboveThresholdFlappingStopped());
+    fill(this.belowThreshold);
+    this.listener.statsCollected(this.aboveThreshold);
+    this.listener.statsCollected(this.belowThreshold);
+    this.listener.statsCollected(this.aboveThreshold);
+    Assert.assertTrue(this.listener.isFlappingStarted());
+    add(this.aboveThreshold, 5);
+    Assert.assertTrue(this.listener.isAboveThresholdFlappingStopped());
   }
 
   /**
@@ -178,13 +178,13 @@ public class FlapListenerTests {
    */
   @Test
   public void testAboveThresholdFlappingStoppedBelow() {
-    fill(aboveThreshold);
-    listener.statsCollected(belowThreshold);
-    listener.statsCollected(aboveThreshold);
-    listener.statsCollected(belowThreshold);
-    Assert.assertTrue(listener.isFlappingStarted());
-    add(belowThreshold, 5);
-    Assert.assertTrue(listener.isBelowThresholdFlappingStopped());
+    fill(this.aboveThreshold);
+    this.listener.statsCollected(this.belowThreshold);
+    this.listener.statsCollected(this.aboveThreshold);
+    this.listener.statsCollected(this.belowThreshold);
+    Assert.assertTrue(this.listener.isFlappingStarted());
+    add(this.belowThreshold, 5);
+    Assert.assertTrue(this.listener.isBelowThresholdFlappingStopped());
   }
 
   /**
@@ -192,13 +192,13 @@ public class FlapListenerTests {
    */
   @Test
   public void testAboveThresholdFlappingStoppedAbove() {
-    fill(aboveThreshold);
-    listener.statsCollected(belowThreshold);
-    listener.statsCollected(aboveThreshold);
-    listener.statsCollected(belowThreshold);
-    Assert.assertTrue(listener.isFlappingStarted());
-    add(aboveThreshold, 5);
-    Assert.assertTrue(listener.isAboveThresholdFlappingStopped());
+    fill(this.aboveThreshold);
+    this.listener.statsCollected(this.belowThreshold);
+    this.listener.statsCollected(this.aboveThreshold);
+    this.listener.statsCollected(this.belowThreshold);
+    Assert.assertTrue(this.listener.isFlappingStarted());
+    add(this.aboveThreshold, 5);
+    Assert.assertTrue(this.listener.isAboveThresholdFlappingStopped());
   }
 
   /**
@@ -261,32 +261,32 @@ public class FlapListenerTests {
 
     @Override
     protected void flappingStarted(StatsCollectionEvent sce) {
-      flappingStarted = true;
+      this.flappingStarted = true;
     }
 
     @Override
     protected void aboveThresholdFlappingStopped(StatsCollectionEvent sce) {
-      aboveThresholdFlappingStopped = true;
+      this.aboveThresholdFlappingStopped = true;
     }
 
     @Override
     protected void belowThresholdFlappingStopped(StatsCollectionEvent sce) {
-      belowThresholdFlappingStopped = true;
+      this.belowThresholdFlappingStopped = true;
     }
 
     @Override
     protected void aboveThresholdNotFlapping(StatsCollectionEvent sce) {
-      aboveThresholdNotFlapping = true;
+      this.aboveThresholdNotFlapping = true;
     }
 
     @Override
     protected void belowThresholdNotFlapping(StatsCollectionEvent sce) {
-      belowThresholdNotFlapping = true;
+      this.belowThresholdNotFlapping = true;
     }
 
     @Override
     public long getThreshold(String name) {
-      return threshold;
+      return this.threshold;
     }
 
     @Override
@@ -299,8 +299,8 @@ public class FlapListenerTests {
      * Reset flags.
      */
     public void resetFlags() {
-      flappingStarted = false;
-      aboveThresholdFlappingStopped = false;
+      this.flappingStarted = false;
+      this.aboveThresholdFlappingStopped = false;
       belowThresholdFlappingStopped = false;
       aboveThresholdNotFlapping = false;
       belowThresholdNotFlapping = false;

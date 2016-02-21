@@ -50,7 +50,7 @@ public class MultipleSeriesProvider extends AbstractSeriesProvider {
    * @return the stat name prefix
    */
   public String getStatNamePrefix() {
-    return statNamePrefix;
+    return this.statNamePrefix;
   }
 
   /**
@@ -68,7 +68,7 @@ public class MultipleSeriesProvider extends AbstractSeriesProvider {
    * @return the top
    */
   public int getTop() {
-    return top;
+    return this.top;
   }
 
   /**
@@ -87,7 +87,7 @@ public class MultipleSeriesProvider extends AbstractSeriesProvider {
    * @return the moving avg frame
    */
   public int getMovingAvgFrame() {
-    return movingAvgFrame;
+    return this.movingAvgFrame;
   }
 
   /**
@@ -106,7 +106,7 @@ public class MultipleSeriesProvider extends AbstractSeriesProvider {
   public void populate(DefaultTableXYDataset dataset, StatsCollection statsCollection,
       HttpServletRequest request) {
 
-    Map<String, List<XYDataItem>> statMap = statsCollection.getStatsByPrefix(statNamePrefix);
+    Map<String, List<XYDataItem>> statMap = statsCollection.getStatsByPrefix(this.statNamePrefix);
     boolean useTop = getTop() > 0 && getTop() < statMap.size();
     List<Series> seriesList = new ArrayList<>();
 
@@ -168,8 +168,8 @@ public class MultipleSeriesProvider extends AbstractSeriesProvider {
      * @param en the en
      */
     Series(Map.Entry<String, List<XYDataItem>> en) {
-      key = en.getKey().substring(statNamePrefix.length());
-      stats = en.getValue();
+      this.key = en.getKey().substring(MultipleSeriesProvider.this.statNamePrefix.length());
+      this.stats = en.getValue();
     }
 
     /**
@@ -180,17 +180,17 @@ public class MultipleSeriesProvider extends AbstractSeriesProvider {
       long sum = 0;
       int count = 1;
 
-      synchronized (stats) {
-        boolean useMovingAvg = getMovingAvgFrame() > 0 && getMovingAvgFrame() < stats.size();
+      synchronized (this.stats) {
+        boolean useMovingAvg = getMovingAvgFrame() > 0 && getMovingAvgFrame() < this.stats.size();
 
-        for (ListIterator<XYDataItem> it = stats.listIterator(); it.hasNext();) {
+        for (ListIterator<XYDataItem> it = this.stats.listIterator(); it.hasNext();) {
           XYDataItem xy = it.next();
           sum += xy.getY().longValue();
 
           if ((useMovingAvg && count % getMovingAvgFrame() == 0) || !it.hasNext()) {
             double thisAvg = (double) sum / count;
-            if (thisAvg > avg) {
-              avg = thisAvg;
+            if (thisAvg > this.avg) {
+              this.avg = thisAvg;
             }
             sum = 0;
             count = 1;

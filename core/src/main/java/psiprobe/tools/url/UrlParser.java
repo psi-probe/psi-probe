@@ -50,7 +50,7 @@ public class UrlParser {
 
       // get protocol first
       if (ppos >= 0) {
-        protocol = url.substring(0, ppos);
+        this.protocol = url.substring(0, ppos);
         url = url.substring(ppos + 3);
       }
 
@@ -59,14 +59,14 @@ public class UrlParser {
       ppos = url.indexOf("/");
       if (ppos >= 0) {
         hostport = url.substring(0, ppos);
-        path = url.substring(ppos + 1);
+        this.path = url.substring(ppos + 1);
       } else {
         hostport = url;
       }
 
       ppos = hostport.indexOf(":");
       if (ppos >= 0) {
-        host = hostport.substring(0, ppos);
+        this.host = hostport.substring(0, ppos);
         String portString = hostport.substring(ppos + 1);
         try {
           this.port = Integer.parseInt(portString);
@@ -75,7 +75,7 @@ public class UrlParser {
           throw new MalformedURLException("Invalid port " + portString);
         }
       } else {
-        host = hostport;
+        this.host = hostport;
       }
     } else {
       throw new MalformedURLException("Empty URL");
@@ -88,7 +88,7 @@ public class UrlParser {
    * @return the protocol
    */
   public String getProtocol() {
-    return protocol;
+    return this.protocol;
   }
 
   /**
@@ -106,7 +106,7 @@ public class UrlParser {
    * @return the host
    */
   public String getHost() {
-    return host;
+    return this.host;
   }
 
   /**
@@ -124,7 +124,7 @@ public class UrlParser {
    * @return the port
    */
   public int getPort() {
-    return port;
+    return this.port;
   }
 
   /**
@@ -142,7 +142,7 @@ public class UrlParser {
    * @return the path
    */
   public String getPath() {
-    return path;
+    return this.path;
   }
 
   /**

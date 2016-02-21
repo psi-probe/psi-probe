@@ -27,7 +27,7 @@ public class ThresholdListenerTests {
   private final long defaultThreshold = 10;
 
   /** The listener. */
-  private MockThresholdListener listener = new MockThresholdListener(defaultThreshold);
+  private MockThresholdListener listener = new MockThresholdListener(this.defaultThreshold);
   
   /** The below threshold. */
   private StatsCollectionEvent belowThreshold = new StatsCollectionEvent("test", 0, 0);
@@ -40,9 +40,9 @@ public class ThresholdListenerTests {
    */
   @Test
   public void testFirstBelowThreshold() {
-    listener.reset();
-    listener.statsCollected(belowThreshold);
-    Assert.assertTrue(listener.isRemainedBelowThreshold());
+    this.listener.reset();
+    this.listener.statsCollected(this.belowThreshold);
+    Assert.assertTrue(this.listener.isRemainedBelowThreshold());
   }
 
   /**
@@ -50,9 +50,9 @@ public class ThresholdListenerTests {
    */
   @Test
   public void testFirstAboveThreshold() {
-    listener.reset();
-    listener.statsCollected(aboveThreshold);
-    Assert.assertTrue(listener.isCrossedAboveThreshold());
+    this.listener.reset();
+    this.listener.statsCollected(this.aboveThreshold);
+    Assert.assertTrue(this.listener.isCrossedAboveThreshold());
   }
 
   /**
@@ -60,10 +60,10 @@ public class ThresholdListenerTests {
    */
   @Test
   public void testRemainBelowThreshold() {
-    listener.reset();
-    listener.statsCollected(belowThreshold);
-    listener.statsCollected(belowThreshold);
-    Assert.assertTrue(listener.isRemainedBelowThreshold());
+    this.listener.reset();
+    this.listener.statsCollected(this.belowThreshold);
+    this.listener.statsCollected(this.belowThreshold);
+    Assert.assertTrue(this.listener.isRemainedBelowThreshold());
   }
 
   /**
@@ -71,10 +71,10 @@ public class ThresholdListenerTests {
    */
   @Test
   public void testRemainAboveThreshold() {
-    listener.reset();
-    listener.statsCollected(aboveThreshold);
-    listener.statsCollected(aboveThreshold);
-    Assert.assertTrue(listener.isRemainedAboveThreshold());
+    this.listener.reset();
+    this.listener.statsCollected(this.aboveThreshold);
+    this.listener.statsCollected(this.aboveThreshold);
+    Assert.assertTrue(this.listener.isRemainedAboveThreshold());
   }
 
   /**
@@ -82,10 +82,10 @@ public class ThresholdListenerTests {
    */
   @Test
   public void testCrossedBelowThreshold() {
-    listener.reset();
-    listener.statsCollected(aboveThreshold);
-    listener.statsCollected(belowThreshold);
-    Assert.assertTrue(listener.isCrossedBelowThreshold());
+    this.listener.reset();
+    this.listener.statsCollected(this.aboveThreshold);
+    this.listener.statsCollected(this.belowThreshold);
+    Assert.assertTrue(this.listener.isCrossedBelowThreshold());
   }
 
   /**
@@ -93,10 +93,10 @@ public class ThresholdListenerTests {
    */
   @Test
   public void testCrossedAboveThreshold() {
-    listener.reset();
-    listener.statsCollected(belowThreshold);
-    listener.statsCollected(aboveThreshold);
-    Assert.assertTrue(listener.isCrossedAboveThreshold());
+    this.listener.reset();
+    this.listener.statsCollected(this.belowThreshold);
+    this.listener.statsCollected(this.aboveThreshold);
+    Assert.assertTrue(this.listener.isCrossedAboveThreshold());
   }
 
   /**
@@ -139,30 +139,30 @@ public class ThresholdListenerTests {
     @Override
     protected void crossedAboveThreshold(StatsCollectionEvent sce) {
       resetFlags();
-      crossedAboveThreshold = true;
+      this.crossedAboveThreshold = true;
     }
 
     @Override
     protected void crossedBelowThreshold(StatsCollectionEvent sce) {
       resetFlags();
-      crossedBelowThreshold = true;
+      this.crossedBelowThreshold = true;
     }
 
     @Override
     protected void remainedAboveThreshold(StatsCollectionEvent sce) {
       resetFlags();
-      remainedAboveThreshold = true;
+      this.remainedAboveThreshold = true;
     }
 
     @Override
     protected void remainedBelowThreshold(StatsCollectionEvent sce) {
       resetFlags();
-      remainedBelowThreshold = true;
+      this.remainedBelowThreshold = true;
     }
 
     @Override
     public long getThreshold(String name) {
-      return threshold;
+      return this.threshold;
     }
 
     @Override
@@ -175,10 +175,10 @@ public class ThresholdListenerTests {
      * Reset flags.
      */
     public void resetFlags() {
-      crossedAboveThreshold = false;
-      crossedBelowThreshold = false;
-      remainedAboveThreshold = false;
-      remainedBelowThreshold = false;
+      this.crossedAboveThreshold = false;
+      this.crossedBelowThreshold = false;
+      this.remainedAboveThreshold = false;
+      this.remainedBelowThreshold = false;
     }
 
     /**
@@ -187,7 +187,7 @@ public class ThresholdListenerTests {
      * @return true, if is crossed above threshold
      */
     public boolean isCrossedAboveThreshold() {
-      return crossedAboveThreshold;
+      return this.crossedAboveThreshold;
     }
 
     /**
@@ -196,7 +196,7 @@ public class ThresholdListenerTests {
      * @return true, if is crossed below threshold
      */
     public boolean isCrossedBelowThreshold() {
-      return crossedBelowThreshold;
+      return this.crossedBelowThreshold;
     }
 
     /**
@@ -205,7 +205,7 @@ public class ThresholdListenerTests {
      * @return true, if is remained above threshold
      */
     public boolean isRemainedAboveThreshold() {
-      return remainedAboveThreshold;
+      return this.remainedAboveThreshold;
     }
 
     /**
@@ -214,7 +214,7 @@ public class ThresholdListenerTests {
      * @return true, if is remained below threshold
      */
     public boolean isRemainedBelowThreshold() {
-      return remainedBelowThreshold;
+      return this.remainedBelowThreshold;
     }
 
   }

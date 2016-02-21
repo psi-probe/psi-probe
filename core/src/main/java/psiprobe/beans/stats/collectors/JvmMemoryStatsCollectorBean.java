@@ -32,7 +32,7 @@ public class JvmMemoryStatsCollectorBean extends AbstractStatsCollectorBean {
    * @return the jvm memory info accessor
    */
   public JvmMemoryInfoAccessorBean getJvmMemoryInfoAccessor() {
-    return jvmMemoryInfoAccessor;
+    return this.jvmMemoryInfoAccessor;
   }
 
   /**
@@ -46,7 +46,7 @@ public class JvmMemoryStatsCollectorBean extends AbstractStatsCollectorBean {
 
   @Override
   public void collect() throws Exception {
-    List<MemoryPool> pools = jvmMemoryInfoAccessor.getPools();
+    List<MemoryPool> pools = this.jvmMemoryInfoAccessor.getPools();
     long time = System.currentTimeMillis();
     for (MemoryPool pool : pools) {
       buildAbsoluteStats("memory.pool." + pool.getName(), pool.getUsed(), time);

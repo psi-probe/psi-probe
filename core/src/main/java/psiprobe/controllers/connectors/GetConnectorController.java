@@ -40,7 +40,7 @@ public class GetConnectorController extends TomcatContainerController {
    * @return the container listener bean
    */
   public ContainerListenerBean getContainerListenerBean() {
-    return containerListenerBean;
+    return this.containerListenerBean;
   }
 
   /**
@@ -59,7 +59,7 @@ public class GetConnectorController extends TomcatContainerController {
     Connector connector = null;
 
     if (connectorName != null) {
-      List<Connector> connectors = containerListenerBean.getConnectors(false);
+      List<Connector> connectors = this.containerListenerBean.getConnectors(false);
       for (Connector conn : connectors) {
         if (connectorName.equals(conn.getName())) {
           connector = conn;

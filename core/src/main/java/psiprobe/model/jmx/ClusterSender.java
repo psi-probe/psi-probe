@@ -60,7 +60,7 @@ public class ClusterSender {
    * @return the address
    */
   public String getAddress() {
-    return address;
+    return this.address;
   }
 
   /**
@@ -78,7 +78,7 @@ public class ClusterSender {
    * @return the port
    */
   public int getPort() {
-    return port;
+    return this.port;
   }
 
   /**
@@ -96,7 +96,7 @@ public class ClusterSender {
    * @return the avg message size
    */
   public long getAvgMessageSize() {
-    return avgMessageSize;
+    return this.avgMessageSize;
   }
 
   /**
@@ -114,7 +114,7 @@ public class ClusterSender {
    * @return the connect counter
    */
   public long getConnectCounter() {
-    return connectCounter;
+    return this.connectCounter;
   }
 
   /**
@@ -132,7 +132,7 @@ public class ClusterSender {
    * @return the disconnect counter
    */
   public long getDisconnectCounter() {
-    return disconnectCounter;
+    return this.disconnectCounter;
   }
 
   /**
@@ -150,7 +150,7 @@ public class ClusterSender {
    * @return true, if is connected
    */
   public boolean isConnected() {
-    return connected;
+    return this.connected;
   }
 
   /**
@@ -168,7 +168,7 @@ public class ClusterSender {
    * @return the keep alive timeout
    */
   public long getKeepAliveTimeout() {
-    return keepAliveTimeout;
+    return this.keepAliveTimeout;
   }
 
   /**
@@ -186,7 +186,7 @@ public class ClusterSender {
    * @return the nr of requests
    */
   public long getNrOfRequests() {
-    return nrOfRequests;
+    return this.nrOfRequests;
   }
 
   /**
@@ -204,7 +204,7 @@ public class ClusterSender {
    * @return the total bytes
    */
   public long getTotalBytes() {
-    return totalBytes;
+    return this.totalBytes;
   }
 
   /**
@@ -222,7 +222,7 @@ public class ClusterSender {
    * @return true, if is resend
    */
   public boolean isResend() {
-    return resend;
+    return this.resend;
   }
 
   /**
@@ -240,7 +240,7 @@ public class ClusterSender {
    * @return true, if is suspect
    */
   public boolean isSuspect() {
-    return suspect;
+    return this.suspect;
   }
 
   /**
@@ -258,7 +258,7 @@ public class ClusterSender {
    * @return the avg processing time
    */
   public long getAvgProcessingTime() {
-    return avgProcessingTime;
+    return this.avgProcessingTime;
   }
 
   /**

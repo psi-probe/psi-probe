@@ -63,7 +63,7 @@ public class ContainerWrapperBean {
    * @return true, if is force first adapter
    */
   public boolean isForceFirstAdapter() {
-    return forceFirstAdapter;
+    return this.forceFirstAdapter;
   }
 
   /**
@@ -81,23 +81,23 @@ public class ContainerWrapperBean {
    * @param wrapper the new wrapper
    */
   public void setWrapper(Wrapper wrapper) {
-    if (tomcatContainer == null) {
+    if (this.tomcatContainer == null) {
 
-      synchronized (lock) {
+      synchronized (this.lock) {
 
-        if (tomcatContainer == null) {
+        if (this.tomcatContainer == null) {
 
           String serverInfo = ServerInfo.getServerInfo();
           logger.info("Server info: {}", serverInfo);
-          for (String className : adapterClasses) {
+          for (String className : this.adapterClasses) {
             try {
               Object obj = Class.forName(className).newInstance();
               logger.debug("Testing container adapter: {}", className);
               if (obj instanceof TomcatContainer) {
-                if (forceFirstAdapter || ((TomcatContainer) obj).canBoundTo(serverInfo)) {
+                if (this.forceFirstAdapter || ((TomcatContainer) obj).canBoundTo(serverInfo)) {
                   logger.info("Using {}", className);
-                  tomcatContainer = (TomcatContainer) obj;
-                  tomcatContainer.setWrapper(wrapper);
+                  this.tomcatContainer = (TomcatContainer) obj;
+                  this.tomcatContainer.setWrapper(wrapper);
                   break;
                 }
                 logger.debug("Cannot bind {} to {}", className, serverInfo);
@@ -110,7 +110,7 @@ public class ContainerWrapperBean {
             }
           }
 
-          if (tomcatContainer == null) {
+          if (this.tomcatContainer == null) {
             logger.error("No suitable container adapter found!");
           }
         }
@@ -118,9 +118,9 @@ public class ContainerWrapperBean {
     }
 
     try {
-      if (tomcatContainer != null && wrapper == null) {
+      if (this.tomcatContainer != null && wrapper == null) {
         logger.info("Unregistering container adapter");
-        tomcatContainer.setWrapper(null);
+        this.tomcatContainer.setWrapper(null);
       }
     } catch (Exception e) {
       logger.error("Could not unregister container adapter", e);
@@ -133,7 +133,7 @@ public class ContainerWrapperBean {
    * @return the tomcat container
    */
   public TomcatContainer getTomcatContainer() {
-    return tomcatContainer;
+    return this.tomcatContainer;
   }
 
   /**
@@ -142,7 +142,7 @@ public class ContainerWrapperBean {
    * @return the adapter classes
    */
   public List<String> getAdapterClasses() {
-    return adapterClasses;
+    return this.adapterClasses;
   }
 
   /**
@@ -160,16 +160,16 @@ public class ContainerWrapperBean {
    * @return the resource resolver
    */
   public ResourceResolver getResourceResolver() {
-    if (resourceResolver == null) {
+    if (this.resourceResolver == null) {
       if (System.getProperty("jboss.server.name") != null) {
-        resourceResolver = resourceResolvers.get("jboss");
+        this.resourceResolver = this.resourceResolvers.get("jboss");
         logger.info("Using JBOSS resource resolver");
       } else {
-        resourceResolver = resourceResolvers.get("default");
+        this.resourceResolver = this.resourceResolvers.get("default");
         logger.info("Using DEFAULT resource resolver");
       }
     }
-    return resourceResolver;
+    return this.resourceResolver;
   }
 
   /**
@@ -178,7 +178,7 @@ public class ContainerWrapperBean {
    * @return the resource resolvers
    */
   public Map<String, ResourceResolver> getResourceResolvers() {
-    return resourceResolvers;
+    return this.resourceResolvers;
   }
 
   /**
@@ -211,7 +211,7 @@ public class ContainerWrapperBean {
    */
   public List<ApplicationResource> getPrivateDataSources() throws Exception {
     List<ApplicationResource> resources = new ArrayList<>();
-    if (tomcatContainer != null && getResourceResolver().supportsPrivateResources()) {
+    if (this.tomcatContainer != null && getResourceResolver().supportsPrivateResources()) {
       for (Context app : getTomcatContainer().findContexts()) {
         List<ApplicationResource> appResources =
             getResourceResolver().getApplicationResources(app, this);

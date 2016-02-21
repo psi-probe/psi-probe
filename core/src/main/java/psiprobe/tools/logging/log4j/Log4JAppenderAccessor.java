@@ -32,7 +32,7 @@ public class Log4JAppenderAccessor extends AbstractLogDestination {
    * @return the logger accessor
    */
   public Log4JLoggerAccessor getLoggerAccessor() {
-    return loggerAccessor;
+    return this.loggerAccessor;
   }
 
   /**

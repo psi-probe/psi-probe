@@ -52,7 +52,7 @@ public abstract class AbstractStatsCollectorBean {
    * @return the stats collection
    */
   public StatsCollection getStatsCollection() {
-    return statsCollection;
+    return this.statsCollection;
   }
 
   /**
@@ -70,7 +70,7 @@ public abstract class AbstractStatsCollectorBean {
    * @return the max series
    */
   public int getMaxSeries() {
-    return maxSeries;
+    return this.maxSeries;
   }
 
   /**
@@ -88,7 +88,7 @@ public abstract class AbstractStatsCollectorBean {
    * @return the listeners
    */
   public List<StatsCollectionListener> getListeners() {
-    return listeners;
+    return this.listeners;
   }
 
   /**
@@ -130,12 +130,12 @@ public abstract class AbstractStatsCollectorBean {
    */
   protected long buildDeltaStats(String name, long value, long time) throws InterruptedException {
     long delta = 0;
-    if (statsCollection != null) {
-      long previousValue = Utils.toLong(previousData.get(name), 0);
+    if (this.statsCollection != null) {
+      long previousValue = Utils.toLong(this.previousData.get(name), 0);
       delta = value - previousValue;
       delta = delta > 0 ? delta : 0;
       buildAbsoluteStats(name, delta, time);
-      previousData.put(name, value);
+      this.previousData.put(name, value);
     }
     return delta;
   }
@@ -162,21 +162,21 @@ public abstract class AbstractStatsCollectorBean {
   protected void buildAbsoluteStats(String name, long value, long time)
       throws InterruptedException {
     
-    List<XYDataItem> stats = statsCollection.getStats(name);
+    List<XYDataItem> stats = this.statsCollection.getStats(name);
     if (stats == null) {
-      stats = statsCollection.newStats(name, maxSeries);
+      stats = this.statsCollection.newStats(name, this.maxSeries);
     } else {
       XYDataItem data = new XYDataItem(time, value);
-      statsCollection.lockForUpdate();
+      this.statsCollection.lockForUpdate();
       try {
         stats.add(data);
         houseKeepStats(stats);
       } finally {
-        statsCollection.releaseLock();
+        this.statsCollection.releaseLock();
       }
-      if (listeners != null) {
+      if (this.listeners != null) {
         StatsCollectionEvent event = new StatsCollectionEvent(name, data);
-        for (StatsCollectionListener listener : listeners) {
+        for (StatsCollectionListener listener : this.listeners) {
           if (listener.isEnabled()) {
             listener.statsCollected(event);
           }
@@ -224,26 +224,26 @@ public abstract class AbstractStatsCollectorBean {
   protected void buildTimePercentageStats(String name, long value, long time)
       throws InterruptedException {
 
-    Entry entry = previousData2D.get(name);
+    Entry entry = this.previousData2D.get(name);
     if (entry == null) {
       entry = new Entry();
       entry.value = value;
       entry.time = time;
-      previousData2D.put(name, entry);
+      this.previousData2D.put(name, entry);
     } else {
       double valueDelta = value - entry.value;
       double timeDelta = time - entry.time;
       double statValue = valueDelta * 100 / timeDelta;
-      statsCollection.lockForUpdate();
+      this.statsCollection.lockForUpdate();
       try {
-        List<XYDataItem> stats = statsCollection.getStats(name);
+        List<XYDataItem> stats = this.statsCollection.getStats(name);
         if (stats == null) {
-          stats = statsCollection.newStats(name, maxSeries);
+          stats = this.statsCollection.newStats(name, this.maxSeries);
         }
         stats.add(stats.size(), new XYDataItem(time, statValue));
         houseKeepStats(stats);
       } finally {
-        statsCollection.releaseLock();
+        this.statsCollection.releaseLock();
       }
     }
   }
@@ -254,7 +254,7 @@ public abstract class AbstractStatsCollectorBean {
    * @param name the name
    */
   protected void resetStats(String name) {
-    statsCollection.resetStats(name);
+    this.statsCollection.resetStats(name);
   }
 
   /**
@@ -263,7 +263,7 @@ public abstract class AbstractStatsCollectorBean {
    * @param stats the stats
    */
   private void houseKeepStats(List<XYDataItem> stats) {
-    while (stats.size() > maxSeries) {
+    while (stats.size() > this.maxSeries) {
       stats.remove(0);
     }
   }

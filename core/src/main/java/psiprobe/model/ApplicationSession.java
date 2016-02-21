@@ -78,7 +78,7 @@ public class ApplicationSession {
    * @return the id
    */
   public String getId() {
-    return id;
+    return this.id;
   }
 
   /**
@@ -96,7 +96,7 @@ public class ApplicationSession {
    * @return the application name
    */
   public String getApplicationName() {
-    return applicationName;
+    return this.applicationName;
   }
 
   /**
@@ -114,7 +114,7 @@ public class ApplicationSession {
    * @return the creation time
    */
   public Date getCreationTime() {
-    return creationTime;
+    return this.creationTime;
   }
 
   /**
@@ -132,7 +132,7 @@ public class ApplicationSession {
    * @return the last access time
    */
   public Date getLastAccessTime() {
-    return lastAccessTime;
+    return this.lastAccessTime;
   }
 
   /**
@@ -150,7 +150,7 @@ public class ApplicationSession {
    * @return the max idle time
    */
   public int getMaxIdleTime() {
-    return maxIdleTime;
+    return this.maxIdleTime;
   }
 
   /**
@@ -168,7 +168,7 @@ public class ApplicationSession {
    * @return true, if is valid
    */
   public boolean isValid() {
-    return valid;
+    return this.valid;
   }
 
   /**
@@ -186,7 +186,7 @@ public class ApplicationSession {
    * @return the object count
    */
   public long getObjectCount() {
-    return objectCount;
+    return this.objectCount;
   }
 
   /**
@@ -204,7 +204,7 @@ public class ApplicationSession {
    * @return the attributes
    */
   public List<Attribute> getAttributes() {
-    return attributes;
+    return this.attributes;
   }
 
   /**
@@ -222,7 +222,7 @@ public class ApplicationSession {
    * @param sa the sa
    */
   public void addAttribute(Attribute sa) {
-    attributes.add(sa);
+    this.attributes.add(sa);
   }
 
   /**
@@ -231,7 +231,7 @@ public class ApplicationSession {
    * @return the info
    */
   public String getInfo() {
-    return info;
+    return this.info;
   }
 
   /**
@@ -249,7 +249,7 @@ public class ApplicationSession {
    * @return the manager type
    */
   public String getManagerType() {
-    return managerType;
+    return this.managerType;
   }
 
   /**
@@ -267,10 +267,10 @@ public class ApplicationSession {
    * @return the age
    */
   public long getAge() {
-    if (creationTime == null) {
+    if (this.creationTime == null) {
       return 0;
     }
-    return System.currentTimeMillis() - creationTime.getTime();
+    return System.currentTimeMillis() - this.creationTime.getTime();
   }
 
   /**
@@ -279,10 +279,10 @@ public class ApplicationSession {
    * @return the idle time
    */
   public long getIdleTime() {
-    if (lastAccessTime == null) {
+    if (this.lastAccessTime == null) {
       return getAge();
     }
-    return System.currentTimeMillis() - lastAccessTime.getTime();
+    return System.currentTimeMillis() - this.lastAccessTime.getTime();
   }
 
   /**
@@ -303,7 +303,7 @@ public class ApplicationSession {
    * @return true, if is serializable
    */
   public boolean isSerializable() {
-    return serializable;
+    return this.serializable;
   }
 
   /**
@@ -321,7 +321,7 @@ public class ApplicationSession {
    * @return the size
    */
   public long getSize() {
-    return size;
+    return this.size;
   }
 
   /**
@@ -339,7 +339,7 @@ public class ApplicationSession {
    * @return true, if is allowed to view values
    */
   public boolean isAllowedToViewValues() {
-    return allowedToViewValues;
+    return this.allowedToViewValues;
   }
 
   /**
@@ -357,7 +357,7 @@ public class ApplicationSession {
    * @return the last accessed ip
    */
   public String getLastAccessedIp() {
-    return lastAccessedIp;
+    return this.lastAccessedIp;
   }
 
   /**
@@ -375,7 +375,7 @@ public class ApplicationSession {
    * @return the last accessed ip locale
    */
   public Locale getLastAccessedIpLocale() {
-    return lastAccessedIpLocale;
+    return this.lastAccessedIpLocale;
   }
 
   /**

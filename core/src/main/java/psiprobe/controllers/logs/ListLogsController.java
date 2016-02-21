@@ -43,7 +43,7 @@ public class ListLogsController extends ParameterizableViewController {
    * @return the error view
    */
   public String getErrorView() {
-    return errorView;
+    return this.errorView;
   }
 
   /**
@@ -61,7 +61,7 @@ public class ListLogsController extends ParameterizableViewController {
    * @return the log resolver
    */
   public LogResolverBean getLogResolver() {
-    return logResolver;
+    return this.logResolver;
   }
 
   /**
@@ -78,11 +78,11 @@ public class ListLogsController extends ParameterizableViewController {
       HttpServletResponse response) throws Exception {
 
     boolean showAll = ServletRequestUtils.getBooleanParameter(request, "apps", false);
-    List<LogDestination> uniqueList = logResolver.getLogDestinations(showAll);
+    List<LogDestination> uniqueList = this.logResolver.getLogDestinations(showAll);
     if (uniqueList != null) {
       return new ModelAndView(getViewName()).addObject("logs", uniqueList);
     }
-    return new ModelAndView(errorView);
+    return new ModelAndView(this.errorView);
   }
 
 }

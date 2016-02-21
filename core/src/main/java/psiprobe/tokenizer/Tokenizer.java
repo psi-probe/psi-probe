@@ -96,10 +96,10 @@ public class Tokenizer {
    * @param cacheBufferSize the cache buffer size
    */
   public Tokenizer(Reader reader, int cacheBufferSize) {
-    symbols = new UniqueList<>();
-    token = new TokenizerToken();
-    upcomingToken = new TokenizerToken();
-    cacheBuffer = new char[cacheBufferSize];
+    this.symbols = new UniqueList<>();
+    this.token = new TokenizerToken();
+    this.upcomingToken = new TokenizerToken();
+    this.cacheBuffer = new char[cacheBufferSize];
     setReader(reader);
   }
 
@@ -111,25 +111,25 @@ public class Tokenizer {
    */
   private void loadCache(int count) throws IOException {
     int charToRead = count == 0 ? 0 : count - 1;
-    if (cachePosition + charToRead >= cacheSize) {
-      if (cacheSize == 0) {
-        cacheSize = reader.read(cacheBuffer, 0, cacheBuffer.length);
-        cachePosition = 0;
-      } else if (cacheSize == cacheBuffer.length) {
+    if (this.cachePosition + charToRead >= this.cacheSize) {
+      if (this.cacheSize == 0) {
+        this.cacheSize = this.reader.read(this.cacheBuffer, 0, this.cacheBuffer.length);
+        this.cachePosition = 0;
+      } else if (this.cacheSize == this.cacheBuffer.length) {
         // make sure we do not read beyond the stream
-        int halfCacheSize = cacheSize / 2;
+        int halfCacheSize = this.cacheSize / 2;
         // copy the lower half into the upper half
-        System.arraycopy(cacheBuffer, halfCacheSize, cacheBuffer, 0, halfCacheSize);
-        cachePosition -= halfCacheSize;
-        if (cachePinPosition != -1) {
-          cachePinPosition -= halfCacheSize;
+        System.arraycopy(this.cacheBuffer, halfCacheSize, this.cacheBuffer, 0, halfCacheSize);
+        this.cachePosition -= halfCacheSize;
+        if (this.cachePinPosition != -1) {
+          this.cachePinPosition -= halfCacheSize;
         }
 
-        int charsRead = reader.read(cacheBuffer, halfCacheSize, cacheSize - halfCacheSize);
+        int charsRead = this.reader.read(this.cacheBuffer, halfCacheSize, this.cacheSize - halfCacheSize);
         if (charsRead == -1) {
-          cacheSize = halfCacheSize;
+          this.cacheSize = halfCacheSize;
         } else {
-          cacheSize = charsRead + halfCacheSize;
+          this.cacheSize = charsRead + halfCacheSize;
         }
       }
     }
@@ -142,10 +142,10 @@ public class Tokenizer {
    * @throws IOException Signals that an I/O exception has occurred.
    */
   public Token getToken() throws IOException {
-    if (token.type == Tokenizer.TT_ERROR) {
+    if (this.token.type == Tokenizer.TT_ERROR) {
       return nextToken();
     }
-    return token;
+    return this.token;
   }
 
   /**
@@ -155,15 +155,15 @@ public class Tokenizer {
    * @throws IOException Signals that an I/O exception has occurred.
    */
   public Token nextToken() throws IOException {
-    if (pushCount > 0) {
-      pushCount--;
-      return token;
-    } else if (upcomingToken.type != Tokenizer.TT_ERROR) {
-      token.assign(upcomingToken);
-      upcomingToken.type = Tokenizer.TT_ERROR;
-      return token;
+    if (this.pushCount > 0) {
+      this.pushCount--;
+      return this.token;
+    } else if (this.upcomingToken.type != Tokenizer.TT_ERROR) {
+      this.token.assign(this.upcomingToken);
+      this.upcomingToken.type = Tokenizer.TT_ERROR;
+      return this.token;
     } else {
-      token.init();
+      this.token.init();
       char[] chr = new char[1];
       while (hasMore()) {
         read(chr, 1);
@@ -173,8 +173,8 @@ public class Tokenizer {
         if (symbolIndex != -1) {
           // we have found a symbol
           TokenizerToken workToken =
-              token.type == Tokenizer.TT_TOKEN && token.text.length() > 0 ? upcomingToken : token;
-          TokenizerSymbol symbol = symbols.get(symbolIndex);
+              this.token.type == Tokenizer.TT_TOKEN && this.token.text.length() > 0 ? this.upcomingToken : this.token;
+          TokenizerSymbol symbol = this.symbols.get(symbolIndex);
           boolean hideSymbol = symbol.hidden;
 
           if (!hideSymbol) {
@@ -202,23 +202,23 @@ public class Tokenizer {
           }
 
           // if (!hideSymbol) break;
-          if (token.text.length() > 0) {
+          if (this.token.text.length() > 0) {
             break;
           }
         } else {
-          token.text.append(chr);
-          token.type = Tokenizer.TT_TOKEN;
+          this.token.text.append(chr);
+          this.token.type = Tokenizer.TT_TOKEN;
         }
       }
     }
-    return token;
+    return this.token;
   }
 
   /**
    * Push back.
    */
   public void pushBack() {
-    pushCount++;
+    this.pushCount++;
   }
 
   /**
@@ -228,11 +228,11 @@ public class Tokenizer {
    */
   public void setReader(Reader reader) {
     this.reader = reader;
-    cachePosition = 0;
-    cachePinPosition = -1;
-    cacheSize = 0;
-    token.type = TT_ERROR;
-    upcomingToken.type = TT_ERROR;
+    this.cachePosition = 0;
+    this.cachePinPosition = -1;
+    this.cacheSize = 0;
+    this.token.type = TT_ERROR;
+    this.upcomingToken.type = TT_ERROR;
   }
 
   /**
@@ -245,12 +245,12 @@ public class Tokenizer {
    */
   private boolean compare(char[] chars, int offs) throws IOException {
     char[] subStr = new char[chars.length - offs];
-    cachePinPosition = cachePosition;
+    this.cachePinPosition = this.cachePosition;
     read(subStr, subStr.length);
     for (int i = 0; i < subStr.length; i++) {
       if (subStr[i] != chars[i + offs]) {
-        cachePosition = cachePinPosition;
-        cachePinPosition = -1;
+        this.cachePosition = this.cachePinPosition;
+        this.cachePinPosition = -1;
         return false;
       }
     }
@@ -268,16 +268,16 @@ public class Tokenizer {
     int result = -1;
 
     Character chrObj = chr;
-    int index = Collections.binarySearch(symbols, chrObj);
+    int index = Collections.binarySearch(this.symbols, chrObj);
 
     if (index >= 0) {
       // the index could be anywhere within a group of sybols with the same first letter
       // so we need to scroll up the group to make sure we start test from the beginning
-      while (index > 0 && symbols.get(index - 1).compareTo(chrObj) == 0) {
+      while (index > 0 && this.symbols.get(index - 1).compareTo(chrObj) == 0) {
         index--;
       }
-      while (index < symbols.size()) {
-        TokenizerSymbol symbol = symbols.get(index);
+      while (index < this.symbols.size()) {
+        TokenizerSymbol symbol = this.symbols.get(index);
         if (symbol.compareTo(chrObj) == 0) {
           if (compare(symbol.startText.toCharArray(), 1)) {
             result = index;
@@ -301,11 +301,11 @@ public class Tokenizer {
    */
   private void read(char[] chrs, int count) throws IOException {
     loadCache(count);
-    int endPoint = cachePosition + count - 1 >= cacheSize ? cacheSize : cachePosition + count - 1;
-    if (cachePosition <= endPoint) {
-      System.arraycopy(cacheBuffer, cachePosition, chrs, 0, endPoint - cachePosition + 1);
+    int endPoint = this.cachePosition + count - 1 >= this.cacheSize ? this.cacheSize : this.cachePosition + count - 1;
+    if (this.cachePosition <= endPoint) {
+      System.arraycopy(this.cacheBuffer, this.cachePosition, chrs, 0, endPoint - this.cachePosition + 1);
     }
-    cachePosition = endPoint + 1;
+    this.cachePosition = endPoint + 1;
   }
 
   /**
@@ -316,7 +316,7 @@ public class Tokenizer {
    */
   public boolean hasMore() throws IOException {
     loadCache(0);
-    return (cachePosition < cacheSize) || upcomingToken.type != Tokenizer.TT_ERROR || pushCount > 0;
+    return (this.cachePosition < this.cacheSize) || this.upcomingToken.type != Tokenizer.TT_ERROR || this.pushCount > 0;
   }
 
   /**
@@ -325,7 +325,7 @@ public class Tokenizer {
    * @param text the text
    */
   public void addSymbol(String text) {
-    symbols.add(new TokenizerSymbol(null, text, null, false, false, true, false));
+    this.symbols.add(new TokenizerSymbol(null, text, null, false, false, true, false));
   }
 
   /**
@@ -335,7 +335,7 @@ public class Tokenizer {
    * @param hidden the hidden
    */
   public void addSymbol(String text, boolean hidden) {
-    symbols.add(new TokenizerSymbol(null, text, null, hidden, false, true, false));
+    this.symbols.add(new TokenizerSymbol(null, text, null, hidden, false, true, false));
   }
 
   /**
@@ -346,7 +346,7 @@ public class Tokenizer {
    * @param hidden the hidden
    */
   public void addSymbol(String startText, String endText, boolean hidden) {
-    symbols.add(new TokenizerSymbol(null, startText, endText, hidden, false, true, false));
+    this.symbols.add(new TokenizerSymbol(null, startText, endText, hidden, false, true, false));
   }
 
   /**
@@ -355,7 +355,7 @@ public class Tokenizer {
    * @param symbol the symbol
    */
   public void addSymbol(TokenizerSymbol symbol) {
-    symbols.add(symbol);
+    this.symbols.add(symbol);
   }
 
   /**
@@ -430,37 +430,37 @@ public class Tokenizer {
      * Instantiates a new tokenizer token.
      */
     public TokenizerToken() {
-      type = Tokenizer.TT_ERROR;
+      this.type = Tokenizer.TT_ERROR;
     }
 
     @Override
     public String getText() {
-      return text.toString();
+      return this.text.toString();
     }
 
     @Override
     public String getInnerText() {
-      return type == Tokenizer.TT_BLOCK ? innerText.toString() : getText();
+      return this.type == Tokenizer.TT_BLOCK ? this.innerText.toString() : getText();
     }
 
     @Override
     public String getName() {
-      return name;
+      return this.name;
     }
 
     @Override
     public int getType() {
-      return type;
+      return this.type;
     }
 
     @Override
     public int getLine() {
-      return line;
+      return this.line;
     }
 
     @Override
     public int getCol() {
-      return col;
+      return this.col;
     }
 
     @Override
@@ -488,9 +488,9 @@ public class Tokenizer {
      * Inits the.
      */
     public void init() {
-      text.setLength(0);
-      innerText.setLength(0);
-      name = "";
+      this.text.setLength(0);
+      this.innerText.setLength(0);
+      this.name = "";
     }
 
   }

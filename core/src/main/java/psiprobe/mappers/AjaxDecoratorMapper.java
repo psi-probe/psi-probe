@@ -38,7 +38,7 @@ public class AjaxDecoratorMapper extends AbstractDecoratorMapper {
 
     super.init(config, properties, decoratorMapper);
     if (properties.get("ajaxExtension") != null) {
-      ajaxExtension = (String) properties.get("ajaxExtension");
+      this.ajaxExtension = (String) properties.get("ajaxExtension");
     }
   }
 
@@ -57,8 +57,8 @@ public class AjaxDecoratorMapper extends AbstractDecoratorMapper {
       }
     }
     callMapperChain =
-        (originalUri == null || !originalUri.endsWith(ajaxExtension))
-            && (!request.getServletPath().endsWith(ajaxExtension));
+        (originalUri == null || !originalUri.endsWith(this.ajaxExtension))
+            && (!request.getServletPath().endsWith(this.ajaxExtension));
 
     return callMapperChain ? super.getDecorator(request, page) : null;
   }

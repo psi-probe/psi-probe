@@ -43,7 +43,7 @@ class ObjectWrapper {
 
   @Override
   public boolean equals(Object o1) {
-    if (wrappedObject == null) {
+    if (this.wrappedObject == null) {
       return o1 == null;
     }
     if (this.getClass() != o1.getClass()) {
@@ -54,12 +54,12 @@ class ObjectWrapper {
      * I know, this condition may seem strange, but if "equals" is left out, sizeOf() may run into
      * an infinite loop on some objects
      */
-    return ow.wrappedObject == wrappedObject;// || o.equals(ow.o);
+    return ow.wrappedObject == this.wrappedObject;// || o.equals(ow.o);
   }
 
   @Override
   public int hashCode() {
-    return System.identityHashCode(wrappedObject);
+    return System.identityHashCode(this.wrappedObject);
   }
 
 }

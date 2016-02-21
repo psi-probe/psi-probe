@@ -35,7 +35,7 @@ public class ClusterStatsCollectorBean extends AbstractStatsCollectorBean {
    * @return the container wrapper
    */
   public ContainerWrapperBean getContainerWrapper() {
-    return containerWrapper;
+    return this.containerWrapper;
   }
 
   /**
@@ -53,7 +53,7 @@ public class ClusterStatsCollectorBean extends AbstractStatsCollectorBean {
    * @return the cluster wrapper
    */
   public ClusterWrapperBean getClusterWrapper() {
-    return clusterWrapper;
+    return this.clusterWrapper;
   }
 
   /**
@@ -69,10 +69,10 @@ public class ClusterStatsCollectorBean extends AbstractStatsCollectorBean {
   public void collect() throws Exception {
     // Job can be called before the servlet finished intialisation. Make sure
     // we dont get an NPE.
-    TomcatContainer container = containerWrapper.getTomcatContainer();
+    TomcatContainer container = this.containerWrapper.getTomcatContainer();
     if (container != null) {
       Cluster cluster =
-          clusterWrapper.getCluster(container.getName(), container.getHostName(), false);
+          this.clusterWrapper.getCluster(container.getName(), container.getHostName(), false);
       if (cluster != null) {
         buildDeltaStats("cluster.received", cluster.getTotalReceivedBytes());
         buildDeltaStats("cluster.sent", cluster.getSenderTotalBytes());

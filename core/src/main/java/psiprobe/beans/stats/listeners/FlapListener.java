@@ -110,8 +110,8 @@ public abstract class FlapListener extends ThresholdListener {
 
   @Override
   public void reset() {
-    flaps.clear();
-    flappingStates.clear();
+    this.flaps.clear();
+    this.flappingStates.clear();
     super.reset();
   }
 
@@ -211,7 +211,7 @@ public abstract class FlapListener extends ThresholdListener {
    * @return the flapping state
    */
   protected boolean getFlappingState(String name) {
-    Boolean flapping = flappingStates.get(name);
+    Boolean flapping = this.flappingStates.get(name);
     if (flapping == null) {
       flapping = Boolean.FALSE;
       setFlappingState(name, false);
@@ -226,7 +226,7 @@ public abstract class FlapListener extends ThresholdListener {
    * @param flapping the flapping
    */
   protected void setFlappingState(String name, boolean flapping) {
-    flappingStates.put(name, flapping);
+    this.flappingStates.put(name, flapping);
   }
 
   /**
@@ -236,10 +236,10 @@ public abstract class FlapListener extends ThresholdListener {
    * @return the flaps
    */
   protected LinkedList<Boolean> getFlaps(String name) {
-    LinkedList<Boolean> list = flaps.get(name);
+    LinkedList<Boolean> list = this.flaps.get(name);
     if (list == null) {
       list = new LinkedList<>();
-      flaps.put(name, list);
+      this.flaps.put(name, list);
     }
     return list;
   }
@@ -305,7 +305,7 @@ public abstract class FlapListener extends ThresholdListener {
    * @return the default flap interval
    */
   public int getDefaultFlapInterval() {
-    return defaultFlapInterval;
+    return this.defaultFlapInterval;
   }
 
   /**
@@ -323,7 +323,7 @@ public abstract class FlapListener extends ThresholdListener {
    * @return the default flap start threshold
    */
   public float getDefaultFlapStartThreshold() {
-    return defaultFlapStartThreshold;
+    return this.defaultFlapStartThreshold;
   }
 
   /**
@@ -341,7 +341,7 @@ public abstract class FlapListener extends ThresholdListener {
    * @return the default flap stop threshold
    */
   public float getDefaultFlapStopThreshold() {
-    return defaultFlapStopThreshold;
+    return this.defaultFlapStopThreshold;
   }
 
   /**
@@ -359,7 +359,7 @@ public abstract class FlapListener extends ThresholdListener {
    * @return the default flap low weight
    */
   public float getDefaultFlapLowWeight() {
-    return defaultFlapLowWeight;
+    return this.defaultFlapLowWeight;
   }
 
   /**
@@ -377,7 +377,7 @@ public abstract class FlapListener extends ThresholdListener {
    * @return the default flap high weight
    */
   public float getDefaultFlapHighWeight() {
-    return defaultFlapHighWeight;
+    return this.defaultFlapHighWeight;
   }
 
   /**
