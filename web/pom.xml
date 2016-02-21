@@ -141,6 +141,7 @@
 	</build>
 	<profiles>
 		<profile>
+			<id>tomcat</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
