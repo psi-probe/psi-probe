@@ -18,7 +18,6 @@ import psiprobe.tools.logging.DefaultAccessor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -88,7 +87,7 @@ public class LogbackFactoryAccessor extends DefaultAccessor {
       Method getLogger = MethodUtils
           .getAccessibleMethod(clazz, "getLogger", new Class[] {String.class});
       
-      Object logger = getLogger.invoke(getTarget(), new Object[] {name});
+      Object logger = getLogger.invoke(getTarget(), name);
       if (logger == null) {
         throw new NullPointerException(getTarget() + ".getLogger(\"" + name + "\") returned null");
       }
@@ -116,10 +115,9 @@ public class LogbackFactoryAccessor extends DefaultAccessor {
           .getAccessibleMethod(clazz, "getLoggerList", new Class[0]);
       
       List<Object> loggers = (List<Object>) getLoggerList.invoke(getTarget());
-      Iterator<Object> it = loggers.iterator();
-      while (it.hasNext()) {
+      for (Object logger : loggers) {
         LogbackLoggerAccessor accessor = new LogbackLoggerAccessor();
-        accessor.setTarget(it.next());
+        accessor.setTarget(logger);
         accessor.setApplication(getApplication());
 
         appenders.addAll(accessor.getAppenders());

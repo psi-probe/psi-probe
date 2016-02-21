@@ -164,7 +164,7 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
       Class levelClass =
           getTarget().getClass().getClassLoader().loadClass("java.util.logging.Level");
       Method parse = MethodUtils.getAccessibleMethod(levelClass, "parse", String.class);
-      Object newLevel = parse.invoke(null, new Object[] {newLevelStr});
+      Object newLevel = parse.invoke(null, newLevelStr);
       MethodUtils.invokeMethod(getTarget(), "setLevel", newLevel);
     } catch (Exception e) {
       logger.error("{}#setLevel('{}') failed", getTarget().getClass().getName(), newLevelStr, e);

@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Iterator;
 
 /**
  * <code>UniqueList</code> is a successor of <code>java.util.Vector</code> to provide a collection
@@ -75,9 +74,8 @@ public class UniqueList<T extends Comparable<? super T>> extends ArrayList<T> {
   public synchronized boolean addAll(Collection<? extends T> comp) {
     boolean ok = this != comp;
     if (ok) {
-      Iterator<? extends T> iterator = comp.iterator();
-      while (iterator.hasNext()) {
-        ok &= this.add(iterator.next());
+      for (T aComp : comp) {
+        ok &= this.add(aComp);
       }
     }
     return ok;
