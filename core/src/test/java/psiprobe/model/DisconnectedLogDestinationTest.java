@@ -15,6 +15,7 @@ public class DisconnectedLogDestinationTest {
   /**
    * Javabean tester.
    */
+  // TODO JavaBeanTester doesn't currently handle complex object into constructor.
   @Ignore
   @Test
   public void javabeanTester() {
