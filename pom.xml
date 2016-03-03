@@ -96,6 +96,9 @@
 		<git.relative.path></git.relative.path>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+		<spring.version>4.2.5.RELEASE</spring.version>
+		<spring-security.version>4.0.4.RELEASE</spring-security.version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -178,7 +181,7 @@
 			<dependency>
 				<groupId>org.apache.tomcat</groupId>
 				<artifactId>tomcat-jdbc</artifactId>
-				<version>7.0.67</version>
+				<version>7.0.68</version>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.openejb</groupId>
@@ -301,7 +304,7 @@
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-beans</artifactId>
-				<version>4.2.4.RELEASE</version>
+				<version>${spring.version}</version>
 				<exclusions>
 					<exclusion>
 						<artifactId>commons-logging</artifactId>
@@ -312,17 +315,17 @@
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-context</artifactId>
-				<version>4.2.4.RELEASE</version>
+				<version>${spring.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-context-support</artifactId>
-				<version>4.2.4.RELEASE</version>
+				<version>${spring.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-webmvc</artifactId>
-				<version>4.2.4.RELEASE</version>
+				<version>${spring.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework.hateoas</groupId>
@@ -332,27 +335,27 @@
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-tx</artifactId>
-				<version>4.2.4.RELEASE</version>
+				<version>${spring.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-test</artifactId>
-				<version>4.2.4.RELEASE</version>
+				<version>${spring.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework.security</groupId>
 				<artifactId>spring-security-config</artifactId>
-				<version>4.0.3.RELEASE</version>
+				<version>${spring-security.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework.security</groupId>
 				<artifactId>spring-security-core</artifactId>
-				<version>4.0.3.RELEASE</version>
+				<version>${spring-security.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework.security</groupId>
 				<artifactId>spring-security-web</artifactId>
-				<version>4.0.3.RELEASE</version>
+				<version>${spring-security.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>javainetlocator</groupId>
@@ -441,7 +444,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-site-plugin</artifactId>
-					<version>3.4</version>
+					<version>3.5</version>
 				</plugin>
 				<plugin>
 					<groupId>org.owasp</groupId>
@@ -512,7 +515,7 @@
 				<plugin>
 					<groupId>org.jacoco</groupId>
 					<artifactId>jacoco-maven-plugin</artifactId>
-					<version>0.7.5.201505241946</version>
+					<version>0.7.6.201602180812</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
