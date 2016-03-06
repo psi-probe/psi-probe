@@ -39,7 +39,7 @@ public class Summary implements Serializable {
    * @return the name
    */
   public String getName() {
-    return name;
+    return this.name;
   }
 
   /**
@@ -57,7 +57,7 @@ public class Summary implements Serializable {
    * @return the items
    */
   public Map<String, Item> getItems() {
-    return items;
+    return this.items;
   }
 
   /**
@@ -75,7 +75,7 @@ public class Summary implements Serializable {
    * @return the out of date count
    */
   public int getOutOfDateCount() {
-    return outOfDateCount;
+    return this.outOfDateCount;
   }
 
   /**

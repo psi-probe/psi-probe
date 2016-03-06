@@ -153,7 +153,7 @@ public class Whois {
      * @return the summary
      */
     public String getSummary() {
-      return summary;
+      return this.summary;
     }
 
     /**
@@ -162,7 +162,7 @@ public class Whois {
      * @return the data
      */
     public Map<String, String> getData() {
-      return data;
+      return this.data;
     }
 
     /**
@@ -171,7 +171,7 @@ public class Whois {
      * @return the server
      */
     public String getServer() {
-      return server;
+      return this.server;
     }
 
     /**
@@ -180,7 +180,7 @@ public class Whois {
      * @return the port
      */
     public int getPort() {
-      return port;
+      return this.port;
     }
 
   }

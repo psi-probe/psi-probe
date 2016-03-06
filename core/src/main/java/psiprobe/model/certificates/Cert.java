@@ -18,7 +18,7 @@ public class Cert implements Serializable {
   private Date notAfter;
 
   public String getSubjectDistinguishedName() {
-    return subjectDistinguishedName;
+    return this.subjectDistinguishedName;
   }
 
   public void setSubjectDistinguishedName(String distinguishedName) {
@@ -26,7 +26,7 @@ public class Cert implements Serializable {
   }
 
   public Date getNotBefore() {
-    return notBefore;
+    return this.notBefore;
   }
 
   public void setNotBefore(Date notBefore) {
@@ -34,7 +34,7 @@ public class Cert implements Serializable {
   }
 
   public Date getNotAfter() {
-    return notAfter;
+    return this.notAfter;
   }
 
   public void setNotAfter(Date notAfter) {
@@ -42,7 +42,7 @@ public class Cert implements Serializable {
   }
 
   public String getIssuerDistinguishedName() {
-    return issuerDistinguishedName;
+    return this.issuerDistinguishedName;
   }
 
   public void setIssuerDistinguishedName(String issuerDistinguishedName) {
@@ -50,7 +50,7 @@ public class Cert implements Serializable {
   }
 
   public String getAlias() {
-    return alias;
+    return this.alias;
   }
 
   public void setAlias(String alias) {

@@ -31,7 +31,7 @@ public class ConnectorStatsCollectorBean extends AbstractStatsCollectorBean {
    * @return the listener bean
    */
   public ContainerListenerBean getListenerBean() {
-    return listenerBean;
+    return this.listenerBean;
   }
 
   /**
@@ -45,7 +45,7 @@ public class ConnectorStatsCollectorBean extends AbstractStatsCollectorBean {
 
   @Override
   public void collect() throws Exception {
-    for (Connector connector : listenerBean.getConnectors(false)) {
+    for (Connector connector : this.listenerBean.getConnectors(false)) {
       String statName = "stat.connector." + connector.getName();
       buildDeltaStats(statName + ".requests", connector.getRequestCount());
       buildDeltaStats(statName + ".errors", connector.getErrorCount());
@@ -61,7 +61,7 @@ public class ConnectorStatsCollectorBean extends AbstractStatsCollectorBean {
    * @throws Exception the exception
    */
   public void reset() throws Exception {
-    for (Connector connector : listenerBean.getConnectors(false)) {
+    for (Connector connector : this.listenerBean.getConnectors(false)) {
       reset(connector.getName());
     }
   }

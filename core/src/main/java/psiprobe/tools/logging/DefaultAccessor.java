@@ -43,7 +43,7 @@ public class DefaultAccessor {
    * @return the application
    */
   public Application getApplication() {
-    return application;
+    return this.application;
   }
 
   /**
@@ -61,7 +61,7 @@ public class DefaultAccessor {
    * @return the target
    */
   public Object getTarget() {
-    return target;
+    return this.target;
   }
 
   /**

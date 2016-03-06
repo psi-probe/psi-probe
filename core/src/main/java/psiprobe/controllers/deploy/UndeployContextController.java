@@ -43,7 +43,7 @@ public class UndeployContextController extends ContextHandlerController {
    * @return the failure view name
    */
   public String getFailureViewName() {
-    return failureViewName;
+    return this.failureViewName;
   }
 
   /**

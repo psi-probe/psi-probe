@@ -70,7 +70,7 @@ public class Item implements Serializable {
    * @return the name
    */
   public String getName() {
-    return name;
+    return this.name;
   }
 
   /**
@@ -88,7 +88,7 @@ public class Item implements Serializable {
    * @return the exception
    */
   public Exception getException() {
-    return exception;
+    return this.exception;
   }
 
   /**
@@ -106,7 +106,7 @@ public class Item implements Serializable {
    * @return the compile time
    */
   public long getCompileTime() {
-    return compileTime;
+    return this.compileTime;
   }
 
   /**
@@ -124,7 +124,7 @@ public class Item implements Serializable {
    * @return the state
    */
   public int getState() {
-    return state;
+    return this.state;
   }
 
   /**
@@ -142,7 +142,7 @@ public class Item implements Serializable {
    * @return the level
    */
   public int getLevel() {
-    return level;
+    return this.level;
   }
 
   /**
@@ -160,7 +160,7 @@ public class Item implements Serializable {
    * @return true, if is missing
    */
   public boolean isMissing() {
-    return missing;
+    return this.missing;
   }
 
   /**
@@ -178,7 +178,7 @@ public class Item implements Serializable {
    * @return the size
    */
   public long getSize() {
-    return size;
+    return this.size;
   }
 
   /**
@@ -196,7 +196,7 @@ public class Item implements Serializable {
    * @return the last modified
    */
   public long getLastModified() {
-    return lastModified;
+    return this.lastModified;
   }
 
   /**
@@ -215,7 +215,7 @@ public class Item implements Serializable {
    * @return the timestamp
    */
   public Date getTimestamp() {
-    return timestamp;
+    return this.timestamp;
   }
 
   /**
@@ -224,7 +224,7 @@ public class Item implements Serializable {
    * @return the encoding
    */
   public String getEncoding() {
-    return encoding;
+    return this.encoding;
   }
 
   /**

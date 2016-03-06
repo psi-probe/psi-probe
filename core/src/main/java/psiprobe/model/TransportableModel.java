@@ -30,7 +30,7 @@ public class TransportableModel {
    * @return the items
    */
   public Map<String, Object> getItems() {
-    return items;
+    return this.items;
   }
 
   /**
@@ -48,7 +48,7 @@ public class TransportableModel {
    * @param map the map
    */
   public void putAll(Map<String, Object> map) {
-    items.putAll(map);
+    this.items.putAll(map);
   }
 
 }

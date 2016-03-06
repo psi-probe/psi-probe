@@ -40,7 +40,7 @@ public class AdviseGarbageCollectionController extends ParameterizableViewContro
    * @return the replace pattern
    */
   public String getReplacePattern() {
-    return replacePattern;
+    return this.replacePattern;
   }
 
   /**
@@ -61,7 +61,7 @@ public class AdviseGarbageCollectionController extends ParameterizableViewContro
     String referer = request.getHeader("Referer");
     String redirectUrl;
     if (referer != null) {
-      redirectUrl = referer.replaceAll(replacePattern, "");
+      redirectUrl = referer.replaceAll(this.replacePattern, "");
     } else {
       redirectUrl = request.getContextPath() + getViewName();
     }

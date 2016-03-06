@@ -35,7 +35,7 @@ public class Jdk14HandlerAccessor extends AbstractLogDestination {
    * @return the logger accessor
    */
   public Jdk14LoggerAccessor getLoggerAccessor() {
-    return loggerAccessor;
+    return this.loggerAccessor;
   }
 
   /**
@@ -64,7 +64,7 @@ public class Jdk14HandlerAccessor extends AbstractLogDestination {
 
   @Override
   public String getIndex() {
-    return index;
+    return this.index;
   }
 
   /**

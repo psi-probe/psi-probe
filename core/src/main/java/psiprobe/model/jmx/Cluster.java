@@ -99,7 +99,7 @@ public class Cluster {
    * @return the name
    */
   public String getName() {
-    return name;
+    return this.name;
   }
 
   /**
@@ -117,7 +117,7 @@ public class Cluster {
    * @return the info
    */
   public String getInfo() {
-    return info;
+    return this.info;
   }
 
   /**
@@ -135,7 +135,7 @@ public class Cluster {
    * @return the manager class name
    */
   public String getManagerClassName() {
-    return managerClassName;
+    return this.managerClassName;
   }
 
   /**
@@ -153,7 +153,7 @@ public class Cluster {
    * @return the mcast address
    */
   public String getMcastAddress() {
-    return mcastAddress;
+    return this.mcastAddress;
   }
 
   /**
@@ -171,7 +171,7 @@ public class Cluster {
    * @return the mcast bind address
    */
   public String getMcastBindAddress() {
-    return mcastBindAddress;
+    return this.mcastBindAddress;
   }
 
   /**
@@ -189,7 +189,7 @@ public class Cluster {
    * @return the mcast cluster domain
    */
   public String getMcastClusterDomain() {
-    return mcastClusterDomain;
+    return this.mcastClusterDomain;
   }
 
   /**
@@ -208,7 +208,7 @@ public class Cluster {
    * @return the members
    */
   public List<ClusterSender> getMembers() {
-    return members;
+    return this.members;
   }
 
   /**
@@ -226,7 +226,7 @@ public class Cluster {
    * @return the tcp listen address
    */
   public String getTcpListenAddress() {
-    return tcpListenAddress;
+    return this.tcpListenAddress;
   }
 
   /**
@@ -244,7 +244,7 @@ public class Cluster {
    * @return the tcp listen port
    */
   public int getTcpListenPort() {
-    return tcpListenPort;
+    return this.tcpListenPort;
   }
 
   /**
@@ -262,7 +262,7 @@ public class Cluster {
    * @return the tcp selector timeout
    */
   public long getTcpSelectorTimeout() {
-    return tcpSelectorTimeout;
+    return this.tcpSelectorTimeout;
   }
 
   /**
@@ -280,7 +280,7 @@ public class Cluster {
    * @return the nr of msgs received
    */
   public long getNrOfMsgsReceived() {
-    return nrOfMsgsReceived;
+    return this.nrOfMsgsReceived;
   }
 
   /**
@@ -298,7 +298,7 @@ public class Cluster {
    * @return the sender ack timeout
    */
   public long getSenderAckTimeout() {
-    return senderAckTimeout;
+    return this.senderAckTimeout;
   }
 
   /**
@@ -316,7 +316,7 @@ public class Cluster {
    * @return true, if is sender auto connect
    */
   public boolean isSenderAutoConnect() {
-    return senderAutoConnect;
+    return this.senderAutoConnect;
   }
 
   /**
@@ -334,7 +334,7 @@ public class Cluster {
    * @return the sender failure counter
    */
   public long getSenderFailureCounter() {
-    return senderFailureCounter;
+    return this.senderFailureCounter;
   }
 
   /**
@@ -352,7 +352,7 @@ public class Cluster {
    * @return the sender nr of requests
    */
   public long getSenderNrOfRequests() {
-    return senderNrOfRequests;
+    return this.senderNrOfRequests;
   }
 
   /**
@@ -370,7 +370,7 @@ public class Cluster {
    * @return the sender replication mode
    */
   public String getSenderReplicationMode() {
-    return senderReplicationMode;
+    return this.senderReplicationMode;
   }
 
   /**
@@ -388,7 +388,7 @@ public class Cluster {
    * @return the sender total bytes
    */
   public long getSenderTotalBytes() {
-    return senderTotalBytes;
+    return this.senderTotalBytes;
   }
 
   /**
@@ -406,7 +406,7 @@ public class Cluster {
    * @return the mcast drop time
    */
   public long getMcastDropTime() {
-    return mcastDropTime;
+    return this.mcastDropTime;
   }
 
   /**
@@ -424,7 +424,7 @@ public class Cluster {
    * @return the mcast frequency
    */
   public long getMcastFrequency() {
-    return mcastFrequency;
+    return this.mcastFrequency;
   }
 
   /**
@@ -442,7 +442,7 @@ public class Cluster {
    * @return the mcast port
    */
   public int getMcastPort() {
-    return mcastPort;
+    return this.mcastPort;
   }
 
   /**
@@ -460,7 +460,7 @@ public class Cluster {
    * @return the mcast so timeout
    */
   public int getMcastSoTimeout() {
-    return mcastSoTimeout;
+    return this.mcastSoTimeout;
   }
 
   /**
@@ -478,7 +478,7 @@ public class Cluster {
    * @return the mcast ttl
    */
   public int getMcastTtl() {
-    return mcastTtl;
+    return this.mcastTtl;
   }
 
   /**
@@ -496,7 +496,7 @@ public class Cluster {
    * @return the tcp thread count
    */
   public int getTcpThreadCount() {
-    return tcpThreadCount;
+    return this.tcpThreadCount;
   }
 
   /**
@@ -514,7 +514,7 @@ public class Cluster {
    * @return the total received bytes
    */
   public long getTotalReceivedBytes() {
-    return totalReceivedBytes;
+    return this.totalReceivedBytes;
   }
 
   /**

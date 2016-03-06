@@ -39,7 +39,7 @@ public class StandardSeriesProvider extends AbstractSeriesProvider {
    * @return the stat names
    */
   public List<String> getStatNames() {
-    return statNames;
+    return this.statNames;
   }
 
   /**
@@ -56,8 +56,8 @@ public class StandardSeriesProvider extends AbstractSeriesProvider {
       HttpServletRequest request) {
 
     String seriesParam = ServletRequestUtils.getStringParameter(request, "sp", null);
-    for (int i = 0; i < statNames.size(); i++) {
-      String statName = statNames.get(i);
+    for (int i = 0; i < this.statNames.size(); i++) {
+      String statName = this.statNames.get(i);
       if (seriesParam != null) {
         statName = MessageFormat.format(statName, seriesParam);
       }

@@ -40,7 +40,7 @@ public class IpInfo {
    */
   public IpInfo(HttpServletRequest request) {
     this.address = getClientAddress(request);
-    if (!address.equals(request.getRemoteAddr())) {
+    if (!this.address.equals(request.getRemoteAddr())) {
       this.forwarded = true;
     }
   }
@@ -51,7 +51,7 @@ public class IpInfo {
    * @return true, if is forwarded
    */
   public boolean isForwarded() {
-    return forwarded;
+    return this.forwarded;
   }
 
   /**
@@ -69,7 +69,7 @@ public class IpInfo {
    * @return the address
    */
   public String getAddress() {
-    return address;
+    return this.address;
   }
 
   /**
@@ -83,7 +83,7 @@ public class IpInfo {
 
   @Override
   public String toString() {
-    return address;
+    return this.address;
   }
 
   /**

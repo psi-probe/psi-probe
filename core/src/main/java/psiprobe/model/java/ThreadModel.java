@@ -51,7 +51,7 @@ public class ThreadModel {
    * @return the name
    */
   public String getName() {
-    return name;
+    return this.name;
   }
 
   /**
@@ -69,7 +69,7 @@ public class ThreadModel {
    * @return the priority
    */
   public int getPriority() {
-    return priority;
+    return this.priority;
   }
 
   /**
@@ -87,7 +87,7 @@ public class ThreadModel {
    * @return true, if is daemon
    */
   public boolean isDaemon() {
-    return daemon;
+    return this.daemon;
   }
 
   /**
@@ -105,7 +105,7 @@ public class ThreadModel {
    * @return true, if is interrupted
    */
   public boolean isInterrupted() {
-    return interrupted;
+    return this.interrupted;
   }
 
   /**
@@ -123,7 +123,7 @@ public class ThreadModel {
    * @return the runnable class name
    */
   public String getRunnableClassName() {
-    return runnableClassName;
+    return this.runnableClassName;
   }
 
   /**
@@ -141,7 +141,7 @@ public class ThreadModel {
    * @return the group name
    */
   public String getGroupName() {
-    return groupName;
+    return this.groupName;
   }
 
   /**
@@ -159,7 +159,7 @@ public class ThreadModel {
    * @return the app name
    */
   public String getAppName() {
-    return appName;
+    return this.appName;
   }
 
   /**
@@ -177,7 +177,7 @@ public class ThreadModel {
    * @return the thread class
    */
   public String getThreadClass() {
-    return threadClass;
+    return this.threadClass;
   }
 
   /**
@@ -195,7 +195,7 @@ public class ThreadModel {
    * @return the class loader
    */
   public String getClassLoader() {
-    return classLoader;
+    return this.classLoader;
   }
 
   /**

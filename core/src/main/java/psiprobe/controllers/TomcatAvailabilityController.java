@@ -46,7 +46,7 @@ public class TomcatAvailabilityController extends TomcatContainerController {
    * @return the container listener bean
    */
   public ContainerListenerBean getContainerListenerBean() {
-    return containerListenerBean;
+    return this.containerListenerBean;
   }
 
   /**
@@ -116,7 +116,7 @@ public class TomcatAvailabilityController extends TomcatContainerController {
       tomcatTestReport.setMemoryTest(TomcatTestReport.TEST_PASSED);
     } catch (IOException e) {
       tomcatTestReport.setMemoryTest(TomcatTestReport.TEST_FAILED);
-      logger.trace("", e);
+      this.logger.trace("", e);
     }
 
     // try to open some files
@@ -136,13 +136,13 @@ public class TomcatAvailabilityController extends TomcatContainerController {
       tomcatTestReport.setFileTest(TomcatTestReport.TEST_PASSED);
     } catch (IOException e) {
       tomcatTestReport.setFileTest(TomcatTestReport.TEST_FAILED);
-      logger.trace("", e);
+      this.logger.trace("", e);
     } finally {
       for (FileOutputStream fileStream : fileStreams) {
         try {
           fileStream.close();
         } catch (IOException e) {
-          logger.trace("", e);
+          this.logger.trace("", e);
         }
       }
       for (File file : files) {

@@ -39,7 +39,7 @@ public class ThreadStackElement {
    * @return the class name
    */
   public String getClassName() {
-    return className;
+    return this.className;
   }
 
   /**
@@ -57,7 +57,7 @@ public class ThreadStackElement {
    * @return the file name
    */
   public String getFileName() {
-    return fileName;
+    return this.fileName;
   }
 
   /**
@@ -75,7 +75,7 @@ public class ThreadStackElement {
    * @return the method name
    */
   public String getMethodName() {
-    return methodName;
+    return this.methodName;
   }
 
   /**
@@ -93,7 +93,7 @@ public class ThreadStackElement {
    * @return the line number
    */
   public int getLineNumber() {
-    return lineNumber;
+    return this.lineNumber;
   }
 
   /**
@@ -111,7 +111,7 @@ public class ThreadStackElement {
    * @return true, if is native method
    */
   public boolean isNativeMethod() {
-    return nativeMethod;
+    return this.nativeMethod;
   }
 
   /**

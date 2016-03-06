@@ -65,7 +65,7 @@ public class MailMessage {
    * @return the to array
    */
   public String[] getToArray() {
-    return to.toArray(new String[to.size()]);
+    return this.to.toArray(new String[this.to.size()]);
   }
 
   /**
@@ -74,7 +74,7 @@ public class MailMessage {
    * @return the cc array
    */
   public String[] getCcArray() {
-    return cc.toArray(new String[cc.size()]);
+    return this.cc.toArray(new String[this.cc.size()]);
   }
 
   /**
@@ -83,7 +83,7 @@ public class MailMessage {
    * @return the bcc array
    */
   public String[] getBccArray() {
-    return bcc.toArray(new String[bcc.size()]);
+    return this.bcc.toArray(new String[this.bcc.size()]);
   }
 
   /**
@@ -92,7 +92,7 @@ public class MailMessage {
    * @return the attachments array
    */
   public DataSource[] getAttachmentsArray() {
-    return attachments.toArray(new DataSource[attachments.size()]);
+    return this.attachments.toArray(new DataSource[this.attachments.size()]);
   }
 
   /**
@@ -101,7 +101,7 @@ public class MailMessage {
    * @return the subject
    */
   public String getSubject() {
-    return subject;
+    return this.subject;
   }
 
   /**
@@ -110,7 +110,7 @@ public class MailMessage {
    * @return the body
    */
   public String getBody() {
-    return body;
+    return this.body;
   }
 
   /**
@@ -119,7 +119,7 @@ public class MailMessage {
    * @return true, if is body html
    */
   public boolean isBodyHtml() {
-    return bodyHtml;
+    return this.bodyHtml;
   }
 
   /**
@@ -130,7 +130,7 @@ public class MailMessage {
    */
   public MailMessage addRecipientTo(String address) {
     if (address != null) {
-      to.add(address);
+      this.to.add(address);
     }
     return this;
   }
@@ -143,7 +143,7 @@ public class MailMessage {
    */
   public MailMessage addRecipientCc(String address) {
     if (address != null) {
-      cc.add(address);
+      this.cc.add(address);
     }
     return this;
   }
@@ -156,7 +156,7 @@ public class MailMessage {
    */
   public MailMessage addRecipientBcc(String address) {
     if (address != null) {
-      bcc.add(address);
+      this.bcc.add(address);
     }
     return this;
   }
@@ -180,7 +180,7 @@ public class MailMessage {
    */
   public MailMessage addAttachment(DataSource attachment) {
     if (attachment != null) {
-      attachments.add(attachment);
+      this.attachments.add(attachment);
     }
     return this;
   }
@@ -191,7 +191,7 @@ public class MailMessage {
    * @return the mail message
    */
   public MailMessage clearRecipientsTo() {
-    to.clear();
+    this.to.clear();
     return this;
   }
 
@@ -201,7 +201,7 @@ public class MailMessage {
    * @return the mail message
    */
   public MailMessage clearRecipientsCc() {
-    cc.clear();
+    this.cc.clear();
     return this;
   }
 
@@ -211,7 +211,7 @@ public class MailMessage {
    * @return the mail message
    */
   public MailMessage clearRecipientsBcc() {
-    bcc.clear();
+    this.bcc.clear();
     return this;
   }
 
@@ -221,7 +221,7 @@ public class MailMessage {
    * @return the mail message
    */
   public MailMessage clearAttachments() {
-    attachments.clear();
+    this.attachments.clear();
     return this;
   }
 
@@ -264,7 +264,7 @@ public class MailMessage {
    * @return the to
    */
   protected List<String> getTo() {
-    return to;
+    return this.to;
   }
 
   /**
@@ -273,7 +273,7 @@ public class MailMessage {
    * @return the cc
    */
   protected List<String> getCc() {
-    return cc;
+    return this.cc;
   }
 
   /**
@@ -282,7 +282,7 @@ public class MailMessage {
    * @return the bcc
    */
   protected List<String> getBcc() {
-    return bcc;
+    return this.bcc;
   }
 
   /**
@@ -291,7 +291,7 @@ public class MailMessage {
    * @return the attachments
    */
   protected List<DataSource> getAttachments() {
-    return attachments;
+    return this.attachments;
   }
 
 }

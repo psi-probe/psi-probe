@@ -76,7 +76,7 @@ public class ServletInfo {
    * @return the application name
    */
   public String getApplicationName() {
-    return applicationName;
+    return this.applicationName;
   }
 
   /**
@@ -94,7 +94,7 @@ public class ServletInfo {
    * @return the servlet name
    */
   public String getServletName() {
-    return servletName;
+    return this.servletName;
   }
 
   /**
@@ -112,7 +112,7 @@ public class ServletInfo {
    * @return the servlet class
    */
   public String getServletClass() {
-    return servletClass;
+    return this.servletClass;
   }
 
   /**
@@ -130,7 +130,7 @@ public class ServletInfo {
    * @return true, if is available
    */
   public boolean isAvailable() {
-    return available;
+    return this.available;
   }
 
   /**
@@ -148,7 +148,7 @@ public class ServletInfo {
    * @return the load on startup
    */
   public int getLoadOnStartup() {
-    return loadOnStartup;
+    return this.loadOnStartup;
   }
 
   /**
@@ -166,7 +166,7 @@ public class ServletInfo {
    * @return the run as
    */
   public String getRunAs() {
-    return runAs;
+    return this.runAs;
   }
 
   /**
@@ -184,7 +184,7 @@ public class ServletInfo {
    * @return the error count
    */
   public int getErrorCount() {
-    return errorCount;
+    return this.errorCount;
   }
 
   /**
@@ -202,7 +202,7 @@ public class ServletInfo {
    * @return the load time
    */
   public long getLoadTime() {
-    return loadTime;
+    return this.loadTime;
   }
 
   /**
@@ -220,7 +220,7 @@ public class ServletInfo {
    * @return the max time
    */
   public long getMaxTime() {
-    return maxTime;
+    return this.maxTime;
   }
 
   /**
@@ -238,7 +238,7 @@ public class ServletInfo {
    * @return the min time
    */
   public long getMinTime() {
-    return minTime;
+    return this.minTime;
   }
 
   /**
@@ -256,7 +256,7 @@ public class ServletInfo {
    * @return the processing time
    */
   public long getProcessingTime() {
-    return processingTime;
+    return this.processingTime;
   }
 
   /**
@@ -274,7 +274,7 @@ public class ServletInfo {
    * @return the request count
    */
   public int getRequestCount() {
-    return requestCount;
+    return this.requestCount;
   }
 
   /**
@@ -292,7 +292,7 @@ public class ServletInfo {
    * @return true, if is single threaded
    */
   public boolean isSingleThreaded() {
-    return singleThreaded;
+    return this.singleThreaded;
   }
 
   /**
@@ -310,7 +310,7 @@ public class ServletInfo {
    * @return the allocation count
    */
   public int getAllocationCount() {
-    return allocationCount;
+    return this.allocationCount;
   }
 
   /**
@@ -328,7 +328,7 @@ public class ServletInfo {
    * @return the max instances
    */
   public int getMaxInstances() {
-    return maxInstances;
+    return this.maxInstances;
   }
 
   /**
@@ -346,7 +346,7 @@ public class ServletInfo {
    * @return the mappings
    */
   public List<String> getMappings() {
-    return mappings;
+    return this.mappings;
   }
 
   /**

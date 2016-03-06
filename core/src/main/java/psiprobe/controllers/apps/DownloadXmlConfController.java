@@ -51,7 +51,7 @@ public class DownloadXmlConfController extends ContextHandlerController {
    * @return the download target
    */
   public String getDownloadTarget() {
-    return downloadTarget;
+    return this.downloadTarget;
   }
 
   /**
@@ -67,16 +67,16 @@ public class DownloadXmlConfController extends ContextHandlerController {
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-    if (downloadTarget == null) {
+    if (this.downloadTarget == null) {
       throw new RuntimeException("Download target is not set for " + getClass().getName());
     }
 
     String xmlPath;
 
-    if (TARGET_WEB_XML.equals(downloadTarget)) {
+    if (TARGET_WEB_XML.equals(this.downloadTarget)) {
       ServletContext sctx = context.getServletContext();
       xmlPath = sctx.getRealPath("/WEB-INF/web.xml");
-    } else if (TARGET_CONTEXT_XML.equals(downloadTarget)) {
+    } else if (TARGET_CONTEXT_XML.equals(this.downloadTarget)) {
       xmlPath = this.getContainerWrapper().getTomcatContainer().getConfigFile(context).getPath();
     } else {
       throw new RuntimeException("Unknown download target " + getDownloadTarget());

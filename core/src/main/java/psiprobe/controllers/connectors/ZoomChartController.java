@@ -33,7 +33,7 @@ public class ZoomChartController extends ParameterizableViewController {
    * @return the collection period
    */
   public long getCollectionPeriod() {
-    return collectionPeriod;
+    return this.collectionPeriod;
   }
 
   /**

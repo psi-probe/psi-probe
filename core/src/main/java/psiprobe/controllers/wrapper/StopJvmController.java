@@ -39,7 +39,7 @@ public class StopJvmController extends ParameterizableViewController {
    * @return the stop exit code
    */
   public int getStopExitCode() {
-    return stopExitCode;
+    return this.stopExitCode;
   }
 
   /**
@@ -59,7 +59,7 @@ public class StopJvmController extends ParameterizableViewController {
     try {
       Class.forName("org.tanukisoftware.wrapper.WrapperManager");
       logger.info("JVM is STOPPED by {}", request.getRemoteAddr());
-      WrapperManager.stop(stopExitCode);
+      WrapperManager.stop(this.stopExitCode);
       done = true;
     } catch (ClassNotFoundException e) {
       logger.info("WrapperManager not found. Do you have wrapper.jar in the classpath?");

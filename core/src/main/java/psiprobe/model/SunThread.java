@@ -57,7 +57,7 @@ public class SunThread {
    * @return the id
    */
   public long getId() {
-    return id;
+    return this.id;
   }
 
   /**
@@ -75,7 +75,7 @@ public class SunThread {
    * @return the name
    */
   public String getName() {
-    return name;
+    return this.name;
   }
 
   /**
@@ -93,7 +93,7 @@ public class SunThread {
    * @return the state
    */
   public String getState() {
-    return state;
+    return this.state;
   }
 
   /**
@@ -111,7 +111,7 @@ public class SunThread {
    * @return true, if is deadlocked
    */
   public boolean isDeadlocked() {
-    return deadlocked;
+    return this.deadlocked;
   }
 
   /**
@@ -129,7 +129,7 @@ public class SunThread {
    * @return true, if is suspended
    */
   public boolean isSuspended() {
-    return suspended;
+    return this.suspended;
   }
 
   /**
@@ -147,7 +147,7 @@ public class SunThread {
    * @return true, if is in native
    */
   public boolean isInNative() {
-    return inNative;
+    return this.inNative;
   }
 
   /**
@@ -165,7 +165,7 @@ public class SunThread {
    * @return the lock name
    */
   public String getLockName() {
-    return lockName;
+    return this.lockName;
   }
 
   /**
@@ -183,7 +183,7 @@ public class SunThread {
    * @return the lock owner name
    */
   public String getLockOwnerName() {
-    return lockOwnerName;
+    return this.lockOwnerName;
   }
 
   /**
@@ -201,7 +201,7 @@ public class SunThread {
    * @return the waited count
    */
   public long getWaitedCount() {
-    return waitedCount;
+    return this.waitedCount;
   }
 
   /**
@@ -219,7 +219,7 @@ public class SunThread {
    * @return the blocked count
    */
   public long getBlockedCount() {
-    return blockedCount;
+    return this.blockedCount;
   }
 
   /**
@@ -237,7 +237,7 @@ public class SunThread {
    * @return the execution point
    */
   public ThreadStackElement getExecutionPoint() {
-    return executionPoint;
+    return this.executionPoint;
   }
 
   /**

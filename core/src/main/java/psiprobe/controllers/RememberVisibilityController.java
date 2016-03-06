@@ -46,7 +46,7 @@ public class RememberVisibilityController extends AbstractController {
       response.addHeader(
           "Set-Cookie",
           cookieName + "=" + state + "; Expires="
-              + sdf.format(new Date(System.currentTimeMillis() + 315360000000L)));
+              + this.sdf.format(new Date(System.currentTimeMillis() + 315360000000L)));
     }
     return null;
   }

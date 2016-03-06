@@ -67,7 +67,7 @@ public class RuntimeInformation {
    * @return the committed virtual memory size
    */
   public long getCommittedVirtualMemorySize() {
-    return committedVirtualMemorySize;
+    return this.committedVirtualMemorySize;
   }
 
   /**
@@ -85,7 +85,7 @@ public class RuntimeInformation {
    * @return the free physical memory size
    */
   public long getFreePhysicalMemorySize() {
-    return freePhysicalMemorySize;
+    return this.freePhysicalMemorySize;
   }
 
   /**
@@ -103,7 +103,7 @@ public class RuntimeInformation {
    * @return the free swap space size
    */
   public long getFreeSwapSpaceSize() {
-    return freeSwapSpaceSize;
+    return this.freeSwapSpaceSize;
   }
 
   /**
@@ -121,7 +121,7 @@ public class RuntimeInformation {
    * @return the process cpu time
    */
   public long getProcessCpuTime() {
-    return processCpuTime;
+    return this.processCpuTime;
   }
 
   /**
@@ -139,7 +139,7 @@ public class RuntimeInformation {
    * @return the available processors
    */
   public int getAvailableProcessors() {
-    return availableProcessors;
+    return this.availableProcessors;
   }
 
   /**
@@ -157,7 +157,7 @@ public class RuntimeInformation {
    * @return the total physical memory size
    */
   public long getTotalPhysicalMemorySize() {
-    return totalPhysicalMemorySize;
+    return this.totalPhysicalMemorySize;
   }
 
   /**
@@ -175,7 +175,7 @@ public class RuntimeInformation {
    * @return the total swap space size
    */
   public long getTotalSwapSpaceSize() {
-    return totalSwapSpaceSize;
+    return this.totalSwapSpaceSize;
   }
 
   /**
@@ -193,7 +193,7 @@ public class RuntimeInformation {
    * @return the os name
    */
   public String getOsName() {
-    return osName;
+    return this.osName;
   }
 
   /**
@@ -211,7 +211,7 @@ public class RuntimeInformation {
    * @return the os version
    */
   public String getOsVersion() {
-    return osVersion;
+    return this.osVersion;
   }
 
   /**
@@ -229,7 +229,7 @@ public class RuntimeInformation {
    * @return the start time
    */
   public long getStartTime() {
-    return startTime;
+    return this.startTime;
   }
 
   /**
@@ -247,7 +247,7 @@ public class RuntimeInformation {
    * @return the uptime
    */
   public long getUptime() {
-    return uptime;
+    return this.uptime;
   }
 
   /**
@@ -265,7 +265,7 @@ public class RuntimeInformation {
    * @return the vm vendor
    */
   public String getVmVendor() {
-    return vmVendor;
+    return this.vmVendor;
   }
 
   /**
@@ -283,7 +283,7 @@ public class RuntimeInformation {
    * @return the open file descriptor count
    */
   public long getOpenFileDescriptorCount() {
-    return openFileDescriptorCount;
+    return this.openFileDescriptorCount;
   }
 
   /**
@@ -301,7 +301,7 @@ public class RuntimeInformation {
    * @return the max file descriptor count
    */
   public long getMaxFileDescriptorCount() {
-    return maxFileDescriptorCount;
+    return this.maxFileDescriptorCount;
   }
 
   /**

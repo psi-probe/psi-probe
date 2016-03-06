@@ -39,7 +39,7 @@ public class ListThreadPoolsController extends TomcatContainerController {
    * @return the container listener bean
    */
   public ContainerListenerBean getContainerListenerBean() {
-    return containerListenerBean;
+    return this.containerListenerBean;
   }
 
   /**
@@ -55,7 +55,7 @@ public class ListThreadPoolsController extends TomcatContainerController {
   public ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
     
-    List<ThreadPool> pools = containerListenerBean.getThreadPools();
+    List<ThreadPool> pools = this.containerListenerBean.getThreadPools();
     return new ModelAndView(getViewName()).addObject("pools", pools);
   }
 

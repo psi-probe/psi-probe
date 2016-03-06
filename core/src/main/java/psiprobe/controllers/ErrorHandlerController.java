@@ -40,7 +40,7 @@ public class ErrorHandlerController extends AbstractController {
    * @return the view name
    */
   public String getViewName() {
-    return viewName;
+    return this.viewName;
   }
 
   /**
@@ -58,7 +58,7 @@ public class ErrorHandlerController extends AbstractController {
    * @return the ajax view name
    */
   public String getAjaxViewName() {
-    return ajaxViewName;
+    return this.ajaxViewName;
   }
 
   /**
@@ -76,7 +76,7 @@ public class ErrorHandlerController extends AbstractController {
    * @return the ajax extension
    */
   public String getAjaxExtension() {
-    return ajaxExtension;
+    return this.ajaxExtension;
   }
 
   /**
@@ -93,9 +93,9 @@ public class ErrorHandlerController extends AbstractController {
       HttpServletResponse response) throws Exception {
 
     String originalUri = (String) request.getAttribute("javax.servlet.error.request_uri");
-    if (originalUri != null && originalUri.endsWith(ajaxExtension)) {
-      return new ModelAndView(ajaxViewName);
+    if (originalUri != null && originalUri.endsWith(this.ajaxExtension)) {
+      return new ModelAndView(this.ajaxViewName);
     }
-    return new ModelAndView(viewName);
+    return new ModelAndView(this.viewName);
   }
 }

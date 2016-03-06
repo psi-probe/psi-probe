@@ -115,7 +115,7 @@ public class Tomcat90ContainerAdapter extends AbstractTomcatContainer {
     NamingResourcesImpl namingResources = context.getNamingResources();
     for (ContextResourceLink link : namingResources.findResourceLinks()) {
       ApplicationResource resource = new ApplicationResource();
-      logger.debug("reading resourceLink: {}", link.getName());
+      this.logger.debug("reading resourceLink: {}", link.getName());
       resource.setApplicationName(context.getName());
       resource.setName(link.getName());
       resource.setType(link.getType());
@@ -133,7 +133,7 @@ public class Tomcat90ContainerAdapter extends AbstractTomcatContainer {
     for (ContextResource contextResource : namingResources.findResources()) {
       ApplicationResource resource = new ApplicationResource();
 
-      logger.info("reading resource: {}", contextResource.getName());
+      this.logger.info("reading resource: {}", contextResource.getName());
       resource.setApplicationName(context.getName());
       resource.setName(contextResource.getName());
       resource.setType(contextResource.getType());
@@ -303,7 +303,7 @@ public class Tomcat90ContainerAdapter extends AbstractTomcatContainer {
       // Used by NamingContextListener when setting up JNDI context
       token = context.getNamingToken();
       if (!ContextAccessController.checkSecurityToken(context, token)) {
-        logger.error("Couldn't get a valid security token. ClassLoader binding will fail.");
+        this.logger.error("Couldn't get a valid security token. ClassLoader binding will fail.");
       }
     }
     return token;

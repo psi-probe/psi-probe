@@ -36,7 +36,7 @@ public class AsyncClusterSender extends SyncClusterSender {
    * @return the in queue counter
    */
   public long getInQueueCounter() {
-    return inQueueCounter;
+    return this.inQueueCounter;
   }
 
   /**
@@ -54,7 +54,7 @@ public class AsyncClusterSender extends SyncClusterSender {
    * @return the out queue counter
    */
   public long getOutQueueCounter() {
-    return outQueueCounter;
+    return this.outQueueCounter;
   }
 
   /**
@@ -72,7 +72,7 @@ public class AsyncClusterSender extends SyncClusterSender {
    * @return the queue size
    */
   public long getQueueSize() {
-    return queueSize;
+    return this.queueSize;
   }
 
   /**
@@ -90,7 +90,7 @@ public class AsyncClusterSender extends SyncClusterSender {
    * @return the queued nr of bytes
    */
   public long getQueuedNrOfBytes() {
-    return queuedNrOfBytes;
+    return this.queuedNrOfBytes;
   }
 
   /**

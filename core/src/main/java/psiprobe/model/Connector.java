@@ -51,7 +51,7 @@ public class Connector {
    * @return the name
    */
   public String getName() {
-    return name;
+    return this.name;
   }
 
   /**
@@ -69,7 +69,7 @@ public class Connector {
    * @return the max time
    */
   public long getMaxTime() {
-    return maxTime;
+    return this.maxTime;
   }
 
   /**
@@ -87,7 +87,7 @@ public class Connector {
    * @return the processing time
    */
   public long getProcessingTime() {
-    return processingTime;
+    return this.processingTime;
   }
 
   /**
@@ -105,7 +105,7 @@ public class Connector {
    * @return the request count
    */
   public int getRequestCount() {
-    return requestCount;
+    return this.requestCount;
   }
 
   /**
@@ -123,7 +123,7 @@ public class Connector {
    * @return the bytes received
    */
   public long getBytesReceived() {
-    return bytesReceived;
+    return this.bytesReceived;
   }
 
   /**
@@ -141,7 +141,7 @@ public class Connector {
    * @return the bytes sent
    */
   public long getBytesSent() {
-    return bytesSent;
+    return this.bytesSent;
   }
 
   /**
@@ -159,7 +159,7 @@ public class Connector {
    * @return the error count
    */
   public int getErrorCount() {
-    return errorCount;
+    return this.errorCount;
   }
 
   /**
@@ -177,7 +177,7 @@ public class Connector {
    * @return the request processors
    */
   public List<RequestProcessor> getRequestProcessors() {
-    return requestProcessors;
+    return this.requestProcessors;
   }
 
   /**
@@ -195,7 +195,7 @@ public class Connector {
    * @param rp the rp
    */
   public void addRequestProcessor(RequestProcessor rp) {
-    requestProcessors.add(rp);
+    this.requestProcessors.add(rp);
   }
 
 }

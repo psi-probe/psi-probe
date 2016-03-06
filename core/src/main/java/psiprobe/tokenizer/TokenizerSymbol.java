@@ -77,7 +77,7 @@ public class TokenizerSymbol implements Comparable<Object> {
    * @return the int
    */
   public int compareTo(Character chr) {
-    return chr - startText.charAt(0);
+    return chr - this.startText.charAt(0);
   }
 
   /**
@@ -87,7 +87,7 @@ public class TokenizerSymbol implements Comparable<Object> {
    * @return the int
    */
   public int compareTo(TokenizerSymbol symbol) {
-    return symbol.startText.compareTo(startText);
+    return symbol.startText.compareTo(this.startText);
   }
 
 }

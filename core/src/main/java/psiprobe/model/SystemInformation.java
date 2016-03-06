@@ -107,7 +107,7 @@ public class SystemInformation implements Serializable {
    * @return the app base
    */
   public String getAppBase() {
-    return appBase;
+    return this.appBase;
   }
 
   /**
@@ -125,7 +125,7 @@ public class SystemInformation implements Serializable {
    * @return the config base
    */
   public String getConfigBase() {
-    return configBase;
+    return this.configBase;
   }
 
   /**
@@ -143,7 +143,7 @@ public class SystemInformation implements Serializable {
    * @return the system properties
    */
   public Map<String, String> getSystemProperties() {
-    return systemProperties;
+    return this.systemProperties;
   }
 
   /**
@@ -161,7 +161,7 @@ public class SystemInformation implements Serializable {
    * @return the system property set
    */
   public Set<Map.Entry<String, String>> getSystemPropertySet() {
-    return systemProperties.entrySet();
+    return this.systemProperties.entrySet();
   }
 
 }

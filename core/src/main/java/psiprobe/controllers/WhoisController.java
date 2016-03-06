@@ -56,7 +56,7 @@ public class WhoisController extends ParameterizableViewController {
    * @return the lookup timeout
    */
   public long getLookupTimeout() {
-    return lookupTimeout;
+    return this.lookupTimeout;
   }
 
   /**
@@ -74,7 +74,7 @@ public class WhoisController extends ParameterizableViewController {
    * @return the default server
    */
   public String getDefaultServer() {
-    return defaultServer;
+    return this.defaultServer;
   }
 
   /**
@@ -92,7 +92,7 @@ public class WhoisController extends ParameterizableViewController {
    * @return the default port
    */
   public int getDefaultPort() {
-    return defaultPort;
+    return this.defaultPort;
   }
 
   /**
@@ -145,7 +145,7 @@ public class WhoisController extends ParameterizableViewController {
     return new ModelAndView(getViewName(), "result", lines)
         .addObject("timeout", timeout)
         .addObject("whoisServer",
-            wh != null ? wh.getServer() + ":" + wh.getPort() : defaultServer + ":" + defaultPort)
+            wh != null ? wh.getServer() + ":" + wh.getPort() : this.defaultServer + ":" + this.defaultPort)
         .addObject("domainName", reverseName);
   }
 }

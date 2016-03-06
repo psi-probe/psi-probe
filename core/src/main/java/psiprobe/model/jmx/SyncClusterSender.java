@@ -39,7 +39,7 @@ public class SyncClusterSender extends ClusterSender {
    * @return the data failure counter
    */
   public long getDataFailureCounter() {
-    return dataFailureCounter;
+    return this.dataFailureCounter;
   }
 
   /**
@@ -57,7 +57,7 @@ public class SyncClusterSender extends ClusterSender {
    * @return the data resend counter
    */
   public long getDataResendCounter() {
-    return dataResendCounter;
+    return this.dataResendCounter;
   }
 
   /**
@@ -75,7 +75,7 @@ public class SyncClusterSender extends ClusterSender {
    * @return the socket open counter
    */
   public long getSocketOpenCounter() {
-    return socketOpenCounter;
+    return this.socketOpenCounter;
   }
 
   /**
@@ -93,7 +93,7 @@ public class SyncClusterSender extends ClusterSender {
    * @return the socket close counter
    */
   public long getSocketCloseCounter() {
-    return socketCloseCounter;
+    return this.socketCloseCounter;
   }
 
   /**
@@ -111,7 +111,7 @@ public class SyncClusterSender extends ClusterSender {
    * @return the socket open failure counter
    */
   public long getSocketOpenFailureCounter() {
-    return socketOpenFailureCounter;
+    return this.socketOpenFailureCounter;
   }
 
   /**

@@ -50,11 +50,11 @@ public class DataSourceTestInfo implements Serializable {
    * @param sql the sql
    */
   public void addQueryToHistory(String sql) {
-    queryHistory.remove(sql);
-    queryHistory.addFirst(sql);
+    this.queryHistory.remove(sql);
+    this.queryHistory.addFirst(sql);
 
-    while (historySize >= 0 && queryHistory.size() > historySize) {
-      queryHistory.removeLast();
+    while (this.historySize >= 0 && this.queryHistory.size() > this.historySize) {
+      this.queryHistory.removeLast();
     }
   }
 
@@ -64,7 +64,7 @@ public class DataSourceTestInfo implements Serializable {
    * @return the results
    */
   public List<Map<String, String>> getResults() {
-    return results;
+    return this.results;
   }
 
   /**
@@ -82,7 +82,7 @@ public class DataSourceTestInfo implements Serializable {
    * @return the query history
    */
   public List<String> getQueryHistory() {
-    return queryHistory;
+    return this.queryHistory;
   }
 
   /**
@@ -91,7 +91,7 @@ public class DataSourceTestInfo implements Serializable {
    * @return the max rows
    */
   public int getMaxRows() {
-    return maxRows;
+    return this.maxRows;
   }
 
   /**
@@ -109,7 +109,7 @@ public class DataSourceTestInfo implements Serializable {
    * @return the rows per page
    */
   public int getRowsPerPage() {
-    return rowsPerPage;
+    return this.rowsPerPage;
   }
 
   /**
@@ -127,7 +127,7 @@ public class DataSourceTestInfo implements Serializable {
    * @return the history size
    */
   public int getHistorySize() {
-    return historySize;
+    return this.historySize;
   }
 
   /**

@@ -44,16 +44,16 @@ public class AddQueryParamTag extends TagSupport {
   @Override
   public int doStartTag() throws JspException {
     StringBuilder query = new StringBuilder();
-    query.append(param).append("=").append(value);
-    for (Enumeration<String> en = pageContext.getRequest().getParameterNames(); en.hasMoreElements();) {
+    query.append(this.param).append("=").append(this.value);
+    for (Enumeration<String> en = this.pageContext.getRequest().getParameterNames(); en.hasMoreElements();) {
       String name = en.nextElement();
-      if (!param.equals(name)) {
+      if (!this.param.equals(name)) {
         query.append("&").append(name).append("=")
-            .append(ServletRequestUtils.getStringParameter(pageContext.getRequest(), name, ""));
+            .append(ServletRequestUtils.getStringParameter(this.pageContext.getRequest(), name, ""));
       }
     }
     try {
-      pageContext.getOut().print(query);
+      this.pageContext.getOut().print(query);
     } catch (IOException e) {
       logger.debug("Exception printing query string to JspWriter", e);
       throw new JspException(e);
@@ -67,7 +67,7 @@ public class AddQueryParamTag extends TagSupport {
    * @return the param
    */
   public String getParam() {
-    return param;
+    return this.param;
   }
 
   /**
@@ -86,7 +86,7 @@ public class AddQueryParamTag extends TagSupport {
    * @return the value
    */
   public String getValue() {
-    return value;
+    return this.value;
   }
 
   /**

@@ -31,7 +31,7 @@ public class TomcatSlf4jLogbackAppenderAccessor extends AbstractLogDestination {
    * @return the logger accessor
    */
   public TomcatSlf4jLogbackLoggerAccessor getLoggerAccessor() {
-    return loggerAccessor;
+    return this.loggerAccessor;
   }
 
   /**

@@ -43,7 +43,7 @@ public class ThreadPool {
    * @return the name
    */
   public String getName() {
-    return name;
+    return this.name;
   }
 
   /**
@@ -61,7 +61,7 @@ public class ThreadPool {
    * @return the max threads
    */
   public int getMaxThreads() {
-    return maxThreads;
+    return this.maxThreads;
   }
 
   /**
@@ -79,7 +79,7 @@ public class ThreadPool {
    * @return the min spare threads
    */
   public int getMinSpareThreads() {
-    return minSpareThreads;
+    return this.minSpareThreads;
   }
 
   /**
@@ -97,7 +97,7 @@ public class ThreadPool {
    * @return the max spare threads
    */
   public int getMaxSpareThreads() {
-    return maxSpareThreads;
+    return this.maxSpareThreads;
   }
 
   /**
@@ -115,7 +115,7 @@ public class ThreadPool {
    * @return the current thread count
    */
   public int getCurrentThreadCount() {
-    return currentThreadCount;
+    return this.currentThreadCount;
   }
 
   /**
@@ -133,7 +133,7 @@ public class ThreadPool {
    * @return the current threads busy
    */
   public int getCurrentThreadsBusy() {
-    return currentThreadsBusy;
+    return this.currentThreadsBusy;
   }
 
   /**

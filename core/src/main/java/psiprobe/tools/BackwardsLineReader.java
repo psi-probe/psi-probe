@@ -67,15 +67,15 @@ public class BackwardsLineReader {
     ByteArrayOutputStream baos = new ByteArrayOutputStream(512);
     boolean empty = false;
     while (true) {
-      byte chr = (byte) bis.read();
+      byte chr = (byte) this.bis.read();
       if (chr != -1) {
         if (chr == '\n') {
-          skipLineFeed = false;
+          this.skipLineFeed = false;
           // quit this loop
           break;
         }
         if (chr == '\r') {
-          if (skipLineFeed) {
+          if (this.skipLineFeed) {
             // quit this loop. if the carriage return only was read
             break;
           }
@@ -96,7 +96,7 @@ public class BackwardsLineReader {
     if (!empty) {
       byte[] byteArray = baos.toByteArray();
       reverse(byteArray);
-      return encoding == null ? new String(byteArray) : new String(byteArray, encoding);
+      return this.encoding == null ? new String(byteArray) : new String(byteArray, this.encoding);
     }
     // return null if the end of the stream has been reached
     return null;
@@ -108,8 +108,8 @@ public class BackwardsLineReader {
    * @throws IOException Signals that an I/O exception has occurred.
    */
   public void close() throws IOException {
-    if (bis != null) {
-      bis.close();
+    if (this.bis != null) {
+      this.bis.close();
     }
   }
 

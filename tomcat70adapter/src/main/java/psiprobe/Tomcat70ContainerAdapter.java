@@ -120,7 +120,7 @@ public class Tomcat70ContainerAdapter extends AbstractTomcatContainer {
     NamingResources namingResources = context.getNamingResources();
     for (ContextResourceLink link : namingResources.findResourceLinks()) {
       ApplicationResource resource = new ApplicationResource();
-      logger.debug("reading resourceLink: {}", link.getName());
+      this.logger.debug("reading resourceLink: {}", link.getName());
       resource.setApplicationName(context.getName());
       resource.setName(link.getName());
       resource.setType(link.getType());
@@ -136,7 +136,7 @@ public class Tomcat70ContainerAdapter extends AbstractTomcatContainer {
     NamingResources namingResources = context.getNamingResources();
     for (ContextResource contextResource : namingResources.findResources()) {
       ApplicationResource resource = new ApplicationResource();
-      logger.info("reading resource: {}", contextResource.getName());
+      this.logger.info("reading resource: {}", contextResource.getName());
       resource.setApplicationName(context.getName());
       resource.setName(contextResource.getName());
       resource.setType(contextResource.getType());
@@ -274,7 +274,7 @@ public class Tomcat70ContainerAdapter extends AbstractTomcatContainer {
     try {
       return context.getResources().lookup(name) != null;
     } catch (NamingException ex) {
-      logger.trace("", ex);
+      this.logger.trace("", ex);
       throw new RuntimeException(ex);
     }
   }
@@ -284,7 +284,7 @@ public class Tomcat70ContainerAdapter extends AbstractTomcatContainer {
     try {
       return ((Resource) context.getResources().lookup(name)).streamContent();
     } catch (NamingException ex) {
-      logger.trace("", ex);
+      this.logger.trace("", ex);
       throw new RuntimeException(ex);
     }
   }
@@ -297,7 +297,7 @@ public class Tomcat70ContainerAdapter extends AbstractTomcatContainer {
       result[0] = resource.getContentLength();
       result[1] = resource.getLastModified();
     } catch (NamingException ex) {
-      logger.trace("", ex);
+      this.logger.trace("", ex);
     }
     return result;
   }

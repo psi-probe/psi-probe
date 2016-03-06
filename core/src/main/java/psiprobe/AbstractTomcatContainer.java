@@ -82,28 +82,28 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
   public void setWrapper(Wrapper wrapper) {
     Valve valve = createValve();
     if (wrapper != null) {
-      host = (Host) wrapper.getParent().getParent();
-      Engine engine = (Engine) host.getParent();
+      this.host = (Host) wrapper.getParent().getParent();
+      Engine engine = (Engine) this.host.getParent();
       Service service = engine.getService();
-      connectors = service.findConnectors();
+      this.connectors = service.findConnectors();
       try {
-        deployerOName =
-            new ObjectName(host.getParent().getName() + ":type=Deployer,host=" + host.getName());
+        this.deployerOName =
+            new ObjectName(this.host.getParent().getName() + ":type=Deployer,host=" + this.host.getName());
       } catch (MalformedObjectNameException e) {
-        logger.trace("", e);
+        this.logger.trace("", e);
       }
-      host.getPipeline().addValve(valve);
-      mbeanServer = Registry.getRegistry(null, null).getMBeanServer();
-    } else if (host != null) {
-      host.getPipeline().removeValve(valve);
+      this.host.getPipeline().addValve(valve);
+      this.mbeanServer = Registry.getRegistry(null, null).getMBeanServer();
+    } else if (this.host != null) {
+      this.host.getPipeline().removeValve(valve);
     }
   }
   
   @Override
   public File getAppBase() {
-    File base = new File(host.getAppBase());
+    File base = new File(this.host.getAppBase());
     if (!base.isAbsolute()) {
-      base = new File(System.getProperty("catalina.base"), host.getAppBase());
+      base = new File(System.getProperty("catalina.base"), this.host.getAppBase());
     }
     return base;
   }
@@ -112,7 +112,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
   public String getConfigBase() {
     File configBase = new File(System.getProperty("catalina.base"), "conf");
     Container baseHost = null;
-    Container thisContainer = host;
+    Container thisContainer = this.host;
     while (thisContainer != null) {
       if (thisContainer instanceof Host) {
         baseHost = thisContainer;
@@ -127,18 +127,18 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
 
   @Override
   public String getHostName() {
-    return host.getName();
+    return this.host.getName();
   }
 
   @Override
   public String getName() {
-    return host.getParent().getName();
+    return this.host.getParent().getName();
   }
 
   @Override
   public List<Context> findContexts() {
     List<Context> results = new ArrayList<>();
-    for (Container child : host.findChildren()) {
+    for (Container child : this.host.findChildren()) {
       if (child instanceof Context) {
         results.add((Context) child);
       }
@@ -148,7 +148,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
   
   @Override
   public List<Connector> findConnectors() {
-    return Collections.unmodifiableList(Arrays.asList(connectors));
+    return Collections.unmodifiableList(Arrays.asList(this.connectors));
   }
 
   @Override
@@ -186,7 +186,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
       try {
         stop(name);
       } catch (Exception e) {
-        logger.info("Stopping '{}' threw this exception:", name, e);
+        this.logger.info("Stopping '{}' threw this exception:", name, e);
       }
 
       File appDir;
@@ -198,17 +198,17 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
         appDir = docBase;
       }
 
-      logger.debug("Deleting '{}'", appDir.getAbsolutePath());
+      this.logger.debug("Deleting '{}'", appDir.getAbsolutePath());
       Utils.delete(appDir);
 
       String warFilename = formatContextFilename(name);
       File warFile = new File(getAppBase(), warFilename + ".war");
-      logger.debug("Deleting '{}'", warFile.getAbsolutePath());
+      this.logger.debug("Deleting '{}'", warFile.getAbsolutePath());
       Utils.delete(warFile);
 
       File configFile = getConfigFile(ctx);
       if (configFile != null) {
-        logger.debug("Deleting " + configFile.getAbsolutePath());
+        this.logger.debug("Deleting " + configFile.getAbsolutePath());
         Utils.delete(configFile);
       }
 
@@ -287,10 +287,10 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
   public void discardWorkDir(Context context) {
     if (context instanceof StandardContext) {
       StandardContext standardContext = (StandardContext) context;
-      logger.info("Discarding '{}'", standardContext.getWorkPath());
+      this.logger.info("Discarding '{}'", standardContext.getWorkPath());
       Utils.delete(new File(standardContext.getWorkPath(), "org"));
     } else {
-      logger.error("context '{}' is not an instance of '{}', expected StandardContext",
+      this.logger.error("context '{}' is not an instance of '{}', expected StandardContext",
               context.getName(), context.getClass().getName());
     }
   }
@@ -308,7 +308,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
           createJspCompilationContext(jspName, opt, sctx, jrctx, null);
       servletName = jcctx.getServletJavaFileName();
     } else {
-      logger.error("Context '{}' does not have 'JSP' servlet", context.getName());
+      this.logger.error("Context '{}' does not have 'JSP' servlet", context.getName());
     }
     return servletName;
   }
@@ -343,15 +343,15 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
                     compiler.compile();
                     item.setState(Item.STATE_READY);
                     item.setException(null);
-                    logger.info("Compiled '{}': OK", name);
+                    this.logger.info("Compiled '{}': OK", name);
                   } catch (Exception e) {
                     item.setState(Item.STATE_FAILED);
                     item.setException(e);
-                    logger.info("Compiled '{}': FAILED", name, e);
+                    this.logger.info("Compiled '{}': FAILED", name, e);
                   }
                   item.setCompileTime(System.currentTimeMillis() - time);
                 } else {
-                  logger.error("{} is not on the summary list, ignored", name);
+                  this.logger.error("{} is not on the summary list, ignored", name);
                 }
               } finally {
                 ClassUtils.overrideThreadContextClassLoader(prevCl);
@@ -362,10 +362,10 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
           }
         }
       } else {
-        logger.error("summary is null for '{}', request ignored", context.getName());
+        this.logger.error("summary is null for '{}', request ignored", context.getName());
       }
     } else {
-      logger.error("Context '{}' does not have 'JSP' servlet", context.getName());
+      this.logger.error("Context '{}' does not have 'JSP' servlet", context.getName());
     }
   }
 
@@ -416,7 +416,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
 
       summary.setItems(hashMap);
     } else {
-      logger.error("Context '{}' does not have 'JSP' servlet", context.getName());
+      this.logger.error("Context '{}' does not have 'JSP' servlet", context.getName());
     }
   }
 
@@ -435,7 +435,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
           return new File(configUri.getPath());
         }
       } catch (URISyntaxException ex) {
-        logger.error("Could not convert URL to URI: '{}'", configUrl, ex);
+        this.logger.error("Could not convert URL to URI: '{}'", configUrl, ex);
       }
     }
     return null;
@@ -493,7 +493,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
           isJsp = name.endsWith(".jsp") || name.endsWith(".jspx")
               || opt.getJspConfig().isJspPage(name);
         } catch (JasperException e) {
-          logger.info("isJspPage() thrown an error for '{}'", name, e);
+          this.logger.info("isJspPage() thrown an error for '{}'", name, e);
         }
 
         if (isJsp) {
@@ -531,11 +531,11 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
                   item.setException(null);
                 }
               }
-              logger.info("Compiled '{}': OK", name);
+              this.logger.info("Compiled '{}': OK", name);
             } catch (Exception e) {
               item.setState(Item.STATE_FAILED);
               item.setException(e);
-              logger.info("Compiled '{}': FAILED", name, e);
+              this.logger.info("Compiled '{}': FAILED", name, e);
             }
             if (compile) {
               item.setCompileTime(System.currentTimeMillis() - time);
@@ -550,7 +550,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
         }
       }
     } else {
-      logger.debug("getResourcePaths() is null for '{}'. Empty dir? Or Tomcat bug?", jspName);
+      this.logger.debug("getResourcePaths() is null for '{}'. Empty dir? Or Tomcat bug?", jspName);
     }
   }
 
@@ -561,7 +561,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
    * @return the context
    */
   protected Context findContextInternal(String name) {
-    return (Context) host.findChild(name);
+    return (Context) this.host.findChild(name);
   }
 
   /**
@@ -572,16 +572,16 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
    */
   protected void checkChanges(String name) throws Exception {
     Boolean result =
-        (Boolean) mbeanServer.invoke(deployerOName, "isServiced", new String[] {name},
+        (Boolean) this.mbeanServer.invoke(this.deployerOName, "isServiced", new String[] {name},
             new String[] {"java.lang.String"});
     if (!result) {
-      mbeanServer.invoke(deployerOName, "addServiced", new String[] {name},
+      this.mbeanServer.invoke(this.deployerOName, "addServiced", new String[] {name},
           new String[] {"java.lang.String"});
       try {
-        mbeanServer.invoke(deployerOName, "check", new String[] {name},
+        this.mbeanServer.invoke(this.deployerOName, "check", new String[] {name},
             new String[] {"java.lang.String"});
       } finally {
-        mbeanServer.invoke(deployerOName, "removeServiced", new String[] {name},
+        this.mbeanServer.invoke(this.deployerOName, "removeServiced", new String[] {name},
             new String[] {"java.lang.String"});
       }
     }

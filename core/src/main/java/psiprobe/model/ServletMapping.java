@@ -40,7 +40,7 @@ public class ServletMapping {
    * @return the application name
    */
   public String getApplicationName() {
-    return applicationName;
+    return this.applicationName;
   }
 
   /**
@@ -58,7 +58,7 @@ public class ServletMapping {
    * @return the url
    */
   public String getUrl() {
-    return url;
+    return this.url;
   }
 
   /**
@@ -76,7 +76,7 @@ public class ServletMapping {
    * @return the servlet name
    */
   public String getServletName() {
-    return servletName;
+    return this.servletName;
   }
 
   /**
@@ -94,7 +94,7 @@ public class ServletMapping {
    * @return the servlet class
    */
   public String getServletClass() {
-    return servletClass;
+    return this.servletClass;
   }
 
   /**
@@ -112,7 +112,7 @@ public class ServletMapping {
    * @return true, if is available
    */
   public boolean isAvailable() {
-    return available;
+    return this.available;
   }
 
   /**

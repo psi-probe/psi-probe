@@ -36,8 +36,8 @@ public class BackwardsFileStream extends InputStream {
    * @throws IOException Signals that an I/O exception has occurred.
    */
   public BackwardsFileStream(File file) throws IOException {
-    raf = new RandomAccessFile(file, "r");
-    seekPos = raf.length();
+    this.raf = new RandomAccessFile(file, "r");
+    this.seekPos = this.raf.length();
   }
 
   /**
@@ -48,15 +48,15 @@ public class BackwardsFileStream extends InputStream {
    * @throws IOException Signals that an I/O exception has occurred.
    */
   public BackwardsFileStream(File file, long pos) throws IOException {
-    raf = new RandomAccessFile(file, "r");
-    seekPos = pos;
+    this.raf = new RandomAccessFile(file, "r");
+    this.seekPos = pos;
   }
 
   @Override
   public int read() throws IOException {
-    if (seekPos > 0) {
-      raf.seek(--seekPos);
-      return raf.read();
+    if (this.seekPos > 0) {
+      this.raf.seek(--this.seekPos);
+      return this.raf.read();
     }
     // return EOF (so to speak)
     return -1;
@@ -64,8 +64,8 @@ public class BackwardsFileStream extends InputStream {
 
   @Override
   public void close() throws IOException {
-    if (raf != null) {
-      raf.close();
+    if (this.raf != null) {
+      this.raf.close();
     }
   }
 

@@ -49,7 +49,7 @@ public class GetApplicationController extends ContextHandlerController {
    * @return true, if is extended info
    */
   public boolean isExtendedInfo() {
-    return extendedInfo;
+    return this.extendedInfo;
   }
 
   /**
@@ -67,7 +67,7 @@ public class GetApplicationController extends ContextHandlerController {
    * @return the stats collection
    */
   public StatsCollection getStatsCollection() {
-    return statsCollection;
+    return this.statsCollection;
   }
 
   /**
@@ -85,7 +85,7 @@ public class GetApplicationController extends ContextHandlerController {
    * @return the collection period
    */
   public long getCollectionPeriod() {
-    return collectionPeriod;
+    return this.collectionPeriod;
   }
 
   /**

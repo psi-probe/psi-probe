@@ -46,7 +46,7 @@ public class ListConnectorsController extends TomcatContainerController {
    * @return the container listener bean
    */
   public ContainerListenerBean getContainerListenerBean() {
-    return containerListenerBean;
+    return this.containerListenerBean;
   }
 
   /**
@@ -64,7 +64,7 @@ public class ListConnectorsController extends TomcatContainerController {
    * @return the collection period
    */
   public long getCollectionPeriod() {
-    return collectionPeriod;
+    return this.collectionPeriod;
   }
 
   /**
@@ -82,7 +82,7 @@ public class ListConnectorsController extends TomcatContainerController {
    * @return true, if is include request processors
    */
   public boolean isIncludeRequestProcessors() {
-    return includeRequestProcessors;
+    return this.includeRequestProcessors;
   }
 
   /**
@@ -99,7 +99,7 @@ public class ListConnectorsController extends TomcatContainerController {
       HttpServletResponse response) throws Exception {
 
     boolean workerThreadNameSupported = false;
-    List<Connector> connectors = containerListenerBean.getConnectors(includeRequestProcessors);
+    List<Connector> connectors = this.containerListenerBean.getConnectors(this.includeRequestProcessors);
 
     if (!connectors.isEmpty()) {
       List<RequestProcessor> reqProcs = connectors.get(0).getRequestProcessors();

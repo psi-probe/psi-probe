@@ -33,7 +33,7 @@ public class FilterInfo {
    * @return the filter name
    */
   public String getFilterName() {
-    return filterName;
+    return this.filterName;
   }
 
   /**
@@ -51,7 +51,7 @@ public class FilterInfo {
    * @return the filter class
    */
   public String getFilterClass() {
-    return filterClass;
+    return this.filterClass;
   }
 
   /**
@@ -69,7 +69,7 @@ public class FilterInfo {
    * @return the filter desc
    */
   public String getFilterDesc() {
-    return filterDesc;
+    return this.filterDesc;
   }
 
   /**

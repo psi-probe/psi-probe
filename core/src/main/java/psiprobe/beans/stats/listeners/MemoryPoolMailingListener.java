@@ -50,7 +50,7 @@ public class MemoryPoolMailingListener extends FlapListener implements MessageSo
    * @return the message source accessor
    */
   public MessageSourceAccessor getMessageSourceAccessor() {
-    return messageSourceAccessor;
+    return this.messageSourceAccessor;
   }
 
   @Override
@@ -64,7 +64,7 @@ public class MemoryPoolMailingListener extends FlapListener implements MessageSo
    * @return the mailer
    */
   public Mailer getMailer() {
-    return mailer;
+    return this.mailer;
   }
 
   /**
@@ -79,10 +79,10 @@ public class MemoryPoolMailingListener extends FlapListener implements MessageSo
   @Override
   public void afterPropertiesSet() throws Exception {
     if (getMailer().getSmtp() == null) {
-      logger.info("Mailer SMTP host is not set.  Disabling listener.");
+      this.logger.info("Mailer SMTP host is not set.  Disabling listener.");
       setEnabled(false);
     } else if (getMailer().getDefaultTo() == null) {
-      logger.info("Mailer default recipient is not set.  Disabling listener.");
+      this.logger.info("Mailer default recipient is not set.  Disabling listener.");
       setEnabled(false);
     }
   }
@@ -144,7 +144,7 @@ public class MemoryPoolMailingListener extends FlapListener implements MessageSo
     try {
       getMailer().send(mail);
     } catch (MessagingException ex) {
-      logger.error("Cannot send message", ex);
+      this.logger.error("Cannot send message", ex);
     }
   }
 

@@ -54,7 +54,7 @@ public class ConnectorInfo implements Serializable {
   private String truststoreAlgorithm;
 
   public String getName() {
-    return name;
+    return this.name;
   }
 
   public void setName(String name) {
@@ -62,7 +62,7 @@ public class ConnectorInfo implements Serializable {
   }
 
   public String getClientAuth() {
-    return clientAuth;
+    return this.clientAuth;
   }
 
   public void setClientAuth(String clientAuth) {
@@ -70,7 +70,7 @@ public class ConnectorInfo implements Serializable {
   }
 
   public String getAlgorithm() {
-    return algorithm;
+    return this.algorithm;
   }
 
   public void setAlgorithm(String algorithm) {
@@ -78,7 +78,7 @@ public class ConnectorInfo implements Serializable {
   }
 
   public String getSslProtocol() {
-    return sslProtocol;
+    return this.sslProtocol;
   }
 
   public void setSslProtocol(String sslProtocol) {
@@ -86,7 +86,7 @@ public class ConnectorInfo implements Serializable {
   }
 
   public String getCiphers() {
-    return ciphers;
+    return this.ciphers;
   }
 
   public void setCiphers(String ciphers) {
@@ -94,7 +94,7 @@ public class ConnectorInfo implements Serializable {
   }
 
   public String getKeyAlias() {
-    return keyAlias;
+    return this.keyAlias;
   }
 
   public void setKeyAlias(String keyAlias) {
@@ -102,7 +102,7 @@ public class ConnectorInfo implements Serializable {
   }
 
   public String getTrustMaxCertLength() {
-    return trustMaxCertLength;
+    return this.trustMaxCertLength;
   }
 
   public void setTrustMaxCertLength(String trustMaxCertLength) {
@@ -110,7 +110,7 @@ public class ConnectorInfo implements Serializable {
   }
 
   public String getAllowUnsafeLegacyRenegotiation() {
-    return allowUnsafeLegacyRenegotiation;
+    return this.allowUnsafeLegacyRenegotiation;
   }
 
   public void setAllowUnsafeLegacyRenegotiation(String allowUnsafeLegacyRenegotiation) {
@@ -118,7 +118,7 @@ public class ConnectorInfo implements Serializable {
   }
 
   public String getSslImplementationName() {
-    return sslImplementationName;
+    return this.sslImplementationName;
   }
 
   public void setSslImplementationName(String sslImplementationName) {
@@ -126,7 +126,7 @@ public class ConnectorInfo implements Serializable {
   }
 
   public String getSessionCacheSize() {
-    return sessionCacheSize;
+    return this.sessionCacheSize;
   }
 
   public void setSessionCacheSize(String sessionCacheSize) {
@@ -134,15 +134,15 @@ public class ConnectorInfo implements Serializable {
   }
 
   public String getCrlFile() {
-    return CrlFile;
+    return this.CrlFile;
   }
 
   public void setCrlFile(String crlFile) {
-    CrlFile = crlFile;
+    this.CrlFile = crlFile;
   }
 
   public String getProtocolType() {
-    return protocolType;
+    return this.protocolType;
   }
 
   public void setProtocolType(String protocolType) {
@@ -150,7 +150,7 @@ public class ConnectorInfo implements Serializable {
   }
 
   public String getKeystoreFile() {
-    return keystoreFile;
+    return this.keystoreFile;
   }
 
   public void setKeystoreFile(String keystoreFile) {
@@ -158,7 +158,7 @@ public class ConnectorInfo implements Serializable {
   }
 
   public String getKeystorePass() {
-    return keystorePass;
+    return this.keystorePass;
   }
 
   public void setKeystorePass(String keystorePass) {
@@ -166,7 +166,7 @@ public class ConnectorInfo implements Serializable {
   }
 
   public String getKeystoreProvider() {
-    return keystoreProvider;
+    return this.keystoreProvider;
   }
 
   public void setKeystoreProvider(String keystoreProvider) {
@@ -174,7 +174,7 @@ public class ConnectorInfo implements Serializable {
   }
 
   public String getKeystoreType() {
-    return keystoreType;
+    return this.keystoreType;
   }
 
   public void setKeystoreType(String keystoreType) {
@@ -182,7 +182,7 @@ public class ConnectorInfo implements Serializable {
   }
 
   public String getTruststoreFile() {
-    return truststoreFile;
+    return this.truststoreFile;
   }
 
   public void setTruststoreFile(String truststoreFile) {
@@ -190,7 +190,7 @@ public class ConnectorInfo implements Serializable {
   }
 
   public String getTruststorePass() {
-    return truststorePass;
+    return this.truststorePass;
   }
 
   public void setTruststorePass(String truststorePass) {
@@ -198,7 +198,7 @@ public class ConnectorInfo implements Serializable {
   }
 
   public String getTruststoreProvider() {
-    return truststoreProvider;
+    return this.truststoreProvider;
   }
 
   public void setTruststoreProvider(String truststoreProvider) {
@@ -206,7 +206,7 @@ public class ConnectorInfo implements Serializable {
   }
 
   public String getTruststoreType() {
-    return truststoreType;
+    return this.truststoreType;
   }
 
   public void setTruststoreType(String truststoreType) {
@@ -214,7 +214,7 @@ public class ConnectorInfo implements Serializable {
   }
 
   public String getTruststoreAlgorithm() {
-    return truststoreAlgorithm;
+    return this.truststoreAlgorithm;
   }
 
   public void setTruststoreAlgorithm(String truststoreAlgorithm) {
@@ -222,7 +222,7 @@ public class ConnectorInfo implements Serializable {
   }
 
   public List<Cert> getKeyStoreCerts() {
-    return keyStoreCerts;
+    return this.keyStoreCerts;
   }
 
   public void setKeyStoreCerts(List<Cert> keyStoreCerts) {
@@ -230,7 +230,7 @@ public class ConnectorInfo implements Serializable {
   }
 
   public List<Cert> getTrustStoreCerts() {
-    return trustStoreCerts;
+    return this.trustStoreCerts;
   }
 
   public void setTrustStoreCerts(List<Cert> trustStoreCerts) {

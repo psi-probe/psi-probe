@@ -39,7 +39,7 @@ public class ImplSelectorController extends AbstractController {
    * @return the impl1 controller
    */
   public String getImpl1Controller() {
-    return impl1Controller;
+    return this.impl1Controller;
   }
 
   /**
@@ -57,7 +57,7 @@ public class ImplSelectorController extends AbstractController {
    * @return the impl2 controller
    */
   public String getImpl2Controller() {
-    return impl2Controller;
+    return this.impl2Controller;
   }
 
   /**
@@ -74,9 +74,9 @@ public class ImplSelectorController extends AbstractController {
       HttpServletResponse response) throws Exception {
     boolean forceOld = ServletRequestUtils.getBooleanParameter(request, "forceold", false);
     if (!forceOld && Utils.isThreadingEnabled()) {
-      return new ModelAndView(impl2Controller);
+      return new ModelAndView(this.impl2Controller);
     }
-    return new ModelAndView(impl1Controller);
+    return new ModelAndView(this.impl1Controller);
   }
 
 }

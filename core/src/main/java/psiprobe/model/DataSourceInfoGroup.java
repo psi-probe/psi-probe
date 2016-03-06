@@ -51,7 +51,7 @@ public class DataSourceInfoGroup extends DataSourceInfo {
    * @return the data source count
    */
   public int getDataSourceCount() {
-    return dataSourceCount;
+    return this.dataSourceCount;
   }
 
   /**

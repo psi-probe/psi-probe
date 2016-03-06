@@ -43,15 +43,15 @@ public class ParamToggleTag extends TagSupport {
   @Override
   public int doStartTag() throws JspException {
     boolean getSize =
-        ServletRequestUtils.getBooleanParameter(pageContext.getRequest(), param, false);
+        ServletRequestUtils.getBooleanParameter(this.pageContext.getRequest(), this.param, false);
     StringBuilder query = new StringBuilder();
-    query.append(param).append("=").append(!getSize);
-    String encoding = pageContext.getResponse().getCharacterEncoding();
-    for (Enumeration<String> en = pageContext.getRequest().getParameterNames(); en.hasMoreElements();) {
+    query.append(this.param).append("=").append(!getSize);
+    String encoding = this.pageContext.getResponse().getCharacterEncoding();
+    for (Enumeration<String> en = this.pageContext.getRequest().getParameterNames(); en.hasMoreElements();) {
       String name = en.nextElement();
-      if (!param.equals(name)) {
+      if (!this.param.equals(name)) {
         try {
-          String value = ServletRequestUtils.getStringParameter(pageContext.getRequest(), name, "");
+          String value = ServletRequestUtils.getStringParameter(this.pageContext.getRequest(), name, "");
           String encodedValue = URLEncoder.encode(value, encoding);
           query.append("&").append(name).append("=").append(encodedValue);
         } catch (UnsupportedEncodingException e) {
@@ -60,7 +60,7 @@ public class ParamToggleTag extends TagSupport {
       }
     }
     try {
-      pageContext.getOut().print(query);
+      this.pageContext.getOut().print(query);
     } catch (IOException e) {
       logger.debug("Exception printing query string to JspWriter", e);
       throw new JspException(e);
@@ -74,7 +74,7 @@ public class ParamToggleTag extends TagSupport {
    * @return the param
    */
   public String getParam() {
-    return param;
+    return this.param;
   }
 
   /**

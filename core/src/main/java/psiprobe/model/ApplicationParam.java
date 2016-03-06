@@ -33,7 +33,7 @@ public class ApplicationParam {
    * @return the name
    */
   public String getName() {
-    return name;
+    return this.name;
   }
 
   /**
@@ -51,7 +51,7 @@ public class ApplicationParam {
    * @return the value
    */
   public Object getValue() {
-    return value;
+    return this.value;
   }
 
   /**
@@ -69,7 +69,7 @@ public class ApplicationParam {
    * @return true, if is from depl descr
    */
   public boolean isFromDeplDescr() {
-    return fromDeplDescr;
+    return this.fromDeplDescr;
   }
 
   /**

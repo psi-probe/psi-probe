@@ -44,7 +44,7 @@ public class ClusterStatsController extends TomcatContainerController {
    * @return the cluster wrapper
    */
   public ClusterWrapperBean getClusterWrapper() {
-    return clusterWrapper;
+    return this.clusterWrapper;
   }
 
   /**
@@ -62,7 +62,7 @@ public class ClusterStatsController extends TomcatContainerController {
    * @return true, if is load members
    */
   public boolean isLoadMembers() {
-    return loadMembers;
+    return this.loadMembers;
   }
 
   /**
@@ -80,7 +80,7 @@ public class ClusterStatsController extends TomcatContainerController {
    * @return the collection period
    */
   public long getCollectionPeriod() {
-    return collectionPeriod;
+    return this.collectionPeriod;
   }
 
   /**

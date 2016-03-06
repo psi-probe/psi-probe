@@ -88,10 +88,10 @@ public class LogOutputStream extends OutputStream {
   @Override
   public void flush() {
     if (shouldWrite()) {
-      String message = buf.toString();
+      String message = this.buf.toString();
       log(message);
     }
-    buf.setLength(0);
+    this.buf.setLength(0);
   }
 
   /**
@@ -103,7 +103,7 @@ public class LogOutputStream extends OutputStream {
   public void write(int out) {
     if (shouldWrite()) {
       char chr = (char) out;
-      buf.append(chr);
+      this.buf.append(chr);
     }
   }
 
@@ -113,7 +113,7 @@ public class LogOutputStream extends OutputStream {
    * @return the {@code Log} to which this stream writes
    */
   public Logger getLog() {
-    return logger;
+    return this.logger;
   }
 
   /**
@@ -122,7 +122,7 @@ public class LogOutputStream extends OutputStream {
    * @return the level at which this stream writes to the {@code Log}
    */
   public int getLevel() {
-    return level;
+    return this.level;
   }
 
   /**
@@ -132,17 +132,17 @@ public class LogOutputStream extends OutputStream {
    *         level assigned to this stream
    */
   private boolean shouldWrite() {
-    switch (level) {
+    switch (this.level) {
       case LEVEL_TRACE:
-        return logger.isTraceEnabled();
+        return this.logger.isTraceEnabled();
       case LEVEL_DEBUG:
-        return logger.isDebugEnabled();
+        return this.logger.isDebugEnabled();
       case LEVEL_INFO:
-        return logger.isInfoEnabled();
+        return this.logger.isInfoEnabled();
       case LEVEL_WARN:
-        return logger.isWarnEnabled();
+        return this.logger.isWarnEnabled();
       case LEVEL_ERROR:
-        return logger.isErrorEnabled();
+        return this.logger.isErrorEnabled();
       default:
         return false;
     }
@@ -157,21 +157,21 @@ public class LogOutputStream extends OutputStream {
     if (message == null || "".equals(message)) {
       return;
     }
-    switch (level) {
+    switch (this.level) {
       case LEVEL_TRACE:
-        logger.trace(message);
+        this.logger.trace(message);
         break;
       case LEVEL_DEBUG:
-        logger.debug(message);
+        this.logger.debug(message);
         break;
       case LEVEL_INFO:
-        logger.info(message);
+        this.logger.info(message);
         break;
       case LEVEL_WARN:
-        logger.warn(message);
+        this.logger.warn(message);
         break;
       case LEVEL_ERROR:
-        logger.error(message);
+        this.logger.error(message);
         break;
       default:
         //Don't log anything

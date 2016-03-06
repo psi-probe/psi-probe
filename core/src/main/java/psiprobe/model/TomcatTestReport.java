@@ -70,7 +70,7 @@ public class TomcatTestReport {
    * @return the context name
    */
   public String getContextName() {
-    return contextName;
+    return this.contextName;
   }
 
   /**
@@ -88,7 +88,7 @@ public class TomcatTestReport {
    * @return the datasource usage score
    */
   public int getDatasourceUsageScore() {
-    return datasourceUsageScore;
+    return this.datasourceUsageScore;
   }
 
   /**
@@ -106,7 +106,7 @@ public class TomcatTestReport {
    * @return the data source name
    */
   public String getDataSourceName() {
-    return dataSourceName;
+    return this.dataSourceName;
   }
 
   /**
@@ -124,7 +124,7 @@ public class TomcatTestReport {
    * @return the datasource test
    */
   public int getDatasourceTest() {
-    return datasourceTest;
+    return this.datasourceTest;
   }
 
   /**
@@ -142,7 +142,7 @@ public class TomcatTestReport {
    * @return the file test
    */
   public int getFileTest() {
-    return fileTest;
+    return this.fileTest;
   }
 
   /**
@@ -160,7 +160,7 @@ public class TomcatTestReport {
    * @return the memory test
    */
   public int getMemoryTest() {
-    return memoryTest;
+    return this.memoryTest;
   }
 
   /**
@@ -178,7 +178,7 @@ public class TomcatTestReport {
    * @return the default file count
    */
   public int getDefaultFileCount() {
-    return defaultFileCount;
+    return this.defaultFileCount;
   }
 
   /**
@@ -187,7 +187,7 @@ public class TomcatTestReport {
    * @return the test duration
    */
   public long getTestDuration() {
-    return testDuration;
+    return this.testDuration;
   }
 
   /**
@@ -205,7 +205,7 @@ public class TomcatTestReport {
    * @return the max processing time
    */
   public long getMaxProcessingTime() {
-    return maxServiceTime;
+    return this.maxServiceTime;
   }
 
   /**
@@ -223,7 +223,7 @@ public class TomcatTestReport {
    * @return the webapp availability test
    */
   public int getWebappAvailabilityTest() {
-    return webappAvailabilityTest;
+    return this.webappAvailabilityTest;
   }
 
   /**

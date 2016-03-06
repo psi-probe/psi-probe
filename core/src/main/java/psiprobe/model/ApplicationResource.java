@@ -51,7 +51,7 @@ public class ApplicationResource {
    * @return the application name
    */
   public String getApplicationName() {
-    return applicationName;
+    return this.applicationName;
   }
 
   /**
@@ -69,7 +69,7 @@ public class ApplicationResource {
    * @return the name
    */
   public String getName() {
-    return name;
+    return this.name;
   }
 
   /**
@@ -87,7 +87,7 @@ public class ApplicationResource {
    * @return the type
    */
   public String getType() {
-    return type;
+    return this.type;
   }
 
   /**
@@ -105,7 +105,7 @@ public class ApplicationResource {
    * @return the scope
    */
   public String getScope() {
-    return scope;
+    return this.scope;
   }
 
   /**
@@ -123,7 +123,7 @@ public class ApplicationResource {
    * @return the auth
    */
   public String getAuth() {
-    return auth;
+    return this.auth;
   }
 
   /**
@@ -141,7 +141,7 @@ public class ApplicationResource {
    * @return the description
    */
   public String getDescription() {
-    return description;
+    return this.description;
   }
 
   /**
@@ -159,7 +159,7 @@ public class ApplicationResource {
    * @return the data source info
    */
   public DataSourceInfo getDataSourceInfo() {
-    return dataSourceInfo;
+    return this.dataSourceInfo;
   }
 
   /**
@@ -177,7 +177,7 @@ public class ApplicationResource {
    * @return true, if is looked up
    */
   public boolean isLookedUp() {
-    return lookedUp;
+    return this.lookedUp;
   }
 
   /**
@@ -195,7 +195,7 @@ public class ApplicationResource {
    * @return the link to
    */
   public String getLinkTo() {
-    return linkTo;
+    return this.linkTo;
   }
 
   /**

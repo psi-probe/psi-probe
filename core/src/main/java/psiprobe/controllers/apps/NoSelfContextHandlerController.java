@@ -43,7 +43,7 @@ public abstract class NoSelfContextHandlerController extends ContextHandlerContr
    * @return true, if is pass query string
    */
   public boolean isPassQueryString() {
-    return passQueryString;
+    return this.passQueryString;
   }
 
   /**

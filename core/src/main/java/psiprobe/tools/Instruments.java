@@ -130,22 +130,22 @@ public class Instruments {
    */
   private long internalSizeOf(Object root) {
     long size = 0;
-    thisQueue.add(root);
-    while (!thisQueue.isEmpty()) {
-      Iterator<Object> it = thisQueue.iterator();
+    this.thisQueue.add(root);
+    while (!this.thisQueue.isEmpty()) {
+      Iterator<Object> it = this.thisQueue.iterator();
       while (it.hasNext()) {
         Object obj = it.next();
         if (isInitialized() && obj != null
-            && (classLoader == null || classLoader == obj.getClass().getClassLoader())
+            && (this.classLoader == null || this.classLoader == obj.getClass().getClassLoader())
             && (!IGNORE_NIO || !obj.getClass().getName().startsWith("java.nio."))) {
           ObjectWrapper ow = new ObjectWrapper(obj);
-          if (!processedObjects.contains(ow)) {
+          if (!this.processedObjects.contains(ow)) {
             if (obj.getClass().isArray()) {
               size += sizeOfArray(obj);
             } else if (obj.getClass().isPrimitive()) {
               size += sizeOfPrimitive(obj.getClass());
             } else {
-              processedObjects.add(ow);
+              this.processedObjects.add(ow);
               size += sizeOfObject(obj);
             }
           }
@@ -153,9 +153,9 @@ public class Instruments {
         it.remove();
       }
       // avoids ConcurrentModificationException
-      if (!nextQueue.isEmpty()) {
-        thisQueue.addAll(nextQueue);
-        nextQueue.clear();
+      if (!this.nextQueue.isEmpty()) {
+        this.thisQueue.addAll(this.nextQueue);
+        this.nextQueue.clear();
       }
     }
     return size;
@@ -182,7 +182,7 @@ public class Instruments {
               size += sizeOfArray(val);
             } else {
               size += SIZE_REFERENCE;
-              nextQueue.add(val);
+              this.nextQueue.add(val);
             }
           }
         }
@@ -205,7 +205,7 @@ public class Instruments {
         return Array.getLength(obj) * sizeOfPrimitive(ct);
       }
       for (int i = 0; i < Array.getLength(obj); i++) {
-        nextQueue.add(Array.get(obj, i));
+        this.nextQueue.add(Array.get(obj, i));
       }
     }
     return 0;

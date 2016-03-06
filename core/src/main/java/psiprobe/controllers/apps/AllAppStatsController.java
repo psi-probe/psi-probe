@@ -33,7 +33,7 @@ public class AllAppStatsController extends ParameterizableViewController {
    * @return the collection period
    */
   public long getCollectionPeriod() {
-    return collectionPeriod;
+    return this.collectionPeriod;
   }
 
   /**

@@ -68,7 +68,7 @@ public class RequestProcessor {
    * @return the name
    */
   public String getName() {
-    return name;
+    return this.name;
   }
 
   /**
@@ -86,7 +86,7 @@ public class RequestProcessor {
    * @return the stage
    */
   public int getStage() {
-    return stage;
+    return this.stage;
   }
 
   /**
@@ -104,7 +104,7 @@ public class RequestProcessor {
    * @return the processing time
    */
   public long getProcessingTime() {
-    return processingTime;
+    return this.processingTime;
   }
 
   /**
@@ -122,7 +122,7 @@ public class RequestProcessor {
    * @return the bytes sent
    */
   public long getBytesSent() {
-    return bytesSent;
+    return this.bytesSent;
   }
 
   /**
@@ -140,7 +140,7 @@ public class RequestProcessor {
    * @return the bytes received
    */
   public long getBytesReceived() {
-    return bytesReceived;
+    return this.bytesReceived;
   }
 
   /**
@@ -158,7 +158,7 @@ public class RequestProcessor {
    * @return the remote addr
    */
   public String getRemoteAddr() {
-    return remoteAddr;
+    return this.remoteAddr;
   }
 
   /**
@@ -176,7 +176,7 @@ public class RequestProcessor {
    * @return the virtual host
    */
   public String getVirtualHost() {
-    return virtualHost;
+    return this.virtualHost;
   }
 
   /**
@@ -194,7 +194,7 @@ public class RequestProcessor {
    * @return the method
    */
   public String getMethod() {
-    return method;
+    return this.method;
   }
 
   /**
@@ -212,7 +212,7 @@ public class RequestProcessor {
    * @return the current uri
    */
   public String getCurrentUri() {
-    return currentUri;
+    return this.currentUri;
   }
 
   /**
@@ -230,7 +230,7 @@ public class RequestProcessor {
    * @return the current query string
    */
   public String getCurrentQueryString() {
-    return currentQueryString;
+    return this.currentQueryString;
   }
 
   /**
@@ -248,7 +248,7 @@ public class RequestProcessor {
    * @return the protocol
    */
   public String getProtocol() {
-    return protocol;
+    return this.protocol;
   }
 
   /**
@@ -266,7 +266,7 @@ public class RequestProcessor {
    * @return the remote addr locale
    */
   public Locale getRemoteAddrLocale() {
-    return remoteAddrLocale;
+    return this.remoteAddrLocale;
   }
 
   /**
@@ -284,7 +284,7 @@ public class RequestProcessor {
    * @return the worker thread name
    */
   public String getWorkerThreadName() {
-    return workerThreadName;
+    return this.workerThreadName;
   }
 
   /**
@@ -302,7 +302,7 @@ public class RequestProcessor {
    * @return true, if is worker thread name supported
    */
   public boolean isWorkerThreadNameSupported() {
-    return workerThreadNameSupported;
+    return this.workerThreadNameSupported;
   }
 
   /**
