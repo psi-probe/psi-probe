@@ -49,7 +49,7 @@ public class GetConnectorController extends TomcatContainerController {
       List connectors = containerListenerBean.getConnectors(false);
       for (int i = 0; i < connectors.size(); i++) {
         Connector conn = (Connector) connectors.get(i);
-        if (connectorName.equals(conn.getName())) {
+        if (connectorName.equals(conn.getProtocolHandler())) {
           connector = conn;
           break;
         }

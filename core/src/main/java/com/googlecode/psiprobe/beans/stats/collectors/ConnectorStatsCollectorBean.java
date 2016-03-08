@@ -38,7 +38,7 @@ public class ConnectorStatsCollectorBean extends AbstractStatsCollectorBean {
     List connectors = listenerBean.getConnectors(false);
     for (Iterator it = connectors.iterator(); it.hasNext();) {
       Connector connector = (Connector) it.next();
-      String statName = "stat.connector." + connector.getName();
+      String statName = "stat.connector." + connector.getProtocolHandler();
       buildDeltaStats(statName + ".requests", connector.getRequestCount());
       buildDeltaStats(statName + ".errors", connector.getErrorCount());
       buildDeltaStats(statName + ".sent", connector.getBytesSent());
@@ -51,7 +51,7 @@ public class ConnectorStatsCollectorBean extends AbstractStatsCollectorBean {
     List connectors = listenerBean.getConnectors(false);
     for (Iterator it = connectors.iterator(); it.hasNext();) {
       Connector connector = (Connector) it.next();
-      reset(connector.getName());
+      reset(connector.getProtocolHandler());
     }
   }
 

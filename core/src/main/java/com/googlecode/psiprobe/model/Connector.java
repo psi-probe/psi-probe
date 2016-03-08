@@ -21,7 +21,7 @@ import java.util.List;
  */
 public class Connector {
 
-  private String name;
+  private String protocolHandler;
   private long maxTime;
   private long processingTime;
   private int requestCount;
@@ -30,12 +30,12 @@ public class Connector {
   private long bytesSent;
   private List requestProcessors = new ArrayList();
 
-  public String getName() {
-    return name;
+  public String getProtocolHandler() {
+    return protocolHandler;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setProtocolHandler(String protocolHandler) {
+    this.protocolHandler = protocolHandler;
   }
 
   public long getMaxTime() {
