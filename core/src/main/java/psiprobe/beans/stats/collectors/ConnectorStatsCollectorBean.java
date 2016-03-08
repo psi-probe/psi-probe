@@ -46,7 +46,7 @@ public class ConnectorStatsCollectorBean extends AbstractStatsCollectorBean {
   @Override
   public void collect() throws Exception {
     for (Connector connector : listenerBean.getConnectors(false)) {
-      String statName = "stat.connector." + connector.getName();
+      String statName = "stat.connector." + connector.getProtocolHandler();
       buildDeltaStats(statName + ".requests", connector.getRequestCount());
       buildDeltaStats(statName + ".errors", connector.getErrorCount());
       buildDeltaStats(statName + ".sent", connector.getBytesSent());
@@ -62,7 +62,7 @@ public class ConnectorStatsCollectorBean extends AbstractStatsCollectorBean {
    */
   public void reset() throws Exception {
     for (Connector connector : listenerBean.getConnectors(false)) {
-      reset(connector.getName());
+      reset(connector.getProtocolHandler());
     }
   }
 
