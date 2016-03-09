@@ -250,7 +250,7 @@ public class ContainerListenerBean implements NotificationListener {
         ObjectName poolName = threadPoolObjectName.getThreadPoolName();
 
         Connector connector = new Connector();
-        connector.setName(poolName.getKeyProperty("name"));
+        connector.setProtocolHandler(poolName.getKeyProperty("name"));
 
         ObjectName grpName = threadPoolObjectName.getGlobalRequestProcessorName();
 
