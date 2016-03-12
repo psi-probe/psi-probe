@@ -21,8 +21,8 @@ import java.util.List;
  */
 public class Connector {
 
-  /** The name. */
-  private String name;
+  /** The protocolHandler. */
+  private String protocolHandler;
   
   /** The max time. */
   private long maxTime;
@@ -46,22 +46,22 @@ public class Connector {
   private List<RequestProcessor> requestProcessors = new ArrayList<>();
 
   /**
-   * Gets the name.
+   * Gets the protocol handler.
    *
-   * @return the name
+   * @return the protocol handler
    */
-  public String getName() {
-    return name;
+  public String getProtocolHandler() {
+    return protocolHandler;
   }
 
   /**
-   * Sets the name.
+   * Sets the protocol handler.
    *
-   * @param name the new name
+   * @param protocol handler the new protocol handler
    */
-  public void setName(String name) {
-    this.name = name;
-  }
+  public void setProtocolHandler(String protocolHandler) {
+    this.protocolHandler = protocolHandler;
+ }
 
   /**
    * Gets the max time.

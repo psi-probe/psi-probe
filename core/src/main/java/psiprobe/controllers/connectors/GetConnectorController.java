@@ -61,7 +61,7 @@ public class GetConnectorController extends TomcatContainerController {
     if (connectorName != null) {
       List<Connector> connectors = containerListenerBean.getConnectors(false);
       for (Connector conn : connectors) {
-        if (connectorName.equals(conn.getName())) {
+        if (connectorName.equals(conn.getProtocolHandler())) {
           connector = conn;
           break;
         }
