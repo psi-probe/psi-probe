@@ -25,7 +25,6 @@ import org.apache.tomcat.util.descriptor.web.ContextResourceLink;
 import org.apache.tomcat.util.descriptor.web.FilterDef;
 import org.apache.tomcat.util.descriptor.web.FilterMap;
 
-import psiprobe.AbstractTomcatContainer;
 import psiprobe.model.ApplicationParam;
 import psiprobe.model.ApplicationResource;
 import psiprobe.model.FilterInfo;

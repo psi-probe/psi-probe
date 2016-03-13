@@ -13,7 +13,6 @@ package psiprobe.beans;
 
 import org.apache.tomcat.dbcp.dbcp.BasicDataSource;
 
-import psiprobe.beans.DatasourceAccessor;
 import psiprobe.model.DataSourceInfo;
 
 /**
