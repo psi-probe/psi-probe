@@ -105,7 +105,7 @@
 			<dependency>
 				<groupId>org.jmockit</groupId>
 				<artifactId>jmockit</artifactId>
-				<version>1.21</version>
+				<version>1.22</version>
 			</dependency>
 			<dependency>
 				<groupId>junit</groupId>
