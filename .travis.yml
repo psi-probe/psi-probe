@@ -1,7 +1,13 @@
 language: java
+sudo: false
 jdk:
-  - oraclejdk8
-  - oraclejdk7
-  - openjdk7
+- oraclejdk8
+- oraclejdk7
+- openjdk7
 after_success:
-  - mvn clean cobertura:cobertura coveralls:report
+- chmod -R 777 ./travis/after_success.sh
+- "./travis/after_success.sh"
+env:
+  global:
+  - secure: krtI+LAG0HfNUkeRd4ZihRq3xdNr/krkskB+XcMfFnNIPUF+v26CUW2ayTJIIUXoLrp2hb6r7dkCqh1EG/nGmpvkAB6SVUB0tqqk6vQioDhLAdyS4fz4Vlv+AjleZwCw19gqLhUugKDzYYJK6PCz5CAlDOw1sQr76wvBt7DEOjg=
+  - secure: dNrNYERcHMTB7B1jRz7grmUJqlolv6OVezH2VgyDu1x5YM+xBtB1KiXYRwZse+k8+27YD0phnKJd0V4OIGGul8jBLO19QtCgIYF+XPwAambcISSptK2SNeuNcd3fOXb+6B7NKjHdifnQphnC1UrFXonPdRQ4an3B2/iJnoGYmGE=
