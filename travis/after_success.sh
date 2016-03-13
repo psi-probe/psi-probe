@@ -30,7 +30,7 @@ if [ "$upstream_repo" == "https://github.com/psi-probe/psi-probe.git" ] && [ "$T
     mvn clean deploy -q --settings ./travis/settings.xml
     echo -e "Successfully deployed SNAPSHOT artifacts to Sonatype under Travis job ${TRAVIS_JOB_NUMBER}"
 
-	# Send coverate to coveralls
+	# Send coverage to coveralls
     mvn clean test jacoco:report coveralls:report -q
     echo -e "Successfully ran coveralls under Travis job ${TRAVIS_JOB_NUMBER}"
 
@@ -38,14 +38,12 @@ if [ "$upstream_repo" == "https://github.com/psi-probe/psi-probe.git" ] && [ "$T
 	# mvn site site:deploy -q
 	# echo -e "Successfully deploy site under Travis job ${TRAVIS_JOB_NUMBER}"
   fi
-else
-  if [ "$upstream_repo" == "https://github.com/psi-probe/psi-probe.git" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "master" ]; then
-    if [ $VER == "18" ]; then
-	  # Send coverate to coveralls
-	  mvn clean jacoco:report coveralls:report -q
-	  echo -e "Successfully ran coveralls under Travis job ${TRAVIS_JOB_NUMBER}"
-	fi
-  else
-	echo "Travis build skipped"
+elif [ "$upstream_repo" == "https://github.com/psi-probe/psi-probe.git" ] && [ "$TRAVIS_PULL_REQUEST" == "true" ]; then
+  if [ $VER == "18" ]; then
+	# Send coverage to coveralls
+	mvn clean jacoco:report coveralls:report -q
+	echo -e "Successfully ran coveralls under Travis job ${TRAVIS_JOB_NUMBER}"
   fi
+else
+  echo "Travis build skipped"
 fi
