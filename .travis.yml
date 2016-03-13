@@ -9,5 +9,5 @@ after_success:
 - "./travis/after_success.sh"
 env:
   global:
-  - secure: krtI+LAG0HfNUkeRd4ZihRq3xdNr/krkskB+XcMfFnNIPUF+v26CUW2ayTJIIUXoLrp2hb6r7dkCqh1EG/nGmpvkAB6SVUB0tqqk6vQioDhLAdyS4fz4Vlv+AjleZwCw19gqLhUugKDzYYJK6PCz5CAlDOw1sQr76wvBt7DEOjg=
-  - secure: dNrNYERcHMTB7B1jRz7grmUJqlolv6OVezH2VgyDu1x5YM+xBtB1KiXYRwZse+k8+27YD0phnKJd0V4OIGGul8jBLO19QtCgIYF+XPwAambcISSptK2SNeuNcd3fOXb+6B7NKjHdifnQphnC1UrFXonPdRQ4an3B2/iJnoGYmGE=
+  - secure: v7aD00cje5ZqZ/Oq8mtZzjfsGNVNI23RAw9aUl0KHymIWi6/ARhfMf5gOR40g8CGPQEXgv6CTQfJlTKohvObZFD1unjoI2htrN5qK3kct2PaY1i/tgQRk6HTvei+VIXXb72HTDUTyPlevt1gk1bCUBZlxlj3rSwI140/ryd/ySU=
+  - secure: R1P1NYZiVyNp1ZOK+zugM2ZJFG17FMIV3g7kZarwP14MbqMm9ix4r3YC1UX5/vEXQoOMM7xwOeCYWIXgUQZMOOqU12DqTOk8QXoG881mGqUooAFVq/KEwEmQvH107/9a5/q5n+Wp7/xF/BZ8k5uKRzyrnr5p6mmQ4AFnHes12sw=
