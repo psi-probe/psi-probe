@@ -26,7 +26,6 @@
 #tabnav a:link, #tabnav a:visited {
 	float: left;
 	background: #f3f3f3;
-	font-size: 12px;
 	line-height: 14px;
 	font-weight: bold;
 	padding: 2px 10px 2px 10px;
