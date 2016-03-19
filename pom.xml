@@ -246,23 +246,9 @@
 				</exclusions>
 			</dependency>
 			<dependency>
-				<groupId>displaytag</groupId>
+				<groupId>com.github.hazendaz</groupId>
 				<artifactId>displaytag</artifactId>
-				<version>1.2</version>
-				<exclusions>
-					<exclusion>
-						<groupId>com.lowagie</groupId>
-						<artifactId>itext</artifactId>
-					</exclusion>
-					<exclusion>
-						<artifactId>jcl104-over-slf4j</artifactId>
-						<groupId>org.slf4j</groupId>
-					</exclusion>
-					<exclusion>
-						<artifactId>slf4j-log4j12</artifactId>
-						<groupId>org.slf4j</groupId>
-					</exclusion>
-				</exclusions>
+				<version>2.0.2</version>
 			</dependency>
 			<dependency>
 				<groupId>org.slf4j</groupId>

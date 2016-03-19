@@ -68,7 +68,7 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>displaytag</groupId>
+			<groupId>com.github.hazendaz</groupId>
 			<artifactId>displaytag</artifactId>
 		</dependency>
 		<dependency>
@@ -82,18 +82,6 @@
 				<groupId>org.jasig.mojo.jspc</groupId>
 				<artifactId>jspc-maven-plugin</artifactId>
 				<dependencies>
-					<dependency>
-						<!-- Required for displaytag -->
-						<groupId>org.slf4j</groupId>
-						<artifactId>jcl104-over-slf4j</artifactId>
-						<version>1.4.2</version>
-					</dependency>
-					<dependency>
-						<!-- Required for displaytag -->
-						<groupId>org.slf4j</groupId>
-						<artifactId>slf4j-nop</artifactId>
-						<version>1.4.2</version>
-					</dependency>
 					<dependency>
 						<groupId>${project.groupId}</groupId>
 						<artifactId>psi-probe-core</artifactId>
