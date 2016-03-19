@@ -11,9 +11,9 @@
 
 package psiprobe.tools.logging.slf4jlogback;
 
-import java.io.File;
-
 import psiprobe.tools.logging.AbstractLogDestination;
+
+import java.io.File;
 
 /**
  * A wrapper for a TomcatSlf4jLogback appender for a specific logger.

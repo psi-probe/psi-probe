@@ -14,14 +14,14 @@ package psiprobe;
 import com.uwyn.jhighlight.renderer.Renderer;
 import com.uwyn.jhighlight.renderer.XhtmlRendererFactory;
 
+import org.apache.commons.modeler.Registry;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import psiprobe.tokenizer.StringTokenizer;
 import psiprobe.tokenizer.Token;
 import psiprobe.tokenizer.Tokenizer;
 import psiprobe.tokenizer.TokenizerSymbol;
-
-import org.apache.commons.modeler.Registry;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;

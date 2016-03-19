@@ -13,8 +13,6 @@ package psiprobe.model.stats;
 
 import com.thoughtworks.xstream.XStream;
 
-import psiprobe.tools.UpdateCommitLock;
-
 import org.jfree.data.xy.XYDataItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +22,8 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.web.context.WebApplicationContext;
+
+import psiprobe.tools.UpdateCommitLock;
 
 import java.io.File;
 import java.io.FileInputStream;

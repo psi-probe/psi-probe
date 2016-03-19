@@ -12,14 +12,15 @@
 package psiprobe.beans;
 
 import net.sf.javainetlocator.InetAddressLocator;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import psiprobe.model.Connector;
 import psiprobe.model.RequestProcessor;
 import psiprobe.model.ThreadPool;
 import psiprobe.model.jmx.ThreadPoolObjectName;
 import psiprobe.tools.JmxTools;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.net.InetAddress;
 import java.util.ArrayList;

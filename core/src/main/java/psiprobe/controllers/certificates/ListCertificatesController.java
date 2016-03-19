@@ -1,5 +1,17 @@
 package psiprobe.controllers.certificates;
 
+import org.apache.catalina.connector.Connector;
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.coyote.ProtocolHandler;
+import org.apache.coyote.http11.AbstractHttp11JsseProtocol;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.servlet.ModelAndView;
+
+import psiprobe.controllers.TomcatContainerController;
+import psiprobe.model.certificates.Cert;
+import psiprobe.model.certificates.ConnectorInfo;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -17,18 +29,6 @@ import java.util.List;
 import javax.management.ObjectName;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.catalina.connector.Connector;
-import org.apache.commons.beanutils.BeanUtils;
-import org.apache.coyote.ProtocolHandler;
-import org.apache.coyote.http11.AbstractHttp11JsseProtocol;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.web.servlet.ModelAndView;
-
-import psiprobe.controllers.TomcatContainerController;
-import psiprobe.model.certificates.Cert;
-import psiprobe.model.certificates.ConnectorInfo;
 
 public class ListCertificatesController extends TomcatContainerController {
 

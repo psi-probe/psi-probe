@@ -13,11 +13,11 @@ package psiprobe.controllers;
 
 import com.thoughtworks.xstream.XStream;
 
-import psiprobe.model.TransportableModel;
-
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
 import org.springframework.web.servlet.mvc.Controller;
+
+import psiprobe.model.TransportableModel;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

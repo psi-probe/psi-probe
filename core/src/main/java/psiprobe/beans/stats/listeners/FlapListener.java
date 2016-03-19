@@ -11,10 +11,10 @@
 
 package psiprobe.beans.stats.listeners;
 
+import psiprobe.Utils;
+
 import java.util.HashMap;
 import java.util.LinkedList;
-
-import psiprobe.Utils;
 
 /**
  * The listener interface for receiving flap events.

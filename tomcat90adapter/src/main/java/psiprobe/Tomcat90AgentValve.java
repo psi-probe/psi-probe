@@ -18,11 +18,11 @@ import org.apache.catalina.valves.ValveBase;
 import psiprobe.model.ApplicationSession;
 import psiprobe.model.IpInfo;
 
+import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
-import java.io.IOException;
 
 /**
  * Valve which inserts the client's IP address into the session for Tomcat 8.0.

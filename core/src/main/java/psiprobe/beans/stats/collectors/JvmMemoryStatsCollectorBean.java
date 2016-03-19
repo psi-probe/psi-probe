@@ -11,10 +11,10 @@
 
 package psiprobe.beans.stats.collectors;
 
-import java.util.List;
-
 import psiprobe.beans.JvmMemoryInfoAccessorBean;
 import psiprobe.model.jmx.MemoryPool;
+
+import java.util.List;
 
 /**
  * The Class JvmMemoryStatsCollectorBean.

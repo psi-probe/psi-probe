@@ -11,12 +11,12 @@
 
 package psiprobe.controllers;
 
-import java.lang.management.ManagementFactory;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
 
 import psiprobe.Utils;
 
+import java.lang.management.ManagementFactory;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.List;

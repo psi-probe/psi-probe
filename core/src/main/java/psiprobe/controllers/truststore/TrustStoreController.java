@@ -11,6 +11,13 @@
 
 package psiprobe.controllers.truststore;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import org.springframework.web.servlet.ModelAndView;
+
+import psiprobe.controllers.TomcatContainerController;
+
 import java.io.FileInputStream;
 import java.security.KeyStore;
 import java.security.cert.X509Certificate;
@@ -23,12 +30,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import org.springframework.web.servlet.ModelAndView;
-import psiprobe.controllers.TomcatContainerController;
 
 /**
  * Creates an instance of SystemInformation POJO.
