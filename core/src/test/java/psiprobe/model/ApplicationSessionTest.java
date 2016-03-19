@@ -16,7 +16,7 @@ public class ApplicationSessionTest {
    */
   @Test
   public void javabeanTester() {
-    JavaBeanTester.builder(ApplicationSession.class).loadData().test();
+    JavaBeanTester.builder(ApplicationSession.class).loadData().skip("creationTime", "lastAccessTime").test();
   }
 
 }

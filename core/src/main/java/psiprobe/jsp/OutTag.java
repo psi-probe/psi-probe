@@ -11,7 +11,7 @@
 
 package psiprobe.jsp;
 
-import org.apache.commons.lang.StringEscapeUtils;
+import org.apache.commons.lang3.StringEscapeUtils;
 
 import java.io.IOException;
 
@@ -124,7 +124,7 @@ public class OutTag extends BodyTagSupport {
         } else {
           newValue = "..." + displayValue.substring(displayValue.length() - maxLength + 3);
         }
-        String title = StringEscapeUtils.escapeHtml(displayValue);
+        String title = StringEscapeUtils.escapeHtml4(displayValue);
         out.print("<span title=\"" + title + "\">" + newValue + "</span>");
       } else {
         out.print(displayValue);
