@@ -43,19 +43,19 @@ public class Tomcat90AgentValveTest {
   }
 
   /**
-   * Can bound to pivotal6.
+   * Can bound to pivotal8.
    */
   @Test
-  public void canBoundToPivotal6() {
+  public void canBoundToPivotal8() {
     final Tomcat90ContainerAdapter valve = new Tomcat90ContainerAdapter();
     assertFalse(valve.canBoundTo("Pivotal tc..../8.0"));
   }
 
   /**
-   * Can bound to pivotal7.
+   * Can bound to pivotal9.
    */
   @Test
-  public void canBoundToPivotal7() {
+  public void canBoundToPivotal9() {
     final Tomcat90ContainerAdapter valve = new Tomcat90ContainerAdapter();
     assertTrue(valve.canBoundTo("Pivotal tc..../9.0"));
   }
