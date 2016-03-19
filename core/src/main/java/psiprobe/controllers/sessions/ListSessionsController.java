@@ -13,7 +13,7 @@ package psiprobe.controllers.sessions;
 
 import org.apache.catalina.Context;
 import org.apache.catalina.Session;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
