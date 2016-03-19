@@ -111,11 +111,11 @@ public class ListCertificatesController extends TomcatContainerController {
     while (keystoreAliases.hasMoreElements()) {
       String alias = keystoreAliases.nextElement();
 
-      Certificate[] certificateChain = keyStore.getCertificateChain(alias);
+      Certificate[] certificateChains = keyStore.getCertificateChain(alias);
 
-      if (certificateChain != null) {
-        for (Certificate aCertificateChain : certificateChain) {
-          X509Certificate x509Cert = (X509Certificate) aCertificateChain;
+      if (certificateChains != null) {
+        for (Certificate certificateChain : certificateChains) {
+          X509Certificate x509Cert = (X509Certificate) certificateChain;
           addToStore(certs, alias, x509Cert);
         }
       } else {

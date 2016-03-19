@@ -44,39 +44,39 @@ public class TrustStoreController extends TomcatContainerController {
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
-      List<Map<String, String>> certificateList = new ArrayList<>();
-      try {
-          String trustStoreType = System.getProperty("javax.net.ssl.trustStoreType");
-          KeyStore ks;
-          if (trustStoreType != null) {
-              ks = KeyStore.getInstance(trustStoreType);
-          } else {
-              ks = KeyStore.getInstance("JKS");
-          }
-          String trustStore = System.getProperty("javax.net.ssl.trustStore");
-          String trustStorePassword = System.getProperty("javax.net.ssl.trustStorePassword");
-          if (trustStore != null) {
-              ks.load(new FileInputStream(trustStore), trustStorePassword != null ? trustStorePassword.toCharArray() : null);
-              Enumeration<String> aliases = ks.aliases();
-              Map<String, String> attributes;
-              while(aliases.hasMoreElements()) {
-                  attributes = new HashMap<>();
-                  String alias = aliases.nextElement();
-                  if (ks.getCertificate(alias).getType().equals("X.509")) {
-                      X509Certificate cert = (X509Certificate) ks.getCertificate(alias);
-
-                      attributes.put("alias", alias);
-                      attributes.put("cn", cert.getSubjectDN().toString());
-                      attributes.put("expirationDate", new SimpleDateFormat("yyyy-MM-dd").format(cert.getNotAfter()));
-                      certificateList.add(attributes);
-                  }
-              }
-          }
-      } catch (Exception e) {
-          logger.error("There was an exception obtaining truststore: ",e);
+    List<Map<String, String>> certificateList = new ArrayList<>();
+    try {
+      String trustStoreType = System.getProperty("javax.net.ssl.trustStoreType");
+      KeyStore ks;
+      if (trustStoreType != null) {
+        ks = KeyStore.getInstance(trustStoreType);
+      } else {
+        ks = KeyStore.getInstance("JKS");
       }
-      ModelAndView mv = new ModelAndView(getViewName());
-      mv.addObject("certificates", certificateList);
-      return mv;
+      String trustStore = System.getProperty("javax.net.ssl.trustStore");
+      String trustStorePassword = System.getProperty("javax.net.ssl.trustStorePassword");
+      if (trustStore != null) {
+        ks.load(new FileInputStream(trustStore), trustStorePassword != null ? trustStorePassword.toCharArray() : null);
+        Enumeration<String> aliases = ks.aliases();
+        Map<String, String> attributes;
+        while (aliases.hasMoreElements()) {
+          attributes = new HashMap<>();
+          String alias = aliases.nextElement();
+          if (ks.getCertificate(alias).getType().equals("X.509")) {
+            X509Certificate cert = (X509Certificate) ks.getCertificate(alias);
+
+            attributes.put("alias", alias);
+            attributes.put("cn", cert.getSubjectDN().toString());
+            attributes.put("expirationDate", new SimpleDateFormat("yyyy-MM-dd").format(cert.getNotAfter()));
+            certificateList.add(attributes);
+          }
+        }
+      }
+    } catch (Exception e) {
+      logger.error("There was an exception obtaining truststore: ",e);
+    }
+    ModelAndView mv = new ModelAndView(getViewName());
+    mv.addObject("certificates", certificateList);
+    return mv;
   }
 }

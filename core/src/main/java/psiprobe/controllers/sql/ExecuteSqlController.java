@@ -111,7 +111,7 @@ public class ExecuteSqlController extends ContextHandlerController {
 
       try {
         // TODO: use Spring's jdbc template?
-        try (Connection conn = dataSource.getConnection()){
+        try (Connection conn = dataSource.getConnection()) {
           conn.setAutoCommit(true);
 
           try (PreparedStatement stmt = conn.prepareStatement(sql)) {

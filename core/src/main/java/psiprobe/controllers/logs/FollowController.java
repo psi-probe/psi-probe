@@ -55,7 +55,7 @@ public class FollowController extends LogHandlerController {
         lines.add(" ------------- THE FILE HAS BEEN TRUNCATED --------------");
       }
 
-      try (BackwardsFileStream bfs = new BackwardsFileStream(file, currentLength)){
+      try (BackwardsFileStream bfs = new BackwardsFileStream(file, currentLength)) {
         BackwardsLineReader br;
         if (logDest.getEncoding() != null) {
           br = new BackwardsLineReader(bfs, logDest.getEncoding());

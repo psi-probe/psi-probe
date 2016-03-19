@@ -89,42 +89,42 @@ public class Whois {
     try (Socket connection = AsyncSocketFactory.createSocket(server, port, timeout);
             PrintStream out = new PrintStream(connection.getOutputStream());
             BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
-          out.println(query);
-          StringBuilder sb = new StringBuilder();
+      out.println(query);
+      StringBuilder sb = new StringBuilder();
 
-          String line;
-          while ((line = in.readLine()) != null) {
-            sb.append(line).append(lineSeparator);
-            line = line.trim();
-            if (!line.startsWith("%") && !line.startsWith("#")) {
-              int fs = line.indexOf(":");
-              if (fs > 0) {
-                String name = line.substring(0, fs);
-                String value = line.substring(fs + 1).trim();
-                response.data.put(name, value);
-              }
-            }
+      String line;
+      while ((line = in.readLine()) != null) {
+        sb.append(line).append(lineSeparator);
+        line = line.trim();
+        if (!line.startsWith("%") && !line.startsWith("#")) {
+          int fs = line.indexOf(":");
+          if (fs > 0) {
+            String name = line.substring(0, fs);
+            String value = line.substring(fs + 1).trim();
+            response.data.put(name, value);
           }
-          response.summary = sb.toString();
+        }
+      }
+      response.summary = sb.toString();
 
-          Response newResponse = null;
-          String referral = response.getData().get("ReferralServer");
+      Response newResponse = null;
+      String referral = response.getData().get("ReferralServer");
 
-          if (referral != null) {
-            try {
-              UrlParser url = new UrlParser(referral);
-              if ("whois".equals(url.getProtocol())) {
-                newResponse =
-                    lookup(url.getHost(), url.getPort() == -1 ? 43 : url.getPort(), query, timeout,
-                        lineSeparator);
-              }
-            } catch (IOException e) {
-              logger.trace("Could not contact '{}'", referral, e);
-            }
+      if (referral != null) {
+        try {
+          UrlParser url = new UrlParser(referral);
+          if ("whois".equals(url.getProtocol())) {
+            newResponse =
+                lookup(url.getHost(), url.getPort() == -1 ? 43 : url.getPort(), query, timeout,
+                    lineSeparator);
           }
-          if (newResponse != null) {
-            response = newResponse;
-          }
+        } catch (IOException e) {
+          logger.trace("Could not contact '{}'", referral, e);
+        }
+      }
+      if (newResponse != null) {
+        response = newResponse;
+      }
     }
 
     return response;

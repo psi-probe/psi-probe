@@ -491,15 +491,15 @@ public class Utils {
       // set some headers
       response.setContentType("application/zip");
       response.setHeader("Content-Disposition", "attachment; filename=" + file.getName() + ".zip");
-      
+
       zip.putNextEntry(new ZipEntry(file.getName()));
-      
+
       // send the file
       byte[] buffer = new byte[4096];
       long len;
-      
+
       while ((len = fileInput.read(buffer)) > 0) {
-          zip.write(buffer, 0, (int) len);
+        zip.write(buffer, 0, (int) len);
       }
       zip.closeEntry();
     }

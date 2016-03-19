@@ -53,7 +53,7 @@ public class LogbackFactoryAccessor extends DefaultAccessor {
     Object singleton = getSingleton.invoke(null);
     Method getLoggerFactory = MethodUtils
         .getAccessibleMethod(clazz, "getLoggerFactory", new Class[0]);
-    
+
     Object loggerFactory = getLoggerFactory.invoke(singleton);
 
     // Check if the binding is indeed Logback
