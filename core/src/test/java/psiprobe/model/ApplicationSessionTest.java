@@ -14,9 +14,10 @@ public class ApplicationSessionTest {
   /**
    * Javabean tester.
    */
+  // TODO Until JavabeanTester only uses default no-arg constructor for testing, skip dates.
   @Test
   public void javabeanTester() {
-    JavaBeanTester.builder(ApplicationSession.class).loadData().test();
+    JavaBeanTester.builder(ApplicationSession.class).loadData().skip("creationTime", "lastAccessTime").test();
   }
 
 }
