@@ -40,19 +40,19 @@ public class Tomcat80AgentValveTest {
   }
 
   /**
-   * Can bound to pivotal6.
+   * Can bound to pivotal7.
    */
   @Test
-  public void canBoundToPivotal6() {
+  public void canBoundToPivotal7() {
     final Tomcat80ContainerAdapter valve = new Tomcat80ContainerAdapter();
     assertFalse(valve.canBoundTo("Pivotal tc..../7.0"));
   }
 
   /**
-   * Can bound to pivotal7.
+   * Can bound to pivotal8.
    */
   @Test
-  public void canBoundToPivotal7() {
+  public void canBoundToPivotal8() {
     final Tomcat80ContainerAdapter valve = new Tomcat80ContainerAdapter();
     assertTrue(valve.canBoundTo("Pivotal tc..../8.0"));
   }

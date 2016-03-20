@@ -25,7 +25,6 @@ import org.apache.jasper.compiler.JspRuntimeContext;
 import org.apache.naming.resources.Resource;
 import org.apache.naming.resources.ResourceAttributes;
 
-import psiprobe.AbstractTomcatContainer;
 import psiprobe.model.ApplicationParam;
 import psiprobe.model.ApplicationResource;
 import psiprobe.model.FilterInfo;
