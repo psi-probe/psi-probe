@@ -30,6 +30,9 @@ import javax.management.ObjectName;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * The Class ListCertificatesController.
+ */
 public class ListCertificatesController extends TomcatContainerController {
 
   /** The Constant Logger. */
@@ -68,6 +71,15 @@ public class ListCertificatesController extends TomcatContainerController {
 
   }
 
+  /**
+   * Gets the certificates.
+   *
+   * @param storeType the store type
+   * @param storeFile the store file
+   * @param storePassword the store password
+   * @return the certificates
+   * @throws Exception the exception
+   */
   public List<Cert> getCertificates(String storeType, String storeFile, String storePassword)
       throws Exception {
     KeyStore keyStore;
@@ -99,11 +111,11 @@ public class ListCertificatesController extends TomcatContainerController {
     while (keystoreAliases.hasMoreElements()) {
       String alias = keystoreAliases.nextElement();
 
-      Certificate[] certificateChain = keyStore.getCertificateChain(alias);
+      Certificate[] certificateChains = keyStore.getCertificateChain(alias);
 
-      if (certificateChain != null) {
-        for (Certificate aCertificateChain : certificateChain) {
-          X509Certificate x509Cert = (X509Certificate) aCertificateChain;
+      if (certificateChains != null) {
+        for (Certificate certificateChain : certificateChains) {
+          X509Certificate x509Cert = (X509Certificate) certificateChain;
           addToStore(certs, alias, x509Cert);
         }
       } else {
@@ -114,6 +126,14 @@ public class ListCertificatesController extends TomcatContainerController {
     return certs;
   }
 
+  /**
+   * Gets the connector infos.
+   *
+   * @param connectors the connectors
+   * @return the connector infos
+   * @throws IllegalAccessException the illegal access exception
+   * @throws InvocationTargetException the invocation target exception
+   */
   private List<ConnectorInfo> getConnectorInfos(List<Connector> connectors)
       throws IllegalAccessException, InvocationTargetException {
     List<ConnectorInfo> infos = new ArrayList<>();
@@ -164,6 +184,14 @@ public class ListCertificatesController extends TomcatContainerController {
     return url.openConnection().getInputStream();
   }
 
+  /**
+   * To connector info.
+   *
+   * @param protocol the protocol
+   * @return the connector info
+   * @throws IllegalAccessException the illegal access exception
+   * @throws InvocationTargetException the invocation target exception
+   */
   private ConnectorInfo toConnectorInfo(AbstractHttp11JsseProtocol<?> protocol)
       throws IllegalAccessException, InvocationTargetException {
     ConnectorInfo info = new ConnectorInfo();
@@ -172,6 +200,13 @@ public class ListCertificatesController extends TomcatContainerController {
     return info;
   }
 
+  /**
+   * Adds the to store.
+   *
+   * @param certs the certs
+   * @param alias the alias
+   * @param x509Cert the x509 cert
+   */
   private void addToStore(List<Cert> certs, String alias, X509Certificate x509Cert) {
     Cert cert = new Cert();
 

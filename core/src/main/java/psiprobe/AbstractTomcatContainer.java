@@ -69,7 +69,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
   /** The host. */
   protected Host host;
   
-  /** Connectors */
+  /** Connectors. */
   protected Connector[] connectors;
   
   /** The deployer o name. */

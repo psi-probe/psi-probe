@@ -99,7 +99,8 @@ public class LogbackAppenderAccessor extends AbstractLogDestination {
     String fileName = (String) getProperty(getTarget(), "file", null);
     return fileName != null ? new File(fileName) : getStdoutFile();
   }
-  
+
+  @Override
   public String getEncoding() {
     if (getTarget() instanceof OutputStreamAppender) {
       OutputStreamAppender<?> appender = (OutputStreamAppender<?>) getTarget();

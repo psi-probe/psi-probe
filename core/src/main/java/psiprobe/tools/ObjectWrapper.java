@@ -47,7 +47,7 @@ class ObjectWrapper {
       return o1 == null;
     }
     if (this.getClass() != o1.getClass()) {
-        return false;
+      return false;
     }
     ObjectWrapper ow = (ObjectWrapper) o1;
     /*

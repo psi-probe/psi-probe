@@ -61,7 +61,7 @@ public class Connector {
    */
   public void setProtocolHandler(String protocolHandler) {
     this.protocolHandler = protocolHandler;
- }
+  }
 
   /**
    * Gets the max time.
