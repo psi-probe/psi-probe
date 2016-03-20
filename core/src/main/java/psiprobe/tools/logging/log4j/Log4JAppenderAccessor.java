@@ -11,9 +11,9 @@
 
 package psiprobe.tools.logging.log4j;
 
-import java.io.File;
-
 import psiprobe.tools.logging.AbstractLogDestination;
+
+import java.io.File;
 
 /**
  * The Class Log4JAppenderAccessor.

@@ -11,9 +11,9 @@
 
 package psiprobe.tools.logging.jdk;
 
-import java.io.File;
-
 import psiprobe.tools.Instruments;
+
+import java.io.File;
 
 /**
  * The Class JuliHandlerAccessor.

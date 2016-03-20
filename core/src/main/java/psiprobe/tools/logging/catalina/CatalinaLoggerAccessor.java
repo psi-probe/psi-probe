@@ -11,12 +11,12 @@
 
 package psiprobe.tools.logging.catalina;
 
+import psiprobe.tools.Instruments;
+import psiprobe.tools.logging.AbstractLogDestination;
+
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import psiprobe.tools.Instruments;
-import psiprobe.tools.logging.AbstractLogDestination;
 
 /**
  * The Class CatalinaLoggerAccessor.

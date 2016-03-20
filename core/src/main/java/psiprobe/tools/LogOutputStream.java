@@ -11,10 +11,10 @@
 
 package psiprobe.tools;
 
+import org.slf4j.Logger;
+
 import java.io.OutputStream;
 import java.io.PrintStream;
-
-import org.slf4j.Logger;
 
 /**
  * An {@code OutputStream} which writes to a commons-logging {@code Log} at a particular level.

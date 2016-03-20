@@ -11,6 +11,10 @@
 
 package psiprobe;
 
+import org.apache.catalina.Context;
+import org.apache.catalina.Valve;
+import org.apache.catalina.WebResource;
+import org.apache.catalina.deploy.NamingResourcesImpl;
 import org.apache.jasper.JspCompilationContext;
 import org.apache.jasper.Options;
 import org.apache.jasper.compiler.JspRuntimeContext;
@@ -26,13 +30,6 @@ import psiprobe.model.ApplicationResource;
 import psiprobe.model.FilterInfo;
 import psiprobe.model.FilterMapping;
 
-import org.apache.catalina.Context;
-import org.apache.catalina.Valve;
-import org.apache.catalina.WebResource;
-import org.apache.catalina.deploy.NamingResourcesImpl;
-
-import javax.servlet.ServletContext;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -41,6 +38,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.servlet.ServletContext;
 
 /**
  * The Class Tomcat80ContainerAdapter.
