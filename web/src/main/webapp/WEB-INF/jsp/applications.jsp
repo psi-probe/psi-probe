@@ -127,7 +127,7 @@
 			</div>
 		</c:if>
 
-		<display:table class="genericTbl" name="apps" uid="app" cellspacing="0" requestURI="" defaultsort="1"
+		<display:table class="genericTbl" name="apps" uid="app" style="border-spacing:0;border-collapse:separate;" requestURI="" defaultsort="1"
 				defaultorder="ascending" cellpadding="0">
 
 			<display:column class="leftMostIcon" title="&nbsp;">

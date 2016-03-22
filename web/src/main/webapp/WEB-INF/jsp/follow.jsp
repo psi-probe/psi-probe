@@ -125,7 +125,7 @@
 
 			<h3><spring:message code="probe.jsp.follow.h3.sources"/></h3>
 
-			<display:table name="sources" class="genericTbl" cellspacing="0" uid="logsource" requestURI="">
+			<display:table name="sources" class="genericTbl" style="border-spacing:0;border-collapse:separate;" uid="logsource" requestURI="">
 
 				<display:column titleKey="probe.jsp.logs.col.app" sortable="true" class="leftmost">
 					${logsource.application.name}

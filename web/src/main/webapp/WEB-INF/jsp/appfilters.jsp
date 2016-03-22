@@ -53,7 +53,7 @@
 					<h3><spring:message code="probe.jsp.app.filters.h3.defs"/></h3>
 
 					<display:table htmlId="filterTbl" name="appFilters" uid="fltr"
-							class="genericTbl" cellspacing="0" cellpadding="0"
+							class="genericTbl" style="padding:0;border-spacing:0;border-collapse:separate;"
 							requestURI="" defaultsort="1">
 						<display:column property="filterName" sortable="true"
 								titleKey="probe.jsp.app.filters.col.filterName" maxLength="40" class="leftmost"/>

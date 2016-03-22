@@ -74,7 +74,7 @@
 					<h3><spring:message code="probe.jsp.servletmaps.h3.maps"/></h3>
 
 					<display:table name="servletMaps" uid="svlt"
-							class="genericTbl" cellspacing="0" cellpadding="0"
+							class="genericTbl" style="padding:0;border-spacing:0;border-collapse:separate;"
 							requestURI="" defaultsort="1">
 						<c:if test="${empty param.webapp}">
 							<display:column sortProperty="applicationName" sortable="true"

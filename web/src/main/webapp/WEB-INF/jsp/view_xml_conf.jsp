@@ -62,7 +62,7 @@
 
 				<div class="embeddedBlockContainer">
 					<h3><spring:message code="probe.jsp.app.viewXMLConf.h3.scr" arguments="${fileName}"/></h3>
-					<table id="resultsTable" cellspacing="0">
+					<table id="resultsTable" style="border-spacing:0;border-collapse:separate;">
 						<tr>
 							<td id="left_scroller" class="scroller">&nbsp;</td>
 							<td width="1%">&nbsp;</td>
