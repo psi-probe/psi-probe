@@ -107,7 +107,7 @@
 								<dd>
 									<img id="cl_traffic" border="0" src="${trafficimg}" width="${chartWidth}" height="${chartHeight}" alt="Bytes received"/>
 								</dd>
-								<dd id="dd_traffic"><div class="ajax_activity"/></dd>
+								<dd id="dd_traffic"><div class="ajax_activity"></div></dd>
 							</dl>
 						</div>
 
@@ -117,17 +117,17 @@
 								<dd>
 									<img id="cl_requests" border="0" src="${requestsimg}" width="${chartWidth}" height="${chartHeight}" alt="Bytes sent"/>
 								</dd>
-								<dd id="dd_requests"><div class="ajax_activity"/></dd>
+								<dd id="dd_requests"><div class="ajax_activity"></div></dd>
 							</dl>
 						</div>
 					</div>
 
-					<div style="clear: both;"/>
+					<div style="clear: both;"></div>
 
 					<h3><spring:message code="probe.jsp.cluster.h3.members"/></h3>
 
 					<div id="members">
-						<div class="ajax_activity"/>
+						<div class="ajax_activity"></div>
 						<%--<p class="empty_list"><spring:message code="probe.jsp.cluster.loading"/></p>--%>
 					</div>
 				</div>
