@@ -59,7 +59,7 @@
 					<div class="ajax_activity"></div>
 				</div>
 
-				<display:table name="threads" uid="th" class="genericTbl" cellspacing="0" requestURI="" defaultsort="4"
+				<display:table name="threads" uid="th" class="genericTbl" style="border-spacing:0;border-collapse:separate;" requestURI="" defaultsort="4"
 						defaultorder="ascending">
 
 					<display:column class="leftMostIcon" title="&nbsp;" style="width:20px;">

@@ -109,7 +109,7 @@
 					<c:choose>
 						<c:when test="${! empty session.attributes}">
 							<display:table name="session.attributes" uid="attribute"
-									class="genericTbl" cellspacing="0" cellpadding="0"
+									class="genericTbl" style="padding:0;border-spacing:0;border-collapse:separate;"
 									requestURI="">
 								<display:column title="&nbsp;" class="leftmost" style="width: 20px;">
 									<c:url value="/app/rmsattr.htm" var="rmsattr_url">

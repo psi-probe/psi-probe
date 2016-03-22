@@ -61,7 +61,7 @@
 							<td>
 								<div id="appAttrTblContainer" class="scrollable_content">
 									<display:table htmlId="appAttrTbl" name="appAttributes" uid="attribute"
-											class="genericTbl" cellspacing="0" cellpadding="0"
+											class="genericTbl" style="padding:0;border-spacing:0;border-collapse:separate;"
 											requestURI="" defaultsort="1">
 										<display:column title="&nbsp;" style="width:20px;" class="leftMostIcon">
 											<c:url value='/app/rmappattr.htm' var='rmappattr_url'>

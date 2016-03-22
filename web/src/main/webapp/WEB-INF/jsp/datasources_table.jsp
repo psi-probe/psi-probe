@@ -15,7 +15,7 @@
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@ taglib uri="https://github.com/psi-probe/psi-probe/jsp/tags" prefix="probe" %>
 
-<display:table class="genericTbl" cellspacing="0" name="resources" uid="resource"
+<display:table class="genericTbl" style="border-spacing:0;border-collapse:separate;" name="resources" uid="resource"
 		htmlId="${isGlobalResources ? 'global_resources' : 'app_resources'}" requestURI="">
 
 	<display:column class="leftmost" title="&nbsp;">

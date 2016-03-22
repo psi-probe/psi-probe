@@ -28,7 +28,7 @@
 		<%-- a hidden flag that shows if the app is up to display the status in a static app info section --%>
 		<span id="r_appStatusUp" style="display: none;">true</span>
 
-		<table class="statsTable" cellpadding="0" cellspacing="0">
+		<table class="statsTable" style="padding:0;border-spacing:0;border-collapse:separate;">
 			<thead>
 				<tr>
 					<th class="leftMost">

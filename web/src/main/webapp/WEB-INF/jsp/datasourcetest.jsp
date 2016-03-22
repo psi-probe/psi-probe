@@ -146,7 +146,7 @@
 				<div>
 					<span id="rowsAffected"></span><span id="pagebanner"></span><span id="pagelinks"></span>
 				</div>
-				<table id="resultsTable" cellspacing="0">
+				<table id="resultsTable" style="border-spacing:0;border-collapse:separate;">
 					<tr>
 						<td id="left_scroller" class="scroller" style="display: none;">&nbsp;</td>
 						<td id="separator" width="1%" style="display: none;">&nbsp;</td>

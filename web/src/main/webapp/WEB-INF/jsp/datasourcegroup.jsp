@@ -48,7 +48,7 @@
 						</div>
 					</div>
 
-					<display:table class="genericTbl" cellspacing="0" name="dataSourceGroups" uid="dataSourceGroup" requestURI="">
+					<display:table class="genericTbl" style="border-spacing:0;border-collapse:separate;" name="dataSourceGroups" uid="dataSourceGroup" requestURI="">
 						<display:column property="jdbcUrl" class="leftmost" sortable="true" maxLength="50" nulls="true"
 								titleKey="probe.jsp.dataSourceGroups.list.col.url"/>
 
