@@ -254,12 +254,12 @@
 			<dependency>
 				<groupId>org.slf4j</groupId>
 				<artifactId>jcl-over-slf4j</artifactId>
-				<version>1.7.20</version>
+				<version>1.7.21</version>
 			</dependency>
 			<dependency>
 				<groupId>org.slf4j</groupId>
 				<artifactId>slf4j-api</artifactId>
-				<version>1.7.20</version>
+				<version>1.7.21</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
@@ -356,7 +356,7 @@
 			<dependency>
 				<groupId>org.codelibs</groupId>
 				<artifactId>jhighlight</artifactId>
-				<version>1.0.2</version>
+				<version>1.0.3</version>
 			</dependency>
 			<dependency>
 				<groupId>com.mchange</groupId>
@@ -451,7 +451,7 @@
 				<plugin>
 					<groupId>pl.project13.maven</groupId>
 					<artifactId>git-commit-id-plugin</artifactId>
-					<version>2.2.0</version>
+					<version>2.2.1</version>
 					<configuration>
 						<dotGitDirectory>${git.relative.path}.git</dotGitDirectory>
 						<gitDescribe>
@@ -486,7 +486,7 @@
 						<dependency>
 							<groupId>com.puppycrawl.tools</groupId>
 							<artifactId>checkstyle</artifactId>
-							<version>6.16.1</version>
+							<version>6.17</version>
 						</dependency>
 					</dependencies>
 				</plugin>
