@@ -13,7 +13,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
-<%@ taglib uri="/WEB-INF/tld/probe.tld" prefix="probe" %>
+<%@ taglib uri="https://github.com/psi-probe/psi-probe/jsp/tags" prefix="probe" %>
 
 <%--
 	Simple tabular list of log files and their attributes. The page is further linked to

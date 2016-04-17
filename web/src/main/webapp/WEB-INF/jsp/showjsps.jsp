@@ -13,7 +13,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
-<%@ taglib uri="/WEB-INF/tld/probe.tld" prefix="probe" %>
+<%@ taglib uri="https://github.com/psi-probe/psi-probe/jsp/tags" prefix="probe" %>
 
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" session="false" %>
