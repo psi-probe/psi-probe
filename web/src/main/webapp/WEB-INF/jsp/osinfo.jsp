@@ -202,7 +202,7 @@
 						var img = document.getElementById('fullImg');
 						Effect.DropOut('chart_group');
 						Effect.Appear('full_chart');
-						fullImageUpdater = new Ajax.ImgUpdater('fullImg', ${probe:max(collectionPeriod, 5)}, url);
+						fullImageUpdater = new Ajax.ImgUpdater('fullImg', '${probe:max(collectionPeriod, 5)}', url);
 					}
 
 					function zoomOut() {
@@ -244,10 +244,10 @@
 
 					Behaviour.register(rules);
 
-					new Ajax.ImgUpdater('cpu_chart', ${probe:max(collectionPeriod, 5)});
-					new Ajax.ImgUpdater('mem_chart', ${probe:max(collectionPeriod, 5)});
-					new Ajax.ImgUpdater('swap_chart', ${probe:max(collectionPeriod, 5)});
-					new Ajax.ImgUpdater('fd_chart', ${probe:max(collectionPeriod, 5)});
+					new Ajax.ImgUpdater('cpu_chart', '${probe:max(collectionPeriod, 5)}');
+					new Ajax.ImgUpdater('mem_chart', '${probe:max(collectionPeriod, 5)}');
+					new Ajax.ImgUpdater('swap_chart', '${probe:max(collectionPeriod, 5)}');
+					new Ajax.ImgUpdater('fd_chart', '${probe:max(collectionPeriod, 5)}');
 					new Ajax.PeriodicalUpdater('osinfo', '<c:url value="/adm/osinfo.ajax"/>', {frequency: 5});
 
 				</script>

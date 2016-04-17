@@ -232,9 +232,9 @@
 			var infoUpdater = new Ajax.PeriodicalUpdater('info', '<c:url value="/logs/ff_info.ajax"/>', {
 				parameters: {
 					logType: '${probe:escapeJS(log.logType)}',
-					webapp: ${webapp},
-					context: ${log.context},
-					root: ${log.root},
+					webapp: '${webapp}',
+					context: '${log.context}',
+					root: '${log.root}',
 					logName: '${probe:escapeJS(log.name)}',
 					logIndex: '${probe:escapeJS(log.index)}'
 				},
@@ -254,9 +254,9 @@
 				new Ajax.Updater(file_content_div, '<c:url value="/logs/follow.ajax"/>', {
 					parameters: {
 						logType: '${probe:escapeJS(log.logType)}',
-						webapp: ${webapp},
-						context: ${log.context},
-						root: ${log.root},
+						webapp: '${webapp}',
+						context: '${log.context}',
+						root: '${log.root}',
 						logName: '${probe:escapeJS(log.name)}',
 						logIndex: '${probe:escapeJS(log.index)}',
 						lastKnownLength: (lastLogSize == -1 ? 0 : lastLogSize),
@@ -395,7 +395,7 @@
 		<c:if test="${cookie['file_content_font_size'] != null}">
 			<script type="text/javascript">
 				Event.observe(window, 'load', function() {
-					setFontSize($(file_content_div), ${cookie['file_content_font_size'].value}, false);
+					setFontSize($(file_content_div), '${cookie["file_content_font_size"].value}', false);
 				});
 			</script>
 		</c:if>

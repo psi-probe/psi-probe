@@ -180,7 +180,7 @@
 		</div>
 
 		<script type="text/javascript">
-			new Ajax.ImgUpdater('usage-${param.resource}', ${probe:max(collectionPeriod, 5)});
+			new Ajax.ImgUpdater('usage-${param.resource}', '${probe:max(collectionPeriod, 5)}');
 			setupAjaxActions(
 				'<c:url value="/sql/connection.ajax"/>',
 				'<c:url value="/sql/recordset.ajax"/>',
