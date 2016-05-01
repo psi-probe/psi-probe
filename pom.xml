@@ -182,7 +182,7 @@
 			<dependency>
 				<groupId>org.apache.tomcat</groupId>
 				<artifactId>tomcat-jdbc</artifactId>
-				<version>7.0.68</version>
+				<version>7.0.69</version>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.openejb</groupId>
