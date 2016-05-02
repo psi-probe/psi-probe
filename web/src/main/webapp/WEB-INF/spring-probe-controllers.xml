@@ -86,7 +86,8 @@
 		<property name="viewName" value="/sessions.htm"/>
 	</bean>
 
-	<bean name="/adm/deploy.htm" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+	<bean name="/adm/deploy.htm" class="psiprobe.controllers.deploy.DeployController">
+		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="viewName" value="deploy"/>
 	</bean>
 
@@ -100,6 +101,11 @@
 	</bean>
 
 	<bean name="/adm/deploycontext.htm" class="psiprobe.controllers.deploy.DeployContextController">
+		<property name="containerWrapper" ref="containerWrapper"/>
+		<property name="viewName" value="/adm/deploy.htm"/>
+	</bean>
+	
+	<bean name="/adm/deployfile.htm" class="psiprobe.controllers.deploy.CopySingleFileController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="viewName" value="/adm/deploy.htm"/>
 	</bean>
