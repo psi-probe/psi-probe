@@ -99,7 +99,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 		<spring.version>4.2.6.RELEASE</spring.version>
-		<spring-security.version>4.0.4.RELEASE</spring-security.version>
+		<spring-security.version>4.1.0.RELEASE</spring-security.version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
