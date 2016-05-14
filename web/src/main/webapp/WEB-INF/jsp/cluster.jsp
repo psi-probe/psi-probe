@@ -133,8 +133,8 @@
 				</div>
 
 				<script type="text/javascript">
-					new Ajax.ImgUpdater('cl_traffic', ${probe:max(collectionPeriod, 5)});
-					new Ajax.ImgUpdater('cl_requests', ${probe:max(collectionPeriod, 5)});
+					new Ajax.ImgUpdater('cl_traffic', '${probe:max(collectionPeriod, 5)}');
+					new Ajax.ImgUpdater('cl_requests', '${probe:max(collectionPeriod, 5)}');
 					new Ajax.PeriodicalUpdater('dd_traffic', '<c:url value="/cluster/traffic.ajax"/>', {frequency: 3});
 					new Ajax.PeriodicalUpdater('dd_requests', '<c:url value="/cluster/requests.ajax"/>', {frequency: 3});
 					new Ajax.PeriodicalUpdater('members', '<c:url value="/cluster/members.ajax"/>?<%=request.getQueryString()%>', {frequency: 3});

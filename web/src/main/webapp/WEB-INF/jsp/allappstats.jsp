@@ -204,7 +204,7 @@
 				$('full_title').update(title);
 				Effect.DropOut('chart_group');
 				Effect.Appear('full_chart');
-				fullImageUpdater = new Ajax.ImgUpdater('fullImg', ${probe:max(collectionPeriod, 5)}, imgUrl);
+				fullImageUpdater = new Ajax.ImgUpdater('fullImg', '${probe:max(collectionPeriod, 5)}', imgUrl);
 			}
 
 			function zoomOut() {
@@ -251,10 +251,10 @@
 
 			Behaviour.register(rules);
 
-			imageUpdaters[0] = new Ajax.ImgUpdater('total_avg_proc_time_chart', ${probe:max(collectionPeriod, 5)});
-			imageUpdaters[1] = new Ajax.ImgUpdater('all_app_avg_proc_time_chart', ${probe:max(collectionPeriod, 5)});
-			imageUpdaters[2] = new Ajax.ImgUpdater('total_req_chart', ${probe:max(collectionPeriod, 5)});
-			imageUpdaters[3] = new Ajax.ImgUpdater('all_app_req_chart', ${probe:max(collectionPeriod, 5)});
+			imageUpdaters[0] = new Ajax.ImgUpdater('total_avg_proc_time_chart', '${probe:max(collectionPeriod, 5)}');
+			imageUpdaters[1] = new Ajax.ImgUpdater('all_app_avg_proc_time_chart', '${probe:max(collectionPeriod, 5)}');
+			imageUpdaters[2] = new Ajax.ImgUpdater('total_req_chart', '${probe:max(collectionPeriod, 5)}');
+			imageUpdaters[3] = new Ajax.ImgUpdater('all_app_req_chart', '${probe:max(collectionPeriod, 5)}');
 		</script>
 	</body>
 </html>
