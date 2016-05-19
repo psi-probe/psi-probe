@@ -88,7 +88,7 @@
 				// would not be final anyway. Once slider is released the image is re-requested from the server, where
 				// it is rebuilt from vector format
 				slider.options.onSlide = function(value) {
-					scaleImage(value, ${fullChartWidth}, ${fullChartWidth * 2}, ${fullChartHeight}, ${fullChartHeight * 2});
+					scaleImage(value, '${fullChartWidth}', '${fullChartWidth * 2}', '${fullChartHeight}', '${fullChartHeight * 2}');
 				}
 
 				// this is where the slider is released and the image is reloaded
@@ -96,17 +96,17 @@
 				slider.options.onChange = function(value) {
 					// chop off "px" and round up float values
 					var width = Math.round(Element.getStyle('img', 'width').replace('px', ''));
-					var height = Math.round(width / ${fullChartWidth / fullChartHeight});
+					var height = Math.round(width / '${fullChartWidth / fullChartHeight}');
 					// reload the images
 					document.images.img.src = '<c:out value="${imgurl}" escapeXml="false"/>&xz=' + width + '&yz=' + height;
 					// reset the image auto-updater
 					// to make sure the auto-updater knows the changed image dimensions
 					if (updater) updater.stop();
-					updater = new Ajax.ImgUpdater('img', ${probe:max(collectionPeriod, 5)});
+					updater = new Ajax.ImgUpdater('img', '${probe:max(collectionPeriod, 5)}');
 				}
 
 				// start image auto-updater
-				updater = new Ajax.ImgUpdater('img', ${probe:max(collectionPeriod, 5)});
+				updater = new Ajax.ImgUpdater('img', '${probe:max(collectionPeriod, 5)}');
 
 			</script>
 		</div>

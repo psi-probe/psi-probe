@@ -110,7 +110,7 @@
 						</div>
 
 						<script type="text/javascript">
-							new Ajax.ImgUpdater('img_${pool.id}', ${probe:max(collectionPeriod, 5)});
+							new Ajax.ImgUpdater('img_${pool.id}', '${probe:max(collectionPeriod, 5)}');
 						</script>
 
 					</c:forEach>
@@ -131,7 +131,7 @@
 					}
 					Effect.DropOut('memChartGroup');
 					Effect.Appear('fullMemoryChart');
-					fullImageUpdater = new Ajax.ImgUpdater('fullImg', ${probe:max(collectionPeriod, 5)}, '<c:out value="${fullChartBase}" escapeXml="false"/>&sp=' + newPool + "&s1l=" + newPool);
+					fullImageUpdater = new Ajax.ImgUpdater('fullImg', '${probe:max(collectionPeriod, 5)}', '<c:out value="${fullChartBase}" escapeXml="false"/>&sp=' + newPool + "&s1l=" + newPool);
 				}
 
 				function zoomOut() {

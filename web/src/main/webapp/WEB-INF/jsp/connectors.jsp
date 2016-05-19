@@ -200,9 +200,9 @@
 					</div>
 
 					<script type="text/javascript">
-						new Ajax.ImgUpdater('req-${probe:escapeJS(protocolHandler)}', ${probe:max(collectionPeriod, 5)});
-						new Ajax.ImgUpdater('proc_time-${probe:escapeJS(protocolHandler)}', ${probe:max(collectionPeriod, 5)});
-						new Ajax.ImgUpdater('traf-${probe:escapeJS(protocolHandler)}', ${probe:max(collectionPeriod, 5)});
+						new Ajax.ImgUpdater('req-${probe:escapeJS(protocolHandler)}', '${probe:max(collectionPeriod, 5)}');
+						new Ajax.ImgUpdater('proc_time-${probe:escapeJS(protocolHandler)}', '${probe:max(collectionPeriod, 5)}');
+						new Ajax.ImgUpdater('traf-${probe:escapeJS(protocolHandler)}', '${probe:max(collectionPeriod, 5)}');
 						new Ajax.PeriodicalUpdater('dd-req-${probe:escapeJS(protocolHandler)}', '${reqAjaxUrl}', {frequency: 3});
 						new Ajax.PeriodicalUpdater('dd-proc_time-${probe:escapeJS(protocolHandler)}', '${proctimeAjaxUrl}', {frequency: 3});
 						new Ajax.PeriodicalUpdater('dd-traf-${probe:escapeJS(protocolHandler)}', '${trafficAjaxUrl}', {frequency: 3});
