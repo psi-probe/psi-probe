@@ -160,7 +160,7 @@
 										alt="+"/></a>
 							</dd>
 							<dd id="dd-req-${probe:escapeHtml(protocolHandler)}">
-								<div class="ajax_activity"/>
+								<div class="ajax_activity"></div>
 							</dd>
 						</dl>
 					</div>
@@ -177,7 +177,7 @@
 										alt="+"/></a>
 							</dd>
 							<dd id="dd-proc_time-${probe:escapeHtml(protocolHandler)}">
-								<div class="ajax_activity"/>
+								<div class="ajax_activity"></div>
 							</dd>
 						</dl>
 					</div>
@@ -194,7 +194,7 @@
 										alt="+"/></a>
 							</dd>
 							<dd id="dd-traf-${probe:escapeHtml(protocolHandler)}">
-								<div class="ajax_activity"/>
+								<div class="ajax_activity"></div>
 							</dd>
 						</dl>
 					</div>
