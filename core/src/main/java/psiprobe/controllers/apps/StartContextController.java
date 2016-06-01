@@ -11,6 +11,11 @@
 
 package psiprobe.controllers.apps;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+
 /**
  * Starts a web application.
  *
@@ -18,9 +23,18 @@ package psiprobe.controllers.apps;
  */
 public class StartContextController extends NoSelfContextHandlerController {
 
-  @Override
-  protected void executeAction(String contextName) throws Exception {
-    getContainerWrapper().getTomcatContainer().start(contextName);
-  }
+ /** The Constant logger. */
+ private static final Logger logger = LoggerFactory.getLogger(StartContextController.class);
+
+ @Override
+ protected void executeAction(String contextName) throws Exception {
+  getContainerWrapper().getTomcatContainer().start(contextName);
+
+  // Logging action
+  Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+  String name = auth.getName(); // get username logger
+  logger.info(getMessageSourceAccessor().getMessage("probe.src.log.username") + " " + name + " " 
+    + getMessageSourceAccessor().getMessage("probe.src.log.start")  + " " + contextName);
+ }
 
 }
