@@ -12,7 +12,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" session="false" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@ taglib uri="/WEB-INF/tld/probe.tld" prefix="probe" %>
+<%@ taglib uri="https://github.com/psi-probe/psi-probe/jsp/tags" prefix="probe" %>
 
 <%--
 	Cluster statistic view. Displays cluster members and sender and receiver traffic stats.
@@ -22,9 +22,9 @@
 <html>
 	<head>
 		<title><spring:message code="probe.jsp.title.cluster"/></title>
-		<script type="text/javascript" language="javascript" src="<c:url value='/js/prototype.js'/>"></script>
-		<script type="text/javascript" language="javascript" src="<c:url value='/js/scriptaculous.js'/>"></script>
-		<script type="text/javascript" language="javascript" src="<c:url value='/js/func.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/js/scriptaculous.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/js/func.js'/>"></script>
 	</head>
 
 	<c:set var="navTabCluster" value="active" scope="request"/>
@@ -80,7 +80,7 @@
 								<spring:message code="probe.jsp.cluster.manager"/>&nbsp;<span class="value">${cluster.managerClassName}</span>
 								<spring:message code="probe.jsp.cluster.mode"/>&nbsp;<span class="value">${cluster.senderReplicationMode}</span>
 								<spring:message code="probe.jsp.cluster.mcastAddress"/>&nbsp;<span class="value">${cluster.mcastAddress}:${cluster.mcastPort}</span>
-								<spring:message code="probe.jsp.cluster.mcastTTL"/>&nbsp;<span class="value">${cluster.mcastTTL}</span>
+								<spring:message code="probe.jsp.cluster.mcastTtl"/>&nbsp;<span class="value">${cluster.mcastTtl}</span>
 								<spring:message code="probe.jsp.cluster.mcastBindAddress"/>&nbsp;
 								<span class="value">
 									<c:choose>
@@ -107,7 +107,7 @@
 								<dd>
 									<img id="cl_traffic" border="0" src="${trafficimg}" width="${chartWidth}" height="${chartHeight}" alt="Bytes received"/>
 								</dd>
-								<dd id="dd_traffic"><div class="ajax_activity"/></dd>
+								<dd id="dd_traffic"><div class="ajax_activity"></div></dd>
 							</dl>
 						</div>
 
@@ -117,24 +117,24 @@
 								<dd>
 									<img id="cl_requests" border="0" src="${requestsimg}" width="${chartWidth}" height="${chartHeight}" alt="Bytes sent"/>
 								</dd>
-								<dd id="dd_requests"><div class="ajax_activity"/></dd>
+								<dd id="dd_requests"><div class="ajax_activity"></div></dd>
 							</dl>
 						</div>
 					</div>
 
-					<div style="clear: both;"/>
+					<div style="clear: both;"></div>
 
 					<h3><spring:message code="probe.jsp.cluster.h3.members"/></h3>
 
 					<div id="members">
-						<div class="ajax_activity"/>
+						<div class="ajax_activity"></div>
 						<%--<p class="empty_list"><spring:message code="probe.jsp.cluster.loading"/></p>--%>
 					</div>
 				</div>
 
 				<script type="text/javascript">
-					new Ajax.ImgUpdater('cl_traffic', ${probe:max(collectionPeriod, 5)});
-					new Ajax.ImgUpdater('cl_requests', ${probe:max(collectionPeriod, 5)});
+					new Ajax.ImgUpdater('cl_traffic', '${probe:max(collectionPeriod, 5)}');
+					new Ajax.ImgUpdater('cl_requests', '${probe:max(collectionPeriod, 5)}');
 					new Ajax.PeriodicalUpdater('dd_traffic', '<c:url value="/cluster/traffic.ajax"/>', {frequency: 3});
 					new Ajax.PeriodicalUpdater('dd_requests', '<c:url value="/cluster/requests.ajax"/>', {frequency: 3});
 					new Ajax.PeriodicalUpdater('members', '<c:url value="/cluster/members.ajax"/>?<%=request.getQueryString()%>', {frequency: 3});

@@ -14,7 +14,7 @@
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator" prefix="decorator" %>
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/page" prefix="page" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@ taglib uri="/WEB-INF/tld/probe.tld" prefix="probe" %>
+<%@ taglib uri="https://github.com/psi-probe/psi-probe/jsp/tags" prefix="probe" %>
 
 
 <%--
@@ -95,6 +95,11 @@
 					</a>
 				</li>
 				<li>
+					<a class="${navTabCertificates}" href="<c:url value='/certificates.htm'/>">
+						<spring:message code="probe.jsp.menu.certificates"/>
+					</a>
+				</li>
+				<li>
 					<a class="${navTabQuickCheck}" href="<c:url value='/adm/quickcheck.htm'/>">
 						<spring:message code="probe.jsp.menu.quickcheck"/>
 					</a>
@@ -155,6 +160,11 @@
 				<li>
 					<a href="<c:url value='/connectors.htm'/>">
 						<spring:message code="probe.jsp.menu.connectors"/>
+					</a>
+				</li>
+				<li>
+					<a href="<c:url value='/certificates.htm'/>">
+						<spring:message code="probe.jsp.menu.certificates"/>
 					</a>
 				</li>
 				<li class="last">

@@ -13,8 +13,9 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		xmlns:util="http://www.springframework.org/schema/util"
-		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd"
-		default-dependency-check="none" default-lazy-init="false">
+		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
+			default-lazy-init="false">
 
 	<util:properties id="version" location="WEB-INF/version.properties" />
 
@@ -23,8 +24,8 @@
 		<property name="nullValue" value="NULL" />
 		<property name="properties">
 			<props>
-				<prop key="com.googlecode.psiprobe.tools.mail.to">NULL</prop>
-				<prop key="com.googlecode.psiprobe.tools.mail.subjectPrefix">[PSI Probe] </prop>
+				<prop key="psiprobe.tools.mail.to">NULL</prop>
+				<prop key="psiprobe.tools.mail.subjectPrefix">[PSI Probe] </prop>
 			</props>
 		</property>
 		<property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />
@@ -33,23 +34,26 @@
 	<!--
 		Helper bean to read datasource information into Probe data model.
 	-->
-	<bean id="defaultResourceResolver" class="com.googlecode.psiprobe.beans.ResourceResolverBean">
+	<bean id="defaultResourceResolver" class="psiprobe.beans.ResourceResolverBean">
 		<property name="datasourceMappers">
 			<list>
-				<bean class="com.googlecode.psiprobe.beans.BoneCPDatasourceAccessor"/>
-				<bean class="com.googlecode.psiprobe.beans.C3P0DatasourceAccessor"/>
-				<bean class="com.googlecode.psiprobe.beans.DbcpDatasourceAccessor"/>
-				<bean class="com.googlecode.psiprobe.beans.TomcatDbcpDatasourceAccessor"/>
-				<bean class="com.googlecode.psiprobe.beans.TomcatJdbcPoolDatasourceAccessor"/>
-				<bean class="com.googlecode.psiprobe.beans.OracleDatasourceAccessor"/>
-				<bean class="com.googlecode.psiprobe.beans.OracleUcpDatasourceAssessor"/>
+				<bean class="psiprobe.beans.BoneCpDatasourceAccessor"/>
+				<bean class="psiprobe.beans.C3P0DatasourceAccessor"/>
+				<bean class="psiprobe.beans.DbcpDatasourceAccessor"/>
+                                <bean class="psiprobe.beans.Tomcat7DbcpDatasourceAccessor"/>
+				<bean class="psiprobe.beans.Tomcat8DbcpDatasourceAccessor"/>
+				<bean class="psiprobe.beans.Tomcat9DbcpDatasourceAccessor"/>
+				<bean class="psiprobe.beans.TomcatJdbcPoolDatasourceAccessor"/>
+				<bean class="psiprobe.beans.OracleDatasourceAccessor"/>
+				<bean class="psiprobe.beans.OracleUcpDatasourceAssessor"/>
+				<bean class="psiprobe.beans.OpenEjbManagedDatasourceAccessor"/>
 			</list>
 		</property>
 	</bean>
 
-	<bean id="jbossResourceResolver" class="com.googlecode.psiprobe.beans.JBossResourceResolverBean"/>
+	<bean id="jbossResourceResolver" class="psiprobe.beans.JBossResourceResolverBean"/>
 
-	<bean id="logResolver" class="com.googlecode.psiprobe.beans.LogResolverBean">
+	<bean id="logResolver" class="psiprobe.beans.LogResolverBean">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="stdoutFiles">
 			<list>
@@ -64,20 +68,18 @@
 	<!--
 		Helper class to allow Probe controllers to access Tomcat.
 	-->
-	<bean id="containerWrapper" class="com.googlecode.psiprobe.beans.ContainerWrapperBean">
+	<bean id="containerWrapper" class="psiprobe.beans.ContainerWrapperBean">
 		<!--
 			Setting this property to true will override the server polling each
-			adaptor performs to test for compatibility.  Instead, it will use
+			adapter performs to test for compatibility.  Instead, it will use
 			the first one in the list below.  Reorder those values if necessary.
 		-->
-		<property name="forceFirstAdaptor" value="false"/>
-		<property name="adaptorClasses">
+		<property name="forceFirstAdapter" value="false"/>
+		<property name="adapterClasses">
 			<list>
-			    <value>com.googlecode.psiprobe.Tomcat80ContainerAdaptor</value>
-				<value>com.googlecode.psiprobe.Tomcat70ContainerAdaptor</value>
-				<value>com.googlecode.psiprobe.Tomcat60ContainerAdaptor</value>
-				<value>com.googlecode.psiprobe.Tomcat55ContainerAdaptor</value>
-				<value>com.googlecode.psiprobe.Tomcat50ContainerAdaptor</value>
+				<value>psiprobe.Tomcat90ContainerAdapter</value>
+				<value>psiprobe.Tomcat80ContainerAdapter</value>
+				<value>psiprobe.Tomcat70ContainerAdapter</value>
 			</list>
 		</property>
 		<property name="resourceResolvers">
@@ -88,23 +90,23 @@
 		</property>
 	</bean>
 
-	<bean id="containerListener" class="com.googlecode.psiprobe.beans.ContainerListenerBean">
+	<bean id="containerListener" class="psiprobe.beans.ContainerListenerBean">
 		<property name="containerWrapper">
 			<ref bean="containerWrapper"/>
 		</property>
 	</bean>
 
-	<bean id="mailer" class="com.googlecode.psiprobe.tools.Mailer">
+	<bean id="mailer" class="psiprobe.tools.Mailer">
 		<property name="defaultTo">
-			<value>${com.googlecode.psiprobe.tools.mail.to}</value>
+			<value>${psiprobe.tools.mail.to}</value>
 		</property>
 		<property name="subjectPrefix">
-			<value>${com.googlecode.psiprobe.tools.mail.subjectPrefix}</value>
+			<value>${psiprobe.tools.mail.subjectPrefix}</value>
 		</property>
 	</bean>
 
-	<bean id="runtimeInfoAccessor"   class="com.googlecode.psiprobe.beans.RuntimeInfoAccessorBean"/>
-	<bean id="clusterWrapper"        class="com.googlecode.psiprobe.beans.ClusterWrapperBean"/>
-	<bean id="jvmMemoryInfoAccessor" class="com.googlecode.psiprobe.beans.JvmMemoryInfoAccessorBean"/>
+	<bean id="runtimeInfoAccessor"   class="psiprobe.beans.RuntimeInfoAccessorBean"/>
+	<bean id="clusterWrapper"        class="psiprobe.beans.ClusterWrapperBean"/>
+	<bean id="jvmMemoryInfoAccessor" class="psiprobe.beans.JvmMemoryInfoAccessorBean"/>
 
 </beans>

@@ -50,6 +50,11 @@ div#deployScenario1 {
 	margin-bottom: 10px;
 }
 
+div#deployScenario3 {
+	background-color: #ebf8ff;
+	margin-bottom: 10px;
+}
+
 .cb input {
 	margin-left: 0;
 }

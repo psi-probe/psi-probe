@@ -4,75 +4,76 @@
 		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.googlecode.psiprobe</groupId>
+		<groupId>com.github.psi-probe</groupId>
 		<artifactId>psi-probe</artifactId>
-		<version>2.4.0-SNAPSHOT</version>
+		<version>3.0.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>web</artifactId>
+	<artifactId>psi-probe-web</artifactId>
 	<packaging>war</packaging>
-	<name>PSI Probe Web Application</name>
+	<name>psi-probe-web</name>
+	<url>https://github.com/psi-probe/psi-probe/</url>
 	<description>
-		Web view, message resources, and configuration
+		PSI Probe Web Application - Web view, message resources, and configuration
 	</description>
+	<scm>
+		<connection>scm:git:ssh://git@github.com/psi-probe/psi-probe.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com/psi-probe/psi-probe.git</developerConnection>
+		<url>https://github.com/psi-probe/psi-probe/</url>
+	</scm>
+	<properties>
+		<git.relative.path>../</git.relative.path>
+	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>core</artifactId>
+			<artifactId>psi-probe-core</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>tomcat50adaptor</artifactId>
+			<artifactId>psi-probe-tomcat7</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>tomcat55adaptor</artifactId>
+			<artifactId>psi-probe-tomcat8</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>tomcat60adaptor</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>tomcat70adaptor</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>tomcat80adaptor</artifactId>
+			<artifactId>psi-probe-tomcat9</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
+			<artifactId>javax.servlet-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jsp-api</artifactId>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>javax.servlet.jsp-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-			<type>jar</type>
+			<groupId>javax.servlet.jsp.jstl</groupId>
+			<artifactId>javax.servlet.jsp.jstl-api</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>taglibs</groupId>
-			<artifactId>standard</artifactId>
-			<type>jar</type>
+			<groupId>org.glassfish.web</groupId>
+			<artifactId>javax.servlet.jsp.jstl</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>displaytag</groupId>
+			<groupId>javax.el</groupId>
+			<artifactId>javax.el-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.github.hazendaz</groupId>
 			<artifactId>displaytag</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>jaxen</groupId>
-			<artifactId>jaxen</artifactId>
-			<scope>runtime</scope>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
 		</dependency>
 	</dependencies>
 	<build>
@@ -82,14 +83,8 @@
 				<artifactId>jspc-maven-plugin</artifactId>
 				<dependencies>
 					<dependency>
-						<!-- Required for displaytag -->
-						<groupId>org.slf4j</groupId>
-						<artifactId>slf4j-nop</artifactId>
-						<version>1.4.2</version>
-					</dependency>
-					<dependency>
 						<groupId>${project.groupId}</groupId>
-						<artifactId>core</artifactId>
+						<artifactId>psi-probe-core</artifactId>
 						<version>${project.version}</version>
 					</dependency>
 				</dependencies>
@@ -100,16 +95,20 @@
 				<configuration>
 					<webResources>
 						<resource>
-							<directory>src/main/conf-filtered</directory>
+							<directory>${project.basedir}/src/main/resources</directory>
+							<includes>
+								<include>logback.xml</include>
+							</includes>
+							<targetPath>WEB-INF/classes</targetPath>
 							<filtering>true</filtering>
 						</resource>
 						<resource>
-							<directory>src/main/conf</directory>
-							<filtering>false</filtering>
+							<directory>${project.basedir}/src/main/webapp</directory>
+							<filtering>true</filtering>
 						</resource>
 						<resource>
-							<!-- Required for JBoss -->
-							<directory>src/main/conf/META-INF</directory>
+							<!-- Required for JBoss. See https://developer.jboss.org/wiki/Web-AppContextConfiguration -->
+							<directory>${project.basedir}/src/main/webapp/META-INF</directory>
 							<includes>
 								<include>context.xml</include>
 							</includes>
@@ -117,7 +116,7 @@
 							<filtering>false</filtering>
 						</resource>
 					</webResources>
-					<webappDirectory>target/war_exploded</webappDirectory>
+					<webappDirectory>${project.build.directory}/target/war_exploded</webappDirectory>
 					<warName>probe</warName>
 				</configuration>
 			</plugin>
@@ -125,17 +124,18 @@
 	</build>
 	<profiles>
 		<profile>
+			<id>tomcat</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<properties>
-				<probe.log4j.path>${catalina.base}/logs</probe.log4j.path>
+				<probe.log.path>${catalina.base}/logs</probe.log.path>
 			</properties>
 		</profile>
 		<profile>
 			<id>jboss</id>
 			<properties>
-				<probe.log4j.path>${jboss.server.log.dir}</probe.log4j.path>
+				<probe.log.path>${jboss.server.log.dir}</probe.log.path>
 			</properties>
 		</profile>
 	</profiles>

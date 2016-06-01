@@ -15,17 +15,17 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@ taglib uri="/WEB-INF/tld/probe.tld" prefix="probe" %>
+<%@ taglib uri="https://github.com/psi-probe/psi-probe/jsp/tags" prefix="probe" %>
 
 <html>
 
 	<head>
 		<title><spring:message code="probe.jsp.title.connectors"/></title>
-		<script type="text/javascript" language="javascript" src="<c:url value='/js/prototype.js'/>"></script>
-		<script type="text/javascript" language="javascript" src="<c:url value='/js/scriptaculous.js'/>"></script>
-		<script type="text/javascript" language="javascript" src="<c:url value='/js/Tooltip.js'/>"></script>
-		<script type="text/javascript" language="javascript" src="<c:url value='/js/behaviour.js'/>"></script>
-		<script type="text/javascript" language="javascript" src="<c:url value='/js/func.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/js/scriptaculous.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/js/Tooltip.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/js/behaviour.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/js/func.js'/>"></script>
 	</head>
 
 	<c:set var="chartWidth" value="280"/>
@@ -52,11 +52,11 @@
 
 			<c:forEach items="${connectors}" var="connector">
 
-				<c:set var="name" value="${connector.name}" />
+				<c:set var="protocolHandler" value="${connector.protocolHandler}" />
 
 				<c:url value="/chart.png" var="reqimg" scope="page">
 					<c:param name="p" value="connector"/>
-					<c:param name="sp" value="${name}"/>
+					<c:param name="sp" value="${protocolHandler}"/>
 					<c:param name="xz" value="${chartWidth}"/>
 					<c:param name="yz" value="${chartHeight}"/>
 					<c:param name="l" value="false"/>
@@ -64,7 +64,7 @@
 
 				<c:url value="/chart.png" var="traffimg" scope="page">
 					<c:param name="p" value="traffic"/>
-					<c:param name="sp" value="${name}"/>
+					<c:param name="sp" value="${protocolHandler}"/>
 					<c:param name="xz" value="${chartWidth}"/>
 					<c:param name="yz" value="${chartHeight}"/>
 					<c:param name="xl" value="Bytes"/>
@@ -77,7 +77,7 @@
 
 				<c:url value="/chart.png" var="proctimeimg" scope="page">
 					<c:param name="p" value="connector_proc_time"/>
-					<c:param name="sp" value="${name}"/>
+					<c:param name="sp" value="${protocolHandler}"/>
 					<c:param name="xz" value="${chartWidth}"/>
 					<c:param name="yz" value="${chartHeight}"/>
 					<c:param name="s1c" value="#FFCD9B"/>
@@ -87,44 +87,44 @@
 
 				<c:url value="/zoomchart.htm" var="reqZoomUrl">
 					<c:param name="p" value="connector" />
-					<c:param name="sp" value="${name}" />
+					<c:param name="sp" value="${protocolHandler}" />
 				</c:url>
 				
 				<c:url value="/zoomchart.htm" var="proctimeZoomUrl">
 					<c:param name="p" value="connector_proc_time" />
-					<c:param name="sp" value="${name}" />
+					<c:param name="sp" value="${protocolHandler}" />
 				</c:url>
 
 				<c:url value="/zoomchart.htm" var="trafficZoomUrl">
 					<c:param name="p" value="traffic" />
-					<c:param name="sp" value="${name}" />
+					<c:param name="sp" value="${protocolHandler}" />
 				</c:url>
 
 				<c:url value="/cnreqdetails.ajax" var="reqAjaxUrl">
-					<c:param name="cn" value="${name}" />
+					<c:param name="cn" value="${protocolHandler}" />
 				</c:url>
 
 				<c:url value="/cnprocdetails.ajax" var="proctimeAjaxUrl">
-					<c:param name="cn" value="${name}" />
+					<c:param name="cn" value="${protocolHandler}" />
 				</c:url>
 
 				<c:url value="/cntrafdetails.ajax" var="trafficAjaxUrl">
-					<c:param name="cn" value="${name}" />
+					<c:param name="cn" value="${protocolHandler}" />
 				</c:url>
 
 				<c:url value="/app/connectorReset.htm" var="reset_url">
-					<c:param name="cn" value="${name}"/>
+					<c:param name="cn" value="${protocolHandler}"/>
 				</c:url>
 
 				<c:url value="/remember.ajax" var="remember_url">
-					<c:param name="cn" value="${name}"/>
+					<c:param name="cn" value="${protocolHandler}"/>
 				</c:url>
 
 				<%--
 					create style of the div based on user cookies
 				--%>
 				<c:choose>
-					<c:when test="${cookie[probe:safeCookieName(name)].value == 'off'}">
+					<c:when test="${cookie[probe:safeCookieName(protocolHandler)].value == 'off'}">
 						<c:set var="style_collapse" value="display:none"/>
 						<c:set var="style_expand" value=""/>
 					</c:when>
@@ -135,10 +135,10 @@
 				</c:choose>
 
 				<div class="connectorChartHeader">
-					<span class="headerTitle" onclick="togglePanel('chartdata-${probe:escapeHtml(name)}', '${remember_url}')">
-						<img class="lnk" src="${pageContext.request.contextPath}<spring:theme code='section.collapse.img'/>" alt="collapse" id="visible_chartdata-${probe:escapeHtml(name)}" style="${style_collapse}"/>
-						<img class="lnk" src="${pageContext.request.contextPath}<spring:theme code='section.expand.img'/>" alt="expand" id="invisible_chartdata-${probe:escapeHtml(name)}" style="${style_expand}"/>
-						${name}
+					<span class="headerTitle" onclick="togglePanel('chartdata-${probe:escapeHtml(protocolHandler)}', '${remember_url}')">
+						<img class="lnk" src="${pageContext.request.contextPath}<spring:theme code='section.collapse.img'/>" alt="collapse" id="visible_chartdata-${probe:escapeHtml(protocolHandler)}" style="${style_collapse}"/>
+						<img class="lnk" src="${pageContext.request.contextPath}<spring:theme code='section.expand.img'/>" alt="expand" id="invisible_chartdata-${probe:escapeHtml(protocolHandler)}" style="${style_expand}"/>
+						${protocolHandler}
 					</span>
 					<span class="actions">
 						<a href="${reset_url}">
@@ -147,20 +147,20 @@
 					</span>
 				</div>
 
-				<div id="chartdata-${probe:escapeHtml(name)}" style="${style_collapse}">
+				<div id="chartdata-${probe:escapeHtml(protocolHandler)}" style="${style_collapse}">
 					<div class="chartContainer">
 						<dl>
 							<dt><spring:message code="probe.jsp.connectors.requests.title"/></dt>
 							<dd class="image">
 								<a href="${reqZoomUrl}"><img
-										id="req-${probe:escapeHtml(name)}"
+										id="req-${probe:escapeHtml(protocolHandler)}"
 										border="0" src="${reqimg}"
 										width="${chartWidth}"
 										height="${chartHeight}"
 										alt="+"/></a>
 							</dd>
-							<dd id="dd-req-${probe:escapeHtml(name)}">
-								<div class="ajax_activity"/>
+							<dd id="dd-req-${probe:escapeHtml(protocolHandler)}">
+								<div class="ajax_activity"></div>
 							</dd>
 						</dl>
 					</div>
@@ -170,14 +170,14 @@
 							<dt><spring:message code="probe.jsp.connectors.proc_time.title"/></dt>
 							<dd class="image">
 								<a href="${proctimeZoomUrl}"><img
-										id="proc_time-${probe:escapeHtml(name)}"
+										id="proc_time-${probe:escapeHtml(protocolHandler)}"
 										border="0" src="${proctimeimg}"
 										width="${chartWidth}"
 										height="${chartHeight}"
 										alt="+"/></a>
 							</dd>
-							<dd id="dd-proc_time-${probe:escapeHtml(name)}">
-								<div class="ajax_activity"/>
+							<dd id="dd-proc_time-${probe:escapeHtml(protocolHandler)}">
+								<div class="ajax_activity"></div>
 							</dd>
 						</dl>
 					</div>
@@ -187,25 +187,25 @@
 							<dt><spring:message code="probe.jsp.connectors.traffic.title"/></dt>
 							<dd class="image">
 								<a href="${trafficZoomUrl}"><img
-										id="traf-${probe:escapeHtml(name)}"
+										id="traf-${probe:escapeHtml(protocolHandler)}"
 										border="0" src="${traffimg}"
 										width="${chartWidth}"
 										height="${chartHeight}"
 										alt="+"/></a>
 							</dd>
-							<dd id="dd-traf-${probe:escapeHtml(name)}">
-								<div class="ajax_activity"/>
+							<dd id="dd-traf-${probe:escapeHtml(protocolHandler)}">
+								<div class="ajax_activity"></div>
 							</dd>
 						</dl>
 					</div>
 
 					<script type="text/javascript">
-						new Ajax.ImgUpdater('req-${probe:escapeJS(name)}', ${probe:max(collectionPeriod, 5)});
-						new Ajax.ImgUpdater('proc_time-${probe:escapeJS(name)}', ${probe:max(collectionPeriod, 5)});
-						new Ajax.ImgUpdater('traf-${probe:escapeJS(name)}', ${probe:max(collectionPeriod, 5)});
-						new Ajax.PeriodicalUpdater('dd-req-${probe:escapeJS(name)}', '${reqAjaxUrl}', {frequency: 3});
-						new Ajax.PeriodicalUpdater('dd-proc_time-${probe:escapeJS(name)}', '${proctimeAjaxUrl}', {frequency: 3});
-						new Ajax.PeriodicalUpdater('dd-traf-${probe:escapeJS(name)}', '${trafficAjaxUrl}', {frequency: 3});
+						new Ajax.ImgUpdater('req-${probe:escapeJS(protocolHandler)}', '${probe:max(collectionPeriod, 5)}');
+						new Ajax.ImgUpdater('proc_time-${probe:escapeJS(protocolHandler)}', '${probe:max(collectionPeriod, 5)}');
+						new Ajax.ImgUpdater('traf-${probe:escapeJS(protocolHandler)}', '${probe:max(collectionPeriod, 5)}');
+						new Ajax.PeriodicalUpdater('dd-req-${probe:escapeJS(protocolHandler)}', '${reqAjaxUrl}', {frequency: 3});
+						new Ajax.PeriodicalUpdater('dd-proc_time-${probe:escapeJS(protocolHandler)}', '${proctimeAjaxUrl}', {frequency: 3});
+						new Ajax.PeriodicalUpdater('dd-traf-${probe:escapeJS(protocolHandler)}', '${trafficAjaxUrl}', {frequency: 3});
 					</script>
 
 					<div class="connectorInfo">
@@ -228,11 +228,11 @@
 										</display:column>
 
 										<display:column style="white-space:nowrap;" sortable="true" titleKey="probe.jsp.connectors.wrk.col.remoteAddr">
-											<a id="ip_${probe:escapeHtml(connector.name)}_${rp_rowNum}" href="#">${rp.remoteAddr}</a>
+											<a id="ip_${probe:escapeHtml(connector.protocolHandler)}_${rp_rowNum}" href="#">${rp.remoteAddr}</a>
 
 											<c:if test="${rp.remoteAddr != ''}">
 												<script type="text/javascript">
-													addAjaxTooltip('ip_${probe:escapeJS(connector.name)}_${rp_rowNum}',
+													addAjaxTooltip('ip_${probe:escapeJS(connector.protocolHandler)}_${rp_rowNum}',
 													'ttdiv', '<c:url value="/whois.ajax?ip=${rp.remoteAddr}"/>');
 												</script>
 											</c:if>

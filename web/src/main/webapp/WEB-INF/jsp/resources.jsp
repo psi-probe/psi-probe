@@ -13,7 +13,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
-<%@ taglib uri="/WEB-INF/tld/probe.tld" prefix="probe" %>
+<%@ taglib uri="https://github.com/psi-probe/psi-probe/jsp/tags" prefix="probe" %>
 
 <html>
 
@@ -53,7 +53,7 @@
 								<c:when test="${resource.dataSourceInfo != null}">
 									<div class="dbConnAdditionalInfo">
 										<spring:message code="probe.jsp.resources.info.title"/>
-										<b>${resource.dataSourceInfo.jdbcURL}</b>
+										<b>${resource.dataSourceInfo.jdbcUrl}</b>
 										<spring:message code="probe.jsp.resources.info.max"/>&nbsp;<b>${resource.dataSourceInfo.maxConnections}</b>
 										<spring:message code="probe.jsp.resources.info.busy"/>&nbsp;<b>${resource.dataSourceInfo.busyConnections}</b>
 										<spring:message code="probe.jsp.resources.info.established"/>&nbsp;<b>${resource.dataSourceInfo.establishedConnections}</b>

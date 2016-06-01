@@ -10,10 +10,11 @@
  * MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 -->
 
-<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
-		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
-		version="2.4">
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+						http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
 
 	<display-name>PSI Probe for Apache Tomcat</display-name>
 
@@ -27,15 +28,11 @@
 	</context-param>
 
 	<listener>
-		<listener-class>com.googlecode.psiprobe.AwtAppContextClassloaderListener</listener-class>
+		<listener-class>psiprobe.AwtAppContextClassloaderListener</listener-class>
 	</listener>
 	
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
-
-	<listener>
-		<listener-class>com.googlecode.psiprobe.UptimeListener</listener-class>
 	</listener>
 
 	<!--
@@ -43,7 +40,7 @@
 	-->
 	<servlet>
 		<servlet-name>probe</servlet-name>
-		<servlet-class>com.googlecode.psiprobe.ProbeServlet</servlet-class>
+		<servlet-class>psiprobe.ProbeServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>
@@ -102,6 +99,18 @@
 		<filter-name>filterChainProxy</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+
+	<session-config>
+		<session-timeout>15</session-timeout>
+		<!-- Disable secure cookie until http session issues can be resolved. While tomcat
+		will handle this normally with http, spring has been shown to continually create new
+		sessions.  This may not be related to spring security but rather spring web mvc.
+		<cookie-config>
+			<secure>true</secure>
+		</cookie-config>
+		-->
+		<tracking-mode>COOKIE</tracking-mode>
+	</session-config>
 
 	<!-- no access error -->
 	<error-page>

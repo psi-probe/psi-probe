@@ -2,6 +2,7 @@
 .settings
 .classpath
 .project
+.factorypath
 
 # Intellij
 .idea
@@ -12,3 +13,5 @@ target/
 
 # Project
 *.log
+psi-probe.iws
+psi-probe.ipr

@@ -13,7 +13,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
-<%@ taglib uri="/WEB-INF/tld/probe.tld" prefix="probe" %>
+<%@ taglib uri="https://github.com/psi-probe/psi-probe/jsp/tags" prefix="probe" %>
 
 <!--
 
@@ -49,7 +49,7 @@
 					</div>
 
 					<display:table class="genericTbl" cellspacing="0" name="dataSourceGroups" uid="dataSourceGroup" requestURI="">
-						<display:column property="jdbcURL" class="leftmost" sortable="true" maxLength="50" nulls="true"
+						<display:column property="jdbcUrl" class="leftmost" sortable="true" maxLength="50" nulls="true"
 								titleKey="probe.jsp.dataSourceGroups.list.col.url"/>
 
 						<display:column sortable="true" sortProperty="busyScore"

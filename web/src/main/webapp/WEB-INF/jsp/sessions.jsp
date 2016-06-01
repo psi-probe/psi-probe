@@ -14,7 +14,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@ taglib uri="/WEB-INF/tld/probe.tld" prefix="probe" %>
+<%@ taglib uri="https://github.com/psi-probe/psi-probe/jsp/tags" prefix="probe" %>
 
 <%--
 	List of sessions view for a particular web application.
@@ -33,11 +33,11 @@
 				<title><spring:message code="probe.jsp.title.sessions" arguments="${param.webapp}"/></title>
 			</c:otherwise>
 		</c:choose>
-		<script type="text/javascript" language="javascript" src="<c:url value='/js/prototype.js'/>"></script>
-		<script type="text/javascript" language="javascript" src="<c:url value='/js/scriptaculous.js'/>"></script>
-		<script type="text/javascript" language="javascript" src="<c:url value='/js/Tooltip.js'/>"></script>
-		<script type="text/javascript" language="javascript" src="<c:url value='/js/func.js'/>"></script>
-		<script type="text/javascript" language="javascript" src="<c:url value='/js/behaviour.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/js/scriptaculous.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/js/Tooltip.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/js/func.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/js/behaviour.js'/>"></script>
 	</head>
 
 	<body>
@@ -144,10 +144,10 @@
 							<input id="searchSessionId" name="searchSessionId" type="text" value="${searchInfo.sessionId}" class="txtInput" size="40"/>
 						</td>
 						<td class="labelCell">
-							<spring:message code="probe.jsp.sessions.search.lastIP"/>
+							<spring:message code="probe.jsp.sessions.search.lastIp"/>
 						</td>
 						<td class="inputCell">
-							<input name="searchLastIP" type="text" value="${searchInfo.lastIP}" class="txtInput" size="30"/>
+							<input name="searchLastIP" type="text" value="${searchInfo.lastIp}" class="txtInput" size="30"/>
 						</td>
 					</tr>
 					<tr>
@@ -221,12 +221,12 @@
 								</a>
 							</display:column>
 
-							<display:column titleKey="probe.jsp.sessions.col.lastIP" sortProperty="lastAccessedIP" sortable="true">
+							<display:column titleKey="probe.jsp.sessions.col.lastIp" sortProperty="lastAccessedIp" sortable="true">
 								<c:choose>
-									<c:when test="${! empty session.lastAccessedIP}">
-										<a id='ip_${session_rowNum}' href="#">${session.lastAccessedIP}</a>
+									<c:when test="${! empty session.lastAccessedIp}">
+										<a id='ip_${session_rowNum}' href="#">${session.lastAccessedIp}</a>
 										<script type="text/javascript">
-											addAjaxTooltip('ip_${session_rowNum}', 'ttdiv', '<c:url value="/whois.ajax?ip=${session.lastAccessedIP}"/>');
+											addAjaxTooltip('ip_${session_rowNum}', 'ttdiv', '<c:url value="/whois.ajax?ip=${session.lastAccessedIp}"/>');
 										</script>
 
 									</c:when>
@@ -238,10 +238,10 @@
 
 							<display:column title="&nbsp;" style="width:18px;">
 								<c:choose>
-									<c:when test="${! empty session.lastAccessedIPLocale.country && session.lastAccessedIPLocale.country != '**'}">
-										<img border="0" src="<c:url value='/flags/${fn:toLowerCase(session.lastAccessedIPLocale.country)}.gif'/>"
-												alt="${session.lastAccessedIPLocale.country}"
-												title="${session.lastAccessedIPLocale.displayCountry}"/>
+									<c:when test="${! empty session.lastAccessedIpLocale.country && session.lastAccessedIpLocale.country != '**'}">
+										<img border="0" src="<c:url value='/flags/${fn:toLowerCase(session.lastAccessedIpLocale.country)}.gif'/>"
+												alt="${session.lastAccessedIpLocale.country}"
+												title="${session.lastAccessedIpLocale.displayCountry}"/>
 									</c:when>
 									<c:otherwise>
 										&nbsp;

@@ -4,72 +4,62 @@
 		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.googlecode.psiprobe</groupId>
+		<groupId>com.github.psi-probe</groupId>
 		<artifactId>psi-probe</artifactId>
-		<version>2.4.0-SNAPSHOT</version>
+		<version>3.0.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>core</artifactId>
+	<artifactId>psi-probe-core</artifactId>
 	<packaging>jar</packaging>
-	<name>PSI Probe Core</name>
+	<name>psi-probe-core</name>
 	<description>
-		Core logic, data models, and controllers
+		PSI Probe Core - Core logic, data models, and controllers
 	</description>
+	<scm>
+		<connection>scm:git:ssh://git@github.com/psi-probe/psi-probe.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com/psi-probe/psi-probe.git</developerConnection>
+		<url>https://github.com/psi-probe/psi-probe/</url>
+	</scm>
+	<properties>
+		<git.relative.path>../</git.relative.path>
+	</properties>
 	<dependencies>
 		<!--  tomcat libs start -->
 		<dependency>
-			<groupId>tomcat</groupId>
-			<artifactId>catalina</artifactId>
-			<version>5.5.23</version>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-catalina</artifactId>
+			<version>7.0.69</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>tomcat</groupId>
-			<artifactId>jasper-compiler</artifactId>
-			<version>5.5.23</version>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-coyote</artifactId>
+			<version>7.0.69</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>tomcat</groupId>
-			<artifactId>jasper-runtime</artifactId>
-			<version>5.5.23</version>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-jasper</artifactId>
+			<version>7.0.69</version>
 			<scope>provided</scope>
 			<exclusions>
 				<exclusion>
-					<groupId>javax.servlet</groupId>
-					<artifactId>servlet-api</artifactId>
+					<groupId>org.eclipse.jdt.core.compiler</groupId>
+					<artifactId>ecj</artifactId>
 				</exclusion>
 			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>tomcat</groupId>
-			<artifactId>naming-factory</artifactId>
-			<version>5.5.23</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>tomcat</groupId>
-			<artifactId>naming-factory-dbcp</artifactId>
-			<version>5.5.23</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>tomcat</groupId>
-			<artifactId>naming-resources</artifactId>
-			<version>5.5.23</version>
-			<scope>provided</scope>
 		</dependency>
 		<!--  tomcat libs end -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
+			<artifactId>javax.servlet-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>javax.mail</groupId>
-			<artifactId>mail</artifactId>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>javax.mail</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>c3p0</groupId>
+			<groupId>com.mchange</groupId>
 			<artifactId>c3p0</artifactId>
 			<scope>provided</scope>
 		</dependency>
@@ -80,7 +70,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.oracle</groupId>
-			<artifactId>ojdbc14</artifactId>
+			<artifactId>ojdbc7</artifactId>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -103,6 +93,16 @@
 			<artifactId>wrapper</artifactId>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.openejb</groupId>
+			<artifactId>openejb-core</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<scope>compile</scope>
+		</dependency>
 		<!--  misc -->
 		<dependency>
 			<groupId>com.thoughtworks.xstream</groupId>
@@ -110,7 +110,7 @@
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.uwyn</groupId>
+			<groupId>org.codelibs</groupId>
 			<artifactId>jhighlight</artifactId>
 			<scope>compile</scope>
 			<exclusions>
@@ -141,13 +141,8 @@
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
-			<groupId>commons-lang</groupId>
-			<artifactId>commons-lang</artifactId>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>commons-logging</groupId>
-			<artifactId>commons-logging</artifactId>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
@@ -162,7 +157,7 @@
 		</dependency>
 		<dependency>
 			<groupId>javax.transaction</groupId>
-			<artifactId>jta</artifactId>
+			<artifactId>javax.transaction-api</artifactId>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
@@ -171,12 +166,12 @@
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<scope>runtime</scope>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<scope>compile</scope>
 		</dependency>
 		<dependency>
-			<groupId>opensymphony</groupId>
+			<groupId>org.quartz-scheduler</groupId>
 			<artifactId>quartz</artifactId>
 			<scope>compile</scope>
 		</dependency>
@@ -184,11 +179,6 @@
 			<groupId>opensymphony</groupId>
 			<artifactId>sitemesh</artifactId>
 			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>javax.management</groupId>
-			<artifactId>jmxri</artifactId>
-			<scope>${jmxri.scope}</scope>
 		</dependency>
 		<dependency>
 			<groupId>xpp3</groupId>
@@ -216,30 +206,35 @@
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-core</artifactId>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<scope>test</scope>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.findbugs</groupId>
+			<artifactId>jsr305</artifactId>
+			<version>3.0.1</version>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
-	<profiles>
-		<profile>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<properties>
-				<jmxri.scope>compile</jmxri.scope>
-			</properties>
-		</profile>
-		<profile>
-			<id>jboss</id>
-			<properties>
-				<jmxri.scope>provided</jmxri.scope>
-			</properties>
-		</profile>
-	</profiles>
 </project>

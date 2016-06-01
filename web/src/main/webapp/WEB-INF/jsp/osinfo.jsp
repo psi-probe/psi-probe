@@ -12,15 +12,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" session="false" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@ taglib uri="/WEB-INF/tld/probe.tld" prefix="probe" %>
+<%@ taglib uri="https://github.com/psi-probe/psi-probe/jsp/tags" prefix="probe" %>
 
 <html>
 	<head>
 		<title><spring:message code="probe.jsp.sysinfo.os.title"/></title>
-		<script type="text/javascript" language="javascript" src="<c:url value='/js/prototype.js'/>"></script>
-		<script type="text/javascript" language="javascript" src="<c:url value='/js/scriptaculous.js'/>"></script>
-		<script type="text/javascript" language="javascript" src="<c:url value='/js/func.js'/>"></script>
-		<script type="text/javascript" language="javascript" src="<c:url value='/js/behaviour.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/js/scriptaculous.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/js/func.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/js/behaviour.js'/>"></script>
 	</head>
 
 	<c:set var="navTabSystem" value="active" scope="request"/>
@@ -202,7 +202,7 @@
 						var img = document.getElementById('fullImg');
 						Effect.DropOut('chart_group');
 						Effect.Appear('full_chart');
-						fullImageUpdater = new Ajax.ImgUpdater('fullImg', ${probe:max(collectionPeriod, 5)}, url);
+						fullImageUpdater = new Ajax.ImgUpdater('fullImg', '${probe:max(collectionPeriod, 5)}', url);
 					}
 
 					function zoomOut() {
@@ -244,10 +244,10 @@
 
 					Behaviour.register(rules);
 
-					new Ajax.ImgUpdater('cpu_chart', ${probe:max(collectionPeriod, 5)});
-					new Ajax.ImgUpdater('mem_chart', ${probe:max(collectionPeriod, 5)});
-					new Ajax.ImgUpdater('swap_chart', ${probe:max(collectionPeriod, 5)});
-					new Ajax.ImgUpdater('fd_chart', ${probe:max(collectionPeriod, 5)});
+					new Ajax.ImgUpdater('cpu_chart', '${probe:max(collectionPeriod, 5)}');
+					new Ajax.ImgUpdater('mem_chart', '${probe:max(collectionPeriod, 5)}');
+					new Ajax.ImgUpdater('swap_chart', '${probe:max(collectionPeriod, 5)}');
+					new Ajax.ImgUpdater('fd_chart', '${probe:max(collectionPeriod, 5)}');
 					new Ajax.PeriodicalUpdater('osinfo', '<c:url value="/adm/osinfo.ajax"/>', {frequency: 5});
 
 				</script>

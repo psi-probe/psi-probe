@@ -12,14 +12,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" session="false" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@ taglib uri="/WEB-INF/tld/probe.tld" prefix="probe" %>
+<%@ taglib uri="https://github.com/psi-probe/psi-probe/jsp/tags" prefix="probe" %>
 
 <html>
 	<head>
 		<title>${param.cn}</title>
-		<script type="text/javascript" language="javascript" src="<c:url value='/js/prototype.js'/>"></script>
-		<script type="text/javascript" language="javascript" src="<c:url value='/js/scriptaculous.js'/>"></script>
-		<script type="text/javascript" language="javascript" src="<c:url value='/js/func.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/js/scriptaculous.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/js/func.js'/>"></script>
 	</head>
 
 	<c:set var="fullChartWidth" value="800"/>
@@ -79,7 +79,7 @@
 				<img id="img" class="scale-image" src="${imgurl}&xz=${fullChartWidth}&yz=${fullChartHeight}" width="${fullChartWidth}" height="${fullChartHeight}" alt=""/>
 			</div>
 
-			<script type="text/javascript" language="JavaScript">
+			<script type="text/javascript">
 
 				// "animate" our slider
 				var slider = new Control.Slider('handle', 'track', {axis:'horizontal', alignX: -5, increment: 2, sliderValue: 0});
@@ -88,7 +88,7 @@
 				// would not be final anyway. Once slider is released the image is re-requested from the server, where
 				// it is rebuilt from vector format
 				slider.options.onSlide = function(value) {
-					scaleImage(value, ${fullChartWidth}, ${fullChartWidth * 2}, ${fullChartHeight}, ${fullChartHeight * 2});
+					scaleImage(value, '${fullChartWidth}', '${fullChartWidth * 2}', '${fullChartHeight}', '${fullChartHeight * 2}');
 				}
 
 				// this is where the slider is released and the image is reloaded
@@ -96,17 +96,17 @@
 				slider.options.onChange = function(value) {
 					// chop off "px" and round up float values
 					var width = Math.round(Element.getStyle('img', 'width').replace('px', ''));
-					var height = Math.round(width / ${fullChartWidth / fullChartHeight});
+					var height = Math.round(width / '${fullChartWidth / fullChartHeight}');
 					// reload the images
 					document.images.img.src = '<c:out value="${imgurl}" escapeXml="false"/>&xz=' + width + '&yz=' + height;
 					// reset the image auto-updater
 					// to make sure the auto-updater knows the changed image dimensions
 					if (updater) updater.stop();
-					updater = new Ajax.ImgUpdater('img', ${probe:max(collectionPeriod, 5)});
+					updater = new Ajax.ImgUpdater('img', '${probe:max(collectionPeriod, 5)}');
 				}
 
 				// start image auto-updater
-				updater = new Ajax.ImgUpdater('img', ${probe:max(collectionPeriod, 5)});
+				updater = new Ajax.ImgUpdater('img', '${probe:max(collectionPeriod, 5)}');
 
 			</script>
 		</div>

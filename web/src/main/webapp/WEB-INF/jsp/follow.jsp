@@ -13,7 +13,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
-<%@ taglib uri="/WEB-INF/tld/probe.tld" prefix="probe" %>
+<%@ taglib uri="https://github.com/psi-probe/psi-probe/jsp/tags" prefix="probe" %>
 
 <%--
 	Log file view. The view is a simple markup that gets updated via AJAX calls. Top menu does not go to the server but
@@ -25,10 +25,10 @@
 <html>
 	<head>
 		<title><spring:message code="probe.jsp.title.follow"/></title>
-		<script type="text/javascript" language="javascript" src="<c:url value='/js/prototype.js'/>"></script>
-		<script type="text/javascript" language="javascript" src="<c:url value='/js/scriptaculous.js'/>"></script>
-		<script type="text/javascript" language="javascript" src="<c:url value='/js/func.js'/>"></script>
-		<script type="text/javascript" language="javascript" src="<c:url value='/js/behaviour.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/js/scriptaculous.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/js/func.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/js/behaviour.js'/>"></script>
 	</head>
 
 	<c:set var="navTabLogs" value="active" scope="request"/>
@@ -232,9 +232,9 @@
 			var infoUpdater = new Ajax.PeriodicalUpdater('info', '<c:url value="/logs/ff_info.ajax"/>', {
 				parameters: {
 					logType: '${probe:escapeJS(log.logType)}',
-					webapp: ${webapp},
-					context: ${log.context},
-					root: ${log.root},
+					webapp: '${webapp}',
+					context: '${log.context}',
+					root: '${log.root}',
 					logName: '${probe:escapeJS(log.name)}',
 					logIndex: '${probe:escapeJS(log.index)}'
 				},
@@ -254,9 +254,9 @@
 				new Ajax.Updater(file_content_div, '<c:url value="/logs/follow.ajax"/>', {
 					parameters: {
 						logType: '${probe:escapeJS(log.logType)}',
-						webapp: ${webapp},
-						context: ${log.context},
-						root: ${log.root},
+						webapp: '${webapp}',
+						context: '${log.context}',
+						root: '${log.root}',
 						logName: '${probe:escapeJS(log.name)}',
 						logIndex: '${probe:escapeJS(log.index)}',
 						lastKnownLength: (lastLogSize == -1 ? 0 : lastLogSize),
@@ -395,7 +395,7 @@
 		<c:if test="${cookie['file_content_font_size'] != null}">
 			<script type="text/javascript">
 				Event.observe(window, 'load', function() {
-					setFontSize($(file_content_div), ${cookie['file_content_font_size'].value}, false);
+					setFontSize($(file_content_div), '${cookie["file_content_font_size"].value}', false);
 				});
 			</script>
 		</c:if>

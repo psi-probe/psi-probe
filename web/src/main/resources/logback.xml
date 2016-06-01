@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
+<configuration scan="true" debug="false">
+
+  <appender name="PSI-PROBE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <File>${probe.log.path}/probe.log</File>
+    <append>true</append>
+    <encoder>
+      <charset>utf-8</charset>
+      <pattern>%d{HH:mm:ss.SSS} %-5level {%thread} [%logger{40}] %msg%n</pattern>
+    </encoder>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>${probe.log.path}/archive/probe-%d{yyyyMMdd}-%i.log.zip</fileNamePattern>
+      <maxHistory>10</maxHistory>
+      <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <maxFileSize>20MB</maxFileSize>
+      </timeBasedFileNamingAndTriggeringPolicy>
+    </rollingPolicy>
+  </appender>
+
+  <logger name="org.springframework.web.context.support" level="ERROR"/>
+  <logger name="org.springframework.beans.factory.support" level="ERROR"/>
+
+  <root level="INFO">
+    <appender-ref ref="PSI-PROBE"/>
+  </root>
+</configuration>
