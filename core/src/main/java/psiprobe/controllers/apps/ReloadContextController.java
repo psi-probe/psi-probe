@@ -24,21 +24,21 @@ import org.springframework.security.core.context.SecurityContextHolder;
  */
 public class ReloadContextController extends NoSelfContextHandlerController {
 
- /** The Constant logger. */
- private static final Logger logger = LoggerFactory.getLogger(StartContextController.class);
+/** The Constant logger. */
+private static final Logger logger = LoggerFactory.getLogger(StartContextController.class);
 
- @Override
- protected void executeAction(String contextName) throws Exception {
-  Context context = getContainerWrapper().getTomcatContainer().findContext(contextName);
-  if (context != null) {
-   context.reload();
+@Override
+protected void executeAction(String contextName) throws Exception {
+    Context context = getContainerWrapper().getTomcatContainer().findContext(contextName);
+    if (context != null) {
+        context.reload();
 
-   // Logging action
-   Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-   String name = auth.getName(); // get username logger
-   logger.info(getMessageSourceAccessor().getMessage("probe.src.log.username") + name
-     + getMessageSourceAccessor().getMessage("probe.src.log.reload") + contextName);
-  }
- }
+        // Logging action
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName(); // get username logger
+        logger.info(getMessageSourceAccessor().getMessage("probe.src.log.username") + name
+                + getMessageSourceAccessor().getMessage("probe.src.log.reload") + contextName);
+    }
+}
 
 }

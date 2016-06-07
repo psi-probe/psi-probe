@@ -33,63 +33,66 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class UndeployContextController extends ContextHandlerController {
 
-  /** The Constant logger. */
-  private static final Logger logger = LoggerFactory.getLogger(UndeployContextController.class);
+/** The Constant logger. */
+private static final Logger logger = LoggerFactory.getLogger(UndeployContextController.class);
 
-  /** The failure view name. */
-  private String failureViewName;
+/** The failure view name. */
+private String failureViewName;
 
-  /**
-   * Gets the failure view name.
-   *
-   * @return the failure view name
-   */
-  public String getFailureViewName() {
+/**
+ * Gets the failure view name.
+ *
+ * @return the failure view name
+ */
+public String getFailureViewName() {
     return failureViewName;
-  }
+}
 
-  /**
-   * Sets the failure view name.
-   *
-   * @param failureViewName the new failure view name
-   */
-  public void setFailureViewName(String failureViewName) {
+/**
+ * Sets the failure view name.
+ *
+ * @param failureViewName
+ *            the new failure view name
+ */
+public void setFailureViewName(String failureViewName) {
     this.failureViewName = failureViewName;
-  }
+}
 
-  @Override
-  protected ModelAndView handleContext(String contextName, Context context,
-      HttpServletRequest request, HttpServletResponse response) throws Exception {
+@Override
+protected ModelAndView handleContext(String contextName, Context context, HttpServletRequest request,
+        HttpServletResponse response) throws Exception {
     try {
-      if (request.getContextPath().equals(contextName)) {
-        throw new IllegalStateException(getMessageSourceAccessor().getMessage(
-            "probe.src.contextAction.cannotActOnSelf"));
-      }
+        if (request.getContextPath().equals(contextName)) {
+            throw new IllegalStateException(
+                    getMessageSourceAccessor().getMessage("probe.src.contextAction.cannotActOnSelf"));
+        }
 
-      getContainerWrapper().getTomcatContainer().remove(contextName);
-      //Logging action
-      Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-      String name = auth.getName(); //get username logger
-      logger.info(getMessageSourceAccessor().getMessage("probe.src.log.username") +  
-         " " + name  + " " + getMessageSourceAccessor().getMessage("probe.src.log.undeploy")  + " " + contextName);
+        getContainerWrapper().getTomcatContainer().remove(contextName);
+        // Logging action
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName(); // get username logger
+        logger.info(getMessageSourceAccessor().getMessage("probe.src.log.username") + " " + name + " "
+                + getMessageSourceAccessor().getMessage("probe.src.log.undeploy") + " " + contextName);
 
     } catch (Exception e) {
-      request.setAttribute("errorMessage", e.getMessage());
-      logger.error("Error during undeploy of '{}'", contextName, e);
-      return new ModelAndView(new InternalResourceView(getFailureViewName() == null ? getViewName()
-          : getFailureViewName()));
+        request.setAttribute("errorMessage", e.getMessage());
+        logger.error("Error during undeploy of '{}'", contextName, e);
+        return new ModelAndView(
+                new InternalResourceView(getFailureViewName() == null ? getViewName() : getFailureViewName()));
     }
     return new ModelAndView(new RedirectView(request.getContextPath() + getViewName()));
-  }
+}
 
-  /**
-   * Execute action.
-   *
-   * @param contextName the context name
-   * @throws Exception the exception
-   */
-  protected void executeAction(String contextName) throws Exception {
+/**
+ * Execute action.
+ *
+ * @param contextName
+ *            the context name
+ * @throws Exception
+ *             the exception
+ */
+protected void executeAction(String contextName) throws Exception {
     // Not Implemented
-  }
+}
 
 }

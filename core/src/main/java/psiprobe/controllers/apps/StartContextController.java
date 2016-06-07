@@ -23,18 +23,18 @@ import org.springframework.security.core.context.SecurityContextHolder;
  */
 public class StartContextController extends NoSelfContextHandlerController {
 
- /** The Constant logger. */
- private static final Logger logger = LoggerFactory.getLogger(StartContextController.class);
+/** The Constant logger. */
+private static final Logger logger = LoggerFactory.getLogger(StartContextController.class);
 
- @Override
- protected void executeAction(String contextName) throws Exception {
-  getContainerWrapper().getTomcatContainer().start(contextName);
+@Override
+protected void executeAction(String contextName) throws Exception {
+    getContainerWrapper().getTomcatContainer().start(contextName);
 
-  // Logging action
-  Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-  String name = auth.getName(); // get username logger
-  logger.info(getMessageSourceAccessor().getMessage("probe.src.log.username") + " " + name + " " 
-    + getMessageSourceAccessor().getMessage("probe.src.log.start")  + " " + contextName);
- }
+    // Logging action
+    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    String name = auth.getName(); // get username logger
+    logger.info(getMessageSourceAccessor().getMessage("probe.src.log.username") + " " + name + " "
+            + getMessageSourceAccessor().getMessage("probe.src.log.start") + " " + contextName);
+}
 
 }

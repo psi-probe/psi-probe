@@ -31,28 +31,28 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class AjaxReloadContextController extends ContextHandlerController {
 
- /** The Constant logger. */
- private static final Logger logger = LoggerFactory.getLogger(AjaxReloadContextController.class);
+/** The Constant logger. */
+private static final Logger logger = LoggerFactory.getLogger(AjaxReloadContextController.class);
 
- @Override
- protected ModelAndView handleContext(String contextName, Context context, HttpServletRequest request,
-   HttpServletResponse response) throws Exception {
+@Override
+protected ModelAndView handleContext(String contextName, Context context, HttpServletRequest request,
+        HttpServletResponse response) throws Exception {
 
-  if (!request.getContextPath().equals(contextName) && context != null) {
-   try {
-    logger.info("{} requested RELOAD of {}", request.getRemoteAddr(), contextName);
-    context.reload();
-    // Logging action
-    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-    String name = auth.getName(); // get username logger
-    logger.info(getMessageSourceAccessor().getMessage("probe.src.log.username") + " " + name + " "
-      + getMessageSourceAccessor().getMessage("probe.src.log.reload")  + " " + contextName);
-   } catch (Exception e) {
-    logger.error("Error during ajax request to RELOAD of '{}'", contextName, e);
-   }
-  }
-  return new ModelAndView(getViewName(), "available",
-    context != null && getContainerWrapper().getTomcatContainer().getAvailable(context));
- }
+    if (!request.getContextPath().equals(contextName) && context != null) {
+        try {
+            logger.info("{} requested RELOAD of {}", request.getRemoteAddr(), contextName);
+            context.reload();
+            // Logging action
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            String name = auth.getName(); // get username logger
+            logger.info(getMessageSourceAccessor().getMessage("probe.src.log.username") + " " + name + " "
+                    + getMessageSourceAccessor().getMessage("probe.src.log.reload") + " " + contextName);
+        } catch (Exception e) {
+            logger.error("Error during ajax request to RELOAD of '{}'", contextName, e);
+        }
+    }
+    return new ModelAndView(getViewName(), "available",
+            context != null && getContainerWrapper().getTomcatContainer().getAvailable(context));
+}
 
 }
