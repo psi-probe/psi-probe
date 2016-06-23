@@ -213,7 +213,7 @@
 							<c:when test="${! empty connector.requestProcessors}">
 								<div class="workerInfo">
 									<display:table name="${connector.requestProcessors}"
-											class="genericTbl" cellspacing="0"
+											class="genericTbl" style="border-spacing:0;border-collapse:separate;"
 											requestURI="" uid="rp" defaultsort="7" defaultorder="descending">
 										<display:column title="&nbsp;" style="width:18px;" class="leftmost">
 											<c:choose>

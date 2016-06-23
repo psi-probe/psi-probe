@@ -37,7 +37,7 @@
 			</li>
 		</ul>
 
-		<display:table name="pools" uid="pool" class="genericTbl" cellspacing="0" requestURI="" defaultsort="1" defaultorder="ascending">
+		<display:table name="pools" uid="pool" class="genericTbl" style="border-spacing:0;border-collapse:separate;" requestURI="" defaultsort="1" defaultorder="ascending">
 			<display:column property="name"               sortable="true" titleKey="probe.jsp.threadpools.name"               style="white-space:nowrap;" class="leftmost"/>
 			<display:column property="currentThreadCount" sortable="true" titleKey="probe.jsp.threadpools.currentThreadCount" style="white-space:nowrap;"/>
 			<display:column property="currentThreadsBusy" sortable="true" titleKey="probe.jsp.threadpools.currentThreadsBusy" style="white-space:nowrap;"/>

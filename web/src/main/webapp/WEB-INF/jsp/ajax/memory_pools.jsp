@@ -15,7 +15,7 @@
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@ taglib uri="https://github.com/psi-probe/psi-probe/jsp/tags" prefix="probe" %>
 
-<display:table name="pools" class="genericTbl" cellspacing="0" uid="pool" requestURI="">
+<display:table name="pools" class="genericTbl" style="border-spacing:0;border-collapse:separate;" uid="pool" requestURI="">
 
 	<display:column title="&nbsp;" style="width:16px;" class="leftMostIcon">
 		<c:choose>

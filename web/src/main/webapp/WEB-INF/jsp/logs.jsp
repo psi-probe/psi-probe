@@ -52,7 +52,7 @@
 		</ul>
 
 		<div class="blockContainer">
-			<display:table name="logs" class="genericTbl" cellspacing="0" uid="log" requestURI="">
+			<display:table name="logs" class="genericTbl" style="border-spacing:0;border-collapse:separate;" uid="log" requestURI="">
 
 				<c:choose>
 

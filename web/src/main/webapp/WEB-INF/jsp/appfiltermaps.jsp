@@ -54,7 +54,7 @@
 					<h3><spring:message code="probe.jsp.app.filtermaps.h3.maps"/></h3>
 
 					<display:table name="filterMaps" uid="fltr"
-							class="genericTbl" cellspacing="0" cellpadding="0"
+							class="genericTbl" style="padding:0;border-spacing:0;border-collapse:separate;"
 							requestURI="" defaultsort="1">
 						<display:column sortProperty="url" sortable="true"
 								titleKey="probe.jsp.app.filtermaps.col.url" class="leftmost">

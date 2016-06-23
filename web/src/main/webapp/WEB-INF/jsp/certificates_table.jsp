@@ -16,7 +16,7 @@
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@ taglib uri="https://github.com/psi-probe/psi-probe/jsp/tags" prefix="probe" %>
 
-<display:table class="genericTbl" cellspacing="0" name="${certs}" uid="cert" requestURI="">
+<display:table class="genericTbl" style="border-spacing:0;border-collapse:separate;" name="${certs}" uid="cert" requestURI="">
 
 	<display:column property="alias" class="leftmost" sortable="true" nulls="false"
 				titleKey="probe.jsp.certificates.col.alias" />

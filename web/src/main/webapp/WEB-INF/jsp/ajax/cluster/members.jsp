@@ -17,7 +17,7 @@
 
 <c:choose>
 	<c:when test="${! empty cluster.members}">
-		<display:table name="cluster.members" class="genericTbl" cellspacing="0" uid="member" requestURI="">
+		<display:table name="cluster.members" class="genericTbl" style="border-spacing:0;border-collapse:separate;" uid="member" requestURI="">
 
 			<display:column title="&nbsp;" class="leftMostIcon" style="width:16px;">
 				<c:choose>

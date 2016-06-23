@@ -39,7 +39,7 @@
 			<c:set var="memUsed"
 					value="${(systemInformation.totalMemory - systemInformation.freeMemory) * 100 / systemInformation.maxMemory}"/>
 
-			<table cellspacing="0">
+			<table style="border-spacing:0;border-collapse:separate;">
 				<tr>
 					<td><span class="name"><spring:message code="probe.jsp.sysinfo.memory.usage"/></span>&nbsp;</td>
 					<td style="padding:0; margin:0">

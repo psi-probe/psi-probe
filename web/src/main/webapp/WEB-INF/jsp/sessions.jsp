@@ -199,7 +199,7 @@
 						<c:if test="${! searchInfo.apply}">
 							<h3><spring:message code="probe.jsp.sessions.h3"/></h3>
 						</c:if>
-						<display:table name="sessions" class="genericTbl" uid="session" cellspacing="0" pagesize="50"
+						<display:table name="sessions" class="genericTbl" uid="session" style="border-spacing:0;border-collapse:separate;" pagesize="50"
 								requestURI="">
 
 							<display:column class="leftmost" title="&nbsp;">
