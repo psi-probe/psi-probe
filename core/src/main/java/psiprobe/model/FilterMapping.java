@@ -20,16 +20,16 @@ public class FilterMapping {
 
   /** The url. */
   private String url;
-  
+
   /** The servlet name. */
   private String servletName;
-  
+
   /** The filter name. */
   private String filterName;
-  
+
   /** The dispatcher map. */
   private String dispatcherMap;
-  
+
   /** The filter class. */
   private String filterClass;
 

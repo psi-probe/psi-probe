@@ -38,11 +38,11 @@ public class AppStatsCollectorBean extends AbstractStatsCollectorBean implements
 
   /** The container wrapper. */
   private ContainerWrapperBean containerWrapper;
-  
+
   /** The servlet context. */
   @Autowired
   private ServletContext servletContext;
-  
+
   /** The self ignored. */
   private boolean selfIgnored;
 

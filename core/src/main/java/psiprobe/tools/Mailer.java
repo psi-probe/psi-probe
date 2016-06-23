@@ -45,16 +45,16 @@ public class Mailer {
 
   /** The logger. */
   private static final Logger logger = LoggerFactory.getLogger(Mailer.class);
-  
+
   /** The from. */
   private String from;
-  
+
   /** The smtp. */
   private String smtp;
-  
+
   /** The default to. */
   private String defaultTo;
-  
+
   /** The subject prefix. */
   private String subjectPrefix;
 
@@ -258,9 +258,8 @@ public class Mailer {
    * @return the mime body part
    * @throws MessagingException the messaging exception
    */
-  private static MimeBodyPart createAttachmentPart(DataSource attachment)
-      throws MessagingException {
-    
+  private static MimeBodyPart createAttachmentPart(DataSource attachment) throws MessagingException {
+
     MimeBodyPart attachmentPart = new MimeBodyPart();
     attachmentPart.setDataHandler(new DataHandler(attachment));
     attachmentPart.setDisposition(Part.ATTACHMENT);

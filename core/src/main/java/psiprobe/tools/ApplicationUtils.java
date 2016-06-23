@@ -334,7 +334,7 @@ public class ApplicationUtils {
    */
   public static List<ApplicationParam> getApplicationInitParams(Context context,
       ContainerWrapperBean containerWrapper) {
-    
+
     return containerWrapper.getTomcatContainer().getApplicationInitParams(context);
   }
 

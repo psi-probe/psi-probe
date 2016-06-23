@@ -20,16 +20,16 @@ public class SyncClusterSender extends ClusterSender {
 
   /** The data failure counter. */
   private long dataFailureCounter;
-  
+
   /** The data resend counter. */
   private long dataResendCounter;
-  
+
   /** The socket open counter. */
   private long socketOpenCounter;
-  
+
   /** The socket close counter. */
   private long socketCloseCounter;
-  
+
   /** The socket open failure counter. */
   private long socketOpenFailureCounter;
 

@@ -20,16 +20,16 @@ public class ThreadStackElement {
 
   /** The class name. */
   private String className;
-  
+
   /** The file name. */
   private String fileName;
-  
+
   /** The method name. */
   private String methodName;
-  
+
   /** The line number. */
   private int lineNumber;
-  
+
   /** The native method. */
   private boolean nativeMethod;
 

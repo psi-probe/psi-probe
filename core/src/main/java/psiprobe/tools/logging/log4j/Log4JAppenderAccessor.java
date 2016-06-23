@@ -22,7 +22,7 @@ import java.io.File;
  * @author Mark Lewis
  */
 public class Log4JAppenderAccessor extends AbstractLogDestination {
-  
+
   /** The logger accessor. */
   private Log4JLoggerAccessor loggerAccessor;
 

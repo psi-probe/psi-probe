@@ -30,10 +30,10 @@ public class BackwardsLineReader {
 
   /** The bis. */
   private BufferedInputStream bis;
-  
+
   /** The skip line feed. */
   private boolean skipLineFeed = true;
-  
+
   /** The encoding. */
   private String encoding;
 

@@ -32,10 +32,10 @@ public class ReflectiveAccessor implements Accessor {
 
   /** The reflection factory. */
   private static Object reflectionFactory;
-  
+
   /** The new field accessor. */
   private static Method newFieldAccessor;
-  
+
   /** The get. */
   private static Method get;
 

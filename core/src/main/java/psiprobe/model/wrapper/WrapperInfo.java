@@ -23,31 +23,31 @@ public class WrapperInfo {
 
   /** The user. */
   private String user;
-  
+
   /** The interactive user. */
   private String interactiveUser;
-  
+
   /** The version. */
   private String version;
-  
+
   /** The wrapper pid. */
   private int wrapperPid;
-  
+
   /** The jvm pid. */
   private int jvmPid;
-  
+
   /** The build time. */
   private String buildTime;
-  
+
   /** The properties. */
   private Set<Entry<Object, Object>> properties;
-  
+
   /** The controlled by wrapper. */
   private boolean controlledByWrapper;
-  
+
   /** The launched as service. */
   private boolean launchedAsService;
-  
+
   /** The debug enabled. */
   private boolean debugEnabled;
 

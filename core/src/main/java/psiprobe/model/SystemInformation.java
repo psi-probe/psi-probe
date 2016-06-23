@@ -31,10 +31,10 @@ public class SystemInformation implements Serializable {
 
   /** The app base. */
   private String appBase;
-  
+
   /** The config base. */
   private String configBase;
-  
+
   /** The system properties. */
   private Map<String, String> systemProperties;
 

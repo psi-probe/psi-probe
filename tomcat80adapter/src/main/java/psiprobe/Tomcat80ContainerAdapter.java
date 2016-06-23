@@ -100,7 +100,7 @@ public class Tomcat80ContainerAdapter extends AbstractTomcatContainer {
   @Override
   protected JspCompilationContext createJspCompilationContext(String name, Options opt,
       ServletContext sctx, JspRuntimeContext jrctx, ClassLoader classLoader) {
-    
+
     JspCompilationContext jcctx = new JspCompilationContext(name, opt, sctx, null, jrctx);
     jcctx.setClassLoader(classLoader);
     return jcctx;
@@ -109,7 +109,7 @@ public class Tomcat80ContainerAdapter extends AbstractTomcatContainer {
   @Override
   public void addContextResourceLink(Context context, List<ApplicationResource> resourceList,
       boolean contextBound) {
-    
+
     NamingResourcesImpl namingResources = context.getNamingResources();
     for (ContextResourceLink link : namingResources.findResourceLinks()) {
       ApplicationResource resource = new ApplicationResource();

@@ -115,7 +115,7 @@ public class Tomcat70ContainerAdapter extends AbstractTomcatContainer {
   @Override
   public void addContextResourceLink(Context context, List<ApplicationResource> resourceList,
       boolean contextBound) {
-    
+
     NamingResources namingResources = context.getNamingResources();
     for (ContextResourceLink link : namingResources.findResourceLinks()) {
       ApplicationResource resource = new ApplicationResource();

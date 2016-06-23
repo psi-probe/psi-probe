@@ -36,10 +36,10 @@ public class SysInfoController extends TomcatContainerController {
 
   /** The filter out keys. */
   private List<String> filterOutKeys = new ArrayList<>();
-  
+
   /** The runtime info accessor. */
   private RuntimeInfoAccessorBean runtimeInfoAccessor;
-  
+
   /** The collection period. */
   private long collectionPeriod;
 

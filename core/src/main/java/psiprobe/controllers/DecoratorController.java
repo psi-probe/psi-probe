@@ -68,7 +68,6 @@ public class DecoratorController extends ParameterizableViewController {
     Properties version = (Properties) getApplicationContext().getBean("version");
     request.setAttribute("version", version.getProperty("probe.version"));
 
-    
     long uptimeStartValue = ManagementFactory.getRuntimeMXBean().getStartTime();
     long uptime = System.currentTimeMillis() - uptimeStartValue;
     long uptimeDays = uptime / (1000 * 60 * 60 * 24);

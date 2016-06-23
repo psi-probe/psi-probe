@@ -36,73 +36,73 @@ public class SessionSearchInfo implements Serializable {
 
   /** The Constant SESS_ATTR_NAME. */
   public static final String SESS_ATTR_NAME = "sessionSearchInfo";
-  
+
   /** The Constant ACTION_NONE. */
   public static final String ACTION_NONE = "none";
-  
+
   /** The Constant ACTION_APPLY. */
   public static final String ACTION_APPLY = "apply";
-  
+
   /** The Constant ACTION_CLEAR. */
   public static final String ACTION_CLEAR = "clear";
 
   /** The search action. */
   private String searchAction = ACTION_NONE;
-  
+
   /** The apply. */
   private boolean apply;
-  
+
   /** The clear. */
   private boolean clear;
-  
+
   /** The session id. */
   private String sessionId;
-  
+
   /** The session id pattern. */
   private Pattern sessionIdPattern;
-  
+
   /** The session id msg. */
   private String sessionIdMsg;
-  
+
   /** The attr name. */
   private String attrName;
-  
+
   /** The attr name patterns. */
   private final List<Pattern> attrNamePatterns = new ArrayList<>();
-  
+
   /** The attr name msgs. */
   private final List<String> attrNameMsgs = new ArrayList<>();
-  
+
   /** The age from. */
   private String ageFrom;
-  
+
   /** The age from sec. */
   private Integer ageFromSec;
-  
+
   /** The age to. */
   private String ageTo;
-  
+
   /** The age to sec. */
   private Integer ageToSec;
-  
+
   /** The idle time from. */
   private String idleTimeFrom;
-  
+
   /** The idle time from sec. */
   private Integer idleTimeFromSec;
-  
+
   /** The idle time to. */
   private String idleTimeTo;
-  
+
   /** The idle time to sec. */
   private Integer idleTimeToSec;
-  
+
   /** The last ip. */
   private String lastIp;
-  
+
   /** The info message. */
   private String infoMessage;
-  
+
   /** The error messages. */
   private final List<String> errorMessages = new ArrayList<>();
 

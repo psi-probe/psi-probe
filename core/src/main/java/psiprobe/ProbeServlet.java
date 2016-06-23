@@ -76,7 +76,7 @@ public class ProbeServlet extends DispatcherServlet implements ContainerServlet 
    * @param httpServletRequest the request
    * @param httpServletResponse the response
    * @throws Exception if setting UTF-8 encoding fails or if the super implementation throws an
-   *     exception
+   *         exception
    */
   @Override
   protected void doDispatch(HttpServletRequest httpServletRequest,

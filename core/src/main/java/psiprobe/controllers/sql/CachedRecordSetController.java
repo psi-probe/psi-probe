@@ -63,7 +63,7 @@ public class CachedRecordSetController extends ParameterizableViewController {
             getMessageSourceAccessor().getMessage(
                 "probe.src.dataSourceTest.cachedResultSet.failure"));
         logger.error("Cannot retrieve a cached result set. {} session attribute is NULL.",
-                DataSourceTestInfo.DS_TEST_SESS_ATTR);
+            DataSourceTestInfo.DS_TEST_SESS_ATTR);
       } else {
         synchronized (sess) {
           sessData.setRowsPerPage(rowsPerPage);

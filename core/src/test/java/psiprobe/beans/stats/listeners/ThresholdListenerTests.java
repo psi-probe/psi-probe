@@ -31,7 +31,7 @@ public class ThresholdListenerTests {
   
   /** The below threshold. */
   private StatsCollectionEvent belowThreshold = new StatsCollectionEvent("test", 0, 0);
-  
+
   /** The above threshold. */
   private StatsCollectionEvent aboveThreshold = new StatsCollectionEvent("test", 0, 20);
 
@@ -117,13 +117,13 @@ public class ThresholdListenerTests {
 
     /** The crossed above threshold. */
     private boolean crossedAboveThreshold;
-    
+
     /** The crossed below threshold. */
     private boolean crossedBelowThreshold;
-    
+
     /** The remained above threshold. */
     private boolean remainedAboveThreshold;
-    
+
     /** The remained below threshold. */
     private boolean remainedBelowThreshold;
 

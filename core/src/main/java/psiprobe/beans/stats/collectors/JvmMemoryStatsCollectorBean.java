@@ -22,7 +22,7 @@ import java.util.List;
  * @author Vlad Ilyushchenko
  */
 public class JvmMemoryStatsCollectorBean extends AbstractStatsCollectorBean {
-  
+
   /** The jvm memory info accessor. */
   private JvmMemoryInfoAccessorBean jvmMemoryInfoAccessor;
 

@@ -20,13 +20,13 @@ public class AsyncClusterSender extends SyncClusterSender {
 
   /** The in queue counter. */
   private long inQueueCounter;
-  
+
   /** The out queue counter. */
   private long outQueueCounter;
-  
+
   /** The queue size. */
   private long queueSize;
-  
+
   /** The queued nr of bytes. */
   private long queuedNrOfBytes;
 

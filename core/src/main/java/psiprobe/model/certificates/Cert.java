@@ -6,15 +6,15 @@ import java.util.Date;
 public class Cert implements Serializable {
 
   private static final long serialVersionUID = -727528588030989042L;
-  
+
   private String alias;
-  
+
   private String subjectDistinguishedName;
-  
+
   private String issuerDistinguishedName;
-  
+
   private Date notBefore;
-  
+
   private Date notAfter;
 
   public String getSubjectDistinguishedName() {

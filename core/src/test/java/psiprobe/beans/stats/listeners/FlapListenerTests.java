@@ -25,19 +25,19 @@ public class FlapListenerTests {
 
   /** The default threshold. */
   private final int defaultThreshold = 10;
-  
+
   /** The default interval. */
   private final int defaultInterval = 10;
-  
+
   /** The default start threshold. */
   private final float defaultStartThreshold = 0.29f;
-  
+
   /** The default stop threshold. */
   private final float defaultStopThreshold = 0.49f;
-  
+
   /** The default low weight. */
   private final float defaultLowWeight = 1.0f;
-  
+
   /** The default high weight. */
   private final float defaultHighWeight = 1.0f;
 
@@ -47,7 +47,7 @@ public class FlapListenerTests {
 
   /** The below threshold. */
   private StatsCollectionEvent belowThreshold = new StatsCollectionEvent("test", 0, 0);
-  
+
   /** The above threshold. */
   private StatsCollectionEvent aboveThreshold = new StatsCollectionEvent("test", 0, 20);
 
@@ -219,16 +219,16 @@ public class FlapListenerTests {
 
     /** The flapping started. */
     private boolean flappingStarted;
-    
+
     /** The above threshold flapping stopped. */
     private boolean aboveThresholdFlappingStopped;
-    
+
     /** The below threshold flapping stopped. */
     private boolean belowThresholdFlappingStopped;
-    
+
     /** The above threshold not flapping. */
     private boolean aboveThresholdNotFlapping;
-    
+
     /** The below threshold not flapping. */
     private boolean belowThresholdNotFlapping;
 

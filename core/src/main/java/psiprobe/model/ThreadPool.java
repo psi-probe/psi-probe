@@ -21,19 +21,19 @@ public class ThreadPool {
 
   /** The name. */
   private String name;
-  
+
   /** The max threads. */
   private int maxThreads;
-  
+
   /** The min spare threads. */
   private int minSpareThreads;
-  
+
   /** The max spare threads. */
   private int maxSpareThreads;
-  
+
   /** The current thread count. */
   private int currentThreadCount;
-  
+
   /** The current threads busy. */
   private int currentThreadsBusy;
 

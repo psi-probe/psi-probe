@@ -23,7 +23,7 @@ public class FileLogAccessor extends AbstractLogDestination {
 
   /** The name. */
   private String name;
-  
+
   /** The file. */
   private File file;
 

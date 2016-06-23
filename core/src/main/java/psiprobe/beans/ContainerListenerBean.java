@@ -47,10 +47,10 @@ public class ContainerListenerBean implements NotificationListener {
 
   /** The logger. */
   private static final Logger logger = LoggerFactory.getLogger(ContainerListenerBean.class);
-  
+
   /** The pool names. */
   private List<ThreadPoolObjectName> poolNames = null;
-  
+
   /** The executor names. */
   private List<ObjectName> executorNames = null;
 
@@ -124,8 +124,7 @@ public class ContainerListenerBean implements NotificationListener {
           }
         }
 
-      } else if (notification.getType()
-          .equals(MBeanServerNotification.UNREGISTRATION_NOTIFICATION)) {
+      } else if (notification.getType().equals(MBeanServerNotification.UNREGISTRATION_NOTIFICATION)) {
 
         if ("RequestProcessor".equals(objectName.getKeyProperty("type"))) {
           ThreadPoolObjectName threadPoolObjectName = findPool(objectName.getKeyProperty("worker"));

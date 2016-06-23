@@ -33,10 +33,10 @@ public class ListConnectorsController extends TomcatContainerController {
 
   /** The container listener bean. */
   private ContainerListenerBean containerListenerBean;
-  
+
   /** The include request processors. */
   private boolean includeRequestProcessors;
-  
+
   /** The collection period. */
   private long collectionPeriod;
 

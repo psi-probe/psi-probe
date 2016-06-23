@@ -27,64 +27,64 @@ public class Application implements Serializable {
 
   /** The name. */
   private String name;
-  
+
   /** The display name. */
   private String displayName;
-  
+
   /** The doc base. */
   private String docBase;
-  
+
   /** The available. */
   private boolean available;
-  
+
   /** The session count. */
   private long sessionCount;
-  
+
   /** The session attribute count. */
   private long sessionAttributeCount;
-  
+
   /** The context attribute count. */
   private int contextAttributeCount;
-  
+
   /** The data source busy score. */
   private int dataSourceBusyScore;
-  
+
   /** The data source established score. */
   private int dataSourceEstablishedScore;
-  
+
   /** The distributable. */
   private boolean distributable;
-  
+
   /** The session timeout. */
   private int sessionTimeout;
-  
+
   /** The servlet version. */
   private String servletVersion;
-  
+
   /** The serializable. */
   private boolean serializable;
-  
+
   /** The size. */
   private long size;
-  
+
   /** The servlet count. */
   private int servletCount;
-  
+
   /** The request count. */
   private int requestCount;
-  
+
   /** The processing time. */
   private long processingTime;
-  
+
   /** The error count. */
   private int errorCount;
-  
+
   /** The min time. */
   private long minTime;
-  
+
   /** The max time. */
   private long maxTime;
-  
+
   /** The avg time. */
   private long avgTime;
 

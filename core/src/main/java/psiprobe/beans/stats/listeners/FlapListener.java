@@ -33,23 +33,22 @@ public abstract class FlapListener extends ThresholdListener {
 
   /** The default flap interval. */
   private int defaultFlapInterval;
-  
+
   /** The default flap start threshold. */
   private float defaultFlapStartThreshold;
-  
+
   /** The default flap stop threshold. */
   private float defaultFlapStopThreshold;
-  
+
   /** The default flap low weight. */
   private float defaultFlapLowWeight;
-  
+
   /** The default flap high weight. */
   private float defaultFlapHighWeight;
-  
+
   /** The flaps. */
-  private final HashMap<String, LinkedList<Boolean>> flaps =
-      new HashMap<>();
-  
+  private final HashMap<String, LinkedList<Boolean>> flaps = new HashMap<>();
+
   /** The flapping states. */
   private final HashMap<String, Boolean> flappingStates = new HashMap<>();
 

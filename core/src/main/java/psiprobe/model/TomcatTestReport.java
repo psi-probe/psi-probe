@@ -20,10 +20,10 @@ public class TomcatTestReport {
 
   /** The Constant TEST_UNKNOWN. */
   public static final int TEST_UNKNOWN = 0;
-  
+
   /** The Constant TEST_PASSED. */
   public static final int TEST_PASSED = 1;
-  
+
   /** The Constant TEST_FAILED. */
   public static final int TEST_FAILED = 2;
 
@@ -33,34 +33,34 @@ public class TomcatTestReport {
    * {@value #DEFAULT_MEMORY_SIZE}
    */
   public static final int DEFAULT_MEMORY_SIZE = 1024 * 1024;
-  
+
   /** The default file count. */
   private final int defaultFileCount = 10;
 
   /** The context name. */
   private String contextName;
-  
+
   /** The data source name. */
   private String dataSourceName;
-  
+
   /** The datasource usage score. */
   private int datasourceUsageScore;
-  
+
   /** The max service time. */
   private long maxServiceTime;
-  
+
   /** The datasource test. */
   private int datasourceTest = TEST_UNKNOWN;
-  
+
   /** The file test. */
   private int fileTest = TEST_UNKNOWN;
-  
+
   /** The memory test. */
   private int memoryTest = TEST_UNKNOWN;
-  
+
   /** The webapp availability test. */
   private int webappAvailabilityTest = TEST_UNKNOWN;
-  
+
   /** The test duration. */
   private long testDuration;
 

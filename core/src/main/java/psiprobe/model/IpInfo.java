@@ -22,7 +22,7 @@ public class IpInfo {
 
   /** The address. */
   private String address;
-  
+
   /** The forwarded. */
   private boolean forwarded;
 

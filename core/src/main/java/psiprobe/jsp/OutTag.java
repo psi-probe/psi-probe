@@ -32,10 +32,10 @@ public class OutTag extends BodyTagSupport {
 
   /** The max length. */
   private int maxLength = -1;
-  
+
   /** The ellipsis right. */
   private boolean ellipsisRight = true;
-  
+
   /** The value. */
   private Object value;
 

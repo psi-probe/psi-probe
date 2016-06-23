@@ -43,10 +43,10 @@ public class WhoisController extends ParameterizableViewController {
 
   /** The lookup timeout. */
   private long lookupTimeout = 5;
-  
+
   /** The default server. */
   private String defaultServer = "whois.arin.net";
-  
+
   /** The default port. */
   private int defaultPort = 43;
 

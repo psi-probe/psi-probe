@@ -22,10 +22,10 @@ import psiprobe.model.jmx.Cluster;
  * @author Vlad Ilyushchenko
  */
 public class ClusterStatsCollectorBean extends AbstractStatsCollectorBean {
-  
+
   /** The container wrapper. */
   private ContainerWrapperBean containerWrapper;
-  
+
   /** The cluster wrapper. */
   private ClusterWrapperBean clusterWrapper;
 

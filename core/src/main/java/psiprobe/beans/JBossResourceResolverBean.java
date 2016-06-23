@@ -154,7 +154,7 @@ public class JBossResourceResolverBean implements ResourceResolver {
   @Override
   public List<ApplicationResource> getApplicationResources(Context context,
       ContainerWrapperBean containerWrapper) throws NamingException {
-    
+
     throw new UnsupportedOperationException("Not supported yet.");
   }
 

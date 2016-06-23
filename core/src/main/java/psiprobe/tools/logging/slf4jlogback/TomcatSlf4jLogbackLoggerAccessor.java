@@ -32,8 +32,7 @@ public class TomcatSlf4jLogbackLoggerAccessor extends DefaultAccessor {
    * @return a list of {@link TomcatSlf4jLogbackAppenderAccessor}s
    */
   public List<TomcatSlf4jLogbackAppenderAccessor> getAppenders() {
-    List<TomcatSlf4jLogbackAppenderAccessor> appenders =
-        new ArrayList<>();
+    List<TomcatSlf4jLogbackAppenderAccessor> appenders = new ArrayList<>();
 
     try {
       Iterator<Object> it =

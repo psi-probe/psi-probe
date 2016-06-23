@@ -627,6 +627,11 @@
 					<artifactId>coveralls-maven-plugin</artifactId>
 					<version>4.2.0</version>
 				</plugin>
+				<plugin>
+					<groupId>net.revelc.code</groupId>
+					<artifactId>formatter-maven-plugin</artifactId>
+					<version>0.5.2</version>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 		<plugins>
@@ -757,6 +762,27 @@
 			<properties>
 				<probe.version>${project.version} (built at ${maven.build.timestamp})</probe.version>
 			</properties>
+		</profile>
+		<profile>
+			<id>format</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>net.revelc.code</groupId>
+						<artifactId>formatter-maven-plugin</artifactId>
+						<configuration>
+							<configFile>../eclipse-java-google-style.xml</configFile>
+						</configuration>
+						<executions>
+							<execution>
+								<goals>
+									<goal>format</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
 		</profile>
 	</profiles>
 </project>

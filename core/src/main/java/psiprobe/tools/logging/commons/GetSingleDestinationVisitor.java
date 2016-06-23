@@ -24,7 +24,7 @@ public class GetSingleDestinationVisitor extends LoggerAccessorVisitor {
 
   /** The log index. */
   private final String logIndex;
-  
+
   /** The destination. */
   private LogDestination destination;
 

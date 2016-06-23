@@ -20,28 +20,28 @@ public class ThreadModel {
 
   /** The name. */
   private String name;
-  
+
   /** The priority. */
   private int priority;
-  
+
   /** The daemon. */
   private boolean daemon;
-  
+
   /** The interrupted. */
   private boolean interrupted;
-  
+
   /** The runnable class name. */
   private String runnableClassName;
-  
+
   /** The group name. */
   private String groupName;
-  
+
   /** The app name. */
   private String appName;
-  
+
   /** The thread class. */
   private String threadClass;
-  
+
   /** The class loader. */
   private String classLoader;
 

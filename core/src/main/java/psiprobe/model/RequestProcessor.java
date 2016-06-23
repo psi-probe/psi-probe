@@ -22,43 +22,43 @@ public class RequestProcessor {
 
   /** The name. */
   private String name;
-  
+
   /** The stage. */
   private int stage;
-  
+
   /** The processing time. */
   private long processingTime;
-  
+
   /** The bytes sent. */
   private long bytesSent;
-  
+
   /** The bytes received. */
   private long bytesReceived;
-  
+
   /** The remote addr. */
   private String remoteAddr;
-  
+
   /** The remote addr locale. */
   private Locale remoteAddrLocale;
-  
+
   /** The virtual host. */
   private String virtualHost;
-  
+
   /** The method. */
   private String method;
-  
+
   /** The current uri. */
   private String currentUri;
-  
+
   /** The current query string. */
   private String currentQueryString;
-  
+
   /** The protocol. */
   private String protocol;
-  
+
   /** The worker thread name. */
   private String workerThreadName;
-  
+
   /** The worker thread name supported. */
   private boolean workerThreadNameSupported;
 

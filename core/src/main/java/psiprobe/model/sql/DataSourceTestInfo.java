@@ -31,16 +31,16 @@ public class DataSourceTestInfo implements Serializable {
 
   /** The results. */
   private List<Map<String, String>> results;
-  
+
   /** The query history. */
   private LinkedList<String> queryHistory = new LinkedList<>();
-  
+
   /** The max rows. */
   private int maxRows;
-  
+
   /** The rows per page. */
   private int rowsPerPage;
-  
+
   /** The history size. */
   private int historySize;
 

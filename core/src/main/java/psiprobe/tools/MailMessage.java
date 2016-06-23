@@ -27,22 +27,22 @@ public class MailMessage {
 
   /** The to. */
   private final List<String> to = new ArrayList<>();
-  
+
   /** The cc. */
   private final List<String> cc = new ArrayList<>();
-  
+
   /** The bcc. */
   private final List<String> bcc = new ArrayList<>();
-  
+
   /** The attachments. */
   private final List<DataSource> attachments = new ArrayList<>();
-  
+
   /** The subject. */
   private String subject = "";
-  
+
   /** The body. */
   private String body = "";
-  
+
   /** The body html. */
   private boolean bodyHtml;
 

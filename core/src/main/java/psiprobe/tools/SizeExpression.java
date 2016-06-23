@@ -24,25 +24,25 @@ public class SizeExpression {
 
   /** The Constant MULTIPLIER_2. */
   public static final long MULTIPLIER_2 = 1024;
-  
+
   /** The Constant MULTIPLIER_10. */
   public static final long MULTIPLIER_10 = 1000;
-  
+
   /** The Constant UNIT_BASE. */
   public static final String UNIT_BASE = "B";
-  
+
   /** The Constant PREFIX_KILO. */
   public static final char PREFIX_KILO = 'K';
-  
+
   /** The Constant PREFIX_MEGA. */
   public static final char PREFIX_MEGA = 'M';
-  
+
   /** The Constant PREFIX_GIGA. */
   public static final char PREFIX_GIGA = 'G';
-  
+
   /** The Constant PREFIX_TERA. */
   public static final char PREFIX_TERA = 'T';
-  
+
   /** The Constant PREFIX_PETA. */
   public static final char PREFIX_PETA = 'P';
 

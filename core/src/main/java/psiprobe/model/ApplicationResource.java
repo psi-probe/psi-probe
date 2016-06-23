@@ -20,28 +20,28 @@ public class ApplicationResource {
 
   /** The application name. */
   private String applicationName;
-  
+
   /** The name. */
   private String name;
-  
+
   /** The type. */
   private String type;
-  
+
   /** The scope. */
   private String scope;
-  
+
   /** The auth. */
   private String auth;
-  
+
   /** The link to. */
   private String linkTo;
-  
+
   /** The description. */
   private String description;
-  
+
   /** The looked up. */
   private boolean lookedUp;
-  
+
   /** The data source info. */
   private DataSourceInfo dataSourceInfo;
 

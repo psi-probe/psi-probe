@@ -68,16 +68,16 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
 
   /** The host. */
   protected Host host;
-  
+
   /** Connectors. */
   protected Connector[] connectors;
-  
+
   /** The deployer o name. */
   protected ObjectName deployerOName;
-  
+
   /** The mbean server. */
   protected MBeanServer mbeanServer;
-  
+
   @Override
   public void setWrapper(Wrapper wrapper) {
     Valve valve = createValve();
@@ -98,7 +98,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
       host.getPipeline().removeValve(valve);
     }
   }
-  
+
   @Override
   public File getAppBase() {
     File base = new File(host.getAppBase());
@@ -145,7 +145,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     }
     return results;
   }
-  
+
   @Override
   public List<Connector> findConnectors() {
     return Collections.unmodifiableList(Arrays.asList(connectors));
@@ -291,7 +291,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
       Utils.delete(new File(standardContext.getWorkPath(), "org"));
     } else {
       logger.error("context '{}' is not an instance of '{}', expected StandardContext",
-              context.getName(), context.getClass().getName());
+          context.getName(), context.getClass().getName());
     }
   }
 
@@ -450,7 +450,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
   public void unbindFromContext(Context context) throws NamingException {
     changeContextBinding(context, false);
   }
-  
+
   /**
    * Change context binding.
    *

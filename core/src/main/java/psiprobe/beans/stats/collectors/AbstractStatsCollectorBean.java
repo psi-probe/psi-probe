@@ -33,16 +33,16 @@ public abstract class AbstractStatsCollectorBean {
 
   /** The stats collection. */
   private StatsCollection statsCollection;
-  
+
   /** The max series. */
   private int maxSeries = 240;
-  
+
   /** The listeners. */
   private List<StatsCollectionListener> listeners;
-  
+
   /** The previous data. */
   private final Map<String, Long> previousData = new TreeMap<>();
-  
+
   /** The previous data2 d. */
   private final Map<String, Entry> previousData2D = new TreeMap<>();
 
@@ -161,7 +161,7 @@ public abstract class AbstractStatsCollectorBean {
    */
   protected void buildAbsoluteStats(String name, long value, long time)
       throws InterruptedException {
-    
+
     List<XYDataItem> stats = statsCollection.getStats(name);
     if (stats == null) {
       stats = statsCollection.newStats(name, maxSeries);
@@ -189,14 +189,14 @@ public abstract class AbstractStatsCollectorBean {
    * The Class Entry.
    */
   private class Entry {
-    
+
     public Entry() {
       // Prevent Emulation by Synthetic Accessor
     }
 
     /** The time. */
     long time;
-    
+
     /** The value. */
     long value;
   }

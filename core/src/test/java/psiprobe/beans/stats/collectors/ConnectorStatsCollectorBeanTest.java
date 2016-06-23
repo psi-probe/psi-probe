@@ -11,12 +11,12 @@ import psiprobe.beans.stats.collectors.ConnectorStatsCollectorBean;
  */
 public class ConnectorStatsCollectorBeanTest {
 
-    /**
-     * Javabean tester.
-     */
-    @Test
-    public void javabeanTester() {
-      JavaBeanTester.builder(ConnectorStatsCollectorBean.class).loadData().test();
-    }
+  /**
+   * Javabean tester.
+   */
+  @Test
+  public void javabeanTester() {
+    JavaBeanTester.builder(ConnectorStatsCollectorBean.class).loadData().test();
+  }
 
 }

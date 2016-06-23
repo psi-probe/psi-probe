@@ -36,7 +36,7 @@ public class ParamToggleTag extends TagSupport {
 
   /** The logger. */
   private static final Logger logger = LoggerFactory.getLogger(ParamToggleTag.class);
-  
+
   /** The param. */
   private String param = "size";
 
