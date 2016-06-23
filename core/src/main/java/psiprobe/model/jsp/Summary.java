@@ -26,10 +26,10 @@ public class Summary implements Serializable {
 
   /** The name. */
   private String name;
-  
+
   /** The items. */
   private Map<String, Item> items;
-  
+
   /** The out of date count. */
   private int outOfDateCount;
 

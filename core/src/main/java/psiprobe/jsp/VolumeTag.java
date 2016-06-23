@@ -38,7 +38,7 @@ public class VolumeTag extends TagSupport {
 
   /** The value. */
   private long value;
-  
+
   /** The fractions. */
   private int fractions;
 

@@ -327,7 +327,7 @@ public class Utils {
       throws IOException {
 
     try (OutputStream out = response.getOutputStream();
-            RandomAccessFile raf = new RandomAccessFile(file, "r")) {
+        RandomAccessFile raf = new RandomAccessFile(file, "r")) {
       long fileSize = raf.length();
       long rangeStart = 0;
       long rangeFinish = fileSize - 1;
@@ -487,7 +487,7 @@ public class Utils {
   public static void sendCompressedFile(HttpServletRequest request, HttpServletResponse response, File file)
       throws IOException {
     try (ZipOutputStream zip = new ZipOutputStream(response.getOutputStream());
-            InputStream fileInput = new BufferedInputStream(new FileInputStream(file))) {
+        InputStream fileInput = new BufferedInputStream(new FileInputStream(file))) {
       // set some headers
       response.setContentType("application/zip");
       response.setHeader("Content-Disposition", "attachment; filename=" + file.getName() + ".zip");

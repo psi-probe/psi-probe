@@ -40,7 +40,7 @@ public class MemoryPoolMailingListener extends FlapListener implements MessageSo
 
   /** The message source accessor. */
   private MessageSourceAccessor messageSourceAccessor;
-  
+
   /** The mailer. */
   private Mailer mailer;
 

@@ -38,19 +38,19 @@ public class VisualScoreTag extends BodyTagSupport {
 
   /** The Constant WHITE_LEFT_BORDER. */
   private static final String WHITE_LEFT_BORDER = "a0";
-  
+
   /** The Constant RED_LEFT_BORDER. */
   private static final String RED_LEFT_BORDER = "a1";
-  
+
   /** The Constant BLUE_LEFT_BORDER. */
   private static final String BLUE_LEFT_BORDER = "a2";
 
   /** The Constant WHITE_RIGHT_BORDER. */
   private static final String WHITE_RIGHT_BORDER = "b0";
-  
+
   /** The Constant RED_RIGHT_BORDER. */
   private static final String RED_RIGHT_BORDER = "b1";
-  
+
   /** The Constant BLUE_RIGHT_BORDER. */
   private static final String BLUE_RIGHT_BORDER = "b2";
 
@@ -66,7 +66,7 @@ public class VisualScoreTag extends BodyTagSupport {
 
   /** The min value. */
   private double minValue = 0;
-  
+
   /** The max value. */
   private double maxValue = 100;
 
@@ -86,10 +86,10 @@ public class VisualScoreTag extends BodyTagSupport {
 
   /** The show empty blocks. */
   private boolean showEmptyBlocks;
-  
+
   /** The show a. */
   private boolean showA;
-  
+
   /** The show b. */
   private boolean showB;
 

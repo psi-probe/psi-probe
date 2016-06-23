@@ -21,43 +21,43 @@ public class RuntimeInformation {
 
   /** The vm vendor. */
   private String vmVendor;
-  
+
   /** The committed virtual memory size. */
   private long committedVirtualMemorySize;
-  
+
   /** The free physical memory size. */
   private long freePhysicalMemorySize;
-  
+
   /** The free swap space size. */
   private long freeSwapSpaceSize;
-  
+
   /** The process cpu time. */
   private long processCpuTime;
-  
+
   /** The available processors. */
   private int availableProcessors = 1;
-  
+
   /** The total physical memory size. */
   private long totalPhysicalMemorySize;
-  
+
   /** The total swap space size. */
   private long totalSwapSpaceSize;
-  
+
   /** The os name. */
   private String osName;
-  
+
   /** The os version. */
   private String osVersion;
-  
+
   /** The start time. */
   private long startTime;
-  
+
   /** The uptime. */
   private long uptime;
-  
+
   /** The open file descriptor count. */
   private long openFileDescriptorCount;
-  
+
   /** The max file descriptor count. */
   private long maxFileDescriptorCount;
 

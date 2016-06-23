@@ -31,10 +31,10 @@ public class ClusterStatsController extends TomcatContainerController {
 
   /** The cluster wrapper. */
   private ClusterWrapperBean clusterWrapper;
-  
+
   /** The load members. */
   private boolean loadMembers = true;
-  
+
   /** The collection period. */
   private long collectionPeriod;
 

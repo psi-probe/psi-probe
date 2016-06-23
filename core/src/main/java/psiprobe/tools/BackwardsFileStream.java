@@ -25,7 +25,7 @@ public class BackwardsFileStream extends InputStream {
 
   /** The raf. */
   private final RandomAccessFile raf;
-  
+
   /** The seek pos. */
   private long seekPos;
 

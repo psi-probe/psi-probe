@@ -31,45 +31,45 @@ public class Tokenizer {
 
   /** The Constant TT_TOKEN. */
   public static final int TT_TOKEN = 0;
-  
+
   /** The Constant TT_SYMBOL. */
   public static final int TT_SYMBOL = 1;
-  
+
   /** The Constant TT_BLOCK. */
   public static final int TT_BLOCK = 2;
-  
+
   /** The Constant TT_ERROR. */
   public static final int TT_ERROR = 3;
 
   /** The reader. */
   private Reader reader;
-  
+
   /** The symbols. */
   private final List<TokenizerSymbol> symbols;
-  
+
   /** The push count. */
   /*
    * private boolean enableHidden; private boolean hideNonSymbols;
    */
   private int pushCount = 0;
-  
+
   /** The token. */
   //
   private final TokenizerToken token;
-  
+
   /** The upcoming token. */
   private final TokenizerToken upcomingToken;
-  
+
   /** The cache position. */
   //
   private int cachePosition;
-  
+
   /** The cache size. */
   private int cacheSize;
-  
+
   /** The cache buffer. */
   private final char[] cacheBuffer;
-  
+
   /** The cache pin position. */
   private int cachePinPosition;
 
@@ -410,19 +410,19 @@ public class Tokenizer {
 
     /** The text. */
     final StringBuffer text = new StringBuffer();
-    
+
     /** The inner text. */
     final StringBuffer innerText = new StringBuffer();
-    
+
     /** The name. */
     String name = "";
-    
+
     /** The type. */
     int type = Tokenizer.TT_ERROR;
-    
+
     /** The line. */
     int line = 0;
-    
+
     /** The col. */
     int col = 0;
 

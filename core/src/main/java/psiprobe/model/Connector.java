@@ -23,25 +23,25 @@ public class Connector {
 
   /** The protocolHandler. */
   private String protocolHandler;
-  
+
   /** The max time. */
   private long maxTime;
-  
+
   /** The processing time. */
   private long processingTime;
-  
+
   /** The request count. */
   private int requestCount;
-  
+
   /** The error count. */
   private int errorCount;
-  
+
   /** The bytes received. */
   private long bytesReceived;
-  
+
   /** The bytes sent. */
   private long bytesSent;
-  
+
   /** The request processors. */
   private List<RequestProcessor> requestProcessors = new ArrayList<>();
 

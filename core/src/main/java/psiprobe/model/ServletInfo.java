@@ -24,49 +24,49 @@ public class ServletInfo {
 
   /** The application name. */
   private String applicationName;
-  
+
   /** The servlet name. */
   private String servletName;
-  
+
   /** The servlet class. */
   private String servletClass;
-  
+
   /** The available. */
   private boolean available;
-  
+
   /** The load on startup. */
   private int loadOnStartup;
-  
+
   /** The run as. */
   private String runAs;
-  
+
   /** The error count. */
   private int errorCount;
-  
+
   /** The load time. */
   private long loadTime;
-  
+
   /** The max time. */
   private long maxTime;
-  
+
   /** The min time. */
   private long minTime;
-  
+
   /** The processing time. */
   private long processingTime;
-  
+
   /** The request count. */
   private int requestCount;
-  
+
   /** The single threaded. */
   private boolean singleThreaded;
-  
+
   /** The allocation count. */
   private int allocationCount;
-  
+
   /** The max instances. */
   private int maxInstances;
-  
+
   /** The mappings. */
   private List<String> mappings = new ArrayList<>();
 

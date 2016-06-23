@@ -31,13 +31,13 @@ public abstract class ThresholdListener extends AbstractStatsCollectionListener 
 
   /** The Constant DEFAULT_THRESHOLD. */
   public static final long DEFAULT_THRESHOLD = Long.MAX_VALUE;
-  
+
   /** The Constant DEFAULT_VALUE. */
   public static final long DEFAULT_VALUE = Long.MIN_VALUE;
 
   /** The previous values. */
   private final HashMap<String, Long> previousValues = new HashMap<>();
-  
+
   /** The series disabled. */
   private final HashMap<String, Boolean> seriesDisabled = new HashMap<>();
 

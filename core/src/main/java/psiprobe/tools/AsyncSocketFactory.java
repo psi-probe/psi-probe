@@ -81,16 +81,16 @@ public class AsyncSocketFactory {
 
     /** The socket. */
     Socket socket = null;
-    
+
     /** The server. */
     String server;
-    
+
     /** The port. */
     int port;
-    
+
     /** The exception. */
     IOException exception;
-    
+
     /** The valid. */
     boolean valid = true;
 
@@ -157,7 +157,7 @@ public class AsyncSocketFactory {
 
     /** The socket wrapper. */
     private final SocketWrapper socketWrapper;
-    
+
     /** The sync. */
     private final Object sync;
 
@@ -198,7 +198,7 @@ public class AsyncSocketFactory {
 
     /** The sync. */
     private final Object sync;
-    
+
     /** The timeout. */
     private final long timeout;
 

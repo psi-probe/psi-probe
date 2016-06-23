@@ -73,7 +73,7 @@ public class TrustStoreController extends TomcatContainerController {
         }
       }
     } catch (Exception e) {
-      logger.error("There was an exception obtaining truststore: ",e);
+      logger.error("There was an exception obtaining truststore: ", e);
     }
     ModelAndView mv = new ModelAndView(getViewName());
     mv.addObject("certificates", certificateList);

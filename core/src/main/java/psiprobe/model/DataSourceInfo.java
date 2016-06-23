@@ -23,22 +23,22 @@ public class DataSourceInfo {
 
   /** The jdbc url. */
   private String jdbcUrl;
-  
+
   /** The busy connections. */
   private int busyConnections;
-  
+
   /** The established connections. */
   private int establishedConnections;
-  
+
   /** The max connections. */
   private int maxConnections;
-  
+
   /** The resettable. */
   private boolean resettable;
-  
+
   /** The username. */
   private String username;
-  
+
   /** The type. */
   private String type;
 

@@ -87,8 +87,8 @@ public class Whois {
     response.port = port;
 
     try (Socket connection = AsyncSocketFactory.createSocket(server, port, timeout);
-            PrintStream out = new PrintStream(connection.getOutputStream());
-            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
+        PrintStream out = new PrintStream(connection.getOutputStream());
+        BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
       out.println(query);
       StringBuilder sb = new StringBuilder();
 
@@ -137,13 +137,13 @@ public class Whois {
 
     /** The summary. */
     String summary;
-    
+
     /** The data. */
     Map<String, String> data = new TreeMap<>();
-    
+
     /** The server. */
     String server;
-    
+
     /** The port. */
     int port;
 

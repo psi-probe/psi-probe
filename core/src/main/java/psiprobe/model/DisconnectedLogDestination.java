@@ -32,43 +32,43 @@ public class DisconnectedLogDestination implements LogDestination, Serializable 
 
   /** The application. */
   private final Application application;
-  
+
   /** The root. */
   private final boolean root;
-  
+
   /** The context. */
   private final boolean context;
-  
+
   /** The name. */
   private final String name;
-  
+
   /** The index. */
   private final String index;
-  
+
   /** The target class. */
   private final String targetClass;
-  
+
   /** The conversion pattern. */
   private final String conversionPattern;
-  
+
   /** The file. */
   private final File file;
-  
+
   /** The log type. */
   private final String logType;
-  
+
   /** The size. */
   private final long size;
-  
+
   /** The last modified. */
   private final Timestamp lastModified;
-  
+
   /** The level. */
   private final String level;
-  
+
   /** The valid levels. */
   private final String[] validLevels;
-  
+
   /** The file encoding name. */
   private final String encoding;
 

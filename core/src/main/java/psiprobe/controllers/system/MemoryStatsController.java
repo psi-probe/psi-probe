@@ -29,7 +29,7 @@ public class MemoryStatsController extends ParameterizableViewController {
 
   /** The jvm memory info accessor bean. */
   private JvmMemoryInfoAccessorBean jvmMemoryInfoAccessorBean;
-  
+
   /** The collection period. */
   private long collectionPeriod;
 

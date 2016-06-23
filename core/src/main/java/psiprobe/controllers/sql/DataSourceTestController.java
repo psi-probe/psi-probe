@@ -28,19 +28,19 @@ import javax.servlet.http.HttpSession;
  * @author Mark Lewis
  */
 public class DataSourceTestController extends ParameterizableViewController {
-  
+
   /** The max rows. */
   private int maxRows;
-  
+
   /** The rows per page. */
   private int rowsPerPage;
-  
+
   /** The history size. */
   private int historySize;
-  
+
   /** The replace pattern. */
   private String replacePattern;
-  
+
   /** The collection period. */
   private long collectionPeriod;
 

@@ -20,7 +20,7 @@ import psiprobe.model.DataSourceInfo;
  * @author Vlad Ilyushchenko
  */
 public interface DatasourceAccessor {
-  
+
   /**
    * Gets the info.
    *

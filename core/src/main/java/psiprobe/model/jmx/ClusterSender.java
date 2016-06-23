@@ -20,37 +20,37 @@ public class ClusterSender {
 
   /** The address. */
   private String address;
-  
+
   /** The port. */
   private int port;
-  
+
   /** The avg message size. */
   private long avgMessageSize;
-  
+
   /** The avg processing time. */
   private long avgProcessingTime;
-  
+
   /** The connect counter. */
   private long connectCounter;
-  
+
   /** The disconnect counter. */
   private long disconnectCounter;
-  
+
   /** The connected. */
   private boolean connected;
-  
+
   /** The keep alive timeout. */
   private long keepAliveTimeout;
-  
+
   /** The nr of requests. */
   private long nrOfRequests;
-  
+
   /** The total bytes. */
   private long totalBytes;
-  
+
   /** The resend. */
   private boolean resend;
-  
+
   /** The suspect. */
   private boolean suspect;
 

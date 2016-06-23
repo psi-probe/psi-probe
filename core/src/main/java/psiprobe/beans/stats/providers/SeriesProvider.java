@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author Vlad Ilyushchenko
  */
 public interface SeriesProvider {
-  
+
   /**
    * Populate.
    *

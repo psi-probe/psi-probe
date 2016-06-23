@@ -22,7 +22,7 @@ import psiprobe.model.DataSourceInfo;
  * @author Mark Lewis
  */
 public class DbcpDatasourceAccessor implements DatasourceAccessor {
-  
+
   @Override
   public DataSourceInfo getInfo(Object resource) throws Exception {
     DataSourceInfo dataSourceInfo = null;

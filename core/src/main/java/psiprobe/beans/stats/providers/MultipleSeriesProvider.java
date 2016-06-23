@@ -34,13 +34,13 @@ import javax.servlet.http.HttpServletRequest;
  * @author Andy Shapoval
  */
 public class MultipleSeriesProvider extends AbstractSeriesProvider {
-  
+
   /** The stat name prefix. */
   String statNamePrefix;
-  
+
   /** The top. */
   private int top;
-  
+
   /** The moving avg frame. */
   private int movingAvgFrame;
 
@@ -152,13 +152,13 @@ public class MultipleSeriesProvider extends AbstractSeriesProvider {
    */
   // a helper class that holds series and calculates an avg value
   private class Series {
-    
+
     /** The key. */
     final String key;
-    
+
     /** The stats. */
     final List<XYDataItem> stats;
-    
+
     /** The avg. */
     double avg = 0;
 

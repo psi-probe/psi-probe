@@ -21,7 +21,7 @@ import psiprobe.model.jmx.RuntimeInformation;
  * @author Mark Lewis
  */
 public class RuntimeStatsCollectorBean extends AbstractStatsCollectorBean {
-  
+
   /** The runtime info accessor bean. */
   private RuntimeInfoAccessorBean runtimeInfoAccessorBean;
 

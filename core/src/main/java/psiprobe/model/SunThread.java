@@ -20,34 +20,34 @@ public class SunThread {
 
   /** The id. */
   private long id;
-  
+
   /** The name. */
   private String name;
-  
+
   /** The state. */
   private String state;
-  
+
   /** The deadlocked. */
   private boolean deadlocked;
-  
+
   /** The suspended. */
   private boolean suspended;
-  
+
   /** The in native. */
   private boolean inNative;
-  
+
   /** The lock name. */
   private String lockName;
-  
+
   /** The lock owner name. */
   private String lockOwnerName;
-  
+
   /** The waited count. */
   private long waitedCount;
-  
+
   /** The blocked count. */
   private long blockedCount;
-  
+
   /** The execution point. */
   private ThreadStackElement executionPoint;
 

@@ -41,7 +41,7 @@ public class ContainerWrapperBean {
 
   /** The tomcat container. */
   private TomcatContainer tomcatContainer;
-  
+
   /** The lock. */
   private final Object lock = new Object();
 

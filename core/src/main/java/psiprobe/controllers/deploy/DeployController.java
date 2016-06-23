@@ -33,32 +33,32 @@ import psiprobe.controllers.TomcatContainerController;
  */
 public class DeployController extends TomcatContainerController {
 
-	/** The Constant logger. */
-	private static final Logger logger = LoggerFactory.getLogger(DeployController.class);
+  /** The Constant logger. */
+  private static final Logger logger = LoggerFactory.getLogger(DeployController.class);
 
-	@Override
-	protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
+  @Override
+  protected ModelAndView handleRequestInternal(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
 
-		List<Context> apps;
-		try {
-			apps = getContainerWrapper().getTomcatContainer().findContexts();
-		} catch (NullPointerException ex) {
-			throw new IllegalStateException(
-					"No container found for your server: " + getServletContext().getServerInfo(), ex);
-		}
+    List<Context> apps;
+    try {
+      apps = getContainerWrapper().getTomcatContainer().findContexts();
+    } catch (NullPointerException ex) {
+      throw new IllegalStateException("No container found for your server: "
+          + getServletContext().getServerInfo(), ex);
+    }
 
-		List applications = new ArrayList();
-		for (Context appContext : apps) {
-			// check if this is not the ROOT webapp
-			if (appContext.getName() != null && appContext.getName().trim().length() > 0) {
-				Map<String, String> app = new HashMap<String, String>();
-				app.put("value", appContext.getName());
-				app.put("label", appContext.getName());
-				applications.add(app);
-			}
-		}
-		request.setAttribute("apps", applications);
-		return new ModelAndView(getViewName());
-	}
+    List applications = new ArrayList();
+    for (Context appContext : apps) {
+      // check if this is not the ROOT webapp
+      if (appContext.getName() != null && appContext.getName().trim().length() > 0) {
+        Map<String, String> app = new HashMap<String, String>();
+        app.put("value", appContext.getName());
+        app.put("label", appContext.getName());
+        applications.add(app);
+      }
+    }
+    request.setAttribute("apps", applications);
+    return new ModelAndView(getViewName());
+  }
 }

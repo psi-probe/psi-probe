@@ -20,7 +20,7 @@ public class ApplicationParam {
 
   /** The name. */
   private String name;
-  
+
   /** The value. */
   private Object value;
 

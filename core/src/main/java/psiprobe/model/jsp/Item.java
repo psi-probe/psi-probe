@@ -36,31 +36,31 @@ public class Item implements Serializable {
 
   /** The name. */
   private String name;
-  
+
   /** The exception. */
   private Exception exception;
-  
+
   /** The compile time. */
   private long compileTime = -1;
-  
+
   /** The state. */
   private int state = STATE_OOD;
-  
+
   /** The level. */
   private int level;
-  
+
   /** The missing. */
   private boolean missing = true;
-  
+
   /** The size. */
   private long size;
-  
+
   /** The last modified. */
   private long lastModified;
-  
+
   /** The timestamp. */
   private Date timestamp;
-  
+
   /** The encoding. */
   private String encoding;
 

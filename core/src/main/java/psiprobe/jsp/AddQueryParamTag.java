@@ -34,10 +34,10 @@ public class AddQueryParamTag extends TagSupport {
 
   /** The logger. */
   private static final Logger logger = LoggerFactory.getLogger(AddQueryParamTag.class);
-  
+
   /** The param. */
   private String param;
-  
+
   /** The value. */
   private String value;
 

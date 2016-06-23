@@ -29,10 +29,10 @@ public abstract class AbstractStatsCollectionListener implements StatsCollection
 
   /** The logger. */
   protected final Logger logger = LoggerFactory.getLogger(getClass());
-  
+
   /** The property category. */
   private String propertyCategory;
-  
+
   /** The enabled. */
   private boolean enabled = true;
 

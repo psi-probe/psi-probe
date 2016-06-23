@@ -27,10 +27,10 @@ public class UpdateCommitLock {
 
   /** The update count. */
   private int updateCount;
-  
+
   /** The commit count. */
   private int commitCount;
-  
+
   /** The commit requests. */
   private int commitRequests;
 

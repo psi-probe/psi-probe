@@ -111,9 +111,8 @@ public class LogbackFactoryAccessor extends DefaultAccessor {
     List<LogbackAppenderAccessor> appenders = new ArrayList<>();
     try {
       Class clazz = getTarget().getClass();
-      Method getLoggerList = MethodUtils
-          .getAccessibleMethod(clazz, "getLoggerList", new Class[0]);
-      
+      Method getLoggerList = MethodUtils.getAccessibleMethod(clazz, "getLoggerList", new Class[0]);
+
       List<Object> loggers = (List<Object>) getLoggerList.invoke(getTarget());
       for (Object logger : loggers) {
         LogbackLoggerAccessor accessor = new LogbackLoggerAccessor();

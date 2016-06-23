@@ -290,9 +290,8 @@ public class ResourceResolverBean implements ResourceResolver {
    * @param attributeName the attribute name
    * @return the string attribute
    */
-  private String getStringAttribute(MBeanServer server, ObjectName objectName,
-      String attributeName) {
-    
+  private String getStringAttribute(MBeanServer server, ObjectName objectName, String attributeName) {
+
     try {
       return (String) server.getAttribute(objectName, attributeName);
     } catch (Exception e) {

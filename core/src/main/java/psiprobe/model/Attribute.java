@@ -21,16 +21,16 @@ public class Attribute {
 
   /** The name. */
   private String name;
-  
+
   /** The type. */
   private String type;
-  
+
   /** The value. */
   private Object value;
-  
+
   /** The serializable. */
   private boolean serializable;
-  
+
   /** The size. */
   private long size;
 

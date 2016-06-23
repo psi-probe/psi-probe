@@ -47,7 +47,7 @@ public class Tomcat85AgentValveTest {
     final Tomcat85ContainerAdapter valve = new Tomcat85ContainerAdapter();
     assertFalse(valve.canBoundTo("Pivotal tc..../8.0"));
   }
-  
+
   /**
    * Can bound to pivotal85.
    */

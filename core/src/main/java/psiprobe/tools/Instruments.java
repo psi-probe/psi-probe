@@ -30,43 +30,43 @@ public class Instruments {
 
   /** The Constant SIZE_VOID. */
   public static final long SIZE_VOID = 0;
-  
+
   /** The Constant SIZE_BOOLEAN. */
   public static final long SIZE_BOOLEAN = 1;
-  
+
   /** The Constant SIZE_BYTE. */
   public static final long SIZE_BYTE = 1;
-  
+
   /** The Constant SIZE_CHAR. */
   public static final long SIZE_CHAR = 2;
-  
+
   /** The Constant SIZE_SHORT. */
   public static final long SIZE_SHORT = 2;
-  
+
   /** The Constant SIZE_INT. */
   public static final long SIZE_INT = 4;
-  
+
   /** The Constant SIZE_LONG. */
   public static final long SIZE_LONG = 8;
-  
+
   /** The Constant SIZE_FLOAT. */
   public static final long SIZE_FLOAT = 4;
-  
+
   /** The Constant SIZE_DOUBLE. */
   public static final long SIZE_DOUBLE = 8;
-  
+
   /** The Constant SIZE_OBJECT. */
   public static final long SIZE_OBJECT = 8;
-  
+
   /** The Constant SIZE_REFERENCE. */
   public static final long SIZE_REFERENCE;
 
   /** The Constant ACCESSOR. */
   private static final Accessor ACCESSOR = AccessorFactory.getInstance();
-  
+
   /** The Constant IGNORE_NIO. */
   private static final boolean IGNORE_NIO;
-  
+
   static {
     String ignoreNioProp = System.getProperty("psiprobe.intruments.ignoreNIO");
     String os64bitProp = System.getProperty("sun.arch.data.model");
@@ -76,13 +76,13 @@ public class Instruments {
 
   /** The processed objects. */
   private Set<Object> processedObjects = new HashSet<>(2048);
-  
+
   /** The this queue. */
   private final List<Object> thisQueue = new LinkedList<>();
-  
+
   /** The next queue. */
   private final List<Object> nextQueue = new LinkedList<>();
-  
+
   /** The class loader. */
   private ClassLoader classLoader = null;
 

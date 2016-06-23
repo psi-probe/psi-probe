@@ -40,7 +40,7 @@ public class ViewXmlConfController extends ContextHandlerController {
 
   /** The Constant TARGET_WEB_XML. */
   public static final String TARGET_WEB_XML = "web.xml";
-  
+
   /** The Constant TARGET_CONTEXT_XML. */
   public static final String TARGET_CONTEXT_XML = "context.xml";
 

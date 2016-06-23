@@ -52,7 +52,7 @@ public class LogResolverBean {
 
   /** The container wrapper. */
   private ContainerWrapperBean containerWrapper;
-  
+
   /** The stdout files. */
   private List<String> stdoutFiles = new ArrayList<>();
 

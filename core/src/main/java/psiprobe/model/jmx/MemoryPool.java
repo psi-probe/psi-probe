@@ -21,22 +21,22 @@ public class MemoryPool {
 
   /** The name. */
   private String name;
-  
+
   /** The init. */
   private long init;
-  
+
   /** The max. */
   private long max;
-  
+
   /** The used. */
   private long used;
-  
+
   /** The committed. */
   private long committed;
-  
+
   /** The type. */
   private String type;
-  
+
   /** The id. */
   private String id;
 

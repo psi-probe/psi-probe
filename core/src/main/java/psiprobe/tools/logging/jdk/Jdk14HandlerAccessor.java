@@ -25,7 +25,7 @@ public class Jdk14HandlerAccessor extends AbstractLogDestination {
 
   /** The logger accessor. */
   private Jdk14LoggerAccessor loggerAccessor;
-  
+
   /** The index. */
   private String index;
 

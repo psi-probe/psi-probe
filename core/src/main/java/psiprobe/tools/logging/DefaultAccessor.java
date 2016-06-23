@@ -31,10 +31,10 @@ public class DefaultAccessor {
 
   /** The logger. */
   protected static final Logger logger = LoggerFactory.getLogger(DefaultAccessor.class);
-  
+
   /** The application. */
   private Application application;
-  
+
   /** The target. */
   private Object target;
 

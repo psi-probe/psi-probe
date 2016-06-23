@@ -26,10 +26,10 @@ public class ThreadPoolObjectName {
 
   /** The thread pool name. */
   private ObjectName threadPoolName;
-  
+
   /** The global request processor name. */
   private ObjectName globalRequestProcessorName;
-  
+
   /** The request processor names. */
   private List<ObjectName> requestProcessorNames = new ArrayList<>();
 

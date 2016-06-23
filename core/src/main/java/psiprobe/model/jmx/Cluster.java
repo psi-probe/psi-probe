@@ -23,73 +23,73 @@ public class Cluster {
 
   /** The name. */
   private String name;
-  
+
   /** The info. */
   private String info;
-  
+
   /** The manager class name. */
   private String managerClassName;
-  
+
   /** The mcast address. */
   private String mcastAddress;
-  
+
   /** The mcast bind address. */
   private String mcastBindAddress;
-  
+
   /** The mcast cluster domain. */
   private String mcastClusterDomain;
-  
+
   /** The mcast drop time. */
   private long mcastDropTime;
-  
+
   /** The mcast frequency. */
   private long mcastFrequency;
-  
+
   /** The mcast port. */
   private int mcastPort;
-  
+
   /** The mcast so timeout. */
   private int mcastSoTimeout;
-  
+
   /** The mcast ttl. */
   private int mcastTtl;
-  
+
   /** The members. */
   private List<ClusterSender> members = new ArrayList<>();
-  
+
   /** The tcp thread count. */
   private int tcpThreadCount;
-  
+
   /** The tcp listen address. */
   private String tcpListenAddress;
-  
+
   /** The tcp listen port. */
   private int tcpListenPort;
-  
+
   /** The tcp selector timeout. */
   private long tcpSelectorTimeout;
-  
+
   /** The nr of msgs received. */
   private long nrOfMsgsReceived;
-  
+
   /** The total received bytes. */
   private long totalReceivedBytes;
-  
+
   /** The sender ack timeout. */
   private long senderAckTimeout;
-  
+
   /** The sender auto connect. */
   private boolean senderAutoConnect;
-  
+
   /** The sender failure counter. */
   private long senderFailureCounter;
-  
+
   /** The sender nr of requests. */
   private long senderNrOfRequests;
-  
+
   /** The sender replication mode. */
   private String senderReplicationMode;
-  
+
   /** The sender total bytes. */
   private long senderTotalBytes;
 

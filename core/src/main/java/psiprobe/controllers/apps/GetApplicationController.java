@@ -36,10 +36,10 @@ public class GetApplicationController extends ContextHandlerController {
 
   /** denotes whether extended application information and statistics should be collected. */
   private boolean extendedInfo = false;
-  
+
   /** The stats collection. */
   private StatsCollection statsCollection;
-  
+
   /** The collection period. */
   private long collectionPeriod;
 

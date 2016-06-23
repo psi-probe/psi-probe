@@ -22,7 +22,7 @@ public class StatsCollectionEvent {
 
   /** The name. */
   private String name;
-  
+
   /** The data. */
   private XYDataItem data;
 

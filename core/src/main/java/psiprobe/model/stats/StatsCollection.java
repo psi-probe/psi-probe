@@ -50,19 +50,19 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
 
   /** The stats data. */
   private Map<String, List<XYDataItem>> statsData = new TreeMap<>();
-  
+
   /** The swap file name. */
   private String swapFileName;
-  
+
   /** The storage path. */
   private String storagePath;
-  
+
   /** The context temp dir. */
   private File contextTempDir;
-  
+
   /** The max files. */
   private int maxFiles = 2;
-  
+
   /** The lock. */
   private final UpdateCommitLock lock = new UpdateCommitLock();
 

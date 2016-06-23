@@ -21,16 +21,16 @@ public class ServletMapping {
 
   /** The application name. */
   private String applicationName;
-  
+
   /** The url. */
   private String url;
-  
+
   /** The servlet name. */
   private String servletName;
-  
+
   /** The servlet class. */
   private String servletClass;
-  
+
   /** The available. */
   private boolean available;
 

@@ -29,46 +29,46 @@ public class ApplicationSession {
 
   /** The id. */
   private String id;
-  
+
   /** The application name. */
   private String applicationName;
-  
+
   /** The creation time. */
   private Date creationTime;
-  
+
   /** The last access time. */
   private Date lastAccessTime;
-  
+
   /** The max idle time. */
   private int maxIdleTime;
-  
+
   /** The valid. */
   private boolean valid;
-  
+
   /** The serializable. */
   private boolean serializable;
-  
+
   /** The object count. */
   private long objectCount;
-  
+
   /** The info. */
   private String info;
-  
+
   /** The manager type. */
   private String managerType;
-  
+
   /** The attributes. */
   private List<Attribute> attributes = new ArrayList<>();
-  
+
   /** The size. */
   private long size;
-  
+
   /** The allowed to view values. */
   private boolean allowedToViewValues;
-  
+
   /** The last accessed ip. */
   private String lastAccessedIp;
-  
+
   /** The last accessed ip locale. */
   private Locale lastAccessedIpLocale;
 

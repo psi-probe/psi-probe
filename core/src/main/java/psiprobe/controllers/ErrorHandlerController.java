@@ -24,13 +24,13 @@ import javax.servlet.http.HttpServletResponse;
  * @author Vlad Ilyushchenko.
  */
 public class ErrorHandlerController extends AbstractController {
-  
+
   /** The view name. */
   private String viewName;
-  
+
   /** The ajax view name. */
   private String ajaxViewName;
-  
+
   /** The ajax extension. */
   private String ajaxExtension = ".ajax";
 

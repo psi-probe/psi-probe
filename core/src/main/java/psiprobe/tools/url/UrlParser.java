@@ -28,13 +28,13 @@ public class UrlParser {
 
   /** The protocol. */
   private String protocol;
-  
+
   /** The host. */
   private String host;
-  
+
   /** The port. */
   private int port = -1;
-  
+
   /** The path. */
   private String path;
 

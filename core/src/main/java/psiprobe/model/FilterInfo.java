@@ -20,10 +20,10 @@ public class FilterInfo {
 
   /** The filter name. */
   private String filterName;
-  
+
   /** The filter class. */
   private String filterClass;
-  
+
   /** The filter desc. */
   private String filterDesc;
 

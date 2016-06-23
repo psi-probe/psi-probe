@@ -24,7 +24,7 @@ public class ListCertificatesControllerTest {
 
   @Autowired
   private ApplicationContext ctx;
-  
+
   /**
    * Javabean tester.
    */
@@ -49,15 +49,15 @@ public class ListCertificatesControllerTest {
     assertThat(certs.get(0).getAlias(), is("google internet authority g2"));
     assertThat(certs.get(1).getAlias(), is("*.google.com"));
   }
-  
+
   @Test
   public void testGetCertificatesRelative() throws Exception {
     ListCertificatesController controller = new ListCertificatesController();
-    
+
     String storeType = "jks";
     File certFolder = ctx.getResource("classpath:certs").getFile();
     System.setProperty("catalina.base", certFolder.getPath());
-    
+
     String storePassword = "123456";
     
     List<Cert> certs = controller.getCertificates(storeType, "localhost-truststore.jks", storePassword);
@@ -67,16 +67,16 @@ public class ListCertificatesControllerTest {
     assertThat(certs.get(0).getAlias(), is("google internet authority g2"));
     assertThat(certs.get(1).getAlias(), is("*.google.com"));
   }
-  
+
   @Test
   public void testGetCertificatesRelativeUri() throws Exception {
     ListCertificatesController controller = new ListCertificatesController();
-    
+
     String storeType = "jks";
     File storeFile = ctx.getResource("classpath:certs/localhost-truststore.jks").getFile();
     File certFolder = ctx.getResource("classpath:certs").getFile();
     System.setProperty("catalina.base", certFolder.getPath());
-    
+
     String storePassword = "123456";
     
     List<Cert> certs = controller.getCertificates(storeType, storeFile.toURI().toString(), storePassword);
@@ -86,15 +86,15 @@ public class ListCertificatesControllerTest {
     assertThat(certs.get(0).getAlias(), is("google internet authority g2"));
     assertThat(certs.get(1).getAlias(), is("*.google.com"));
   }
-  
+
   @Test
   public void testGetCertificatesAbsoluteUri() throws Exception {
     ListCertificatesController controller = new ListCertificatesController();
-    
+
     String storeType = "jks";
     File certFolder = ctx.getResource("classpath:certs").getFile();
     System.setProperty("catalina.base", certFolder.getPath());
-    
+
     String storePassword = "123456";
     
     List<Cert> certs = controller.getCertificates(storeType, "./localhost-truststore.jks", storePassword);

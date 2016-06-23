@@ -20,22 +20,22 @@ public class TokenizerSymbol implements Comparable<Object> {
 
   /** The name. */
   final String name;
-  
+
   /** The start text. */
   final String startText;
-  
+
   /** The tail text. */
   final String tailText;
-  
+
   /** The hidden. */
   final boolean hidden;
-  
+
   /** The decode paired. */
   final boolean decodePaired;
-  
+
   /** The enabled. */
   final boolean enabled;
-  
+
   /** The can be nested. */
   final boolean canBeNested;
 
