@@ -11,6 +11,8 @@
 
 package psiprobe.controllers.deploy;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.InternalResourceView;
@@ -27,32 +29,32 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class DeployContextController extends TomcatContainerController {
 
-  @Override
-  public ModelAndView handleRequestInternal(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+@Override
+public ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
     String contextName = ServletRequestUtils.getStringParameter(request, "context", null);
 
     if (contextName != null) {
-      try {
-        if (getContainerWrapper().getTomcatContainer().installContext(contextName)) {
-          request.setAttribute(
-              "successMessage",
-              getMessageSourceAccessor().getMessage("probe.src.deploy.context.success",
-                  new Object[] {contextName}));
-        } else {
-          request.setAttribute(
-              "errorMessage",
-              getMessageSourceAccessor().getMessage("probe.src.deploy.context.failure",
-                  new Object[] {contextName}));
+        try {
+            if (getContainerWrapper().getTomcatContainer().installContext(contextName)) {
+                request.setAttribute("successMessage", getMessageSourceAccessor()
+                        .getMessage("probe.src.deploy.context.success", new Object[] { contextName }));
+                // Logging action
+                Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+                String name = auth.getName(); // get username logger
+                logger.info(getMessageSourceAccessor().getMessage("probe.src.log.username") + " " + name + " "
+                        + getMessageSourceAccessor().getMessage("probe.src.log.deploycontext") + contextName);
+            } else {
+                request.setAttribute("errorMessage", getMessageSourceAccessor()
+                        .getMessage("probe.src.deploy.context.failure", new Object[] { contextName }));
+            }
+        } catch (Exception e) {
+            request.setAttribute("errorMessage", e.getMessage());
+            logger.trace("", e);
         }
-      } catch (Exception e) {
-        request.setAttribute("errorMessage", e.getMessage());
-        logger.trace("", e);
-      }
     }
 
     return new ModelAndView(new InternalResourceView(getViewName()));
-  }
+}
 
 }
