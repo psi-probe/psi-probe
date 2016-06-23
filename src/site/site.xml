@@ -3,11 +3,11 @@
     xsi:schemaLocation="http://maven.apache.org/DECORATION/1.7.0 http://maven.apache.org/xsd/decoration-1.7.0.xsd">
     <bannerLeft>
         <src>/images/psi-probe-banner.jpg</src>
-        <href>http://github.com/psi-probe/psi-probe</href>
+        <href>https://github.com/psi-probe/psi-probe</href>
     </bannerLeft>
     <bannerRight>
-        <src>http://tomcat.apache.org/images/tomcat.png</src>
-        <href>http://tomcat.apache.org/</href>
+        <src>https://tomcat.apache.org/images/tomcat.png</src>
+        <href>https://tomcat.apache.org/</href>
     </bannerRight>
     <skin>
         <groupId>org.apache.maven.skins</groupId>

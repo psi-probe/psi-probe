@@ -8,6 +8,8 @@
 
 ![psi-probe](src/site/resources/images/psi-probe-banner.jpg)
 
+[site](https://psi-probe.github.io/psi-probe/)
+
 ## Contributing ##
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for info on working on PSI Probe and sending patches.
