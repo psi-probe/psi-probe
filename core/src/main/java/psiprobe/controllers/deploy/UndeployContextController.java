@@ -70,9 +70,7 @@ public class UndeployContextController extends ContextHandlerController {
       // Logging action
       Authentication auth = SecurityContextHolder.getContext().getAuthentication();
       String name = auth.getName(); // get username logger
-      logger.info(getMessageSourceAccessor().getMessage("probe.src.log.username") + " " + name
-          + " " + getMessageSourceAccessor().getMessage("probe.src.log.undeploy") + " "
-          + contextName);
+      logger.info(getMessageSourceAccessor().getMessage("probe.src.log.undeploy"), new Object[] { name, contextName});
 
     } catch (Exception e) {
       request.setAttribute("errorMessage", e.getMessage());
