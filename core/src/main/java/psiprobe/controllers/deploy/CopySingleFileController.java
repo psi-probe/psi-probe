@@ -31,6 +31,8 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.InternalResourceView;
 
@@ -142,12 +144,24 @@ public class CopySingleFileController extends TomcatContainerController {
                   FileUtils.copyFileToDirectory(tmpFile, destFile);
 
                   request.setAttribute("successFile", Boolean.TRUE);
+                  // Logging action
+                  Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+                  String name = auth.getName(); // get username
+                                                // logger
+                  logger.info(getMessageSourceAccessor().getMessage("probe.src.log.username") + " "
+                      + name + " "
+                      + getMessageSourceAccessor().getMessage("probe.src.log.copyfile") + " "
+                      + contextName);
                   Context context =
                       getContainerWrapper().getTomcatContainer().findContext(contextName);
                   // Checks if DISCARD "work" directory is
                   // selected
                   if (discard) {
                     getContainerWrapper().getTomcatContainer().discardWorkDir(context);
+                    logger.info(getMessageSourceAccessor().getMessage("probe.src.log.username")
+                        + " " + name + " "
+                        + getMessageSourceAccessor().getMessage("probe.src.log.discardwork") + " "
+                        + contextName);
                   }
                   // Checks if RELOAD option is selected
                   if (reload) {
@@ -155,6 +169,10 @@ public class CopySingleFileController extends TomcatContainerController {
                     if (context != null) {
                       context.reload();
                       request.setAttribute("reloadContext", Boolean.TRUE);
+                      logger.info(getMessageSourceAccessor().getMessage("probe.src.log.username")
+                          + " " + name + " "
+                          + getMessageSourceAccessor().getMessage("probe.src.log.reload") + " "
+                          + contextName);
                     }
                   }
                 } else {

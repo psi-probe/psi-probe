@@ -22,6 +22,8 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.InternalResourceView;
 
@@ -145,8 +147,18 @@ public class UploadWarController extends TomcatContainerController {
                         new Object[] {visibleContextName});
               } else {
                 request.setAttribute("success", Boolean.TRUE);
+                // Logging action
+                Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+                String name = auth.getName(); // get username logger
+                logger.info(getMessageSourceAccessor().getMessage("probe.src.log.username") + " "
+                    + name + " " + getMessageSourceAccessor().getMessage("probe.src.log.deploywar")
+                    + " " + contextName);
                 if (discard) {
                   getContainerWrapper().getTomcatContainer().discardWorkDir(ctx);
+                  logger.info(getMessageSourceAccessor().getMessage("probe.src.log.username") + " "
+                      + name + " "
+                      + getMessageSourceAccessor().getMessage("probe.src.log.discardwork") + " "
+                      + contextName);
                 }
                 if (compile) {
                   Summary summary = new Summary();
