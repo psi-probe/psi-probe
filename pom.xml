@@ -60,7 +60,7 @@
 	</modules>
 	<repositories>
 		<repository>
-			<!-- Required for ojdbc6 and ucp -->
+			<!-- Required for ojdbc7 and ucp -->
 			<snapshots>
 				<enabled>false</enabled>
 				<updatePolicy>never</updatePolicy>
