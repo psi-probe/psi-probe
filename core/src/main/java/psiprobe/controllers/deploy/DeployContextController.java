@@ -45,7 +45,7 @@ public class DeployContextController extends TomcatContainerController {
           // Logging action
           Authentication auth = SecurityContextHolder.getContext().getAuthentication();
           String name = auth.getName(); // get username logger
-          logger.info(getMessageSourceAccessor().getMessage("probe.src.log.deploycontext"), new Object[] { name, contextName});
+          logger.info(getMessageSourceAccessor().getMessage("probe.src.log.deploycontext"), name, contextName);
         } else {
           request.setAttribute(
               "errorMessage",

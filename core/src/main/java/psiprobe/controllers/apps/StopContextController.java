@@ -33,7 +33,7 @@ public class StopContextController extends NoSelfContextHandlerController {
     // Logging action
     Authentication auth = SecurityContextHolder.getContext().getAuthentication();
     String name = auth.getName(); // get username logger
-    logger.info(getMessageSourceAccessor().getMessage("probe.src.log.stop"), new Object[] { name, contextName});
+    logger.info(getMessageSourceAccessor().getMessage("probe.src.log.stop"), name, contextName);
   }
 
 }

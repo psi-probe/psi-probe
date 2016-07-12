@@ -150,10 +150,10 @@ public class UploadWarController extends TomcatContainerController {
                 // Logging action
                 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
                 String name = auth.getName(); // get username logger
-                logger.info(getMessageSourceAccessor().getMessage("probe.src.log.deploywar"), new Object[] { name, contextName});
+                logger.info(getMessageSourceAccessor().getMessage("probe.src.log.deploywar"), name, contextName);
                 if (discard) {
                   getContainerWrapper().getTomcatContainer().discardWorkDir(ctx);
-                  logger.info(getMessageSourceAccessor().getMessage("probe.src.log.discardwork"), new Object[] { name, contextName});
+                  logger.info(getMessageSourceAccessor().getMessage("probe.src.log.discardwork"), name, contextName);
                 }
                 if (compile) {
                   Summary summary = new Summary();

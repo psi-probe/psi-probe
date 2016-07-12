@@ -33,7 +33,7 @@ public class StartContextController extends NoSelfContextHandlerController {
     // Logging action
     Authentication auth = SecurityContextHolder.getContext().getAuthentication();
     String name = auth.getName(); // get username logger
-    logger.info(getMessageSourceAccessor().getMessage("probe.src.log.start"), new Object[] { name, contextName});
+    logger.info(getMessageSourceAccessor().getMessage("probe.src.log.start"), name, contextName);
   }
 
 }
