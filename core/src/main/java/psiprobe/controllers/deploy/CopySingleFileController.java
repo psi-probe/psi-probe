@@ -148,20 +148,14 @@ public class CopySingleFileController extends TomcatContainerController {
                   Authentication auth = SecurityContextHolder.getContext().getAuthentication();
                   String name = auth.getName(); // get username
                                                 // logger
-                  logger.info(getMessageSourceAccessor().getMessage("probe.src.log.username") + " "
-                      + name + " "
-                      + getMessageSourceAccessor().getMessage("probe.src.log.copyfile") + " "
-                      + contextName);
+                  logger.info(getMessageSourceAccessor().getMessage("probe.src.log.copyfile"), name, contextName);
                   Context context =
                       getContainerWrapper().getTomcatContainer().findContext(contextName);
                   // Checks if DISCARD "work" directory is
                   // selected
                   if (discard) {
                     getContainerWrapper().getTomcatContainer().discardWorkDir(context);
-                    logger.info(getMessageSourceAccessor().getMessage("probe.src.log.username")
-                        + " " + name + " "
-                        + getMessageSourceAccessor().getMessage("probe.src.log.discardwork") + " "
-                        + contextName);
+                    logger.info(getMessageSourceAccessor().getMessage("probe.src.log.discardwork"), name, contextName);
                   }
                   // Checks if RELOAD option is selected
                   if (reload) {
@@ -169,10 +163,7 @@ public class CopySingleFileController extends TomcatContainerController {
                     if (context != null) {
                       context.reload();
                       request.setAttribute("reloadContext", Boolean.TRUE);
-                      logger.info(getMessageSourceAccessor().getMessage("probe.src.log.username")
-                          + " " + name + " "
-                          + getMessageSourceAccessor().getMessage("probe.src.log.reload") + " "
-                          + contextName);
+                      logger.info(getMessageSourceAccessor().getMessage("probe.src.log.reload"), name, contextName);
                     }
                   }
                 } else {
