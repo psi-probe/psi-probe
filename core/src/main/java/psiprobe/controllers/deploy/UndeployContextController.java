@@ -14,6 +14,8 @@ package psiprobe.controllers.deploy;
 import org.apache.catalina.Context;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.InternalResourceView;
 import org.springframework.web.servlet.view.RedirectView;
@@ -65,6 +67,10 @@ public class UndeployContextController extends ContextHandlerController {
       }
 
       getContainerWrapper().getTomcatContainer().remove(contextName);
+      // Logging action
+      Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+      String name = auth.getName(); // get username logger
+      logger.info(getMessageSourceAccessor().getMessage("probe.src.log.undeploy"), name, contextName);
 
     } catch (Exception e) {
       request.setAttribute("errorMessage", e.getMessage());

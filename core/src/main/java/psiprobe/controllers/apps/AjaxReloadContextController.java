@@ -14,6 +14,8 @@ package psiprobe.controllers.apps;
 import org.apache.catalina.Context;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.servlet.ModelAndView;
 
 import psiprobe.controllers.ContextHandlerController;
@@ -40,6 +42,10 @@ public class AjaxReloadContextController extends ContextHandlerController {
       try {
         logger.info("{} requested RELOAD of {}", request.getRemoteAddr(), contextName);
         context.reload();
+        // Logging action
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName(); // get username logger
+        logger.info(getMessageSourceAccessor().getMessage("probe.src.log.reload"), name, contextName);
       } catch (Exception e) {
         logger.error("Error during ajax request to RELOAD of '{}'", contextName, e);
       }
