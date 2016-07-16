@@ -98,8 +98,8 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-		<spring.version>4.3.0.RELEASE</spring.version>
-		<spring-security.version>4.1.0.RELEASE</spring-security.version>
+		<spring.version>4.3.1.RELEASE</spring.version>
+		<spring-security.version>4.1.1.RELEASE</spring-security.version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -525,7 +525,7 @@
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>findbugs-maven-plugin</artifactId>
-					<version>3.0.3</version>
+					<version>3.0.4</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
