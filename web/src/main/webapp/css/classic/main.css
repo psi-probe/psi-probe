@@ -12,6 +12,7 @@
 BODY {
 	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 	line-height: 20px;
+	font-size: 75%;
 	color: #000000;
 	text-decoration: none;
 	background-color: #fff; /* this is an IE hack to enable :hover behavior */
