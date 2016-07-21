@@ -98,7 +98,8 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-		<spring.version>4.3.1.RELEASE</spring.version>
+		<!-- 4.3.x causes 405 post error due to what looks like invalid usage on our part -->
+		<spring.version>4.2.6.RELEASE</spring.version>
 		<spring-security.version>4.1.1.RELEASE</spring-security.version>
 	</properties>
 	<dependencyManagement>
