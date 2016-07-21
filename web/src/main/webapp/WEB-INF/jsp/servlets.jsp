@@ -76,7 +76,7 @@
 		<script type="text/javascript">
 			new Ajax.PeriodicalUpdater('servletListContainer',
 			'<c:url value="/servlets.ajax?${pageContext.request.queryString}"/>',
-			{frequency: 5});
+			{method:'get', frequency: 5});
 		</script>
 
 	</body>

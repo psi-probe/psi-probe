@@ -17,7 +17,7 @@
 
 <%--
 	Log file view. The view is a simple markup that gets updated via AJAX calls. Top menu does not go to the server but
-	rather does DOM tricks to modify content appearence.
+	rather does DOM tricks to modify content appearance.
 
 	Author: Vlad Ilyushchenko.
 --%>
@@ -230,9 +230,10 @@
 			}
 
 			var infoUpdater = new Ajax.PeriodicalUpdater('info', '<c:url value="/logs/ff_info.ajax"/>', {
+				method:'get',
 				parameters: {
 					logType: '${probe:escapeJS(log.logType)}',
-					webapp: '${webapp}',
+					webapp: '${param.webapp}',
 					context: '${log.context}',
 					root: '${log.root}',
 					logName: '${probe:escapeJS(log.name)}',
@@ -252,9 +253,10 @@
 
 			function followLog(currentLogSize) {
 				new Ajax.Updater(file_content_div, '<c:url value="/logs/follow.ajax"/>', {
+					method:'get',
 					parameters: {
 						logType: '${probe:escapeJS(log.logType)}',
-						webapp: '${webapp}',
+						webapp: '${param.webapp}',
 						context: '${log.context}',
 						root: '${log.root}',
 						logName: '${probe:escapeJS(log.name)}',
