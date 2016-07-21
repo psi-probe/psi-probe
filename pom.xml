@@ -454,6 +454,7 @@
 					<version>2.2.1</version>
 					<configuration>
 						<dotGitDirectory>${git.relative.path}.git</dotGitDirectory>
+						<failOnNoGitDirectory>false</failOnNoGitDirectory>
 						<gitDescribe>
 							<!-- See https://github.com/ktoso/maven-git-commit-id-plugin/issues/61#issuecomment-27995746 -->
 							<always>true</always>
