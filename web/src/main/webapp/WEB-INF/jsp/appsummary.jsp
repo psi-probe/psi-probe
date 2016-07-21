@@ -204,7 +204,7 @@
 										<img id="req_chart" border="0" src="${req_url}" width="${chartWidth}" height="${chartHeight}" alt="+"/>
 									</dd>
 									<dd id="dd-req">
-										<div class="ajax_activity"/>
+										<div class="ajax_activity"></div>
 									</dd>
 								</dl>
 							</div>
@@ -216,7 +216,7 @@
 										<img id="avg_proc_time_chart" border="0" src="${avg_proc_time_url}" width="${chartWidth}" height="${chartHeight}" alt="+"/>
 									</dd>
 									<dd id="dd-proc_time">
-										<div class="ajax_activity"/>
+										<div class="ajax_activity"></div>
 									</dd>
 								</dl>
 							</div>

@@ -54,7 +54,7 @@
 					</div>
 				</c:when>
 				<c:otherwise>
-					<table id="resultsTable" cellspacing="0" cellpadding="0">
+					<table id="resultsTable" style="padding:0;border-spacing:0;border-collapse:separate;">
 						<tr>
 							<td id="left_scroller" class="scroller">&nbsp;</td>
 							<td id="separator" width="1%">&nbsp;</td>
