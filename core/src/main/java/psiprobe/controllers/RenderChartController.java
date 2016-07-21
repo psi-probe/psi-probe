@@ -162,9 +162,11 @@ public class RenderChartController extends AbstractController {
 
       final XYLine3DRenderer renderer = new XYLine3DRenderer();
       renderer.setDrawOutlines(true);
-      renderer.setLinesVisible(true);
-      renderer.setShapesVisible(true);
-      renderer.setStroke(new BasicStroke(2));
+      for (int i = 0; i < seriesMaxCount; i++) {
+          renderer.setSeriesLinesVisible(i, true);
+          renderer.setSeriesShapesVisible(i, true);
+          renderer.setSeriesStroke(i, new BasicStroke(2));
+      }
       renderer.setXOffset(1);
       renderer.setYOffset(1);
       chart.getXYPlot().setRenderer(renderer);
