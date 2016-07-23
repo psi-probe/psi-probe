@@ -21,7 +21,7 @@
 	</scm>
 	<properties>
 		<git.relative.path>../</git.relative.path>
-		<tomcat.version>9.0.0.M4</tomcat.version>
+		<tomcat.version>9.0.0.M9</tomcat.version>
 	</properties>
 	<dependencies>
 		<dependency>
