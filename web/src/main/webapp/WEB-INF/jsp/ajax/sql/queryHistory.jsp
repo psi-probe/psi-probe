@@ -25,7 +25,7 @@
 			<c:forEach var="sql" items="${queryHistory}" varStatus="id">
 				<li>
 					<a href="<c:url value='/sql/queryHistoryItem.ajax?sqlId=${id.index}'/>" onClick="getQueryHistoryItem(this); return false;">
-						<div><spring:escapeBody htmlEscape="true" javaScriptEscape="false">${sql}</spring:escapeBody></div>
+						<span style="display: block"><spring:escapeBody htmlEscape="true" javaScriptEscape="false">${sql}</spring:escapeBody></span>
 					</a>
 				</li>
 			</c:forEach>
