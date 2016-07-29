@@ -2,16 +2,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <groupId>com.github.psi-probe</groupId>
     <artifactId>psi-probe</artifactId>
     <version>3.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
+
     <name>psi-probe</name>
-    <url>https://github.com/psi-probe/psi-probe/</url>
-    <inceptionYear>2009</inceptionYear>
     <description>
         Psi Probe - Advanced manager and monitor for Tomcat, forked from Lambda Probe
     </description>
+    <url>https://github.com/psi-probe/psi-probe/</url>
+    <inceptionYear>2009</inceptionYear>
     <licenses>
         <license>
             <name>GNU General Public License, version 2</name>
@@ -19,14 +21,7 @@
             <distribution>manual</distribution>
         </license>
     </licenses>
-    <issueManagement>
-        <system>GitHub Issues</system>
-        <url>https://github.com/psi-probe/psi-probe/issues/</url>
-    </issueManagement>
-    <ciManagement>
-        <system>Travis</system>
-        <url>https://travis-ci.org/psi-probe/psi-probe/</url>
-    </ciManagement>
+
     <mailingLists>
         <mailingList>
             <name>PSI Probe Announcements</name>
@@ -42,11 +37,7 @@
             <archive>http://groups.google.com/group/psi-probe-discuss/</archive>
         </mailingList>
     </mailingLists>
-    <scm>
-        <connection>scm:git:ssh://git@github.com/psi-probe/psi-probe.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com/psi-probe/psi-probe.git</developerConnection>
-        <url>https://github.com/psi-probe/psi-probe/</url>
-    </scm>
+
     <modules>
         <!-- Rename Folders in Phase 2 -->
         <module>core</module>
@@ -57,19 +48,20 @@
         <module>tomcat90adapter</module>
         <module>web</module>
     </modules>
-    <repositories>
-        <repository>
-            <!-- Required for ojdbc7 and ucp -->
-            <snapshots>
-                <enabled>false</enabled>
-                <updatePolicy>never</updatePolicy>
-            </snapshots>
-            <id>code.lds.org</id>
-            <name>code.lds.org</name>
-            <url>https://code.lds.org/nexus/content/repositories/main-repo/</url>
-            <layout>default</layout>
-        </repository>
-    </repositories>
+
+    <scm>
+        <connection>scm:git:ssh://git@github.com/psi-probe/psi-probe.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/psi-probe/psi-probe.git</developerConnection>
+        <url>https://github.com/psi-probe/psi-probe/</url>
+    </scm>
+    <issueManagement>
+        <system>GitHub Issues</system>
+        <url>https://github.com/psi-probe/psi-probe/issues/</url>
+    </issueManagement>
+    <ciManagement>
+        <system>Travis</system>
+        <url>https://travis-ci.org/psi-probe/psi-probe/</url>
+    </ciManagement>
     <distributionManagement>
         <site>
             <id>gh-pages</id>
@@ -85,6 +77,7 @@
             <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
     </distributionManagement>
+
     <properties>
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
@@ -101,6 +94,21 @@
         <spring.version>4.2.6.RELEASE</spring.version>
         <spring-security.version>4.1.1.RELEASE</spring-security.version>
     </properties>
+
+    <repositories>
+        <repository>
+            <!-- Required for ojdbc7 and ucp -->
+            <snapshots>
+                <enabled>false</enabled>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+            <id>code.lds.org</id>
+            <name>code.lds.org</name>
+            <url>https://code.lds.org/nexus/content/repositories/main-repo/</url>
+            <layout>default</layout>
+        </repository>
+    </repositories>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -397,6 +405,7 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
     <build>
         <defaultGoal>package</defaultGoal>
         <pluginManagement>
@@ -669,6 +678,7 @@
             </plugin>
         </plugins>
     </build>
+
     <reporting>
         <plugins>
             <plugin>
@@ -730,6 +740,7 @@
             </plugin>
         </plugins>
     </reporting>
+
     <profiles>
         <profile>
             <id>nvd-check</id>
@@ -778,6 +789,25 @@
                             <execution>
                                 <goals>
                                     <goal>format</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>sort</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>tidy-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>pom</goal>
                                 </goals>
                             </execution>
                         </executions>
