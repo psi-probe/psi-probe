@@ -143,7 +143,7 @@
 					}
 				}
 
-				new Ajax.PeriodicalUpdater('memoryPools', '<c:url value="/memory.ajax"/>?<%=request.getQueryString()%>', {frequency: 5});
+				new Ajax.PeriodicalUpdater('memoryPools', '<c:url value="/memory.ajax"/>?<%=request.getQueryString()%>', {method:'get', frequency: 5});
 
 			</script>
 		</c:otherwise>
