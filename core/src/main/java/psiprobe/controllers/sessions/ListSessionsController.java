@@ -54,7 +54,7 @@ public class ListSessionsController extends ContextHandlerController {
     SessionSearchInfo searchInfo = new SessionSearchInfo();
     searchInfo.setSearchAction(StringUtils.trimToNull(ServletRequestUtils.getStringParameter(
         request, "searchAction", SessionSearchInfo.ACTION_NONE)));
-    HttpSession sess = request.getSession();
+    HttpSession sess = request.getSession(false);
 
     if (searchInfo.isApply()) {
       searchInfo.setSessionId(StringUtils.trimToNull(ServletRequestUtils.getStringParameter(

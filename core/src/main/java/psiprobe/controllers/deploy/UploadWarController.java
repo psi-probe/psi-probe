@@ -159,7 +159,7 @@ public class UploadWarController extends TomcatContainerController {
                   Summary summary = new Summary();
                   summary.setName(ctx.getName());
                   getContainerWrapper().getTomcatContainer().listContextJsps(ctx, summary, true);
-                  request.getSession(true).setAttribute(DisplayJspController.SUMMARY_ATTRIBUTE,
+                  request.getSession(false).setAttribute(DisplayJspController.SUMMARY_ATTRIBUTE,
                       summary);
                   request.setAttribute("compileSuccess", Boolean.TRUE);
                 }

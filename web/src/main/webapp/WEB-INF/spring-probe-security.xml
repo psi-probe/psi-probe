@@ -86,4 +86,8 @@
 
 	<bean id="securityContextHolderAwareRequestFilter" class="org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter" />
 
+	<bean id="httpSessionRequestCache" class="org.springframework.security.web.savedrequest.HttpSessionRequestCache"> 
+		<property name="createSessionAllowed" value="false" /> 
+	</bean>
+
 </beans>
