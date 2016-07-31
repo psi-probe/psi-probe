@@ -42,6 +42,11 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
+            <artifactId>psi-probe-tomcat85</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
             <artifactId>psi-probe-tomcat9</artifactId>
             <version>${project.version}</version>
         </dependency>
