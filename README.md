@@ -8,8 +8,10 @@
 
 ![psi-probe](src/site/resources/images/psi-probe-banner.jpg)
 
-[site](https://psi-probe.github.io/psi-probe/)
-[sonarqube](https://sonarqube.com/dashboard/index?id=com.github.psi-probe:psi-probe)
+## Sites ##
+
+* [site](https://psi-probe.github.io/psi-probe/)
+* [sonarqube](https://sonarqube.com/dashboard/index?id=com.github.psi-probe:psi-probe)
 
 ## Contributing ##
 
