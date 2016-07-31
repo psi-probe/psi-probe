@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.AbstractController;
 
 import psiprobe.model.sql.DataSourceTestInfo;
 
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -53,7 +54,7 @@ public class QueryHistoryItemController extends AbstractController {
         if (queryHistory != null) {
           try {
             String sql = queryHistory.get(sqlId);
-            response.setCharacterEncoding("UTF-8");
+            response.setCharacterEncoding(StandardCharsets.UTF_8.name());
             response.getWriter().print(sql);
           } catch (IndexOutOfBoundsException e) {
             logger.error("Cannot find a query history entry for history item id = {}", sqlId);

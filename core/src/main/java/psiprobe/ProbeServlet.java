@@ -19,6 +19,8 @@ import org.springframework.web.servlet.DispatcherServlet;
 
 import psiprobe.beans.ContainerWrapperBean;
 
+import java.nio.charset.StandardCharsets;
+
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -82,7 +84,7 @@ public class ProbeServlet extends DispatcherServlet implements ContainerServlet 
   protected void doDispatch(HttpServletRequest httpServletRequest,
       HttpServletResponse httpServletResponse) throws Exception {
 
-    httpServletRequest.setCharacterEncoding("UTF-8");
+    httpServletRequest.setCharacterEncoding(StandardCharsets.UTF_8.name());
     super.doDispatch(httpServletRequest, httpServletResponse);
   }
 
