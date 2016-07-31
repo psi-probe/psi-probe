@@ -35,6 +35,7 @@ import psiprobe.model.jsp.Item;
 import psiprobe.model.jsp.Summary;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -323,13 +324,12 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
           Options opt = new EmbeddedServletOptions(servletConfig, sctx);
 
           JspRuntimeContext jrctx = new JspRuntimeContext(sctx, opt);
-          try {
-            /*
-             * we need to pass context classloader here, so the jsps can reference /WEB-INF/classes
-             * and /WEB-INF/lib. JspCompilationContext would only take URLClassLoader, so we fake it
-             */
-            URLClassLoader classLoader =
-                new URLClassLoader(new URL[0], context.getLoader().getClassLoader());
+          /*
+           * we need to pass context classloader here, so the jsps can reference /WEB-INF/classes
+           * and /WEB-INF/lib. JspCompilationContext would only take URLClassLoader, so we fake it
+           */
+          try (URLClassLoader classLoader =
+              new URLClassLoader(new URL[0], context.getLoader().getClassLoader())) {
             for (String name : names) {
               long time = System.currentTimeMillis();
               JspCompilationContext jcctx =
@@ -357,6 +357,8 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
                 ClassUtils.overrideThreadContextClassLoader(prevCl);
               }
             }
+          } catch (IOException e) {
+            this.logger.error("", e);
           } finally {
             jrctx.destroy();
           }
