@@ -23,10 +23,6 @@
         <url>https://github.com/psi-probe/psi-probe/</url>
     </scm>
 
-    <properties>
-        <git.relative.path>../</git.relative.path>
-    </properties>
-
     <dependencies>
         <!-- tomcat libs start -->
         <dependency>

@@ -24,7 +24,6 @@
     </scm>
 
     <properties>
-        <git.relative.path>../</git.relative.path>
         <tomcat.version>8.0.36</tomcat.version>
     </properties>
 

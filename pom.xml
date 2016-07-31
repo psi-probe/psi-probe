@@ -86,7 +86,7 @@
 
         <checkstyle.configLocation>google_checks.xml</checkstyle.configLocation>
         <copyright>2016</copyright>
-        <git.relative.path></git.relative.path>
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
@@ -461,12 +461,12 @@
                     <artifactId>git-commit-id-plugin</artifactId>
                     <version>2.2.1</version>
                     <configuration>
-                        <dotGitDirectory>${git.relative.path}.git</dotGitDirectory>
                         <failOnNoGitDirectory>false</failOnNoGitDirectory>
                         <gitDescribe>
                             <!-- See https://github.com/ktoso/maven-git-commit-id-plugin/issues/61#issuecomment-27995746 -->
                             <always>true</always>
                         </gitDescribe>
+                        <runOnlyOnce>true</runOnlyOnce>
                     </configuration>
                 </plugin>
                 <plugin>
