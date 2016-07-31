@@ -16,7 +16,8 @@ public class DecoratorControllerTest {
    */
   @Test
   public void javabeanTester() {
-    JavaBeanTester.builder(DecoratorController.class).skip("applicationContext", "supportedMethods").test();
+    JavaBeanTester.builder(DecoratorController.class)
+        .skip("applicationContext", "supportedMethods").test();
   }
 
 }

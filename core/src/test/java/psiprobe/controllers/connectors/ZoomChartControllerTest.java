@@ -16,7 +16,8 @@ public class ZoomChartControllerTest {
    */
   @Test
   public void javabeanTester() {
-    JavaBeanTester.builder(ZoomChartController.class).skip("applicationContext", "supportedMethods").test();
+    JavaBeanTester.builder(ZoomChartController.class)
+        .skip("applicationContext", "supportedMethods").test();
   }
 
 }

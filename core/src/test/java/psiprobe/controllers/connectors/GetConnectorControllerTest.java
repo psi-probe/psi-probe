@@ -16,7 +16,8 @@ public class GetConnectorControllerTest {
    */
   @Test
   public void javabeanTester() {
-    JavaBeanTester.builder(GetConnectorController.class).skip("applicationContext", "supportedMethods").test();
+    JavaBeanTester.builder(GetConnectorController.class)
+        .skip("applicationContext", "supportedMethods").test();
   }
 
 }

@@ -16,7 +16,8 @@ public class ViewXmlConfControllerTest {
    */
   @Test
   public void javabeanTester() {
-    JavaBeanTester.builder(ViewXmlConfController.class).skip("applicationContext", "supportedMethods").test();
+    JavaBeanTester.builder(ViewXmlConfController.class)
+        .skip("applicationContext", "supportedMethods").test();
   }
 
 }

@@ -14,7 +14,8 @@ public class NoSelfContextHandlerControllerTest {
    */
   @Test
   public void javabeanTester() {
-    JavaBeanTester.builder(NoSelfContextHandlerControllerImpl.class).skip("applicationContext", "supportedMethods").test();
+    JavaBeanTester.builder(NoSelfContextHandlerControllerImpl.class)
+        .skip("applicationContext", "supportedMethods").test();
   }
 
 }

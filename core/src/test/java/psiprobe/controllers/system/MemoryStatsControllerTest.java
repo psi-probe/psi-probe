@@ -16,7 +16,8 @@ public class MemoryStatsControllerTest {
    */
   @Test
   public void javabeanTester() {
-    JavaBeanTester.builder(MemoryStatsController.class).skip("applicationContext", "supportedMethods").test();
+    JavaBeanTester.builder(MemoryStatsController.class)
+        .skip("applicationContext", "supportedMethods").test();
   }
 
 }

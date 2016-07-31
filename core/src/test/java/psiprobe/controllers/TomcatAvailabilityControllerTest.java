@@ -16,7 +16,8 @@ public class TomcatAvailabilityControllerTest {
    */
   @Test
   public void javabeanTester() {
-    JavaBeanTester.builder(TomcatAvailabilityController.class).skip("applicationContext", "supportedMethods").test();
+    JavaBeanTester.builder(TomcatAvailabilityController.class)
+        .skip("applicationContext", "supportedMethods").test();
   }
 
 }

@@ -16,7 +16,8 @@ public class ResetConnectorStatsControllerTest {
    */
   @Test
   public void javabeanTester() {
-    JavaBeanTester.builder(ResetConnectorStatsController.class).skip("applicationContext", "supportedMethods").test();
+    JavaBeanTester.builder(ResetConnectorStatsController.class)
+        .skip("applicationContext", "supportedMethods").test();
   }
 
 }

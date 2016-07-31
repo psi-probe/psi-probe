@@ -16,7 +16,8 @@ public class ClusterStatsControllerTest {
    */
   @Test
   public void javabeanTester() {
-    JavaBeanTester.builder(ClusterStatsController.class).skip("applicationContext", "supportedMethods").test();
+    JavaBeanTester.builder(ClusterStatsController.class)
+        .skip("applicationContext", "supportedMethods").test();
   }
 
 }

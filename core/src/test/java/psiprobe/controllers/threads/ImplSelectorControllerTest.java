@@ -16,7 +16,8 @@ public class ImplSelectorControllerTest {
    */
   @Test
   public void javabeanTester() {
-    JavaBeanTester.builder(ImplSelectorController.class).skip("applicationContext", "supportedMethods").test();
+    JavaBeanTester.builder(ImplSelectorController.class)
+        .skip("applicationContext", "supportedMethods").test();
   }
 
 }
