@@ -16,7 +16,8 @@ public class ListThreadPoolsControllerTest {
    */
   @Test
   public void javabeanTester() {
-    JavaBeanTester.builder(ListThreadPoolsController.class).skip("applicationContext", "supportedMethods").test();
+    JavaBeanTester.builder(ListThreadPoolsController.class)
+        .skip("applicationContext", "supportedMethods").test();
   }
 
 }

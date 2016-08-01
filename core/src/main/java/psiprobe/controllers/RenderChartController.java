@@ -138,8 +138,7 @@ public class RenderChartController extends AbstractController {
       if (series instanceof SeriesProvider) {
         ((SeriesProvider) series).populate(ds, statsCollection, request);
       } else {
-        logger.error("SeriesProvider '{}' does not implement '{}'", provider,
-            SeriesProvider.class);
+        logger.error("SeriesProvider '{}' does not implement '{}'", provider, SeriesProvider.class);
       }
 
     }
@@ -163,9 +162,9 @@ public class RenderChartController extends AbstractController {
       final XYLine3DRenderer renderer = new XYLine3DRenderer();
       renderer.setDrawOutlines(true);
       for (int i = 0; i < seriesMaxCount; i++) {
-          renderer.setSeriesLinesVisible(i, true);
-          renderer.setSeriesShapesVisible(i, true);
-          renderer.setSeriesStroke(i, new BasicStroke(2));
+        renderer.setSeriesLinesVisible(i, true);
+        renderer.setSeriesShapesVisible(i, true);
+        renderer.setSeriesStroke(i, new BasicStroke(2));
       }
       renderer.setXOffset(1);
       renderer.setYOffset(1);

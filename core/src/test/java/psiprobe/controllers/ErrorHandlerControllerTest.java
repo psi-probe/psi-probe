@@ -16,7 +16,8 @@ public class ErrorHandlerControllerTest {
    */
   @Test
   public void javabeanTester() {
-    JavaBeanTester.builder(ErrorHandlerController.class).skip("applicationContext", "supportedMethods").test();
+    JavaBeanTester.builder(ErrorHandlerController.class)
+        .skip("applicationContext", "supportedMethods").test();
   }
 
 }

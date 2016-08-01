@@ -16,7 +16,8 @@ public class ResetAppStatsControllerTest {
    */
   @Test
   public void javabeanTester() {
-    JavaBeanTester.builder(ResetAppStatsController.class).skip("applicationContext", "supportedMethods").test();
+    JavaBeanTester.builder(ResetAppStatsController.class)
+        .skip("applicationContext", "supportedMethods").test();
   }
 
 }

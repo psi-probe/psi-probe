@@ -16,7 +16,8 @@ public class GetApplicationControllerTest {
    */
   @Test
   public void javabeanTester() {
-    JavaBeanTester.builder(GetApplicationController.class).skip("applicationContext", "supportedMethods").test();
+    JavaBeanTester.builder(GetApplicationController.class)
+        .skip("applicationContext", "supportedMethods").test();
   }
 
 }

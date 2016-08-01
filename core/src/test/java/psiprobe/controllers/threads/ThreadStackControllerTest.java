@@ -16,7 +16,8 @@ public class ThreadStackControllerTest {
    */
   @Test
   public void javabeanTester() {
-    JavaBeanTester.builder(ThreadStackController.class).skip("applicationContext", "supportedMethods").test();
+    JavaBeanTester.builder(ThreadStackController.class)
+        .skip("applicationContext", "supportedMethods").test();
   }
 
 }

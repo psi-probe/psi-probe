@@ -15,13 +15,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * The listener interface for receiving abstractStatsCollection events.
- * The class that is interested in processing a abstractStatsCollection
- * event implements this interface, and the object created
- * with that class is registered with a component using the
- * component's {@code addAbstractStatsCollectionListener} method. When
- * the abstractStatsCollection event occurs, that object's appropriate
- * method is invoked.
+ * The listener interface for receiving abstractStatsCollection events. The class that is interested
+ * in processing a abstractStatsCollection event implements this interface, and the object created
+ * with that class is registered with a component using the component's
+ * {@code addAbstractStatsCollectionListener} method. When the abstractStatsCollection event occurs,
+ * that object's appropriate method is invoked.
  *
  * @author Mark Lewis
  */

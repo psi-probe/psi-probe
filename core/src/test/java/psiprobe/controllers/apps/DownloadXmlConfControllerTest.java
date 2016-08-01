@@ -16,7 +16,8 @@ public class DownloadXmlConfControllerTest {
    */
   @Test
   public void javabeanTester() {
-    JavaBeanTester.builder(DownloadXmlConfController.class).skip("applicationContext", "supportedMethods").test();
+    JavaBeanTester.builder(DownloadXmlConfController.class)
+        .skip("applicationContext", "supportedMethods").test();
   }
 
 }

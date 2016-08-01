@@ -17,13 +17,10 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 /**
- * The listener interface for receiving flap events.
- * The class that is interested in processing a flap
- * event implements this interface, and the object created
- * with that class is registered with a component using the
- * component's {@code addFlapListener} method. When
- * the flap event occurs, that object's appropriate
- * method is invoked.
+ * The listener interface for receiving flap events. The class that is interested in processing a
+ * flap event implements this interface, and the object created with that class is registered with a
+ * component using the component's {@code addFlapListener} method. When the flap event occurs, that
+ * object's appropriate method is invoked.
  *
  * @author Mark Lewis
  * @see <a href="http://nagios.sourceforge.net/docs/3_0/flapping.html">Detection and Handling of

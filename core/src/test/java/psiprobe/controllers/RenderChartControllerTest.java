@@ -16,7 +16,8 @@ public class RenderChartControllerTest {
    */
   @Test
   public void javabeanTester() {
-    JavaBeanTester.builder(RenderChartController.class).skip("applicationContext", "supportedMethods").test();
+    JavaBeanTester.builder(RenderChartController.class)
+        .skip("applicationContext", "supportedMethods").test();
   }
 
 }
