@@ -56,7 +56,9 @@ public class TrustStoreController extends TomcatContainerController {
       String trustStore = System.getProperty("javax.net.ssl.trustStore");
       String trustStorePassword = System.getProperty("javax.net.ssl.trustStorePassword");
       if (trustStore != null) {
-        ks.load(new FileInputStream(trustStore), trustStorePassword != null ? trustStorePassword.toCharArray() : null);
+        try (FileInputStream fis = new FileInputStream(trustStore)) {
+          ks.load(fis, trustStorePassword != null ? trustStorePassword.toCharArray() : null);
+        }
         Enumeration<String> aliases = ks.aliases();
         Map<String, String> attributes;
         while (aliases.hasMoreElements()) {
