@@ -454,7 +454,7 @@
                 <plugin>
                     <groupId>org.owasp</groupId>
                     <artifactId>dependency-check-maven</artifactId>
-                    <version>1.4.0</version>
+                    <version>1.4.1</version>
                 </plugin>
                 <plugin>
                     <groupId>pl.project13.maven</groupId>
