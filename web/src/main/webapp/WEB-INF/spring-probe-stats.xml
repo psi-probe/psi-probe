@@ -490,5 +490,13 @@
 				<ref bean="statsSerializerTrigger"/>
 			</list>
 		</property>
+		<property name="quartzProperties">
+			<map>
+				<entry key="org.quartz.scheduler.instanceName" value="ProbeScheduler" />
+				<entry key="org.quartz.scheduler.skipUpdateCheck" value="true" />
+				<entry key="org.quartz.threadPool.threadCount" value="5" />
+				<entry key="org.quartz.threadPool.threadNamePrefix" value="Probe_Quartz" />
+			</map>
+		</property>
 	</bean>
 </beans>
