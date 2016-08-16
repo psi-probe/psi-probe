@@ -38,7 +38,7 @@ public class DisplayJspController extends ContextHandlerController {
       HttpServletRequest request, HttpServletResponse response) throws Exception {
     boolean compile = ServletRequestUtils.getBooleanParameter(request, "compile", false);
 
-    HttpSession session = request.getSession(true);
+    HttpSession session = request.getSession(false);
     Summary summary = (Summary) session.getAttribute(SUMMARY_ATTRIBUTE);
     if (summary == null || !contextName.equals(summary.getName())) {
       summary = new Summary();
