@@ -48,11 +48,11 @@ public class DeployController extends TomcatContainerController {
           + getServletContext().getServerInfo(), ex);
     }
 
-    List applications = new ArrayList();
+    List<Map<String, String>> applications = new ArrayList<>();
     for (Context appContext : apps) {
       // check if this is not the ROOT webapp
       if (appContext.getName() != null && appContext.getName().trim().length() > 0) {
-        Map<String, String> app = new HashMap<String, String>();
+        Map<String, String> app = new HashMap<>();
         app.put("value", appContext.getName());
         app.put("label", appContext.getName());
         applications.add(app);
