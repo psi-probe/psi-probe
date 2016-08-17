@@ -16,6 +16,7 @@ import org.apache.commons.beanutils.MethodUtils;
 import psiprobe.tools.logging.DefaultAccessor;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Enumeration;
 import java.util.List;
 
@@ -38,11 +39,9 @@ public class Log4JLoggerAccessor extends DefaultAccessor {
   public List<Log4JAppenderAccessor> getAppenders() {
     List<Log4JAppenderAccessor> appenders = new ArrayList<>();
     try {
-      Enumeration allAppenders = (Enumeration) MethodUtils
-          .invokeMethod(getTarget(), "getAllAppenders", null);
-      
-      while (allAppenders.hasMoreElements()) {
-        Log4JAppenderAccessor appender = wrapAppender(allAppenders.nextElement());
+      for (Object unwrappedAppender : Collections.list((Enumeration<Object>) MethodUtils
+              .invokeMethod(getTarget(), "getAllAppenders", null))) {
+        Log4JAppenderAccessor appender = wrapAppender(unwrappedAppender);
         if (appender != null) {
           appenders.add(appender);
         }

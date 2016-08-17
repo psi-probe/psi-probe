@@ -12,10 +12,13 @@
 package psiprobe.tools.logging.slf4jlogback;
 
 import org.apache.commons.beanutils.MethodUtils;
+import org.apache.commons.collections.IteratorUtils;
 
 import psiprobe.tools.logging.DefaultAccessor;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -35,10 +38,8 @@ public class TomcatSlf4jLogbackLoggerAccessor extends DefaultAccessor {
     List<TomcatSlf4jLogbackAppenderAccessor> appenders = new ArrayList<>();
 
     try {
-      Iterator<Object> it =
-          (Iterator<Object>) MethodUtils.invokeMethod(getTarget(), "iteratorForAppenders", null);
-      while (it.hasNext()) {
-        Object appender = it.next();
+      for (Object appender : Collections.list(IteratorUtils.asEnumeration((Iterator<Object>) MethodUtils
+              .invokeMethod(getTarget(), "iteratorForAppenders", null)))) {
         List<Object> siftedAppenders = getSiftedAppenders(appender);
         if (siftedAppenders != null) {
           for (Object siftedAppender : siftedAppenders) {

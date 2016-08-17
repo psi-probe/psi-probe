@@ -23,7 +23,7 @@ import java.security.KeyStore;
 import java.security.cert.X509Certificate;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Enumeration;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -59,11 +59,9 @@ public class TrustStoreController extends TomcatContainerController {
         try (FileInputStream fis = new FileInputStream(trustStore)) {
           ks.load(fis, trustStorePassword != null ? trustStorePassword.toCharArray() : null);
         }
-        Enumeration<String> aliases = ks.aliases();
         Map<String, String> attributes;
-        while (aliases.hasMoreElements()) {
+        for (String alias : Collections.list(ks.aliases())) {
           attributes = new HashMap<>();
-          String alias = aliases.nextElement();
           if (ks.getCertificate(alias).getType().equals("X.509")) {
             X509Certificate cert = (X509Certificate) ks.getCertificate(alias);
 

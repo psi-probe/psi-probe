@@ -16,7 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.ServletRequestUtils;
 
 import java.io.IOException;
-import java.util.Enumeration;
+import java.util.Collections;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
@@ -45,8 +45,7 @@ public class AddQueryParamTag extends TagSupport {
   public int doStartTag() throws JspException {
     StringBuilder query = new StringBuilder();
     query.append(param).append("=").append(value);
-    for (Enumeration<String> en = pageContext.getRequest().getParameterNames(); en.hasMoreElements();) {
-      String name = en.nextElement();
+    for (String name : Collections.list(pageContext.getRequest().getParameterNames())) {
       if (!param.equals(name)) {
         query.append("&").append(name).append("=")
             .append(ServletRequestUtils.getStringParameter(pageContext.getRequest(), name, ""));

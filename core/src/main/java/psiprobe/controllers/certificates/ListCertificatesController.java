@@ -23,7 +23,7 @@ import java.security.KeyStore;
 import java.security.cert.Certificate;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
-import java.util.Enumeration;
+import java.util.Collections;
 import java.util.List;
 
 import javax.management.ObjectName;
@@ -107,9 +107,7 @@ public class ListCertificatesController extends TomcatContainerController {
 
     List<Cert> certs = new ArrayList<>();
 
-    Enumeration<String> keystoreAliases = keyStore.aliases();
-    while (keystoreAliases.hasMoreElements()) {
-      String alias = keystoreAliases.nextElement();
+    for (String alias : Collections.list(keyStore.aliases())) {
 
       Certificate[] certificateChains = keyStore.getCertificateChain(alias);
 
