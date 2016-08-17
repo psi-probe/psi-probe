@@ -38,8 +38,8 @@ import java.io.Serializable;
 import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
-import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -106,12 +106,7 @@ public class ApplicationUtils {
     if (resourceResolver != null) {
       logger.debug("counting servlet attributes");
 
-      int ctxAttrCount = 0;
-      for (Enumeration<String> e = context.getServletContext().getAttributeNames(); e.hasMoreElements(); e
-          .nextElement()) {
-        ctxAttrCount++;
-      }
-      app.setContextAttributeCount(ctxAttrCount);
+      app.setContextAttributeCount(Collections.list(context.getServletContext().getAttributeNames()).size());
 
       if (app.isAvailable()) {
         logger.debug("collecting session information");
@@ -249,8 +244,7 @@ public class ApplicationUtils {
       // Exclude references back to the session itself
       processedObjects.add(httpSession);
       try {
-        for (Enumeration<String> e = httpSession.getAttributeNames(); e.hasMoreElements();) {
-          String name = e.nextElement();
+        for (String name : Collections.list(httpSession.getAttributeNames())) {
           Object obj = httpSession.getAttribute(name);
           sessionSerializable = sessionSerializable && obj instanceof Serializable;
 
@@ -312,8 +306,7 @@ public class ApplicationUtils {
   public static List<Attribute> getApplicationAttributes(Context context) {
     List<Attribute> attrs = new ArrayList<>();
     ServletContext servletCtx = context.getServletContext();
-    for (Enumeration<String> e = servletCtx.getAttributeNames(); e.hasMoreElements();) {
-      String attrName = e.nextElement();
+    for (String attrName : Collections.list(servletCtx.getAttributeNames())) {
       Object attrValue = servletCtx.getAttribute(attrName);
 
       Attribute attr = new Attribute();

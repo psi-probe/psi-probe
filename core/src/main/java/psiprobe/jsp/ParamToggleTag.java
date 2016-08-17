@@ -18,7 +18,7 @@ import org.springframework.web.bind.ServletRequestUtils;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.Enumeration;
+import java.util.Collections;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
@@ -47,8 +47,7 @@ public class ParamToggleTag extends TagSupport {
     StringBuilder query = new StringBuilder();
     query.append(param).append("=").append(!getSize);
     String encoding = pageContext.getResponse().getCharacterEncoding();
-    for (Enumeration<String> en = pageContext.getRequest().getParameterNames(); en.hasMoreElements();) {
-      String name = en.nextElement();
+    for (String name : Collections.list(pageContext.getRequest().getParameterNames())) {
       if (!param.equals(name)) {
         try {
           String value = ServletRequestUtils.getStringParameter(pageContext.getRequest(), name, "");

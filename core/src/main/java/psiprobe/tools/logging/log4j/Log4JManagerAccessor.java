@@ -17,6 +17,7 @@ import psiprobe.tools.logging.DefaultAccessor;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Enumeration;
 import java.util.List;
 
@@ -108,11 +109,10 @@ public class Log4JManagerAccessor extends DefaultAccessor {
       Class clazz = (Class) getTarget();
       Method getCurrentLoggers = MethodUtils
           .getAccessibleMethod(clazz, "getCurrentLoggers", new Class[0]);
-      
-      Enumeration currentLoggers = (Enumeration) getCurrentLoggers.invoke(null);
-      while (currentLoggers.hasMoreElements()) {
+
+      for (Object currentLogger : Collections.list((Enumeration<Object>) getCurrentLoggers.invoke(null))) {
         Log4JLoggerAccessor accessor = new Log4JLoggerAccessor();
-        accessor.setTarget(currentLoggers.nextElement());
+        accessor.setTarget(currentLogger);
         accessor.setApplication(getApplication());
 
         appenders.addAll(accessor.getAppenders());

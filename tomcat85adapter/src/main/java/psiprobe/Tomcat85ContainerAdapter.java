@@ -33,7 +33,7 @@ import psiprobe.model.FilterMapping;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Enumeration;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -239,7 +239,7 @@ public class Tomcat85ContainerAdapter extends AbstractTomcatContainer {
      */
     /*
      * creating a set of parameter names that are declared in a context descriptor and can not be
-     * ovevridden in a deployment descriptor.
+     * overridden in a deployment descriptor.
      */
     Set<String> nonOverridableParams = new HashSet<>();
     for (ApplicationParameter appParam : context.findApplicationParameters()) {
@@ -249,8 +249,7 @@ public class Tomcat85ContainerAdapter extends AbstractTomcatContainer {
     }
     List<ApplicationParam> initParams = new ArrayList<>();
     ServletContext servletCtx = context.getServletContext();
-    for (Enumeration<String> e = servletCtx.getInitParameterNames(); e.hasMoreElements();) {
-      String paramName = e.nextElement();
+    for (String paramName : Collections.list(servletCtx.getInitParameterNames())) {
       ApplicationParam param = new ApplicationParam();
       param.setName(paramName);
       param.setValue(servletCtx.getInitParameter(paramName));

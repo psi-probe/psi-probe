@@ -19,6 +19,7 @@ import psiprobe.tools.logging.LogDestination;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Enumeration;
 import java.util.List;
 
@@ -91,11 +92,8 @@ public class Jdk14ManagerAccessor extends DefaultAccessor {
   public List<LogDestination> getHandlers() {
     List<LogDestination> allHandlers = new ArrayList<>();
     try {
-      Enumeration names = (Enumeration) MethodUtils
-          .invokeMethod(getTarget(), "getLoggerNames", null);
-      
-      while (names.hasMoreElements()) {
-        String name = (String) names.nextElement();
+      for (String name : Collections.list((Enumeration<String>) MethodUtils
+              .invokeMethod(getTarget(), "getLoggerNames", null))) {
         Jdk14LoggerAccessor accessor = getLogger(name);
         if (accessor != null) {
           allHandlers.addAll(accessor.getHandlers());

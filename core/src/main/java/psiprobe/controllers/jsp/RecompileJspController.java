@@ -22,7 +22,7 @@ import psiprobe.controllers.ContextHandlerController;
 import psiprobe.model.jsp.Summary;
 
 import java.util.ArrayList;
-import java.util.Enumeration;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -48,8 +48,7 @@ public class RecompileJspController extends ContextHandlerController {
 
     if (request.getMethod().equalsIgnoreCase("post") && summary != null) {
       List<String> names = new ArrayList<>();
-      for (Enumeration<String> e = request.getParameterNames(); e.hasMoreElements();) {
-        String name = e.nextElement();
+      for (String name : Collections.list(request.getParameterNames())) {
         if ("on".equals(request.getParameter(name))) {
           names.add(name);
         }
