@@ -55,7 +55,7 @@
 		<div id="navcontainer">
 			<ul id="tabnav">
 				<li>
-					<a class="${navTabApps}" href="<c:url value='/index.htm?size=${param.size}'/>">
+					<a class="${navTabApps}" href="<c:url value='/index.htm'><c:param name='size'><c:out value='${param.size}' /></c:param></c:url>">
 						<spring:message code="probe.jsp.menu.applications"/>
 					</a>
 				</li>
