@@ -30,7 +30,7 @@
 	<listener>
 		<listener-class>psiprobe.AwtAppContextClassloaderListener</listener-class>
 	</listener>
-	
+
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
@@ -124,9 +124,15 @@
 		<location>/404.htm</location>
 	</error-page>
 
+	<!-- 500 error -->
+	<error-page>
+		<error-code>500</error-code>
+		<location>/WEB-INF/jsp/errors/servleterror.jsp</location>
+	</error-page>
+
 	<!--exception page -->
 	<error-page>
-		<exception-type>java.lang.Exception</exception-type>
+		<exception-type>java.lang.Throwable</exception-type>
 		<!-- Displays a stack trace -->
 		<location>/WEB-INF/jsp/errors/servleterror.jsp</location>
 	</error-page>
@@ -150,6 +156,9 @@
 			<role-name>manager-gui</role-name>
 			<role-name>poweruserplus</role-name>
 		</auth-constraint>
+		<user-data-constraint>
+			<transport-guarantee>NONE</transport-guarantee>
+		</user-data-constraint>
 	</security-constraint>
 
 	<!-- Defines the Login Configuration for this Application -->
