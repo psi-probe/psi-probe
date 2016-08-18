@@ -60,7 +60,7 @@ public class CopySingleFileController extends TomcatContainerController {
           + getServletContext().getServerInfo(), ex);
     }
 
-    List applications = new ArrayList();
+    List<Map<String, String>> applications = new ArrayList<>();
     for (Context appContext : apps) {
       // check if this is not the ROOT webapp
       if (appContext.getName() != null && appContext.getName().trim().length() > 0) {
