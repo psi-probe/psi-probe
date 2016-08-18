@@ -10,6 +10,7 @@
  */
 package psiprobe.jsp;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.ServletRequestUtils;
@@ -43,8 +44,8 @@ public class AddQueryParamTag extends TagSupport {
     query.append(param).append("=").append(value);
     for (String name : Collections.list(pageContext.getRequest().getParameterNames())) {
       if (!param.equals(name)) {
-        query.append("&").append(name).append("=")
-            .append(ServletRequestUtils.getStringParameter(pageContext.getRequest(), name, ""));
+        query.append("&").append(StringEscapeUtils.escapeHtml4(name)).append("=")
+            .append(StringEscapeUtils.escapeHtml4(ServletRequestUtils.getStringParameter(pageContext.getRequest(), name, "")));
       }
     }
     try {
