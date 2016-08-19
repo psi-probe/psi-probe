@@ -22,7 +22,6 @@ import org.apache.catalina.connector.Connector;
 import org.apache.catalina.core.StandardContext;
 import org.apache.commons.modeler.Registry;
 import org.apache.jasper.EmbeddedServletOptions;
-import org.apache.jasper.JasperException;
 import org.apache.jasper.JspCompilationContext;
 import org.apache.jasper.Options;
 import org.apache.jasper.compiler.JspRuntimeContext;
@@ -494,7 +493,8 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
         try {
           isJsp = name.endsWith(".jsp") || name.endsWith(".jspx")
               || opt.getJspConfig().isJspPage(name);
-        } catch (JasperException e) {
+        } catch (Exception e) {
+          // XXX Tomcat 7.0.x throws JasperException otherwise this could be removed.
           logger.info("isJspPage() thrown an error for '{}'", name, e);
         }
 
