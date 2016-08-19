@@ -58,7 +58,7 @@
 			<tbody>
 				<tr>
 					<td class="leftMost">
-						<a href="<c:url value='/sessions.htm'><c:param name='webapp' value='${app.name}' /><c:param name='size' value='${param.size}' /></c:url>">${app.sessionCount}</a>
+						<a href="<c:url value='/sessions.htm'><c:param name='webapp' value='${app.name}' /><c:param name='size'><c:out value='${param.size}' /></c:param></c:url>">${app.sessionCount}</a>
 					</td>
 					<td>
 						<c:choose>

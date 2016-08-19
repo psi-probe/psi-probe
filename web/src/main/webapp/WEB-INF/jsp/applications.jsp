@@ -143,7 +143,7 @@
 			</display:column>
 
 			<display:column sortable="true" sortProperty="name" titleKey="probe.jsp.applications.col.name">
-				<a href="<c:url value='/appsummary.htm'><c:param name='webapp' value='${app.name}'/><c:param name='size' value='${param.size}'/></c:url>">
+				<a href="<c:url value='/appsummary.htm'><c:param name='webapp' value='${app.name}'/><c:param name='size'><c:out value='${param.size}'/></c:param></c:url>">
 					${app.name}
 				</a>
 			</display:column>
@@ -195,7 +195,7 @@
 
 			<display:column sortable="true" sortProperty="sessionCount"
 					titleKey="probe.jsp.applications.col.sessionCount">
-				<a href="<c:url value='/sessions.htm'><c:param name='webapp' value='${app.name}'/><c:param name='size' value='${param.size}'/></c:url>">
+				<a href="<c:url value='/sessions.htm'><c:param name='webapp' value='${app.name}'/><c:param name='size'><c:out value='${param.size}'/></c:param></c:url>">
 					${app.sessionCount}
 				</a>
 			</display:column>

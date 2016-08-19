@@ -39,7 +39,7 @@
 	<body>
 		<ul class="options">
 			<li id="back">
-				<a href="<c:url value='/sessions.htm'><c:param name='webapp' value='${param.webapp}'/><c:param name='size' value='${param.size}'/></c:url>">
+				<a href="<c:url value='/sessions.htm'><c:param name='webapp' value='${param.webapp}'/><c:param name='size'><c:out value='${param.size}'/></c:param></c:url>">
 					<spring:message code="probe.jsp.sessionAttibutes.menu.back"/>
 				</a>
 			</li>

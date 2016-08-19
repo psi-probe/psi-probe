@@ -66,19 +66,12 @@
 					<div class="errorMessage">
 						<p>
 							Application encountered an unexpected error.
-							We will greatly appreciate it if you share the information below
-							with us.  Sharing this information through our <a href="http://code.google.com/p/psi-probe/issues/list?can=1">issue tracker</a>
+							Please check the Tomcat logs.
+							We will greatly appreciate it if you share the information
+							with us.  Sharing this information through our <a href="https://github.com/psi-probe/psi-probe/issues">issue tracker</a>
 							or our <a href="http://groups.google.com/group/psi-probe-discuss">discussion board</a>
 							will help us find and correct this problem as soon as possible!
 						</p>
-					</div>
-
-					<div class="errorMessageDetails"><%
-						ByteArrayOutputStream bos = new ByteArrayOutputStream();
-						PrintStream ps = new PrintStream(bos);
-						error.printStackTrace(ps);
-						out.print(bos.toString());
-						%>
 					</div>
 					<%
 				}

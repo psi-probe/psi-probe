@@ -20,12 +20,12 @@
 	</div>
 	<ul>
 		<li>
-			<a class="${appTabSummary}" href="<c:url value='/appsummary.htm'><c:param name='webapp' value='${param.webapp}' /><c:param name='size' value='${param.size}' /></c:url>">
+			<a class="${appTabSummary}" href="<c:url value='/appsummary.htm'><c:param name='webapp' value='${param.webapp}' /><c:param name='size'><c:out  value='${param.size}' /></c:param></c:url>">
 				<spring:message code="probe.jsp.app.nav.summary"/>
 			</a>
 		</li>
 		<li>
-			<a class="${appTabSessions}" href="<c:url value='/sessions.htm'><c:param name='webapp' value='${param.webapp}' /><c:param name='size' value='${param.size}' /></c:url>">
+			<a class="${appTabSessions}" href="<c:url value='/sessions.htm'><c:param name='webapp' value='${param.webapp}' /><c:param name='size'><c:out  value='${param.size}' /></c:param></c:url>">
 				<spring:message code="probe.jsp.app.nav.sessions"/>
 			</a>
 		</li>

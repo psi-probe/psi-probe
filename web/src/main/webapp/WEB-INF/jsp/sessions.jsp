@@ -216,7 +216,7 @@
 							</c:if>
 
 							<display:column titleKey="probe.jsp.sessions.col.id">
-								<a href="<c:url value='/attributes.htm'><c:param name='webapp' value='${session.applicationName}' /><c:param name='sid' value='${session.id}' /><c:param name='size' value='${param.size}' /></c:url>">
+								<a href="<c:url value='/attributes.htm'><c:param name='webapp' value='${session.applicationName}' /><c:param name='sid' value='${session.id}' /><c:param name='size'><c:out value='${param.size}' /></c:param></c:url>">
 									${session.id}
 								</a>
 							</display:column>
@@ -314,7 +314,9 @@
 
 		<c:url value="/sessions.htm" var="urlApply">
 			<c:param name="searchAction" value="apply"/>
-			<c:param name="size" value="${param.size}"/>
+			<c:param name="size">
+				<c:out value="${param.size}"/>
+			</c:param>
 			<c:if test="${not empty param.webapp}">
 				<c:param name="webapp" value="${param.webapp}"/>
 			</c:if>
@@ -322,7 +324,9 @@
 
 		<c:url value="/sessions.htm" var="urlClear">
 			<c:param name="searchAction" value="clear"/>
-			<c:param name="size" value="${param.size}"/>
+			<c:param name="size">
+				<c:out value="${param.size}"/>
+			</c:param>
 			<c:if test="${not empty param.webapp}">
 				<c:param name="webapp" value="${param.webapp}"/>
 			</c:if>
