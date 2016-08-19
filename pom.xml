@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.github.psi-probe</groupId>
@@ -91,7 +90,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <spring.version>4.3.2.RELEASE</spring.version>
-        <spring-security.version>4.1.1.RELEASE</spring-security.version>
+        <spring-security.version>4.1.2.RELEASE</spring-security.version>
     </properties>
 
     <repositories>
@@ -113,7 +112,7 @@
             <dependency>
                 <groupId>org.jmockit</groupId>
                 <artifactId>jmockit</artifactId>
-                <version>1.25</version>
+                <version>1.26</version>
             </dependency>
             <dependency>
                 <groupId>junit</groupId>
@@ -143,7 +142,7 @@
             <dependency>
                 <groupId>com.sun.mail</groupId>
                 <artifactId>javax.mail</artifactId>
-                <version>1.5.5</version>
+                <version>1.5.6</version>
                 <exclusions>
                     <exclusion>
                         <groupId>javax.activation</groupId>
@@ -157,12 +156,12 @@
                 <version>1.2.4</version>
                 <exclusions>
                     <exclusion>
-                        <artifactId>jsp-api</artifactId>
                         <groupId>javax.servlet.jsp</groupId>
+                        <artifactId>jsp-api</artifactId>
                     </exclusion>
                     <exclusion>
-                        <artifactId>jstl-api</artifactId>
                         <groupId>javax.servlet.jsp.jstl</groupId>
+                        <artifactId>jstl-api</artifactId>
                     </exclusion>
                 </exclusions>
             </dependency>
@@ -213,8 +212,8 @@
                 <version>1.9.2</version>
                 <exclusions>
                     <exclusion>
-                        <artifactId>commons-logging</artifactId>
                         <groupId>commons-logging</groupId>
+                        <artifactId>commons-logging</artifactId>
                     </exclusion>
                 </exclusions>
             </dependency>
@@ -274,8 +273,8 @@
                 <version>${spring.version}</version>
                 <exclusions>
                     <exclusion>
-                        <artifactId>commons-logging</artifactId>
                         <groupId>commons-logging</groupId>
+                        <artifactId>commons-logging</artifactId>
                     </exclusion>
                 </exclusions>
             </dependency>
@@ -454,7 +453,7 @@
                 <plugin>
                     <groupId>org.owasp</groupId>
                     <artifactId>dependency-check-maven</artifactId>
-                    <version>1.4.1</version>
+                    <version>1.4.2</version>
                 </plugin>
                 <plugin>
                     <groupId>pl.project13.maven</groupId>
@@ -825,6 +824,7 @@
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>tidy-maven-plugin</artifactId>
+                        <version>1.0.0</version>
                         <executions>
                             <execution>
                                 <phase>verify</phase>
