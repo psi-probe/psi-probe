@@ -164,14 +164,6 @@ public class ResourceResolverBean implements ResourceResolver {
       resource.setLookedUp(false);
     }
 
-    /*
-     * Tomcat 5.0.x DBCP datasources would have URL set to null if they incorrectly configured so we
-     * need to deal with this little feature
-     */
-    if (dataSourceInfo != null && dataSourceInfo.getJdbcUrl() == null) {
-      resource.setLookedUp(false);
-    }
-
     if (resource.isLookedUp() && dataSourceInfo != null) {
       resource.setDataSourceInfo(dataSourceInfo);
     }
