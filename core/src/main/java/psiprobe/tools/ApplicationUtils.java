@@ -18,7 +18,6 @@ import org.apache.catalina.Context;
 import org.apache.catalina.Session;
 import org.apache.catalina.Wrapper;
 import org.apache.catalina.core.StandardWrapper;
-import org.apache.catalina.deploy.FilterDef;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.ClassUtils;
@@ -425,35 +424,6 @@ public class ApplicationUtils {
       }
     }
     return servletMaps;
-  }
-
-  /**
-   * Gets the application filter.
-   *
-   * @param context the context
-   * @param filterName the filter name
-   * @return the application filter
-   */
-  public static FilterInfo getApplicationFilter(Context context, String filterName) {
-    FilterDef fd = context.findFilterDef(filterName);
-    if (fd != null) {
-      return getFilterInfo(fd);
-    }
-    return null;
-  }
-
-  /**
-   * Gets the filter info.
-   *
-   * @param fd the fd
-   * @return the filter info
-   */
-  private static FilterInfo getFilterInfo(FilterDef fd) {
-    FilterInfo fi = new FilterInfo();
-    fi.setFilterName(fd.getFilterName());
-    fi.setFilterClass(fd.getFilterClass());
-    fi.setFilterDesc(fd.getDescription());
-    return fi;
   }
 
   /**
