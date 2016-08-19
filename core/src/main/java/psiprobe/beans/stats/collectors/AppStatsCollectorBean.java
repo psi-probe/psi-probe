@@ -131,15 +131,13 @@ public class AppStatsCollectorBean extends AbstractStatsCollectorBean implements
 
             /*
              * make sure applications that did not serve any requests do not participate in average
-             * response time equasion thus diluting the value
+             * response time equation thus diluting the value
              */
-            if (reqDelta > 0) {
-              if (!excludeFromTotal(ctx)) {
-                totalReqDelta += reqDelta;
-                totalErrDelta += errDelta;
-                totalAvgProcTime += avgProcTime;
-                participatingAppCount++;
-              }
+            if (reqDelta > 0 && !excludeFromTotal(ctx)) {
+              totalReqDelta += reqDelta;
+              totalErrDelta += errDelta;
+              totalAvgProcTime += avgProcTime;
+              participatingAppCount++;
             }
           }
         }

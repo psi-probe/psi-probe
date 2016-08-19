@@ -49,10 +49,10 @@ public class ContainerListenerBean implements NotificationListener {
   private static final Logger logger = LoggerFactory.getLogger(ContainerListenerBean.class);
 
   /** The pool names. */
-  private List<ThreadPoolObjectName> poolNames = null;
+  private List<ThreadPoolObjectName> poolNames;
 
   /** The executor names. */
-  private List<ObjectName> executorNames = null;
+  private List<ObjectName> executorNames;
 
   /**
    * Used to obtain required {@link MBeanServer} instance.
@@ -241,7 +241,7 @@ public class ContainerListenerBean implements NotificationListener {
             .getIntAttr(server, poolName, "currentThreadCount"));
 
         /*
-         * Tomcat 6.0.21+ will return -1 for maxThreads if the connector uses an executor for its
+         * Tomcat will return -1 for maxThreads if the connector uses an executor for its
          * threads. In this case, don't add its ThreadPool to the results.
          */
         if (threadPool.getMaxThreads() > -1) {

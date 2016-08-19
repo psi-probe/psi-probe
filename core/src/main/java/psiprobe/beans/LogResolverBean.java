@@ -620,7 +620,7 @@ public class LogResolverBean {
       File file = dest.getFile();
       String fileName = file == null ? "" : file.getAbsolutePath();
       Application app = dest.getApplication();
-      String appName = app == null ? "" + DELIM : app.getName();
+      String appName = app == null ? Character.toString(DELIM) : app.getName();
       String logType = dest.getLogType();
       String context = dest.isContext() ? "is" : "not";
       String root = dest.isRoot() ? "is" : "not";

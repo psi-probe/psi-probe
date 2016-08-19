@@ -31,7 +31,7 @@ public class ConnectorInfo implements Serializable {
 
   private String sessionCacheSize;
 
-  private String CrlFile;
+  private String crlFile;
 
   private String protocolType;
 
@@ -134,11 +134,11 @@ public class ConnectorInfo implements Serializable {
   }
 
   public String getCrlFile() {
-    return CrlFile;
+    return crlFile;
   }
 
   public void setCrlFile(String crlFile) {
-    CrlFile = crlFile;
+    crlFile = crlFile;
   }
 
   public String getProtocolType() {

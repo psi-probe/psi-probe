@@ -66,7 +66,7 @@ public class FollowController extends LogHandlerController {
         long totalReadSize = currentLength - lastKnownLength;
         String line;
         while (readSize < totalReadSize && (line = br.readLine()) != null) {
-          if (!line.equals("")) {
+          if (!line.isEmpty()) {
             lines.addFirst(line);
             readSize += line.length();
           } else {

@@ -25,7 +25,7 @@ public class ApplicationParam {
   private Object value;
 
   /** denotes whether the value is taken from a deployment descriptor. */
-  public boolean fromDeplDescr;
+  private boolean fromDeplDescr;
 
   /**
    * Gets the name.

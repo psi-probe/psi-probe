@@ -54,14 +54,10 @@ public class VisualScoreTag extends BodyTagSupport {
   /** The Constant BLUE_RIGHT_BORDER. */
   private static final String BLUE_RIGHT_BORDER = "b2";
 
-  /**
-   * Red value.
-   */
+  /** Red value. */
   private double value = 0;
 
-  /**
-   * Blue value.
-   */
+  /** Blue value. */
   private double value2 = 0;
 
   /** The min value. */

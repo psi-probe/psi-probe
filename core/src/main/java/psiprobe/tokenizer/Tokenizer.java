@@ -48,20 +48,15 @@ public class Tokenizer {
   private final List<TokenizerSymbol> symbols;
 
   /** The push count. */
-  /*
-   * private boolean enableHidden; private boolean hideNonSymbols;
-   */
   private int pushCount = 0;
 
   /** The token. */
-  //
   private final TokenizerToken token;
 
   /** The upcoming token. */
   private final TokenizerToken upcomingToken;
 
   /** The cache position. */
-  //
   private int cachePosition;
 
   /** The cache size. */
@@ -201,7 +196,6 @@ public class Tokenizer {
             workToken.type = Tokenizer.TT_BLOCK;
           }
 
-          // if (!hideSymbol) break;
           if (token.text.length() > 0) {
             break;
           }
@@ -271,7 +265,7 @@ public class Tokenizer {
     int index = Collections.binarySearch(symbols, chrObj);
 
     if (index >= 0) {
-      // the index could be anywhere within a group of sybols with the same first letter
+      // the index could be anywhere within a group of symbols with the same first letter
       // so we need to scroll up the group to make sure we start test from the beginning
       while (index > 0 && symbols.get(index - 1).compareTo(chrObj) == 0) {
         index--;

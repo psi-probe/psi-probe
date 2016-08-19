@@ -12,6 +12,7 @@
 package psiprobe.controllers.deploy;
 
 import java.io.File;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -64,7 +65,7 @@ public class CopySingleFileController extends TomcatContainerController {
     for (Context appContext : apps) {
       // check if this is not the ROOT webapp
       if (appContext.getName() != null && appContext.getName().trim().length() > 0) {
-        Map<String, String> app = new HashMap<String, String>();
+        Map<String, String> app = new HashMap<>();
         app.put("value", appContext.getName());
         app.put("label", appContext.getName());
         applications.add(app);
@@ -85,7 +86,7 @@ public class CopySingleFileController extends TomcatContainerController {
           new DiskFileItemFactory(1048000, new File(System.getProperty("java.io.tmpdir")));
       ServletFileUpload upload = new ServletFileUpload(factory);
       upload.setSizeMax(-1);
-      upload.setHeaderEncoding("UTF8");
+      upload.setHeaderEncoding(StandardCharsets.UTF_8.name());
       try {
         List<FileItem> fileItems = upload.parseRequest(request);
         for (FileItem fi : fileItems) {
@@ -112,8 +113,8 @@ public class CopySingleFileController extends TomcatContainerController {
             "errorMessage",
             getMessageSourceAccessor().getMessage("probe.src.deploy.file.uploadfailure",
                 new Object[] {e.getMessage()}));
-        if (tmpFile != null && tmpFile.exists()) {
-          tmpFile.delete();
+        if (tmpFile != null && tmpFile.exists() && !tmpFile.delete()) {
+          logger.error("Unable to delete temp upload file");
         }
         tmpFile = null;
       }
@@ -190,7 +191,9 @@ public class CopySingleFileController extends TomcatContainerController {
           if (errMsg != null) {
             request.setAttribute("errorMessage", errMsg);
           }
-          tmpFile.delete();
+          if (!tmpFile.delete()) {
+            logger.error("Unable to delete temp upload file");
+          }
         }
       }
     }

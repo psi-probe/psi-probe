@@ -37,7 +37,7 @@ public class ListAppFilterMapsController extends ContextHandlerController {
 
     List<FilterMapping> filterMaps = getContainerWrapper().getTomcatContainer()
         .getApplicationFilterMaps(context);
-    
+
     return new ModelAndView(getViewName(), "filterMaps", filterMaps);
   }
 
