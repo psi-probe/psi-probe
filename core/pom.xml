@@ -22,6 +22,10 @@
         <url>https://github.com/psi-probe/psi-probe/</url>
     </scm>
 
+    <properties>
+        <jsr305.version>3.0.1</jsr305.version>
+    </properties>
+
     <dependencies>
         <!-- tomcat libs start -->
         <dependency>
@@ -233,7 +237,7 @@
         <dependency>
             <groupId>com.google.code.findbugs</groupId>
             <artifactId>jsr305</artifactId>
-            <version>3.0.1</version>
+            <version>${jsr305.version}</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
