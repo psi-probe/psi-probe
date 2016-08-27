@@ -37,8 +37,7 @@ public class ExpireSessionsController extends TomcatContainerController {
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 
-    String[] sidWebApps = ServletRequestUtils.getStringParameters(request, "sid_webapp");
-    for (String sidWebApp : sidWebApps) {
+    for (String sidWebApp : ServletRequestUtils.getStringParameters(request, "sid_webapp")) {
       if (sidWebApp != null) {
         String[] ss = sidWebApp.split(";");
         if (ss.length == 2) {

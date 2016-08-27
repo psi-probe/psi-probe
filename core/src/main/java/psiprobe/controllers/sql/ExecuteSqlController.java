@@ -142,7 +142,7 @@ public class ExecuteSqlController extends ContextHandlerController {
                     // a work around for IE browsers bug of not displaying
                     // a border around an empty table column
 
-                    if (value.equals("")) {
+                    if (value.isEmpty()) {
                       value = "&nbsp;";
                     }
 

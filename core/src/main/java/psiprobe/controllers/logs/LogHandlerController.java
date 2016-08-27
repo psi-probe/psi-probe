@@ -59,9 +59,6 @@ public class LogHandlerController extends ParameterizableViewController {
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 
-    boolean logFound = false;
-
-    ModelAndView modelAndView = null;
 
     String logType = ServletRequestUtils.getStringParameter(request, "logType");
     String webapp = ServletRequestUtils.getStringParameter(request, "webapp");
@@ -73,6 +70,8 @@ public class LogHandlerController extends ParameterizableViewController {
     LogDestination dest =
         logResolver.getLogDestination(logType, webapp, context, root, logName, logIndex);
 
+    ModelAndView modelAndView = null;
+    boolean logFound = false;
     if (dest != null) {
       if (dest.getFile() != null && dest.getFile().exists()) {
         modelAndView = handleLogFile(request, response, dest);

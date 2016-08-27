@@ -72,11 +72,10 @@ public class ReflectiveAccessor implements Accessor {
    * @param field the field
    * @return the field accessor
    * @throws IllegalAccessException the illegal access exception
-   * @throws IllegalArgumentException the illegal argument exception
    * @throws InvocationTargetException the invocation target exception
    */
   private static Object getFieldAccessor(Field field) throws IllegalAccessException,
-      IllegalArgumentException, InvocationTargetException {
+      InvocationTargetException {
 
     if (newFieldAccessor.getParameterTypes().length == 1) {
       return newFieldAccessor.invoke(reflectionFactory, field);

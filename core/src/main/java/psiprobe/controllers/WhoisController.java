@@ -108,9 +108,7 @@ public class WhoisController extends ParameterizableViewController {
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 
-    List<String> lines = null;
     boolean timeout = false;
-    String reverseName = null;
 
     String ipAddress = ServletRequestUtils.getStringParameter(request, "ip", null);
 
@@ -122,6 +120,7 @@ public class WhoisController extends ParameterizableViewController {
       logger.trace("", e);
     }
 
+    List<String> lines = null;
     if (wh != null) {
       lines = new ArrayList<>(50);
       try (BufferedReader br =
@@ -134,6 +133,7 @@ public class WhoisController extends ParameterizableViewController {
       }
     }
 
+    String reverseName = null;
     if (ipAddress != null) {
       try {
         reverseName = InetAddress.getByName(ipAddress).getCanonicalHostName();

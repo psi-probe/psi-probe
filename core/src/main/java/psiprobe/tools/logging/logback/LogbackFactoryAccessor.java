@@ -41,11 +41,10 @@ public class LogbackFactoryAccessor extends DefaultAccessor {
    * @param cl the ClassLoader to use when fetching the factory
    * @throws ClassNotFoundException the class not found exception
    * @throws IllegalAccessException the illegal access exception
-   * @throws IllegalArgumentException the illegal argument exception
    * @throws InvocationTargetException the invocation target exception
    */
   public LogbackFactoryAccessor(ClassLoader cl) throws ClassNotFoundException,
-      IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+      IllegalAccessException, InvocationTargetException {
 
     // Get the singleton SLF4J binding, which may or may not be Logback, depending on the binding.
     Class clazz = cl.loadClass("org.slf4j.impl.StaticLoggerBinder");

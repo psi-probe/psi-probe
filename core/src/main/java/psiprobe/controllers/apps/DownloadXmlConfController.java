@@ -37,10 +37,10 @@ public class DownloadXmlConfController extends ContextHandlerController {
   private static final Logger logger = LoggerFactory.getLogger(DownloadXmlConfController.class);
 
   /** The Constant TARGET_WEB_XML. */
-  public static final String TARGET_WEB_XML = "web.xml";
+  private static final String TARGET_WEB_XML = "web.xml";
 
   /** The Constant TARGET_CONTEXT_XML. */
-  public static final String TARGET_CONTEXT_XML = "context.xml";
+  private static final String TARGET_CONTEXT_XML = "context.xml";
 
   /** Type of a configuration file to be downloaded. */
   private String downloadTarget;

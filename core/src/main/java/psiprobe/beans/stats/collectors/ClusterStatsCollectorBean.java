@@ -67,8 +67,8 @@ public class ClusterStatsCollectorBean extends AbstractStatsCollectorBean {
 
   @Override
   public void collect() throws Exception {
-    // Job can be called before the servlet finished intialisation. Make sure
-    // we dont get an NPE.
+    // Job can be called before the servlet finished initialization. Make sure
+    // we don't get an NPE.
     TomcatContainer container = containerWrapper.getTomcatContainer();
     if (container != null) {
       Cluster cluster =

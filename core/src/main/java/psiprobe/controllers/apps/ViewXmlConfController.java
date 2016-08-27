@@ -39,10 +39,10 @@ public class ViewXmlConfController extends ContextHandlerController {
   private static final Logger logger = LoggerFactory.getLogger(ViewXmlConfController.class);
 
   /** The Constant TARGET_WEB_XML. */
-  public static final String TARGET_WEB_XML = "web.xml";
+  private static final String TARGET_WEB_XML = "web.xml";
 
   /** The Constant TARGET_CONTEXT_XML. */
-  public static final String TARGET_CONTEXT_XML = "context.xml";
+  private static final String TARGET_CONTEXT_XML = "context.xml";
 
   /** Type of a file to be displayed. */
   private String displayTarget;

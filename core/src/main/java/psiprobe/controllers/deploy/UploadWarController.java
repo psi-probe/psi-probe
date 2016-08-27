@@ -33,6 +33,7 @@ import psiprobe.model.jsp.Summary;
 
 import java.io.File;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -66,7 +67,7 @@ public class UploadWarController extends TomcatContainerController {
           new DiskFileItemFactory(1048000, new File(System.getProperty("java.io.tmpdir")));
       ServletFileUpload upload = new ServletFileUpload(factory);
       upload.setSizeMax(-1);
-      upload.setHeaderEncoding("UTF8");
+      upload.setHeaderEncoding(StandardCharsets.UTF_8.name());
       try {
         List<FileItem> fileItems = upload.parseRequest(request);
         for (FileItem fi : fileItems) {
@@ -93,8 +94,8 @@ public class UploadWarController extends TomcatContainerController {
             "errorMessage",
             getMessageSourceAccessor().getMessage("probe.src.deploy.war.uploadfailure",
                 new Object[] {e.getMessage()}));
-        if (tmpWar != null && tmpWar.exists()) {
-          tmpWar.delete();
+        if (tmpWar != null && tmpWar.exists() && !tmpWar.delete()) {
+          logger.error("Unable to delete temp war file");
         }
         tmpWar = null;
       }
@@ -182,7 +183,9 @@ public class UploadWarController extends TomcatContainerController {
           if (errMsg != null) {
             request.setAttribute("errorMessage", errMsg);
           }
-          tmpWar.delete();
+          if (tmpWar.exists() && !tmpWar.delete()) {
+            logger.error("Unable to delete temp war file");
+          }
         }
       }
     }

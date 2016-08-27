@@ -190,15 +190,16 @@ public abstract class AbstractStatsCollectorBean {
    */
   private class Entry {
 
-    public Entry() {
-      // Prevent Emulation by Synthetic Accessor
-    }
-
     /** The time. */
     long time;
 
     /** The value. */
     long value;
+
+    public Entry() {
+      // Prevent Emulation by Synthetic Accessor
+    }
+
   }
 
   /**
