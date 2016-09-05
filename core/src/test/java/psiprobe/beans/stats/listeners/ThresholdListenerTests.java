@@ -28,7 +28,7 @@ public class ThresholdListenerTests {
 
   /** The listener. */
   private MockThresholdListener listener = new MockThresholdListener(defaultThreshold);
-  
+
   /** The below threshold. */
   private StatsCollectionEvent belowThreshold = new StatsCollectionEvent("test", 0, 0);
 

@@ -58,20 +58,8 @@
 	<servlet-mapping>
 		<servlet-name>probe</servlet-name>
 		<url-pattern>*.htm</url-pattern>
-	</servlet-mapping>
-
-	<servlet-mapping>
-		<servlet-name>probe</servlet-name>
 		<url-pattern>*.ajax</url-pattern>
-	</servlet-mapping>
-
-	<servlet-mapping>
-		<servlet-name>probe</servlet-name>
 		<url-pattern>/logs/*</url-pattern>
-	</servlet-mapping>
-
-	<servlet-mapping>
-		<servlet-name>probe</servlet-name>
 		<url-pattern>/chart.png</url-pattern>
 	</servlet-mapping>
 

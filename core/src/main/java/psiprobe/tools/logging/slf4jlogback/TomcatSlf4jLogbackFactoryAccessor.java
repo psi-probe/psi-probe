@@ -113,13 +113,11 @@ public class TomcatSlf4jLogbackFactoryAccessor extends DefaultAccessor {
    *         are in use
    */
   public List<TomcatSlf4jLogbackAppenderAccessor> getAppenders() {
-    List<TomcatSlf4jLogbackAppenderAccessor> appenders =
-        new ArrayList<>();
+    List<TomcatSlf4jLogbackAppenderAccessor> appenders = new ArrayList<>();
     try {
       Class clazz = getTarget().getClass();
-      Method getLoggerList = MethodUtils
-          .getAccessibleMethod(clazz, "getLoggerList", new Class[0]);
-      
+      Method getLoggerList = MethodUtils.getAccessibleMethod(clazz, "getLoggerList", new Class[0]);
+
       List<Object> loggers = (List<Object>) getLoggerList.invoke(getTarget());
       for (Object logger : loggers) {
         TomcatSlf4jLogbackLoggerAccessor accessor = new TomcatSlf4jLogbackLoggerAccessor();
