@@ -40,7 +40,7 @@ public class Log4JLoggerAccessor extends DefaultAccessor {
     List<Log4JAppenderAccessor> appenders = new ArrayList<>();
     try {
       for (Object unwrappedAppender : Collections.list((Enumeration<Object>) MethodUtils
-              .invokeMethod(getTarget(), "getAllAppenders", null))) {
+          .invokeMethod(getTarget(), "getAllAppenders", null))) {
         Log4JAppenderAccessor appender = wrapAppender(unwrappedAppender);
         if (appender != null) {
           appenders.add(appender);

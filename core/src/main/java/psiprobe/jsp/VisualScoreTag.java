@@ -146,9 +146,8 @@ public class VisualScoreTag extends BodyTagSupport {
       String format = WHITE_LEFT_BORDER;
       if (redWhole > 0 || redPart > 0) {
         format = RED_LEFT_BORDER;
-      } else if (bluePart1 == 0
-          && (blueWhole > 0 || bluePart2 > 0)) {
-        
+      } else if (bluePart1 == 0 && (blueWhole > 0 || bluePart2 > 0)) {
+
         format = BLUE_LEFT_BORDER;
       }
       buf.append(MessageFormat.format(body, new Object[] {format}));
@@ -194,9 +193,7 @@ public class VisualScoreTag extends BodyTagSupport {
       String format = WHITE_RIGHT_BORDER;
       if (redWhole == fullBlocks) {
         format = RED_RIGHT_BORDER;
-      } else if (redWhole
-          + (redPart + bluePart1 == partialBlocks ? 1 : 0)
-          + blueWhole == fullBlocks) {
+      } else if (redWhole + (redPart + bluePart1 == partialBlocks ? 1 : 0) + blueWhole == fullBlocks) {
         format = BLUE_RIGHT_BORDER;
       }
       buf.append(MessageFormat.format(body, new Object[] {format}));
