@@ -138,7 +138,7 @@ public class ConnectorInfo implements Serializable {
   }
 
   public void setCrlFile(String crlFile) {
-    crlFile = crlFile;
+    this.crlFile = crlFile;
   }
 
   public String getProtocolType() {
