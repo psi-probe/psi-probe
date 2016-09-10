@@ -267,7 +267,6 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
             // we do that by ending the previous stats group with 0 value
             // and starting the current stats group also with 0
             // thus giving the chart nice plunge to zero indicating downtime
-            //
             // and lets not bother about rotating stats;
             // regular stats collection cycle will do it
 

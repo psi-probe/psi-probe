@@ -11,7 +11,7 @@
 package psiprobe.model;
 
 /**
- * This bean represents HttpSession attirbute. It is a part of the display model for
+ * This bean represents HttpSession attribute. It is a part of the display model for
  * ListSessionAttributesController.
  *
  * @author Vlad Ilyushchenko

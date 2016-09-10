@@ -27,8 +27,7 @@ import java.util.Map;
  * This class wires support for Tomcat "privileged" context functionality into Spring. If
  * application context is privileged Tomcat would always call servlet.setWrapper method on each
  * request. ContainerWrapperBean wires the passed wrapper to the relevant Tomcat container adapter
- * class, which in turn helps the Probe to interpret the wrapper. Container adapters are required
- * because internal wrapper structure is quite different between Tomcat 5.5.x and Tomcat 5.0.x
+ * class, which in turn helps the Probe to interpret the wrapper.
  * 
  * @author Vlad Ilyushchenko
  * @author Mark Lewis
