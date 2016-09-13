@@ -15,6 +15,7 @@ import java.lang.reflect.Field;
 /**
  * The Interface Accessor.
  */
+@FunctionalInterface
 public interface Accessor {
 
   /**

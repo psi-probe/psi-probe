@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
  * Classes implementing this interface can be wired up with RenderChartController to provide Series
  * data based on StatsCollection instance.
  */
+@FunctionalInterface
 public interface SeriesProvider {
 
   /**
