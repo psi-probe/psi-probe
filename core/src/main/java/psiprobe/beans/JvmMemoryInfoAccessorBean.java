@@ -28,8 +28,6 @@ import javax.management.openmbean.CompositeDataSupport;
 
 /**
  * The Class JvmMemoryInfoAccessorBean.
- *
- * @author Vlad Ilyushchenko
  */
 public class JvmMemoryInfoAccessorBean {
 

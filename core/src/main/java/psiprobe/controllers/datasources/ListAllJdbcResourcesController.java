@@ -22,9 +22,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Creates a list of all configured datasources for all web applications within the container.
- * 
- * @author Vlad Ilyushchenko
- * @author Mark Lewis
  */
 public class ListAllJdbcResourcesController extends TomcatContainerController {
 

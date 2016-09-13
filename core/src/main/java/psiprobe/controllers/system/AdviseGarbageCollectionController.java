@@ -22,8 +22,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Advises Java to run GC asap.
- * 
- * @author Vlad Ilyushchenko
  */
 public class AdviseGarbageCollectionController extends ParameterizableViewController {
 

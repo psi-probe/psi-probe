@@ -23,10 +23,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Retrieves a list of web application filter mappings.
- * 
- * @author Andy Shapoval
- * @author Vlad Ilyushchenko
- * @author Mark Lewis
  */
 public class ListAppFilterMapsController extends ContextHandlerController {
 

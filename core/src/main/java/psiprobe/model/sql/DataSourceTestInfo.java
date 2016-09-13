@@ -17,8 +17,6 @@ import java.util.Map;
 
 /**
  * A class to store data source test tool related data in a session attribute.
- * 
- * @author Andy Shapoval
  */
 public class DataSourceTestInfo implements Serializable {
 

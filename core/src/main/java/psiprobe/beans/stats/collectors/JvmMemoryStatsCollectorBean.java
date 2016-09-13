@@ -17,8 +17,6 @@ import java.util.List;
 
 /**
  * The Class JvmMemoryStatsCollectorBean.
- *
- * @author Vlad Ilyushchenko
  */
 public class JvmMemoryStatsCollectorBean extends AbstractStatsCollectorBean {
 

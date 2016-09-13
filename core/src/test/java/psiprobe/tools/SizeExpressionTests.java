@@ -21,8 +21,6 @@ import java.util.Locale;
 
 /**
  * The Class SizeExpressionTests.
- *
- * @author Mark Lewis
  */
 public class SizeExpressionTests {
 

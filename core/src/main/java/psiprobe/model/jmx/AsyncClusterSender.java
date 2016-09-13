@@ -12,8 +12,6 @@ package psiprobe.model.jmx;
 
 /**
  * The Class AsyncClusterSender.
- *
- * @author Vlad Ilyushchenko
  */
 public class AsyncClusterSender extends SyncClusterSender {
 

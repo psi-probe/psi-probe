@@ -16,9 +16,6 @@ import psiprobe.model.DataSourceInfo;
 
 /**
  * Datasource accessor for tomcat.
- *
- * @author chenwang
- * @author Mark Lewis
  */
 public class TomcatJdbcPoolDatasourceAccessor implements DatasourceAccessor {
 

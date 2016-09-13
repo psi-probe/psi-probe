@@ -21,8 +21,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * The Class DiscardCompiledJspController.
- *
- * @author Vlad Ilyushchenko
  */
 public class DiscardCompiledJspController extends ContextHandlerController {
 

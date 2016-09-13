@@ -27,8 +27,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * The Class DecoratorController.
- *
- * @author Vlad Ilyushchenko
  */
 public class DecoratorController extends ParameterizableViewController {
 

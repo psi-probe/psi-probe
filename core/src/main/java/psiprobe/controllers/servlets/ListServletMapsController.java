@@ -26,8 +26,6 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Retrieves a list of servlet mappings for a particular web application or all web applications if
  * an application name is not passed in a query string.
- * 
- * @author Andy Shapoval
  */
 public class ListServletMapsController extends ContextHandlerController {
 

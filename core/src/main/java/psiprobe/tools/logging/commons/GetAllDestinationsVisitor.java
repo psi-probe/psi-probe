@@ -19,8 +19,6 @@ import java.util.List;
 
 /**
  * The Class GetAllDestinationsVisitor.
- *
- * @author Mark Lewis
  */
 public class GetAllDestinationsVisitor extends LoggerAccessorVisitor {
 

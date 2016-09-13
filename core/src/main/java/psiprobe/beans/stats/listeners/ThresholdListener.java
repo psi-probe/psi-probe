@@ -20,8 +20,6 @@ import java.util.HashMap;
  * a threshold event implements this interface, and the object created with that class is registered
  * with a component using the component's {@code addThresholdListener} method. When the threshold
  * event occurs, that object's appropriate method is invoked.
- *
- * @author Mark Lewis
  */
 public abstract class ThresholdListener extends AbstractStatsCollectionListener {
 

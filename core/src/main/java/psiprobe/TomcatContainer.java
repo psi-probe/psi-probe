@@ -30,9 +30,6 @@ import javax.naming.NamingException;
 
 /**
  * Part of Tomcat container version abstraction layer.
- * 
- * @author Vlad Ilyushchenko
- * @author Mark Lewis
  */
 public interface TomcatContainer {
 

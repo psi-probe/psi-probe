@@ -29,8 +29,6 @@ import java.util.List;
  * <p>
  * This way, we can even handle different versions of Logback embedded in different WARs.
  * </p>
- * 
- * @author Harald Wellmann
  */
 public class LogbackFactoryAccessor extends DefaultAccessor {
 

@@ -19,8 +19,6 @@ import org.slf4j.LoggerFactory;
  * with that class is registered with a component using the component's
  * {@code addAbstractStatsCollectionListener} method. When the abstractStatsCollection event occurs,
  * that object's appropriate method is invoked.
- *
- * @author Mark Lewis
  */
 public abstract class AbstractStatsCollectionListener implements StatsCollectionListener {
 

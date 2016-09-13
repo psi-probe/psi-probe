@@ -24,9 +24,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * The Class LogHandlerController.
- *
- * @author Vlad Ilyushchenko
- * @author Mark Lewis
  */
 public class LogHandlerController extends ParameterizableViewController {
 

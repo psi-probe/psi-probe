@@ -21,9 +21,6 @@ import java.util.Set;
 
 /**
  * The Class Instruments.
- *
- * @author Vlad Ilyushchenko
- * @author Mark Lewis
  */
 public class Instruments {
 

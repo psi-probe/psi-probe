@@ -23,8 +23,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * The Class WrapperInfoController.
- *
- * @author Vlad Ilyushchenko
  */
 public class WrapperInfoController extends ParameterizableViewController {
 

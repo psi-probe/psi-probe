@@ -30,8 +30,6 @@ import java.util.List;
  * <p>
  * This way, we can even handle different versions of TomcatSlf4jLogback embedded in different WARs.
  * </p>
- * 
- * @author Jeremy Landis
  */
 public class TomcatSlf4jLogbackFactoryAccessor extends DefaultAccessor {
 

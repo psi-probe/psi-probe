@@ -21,8 +21,6 @@ import java.security.PrivilegedAction;
 
 /**
  * The Class ReflectiveAccessor.
- *
- * @author Mark Lewis
  */
 public class ReflectiveAccessor implements Accessor {
 

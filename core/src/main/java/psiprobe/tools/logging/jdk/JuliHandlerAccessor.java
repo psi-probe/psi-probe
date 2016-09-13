@@ -16,9 +16,6 @@ import java.io.File;
 
 /**
  * The Class JuliHandlerAccessor.
- *
- * @author Vlad Ilyushchenko
- * @author Mark Lewis
  */
 public class JuliHandlerAccessor extends Jdk14HandlerAccessor {
 

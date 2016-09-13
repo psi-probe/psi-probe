@@ -21,8 +21,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * The Class StopJvmController.
- *
- * @author Vlad Ilyushchenko
  */
 public class StopJvmController extends ParameterizableViewController {
 

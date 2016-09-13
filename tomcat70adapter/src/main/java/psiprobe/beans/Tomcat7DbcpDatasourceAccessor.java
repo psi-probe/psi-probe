@@ -16,9 +16,6 @@ import psiprobe.model.DataSourceInfo;
 
 /**
  * DBCP datasource abstraction layer.
- *
- * @author Vlad Ilyushchenko
- * @author Mark Lewis
  */
 public class Tomcat7DbcpDatasourceAccessor implements DatasourceAccessor {
 

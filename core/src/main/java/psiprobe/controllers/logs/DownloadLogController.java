@@ -25,9 +25,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * The Class DownloadLogController.
- *
- * @author Vlad Ilyushchenko
- * @author Mark Lewis
  */
 public class DownloadLogController extends LogHandlerController {
 

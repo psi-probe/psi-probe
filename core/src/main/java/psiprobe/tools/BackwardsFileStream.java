@@ -17,8 +17,6 @@ import java.io.RandomAccessFile;
 
 /**
  * The Class BackwardsFileStream.
- *
- * @author Vlad Ilyushchenko
  */
 public class BackwardsFileStream extends InputStream {
 

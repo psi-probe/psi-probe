@@ -34,8 +34,6 @@ import javax.mail.internet.MimeMultipart;
 
 /**
  * Facade for sending emails with the JavaMail API.
- * 
- * @author Mark Lewis
  */
 public class Mailer {
 

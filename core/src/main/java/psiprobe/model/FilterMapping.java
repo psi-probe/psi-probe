@@ -12,8 +12,6 @@ package psiprobe.model;
 
 /**
  * A model class representing a filter mapping item.
- *
- * @author Andy Shapoval
  */
 public class FilterMapping {
 

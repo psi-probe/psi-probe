@@ -18,8 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * The Class ZoomChartController.
- *
- * @author Mark Lewis
  */
 public class ZoomChartController extends ParameterizableViewController {
 

@@ -34,10 +34,6 @@ import javax.sql.DataSource;
 /**
  * Verifies if a database connection can be established through a given datasource. Displays basic
  * information about the database.
- * 
- * @author Andy Shapoval
- * @author Vlad Ilyushchenko
- * @author jackdimm
  */
 public class ConnectionTestController extends ContextHandlerController {
 

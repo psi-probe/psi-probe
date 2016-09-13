@@ -15,8 +15,6 @@ import java.util.Map;
 
 /**
  * The Class Summary.
- *
- * @author Vlad Ilyushchenko
  */
 public class Summary implements Serializable {
 

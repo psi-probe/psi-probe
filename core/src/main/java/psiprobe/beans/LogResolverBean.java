@@ -41,8 +41,6 @@ import java.util.List;
 
 /**
  * The Class LogResolverBean.
- *
- * @author Mark Lewis
  */
 public class LogResolverBean {
 

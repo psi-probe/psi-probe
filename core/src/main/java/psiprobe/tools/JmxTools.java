@@ -22,8 +22,6 @@ import javax.management.openmbean.CompositeData;
 
 /**
  * The Class JmxTools.
- *
- * @author Vlad Ilyushchenko
  */
 public class JmxTools {
 

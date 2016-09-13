@@ -12,8 +12,6 @@ package psiprobe.model;
 
 /**
  * The Class ThreadStackElement.
- *
- * @author Vlad Ilyushchenko
  */
 public class ThreadStackElement {
 

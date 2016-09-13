@@ -17,8 +17,6 @@ import java.net.MalformedURLException;
 
 /**
  * The Class UrlParser.
- *
- * @author Vlad Ilyushchenko
  */
 public class UrlParser {
 

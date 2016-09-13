@@ -22,9 +22,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * The Class KillThreadController.
- *
- * @author Vlad Ilyushchenko
- * @author Mark Lewis
  */
 public class KillThreadController extends ParameterizableViewController {
 

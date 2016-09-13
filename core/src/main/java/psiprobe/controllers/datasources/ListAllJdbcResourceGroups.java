@@ -27,10 +27,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Produces a list of all datasources configured within the container grouped by JDBC URL.
- * 
- * @author Andy Shapoval
- * @author Vlad Ilyushchenko
- * @author Mark Lewis
  */
 public class ListAllJdbcResourceGroups extends TomcatContainerController {
 

@@ -22,9 +22,6 @@ import java.lang.reflect.Field;
 
 /**
  * The Class BoneCpDatasourceAccessor.
- *
- * @author akhawatrah
- * @author Mark Lewis
  */
 public class BoneCpDatasourceAccessor implements DatasourceAccessor {
 

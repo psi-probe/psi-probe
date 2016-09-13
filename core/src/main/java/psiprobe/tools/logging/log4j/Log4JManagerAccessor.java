@@ -22,9 +22,6 @@ import java.util.List;
 
 /**
  * The Class Log4JManagerAccessor.
- *
- * @author Vlad Ilyushchenko
- * @author Mark Lewis
  */
 public class Log4JManagerAccessor extends DefaultAccessor {
 

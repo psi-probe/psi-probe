@@ -24,8 +24,6 @@ import java.util.Comparator;
  * provide fast element search based again on e1.compareTo(e2) values.
  * </p>
  *
- * @author Vlad Ilyushchenko
- * @author Mark Lewis
  * @param <T> the generic type
  */
 public class UniqueList<T extends Comparable<? super T>> extends ArrayList<T> {

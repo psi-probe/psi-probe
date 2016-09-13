@@ -23,8 +23,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Forces Tomcat to install a pre-configured context name.
- *
- * @author Vlad Ilyushchenko
  */
 public class DeployContextController extends TomcatContainerController {
 

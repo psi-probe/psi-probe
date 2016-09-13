@@ -25,8 +25,6 @@ import java.util.TreeMap;
 
 /**
  * The Class Whois.
- *
- * @author Vlad Ilyushchenko
  */
 public class Whois {
 

@@ -21,8 +21,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * The Class ThreadDumpController.
- *
- * @author Vlad Ilyushchenko
  */
 public class ThreadDumpController extends ParameterizableViewController {
 

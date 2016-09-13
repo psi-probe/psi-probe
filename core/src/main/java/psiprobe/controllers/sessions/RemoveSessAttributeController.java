@@ -23,8 +23,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * The Class RemoveSessAttributeController.
- *
- * @author Vlad Ilyushchenko
  */
 public class RemoveSessAttributeController extends ContextHandlerController {
 

@@ -22,9 +22,6 @@ import javax.servlet.http.HttpSession;
 /**
  * Displays a view that allows for a database connectivity testing. Supplies default values to input
  * fields of the view.
- * 
- * @author Andy Shapoval
- * @author Mark Lewis
  */
 public class DataSourceTestController extends ParameterizableViewController {
 

@@ -23,8 +23,6 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * The AjaxDecoratorMapper will exclude all "ajax" requests from being decorated. It will also make
  * sure that error pages rendered during ajax request execution are not decorated.
- *
- * @author Vlad Ilyushchenko
  */
 public class AjaxDecoratorMapper extends AbstractDecoratorMapper {
 

@@ -28,9 +28,6 @@ import java.util.Map;
  * application context is privileged Tomcat would always call servlet.setWrapper method on each
  * request. ContainerWrapperBean wires the passed wrapper to the relevant Tomcat container adapter
  * class, which in turn helps the Probe to interpret the wrapper.
- * 
- * @author Vlad Ilyushchenko
- * @author Mark Lewis
  */
 public class ContainerWrapperBean {
 

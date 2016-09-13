@@ -12,9 +12,6 @@ package psiprobe.model.jmx;
 
 /**
  * The Class MemoryPool.
- *
- * @author Vlad Ilyushchenko
- * @author Mark Lewis
  */
 public class MemoryPool {
 

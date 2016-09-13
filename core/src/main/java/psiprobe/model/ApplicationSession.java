@@ -17,9 +17,6 @@ import java.util.Locale;
 
 /**
  * POJO representing HTTP session.
- * 
- * @author Vlad Ilyushchenko
- * @author Andy Shapoval
  */
 public class ApplicationSession {
 

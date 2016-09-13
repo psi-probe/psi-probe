@@ -18,8 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * The Class AllAppStatsController.
- *
- * @author Mark Lewis
  */
 public class AllAppStatsController extends ParameterizableViewController {
 

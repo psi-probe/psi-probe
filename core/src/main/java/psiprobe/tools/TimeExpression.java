@@ -12,8 +12,6 @@ package psiprobe.tools;
 
 /**
  * The Class TimeExpression.
- *
- * @author Mark Lewis
  */
 public class TimeExpression {
 

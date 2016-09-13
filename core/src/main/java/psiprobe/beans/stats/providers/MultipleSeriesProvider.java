@@ -29,8 +29,6 @@ import javax.servlet.http.HttpServletRequest;
  * or only "top" N ones can be retrieved. Determines top series by comparing max moving avg values.
  * Derrives legend entries from series names by removing the statNamePrefix. Ignores series param
  * (sp) and legend (s...l) request parameters.
- *
- * @author Andy Shapoval
  */
 public class MultipleSeriesProvider extends AbstractSeriesProvider {
 

@@ -32,11 +32,6 @@ import javax.sql.DataSource;
 
 /**
  * The Class ResourceResolverBean.
- *
- * @author Vlad Ilyushchenko
- * @author Andy Shapoval
- * @author Mark Lewis
- * @author Henry Caballero
  */
 public class ResourceResolverBean implements ResourceResolver {
 

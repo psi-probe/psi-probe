@@ -15,8 +15,6 @@ import org.slf4j.LoggerFactory;
 
 /**
  * A factory for creating Accessor objects.
- *
- * @author Mark Lewis
  */
 public class AccessorFactory {
 

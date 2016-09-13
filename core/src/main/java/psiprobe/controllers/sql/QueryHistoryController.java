@@ -23,8 +23,6 @@ import javax.servlet.http.HttpSession;
 
 /**
  * Retrieves a history list of executed queries from a session variable.
- * 
- * @author Andy Shapoval
  */
 public class QueryHistoryController extends ParameterizableViewController {
 

@@ -37,10 +37,6 @@ import java.util.TreeMap;
 
 /**
  * The Class StatsCollection.
- *
- * @author Vlad Ilyushchenko
- * @author Andy Shapoval
- * @author Mark Lewis
  */
 public class StatsCollection implements InitializingBean, DisposableBean, ApplicationContextAware {
 

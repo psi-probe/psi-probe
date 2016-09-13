@@ -29,8 +29,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * The Class ThreadStackController.
- *
- * @author Vlad Ilyushchenko
  */
 public class ThreadStackController extends ParameterizableViewController {
 

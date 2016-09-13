@@ -16,8 +16,6 @@ import java.util.regex.Pattern;
 
 /**
  * Tool for parsing and formatting SI-prefixed numbers in base-2 and base-10.
- *
- * @author Mark Lewis
  */
 public class SizeExpression {
 

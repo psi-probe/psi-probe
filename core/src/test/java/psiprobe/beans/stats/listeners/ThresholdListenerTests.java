@@ -18,8 +18,6 @@ import psiprobe.beans.stats.listeners.ThresholdListener;
 
 /**
  * The Class ThresholdListenerTests.
- *
- * @author Mark Lewis
  */
 public class ThresholdListenerTests {
 

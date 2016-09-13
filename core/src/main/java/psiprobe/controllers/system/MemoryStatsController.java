@@ -20,9 +20,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * The Class MemoryStatsController.
- *
- * @author Vlad Ilyushchenko
- * @author Mark Lewis
  */
 public class MemoryStatsController extends ParameterizableViewController {
 

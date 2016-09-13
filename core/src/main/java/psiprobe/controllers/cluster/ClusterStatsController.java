@@ -22,9 +22,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * The Class ClusterStatsController.
- *
- * @author Vlad Ilyushchenko
- * @author Mark Lewis
  */
 public class ClusterStatsController extends TomcatContainerController {
 

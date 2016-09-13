@@ -20,8 +20,6 @@ import java.util.List;
 
 /**
  * The Class Tokenizer.
- *
- * @author Vlad Ilyushchenko
  */
 public class Tokenizer {
 

@@ -15,8 +15,6 @@ import java.util.Set;
 
 /**
  * The Class WrapperInfo.
- *
- * @author Vlad Ilyushchenko
  */
 public class WrapperInfo {
 

@@ -12,8 +12,6 @@ package psiprobe.tokenizer;
 
 /**
  * The Class TokenizerSymbol.
- *
- * @author Vlad Ilyushchenko
  */
 public class TokenizerSymbol implements Comparable<Object> {
 

@@ -40,8 +40,6 @@ import psiprobe.controllers.TomcatContainerController;
 
 /**
  * Lets an user to copy a single file to a deployed context.
- * 
- * @author Sandra Pascual
  */
 public class CopySingleFileController extends TomcatContainerController {
 

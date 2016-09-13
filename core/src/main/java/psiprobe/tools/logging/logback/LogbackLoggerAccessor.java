@@ -22,9 +22,6 @@ import java.util.List;
 
 /**
  * A wrapper for a Logback logger.
- * 
- * @author Harald Wellmann
- * @author Mark Lewis
  */
 public class LogbackLoggerAccessor extends DefaultAccessor {
 

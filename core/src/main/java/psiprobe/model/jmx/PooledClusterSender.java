@@ -12,8 +12,6 @@ package psiprobe.model.jmx;
 
 /**
  * The Class PooledClusterSender.
- *
- * @author Vlad Ilyushchenko
  */
 public class PooledClusterSender extends ClusterSender {
 

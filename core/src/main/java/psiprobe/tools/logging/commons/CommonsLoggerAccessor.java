@@ -17,9 +17,6 @@ import java.util.List;
 
 /**
  * The Class CommonsLoggerAccessor.
- *
- * @author Vlad Ilyushchenko
- * @author Mark Lewis
  */
 public class CommonsLoggerAccessor extends DefaultAccessor {
 

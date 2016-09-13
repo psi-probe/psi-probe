@@ -26,8 +26,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * The Class GetClassLoaderUrlsController.
- *
- * @author Vlad Ilyushchenko
  */
 public class GetClassLoaderUrlsController extends ParameterizableViewController {
 

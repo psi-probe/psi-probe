@@ -23,9 +23,6 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
 
 /**
  * The Class VisualScoreTag.
- *
- * @author Vlad Ilyushchenko
- * @author Mark Lewis
  */
 public class VisualScoreTag extends BodyTagSupport {
 

@@ -48,10 +48,6 @@ import javax.servlet.http.HttpSession;
 
 /**
  * The Class ApplicationUtils.
- *
- * @author Vlad Ilyushchenko
- * @author Andy Shapoval
- * @author Mark Lewis
  */
 public class ApplicationUtils {
 

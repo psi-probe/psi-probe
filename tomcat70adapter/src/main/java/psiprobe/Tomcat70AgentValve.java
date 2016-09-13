@@ -25,9 +25,6 @@ import javax.servlet.http.HttpSession;
 
 /**
  * Valve which inserts the client's IP address into the session for Tomcat 7.0.
- * 
- * @author Vlad Ilyushchenko
- * @author Mark Lewis
  */
 public class Tomcat70AgentValve extends ValveBase {
 

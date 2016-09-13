@@ -24,8 +24,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Retrieves the list of attributes for given session.
- * 
- * @author Vlad Ilyushchenko
  */
 public class ListSessionAttributesController extends ContextHandlerController {
 

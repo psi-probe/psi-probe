@@ -25,8 +25,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Retrieves a list of servlet context attributes for a web application.
- * 
- * @author Andy Shapoval
  */
 public class ListAppAttributesController extends ContextHandlerController {
 

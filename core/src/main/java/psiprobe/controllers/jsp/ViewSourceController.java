@@ -32,8 +32,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * The Class ViewSourceController.
- *
- * @author Vlad Ilyushchenko
  */
 public class ViewSourceController extends ContextHandlerController {
 

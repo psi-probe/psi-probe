@@ -12,8 +12,6 @@ package psiprobe.tokenizer;
 
 /**
  * The Interface Token.
- *
- * @author Vlad Ilyushchenko
  */
 public interface Token {
 

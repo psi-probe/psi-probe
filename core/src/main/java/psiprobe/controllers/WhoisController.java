@@ -32,8 +32,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * The Class WhoisController.
- *
- * @author Vlad Ilyushchenko
  */
 public class WhoisController extends ParameterizableViewController {
 

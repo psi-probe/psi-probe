@@ -23,8 +23,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * The Class BeanToXmlController.
- *
- * @author Vlad Ilyushchenko
  */
 public class BeanToXmlController extends AbstractController {
 

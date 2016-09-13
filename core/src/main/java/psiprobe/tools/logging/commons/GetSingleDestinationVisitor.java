@@ -16,8 +16,6 @@ import psiprobe.tools.logging.log4j.Log4JLoggerAccessor;
 
 /**
  * The Class GetSingleDestinationVisitor.
- *
- * @author Mark Lewis
  */
 public class GetSingleDestinationVisitor extends LoggerAccessorVisitor {
 

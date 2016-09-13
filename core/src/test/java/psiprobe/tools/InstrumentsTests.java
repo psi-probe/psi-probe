@@ -19,8 +19,6 @@ import psiprobe.tools.Instruments;
 
 /**
  * The Class InstrumentsTests.
- *
- * @author Mark Lewis
  */
 public class InstrumentsTests {
 

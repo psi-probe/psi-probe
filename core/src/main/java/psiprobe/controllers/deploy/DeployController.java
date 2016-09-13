@@ -27,8 +27,6 @@ import psiprobe.controllers.TomcatContainerController;
 
 /**
  * Precharges the list of contexts in the deploy page.
- * 
- * @author Sandra Pascual
  */
 public class DeployController extends TomcatContainerController {
 

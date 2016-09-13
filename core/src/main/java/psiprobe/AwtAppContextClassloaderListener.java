@@ -20,9 +20,6 @@ import javax.servlet.ServletContextListener;
 /**
  * Prevents a classloader leak as suggested by
  * <a href="https://cdivilly.wordpress.com/2012/04/23/permgen-memory-leak/">Colm Divilly</a>
- * 
- * @author diogosantana
- *
  */
 public class AwtAppContextClassloaderListener implements ServletContextListener {
 

@@ -20,8 +20,6 @@ import java.io.IOException;
 
 /**
  * The Class WhoisTests.
- *
- * @author Mark Lewis
  */
 public class WhoisTests {
 

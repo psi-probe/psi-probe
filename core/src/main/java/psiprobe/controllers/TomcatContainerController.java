@@ -18,8 +18,6 @@ import psiprobe.beans.ContainerWrapperBean;
 
 /**
  * Base class for controllers requiring access to ContainerWrapperBean.
- *
- * @author Vlad Ilyushchenko
  */
 public abstract class TomcatContainerController extends AbstractController {
 

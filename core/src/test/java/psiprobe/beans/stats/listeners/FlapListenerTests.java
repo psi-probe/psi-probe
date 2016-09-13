@@ -18,8 +18,6 @@ import psiprobe.beans.stats.listeners.StatsCollectionEvent;
 
 /**
  * The Class FlapListenerTests.
- *
- * @author Mark Lewis
  */
 public class FlapListenerTests {
 

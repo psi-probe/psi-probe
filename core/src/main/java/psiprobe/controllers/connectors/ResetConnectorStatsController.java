@@ -22,8 +22,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * The Class ResetConnectorStatsController.
- *
- * @author Mark Lewis
  */
 public class ResetConnectorStatsController extends ParameterizableViewController {
 

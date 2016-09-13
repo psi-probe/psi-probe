@@ -16,8 +16,6 @@ import java.util.Date;
 
 /**
  * The Class Item.
- *
- * @author Vlad Ilyushchenko
  */
 public class Item implements Serializable {
 

@@ -22,9 +22,6 @@ import javax.management.ObjectName;
 
 /**
  * The Class RuntimeInfoAccessorBean.
- *
- * @author Vlad Ilyushchenko
- * @author Mark Lewis
  */
 public class RuntimeInfoAccessorBean {
 

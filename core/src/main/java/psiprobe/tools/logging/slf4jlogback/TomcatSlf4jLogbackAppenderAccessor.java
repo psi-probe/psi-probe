@@ -16,8 +16,6 @@ import java.io.File;
 
 /**
  * A wrapper for a TomcatSlf4jLogback appender for a specific logger.
- * 
- * @author Jeremy Landis
  */
 public class TomcatSlf4jLogbackAppenderAccessor extends AbstractLogDestination {
 

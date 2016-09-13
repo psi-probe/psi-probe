@@ -22,8 +22,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Retrieves a list of context initialization parameters for a web application.
- * 
- * @author Andy Shapoval
  */
 public class ListAppInitParamsController extends ContextHandlerController {
 

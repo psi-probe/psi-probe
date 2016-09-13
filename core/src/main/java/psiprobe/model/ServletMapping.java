@@ -12,9 +12,6 @@ package psiprobe.model;
 
 /**
  * A model class representing a servlet mapping item.
- * 
- * @author Andy Shapoval
- * @author Vlad Ilyushchenko
  */
 public class ServletMapping {
 

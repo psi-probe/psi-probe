@@ -51,9 +51,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Misc. static helper methods.
- * 
- * @author Vlad Ilyushchenko
- * @author Mark Lewis
  */
 public class Utils {
 

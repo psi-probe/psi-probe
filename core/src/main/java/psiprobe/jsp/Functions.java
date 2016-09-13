@@ -12,8 +12,6 @@ package psiprobe.jsp;
 
 /**
  * The Class Functions.
- *
- * @author Mark Lewis
  */
 public class Functions {
 

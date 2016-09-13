@@ -51,8 +51,6 @@ import javax.servlet.http.HttpServletResponse;
  * <li>l - show legend (boolean: true|false)</li>
  * <li>p - name of series provider bean</li>
  * </ul>
- * 
- * @author Vlad Ilyushchenko
  */
 public class RenderChartController extends AbstractController {
 

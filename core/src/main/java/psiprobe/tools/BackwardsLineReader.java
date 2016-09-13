@@ -21,9 +21,6 @@ import java.io.InputStream;
  * <p>
  * This source code was kindly contributed by Kan Ogawa.
  * </p>
- *
- * @author Kan Ogawa - Original source code.
- * @author Vlad Ilyushchenko - optimised "reverse" method and reduced line buffer size
  */
 public class BackwardsLineReader {
 

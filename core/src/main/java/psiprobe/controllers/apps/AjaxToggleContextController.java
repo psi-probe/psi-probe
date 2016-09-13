@@ -24,9 +24,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Stops a web application.
- * 
- * @author Vlad Ilyushchenko
- * @author Mark Lewis
  */
 public class AjaxToggleContextController extends ContextHandlerController {
 

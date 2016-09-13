@@ -16,9 +16,6 @@ import psiprobe.tools.logging.AbstractLogDestination;
 
 /**
  * The Class Jdk14HandlerAccessor.
- *
- * @author Vlad Ilyushchenko
- * @author Mark Lewis
  */
 public class Jdk14HandlerAccessor extends AbstractLogDestination {
 

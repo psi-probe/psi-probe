@@ -18,8 +18,6 @@ import psiprobe.model.DataSourceInfo;
 
 /**
  * Datasource accessor OpenEJB / TomEE.
- *
- * @author Dusan Jakub
  */
 public class OpenEjbManagedDatasourceAccessor implements DatasourceAccessor {
 

@@ -12,8 +12,6 @@ package psiprobe.model;
 
 /**
  * POJO representing "quick check" report.
- *
- * @author Vlad Ilyushchenko
  */
 public class TomcatTestReport {
 

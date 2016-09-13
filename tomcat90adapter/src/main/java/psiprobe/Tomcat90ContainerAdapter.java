@@ -41,10 +41,6 @@ import javax.servlet.ServletContext;
 
 /**
  * The Class Tomcat80ContainerAdapter.
- *
- * @author Vlad Ilyushchenko
- * @author Mark Lewis
- * @author Andre Sollie
  */
 public class Tomcat90ContainerAdapter extends AbstractTomcatContainer {
 

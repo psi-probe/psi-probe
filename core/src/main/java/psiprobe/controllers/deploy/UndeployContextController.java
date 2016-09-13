@@ -26,9 +26,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Undeploys a web application.
- * 
- * @author Vlad Ilyushchenko
- * @author Andy Shapoval
  */
 public class UndeployContextController extends ContextHandlerController {
 

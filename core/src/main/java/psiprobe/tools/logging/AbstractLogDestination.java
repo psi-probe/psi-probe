@@ -15,8 +15,6 @@ import java.sql.Timestamp;
 
 /**
  * The Class AbstractLogDestination.
- *
- * @author Mark Lewis
  */
 public abstract class AbstractLogDestination extends DefaultAccessor implements LogDestination {
 

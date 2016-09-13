@@ -12,8 +12,6 @@ package psiprobe.model.jsp;
 
 /**
  * The Class CompilerException.
- *
- * @author Vlad Ilyushchenko
  */
 public class CompilerException extends Exception {
 

@@ -14,8 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * The Class IpInfo.
- *
- * @author Mark Lewis
  */
 public class IpInfo {
 

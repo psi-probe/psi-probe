@@ -17,8 +17,6 @@ import java.io.PrintStream;
 
 /**
  * An {@code OutputStream} which writes to a commons-logging {@code Log} at a particular level.
- *
- * @author Mark Lewis
  */
 public class LogOutputStream extends OutputStream {
 

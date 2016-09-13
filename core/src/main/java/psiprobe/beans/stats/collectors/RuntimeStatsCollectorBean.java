@@ -15,9 +15,6 @@ import psiprobe.model.jmx.RuntimeInformation;
 
 /**
  * The Class RuntimeStatsCollectorBean.
- *
- * @author Vlad Ilyushchenko
- * @author Mark Lewis
  */
 public class RuntimeStatsCollectorBean extends AbstractStatsCollectorBean {
 

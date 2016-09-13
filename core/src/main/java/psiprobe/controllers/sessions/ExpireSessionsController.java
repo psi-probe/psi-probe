@@ -25,10 +25,6 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Expires a list of sessionIDs. Accepts a list of sid_webapp parameters that are expected to be in
  * a form of "sid;webapp"
- * 
- * @author Vlad Ilyushchenko
- * @author Andy Shapoval
- * @author Mark Lewis
  */
 public class ExpireSessionsController extends TomcatContainerController {
 

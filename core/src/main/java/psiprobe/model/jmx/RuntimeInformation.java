@@ -12,9 +12,6 @@ package psiprobe.model.jmx;
 
 /**
  * The Class RuntimeInformation.
- *
- * @author Vlad Ilyushchenko
- * @author Mark Lewis
  */
 public class RuntimeInformation {
 
