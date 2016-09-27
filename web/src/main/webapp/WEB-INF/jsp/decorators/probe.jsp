@@ -196,6 +196,8 @@
 						src="<c:url value='/flags/fr.gif'/>" alt="FR" /></a>
 				<a href="?<probe:addQueryParam param='lang' value='pt_br'/>"><img
 						src="<c:url value='/flags/br.gif'/>" alt="BR" /></a>
+				<a href="?<probe:addQueryParam param='lang' value='zh_cn'/>"><img
+						src="<c:url value='/flags/cn.gif'/>" alt="CN" /></a>
 			</div>
 			<p>
 				<spring:message code="probe.jsp.i18n.credit"/>
