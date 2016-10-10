@@ -24,9 +24,6 @@ import javax.servlet.jsp.tagext.TagSupport;
 
 /**
  * The Class ParamToggleTag.
- *
- * @author Vlad Ilyushchenko
- * @author Mark Lewis
  */
 public class ParamToggleTag extends TagSupport {
 

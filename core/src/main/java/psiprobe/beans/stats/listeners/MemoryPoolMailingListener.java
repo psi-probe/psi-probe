@@ -25,8 +25,6 @@ import javax.mail.MessagingException;
  * processing a memoryPoolMailing event implements this interface, and the object created with that
  * class is registered with a component using the component's {@code addMemoryPoolMailingListener}
  * method. When the memoryPoolMailing event occurs, that object's appropriate method is invoked.
- *
- * @author Mark Lewis
  */
 public class MemoryPoolMailingListener extends FlapListener implements MessageSourceAware,
     InitializingBean {

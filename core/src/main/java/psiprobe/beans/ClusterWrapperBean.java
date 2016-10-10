@@ -27,8 +27,6 @@ import javax.management.ObjectName;
 
 /**
  * The Class ClusterWrapperBean.
- *
- * @author Vlad Ilyushchenko
  */
 public class ClusterWrapperBean {
 

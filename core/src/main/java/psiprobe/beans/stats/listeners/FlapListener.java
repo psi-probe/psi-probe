@@ -21,7 +21,6 @@ import java.util.LinkedList;
  * component using the component's {@code addFlapListener} method. When the flap event occurs, that
  * object's appropriate method is invoked.
  *
- * @author Mark Lewis
  * @see <a href="http://nagios.sourceforge.net/docs/3_0/flapping.html">Detection and Handling of
  *      State Flapping (nagios)</a>
  */

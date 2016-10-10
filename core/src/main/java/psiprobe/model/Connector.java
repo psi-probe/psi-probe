@@ -15,8 +15,6 @@ import java.util.List;
 
 /**
  * POJO representing a Connector and its RequestProcessors.
- *
- * @author Mark Lewis
  */
 public class Connector {
 

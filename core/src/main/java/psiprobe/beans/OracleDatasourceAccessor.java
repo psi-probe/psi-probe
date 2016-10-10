@@ -31,9 +31,6 @@ import java.util.Properties;
  * tedious job of verifying whether the datasource has a record in the cache manager or not. The
  * pool information is subsequently retrieved from the relevant cache manager entry.
  * </p>
- * 
- * @author Vlad Ilyushchenko
- * @author Mark Lewis
  */
 public class OracleDatasourceAccessor implements DatasourceAccessor {
 

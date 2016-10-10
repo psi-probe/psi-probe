@@ -27,8 +27,6 @@ import javax.servlet.http.HttpSession;
 
 /**
  * Retrieves a single query from a history list.
- * 
- * @author Andy Shapoval
  */
 public class QueryHistoryItemController extends AbstractController {
 

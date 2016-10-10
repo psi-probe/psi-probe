@@ -22,9 +22,6 @@ import javax.servlet.jsp.tagext.TagSupport;
 
 /**
  * The Class AddQueryParamTag.
- *
- * @author Vlad Ilyushchenko
- * @author Mark Lewis
  */
 public class AddQueryParamTag extends TagSupport {
 

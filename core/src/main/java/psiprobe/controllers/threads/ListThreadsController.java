@@ -27,8 +27,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * The Class ListThreadsController.
- *
- * @author Vlad Ilyushchenko
  */
 public class ListThreadsController extends TomcatContainerController {
 

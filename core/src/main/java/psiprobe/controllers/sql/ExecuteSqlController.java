@@ -39,10 +39,6 @@ import javax.sql.DataSource;
 /**
  * Executes an SQL query through a given datasource to test database connectivity. Displays results
  * returned by the query.
- * 
- * @author Andy Shapoval
- * @author Mark Lewis
- * @author jackdimm
  */
 public class ExecuteSqlController extends ContextHandlerController {
 

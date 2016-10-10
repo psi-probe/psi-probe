@@ -21,8 +21,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * The Class RestartJvmController.
- *
- * @author Vlad Ilyushchenko
  */
 public class RestartJvmController extends ParameterizableViewController {
 

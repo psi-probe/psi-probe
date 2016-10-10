@@ -15,9 +15,6 @@ import psiprobe.model.Connector;
 
 /**
  * The Class ConnectorStatsCollectorBean.
- *
- * @author Vlad Ilyushchenko
- * @author Mark Lewis
  */
 public class ConnectorStatsCollectorBean extends AbstractStatsCollectorBean {
 

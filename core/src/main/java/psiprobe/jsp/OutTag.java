@@ -20,9 +20,6 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
 
 /**
  * The Class OutTag.
- *
- * @author Vlad Ilyushchenko
- * @author Mark Lewis
  */
 public class OutTag extends BodyTagSupport {
 

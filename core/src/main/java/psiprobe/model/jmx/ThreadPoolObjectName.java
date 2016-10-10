@@ -18,8 +18,6 @@ import javax.management.ObjectName;
 /**
  * This bean represens a hierarchy of Tomcat's ObjectNames necessary to display real-time connection
  * information on "status" tab.
- *
- * @author Vlad Ilyushchenko
  */
 public class ThreadPoolObjectName {
 

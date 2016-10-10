@@ -29,9 +29,6 @@ import javax.servlet.http.HttpServletResponse;
  * Main dispatcher servlet. Spring default dispatcher servlet had to be superceeded to handle
  * "privileged" application context features. The actual requirement is to capture passed Wrapper
  * instance into ContainerWrapperBean. Wrapper instance is our gateway to Tomcat.
- * 
- * @author Vlad Ilyushchenko
- * @author Mark Lewis
  */
 public class ProbeServlet extends DispatcherServlet implements ContainerServlet {
 

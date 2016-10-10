@@ -14,8 +14,6 @@ import org.jfree.data.xy.XYDataItem;
 
 /**
  * The Class StatsCollectionEvent.
- *
- * @author Mark Lewis
  */
 public class StatsCollectionEvent {
 

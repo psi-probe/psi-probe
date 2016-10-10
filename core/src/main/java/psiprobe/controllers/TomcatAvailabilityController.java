@@ -30,9 +30,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * "Quick check" controller.
- * 
- * @author Vlad Ilyushchenko
- * @author Mark Lewis
  */
 public class TomcatAvailabilityController extends TomcatContainerController {
 

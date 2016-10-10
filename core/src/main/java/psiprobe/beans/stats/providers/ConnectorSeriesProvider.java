@@ -22,8 +22,6 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * The Class ConnectorSeriesProvider.
- *
- * @author Vlad Ilyushchenko
  */
 public class ConnectorSeriesProvider extends AbstractSeriesProvider {
 

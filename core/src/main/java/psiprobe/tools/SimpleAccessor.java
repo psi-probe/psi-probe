@@ -17,8 +17,6 @@ import java.lang.reflect.Field;
 
 /**
  * The Class SimpleAccessor.
- *
- * @author Mark Lewis
  */
 public class SimpleAccessor implements Accessor {
 

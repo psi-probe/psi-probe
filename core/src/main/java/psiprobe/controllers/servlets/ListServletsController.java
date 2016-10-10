@@ -27,8 +27,6 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Retrieves a list of servlets for a particular web application or for all applications if an
  * application name is not passed in a query string.
- * 
- * @author Andy Shapoval
  */
 public class ListServletsController extends ContextHandlerController {
 

@@ -17,8 +17,6 @@ import psiprobe.tools.logging.log4j.Log4JLoggerAccessor;
 
 /**
  * The Class LoggerAccessorVisitor.
- *
- * @author Mark Lewis
  */
 public abstract class LoggerAccessorVisitor extends DefaultAccessor {
 

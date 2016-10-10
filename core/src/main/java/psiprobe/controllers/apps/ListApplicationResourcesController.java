@@ -20,8 +20,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Creates a list of resources for a particular web application.
- *
- * @author Vlad Ilyushchenko
  */
 public class ListApplicationResourcesController extends ContextHandlerController {
 

@@ -21,9 +21,6 @@ import java.util.List;
 
 /**
  * The Class Jdk14LoggerAccessor.
- *
- * @author Vlad Ilyushchenko
- * @author Mark Lewis
  */
 public class Jdk14LoggerAccessor extends DefaultAccessor {
 

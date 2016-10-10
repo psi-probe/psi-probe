@@ -20,9 +20,6 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * The Class SecurityUtils.
- *
- * @author Vlad Ilyushchenko
- * @author Mark Lewis
  */
 public class SecurityUtils {
 

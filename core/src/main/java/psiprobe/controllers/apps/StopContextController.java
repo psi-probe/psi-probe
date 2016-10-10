@@ -17,8 +17,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 /**
  * Stops a web application.
- *
- * @author Vlad Ilyushchenko
  */
 public class StopContextController extends NoSelfContextHandlerController {
 

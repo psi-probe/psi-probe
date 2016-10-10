@@ -16,9 +16,6 @@ import java.io.File;
 
 /**
  * The Class Log4JAppenderAccessor.
- *
- * @author Vlad Ilyushchenko
- * @author Mark Lewis
  */
 public class Log4JAppenderAccessor extends AbstractLogDestination {
 

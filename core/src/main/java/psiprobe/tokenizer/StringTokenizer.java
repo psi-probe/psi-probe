@@ -18,8 +18,6 @@ import java.io.StringReader;
 
 /**
  * The Class StringTokenizer.
- *
- * @author Vlad Ilyushchenko
  */
 public class StringTokenizer extends Tokenizer {
 

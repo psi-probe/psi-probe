@@ -29,8 +29,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * The Class ViewServletSourceController.
- *
- * @author Vlad Ilyushchenko
  */
 public class ViewServletSourceController extends ContextHandlerController {
 

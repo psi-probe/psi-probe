@@ -19,8 +19,6 @@ import psiprobe.model.DataSourceInfo;
 
 /**
  * The Class DatasourceStatsCollectorBean.
- *
- * @author Mark Lewis
  */
 public class DatasourceStatsCollectorBean extends AbstractStatsCollectorBean {
 

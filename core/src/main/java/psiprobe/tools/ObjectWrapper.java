@@ -20,9 +20,6 @@ package psiprobe.tools;
  * instances when calculating object sizes and (2) call {@link Object#hashCode() hashCode()} without
  * fear of an exception or infinite loop.
  * </p>
- * 
- * @author Vlad Ilyushchenko
- * @author Mark Lewis
  *
  * @see Instruments
  */

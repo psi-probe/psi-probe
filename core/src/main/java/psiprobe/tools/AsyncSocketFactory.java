@@ -18,8 +18,6 @@ import java.net.Socket;
 
 /**
  * A factory for creating AsyncSocket objects.
- *
- * @author Vlad Ilyushchenko
  */
 public class AsyncSocketFactory {
 

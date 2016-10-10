@@ -36,9 +36,6 @@ import javax.servlet.http.HttpSession;
 /**
  * Creates the list of sessions for a particular web application or all web applications if a webapp
  * request parameter is not set.
- * 
- * @author Vlad Ilyushchenko
- * @author Andy Shapoval
  */
 public class ListSessionsController extends ContextHandlerController {
 

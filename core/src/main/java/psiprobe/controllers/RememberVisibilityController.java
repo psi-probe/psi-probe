@@ -24,9 +24,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * The Class RememberVisibilityController.
- *
- * @author Vlad Ilyushchenko
- * @author Mark Lewis
  */
 public class RememberVisibilityController extends AbstractController {
 

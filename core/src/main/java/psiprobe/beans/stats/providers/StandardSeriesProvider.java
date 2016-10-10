@@ -24,8 +24,6 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * The Class StandardSeriesProvider.
- *
- * @author Vlad Ilyushchenko
  */
 public class StandardSeriesProvider extends AbstractSeriesProvider {
 

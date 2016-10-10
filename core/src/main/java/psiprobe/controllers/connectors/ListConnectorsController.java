@@ -24,9 +24,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * The Class ListConnectorsController.
- *
- * @author Vlad Ilyushchenko
- * @author Mark Lewis
  */
 public class ListConnectorsController extends TomcatContainerController {
 

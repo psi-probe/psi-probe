@@ -23,10 +23,6 @@ import java.util.TreeMap;
 
 /**
  * The Class AbstractStatsCollectorBean.
- *
- * @author Vlad Ilyushchenko
- * @author Andy Shapoval
- * @author Mark Lewis
  */
 public abstract class AbstractStatsCollectorBean {
 

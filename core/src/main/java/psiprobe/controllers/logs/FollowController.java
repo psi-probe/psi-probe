@@ -25,9 +25,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * The Class FollowController.
- *
- * @author Vlad Ilyushchenko
- * @author Mark Lewis
  */
 public class FollowController extends LogHandlerController {
 

@@ -22,8 +22,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * The Class RemoveApplicationAttributeController.
- *
- * @author Vlad Ilyushchenko
  */
 public class RemoveApplicationAttributeController extends ContextHandlerController {
 

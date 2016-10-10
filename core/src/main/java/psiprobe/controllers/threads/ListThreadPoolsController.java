@@ -23,9 +23,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Creates the list of http connection thread pools.
- * 
- * @author Vlad Ilyushchenko
- * @author Mark Lewis
  */
 public class ListThreadPoolsController extends TomcatContainerController {
 

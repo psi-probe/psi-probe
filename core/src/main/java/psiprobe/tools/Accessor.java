@@ -14,8 +14,6 @@ import java.lang.reflect.Field;
 
 /**
  * The Interface Accessor.
- *
- * @author Mark Lewis
  */
 public interface Accessor {
 

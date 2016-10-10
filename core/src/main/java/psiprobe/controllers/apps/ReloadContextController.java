@@ -18,8 +18,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 /**
  * Reloads application context.
- * 
- * @author Vlad Ilyushchenko
  */
 public class ReloadContextController extends NoSelfContextHandlerController {
 

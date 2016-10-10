@@ -16,9 +16,6 @@ import psiprobe.model.DataSourceInfo;
 
 /**
  * Accesses an Oracle Universal Connection Pool (UCP) resource.
- * 
- * @author polaris.keith
- * @author Mark Lewis
  */
 public class OracleUcpDatasourceAssessor implements DatasourceAccessor {
 

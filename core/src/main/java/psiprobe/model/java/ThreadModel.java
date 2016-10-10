@@ -12,8 +12,6 @@ package psiprobe.model.java;
 
 /**
  * The Class ThreadModel.
- *
- * @author Vlad Ilyushchenko
  */
 public class ThreadModel {
 

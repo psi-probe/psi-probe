@@ -22,9 +22,6 @@ import java.lang.reflect.InvocationTargetException;
 
 /**
  * The Class DefaultAccessor.
- *
- * @author Vlad Ilyushchenko
- * @author Mark Lewis
  */
 public class DefaultAccessor {
 

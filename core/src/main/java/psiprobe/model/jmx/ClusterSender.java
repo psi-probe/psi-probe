@@ -12,8 +12,6 @@ package psiprobe.model.jmx;
 
 /**
  * The Class ClusterSender.
- *
- * @author Vlad Ilyushchenko
  */
 public class ClusterSender {
 

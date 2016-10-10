@@ -19,9 +19,6 @@ import java.util.Date;
 
 /**
  * The Class CatalinaLoggerAccessor.
- *
- * @author Vlad Ilyushchenko
- * @author Mark Lewis
  */
 public class CatalinaLoggerAccessor extends AbstractLogDestination {
 

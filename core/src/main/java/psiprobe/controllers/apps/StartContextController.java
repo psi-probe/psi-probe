@@ -17,8 +17,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 /**
  * Starts a web application.
- *
- * @author Vlad Ilyushchenko
  */
 public class StartContextController extends NoSelfContextHandlerController {
 

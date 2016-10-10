@@ -20,8 +20,6 @@ import java.io.File;
 
 /**
  * A wrapper for a Logback appender for a specific logger.
- * 
- * @author Harald Wellmann
  */
 public class LogbackAppenderAccessor extends AbstractLogDestination {
 

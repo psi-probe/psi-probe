@@ -14,8 +14,6 @@ import java.util.Locale;
 
 /**
  * POJO representing a single http request processor thread.
- *
- * @author Vlad Ilyushchenko
  */
 public class RequestProcessor {
 

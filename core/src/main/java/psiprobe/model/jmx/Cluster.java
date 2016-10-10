@@ -15,8 +15,6 @@ import java.util.List;
 
 /**
  * The Class Cluster.
- *
- * @author Vlad Ilyushchenko
  */
 public class Cluster {
 

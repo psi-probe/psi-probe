@@ -24,8 +24,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * The Class DownloadServletController.
- *
- * @author Vlad Ilyushchenko
  */
 public class DownloadServletController extends ContextHandlerController {
 

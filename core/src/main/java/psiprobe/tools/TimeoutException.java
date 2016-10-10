@@ -14,8 +14,6 @@ import java.io.IOException;
 
 /**
  * The Class TimeoutException.
- *
- * @author Vlad Ilyushchenko
  */
 public class TimeoutException extends IOException {
 

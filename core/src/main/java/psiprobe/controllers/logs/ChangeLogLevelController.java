@@ -26,8 +26,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * The Class ChangeLogLevelController.
- *
- * @author Mark Lewis
  */
 public class ChangeLogLevelController extends LogHandlerController {
 

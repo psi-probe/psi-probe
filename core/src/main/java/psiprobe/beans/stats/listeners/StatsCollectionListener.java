@@ -15,8 +15,6 @@ package psiprobe.beans.stats.listeners;
  * processing a statsCollection event implements this interface, and the object created with that
  * class is registered with a component using the component's {@code addStatsCollectionListener}
  * method. When the statsCollection event occurs, that object's appropriate method is invoked.
- *
- * @author Mark Lewis
  */
 public interface StatsCollectionListener {
 

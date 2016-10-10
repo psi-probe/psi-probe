@@ -15,8 +15,6 @@ import psiprobe.model.DataSourceInfo;
 /**
  * Part of datasource type abstraction layer. Allows to extent Probe functionality to any kind of
  * datasources.
- * 
- * @author Vlad Ilyushchenko
  */
 public interface DatasourceAccessor {
 

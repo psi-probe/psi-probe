@@ -26,10 +26,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Retrieves Application model object populated with application information.
- * 
- * @author Andy Shapoval
- * @author Vlad Ilyushchenko
- * @author Mark Lewis
  */
 public class GetApplicationController extends ContextHandlerController {
 

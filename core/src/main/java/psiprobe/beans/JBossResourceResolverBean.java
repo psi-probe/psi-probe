@@ -33,9 +33,6 @@ import javax.sql.DataSource;
 
 /**
  * An Adapter to convert information retrieved from JBoss JMX beans into internal resource model.
- * 
- * @author Vlad Ilyushchenko
- * @author Mark Lewis
  */
 public class JBossResourceResolverBean implements ResourceResolver {
 

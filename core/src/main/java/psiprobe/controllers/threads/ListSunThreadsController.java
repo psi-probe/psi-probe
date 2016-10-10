@@ -29,8 +29,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * The Class ListSunThreadsController.
- *
- * @author Vlad Ilyushchenko
  */
 public class ListSunThreadsController extends ParameterizableViewController {
 

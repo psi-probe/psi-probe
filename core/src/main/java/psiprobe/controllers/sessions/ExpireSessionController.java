@@ -23,8 +23,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Expires a single session of a particular web application.
- * 
- * @author Andy Shapoval
  */
 public class ExpireSessionController extends ContextHandlerController {
 

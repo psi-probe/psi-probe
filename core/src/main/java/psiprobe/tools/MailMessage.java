@@ -19,8 +19,6 @@ import javax.activation.FileDataSource;
 
 /**
  * The Class MailMessage.
- *
- * @author Mark Lewis
  */
 public class MailMessage {
 

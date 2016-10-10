@@ -56,9 +56,6 @@ import javax.servlet.ServletContext;
 /**
  * Abstraction layer to implement some functionality, which is common between different container
  * adapters.
- * 
- * @author Vlad Ilyushchenko
- * @author Mark Lewis
  */
 public abstract class AbstractTomcatContainer implements TomcatContainer {
 

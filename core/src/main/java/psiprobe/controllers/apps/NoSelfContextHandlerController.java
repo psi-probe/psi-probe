@@ -24,9 +24,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Base class preventing "destructive" actions to be executed on the Probe's context.
- * 
- * @author Vlad Ilyushchenko
- * @author Andy Shapoval
  */
 public abstract class NoSelfContextHandlerController extends ContextHandlerController {
 

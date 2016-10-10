@@ -16,9 +16,6 @@ import psiprobe.model.DataSourceInfo;
 
 /**
  * Abstraction layer for c3p0. Maps c3p0 datasource properties on our generic DataSourceInfo bean.
- *
- * @author Vlad Ilyushchenko
- * @author Mark Lewis
  */
 public class C3P0DatasourceAccessor implements DatasourceAccessor {
 

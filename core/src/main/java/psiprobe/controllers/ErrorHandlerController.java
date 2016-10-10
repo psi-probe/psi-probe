@@ -19,8 +19,6 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * The ErrorHandlerController will show two different views depending on whether the failed request
  * was AJAX or not.
- *
- * @author Vlad Ilyushchenko.
  */
 public class ErrorHandlerController extends AbstractController {
 

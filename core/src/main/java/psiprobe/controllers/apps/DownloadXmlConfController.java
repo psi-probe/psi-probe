@@ -26,9 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Downloads a deployment descriptor (web.xml) or a context descriptor (context.xml) of a web
- * application
- * 
- * @author Andy Shapoval
+ * application.
  */
 public class DownloadXmlConfController extends ContextHandlerController {
 

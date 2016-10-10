@@ -24,8 +24,6 @@ import javax.servlet.http.HttpSession;
 
 /**
  * The Class DisplayJspController.
- *
- * @author Vlad Ilyushchenko
  */
 public class DisplayJspController extends ContextHandlerController {
 

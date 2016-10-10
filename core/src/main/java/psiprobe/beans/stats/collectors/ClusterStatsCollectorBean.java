@@ -17,8 +17,6 @@ import psiprobe.model.jmx.Cluster;
 
 /**
  * The Class ClusterStatsCollectorBean.
- *
- * @author Vlad Ilyushchenko
  */
 public class ClusterStatsCollectorBean extends AbstractStatsCollectorBean {
 

@@ -22,9 +22,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * The Class SetupFollowController.
- *
- * @author Vlad Ilyushchenko
- * @author Mark Lewis
  */
 public class SetupFollowController extends LogHandlerController {
 

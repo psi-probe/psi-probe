@@ -16,10 +16,6 @@ import psiprobe.model.DataSourceInfo;
 
 /**
  * The Class Tomcat8DbcpDatasourceAccessor.
- *
- * @author Vlad Ilyushchenko
- * @author Mark Lewis
- * @author <a href="mailto:diogosantana@gmail.com">Diogo Sant'Ana</a>
  */
 public class Tomcat8DbcpDatasourceAccessor implements DatasourceAccessor {
 

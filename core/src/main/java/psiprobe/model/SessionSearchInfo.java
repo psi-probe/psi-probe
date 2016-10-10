@@ -21,9 +21,6 @@ import java.util.regex.PatternSyntaxException;
 
 /**
  * Data model class used by session search feature of application session screen.
- * 
- * @author Andy Shapoval
- * @author Vlad Ilyushchenko
  */
 public class SessionSearchInfo implements Serializable {
 

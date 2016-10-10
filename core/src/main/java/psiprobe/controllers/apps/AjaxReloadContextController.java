@@ -24,9 +24,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Reloads application context.
- * 
- * @author Vlad Ilyushchenko
- * @author Mark Lewis
  */
 public class AjaxReloadContextController extends ContextHandlerController {
 

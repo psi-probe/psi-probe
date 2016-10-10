@@ -23,8 +23,6 @@ import java.util.List;
 
 /**
  * A wrapper for a TomcatSlf4jLogback logger.
- * 
- * @author Jeremy Landis
  */
 public class TomcatSlf4jLogbackLoggerAccessor extends DefaultAccessor {
 

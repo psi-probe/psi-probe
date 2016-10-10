@@ -14,9 +14,6 @@ import java.io.File;
 
 /**
  * The Class FileLogAccessor.
- *
- * @author Vlad Ilyushchenko
- * @author Mark Lewis
  */
 public class FileLogAccessor extends AbstractLogDestination {
 

@@ -24,9 +24,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * The Class GetConnectorController.
- *
- * @author Vlad Ilyushchenko
- * @author Mark Lewis
  */
 public class GetConnectorController extends TomcatContainerController {
 

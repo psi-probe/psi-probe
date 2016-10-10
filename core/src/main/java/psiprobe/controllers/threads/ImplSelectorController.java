@@ -21,8 +21,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * The Class ImplSelectorController.
- *
- * @author Vlad Ilyushchenko
  */
 public class ImplSelectorController extends AbstractController {
 

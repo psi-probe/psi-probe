@@ -28,9 +28,6 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Displays a deployment descriptor (web.xml) or a context descriptor (context.xml) of a web
  * application
- * 
- * @author Andy Shapoval
- * @author Vlad Ilyushchenko
  */
 public class ViewXmlConfController extends ContextHandlerController {
 

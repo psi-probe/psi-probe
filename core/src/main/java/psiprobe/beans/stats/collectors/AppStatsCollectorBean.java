@@ -25,9 +25,6 @@ import javax.servlet.ServletContext;
 
 /**
  * Collects application statistics.
- *
- * @author Andy Shapoval
- * @author Mark Lewis
  */
 public class AppStatsCollectorBean extends AbstractStatsCollectorBean implements
     ServletContextAware {

@@ -17,9 +17,6 @@ import java.sql.Timestamp;
 
 /**
  * The Interface LogDestination.
- *
- * @author Vlad Ilyushchenko
- * @author Mark Lewis
  */
 public interface LogDestination {
 

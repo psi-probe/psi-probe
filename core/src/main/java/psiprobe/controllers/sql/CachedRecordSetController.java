@@ -28,8 +28,6 @@ import javax.servlet.http.HttpSession;
 /**
  * Displays a result set cached in an attribute of HttpSession object to support result set
  * pagination feature without re-executing a query that created the result set.
- * 
- * @author Andy Shapoval
  */
 public class CachedRecordSetController extends ParameterizableViewController {
 

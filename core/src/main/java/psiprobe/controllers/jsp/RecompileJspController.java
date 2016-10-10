@@ -30,8 +30,6 @@ import javax.servlet.http.HttpSession;
 
 /**
  * The Class RecompileJspController.
- *
- * @author Vlad Ilyushchenko
  */
 public class RecompileJspController extends ContextHandlerController {
 

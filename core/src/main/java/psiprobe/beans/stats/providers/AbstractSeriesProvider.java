@@ -19,9 +19,6 @@ import java.util.List;
 
 /**
  * The Class AbstractSeriesProvider.
- *
- * @author Vlad Ilyushchenko
- * @author Andy Shapoval
  */
 public abstract class AbstractSeriesProvider implements SeriesProvider {
 

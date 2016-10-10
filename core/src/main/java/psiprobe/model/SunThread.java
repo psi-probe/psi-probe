@@ -12,8 +12,6 @@ package psiprobe.model;
 
 /**
  * The Class SunThread.
- *
- * @author Vlad Ilyushchenko
  */
 public class SunThread {
 
