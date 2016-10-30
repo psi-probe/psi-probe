@@ -671,6 +671,11 @@
                         </dependency>
                     </dependencies>
                 </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jdeps-plugin</artifactId>
+                    <version>3.0.0</version>
+                </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
@@ -734,6 +739,11 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>tidy-maven-plugin</artifactId>
+                <version>1.0.0</version>
+            </plugin>
         </plugins>
     </build>
 
@@ -742,7 +752,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jdeps-plugin</artifactId>
-                <version>3.0.0</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -861,7 +870,6 @@
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>tidy-maven-plugin</artifactId>
-                        <version>1.0.0</version>
                         <executions>
                             <execution>
                                 <phase>verify</phase>
