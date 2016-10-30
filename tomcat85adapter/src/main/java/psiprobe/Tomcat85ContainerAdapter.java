@@ -56,8 +56,8 @@ public class Tomcat85ContainerAdapter extends AbstractTomcatContainer {
       return false;
     }
     return binding.startsWith("Apache Tomcat/8.5")
-      // Neither of the next two currently exist
       || binding.startsWith("Apache Tomcat (TomEE)/8.5")
+      // Pivotal tc 8.5 does not currently exist
       || binding.startsWith("Pivotal tc") && binding.contains("/8.5");
   }
 
