@@ -17,6 +17,7 @@ import org.apache.catalina.Context;
 import org.apache.catalina.Session;
 import org.apache.catalina.Wrapper;
 import org.apache.catalina.core.StandardWrapper;
+import org.apache.commons.beanutils.MethodUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.ClassUtils;
@@ -33,6 +34,7 @@ import psiprobe.model.ServletInfo;
 import psiprobe.model.ServletMapping;
 
 import java.io.Serializable;
+import java.lang.reflect.InvocationTargetException;
 import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -368,7 +370,22 @@ public class ApplicationUtils {
       si.setMinTime(sw.getMinTime() == Long.MAX_VALUE ? 0 : sw.getMinTime());
       si.setProcessingTime(sw.getProcessingTime());
       si.setRequestCount(sw.getRequestCount());
-      si.setSingleThreaded(sw.isSingleThreadModel());
+      // Tomcat 7.0.72+, 8.0.37+, 8.5.5+, and 9.0.0.M10 modified from boolean to Boolean.
+      // Since SingleThreadModel deprecated in servlet 2.4 with no direct replacement,
+      // we will continue to handle as boolean.  Previously calling this would have 
+      // resulted in class being loaded if not already.  This is why Null is returned
+      // now.
+      try {
+          Object singleThreaded = MethodUtils.invokeMethod(sw, "isSingleThreadModel", null);
+          if (singleThreaded == null) {
+              si.setSingleThreaded(false);
+          } else {
+              si.setSingleThreaded(Boolean.parseBoolean(String.valueOf(singleThreaded)));
+          }
+      } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+          logger.error("Cannot determine single threading");
+          logger.trace("", e);
+      }
     }
     return si;
   }
