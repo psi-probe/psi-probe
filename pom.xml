@@ -914,6 +914,19 @@
                                                 <ignore />
                                             </action>
                                         </pluginExecution>
+                                        <pluginExecution>
+                                            <pluginExecutionFilter>
+                                                <groupId>com.mycila</groupId>
+                                                <artifactId>license-maven-plugin</artifactId>
+                                                <versionRange>[3.0,)</versionRange>
+                                                <goals>
+                                                    <goal>format</goal>
+                                                </goals>
+                                            </pluginExecutionFilter>
+                                            <action>
+                                                <ignore />
+                                            </action>
+                                        </pluginExecution>
                                     </pluginExecutions>
                                 </lifecycleMappingMetadata>
                             </configuration>

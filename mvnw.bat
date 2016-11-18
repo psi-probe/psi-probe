@@ -1,4 +1,15 @@
 @REM
+@REM Licensed under the GPL License. You may not use this file except in compliance with the License.
+@REM You may obtain a copy of the License at
+@REM
+@REM   http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+@REM
+@REM THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+@REM WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+@REM PURPOSE.
+@REM
+
+@REM
 @REM    Copyright 2015-2016 the original author or authors.
 @REM
 @REM    Licensed under the Apache License, Version 2.0 (the "License");
