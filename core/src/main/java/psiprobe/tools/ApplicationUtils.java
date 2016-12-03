@@ -372,19 +372,19 @@ public class ApplicationUtils {
       si.setRequestCount(sw.getRequestCount());
       // Tomcat 7.0.72+, 8.0.37+, 8.5.5+, and 9.0.0.M10 modified from boolean to Boolean.
       // Since SingleThreadModel deprecated in servlet 2.4 with no direct replacement,
-      // we will continue to handle as boolean.  Previously calling this would have 
-      // resulted in class being loaded if not already.  This is why Null is returned
+      // we will continue to handle as boolean. Previously calling this would have
+      // resulted in class being loaded if not already. This is why Null is returned
       // now.
       try {
-          Object singleThreaded = MethodUtils.invokeMethod(sw, "isSingleThreadModel", null);
-          if (singleThreaded == null) {
-              si.setSingleThreaded(false);
-          } else {
-              si.setSingleThreaded(Boolean.parseBoolean(String.valueOf(singleThreaded)));
-          }
+        Object singleThreaded = MethodUtils.invokeMethod(sw, "isSingleThreadModel", null);
+        if (singleThreaded == null) {
+          si.setSingleThreaded(false);
+        } else {
+          si.setSingleThreaded(Boolean.parseBoolean(String.valueOf(singleThreaded)));
+        }
       } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-          logger.error("Cannot determine single threading");
-          logger.trace("", e);
+        logger.error("Cannot determine single threading");
+        logger.trace("", e);
       }
     }
     return si;
