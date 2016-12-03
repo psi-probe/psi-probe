@@ -5,6 +5,7 @@
 [![Dependency Status](https://www.versioneye.com/user/projects/569bd2562025a60031000001/badge.svg?style=flat)](https://www.versioneye.com/user/projects/569bd2562025a60031000001)
 [![GPLv2 License](http://img.shields.io/badge/license-GPLv2-green.svg)](http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
 [![Project Stats](https://www.openhub.net/p/psi-probe/widgets/project_thin_badge.gif)](https://www.openhub.net/p/psi-probe)
+[![Github All Releases](https://img.shields.io/github/downloads/psi-probe/psi-probe/total.svg)]()
 
 ![psi-probe](src/site/resources/images/psi-probe-banner.jpg)
 
