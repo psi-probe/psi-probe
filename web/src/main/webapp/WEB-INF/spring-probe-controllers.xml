@@ -204,7 +204,7 @@
 		<property name="viewName" value="datasources"/>
 	</bean>
 
-	<bean name="/datasourcegroups.htm" class="psiprobe.controllers.datasources.ListAllJdbcResourceGroups">
+	<bean name="/datasourcegroups.htm" class="psiprobe.controllers.datasources.ListAllJdbcResourceGroupsController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="viewName" value="datasourcegroup"/>
 	</bean>
