@@ -21,11 +21,7 @@
 
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>
-			<![CDATA[
-				/WEB-INF/spring-probe-security.xml
-			]]>
-		</param-value>
+		<param-value>/WEB-INF/spring-probe-security.xml</param-value>
 	</context-param>
 
 	<listener>
@@ -122,7 +118,6 @@
 	<!--exception page -->
 	<error-page>
 		<exception-type>java.lang.Throwable</exception-type>
-		<!-- Displays a stack trace -->
 		<location>/WEB-INF/jsp/errors/servleterror.jsp</location>
 	</error-page>
 
