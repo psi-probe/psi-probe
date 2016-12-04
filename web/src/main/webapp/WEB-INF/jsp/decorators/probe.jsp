@@ -71,7 +71,7 @@
 					</a>
 				</li>
 				<li>
-					<a class="${navTabLogs}" href="<c:url value='/logs/index.htm'/>">
+					<a class="${navTabLogs}" href="<c:url value='/logs/list.htm'/>">
 						<spring:message code="probe.jsp.menu.logs"/>
 					</a>
 				</li>
@@ -139,7 +139,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="<c:url value='/logs/index.htm'/>">
+					<a href="<c:url value='/logs/list.htm'/>">
 						<spring:message code="probe.jsp.menu.logs"/>
 					</a>
 				</li>
