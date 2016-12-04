@@ -17,7 +17,7 @@ import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
-import psiprobe.controllers.ContextHandlerController;
+import psiprobe.controllers.AbstractContextHandlerController;
 import psiprobe.model.ApplicationSession;
 import psiprobe.model.Attribute;
 import psiprobe.model.SessionSearchInfo;
@@ -37,7 +37,7 @@ import javax.servlet.http.HttpSession;
  * Creates the list of sessions for a particular web application or all web applications if a webapp
  * request parameter is not set.
  */
-public class ListSessionsController extends ContextHandlerController {
+public class ListSessionsController extends AbstractContextHandlerController {
 
   @Override
   protected ModelAndView handleContext(String contextName, Context context,

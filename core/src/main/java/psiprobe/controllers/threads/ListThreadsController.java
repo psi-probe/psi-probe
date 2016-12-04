@@ -13,7 +13,7 @@ package psiprobe.controllers.threads;
 import org.apache.catalina.Context;
 import org.springframework.web.servlet.ModelAndView;
 
-import psiprobe.controllers.TomcatContainerController;
+import psiprobe.controllers.AbstractTomcatContainerController;
 import psiprobe.model.java.ThreadModel;
 import psiprobe.tools.Instruments;
 
@@ -28,7 +28,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * The Class ListThreadsController.
  */
-public class ListThreadsController extends TomcatContainerController {
+public class ListThreadsController extends AbstractTomcatContainerController {
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,

@@ -18,7 +18,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.ModelAndView;
 
-import psiprobe.controllers.TomcatContainerController;
+import psiprobe.controllers.AbstractTomcatContainerController;
 import psiprobe.model.certificates.Cert;
 import psiprobe.model.certificates.ConnectorInfo;
 
@@ -43,7 +43,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * The Class ListCertificatesController.
  */
-public class ListCertificatesController extends TomcatContainerController {
+public class ListCertificatesController extends AbstractTomcatContainerController {
 
   /** The Constant Logger. */
   private static final Logger logger = LoggerFactory.getLogger(ListCertificatesController.class);

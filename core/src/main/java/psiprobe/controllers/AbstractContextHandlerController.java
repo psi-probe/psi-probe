@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Base class for all controllers requiring "webapp" request parameter.
  */
-public abstract class ContextHandlerController extends TomcatContainerController {
+public abstract class AbstractContextHandlerController extends AbstractTomcatContainerController {
 
   /** The logger. */
   protected Logger logger = LoggerFactory.getLogger(getClass());

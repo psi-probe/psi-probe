@@ -15,7 +15,7 @@ import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
 import psiprobe.beans.ResourceResolver;
-import psiprobe.controllers.ContextHandlerController;
+import psiprobe.controllers.AbstractContextHandlerController;
 import psiprobe.model.Application;
 import psiprobe.model.stats.StatsCollection;
 import psiprobe.tools.ApplicationUtils;
@@ -27,7 +27,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Retrieves Application model object populated with application information.
  */
-public class GetApplicationController extends ContextHandlerController {
+public class GetApplicationController extends AbstractContextHandlerController {
 
   /** denotes whether extended application information and statistics should be collected. */
   private boolean extendedInfo = false;

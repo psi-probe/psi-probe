@@ -19,7 +19,7 @@ import psiprobe.beans.ContainerWrapperBean;
 /**
  * Base class for controllers requiring access to ContainerWrapperBean.
  */
-public abstract class TomcatContainerController extends AbstractController {
+public abstract class AbstractTomcatContainerController extends AbstractController {
 
   /** The logger. */
   protected Logger logger = LoggerFactory.getLogger(getClass());

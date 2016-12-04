@@ -16,7 +16,7 @@ import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.InternalResourceView;
 
-import psiprobe.controllers.TomcatContainerController;
+import psiprobe.controllers.AbstractTomcatContainerController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Forces Tomcat to install a pre-configured context name.
  */
-public class DeployContextController extends TomcatContainerController {
+public class DeployContextController extends AbstractTomcatContainerController {
 
   @Override
   public ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response)

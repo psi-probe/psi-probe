@@ -14,7 +14,7 @@ import org.apache.catalina.Context;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
-import psiprobe.controllers.ContextHandlerController;
+import psiprobe.controllers.AbstractContextHandlerController;
 import psiprobe.model.ApplicationSession;
 import psiprobe.tools.ApplicationUtils;
 import psiprobe.tools.SecurityUtils;
@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Retrieves the list of attributes for given session.
  */
-public class ListSessionAttributesController extends ContextHandlerController {
+public class ListSessionAttributesController extends AbstractContextHandlerController {
 
   @Override
   protected ModelAndView handleContext(String contextName, Context context,

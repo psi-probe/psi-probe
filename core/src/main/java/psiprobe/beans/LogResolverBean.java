@@ -103,7 +103,7 @@ public class LogResolverBean {
       // this list has to guarantee the order in which elements are added
       //
       List<LogDestination> uniqueList = new LinkedList<>();
-      LogComparator cmp = new LogDestinationComparator(all);
+      AbstractLogComparator cmp = new LogDestinationComparator(all);
 
       Collections.sort(allAppenders, cmp);
       for (LogDestination dest : allAppenders) {
@@ -145,7 +145,7 @@ public class LogResolverBean {
 
     List<LogDestination> allAppenders = getAllLogDestinations();
     if (allAppenders != null) {
-      LogComparator cmp = new LogSourceComparator();
+      AbstractLogComparator cmp = new LogSourceComparator();
 
       Collections.sort(allAppenders, cmp);
       for (LogDestination dest : allAppenders) {
@@ -548,7 +548,7 @@ public class LogResolverBean {
   /**
    * The Class LogComparator.
    */
-  private abstract static class LogComparator implements Comparator<LogDestination> {
+  private abstract static class AbstractLogComparator implements Comparator<LogDestination> {
 
     /** The Constant DELIM. */
     protected static final char DELIM = '!';
@@ -573,7 +573,7 @@ public class LogResolverBean {
   /**
    * The Class LogDestinationComparator.
    */
-  private static class LogDestinationComparator extends LogComparator {
+  private static class LogDestinationComparator extends AbstractLogComparator {
 
     /** The all. */
     private final boolean all;
@@ -610,7 +610,7 @@ public class LogResolverBean {
   /**
    * The Class LogSourceComparator.
    */
-  private static class LogSourceComparator extends LogComparator {
+  private static class LogSourceComparator extends AbstractLogComparator {
 
     @Override
     protected String convertToString(LogDestination dest) {

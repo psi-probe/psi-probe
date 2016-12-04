@@ -14,7 +14,7 @@ import org.apache.catalina.Context;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
-import psiprobe.controllers.TomcatContainerController;
+import psiprobe.controllers.AbstractTomcatContainerController;
 import psiprobe.model.Application;
 import psiprobe.tools.ApplicationUtils;
 import psiprobe.tools.SecurityUtils;
@@ -28,7 +28,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Creates the list of web application installed in the same "host" as the Probe.
  */
-public class ListWebappsController extends TomcatContainerController {
+public class ListWebappsController extends AbstractTomcatContainerController {
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,

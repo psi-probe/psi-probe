@@ -17,7 +17,7 @@ import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.InternalResourceView;
 
-import psiprobe.controllers.TomcatContainerController;
+import psiprobe.controllers.AbstractTomcatContainerController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletResponse;
  * Expires a list of sessionIDs. Accepts a list of sid_webapp parameters that are expected to be in
  * a form of "sid;webapp"
  */
-public class ExpireSessionsController extends TomcatContainerController {
+public class ExpireSessionsController extends AbstractTomcatContainerController {
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,

@@ -12,7 +12,7 @@ package psiprobe.controllers.datasources;
 
 import org.springframework.web.servlet.ModelAndView;
 
-import psiprobe.controllers.TomcatContainerController;
+import psiprobe.controllers.AbstractTomcatContainerController;
 import psiprobe.model.ApplicationResource;
 
 import java.util.List;
@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Creates a list of all configured datasources for all web applications within the container.
  */
-public class ListAllJdbcResourcesController extends TomcatContainerController {
+public class ListAllJdbcResourcesController extends AbstractTomcatContainerController {
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,

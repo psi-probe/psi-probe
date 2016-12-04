@@ -21,7 +21,7 @@ import java.util.HashMap;
  * with a component using the component's {@code addThresholdListener} method. When the threshold
  * event occurs, that object's appropriate method is invoked.
  */
-public abstract class ThresholdListener extends AbstractStatsCollectionListener {
+public abstract class AbstractThresholdListener extends AbstractStatsCollectionListener {
 
   /** The Constant DEFAULT_THRESHOLD. */
   public static final long DEFAULT_THRESHOLD = Long.MAX_VALUE;

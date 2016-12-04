@@ -13,7 +13,7 @@ package psiprobe.beans.stats.listeners;
 import org.junit.Assert;
 import org.junit.Test;
 
-import psiprobe.beans.stats.listeners.FlapListener;
+import psiprobe.beans.stats.listeners.AbstractFlapListener;
 import psiprobe.beans.stats.listeners.StatsCollectionEvent;
 
 /**
@@ -209,7 +209,7 @@ public class FlapListenerTests {
    *
    * @see MockFlapEvent
    */
-  public static class MockFlapListener extends FlapListener {
+  public static class MockFlapListener extends AbstractFlapListener {
 
     /** The threshold. */
     private final long threshold;

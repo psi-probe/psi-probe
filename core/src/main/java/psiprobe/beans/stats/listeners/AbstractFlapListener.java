@@ -24,7 +24,7 @@ import java.util.LinkedList;
  * @see <a href="http://nagios.sourceforge.net/docs/3_0/flapping.html">Detection and Handling of
  *      State Flapping (nagios)</a>
  */
-public abstract class FlapListener extends ThresholdListener {
+public abstract class AbstractFlapListener extends AbstractThresholdListener {
 
   /** The default flap interval. */
   private int defaultFlapInterval;

@@ -14,7 +14,7 @@ import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
 import psiprobe.beans.ContainerListenerBean;
-import psiprobe.controllers.TomcatContainerController;
+import psiprobe.controllers.AbstractTomcatContainerController;
 import psiprobe.model.Connector;
 
 import java.util.List;
@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * The Class GetConnectorController.
  */
-public class GetConnectorController extends TomcatContainerController {
+public class GetConnectorController extends AbstractTomcatContainerController {
 
   /** The container listener bean. */
   private ContainerListenerBean containerListenerBean;

@@ -13,7 +13,7 @@ package psiprobe.controllers.threads;
 import org.springframework.web.servlet.ModelAndView;
 
 import psiprobe.beans.ContainerListenerBean;
-import psiprobe.controllers.TomcatContainerController;
+import psiprobe.controllers.AbstractTomcatContainerController;
 import psiprobe.model.ThreadPool;
 
 import java.util.List;
@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Creates the list of http connection thread pools.
  */
-public class ListThreadPoolsController extends TomcatContainerController {
+public class ListThreadPoolsController extends AbstractTomcatContainerController {
 
   /** The container listener bean. */
   private ContainerListenerBean containerListenerBean;

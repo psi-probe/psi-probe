@@ -15,7 +15,7 @@ import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
 import psiprobe.Utils;
-import psiprobe.controllers.ContextHandlerController;
+import psiprobe.controllers.AbstractContextHandlerController;
 
 import java.io.File;
 
@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * The Class DownloadServletController.
  */
-public class DownloadServletController extends ContextHandlerController {
+public class DownloadServletController extends AbstractContextHandlerController {
 
   @Override
   protected ModelAndView handleContext(String contextName, Context context,

@@ -15,7 +15,7 @@ import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
-import psiprobe.controllers.ContextHandlerController;
+import psiprobe.controllers.AbstractContextHandlerController;
 import psiprobe.model.jsp.Summary;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +25,7 @@ import javax.servlet.http.HttpSession;
 /**
  * The Class DisplayJspController.
  */
-public class DisplayJspController extends ContextHandlerController {
+public class DisplayJspController extends AbstractContextHandlerController {
 
   /** The Constant SUMMARY_ATTRIBUTE. */
   public static final String SUMMARY_ATTRIBUTE = "jsp.summary";

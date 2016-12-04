@@ -17,7 +17,7 @@ import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.HtmlUtils;
 
-import psiprobe.controllers.ContextHandlerController;
+import psiprobe.controllers.AbstractContextHandlerController;
 import psiprobe.model.sql.DataSourceTestInfo;
 
 import java.sql.Connection;
@@ -40,7 +40,7 @@ import javax.sql.DataSource;
  * Executes an SQL query through a given datasource to test database connectivity. Displays results
  * returned by the query.
  */
-public class ExecuteSqlController extends ContextHandlerController {
+public class ExecuteSqlController extends AbstractContextHandlerController {
 
   /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(ExecuteSqlController.class);

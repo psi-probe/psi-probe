@@ -15,7 +15,7 @@ import psiprobe.beans.stats.collectors.AppStatsCollectorBean;
 /**
  * The Class ResetAppStatsController.
  */
-public class ResetAppStatsController extends NoSelfContextHandlerController {
+public class ResetAppStatsController extends AbstractNoSelfContextHandlerController {
 
   /** The stats collector. */
   private AppStatsCollectorBean statsCollector;

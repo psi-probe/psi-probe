@@ -17,7 +17,7 @@ import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
 import psiprobe.Utils;
-import psiprobe.controllers.ContextHandlerController;
+import psiprobe.controllers.AbstractContextHandlerController;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -30,7 +30,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * The Class ViewServletSourceController.
  */
-public class ViewServletSourceController extends ContextHandlerController {
+public class ViewServletSourceController extends AbstractContextHandlerController {
 
   @Override
   protected ModelAndView handleContext(String contextName, Context context,
