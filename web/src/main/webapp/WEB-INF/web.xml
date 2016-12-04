@@ -122,7 +122,6 @@
 	<!--exception page -->
 	<error-page>
 		<exception-type>java.lang.Throwable</exception-type>
-		<!-- Displays a stack trace -->
 		<location>/WEB-INF/jsp/errors/servleterror.jsp</location>
 	</error-page>
 
