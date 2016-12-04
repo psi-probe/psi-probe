@@ -439,7 +439,7 @@
 		<property name="viewName" value="/connectors.htm"/>
 	</bean>
 
-	<bean name="/logs,/logs/index.htm" class="psiprobe.controllers.logs.ListLogsController">
+	<bean name="/logs,/logs/list.htm" class="psiprobe.controllers.logs.ListLogsController">
 		<property name="logResolver" ref="logResolver"/>
 		<property name="viewName" value="logs"/>
 		<property name="errorView" value="logs_notsupported"/>

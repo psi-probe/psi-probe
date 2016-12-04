@@ -38,7 +38,7 @@
 
 		<ul class="options">
 			<li id="back">
-				<a href="<c:url value='/logs/index.htm'/>">
+				<a href="<c:url value='/logs/list.htm'/>">
 					<spring:message code="probe.jsp.follow.menu.back"/>
 				</a>
 			</li>
