@@ -12,7 +12,7 @@ package psiprobe.model;
 
 /**
  * This POJO represents a group of datasources. It provides methods for adding values to aggregated
- * totals of the group. The class is a part of the ListAllJdbcResourceGroups controller model.
+ * totals of the group. The class is a part of the ListAllJdbcResourceGroupsController model.
  */
 public class DataSourceInfoGroup extends DataSourceInfo {
 
