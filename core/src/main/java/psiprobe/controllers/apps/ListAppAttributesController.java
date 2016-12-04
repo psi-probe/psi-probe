@@ -13,7 +13,7 @@ package psiprobe.controllers.apps;
 import org.apache.catalina.Context;
 import org.springframework.web.servlet.ModelAndView;
 
-import psiprobe.controllers.ContextHandlerController;
+import psiprobe.controllers.AbstractContextHandlerController;
 import psiprobe.model.Attribute;
 import psiprobe.tools.ApplicationUtils;
 import psiprobe.tools.SecurityUtils;
@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Retrieves a list of servlet context attributes for a web application.
  */
-public class ListAppAttributesController extends ContextHandlerController {
+public class ListAppAttributesController extends AbstractContextHandlerController {
 
   @Override
   protected ModelAndView handleContext(String contextName, Context context,

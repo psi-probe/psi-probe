@@ -18,7 +18,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 /**
  * Starts a web application.
  */
-public class StartContextController extends NoSelfContextHandlerController {
+public class StartContextController extends AbstractNoSelfContextHandlerController {
 
   /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(StartContextController.class);

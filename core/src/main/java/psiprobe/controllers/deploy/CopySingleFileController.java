@@ -36,12 +36,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.InternalResourceView;
 
-import psiprobe.controllers.TomcatContainerController;
+import psiprobe.controllers.AbstractTomcatContainerController;
 
 /**
  * Lets an user to copy a single file to a deployed context.
  */
-public class CopySingleFileController extends TomcatContainerController {
+public class CopySingleFileController extends AbstractTomcatContainerController {
 
   /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(CopySingleFileController.class);

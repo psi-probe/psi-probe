@@ -10,7 +10,7 @@
  */
 package psiprobe.controllers.apps;
 
-public class NoSelfContextHandlerControllerImpl extends NoSelfContextHandlerController {
+public class NoSelfContextHandlerControllerImpl extends AbstractNoSelfContextHandlerController {
 
   @Override
   protected void executeAction(String contextName) throws Exception {

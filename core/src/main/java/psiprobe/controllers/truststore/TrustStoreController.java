@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
 
 import org.springframework.web.servlet.ModelAndView;
 
-import psiprobe.controllers.TomcatContainerController;
+import psiprobe.controllers.AbstractTomcatContainerController;
 
 import java.io.FileInputStream;
 import java.security.KeyStore;
@@ -33,7 +33,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Creates an instance of SystemInformation POJO.
  */
-public class TrustStoreController extends TomcatContainerController {
+public class TrustStoreController extends AbstractTomcatContainerController {
 
   /** The Constant Logger. */
   private static final Logger logger = LoggerFactory.getLogger(TrustStoreController.class);

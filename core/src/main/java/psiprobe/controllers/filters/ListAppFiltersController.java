@@ -13,7 +13,7 @@ package psiprobe.controllers.filters;
 import org.apache.catalina.Context;
 import org.springframework.web.servlet.ModelAndView;
 
-import psiprobe.controllers.ContextHandlerController;
+import psiprobe.controllers.AbstractContextHandlerController;
 import psiprobe.model.FilterInfo;
 import psiprobe.tools.ApplicationUtils;
 
@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Retrieves a list of filter mappings or filter definitions of a web application.
  */
-public class ListAppFiltersController extends ContextHandlerController {
+public class ListAppFiltersController extends AbstractContextHandlerController {
 
   @Override
   protected ModelAndView handleContext(String contextName, Context context,

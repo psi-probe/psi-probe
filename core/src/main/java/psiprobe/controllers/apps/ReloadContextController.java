@@ -19,7 +19,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 /**
  * Reloads application context.
  */
-public class ReloadContextController extends NoSelfContextHandlerController {
+public class ReloadContextController extends AbstractNoSelfContextHandlerController {
 
   /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(StartContextController.class);

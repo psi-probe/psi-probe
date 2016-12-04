@@ -16,7 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.ModelAndView;
 
 import psiprobe.Utils;
-import psiprobe.controllers.ContextHandlerController;
+import psiprobe.controllers.AbstractContextHandlerController;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -29,7 +29,7 @@ import javax.servlet.http.HttpServletResponse;
  * Displays a deployment descriptor (web.xml) or a context descriptor (context.xml) of a web
  * application
  */
-public class ViewXmlConfController extends ContextHandlerController {
+public class ViewXmlConfController extends AbstractContextHandlerController {
 
   /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(ViewXmlConfController.class);

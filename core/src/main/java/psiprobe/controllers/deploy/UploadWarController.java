@@ -26,7 +26,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.InternalResourceView;
 
-import psiprobe.controllers.TomcatContainerController;
+import psiprobe.controllers.AbstractTomcatContainerController;
 import psiprobe.controllers.jsp.DisplayJspController;
 import psiprobe.model.jsp.Summary;
 
@@ -41,7 +41,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Uploads and installs web application from a .WAR.
  */
-public class UploadWarController extends TomcatContainerController {
+public class UploadWarController extends AbstractTomcatContainerController {
 
   /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(UploadWarController.class);

@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * The Class GetAllDestinationsVisitor.
  */
-public class GetAllDestinationsVisitor extends LoggerAccessorVisitor {
+public class GetAllDestinationsVisitor extends AbstractLoggerAccessorVisitor {
 
   /** The destinations. */
   private final List<LogDestination> destinations = new ArrayList<>();

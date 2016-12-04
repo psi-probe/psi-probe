@@ -26,7 +26,7 @@ import javax.mail.MessagingException;
  * class is registered with a component using the component's {@code addMemoryPoolMailingListener}
  * method. When the memoryPoolMailing event occurs, that object's appropriate method is invoked.
  */
-public class MemoryPoolMailingListener extends FlapListener implements MessageSourceAware,
+public class MemoryPoolMailingListener extends AbstractFlapListener implements MessageSourceAware,
     InitializingBean {
 
   /** The Constant BASE_PROPERTY. */

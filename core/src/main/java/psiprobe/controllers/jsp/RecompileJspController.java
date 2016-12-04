@@ -17,7 +17,7 @@ import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
-import psiprobe.controllers.ContextHandlerController;
+import psiprobe.controllers.AbstractContextHandlerController;
 import psiprobe.model.jsp.Summary;
 
 import java.util.ArrayList;
@@ -31,7 +31,7 @@ import javax.servlet.http.HttpSession;
 /**
  * The Class RecompileJspController.
  */
-public class RecompileJspController extends ContextHandlerController {
+public class RecompileJspController extends AbstractContextHandlerController {
 
   /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(RecompileJspController.class);

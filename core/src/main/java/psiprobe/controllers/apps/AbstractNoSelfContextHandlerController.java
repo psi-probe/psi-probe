@@ -17,7 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.InternalResourceView;
 import org.springframework.web.servlet.view.RedirectView;
 
-import psiprobe.controllers.ContextHandlerController;
+import psiprobe.controllers.AbstractContextHandlerController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,10 +25,10 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Base class preventing "destructive" actions to be executed on the Probe's context.
  */
-public abstract class NoSelfContextHandlerController extends ContextHandlerController {
+public abstract class AbstractNoSelfContextHandlerController extends AbstractContextHandlerController {
 
   /** The Constant logger. */
-  private static final Logger logger = LoggerFactory.getLogger(NoSelfContextHandlerController.class);
+  private static final Logger logger = LoggerFactory.getLogger(AbstractNoSelfContextHandlerController.class);
 
   /** The pass query string. */
   private boolean passQueryString;

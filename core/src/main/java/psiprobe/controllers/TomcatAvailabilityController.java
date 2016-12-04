@@ -31,7 +31,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * "Quick check" controller.
  */
-public class TomcatAvailabilityController extends TomcatContainerController {
+public class TomcatAvailabilityController extends AbstractTomcatContainerController {
 
   /** The container listener bean. */
   private ContainerListenerBean containerListenerBean;

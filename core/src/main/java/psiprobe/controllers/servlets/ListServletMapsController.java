@@ -13,7 +13,7 @@ package psiprobe.controllers.servlets;
 import org.apache.catalina.Context;
 import org.springframework.web.servlet.ModelAndView;
 
-import psiprobe.controllers.ContextHandlerController;
+import psiprobe.controllers.AbstractContextHandlerController;
 import psiprobe.model.ServletMapping;
 import psiprobe.tools.ApplicationUtils;
 
@@ -27,7 +27,7 @@ import javax.servlet.http.HttpServletResponse;
  * Retrieves a list of servlet mappings for a particular web application or all web applications if
  * an application name is not passed in a query string.
  */
-public class ListServletMapsController extends ContextHandlerController {
+public class ListServletMapsController extends AbstractContextHandlerController {
 
   @Override
   protected ModelAndView handleContext(String contextName, Context context,

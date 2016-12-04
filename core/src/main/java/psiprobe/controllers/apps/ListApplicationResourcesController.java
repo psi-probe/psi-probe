@@ -13,7 +13,7 @@ package psiprobe.controllers.apps;
 import org.apache.catalina.Context;
 import org.springframework.web.servlet.ModelAndView;
 
-import psiprobe.controllers.ContextHandlerController;
+import psiprobe.controllers.AbstractContextHandlerController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Creates a list of resources for a particular web application.
  */
-public class ListApplicationResourcesController extends ContextHandlerController {
+public class ListApplicationResourcesController extends AbstractContextHandlerController {
 
   @Override
   protected ModelAndView handleContext(String contextName, Context context,

@@ -14,7 +14,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import psiprobe.beans.stats.listeners.StatsCollectionEvent;
-import psiprobe.beans.stats.listeners.ThresholdListener;
+import psiprobe.beans.stats.listeners.AbstractThresholdListener;
 
 /**
  * The Class ThresholdListenerTests.
@@ -107,7 +107,7 @@ public class ThresholdListenerTests {
    *
    * @see MockThresholdEvent
    */
-  public static class MockThresholdListener extends ThresholdListener {
+  public static class MockThresholdListener extends AbstractThresholdListener {
 
     /** The threshold. */
     private final long threshold;

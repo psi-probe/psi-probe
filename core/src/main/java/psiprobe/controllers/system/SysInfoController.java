@@ -13,7 +13,7 @@ package psiprobe.controllers.system;
 import org.springframework.web.servlet.ModelAndView;
 
 import psiprobe.beans.RuntimeInfoAccessorBean;
-import psiprobe.controllers.TomcatContainerController;
+import psiprobe.controllers.AbstractTomcatContainerController;
 import psiprobe.model.SystemInformation;
 import psiprobe.tools.SecurityUtils;
 
@@ -28,7 +28,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Creates an instance of SystemInformation POJO.
  */
-public class SysInfoController extends TomcatContainerController {
+public class SysInfoController extends AbstractTomcatContainerController {
 
   /** The filter out keys. */
   private List<String> filterOutKeys = new ArrayList<>();

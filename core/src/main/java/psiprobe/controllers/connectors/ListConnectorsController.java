@@ -13,7 +13,7 @@ package psiprobe.controllers.connectors;
 import org.springframework.web.servlet.ModelAndView;
 
 import psiprobe.beans.ContainerListenerBean;
-import psiprobe.controllers.TomcatContainerController;
+import psiprobe.controllers.AbstractTomcatContainerController;
 import psiprobe.model.Connector;
 import psiprobe.model.RequestProcessor;
 
@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * The Class ListConnectorsController.
  */
-public class ListConnectorsController extends TomcatContainerController {
+public class ListConnectorsController extends AbstractTomcatContainerController {
 
   /** The container listener bean. */
   private ContainerListenerBean containerListenerBean;

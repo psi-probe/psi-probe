@@ -16,7 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
-import psiprobe.controllers.ContextHandlerController;
+import psiprobe.controllers.AbstractContextHandlerController;
 
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
@@ -35,7 +35,7 @@ import javax.sql.DataSource;
  * Verifies if a database connection can be established through a given datasource. Displays basic
  * information about the database.
  */
-public class ConnectionTestController extends ContextHandlerController {
+public class ConnectionTestController extends AbstractContextHandlerController {
 
   /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(ConnectionTestController.class);

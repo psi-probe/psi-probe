@@ -19,7 +19,7 @@ import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
 import psiprobe.Utils;
-import psiprobe.controllers.ContextHandlerController;
+import psiprobe.controllers.AbstractContextHandlerController;
 import psiprobe.model.jsp.Item;
 import psiprobe.model.jsp.Summary;
 
@@ -33,7 +33,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * The Class ViewSourceController.
  */
-public class ViewSourceController extends ContextHandlerController {
+public class ViewSourceController extends AbstractContextHandlerController {
 
   /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(ViewSourceController.class);

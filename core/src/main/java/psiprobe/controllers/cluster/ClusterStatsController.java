@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import psiprobe.TomcatContainer;
 import psiprobe.beans.ClusterWrapperBean;
-import psiprobe.controllers.TomcatContainerController;
+import psiprobe.controllers.AbstractTomcatContainerController;
 import psiprobe.model.jmx.Cluster;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * The Class ClusterStatsController.
  */
-public class ClusterStatsController extends TomcatContainerController {
+public class ClusterStatsController extends AbstractTomcatContainerController {
 
   /** The cluster wrapper. */
   private ClusterWrapperBean clusterWrapper;

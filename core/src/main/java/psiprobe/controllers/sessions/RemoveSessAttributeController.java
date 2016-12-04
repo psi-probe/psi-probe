@@ -16,7 +16,7 @@ import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
-import psiprobe.controllers.ContextHandlerController;
+import psiprobe.controllers.AbstractContextHandlerController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * The Class RemoveSessAttributeController.
  */
-public class RemoveSessAttributeController extends ContextHandlerController {
+public class RemoveSessAttributeController extends AbstractContextHandlerController {
 
   @Override
   protected ModelAndView handleContext(String contextName, Context context,
