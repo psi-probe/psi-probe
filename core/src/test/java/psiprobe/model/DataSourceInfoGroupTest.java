@@ -15,8 +15,6 @@ import org.junit.Test;
 
 import com.codebox.bean.JavaBeanTester;
 
-import psiprobe.model.DataSourceInfoGroup;
-
 /**
  * The Class DataSourceInfoGroupTest.
  */

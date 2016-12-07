@@ -133,24 +133,22 @@ public class CopySingleFileController extends AbstractTomcatContainerController 
               File destFile =
                   new File(getContainerWrapper().getTomcatContainer().getAppBase(), contextName
                       + where);
-              // Checks if the destination path exists
 
+              // Checks if the destination path exists
               if (destFile.exists()) {
                 if (!destFile.getAbsolutePath().contains("..")) {
-                  // Copy the file overwriting it if it
-                  // already exists
+                  // Copy the file overwriting it if it already exists
                   FileUtils.copyFileToDirectory(tmpFile, destFile);
 
                   request.setAttribute("successFile", Boolean.TRUE);
                   // Logging action
                   Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-                  String name = auth.getName(); // get username
-                                                // logger
+                  // get username logger
+                  String name = auth.getName();
                   logger.info(getMessageSourceAccessor().getMessage("probe.src.log.copyfile"), name, contextName);
                   Context context =
                       getContainerWrapper().getTomcatContainer().findContext(contextName);
-                  // Checks if DISCARD "work" directory is
-                  // selected
+                  // Checks if DISCARD "work" directory is selected
                   if (discard) {
                     getContainerWrapper().getTomcatContainer().discardWorkDir(context);
                     logger.info(getMessageSourceAccessor().getMessage("probe.src.log.discardwork"), name, contextName);

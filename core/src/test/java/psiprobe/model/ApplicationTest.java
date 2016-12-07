@@ -14,8 +14,6 @@ import org.junit.Test;
 
 import com.codebox.bean.JavaBeanTester;
 
-import psiprobe.model.Application;
-
 /**
  * The Class ApplicationTest.
  */

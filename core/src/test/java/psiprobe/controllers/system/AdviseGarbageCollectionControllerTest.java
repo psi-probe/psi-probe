@@ -14,8 +14,6 @@ import org.junit.Test;
 
 import com.codebox.bean.JavaBeanTester;
 
-import psiprobe.controllers.system.AdviseGarbageCollectionController;
-
 /**
  * The Class AdviseGarbageCollectionControllerTest.
  */

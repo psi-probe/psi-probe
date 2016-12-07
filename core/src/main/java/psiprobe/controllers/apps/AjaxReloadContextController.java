@@ -40,7 +40,8 @@ public class AjaxReloadContextController extends AbstractContextHandlerControlle
         context.reload();
         // Logging action
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String name = auth.getName(); // get username logger
+        // get username logger
+        String name = auth.getName();
         logger.info(getMessageSourceAccessor().getMessage("probe.src.log.reload"), name, contextName);
       } catch (Exception e) {
         logger.error("Error during ajax request to RELOAD of '{}'", contextName, e);

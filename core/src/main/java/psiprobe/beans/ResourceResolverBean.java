@@ -126,8 +126,6 @@ public class ResourceResolverBean implements ResourceResolver {
     return resourceList;
   }
 
-
-
   /**
    * Lookup resource.
    *

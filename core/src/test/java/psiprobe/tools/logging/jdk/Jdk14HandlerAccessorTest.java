@@ -14,8 +14,6 @@ import org.junit.Test;
 
 import com.codebox.bean.JavaBeanTester;
 
-import psiprobe.tools.logging.jdk.Jdk14HandlerAccessor;
-
 /**
  * The Class Jdk14HandlerAccessorTest.
  */

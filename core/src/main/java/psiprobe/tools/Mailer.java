@@ -210,7 +210,8 @@ public class Mailer {
 
     MimeMessage message = new MimeMessage(session);
     if (from == null) {
-      message.setFrom(); // Uses mail.from property
+      // Uses mail.from property
+      message.setFrom();
     } else {
       message.setFrom(new InternetAddress(from));
     }

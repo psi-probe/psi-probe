@@ -82,7 +82,8 @@ public class RenderChartController extends AbstractController {
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 
-    final int seriesMaxCount = 9; // the max number of series
+    // the max number of series
+    final int seriesMaxCount = 9;
 
     // get Series Color from the request
     int[] seriesColor = new int[seriesMaxCount];

@@ -409,7 +409,6 @@ public class Utils {
         masterGroup = masterGroup.getParent();
       }
 
-
       Thread[] threads = new Thread[masterGroup.activeCount()];
       int numThreads = masterGroup.enumerate(threads);
 
@@ -449,7 +448,7 @@ public class Utils {
       //
       // JHighlight adds HTML comment as the first line, so if
       // we number the lines we could end up with a line number and no line
-      // to avoid that we just ignore the first line alltogether.
+      // to avoid that we just ignore the first line all together.
       //
       StringBuilder buffer = new StringBuilder();
       long counter = 0;
