@@ -52,10 +52,17 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Misc. static helper methods.
  */
-public class Utils {
+public final class Utils {
 
   /** The logger. */
   private static final Logger logger = LoggerFactory.getLogger(Utils.class);
+
+  /**
+   * Prevent Instantiation.
+   */
+  private Utils() {
+    // Prevent Instantiation
+  }
 
   /**
    * Calc pool usage score.

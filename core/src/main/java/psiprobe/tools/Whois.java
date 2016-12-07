@@ -26,10 +26,17 @@ import java.util.TreeMap;
 /**
  * The Class Whois.
  */
-public class Whois {
+public final class Whois {
 
   /** The Constant Logger. */
   private static final Logger logger = LoggerFactory.getLogger(Whois.class);
+
+  /**
+   * Prevent Instantiation.
+   */
+  private Whois() {
+    // Prevent Instantiation
+  }
 
   /**
    * Lookup.

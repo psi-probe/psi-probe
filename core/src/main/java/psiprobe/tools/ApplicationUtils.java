@@ -51,11 +51,18 @@ import javax.servlet.http.HttpSession;
 /**
  * The Class ApplicationUtils.
  */
-public class ApplicationUtils {
+public final class ApplicationUtils {
 
   /** The logger. */
   private static final Logger logger = LoggerFactory.getLogger(ApplicationUtils.class);
 
+  /**
+   * Prevent Instantiation.
+   */
+  private ApplicationUtils() {
+    // Prevent Instantiation
+  }
+  
   /**
    * Gets the application.
    *
