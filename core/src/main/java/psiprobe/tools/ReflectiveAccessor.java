@@ -97,13 +97,7 @@ public class ReflectiveAccessor implements Accessor {
             || vmVendor.contains("Apple Inc.") || vmVendor.contains("IBM Corporation"))) {
 
       reflectionFactory = getReflectionFactory();
-      String vmVer = System.getProperty("java.runtime.version");
-      Class[] paramTypes;
-      if (vmVer.startsWith("1.4")) {
-        paramTypes = new Class[] {Field.class};
-      } else {
-        paramTypes = new Class[] {Field.class, Boolean.TYPE};
-      }
+      Class<?>[] paramTypes = new Class[] {Field.class, Boolean.TYPE};
       newFieldAccessor = reflectionFactory.getClass().getMethod("newFieldAccessor", paramTypes);
       get = newFieldAccessor.getReturnType().getMethod("get", Object.class);
     }
