@@ -38,7 +38,7 @@ public class RememberVisibilityController extends AbstractController {
     String state = ServletRequestUtils.getStringParameter(request, "state");
     if (cookieName != null && state != null) {
       cookieName = Functions.safeCookieName(cookieName);
-      // expire the cookis at the current date + 10years (roughly, nevermind leap years)
+      // expire the cookies at the current date + 10years (roughly, nevermind leap years)
       response.addHeader(
           "Set-Cookie",
           cookieName + "=" + state + "; Expires="
