@@ -46,7 +46,7 @@ public class TomcatSlf4jLogbackFactoryAccessor extends DefaultAccessor {
       IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 
     // Get the singleton SLF4J binding, which may or may not be Logback, depending on the binding.
-    Class clazz = cl.loadClass("org.apache.juli.logging.org.slf4j.impl.StaticLoggerBinder");
+    Class<?> clazz = cl.loadClass("org.apache.juli.logging.org.slf4j.impl.StaticLoggerBinder");
     Method getSingleton = MethodUtils.getAccessibleMethod(clazz, "getSingleton", new Class[0]);
     Object singleton = getSingleton.invoke(null);
     Method getLoggerFactory = MethodUtils
@@ -55,7 +55,7 @@ public class TomcatSlf4jLogbackFactoryAccessor extends DefaultAccessor {
     Object loggerFactory = getLoggerFactory.invoke(singleton);
 
     // Check if the binding is indeed Logback
-    Class loggerFactoryClass =
+    Class<?> loggerFactoryClass =
         cl.loadClass("org.apache.juli.logging.ch.qos.logback.classic.LoggerContext");
     if (!loggerFactoryClass.isInstance(loggerFactory)) {
       throw new RuntimeException("The singleton SLF4J binding was not Logback");
@@ -84,7 +84,7 @@ public class TomcatSlf4jLogbackFactoryAccessor extends DefaultAccessor {
    */
   public TomcatSlf4jLogbackLoggerAccessor getLogger(String name) {
     try {
-      Class clazz = getTarget().getClass();
+      Class<? extends Object> clazz = getTarget().getClass();
       Method getLogger = MethodUtils
           .getAccessibleMethod(clazz, "getLogger", new Class[] {String.class});
       
@@ -112,7 +112,7 @@ public class TomcatSlf4jLogbackFactoryAccessor extends DefaultAccessor {
   public List<TomcatSlf4jLogbackAppenderAccessor> getAppenders() {
     List<TomcatSlf4jLogbackAppenderAccessor> appenders = new ArrayList<>();
     try {
-      Class clazz = getTarget().getClass();
+      Class<? extends Object> clazz = getTarget().getClass();
       Method getLoggerList = MethodUtils.getAccessibleMethod(clazz, "getLoggerList", new Class[0]);
 
       List<Object> loggers = (List<Object>) getLoggerList.invoke(getTarget());

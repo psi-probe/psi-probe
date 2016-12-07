@@ -32,7 +32,7 @@ public class Log4JManagerAccessor extends DefaultAccessor {
    * @throws ClassNotFoundException the class not found exception
    */
   public Log4JManagerAccessor(ClassLoader cl) throws ClassNotFoundException {
-    Class clazz = cl.loadClass("org.apache.log4j.LogManager");
+    Class<?> clazz = cl.loadClass("org.apache.log4j.LogManager");
     Method exists = MethodUtils.getAccessibleMethod(clazz, "exists", new Class[] {String.class});
     if (exists == null) {
       throw new RuntimeException("The LogManager is part of the slf4j bridge.");
@@ -47,7 +47,7 @@ public class Log4JManagerAccessor extends DefaultAccessor {
    */
   public Log4JLoggerAccessor getRootLogger() {
     try {
-      Class clazz = (Class) getTarget();
+      Class<?> clazz = (Class<?>) getTarget();
       Method getRootLogger = MethodUtils.getAccessibleMethod(clazz, "getRootLogger", new Class[0]);
 
       Object logger = getRootLogger.invoke(null);
@@ -73,7 +73,7 @@ public class Log4JManagerAccessor extends DefaultAccessor {
    */
   public Log4JLoggerAccessor getLogger(String name) {
     try {
-      Class clazz = (Class) getTarget();
+      Class<?> clazz = (Class<?>) getTarget();
       Method getLogger = MethodUtils
           .getAccessibleMethod(clazz, "getLogger", new Class[] {String.class});
 
@@ -102,7 +102,7 @@ public class Log4JManagerAccessor extends DefaultAccessor {
     try {
       appenders.addAll(getRootLogger().getAppenders());
 
-      Class clazz = (Class) getTarget();
+      Class<?> clazz = (Class<?>) getTarget();
       Method getCurrentLoggers = MethodUtils
           .getAccessibleMethod(clazz, "getCurrentLoggers", new Class[0]);
 

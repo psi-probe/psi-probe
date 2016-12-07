@@ -165,7 +165,7 @@ public class Instruments {
    */
   private long sizeOfObject(Object obj) {
     long size = SIZE_OBJECT;
-    Class clazz = obj.getClass();
+    Class<? extends Object> clazz = obj.getClass();
     while (clazz != null) {
       Field[] fields = clazz.getDeclaredFields();
       for (Field field : fields) {
@@ -196,7 +196,7 @@ public class Instruments {
    */
   private long sizeOfArray(Object obj) {
     if (obj != null) {
-      Class ct = obj.getClass().getComponentType();
+      Class<?> ct = obj.getClass().getComponentType();
       if (ct.isPrimitive()) {
         return Array.getLength(obj) * sizeOfPrimitive(ct);
       }
@@ -209,11 +209,12 @@ public class Instruments {
 
   /**
    * Size of primitive.
+   * @param <T>
    *
    * @param type the type
    * @return the long
    */
-  private static long sizeOfPrimitive(Class type) {
+  private static <T> long sizeOfPrimitive(Class<T> type) {
     if (type == Boolean.TYPE) {
       return SIZE_BOOLEAN;
     } else if (type == Byte.TYPE) {
@@ -270,14 +271,14 @@ public class Instruments {
    * @param name the name
    * @return the field
    */
-  public static Field findField(Class clazz, String name) {
+  public static <T> Field findField(Class<T> clazz, String name) {
     Field[] fields = clazz.getDeclaredFields();
     for (Field field : fields) {
       if (name.equals(field.getName())) {
         return field;
       }
     }
-    Class superClass = clazz.getSuperclass();
+    Class<?> superClass = clazz.getSuperclass();
     if (superClass != null) {
       return findField(superClass, name);
     }
