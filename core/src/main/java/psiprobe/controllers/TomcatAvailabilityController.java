@@ -142,7 +142,9 @@ public class TomcatAvailabilityController extends AbstractTomcatContainerControl
         }
       }
       for (File file : files) {
-        file.delete();
+        if (!file.delete()) {
+            logger.error("failed to delete file {}", file.getName());
+        };
       }
     }
 

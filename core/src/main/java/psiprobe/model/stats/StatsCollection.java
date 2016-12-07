@@ -214,12 +214,16 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
    */
   private void shiftFiles(int index) {
     if (index >= maxFiles - 1) {
-      new File(makeFile().getAbsolutePath() + "." + index).delete();
+      if (!new File(makeFile().getAbsolutePath() + "." + index).delete()) {
+          logger.error("Could not delete file {}", new File(makeFile().getAbsolutePath() + "." + index).getName());
+      }
     } else {
       shiftFiles(index + 1);
       File srcFile = index == 0 ? makeFile() : new File(makeFile().getAbsolutePath() + "." + index);
       File destFile = new File(makeFile().getAbsolutePath() + "." + (index + 1));
-      srcFile.renameTo(destFile);
+      if (!srcFile.renameTo(destFile)) {
+          logger.error("Could not rename file {} to {}", srcFile.getName(), destFile.getName());
+      };
     }
   }
 
