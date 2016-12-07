@@ -14,8 +14,6 @@ import org.junit.Test;
 
 import com.codebox.bean.JavaBeanTester;
 
-import psiprobe.tools.logging.log4j.Log4JAppenderAccessor;
-
 /**
  * The Class Log4jAppenderAccessorTest.
  */

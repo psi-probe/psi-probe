@@ -14,8 +14,6 @@ import org.junit.Test;
 
 import com.codebox.bean.JavaBeanTester;
 
-import psiprobe.tools.logging.slf4jlogback.TomcatSlf4jLogbackAppenderAccessor;
-
 /**
  * The Class TomcatSlf4jLogbackAppenderAccessorTest.
  */
