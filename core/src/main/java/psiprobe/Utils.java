@@ -339,7 +339,7 @@ public final class Utils {
       String range = request.getHeader("Range");
       if (range != null && range.startsWith("bytes=")) {
         String pureRange = range.replaceAll("bytes=", "");
-        int rangeSep = pureRange.indexOf("-");
+        int rangeSep = pureRange.indexOf('-');
 
         try {
           rangeStart = Long.parseLong(pureRange.substring(0, rangeSep));

@@ -32,7 +32,7 @@ public class TomcatTestReport {
   public static final int DEFAULT_MEMORY_SIZE = 1024 * 1024;
 
   /** The default file count. */
-  private final int defaultFileCount = 10;
+  private static final int DEFAULT_FILE_COUNT = 10;
 
   /** The context name. */
   private String contextName;
@@ -175,7 +175,7 @@ public class TomcatTestReport {
    * @return the default file count
    */
   public int getDefaultFileCount() {
-    return defaultFileCount;
+    return DEFAULT_FILE_COUNT;
   }
 
   /**

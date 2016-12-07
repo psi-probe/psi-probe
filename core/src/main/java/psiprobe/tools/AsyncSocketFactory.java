@@ -84,7 +84,7 @@ public final class AsyncSocketFactory {
   static class SocketWrapper {
 
     /** The socket. */
-    Socket socket = null;
+    Socket socket;
 
     /** The server. */
     String server;
