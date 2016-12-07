@@ -38,7 +38,8 @@ public class AjaxToggleContextController extends AbstractContextHandlerControlle
       try {
         // Logging action
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String name = auth.getName(); // get username logger
+        // get username logger
+        String name = auth.getName();
         if (context.getState().isAvailable()) {
           logger.info("{} requested STOP of {}", request.getRemoteAddr(), contextName);
           getContainerWrapper().getTomcatContainer().stop(contextName);

@@ -65,7 +65,8 @@ public class UndeployContextController extends AbstractContextHandlerController 
       getContainerWrapper().getTomcatContainer().remove(contextName);
       // Logging action
       Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-      String name = auth.getName(); // get username logger
+      // get username logger
+      String name = auth.getName();
       logger.info(getMessageSourceAccessor().getMessage("probe.src.log.undeploy"), name, contextName);
 
     } catch (Exception e) {

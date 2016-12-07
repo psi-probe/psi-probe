@@ -32,7 +32,8 @@ public class ReloadContextController extends AbstractNoSelfContextHandlerControl
 
       // Logging action
       Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-      String name = auth.getName(); // get username logger
+      // get username logger
+      String name = auth.getName();
       logger.info(getMessageSourceAccessor().getMessage("probe.src.log.reload"), name, contextName);
     }
   }

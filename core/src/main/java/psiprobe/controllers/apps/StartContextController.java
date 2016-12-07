@@ -29,7 +29,8 @@ public class StartContextController extends AbstractNoSelfContextHandlerControll
 
     // Logging action
     Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-    String name = auth.getName(); // get username logger
+    // get username logger
+    String name = auth.getName();
     logger.info(getMessageSourceAccessor().getMessage("probe.src.log.start"), name, contextName);
   }
 

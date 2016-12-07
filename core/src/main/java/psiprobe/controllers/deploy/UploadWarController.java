@@ -146,7 +146,8 @@ public class UploadWarController extends AbstractTomcatContainerController {
                 request.setAttribute("success", Boolean.TRUE);
                 // Logging action
                 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-                String name = auth.getName(); // get username logger
+                // get username logger
+                String name = auth.getName();
                 logger.info(getMessageSourceAccessor().getMessage("probe.src.log.deploywar"), name, contextName);
                 if (discard) {
                   getContainerWrapper().getTomcatContainer().discardWorkDir(ctx);
