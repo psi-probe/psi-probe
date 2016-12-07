@@ -19,10 +19,17 @@ import java.net.Socket;
 /**
  * A factory for creating AsyncSocket objects.
  */
-public class AsyncSocketFactory {
+public final class AsyncSocketFactory {
 
   /** The Constant Logger. */
   private static final Logger logger = LoggerFactory.getLogger(AsyncSocketFactory.class);
+
+  /**
+   * Prevent Instantiation.
+   */
+  private AsyncSocketFactory() {
+    // Prevent Instantiation
+  }
 
   /**
    * Creates a new AsyncSocket object.
@@ -77,7 +84,7 @@ public class AsyncSocketFactory {
   static class SocketWrapper {
 
     /** The socket. */
-    Socket socket = null;
+    Socket socket;
 
     /** The server. */
     String server;

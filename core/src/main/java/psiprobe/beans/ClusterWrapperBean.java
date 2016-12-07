@@ -58,7 +58,7 @@ public class ClusterWrapperBean {
     Set<ObjectInstance> clusters =
         mbeanServer.queryMBeans(new ObjectName("*:type=Cluster,host=" + hostName), null);
     Set<ObjectInstance> membership = mbeanServer.queryMBeans(membershipOName, null);
-    if (clusters != null && !clusters.isEmpty() && membership != null && membership.size() > 0) {
+    if (clusters != null && !clusters.isEmpty() && membership != null && !membership.isEmpty()) {
       ObjectName clusterOName = clusters.iterator().next().getObjectName();
       cluster = new Cluster();
 
