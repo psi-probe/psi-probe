@@ -20,11 +20,46 @@ import com.codebox.bean.JavaBeanTester;
 public class LogHandlerControllerTest {
 
   /**
-   * Javabean tester.
+   * Javabean tester change log level.
+   */
+  public void javabeanTesterChangeLogLevel() {
+    JavaBeanTester.builder(ChangeLogLevelController.class)
+        .skip("applicationContext", "supportedMethods").test();
+  }
+
+  /**
+   * Javabean tester download log.
    */
   @Test
-  public void javabeanTester() {
-    JavaBeanTester.builder(LogHandlerController.class)
+  public void javabeanTesterDownloadLog() {
+    JavaBeanTester.builder(DownloadLogController.class)
+        .skip("applicationContext", "supportedMethods").test();
+  }
+
+  /**
+   * Javabean tester follow.
+   */
+  @Test
+  public void javabeanTesterFollow() {
+    JavaBeanTester.builder(FollowController.class)
+        .skip("applicationContext", "supportedMethods").test();
+  }
+
+  /**
+   * Javabean tester followed file info.
+   */
+  @Test
+  public void javabeanTesterFollowedFileInfo() {
+    JavaBeanTester.builder(FollowedFileInfoController.class)
+        .skip("applicationContext", "supportedMethods").test();
+  }
+
+  /**
+   * Javabean tester setup follow.
+   */
+  @Test
+  public void javabeanTesterSetupFollow() {
+    JavaBeanTester.builder(SetupFollowController.class)
         .skip("applicationContext", "supportedMethods").test();
   }
 

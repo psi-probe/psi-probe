@@ -450,7 +450,7 @@
 		<property name="viewName" value="ajax/follow"/>
 	</bean>
 
-	<bean name="/logs/ff_info.ajax" class="psiprobe.controllers.logs.LogHandlerController">
+	<bean name="/logs/ff_info.ajax" class="psiprobe.controllers.logs.FollowedFileInfoController">
 		<property name="logResolver" ref="logResolver"/>
 		<property name="viewName" value="ajax/followed_file_info"/>
 	</bean>

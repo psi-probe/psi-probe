@@ -27,7 +27,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * The Class ChangeLogLevelController.
  */
-public class ChangeLogLevelController extends LogHandlerController {
+public class ChangeLogLevelController extends AbstractLogHandlerController {
 
   @Override
   protected ModelAndView handleLogFile(HttpServletRequest request, HttpServletResponse response,

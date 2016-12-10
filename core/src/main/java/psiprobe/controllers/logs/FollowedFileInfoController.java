@@ -14,24 +14,18 @@ import org.springframework.web.servlet.ModelAndView;
 
 import psiprobe.tools.logging.LogDestination;
 
-import java.io.File;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * The Class SetupFollowController.
+ * The Class FollowAjaxController.
  */
-public class SetupFollowController extends AbstractLogHandlerController {
+public class FollowedFileInfoController extends AbstractLogHandlerController {
 
   @Override
   protected ModelAndView handleLogFile(HttpServletRequest request, HttpServletResponse response,
       LogDestination logDest) throws Exception {
-
-    File logFile = logDest.getFile();
-    List<LogDestination> sources = getLogResolver().getLogSources(logFile);
-    return new ModelAndView(getViewName()).addObject("log", logDest).addObject("sources", sources);
+    return new ModelAndView(getViewName()).addObject("log", logDest);
   }
 
 }
