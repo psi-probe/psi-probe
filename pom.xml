@@ -104,7 +104,7 @@
 
         <spring.version>4.3.4.RELEASE</spring.version>
         <spring-security.version>4.2.0.RELEASE</spring-security.version>
-        <tomcat.version>8.5.8</tomcat.version>
+        <tomcat.version>8.5.9</tomcat.version>
     </properties>
 
     <repositories>
