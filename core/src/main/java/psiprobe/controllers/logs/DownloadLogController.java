@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * The Class DownloadLogController.
  */
-public class DownloadLogController extends LogHandlerController {
+public class DownloadLogController extends AbstractLogHandlerController {
 
   /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(DownloadLogController.class);

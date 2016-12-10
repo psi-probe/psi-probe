@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * The Class FollowController.
  */
-public class FollowController extends LogHandlerController {
+public class FollowController extends AbstractLogHandlerController {
 
   @Override
   protected ModelAndView handleLogFile(HttpServletRequest request, HttpServletResponse response,

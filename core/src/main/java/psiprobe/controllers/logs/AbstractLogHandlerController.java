@@ -23,12 +23,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * The Class LogHandlerController.
+ * The Class AbstractLogHandlerController.
  */
-public class LogHandlerController extends ParameterizableViewController {
+public abstract class AbstractLogHandlerController extends ParameterizableViewController {
 
   /** The Constant logger. */
-  private static final Logger logger = LoggerFactory.getLogger(LogHandlerController.class);
+  private static final Logger logger = LoggerFactory.getLogger(AbstractLogHandlerController.class);
 
   /** The log resolver. */
   private LogResolverBean logResolver;
@@ -93,10 +93,7 @@ public class LogHandlerController extends ParameterizableViewController {
    * @return the model and view
    * @throws Exception the exception
    */
-  protected ModelAndView handleLogFile(HttpServletRequest request, HttpServletResponse response,
-      LogDestination logDest) throws Exception {
-
-    return new ModelAndView(getViewName()).addObject("log", logDest);
-  }
+  protected abstract ModelAndView handleLogFile(HttpServletRequest request, HttpServletResponse response,
+      LogDestination logDest) throws Exception;
 
 }
