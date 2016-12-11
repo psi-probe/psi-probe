@@ -159,6 +159,7 @@ public abstract class AbstractStatsCollectorBean {
 
     List<XYDataItem> stats = statsCollection.getStats(name);
     if (stats == null) {
+      // TODO 12/10/2016 JWL Was this needed for something?
       stats = statsCollection.newStats(name, maxSeries);
     } else {
       XYDataItem data = new XYDataItem(time, value);
@@ -183,7 +184,7 @@ public abstract class AbstractStatsCollectorBean {
   /**
    * The Class Entry.
    */
-  private class Entry {
+  private static class Entry {
 
     /** The time. */
     long time;
