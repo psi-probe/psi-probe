@@ -8,12 +8,13 @@
  * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
  * PURPOSE.
  */
-package psiprobe.controllers;
+package psiprobe.controllers.quickcheck;
 
 import org.apache.catalina.Context;
 import org.springframework.web.servlet.ModelAndView;
 
 import psiprobe.beans.ContainerListenerBean;
+import psiprobe.controllers.AbstractTomcatContainerController;
 import psiprobe.model.ApplicationResource;
 import psiprobe.model.DataSourceInfo;
 import psiprobe.model.TomcatTestReport;
@@ -29,9 +30,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * "Quick check" controller.
+ * "Quick check" base controller.
  */
-public class TomcatAvailabilityController extends AbstractTomcatContainerController {
+public class BaseTomcatAvailabilityController extends AbstractTomcatContainerController {
 
   /** The container listener bean. */
   private ContainerListenerBean containerListenerBean;
