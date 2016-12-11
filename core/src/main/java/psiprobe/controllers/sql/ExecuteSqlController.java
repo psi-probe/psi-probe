@@ -142,11 +142,11 @@ public class ExecuteSqlController extends AbstractContextHandlerController {
                     }
 
                     // Pad the keys of columns with existing labels so they are distinct
-                    String key = metaData.getColumnLabel(i);
-                    while (record.containsKey(key)) {
-                      key += " ";
+                    StringBuilder key = new StringBuilder(metaData.getColumnLabel(i));
+                    while (record.containsKey(key.toString())) {
+                      key.append(" ");
                     }
-                    record.put(HtmlUtils.htmlEscape(key), value);
+                    record.put(HtmlUtils.htmlEscape(key.toString()), value);
                   }
 
                   results.add(record);
