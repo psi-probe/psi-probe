@@ -36,19 +36,19 @@ public class Cert implements Serializable {
   }
 
   public Date getNotBefore() {
-    return notBefore;
+    return notBefore == null ? null : new Date(notBefore.getTime());
   }
 
   public void setNotBefore(Date notBefore) {
-    this.notBefore = notBefore;
+    this.notBefore = notBefore == null ? null : new Date(notBefore.getTime());
   }
 
   public Date getNotAfter() {
-    return notAfter;
+    return notAfter == null ? null : new Date(notAfter.getTime());
   }
 
   public void setNotAfter(Date notAfter) {
-    this.notAfter = notAfter;
+    this.notAfter = notAfter == null ? null : new Date(notAfter.getTime());
   }
 
   public String getIssuerDistinguishedName() {

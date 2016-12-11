@@ -33,6 +33,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.TreeMap;
 
 /**
@@ -270,8 +271,8 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
             // and lets not bother about rotating stats;
             // regular stats collection cycle will do it
 
-            for (String key : stats.keySet()) {
-              List<XYDataItem> list = stats.get(key);
+            for (Entry<String, List<XYDataItem>> set : stats.entrySet()) {
+              List<XYDataItem> list = set.getValue();
               if (!list.isEmpty()) {
                 XYDataItem xy = list.get(list.size() - 1);
                 list.add(new XYDataItem(xy.getX().longValue() + 1, 0));

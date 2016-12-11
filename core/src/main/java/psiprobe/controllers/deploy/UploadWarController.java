@@ -31,6 +31,7 @@ import psiprobe.controllers.jsp.DisplayJspController;
 import psiprobe.model.jsp.Summary;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
@@ -171,7 +172,7 @@ public class UploadWarController extends AbstractTomcatContainerController {
           } else {
             errMsg = getMessageSourceAccessor().getMessage("probe.src.deploy.war.notWar.failure");
           }
-        } catch (Exception e) {
+        } catch (IOException e) {
           errMsg =
               getMessageSourceAccessor().getMessage("probe.src.deploy.war.failure",
                   new Object[] {e.getMessage()});

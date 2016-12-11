@@ -33,6 +33,7 @@ import psiprobe.tools.logging.slf4jlogback.TomcatSlf4jLogbackFactoryAccessor;
 import psiprobe.tools.logging.slf4jlogback.TomcatSlf4jLogbackLoggerAccessor;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -548,7 +549,10 @@ public class LogResolverBean {
   /**
    * The Class LogComparator.
    */
-  private abstract static class AbstractLogComparator implements Comparator<LogDestination> {
+  private abstract static class AbstractLogComparator implements Comparator<LogDestination>, Serializable {
+
+    /** The serialVersionUID. */
+    private static final long serialVersionUID = 1L;
 
     /** The Constant DELIM. */
     protected static final char DELIM = '!';
@@ -573,7 +577,10 @@ public class LogResolverBean {
   /**
    * The Class LogDestinationComparator.
    */
-  private static class LogDestinationComparator extends AbstractLogComparator {
+  private static class LogDestinationComparator extends AbstractLogComparator implements Serializable {
+
+    /** The serialVersionUID. */
+    private static final long serialVersionUID = 1L;
 
     /** The all. */
     private final boolean all;
@@ -610,7 +617,10 @@ public class LogResolverBean {
   /**
    * The Class LogSourceComparator.
    */
-  private static class LogSourceComparator extends AbstractLogComparator {
+  private static class LogSourceComparator extends AbstractLogComparator implements Serializable {
+
+    /** The serialVersionUID. */
+    private static final long serialVersionUID = 1L;
 
     @Override
     protected String convertToString(LogDestination dest) {

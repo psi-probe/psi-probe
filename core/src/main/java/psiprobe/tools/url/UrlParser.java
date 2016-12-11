@@ -53,7 +53,7 @@ public class UrlParser {
 
       String hostport;
 
-      ppos = url.indexOf("/");
+      ppos = url.indexOf('/');
       if (ppos >= 0) {
         hostport = url.substring(0, ppos);
         path = url.substring(ppos + 1);
@@ -61,7 +61,7 @@ public class UrlParser {
         hostport = url;
       }
 
-      ppos = hostport.indexOf(":");
+      ppos = hostport.indexOf(':');
       if (ppos >= 0) {
         host = hostport.substring(0, ppos);
         String portString = hostport.substring(ppos + 1);

@@ -110,7 +110,7 @@ public class ApplicationSession {
    * @return the creation time
    */
   public Date getCreationTime() {
-    return creationTime;
+    return creationTime == null ? null : new Date(creationTime.getTime());
   }
 
   /**
@@ -119,7 +119,7 @@ public class ApplicationSession {
    * @param creationTime the new creation time
    */
   public void setCreationTime(Date creationTime) {
-    this.creationTime = creationTime;
+    this.creationTime = creationTime == null ? null : new Date(creationTime.getTime());
   }
 
   /**
@@ -128,7 +128,7 @@ public class ApplicationSession {
    * @return the last access time
    */
   public Date getLastAccessTime() {
-    return lastAccessTime;
+    return lastAccessTime == null ? null : new Date(lastAccessTime.getTime());
   }
 
   /**
@@ -137,7 +137,7 @@ public class ApplicationSession {
    * @param lastAccessTime the new last access time
    */
   public void setLastAccessTime(Date lastAccessTime) {
-    this.lastAccessTime = lastAccessTime;
+    this.lastAccessTime = lastAccessTime == null ? null : new Date(lastAccessTime.getTime());
   }
 
   /**

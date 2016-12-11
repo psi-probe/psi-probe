@@ -101,7 +101,7 @@ public final class Whois {
         sb.append(line).append(lineSeparator);
         line = line.trim();
         if (!line.startsWith("%") && !line.startsWith("#")) {
-          int fs = line.indexOf(":");
+          int fs = line.indexOf(':');
           if (fs > 0) {
             String name = line.substring(0, fs);
             String value = line.substring(fs + 1).trim();

@@ -172,6 +172,7 @@ public class LogOutputStream extends OutputStream {
         break;
       default:
         // Don't log anything
+        break;
     }
   }
 

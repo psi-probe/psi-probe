@@ -212,7 +212,7 @@ public class Item implements Serializable {
    * @return the timestamp
    */
   public Date getTimestamp() {
-    return timestamp;
+    return timestamp == null ? null : new Date(timestamp.getTime());
   }
 
   /**

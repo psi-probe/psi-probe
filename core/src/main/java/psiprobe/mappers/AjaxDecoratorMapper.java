@@ -48,7 +48,7 @@ public class AjaxDecoratorMapper extends AbstractDecoratorMapper {
       //
       // cut off the query string
       //
-      int queryStringIndex = originalUri.indexOf("?");
+      int queryStringIndex = originalUri.indexOf('?');
       if (queryStringIndex != -1) {
         originalUri = originalUri.substring(0, queryStringIndex);
       }
