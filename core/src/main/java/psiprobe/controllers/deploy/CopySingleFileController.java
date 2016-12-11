@@ -11,6 +11,7 @@
 package psiprobe.controllers.deploy;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -177,7 +178,7 @@ public class CopySingleFileController extends AbstractTomcatContainerController 
           } else {
             errMsg = getMessageSourceAccessor().getMessage("probe.src.deploy.file.notFile.failure");
           }
-        } catch (Exception e) {
+        } catch (IOException e) {
           errMsg =
               getMessageSourceAccessor().getMessage("probe.src.deploy.file.failure",
                   new Object[] {e.getMessage()});
