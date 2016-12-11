@@ -31,7 +31,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Creates an instance of SystemInformation POJO.
+ * The class TrustStoreController.
  */
 public class TrustStoreController extends AbstractTomcatContainerController {
 
