@@ -138,7 +138,6 @@ public class RenderChartController extends AbstractController {
       } else {
         logger.error("SeriesProvider '{}' does not implement '{}'", provider, SeriesProvider.class);
       }
-
     }
 
     // Build series data from the give statistic

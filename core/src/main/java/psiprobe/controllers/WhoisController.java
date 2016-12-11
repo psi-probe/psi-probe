@@ -59,7 +59,7 @@ public class WhoisController extends ParameterizableViewController {
   /**
    * Sets the lookup timeout.
    *
-   * @param lookupTimeout the new lookup timeout
+   * @param lookupTimeout the new lookup timeout in seconds
    */
   public void setLookupTimeout(long lookupTimeout) {
     this.lookupTimeout = lookupTimeout;

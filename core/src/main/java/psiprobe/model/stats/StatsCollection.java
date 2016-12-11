@@ -224,7 +224,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
       File destFile = new File(makeFile().getAbsolutePath() + "." + (index + 1));
       if (!srcFile.renameTo(destFile)) {
           logger.error("Could not rename file {} to {}", srcFile.getName(), destFile.getName());
-      };
+      }
     }
   }
 

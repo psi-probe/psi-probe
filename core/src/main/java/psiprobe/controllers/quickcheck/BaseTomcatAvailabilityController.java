@@ -70,7 +70,7 @@ public class BaseTomcatAvailabilityController extends AbstractTomcatContainerCon
       for (Context appContext : getContainerWrapper().getTomcatContainer().findContexts()) {
         allContextsAvailable = allContextsAvailable
             && getContainerWrapper().getTomcatContainer().getAvailable(appContext);
-        
+
         List<ApplicationResource> applicationResources = getContainerWrapper().getResourceResolver()
             .getApplicationResources(appContext, getContainerWrapper());
 
@@ -145,7 +145,7 @@ public class BaseTomcatAvailabilityController extends AbstractTomcatContainerCon
       for (File file : files) {
         if (!file.delete()) {
             logger.error("failed to delete file {}", file.getName());
-        };
+        }
       }
     }
 
@@ -153,6 +153,7 @@ public class BaseTomcatAvailabilityController extends AbstractTomcatContainerCon
 
     long maxServiceTime = 0;
 
+    // TODO JWL 12/11/2016 - Why is this commented out? If not needed, delete it.
     // check the maximum execution time
     /*
      * List pools = containerListenerBean.getThreadPools(); for (int iPool = 0; iPool <
@@ -167,4 +168,5 @@ public class BaseTomcatAvailabilityController extends AbstractTomcatContainerCon
 
     return new ModelAndView(getViewName(), "testReport", tomcatTestReport);
   }
+
 }
