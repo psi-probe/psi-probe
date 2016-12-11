@@ -11,8 +11,6 @@
 package psiprobe.controllers;
 
 import org.apache.catalina.Context;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -23,9 +21,6 @@ import javax.servlet.http.HttpServletResponse;
  * Base class for all controllers requiring "webapp" request parameter.
  */
 public abstract class AbstractContextHandlerController extends AbstractTomcatContainerController {
-
-  /** The logger. */
-  protected Logger logger = LoggerFactory.getLogger(getClass());
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
