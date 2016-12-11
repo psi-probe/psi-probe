@@ -22,14 +22,16 @@ import java.nio.charset.StandardCharsets;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Main dispatcher servlet. Spring default dispatcher servlet had to be superceeded to handle
+ * Main dispatcher servlet. Spring default dispatcher servlet had to be superseded to handle
  * "privileged" application context features. The actual requirement is to capture passed Wrapper
  * instance into ContainerWrapperBean. Wrapper instance is our gateway to Tomcat.
  */
+@WebServlet
 public class ProbeServlet extends DispatcherServlet implements ContainerServlet {
 
   /** The Constant serialVersionUID. */
