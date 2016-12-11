@@ -104,7 +104,7 @@
 
         <spring.version>4.3.4.RELEASE</spring.version>
         <spring-security.version>4.2.0.RELEASE</spring-security.version>
-        <tomcat.version>8.5.8</tomcat.version>
+        <tomcat.version>8.5.9</tomcat.version>
     </properties>
 
     <repositories>
@@ -187,7 +187,7 @@
             <dependency>
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
-                <version>1.1.7</version>
+                <version>1.1.8</version>
             </dependency>
             <dependency>
                 <groupId>com.oracle</groupId>
@@ -467,12 +467,12 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-site-plugin</artifactId>
-                    <version>3.5.1</version>
+                    <version>3.6</version>
                 </plugin>
                 <plugin>
                     <groupId>org.owasp</groupId>
                     <artifactId>dependency-check-maven</artifactId>
-                    <version>1.4.4</version>
+                    <version>1.4.4.1</version>
                 </plugin>
                 <plugin>
                     <groupId>pl.project13.maven</groupId>
