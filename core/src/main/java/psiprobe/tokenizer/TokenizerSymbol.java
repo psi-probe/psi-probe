@@ -10,6 +10,8 @@
  */
 package psiprobe.tokenizer;
 
+import java.util.Objects;
+
 /**
  * The Class TokenizerSymbol.
  */
@@ -85,6 +87,30 @@ public class TokenizerSymbol implements Comparable<Object> {
    */
   public int compareTo(TokenizerSymbol symbol) {
     return symbol.startText.compareTo(startText);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(
+        this.name, this.startText, this.tailText, this.hidden, this.decodePaired, this.enabled, this.canBeNested);
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    final TokenizerSymbol other = (TokenizerSymbol) obj;
+    return Objects.equals(this.name, other.name)
+        && Objects.equals(this.startText, other.startText)
+        && Objects.equals(this.tailText, other.tailText)
+        && Objects.equals(this.hidden, other.hidden)
+        && Objects.equals(this.decodePaired, other.decodePaired)
+        && Objects.equals(this.enabled, other.enabled)
+        && Objects.equals(this.canBeNested, other.canBeNested);
   }
 
 }
