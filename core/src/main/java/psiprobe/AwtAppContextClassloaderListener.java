@@ -16,11 +16,13 @@ import org.slf4j.LoggerFactory;
 import javax.imageio.ImageIO;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import javax.servlet.annotation.WebListener;
 
 /**
  * Prevents a classloader leak as suggested by
  * <a href="https://cdivilly.wordpress.com/2012/04/23/permgen-memory-leak/">Colm Divilly</a>
  */
+@WebListener
 public class AwtAppContextClassloaderListener implements ServletContextListener {
 
   private static final Logger logger = LoggerFactory.getLogger(AwtAppContextClassloaderListener.class);
