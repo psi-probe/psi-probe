@@ -345,12 +345,12 @@
 		<property name="downloadUrl" value="/adm/downloadcontextxml.htm"/>
 	</bean>
 
-	<bean name="/app/downloadwebxml.htm" class="psiprobe.controllers.apps.DownloadXmlConfController">
+	<bean name="/app/downloadwebxml.htm" class="psiprobe.controllers.apps.DownloadWebXmlConfController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="downloadTarget" value="web.xml"/>
 	</bean>
 
-	<bean name="/adm/downloadcontextxml.htm" class="psiprobe.controllers.apps.DownloadXmlConfController">
+	<bean name="/adm/downloadcontextxml.htm" class="psiprobe.controllers.apps.DownloadContextXmlConfController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="downloadTarget" value="context.xml"/>
 	</bean>
