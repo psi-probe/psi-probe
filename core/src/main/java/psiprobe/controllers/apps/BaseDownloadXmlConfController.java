@@ -28,10 +28,10 @@ import javax.servlet.http.HttpServletResponse;
  * Downloads a deployment descriptor (web.xml) or a context descriptor (context.xml) of a web
  * application.
  */
-public class DownloadXmlConfController extends AbstractContextHandlerController {
+public class BaseDownloadXmlConfController extends AbstractContextHandlerController {
 
   /** The Constant logger. */
-  private static final Logger logger = LoggerFactory.getLogger(DownloadXmlConfController.class);
+  private static final Logger logger = LoggerFactory.getLogger(BaseDownloadXmlConfController.class);
 
   /** The Constant TARGET_WEB_XML. */
   private static final String TARGET_WEB_XML = "web.xml";

@@ -20,11 +20,20 @@ import com.codebox.bean.JavaBeanTester;
 public class DownloadXmlConfControllerTest {
 
   /**
-   * Javabean tester.
+   * Javabean tester web.
    */
   @Test
-  public void javabeanTester() {
-    JavaBeanTester.builder(DownloadXmlConfController.class)
+  public void javabeanTesterWeb() {
+    JavaBeanTester.builder(DownloadWebXmlConfController.class)
+        .skip("applicationContext", "supportedMethods").test();
+  }
+
+  /**
+   * Javabean tester context.
+   */
+  @Test
+  public void javabeanTesterContext() {
+    JavaBeanTester.builder(DownloadContextXmlConfController.class)
         .skip("applicationContext", "supportedMethods").test();
   }
 
