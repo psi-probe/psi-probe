@@ -142,7 +142,7 @@ public class DisconnectedLogDestination implements LogDestination, Serializable 
 
   @Override
   public Timestamp getLastModified() {
-    return lastModified;
+    return lastModified == null ? null : new Timestamp(lastModified.getTime());
   }
 
   @Override
@@ -152,7 +152,7 @@ public class DisconnectedLogDestination implements LogDestination, Serializable 
 
   @Override
   public String[] getValidLevels() {
-    return validLevels;
+    return validLevels == null ? null : validLevels.clone();
   }
 
   @Override
