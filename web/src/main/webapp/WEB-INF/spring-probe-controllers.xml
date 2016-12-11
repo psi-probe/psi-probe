@@ -166,13 +166,13 @@
 		<property name="viewName" value="threadpools"/>
 	</bean>
 
-	<bean name="/adm/quickcheck.htm" class="psiprobe.controllers.TomcatAvailabilityController">
+	<bean name="/adm/quickcheck.htm" class="psiprobe.controllers.quickcheck.TomcatAvailabilityController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="containerListenerBean" ref="containerListener"/>
 		<property name="viewName" value="quickcheck"/>
 	</bean>
 
-	<bean name="/adm/quickcheck.xml.htm" class="psiprobe.controllers.TomcatAvailabilityController">
+	<bean name="/adm/quickcheck.xml.htm" class="psiprobe.controllers.quickcheck.TomcatAvailabilityXmlController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="containerListenerBean" ref="containerListener"/>
 		<property name="viewName" value="quickcheck.xml"/>
