@@ -14,6 +14,7 @@ import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 
 /**
  * Reads lines from "backwards" InputStream. This class facilitates reading files from bottom up.
@@ -92,7 +93,7 @@ public class BackwardsLineReader {
     if (!empty) {
       byte[] byteArray = baos.toByteArray();
       reverse(byteArray);
-      return encoding == null ? new String(byteArray) : new String(byteArray, encoding);
+      return encoding == null ? new String(byteArray, StandardCharsets.UTF_8) : new String(byteArray, encoding);
     }
     // return null if the end of the stream has been reached
     return null;
