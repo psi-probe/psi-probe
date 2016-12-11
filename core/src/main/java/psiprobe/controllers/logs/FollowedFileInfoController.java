@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * The Class FollowAjaxController.
+ * The Class FollowedFileInfoController.
  */
 public class FollowedFileInfoController extends AbstractLogHandlerController {
 

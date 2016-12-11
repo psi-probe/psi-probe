@@ -15,6 +15,7 @@ import psiprobe.beans.stats.collectors.AppStatsCollectorBean;
 /**
  * The Class ResetAppStatsController.
  */
+// TODO 12/11/2016 JWL - This controller was not even setup...review it's need
 public class ResetAppStatsController extends AbstractNoSelfContextHandlerController {
 
   /** The stats collector. */
