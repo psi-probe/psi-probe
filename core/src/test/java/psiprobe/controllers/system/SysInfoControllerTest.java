@@ -22,6 +22,7 @@ public class SysInfoControllerTest {
   /**
    * Javabean tester os info ajax.
    */
+  @Test
   public void javabeanTesterOsInfoAjax() {
     JavaBeanTester.builder(OsInfoAjaxController.class).skip("applicationContext", "supportedMethods").test();
   }
