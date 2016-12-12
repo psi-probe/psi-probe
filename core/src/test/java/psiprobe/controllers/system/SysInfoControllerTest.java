@@ -20,11 +20,34 @@ import com.codebox.bean.JavaBeanTester;
 public class SysInfoControllerTest {
 
   /**
-   * Javabean tester.
+   * Javabean tester os info ajax.
+   */
+  public void javabeanTesterOsInfoAjax() {
+    JavaBeanTester.builder(OsInfoAjaxController.class).skip("applicationContext", "supportedMethods").test();
+  }
+
+  /**
+   * Javabean tester os info.
    */
   @Test
-  public void javabeanTester() {
+  public void javabeanTesterOsInfo() {
+    JavaBeanTester.builder(OsInfoController.class).skip("applicationContext", "supportedMethods").test();
+  }
+
+  /**
+   * Javabean tester sys info.
+   */
+  @Test
+  public void javabeanTesterSysInfo() {
     JavaBeanTester.builder(SysInfoController.class).skip("applicationContext", "supportedMethods").test();
+  }
+
+  /**
+   * Javabean tester sys props.
+   */
+  @Test
+  public void javabeanTesterSysProps() {
+    JavaBeanTester.builder(SysPropsController.class).skip("applicationContext", "supportedMethods").test();
   }
 
 }

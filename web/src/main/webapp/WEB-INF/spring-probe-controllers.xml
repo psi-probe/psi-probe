@@ -118,7 +118,7 @@
 		<property name="viewName" value="sysinfo"/>
 	</bean>
 
-	<bean name="/sysprops.htm" class="psiprobe.controllers.system.SysInfoController">
+	<bean name="/sysprops.htm" class="psiprobe.controllers.system.SysPropsController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="runtimeInfoAccessor" ref="runtimeInfoAccessor"/>
 		<property name="filterOutKeys">
@@ -133,7 +133,7 @@
 		<property name="viewName" value="truststore"/>
 	</bean>
 
-	<bean name="/adm/osinfo.htm" class="psiprobe.controllers.system.SysInfoController">
+	<bean name="/adm/osinfo.htm" class="psiprobe.controllers.system.OsInfoController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="runtimeInfoAccessor" ref="runtimeInfoAccessor"/>
 		<property name="viewName" value="osinfo"/>
@@ -150,7 +150,7 @@
 		</property>
 	</bean>
 
-	<bean name="/adm/osinfo.ajax" class="psiprobe.controllers.system.SysInfoController">
+	<bean name="/adm/osinfo.ajax" class="psiprobe.controllers.system.OsInfoAjaxController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="runtimeInfoAccessor" ref="runtimeInfoAccessor"/>
 		<property name="viewName" value="ajax/osinfo"/>
