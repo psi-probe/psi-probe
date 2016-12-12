@@ -28,10 +28,14 @@ import com.codebox.bean.JavaBeanTester;
 
 import psiprobe.model.certificates.Cert;
 
+/**
+ * The Class ListCertificatesControllerTest.
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "/spring/test-controllers.xml")
 public class ListCertificatesControllerTest {
 
+  /** The ctx. */
   @Autowired
   private ApplicationContext ctx;
 
@@ -44,6 +48,11 @@ public class ListCertificatesControllerTest {
         .skip("applicationContext", "supportedMethods").test();
   }
 
+  /**
+   * Test get certificates.
+   *
+   * @throws Exception the exception
+   */
   @Test
   public void testGetCertificates() throws Exception {
     ListCertificatesController controller = new ListCertificatesController();
@@ -60,6 +69,11 @@ public class ListCertificatesControllerTest {
     assertThat(certs.get(1).getAlias(), is("*.google.com"));
   }
 
+  /**
+   * Test get certificates relative.
+   *
+   * @throws Exception the exception
+   */
   @Test
   public void testGetCertificatesRelative() throws Exception {
     ListCertificatesController controller = new ListCertificatesController();
@@ -78,6 +92,11 @@ public class ListCertificatesControllerTest {
     assertThat(certs.get(1).getAlias(), is("*.google.com"));
   }
 
+  /**
+   * Test get certificates relative uri.
+   *
+   * @throws Exception the exception
+   */
   @Test
   public void testGetCertificatesRelativeUri() throws Exception {
     ListCertificatesController controller = new ListCertificatesController();
@@ -88,15 +107,20 @@ public class ListCertificatesControllerTest {
     System.setProperty("catalina.base", certFolder.getPath());
 
     String storePassword = "123456";
-    
+
     List<Cert> certs = controller.getCertificates(storeType, storeFile.toURI().toString(), storePassword);
-    
+
     assertThat(certs, notNullValue());
     assertThat(certs.size(), is(2));
     assertThat(certs.get(0).getAlias(), is("google internet authority g2"));
     assertThat(certs.get(1).getAlias(), is("*.google.com"));
   }
 
+  /**
+   * Test get certificates absolute uri.
+   *
+   * @throws Exception the exception
+   */
   @Test
   public void testGetCertificatesAbsoluteUri() throws Exception {
     ListCertificatesController controller = new ListCertificatesController();
@@ -106,9 +130,9 @@ public class ListCertificatesControllerTest {
     System.setProperty("catalina.base", certFolder.getPath());
 
     String storePassword = "123456";
-    
+
     List<Cert> certs = controller.getCertificates(storeType, "./localhost-truststore.jks", storePassword);
-    
+
     assertThat(certs, notNullValue());
     assertThat(certs.size(), is(2));
     assertThat(certs.get(0).getAlias(), is("google internet authority g2"));

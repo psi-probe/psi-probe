@@ -10,6 +10,9 @@
  */
 package psiprobe.controllers.apps;
 
+/**
+ * The Class NoSelfContextHandlerControllerImpl.
+ */
 public class NoSelfContextHandlerControllerImpl extends AbstractNoSelfContextHandlerController {
 
   @Override
