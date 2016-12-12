@@ -10,6 +10,9 @@
  */
 package psiprobe.controllers.system;
 
+/**
+ * The Class MemoryStatsController.
+ */
 public class MemoryStatsController extends BaseMemoryStatsController {
 
   // Preparation for Spring Annotations (object extraction)

@@ -8,13 +8,13 @@
  * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
  * PURPOSE.
  */
-package psiprobe.controllers.system;
+package psiprobe.controllers.apps;
 
 /**
- * The Class MemoryStatsAjaxController.
+ * The Class GetApplicationRequestDetailsController.
  */
-public class MemoryStatsAjaxController extends BaseMemoryStatsController {
+public class GetApplicationRequestDetailsController extends BaseGetApplicationController {
 
-  // Preparation for Spring Annotations (object extraction)
+    // Preparation for Spring Annotations (object extraction)
 
 }
