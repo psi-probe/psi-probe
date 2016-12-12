@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Creates an instance of SystemInformation POJO.
+ * Creates an instance of SystemInformation.
  */
 public class BaseSysInfoController extends AbstractTomcatContainerController {
 
