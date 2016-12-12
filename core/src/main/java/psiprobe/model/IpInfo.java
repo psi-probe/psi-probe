@@ -25,21 +25,15 @@ public class IpInfo {
 
   /**
    * Instantiates a new ip info.
-   */
-  public IpInfo() {
-    // Required due to override
-  }
-
-  /**
-   * Instantiates a new ip info.
    *
    * @param request the request
    */
-  public IpInfo(HttpServletRequest request) {
+  public IpInfo builder(HttpServletRequest request) {
     this.address = getClientAddress(request);
     if (!address.equals(request.getRemoteAddr())) {
       this.forwarded = true;
     }
+    return this;
   }
 
   /**

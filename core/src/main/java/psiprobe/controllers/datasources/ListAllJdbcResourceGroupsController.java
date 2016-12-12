@@ -63,7 +63,7 @@ public class ListAllJdbcResourceGroupsController extends AbstractTomcatContainer
     DataSourceInfoGroup dsGroup = null;
     for (DataSourceInfo ds : dataSources) {
       if (dsGroup == null || !dsGroup.getJdbcUrl().equalsIgnoreCase(ds.getJdbcUrl())) {
-        dsGroup = new DataSourceInfoGroup(ds);
+        dsGroup = new DataSourceInfoGroup().builder(ds);
         dataSourceGroups.add(dsGroup);
       } else {
         dsGroup.addDataSourceInfo(ds);

@@ -110,7 +110,7 @@ public class LogResolverBean {
       for (LogDestination dest : allAppenders) {
         if (Collections.binarySearch(uniqueList, dest, cmp) < 0) {
           if (all || dest.getFile() == null || dest.getFile().exists()) {
-            uniqueList.add(new DisconnectedLogDestination(dest));
+            uniqueList.add(new DisconnectedLogDestination().builder(dest));
           }
         }
       }
@@ -151,7 +151,7 @@ public class LogResolverBean {
       Collections.sort(allAppenders, cmp);
       for (LogDestination dest : allAppenders) {
         if (Collections.binarySearch(sources, dest, cmp) < 0) {
-          sources.add(new DisconnectedLogDestination(dest));
+          sources.add(new DisconnectedLogDestination().builder(dest));
         }
       }
     }

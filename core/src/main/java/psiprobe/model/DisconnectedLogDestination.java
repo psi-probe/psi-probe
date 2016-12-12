@@ -27,53 +27,53 @@ public class DisconnectedLogDestination implements LogDestination, Serializable 
   private static final long serialVersionUID = 1L;
 
   /** The application. */
-  private final Application application;
+  private Application application;
 
   /** The root. */
-  private final boolean root;
+  private boolean root;
 
   /** The context. */
-  private final boolean context;
+  private boolean context;
 
   /** The name. */
-  private final String name;
+  private String name;
 
   /** The index. */
-  private final String index;
+  private String index;
 
   /** The target class. */
-  private final String targetClass;
+  private String targetClass;
 
   /** The conversion pattern. */
-  private final String conversionPattern;
+  private String conversionPattern;
 
   /** The file. */
-  private final File file;
+  private File file;
 
   /** The log type. */
-  private final String logType;
+  private String logType;
 
   /** The size. */
-  private final long size;
+  private long size;
 
   /** The last modified. */
-  private final Timestamp lastModified;
+  private Timestamp lastModified;
 
   /** The level. */
-  private final String level;
+  private String level;
 
   /** The valid levels. */
-  private final String[] validLevels;
+  private String[] validLevels;
 
   /** The file encoding name. */
-  private final String encoding;
+  private String encoding;
 
   /**
-   * Instantiates a new disconnected log destination.
+   * Loads and returns disconnected log destination.
    *
    * @param destination the destination
    */
-  public DisconnectedLogDestination(LogDestination destination) {
+  public DisconnectedLogDestination builder(LogDestination destination) {
     this.application = destination.getApplication();
     this.root = destination.isRoot();
     this.context = destination.isContext();
@@ -88,6 +88,7 @@ public class DisconnectedLogDestination implements LogDestination, Serializable 
     this.level = destination.getLevel();
     this.validLevels = destination.getValidLevels();
     this.encoding = destination.getEncoding();
+    return this;
   }
 
   @Override
