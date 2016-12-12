@@ -20,11 +20,37 @@ import com.codebox.bean.JavaBeanTester;
 public class GetApplicationControllerTest {
 
   /**
-   * Javabean tester.
+   * Javabean tester proc details.
+   */
+  public void javabeanTesterProcDetails() {
+    JavaBeanTester.builder(GetApplicationProcDetailsController.class)
+        .skip("applicationContext", "supportedMethods").test();
+  }
+
+  /**
+   * Javabean tester request details.
    */
   @Test
-  public void javabeanTester() {
-    JavaBeanTester.builder(GetApplicationController.class)
+  public void javabeanTesterRequestDetails() {
+    JavaBeanTester.builder(GetApplicationRequestDetailsController.class)
+        .skip("applicationContext", "supportedMethods").test();
+  }
+
+  /**
+   * Javabean tester runtime.
+   */
+  @Test
+  public void javabeanTesterRuntime() {
+    JavaBeanTester.builder(GetApplicationRuntimeInfoController.class)
+        .skip("applicationContext", "supportedMethods").test();
+  }
+
+  /**
+   * Javabean tester summary.
+   */
+  @Test
+  public void javabeanTesterSummary() {
+    JavaBeanTester.builder(GetApplicationSummaryController.class)
         .skip("applicationContext", "supportedMethods").test();
   }
 

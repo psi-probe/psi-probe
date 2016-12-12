@@ -27,7 +27,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Retrieves Application model object populated with application information.
  */
-public class GetApplicationController extends AbstractContextHandlerController {
+public class BaseGetApplicationController extends AbstractContextHandlerController {
 
   /** denotes whether extended application information and statistics should be collected. */
   private boolean extendedInfo = false;

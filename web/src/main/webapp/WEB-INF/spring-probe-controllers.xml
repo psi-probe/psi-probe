@@ -293,7 +293,7 @@
 		<property name="viewName" value="/app/jsp.htm"/>
 	</bean>
 
-	<bean name="/appsummary.htm" class="psiprobe.controllers.apps.GetApplicationController">
+	<bean name="/appsummary.htm" class="psiprobe.controllers.apps.GetApplicationSummaryController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="viewName" value="appsummary"/>
 		<property name="extendedInfo" value="false"/>
@@ -310,21 +310,21 @@
 		</property>
 	</bean>
 
-	<bean name="/appruntimeinfo.ajax" class="psiprobe.controllers.apps.GetApplicationController">
+	<bean name="/appruntimeinfo.ajax" class="psiprobe.controllers.apps.GetApplicationRuntimeInfoController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="viewName" value="ajax/appRuntimeInfo"/>
 		<property name="extendedInfo" value="true"/>
 		<property name="statsCollection" ref="statsCollection"/>
 	</bean>
 
-	<bean name="/appreqdetails.ajax" class="psiprobe.controllers.apps.GetApplicationController">
+	<bean name="/appreqdetails.ajax" class="psiprobe.controllers.apps.GetApplicationRequestDetailsController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="viewName" value="ajax/appRequestDetails"/>
 		<property name="extendedInfo" value="true"/>
 		<property name="statsCollection" ref="statsCollection"/>
 	</bean>
 
-	<bean name="/appprocdetails.ajax" class="psiprobe.controllers.apps.GetApplicationController">
+	<bean name="/appprocdetails.ajax" class="psiprobe.controllers.apps.GetApplicationProcDetailsController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="viewName" value="ajax/appProcTimeDetails"/>
 		<property name="extendedInfo" value="true"/>
