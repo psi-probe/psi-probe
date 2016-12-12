@@ -10,8 +10,7 @@
  */
 package psiprobe.jsp;
 
-import static org.junit.Assert.fail;
-
+import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -78,6 +77,7 @@ public class VisualScoreTagTest {
           if (values.length > 1) {
             value = Integer.parseInt(values[0]);
             value2 = Integer.parseInt(values[1]);
+            // TODO JWL 12/12/2016 This never occurs so why do we care?
             if (value > 5 || value2 > 5) {
               count++;
               StringBuilder msg = new StringBuilder();
@@ -97,9 +97,7 @@ public class VisualScoreTagTest {
         }
       }
     }
-    if (count > 0) {
-      fail("Incorrect values were founded " + count + " times");
-    }
+    Assert.assertFalse("Incorrect values were founded " + count + " times", count > 0);
   }
 
   /**
