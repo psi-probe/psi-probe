@@ -10,14 +10,22 @@
  */
 package psiprobe.controllers.apps;
 
-/**
- * The Class NoSelfContextHandlerControllerImpl.
- */
-public class NoSelfContextHandlerControllerImpl extends AbstractNoSelfContextHandlerController {
+import org.junit.Test;
 
-  @Override
-  protected void executeAction(String contextName) throws Exception {
-    // Do nothing
+import com.codebox.bean.JavaBeanTester;
+
+/**
+ * The Class StartContextControllerTest.
+ */
+public class StartContextControllerTest {
+
+  /**
+   * Javabean tester.
+   */
+  @Test
+  public void javabeanTester() {
+    JavaBeanTester.builder(StartContextController.class)
+        .skip("applicationContext", "supportedMethods").test();
   }
 
 }
