@@ -565,7 +565,7 @@
 		<property name="viewName" value="appfiltermaps"/>
 	</bean>
 
-	<bean name="/memory.ajax" class="psiprobe.controllers.system.MemoryStatsController">
+	<bean name="/memory.ajax" class="psiprobe.controllers.system.MemoryStatsAjaxController">
 		<property name="jvmMemoryInfoAccessorBean" ref="jvmMemoryInfoAccessor"/>
 		<property name="viewName" value="ajax/memory_pools"/>
 	</bean>

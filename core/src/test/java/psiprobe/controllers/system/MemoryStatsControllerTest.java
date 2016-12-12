@@ -28,4 +28,13 @@ public class MemoryStatsControllerTest {
         .skip("applicationContext", "supportedMethods").test();
   }
 
+  /**
+   * Javabean tester ajax.
+   */
+  @Test
+  public void javabeanTesterAjax() {
+    JavaBeanTester.builder(MemoryStatsAjaxController.class)
+        .skip("applicationContext", "supportedMethods").test();
+  }
+
 }
