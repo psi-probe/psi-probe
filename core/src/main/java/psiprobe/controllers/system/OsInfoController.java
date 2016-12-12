@@ -11,9 +11,9 @@
 package psiprobe.controllers.system;
 
 /**
- * Creates an instance of SysInfoController.
+ * Creates an instance of OsInfoController.
  */
-public class SysInfoController extends BaseSysInfoController {
+public class OsInfoController  extends BaseSysInfoController {
 
     // Preparation for Spring Annotations (object extraction)
 

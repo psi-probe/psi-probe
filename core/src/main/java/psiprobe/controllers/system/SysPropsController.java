@@ -10,10 +10,13 @@
  */
 package psiprobe.controllers.system;
 
+import org.springframework.stereotype.Controller;
+
 /**
- * Creates an instance of SysInfoController.
+ * Creates an instance of SysPropsController.
  */
-public class SysInfoController extends BaseSysInfoController {
+@Controller
+public class SysPropsController extends BaseSysInfoController {
 
     // Preparation for Spring Annotations (object extraction)
 
