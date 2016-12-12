@@ -13,6 +13,8 @@ package psiprobe.jsp;
 import static org.junit.Assert.fail;
 
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.codebox.bean.JavaBeanTester;
 
@@ -20,6 +22,9 @@ import com.codebox.bean.JavaBeanTester;
  * The Class VisualScoreTagTest.
  */
 public class VisualScoreTagTest {
+
+  /** The Logger. */
+  private static final Logger logger = LoggerFactory.getLogger(VisualScoreTagTest.class);
 
   /**
    * Javabean tester.
@@ -68,7 +73,7 @@ public class VisualScoreTagTest {
         }
         String[] split = callCalculateSuffix(value, value2, fullBlocks, partialBlocks);
         for (String suffix : split) {
-          // System.out.println(split[k]);
+          logger.trace(suffix);
           String[] values = suffix.split("\\+");
           if (values.length > 1) {
             value = Integer.parseInt(values[0]);
@@ -86,7 +91,7 @@ public class VisualScoreTagTest {
               msg.append(fullBlocks);
               msg.append(" partialBlocks = ");
               msg.append(partialBlocks);
-              // System.out.println(msg.toString());
+              logger.trace(msg.toString());
             }
           }
         }
