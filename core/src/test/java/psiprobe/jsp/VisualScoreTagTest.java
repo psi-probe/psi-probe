@@ -10,9 +10,10 @@
  */
 package psiprobe.jsp;
 
-import static org.junit.Assert.fail;
-
+import org.junit.Assert;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.codebox.bean.JavaBeanTester;
 
@@ -20,6 +21,9 @@ import com.codebox.bean.JavaBeanTester;
  * The Class VisualScoreTagTest.
  */
 public class VisualScoreTagTest {
+
+  /** The Logger. */
+  private static final Logger logger = LoggerFactory.getLogger(VisualScoreTagTest.class);
 
   /**
    * Javabean tester.
@@ -68,11 +72,12 @@ public class VisualScoreTagTest {
         }
         String[] split = callCalculateSuffix(value, value2, fullBlocks, partialBlocks);
         for (String suffix : split) {
-          // System.out.println(split[k]);
+          logger.trace(suffix);
           String[] values = suffix.split("\\+");
           if (values.length > 1) {
             value = Integer.parseInt(values[0]);
             value2 = Integer.parseInt(values[1]);
+            // TODO JWL 12/12/2016 This never occurs so why do we care?
             if (value > 5 || value2 > 5) {
               count++;
               StringBuilder msg = new StringBuilder();
@@ -86,15 +91,13 @@ public class VisualScoreTagTest {
               msg.append(fullBlocks);
               msg.append(" partialBlocks = ");
               msg.append(partialBlocks);
-              // System.out.println(msg.toString());
+              logger.trace(msg.toString());
             }
           }
         }
       }
     }
-    if (count > 0) {
-      fail("Incorrect values were founded " + count + " times");
-    }
+    Assert.assertFalse("Incorrect values were founded " + count + " times", count > 0);
   }
 
   /**

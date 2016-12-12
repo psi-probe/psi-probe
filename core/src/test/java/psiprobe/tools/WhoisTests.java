@@ -17,6 +17,7 @@ import psiprobe.tools.Whois;
 import psiprobe.tools.Whois.Response;
 
 import java.io.IOException;
+import java.net.InetAddress;
 
 /**
  * The Class WhoisTests.
@@ -39,8 +40,8 @@ public class WhoisTests {
 
     Response response = Whois.lookup("whois.arin.net", 43, "n " + dotted, 5);
     Assert.assertEquals("SPECIAL-IPV4-LOOPBACK-IANA-RESERVED", response.getData().get("NetName"));
-    // System.out.println(InetAddress.getByName(dotted).getHostName());
-    // System.out.println(InetAddress.getByAddress(bytes).getHostName());
+    Assert.assertEquals("127.0.0.1", InetAddress.getByName(dotted).getHostName());
+    Assert.assertEquals("127.0.0.1", InetAddress.getByAddress(bytes).getHostName());
   }
 
   /**
@@ -59,8 +60,8 @@ public class WhoisTests {
 
     Response response = Whois.lookup("whois.arin.net", 43, "n " + dotted, 5);
     Assert.assertEquals("GOOGLE", response.getData().get("NetName"));
-    // System.out.println(InetAddress.getByName(dotted).getHostName());
-    // System.out.println(InetAddress.getByAddress(bytes).getHostName());
+    Assert.assertEquals("74.125.45.100", InetAddress.getByName(dotted).getHostName());
+    Assert.assertEquals("74.125.45.100", InetAddress.getByAddress(bytes).getHostName());
   }
 
 }

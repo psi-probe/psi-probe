@@ -15,16 +15,16 @@ import org.junit.Test;
 import com.codebox.bean.JavaBeanTester;
 
 /**
- * The Class NoSelfContextHandlerControllerTest.
+ * The Class StopContextControllerTest.
  */
-public class NoSelfContextHandlerControllerTest {
+public class StopContextControllerTest {
 
   /**
    * Javabean tester.
    */
   @Test
   public void javabeanTester() {
-    JavaBeanTester.builder(NoSelfContextHandlerControllerImpl.class)
+    JavaBeanTester.builder(StopContextController.class)
         .skip("applicationContext", "supportedMethods").test();
   }
 

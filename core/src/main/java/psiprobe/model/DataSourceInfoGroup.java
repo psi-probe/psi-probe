@@ -34,12 +34,13 @@ public class DataSourceInfoGroup extends DataSourceInfo {
    *
    * @param dataSourceInfo the data source info
    */
-  public DataSourceInfoGroup(DataSourceInfo dataSourceInfo) {
+  public DataSourceInfoGroup builder(DataSourceInfo dataSourceInfo) {
     this.setJdbcUrl(dataSourceInfo.getJdbcUrl());
     this.setBusyConnections(dataSourceInfo.getBusyConnections());
     this.setEstablishedConnections(dataSourceInfo.getEstablishedConnections());
     this.setMaxConnections(dataSourceInfo.getMaxConnections());
     this.setDataSourceCount(1);
+    return this;
   }
 
   /**

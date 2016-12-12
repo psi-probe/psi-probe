@@ -22,6 +22,7 @@ public class LogHandlerControllerTest {
   /**
    * Javabean tester change log level.
    */
+  @Test
   public void javabeanTesterChangeLogLevel() {
     JavaBeanTester.builder(ChangeLogLevelController.class)
         .skip("applicationContext", "supportedMethods").test();

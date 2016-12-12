@@ -54,7 +54,7 @@ public class FlapListenerTests {
    *
    * @param sce the sce
    */
-  protected void fill(StatsCollectionEvent sce) {
+  private void fill(StatsCollectionEvent sce) {
     listener.reset();
     add(sce, defaultInterval);
   }
@@ -65,7 +65,7 @@ public class FlapListenerTests {
    * @param sce the sce
    * @param quantity the quantity
    */
-  protected void add(StatsCollectionEvent sce, int quantity) {
+  private void add(StatsCollectionEvent sce, int quantity) {
     for (int i = 0; i < quantity; i++) {
       listener.statsCollected(sce);
     }

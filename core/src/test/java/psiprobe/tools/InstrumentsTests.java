@@ -10,35 +10,13 @@
  */
 package psiprobe.tools;
 
-import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 /**
  * The Class InstrumentsTests.
  */
 public class InstrumentsTests {
-
-  /** The sun arch data model property. */
-  private String sunArchDataModelProperty;
-
-  /**
-   * Forces the tests to run in 32-bit mode.
-   */
-  @Before
-  public void setUp() {
-    this.sunArchDataModelProperty = System.getProperty("sun.arch.data.model");
-    System.setProperty("sun.arch.data.model", "32");
-  }
-
-  /**
-   * Undoes the changes made in {@link #setUp()}.
-   */
-  @After
-  public void tearDown() {
-    System.setProperty("sun.arch.data.model", this.sunArchDataModelProperty);
-  }
 
   /**
    * Test object.
