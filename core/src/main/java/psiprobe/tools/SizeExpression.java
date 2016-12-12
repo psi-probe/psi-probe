@@ -2,7 +2,7 @@
  * Licensed under the GPL License. You may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *   http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  *
  * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
  * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
@@ -65,7 +65,7 @@ public class SizeExpression {
    * </tr>
    * <tr>
    * <td>Prefix</td>
-   * <td>(Optional) The <a href="http://en.wikipedia.org/wiki/Si_prefix" target="_blank">SI
+   * <td>(Optional) The <a href="https://en.wikipedia.org/wiki/Metric_prefix" target="_blank">SI
    * prefix</a>. These span from K for kilo- to P for peta-.</td>
    * </tr>
    * <tr>
