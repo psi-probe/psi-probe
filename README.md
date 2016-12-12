@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/psi-probe/psi-probe.svg?branch=master)](https://travis-ci.org/psi-probe/psi-probe)
 [![Coverage Status](https://coveralls.io/repos/psi-probe/psi-probe/badge.svg?branch=master&service=github)](https://coveralls.io/github/psi-probe/psi-probe?branch=master)
 [![Dependency Status](https://www.versioneye.com/user/projects/569bd2562025a60031000001/badge.svg?style=flat)](https://www.versioneye.com/user/projects/569bd2562025a60031000001)
-[![GPLv2 License](http://img.shields.io/badge/license-GPLv2-green.svg)](http://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
+[![GPLv2 License](https://img.shields.io/badge/license-GPLv2-green.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
 [![Project Stats](https://www.openhub.net/p/psi-probe/widgets/project_thin_badge.gif)](https://www.openhub.net/p/psi-probe)
 [![Github All Releases](https://img.shields.io/github/downloads/psi-probe/psi-probe/total.svg)]()
 
@@ -38,7 +38,7 @@ Please download latest snapshots from [here] (https://oss.sonatype.org/content/r
 	
 3.	**Download and install Maven 3.**
 
-	You may download it from the [Apache Maven website](http://maven.apache.org/download.cgi).
+	You may download it from the [Apache Maven website](https://maven.apache.org/download.cgi).
 
 4.	**Run Maven.**
 
@@ -50,6 +50,6 @@ Please download latest snapshots from [here] (https://oss.sonatype.org/content/r
 
 ## User Groups
 
-* [Announcements](http://groups.google.com/group/psi-probe/)
-* [Discussions](http://groups.google.com/group/psi-probe-discuss/)
+* [Announcements](https://groups.google.com/forum/#!forum/psi-probe)
+* [Discussions](https://groups.google.com/forum/#!forum/psi-probe-discuss)
 * [Slack](https://psi-probe.slack.com/)
