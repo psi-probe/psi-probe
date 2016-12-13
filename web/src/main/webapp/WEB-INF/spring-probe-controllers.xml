@@ -93,7 +93,7 @@
 		<property name="viewName" value="deploy"/>
 	</bean>
 
-	<bean name="/adm/deploycfg.htm" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+	<bean name="/adm/deploycfg.htm" class="psiprobe.controllers.deploy.DeployConfigController">
 		<property name="viewName" value="deployConfig"/>
 	</bean>
 
