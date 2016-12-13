@@ -28,4 +28,13 @@ public class StartContextControllerTest {
         .skip("applicationContext", "supportedMethods").test();
   }
 
+  /**
+   * Javabean tester summary.
+   */
+  @Test
+  public void javabeanTesterSummary() {
+    JavaBeanTester.builder(StartSummaryContextController.class)
+        .skip("applicationContext", "supportedMethods").test();
+  }
+
 }
