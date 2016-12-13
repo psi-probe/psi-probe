@@ -11,9 +11,9 @@
 package psiprobe.controllers.apps;
 
 /**
- * The Class StartContextController.
+ * The Class StartSummaryContextController.
  */
-public class StartContextController extends BaseStartContextController {
+public class StartSummaryContextController extends BaseStartContextController {
 
     // Preparation for Spring Annotations (object extraction)
 

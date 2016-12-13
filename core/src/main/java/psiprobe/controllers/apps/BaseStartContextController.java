@@ -10,32 +10,28 @@
  */
 package psiprobe.controllers.apps;
 
-import org.apache.catalina.Context;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 /**
- * Reloads application context.
+ * Starts a web application.
  */
-public class BaseReloadContextController extends AbstractNoSelfContextHandlerController {
+public class BaseStartContextController extends AbstractNoSelfContextHandlerController {
 
   /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(BaseStartContextController.class);
 
   @Override
   protected void executeAction(String contextName) throws Exception {
-    Context context = getContainerWrapper().getTomcatContainer().findContext(contextName);
-    if (context != null) {
-      context.reload();
+    getContainerWrapper().getTomcatContainer().start(contextName);
 
-      // Logging action
-      Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-      // get username logger
-      String name = auth.getName();
-      logger.info(getMessageSourceAccessor().getMessage("probe.src.log.reload"), name, contextName);
-    }
+    // Logging action
+    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    // get username logger
+    String name = auth.getName();
+    logger.info(getMessageSourceAccessor().getMessage("probe.src.log.start"), name, contextName);
   }
 
 }
