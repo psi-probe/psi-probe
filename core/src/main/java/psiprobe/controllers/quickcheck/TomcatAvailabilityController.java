@@ -15,6 +15,4 @@ package psiprobe.controllers.quickcheck;
  */
 public class TomcatAvailabilityController extends BaseTomcatAvailabilityController {
 
-    // Preparation for Spring Annotations (object extraction)
-
 }

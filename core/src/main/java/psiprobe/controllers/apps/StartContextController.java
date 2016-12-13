@@ -15,6 +15,4 @@ package psiprobe.controllers.apps;
  */
 public class StartContextController extends BaseStartContextController {
 
-    // Preparation for Spring Annotations (object extraction)
-
 }

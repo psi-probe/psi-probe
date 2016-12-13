@@ -15,6 +15,4 @@ package psiprobe.controllers.apps;
  */
 public class GetApplicationRequestDetailsController extends BaseGetApplicationController {
 
-    // Preparation for Spring Annotations (object extraction)
-
 }
