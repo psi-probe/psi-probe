@@ -15,6 +15,4 @@ package psiprobe.controllers.apps;
  */
 public class ReloadContextController extends BaseReloadContextController {
 
-    // Preparation for Spring Annotations (object extraction)
-
 }

@@ -15,6 +15,4 @@ package psiprobe.controllers.system;
  */
 public class SysInfoController extends BaseSysInfoController {
 
-    // Preparation for Spring Annotations (object extraction)
-
 }

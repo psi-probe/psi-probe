@@ -15,6 +15,4 @@ package psiprobe.controllers.system;
  */
 public class OsInfoAjaxController  extends BaseSysInfoController {
 
-    // Preparation for Spring Annotations (object extraction)
-
 }

@@ -45,7 +45,7 @@ public class Tokenizer {
   private final List<TokenizerSymbol> symbols;
 
   /** The push count. */
-  private int pushCount = 0;
+  private int pushCount;
 
   /** The token. */
   private final TokenizerToken token;

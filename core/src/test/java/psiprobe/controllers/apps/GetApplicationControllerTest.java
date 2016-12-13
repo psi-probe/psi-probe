@@ -38,10 +38,10 @@ public class GetApplicationControllerTest {
   }
 
   /**
-   * Javabean tester runtime.
+   * Javabean tester runtime info.
    */
   @Test
-  public void javabeanTesterRuntime() {
+  public void javabeanTesterRuntimeInfo() {
     JavaBeanTester.builder(GetApplicationRuntimeInfoController.class)
         .skip("applicationContext", "supportedMethods").test();
   }

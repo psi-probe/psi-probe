@@ -15,6 +15,4 @@ package psiprobe.controllers.apps;
  */
 public class DownloadContextXmlConfController extends BaseDownloadXmlConfController {
 
-  // Preparation for Spring Annotations (object extraction)
-
 }

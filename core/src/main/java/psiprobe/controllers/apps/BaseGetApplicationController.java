@@ -30,7 +30,7 @@ import javax.servlet.http.HttpServletResponse;
 public class BaseGetApplicationController extends AbstractContextHandlerController {
 
   /** denotes whether extended application information and statistics should be collected. */
-  private boolean extendedInfo = false;
+  private boolean extendedInfo;
 
   /** The stats collection. */
   private StatsCollection statsCollection;
