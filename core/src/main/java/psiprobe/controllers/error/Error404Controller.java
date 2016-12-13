@@ -8,24 +8,13 @@
  * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
  * PURPOSE.
  */
-package psiprobe.controllers;
+package psiprobe.controllers.error;
 
-import org.junit.Test;
-
-import com.codebox.bean.JavaBeanTester;
+import org.springframework.web.servlet.mvc.ParameterizableViewController;
 
 /**
- * The Class ErrorHandlerControllerTest.
+ * The Class Error404Controller.
  */
-public class ErrorHandlerControllerTest {
-
-  /**
-   * Javabean tester.
-   */
-  @Test
-  public void javabeanTester() {
-    JavaBeanTester.builder(ErrorHandlerController.class)
-        .skip("applicationContext", "supportedMethods").test();
-  }
+public class Error404Controller extends ParameterizableViewController {
 
 }

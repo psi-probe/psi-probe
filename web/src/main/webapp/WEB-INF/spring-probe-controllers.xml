@@ -619,13 +619,13 @@
 		<property name="viewName" value="ajax/whois"/>
 	</bean>
 
-	<bean name="/403.htm" class="psiprobe.controllers.ErrorHandlerController">
+	<bean name="/403.htm" class="psiprobe.controllers.error.Error403Controller">
 		<property name="viewName" value="errors/403"/>
 		<property name="ajaxViewName" value="errors/403_ajax"/>
 		<property name="ajaxExtension" value=".ajax"/>
 	</bean>
 
-	<bean name="/404.htm" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+	<bean name="/404.htm" class="psiprobe.controllers.error.Error404Controller">
 		<property name="viewName" value="errors/404"/>
 	</bean>
 

@@ -8,7 +8,7 @@
  * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
  * PURPOSE.
  */
-package psiprobe.controllers;
+package psiprobe.controllers.error;
 
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  * The ErrorHandlerController will show two different views depending on whether the failed request
  * was AJAX or not.
  */
-public class ErrorHandlerController extends AbstractController {
+public class Error403Controller extends AbstractController {
 
   /** The view name. */
   private String viewName;
