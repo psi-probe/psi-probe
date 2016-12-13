@@ -76,7 +76,7 @@ public class SecurityUtils {
    * @param request the request
    * @return true, if successful
    */
-  // TODO 12/10/2016 Do we need this?
+  // TODO 12/10/2016 JWL Do we need this?
   @SuppressWarnings("unused")
   private static boolean userHasRole(String privilegedRole, HttpServletRequest request) {
     return request.isUserInRole(privilegedRole);

@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
 /**
  * Tool for parsing and formatting SI-prefixed numbers in base-2 and base-10.
  */
-public class SizeExpression {
+public final class SizeExpression {
 
   /** The Constant MULTIPLIER_2. */
   public static final long MULTIPLIER_2 = 1024;
@@ -42,6 +42,13 @@ public class SizeExpression {
 
   /** The Constant PREFIX_PETA. */
   public static final char PREFIX_PETA = 'P';
+
+  /**
+   * Prevent Instantiation.
+   */
+  private SizeExpression() {
+    // Prevent Instantiation
+  }
 
   /**
    * Parses the given expression into a numerical value.

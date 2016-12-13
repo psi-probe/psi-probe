@@ -13,7 +13,14 @@ package psiprobe.tools;
 /**
  * The Class TimeExpression.
  */
-public class TimeExpression {
+public final class TimeExpression {
+
+  /**
+   * Prevent Instantiation.
+   */
+  private TimeExpression() {
+    // Prevent Instantiation
+  }
 
   /**
    * Data points.

@@ -601,7 +601,7 @@ public class LogResolverBean {
       String name;
       if (all) {
         Application app = dest.getApplication();
-        String appName = app == null ? "" + DELIM : app.getName();
+        String appName = app == null ? Character.toString(DELIM) : app.getName();
         String context = dest.isContext() ? "is" : "not";
         String root = dest.isRoot() ? "is" : "not";
         String logType = dest.getLogType();
