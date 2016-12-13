@@ -23,10 +23,17 @@ import javax.management.openmbean.CompositeData;
 /**
  * The Class JmxTools.
  */
-public class JmxTools {
+public final class JmxTools {
 
   /** The logger. */
   private static final Logger logger = LoggerFactory.getLogger(JmxTools.class);
+
+  /**
+   * Prevent Instantiation.
+   */
+  private JmxTools() {
+    // Prevent Instantiation
+  }
 
   /**
    * Gets the attribute.

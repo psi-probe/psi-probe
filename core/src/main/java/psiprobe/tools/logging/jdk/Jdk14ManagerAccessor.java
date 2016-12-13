@@ -33,11 +33,10 @@ public class Jdk14ManagerAccessor extends DefaultAccessor {
    * @param cl the cl
    * @throws ClassNotFoundException the class not found exception
    * @throws IllegalAccessException the illegal access exception
-   * @throws IllegalArgumentException the illegal argument exception
    * @throws InvocationTargetException the invocation target exception
    */
   public Jdk14ManagerAccessor(ClassLoader cl) throws ClassNotFoundException,
-      IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+      IllegalAccessException, InvocationTargetException {
 
     Class<?> clazz = cl.loadClass("java.util.logging.LogManager");
     Method getManager = MethodUtils.getAccessibleMethod(clazz, "getLogManager", new Class[0]);

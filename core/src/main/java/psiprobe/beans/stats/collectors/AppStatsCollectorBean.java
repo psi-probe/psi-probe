@@ -143,7 +143,7 @@ public class AppStatsCollectorBean extends AbstractStatsCollectorBean implements
         buildAbsoluteStats("total.avg_proc_time", participatingAppCount == 0 ? 0 : totalAvgProcTime
             / participatingAppCount, currentTime);
       }
-      logger.debug("app stats collected in {}ms", (System.currentTimeMillis() - currentTime));
+      logger.debug("app stats collected in {}ms", System.currentTimeMillis() - currentTime);
     }
   }
 

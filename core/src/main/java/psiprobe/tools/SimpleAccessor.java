@@ -42,11 +42,10 @@ public class SimpleAccessor implements Accessor {
    * @param obj the obj
    * @param field the field
    * @return the 0
-   * @throws IllegalArgumentException the illegal argument exception
    * @throws IllegalAccessException the illegal access exception
    */
   private Object get0(Object obj, Field field)
-      throws IllegalArgumentException, IllegalAccessException {
+      throws IllegalAccessException {
     
     if (field.isAccessible()) {
       return field.get(obj);

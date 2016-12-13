@@ -245,7 +245,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
       logger.error("Could not write stats data to '{}'", makeFile().getAbsolutePath(), e);
     } finally {
       lock.releaseCommitLock();
-      logger.debug("stats serialized in {}ms", (System.currentTimeMillis() - start));
+      logger.debug("stats serialized in {}ms", System.currentTimeMillis() - start);
     }
   }
 
@@ -281,7 +281,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
             }
           }
         }
-        logger.debug("stats data read in {}ms", (System.currentTimeMillis() - start));
+        logger.debug("stats data read in {}ms", System.currentTimeMillis() - start);
       } catch (Exception e) {
         logger.error("Could not read stats data from '{}'", file.getAbsolutePath(), e);
       }

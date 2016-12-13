@@ -51,19 +51,6 @@ public class LogOutputStream extends OutputStream {
   private final StringBuffer buf = new StringBuffer();
 
   /**
-   * Creates a {@code PrintStream} with autoFlush enabled which will write to the given {@code Log}
-   * at the given level.
-   * 
-   * @param log the {@code Log} to which to write
-   * @param level the level at which to write
-   * @return a {@code PrintStream} that writes to the given log
-   */
-  public static PrintStream createPrintStream(Logger log, int level) {
-    LogOutputStream logStream = new LogOutputStream(log, level);
-    return new PrintStream(logStream, true);
-  }
-
-  /**
    * Creates a new instance of {@code LogOutputStream} which will write to a given {@code Log} at
    * the given level.
    * 
@@ -77,6 +64,19 @@ public class LogOutputStream extends OutputStream {
     }
     this.logger = log;
     this.level = level;
+  }
+
+  /**
+   * Creates a {@code PrintStream} with autoFlush enabled which will write to the given {@code Log}
+   * at the given level.
+   * 
+   * @param log the {@code Log} to which to write
+   * @param level the level at which to write
+   * @return a {@code PrintStream} that writes to the given log
+   */
+  public static PrintStream createPrintStream(Logger log, int level) {
+    LogOutputStream logStream = new LogOutputStream(log, level);
+    return new PrintStream(logStream, true);
   }
 
   /**

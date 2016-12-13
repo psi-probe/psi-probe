@@ -76,7 +76,7 @@ public abstract class AbstractLogHandlerController extends ParameterizableViewCo
         logger.error("{}: file not found", dest.getFile());
       }
     } else {
-      logger.error("{}{} log{} not found", logType, (root ? " root" : ""), (root ? "" : " '" + logName + "'"));
+      logger.error("{}{} log{} not found", logType, root ? " root" : "", root ? "" : " '" + logName + "'");
     }
     if (!logFound) {
       response.sendError(404);

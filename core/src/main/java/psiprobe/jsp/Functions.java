@@ -13,7 +13,14 @@ package psiprobe.jsp;
 /**
  * The Class Functions.
  */
-public class Functions {
+public final class Functions {
+
+  /**
+   * Prevent Instantiation.
+   */
+  private Functions() {
+    // Prevent Instantiation
+  }
 
   /**
    * Safe cookie name.
