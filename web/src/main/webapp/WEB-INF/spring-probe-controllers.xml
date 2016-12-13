@@ -541,7 +541,7 @@
 		<property name="viewName" value="appinitparams"/>
 	</bean>
 
-	<bean name="/servlets.htm" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+	<bean name="/servlets.htm" class="psiprobe.controllers.servlets.ServletsController">
 		<property name="viewName" value="servlets"/>
 	</bean>
 
