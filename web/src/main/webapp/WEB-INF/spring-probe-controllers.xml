@@ -633,27 +633,27 @@
 		<property name="xmlMarker" value=".oxml"/>
 	</bean>
 
-	<bean name="/help/applications.ajax" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+	<bean name="/help/applications.ajax" class="psiprobe.controllers.help.HelpApplicationsController">
 		<property name="viewName" value="ajax/help/applications" />
 	</bean>
 
-	<bean name="/help/datasources.ajax" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+	<bean name="/help/datasources.ajax" class="psiprobe.controllers.help.HelpDatasourcesController">
 		<property name="viewName" value="ajax/help/datasources" />
 	</bean>
 
-	<bean name="/help/datasourcetest.ajax" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+	<bean name="/help/datasourcetest.ajax" class="psiprobe.controllers.help.HelpDatasourceTestController">
 		<property name="viewName" value="ajax/help/datasourcetest" />
 	</bean>
 
-	<bean name="/help/sessionsearch.ajax" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+	<bean name="/help/sessionsearch.ajax" class="psiprobe.controllers.help.HelpSessionSearchController">
 		<property name="viewName" value="ajax/help/sessionsearch" />
 	</bean>
 
-	<bean name="/help/threads.ajax" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+	<bean name="/help/threads.ajax" class="psiprobe.controllers.help.HelpThreadsController">
 		<property name="viewName" value="ajax/help/threads" />
 	</bean>
 
-	<bean name="/help/threads2.ajax" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+	<bean name="/help/threads2.ajax" class="psiprobe.controllers.help.HelpThreads2Controller">
 		<property name="viewName" value="ajax/help/threads2" />
 	</bean>
 
