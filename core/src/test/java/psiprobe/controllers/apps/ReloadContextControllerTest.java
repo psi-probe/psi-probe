@@ -28,4 +28,13 @@ public class ReloadContextControllerTest {
           .skip("applicationContext", "supportedMethods").test();
     }
 
+    /**
+     * Javabean tester summary.
+     */
+    @Test
+    public void javabeanTesterSummary() {
+      JavaBeanTester.builder(ReloadSummaryContextController.class)
+          .skip("applicationContext", "supportedMethods").test();
+    }
+
 }

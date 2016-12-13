@@ -258,7 +258,7 @@
 		<property name="viewName" value="/index.htm"/>
 	</bean>
 
-	<bean name="/app/reload_summary.htm" class="psiprobe.controllers.apps.ReloadContextController">
+	<bean name="/app/reload_summary.htm" class="psiprobe.controllers.apps.ReloadSummaryContextController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="viewName" value="/appsummary.htm"/>
 		<property name="passQueryString" value="true"/>
