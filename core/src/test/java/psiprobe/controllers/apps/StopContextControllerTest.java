@@ -24,7 +24,16 @@ public class StopContextControllerTest {
    */
   @Test
   public void javabeanTester() {
-    JavaBeanTester.builder(StopContextController.class)
+    JavaBeanTester.builder(BaseStopContextController.class)
+        .skip("applicationContext", "supportedMethods").test();
+  }
+
+  /**
+   * Javabean tester summary.
+   */
+  @Test
+  public void javabeanTesterSummary() {
+    JavaBeanTester.builder(StopSummaryContextController.class)
         .skip("applicationContext", "supportedMethods").test();
   }
 

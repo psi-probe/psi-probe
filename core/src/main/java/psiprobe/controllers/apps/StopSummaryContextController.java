@@ -11,9 +11,9 @@
 package psiprobe.controllers.apps;
 
 /**
- * The Class StopContextController.
+ * The Class StopSummaryContextController.
  */
-public class StopContextController extends BaseStopContextController {
+public class StopSummaryContextController extends BaseStopContextController {
 
     // Preparation for Spring Annotations (object extraction)
 

@@ -46,7 +46,7 @@
 		<property name="viewName" value="/index.htm"/>
 	</bean>
 
-	<bean name="/app/stop_summary.htm" class="psiprobe.controllers.apps.StopContextController">
+	<bean name="/app/stop_summary.htm" class="psiprobe.controllers.apps.StopSummaryContextController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="viewName" value="/appsummary.htm"/>
 		<property name="passQueryString" value="true"/>
