@@ -179,11 +179,6 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>javainetlocator</groupId>
-            <artifactId>inetaddresslocator</artifactId>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
             <groupId>javax.transaction</groupId>
             <artifactId>javax.transaction-api</artifactId>
             <scope>compile</scope>
