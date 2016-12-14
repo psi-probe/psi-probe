@@ -11,8 +11,8 @@
 package psiprobe.controllers.cluster;
 
 /**
- * The Class ClusterStatsController.
+ * The Class ClusterMembersStatsController.
  */
-public class ClusterStatsController extends BaseClusterStatsController {
+public class ClusterMembersStatsController extends BaseClusterStatsController {
 
 }
