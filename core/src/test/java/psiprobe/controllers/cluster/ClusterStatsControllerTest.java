@@ -20,11 +20,38 @@ import com.codebox.bean.JavaBeanTester;
 public class ClusterStatsControllerTest {
 
   /**
-   * Javabean tester.
+   * Javabean tester cluster stats.
    */
   @Test
-  public void javabeanTester() {
+  public void javabeanTesterClusterStats() {
     JavaBeanTester.builder(ClusterStatsController.class)
+        .skip("applicationContext", "supportedMethods").test();
+  }
+
+  /**
+   * Javabean tester cluster stats members.
+   */
+  @Test
+  public void javabeanTesterClusterStatsMembers() {
+    JavaBeanTester.builder(ClusterMembersStatsController.class)
+        .skip("applicationContext", "supportedMethods").test();
+  }
+
+  /**
+   * Javabean tester cluster stats requests.
+   */
+  @Test
+  public void javabeanTesterClusterStatsRequests() {
+    JavaBeanTester.builder(ClusterRequestsStatsController.class)
+        .skip("applicationContext", "supportedMethods").test();
+  }
+
+  /**
+   * Javabean tester cluster stats traffic.
+   */
+  @Test
+  public void javabeanTesterClusterStatsTraffic() {
+    JavaBeanTester.builder(ClusterTrafficStatsController.class)
         .skip("applicationContext", "supportedMethods").test();
   }
 

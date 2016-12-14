@@ -506,20 +506,20 @@
 		</property>
 	</bean>
 
-	<bean name="/cluster/members.ajax" class="psiprobe.controllers.cluster.ClusterStatsController">
+	<bean name="/cluster/members.ajax" class="psiprobe.controllers.cluster.ClusterMembersStatsController">
 		<property name="clusterWrapper" ref="clusterWrapper"/>
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="viewName" value="ajax/cluster/members"/>
 	</bean>
 
-	<bean name="/cluster/traffic.ajax" class="psiprobe.controllers.cluster.ClusterStatsController">
+	<bean name="/cluster/traffic.ajax" class="psiprobe.controllers.cluster.ClusterTrafficStatsController">
 		<property name="clusterWrapper" ref="clusterWrapper"/>
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="loadMembers" value="false"/>
 		<property name="viewName" value="ajax/cluster/traffic"/>
 	</bean>
 
-	<bean name="/cluster/requests.ajax" class="psiprobe.controllers.cluster.ClusterStatsController">
+	<bean name="/cluster/requests.ajax" class="psiprobe.controllers.cluster.ClusterRequestsStatsController">
 		<property name="clusterWrapper" ref="clusterWrapper"/>
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="loadMembers" value="false"/>
