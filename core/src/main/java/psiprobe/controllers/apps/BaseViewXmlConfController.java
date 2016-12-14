@@ -29,10 +29,10 @@ import javax.servlet.http.HttpServletResponse;
  * Displays a deployment descriptor (web.xml) or a context descriptor (context.xml) of a web
  * application
  */
-public class ViewXmlConfController extends AbstractContextHandlerController {
+public class BaseViewXmlConfController extends AbstractContextHandlerController {
 
   /** The Constant logger. */
-  private static final Logger logger = LoggerFactory.getLogger(ViewXmlConfController.class);
+  private static final Logger logger = LoggerFactory.getLogger(BaseViewXmlConfController.class);
 
   /** The Constant TARGET_WEB_XML. */
   private static final String TARGET_WEB_XML = "web.xml";
