@@ -20,11 +20,29 @@ import com.codebox.bean.JavaBeanTester;
 public class GetConnectorControllerTest {
 
   /**
-   * Javabean tester.
+   * Javabean tester proc time.
    */
   @Test
-  public void javabeanTester() {
-    JavaBeanTester.builder(GetConnectorController.class)
+  public void javabeanTesterProcTime() {
+    JavaBeanTester.builder(GetConnectorProcTimeController.class)
+        .skip("applicationContext", "supportedMethods").test();
+  }
+
+  /**
+   * Javabean tester Request.
+   */
+  @Test
+  public void javabeanTesterRequest() {
+    JavaBeanTester.builder(GetConnectorRequestController.class)
+        .skip("applicationContext", "supportedMethods").test();
+  }
+
+  /**
+   * Javabean tester Traffic.
+   */
+  @Test
+  public void javabeanTesterTraffice() {
+    JavaBeanTester.builder(GetConnectorTrafficController.class)
         .skip("applicationContext", "supportedMethods").test();
   }
 

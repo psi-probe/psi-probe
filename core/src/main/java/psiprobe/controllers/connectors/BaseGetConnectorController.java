@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * The Class GetConnectorController.
  */
-public class GetConnectorController extends AbstractTomcatContainerController {
+public class BaseGetConnectorController extends AbstractTomcatContainerController {
 
   /** The container listener bean. */
   private ContainerListenerBean containerListenerBean;

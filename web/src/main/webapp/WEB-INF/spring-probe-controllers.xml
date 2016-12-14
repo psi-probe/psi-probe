@@ -370,17 +370,17 @@
 		</property>
 	</bean>
 
-	<bean name="/cnreqdetails.ajax" class="psiprobe.controllers.connectors.GetConnectorController">
+	<bean name="/cnreqdetails.ajax" class="psiprobe.controllers.connectors.GetConnectorRequestController">
 		<property name="containerListenerBean" ref="containerListener"/>
 		<property name="viewName" value="ajax/connectorRequestDetails"/>
 	</bean>
 
-	<bean name="/cntrafdetails.ajax" class="psiprobe.controllers.connectors.GetConnectorController">
+	<bean name="/cntrafdetails.ajax" class="psiprobe.controllers.connectors.GetConnectorTrafficController">
 		<property name="containerListenerBean" ref="containerListener"/>
 		<property name="viewName" value="ajax/connectorTrafficDetails"/>
 	</bean>
 
-	<bean name="/cnprocdetails.ajax" class="psiprobe.controllers.connectors.GetConnectorController">
+	<bean name="/cnprocdetails.ajax" class="psiprobe.controllers.connectors.GetConnectorProcTimeController">
 		<property name="containerListenerBean" ref="containerListener"/>
 		<property name="viewName" value="ajax/connectorProcTimeDetails"/>
 	</bean>
