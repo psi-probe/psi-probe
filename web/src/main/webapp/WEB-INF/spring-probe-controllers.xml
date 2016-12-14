@@ -331,14 +331,14 @@
 		<property name="statsCollection" ref="statsCollection"/>
 	</bean>
 
-	<bean name="/app/viewwebxml.htm" class="psiprobe.controllers.apps.ViewXmlConfController">
+	<bean name="/app/viewwebxml.htm" class="psiprobe.controllers.apps.ViewWebXmlConfController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="viewName" value="view_xml_conf"/>
 		<property name="displayTarget" value="web.xml"/>
 		<property name="downloadUrl" value="/app/downloadwebxml.htm"/>
 	</bean>
 
-	<bean name="/adm/viewcontextxml.htm" class="psiprobe.controllers.apps.ViewXmlConfController">
+	<bean name="/adm/viewcontextxml.htm" class="psiprobe.controllers.apps.ViewContextXmlConfController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="viewName" value="view_xml_conf"/>
 		<property name="displayTarget" value="context.xml"/>

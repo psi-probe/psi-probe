@@ -20,11 +20,20 @@ import com.codebox.bean.JavaBeanTester;
 public class ViewXmlConfControllerTest {
 
   /**
-   * Javabean tester.
+   * Javabean tester context.
    */
   @Test
-  public void javabeanTester() {
-    JavaBeanTester.builder(ViewXmlConfController.class)
+  public void javabeanTesterContext() {
+    JavaBeanTester.builder(ViewContextXmlConfController.class)
+        .skip("applicationContext", "supportedMethods").test();
+  }
+
+  /**
+   * Javabean tester web.
+   */
+  @Test
+  public void javabeanTesterWeb() {
+    JavaBeanTester.builder(ViewWebXmlConfController.class)
         .skip("applicationContext", "supportedMethods").test();
   }
 
