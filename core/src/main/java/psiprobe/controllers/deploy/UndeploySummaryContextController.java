@@ -11,8 +11,8 @@
 package psiprobe.controllers.deploy;
 
 /**
- * The Class UndeployContextController.
+ * The Class UndeploySummaryContextController.
  */
-public class UndeployContextController extends BaseUndeployContextController {
+public class UndeploySummaryContextController extends BaseUndeployContextController {
 
 }

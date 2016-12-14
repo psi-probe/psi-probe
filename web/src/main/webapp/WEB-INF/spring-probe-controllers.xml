@@ -183,7 +183,7 @@
 		<property name="viewName" value="/index.htm"/>
 	</bean>
 
-	<bean name="/adm/undeploy_summary.htm" class="psiprobe.controllers.deploy.UndeployContextController">
+	<bean name="/adm/undeploy_summary.htm" class="psiprobe.controllers.deploy.UndeploySummaryContextController">
 		<property name="containerWrapper" ref="containerWrapper"/>
 		<property name="viewName" value="/index.htm"/>
 		<property name="failureViewName" value="/appsummary.htm"/>
