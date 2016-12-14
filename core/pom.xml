@@ -179,6 +179,11 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
+            <groupId>com.maxmind.geoip2</groupId>
+            <artifactId>geoip2</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
             <groupId>javax.transaction</groupId>
             <artifactId>javax.transaction-api</artifactId>
             <scope>compile</scope>
