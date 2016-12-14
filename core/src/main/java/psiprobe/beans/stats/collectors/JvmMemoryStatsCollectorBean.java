@@ -17,6 +17,8 @@ import psiprobe.tools.TimeExpression;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
@@ -26,7 +28,7 @@ import org.springframework.beans.factory.annotation.Value;
 public class JvmMemoryStatsCollectorBean extends AbstractStatsCollectorBean {
 
   /** The jvm memory info accessor. */
-  @Autowired
+  @Inject
   private JvmMemoryInfoAccessorBean jvmMemoryInfoAccessor;
 
   /**

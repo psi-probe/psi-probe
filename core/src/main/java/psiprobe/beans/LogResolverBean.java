@@ -41,6 +41,8 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 /**
  * The Class LogResolverBean.
  */
@@ -50,7 +52,7 @@ public class LogResolverBean {
   protected static final Logger logger = LoggerFactory.getLogger(LogResolverBean.class);
 
   /** The container wrapper. */
-  @Autowired
+  @Inject
   private ContainerWrapperBean containerWrapper;
 
   /** The stdout files. */

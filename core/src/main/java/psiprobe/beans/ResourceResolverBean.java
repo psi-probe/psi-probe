@@ -16,8 +16,6 @@ import org.apache.catalina.core.StandardServer;
 import org.apache.commons.modeler.Registry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import psiprobe.model.ApplicationResource;
 import psiprobe.model.DataSourceInfo;
 
@@ -25,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import javax.inject.Inject;
 import javax.management.MBeanServer;
 import javax.management.ObjectName;
 import javax.naming.InitialContext;
@@ -52,7 +51,7 @@ public class ResourceResolverBean implements ResourceResolver {
       + "java:comp/env/";
 
   /** The datasource mappers. */
-  @Autowired
+  @Inject
   private List<String> datasourceMappers;
 
   @Override

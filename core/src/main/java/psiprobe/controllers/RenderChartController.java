@@ -21,7 +21,6 @@ import org.jfree.data.xy.DefaultTableXYDataset;
 import org.jfree.ui.RectangleInsets;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,6 +34,7 @@ import psiprobe.model.stats.StatsCollection;
 import java.awt.BasicStroke;
 import java.awt.Color;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -62,7 +62,7 @@ public class RenderChartController extends AbstractController {
   private static final Logger logger = LoggerFactory.getLogger(RenderChartController.class);
 
   /** The stats collection. */
-  @Autowired
+  @Inject
   private StatsCollection statsCollection;
 
   /**

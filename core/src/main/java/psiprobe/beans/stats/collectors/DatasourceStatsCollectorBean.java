@@ -10,9 +10,10 @@
  */
 package psiprobe.beans.stats.collectors;
 
+import javax.inject.Inject;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 import psiprobe.beans.ContainerWrapperBean;
@@ -35,7 +36,7 @@ public class DatasourceStatsCollectorBean extends AbstractStatsCollectorBean {
   private static final Logger logger = LoggerFactory.getLogger(DatasourceStatsCollectorBean.class);
 
   /** The container wrapper. */
-  @Autowired
+  @Inject
   private ContainerWrapperBean containerWrapper;
 
   /**

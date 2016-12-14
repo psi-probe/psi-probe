@@ -10,12 +10,12 @@
  */
 package psiprobe.controllers.system;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
 
 import psiprobe.beans.JvmMemoryInfoAccessorBean;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 public class BaseMemoryStatsController extends ParameterizableViewController {
 
   /** The jvm memory info accessor bean. */
-  @Autowired
+  @Inject
   private JvmMemoryInfoAccessorBean jvmMemoryInfoAccessorBean;
 
   /** The collection period. */
