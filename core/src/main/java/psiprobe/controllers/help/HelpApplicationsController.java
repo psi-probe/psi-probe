@@ -10,11 +10,18 @@
  */
 package psiprobe.controllers.help;
 
+import org.springframework.http.HttpMethod;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
 
 /**
  * The Class HelpApplicationsController.
  */
 public class HelpApplicationsController extends ParameterizableViewController {
+
+  // Hack fixing 'POST' with spring 4.3+
+  public HelpApplicationsController() {
+    super();
+    setSupportedMethods(HttpMethod.GET.name(), HttpMethod.POST.name(), HttpMethod.HEAD.name());
+  }
 
 }
