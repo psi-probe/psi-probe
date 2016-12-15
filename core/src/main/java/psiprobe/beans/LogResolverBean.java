@@ -45,7 +45,7 @@ import java.util.List;
  */
 public class LogResolverBean {
 
-  /** The logger. */
+  /** The Constant logger. */
   protected static final Logger logger = LoggerFactory.getLogger(LogResolverBean.class);
 
   /** The container wrapper. */
@@ -547,11 +547,11 @@ public class LogResolverBean {
   }
 
   /**
-   * The Class LogComparator.
+   * The Class AbstractLogComparator.
    */
   private abstract static class AbstractLogComparator implements Comparator<LogDestination>, Serializable {
 
-    /** The serialVersionUID. */
+    /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 1L;
 
     /** The Constant DELIM. */
@@ -579,7 +579,7 @@ public class LogResolverBean {
    */
   private static class LogDestinationComparator extends AbstractLogComparator implements Serializable {
 
-    /** The serialVersionUID. */
+    /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 1L;
 
     /** The all. */
@@ -619,7 +619,7 @@ public class LogResolverBean {
    */
   private static class LogSourceComparator extends AbstractLogComparator implements Serializable {
 
-    /** The serialVersionUID. */
+    /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 1L;
 
     @Override

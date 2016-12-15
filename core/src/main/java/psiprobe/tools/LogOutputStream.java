@@ -56,7 +56,6 @@ public class LogOutputStream extends OutputStream {
    * 
    * @param log the {@code Log} to which to write
    * @param level the level at which to write
-   * @throws IllegalArgumentException if {@code log} is null
    */
   private LogOutputStream(Logger log, int level) {
     if (log == null) {

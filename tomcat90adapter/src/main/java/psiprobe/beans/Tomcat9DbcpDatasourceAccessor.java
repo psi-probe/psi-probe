@@ -15,7 +15,7 @@ import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 import psiprobe.model.DataSourceInfo;
 
 /**
- * The Class Tomcat8DbcpDatasourceAccessor.
+ * The Class Tomcat9DbcpDatasourceAccessor.
  */
 public class Tomcat9DbcpDatasourceAccessor implements DatasourceAccessor {
 

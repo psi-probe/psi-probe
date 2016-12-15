@@ -28,7 +28,7 @@ import java.util.TreeMap;
  */
 public final class Whois {
 
-  /** The Constant Logger. */
+  /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(Whois.class);
 
   /**

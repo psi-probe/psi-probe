@@ -22,7 +22,7 @@ import com.codebox.bean.JavaBeanTester;
  */
 public class VisualScoreTagTest {
 
-  /** The Logger. */
+  /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(VisualScoreTagTest.class);
 
   /**

@@ -30,7 +30,7 @@ public class ParamToggleTag extends TagSupport {
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = 1L;
 
-  /** The logger. */
+  /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(ParamToggleTag.class);
 
   /** The param. */

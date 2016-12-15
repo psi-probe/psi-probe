@@ -27,7 +27,7 @@ public class SessionSearchInfo implements Serializable {
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = 1L;
 
-  /** The Constant Logger. */
+  /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(SessionSearchInfo.class);
 
   /** The Constant SESS_ATTR_NAME. */

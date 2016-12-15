@@ -27,6 +27,7 @@ public class IpInfo {
    * Instantiates a new ip info.
    *
    * @param request the request
+   * @return the ip info
    */
   public IpInfo builder(HttpServletRequest request) {
     this.address = getClientAddress(request);

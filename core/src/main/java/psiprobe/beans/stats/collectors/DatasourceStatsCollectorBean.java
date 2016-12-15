@@ -28,7 +28,7 @@ public class DatasourceStatsCollectorBean extends AbstractStatsCollectorBean {
   /** The Constant PREFIX_BUSY. */
   private static final String PREFIX_BUSY = "ds.busy.";
 
-  /** The logger. */
+  /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(DatasourceStatsCollectorBean.class);
 
   /** The container wrapper. */

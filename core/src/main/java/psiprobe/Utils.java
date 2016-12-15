@@ -54,7 +54,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public final class Utils {
 
-  /** The logger. */
+  /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(Utils.class);
 
   /**

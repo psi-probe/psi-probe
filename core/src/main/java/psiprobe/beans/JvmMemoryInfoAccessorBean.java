@@ -31,7 +31,7 @@ import javax.management.openmbean.CompositeDataSupport;
  */
 public class JvmMemoryInfoAccessorBean {
 
-  /** The logger. */
+  /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(JvmMemoryInfoAccessorBean.class);
 
   /**

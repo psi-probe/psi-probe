@@ -209,8 +209,8 @@ public class Instruments {
 
   /**
    * Size of primitive.
-   * @param <T>
    *
+   * @param <T> the generic type
    * @param type the type
    * @return the long
    */
@@ -267,6 +267,7 @@ public class Instruments {
   /**
    * Find field.
    *
+   * @param <T> the generic type
    * @param clazz the clazz
    * @param name the name
    * @return the field

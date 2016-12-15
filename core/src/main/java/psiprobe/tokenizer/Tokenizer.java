@@ -23,7 +23,7 @@ import java.util.List;
  */
 public class Tokenizer {
 
-  /** The Constant Logger. */
+  /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(Tokenizer.class);
 
   /** The Constant TT_TOKEN. */

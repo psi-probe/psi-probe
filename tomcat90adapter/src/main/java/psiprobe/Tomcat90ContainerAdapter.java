@@ -40,7 +40,7 @@ import java.util.Set;
 import javax.servlet.ServletContext;
 
 /**
- * The Class Tomcat80ContainerAdapter.
+ * The Class Tomcat90ContainerAdapter.
  */
 public class Tomcat90ContainerAdapter extends AbstractTomcatContainer {
 

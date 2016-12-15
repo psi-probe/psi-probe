@@ -21,7 +21,7 @@ import java.net.Socket;
  */
 public final class AsyncSocketFactory {
 
-  /** The Constant Logger. */
+  /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(AsyncSocketFactory.class);
 
   /**

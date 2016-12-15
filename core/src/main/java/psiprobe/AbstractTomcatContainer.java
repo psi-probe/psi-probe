@@ -607,6 +607,11 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
   protected abstract JspCompilationContext createJspCompilationContext(String name, Options opt,
       ServletContext sctx, JspRuntimeContext jrctx, ClassLoader classLoader);
 
+  /**
+   * Creates the valve.
+   *
+   * @return the valve
+   */
   protected abstract Valve createValve();
 
 }

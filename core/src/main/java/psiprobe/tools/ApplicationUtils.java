@@ -53,7 +53,7 @@ import javax.servlet.http.HttpSession;
  */
 public final class ApplicationUtils {
 
-  /** The logger. */
+  /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(ApplicationUtils.class);
 
   /**

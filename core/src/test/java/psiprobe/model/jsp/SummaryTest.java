@@ -14,6 +14,9 @@ import org.junit.Test;
 
 import com.codebox.bean.JavaBeanTester;
 
+/**
+ * The Class SummaryTest.
+ */
 public class SummaryTest {
 
   /**

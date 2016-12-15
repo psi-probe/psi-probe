@@ -21,7 +21,7 @@ import java.io.StringReader;
  */
 public class StringTokenizer extends Tokenizer {
 
-  /** The Constant Logger. */
+  /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(StringTokenizer.class);
 
   /**

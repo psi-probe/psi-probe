@@ -25,7 +25,7 @@ import javax.management.ObjectName;
  */
 public class RuntimeInfoAccessorBean {
 
-  /** The logger. */
+  /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(RuntimeInfoAccessorBean.class);
 
   /**
