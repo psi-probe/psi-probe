@@ -126,10 +126,11 @@ public class BaseTomcatAvailabilityController extends AbstractTomcatContainerCon
     try {
       for (; fileCount > 0; fileCount--) {
         File file = new File(tmpDir, "tctest_" + fileCount);
-        FileOutputStream fos = new FileOutputStream(file);
-        files.add(file);
-        fileStreams.add(fos);
-        fos.write("this is a test".getBytes(StandardCharsets.UTF_8));
+        try (FileOutputStream fos = new FileOutputStream(file)) {
+            files.add(file);
+            fileStreams.add(fos);
+            fos.write("this is a test".getBytes(StandardCharsets.UTF_8));
+        }
       }
       tomcatTestReport.setFileTest(TomcatTestReport.TEST_PASSED);
     } catch (IOException e) {
