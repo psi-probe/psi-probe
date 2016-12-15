@@ -23,7 +23,7 @@ import java.nio.charset.StandardCharsets;
  */
 public class LogOutputStream extends OutputStream {
 
-  /** The Constant Static Internal Logger */
+  /** The Constant INTERNAL_LOGGER. */
   private static final Logger INTERNAL_LOGGER = LoggerFactory.getLogger(LogOutputStream.class);
 
   /** The Constant LEVEL_OFF. */
