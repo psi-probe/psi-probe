@@ -10,15 +10,20 @@
  */
 package psiprobe.controllers.apps;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
 import psiprobe.beans.stats.collectors.AppStatsCollectorBean;
 
 /**
  * The Class ResetAppStatsController.
  */
 // TODO 12/11/2016 JWL - This controller was not even setup...review it's need
+@Controller
 public class ResetAppStatsController extends AbstractNoSelfContextHandlerController {
 
   /** The stats collector. */
+  @Autowired
   private AppStatsCollectorBean statsCollector;
 
   /**

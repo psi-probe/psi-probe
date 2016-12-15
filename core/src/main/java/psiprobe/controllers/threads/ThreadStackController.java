@@ -11,7 +11,10 @@
 package psiprobe.controllers.threads;
 
 import org.apache.commons.modeler.Registry;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
 
@@ -30,6 +33,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * The Class ThreadStackController.
  */
+@Controller
 public class ThreadStackController extends ParameterizableViewController {
 
   /** The stack element count. */
@@ -49,8 +53,16 @@ public class ThreadStackController extends ParameterizableViewController {
    *
    * @param stackElementCount the new stack element count
    */
+  @Value("100")
   public void setStackElementCount(int stackElementCount) {
     this.stackElementCount = stackElementCount;
+  }
+
+  @RequestMapping(path = "/app/threadstack.ajax")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
   }
 
   @Override
@@ -102,6 +114,12 @@ public class ThreadStackController extends ParameterizableViewController {
     }
 
     return new ModelAndView(getViewName(), "stack", stack).addObject("threadName", threadName);
+  }
+
+  @Value("ajax/ThreadStack")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
   }
 
 }

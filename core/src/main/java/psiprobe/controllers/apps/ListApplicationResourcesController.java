@@ -11,6 +11,9 @@
 package psiprobe.controllers.apps;
 
 import org.apache.catalina.Context;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import psiprobe.controllers.AbstractContextHandlerController;
@@ -21,7 +24,15 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Creates a list of resources for a particular web application.
  */
+@Controller
 public class ListApplicationResourcesController extends AbstractContextHandlerController {
+
+  @RequestMapping(path = "/resources.htm")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
+  }
 
   @Override
   protected ModelAndView handleContext(String contextName, Context context,
@@ -29,6 +40,12 @@ public class ListApplicationResourcesController extends AbstractContextHandlerCo
 
     return new ModelAndView(getViewName(), "resources", getContainerWrapper().getResourceResolver()
         .getApplicationResources(context, getContainerWrapper()));
+  }
+
+  @Value("resources")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
   }
 
 }

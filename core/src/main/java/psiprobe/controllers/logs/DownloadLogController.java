@@ -12,7 +12,10 @@ package psiprobe.controllers.logs;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import psiprobe.Utils;
@@ -26,10 +29,18 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * The Class DownloadLogController.
  */
+@Controller
 public class DownloadLogController extends AbstractLogHandlerController {
 
   /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(DownloadLogController.class);
+
+  @RequestMapping(path = "/download")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
+  }
 
   @Override
   protected ModelAndView handleLogFile(HttpServletRequest request, HttpServletResponse response,
@@ -46,6 +57,12 @@ public class DownloadLogController extends AbstractLogHandlerController {
       Utils.sendFile(request, response, file);
     }
     return null;
+  }
+
+  @Value("")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
   }
 
 }

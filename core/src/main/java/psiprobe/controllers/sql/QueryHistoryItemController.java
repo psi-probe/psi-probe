@@ -12,7 +12,9 @@ package psiprobe.controllers.sql;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
 
@@ -28,10 +30,18 @@ import javax.servlet.http.HttpSession;
 /**
  * Retrieves a single query from a history list.
  */
+@Controller
 public class QueryHistoryItemController extends AbstractController {
 
   /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(QueryHistoryItemController.class);
+
+  @RequestMapping(path = "/sql/queryHistoryItem.ajax")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
+  }
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,

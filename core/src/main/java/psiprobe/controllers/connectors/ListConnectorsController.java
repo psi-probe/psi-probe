@@ -10,12 +10,17 @@
  */
 package psiprobe.controllers.connectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import psiprobe.beans.ContainerListenerBean;
 import psiprobe.controllers.AbstractTomcatContainerController;
 import psiprobe.model.Connector;
 import psiprobe.model.RequestProcessor;
+import psiprobe.tools.TimeExpression;
 
 import java.util.List;
 
@@ -25,9 +30,11 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * The Class ListConnectorsController.
  */
+@Controller
 public class ListConnectorsController extends AbstractTomcatContainerController {
 
   /** The container listener bean. */
+  @Autowired
   private ContainerListenerBean containerListenerBean;
 
   /** The include request processors. */
@@ -73,6 +80,16 @@ public class ListConnectorsController extends AbstractTomcatContainerController 
   }
 
   /**
+   * Sets the collection period using expression.
+   *
+   * @param collectionPeriod the new collection period using expression
+   */
+  @Value("${psiprobe.beans.stats.collectors.connector.period}")
+  public void setCollectionPeriod(String collectionPeriod) {
+    this.collectionPeriod = TimeExpression.inSeconds(collectionPeriod);
+  }
+
+  /**
    * Checks if is include request processors.
    *
    * @return true, if is include request processors
@@ -86,8 +103,16 @@ public class ListConnectorsController extends AbstractTomcatContainerController 
    *
    * @param includeRequestProcessors the new include request processors
    */
+  @Value("true")
   public void setIncludeRequestProcessors(boolean includeRequestProcessors) {
     this.includeRequestProcessors = includeRequestProcessors;
+  }
+
+  @RequestMapping(path = "/connectors.htm")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
   }
 
   @Override
@@ -108,6 +133,12 @@ public class ListConnectorsController extends AbstractTomcatContainerController 
     return new ModelAndView(getViewName()).addObject("connectors", connectors)
         .addObject("workerThreadNameSupported", workerThreadNameSupported)
         .addObject("collectionPeriod", getCollectionPeriod());
+  }
+
+  @Value("connectors")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
   }
 
 }

@@ -12,7 +12,10 @@ package psiprobe.controllers.sessions;
 
 import org.apache.catalina.Context;
 import org.apache.catalina.Session;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -24,7 +27,15 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * The Class RemoveSessAttributeController.
  */
+@Controller
 public class RemoveSessAttributeController extends AbstractContextHandlerController {
+
+  @RequestMapping(path = "/app/rmsattr.htm")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
+  }
 
   @Override
   protected ModelAndView handleContext(String contextName, Context context,
@@ -39,6 +50,12 @@ public class RemoveSessAttributeController extends AbstractContextHandlerControl
 
     return new ModelAndView(new RedirectView(request.getContextPath() + getViewName() + "?"
         + request.getQueryString()));
+  }
+
+  @Value("/attributes.htm")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
   }
 
 }

@@ -12,7 +12,10 @@ package psiprobe.controllers;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
 
@@ -34,19 +37,20 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * The Class WhoisController.
  */
+@Controller
 public class WhoisController extends ParameterizableViewController {
 
   /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(WhoisController.class);
 
   /** The lookup timeout. */
-  private long lookupTimeout = 5;
+  private long lookupTimeout;
 
   /** The default server. */
-  private String defaultServer = "whois.arin.net";
+  private String defaultServer;
 
   /** The default port. */
-  private int defaultPort = 43;
+  private int defaultPort;
 
   /**
    * Gets the lookup timeout.
@@ -62,6 +66,7 @@ public class WhoisController extends ParameterizableViewController {
    *
    * @param lookupTimeout the new lookup timeout in seconds
    */
+  @Value("5")
   public void setLookupTimeout(long lookupTimeout) {
     this.lookupTimeout = lookupTimeout;
   }
@@ -80,6 +85,7 @@ public class WhoisController extends ParameterizableViewController {
    *
    * @param defaultServer the new default server
    */
+  @Value("whois.arin.net")
   public void setDefaultServer(String defaultServer) {
     this.defaultServer = defaultServer;
   }
@@ -98,8 +104,16 @@ public class WhoisController extends ParameterizableViewController {
    *
    * @param defaultPort the new default port
    */
+  @Value("43")
   public void setDefaultPort(int defaultPort) {
     this.defaultPort = defaultPort;
+  }
+
+  @RequestMapping(path = "/whois.ajax")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
   }
 
   @Override
@@ -146,4 +160,11 @@ public class WhoisController extends ParameterizableViewController {
             wh != null ? wh.getServer() + ":" + wh.getPort() : defaultServer + ":" + defaultPort)
         .addObject("domainName", reverseName);
   }
+
+  @Value("ajax/whois")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
+  }
+
 }

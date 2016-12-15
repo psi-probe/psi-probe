@@ -12,6 +12,9 @@ package psiprobe.controllers.wrapper;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
 import org.tanukisoftware.wrapper.WrapperManager;
@@ -22,10 +25,18 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * The Class ThreadDumpController.
  */
+@Controller
 public class ThreadDumpController extends ParameterizableViewController {
 
   /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(ThreadDumpController.class);
+
+  @RequestMapping(path = "/adm/threaddump.ajax")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
+  }
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
@@ -42,6 +53,12 @@ public class ThreadDumpController extends ParameterizableViewController {
       logger.trace("", e);
     }
     return new ModelAndView(getViewName(), "done", done);
+  }
+
+  @Value("ajax/thread_dump")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
   }
 
 }

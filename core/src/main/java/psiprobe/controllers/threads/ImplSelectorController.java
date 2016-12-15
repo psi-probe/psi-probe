@@ -10,7 +10,10 @@
  */
 package psiprobe.controllers.threads;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
 
@@ -22,6 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * The Class ImplSelectorController.
  */
+@Controller
 public class ImplSelectorController extends AbstractController {
 
   /** The impl1 controller. */
@@ -44,6 +48,7 @@ public class ImplSelectorController extends AbstractController {
    *
    * @param impl1Controller the new impl1 controller
    */
+  @Value("forward:/th_impl1.htm")
   public void setImpl1Controller(String impl1Controller) {
     this.impl1Controller = impl1Controller;
   }
@@ -62,8 +67,16 @@ public class ImplSelectorController extends AbstractController {
    *
    * @param impl2Controller the new impl2 controller
    */
+  @Value("forward:/th_impl2.htm")
   public void setImpl2Controller(String impl2Controller) {
     this.impl2Controller = impl2Controller;
+  }
+
+  @RequestMapping(path = "/threads.htm")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
   }
 
   @Override

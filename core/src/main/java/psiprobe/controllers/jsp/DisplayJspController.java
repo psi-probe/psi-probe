@@ -11,7 +11,10 @@
 package psiprobe.controllers.jsp;
 
 import org.apache.catalina.Context;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -25,10 +28,18 @@ import javax.servlet.http.HttpSession;
 /**
  * The Class DisplayJspController.
  */
+@Controller
 public class DisplayJspController extends AbstractContextHandlerController {
 
   /** The Constant SUMMARY_ATTRIBUTE. */
   public static final String SUMMARY_ATTRIBUTE = "jsp.summary";
+
+  @RequestMapping(path = "/app/jsp.htm")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
+  }
 
   @Override
   protected ModelAndView handleContext(String contextName, Context context,
@@ -50,6 +61,12 @@ public class DisplayJspController extends AbstractContextHandlerController {
           + (contextName.length() == 0 ? "/" : contextName)));
     }
     return new ModelAndView(getViewName(), "summary", summary);
+  }
+
+  @Value("showjsps")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
   }
 
 }

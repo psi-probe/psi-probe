@@ -10,9 +10,36 @@
  */
 package psiprobe.controllers.deploy;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * The Class UndeploySummaryContextController.
  */
+@Controller
 public class UndeploySummaryContextController extends BaseUndeployContextController {
+
+  @RequestMapping(path = "/adm/undeploy_summary.htm")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
+  }
+
+  @Value("/index.htm")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
+  }
+
+  @Value("/appsummary.htm")
+  @Override
+  public void setFailureViewName(String failureViewName) {
+    super.setFailureViewName(failureViewName);
+  }
 
 }

@@ -12,6 +12,9 @@ package psiprobe.controllers.wrapper;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
 import org.tanukisoftware.wrapper.WrapperManager;
@@ -22,6 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * The Class StopJvmController.
  */
+@Controller
 public class StopJvmController extends ParameterizableViewController {
 
   /** The Constant logger. */
@@ -48,6 +52,13 @@ public class StopJvmController extends ParameterizableViewController {
     this.stopExitCode = stopExitCode;
   }
 
+  @RequestMapping(path = "/adm/stopvm.ajax")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
+  }
+
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
@@ -63,6 +74,12 @@ public class StopJvmController extends ParameterizableViewController {
       logger.trace("", e);
     }
     return new ModelAndView(getViewName(), "done", done);
+  }
+
+  @Value("ajax/jvm_stopped")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
   }
 
 }

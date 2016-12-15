@@ -11,6 +11,9 @@
 package psiprobe.controllers.servlets;
 
 import org.apache.catalina.Context;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import psiprobe.controllers.AbstractContextHandlerController;
@@ -28,7 +31,15 @@ import javax.servlet.http.HttpServletResponse;
  * Retrieves a list of servlets for a particular web application or for all applications if an
  * application name is not passed in a query string.
  */
+@Controller
 public class ListServletsController extends AbstractContextHandlerController {
+
+  @RequestMapping(path = "/servlets.ajax")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
+  }
 
   @Override
   protected ModelAndView handleContext(String contextName, Context context,
@@ -59,6 +70,12 @@ public class ListServletsController extends AbstractContextHandlerController {
   @Override
   protected boolean isContextOptional() {
     return true;
+  }
+
+  @Value("ajax/servlets")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
   }
 
 }

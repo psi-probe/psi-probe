@@ -10,7 +10,11 @@
  */
 package psiprobe.controllers.connectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
 import org.springframework.web.servlet.view.RedirectView;
@@ -23,9 +27,11 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * The Class ResetConnectorStatsController.
  */
+@Controller
 public class ResetConnectorStatsController extends ParameterizableViewController {
 
   /** The collector bean. */
+  @Autowired
   private ConnectorStatsCollectorBean collectorBean;
 
   /**
@@ -46,6 +52,13 @@ public class ResetConnectorStatsController extends ParameterizableViewController
     this.collectorBean = collectorBean;
   }
 
+  @RequestMapping(path = "/app/connectorReset.htm")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
+  }
+
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
@@ -53,6 +66,12 @@ public class ResetConnectorStatsController extends ParameterizableViewController
     String connectorName = ServletRequestUtils.getRequiredStringParameter(request, "cn");
     collectorBean.reset(connectorName);
     return new ModelAndView(new RedirectView(request.getContextPath() + getViewName()));
+  }
+
+  @Value("/connectors.htm")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
   }
 
 }

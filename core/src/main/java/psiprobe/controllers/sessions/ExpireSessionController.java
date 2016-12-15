@@ -12,7 +12,10 @@ package psiprobe.controllers.sessions;
 
 import org.apache.catalina.Context;
 import org.apache.catalina.Session;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.InternalResourceView;
 
@@ -24,7 +27,15 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Expires a single session of a particular web application.
  */
+@Controller
 public class ExpireSessionController extends AbstractContextHandlerController {
+
+  @RequestMapping(path = "/app/expire.htm")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
+  }
 
   @Override
   protected ModelAndView handleContext(String contextName, Context context,
@@ -36,6 +47,12 @@ public class ExpireSessionController extends AbstractContextHandlerController {
       session.expire();
     }
     return new ModelAndView(new InternalResourceView(getViewName()));
+  }
+
+  @Value("/sessions.htm")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
   }
 
 }

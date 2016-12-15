@@ -10,7 +10,11 @@
  */
 package psiprobe.controllers.logs;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
 
@@ -25,12 +29,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * The Class ListLogsController.
  */
+@Controller
 public class ListLogsController extends ParameterizableViewController {
 
   /** The error view. */
   private String errorView;
 
   /** The log resolver. */
+  @Autowired
   private LogResolverBean logResolver;
 
   /**
@@ -47,6 +53,7 @@ public class ListLogsController extends ParameterizableViewController {
    *
    * @param errorView the new error view
    */
+  @Value("logs_notsupported")
   public void setErrorView(String errorView) {
     this.errorView = errorView;
   }
@@ -69,6 +76,13 @@ public class ListLogsController extends ParameterizableViewController {
     this.logResolver = logResolver;
   }
 
+  @RequestMapping(path = {"/logs", "/list.htm"})
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
+  }
+
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
@@ -79,6 +93,12 @@ public class ListLogsController extends ParameterizableViewController {
       return new ModelAndView(getViewName()).addObject("logs", uniqueList);
     }
     return new ModelAndView(errorView);
+  }
+
+  @Value("logs")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
   }
 
 }

@@ -10,9 +10,49 @@
  */
 package psiprobe.controllers.cluster;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import psiprobe.tools.TimeExpression;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * The Class ClusterStatsController.
  */
+@Controller
 public class ClusterStatsController extends BaseClusterStatsController {
+
+  @Value("false")
+  @Override
+  public void setLoadMembers(boolean loadMembers) {
+    super.setLoadMembers(loadMembers);
+  }
+
+  /**
+   * Sets the collection period.
+   *
+   * @param collectionPeriod the new collection period
+   */
+  @Value("${psiprobe.beans.stats.collectors.cluster.period}")
+  public void setCollectionPeriod(String collectionPeriod) {
+    super.setCollectionPeriod(TimeExpression.inSeconds(collectionPeriod));
+  }
+
+  @RequestMapping(path = "/cluster.htm")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
+  }
+
+  @Value("cluster")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
+  }
 
 }

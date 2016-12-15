@@ -10,9 +10,43 @@
  */
 package psiprobe.controllers.apps;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import psiprobe.tools.TimeExpression;
+
 /**
  * The Class GetApplicationSummaryController.
  */
+@Controller
 public class GetApplicationSummaryController extends BaseGetApplicationController {
+
+  @RequestMapping(path = "/appsummary.htm")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
+  }
+
+  @Value("appsummary")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
+  }
+
+  /**
+   * Sets the collection period by expression.
+   *
+   * @param collectionPeriod the new collection period by expression
+   */
+  @Value("${psiprobe.beans.stats.collectors.app.period}")
+  public void setCollectionPeriod(String collectionPeriod) {
+    super.setCollectionPeriod(TimeExpression.inSeconds(collectionPeriod));
+  }
 
 }

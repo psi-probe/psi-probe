@@ -10,9 +10,38 @@
  */
 package psiprobe.controllers.system;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * Creates an instance of SysPropsController.
  */
+@Controller
 public class SysPropsController extends BaseSysInfoController {
+
+  @Value("jmxremote.password")
+  @Override
+  public void setFilterOutKeys(List<String> filterOutKeys) {
+    super.setFilterOutKeys(filterOutKeys);
+  }
+
+  @RequestMapping(path = "/sysprops.htm")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
+  }
+
+  @Value("system_properties")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
+  }
 
 }

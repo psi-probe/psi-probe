@@ -10,8 +10,13 @@
  */
 package psiprobe.controllers.connectors;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
+
+import psiprobe.tools.TimeExpression;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,6 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * The Class ZoomChartController.
  */
+@Controller
 public class ZoomChartController extends ParameterizableViewController {
 
   /** The collection period. */
@@ -42,12 +48,34 @@ public class ZoomChartController extends ParameterizableViewController {
     this.collectionPeriod = collectionPeriod;
   }
 
+  /**
+   * Sets the collection period using expression.
+   *
+   * @param collectionPeriod the new collection period expression
+   */
+  @Value("${psiprobe.beans.stats.collectors.connector.period}")
+  public void setCollectionPeriod(String collectionPeriod) {
+    this.collectionPeriod = TimeExpression.inSeconds(collectionPeriod);
+  }
+
+  @RequestMapping(path = "/zoomchart.htm")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
+  }
+
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
-
     return super.handleRequestInternal(request, response)
         .addObject("collectionPeriod", getCollectionPeriod());
+  }
+
+  @Value("zoomreq")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
   }
 
 }

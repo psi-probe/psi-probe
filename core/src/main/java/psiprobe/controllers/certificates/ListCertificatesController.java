@@ -16,6 +16,9 @@ import org.apache.coyote.ProtocolHandler;
 import org.apache.coyote.http11.AbstractHttp11JsseProtocol;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import psiprobe.controllers.AbstractTomcatContainerController;
@@ -43,10 +46,18 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * The Class ListCertificatesController.
  */
+@Controller
 public class ListCertificatesController extends AbstractTomcatContainerController {
 
   /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(ListCertificatesController.class);
+
+  @RequestMapping(path = "/certificates.htm")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
+  }
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
@@ -225,6 +236,12 @@ public class ListCertificatesController extends AbstractTomcatContainerControlle
     cert.setIssuerDistinguishedName(x509Cert.getIssuerDN().toString());
 
     certs.add(cert);
+  }
+
+  @Value("certificates")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
   }
 
 }

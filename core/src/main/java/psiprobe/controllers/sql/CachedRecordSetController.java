@@ -12,7 +12,10 @@ package psiprobe.controllers.sql;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import psiprobe.PostParameterizableViewController;
 import psiprobe.model.sql.DataSourceTestInfo;
@@ -28,10 +31,18 @@ import javax.servlet.http.HttpSession;
  * Displays a result set cached in an attribute of HttpSession object to support result set
  * pagination feature without re-executing a query that created the result set.
  */
+@Controller
 public class CachedRecordSetController extends PostParameterizableViewController {
 
   /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(CachedRecordSetController.class);
+
+  @RequestMapping(path = "/sql/cachedRecordset.ajax")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
+  }
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
@@ -84,6 +95,12 @@ public class CachedRecordSetController extends PostParameterizableViewController
     mv.addObject("rowsPerPage", String.valueOf(rowsPerPage));
 
     return mv;
+  }
+
+  @Value("ajax/sql/recordset")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
   }
 
 }

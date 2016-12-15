@@ -13,7 +13,10 @@ package psiprobe.controllers.jsp;
 import org.apache.catalina.Context;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -31,10 +34,18 @@ import javax.servlet.http.HttpSession;
 /**
  * The Class RecompileJspController.
  */
+@Controller
 public class RecompileJspController extends AbstractContextHandlerController {
 
   /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(RecompileJspController.class);
+
+  @RequestMapping(path = "/app/recompile.htm")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
+  }
 
   @Override
   protected ModelAndView handleContext(String contextName, Context context,
@@ -66,6 +77,12 @@ public class RecompileJspController extends AbstractContextHandlerController {
     return new ModelAndView(new RedirectView(request.getContextPath()
         + ServletRequestUtils.getStringParameter(request, "view", getViewName()) + "?"
         + request.getQueryString()));
+  }
+
+  @Value("/app/jsp.htm")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
   }
 
 }

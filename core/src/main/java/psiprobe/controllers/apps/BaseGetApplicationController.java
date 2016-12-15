@@ -11,6 +11,7 @@
 package psiprobe.controllers.apps;
 
 import org.apache.catalina.Context;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -33,6 +34,7 @@ public class BaseGetApplicationController extends AbstractContextHandlerControll
   private boolean extendedInfo;
 
   /** The stats collection. */
+  @Autowired
   private StatsCollection statsCollection;
 
   /** The collection period. */

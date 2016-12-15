@@ -11,6 +11,9 @@
 package psiprobe.controllers.threads;
 
 import org.apache.commons.modeler.Registry;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
 
@@ -30,7 +33,15 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * The Class ListSunThreadsController.
  */
+@Controller
 public class ListSunThreadsController extends ParameterizableViewController {
+
+  @RequestMapping(path = "/th_impl2.htm")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
+  }
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
@@ -103,6 +114,12 @@ public class ListSunThreadsController extends ParameterizableViewController {
       }
     }
     return false;
+  }
+
+  @Value("threads_sun")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
   }
 
 }

@@ -11,7 +11,10 @@
 package psiprobe.controllers.sessions;
 
 import org.apache.catalina.Context;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import psiprobe.controllers.AbstractContextHandlerController;
@@ -25,7 +28,15 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Retrieves the list of attributes for given session.
  */
+@Controller
 public class ListSessionAttributesController extends AbstractContextHandlerController {
+
+  @RequestMapping(path = "/attributes.htm")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
+  }
 
   @Override
   protected ModelAndView handleContext(String contextName, Context context,
@@ -45,6 +56,12 @@ public class ListSessionAttributesController extends AbstractContextHandlerContr
       return new ModelAndView(getViewName(), "session", appSession);
     }
     return new ModelAndView(getViewName());
+  }
+
+  @Value("attributes")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
   }
 
 }

@@ -10,6 +10,9 @@
  */
 package psiprobe.controllers.logs;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import psiprobe.tools.logging.LogDestination;
@@ -23,7 +26,15 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * The Class SetupFollowController.
  */
+@Controller
 public class SetupFollowController extends AbstractLogHandlerController {
+
+  @RequestMapping(path = "/follow.htm")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
+  }
 
   @Override
   protected ModelAndView handleLogFile(HttpServletRequest request, HttpServletResponse response,
@@ -32,6 +43,12 @@ public class SetupFollowController extends AbstractLogHandlerController {
     File logFile = logDest.getFile();
     List<LogDestination> sources = getLogResolver().getLogSources(logFile);
     return new ModelAndView(getViewName()).addObject("log", logDest).addObject("sources", sources);
+  }
+
+  @Value("follow")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
   }
 
 }
