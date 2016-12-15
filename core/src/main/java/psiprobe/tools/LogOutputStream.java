@@ -11,14 +11,20 @@
 package psiprobe.tools;
 
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 
 /**
  * An {@code OutputStream} which writes to a commons-logging {@code Log} at a particular level.
  */
 public class LogOutputStream extends OutputStream {
+
+  /** The Constant Static Internal Logger */
+  private static final Logger INTERNAL_LOGGER = LoggerFactory.getLogger(LogOutputStream.class);
 
   /** The Constant LEVEL_OFF. */
   public static final int LEVEL_OFF = 0;
@@ -75,7 +81,12 @@ public class LogOutputStream extends OutputStream {
    */
   public static PrintStream createPrintStream(Logger log, int level) {
     LogOutputStream logStream = new LogOutputStream(log, level);
-    return new PrintStream(logStream, true);
+    try {
+        return new PrintStream(logStream, true, StandardCharsets.UTF_8.name());
+    } catch (UnsupportedEncodingException e) {
+        INTERNAL_LOGGER.error("", e);
+    }
+    return null;
   }
 
   /**

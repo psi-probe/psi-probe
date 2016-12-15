@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -91,8 +92,8 @@ public final class Whois {
     response.port = port;
 
     try (Socket connection = AsyncSocketFactory.createSocket(server, port, timeout);
-        PrintStream out = new PrintStream(connection.getOutputStream());
-        BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
+        PrintStream out = new PrintStream(connection.getOutputStream(), true, StandardCharsets.UTF_8.name());
+        BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8))) {
       out.println(query);
       StringBuilder sb = new StringBuilder();
 

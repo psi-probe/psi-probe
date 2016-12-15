@@ -23,6 +23,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -108,7 +109,7 @@ public class BaseTomcatAvailabilityController extends AbstractTomcatContainerCon
     try {
       ByteArrayOutputStream bos = new ByteArrayOutputStream();
       for (; count > 0; count--) {
-        bos.write(word.getBytes());
+        bos.write(word.getBytes(StandardCharsets.UTF_8));
       }
       tomcatTestReport.setMemoryTest(TomcatTestReport.TEST_PASSED);
     } catch (IOException e) {
@@ -128,7 +129,7 @@ public class BaseTomcatAvailabilityController extends AbstractTomcatContainerCon
         FileOutputStream fos = new FileOutputStream(file);
         files.add(file);
         fileStreams.add(fos);
-        fos.write("this is a test".getBytes());
+        fos.write("this is a test".getBytes(StandardCharsets.UTF_8));
       }
       tomcatTestReport.setFileTest(TomcatTestReport.TEST_PASSED);
     } catch (IOException e) {

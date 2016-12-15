@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -122,7 +123,7 @@ public class WhoisController extends ParameterizableViewController {
       lines = new ArrayList<>(50);
       try (BufferedReader br =
           new BufferedReader(new InputStreamReader(new ByteArrayInputStream(wh.getSummary()
-              .getBytes())))) {
+              .getBytes(StandardCharsets.UTF_8)), StandardCharsets.UTF_8))) {
         String line;
         while ((line = br.readLine()) != null) {
           lines.add(line);
