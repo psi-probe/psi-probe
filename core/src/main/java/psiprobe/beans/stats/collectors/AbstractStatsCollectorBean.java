@@ -192,6 +192,9 @@ public abstract class AbstractStatsCollectorBean {
     /** The value. */
     long value;
 
+    /**
+     * Instantiates a new entry.
+     */
     public Entry() {
       // Prevent Emulation by Synthetic Accessor
     }

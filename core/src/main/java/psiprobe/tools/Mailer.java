@@ -40,7 +40,7 @@ public class Mailer {
   /** The Constant PROPERTY_KEY_SMTP. */
   public static final String PROPERTY_KEY_SMTP = "mail.smtp.host";
 
-  /** The logger. */
+  /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(Mailer.class);
 
   /** The from. */

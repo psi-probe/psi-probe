@@ -25,6 +25,7 @@ import javax.servlet.annotation.WebListener;
 @WebListener
 public class AwtAppContextClassloaderListener implements ServletContextListener {
 
+  /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(AwtAppContextClassloaderListener.class);
     
   /**

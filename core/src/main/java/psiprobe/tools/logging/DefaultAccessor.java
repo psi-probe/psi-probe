@@ -25,7 +25,7 @@ import java.lang.reflect.InvocationTargetException;
  */
 public class DefaultAccessor {
 
-  /** The logger. */
+  /** The Constant logger. */
   protected static final Logger logger = LoggerFactory.getLogger(DefaultAccessor.class);
 
   /** The application. */

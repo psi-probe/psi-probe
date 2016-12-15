@@ -36,7 +36,7 @@ import javax.sql.DataSource;
  */
 public class JBossResourceResolverBean implements ResourceResolver {
 
-  /** The logger. */
+  /** The Constant logger. */
   protected static final Logger logger = LoggerFactory.getLogger(JBossResourceResolverBean.class);
 
   @Override

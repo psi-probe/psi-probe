@@ -45,7 +45,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ListCertificatesController extends AbstractTomcatContainerController {
 
-  /** The Constant Logger. */
+  /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(ListCertificatesController.class);
 
   @Override

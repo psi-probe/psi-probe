@@ -41,7 +41,7 @@ import javax.management.RuntimeOperationsException;
  */
 public class ContainerListenerBean implements NotificationListener {
 
-  /** The logger. */
+  /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(ContainerListenerBean.class);
 
   /** The pool names. */

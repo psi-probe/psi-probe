@@ -29,7 +29,7 @@ public class VisualScoreTag extends BodyTagSupport {
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = -5653846466205838602L;
 
-  /** The Constant Logger. */
+  /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(VisualScoreTag.class);
 
   /** The Constant WHITE_LEFT_BORDER. */

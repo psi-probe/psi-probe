@@ -20,7 +20,7 @@ import java.net.MalformedURLException;
  */
 public class UrlParser {
 
-  /** The Constant Logger. */
+  /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(UrlParser.class);
 
   /** The protocol. */
@@ -39,7 +39,7 @@ public class UrlParser {
    * Instantiates a new url parser.
    *
    * @param url the url
-   * @throws MalformedURLException the malformed url exception
+   * @throws MalformedURLException the malformed URL exception
    */
   public UrlParser(String url) throws MalformedURLException {
     if (url != null && url.length() > 0) {

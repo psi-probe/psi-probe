@@ -54,7 +54,7 @@ public class Connector {
   /**
    * Sets the protocol handler.
    *
-   * @param protocol handler the new protocol handler
+   * @param protocolHandler the new protocol handler
    */
   public void setProtocolHandler(String protocolHandler) {
     this.protocolHandler = protocolHandler;

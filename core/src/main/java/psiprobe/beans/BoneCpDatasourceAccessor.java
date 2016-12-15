@@ -25,7 +25,7 @@ import java.lang.reflect.Field;
  */
 public class BoneCpDatasourceAccessor implements DatasourceAccessor {
 
-  /** The Constant Logger. */
+  /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(BoneCpDatasourceAccessor.class);
 
   @Override

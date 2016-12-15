@@ -29,7 +29,7 @@ import javax.servlet.ServletContext;
 public class AppStatsCollectorBean extends AbstractStatsCollectorBean implements
     ServletContextAware {
 
-  /** The logger. */
+  /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(AppStatsCollectorBean.class);
 
   /** The container wrapper. */

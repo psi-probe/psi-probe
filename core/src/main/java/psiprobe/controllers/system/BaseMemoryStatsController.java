@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * The Class MemoryStatsController.
+ * The Class BaseMemoryStatsController.
  */
 public class BaseMemoryStatsController extends ParameterizableViewController {
 

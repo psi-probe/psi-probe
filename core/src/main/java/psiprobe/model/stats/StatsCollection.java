@@ -41,7 +41,7 @@ import java.util.TreeMap;
  */
 public class StatsCollection implements InitializingBean, DisposableBean, ApplicationContextAware {
 
-  /** The logger. */
+  /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(StatsCollection.class);
 
   /** The stats data. */

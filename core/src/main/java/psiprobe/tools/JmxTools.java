@@ -25,7 +25,7 @@ import javax.management.openmbean.CompositeData;
  */
 public final class JmxTools {
 
-  /** The logger. */
+  /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(JmxTools.class);
 
   /**

@@ -29,7 +29,7 @@ public class GetConnectorControllerTest {
   }
 
   /**
-   * Javabean tester Request.
+   * Javabean tester request.
    */
   @Test
   public void javabeanTesterRequest() {
@@ -38,10 +38,10 @@ public class GetConnectorControllerTest {
   }
 
   /**
-   * Javabean tester Traffic.
+   * Javabean tester traffic.
    */
   @Test
-  public void javabeanTesterTraffice() {
+  public void javabeanTesterTraffic() {
     JavaBeanTester.builder(GetConnectorTrafficController.class)
         .skip("applicationContext", "supportedMethods").test();
   }

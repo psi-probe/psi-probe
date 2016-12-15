@@ -31,7 +31,7 @@ import java.util.Map;
  */
 public class ContainerWrapperBean {
 
-  /** The logger. */
+  /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(ContainerWrapperBean.class);
 
   /** The tomcat container. */

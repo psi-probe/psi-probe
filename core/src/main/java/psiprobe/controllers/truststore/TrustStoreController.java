@@ -31,11 +31,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * The class TrustStoreController.
+ * The Class TrustStoreController.
  */
 public class TrustStoreController extends AbstractTomcatContainerController {
 
-  /** The Constant Logger. */
+  /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(TrustStoreController.class);
 
   @Override
