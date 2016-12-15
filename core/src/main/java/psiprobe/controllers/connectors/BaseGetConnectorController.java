@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * The Class GetConnectorController.
+ * The Class BaseGetConnectorController.
  */
 public class BaseGetConnectorController extends AbstractTomcatContainerController {
 
