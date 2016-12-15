@@ -65,7 +65,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
   /** The host. */
   protected Host host;
 
-  /** Connectors. */
+  /** The connectors. */
   protected Connector[] connectors;
 
   /** The deployer o name. */
@@ -589,7 +589,6 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
    * Returns the security token required to bind to a naming context.
    *
    * @param context the catalina context
-   *
    * @return the security token for use with <code>ContextBindings</code>
    */
   protected abstract Object getNamingToken(Context context);
