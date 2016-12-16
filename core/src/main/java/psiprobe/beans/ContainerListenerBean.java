@@ -10,10 +10,13 @@
  */
 package psiprobe.beans;
 
-import net.sf.javainetlocator.InetAddressLocator;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.maxmind.db.CHMCache;
+import com.maxmind.geoip2.DatabaseReader;
+import com.maxmind.geoip2.model.CountryResponse;
+import com.maxmind.geoip2.record.Country;
 
 import psiprobe.model.Connector;
 import psiprobe.model.RequestProcessor;
@@ -21,9 +24,11 @@ import psiprobe.model.ThreadPool;
 import psiprobe.model.jmx.ThreadPoolObjectName;
 import psiprobe.tools.JmxTools;
 
+import java.io.File;
 import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 import javax.management.InstanceNotFoundException;
@@ -33,7 +38,6 @@ import javax.management.Notification;
 import javax.management.NotificationListener;
 import javax.management.ObjectInstance;
 import javax.management.ObjectName;
-import javax.management.RuntimeOperationsException;
 
 /**
  * This class interfaces Tomcat JMX functionality to read connection status. The class essentially
@@ -271,7 +275,6 @@ public class ContainerListenerBean implements NotificationListener {
     MBeanServer server = getContainerWrapper().getResourceResolver().getMBeanServer();
 
     for (ThreadPoolObjectName threadPoolObjectName : poolNames) {
-      boolean remoteAddrAvailable = true;
       try {
         ObjectName poolName = threadPoolObjectName.getThreadPoolName();
 
@@ -297,19 +300,22 @@ public class ContainerListenerBean implements NotificationListener {
               rp.setProcessingTime(JmxTools.getLongAttr(server, wrkName, "requestProcessingTime"));
               rp.setBytesSent(JmxTools.getLongAttr(server, wrkName, "requestBytesSent"));
               rp.setBytesReceived(JmxTools.getLongAttr(server, wrkName, "requestBytesReceived"));
-              try {
-                String remoteAddr = JmxTools.getStringAttr(server, wrkName, "remoteAddr");
-                rp.setRemoteAddr(remoteAddr);
-                rp.setRemoteAddrLocale(InetAddressLocator.getLocale(InetAddress.getByName(
-                    remoteAddr).getAddress()));
-              } catch (RuntimeOperationsException ex) {
-                logger.trace("", ex);
-                /*
-                 * if it's not available for this request processor, then it's not available for any
-                 * request processor in this thread pool
-                 */
-                remoteAddrAvailable = false;
+              rp.setRemoteAddr(JmxTools.getStringAttr(server, wrkName, "remoteAddr"));
+
+              if (rp.getRemoteAddr() != null) {
+                // Show flag as defined in jvm for localhost
+                if (InetAddress.getByName(rp.getRemoteAddr()).isLoopbackAddress()) {
+                  rp.setRemoteAddrLocale(new Locale(System.getProperty("user.language"), System.getProperty("user.country")));
+                } else {
+                  // Show flag for non-localhost using geo lite
+                  DatabaseReader reader = new DatabaseReader.Builder(new File(getClass().getClassLoader()
+                      .getResource("GeoLite2-Country.mmdb").toURI())).withCache(new CHMCache()).build();
+                  CountryResponse response = reader.country(InetAddress.getByName(rp.getRemoteAddr()));
+                  Country country = response.getCountry();
+                  rp.setRemoteAddrLocale(new Locale("", country.getIsoCode()));
+                }
               }
+
               rp.setVirtualHost(JmxTools.getStringAttr(server, wrkName, "virtualHost"));
               rp.setMethod(JmxTools.getStringAttr(server, wrkName, "method"));
               rp.setCurrentUri(JmxTools.getStringAttr(server, wrkName, "currentUri"));

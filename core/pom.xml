@@ -179,8 +179,8 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>javainetlocator</groupId>
-            <artifactId>inetaddresslocator</artifactId>
+            <groupId>com.maxmind.geoip2</groupId>
+            <artifactId>geoip2</artifactId>
             <scope>compile</scope>
         </dependency>
         <dependency>

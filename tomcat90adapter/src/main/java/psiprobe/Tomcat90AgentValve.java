@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
- * Valve which inserts the client's IP address into the session for Tomcat 8.0.
+ * Valve which inserts the client's IP address into the session for Tomcat 9.0.
  */
 public class Tomcat90AgentValve extends ValveBase {
 
@@ -44,6 +44,7 @@ public class Tomcat90AgentValve extends ValveBase {
     if (session != null) {
       String ip = IpInfo.getClientAddress(servletRequest);
       session.setAttribute(ApplicationSession.LAST_ACCESSED_BY_IP, ip);
+      session.setAttribute(ApplicationSession.LAST_ACCESSED_LOCALE, request.getLocale());
     }
   }
 

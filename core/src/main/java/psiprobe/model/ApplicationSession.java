@@ -22,6 +22,9 @@ public class ApplicationSession {
 
   /** The Constant LAST_ACCESSED_BY_IP. */
   public static final String LAST_ACCESSED_BY_IP = "__psiprobe_la_ip";
+  
+  /** The Constant LAST_ACCESSED_LOCALE. */
+  public static final String LAST_ACCESSED_LOCALE = "__psiprobe_la_local";
 
   /** The id. */
   private String id;

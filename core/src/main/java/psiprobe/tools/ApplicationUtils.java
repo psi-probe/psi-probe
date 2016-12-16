@@ -10,8 +10,6 @@
  */
 package psiprobe.tools;
 
-import net.sf.javainetlocator.InetAddressLocator;
-
 import org.apache.catalina.Container;
 import org.apache.catalina.Context;
 import org.apache.catalina.Session;
@@ -35,13 +33,13 @@ import psiprobe.model.ServletMapping;
 
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
-import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 import javax.naming.NamingException;
@@ -277,15 +275,8 @@ public final class ApplicationUtils {
             (String) httpSession.getAttribute(ApplicationSession.LAST_ACCESSED_BY_IP);
         if (lastAccessedIp != null) {
           sbean.setLastAccessedIp(lastAccessedIp);
+          sbean.setLastAccessedIpLocale((Locale) httpSession.getAttribute(ApplicationSession.LAST_ACCESSED_LOCALE));
         }
-        try {
-          sbean.setLastAccessedIpLocale(InetAddressLocator.getLocale(InetAddress.getByName(
-              lastAccessedIp).getAddress()));
-        } catch (Exception e) {
-          logger.error("Cannot determine Locale of {}", lastAccessedIp);
-          logger.trace("", e);
-        }
-
 
       } catch (IllegalStateException e) {
         logger.info("Session appears to be invalidated, ignore");
