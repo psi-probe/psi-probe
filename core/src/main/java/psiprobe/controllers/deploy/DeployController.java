@@ -19,6 +19,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.catalina.Context;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import psiprobe.controllers.AbstractTomcatContainerController;
@@ -26,7 +29,15 @@ import psiprobe.controllers.AbstractTomcatContainerController;
 /**
  * Precharges the list of contexts in the deploy page.
  */
+@Controller
 public class DeployController extends AbstractTomcatContainerController {
+
+  @RequestMapping(path = "/adm/deploy.htm")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
+  }
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
@@ -53,4 +64,11 @@ public class DeployController extends AbstractTomcatContainerController {
     request.setAttribute("apps", applications);
     return new ModelAndView(getViewName());
   }
+
+  @Value("deploy")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
+  }
+
 }

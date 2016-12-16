@@ -12,6 +12,9 @@ package psiprobe.controllers.wrapper;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
 import org.tanukisoftware.wrapper.WrapperManager;
@@ -22,10 +25,18 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * The Class RestartJvmController.
  */
+@Controller
 public class RestartJvmController extends ParameterizableViewController {
 
   /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(RestartJvmController.class);
+
+  @RequestMapping(path = "/adm/restartvm.ajax")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
+  }
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
@@ -42,6 +53,12 @@ public class RestartJvmController extends ParameterizableViewController {
       logger.trace("", e);
     }
     return new ModelAndView(getViewName(), "done", done);
+  }
+
+  @Value("ajax/jvm_restarted")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
   }
 
 }

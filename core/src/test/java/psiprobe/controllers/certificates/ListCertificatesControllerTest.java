@@ -26,13 +26,14 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.codebox.bean.JavaBeanTester;
 
+import psiprobe.ProbeConfigTest;
 import psiprobe.model.certificates.Cert;
 
 /**
  * The Class ListCertificatesControllerTest.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "/spring/test-controllers.xml")
+@ContextConfiguration(classes = ProbeConfigTest.class)
 public class ListCertificatesControllerTest {
 
   /** The ctx. */

@@ -10,9 +10,44 @@
  */
 package psiprobe.controllers.apps;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+
 /**
  * The Class ViewContextXmlConfController.
  */
+@Controller
 public class ViewContextXmlConfController extends BaseViewXmlConfController {
+
+  @RequestMapping(path = "/adm/viewcontextxml.htm")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
+  }
+
+  @Value("view_xml_conf")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
+  }
+
+  @Value("context.xml")
+  @Override
+  public void setDisplayTarget(String downloadTarget) {
+    super.setDisplayTarget(downloadTarget);
+  }
+
+  @Value("/adm/downloadcontextxml.htm")
+  @Override
+  public void setDownloadUrl(String downloadUrl) {
+    super.setDownloadUrl(downloadUrl);
+  }
 
 }

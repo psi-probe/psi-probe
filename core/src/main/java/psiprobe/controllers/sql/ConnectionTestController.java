@@ -13,7 +13,10 @@ package psiprobe.controllers.sql;
 import org.apache.catalina.Context;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import psiprobe.controllers.AbstractContextHandlerController;
@@ -35,10 +38,18 @@ import javax.sql.DataSource;
  * Verifies if a database connection can be established through a given datasource. Displays basic
  * information about the database.
  */
+@Controller
 public class ConnectionTestController extends AbstractContextHandlerController {
 
   /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(ConnectionTestController.class);
+
+  @RequestMapping(path = "/sql/connection.ajax")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
+  }
 
   @Override
   protected ModelAndView handleContext(String contextName, Context context,
@@ -114,6 +125,12 @@ public class ConnectionTestController extends AbstractContextHandlerController {
     entry.put("propertyName", getMessageSourceAccessor().getMessage(name));
     entry.put("propertyValue", value);
     list.add(entry);
+  }
+
+  @Value("ajax/sql/connection")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
   }
 
 }

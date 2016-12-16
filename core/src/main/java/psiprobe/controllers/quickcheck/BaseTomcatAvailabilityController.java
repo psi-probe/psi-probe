@@ -11,6 +11,7 @@
 package psiprobe.controllers.quickcheck;
 
 import org.apache.catalina.Context;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.ModelAndView;
 
 import psiprobe.beans.ContainerListenerBean;
@@ -36,6 +37,7 @@ import javax.servlet.http.HttpServletResponse;
 public class BaseTomcatAvailabilityController extends AbstractTomcatContainerController {
 
   /** The container listener bean. */
+  @Autowired
   private ContainerListenerBean containerListenerBean;
 
   /**

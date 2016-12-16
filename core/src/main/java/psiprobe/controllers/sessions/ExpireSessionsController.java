@@ -13,7 +13,10 @@ package psiprobe.controllers.sessions;
 import org.apache.catalina.Context;
 import org.apache.catalina.Manager;
 import org.apache.catalina.Session;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.InternalResourceView;
 
@@ -26,7 +29,15 @@ import javax.servlet.http.HttpServletResponse;
  * Expires a list of sessionIDs. Accepts a list of sid_webapp parameters that are expected to be in
  * a form of "sid;webapp"
  */
+@Controller
 public class ExpireSessionsController extends AbstractTomcatContainerController {
+
+  @RequestMapping(path = "/app/expire_list.htm")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
+  }
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
@@ -54,6 +65,12 @@ public class ExpireSessionsController extends AbstractTomcatContainerController 
       }
     }
     return new ModelAndView(new InternalResourceView(getViewName()));
+  }
+
+  @Value("/sessions.htm")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
   }
 
 }

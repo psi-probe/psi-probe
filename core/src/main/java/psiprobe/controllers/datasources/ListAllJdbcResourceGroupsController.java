@@ -10,6 +10,9 @@
  */
 package psiprobe.controllers.datasources;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import psiprobe.controllers.AbstractTomcatContainerController;
@@ -28,7 +31,15 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Produces a list of all datasources configured within the container grouped by JDBC URL.
  */
+@Controller
 public class ListAllJdbcResourceGroupsController extends AbstractTomcatContainerController {
+
+  @RequestMapping(path = "/datasourcegroups.htm")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
+  }
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
@@ -88,6 +99,12 @@ public class ListAllJdbcResourceGroupsController extends AbstractTomcatContainer
         dataSources.add(res.getDataSourceInfo());
       }
     }
+  }
+
+  @Value("datasourcegroup")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
   }
 
 }

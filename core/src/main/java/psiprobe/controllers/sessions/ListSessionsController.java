@@ -13,8 +13,11 @@ package psiprobe.controllers.sessions;
 import org.apache.catalina.Context;
 import org.apache.catalina.Session;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.support.MessageSourceAccessor;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import psiprobe.controllers.AbstractContextHandlerController;
@@ -37,7 +40,15 @@ import javax.servlet.http.HttpSession;
  * Creates the list of sessions for a particular web application or all web applications if a webapp
  * request parameter is not set.
  */
+@Controller
 public class ListSessionsController extends AbstractContextHandlerController {
+
+  @RequestMapping(path = "/sessions.htm")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
+  }
 
   @Override
   protected ModelAndView handleContext(String contextName, Context context,
@@ -230,6 +241,12 @@ public class ListSessionsController extends AbstractContextHandlerController {
   @Override
   protected boolean isContextOptional() {
     return true;
+  }
+
+  @Value("sessions")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
   }
 
 }

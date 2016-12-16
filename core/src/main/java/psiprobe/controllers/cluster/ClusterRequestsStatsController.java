@@ -10,9 +10,37 @@
  */
 package psiprobe.controllers.cluster;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * The Class ClusterRequestsStatsController.
  */
+@Controller
 public class ClusterRequestsStatsController extends BaseClusterStatsController {
+
+  @Value("false")
+  @Override
+  public void setLoadMembers(boolean loadMembers) {
+    super.setLoadMembers(loadMembers);
+  }
+
+  @RequestMapping(path = "/cluster/requests.ajax")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
+  }
+
+  @Value("ajax/cluster/requests")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
+  }
 
 }

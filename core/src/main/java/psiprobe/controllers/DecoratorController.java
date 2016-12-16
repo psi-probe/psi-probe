@@ -10,6 +10,9 @@
  */
 package psiprobe.controllers;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import psiprobe.PostParameterizableViewController;
 import psiprobe.Utils;
@@ -27,6 +30,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * The Class DecoratorController.
  */
+@Controller
 public class DecoratorController extends PostParameterizableViewController {
 
   /** The messages basename. */
@@ -46,8 +50,16 @@ public class DecoratorController extends PostParameterizableViewController {
    *
    * @param messagesBasename the new messages basename
    */
+  @Value("/WEB-INF/messages")
   public void setMessagesBasename(String messagesBasename) {
     this.messagesBasename = messagesBasename;
+  }
+
+  @RequestMapping(path = "/decorator.htm")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
   }
 
   @Override
@@ -103,4 +115,11 @@ public class DecoratorController extends PostParameterizableViewController {
   private List<String> getMessageFileNamesForLocale(Locale locale) {
     return Utils.getNamesForLocale(messagesBasename, locale);
   }
+
+  @Value("decorators/probe")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
+  }
+
 }

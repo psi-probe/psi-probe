@@ -11,6 +11,9 @@
 package psiprobe.controllers.threads;
 
 import org.apache.catalina.Context;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import psiprobe.controllers.AbstractTomcatContainerController;
@@ -28,7 +31,15 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * The Class ListThreadsController.
  */
+@Controller
 public class ListThreadsController extends AbstractTomcatContainerController {
+
+  @RequestMapping(path = "/th_impl1.htm")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
+  }
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
@@ -104,6 +115,12 @@ public class ListThreadsController extends AbstractTomcatContainerController {
    */
   private static String toUid(Object obj) {
     return obj.getClass().getName() + "@" + obj.hashCode();
+  }
+
+  @Value("threads")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
   }
 
 }

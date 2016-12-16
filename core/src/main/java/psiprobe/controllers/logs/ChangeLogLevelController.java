@@ -10,7 +10,10 @@
  */
 package psiprobe.controllers.logs;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import psiprobe.tools.logging.LogDestination;
@@ -27,7 +30,15 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * The Class ChangeLogLevelController.
  */
+@Controller
 public class ChangeLogLevelController extends AbstractLogHandlerController {
+
+  @RequestMapping(path = "/adm/changeloglevel.ajax")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
+  }
 
   @Override
   protected ModelAndView handleLogFile(HttpServletRequest request, HttpServletResponse response,
@@ -51,6 +62,12 @@ public class ChangeLogLevelController extends AbstractLogHandlerController {
       }
     }
     return null;
+  }
+
+  @Value("")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
   }
 
 }

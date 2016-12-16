@@ -10,9 +10,12 @@
  */
 package psiprobe.controllers.deploy;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.InternalResourceView;
 
@@ -24,7 +27,15 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Forces Tomcat to install a pre-configured context name.
  */
+@Controller
 public class DeployContextController extends AbstractTomcatContainerController {
+
+  @RequestMapping(path = "/adm/deploycontext.htm")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
+  }
 
   @Override
   public ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response)
@@ -57,6 +68,12 @@ public class DeployContextController extends AbstractTomcatContainerController {
     }
 
     return new ModelAndView(new InternalResourceView(getViewName()));
+  }
+
+  @Value("/adm/deploy.htm")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
   }
 
 }

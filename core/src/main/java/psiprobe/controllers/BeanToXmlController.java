@@ -12,6 +12,8 @@ package psiprobe.controllers;
 
 import com.thoughtworks.xstream.XStream;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
 import org.springframework.web.servlet.mvc.Controller;
@@ -24,10 +26,11 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * The Class BeanToXmlController.
  */
+@org.springframework.stereotype.Controller
 public class BeanToXmlController extends AbstractController {
 
   /** The xml marker. */
-  private String xmlMarker = ".oxml";
+  private String xmlMarker;
 
   /**
    * Gets the xml marker.
@@ -43,8 +46,16 @@ public class BeanToXmlController extends AbstractController {
    *
    * @param xmlMarker the new xml marker
    */
+  @Value(".oxml")
   public void setXmlMarker(String xmlMarker) {
     this.xmlMarker = xmlMarker;
+  }
+
+  @RequestMapping(path = "/*.oxml.htm")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
   }
 
   @Override

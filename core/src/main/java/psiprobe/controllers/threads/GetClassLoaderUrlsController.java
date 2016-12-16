@@ -12,7 +12,10 @@ package psiprobe.controllers.threads;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
 
@@ -27,10 +30,18 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * The Class GetClassLoaderUrlsController.
  */
+@Controller
 public class GetClassLoaderUrlsController extends ParameterizableViewController {
 
   /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(GetClassLoaderUrlsController.class);
+
+  @RequestMapping(path = "/cldetails.ajax")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
+  }
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
@@ -52,6 +63,12 @@ public class GetClassLoaderUrlsController extends ParameterizableViewController 
     }
 
     return new ModelAndView(getViewName());
+  }
+
+  @Value("ajax/classLoaderDetails")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
   }
 
 }

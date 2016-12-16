@@ -13,7 +13,10 @@ package psiprobe.controllers.sql;
 import org.apache.catalina.Context;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.HtmlUtils;
 
@@ -40,10 +43,18 @@ import javax.sql.DataSource;
  * Executes an SQL query through a given datasource to test database connectivity. Displays results
  * returned by the query.
  */
+@Controller
 public class ExecuteSqlController extends AbstractContextHandlerController {
 
   /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(ExecuteSqlController.class);
+
+  @RequestMapping(path = "/sql/recordset.ajax")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
+  }
 
   @Override
   protected ModelAndView handleContext(String contextName, Context context,
@@ -185,6 +196,12 @@ public class ExecuteSqlController extends AbstractContextHandlerController {
   @Override
   protected boolean isContextOptional() {
     return true;
+  }
+
+  @Value("ajax/sql/recordset")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
   }
 
 }

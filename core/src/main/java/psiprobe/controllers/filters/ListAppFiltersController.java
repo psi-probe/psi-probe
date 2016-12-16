@@ -11,6 +11,9 @@
 package psiprobe.controllers.filters;
 
 import org.apache.catalina.Context;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import psiprobe.controllers.AbstractContextHandlerController;
@@ -25,7 +28,15 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Retrieves a list of filter mappings or filter definitions of a web application.
  */
+@Controller
 public class ListAppFiltersController extends AbstractContextHandlerController {
+
+  @RequestMapping(path = "/appfilters.htm")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
+  }
 
   @Override
   protected ModelAndView handleContext(String contextName, Context context,
@@ -35,6 +46,12 @@ public class ListAppFiltersController extends AbstractContextHandlerController {
         ApplicationUtils.getApplicationFilters(context, getContainerWrapper());
 
     return new ModelAndView(getViewName(), "appFilters", appFilters);
+  }
+
+  @Value("appfilters")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
   }
 
 }

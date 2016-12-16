@@ -11,7 +11,10 @@
 package psiprobe.controllers.apps;
 
 import org.apache.catalina.Context;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -23,7 +26,15 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * The Class RemoveApplicationAttributeController.
  */
+@Controller
 public class RemoveApplicationAttributeController extends AbstractContextHandlerController {
+
+  @RequestMapping(path = "/app/rmappattr.htm")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
+  }
 
   @Override
   protected ModelAndView handleContext(String contextName, Context context,
@@ -35,4 +46,11 @@ public class RemoveApplicationAttributeController extends AbstractContextHandler
     return new ModelAndView(new RedirectView(request.getContextPath() + getViewName() + "?"
         + request.getQueryString()));
   }
+
+  @Value("appattributes")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
+  }
+
 }

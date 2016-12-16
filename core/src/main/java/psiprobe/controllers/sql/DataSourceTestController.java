@@ -10,10 +10,14 @@
  */
 package psiprobe.controllers.sql;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
 
 import psiprobe.model.sql.DataSourceTestInfo;
+import psiprobe.tools.TimeExpression;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,6 +27,7 @@ import javax.servlet.http.HttpSession;
  * Displays a view that allows for a database connectivity testing. Supplies default values to input
  * fields of the view.
  */
+@Controller
 public class DataSourceTestController extends ParameterizableViewController {
 
   /** The max rows. */
@@ -39,6 +44,13 @@ public class DataSourceTestController extends ParameterizableViewController {
 
   /** The collection period. */
   private long collectionPeriod;
+
+  @RequestMapping(path = "/sql/datasourcetest.htm")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
+  }
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
@@ -90,6 +102,16 @@ public class DataSourceTestController extends ParameterizableViewController {
   }
 
   /**
+   * Sets the collection period using expression.
+   *
+   * @param collectionPeriod the new collection period using expression
+   */
+  @Value("${psiprobe.beans.stats.collectors.connector.period}")
+  public void setCollectionPeriod(String collectionPeriod) {
+    this.collectionPeriod = TimeExpression.inSeconds(collectionPeriod);
+  }
+
+  /**
    * Gets the max rows.
    *
    * @return the max rows
@@ -103,6 +125,7 @@ public class DataSourceTestController extends ParameterizableViewController {
    *
    * @param maxRows the new max rows
    */
+  @Value("1000")
   public void setMaxRows(int maxRows) {
     this.maxRows = maxRows;
   }
@@ -121,6 +144,7 @@ public class DataSourceTestController extends ParameterizableViewController {
    *
    * @param rowsPerPage the new rows per page
    */
+  @Value("50")
   public void setRowsPerPage(int rowsPerPage) {
     this.rowsPerPage = rowsPerPage;
   }
@@ -139,6 +163,7 @@ public class DataSourceTestController extends ParameterizableViewController {
    *
    * @param historySize the new history size
    */
+  @Value("30")
   public void setHistorySize(int historySize) {
     this.historySize = historySize;
   }
@@ -157,8 +182,15 @@ public class DataSourceTestController extends ParameterizableViewController {
    *
    * @param replacePattern the new replace pattern
    */
+  @Value("^http(s)?://[a-zA-Z\\-\\.0-9]+(:[0-9]+)?")
   public void setReplacePattern(String replacePattern) {
     this.replacePattern = replacePattern;
+  }
+
+  @Value("datasourcetest")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
   }
 
 }

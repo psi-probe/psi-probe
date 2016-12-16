@@ -13,7 +13,10 @@ package psiprobe.controllers.datasources;
 import org.apache.catalina.Context;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -26,6 +29,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Resets datasource if the datasource supports it.
  */
+@Controller
 public class ResetDataSourceController extends AbstractContextHandlerController {
 
   /** The Constant logger. */
@@ -48,8 +52,16 @@ public class ResetDataSourceController extends AbstractContextHandlerController 
    *
    * @param replacePattern the new replace pattern
    */
+  @Value("^http(s)?://[a-zA-Z\\-\\.0-9]+(:[0-9]+)?")
   public void setReplacePattern(String replacePattern) {
     this.replacePattern = replacePattern;
+  }
+
+  @RequestMapping(path = "/app/resetds.htm")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
   }
 
   @Override
@@ -91,6 +103,12 @@ public class ResetDataSourceController extends AbstractContextHandlerController 
   @Override
   protected boolean isContextOptional() {
     return !getContainerWrapper().getResourceResolver().supportsPrivateResources();
+  }
+
+  @Value("/resources.htm")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
   }
 
 }

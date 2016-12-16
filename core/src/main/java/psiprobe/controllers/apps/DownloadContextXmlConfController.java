@@ -10,9 +10,31 @@
  */
 package psiprobe.controllers.apps;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
 /**
  * Downloads a context descriptor (context.xml) of a web application.
  */
+@Controller
 public class DownloadContextXmlConfController extends BaseDownloadXmlConfController {
+
+  @RequestMapping(path = "/adm/downloadcontextxml.htm")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
+  }
+
+  @Value("context.xml")
+  @Override
+  public void setDownloadTarget(String downloadTarget) {
+    super.setDownloadTarget(downloadTarget);
+  }
 
 }

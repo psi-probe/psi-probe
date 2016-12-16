@@ -10,6 +10,7 @@
  */
 package psiprobe.controllers.system;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.ModelAndView;
 
 import psiprobe.beans.RuntimeInfoAccessorBean;
@@ -34,6 +35,7 @@ public class BaseSysInfoController extends AbstractTomcatContainerController {
   private List<String> filterOutKeys = new ArrayList<>();
 
   /** The runtime info accessor. */
+  @Autowired
   private RuntimeInfoAccessorBean runtimeInfoAccessor;
 
   /** The collection period. */

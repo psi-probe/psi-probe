@@ -10,9 +10,42 @@
  */
 package psiprobe.controllers.system;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+import psiprobe.tools.TimeExpression;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * The Class MemoryStatsController.
  */
+@Controller
 public class MemoryStatsController extends BaseMemoryStatsController {
+
+  /**
+   * Sets the collection period.
+   *
+   * @param collectionPeriod the new collection period
+   */
+  @Value("${psiprobe.beans.stats.collectors.memory.period}")
+  public void setCollectionPeriod(String collectionPeriod) {
+    super.setCollectionPeriod(TimeExpression.inSeconds(collectionPeriod));
+  }
+
+  @RequestMapping(path = "/memory.htm")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
+  }
+
+  @Value("memory")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
+  }
 
 }

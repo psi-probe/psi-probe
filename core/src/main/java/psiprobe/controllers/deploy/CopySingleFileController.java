@@ -32,8 +32,11 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.InternalResourceView;
 
@@ -42,10 +45,18 @@ import psiprobe.controllers.AbstractTomcatContainerController;
 /**
  * Lets an user to copy a single file to a deployed context.
  */
+@Controller
 public class CopySingleFileController extends AbstractTomcatContainerController {
 
   /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(CopySingleFileController.class);
+
+  @RequestMapping(path = "/adm/deployfile.htm")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
+  }
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
@@ -195,4 +206,11 @@ public class CopySingleFileController extends AbstractTomcatContainerController 
     }
     return new ModelAndView(new InternalResourceView(getViewName()));
   }
+
+  @Value("/adm/deploy.htm")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
+  }
+
 }

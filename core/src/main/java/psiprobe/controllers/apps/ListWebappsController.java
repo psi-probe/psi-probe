@@ -11,7 +11,10 @@
 package psiprobe.controllers.apps;
 
 import org.apache.catalina.Context;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import psiprobe.controllers.AbstractTomcatContainerController;
@@ -28,7 +31,15 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Creates the list of web application installed in the same "host" as the Probe.
  */
+@Controller
 public class ListWebappsController extends AbstractTomcatContainerController {
+
+  @RequestMapping(path = "/index.htm")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
+  }
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
@@ -60,4 +71,9 @@ public class ListWebappsController extends AbstractTomcatContainerController {
     return new ModelAndView(getViewName(), "apps", applications);
   }
 
+  @Value("applications")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
+  }
 }

@@ -12,7 +12,10 @@ package psiprobe.controllers.system;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
 import org.springframework.web.servlet.view.RedirectView;
@@ -23,6 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Advises Java to run GC asap.
  */
+@Controller
 public class AdviseGarbageCollectionController extends ParameterizableViewController {
 
   /** The Constant logger. */
@@ -45,8 +49,16 @@ public class AdviseGarbageCollectionController extends ParameterizableViewContro
    *
    * @param replacePattern the new replace pattern
    */
+  @Value("^http(s)?://[a-zA-Z\\-\\.0-9]+(:[0-9]+)?")
   public void setReplacePattern(String replacePattern) {
     this.replacePattern = replacePattern;
+  }
+
+  @RequestMapping(path = "/adm/advisegc.htm")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
   }
 
   @Override
@@ -71,6 +83,12 @@ public class AdviseGarbageCollectionController extends ParameterizableViewContro
     }
     logger.debug("Redirected to {}", redirectUrl);
     return new ModelAndView(new RedirectView(redirectUrl));
+  }
+
+  @Value("/sysinfo.htm")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
   }
 
 }

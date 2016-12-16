@@ -10,6 +10,10 @@
  */
 package psiprobe.controllers.threads;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import psiprobe.beans.ContainerListenerBean;
@@ -24,9 +28,11 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Creates the list of http connection thread pools.
  */
+@Controller
 public class ListThreadPoolsController extends AbstractTomcatContainerController {
 
   /** The container listener bean. */
+  @Autowired
   private ContainerListenerBean containerListenerBean;
 
   /**
@@ -47,12 +53,25 @@ public class ListThreadPoolsController extends AbstractTomcatContainerController
     this.containerListenerBean = containerListenerBean;
   }
 
+  @RequestMapping(path = "/threadpools.htm")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
+  }
+
   @Override
   public ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 
     List<ThreadPool> pools = containerListenerBean.getThreadPools();
     return new ModelAndView(getViewName()).addObject("pools", pools);
+  }
+
+  @Value("threadpools")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
   }
 
 }

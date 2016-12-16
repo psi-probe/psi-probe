@@ -15,7 +15,10 @@ import org.apache.jasper.EmbeddedServletOptions;
 import org.apache.jasper.Options;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import psiprobe.Utils;
@@ -33,10 +36,18 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * The Class ViewSourceController.
  */
+@Controller
 public class ViewSourceController extends AbstractContextHandlerController {
 
   /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(ViewSourceController.class);
+
+  @RequestMapping(path = "/app/viewsource.htm")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
+  }
 
   @Override
   protected ModelAndView handleContext(String contextName, Context context,
@@ -107,6 +118,12 @@ public class ViewSourceController extends AbstractContextHandlerController {
       }
     }
     return new ModelAndView(getViewName());
+  }
+
+  @Value("view_jsp_source")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
   }
 
 }

@@ -10,7 +10,9 @@
  */
 package psiprobe.controllers;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
 
@@ -25,10 +27,18 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * The Class RememberVisibilityController.
  */
+@Controller
 public class RememberVisibilityController extends AbstractController {
 
   /** The sdf. */
   private final SimpleDateFormat sdf = new SimpleDateFormat("E, d-MMM-yyyy HH:mm:ss zz");
+
+  @RequestMapping(path = "/remember.ajax")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
+  }
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,

@@ -10,6 +10,9 @@
  */
 package psiprobe.controllers.error;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
 
@@ -20,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  * The ErrorHandlerController will show two different views depending on whether the failed request
  * was AJAX or not.
  */
+@Controller
 public class Error403Controller extends AbstractController {
 
   /** The view name. */
@@ -29,7 +33,7 @@ public class Error403Controller extends AbstractController {
   private String ajaxViewName;
 
   /** The ajax extension. */
-  private String ajaxExtension = ".ajax";
+  private String ajaxExtension;
 
   /**
    * Gets the view name.
@@ -45,6 +49,7 @@ public class Error403Controller extends AbstractController {
    *
    * @param viewName the new view name
    */
+  @Value("errors/403")
   public void setViewName(String viewName) {
     this.viewName = viewName;
   }
@@ -63,6 +68,7 @@ public class Error403Controller extends AbstractController {
    *
    * @param ajaxViewName the new ajax view name
    */
+  @Value("errors/403_ajax")
   public void setAjaxViewName(String ajaxViewName) {
     this.ajaxViewName = ajaxViewName;
   }
@@ -81,8 +87,16 @@ public class Error403Controller extends AbstractController {
    *
    * @param ajaxExtension the new ajax extension
    */
+  @Value(".ajax")
   public void setAjaxExtension(String ajaxExtension) {
     this.ajaxExtension = ajaxExtension;
+  }
+
+  @RequestMapping(path = "/403.htm")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
   }
 
   @Override
@@ -95,4 +109,5 @@ public class Error403Controller extends AbstractController {
     }
     return new ModelAndView(viewName);
   }
+
 }

@@ -10,9 +10,31 @@
  */
 package psiprobe.controllers.apps;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
 /**
  * The Class StopContextController.
  */
+@Controller
 public class StopContextController extends BaseStopContextController {
+
+  @RequestMapping(path = "/app/stop.htm")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
+  }
+
+  @Value("index.htm")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
+  }
 
 }

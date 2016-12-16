@@ -13,6 +13,9 @@ package psiprobe.controllers.truststore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import psiprobe.controllers.AbstractTomcatContainerController;
@@ -33,10 +36,18 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * The Class TrustStoreController.
  */
+@Controller
 public class TrustStoreController extends AbstractTomcatContainerController {
 
   /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(TrustStoreController.class);
+
+  @RequestMapping(path = "/truststore.htm")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
+  }
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -75,4 +86,11 @@ public class TrustStoreController extends AbstractTomcatContainerController {
     mv.addObject("certificates", certificateList);
     return mv;
   }
+
+  @Value("truststore")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
+  }
+
 }

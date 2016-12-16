@@ -11,7 +11,9 @@
 package psiprobe.controllers.jsp;
 
 import org.apache.catalina.Context;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import psiprobe.Utils;
@@ -25,7 +27,15 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * The Class DownloadServletController.
  */
+@Controller
 public class DownloadServletController extends AbstractContextHandlerController {
+
+  @RequestMapping(path = "/app/downloadserv.htm")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
+  }
 
   @Override
   protected ModelAndView handleContext(String contextName, Context context,

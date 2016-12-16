@@ -10,6 +10,9 @@
  */
 package psiprobe.controllers.sql;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import psiprobe.PostParameterizableViewController;
 import psiprobe.model.sql.DataSourceTestInfo;
@@ -23,7 +26,15 @@ import javax.servlet.http.HttpSession;
 /**
  * Retrieves a history list of executed queries from a session variable.
  */
+@Controller
 public class QueryHistoryController extends PostParameterizableViewController {
+
+  @RequestMapping(path = "/sql/queryHistory.ajax")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
+  }
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
@@ -42,6 +53,12 @@ public class QueryHistoryController extends PostParameterizableViewController {
     }
 
     return new ModelAndView(getViewName(), "queryHistory", queryHistory);
+  }
+
+  @Value("ajax/sql/queryHistory")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
   }
 
 }

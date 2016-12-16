@@ -13,7 +13,10 @@ package psiprobe.controllers.jsp;
 import org.apache.catalina.Context;
 import org.apache.jasper.EmbeddedServletOptions;
 import org.apache.jasper.Options;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import psiprobe.Utils;
@@ -30,7 +33,15 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * The Class ViewServletSourceController.
  */
+@Controller
 public class ViewServletSourceController extends AbstractContextHandlerController {
+
+  @RequestMapping(path = "/app/viewservlet.htm")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+    return super.handleRequest(request, response);
+  }
 
   @Override
   protected ModelAndView handleContext(String contextName, Context context,
@@ -57,6 +68,12 @@ public class ViewServletSourceController extends AbstractContextHandlerControlle
       }
     }
     return new ModelAndView(getViewName(), "content", content);
+  }
+
+  @Value("view_servlet_source")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
   }
 
 }
