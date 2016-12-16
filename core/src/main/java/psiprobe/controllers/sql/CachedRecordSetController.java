@@ -14,8 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.ParameterizableViewController;
-
+import psiprobe.PostParameterizableViewController;
 import psiprobe.model.sql.DataSourceTestInfo;
 
 import java.util.List;
@@ -29,7 +28,7 @@ import javax.servlet.http.HttpSession;
  * Displays a result set cached in an attribute of HttpSession object to support result set
  * pagination feature without re-executing a query that created the result set.
  */
-public class CachedRecordSetController extends ParameterizableViewController {
+public class CachedRecordSetController extends PostParameterizableViewController {
 
   /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(CachedRecordSetController.class);

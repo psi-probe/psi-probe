@@ -10,10 +10,8 @@
  */
 package psiprobe.controllers;
 
-import org.springframework.http.HttpMethod;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.ParameterizableViewController;
-
+import psiprobe.PostParameterizableViewController;
 import psiprobe.Utils;
 
 import java.lang.management.ManagementFactory;
@@ -29,16 +27,10 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * The Class DecoratorController.
  */
-public class DecoratorController extends ParameterizableViewController {
+public class DecoratorController extends PostParameterizableViewController {
 
   /** The messages basename. */
   private String messagesBasename;
-
-  // Hack fixing 'POST' with spring 4.3+
-  public DecoratorController() {
-    super();
-    setSupportedMethods(HttpMethod.GET.name(), HttpMethod.POST.name(), HttpMethod.HEAD.name());
-  }
 
   /**
    * Gets the messages basename.

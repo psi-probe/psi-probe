@@ -10,11 +10,11 @@
  */
 package psiprobe.controllers.help;
 
-import org.springframework.web.servlet.mvc.ParameterizableViewController;
+import psiprobe.PostParameterizableViewController;
 
 /**
  * The Class HelpDatasourcesController.
  */
-public class HelpDatasourcesController extends ParameterizableViewController {
+public class HelpDatasourcesController extends PostParameterizableViewController {
 
 }

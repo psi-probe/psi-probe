@@ -10,11 +10,11 @@
  */
 package psiprobe.controllers.help;
 
-import org.springframework.web.servlet.mvc.ParameterizableViewController;
+import psiprobe.PostParameterizableViewController;
 
 /**
  * The Class HelpThreads2Controller.
  */
-public class HelpThreads2Controller extends ParameterizableViewController {
+public class HelpThreads2Controller extends PostParameterizableViewController {
 
 }

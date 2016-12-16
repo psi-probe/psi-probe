@@ -11,8 +11,7 @@
 package psiprobe.controllers.sql;
 
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.ParameterizableViewController;
-
+import psiprobe.PostParameterizableViewController;
 import psiprobe.model.sql.DataSourceTestInfo;
 
 import java.util.List;
@@ -24,7 +23,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Retrieves a history list of executed queries from a session variable.
  */
-public class QueryHistoryController extends ParameterizableViewController {
+public class QueryHistoryController extends PostParameterizableViewController {
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,

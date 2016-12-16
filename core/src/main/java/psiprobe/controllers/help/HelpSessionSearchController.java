@@ -10,11 +10,11 @@
  */
 package psiprobe.controllers.help;
 
-import org.springframework.web.servlet.mvc.ParameterizableViewController;
+import psiprobe.PostParameterizableViewController;
 
 /**
  * The Class HelpSessionSearchController.
  */
-public class HelpSessionSearchController extends ParameterizableViewController {
+public class HelpSessionSearchController extends PostParameterizableViewController {
 
 }
