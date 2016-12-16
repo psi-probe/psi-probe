@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 
 import com.maxmind.db.CHMCache;
 import com.maxmind.geoip2.DatabaseReader;
+import com.maxmind.geoip2.exception.AddressNotFoundException;
 import com.maxmind.geoip2.model.CountryResponse;
 import com.maxmind.geoip2.record.Country;
 
@@ -310,9 +311,14 @@ public class ContainerListenerBean implements NotificationListener {
                   // Show flag for non-localhost using geo lite
                   DatabaseReader reader = new DatabaseReader.Builder(new File(getClass().getClassLoader()
                       .getResource("GeoLite2-Country.mmdb").toURI())).withCache(new CHMCache()).build();
-                  CountryResponse response = reader.country(InetAddress.getByName(rp.getRemoteAddr()));
-                  Country country = response.getCountry();
-                  rp.setRemoteAddrLocale(new Locale("", country.getIsoCode()));
+                  try {
+                      CountryResponse response = reader.country(InetAddress.getByName(rp.getRemoteAddr()));
+                      Country country = response.getCountry();
+                      rp.setRemoteAddrLocale(new Locale("", country.getIsoCode()));
+                  } catch (AddressNotFoundException e) {
+                      logger.info("{}", e.getMessage());
+                      logger.trace("", e);
+                  }
                 }
               }
 
@@ -341,7 +347,7 @@ public class ContainerListenerBean implements NotificationListener {
               connector.addRequestProcessor(rp);
             } catch (InstanceNotFoundException e) {
               logger.info("Failed to query RequestProcessor {}", wrkName);
-              logger.debug("  Stack trace:", e);
+              logger.debug("", e);
             }
           }
         }
