@@ -78,7 +78,7 @@
 							<display:column titleKey="probe.jsp.jsps.col.size" sortable="true" sortProperty="size" style="width:30px;">
 								<probe:volume value="${item.size}"/>
 							</display:column>
-							<display:column titleKey="probe.jsp.jsps.col.lastmodified" sortable="true" sortProperty="lastModified" style="width:140px;">
+							<display:column titleKey="probe.jsp.jsps.col.lastmodified" sortable="true" sortProperty="lastModified" style="width:170px;">
 								${item.timestamp}
 							</display:column>
 							<display:column titleKey="probe.jsp.jsps.col.status" sortable="true" sortProperty="state" style="width:60px;">
