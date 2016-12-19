@@ -240,7 +240,7 @@
 							<display:column title="&nbsp;" style="width:18px;">
 								<c:choose>
 									<c:when test="${! empty session.lastAccessedIpLocale.country && session.lastAccessedIpLocale.country != '**'}">
-										<img border="0" src="<c:url value='/flags/${fn:toLowerCase(session.lastAccessedIpLocale.country)}.gif'/>"
+										<img border="0" src="<c:url value='/flags/${fn:toLowerCase(session.lastAccessedIpLocale.country)}.png'/>"
 												alt="${session.lastAccessedIpLocale.country}"
 												title="${session.lastAccessedIpLocale.displayCountry}"/>
 									</c:when>
