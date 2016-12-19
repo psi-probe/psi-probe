@@ -148,7 +148,13 @@ public class TomcatSlf4jLogbackLoggerAccessor extends DefaultAccessor {
 
       Object tracker = MethodUtils.invokeMethod(appender, "getAppenderTracker", null);
       if (tracker != null) {
-        return (List<Object>) MethodUtils.invokeMethod(tracker, "valueList", null);
+        try {
+          return (List<Object>) MethodUtils.invokeMethod(tracker, "allComponents", null);
+        } catch (final NoSuchMethodException e) {
+          // XXX Legacy 1.0.x and lower support for logback
+          logger.trace("", e);
+          return (List<Object>) MethodUtils.invokeMethod(tracker, "valueList", null);
+        }
       }
       return new ArrayList<>();
     }
