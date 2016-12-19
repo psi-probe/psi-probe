@@ -219,7 +219,7 @@
 										<display:column title="&nbsp;" style="width:18px;" class="leftmost">
 											<c:choose>
 												<c:when test="${! empty rp.remoteAddrLocale.country && rp.remoteAddrLocale.country != '**'}">
-													<img border="0" src="<c:url value='/flags/${fn:toLowerCase(rp.remoteAddrLocale.country)}.gif'/>"
+													<img border="0" src="<c:url value='/flags/${fn:toLowerCase(rp.remoteAddrLocale.country)}.png'/>"
 															alt="${rp.remoteAddrLocale.country}" title="${rp.remoteAddrLocale.displayCountry}"/>
 												</c:when>
 												<c:otherwise>

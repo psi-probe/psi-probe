@@ -181,23 +181,23 @@
 			</p>
 			<div id="locales">
 				<a href="?<probe:addQueryParam param='lang' value='en'/>"><img
-						src="<c:url value='/flags/gb.gif'/>" alt="EN" /></a>
+						src="<c:url value='/flags/gb.png'/>" alt="EN" /></a>
 				<a href="?<probe:addQueryParam param='lang' value='ru'/>"><img
-						src="<c:url value='/flags/ru.gif'/>" alt="RU" /></a>
+						src="<c:url value='/flags/ru.png'/>" alt="RU" /></a>
 				<a href="?<probe:addQueryParam param='lang' value='ja'/>"><img
-						src="<c:url value='/flags/jp.gif'/>" alt="JP" /></a>
+						src="<c:url value='/flags/jp.png'/>" alt="JP" /></a>
 				<a href="?<probe:addQueryParam param='lang' value='it'/>"><img
-						src="<c:url value='/flags/it.gif'/>" alt="IT" /></a>
+						src="<c:url value='/flags/it.png'/>" alt="IT" /></a>
 				<a href="?<probe:addQueryParam param='lang' value='de'/>"><img
-						src="<c:url value='/flags/de.gif'/>" alt="DE" /></a>
+						src="<c:url value='/flags/de.png'/>" alt="DE" /></a>
 				<a href="?<probe:addQueryParam param='lang' value='es'/>"><img
-						src="<c:url value='/flags/es.gif'/>" alt="ES" /></a>
+						src="<c:url value='/flags/es.png'/>" alt="ES" /></a>
 				<a href="?<probe:addQueryParam param='lang' value='fr'/>"><img
-						src="<c:url value='/flags/fr.gif'/>" alt="FR" /></a>
+						src="<c:url value='/flags/fr.png'/>" alt="FR" /></a>
 				<a href="?<probe:addQueryParam param='lang' value='pt_br'/>"><img
-						src="<c:url value='/flags/br.gif'/>" alt="BR" /></a>
+						src="<c:url value='/flags/br.png'/>" alt="BR" /></a>
 				<a href="?<probe:addQueryParam param='lang' value='zh_cn'/>"><img
-						src="<c:url value='/flags/cn.gif'/>" alt="CN" /></a>
+						src="<c:url value='/flags/cn.png'/>" alt="CN" /></a>
 			</div>
 			<p>
 				<spring:message code="probe.jsp.i18n.credit"/>
