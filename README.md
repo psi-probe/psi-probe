@@ -53,3 +53,8 @@ Please download latest snapshots from [here] (https://oss.sonatype.org/content/r
 * [Announcements](https://groups.google.com/forum/#!forum/psi-probe)
 * [Discussions](https://groups.google.com/forum/#!forum/psi-probe-discuss)
 * [Slack](https://psi-probe.slack.com/)
+
+## FAQ
+
+* [Adding Additional Loggers](https://github.com/psi-probe/psi-probe/wiki/Adding-Additional-Loggers)
+* [Forcing tomcat version](https://github.com/psi-probe/psi-probe/wiki/Troubleshooting#error-on-first-request)
