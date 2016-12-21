@@ -102,7 +102,7 @@
 									${pool.name}
 									<c:url var="toggleUrl" value="/remember.ajax?cn=mem_${pool.id}"/>
 									<img onclick="togglePanel('${pool.id}', '${toggleUrl}')"
-											src="${pageContext.request.contextPath}<spring:theme code='bullet_arrow_down.gif'/>" alt="+"/>
+											src="${pageContext.request.contextPath}<spring:theme code='bullet_arrow_down.png'/>" alt="+"/>
 								</dt>
 								<dd class="image"><img id="img_${pool.id}"
 													src="<c:out value='${chartUrl}' escapeXml='false'/>" width="${chartWidth}" height="${chartHeight}" alt="+"
