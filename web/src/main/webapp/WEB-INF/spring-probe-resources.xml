@@ -38,18 +38,18 @@
 	<bean id="defaultResourceResolver" class="psiprobe.beans.ResourceResolverBean">
 		<property name="datasourceMappers">
 			<list>
-				<bean class="psiprobe.beans.BoneCpDatasourceAccessor"/>
-				<bean class="psiprobe.beans.C3P0DatasourceAccessor"/>
-				<bean class="psiprobe.beans.DbcpDatasourceAccessor"/>
-				<bean class="psiprobe.beans.Dbcp2DatasourceAccessor"/>
-				<bean class="psiprobe.beans.Tomcat7DbcpDatasourceAccessor"/>
-				<bean class="psiprobe.beans.Tomcat8DbcpDatasourceAccessor"/>
-				<bean class="psiprobe.beans.Tomcat85DbcpDatasourceAccessor"/>
-				<bean class="psiprobe.beans.Tomcat9DbcpDatasourceAccessor"/>
-				<bean class="psiprobe.beans.TomcatJdbcPoolDatasourceAccessor"/>
-				<bean class="psiprobe.beans.OracleDatasourceAccessor"/>
-				<bean class="psiprobe.beans.OracleUcpDatasourceAssessor"/>
-				<bean class="psiprobe.beans.OpenEjbManagedDatasourceAccessor"/>
+				<value>psiprobe.beans.BoneCpDatasourceAccessor</value>
+				<value>psiprobe.beans.C3P0DatasourceAccessor</value>
+				<value>psiprobe.beans.DbcpDatasourceAccessor</value>
+				<value>psiprobe.beans.Dbcp2DatasourceAccessor</value>
+				<value>psiprobe.beans.Tomcat7DbcpDatasourceAccessor</value>
+				<value>psiprobe.beans.Tomcat8DbcpDatasourceAccessor</value>
+				<value>psiprobe.beans.Tomcat85DbcpDatasourceAccessor</value>
+				<value>psiprobe.beans.Tomcat9DbcpDatasourceAccessor</value>
+				<value>psiprobe.beans.TomcatJdbcPoolDatasourceAccessor</value>
+				<value>psiprobe.beans.OracleDatasourceAccessor</value>
+				<value>psiprobe.beans.OracleUcpDatasourceAssessor</value>
+				<value>psiprobe.beans.OpenEjbManagedDatasourceAccessor</value>
 			</list>
 		</property>
 	</bean>
