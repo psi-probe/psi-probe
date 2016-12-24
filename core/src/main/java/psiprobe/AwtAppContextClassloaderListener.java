@@ -58,6 +58,7 @@ public class AwtAppContextClassloaderListener implements ServletContextListener 
         // restore the class loader
         Thread.currentThread().setContextClassLoader(active);
       }
+      logger.info("AwtAppContextClassloaderListener Initialized");
     } catch (Exception e) {
       logger.error("Failed to address PermGen leak.", e);
     }

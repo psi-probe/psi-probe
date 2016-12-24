@@ -25,10 +25,6 @@
 	</context-param>
 
 	<listener>
-		<listener-class>psiprobe.AwtAppContextClassloaderListener</listener-class>
-	</listener>
-
-	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
