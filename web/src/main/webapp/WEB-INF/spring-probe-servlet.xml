@@ -11,44 +11,9 @@
     PURPOSE.
 
 -->
-<beans xmlns="http://www.springframework.org/schema/beans"
-		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
-		default-lazy-init="false">
-	<!--
-		************************* Spring implicit beans *************************
-	-->
-	<bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
-		<property name="prefix" value="/WEB-INF/jsp/"/>
-		<property name="suffix" value=".jsp"/>
-	</bean>
-
-	<bean id="themeResolver" class="org.springframework.web.servlet.theme.FixedThemeResolver">
-		<property name="defaultThemeName" value="theme-classic"/>
-	</bean>
-
-	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-		<property name="basename" value="/WEB-INF/messages"/>
-		<property name="cacheSeconds" value="1"/>
-		<property name="fallbackToSystemLocale" value="false"/>
-	</bean>
-
-	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
-		<property name="defaultLocale" value="en"/>
-	</bean>
-
-	<bean id="handlerMapping" class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping">
-		<property name="alwaysUseFullPath" value="true"/>
-		<property name="interceptors">
-			<list>
-				<ref bean="localeChangeInterceptor"/>
-			</list>
-		</property>
-	</bean>
-
-	<bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
-		<property name="paramName" value="lang"/>
-	</bean>
-
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <context:component-scan base-package="psiprobe" />
 </beans>
