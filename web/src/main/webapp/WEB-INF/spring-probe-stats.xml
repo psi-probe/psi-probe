@@ -50,15 +50,6 @@
 	</bean>
 
 	<!--
-		ResourceResolverBean
-	-->
-	<!-- 
-	<bean name="resourceResolverBean"
-			class="psiprobe.beans.ResourceResolverBean">
-		<property name="containerWrapper" ref="containerWrapper"/>
-	</bean>
-	 -->
-	<!--
 		Cluster stats collector 
 	-->
 	<bean name="clusterStatsCollector"
