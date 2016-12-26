@@ -95,6 +95,7 @@
     </dependencies>
 
     <build>
+        <finalName>probe</finalName>
         <plugins>
             <plugin>
                 <groupId>org.jasig.mojo.jspc</groupId>
@@ -134,8 +135,6 @@
                             <filtering>false</filtering>
                         </resource>
                     </webResources>
-                    <webappDirectory>${project.build.directory}/target/war_exploded</webappDirectory>
-                    <warName>probe</warName>
                 </configuration>
             </plugin>
         </plugins>
