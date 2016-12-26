@@ -18,10 +18,10 @@
 			http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
 			default-lazy-init="false">
 
-	<util:properties id="version" location="WEB-INF/version.properties" />
+	<util:properties id="version" location="classpath:version.properties" />
 
 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="locations" value="WEB-INF/stats.properties" />
+		<property name="locations" value="classpath:stats.properties" />
 		<property name="nullValue" value="NULL" />
 		<property name="properties">
 			<props>
