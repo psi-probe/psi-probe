@@ -51,7 +51,7 @@ public class ResourceResolverBean implements ResourceResolver {
       + "java:comp/env/";
 
   /** The datasource mappers. */
-  private List<DatasourceAccessor> datasourceMappers;
+  private List<String> datasourceMappers;
 
   @Override
   public List<ApplicationResource> getApplicationResources() throws NamingException {
@@ -141,7 +141,9 @@ public class ResourceResolverBean implements ResourceResolver {
         String jndiName = resolveJndiName(resource.getName(), global);
         Object obj = ctx.lookup(jndiName);
         resource.setLookedUp(true);
-        for (DatasourceAccessor accessor : datasourceMappers) {
+        for (String accessorString : datasourceMappers) {
+          logger.debug("Looking up datasource adapter: {}", accessorString);
+          DatasourceAccessor accessor = (DatasourceAccessor) Class.forName(accessorString).newInstance();
           dataSourceInfo = accessor.getInfo(obj);
           if (dataSourceInfo != null) {
             break;
@@ -174,7 +176,9 @@ public class ResourceResolverBean implements ResourceResolver {
       String jndiName = resolveJndiName(resourceName, context == null);
       Object obj = ctx.lookup(jndiName);
       try {
-        for (DatasourceAccessor accessor : datasourceMappers) {
+        for (String accessorString : datasourceMappers) {
+          logger.debug("Resetting datasource adapter: {}", accessorString);
+          DatasourceAccessor accessor = (DatasourceAccessor) Class.forName(accessorString).newInstance();
           if (accessor.reset(obj)) {
             return true;
           }
@@ -220,7 +224,7 @@ public class ResourceResolverBean implements ResourceResolver {
    *
    * @return the datasource mappers
    */
-  public List<DatasourceAccessor> getDatasourceMappers() {
+  public List<String> getDatasourceMappers() {
     return datasourceMappers;
   }
 
@@ -229,7 +233,7 @@ public class ResourceResolverBean implements ResourceResolver {
    *
    * @param datasourceMappers the new datasource mappers
    */
-  public void setDatasourceMappers(List<DatasourceAccessor> datasourceMappers) {
+  public void setDatasourceMappers(List<String> datasourceMappers) {
     this.datasourceMappers = datasourceMappers;
   }
 
