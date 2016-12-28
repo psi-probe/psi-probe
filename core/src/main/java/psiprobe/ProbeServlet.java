@@ -81,7 +81,6 @@ public class ProbeServlet extends DispatcherServlet implements ContainerServlet 
   @Override
   protected void doDispatch(HttpServletRequest httpServletRequest,
       HttpServletResponse httpServletResponse) throws Exception {
-
     httpServletRequest.setCharacterEncoding(StandardCharsets.UTF_8.name());
     super.doDispatch(httpServletRequest, httpServletResponse);
   }
