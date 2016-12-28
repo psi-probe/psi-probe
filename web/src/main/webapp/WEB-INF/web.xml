@@ -36,13 +36,7 @@
 		<servlet-class>psiprobe.ProbeServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>
-				<![CDATA[
-					/WEB-INF/spring-probe-servlet.xml,
-					/WEB-INF/spring-probe-resources.xml,
-					/WEB-INF/spring-probe-stats.xml
-				]]>
-			</param-value>
+			<param-value>/WEB-INF/spring-probe-stats.xml</param-value>
 		</init-param>
 		<load-on-startup>0</load-on-startup>
 	</servlet>

@@ -23,17 +23,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.codebox.bean.JavaBeanTester;
 
-import psiprobe.ProbeConfigTest;
+import psiprobe.ProbeConfig;
 import psiprobe.model.certificates.Cert;
 
 /**
  * The Class ListCertificatesControllerTest.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = ProbeConfigTest.class)
+@ContextConfiguration(classes = ProbeConfig.class)
+@WebAppConfiguration
 public class ListCertificatesControllerTest {
 
   /** The ctx. */

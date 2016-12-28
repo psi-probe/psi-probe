@@ -10,10 +10,14 @@
  */
 package psiprobe.beans.stats.collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+
 import psiprobe.TomcatContainer;
 import psiprobe.beans.ClusterWrapperBean;
 import psiprobe.beans.ContainerWrapperBean;
 import psiprobe.model.jmx.Cluster;
+import psiprobe.tools.TimeExpression;
 
 /**
  * The Class ClusterStatsCollectorBean.
@@ -21,9 +25,11 @@ import psiprobe.model.jmx.Cluster;
 public class ClusterStatsCollectorBean extends AbstractStatsCollectorBean {
 
   /** The container wrapper. */
+  @Autowired
   private ContainerWrapperBean containerWrapper;
 
   /** The cluster wrapper. */
+  @Autowired
   private ClusterWrapperBean clusterWrapper;
 
   /**
@@ -78,4 +84,17 @@ public class ClusterStatsCollectorBean extends AbstractStatsCollectorBean {
       }
     }
   }
+
+  /**
+   * Sets the max series expression.
+   *
+   * @param period the period
+   * @param span the span
+   */
+  public void setMaxSeries(
+      @Value("${psiprobe.beans.stats.collectors.cluster.period}") long period,
+      @Value("${psiprobe.beans.stats.collectors.cluster.span}") long span) {
+    super.setMaxSeries((int) TimeExpression.dataPoints(period, span));
+  }
+
 }

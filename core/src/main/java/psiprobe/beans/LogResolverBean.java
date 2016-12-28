@@ -13,6 +13,7 @@ package psiprobe.beans;
 import org.apache.catalina.Context;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ClassUtils;
 
 import psiprobe.model.Application;
@@ -49,6 +50,7 @@ public class LogResolverBean {
   protected static final Logger logger = LoggerFactory.getLogger(LogResolverBean.class);
 
   /** The container wrapper. */
+  @Autowired
   private ContainerWrapperBean containerWrapper;
 
   /** The stdout files. */
@@ -86,7 +88,9 @@ public class LogResolverBean {
    *
    * @param stdoutFiles the new stdout files
    */
+  @Autowired
   public void setStdoutFiles(List<String> stdoutFiles) {
+    logger.info("stdoutFiles {}", stdoutFiles);
     this.stdoutFiles = stdoutFiles;
   }
 

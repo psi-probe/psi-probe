@@ -15,6 +15,8 @@ import org.apache.catalina.Wrapper;
 import org.apache.catalina.util.ServerInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 
 import psiprobe.TomcatContainer;
 import psiprobe.model.ApplicationResource;
@@ -41,6 +43,7 @@ public class ContainerWrapperBean {
   private final Object lock = new Object();
 
   /** List of class names to adapt particular Tomcat implementation to TomcatContainer interface. */
+  @Autowired
   private List<String> adapterClasses;
 
   /** The resource resolver. */
@@ -50,6 +53,7 @@ public class ContainerWrapperBean {
   private boolean forceFirstAdapter;
 
   /** The resource resolvers. */
+  @Autowired
   private Map<String, ResourceResolver> resourceResolvers;
 
   /**
@@ -62,10 +66,14 @@ public class ContainerWrapperBean {
   }
 
   /**
-   * Sets the force first adapter.
+   * Sets the force first adapter. Setting this property to true will override
+   * the server polling each adapter performs to test for compatibility. Instead,
+   * it will use the first one in the adapterClasses list.
    *
    * @param forceFirstAdapter the new force first adapter
    */
+  // TODO We should make this configurable
+  @Value("false")
   public void setForceFirstAdapter(boolean forceFirstAdapter) {
     this.forceFirstAdapter = forceFirstAdapter;
   }
