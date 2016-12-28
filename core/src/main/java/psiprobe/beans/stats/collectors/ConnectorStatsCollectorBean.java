@@ -10,8 +10,12 @@
  */
 package psiprobe.beans.stats.collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+
 import psiprobe.beans.ContainerListenerBean;
 import psiprobe.model.Connector;
+import psiprobe.tools.TimeExpression;
 
 /**
  * The Class ConnectorStatsCollectorBean.
@@ -19,6 +23,7 @@ import psiprobe.model.Connector;
 public class ConnectorStatsCollectorBean extends AbstractStatsCollectorBean {
 
   /** The listener bean. */
+  @Autowired
   private ContainerListenerBean listenerBean;
 
   /**
@@ -74,6 +79,18 @@ public class ConnectorStatsCollectorBean extends AbstractStatsCollectorBean {
     resetStats(statName + ".sent");
     resetStats(statName + ".received");
     resetStats(statName + ".proc_time");
+  }
+
+  /**
+   * Sets the max series expression.
+   *
+   * @param period the period
+   * @param span the span
+   */
+  public void setMaxSeries(
+      @Value("${psiprobe.beans.stats.collectors.connector.period}") long period,
+      @Value("${psiprobe.beans.stats.collectors.connector.span}") long span) {
+    super.setMaxSeries((int) TimeExpression.dataPoints(period, span));
   }
 
 }

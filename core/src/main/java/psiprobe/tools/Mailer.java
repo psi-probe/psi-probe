@@ -12,6 +12,7 @@ package psiprobe.tools;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -135,6 +136,7 @@ public class Mailer {
    *
    * @param defaultTo the new default to
    */
+  @Value("${psiprobe.tools.mail.to}")
   public void setDefaultTo(String defaultTo) {
     this.defaultTo = defaultTo;
   }
@@ -153,6 +155,7 @@ public class Mailer {
    *
    * @param subjectPrefix the new subject prefix
    */
+  @Value("${psiprobe.tools.mail.subjectPrefix}")
   public void setSubjectPrefix(String subjectPrefix) {
     this.subjectPrefix = subjectPrefix;
   }

@@ -14,12 +14,14 @@ import org.apache.catalina.Context;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.context.ServletContextAware;
 
 import psiprobe.TomcatContainer;
 import psiprobe.beans.ContainerWrapperBean;
 import psiprobe.model.Application;
 import psiprobe.tools.ApplicationUtils;
+import psiprobe.tools.TimeExpression;
 
 import javax.servlet.ServletContext;
 
@@ -33,6 +35,7 @@ public class AppStatsCollectorBean extends AbstractStatsCollectorBean implements
   private static final Logger logger = LoggerFactory.getLogger(AppStatsCollectorBean.class);
 
   /** The container wrapper. */
+  @Autowired
   private ContainerWrapperBean containerWrapper;
 
   /** The servlet context. */
@@ -74,6 +77,7 @@ public class AppStatsCollectorBean extends AbstractStatsCollectorBean implements
    *
    * @param selfIgnored the new self ignored
    */
+  @Value("${psiprobe.beans.stats.collectors.app.selfIgnored}")
   public void setSelfIgnored(boolean selfIgnored) {
     this.selfIgnored = selfIgnored;
   }
@@ -189,6 +193,18 @@ public class AppStatsCollectorBean extends AbstractStatsCollectorBean implements
     resetStats("app.proc_time." + appName);
     resetStats("app.errors." + appName);
     resetStats("app.avg_proc_time." + appName);
+  }
+
+  /**
+   * Sets the max series expression.
+   *
+   * @param period the period
+   * @param span the span
+   */
+  public void setMaxSeries(
+      @Value("${psiprobe.beans.stats.collectors.app.period}") long period,
+      @Value("${psiprobe.beans.stats.collectors.app.span}") long span) {
+    super.setMaxSeries((int) TimeExpression.dataPoints(period, span));
   }
 
 }

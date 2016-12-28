@@ -12,6 +12,7 @@ package psiprobe.beans;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.maxmind.db.CHMCache;
 import com.maxmind.geoip2.DatabaseReader;
@@ -55,9 +56,8 @@ public class ContainerListenerBean implements NotificationListener {
   /** The executor names. */
   private List<ObjectName> executorNames;
 
-  /**
-   * Used to obtain required {@link MBeanServer} instance.
-   */
+  /** Used to obtain required {@link MBeanServer} instance. */
+  @Autowired
   private ContainerWrapperBean containerWrapper;
 
   /**

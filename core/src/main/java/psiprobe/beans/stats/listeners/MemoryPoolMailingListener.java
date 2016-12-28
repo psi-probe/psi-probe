@@ -11,6 +11,8 @@
 package psiprobe.beans.stats.listeners;
 
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.context.MessageSourceAware;
 import org.springframework.context.support.MessageSourceAccessor;
@@ -36,6 +38,7 @@ public class MemoryPoolMailingListener extends AbstractFlapListener implements M
   private MessageSourceAccessor messageSourceAccessor;
 
   /** The mailer. */
+  @Autowired
   private Mailer mailer;
 
   /**
@@ -140,6 +143,36 @@ public class MemoryPoolMailingListener extends AbstractFlapListener implements M
     } catch (MessagingException ex) {
       logger.error("Cannot send message", ex);
     }
+  }
+
+  @Value("${psiprobe.beans.stats.listeners.flapInterval}")
+  @Override
+  public void setDefaultFlapInterval(int defaultFlapInterval) {
+    super.setDefaultFlapInterval(defaultFlapInterval);
+  }
+
+  @Value("${psiprobe.beans.stats.listeners.flapStartThreshold}")
+  @Override
+  public void setDefaultFlapStartThreshold(float defaultFlapStartThreshold) {
+    super.setDefaultFlapStartThreshold(defaultFlapStartThreshold);
+  }
+
+  @Value("${psiprobe.beans.stats.listeners.flapStopThreshold}")
+  @Override
+  public void setDefaultFlapStopThreshold(float defaultFlapStopThreshold) {
+    super.setDefaultFlapStopThreshold(defaultFlapStopThreshold);
+  }
+
+  @Value("${psiprobe.beans.stats.listeners.flapLowWeight}")
+  @Override
+  public void setDefaultFlapLowWeight(float defaultFlapLowWeight) {
+    super.setDefaultFlapLowWeight(defaultFlapLowWeight);
+  }
+
+  @Value("${psiprobe.beans.stats.listeners.flapHighWeight}")
+  @Override
+  public void setDefaultFlapHighWeight(float defaultFlapHighWeight) {
+    super.setDefaultFlapHighWeight(defaultFlapHighWeight);
   }
 
 }

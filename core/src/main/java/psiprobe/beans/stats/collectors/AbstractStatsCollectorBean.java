@@ -11,6 +11,7 @@
 package psiprobe.beans.stats.collectors;
 
 import org.jfree.data.xy.XYDataItem;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import psiprobe.Utils;
 import psiprobe.beans.stats.listeners.StatsCollectionEvent;
@@ -27,6 +28,7 @@ import java.util.TreeMap;
 public abstract class AbstractStatsCollectorBean {
 
   /** The stats collection. */
+  @Autowired
   private StatsCollection statsCollection;
 
   /** The max series. */
