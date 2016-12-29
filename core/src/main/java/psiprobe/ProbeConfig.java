@@ -28,6 +28,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 import org.springframework.web.servlet.HandlerMapping;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.ThemeResolver;
@@ -935,6 +936,37 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
     StatsSerializerTrigger trigger = new StatsSerializerTrigger();
     trigger.setJobDetail(getStatsSerializerJobDetail().getObject());
     return trigger;
+  }
+
+  /**
+   * Gets the scheduler factory bean.
+   *
+   * @return the scheduler factory bean
+   */
+  @Bean(name = "scheduler")
+  public SchedulerFactoryBean getSchedulerFactoryBean(@Autowired AppStatsTrigger appStatsTrigger,
+      @Autowired ClusterStatsTrigger clusterStatsTrigger, @Autowired ConnectorStatsTrigger connectorStatsTrigger,
+      @Autowired DatasourceStatsTrigger datasourceStatsTrigger, @Autowired MemoryStatsTrigger memoryStatsTrigger,
+      @Autowired RuntimeStatsTrigger runtimeStatsTrigger, @Autowired StatsSerializerTrigger statsSerializerTrigger) {
+
+    logger.info("Instantiated scheduler");
+    SchedulerFactoryBean bean = new SchedulerFactoryBean();
+
+    // Add Triggers
+    bean.setTriggers(appStatsTrigger.getObject(), clusterStatsTrigger.getObject(),
+        connectorStatsTrigger.getObject(), datasourceStatsTrigger.getObject(),
+        memoryStatsTrigger.getObject(), runtimeStatsTrigger.getObject(),
+        statsSerializerTrigger.getObject());
+
+    // Add Properties
+    Properties properties = new Properties();
+    properties.setProperty("org.quartz.scheduler.instanceName", "ProbeScheduler");
+    properties.setProperty("org.quartz.scheduler.skipUpdateCheck", "true");
+    properties.setProperty("org.quartz.threadPool.threadCount", "5");
+    properties.setProperty("org.quartz.threadPool.threadNamePrefix", "Probe_Quartz");
+    bean.setQuartzProperties(properties);
+
+    return bean;
   }
 
 }
