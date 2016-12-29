@@ -10,7 +10,8 @@
  */
 package psiprobe.controllers.apps;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.inject.Inject;
+
 import org.springframework.stereotype.Controller;
 
 import psiprobe.beans.stats.collectors.AppStatsCollectorBean;
@@ -23,7 +24,7 @@ import psiprobe.beans.stats.collectors.AppStatsCollectorBean;
 public class ResetAppStatsController extends AbstractNoSelfContextHandlerController {
 
   /** The stats collector. */
-  @Autowired
+  @Inject
   private AppStatsCollectorBean statsCollector;
 
   /**

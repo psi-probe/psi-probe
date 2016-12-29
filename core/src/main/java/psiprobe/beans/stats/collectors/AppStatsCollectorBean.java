@@ -13,7 +13,6 @@ package psiprobe.beans.stats.collectors;
 import org.apache.catalina.Context;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.context.ServletContextAware;
 
@@ -23,6 +22,7 @@ import psiprobe.model.Application;
 import psiprobe.tools.ApplicationUtils;
 import psiprobe.tools.TimeExpression;
 
+import javax.inject.Inject;
 import javax.servlet.ServletContext;
 
 /**
@@ -35,11 +35,11 @@ public class AppStatsCollectorBean extends AbstractStatsCollectorBean implements
   private static final Logger logger = LoggerFactory.getLogger(AppStatsCollectorBean.class);
 
   /** The container wrapper. */
-  @Autowired
+  @Inject
   private ContainerWrapperBean containerWrapper;
 
   /** The servlet context. */
-  @Autowired
+  @Inject
   private ServletContext servletContext;
 
   /** The self ignored. */

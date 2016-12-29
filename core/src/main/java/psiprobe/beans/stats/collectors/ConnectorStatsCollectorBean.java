@@ -10,7 +10,8 @@
  */
 package psiprobe.beans.stats.collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.inject.Inject;
+
 import org.springframework.beans.factory.annotation.Value;
 
 import psiprobe.beans.ContainerListenerBean;
@@ -23,7 +24,7 @@ import psiprobe.tools.TimeExpression;
 public class ConnectorStatsCollectorBean extends AbstractStatsCollectorBean {
 
   /** The listener bean. */
-  @Autowired
+  @Inject
   private ContainerListenerBean listenerBean;
 
   /**

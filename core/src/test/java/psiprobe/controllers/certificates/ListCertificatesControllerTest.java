@@ -17,9 +17,10 @@ import static org.junit.Assert.assertThat;
 import java.io.File;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -39,7 +40,7 @@ import psiprobe.model.certificates.Cert;
 public class ListCertificatesControllerTest {
 
   /** The ctx. */
-  @Autowired
+  @Inject
   private ApplicationContext ctx;
 
   /**

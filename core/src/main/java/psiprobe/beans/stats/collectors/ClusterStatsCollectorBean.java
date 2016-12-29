@@ -10,7 +10,8 @@
  */
 package psiprobe.beans.stats.collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.inject.Inject;
+
 import org.springframework.beans.factory.annotation.Value;
 
 import psiprobe.TomcatContainer;
@@ -25,11 +26,11 @@ import psiprobe.tools.TimeExpression;
 public class ClusterStatsCollectorBean extends AbstractStatsCollectorBean {
 
   /** The container wrapper. */
-  @Autowired
+  @Inject
   private ContainerWrapperBean containerWrapper;
 
   /** The cluster wrapper. */
-  @Autowired
+  @Inject
   private ClusterWrapperBean clusterWrapper;
 
   /**

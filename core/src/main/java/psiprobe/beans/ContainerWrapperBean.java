@@ -15,7 +15,6 @@ import org.apache.catalina.Wrapper;
 import org.apache.catalina.util.ServerInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 import psiprobe.TomcatContainer;
@@ -24,6 +23,8 @@ import psiprobe.model.ApplicationResource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import javax.inject.Inject;
 
 /**
  * This class wires support for Tomcat "privileged" context functionality into Spring. If
@@ -43,7 +44,7 @@ public class ContainerWrapperBean {
   private final Object lock = new Object();
 
   /** List of class names to adapt particular Tomcat implementation to TomcatContainer interface. */
-  @Autowired
+  @Inject
   private List<String> adapterClasses;
 
   /** The resource resolver. */
@@ -53,7 +54,7 @@ public class ContainerWrapperBean {
   private boolean forceFirstAdapter;
 
   /** The resource resolvers. */
-  @Autowired
+  @Inject
   private Map<String, ResourceResolver> resourceResolvers;
 
   /**

@@ -11,7 +11,6 @@
 package psiprobe.controllers.quickcheck;
 
 import org.apache.catalina.Context;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.ModelAndView;
 
 import psiprobe.beans.ContainerListenerBean;
@@ -28,6 +27,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -37,7 +37,7 @@ import javax.servlet.http.HttpServletResponse;
 public class BaseTomcatAvailabilityController extends AbstractTomcatContainerController {
 
   /** The container listener bean. */
-  @Autowired
+  @Inject
   private ContainerListenerBean containerListenerBean;
 
   /**

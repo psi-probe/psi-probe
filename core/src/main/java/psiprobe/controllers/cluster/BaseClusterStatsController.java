@@ -10,7 +10,6 @@
  */
 package psiprobe.controllers.cluster;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.ModelAndView;
 
 import psiprobe.TomcatContainer;
@@ -18,6 +17,7 @@ import psiprobe.beans.ClusterWrapperBean;
 import psiprobe.controllers.AbstractTomcatContainerController;
 import psiprobe.model.jmx.Cluster;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -27,7 +27,7 @@ import javax.servlet.http.HttpServletResponse;
 public class BaseClusterStatsController extends AbstractTomcatContainerController {
 
   /** The cluster wrapper. */
-  @Autowired
+  @Inject
   private ClusterWrapperBean clusterWrapper;
 
   /** The load members. */

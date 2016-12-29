@@ -11,7 +11,6 @@
 package psiprobe.beans.stats.listeners;
 
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.context.MessageSourceAware;
@@ -20,6 +19,7 @@ import org.springframework.context.support.MessageSourceAccessor;
 import psiprobe.tools.MailMessage;
 import psiprobe.tools.Mailer;
 
+import javax.inject.Inject;
 import javax.mail.MessagingException;
 
 /**
@@ -38,7 +38,7 @@ public class MemoryPoolMailingListener extends AbstractFlapListener implements M
   private MessageSourceAccessor messageSourceAccessor;
 
   /** The mailer. */
-  @Autowired
+  @Inject
   private Mailer mailer;
 
   /**

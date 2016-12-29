@@ -10,7 +10,6 @@
  */
 package psiprobe.controllers.system;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.ModelAndView;
 
 import psiprobe.beans.RuntimeInfoAccessorBean;
@@ -23,6 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -35,7 +35,7 @@ public class BaseSysInfoController extends AbstractTomcatContainerController {
   private List<String> filterOutKeys = new ArrayList<>();
 
   /** The runtime info accessor. */
-  @Autowired
+  @Inject
   private RuntimeInfoAccessorBean runtimeInfoAccessor;
 
   /** The collection period. */
