@@ -18,51 +18,6 @@
 
 	<context:component-scan base-package="psiprobe" />
 
-	<!--
-		Get spring to call method collect() on the "connectorStatsCollector", making the latter a Job
-	-->
-	<bean id="connectorStatsJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
-		<property name="targetObject" ref="connectorStatsCollector"/>
-		<property name="targetMethod" value="collect"/>
-		<property name="concurrent" value="false"/>
-	</bean>
-
-	<bean id="clusterStatsJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
-		<property name="targetObject" ref="clusterStatsCollector"/>
-		<property name="targetMethod" value="collect"/>
-		<property name="concurrent" value="false"/>
-	</bean>
-
-	<bean id="memoryStatsJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
-		<property name="targetObject" ref="memoryStatsCollector"/>
-		<property name="targetMethod" value="collect"/>
-		<property name="concurrent" value="false"/>
-	</bean>
-
-	<bean id="runtimeStatsJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
-		<property name="targetObject" ref="runtimeStatsCollector"/>
-		<property name="targetMethod" value="collect"/>
-		<property name="concurrent" value="false"/>
-	</bean>
-
-	<bean id="appStatsJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
-		<property name="targetObject" ref="appStatsCollector"/>
-		<property name="targetMethod" value="collect"/>
-		<property name="concurrent" value="false"/>
-	</bean>
-
-	<bean id="datasourceStatsJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
-		<property name="targetObject" ref="datasourceStatsCollector"/>
-		<property name="targetMethod" value="collect"/>
-		<property name="concurrent" value="false"/>
-	</bean>
-
-	<bean id="statsSerializerJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
-		<property name="targetObject" ref="statsCollection"/>
-		<property name="targetMethod" value="serialize"/>
-		<property name="concurrent" value="false"/>
-	</bean>
-
 	<bean id="connectorStatsTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
 		<property name="jobDetail" ref="connectorStatsJobDetail"/>
 		<property name="cronExpression">
