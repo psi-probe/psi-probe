@@ -35,8 +35,12 @@
 		<servlet-name>probe</servlet-name>
 		<servlet-class>psiprobe.ProbeServlet</servlet-class>
 		<init-param>
+			<param-name>contextClass</param-name>
+			<param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+		</init-param>
+		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/spring-probe-stats.xml</param-value>
+			<param-value>psiprobe.ProbeConfig</param-value>
 		</init-param>
 		<load-on-startup>0</load-on-startup>
 	</servlet>
