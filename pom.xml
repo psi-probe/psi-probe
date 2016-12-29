@@ -656,9 +656,9 @@
                     <version>4.3.0</version>
                 </plugin>
                 <plugin>
-                    <groupId>net.revelc.code</groupId>
+                    <groupId>net.revelc.code.formatter</groupId>
                     <artifactId>formatter-maven-plugin</artifactId>
-                    <version>0.5.2</version>
+                    <version>2.0.0</version>
                 </plugin>
                 <!-- Find maven root -->
                 <plugin>
@@ -862,7 +862,7 @@
             <build>
                 <plugins>
                     <plugin>
-                        <groupId>net.revelc.code</groupId>
+                        <groupId>net.revelc.code.formatter</groupId>
                         <artifactId>formatter-maven-plugin</artifactId>
                         <configuration>
                             <configFile>${main.basedir}/eclipse-java-google-style.xml</configFile>
