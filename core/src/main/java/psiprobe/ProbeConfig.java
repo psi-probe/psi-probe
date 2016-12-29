@@ -77,10 +77,10 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
   private static final Logger logger = LoggerFactory.getLogger(ProbeConfig.class);
 
   /**
-  * Gets the container listener bean.
-  *
-  * @return the container listener bean
-  */
+   * Gets the container listener bean.
+   *
+   * @return the container listener bean
+   */
   @Bean(name = "containerListener")
   public ContainerListenerBean getContainerListenerBean() {
     logger.info("Instantiated containerListener");
@@ -413,6 +413,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
 
   @Override
   public void addInterceptors(InterceptorRegistry registry) {
+    logger.info("Registering localeChangeInterceptor");
     registry.addInterceptor(getLocaleChangeInterceptor());
   }
 
@@ -491,7 +492,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
     provider.setStatNames(list);
     return provider;
   }
-  
+
   /**
    * Gets the cl request.
    *
@@ -525,7 +526,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
     provider.setStatNames(list);
     return provider;
   }
-  
+
   /**
    * Gets the traffic.
    *
@@ -558,7 +559,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
     provider.setStatNames(list);
     return provider;
   }
-  
+
   /**
    * Gets the memory usage.
    *
@@ -591,7 +592,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
     provider.setStatNames(list);
     return provider;
   }
-  
+
   /**
    * Gets the swap usage.
    *
@@ -623,7 +624,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
     provider.setStatNames(list);
     return provider;
   }
-  
+
   /**
    * Gets the fd usage.
    *
@@ -657,7 +658,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
     provider.setStatNames(list);
     return provider;
   }
-  
+
   /**
    * Gets the app avg proc time.
    *
