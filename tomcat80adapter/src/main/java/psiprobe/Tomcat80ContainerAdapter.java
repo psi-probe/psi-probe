@@ -56,7 +56,6 @@ public class Tomcat80ContainerAdapter extends AbstractTomcatContainer {
       return false;
     }
     return binding.startsWith("Apache Tomcat/8.0")
-      // Neither of the next two currently exist
       || binding.startsWith("Pivotal tc") && binding.contains("/8.0");
   }
 
