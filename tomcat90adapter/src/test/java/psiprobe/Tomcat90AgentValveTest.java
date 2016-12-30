@@ -13,7 +13,6 @@ package psiprobe;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import psiprobe.Tomcat90ContainerAdapter;
@@ -21,8 +20,6 @@ import psiprobe.Tomcat90ContainerAdapter;
 /**
  * The Class Tomcat90AgentValveTest.
  */
-// TODO Ignored until we are on java 8 for builds and maven can handle performing multiple jdk usage per multi-module build.
-@Ignore
 public class Tomcat90AgentValveTest {
 
   /**

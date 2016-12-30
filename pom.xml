@@ -56,7 +56,6 @@
         <module>tomcat70adapter</module>
         <module>tomcat80adapter</module>
         <module>tomcat85adapter</module>
-        <module>tomcat90adapter</module>
         <module>web</module>
     </modules>
 
@@ -842,12 +841,14 @@
                 </plugins>
             </reporting>
         </profile>
+
         <profile>
             <id>release</id>
             <properties>
                 <probe.version>${project.version}</probe.version>
             </properties>
         </profile>
+
         <profile>
             <id>development</id>
             <activation>
@@ -857,6 +858,7 @@
                 <probe.version>${project.version} (built at ${maven.build.timestamp})</probe.version>
             </properties>
         </profile>
+
         <profile>
             <id>format</id>
             <build>
@@ -878,6 +880,17 @@
                 </plugins>
             </build>
         </profile>
+
+        <profile>
+            <id>java18</id>
+            <activation>
+                <jdk>1.8</jdk>
+            </activation>
+            <modules>
+                <module>tomcat90adapter</module>
+            </modules>
+        </profile>
+
         <profile>
             <id>sort</id>
             <build>
@@ -897,6 +910,7 @@
                 </plugins>
             </build>
         </profile>
+
         <profile>
             <id>eclipse</id>
             <activation>
