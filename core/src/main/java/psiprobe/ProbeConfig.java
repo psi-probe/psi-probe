@@ -415,6 +415,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
   /**
    * Gets the bean name url handler mapping.
    *
+   * @param interceptor the interceptor
    * @return the bean name url handler mapping
    */
   @Bean(name = "handlerMapping")
@@ -941,6 +942,13 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
   /**
    * Gets the scheduler factory bean.
    *
+   * @param appStatsTrigger the app stats trigger
+   * @param clusterStatsTrigger the cluster stats trigger
+   * @param connectorStatsTrigger the connector stats trigger
+   * @param datasourceStatsTrigger the datasource stats trigger
+   * @param memoryStatsTrigger the memory stats trigger
+   * @param runtimeStatsTrigger the runtime stats trigger
+   * @param statsSerializerTrigger the stats serializer trigger
    * @return the scheduler factory bean
    */
   @Bean(name = "scheduler")
