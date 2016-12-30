@@ -24,8 +24,8 @@ public class BeanToXmlControllerTest {
    */
   @Test
   public void javabeanTester() {
-    JavaBeanTester.builder(BeanToXmlController.class)
-        .skip("applicationContext", "supportedMethods").test();
+    JavaBeanTester.builder(BeanToXmlController.class).skip("applicationContext", "supportedMethods")
+        .test();
   }
 
 }

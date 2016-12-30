@@ -40,15 +40,15 @@ public class LogbackFactoryAccessor extends DefaultAccessor {
    * @throws IllegalAccessException the illegal access exception
    * @throws InvocationTargetException the invocation target exception
    */
-  public LogbackFactoryAccessor(ClassLoader cl) throws ClassNotFoundException,
-      IllegalAccessException, InvocationTargetException {
+  public LogbackFactoryAccessor(ClassLoader cl)
+      throws ClassNotFoundException, IllegalAccessException, InvocationTargetException {
 
     // Get the singleton SLF4J binding, which may or may not be Logback, depending on the binding.
     Class<?> clazz = cl.loadClass("org.slf4j.impl.StaticLoggerBinder");
     Method getSingleton = MethodUtils.getAccessibleMethod(clazz, "getSingleton", new Class[0]);
     Object singleton = getSingleton.invoke(null);
-    Method getLoggerFactory = MethodUtils
-        .getAccessibleMethod(clazz, "getLoggerFactory", new Class[0]);
+    Method getLoggerFactory =
+        MethodUtils.getAccessibleMethod(clazz, "getLoggerFactory", new Class[0]);
 
     Object loggerFactory = getLoggerFactory.invoke(singleton);
 
@@ -80,9 +80,9 @@ public class LogbackFactoryAccessor extends DefaultAccessor {
   public LogbackLoggerAccessor getLogger(String name) {
     try {
       Class<? extends Object> clazz = getTarget().getClass();
-      Method getLogger = MethodUtils
-          .getAccessibleMethod(clazz, "getLogger", new Class[] {String.class});
-      
+      Method getLogger =
+          MethodUtils.getAccessibleMethod(clazz, "getLogger", new Class[] {String.class});
+
       Object logger = getLogger.invoke(getTarget(), name);
       if (logger == null) {
         throw new NullPointerException(getTarget() + ".getLogger(\"" + name + "\") returned null");

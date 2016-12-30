@@ -39,8 +39,8 @@ public class CachedRecordSetController extends PostParameterizableViewController
 
   @RequestMapping(path = "/sql/cachedRecordset.ajax")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 
@@ -54,21 +54,16 @@ public class CachedRecordSetController extends PostParameterizableViewController
     HttpSession sess = request.getSession(false);
 
     if (sess == null) {
-      request
-          .setAttribute(
-              "errorMessage",
-              getMessageSourceAccessor().getMessage(
-                  "probe.src.dataSourceTest.cachedResultSet.failure"));
+      request.setAttribute("errorMessage", getMessageSourceAccessor()
+          .getMessage("probe.src.dataSourceTest.cachedResultSet.failure"));
       logger.error("Cannot retrieve a cached result set. Http session is NULL.");
     } else {
       DataSourceTestInfo sessData =
           (DataSourceTestInfo) sess.getAttribute(DataSourceTestInfo.DS_TEST_SESS_ATTR);
 
       if (sessData == null) {
-        request.setAttribute(
-            "errorMessage",
-            getMessageSourceAccessor().getMessage(
-                "probe.src.dataSourceTest.cachedResultSet.failure"));
+        request.setAttribute("errorMessage", getMessageSourceAccessor()
+            .getMessage("probe.src.dataSourceTest.cachedResultSet.failure"));
         logger.error("Cannot retrieve a cached result set. {} session attribute is NULL.",
             DataSourceTestInfo.DS_TEST_SESS_ATTR);
       } else {
@@ -79,10 +74,8 @@ public class CachedRecordSetController extends PostParameterizableViewController
         results = sessData.getResults();
 
         if (results == null) {
-          request.setAttribute(
-              "errorMessage",
-              getMessageSourceAccessor().getMessage(
-                  "probe.src.dataSourceTest.cachedResultSet.failure"));
+          request.setAttribute("errorMessage", getMessageSourceAccessor()
+              .getMessage("probe.src.dataSourceTest.cachedResultSet.failure"));
           logger.error("Cached results set is NULL.");
         } else {
           rowsAffected = results.size();

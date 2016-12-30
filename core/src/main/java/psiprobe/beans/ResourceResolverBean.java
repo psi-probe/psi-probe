@@ -47,8 +47,8 @@ public class ResourceResolverBean implements ResourceResolver {
    * The default resource prefix for objects in a private application scope:
    * <code>java:comp/env/</code>.
    */
-  public static final String DEFAULT_RESOURCE_PREFIX = DEFAULT_GLOBAL_RESOURCE_PREFIX
-      + "java:comp/env/";
+  public static final String DEFAULT_RESOURCE_PREFIX =
+      DEFAULT_GLOBAL_RESOURCE_PREFIX + "java:comp/env/";
 
   /** The datasource mappers. */
   @Inject
@@ -107,11 +107,11 @@ public class ResourceResolverBean implements ResourceResolver {
       }
 
       try {
-        containerWrapper.getTomcatContainer()
-            .addContextResource(context, resourceList, contextBound);
+        containerWrapper.getTomcatContainer().addContextResource(context, resourceList,
+            contextBound);
 
-        containerWrapper.getTomcatContainer()
-            .addContextResourceLink(context, resourceList, contextBound);
+        containerWrapper.getTomcatContainer().addContextResourceLink(context, resourceList,
+            contextBound);
 
         for (ApplicationResource resourceList1 : resourceList) {
           lookupResource(resourceList1, contextBound, false);
@@ -144,7 +144,8 @@ public class ResourceResolverBean implements ResourceResolver {
         resource.setLookedUp(true);
         for (String accessorString : datasourceMappers) {
           logger.debug("Looking up datasource adapter: {}", accessorString);
-          DatasourceAccessor accessor = (DatasourceAccessor) Class.forName(accessorString).newInstance();
+          DatasourceAccessor accessor =
+              (DatasourceAccessor) Class.forName(accessorString).newInstance();
           dataSourceInfo = accessor.getInfo(obj);
           if (dataSourceInfo != null) {
             break;
@@ -179,7 +180,8 @@ public class ResourceResolverBean implements ResourceResolver {
       try {
         for (String accessorString : datasourceMappers) {
           logger.debug("Resetting datasource adapter: {}", accessorString);
-          DatasourceAccessor accessor = (DatasourceAccessor) Class.forName(accessorString).newInstance();
+          DatasourceAccessor accessor =
+              (DatasourceAccessor) Class.forName(accessorString).newInstance();
           if (accessor.reset(obj)) {
             return true;
           }
@@ -279,7 +281,8 @@ public class ResourceResolverBean implements ResourceResolver {
    * @param attributeName the attribute name
    * @return the string attribute
    */
-  private String getStringAttribute(MBeanServer server, ObjectName objectName, String attributeName) {
+  private String getStringAttribute(MBeanServer server, ObjectName objectName,
+      String attributeName) {
 
     try {
       return (String) server.getAttribute(objectName, attributeName);

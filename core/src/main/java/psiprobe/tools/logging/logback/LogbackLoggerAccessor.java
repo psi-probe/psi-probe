@@ -33,8 +33,9 @@ public class LogbackLoggerAccessor extends DefaultAccessor {
   public List<LogbackAppenderAccessor> getAppenders() {
     List<LogbackAppenderAccessor> appenders = new ArrayList<>();
     try {
-      for (Object appender : Collections.list(IteratorUtils.asEnumeration((Iterator<Object>) MethodUtils
-              .invokeMethod(getTarget(), "iteratorForAppenders", null)))) {
+      for (Object appender : Collections
+          .list(IteratorUtils.asEnumeration((Iterator<Object>) MethodUtils.invokeMethod(getTarget(),
+              "iteratorForAppenders", null)))) {
         List<Object> siftedAppenders = getSiftedAppenders(appender);
         if (siftedAppenders != null) {
           for (Object siftedAppender : siftedAppenders) {

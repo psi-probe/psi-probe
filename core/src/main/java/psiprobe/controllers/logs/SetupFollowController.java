@@ -31,8 +31,8 @@ public class SetupFollowController extends AbstractLogHandlerController {
 
   @RequestMapping(path = "/follow.htm")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 

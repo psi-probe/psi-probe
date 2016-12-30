@@ -37,10 +37,8 @@ public abstract class AbstractContextHandlerController extends AbstractTomcatCon
       return handleContext(contextName, context, request, response);
     }
     if (contextName != null) {
-      request.setAttribute(
-          "errorMessage",
-          getMessageSourceAccessor().getMessage("probe.src.contextDoesntExist",
-              new Object[] {contextName}));
+      request.setAttribute("errorMessage", getMessageSourceAccessor()
+          .getMessage("probe.src.contextDoesntExist", new Object[] {contextName}));
     }
 
     return new ModelAndView("errors/paramerror");

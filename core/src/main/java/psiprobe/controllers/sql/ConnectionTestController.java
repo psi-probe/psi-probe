@@ -46,8 +46,8 @@ public class ConnectionTestController extends AbstractContextHandlerController {
 
   @RequestMapping(path = "/sql/connection.ajax")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 
@@ -59,22 +59,17 @@ public class ConnectionTestController extends AbstractContextHandlerController {
     DataSource dataSource = null;
 
     try {
-      dataSource =
-          getContainerWrapper().getResourceResolver().lookupDataSource(context, resourceName,
-              getContainerWrapper());
+      dataSource = getContainerWrapper().getResourceResolver().lookupDataSource(context,
+          resourceName, getContainerWrapper());
     } catch (NamingException e) {
-      request.setAttribute(
-          "errorMessage",
-          getMessageSourceAccessor().getMessage("probe.src.dataSourceTest.resource.lookup.failure",
-              new Object[] {resourceName}));
+      request.setAttribute("errorMessage", getMessageSourceAccessor().getMessage(
+          "probe.src.dataSourceTest.resource.lookup.failure", new Object[] {resourceName}));
       logger.trace("", e);
     }
 
     if (dataSource == null) {
-      request.setAttribute(
-          "errorMessage",
-          getMessageSourceAccessor().getMessage("probe.src.dataSourceTest.resource.lookup.failure",
-              new Object[] {resourceName}));
+      request.setAttribute("errorMessage", getMessageSourceAccessor().getMessage(
+          "probe.src.dataSourceTest.resource.lookup.failure", new Object[] {resourceName}));
     } else {
       try {
         // TODO: use Spring's jdbc template?
@@ -97,9 +92,8 @@ public class ConnectionTestController extends AbstractContextHandlerController {
           return new ModelAndView(getViewName(), "dbMetaData", dbMetaData);
         }
       } catch (SQLException e) {
-        String message =
-            getMessageSourceAccessor().getMessage("probe.src.dataSourceTest.connection.failure",
-                new Object[] {e.getMessage()});
+        String message = getMessageSourceAccessor().getMessage(
+            "probe.src.dataSourceTest.connection.failure", new Object[] {e.getMessage()});
         logger.error(message, e);
         request.setAttribute("errorMessage", message);
       }

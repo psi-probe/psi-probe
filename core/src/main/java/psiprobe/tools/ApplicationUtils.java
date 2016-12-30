@@ -60,7 +60,7 @@ public final class ApplicationUtils {
   private ApplicationUtils() {
     // Prevent Instantiation
   }
-  
+
   /**
    * Gets the application.
    *
@@ -107,7 +107,8 @@ public final class ApplicationUtils {
     if (resourceResolver != null) {
       logger.debug("counting servlet attributes");
 
-      app.setContextAttributeCount(Collections.list(context.getServletContext().getAttributeNames()).size());
+      app.setContextAttributeCount(
+          Collections.list(context.getServletContext().getAttributeNames()).size());
 
       if (app.isAvailable()) {
         logger.debug("collecting session information");
@@ -275,7 +276,8 @@ public final class ApplicationUtils {
             (String) httpSession.getAttribute(ApplicationSession.LAST_ACCESSED_BY_IP);
         if (lastAccessedIp != null) {
           sbean.setLastAccessedIp(lastAccessedIp);
-          sbean.setLastAccessedIpLocale((Locale) httpSession.getAttribute(ApplicationSession.LAST_ACCESSED_LOCALE));
+          sbean.setLastAccessedIpLocale(
+              (Locale) httpSession.getAttribute(ApplicationSession.LAST_ACCESSED_LOCALE));
         }
 
       } catch (IllegalStateException e) {
@@ -443,7 +445,8 @@ public final class ApplicationUtils {
    * @param containerWrapper the container wrapper
    * @return the application filters
    */
-  public static List<FilterInfo> getApplicationFilters(Context context, ContainerWrapperBean containerWrapper) {
+  public static List<FilterInfo> getApplicationFilters(Context context,
+      ContainerWrapperBean containerWrapper) {
     return containerWrapper.getTomcatContainer().getApplicationFilters(context);
   }
 

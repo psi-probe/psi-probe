@@ -60,16 +60,16 @@ public class AllAppStatsController extends ParameterizableViewController {
 
   @RequestMapping(path = "/allappstats.htm")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
-    return super.handleRequestInternal(request, response)
-        .addObject("collectionPeriod", getCollectionPeriod());
+    return super.handleRequestInternal(request, response).addObject("collectionPeriod",
+        getCollectionPeriod());
   }
 
   @Value("allappstats")

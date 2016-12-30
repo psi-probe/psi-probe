@@ -38,8 +38,8 @@ public class ListSunThreadsController extends ParameterizableViewController {
 
   @RequestMapping(path = "/th_impl2.htm")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 
@@ -61,10 +61,8 @@ public class ListSunThreadsController extends ParameterizableViewController {
       threads = new ArrayList<>(allIds.length);
 
       for (long id : allIds) {
-        CompositeData cd =
-            (CompositeData) mbeanServer.invoke(threadingOName, "getThreadInfo", new Object[] {
-              id, executionStackDepth},
-                new String[] {"long", "int"});
+        CompositeData cd = (CompositeData) mbeanServer.invoke(threadingOName, "getThreadInfo",
+            new Object[] {id, executionStackDepth}, new String[] {"long", "int"});
 
         if (cd != null) {
           SunThread st = new SunThread();

@@ -24,7 +24,8 @@ public class WhoisControllerTest {
    */
   @Test
   public void javabeanTester() {
-    JavaBeanTester.builder(WhoisController.class).skip("applicationContext", "supportedMethods").test();
+    JavaBeanTester.builder(WhoisController.class).skip("applicationContext", "supportedMethods")
+        .test();
   }
 
 }

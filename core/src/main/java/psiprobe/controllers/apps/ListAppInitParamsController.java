@@ -31,8 +31,8 @@ public class ListAppInitParamsController extends AbstractContextHandlerControlle
 
   @RequestMapping(path = "/appinitparams.htm")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 
@@ -40,9 +40,8 @@ public class ListAppInitParamsController extends AbstractContextHandlerControlle
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-    ModelAndView mv =
-        new ModelAndView(getViewName(), "appInitParams", ApplicationUtils.getApplicationInitParams(
-            context, getContainerWrapper()));
+    ModelAndView mv = new ModelAndView(getViewName(), "appInitParams",
+        ApplicationUtils.getApplicationInitParams(context, getContainerWrapper()));
     if (SecurityUtils.hasAttributeValueRole(getServletContext(), request)) {
       mv.addObject("allowedToViewValues", Boolean.TRUE);
     }

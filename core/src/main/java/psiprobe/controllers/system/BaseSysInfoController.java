@@ -100,8 +100,8 @@ public class BaseSysInfoController extends AbstractTomcatContainerController {
       HttpServletResponse response) throws Exception {
 
     SystemInformation systemInformation = new SystemInformation();
-    systemInformation.setAppBase(getContainerWrapper().getTomcatContainer().getAppBase()
-        .getAbsolutePath());
+    systemInformation
+        .setAppBase(getContainerWrapper().getTomcatContainer().getAppBase().getAbsolutePath());
     systemInformation.setConfigBase(getContainerWrapper().getTomcatContainer().getConfigBase());
 
     Map<String, String> sysProps = new HashMap<>();

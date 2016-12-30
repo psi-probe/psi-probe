@@ -87,9 +87,10 @@ public class ListCertificatesControllerTest {
     System.setProperty("catalina.base", certFolder.getPath());
 
     String storePassword = "123456";
-    
-    List<Cert> certs = controller.getCertificates(storeType, "localhost-truststore.jks", storePassword);
-    
+
+    List<Cert> certs =
+        controller.getCertificates(storeType, "localhost-truststore.jks", storePassword);
+
     assertThat(certs, notNullValue());
     assertThat(certs.size(), is(2));
     assertThat(certs.get(0).getAlias(), is("google internet authority g2"));
@@ -112,7 +113,8 @@ public class ListCertificatesControllerTest {
 
     String storePassword = "123456";
 
-    List<Cert> certs = controller.getCertificates(storeType, storeFile.toURI().toString(), storePassword);
+    List<Cert> certs =
+        controller.getCertificates(storeType, storeFile.toURI().toString(), storePassword);
 
     assertThat(certs, notNullValue());
     assertThat(certs.size(), is(2));
@@ -135,7 +137,8 @@ public class ListCertificatesControllerTest {
 
     String storePassword = "123456";
 
-    List<Cert> certs = controller.getCertificates(storeType, "./localhost-truststore.jks", storePassword);
+    List<Cert> certs =
+        controller.getCertificates(storeType, "./localhost-truststore.jks", storePassword);
 
     assertThat(certs, notNullValue());
     assertThat(certs.size(), is(2));

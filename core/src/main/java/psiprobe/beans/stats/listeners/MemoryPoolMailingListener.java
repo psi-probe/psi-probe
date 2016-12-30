@@ -28,8 +28,8 @@ import javax.mail.MessagingException;
  * class is registered with a component using the component's {@code addMemoryPoolMailingListener}
  * method. When the memoryPoolMailing event occurs, that object's appropriate method is invoked.
  */
-public class MemoryPoolMailingListener extends AbstractFlapListener implements MessageSourceAware,
-    InitializingBean {
+public class MemoryPoolMailingListener extends AbstractFlapListener
+    implements MessageSourceAware, InitializingBean {
 
   /** The Constant BASE_PROPERTY. */
   private static final String BASE_PROPERTY = "probe.src.stats.listener.memory.pool.";
@@ -131,12 +131,10 @@ public class MemoryPoolMailingListener extends AbstractFlapListener implements M
       bodyPrefix =
           getMessageSourceAccessor().getMessage(BASE_PROPERTY + "flappingStop.body.prefix");
     }
-    String subject =
-        getMessageSourceAccessor().getMessage(BASE_PROPERTY + message + ".subject",
-            new Object[] {subjectInfix, name, value, threshold});
-    String body =
-        getMessageSourceAccessor().getMessage(BASE_PROPERTY + message + ".body",
-            new Object[] {bodyPrefix, name, value, threshold});
+    String subject = getMessageSourceAccessor().getMessage(BASE_PROPERTY + message + ".subject",
+        new Object[] {subjectInfix, name, value, threshold});
+    String body = getMessageSourceAccessor().getMessage(BASE_PROPERTY + message + ".body",
+        new Object[] {bodyPrefix, name, value, threshold});
     MailMessage mail = new MailMessage(null, subject, body);
     try {
       getMailer().send(mail);

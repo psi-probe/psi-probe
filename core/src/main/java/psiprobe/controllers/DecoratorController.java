@@ -57,8 +57,8 @@ public class DecoratorController extends PostParameterizableViewController {
 
   @RequestMapping(path = "/decorator.htm")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 

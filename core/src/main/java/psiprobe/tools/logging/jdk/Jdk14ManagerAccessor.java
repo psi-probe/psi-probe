@@ -35,8 +35,8 @@ public class Jdk14ManagerAccessor extends DefaultAccessor {
    * @throws IllegalAccessException the illegal access exception
    * @throws InvocationTargetException the invocation target exception
    */
-  public Jdk14ManagerAccessor(ClassLoader cl) throws ClassNotFoundException,
-      IllegalAccessException, InvocationTargetException {
+  public Jdk14ManagerAccessor(ClassLoader cl)
+      throws ClassNotFoundException, IllegalAccessException, InvocationTargetException {
 
     Class<?> clazz = cl.loadClass("java.util.logging.LogManager");
     Method getManager = MethodUtils.getAccessibleMethod(clazz, "getLogManager", new Class[0]);
@@ -66,8 +66,8 @@ public class Jdk14ManagerAccessor extends DefaultAccessor {
     try {
       Object logger = MethodUtils.invokeMethod(getTarget(), "getLogger", name);
       if (logger == null) {
-        throw new NullPointerException(getTarget().getClass().getName() + "#getLogger(\"" + name
-            + "\") returned null");
+        throw new NullPointerException(
+            getTarget().getClass().getName() + "#getLogger(\"" + name + "\") returned null");
       }
       Jdk14LoggerAccessor accessor = new Jdk14LoggerAccessor();
       accessor.setTarget(logger);
@@ -87,8 +87,8 @@ public class Jdk14ManagerAccessor extends DefaultAccessor {
   public List<LogDestination> getHandlers() {
     List<LogDestination> allHandlers = new ArrayList<>();
     try {
-      for (String name : Collections.list((Enumeration<String>) MethodUtils
-              .invokeMethod(getTarget(), "getLoggerNames", null))) {
+      for (String name : Collections.list(
+          (Enumeration<String>) MethodUtils.invokeMethod(getTarget(), "getLoggerNames", null))) {
         Jdk14LoggerAccessor accessor = getLogger(name);
         if (accessor != null) {
           allHandlers.addAll(accessor.getHandlers());

@@ -124,7 +124,8 @@ public class ContainerListenerBean implements NotificationListener {
           }
         }
 
-      } else if (notification.getType().equals(MBeanServerNotification.UNREGISTRATION_NOTIFICATION)) {
+      } else if (notification.getType()
+          .equals(MBeanServerNotification.UNREGISTRATION_NOTIFICATION)) {
 
         if ("RequestProcessor".equals(objectName.getKeyProperty("type"))) {
           ThreadPoolObjectName threadPoolObjectName = findPool(objectName.getKeyProperty("worker"));
@@ -158,19 +159,18 @@ public class ContainerListenerBean implements NotificationListener {
       String name = threadPoolName.getKeyProperty("name");
 
       threadPoolObjectName.setThreadPoolName(threadPoolName);
-      ObjectName grpName =
-          server.getObjectInstance(
-              new ObjectName(threadPoolName.getDomain() + ":type=GlobalRequestProcessor,name="
-                  + name)).getObjectName();
+      ObjectName grpName = server
+          .getObjectInstance(new ObjectName(
+              threadPoolName.getDomain() + ":type=GlobalRequestProcessor,name=" + name))
+          .getObjectName();
       threadPoolObjectName.setGlobalRequestProcessorName(grpName);
 
       /*
        * unfortunately exact workers could not be found at the time of testing so we filter out the
        * relevant workers within the loop
        */
-      Set<ObjectInstance> workers =
-          server.queryMBeans(
-              new ObjectName(threadPoolName.getDomain() + ":type=RequestProcessor,*"), null);
+      Set<ObjectInstance> workers = server.queryMBeans(
+          new ObjectName(threadPoolName.getDomain() + ":type=RequestProcessor,*"), null);
 
       for (ObjectInstance worker : workers) {
         ObjectName wrkName = worker.getObjectName();
@@ -235,10 +235,10 @@ public class ContainerListenerBean implements NotificationListener {
           threadPool.setMinSpareThreads(JmxTools.getIntAttr(server, poolName, "minSpareThreads"));
         }
 
-        threadPool.setCurrentThreadsBusy(JmxTools
-            .getIntAttr(server, poolName, "currentThreadsBusy"));
-        threadPool.setCurrentThreadCount(JmxTools
-            .getIntAttr(server, poolName, "currentThreadCount"));
+        threadPool
+            .setCurrentThreadsBusy(JmxTools.getIntAttr(server, poolName, "currentThreadsBusy"));
+        threadPool
+            .setCurrentThreadCount(JmxTools.getIntAttr(server, poolName, "currentThreadCount"));
 
         /*
          * Tomcat will return -1 for maxThreads if the connector uses an executor for its
@@ -306,18 +306,21 @@ public class ContainerListenerBean implements NotificationListener {
               if (rp.getRemoteAddr() != null) {
                 // Show flag as defined in jvm for localhost
                 if (InetAddress.getByName(rp.getRemoteAddr()).isLoopbackAddress()) {
-                  rp.setRemoteAddrLocale(new Locale(System.getProperty("user.language"), System.getProperty("user.country")));
+                  rp.setRemoteAddrLocale(new Locale(System.getProperty("user.language"),
+                      System.getProperty("user.country")));
                 } else {
                   // Show flag for non-localhost using geo lite
-                  DatabaseReader reader = new DatabaseReader.Builder(new File(getClass().getClassLoader()
-                      .getResource("GeoLite2-Country.mmdb").toURI())).withCache(new CHMCache()).build();
+                  DatabaseReader reader = new DatabaseReader.Builder(new File(
+                      getClass().getClassLoader().getResource("GeoLite2-Country.mmdb").toURI()))
+                          .withCache(new CHMCache()).build();
                   try {
-                      CountryResponse response = reader.country(InetAddress.getByName(rp.getRemoteAddr()));
-                      Country country = response.getCountry();
-                      rp.setRemoteAddrLocale(new Locale("", country.getIsoCode()));
+                    CountryResponse response =
+                        reader.country(InetAddress.getByName(rp.getRemoteAddr()));
+                    Country country = response.getCountry();
+                    rp.setRemoteAddrLocale(new Locale("", country.getIsoCode()));
                   } catch (AddressNotFoundException e) {
-                      logger.info("{}", e.getMessage());
-                      logger.trace("", e);
+                    logger.info("{}", e.getMessage());
+                    logger.trace("", e);
                   }
                 }
               }
@@ -325,8 +328,8 @@ public class ContainerListenerBean implements NotificationListener {
               rp.setVirtualHost(JmxTools.getStringAttr(server, wrkName, "virtualHost"));
               rp.setMethod(JmxTools.getStringAttr(server, wrkName, "method"));
               rp.setCurrentUri(JmxTools.getStringAttr(server, wrkName, "currentUri"));
-              rp.setCurrentQueryString(JmxTools
-                  .getStringAttr(server, wrkName, "currentQueryString"));
+              rp.setCurrentQueryString(
+                  JmxTools.getStringAttr(server, wrkName, "currentQueryString"));
               rp.setProtocol(JmxTools.getStringAttr(server, wrkName, "protocol"));
 
               // Relies on https://issues.apache.org/bugzilla/show_bug.cgi?id=41128

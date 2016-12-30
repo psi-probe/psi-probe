@@ -57,7 +57,8 @@ public class VisualScoreTagTest {
    * @param partialBlocks the partial blocks
    * @param invertLoopIndexes the invert loop indexes
    */
-  private static void doTestRangeScan(int fullBlocks, int partialBlocks, boolean invertLoopIndexes) {
+  private static void doTestRangeScan(int fullBlocks, int partialBlocks,
+      boolean invertLoopIndexes) {
     int value;
     int value2;
     int count = 0;
@@ -109,7 +110,8 @@ public class VisualScoreTagTest {
    * @param partialBlocks the partial blocks
    * @return the string[]
    */
-  private static String[] callCalculateSuffix(int value, int value2, int fullBlocks, int partialBlocks) {
+  private static String[] callCalculateSuffix(int value, int value2, int fullBlocks,
+      int partialBlocks) {
     String body = "{0} ";
 
     VisualScoreTag visualScoreTag = new VisualScoreTag();

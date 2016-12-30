@@ -78,8 +78,8 @@ public class ListLogsController extends ParameterizableViewController {
 
   @RequestMapping(path = {"/logs", "/list.htm"})
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 

@@ -18,22 +18,22 @@ import org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean;
  */
 public class AppStatsJobDetail extends MethodInvokingJobDetailFactoryBean {
 
-    @Override
-    @Value("false")
-    public void setConcurrent(boolean concurrent) {
-        super.setConcurrent(concurrent);
-    }
+  @Override
+  @Value("false")
+  public void setConcurrent(boolean concurrent) {
+    super.setConcurrent(concurrent);
+  }
 
-    @Override
-    @Value("appStatsCollector")
-    public void setTargetBeanName(String targetBeanName) {
-        super.setTargetBeanName(targetBeanName);
-    }
+  @Override
+  @Value("appStatsCollector")
+  public void setTargetBeanName(String targetBeanName) {
+    super.setTargetBeanName(targetBeanName);
+  }
 
-    @Override
-    @Value("collect")
-    public void setTargetMethod(String targetMethod) {
-        super.setTargetMethod(targetMethod);
-    }
+  @Override
+  @Value("collect")
+  public void setTargetMethod(String targetMethod) {
+    super.setTargetMethod(targetMethod);
+  }
 
 }

@@ -30,7 +30,8 @@ import javax.servlet.http.HttpServletResponse;
 public class AdviseGarbageCollectionController extends ParameterizableViewController {
 
   /** The Constant logger. */
-  private static final Logger logger = LoggerFactory.getLogger(AdviseGarbageCollectionController.class);
+  private static final Logger logger =
+      LoggerFactory.getLogger(AdviseGarbageCollectionController.class);
 
   /** The replace pattern. */
   private String replacePattern;
@@ -56,8 +57,8 @@ public class AdviseGarbageCollectionController extends ParameterizableViewContro
 
   @RequestMapping(path = "/adm/advisegc.htm")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 

@@ -85,8 +85,8 @@ public class RenderChartController extends AbstractController {
 
   @RequestMapping(path = "/chart.png")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 
@@ -155,18 +155,18 @@ public class RenderChartController extends AbstractController {
     // Build series data from the give statistic
     JFreeChart chart = null;
     if ("area".equals(chartType)) {
-      chart = ChartFactory.createXYAreaChart(
-          "", labelX, labelY, ds, PlotOrientation.VERTICAL, showLegend, false, false);
+      chart = ChartFactory.createXYAreaChart("", labelX, labelY, ds, PlotOrientation.VERTICAL,
+          showLegend, false, false);
 
       ((XYAreaRenderer) chart.getXYPlot().getRenderer()).setOutline(true);
 
     } else if ("stacked".equals(chartType)) {
-      chart = ChartFactory.createStackedXYAreaChart(
-          "", labelX, labelY, ds, PlotOrientation.VERTICAL, showLegend, false, false);
+      chart = ChartFactory.createStackedXYAreaChart("", labelX, labelY, ds,
+          PlotOrientation.VERTICAL, showLegend, false, false);
 
     } else if ("line".equals(chartType)) {
-      chart = ChartFactory.createXYLineChart(
-          "", labelX, labelY, ds, PlotOrientation.VERTICAL, showLegend, false, false);
+      chart = ChartFactory.createXYLineChart("", labelX, labelY, ds, PlotOrientation.VERTICAL,
+          showLegend, false, false);
 
       final XYLine3DRenderer renderer = new XYLine3DRenderer();
       renderer.setDrawOutlines(true);
@@ -188,8 +188,8 @@ public class RenderChartController extends AbstractController {
           chart.getXYPlot().getRenderer().setSeriesPaint(i, new Color(seriesColor[i]));
         }
         if (seriesOutlineColor[i] >= 0) {
-          chart.getXYPlot().getRenderer()
-              .setSeriesOutlinePaint(i, new Color(seriesOutlineColor[i]));
+          chart.getXYPlot().getRenderer().setSeriesOutlinePaint(i,
+              new Color(seriesOutlineColor[i]));
         }
       }
       chart.getXYPlot().setDomainGridlinePaint(new Color(gridColor));
@@ -199,8 +199,8 @@ public class RenderChartController extends AbstractController {
       chart.getXYPlot().setInsets(new RectangleInsets(-15, 0, 0, 10));
 
       response.setHeader("Content-type", "image/png");
-      response.getOutputStream().write(
-          ChartUtilities.encodeAsPNG(chart.createBufferedImage(width, height)));
+      response.getOutputStream()
+          .write(ChartUtilities.encodeAsPNG(chart.createBufferedImage(width, height)));
     }
 
     return null;

@@ -34,8 +34,8 @@ public class ListAppAttributesController extends AbstractContextHandlerControlle
 
   @RequestMapping(path = "/appattributes.htm")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 

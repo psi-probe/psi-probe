@@ -55,9 +55,9 @@ public class Tomcat90ContainerAdapter extends AbstractTomcatContainer {
       return false;
     }
     return binding.startsWith("Apache Tomcat/9.0")
-      // Neither of the next two currently exist
-      || binding.startsWith("Apache Tomcat (TomEE)/9.0")
-      || binding.startsWith("Pivotal tc") && binding.contains("/9.0");
+        // Neither of the next two currently exist
+        || binding.startsWith("Apache Tomcat (TomEE)/9.0")
+        || binding.startsWith("Pivotal tc") && binding.contains("/9.0");
   }
 
   /**
@@ -241,8 +241,8 @@ public class Tomcat90ContainerAdapter extends AbstractTomcatContainer {
        * if the parameter is declared in a deployment descriptor and it is not declared in a context
        * descriptor with override=false, the value comes from the deployment descriptor
        */
-      param.setFromDeplDescr(context.findParameter(paramName) != null
-          && !nonOverridableParams.contains(paramName));
+      param.setFromDeplDescr(
+          context.findParameter(paramName) != null && !nonOverridableParams.contains(paramName));
       initParams.add(param);
     }
     return initParams;

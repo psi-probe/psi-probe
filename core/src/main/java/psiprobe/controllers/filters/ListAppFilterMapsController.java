@@ -32,8 +32,8 @@ public class ListAppFilterMapsController extends AbstractContextHandlerControlle
 
   @RequestMapping(path = "/appfiltermaps.htm")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 
@@ -41,8 +41,8 @@ public class ListAppFilterMapsController extends AbstractContextHandlerControlle
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-    List<FilterMapping> filterMaps = getContainerWrapper().getTomcatContainer()
-        .getApplicationFilterMaps(context);
+    List<FilterMapping> filterMaps =
+        getContainerWrapper().getTomcatContainer().getApplicationFilterMaps(context);
 
     return new ModelAndView(getViewName(), "filterMaps", filterMaps);
   }

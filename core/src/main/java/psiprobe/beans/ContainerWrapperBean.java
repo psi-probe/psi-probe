@@ -106,7 +106,8 @@ public class ContainerWrapperBean {
                 }
                 logger.debug("Cannot bind {} to {}", className, serverInfo);
               } else {
-                logger.error("{} does not implement {}", className, TomcatContainer.class.getName());
+                logger.error("{} does not implement {}", className,
+                    TomcatContainer.class.getName());
               }
             } catch (Exception e) {
               logger.debug("", e);

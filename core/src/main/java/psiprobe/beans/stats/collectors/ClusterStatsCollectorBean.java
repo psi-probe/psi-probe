@@ -92,8 +92,7 @@ public class ClusterStatsCollectorBean extends AbstractStatsCollectorBean {
    * @param period the period
    * @param span the span
    */
-  public void setMaxSeries(
-      @Value("${psiprobe.beans.stats.collectors.cluster.period}") long period,
+  public void setMaxSeries(@Value("${psiprobe.beans.stats.collectors.cluster.period}") long period,
       @Value("${psiprobe.beans.stats.collectors.cluster.span}") long span) {
     super.setMaxSeries((int) TimeExpression.dataPoints(period, span));
   }

@@ -128,12 +128,11 @@ public class VisualScoreTag extends BodyTagSupport {
 
     int redWhole = (int) Math.floor(value / blockWidth);
     int redPart = (int) Math.floor((value - redWhole * blockWidth) / unitSize);
-    int bluePart1 = redPart > 0
-        ? Math.min((int) Math.floor(value2 / unitSize), partialBlocks - redPart)
-        : 0;
+    int bluePart1 =
+        redPart > 0 ? Math.min((int) Math.floor(value2 / unitSize), partialBlocks - redPart) : 0;
     int blueWhole = (int) Math.max(0, Math.ceil(value2 / blockWidth) - (redPart > 0 ? 1 : 0));
-    int bluePart2 = (int) Math.floor(
-        (value2 - (blueWhole * blockWidth) - (bluePart1 * unitSize)) / unitSize);
+    int bluePart2 =
+        (int) Math.floor((value2 - (blueWhole * blockWidth) - (bluePart1 * unitSize)) / unitSize);
 
     StringBuilder buf = new StringBuilder();
 
@@ -175,8 +174,7 @@ public class VisualScoreTag extends BodyTagSupport {
 
     // Empty blocks
     int emptyBlocks = showEmptyBlocks
-        ? fullBlocks - (redWhole + blueWhole + (redPart > 0 ? 1 : 0) + (bluePart2 > 0 ? 1 : 0))
-        : 0;
+        ? fullBlocks - (redWhole + blueWhole + (redPart > 0 ? 1 : 0) + (bluePart2 > 0 ? 1 : 0)) : 0;
     if (emptyBlocks > 0) {
       String emptyBody = MessageFormat.format(body, "0+0");
       for (int i = 0; i < emptyBlocks; i++) {
@@ -189,7 +187,8 @@ public class VisualScoreTag extends BodyTagSupport {
       String format = WHITE_RIGHT_BORDER;
       if (redWhole == fullBlocks) {
         format = RED_RIGHT_BORDER;
-      } else if (redWhole + (redPart + bluePart1 == partialBlocks ? 1 : 0) + blueWhole == fullBlocks) {
+      } else if (redWhole + (redPart + bluePart1 == partialBlocks ? 1 : 0)
+          + blueWhole == fullBlocks) {
         format = BLUE_RIGHT_BORDER;
       }
       buf.append(MessageFormat.format(body, new Object[] {format}));

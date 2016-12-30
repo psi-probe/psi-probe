@@ -45,9 +45,8 @@ public class CatalinaLoggerAccessor extends AbstractLogDestination {
     boolean timestamp = (Boolean) Instruments.getField(getTarget(), "timestamp");
     String date = timestamp ? new SimpleDateFormat("yyyy-MM-dd").format(new Date()) : "";
 
-    File file =
-        date != null && dir != null && prefix != null && suffix != null ? new File(dir, prefix
-            + date + suffix) : null;
+    File file = date != null && dir != null && prefix != null && suffix != null
+        ? new File(dir, prefix + date + suffix) : null;
     if (file != null && !file.isAbsolute()) {
       return new File(System.getProperty("catalina.base"), file.getPath());
     }

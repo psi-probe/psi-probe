@@ -47,8 +47,8 @@ public class DataSourceTestController extends ParameterizableViewController {
 
   @RequestMapping(path = "/sql/datasourcetest.htm")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 
@@ -79,8 +79,7 @@ public class DataSourceTestController extends ParameterizableViewController {
             String.valueOf(sessData == null ? getRowsPerPage() : sessData.getRowsPerPage()))
         .addObject("historySize",
             String.valueOf(sessData == null ? getHistorySize() : sessData.getHistorySize()))
-        .addObject("backURL", backUrl)
-        .addObject("collectionPeriod", getCollectionPeriod());
+        .addObject("backURL", backUrl).addObject("collectionPeriod", getCollectionPeriod());
   }
 
   /**

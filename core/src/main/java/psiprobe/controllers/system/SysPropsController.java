@@ -33,8 +33,8 @@ public class SysPropsController extends BaseSysInfoController {
 
   @RequestMapping(path = "/sysprops.htm")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 

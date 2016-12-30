@@ -32,8 +32,8 @@ public class ClusterTrafficStatsController extends BaseClusterStatsController {
 
   @RequestMapping(path = "/cluster/traffic.ajax")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 

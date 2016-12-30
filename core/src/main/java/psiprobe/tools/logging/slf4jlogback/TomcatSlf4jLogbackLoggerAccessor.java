@@ -34,8 +34,9 @@ public class TomcatSlf4jLogbackLoggerAccessor extends DefaultAccessor {
     List<TomcatSlf4jLogbackAppenderAccessor> appenders = new ArrayList<>();
 
     try {
-      for (Object appender : Collections.list(IteratorUtils.asEnumeration((Iterator<Object>) MethodUtils
-              .invokeMethod(getTarget(), "iteratorForAppenders", null)))) {
+      for (Object appender : Collections
+          .list(IteratorUtils.asEnumeration((Iterator<Object>) MethodUtils.invokeMethod(getTarget(),
+              "iteratorForAppenders", null)))) {
         List<Object> siftedAppenders = getSiftedAppenders(appender);
         if (siftedAppenders != null) {
           for (Object siftedAppender : siftedAppenders) {
@@ -143,8 +144,8 @@ public class TomcatSlf4jLogbackLoggerAccessor extends DefaultAccessor {
    * @throws Exception the exception
    */
   private List<Object> getSiftedAppenders(Object appender) throws Exception {
-    if ("org.apache.juli.logging.ch.qos.logback.classic.sift.SiftingAppender".equals(appender
-        .getClass().getName())) {
+    if ("org.apache.juli.logging.ch.qos.logback.classic.sift.SiftingAppender"
+        .equals(appender.getClass().getName())) {
 
       Object tracker = MethodUtils.invokeMethod(appender, "getAppenderTracker", null);
       if (tracker != null) {

@@ -52,8 +52,8 @@ public class Log4JManagerAccessor extends DefaultAccessor {
 
       Object logger = getRootLogger.invoke(null);
       if (logger == null) {
-        throw new NullPointerException(getTarget().getClass().getName()
-            + "#getRootLogger() returned null");
+        throw new NullPointerException(
+            getTarget().getClass().getName() + "#getRootLogger() returned null");
       }
       Log4JLoggerAccessor accessor = new Log4JLoggerAccessor();
       accessor.setTarget(logger);
@@ -74,13 +74,13 @@ public class Log4JManagerAccessor extends DefaultAccessor {
   public Log4JLoggerAccessor getLogger(String name) {
     try {
       Class<?> clazz = (Class<?>) getTarget();
-      Method getLogger = MethodUtils
-          .getAccessibleMethod(clazz, "getLogger", new Class[] {String.class});
+      Method getLogger =
+          MethodUtils.getAccessibleMethod(clazz, "getLogger", new Class[] {String.class});
 
       Object logger = getLogger.invoke(null, name);
       if (logger == null) {
-        throw new NullPointerException(getTarget().getClass().getName() + "#getLogger(\"" + name
-            + "\") returned null");
+        throw new NullPointerException(
+            getTarget().getClass().getName() + "#getLogger(\"" + name + "\") returned null");
       }
       Log4JLoggerAccessor accessor = new Log4JLoggerAccessor();
       accessor.setTarget(logger);
@@ -103,10 +103,11 @@ public class Log4JManagerAccessor extends DefaultAccessor {
       appenders.addAll(getRootLogger().getAppenders());
 
       Class<?> clazz = (Class<?>) getTarget();
-      Method getCurrentLoggers = MethodUtils
-          .getAccessibleMethod(clazz, "getCurrentLoggers", new Class[0]);
+      Method getCurrentLoggers =
+          MethodUtils.getAccessibleMethod(clazz, "getCurrentLoggers", new Class[0]);
 
-      for (Object currentLogger : Collections.list((Enumeration<Object>) getCurrentLoggers.invoke(null))) {
+      for (Object currentLogger : Collections
+          .list((Enumeration<Object>) getCurrentLoggers.invoke(null))) {
         Log4JLoggerAccessor accessor = new Log4JLoggerAccessor();
         accessor.setTarget(currentLogger);
         accessor.setApplication(getApplication());

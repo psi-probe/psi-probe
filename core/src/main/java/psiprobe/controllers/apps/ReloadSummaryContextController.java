@@ -26,8 +26,8 @@ public class ReloadSummaryContextController extends BaseReloadContextController 
 
   @RequestMapping(path = "/app/reload_summary.htm")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 

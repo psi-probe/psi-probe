@@ -42,8 +42,8 @@ public class LogHandlerControllerTest {
    */
   @Test
   public void javabeanTesterFollow() {
-    JavaBeanTester.builder(FollowController.class)
-        .skip("applicationContext", "supportedMethods").test();
+    JavaBeanTester.builder(FollowController.class).skip("applicationContext", "supportedMethods")
+        .test();
   }
 
   /**

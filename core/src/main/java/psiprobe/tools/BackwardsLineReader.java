@@ -93,7 +93,8 @@ public class BackwardsLineReader {
     if (!empty) {
       byte[] byteArray = baos.toByteArray();
       reverse(byteArray);
-      return encoding == null ? new String(byteArray, StandardCharsets.UTF_8) : new String(byteArray, encoding);
+      return encoding == null ? new String(byteArray, StandardCharsets.UTF_8)
+          : new String(byteArray, encoding);
     }
     // return null if the end of the stream has been reached
     return null;

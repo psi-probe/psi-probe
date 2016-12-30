@@ -91,8 +91,8 @@ public class TokenizerSymbol implements Comparable<Object> {
 
   @Override
   public int hashCode() {
-    return Objects.hash(
-        this.name, this.startText, this.tailText, this.hidden, this.decodePaired, this.enabled, this.canBeNested);
+    return Objects.hash(this.name, this.startText, this.tailText, this.hidden, this.decodePaired,
+        this.enabled, this.canBeNested);
   }
 
   @Override
@@ -104,8 +104,7 @@ public class TokenizerSymbol implements Comparable<Object> {
       return false;
     }
     final TokenizerSymbol other = (TokenizerSymbol) obj;
-    return Objects.equals(this.name, other.name)
-        && Objects.equals(this.startText, other.startText)
+    return Objects.equals(this.name, other.name) && Objects.equals(this.startText, other.startText)
         && Objects.equals(this.tailText, other.tailText)
         && Objects.equals(this.hidden, other.hidden)
         && Objects.equals(this.decodePaired, other.decodePaired)

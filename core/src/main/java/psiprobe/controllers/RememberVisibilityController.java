@@ -35,8 +35,8 @@ public class RememberVisibilityController extends AbstractController {
 
   @RequestMapping(path = "/remember.ajax")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 
@@ -49,10 +49,8 @@ public class RememberVisibilityController extends AbstractController {
     if (cookieName != null && state != null) {
       cookieName = Functions.safeCookieName(cookieName);
       // expire the cookies at the current date + 10years (roughly, nevermind leap years)
-      response.addHeader(
-          "Set-Cookie",
-          cookieName + "=" + state + "; Expires="
-              + sdf.format(new Date(System.currentTimeMillis() + 315360000000L)));
+      response.addHeader("Set-Cookie", cookieName + "=" + state + "; Expires="
+          + sdf.format(new Date(System.currentTimeMillis() + 315360000000L)));
     }
     return null;
   }

@@ -44,13 +44,14 @@ public class TrustStoreController extends AbstractTomcatContainerController {
 
   @RequestMapping(path = "/truststore.htm")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 
   @Override
-  protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
+  protected ModelAndView handleRequestInternal(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
     List<Map<String, String>> certificateList = new ArrayList<>();
     try {
       String trustStoreType = System.getProperty("javax.net.ssl.trustStoreType");
@@ -74,7 +75,8 @@ public class TrustStoreController extends AbstractTomcatContainerController {
 
             attributes.put("alias", alias);
             attributes.put("cn", cert.getSubjectDN().toString());
-            attributes.put("expirationDate", new SimpleDateFormat("yyyy-MM-dd").format(cert.getNotAfter()));
+            attributes.put("expirationDate",
+                new SimpleDateFormat("yyyy-MM-dd").format(cert.getNotAfter()));
             certificateList.add(attributes);
           }
         }

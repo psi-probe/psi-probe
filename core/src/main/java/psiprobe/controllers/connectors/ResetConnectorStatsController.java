@@ -54,8 +54,8 @@ public class ResetConnectorStatsController extends ParameterizableViewController
 
   @RequestMapping(path = "/app/connectorReset.htm")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 

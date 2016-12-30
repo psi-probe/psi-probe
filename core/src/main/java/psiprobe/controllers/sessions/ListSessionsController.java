@@ -45,8 +45,8 @@ public class ListSessionsController extends AbstractContextHandlerController {
 
   @RequestMapping(path = "/sessions.htm")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 
@@ -54,31 +54,30 @@ public class ListSessionsController extends AbstractContextHandlerController {
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-    boolean calcSize =
-        ServletRequestUtils.getBooleanParameter(request, "size", false)
-            && SecurityUtils.hasAttributeValueRole(getServletContext(), request);
+    boolean calcSize = ServletRequestUtils.getBooleanParameter(request, "size", false)
+        && SecurityUtils.hasAttributeValueRole(getServletContext(), request);
 
     SessionSearchInfo searchInfo = new SessionSearchInfo();
-    searchInfo.setSearchAction(StringUtils.trimToNull(ServletRequestUtils.getStringParameter(
-        request, "searchAction", SessionSearchInfo.ACTION_NONE)));
+    searchInfo.setSearchAction(StringUtils.trimToNull(ServletRequestUtils
+        .getStringParameter(request, "searchAction", SessionSearchInfo.ACTION_NONE)));
     HttpSession sess = request.getSession(false);
 
     if (searchInfo.isApply()) {
-      searchInfo.setSessionId(StringUtils.trimToNull(ServletRequestUtils.getStringParameter(
-          request, "searchSessionId")));
-      searchInfo.setLastIp(StringUtils.trimToNull(ServletRequestUtils.getStringParameter(request,
-          "searchLastIP")));
+      searchInfo.setSessionId(StringUtils
+          .trimToNull(ServletRequestUtils.getStringParameter(request, "searchSessionId")));
+      searchInfo.setLastIp(
+          StringUtils.trimToNull(ServletRequestUtils.getStringParameter(request, "searchLastIP")));
 
-      searchInfo.setAgeFrom(StringUtils.trimToNull(ServletRequestUtils.getStringParameter(request,
-          "searchAgeFrom")));
-      searchInfo.setAgeTo(StringUtils.trimToNull(ServletRequestUtils.getStringParameter(request,
-          "searchAgeTo")));
-      searchInfo.setIdleTimeFrom(StringUtils.trimToNull(ServletRequestUtils.getStringParameter(
-          request, "searchIdleTimeFrom")));
-      searchInfo.setIdleTimeTo(StringUtils.trimToNull(ServletRequestUtils.getStringParameter(
-          request, "searchIdleTimeTo")));
-      searchInfo.setAttrName(StringUtils.trimToNull(ServletRequestUtils.getStringParameter(request,
-          "searchAttrName")));
+      searchInfo.setAgeFrom(
+          StringUtils.trimToNull(ServletRequestUtils.getStringParameter(request, "searchAgeFrom")));
+      searchInfo.setAgeTo(
+          StringUtils.trimToNull(ServletRequestUtils.getStringParameter(request, "searchAgeTo")));
+      searchInfo.setIdleTimeFrom(StringUtils
+          .trimToNull(ServletRequestUtils.getStringParameter(request, "searchIdleTimeFrom")));
+      searchInfo.setIdleTimeTo(StringUtils
+          .trimToNull(ServletRequestUtils.getStringParameter(request, "searchIdleTimeTo")));
+      searchInfo.setAttrName(StringUtils
+          .trimToNull(ServletRequestUtils.getStringParameter(request, "searchAttrName")));
       if (sess != null) {
         sess.setAttribute(SessionSearchInfo.SESS_ATTR_NAME, searchInfo);
       }
@@ -155,8 +154,8 @@ public class ListSessionsController extends AbstractContextHandlerController {
       }
       if (!searchInfo.isAttrNameValid()) {
         for (String message : searchInfo.getAttrNameMsgs()) {
-          searchInfo.addErrorMessage(msa.getMessage("probe.src.sessions.search.invalid.attrName",
-              new Object[] {message}));
+          searchInfo.addErrorMessage(
+              msa.getMessage("probe.src.sessions.search.invalid.attrName", new Object[] {message}));
         }
       }
       if (!searchInfo.isAgeFromValid()) {
