@@ -86,8 +86,8 @@ public class ConnectionTestController extends AbstractContextHandlerController {
               md.getDriverName());
           addDbMetaDataEntry(dbMetaData, "probe.jsp.dataSourceTest.dbMetaData.jdbcDriverVersion",
               md.getDriverVersion());
-          // addDbMetaDataEntry(dbMetaData, "probe.jsp.dataSourceTest.dbMetaData.jdbcVersion",
-          // String.valueOf(md.getJDBCMajorVersion()));
+          addDbMetaDataEntry(dbMetaData, "probe.jsp.dataSourceTest.dbMetaData.jdbcVersion",
+              String.valueOf(md.getJDBCMajorVersion()));
 
           return new ModelAndView(getViewName(), "dbMetaData", dbMetaData);
         }
