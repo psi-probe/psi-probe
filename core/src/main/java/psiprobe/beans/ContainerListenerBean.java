@@ -112,26 +112,19 @@ public class ContainerListenerBean implements NotificationListener {
    */
   @Override
   public synchronized void handleNotification(Notification notification, Object object) {
-    if (notification instanceof MBeanServerNotification) {
+    if (notification instanceof MBeanServerNotification
+        && notification.getType().equals(MBeanServerNotification.REGISTRATION_NOTIFICATION)
+        || notification.getType().equals(MBeanServerNotification.UNREGISTRATION_NOTIFICATION)) {
+
       ObjectName objectName = ((MBeanServerNotification) notification).getMBeanName();
-
-      if (notification.getType().equals(MBeanServerNotification.REGISTRATION_NOTIFICATION)) {
-
-        if ("RequestProcessor".equals(objectName.getKeyProperty("type"))) {
-          ThreadPoolObjectName threadPoolObjectName = findPool(objectName.getKeyProperty("worker"));
-          if (threadPoolObjectName != null) {
-            threadPoolObjectName.getRequestProcessorNames().add(objectName);
-          }
-        }
-
-      } else if (notification.getType()
-          .equals(MBeanServerNotification.UNREGISTRATION_NOTIFICATION)) {
-
-        if ("RequestProcessor".equals(objectName.getKeyProperty("type"))) {
-          ThreadPoolObjectName threadPoolObjectName = findPool(objectName.getKeyProperty("worker"));
-          if (threadPoolObjectName != null) {
-            threadPoolObjectName.getRequestProcessorNames().remove(objectName);
-          }
+      if ("RequestProcessor".equals(objectName.getKeyProperty("type"))) {
+        ThreadPoolObjectName threadPoolObjectName = findPool(objectName.getKeyProperty("worker"));
+        if (threadPoolObjectName != null) {
+            if (notification.getType().equals(MBeanServerNotification.REGISTRATION_NOTIFICATION)) {
+              threadPoolObjectName.getRequestProcessorNames().add(objectName);
+            } else {
+              threadPoolObjectName.getRequestProcessorNames().remove(objectName);
+            }
         }
       }
     }
