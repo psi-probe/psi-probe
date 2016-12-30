@@ -945,9 +945,12 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "scheduler")
   public SchedulerFactoryBean getSchedulerFactoryBean(@Autowired AppStatsTrigger appStatsTrigger,
-      @Autowired ClusterStatsTrigger clusterStatsTrigger, @Autowired ConnectorStatsTrigger connectorStatsTrigger,
-      @Autowired DatasourceStatsTrigger datasourceStatsTrigger, @Autowired MemoryStatsTrigger memoryStatsTrigger,
-      @Autowired RuntimeStatsTrigger runtimeStatsTrigger, @Autowired StatsSerializerTrigger statsSerializerTrigger) {
+      @Autowired ClusterStatsTrigger clusterStatsTrigger,
+      @Autowired ConnectorStatsTrigger connectorStatsTrigger,
+      @Autowired DatasourceStatsTrigger datasourceStatsTrigger,
+      @Autowired MemoryStatsTrigger memoryStatsTrigger,
+      @Autowired RuntimeStatsTrigger runtimeStatsTrigger,
+      @Autowired StatsSerializerTrigger statsSerializerTrigger) {
 
     logger.info("Instantiated scheduler");
     SchedulerFactoryBean bean = new SchedulerFactoryBean();

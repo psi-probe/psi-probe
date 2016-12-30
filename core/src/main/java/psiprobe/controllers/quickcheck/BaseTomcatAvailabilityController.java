@@ -87,9 +87,8 @@ public class BaseTomcatAvailabilityController extends AbstractTomcatContainerCon
         }
       }
 
-      tomcatTestReport.setWebappAvailabilityTest(allContextsAvailable
-          ? TomcatTestReport.TEST_PASSED
-          : TomcatTestReport.TEST_FAILED);
+      tomcatTestReport.setWebappAvailabilityTest(
+          allContextsAvailable ? TomcatTestReport.TEST_PASSED : TomcatTestReport.TEST_FAILED);
 
     } else {
       List<ApplicationResource> resources =
@@ -129,9 +128,9 @@ public class BaseTomcatAvailabilityController extends AbstractTomcatContainerCon
       for (; fileCount > 0; fileCount--) {
         File file = new File(tmpDir, "tctest_" + fileCount);
         try (FileOutputStream fos = new FileOutputStream(file)) {
-            files.add(file);
-            fileStreams.add(fos);
-            fos.write("this is a test".getBytes(StandardCharsets.UTF_8));
+          files.add(file);
+          fileStreams.add(fos);
+          fos.write("this is a test".getBytes(StandardCharsets.UTF_8));
         }
       }
       tomcatTestReport.setFileTest(TomcatTestReport.TEST_PASSED);
@@ -148,7 +147,7 @@ public class BaseTomcatAvailabilityController extends AbstractTomcatContainerCon
       }
       for (File file : files) {
         if (!file.delete()) {
-            logger.error("failed to delete file {}", file.getName());
+          logger.error("failed to delete file {}", file.getName());
         }
       }
     }

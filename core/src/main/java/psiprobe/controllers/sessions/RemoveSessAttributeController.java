@@ -32,8 +32,8 @@ public class RemoveSessAttributeController extends AbstractContextHandlerControl
 
   @RequestMapping(path = "/app/rmsattr.htm")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 
@@ -48,8 +48,8 @@ public class RemoveSessAttributeController extends AbstractContextHandlerControl
       session.getSession().removeAttribute(attrName);
     }
 
-    return new ModelAndView(new RedirectView(request.getContextPath() + getViewName() + "?"
-        + request.getQueryString()));
+    return new ModelAndView(new RedirectView(
+        request.getContextPath() + getViewName() + "?" + request.getQueryString()));
   }
 
   @Value("/attributes.htm")

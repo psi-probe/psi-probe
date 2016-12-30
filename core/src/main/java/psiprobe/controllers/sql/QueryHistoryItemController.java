@@ -38,8 +38,8 @@ public class QueryHistoryItemController extends AbstractController {
 
   @RequestMapping(path = "/sql/queryHistoryItem.ajax")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 

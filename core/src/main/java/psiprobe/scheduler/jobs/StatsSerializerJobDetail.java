@@ -18,22 +18,22 @@ import org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean;
  */
 public class StatsSerializerJobDetail extends MethodInvokingJobDetailFactoryBean {
 
-    @Override
-    @Value("false")
-    public void setConcurrent(boolean concurrent) {
-        super.setConcurrent(concurrent);
-    }
+  @Override
+  @Value("false")
+  public void setConcurrent(boolean concurrent) {
+    super.setConcurrent(concurrent);
+  }
 
-    @Override
-    @Value("statsCollection")
-    public void setTargetBeanName(String targetBeanName) {
-        super.setTargetBeanName(targetBeanName);
-    }
+  @Override
+  @Value("statsCollection")
+  public void setTargetBeanName(String targetBeanName) {
+    super.setTargetBeanName(targetBeanName);
+  }
 
-    @Override
-    @Value("serialize")
-    public void setTargetMethod(String targetMethod) {
-        super.setTargetMethod(targetMethod);
-    }
+  @Override
+  @Value("serialize")
+  public void setTargetMethod(String targetMethod) {
+    super.setTargetMethod(targetMethod);
+  }
 
 }

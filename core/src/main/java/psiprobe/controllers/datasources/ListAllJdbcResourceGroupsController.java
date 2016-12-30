@@ -36,8 +36,8 @@ public class ListAllJdbcResourceGroupsController extends AbstractTomcatContainer
 
   @RequestMapping(path = "/datasourcegroups.htm")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 

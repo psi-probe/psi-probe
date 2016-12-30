@@ -53,8 +53,8 @@ public class BeanToXmlController extends AbstractController {
 
   @RequestMapping(path = "/*.oxml.htm")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 

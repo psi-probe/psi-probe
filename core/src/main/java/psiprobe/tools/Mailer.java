@@ -259,7 +259,8 @@ public class Mailer {
    * @return the mime body part
    * @throws MessagingException the messaging exception
    */
-  private static MimeBodyPart createAttachmentPart(DataSource attachment) throws MessagingException {
+  private static MimeBodyPart createAttachmentPart(DataSource attachment)
+      throws MessagingException {
 
     MimeBodyPart attachmentPart = new MimeBodyPart();
     attachmentPart.setDataHandler(new DataHandler(attachment));

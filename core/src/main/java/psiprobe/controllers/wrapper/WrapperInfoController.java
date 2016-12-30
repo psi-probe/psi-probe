@@ -35,8 +35,8 @@ public class WrapperInfoController extends ParameterizableViewController {
 
   @RequestMapping(path = "/wrapper.htm")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 
@@ -50,10 +50,10 @@ public class WrapperInfoController extends ParameterizableViewController {
       Class.forName("org.tanukisoftware.wrapper.WrapperManager");
       wi.setVersion(WrapperManager.getVersion());
       wi.setBuildTime(WrapperManager.getBuildTime());
-      wi.setUser(WrapperManager.getUser(false) != null ? WrapperManager.getUser(false).getUser()
-          : null);
-      wi.setInteractiveUser(WrapperManager.getInteractiveUser(false) != null ? WrapperManager
-          .getInteractiveUser(false).getUser() : null);
+      wi.setUser(
+          WrapperManager.getUser(false) != null ? WrapperManager.getUser(false).getUser() : null);
+      wi.setInteractiveUser(WrapperManager.getInteractiveUser(false) != null
+          ? WrapperManager.getInteractiveUser(false).getUser() : null);
       wi.setJvmPid(WrapperManager.getJavaPID());
       wi.setWrapperPid(WrapperManager.getWrapperPID());
       wi.setProperties(WrapperManager.getProperties().entrySet());

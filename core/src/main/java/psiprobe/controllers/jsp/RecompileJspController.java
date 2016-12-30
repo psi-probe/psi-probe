@@ -42,8 +42,8 @@ public class RecompileJspController extends AbstractContextHandlerController {
 
   @RequestMapping(path = "/app/recompile.htm")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 

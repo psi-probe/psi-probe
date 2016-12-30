@@ -24,12 +24,12 @@ import javax.servlet.http.HttpServletResponse;
  * Creates an instance of OsInfoController.
  */
 @Controller
-public class OsInfoController  extends BaseSysInfoController {
+public class OsInfoController extends BaseSysInfoController {
 
   @RequestMapping(path = "/adm/osinfo.htm")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 

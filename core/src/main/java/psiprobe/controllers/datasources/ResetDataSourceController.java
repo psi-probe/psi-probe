@@ -59,8 +59,8 @@ public class ResetDataSourceController extends AbstractContextHandlerController 
 
   @RequestMapping(path = "/app/resetds.htm")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 
@@ -80,14 +80,11 @@ public class ResetDataSourceController extends AbstractContextHandlerController 
     if (resourceName != null && resourceName.length() > 0) {
       boolean reset = false;
       try {
-        reset =
-            getContainerWrapper().getResourceResolver().resetResource(context, resourceName,
-                getContainerWrapper());
+        reset = getContainerWrapper().getResourceResolver().resetResource(context, resourceName,
+            getContainerWrapper());
       } catch (NamingException e) {
-        request.setAttribute(
-            "errorMessage",
-            getMessageSourceAccessor().getMessage("probe.src.reset.datasource.notfound",
-                new Object[] {resourceName}));
+        request.setAttribute("errorMessage", getMessageSourceAccessor()
+            .getMessage("probe.src.reset.datasource.notfound", new Object[] {resourceName}));
         logger.trace("", e);
       }
       if (!reset) {

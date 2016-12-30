@@ -89,10 +89,10 @@ public class DefaultAccessor {
    */
   protected Object getProperty(Object obj, String name, Object defaultValue) {
     try {
-      return PropertyUtils.isReadable(obj, name)
-          ? PropertyUtils.getProperty(obj, name)
+      return PropertyUtils.isReadable(obj, name) ? PropertyUtils.getProperty(obj, name)
           : defaultValue;
-    } catch (IllegalArgumentException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+    } catch (IllegalArgumentException | IllegalAccessException | InvocationTargetException
+        | NoSuchMethodException e) {
       logger.error("", e);
     }
     logger.debug("Could not access property '{}' of object '{}'", name, obj);

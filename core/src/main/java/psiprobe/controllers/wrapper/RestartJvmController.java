@@ -33,8 +33,8 @@ public class RestartJvmController extends ParameterizableViewController {
 
   @RequestMapping(path = "/adm/restartvm.ajax")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 

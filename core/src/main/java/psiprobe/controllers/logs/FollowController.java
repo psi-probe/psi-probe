@@ -34,8 +34,8 @@ public class FollowController extends AbstractLogHandlerController {
 
   @RequestMapping(path = "/follow.ajax")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 

@@ -71,8 +71,7 @@ public class RuntimeStatsCollectorBean extends AbstractStatsCollectorBean {
    * @param period the period
    * @param span the span
    */
-  public void setMaxSeries(
-      @Value("${psiprobe.beans.stats.collectors.runtime.period}") long period,
+  public void setMaxSeries(@Value("${psiprobe.beans.stats.collectors.runtime.period}") long period,
       @Value("${psiprobe.beans.stats.collectors.runtime.span}") long span) {
     super.setMaxSeries((int) TimeExpression.dataPoints(period, span));
   }

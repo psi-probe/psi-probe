@@ -36,8 +36,8 @@ public class AjaxReloadContextController extends AbstractContextHandlerControlle
 
   @RequestMapping(path = "/app/reload.ajax")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 
@@ -53,13 +53,14 @@ public class AjaxReloadContextController extends AbstractContextHandlerControlle
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         // get username logger
         String name = auth.getName();
-        logger.info(getMessageSourceAccessor().getMessage("probe.src.log.reload"), name, contextName);
+        logger.info(getMessageSourceAccessor().getMessage("probe.src.log.reload"), name,
+            contextName);
       } catch (Exception e) {
         logger.error("Error during ajax request to RELOAD of '{}'", contextName, e);
       }
     }
-    return new ModelAndView(getViewName(), "available", context != null
-        && getContainerWrapper().getTomcatContainer().getAvailable(context));
+    return new ModelAndView(getViewName(), "available",
+        context != null && getContainerWrapper().getTomcatContainer().getAvailable(context));
   }
 
   @Value("ajax/context_status")

@@ -34,8 +34,8 @@ public class DeployController extends AbstractTomcatContainerController {
 
   @RequestMapping(path = "/adm/deploy.htm")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 
@@ -47,8 +47,8 @@ public class DeployController extends AbstractTomcatContainerController {
     try {
       apps = getContainerWrapper().getTomcatContainer().findContexts();
     } catch (NullPointerException ex) {
-      throw new IllegalStateException("No container found for your server: "
-          + getServletContext().getServerInfo(), ex);
+      throw new IllegalStateException(
+          "No container found for your server: " + getServletContext().getServerInfo(), ex);
     }
 
     List<Map<String, String>> applications = new ArrayList<>();

@@ -56,16 +56,15 @@ public class Tomcat70ContainerAdapter extends AbstractTomcatContainer {
       return false;
     }
     return binding.startsWith("Apache Tomcat/7.0")
-      || binding.startsWith("Apache Tomcat (TomEE)/7.0")
-      // JBoss Dropped Tomcat in favor of Undertow after these versions
-      || binding.startsWith("JBoss Web/3.0")
-      || binding.startsWith("JBoss Web/7.0")
-      // HP Nonstop plans to support Tomcat 8 in late 2016
-      || binding.startsWith("NonStop(tm) Servlets For JavaServer Pages(tm) v7.0")
-      // Next three are all really the same re-bundled as springsource evolved to pivotal
-      || binding.startsWith("SpringSource tc") && binding.contains("/7.0")
-      || binding.startsWith("VMware vFabric tc") && binding.contains("/7.0")
-      || binding.startsWith("Pivotal tc") && binding.contains("/7.0");
+        || binding.startsWith("Apache Tomcat (TomEE)/7.0")
+        // JBoss Dropped Tomcat in favor of Undertow after these versions
+        || binding.startsWith("JBoss Web/3.0") || binding.startsWith("JBoss Web/7.0")
+        // HP Nonstop plans to support Tomcat 8 in late 2016
+        || binding.startsWith("NonStop(tm) Servlets For JavaServer Pages(tm) v7.0")
+        // Next three are all really the same re-bundled as springsource evolved to pivotal
+        || binding.startsWith("SpringSource tc") && binding.contains("/7.0")
+        || binding.startsWith("VMware vFabric tc") && binding.contains("/7.0")
+        || binding.startsWith("Pivotal tc") && binding.contains("/7.0");
   }
 
   /**
@@ -249,8 +248,8 @@ public class Tomcat70ContainerAdapter extends AbstractTomcatContainer {
        * if the parameter is declared in a deployment descriptor and it is not declared in a context
        * descriptor with override=false, the value comes from the deployment descriptor
        */
-      param.setFromDeplDescr(context.findParameter(paramName) != null
-          && !nonOverridableParams.contains(paramName));
+      param.setFromDeplDescr(
+          context.findParameter(paramName) != null && !nonOverridableParams.contains(paramName));
       initParams.add(param);
     }
     return initParams;

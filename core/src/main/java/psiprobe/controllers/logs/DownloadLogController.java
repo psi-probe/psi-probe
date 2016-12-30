@@ -37,8 +37,8 @@ public class DownloadLogController extends AbstractLogHandlerController {
 
   @RequestMapping(path = "/download")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 
@@ -46,11 +46,12 @@ public class DownloadLogController extends AbstractLogHandlerController {
   protected ModelAndView handleLogFile(HttpServletRequest request, HttpServletResponse response,
       LogDestination logDest) throws Exception {
 
-    boolean compressed = "true".equals(ServletRequestUtils.getStringParameter(request, "compressed"));
+    boolean compressed =
+        "true".equals(ServletRequestUtils.getStringParameter(request, "compressed"));
 
     File file = logDest.getFile();
-    logger.info("Sending {}{} to {} ({})", file, compressed ? " compressed" : "", request.getRemoteAddr(),
-        request.getRemoteUser());
+    logger.info("Sending {}{} to {} ({})", file, compressed ? " compressed" : "",
+        request.getRemoteAddr(), request.getRemoteUser());
     if (compressed) {
       Utils.sendCompressedFile(request, response, file);
     } else {

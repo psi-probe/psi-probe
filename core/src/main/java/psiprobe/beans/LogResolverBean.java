@@ -288,8 +288,9 @@ public class LogResolverBean {
         }
       }
     } catch (Exception e) {
-      logger.error("Could not interrogate context logger for {}. Enable debug logging to see the trace stack",
-              ctx.getName());
+      logger.error(
+          "Could not interrogate context logger for {}. Enable debug logging to see the trace stack",
+          ctx.getName());
       logger.debug("  Stack trace:", e);
     }
 
@@ -298,8 +299,9 @@ public class LogResolverBean {
       try {
         interrogateClassLoader(cl, application, allAppenders);
       } catch (Exception e) {
-        logger.error("Could not interrogate classloader loggers for {}. Enable debug logging to see the trace stack",
-                ctx.getName());
+        logger.error(
+            "Could not interrogate classloader loggers for {}. Enable debug logging to see the trace stack",
+            ctx.getName());
         logger.debug("  Stack trace:", e);
       } finally {
         if (prevCl != null) {
@@ -535,8 +537,8 @@ public class LogResolverBean {
    * @param appenderName the appender name
    * @return the logback tomcat juli log destination
    */
-  private LogDestination getLogbackTomcatJuliLogDestination(ClassLoader cl,
-      Application application, boolean root, String logName, String appenderName) {
+  private LogDestination getLogbackTomcatJuliLogDestination(ClassLoader cl, Application application,
+      boolean root, String logName, String appenderName) {
 
     try {
       TomcatSlf4jLogbackFactoryAccessor manager = new TomcatSlf4jLogbackFactoryAccessor(cl);
@@ -555,7 +557,8 @@ public class LogResolverBean {
   /**
    * The Class AbstractLogComparator.
    */
-  private abstract static class AbstractLogComparator implements Comparator<LogDestination>, Serializable {
+  private abstract static class AbstractLogComparator
+      implements Comparator<LogDestination>, Serializable {
 
     /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 1L;
@@ -583,7 +586,8 @@ public class LogResolverBean {
   /**
    * The Class LogDestinationComparator.
    */
-  private static class LogDestinationComparator extends AbstractLogComparator implements Serializable {
+  private static class LogDestinationComparator extends AbstractLogComparator
+      implements Serializable {
 
     /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 1L;

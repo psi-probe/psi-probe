@@ -78,7 +78,8 @@ public abstract class AbstractLogHandlerController extends ParameterizableViewCo
         logger.error("{}: file not found", dest.getFile());
       }
     } else {
-      logger.error("{}{} log{} not found", logType, root ? " root" : "", root ? "" : " '" + logName + "'");
+      logger.error("{}{} log{} not found", logType, root ? " root" : "",
+          root ? "" : " '" + logName + "'");
     }
     if (!logFound) {
       response.sendError(404);
@@ -95,7 +96,7 @@ public abstract class AbstractLogHandlerController extends ParameterizableViewCo
    * @return the model and view
    * @throws Exception the exception
    */
-  protected abstract ModelAndView handleLogFile(HttpServletRequest request, HttpServletResponse response,
-      LogDestination logDest) throws Exception;
+  protected abstract ModelAndView handleLogFile(HttpServletRequest request,
+      HttpServletResponse response, LogDestination logDest) throws Exception;
 
 }

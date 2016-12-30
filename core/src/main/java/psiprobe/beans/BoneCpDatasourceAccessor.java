@@ -47,8 +47,8 @@ public class BoneCpDatasourceAccessor implements DatasourceAccessor {
       dataSourceInfo = new DataSourceInfo();
       dataSourceInfo.setBusyConnections(source.getTotalLeased());
       dataSourceInfo.setEstablishedConnections(pool.getTotalCreatedConnections());
-      dataSourceInfo.setMaxConnections(source.getPartitionCount()
-          * source.getMaxConnectionsPerPartition());
+      dataSourceInfo
+          .setMaxConnections(source.getPartitionCount() * source.getMaxConnectionsPerPartition());
       dataSourceInfo.setJdbcUrl(source.getJdbcUrl());
       dataSourceInfo.setUsername(source.getUsername());
       dataSourceInfo.setResettable(false);

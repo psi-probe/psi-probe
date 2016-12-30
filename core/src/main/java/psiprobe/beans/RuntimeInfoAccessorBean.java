@@ -49,28 +49,28 @@ public class RuntimeInfoAccessorBean {
       ri.setOsVersion(JmxTools.getStringAttr(mbeanServer, osOName, "Version"));
 
       if (!ri.getVmVendor().startsWith("IBM Corporation")) {
-        ri.setTotalPhysicalMemorySize(JmxTools.getLongAttr(mbeanServer, osOName,
-            "TotalPhysicalMemorySize"));
-        ri.setCommittedVirtualMemorySize(JmxTools.getLongAttr(mbeanServer, osOName,
-            "CommittedVirtualMemorySize"));
-        ri.setFreePhysicalMemorySize(JmxTools.getLongAttr(mbeanServer, osOName,
-            "FreePhysicalMemorySize"));
+        ri.setTotalPhysicalMemorySize(
+            JmxTools.getLongAttr(mbeanServer, osOName, "TotalPhysicalMemorySize"));
+        ri.setCommittedVirtualMemorySize(
+            JmxTools.getLongAttr(mbeanServer, osOName, "CommittedVirtualMemorySize"));
+        ri.setFreePhysicalMemorySize(
+            JmxTools.getLongAttr(mbeanServer, osOName, "FreePhysicalMemorySize"));
         ri.setFreeSwapSpaceSize(JmxTools.getLongAttr(mbeanServer, osOName, "FreeSwapSpaceSize"));
         ri.setTotalSwapSpaceSize(JmxTools.getLongAttr(mbeanServer, osOName, "TotalSwapSpaceSize"));
         ri.setProcessCpuTime(JmxTools.getLongAttr(mbeanServer, osOName, "ProcessCpuTime"));
         ri.setAvailableProcessors(Runtime.getRuntime().availableProcessors());
       } else {
-        ri.setTotalPhysicalMemorySize(JmxTools.getLongAttr(mbeanServer, osOName,
-            "TotalPhysicalMemory"));
+        ri.setTotalPhysicalMemorySize(
+            JmxTools.getLongAttr(mbeanServer, osOName, "TotalPhysicalMemory"));
       }
 
       if (JmxTools.hasAttribute(mbeanServer, osOName, "OpenFileDescriptorCount")
           && JmxTools.hasAttribute(mbeanServer, osOName, "MaxFileDescriptorCount")) {
 
-        ri.setOpenFileDescriptorCount(JmxTools.getLongAttr(mbeanServer, osOName,
-            "OpenFileDescriptorCount"));
-        ri.setMaxFileDescriptorCount(JmxTools.getLongAttr(mbeanServer, osOName,
-            "MaxFileDescriptorCount"));
+        ri.setOpenFileDescriptorCount(
+            JmxTools.getLongAttr(mbeanServer, osOName, "OpenFileDescriptorCount"));
+        ri.setMaxFileDescriptorCount(
+            JmxTools.getLongAttr(mbeanServer, osOName, "MaxFileDescriptorCount"));
       }
 
       return ri;

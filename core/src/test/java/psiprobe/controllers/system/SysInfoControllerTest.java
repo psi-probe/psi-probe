@@ -24,7 +24,8 @@ public class SysInfoControllerTest {
    */
   @Test
   public void javabeanTesterOsInfoAjax() {
-    JavaBeanTester.builder(OsInfoAjaxController.class).skip("applicationContext", "supportedMethods").test();
+    JavaBeanTester.builder(OsInfoAjaxController.class)
+        .skip("applicationContext", "supportedMethods").test();
   }
 
   /**
@@ -32,7 +33,8 @@ public class SysInfoControllerTest {
    */
   @Test
   public void javabeanTesterOsInfo() {
-    JavaBeanTester.builder(OsInfoController.class).skip("applicationContext", "supportedMethods").test();
+    JavaBeanTester.builder(OsInfoController.class).skip("applicationContext", "supportedMethods")
+        .test();
   }
 
   /**
@@ -40,7 +42,8 @@ public class SysInfoControllerTest {
    */
   @Test
   public void javabeanTesterSysInfo() {
-    JavaBeanTester.builder(SysInfoController.class).skip("applicationContext", "supportedMethods").test();
+    JavaBeanTester.builder(SysInfoController.class).skip("applicationContext", "supportedMethods")
+        .test();
   }
 
   /**
@@ -48,7 +51,8 @@ public class SysInfoControllerTest {
    */
   @Test
   public void javabeanTesterSysProps() {
-    JavaBeanTester.builder(SysPropsController.class).skip("applicationContext", "supportedMethods").test();
+    JavaBeanTester.builder(SysPropsController.class).skip("applicationContext", "supportedMethods")
+        .test();
   }
 
 }

@@ -36,8 +36,8 @@ public class ListWebappsController extends AbstractTomcatContainerController {
 
   @RequestMapping(path = "/index.htm")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 
@@ -45,16 +45,15 @@ public class ListWebappsController extends AbstractTomcatContainerController {
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 
-    boolean calcSize =
-        ServletRequestUtils.getBooleanParameter(request, "size", false)
-            && SecurityUtils.hasAttributeValueRole(getServletContext(), request);
+    boolean calcSize = ServletRequestUtils.getBooleanParameter(request, "size", false)
+        && SecurityUtils.hasAttributeValueRole(getServletContext(), request);
 
     List<Context> apps;
     try {
       apps = getContainerWrapper().getTomcatContainer().findContexts();
     } catch (NullPointerException ex) {
-      throw new IllegalStateException("No container found for your server: "
-          + getServletContext().getServerInfo(), ex);
+      throw new IllegalStateException(
+          "No container found for your server: " + getServletContext().getServerInfo(), ex);
     }
     List<Application> applications = new ArrayList<>(apps.size());
     boolean showResources = getContainerWrapper().getResourceResolver().supportsPrivateResources();
@@ -62,7 +61,7 @@ public class ListWebappsController extends AbstractTomcatContainerController {
       // check if this is not the ROOT webapp
       if (appContext.getName() != null) {
         applications.add(ApplicationUtils.getApplication(appContext,
-                getContainerWrapper().getResourceResolver(), calcSize, getContainerWrapper()));
+            getContainerWrapper().getResourceResolver(), calcSize, getContainerWrapper()));
       }
     }
     if (!applications.isEmpty() && !showResources) {

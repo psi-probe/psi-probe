@@ -19,22 +19,22 @@ import com.codebox.bean.JavaBeanTester;
  */
 public class ReloadContextControllerTest {
 
-    /**
-     * Javabean tester.
-     */
-    @Test
-    public void javabeanTester() {
-      JavaBeanTester.builder(ReloadContextController.class)
-          .skip("applicationContext", "supportedMethods").test();
-    }
+  /**
+   * Javabean tester.
+   */
+  @Test
+  public void javabeanTester() {
+    JavaBeanTester.builder(ReloadContextController.class)
+        .skip("applicationContext", "supportedMethods").test();
+  }
 
-    /**
-     * Javabean tester summary.
-     */
-    @Test
-    public void javabeanTesterSummary() {
-      JavaBeanTester.builder(ReloadSummaryContextController.class)
-          .skip("applicationContext", "supportedMethods").test();
-    }
+  /**
+   * Javabean tester summary.
+   */
+  @Test
+  public void javabeanTesterSummary() {
+    JavaBeanTester.builder(ReloadSummaryContextController.class)
+        .skip("applicationContext", "supportedMethods").test();
+  }
 
 }

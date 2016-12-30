@@ -71,8 +71,8 @@ public class ReflectiveAccessor implements Accessor {
    * @throws IllegalAccessException the illegal access exception
    * @throws InvocationTargetException the invocation target exception
    */
-  private static Object getFieldAccessor(Field field) throws IllegalAccessException,
-      InvocationTargetException {
+  private static Object getFieldAccessor(Field field)
+      throws IllegalAccessException, InvocationTargetException {
 
     if (newFieldAccessor.getParameterTypes().length == 1) {
       return newFieldAccessor.invoke(reflectionFactory, field);
@@ -111,8 +111,8 @@ public class ReflectiveAccessor implements Accessor {
    * @throws InstantiationException the instantiation exception
    * @throws IllegalAccessException the illegal access exception
    */
-  private static Object getReflectionFactory() throws ClassNotFoundException,
-      InstantiationException, IllegalAccessException {
+  private static Object getReflectionFactory()
+      throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 
     Class<?> getReflectionFactoryActionClass =
         Class.forName("sun.reflect.ReflectionFactory$GetReflectionFactoryAction");

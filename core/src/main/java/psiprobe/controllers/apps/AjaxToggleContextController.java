@@ -36,8 +36,8 @@ public class AjaxToggleContextController extends AbstractContextHandlerControlle
 
   @RequestMapping(path = "/app/toggle.ajax")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 
@@ -54,18 +54,20 @@ public class AjaxToggleContextController extends AbstractContextHandlerControlle
         if (context.getState().isAvailable()) {
           logger.info("{} requested STOP of {}", request.getRemoteAddr(), contextName);
           getContainerWrapper().getTomcatContainer().stop(contextName);
-          logger.info(getMessageSourceAccessor().getMessage("probe.src.log.stop"), name, contextName);
+          logger.info(getMessageSourceAccessor().getMessage("probe.src.log.stop"), name,
+              contextName);
         } else {
           logger.info("{} requested START of {}", request.getRemoteAddr(), contextName);
           getContainerWrapper().getTomcatContainer().start(contextName);
-          logger.info(getMessageSourceAccessor().getMessage("probe.src.log.start"), name, contextName);
+          logger.info(getMessageSourceAccessor().getMessage("probe.src.log.start"), name,
+              contextName);
         }
       } catch (Exception e) {
         logger.error("Error during ajax request to START/STOP of '{}'", contextName, e);
       }
     }
-    return new ModelAndView(getViewName(), "available", context != null
-        && getContainerWrapper().getTomcatContainer().getAvailable(context));
+    return new ModelAndView(getViewName(), "available",
+        context != null && getContainerWrapper().getTomcatContainer().getAvailable(context));
   }
 
   @Value("ajax/context_status")

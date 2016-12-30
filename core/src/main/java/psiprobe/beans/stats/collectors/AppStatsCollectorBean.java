@@ -28,8 +28,8 @@ import javax.servlet.ServletContext;
 /**
  * Collects application statistics.
  */
-public class AppStatsCollectorBean extends AbstractStatsCollectorBean implements
-    ServletContextAware {
+public class AppStatsCollectorBean extends AbstractStatsCollectorBean
+    implements ServletContextAware {
 
   /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(AppStatsCollectorBean.class);
@@ -144,8 +144,8 @@ public class AppStatsCollectorBean extends AbstractStatsCollectorBean implements
         // build totals for all applications
         buildAbsoluteStats("total.requests", totalReqDelta, currentTime);
         buildAbsoluteStats("total.errors", totalErrDelta, currentTime);
-        buildAbsoluteStats("total.avg_proc_time", participatingAppCount == 0 ? 0 : totalAvgProcTime
-            / participatingAppCount, currentTime);
+        buildAbsoluteStats("total.avg_proc_time",
+            participatingAppCount == 0 ? 0 : totalAvgProcTime / participatingAppCount, currentTime);
       }
       logger.debug("app stats collected in {}ms", System.currentTimeMillis() - currentTime);
     }
@@ -201,8 +201,7 @@ public class AppStatsCollectorBean extends AbstractStatsCollectorBean implements
    * @param period the period
    * @param span the span
    */
-  public void setMaxSeries(
-      @Value("${psiprobe.beans.stats.collectors.app.period}") long period,
+  public void setMaxSeries(@Value("${psiprobe.beans.stats.collectors.app.period}") long period,
       @Value("${psiprobe.beans.stats.collectors.app.span}") long span) {
     super.setMaxSeries((int) TimeExpression.dataPoints(period, span));
   }

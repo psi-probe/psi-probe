@@ -55,8 +55,8 @@ public class ListThreadPoolsController extends AbstractTomcatContainerController
 
   @RequestMapping(path = "/threadpools.htm")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 

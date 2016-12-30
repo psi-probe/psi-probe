@@ -32,8 +32,8 @@ public class DownloadServletController extends AbstractContextHandlerController 
 
   @RequestMapping(path = "/app/downloadserv.htm")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 

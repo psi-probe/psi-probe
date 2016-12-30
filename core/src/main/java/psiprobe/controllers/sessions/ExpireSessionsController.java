@@ -34,8 +34,8 @@ public class ExpireSessionsController extends AbstractTomcatContainerController 
 
   @RequestMapping(path = "/app/expire_list.htm")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 

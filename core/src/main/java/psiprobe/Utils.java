@@ -368,8 +368,8 @@ public final class Utils {
       response.setHeader("Content-Disposition", "attachment; filename=" + file.getName());
       response.setHeader("Accept-Ranges", "bytes");
       response.setHeader("Content-Length", Long.toString(rangeFinish - rangeStart + 1));
-      response.setHeader("Content-Range", "bytes " + rangeStart + "-" + rangeFinish + "/"
-          + fileSize);
+      response.setHeader("Content-Range",
+          "bytes " + rangeStart + "-" + rangeFinish + "/" + fileSize);
 
       // seek to the requested offset
       raf.seek(rangeStart);
@@ -486,8 +486,8 @@ public final class Utils {
    * @param file the file
    * @throws IOException Signals that an I/O exception has occurred.
    */
-  public static void sendCompressedFile(HttpServletRequest request, HttpServletResponse response, File file)
-      throws IOException {
+  public static void sendCompressedFile(HttpServletRequest request, HttpServletResponse response,
+      File file) throws IOException {
     try (ZipOutputStream zip = new ZipOutputStream(response.getOutputStream());
         InputStream fileInput = new BufferedInputStream(new FileInputStream(file))) {
       // set some headers

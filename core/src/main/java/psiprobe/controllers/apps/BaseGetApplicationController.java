@@ -98,21 +98,19 @@ public class BaseGetApplicationController extends AbstractContextHandlerControll
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-    boolean calcSize =
-        ServletRequestUtils.getBooleanParameter(request, "size", false)
-            && SecurityUtils.hasAttributeValueRole(getServletContext(), request);
+    boolean calcSize = ServletRequestUtils.getBooleanParameter(request, "size", false)
+        && SecurityUtils.hasAttributeValueRole(getServletContext(), request);
 
     ResourceResolver resourceResolver = getContainerWrapper().getResourceResolver();
-    Application app = ApplicationUtils.getApplication(
-        context, isExtendedInfo() ? resourceResolver : null, calcSize, getContainerWrapper());
+    Application app = ApplicationUtils.getApplication(context,
+        isExtendedInfo() ? resourceResolver : null, calcSize, getContainerWrapper());
 
     if (isExtendedInfo() && getStatsCollection() != null) {
       String avgStatisticName = "app.avg_proc_time." + app.getName();
       app.setAvgTime(getStatsCollection().getLastValueForStat(avgStatisticName));
     }
 
-    return new ModelAndView(getViewName())
-        .addObject("app", app)
+    return new ModelAndView(getViewName()).addObject("app", app)
         .addObject("no_resources", !resourceResolver.supportsPrivateResources())
         .addObject("collectionPeriod", getCollectionPeriod());
   }

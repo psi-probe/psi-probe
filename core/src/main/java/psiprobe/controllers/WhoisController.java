@@ -111,8 +111,8 @@ public class WhoisController extends ParameterizableViewController {
 
   @RequestMapping(path = "/whois.ajax")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 
@@ -135,9 +135,9 @@ public class WhoisController extends ParameterizableViewController {
     List<String> lines = null;
     if (wh != null) {
       lines = new ArrayList<>(50);
-      try (BufferedReader br =
-          new BufferedReader(new InputStreamReader(new ByteArrayInputStream(wh.getSummary()
-              .getBytes(StandardCharsets.UTF_8)), StandardCharsets.UTF_8))) {
+      try (BufferedReader br = new BufferedReader(new InputStreamReader(
+          new ByteArrayInputStream(wh.getSummary().getBytes(StandardCharsets.UTF_8)),
+          StandardCharsets.UTF_8))) {
         String line;
         while ((line = br.readLine()) != null) {
           lines.add(line);
@@ -154,8 +154,7 @@ public class WhoisController extends ParameterizableViewController {
         logger.trace("", e);
       }
     }
-    return new ModelAndView(getViewName(), "result", lines)
-        .addObject("timeout", timeout)
+    return new ModelAndView(getViewName(), "result", lines).addObject("timeout", timeout)
         .addObject("whoisServer",
             wh != null ? wh.getServer() + ":" + wh.getPort() : defaultServer + ":" + defaultPort)
         .addObject("domainName", reverseName);

@@ -300,8 +300,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
       ServletContext sctx = context.getServletContext();
       Options opt = new EmbeddedServletOptions(servletConfig, sctx);
       JspRuntimeContext jrctx = new JspRuntimeContext(sctx, opt);
-      JspCompilationContext jcctx =
-          createJspCompilationContext(jspName, opt, sctx, jrctx, null);
+      JspCompilationContext jcctx = createJspCompilationContext(jspName, opt, sctx, jrctx, null);
       servletName = jcctx.getServletJavaFileName();
     } else {
       logger.error("Context '{}' does not have 'JSP' servlet", context.getName());
@@ -391,9 +390,9 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
            * we need to pass context classloader here, so the jsps can reference /WEB-INF/classes
            * and /WEB-INF/lib. JspCompilationContext would only take URLClassLoader, so we fake it
            */
-          URLClassLoader urlcl = new URLClassLoader(
-              new URL[0], context.getLoader().getClassLoader());
-          
+          URLClassLoader urlcl =
+              new URLClassLoader(new URL[0], context.getLoader().getClassLoader());
+
           compileItem("/", opt, context, jrctx, summary, urlcl, 0, compile);
         } finally {
           jrctx.destroy();
@@ -487,8 +486,8 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
         boolean isJsp = false;
 
         try {
-          isJsp = name.endsWith(".jsp") || name.endsWith(".jspx")
-              || opt.getJspConfig().isJspPage(name);
+          isJsp =
+              name.endsWith(".jsp") || name.endsWith(".jspx") || opt.getJspConfig().isJspPage(name);
         } catch (Exception e) {
           // XXX Tomcat 7.0.x throws JasperException otherwise this could be removed.
           logger.info("isJspPage() thrown an error for '{}'", name, e);
@@ -569,9 +568,8 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
    * @throws Exception the exception
    */
   protected void checkChanges(String name) throws Exception {
-    Boolean result =
-        (Boolean) mbeanServer.invoke(deployerOName, "isServiced", new String[] {name},
-            new String[] {"java.lang.String"});
+    Boolean result = (Boolean) mbeanServer.invoke(deployerOName, "isServiced", new String[] {name},
+        new String[] {"java.lang.String"});
     if (!result) {
       mbeanServer.invoke(deployerOName, "addServiced", new String[] {name},
           new String[] {"java.lang.String"});

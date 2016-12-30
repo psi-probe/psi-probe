@@ -22,12 +22,12 @@ import javax.servlet.http.HttpServletResponse;
  * Creates an instance of OsInfoAjaxController.
  */
 @Controller
-public class OsInfoAjaxController  extends BaseSysInfoController {
+public class OsInfoAjaxController extends BaseSysInfoController {
 
   @RequestMapping(path = "/adm/osinfo.ajax")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 

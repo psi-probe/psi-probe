@@ -26,8 +26,9 @@ import javax.servlet.annotation.WebListener;
 public class AwtAppContextClassloaderListener implements ServletContextListener {
 
   /** The Constant logger. */
-  private static final Logger logger = LoggerFactory.getLogger(AwtAppContextClassloaderListener.class);
-    
+  private static final Logger logger =
+      LoggerFactory.getLogger(AwtAppContextClassloaderListener.class);
+
   /**
    * Forces the {@code sun.awt.AppContext} singleton to be created and initialized when the context
    * is initialized.

@@ -53,8 +53,8 @@ public class CopySingleFileController extends AbstractTomcatContainerController 
 
   @RequestMapping(path = "/adm/deployfile.htm")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 
@@ -66,8 +66,8 @@ public class CopySingleFileController extends AbstractTomcatContainerController 
     try {
       apps = getContainerWrapper().getTomcatContainer().findContexts();
     } catch (NullPointerException ex) {
-      throw new IllegalStateException("No container found for your server: "
-          + getServletContext().getServerInfo(), ex);
+      throw new IllegalStateException(
+          "No container found for your server: " + getServletContext().getServerInfo(), ex);
     }
 
     List<Map<String, String>> applications = new ArrayList<>();
@@ -101,9 +101,8 @@ public class CopySingleFileController extends AbstractTomcatContainerController 
         for (FileItem fi : fileItems) {
           if (!fi.isFormField()) {
             if (fi.getName() != null && fi.getName().length() > 0) {
-              tmpFile =
-                  new File(System.getProperty("java.io.tmpdir"),
-                      FilenameUtils.getName(fi.getName()));
+              tmpFile = new File(System.getProperty("java.io.tmpdir"),
+                  FilenameUtils.getName(fi.getName()));
               fi.write(tmpFile);
             }
           } else if ("context".equals(fi.getFieldName())) {
@@ -118,10 +117,8 @@ public class CopySingleFileController extends AbstractTomcatContainerController 
         }
       } catch (Exception e) {
         logger.error("Could not process file upload", e);
-        request.setAttribute(
-            "errorMessage",
-            getMessageSourceAccessor().getMessage("probe.src.deploy.file.uploadfailure",
-                new Object[] {e.getMessage()}));
+        request.setAttribute("errorMessage", getMessageSourceAccessor()
+            .getMessage("probe.src.deploy.file.uploadfailure", new Object[] {e.getMessage()}));
         if (tmpFile != null && tmpFile.exists() && !tmpFile.delete()) {
           logger.error("Unable to delete temp upload file");
         }
@@ -142,9 +139,8 @@ public class CopySingleFileController extends AbstractTomcatContainerController 
             // Check if context is already deployed
             if (getContainerWrapper().getTomcatContainer().findContext(contextName) != null) {
 
-              File destFile =
-                  new File(getContainerWrapper().getTomcatContainer().getAppBase(), contextName
-                      + where);
+              File destFile = new File(getContainerWrapper().getTomcatContainer().getAppBase(),
+                  contextName + where);
 
               // Checks if the destination path exists
               if (destFile.exists()) {
@@ -157,13 +153,15 @@ public class CopySingleFileController extends AbstractTomcatContainerController 
                   Authentication auth = SecurityContextHolder.getContext().getAuthentication();
                   // get username logger
                   String name = auth.getName();
-                  logger.info(getMessageSourceAccessor().getMessage("probe.src.log.copyfile"), name, contextName);
+                  logger.info(getMessageSourceAccessor().getMessage("probe.src.log.copyfile"), name,
+                      contextName);
                   Context context =
                       getContainerWrapper().getTomcatContainer().findContext(contextName);
                   // Checks if DISCARD "work" directory is selected
                   if (discard) {
                     getContainerWrapper().getTomcatContainer().discardWorkDir(context);
-                    logger.info(getMessageSourceAccessor().getMessage("probe.src.log.discardwork"), name, contextName);
+                    logger.info(getMessageSourceAccessor().getMessage("probe.src.log.discardwork"),
+                        name, contextName);
                   }
                   // Checks if RELOAD option is selected
                   if (reload) {
@@ -171,7 +169,8 @@ public class CopySingleFileController extends AbstractTomcatContainerController 
                     if (context != null) {
                       context.reload();
                       request.setAttribute("reloadContext", Boolean.TRUE);
-                      logger.info(getMessageSourceAccessor().getMessage("probe.src.log.reload"), name, contextName);
+                      logger.info(getMessageSourceAccessor().getMessage("probe.src.log.reload"),
+                          name, contextName);
                     }
                   }
                 } else {
@@ -182,17 +181,15 @@ public class CopySingleFileController extends AbstractTomcatContainerController 
                 errMsg = getMessageSourceAccessor().getMessage("probe.src.deploy.file.notPath");
               }
             } else {
-              errMsg =
-                  getMessageSourceAccessor().getMessage("probe.src.deploy.file.notExists",
-                      new Object[] {visibleContextName});
+              errMsg = getMessageSourceAccessor().getMessage("probe.src.deploy.file.notExists",
+                  new Object[] {visibleContextName});
             }
           } else {
             errMsg = getMessageSourceAccessor().getMessage("probe.src.deploy.file.notFile.failure");
           }
         } catch (IOException e) {
-          errMsg =
-              getMessageSourceAccessor().getMessage("probe.src.deploy.file.failure",
-                  new Object[] {e.getMessage()});
+          errMsg = getMessageSourceAccessor().getMessage("probe.src.deploy.file.failure",
+              new Object[] {e.getMessage()});
           logger.error("Tomcat throw an exception when trying to deploy", e);
         } finally {
           if (errMsg != null) {

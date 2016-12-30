@@ -29,8 +29,8 @@ public class ListApplicationResourcesController extends AbstractContextHandlerCo
 
   @RequestMapping(path = "/resources.htm")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 

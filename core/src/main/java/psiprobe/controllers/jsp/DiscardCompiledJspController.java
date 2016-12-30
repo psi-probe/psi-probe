@@ -30,8 +30,8 @@ public class DiscardCompiledJspController extends AbstractContextHandlerControll
 
   @RequestMapping(path = "/adm/discard.htm")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 
@@ -40,8 +40,8 @@ public class DiscardCompiledJspController extends AbstractContextHandlerControll
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 
     getContainerWrapper().getTomcatContainer().discardWorkDir(context);
-    return new ModelAndView(new RedirectView(request.getContextPath() + getViewName() + "?"
-        + request.getQueryString()));
+    return new ModelAndView(new RedirectView(
+        request.getContextPath() + getViewName() + "?" + request.getQueryString()));
   }
 
   @Value("/app/jsp.htm")

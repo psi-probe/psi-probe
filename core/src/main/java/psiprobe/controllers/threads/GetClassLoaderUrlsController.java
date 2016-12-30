@@ -38,8 +38,8 @@ public class GetClassLoaderUrlsController extends ParameterizableViewController 
 
   @RequestMapping(path = "/cldetails.ajax")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 
@@ -57,7 +57,8 @@ public class GetClassLoaderUrlsController extends ParameterizableViewController 
         try {
           request.setAttribute("urls", Arrays.asList(((URLClassLoader) cl).getURLs()));
         } catch (Exception e) {
-          logger.error("There was an exception querying classloader for thread '{}'", threadName, e);
+          logger.error("There was an exception querying classloader for thread '{}'", threadName,
+              e);
         }
       }
     }
