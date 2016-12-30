@@ -194,7 +194,7 @@ public class Mailer {
       throws MessagingException {
 
     String subject = mailMessage.getSubject();
-    if (subjectPrefix != null && !subjectPrefix.equals("")) {
+    if (subjectPrefix != null && !subjectPrefix.isEmpty()) {
       subject = subjectPrefix + " " + subject;
     }
 

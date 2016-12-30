@@ -62,6 +62,9 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
   /** The logger. */
   protected final Logger logger = LoggerFactory.getLogger(getClass());
 
+  /** The Constant NO_JSP_SERVLET. */
+  private static final String NO_JSP_SERVLET =  "Context '{}' does not have 'JSP' servlet";
+
   /** The host. */
   protected Host host;
 
@@ -303,7 +306,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
       JspCompilationContext jcctx = createJspCompilationContext(jspName, opt, sctx, jrctx, null);
       servletName = jcctx.getServletJavaFileName();
     } else {
-      logger.error("Context '{}' does not have 'JSP' servlet", context.getName());
+      logger.error(NO_JSP_SERVLET, context.getName());
     }
     return servletName;
   }
@@ -361,7 +364,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
         logger.error("summary is null for '{}', request ignored", context.getName());
       }
     } else {
-      logger.error("Context '{}' does not have 'JSP' servlet", context.getName());
+      logger.error(NO_JSP_SERVLET, context.getName());
     }
   }
 
@@ -412,7 +415,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
 
       summary.setItems(hashMap);
     } else {
-      logger.error("Context '{}' does not have 'JSP' servlet", context.getName());
+      logger.error(NO_JSP_SERVLET, context.getName());
     }
   }
 
@@ -569,16 +572,16 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
    */
   protected void checkChanges(String name) throws Exception {
     Boolean result = (Boolean) mbeanServer.invoke(deployerOName, "isServiced", new String[] {name},
-        new String[] {"java.lang.String"});
+        new String[] {String.class.getName()});
     if (!result) {
       mbeanServer.invoke(deployerOName, "addServiced", new String[] {name},
-          new String[] {"java.lang.String"});
+          new String[] {String.class.getName()});
       try {
         mbeanServer.invoke(deployerOName, "check", new String[] {name},
-            new String[] {"java.lang.String"});
+            new String[] {String.class.getName()});
       } finally {
         mbeanServer.invoke(deployerOName, "removeServiced", new String[] {name},
-            new String[] {"java.lang.String"});
+            new String[] {String.class.getName()});
       }
     }
   }

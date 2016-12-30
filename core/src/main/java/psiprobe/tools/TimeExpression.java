@@ -130,7 +130,7 @@ public final class TimeExpression {
    * @return the long
    */
   public static long inSeconds(String expression) {
-    if (expression == null || expression.equals("")) {
+    if (expression == null || expression.isEmpty()) {
       return 0;
     }
     if (expression.matches("[0-9]+[smhd]")) {
