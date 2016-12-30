@@ -63,7 +63,7 @@ public class ExecuteSqlController extends AbstractContextHandlerController {
     String resourceName = ServletRequestUtils.getStringParameter(request, "resource");
     String sql = ServletRequestUtils.getStringParameter(request, "sql", null);
 
-    if (sql == null || sql.equals("") || sql.trim().equals("")) {
+    if (sql == null || sql.isEmpty() || sql.trim().isEmpty()) {
       request.setAttribute("errorMessage",
           getMessageSourceAccessor().getMessage("probe.src.dataSourceTest.sql.required"));
 
