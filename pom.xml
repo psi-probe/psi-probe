@@ -231,6 +231,11 @@
                 </exclusions>
             </dependency>
             <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>20.0</version>
+            </dependency>
+            <dependency>
                 <groupId>commons-beanutils</groupId>
                 <artifactId>commons-beanutils</artifactId>
                 <version>1.9.3</version>
