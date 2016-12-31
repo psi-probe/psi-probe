@@ -240,8 +240,8 @@ public final class ApplicationUtils {
         Object info = MethodUtils.invokeMethod(session, "getInfo", null);
         sbean.setInfo(String.valueOf(info));
       } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-        logger.debug("Cannot determine session info");
-        logger.trace("", e);
+        sbean.setInfo(session.getClass().getSimpleName());
+        logger.trace("Cannot determine session info for tomcat 8+", e);
       }
 
       boolean sessionSerializable = true;
