@@ -18,11 +18,6 @@
 
 	<head>
 		<title><spring:message code="probe.jsp.title.certificates"/></title>
-		<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/Tooltip.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/behaviour.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/func.js'/>"></script>
 	</head>
 
 	<c:set var="navTabCertificates" value="active" scope="request"/>
