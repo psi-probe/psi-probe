@@ -26,7 +26,7 @@ echo "Current commit detected: ${commit_message}"
 # 3. Deploy site
 #    a. Use -q option to only display Maven errors and warnings.
 
-if [ "$upstream_repo" == "psi-probe/psi-probe" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "master" ] && [[ "$commit_message" != *"[maven-release-plugin]"* ]]; then
+if [ $TRAVIS_REPO_SLUG == "psi-probe/psi-probe" ] && [ $TRAVIS_PULL_REQUEST == "false" ] && [ $TRAVIS_BRANCH == "master" ] && [[ "$commit_message" != *"[maven-release-plugin]"* ]]; then
 
   if [ $TRAVIS_JDK_VERSION == "oraclejdk8" ]; then
     # Deploy sonatype
