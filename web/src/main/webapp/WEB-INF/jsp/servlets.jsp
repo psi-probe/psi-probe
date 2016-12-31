@@ -13,7 +13,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" session="false" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 
 <%-- Displays a list of servlets of a particular web application or all web applications --%>
 
