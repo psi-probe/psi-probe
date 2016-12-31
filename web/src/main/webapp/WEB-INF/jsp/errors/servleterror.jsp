@@ -16,12 +16,8 @@
 <%@ page import="java.io.File" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<%--
-	Servlet exception handler page. Unfortunately we cannot use here any fancy libraries if we want
-	any kind of reliability. Spring or sitemesh could have caused the exception we are handling here.
-
-	Author: Vlad Ilyushchenko
---%>
+<%-- Servlet exception handler page. Unfortunately we cannot use here any fancy libraries if we want
+ any kind of reliability. Spring or sitemesh could have caused the exception we are handling here. --%>
 
 <html>
 

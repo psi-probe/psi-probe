@@ -12,11 +12,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" session="false" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%--
-	"404 - Not Found" error handler.
 
-	Author: Vlad Ilyushchenko
---%>
+<%-- "404 - Not Found" error handler. --%>
 
 <html>
 

@@ -15,11 +15,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 
-<%--
-	Displays a list of servlets of a particular web application or all web applications
-
-	Author: Andy Shapoval
---%>
+<%-- Displays a list of servlets of a particular web application or all web applications --%>
 
 <html>
 
@@ -38,9 +34,7 @@
 		<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>
 	</head>
 
-	<%--
-		Make Tab #1 visually "active".
-	--%>
+	<%-- Make Tab #1 visually "active". --%>
 	<c:set var="navTabApps" value="active" scope="request"/>
 	<c:if test="${! empty param.webapp}">
 		<c:set var="use_decorator" value="application" scope="request"/>

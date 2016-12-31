@@ -15,11 +15,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 
-<%--
-	Displays a list of web application filter mappings
-
-	Author: Andy Shapoval
---%>
+<%-- Displays a list of web application filter mappings --%>
 
 <html>
 
@@ -29,9 +25,7 @@
 		</title>
 	</head>
 
-	<%--
-		Make Tab #1 visually "active".
-	--%>
+	<%-- Make Tab #1 visually "active". --%>
 	<c:set var="navTabApps" value="active" scope="request"/>
 	<c:set var="use_decorator" value="application" scope="request"/>
 	<c:set var="appTabFilters" value="active" scope="request"/>
@@ -59,11 +53,11 @@
 							requestURI="" defaultsort="1">
 						<display:column sortProperty="url" sortable="true"
 								titleKey="probe.jsp.app.filtermaps.col.url" class="leftmost">
-							${fltr.url}&nbsp;
+							${fltr.url}&#160;
 						</display:column>
 						<display:column sortProperty="servletName" sortable="true"
 								titleKey="probe.jsp.app.filtermaps.col.servletName">
-							${fltr.servletName}&nbsp;
+							${fltr.servletName}&#160;
 						</display:column>
 						<display:column property="filterName" sortable="true"
 								titleKey="probe.jsp.app.filtermaps.col.filterName"/>

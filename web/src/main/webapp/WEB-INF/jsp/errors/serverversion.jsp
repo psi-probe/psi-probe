@@ -13,10 +13,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" session="false" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-<%--
-	An error page to be displayed if some Probe's feature
-	is not implemented for a particular version of Tomcat
---%>
+<%-- An error page to be displayed if some Probe's feature is not implemented for a particular
+ version of Tomcat --%>
 
 <html>
 	<head><title>Error</title></head>

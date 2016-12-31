@@ -19,7 +19,7 @@
 <display:table class="genericTbl" style="border-spacing:0;border-collapse:separate;" name="resources" uid="resource"
 		htmlId="${isGlobalResources ? 'global_resources' : 'app_resources'}" requestURI="">
 
-	<display:column class="leftmost" title="&nbsp;">
+	<display:column class="leftmost" title="&#160;">
 		<c:choose>
 			<c:when test="${resource.dataSourceInfo.resettable}">
 				<c:url value="/app/resetds.htm" var="reset_url">
@@ -34,7 +34,7 @@
 				</a>
 			</c:when>
 			<c:otherwise>
-				&nbsp;
+				&#160;
 			</c:otherwise>
 		</c:choose>
 	</display:column>
@@ -54,7 +54,7 @@
 		</display:column>
 	</c:if>
 
-	<display:column titleKey="probe.jsp.datasources.list.col.resource"        sortable="true" sortProperty="name">
+	<display:column titleKey="probe.jsp.datasources.list.col.resource" sortable="true" sortProperty="name">
 		<c:choose>
 			<c:when test="${supportsDSLookup}">
 				<c:url value="/sql/datasourcetest.htm" var="name_url">
@@ -73,7 +73,7 @@
 		</c:choose>
 	</display:column>
 
-	<display:column titleKey="probe.jsp.datasources.list.col.usage"           sortable="true" sortProperty="dataSourceInfo.busyScore" class="score_wrapper">
+	<display:column titleKey="probe.jsp.datasources.list.col.usage" sortable="true" sortProperty="dataSourceInfo.busyScore" class="score_wrapper">
 		<div class="score_wrapper">
 			<probe:score value="${resource.dataSourceInfo.busyScore}" value2="${resource.dataSourceInfo.establishedScore - resource.dataSourceInfo.busyScore}" fullBlocks="10" partialBlocks="5" showEmptyBlocks="true" showA="true" showB="true">
 				<img src="<c:url value='/css/classic/gifs/rb_{0}.gif'/>" alt="+"
@@ -82,35 +82,33 @@
 		</div>
 	</display:column>
 
-	<display:column titleKey="probe.jsp.datasources.list.col.max"             sortable="true" property="dataSourceInfo.maxConnections"/>
-	<display:column titleKey="probe.jsp.datasources.list.col.established"     sortable="true" property="dataSourceInfo.establishedConnections"/>
-	<display:column titleKey="probe.jsp.datasources.list.col.busy"            sortable="true" property="dataSourceInfo.busyConnections"/>
+	<display:column titleKey="probe.jsp.datasources.list.col.max" sortable="true" property="dataSourceInfo.maxConnections"/>
+	<display:column titleKey="probe.jsp.datasources.list.col.established" sortable="true" property="dataSourceInfo.establishedConnections"/>
+	<display:column titleKey="probe.jsp.datasources.list.col.busy" sortable="true" property="dataSourceInfo.busyConnections"/>
 
-	<display:column titleKey="probe.jsp.datasources.list.col.user"            sortable="true" sortProperty="dataSourceInfo.username" property="dataSourceInfo.username" nulls="false">
-		${resource.dataSourceInfo.username}&nbsp;
+	<display:column titleKey="probe.jsp.datasources.list.col.user" sortable="true" sortProperty="dataSourceInfo.username" property="dataSourceInfo.username" nulls="false">
+		${resource.dataSourceInfo.username}&#160;
 	</display:column>
 
-	<!--
-	this does have to be one liner due to the tag forcing maxLength
-	-->
-	<display:column titleKey="probe.jsp.datasources.list.col.url"             sortable="true" property="dataSourceInfo.jdbcUrl" nulls="true" maxLength="50"/>
+	<!-- this does have to be one liner due to the tag forcing maxLength -->
+	<display:column titleKey="probe.jsp.datasources.list.col.url" sortable="true" property="dataSourceInfo.jdbcUrl" nulls="true" maxLength="50"/>
 
-	<display:column titleKey="probe.jsp.datasources.list.col.description"     sortable="true" sortProperty="description" maxLength="50">
-		${resource.description}&nbsp;
+	<display:column titleKey="probe.jsp.datasources.list.col.description" sortable="true" sortProperty="description" maxLength="50">
+		${resource.description}&#160;
 	</display:column>
 
-	<display:column titleKey="probe.jsp.datasources.list.col.type"            sortable="true" sortProperty="dataSourceInfo.type">
-		${resource.dataSourceInfo.type}&nbsp;
+	<display:column titleKey="probe.jsp.datasources.list.col.type" sortable="true" sortProperty="dataSourceInfo.type">
+		${resource.dataSourceInfo.type}&#160;
 	</display:column>
 
 	<c:if test="${! isGlobalResources}">
-		<display:column titleKey="probe.jsp.datasources.list.col.linkTo"      sortable="true" sortProperty="linkTo">
-			${resource.linkTo}&nbsp;
+		<display:column titleKey="probe.jsp.datasources.list.col.linkTo" sortable="true" sortProperty="linkTo">
+			${resource.linkTo}&#160;
 		</display:column>
 	</c:if>
 
-	<display:column titleKey="probe.jsp.datasources.list.col.auth"            sortable="true" sortProperty="auth">
-		${resource.auth}&nbsp;
+	<display:column titleKey="probe.jsp.datasources.list.col.auth" sortable="true" sortProperty="auth">
+		${resource.auth}&#160;
 	</display:column>
 
 </display:table>

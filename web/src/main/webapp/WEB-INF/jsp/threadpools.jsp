@@ -15,11 +15,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 
-<%--
-	Displays current thread pool information.
-
-	Author: Vlad Ilyushchenko
---%>
+<%-- Displays current thread pool information. --%>
 
 <html>
 	<head>

@@ -16,11 +16,7 @@
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@ taglib uri="https://github.com/psi-probe/psi-probe/jsp/tags" prefix="probe" %>
 
-<%--
-	Session attributes view, nothing spectacular.
-
-	Author: Vlad Ilyushchenko.
---%>
+<%-- Session attributes view, nothing spectacular. --%>
 <html>
 
 	<head>
@@ -29,9 +25,7 @@
 		</title>
 	</head>
 
-	<%--
-		Make Tab #1 visually "active".
-	--%>
+	<%-- Make Tab #1 visually "active". --%>
 	<c:set var="navTabApps" value="active" scope="request"/>
 	<c:set var="use_decorator" value="application" scope="request"/>
 	<c:set var="appTabSessions" value="active" scope="request"/>
@@ -80,9 +74,9 @@
 					<div class="shadow">
 						<div class="info">
 							<p>
-							<spring:message code="probe.jsp.sessionAttibutes.card.application"/>&nbsp;<span class="value">${param.webapp}</span>
-							<spring:message code="probe.jsp.sessionAttibutes.card.id"/>&nbsp;<span class="value">${session.id}</span>
-							<spring:message code="probe.jsp.sessionAttibutes.card.serializable"/>&nbsp;
+							<spring:message code="probe.jsp.sessionAttibutes.card.application"/>&#160;<span class="value">${param.webapp}</span>
+							<spring:message code="probe.jsp.sessionAttibutes.card.id"/>&#160;<span class="value">${session.id}</span>
+							<spring:message code="probe.jsp.sessionAttibutes.card.serializable"/>&#160;
 							<c:choose>
 								<c:when test="${session.serializable}">
 									<span class="okValue"><spring:message code="probe.jsp.sessionAttibutes.card.serializable.yes"/></span>
@@ -91,16 +85,16 @@
 									<span class="errorValue"><spring:message code="probe.jsp.sessionAttibutes.card.serializable.no"/></span>
 								</c:otherwise>
 							</c:choose>
-							<spring:message code="probe.jsp.sessionAttibutes.card.age"/>&nbsp;<span class="value"><probe:duration value="${session.age}"/></span>
-							<spring:message code="probe.jsp.sessionAttibutes.card.idleTime"/>&nbsp;<span class="value"><probe:duration value="${session.idleTime}"/></span>
-							<spring:message code="probe.jsp.sessionAttibutes.card.manager"/>&nbsp;<span class="value">${session.managerType}</span>
-							<spring:message code="probe.jsp.sessionAttibutes.card.info"/>&nbsp;<span class="value">${session.info}</span>
-							<spring:message code="probe.jsp.sessionAttibutes.card.created"/>&nbsp;<span class="value">${session.creationTime}</span>
-							<spring:message code="probe.jsp.sessionAttibutes.card.lastAccessed"/>&nbsp;<span class="value">${session.lastAccessTime}</span>
-							<spring:message code="probe.jsp.sessionAttibutes.card.maxIdleTime"/>&nbsp;<span class="value"><probe:duration value="${session.maxIdleTime}"/></span>
-							<spring:message code="probe.jsp.sessionAttibutes.card.expiryTime"/>&nbsp;<span class="value">${session.expiryTime}</span>
+							<spring:message code="probe.jsp.sessionAttibutes.card.age"/>&#160;<span class="value"><probe:duration value="${session.age}"/></span>
+							<spring:message code="probe.jsp.sessionAttibutes.card.idleTime"/>&#160;<span class="value"><probe:duration value="${session.idleTime}"/></span>
+							<spring:message code="probe.jsp.sessionAttibutes.card.manager"/>&#160;<span class="value">${session.managerType}</span>
+							<spring:message code="probe.jsp.sessionAttibutes.card.info"/>&#160;<span class="value">${session.info}</span>
+							<spring:message code="probe.jsp.sessionAttibutes.card.created"/>&#160;<span class="value">${session.creationTime}</span>
+							<spring:message code="probe.jsp.sessionAttibutes.card.lastAccessed"/>&#160;<span class="value">${session.lastAccessTime}</span>
+							<spring:message code="probe.jsp.sessionAttibutes.card.maxIdleTime"/>&#160;<span class="value"><probe:duration value="${session.maxIdleTime}"/></span>
+							<spring:message code="probe.jsp.sessionAttibutes.card.expiryTime"/>&#160;<span class="value">${session.expiryTime}</span>
 							<c:if test="${param.size}">
-								<spring:message code="probe.jsp.sessionAttibutes.card.size"/>&nbsp;<span class="value"><probe:volume value="${session.size}"/></span>
+								<spring:message code="probe.jsp.sessionAttibutes.card.size"/>&#160;<span class="value"><probe:volume value="${session.size}"/></span>
 							</c:if>
 							</p>
 						</div>
@@ -112,7 +106,7 @@
 							<display:table name="session.attributes" uid="attribute"
 									class="genericTbl" style="padding:0;border-spacing:0;border-collapse:separate;"
 									requestURI="">
-								<display:column title="&nbsp;" class="leftmost" style="width: 20px;">
+								<display:column title="&#160;" class="leftmost" style="width: 20px;">
 									<c:url value="/app/rmsattr.htm" var="rmsattr_url">
 										<c:param name="webapp" value="${param.webapp}"/>
 										<c:param name="sid" value="${param.sid}"/>

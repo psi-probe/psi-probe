@@ -15,11 +15,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 
-<%--
-	AJAX HTML bit, representing log file content.
-
-	Author: Vlad Ilyushchenko
---%>
+<%-- An AJAX HTML bit, representing log file content. --%>
 <c:forEach items="${lines}" var="line">
 	<div class="line"><c:out value="${line}" escapeXml="true" /></div>
 </c:forEach>

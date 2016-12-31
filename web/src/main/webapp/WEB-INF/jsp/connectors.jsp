@@ -216,14 +216,14 @@
 									<display:table name="${connector.requestProcessors}"
 											class="genericTbl" style="border-spacing:0;border-collapse:separate;"
 											requestURI="" uid="rp" defaultsort="7" defaultorder="descending">
-										<display:column title="&nbsp;" style="width:18px;" class="leftmost">
+										<display:column title="&#160;" style="width:18px;" class="leftmost">
 											<c:choose>
 												<c:when test="${! empty rp.remoteAddrLocale.country && rp.remoteAddrLocale.country != '**'}">
 													<img border="0" src="<c:url value='/flags/${fn:toLowerCase(rp.remoteAddrLocale.country)}.png'/>"
 															alt="${rp.remoteAddrLocale.country}" title="${rp.remoteAddrLocale.displayCountry}"/>
 												</c:when>
 												<c:otherwise>
-													&nbsp;
+													&#160;
 												</c:otherwise>
 											</c:choose>
 										</display:column>
@@ -295,12 +295,12 @@
 														</script>
 													</c:when>
 													<c:otherwise>
-														&nbsp;
+														&#160;
 													</c:otherwise>
 												</c:choose>
 											</display:column>
 
-											<display:column sortable="false" title="&nbsp;" style="width:16px;">
+											<display:column sortable="false" title="&#160;" style="width:16px;">
 												<c:choose>
 													<c:when test="${! empty rp.workerThreadName}">
 														<c:set var="confirmMessage">
@@ -316,7 +316,7 @@
 														</a>
 													</c:when>
 													<c:otherwise>
-														&nbsp;
+														&#160;
 													</c:otherwise>
 												</c:choose>
 											</display:column>
@@ -326,12 +326,12 @@
 											<c:choose>
 												<c:when test="${rp.stage == 3 && ! empty rp.currentUri}">
 													<c:set var="req">
-														${rp.method}&nbsp;${rp.currentUri}<c:if test="${! empty rp.currentQueryString}">?${rp.currentQueryString}</c:if>
+														${rp.method}&#160;${rp.currentUri}<c:if test="${! empty rp.currentQueryString}">?${rp.currentQueryString}</c:if>
 													</c:set>
 													<probe:out value="${req}" maxLength="60"/>
 												</c:when>
 												<c:otherwise>
-													&nbsp;
+													&#160;
 												</c:otherwise>
 											</c:choose>
 										</display:column>

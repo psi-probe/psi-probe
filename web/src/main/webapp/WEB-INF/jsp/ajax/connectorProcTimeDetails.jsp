@@ -15,7 +15,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 <c:if test="${! empty connector}">
-	<span class="name"><spring:message code="probe.jsp.connectors.processor.processingTime"/></span>&nbsp;${connector.processingTime}
-	&nbsp;
-	<span class="name"><spring:message code="probe.jsp.connectors.processor.maxTime"/></span>&nbsp;${connector.maxTime}
+	<span class="name"><spring:message code="probe.jsp.connectors.processor.processingTime"/></span>&#160;${connector.processingTime}
+	&#160;
+	<span class="name"><spring:message code="probe.jsp.connectors.processor.maxTime"/></span>&#160;${connector.maxTime}
 </c:if>

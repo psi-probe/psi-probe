@@ -36,7 +36,7 @@
 		<div id="certificates">
 
 			<c:forEach items="${connectors}" var="connector">
-			
+
 				<h4 style="padding-top: 10px">${connector.name}</h4>
 
 				<div class="connectorCertificates">

@@ -15,11 +15,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 
-<%--
-	Displays a list of initialization parameters of a given application
-
-	Author: Andy Shapoval
---%>
+<%-- Displays a list of initialization parameters of a given application --%>
 
 <html>
 
@@ -29,9 +25,7 @@
 		</title>
 	</head>
 
-	<%--
-		Make Tab #1 visually "active".
-	--%>
+	<%-- Make Tab #1 visually "active". --%>
 	<c:set var="navTabApps" value="active" scope="request"/>
 	<c:set var="use_decorator" value="application" scope="request"/>
 	<c:set var="appTabInitParams" value="active" scope="request"/>
@@ -47,7 +41,7 @@
 					<display:table htmlId="initParamTbl" name="appInitParams" uid="prm"
 							class="genericTbl" style="padding:0;border-spacing:0;border-collapse:separate;"
 							requestURI="" defaultsort="2">
-						<display:column class="leftMostIcon" title="&nbsp;" style="width:1px;">
+						<display:column class="leftMostIcon" title="&#160;" style="width:1px;">
 							<c:choose>
 								<c:when test="${prm.fromDeplDescr}">
 									<img src="${pageContext.request.contextPath}<spring:theme code='deployment_descriptor.img'/>" alt="">
@@ -62,7 +56,7 @@
 						<display:column sortable="true" titleKey="probe.jsp.app.initParams.col.value">
 							<c:choose>
 								<c:when test="${allowedToViewValues}">
-									<c:out value="${prm.value}" escapeXml="true"/>&nbsp;
+									<c:out value="${prm.value}" escapeXml="true"/>&#160;
 								</c:when>
 								<c:otherwise>
 									**************

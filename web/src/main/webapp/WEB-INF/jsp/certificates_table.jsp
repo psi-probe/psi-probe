@@ -35,7 +35,7 @@
 		<fmt:formatDate value="${cert.notAfter}" type="BOTH" dateStyle="SHORT" timeStyle="MEDIUM"/>
 	</display:column>
 
-	<display:column title="&nbsp;">
+	<display:column title="&#160;">
 		<img border="0" src="${pageContext.request.contextPath}<spring:theme code='magnifier.png'/>" title="<spring:message code='probe.jsp.certificates.viewCertDetails'/>">
 	</display:column>
 

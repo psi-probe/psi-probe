@@ -16,11 +16,7 @@
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@ taglib uri="https://github.com/psi-probe/psi-probe/jsp/tags" prefix="probe" %>
 
-<%--
-	An Ajax spippet that displays a list of servlets
-
-	Author: Andy Shapoval, Vlad Ilyushchenko
---%>
+<%-- An Ajax spippet that displays a list of servlets --%>
 
 <c:choose>
 	<c:when test="${! empty servlets}">
