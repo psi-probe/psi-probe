@@ -35,24 +35,6 @@ public class Tomcat70AgentValve extends ValveBase {
     super(true);
   }
 
-  /**
-   * Gets the info.
-   * 
-   * @return the info
-   */
-  @Override
-  public String getInfo() {
-    return info;
-  }
-
-  /**
-   * Invoke.
-   * 
-   * @param request the request
-   * @param response the response
-   * @throws java.io.IOException if the next valve throws this exception
-   * @throws javax.servlet.ServletException if the next valve throws this exception
-   */
   @Override
   public void invoke(Request request, Response response) throws IOException, ServletException {
     getNext().invoke(request, response);
