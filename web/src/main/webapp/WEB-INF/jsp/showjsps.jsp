@@ -70,7 +70,7 @@
 						<display:table name="summary.items" uid="item" class="genericTbl" style="border-spacing:0;border-collapse:separate;" requestURI="" defaultsort="1"
 								defaultorder="descending">
 							<display:column titleKey="probe.jsp.jsps.col.name" sortable="true" class="leftmost" sortProperty="name">
-								<input type="checkbox" name="${item.name}"/>&nbsp;
+								<input type="checkbox" name="${item.name}"/>&#160;
 								<a href="<c:url value='/app/viewsource.htm'><c:param name='webapp' value='${param.webapp}' /><c:param name='source' value='${item.name}' /></c:url>">
 									${item.name}
 								</a>
@@ -95,7 +95,7 @@
 								</c:choose>
 							</display:column>
 							<display:column titleKey="probe.jsp.jsps.col.message" sortable="true">
-								<c:out value="${item.exception.message}" escapeXml="false"/>&nbsp;
+								<c:out value="${item.exception.message}" escapeXml="false"/>&#160;
 							</display:column>
 						</display:table>
 					</div>

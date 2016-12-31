@@ -55,11 +55,11 @@
 									<div class="dbConnAdditionalInfo">
 										<spring:message code="probe.jsp.resources.info.title"/>
 										<b>${resource.dataSourceInfo.jdbcUrl}</b>
-										<spring:message code="probe.jsp.resources.info.max"/>&nbsp;<b>${resource.dataSourceInfo.maxConnections}</b>
-										<spring:message code="probe.jsp.resources.info.busy"/>&nbsp;<b>${resource.dataSourceInfo.busyConnections}</b>
-										<spring:message code="probe.jsp.resources.info.established"/>&nbsp;<b>${resource.dataSourceInfo.establishedConnections}</b>
+										<spring:message code="probe.jsp.resources.info.max"/>&#160;<b>${resource.dataSourceInfo.maxConnections}</b>
+										<spring:message code="probe.jsp.resources.info.busy"/>&#160;<b>${resource.dataSourceInfo.busyConnections}</b>
+										<spring:message code="probe.jsp.resources.info.established"/>&#160;<b>${resource.dataSourceInfo.establishedConnections}</b>
 										<c:if test="${resource.dataSourceInfo.resettable}">
-											<b>&nbsp;
+											<b>&#160;
 												<a href="<c:url value='/app/resetds.htm'><c:param name='webapp' value='${resource.applicationName}' /><c:param name='resource' value='${resource.name}' /></c:url>">
 													<img border="0"
 															src="${pageContext.request.contextPath}<spring:theme code='reset.gif'/>"
@@ -86,11 +86,11 @@
 						</display:column>
 
 						<display:column titleKey="probe.jsp.resources.col.linkTo">
-							${resource.linkTo}&nbsp;
+							${resource.linkTo}&#160;
 						</display:column>
 
 						<display:column titleKey="probe.jsp.resources.col.auth">
-							${resource.auth}&nbsp;
+							${resource.auth}&#160;
 						</display:column>
 
 					</display:table>

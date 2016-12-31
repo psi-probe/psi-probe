@@ -15,11 +15,11 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 <c:if test="${! empty app}">
-	<span class="name"><spring:message code="probe.jsp.app.summary.processingTime"/></span>&nbsp;${app.processingTime}
-	&nbsp;
-	<span class="name"><spring:message code="probe.jsp.app.summary.minTime"/></span>&nbsp;${app.minTime}
-	&nbsp;
-	<span class="name"><spring:message code="probe.jsp.app.summary.maxTime"/></span>&nbsp;${app.maxTime}
-	&nbsp;
-	<span class="name"><spring:message code="probe.jsp.app.summary.avgTime"/></span>&nbsp;${app.avgTime}
+	<span class="name"><spring:message code="probe.jsp.app.summary.processingTime"/></span>&#160;${app.processingTime}
+	&#160;
+	<span class="name"><spring:message code="probe.jsp.app.summary.minTime"/></span>&#160;${app.minTime}
+	&#160;
+	<span class="name"><spring:message code="probe.jsp.app.summary.maxTime"/></span>&#160;${app.maxTime}
+	&#160;
+	<span class="name"><spring:message code="probe.jsp.app.summary.avgTime"/></span>&#160;${app.avgTime}
 </c:if>

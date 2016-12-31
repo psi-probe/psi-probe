@@ -25,7 +25,7 @@
 		<code>
 			<c:forEach items="${result}" var="line">
 				<div>
-					${line}&nbsp;
+					${line}&#160;
 				</div>
 			</c:forEach>
 		</code>

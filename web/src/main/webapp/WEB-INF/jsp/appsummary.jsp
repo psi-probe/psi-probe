@@ -15,11 +15,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="https://github.com/psi-probe/psi-probe/jsp/tags" prefix="probe" %>
 
-<%--
-	Displays a web application information summary and application statistics charts
-
-	Author: Andy Shapoval, Vlad Ilyushchenko
---%>
+<%-- Displays a web application information summary and application statistics charts --%>
 
 <html>
 	<head>
@@ -97,13 +93,13 @@
 
 					<h3><spring:message code="probe.jsp.app.summary.h3.static"/></h3>
 					<div id="appInfo">
-						<spring:message code="probe.jsp.app.summary.application"/>&nbsp;
+						<spring:message code="probe.jsp.app.summary.application"/>&#160;
 						<span class="value"><a href="${app.name}${app.name ne '/' ? '/' : ''}" target="_blank">${app.name}</a></span>
-						<spring:message code="probe.jsp.app.summary.docBase"/>&nbsp;<span class="value">${app.docBase}</span>
-						<spring:message code="probe.jsp.app.summary.description"/>&nbsp;<span class="value">${app.displayName}</span>
-						<spring:message code="probe.jsp.app.summary.servletVersion"/>&nbsp;<span class="value">${app.servletVersion}</span>
-						<spring:message code="probe.jsp.app.summary.servletCount"/>&nbsp;<span class="value"><a href="<c:url value='/servlets.htm'><c:param name='webapp' value='${app.name}'/></c:url>"><span id="servletCount"></span></a></span>
-						<spring:message code="probe.jsp.app.summary.sessionTimeout"/>&nbsp;<span class="value">${app.sessionTimeout} min.</span>
+						<spring:message code="probe.jsp.app.summary.docBase"/>&#160;<span class="value">${app.docBase}</span>
+						<spring:message code="probe.jsp.app.summary.description"/>&#160;<span class="value">${app.displayName}</span>
+						<spring:message code="probe.jsp.app.summary.servletVersion"/>&#160;<span class="value">${app.servletVersion}</span>
+						<spring:message code="probe.jsp.app.summary.servletCount"/>&#160;<span class="value"><a href="<c:url value='/servlets.htm'><c:param name='webapp' value='${app.name}'/></c:url>"><span id="servletCount"></span></a></span>
+						<spring:message code="probe.jsp.app.summary.sessionTimeout"/>&#160;<span class="value">${app.sessionTimeout} min.</span>
 						<spring:message code="probe.jsp.app.summary.distributable"/>
 						<c:choose>
 							<c:when test="${app.distributable}">

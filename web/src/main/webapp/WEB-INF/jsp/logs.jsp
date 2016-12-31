@@ -16,12 +16,8 @@
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@ taglib uri="https://github.com/psi-probe/psi-probe/jsp/tags" prefix="probe" %>
 
-<%--
-	Simple tabular list of log files and their attributes. The page is further linked to
-	log file viewer and file download controller.
-
-	Author: Vlad Ilyushchenko.
---%>
+<%-- Simple tabular list of log files and their attributes. The page is further linked to
+ log file viewer and file download controller. --%>
 <html>
 	<head>
 		<title>
@@ -108,7 +104,7 @@
 					</c:choose>
 				</display:column>
 
-				<display:column title="&nbsp;">
+				<display:column title="&#160;">
 					<c:if test="${log.file != 'stdout'}">
 						<c:url value="/logs/download" var="downloadUrl">
 							<c:param name="logType" value="${log.logType}"/>
@@ -142,11 +138,11 @@
 				</display:column>
 
 				<display:column titleKey="probe.jsp.logs.col.size" sortable="true" sortProperty="size">
-					<probe:volume value="${log.size}"/>&nbsp;
+					<probe:volume value="${log.size}"/>&#160;
 				</display:column>
 
 				<display:column titleKey="probe.jsp.logs.col.modified" sortable="true" sortProperty="lastModified">
-					${log.lastModified}&nbsp;
+					${log.lastModified}&#160;
 				</display:column>
 
 				<display:column titleKey="probe.jsp.logs.col.class" sortable="true" property="targetClass"/>

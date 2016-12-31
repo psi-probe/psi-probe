@@ -72,13 +72,13 @@
 					<dl>
 						<dt><label for="war"><spring:message code="probe.jsp.deployment.s1.file.label"/> <em>*</em></label></dt>
 						<dd><input id="war" type="file" name="war" size="90"/></dd>
-						<dt><label for="context"><spring:message code="probe.jsp.deployment.s2.context.label"/>&nbsp;</label></dt>
+						<dt><label for="context"><spring:message code="probe.jsp.deployment.s2.context.label"/>&#160;</label></dt>
 						<dd><input id="context" type="text" name="context" size="90"/></dd>
-						<dt><span class="cb"><input id="update" type="checkbox" name="update" value="yes"/><label for="update">&nbsp;
+						<dt><span class="cb"><input id="update" type="checkbox" name="update" value="yes"/><label for="update">&#160;
 									<spring:message code="probe.jsp.deployment.s1.update.label"/></label></span></dt>
-						<dt><span class="cb"><input id="discard" type="checkbox" name="discard" value="yes"/><label for="discard">&nbsp;
+						<dt><span class="cb"><input id="discard" type="checkbox" name="discard" value="yes"/><label for="discard">&#160;
 									<spring:message code="probe.jsp.deployment.s1.discard.label"/></label></span></dt>
-						<dt><span class="cb"><input id="compile" type="checkbox" name="compile" value="yes"/><label for="compile">&nbsp;
+						<dt><span class="cb"><input id="compile" type="checkbox" name="compile" value="yes"/><label for="compile">&#160;
 									<spring:message code="probe.jsp.deployment.s1.compile.label"/></label></span></dt>
 
 						<dd class="submit">
@@ -114,7 +114,7 @@
 					<dl>
 						<dt><label for="file1"><spring:message code="probe.jsp.deployment.s3.file.label"/> <em>*</em></label></dt>
 						<dd><input id="file1" type="file" name="file1" size="90"/></dd>
-						<dt><label for="context"><spring:message code="probe.jsp.deployment.s3.context.label"/>&nbsp;</label></dt>
+						<dt><label for="context"><spring:message code="probe.jsp.deployment.s3.context.label"/>&#160;</label></dt>
 						<dd>
 							<!--input id="context" type="text" name="context" size="90"/-->
 							<select id="context" name="context" style="width: 90px">
@@ -123,11 +123,11 @@
 								</c:forEach>
 							</select>
 						</dd>
-						<dt><label for="where"><spring:message code="probe.jsp.deployment.s3.where.label"/>&nbsp;</label></dt>
+						<dt><label for="where"><spring:message code="probe.jsp.deployment.s3.where.label"/>&#160;</label></dt>
 						<dd><input id="where" type="text" name="where" size="90"/></dd>
-						<dt><span class="cb"><input id="reload" type="checkbox" name="reload" value="yes"/><label for="reload">&nbsp;
+						<dt><span class="cb"><input id="reload" type="checkbox" name="reload" value="yes"/><label for="reload">&#160;
 							<spring:message code="probe.jsp.deployment.s3.reload.label"/></label></span></dt>
-						<dt><span class="cb"><input id="discard" type="checkbox" name="discard" value="yes"/><label for="discard">&nbsp;
+						<dt><span class="cb"><input id="discard" type="checkbox" name="discard" value="yes"/><label for="discard">&#160;
 							<spring:message code="probe.jsp.deployment.s1.discard.label"/></label></span></dt>
 						<dd class="submit">
 							<input class="b" type="submit" value="<spring:message code='probe.jsp.deployment.s3.submit'/>"/>

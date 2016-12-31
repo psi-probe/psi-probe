@@ -14,11 +14,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
-<%--
-	An Ajax HTML snippet to display a history of executed SQL queries.
-
-	Author: Andy Shapoval
---%>
+<%-- An Ajax HTML snippet to display a history of executed SQL queries. --%>
 
 <c:choose>
 	<c:when test="${! empty queryHistory}">

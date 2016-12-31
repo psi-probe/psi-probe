@@ -30,12 +30,8 @@
 		<script type="text/javascript" src="<c:url value='/js/datasourcetest.js'/>"></script>
 	</head>
 
-	<%--
-		Provides GUI for datasource connectivity testing.
-		Allows a user to enter an SQL query and displays results returned by the query.
-
-		Author: Andy Shapoval, Vlad Ilyushchenko
-	--%>
+	<%-- Provides GUI for datasource connectivity testing. Allows a user to enter an SQL query and
+     displays results returned by the query. --%>
 
 	<body>
 
@@ -102,7 +98,7 @@
 					<dt><label for="sql"><spring:message code="probe.jsp.dataSourceTest.sqlForm.sql.label"/></label></dt>
 					<dd id="sqlContainer">
 						<textarea id="sql" name="sql" rows="5" cols="80"></textarea>
-						<div id="sqlDragHandle">&nbsp;</div>
+						<div id="sqlDragHandle">&#160;</div>
 					</dd>
 				</dl>
 				<dl id="optionsDL" style="display: none;">
@@ -131,7 +127,7 @@
 				</ul>
 				<div id="queryHistoryBorder">
 					<div id="queryHistoryHolder"></div>
-					<div id="historyDragHandle">&nbsp;</div>
+					<div id="historyDragHandle">&#160;</div>
 				</div>
 			</div>
 
@@ -149,10 +145,10 @@
 				</div>
 				<table id="resultsTable" style="border-spacing:0;border-collapse:separate;">
 					<tr>
-						<td id="left_scroller" class="scroller" style="display: none;">&nbsp;</td>
-						<td id="separator" width="1%" style="display: none;">&nbsp;</td>
+						<td id="left_scroller" class="scroller" style="display: none;">&#160;</td>
+						<td id="separator" width="1%" style="display: none;">&#160;</td>
 						<td><div id="outputHolder"></div></td>
-						<td id="right_scroller" class="scroller" style="display: none;">&nbsp;</td>
+						<td id="right_scroller" class="scroller" style="display: none;">&#160;</td>
 					</tr>
 				</table>
 			</div>

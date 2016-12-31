@@ -16,12 +16,7 @@
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@ taglib uri="https://github.com/psi-probe/psi-probe/jsp/tags" prefix="probe" %>
 
-<!--
-
-	Displays a list of datasources grouped by JDBC URL with aggregated totals.
-	Author: Andy Shapoval
-
--->
+<!-- Displays a list of datasources grouped by JDBC URL with aggregated totals. -->
 
 <html>
 	<head>

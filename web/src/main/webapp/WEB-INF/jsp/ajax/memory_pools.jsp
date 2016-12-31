@@ -18,7 +18,7 @@
 
 <display:table name="pools" class="genericTbl" style="border-spacing:0;border-collapse:separate;" uid="pool" requestURI="">
 
-	<display:column title="&nbsp;" style="width:16px;" class="leftMostIcon">
+	<display:column title="&#160;" style="width:16px;" class="leftMostIcon">
 		<c:choose>
 			<c:when test="${pool.type == 'HEAP'}">
 				<img src="${pageContext.request.contextPath}<spring:theme code='heap_pool.png'/>" alt=""/>
