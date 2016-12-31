@@ -22,7 +22,7 @@
 	<head>
 		<title><spring:message code="probe.jsp.title.jsps" arguments="${param.webapp}"/></title>
 		<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/effects.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
 		<script type="text/javascript" src="<c:url value='/js/func.js'/>"></script>
 	</head>
 

@@ -19,7 +19,7 @@
 	<head>
 		<title>${param.cn}</title>
 		<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/scriptaculous.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
 		<script type="text/javascript" src="<c:url value='/js/func.js'/>"></script>
 	</head>
 

@@ -43,10 +43,9 @@
 			</c:when>
 			<c:otherwise>
 				<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>
-				<script type="text/javascript" src="<c:url value='/js/scriptaculous.js'/>"></script>
+				<script type="text/javascript" src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
 				<script type="text/javascript" src="<c:url value='/js/func.js'/>"></script>
 				<script type="text/javascript" src="<c:url value='/js/behaviour.js'/>"></script>
-				<script type="text/javascript" src="<c:url value='/js/effects.js'/>"></script>
 
 				<c:set var="confirmMessage">
 					<spring:message code="probe.jsp.app.summary.undeploy.confirm" arguments="${param.webapp}"/>
