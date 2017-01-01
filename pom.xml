@@ -67,6 +67,7 @@
         <connection>scm:git:ssh://git@github.com/psi-probe/psi-probe.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/psi-probe/psi-probe.git</developerConnection>
         <url>https://github.com/psi-probe/psi-probe/</url>
+        <tag>HEAD</tag>
     </scm>
     <issueManagement>
         <system>GitHub Issues</system>
@@ -100,6 +101,8 @@
 
         <checkstyle.configLocation>google_checks.xml</checkstyle.configLocation>
         <copyright>2016</copyright>
+
+        <github.global.server>github</github.global.server>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.build.resourceEncoding>UTF-8</project.build.resourceEncoding>
