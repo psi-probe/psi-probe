@@ -1,7 +1,7 @@
 # PSI Probe
 
 [![Build Status](https://travis-ci.org/psi-probe/psi-probe.svg?branch=master)](https://travis-ci.org/psi-probe/psi-probe)
-[![Coverage Status](https://coveralls.io/repos/psi-probe/psi-probe/badge.svg?branch=master&service=github)](https://coveralls.io/github/psi-probe/psi-probe?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/psi-probe/psi-probe/badge.svg?branch=master)](https://coveralls.io/github/psi-probe/psi-probe?branch=master)
 [![Dependency Status](https://www.versioneye.com/user/projects/569bd2562025a60031000001/badge.svg?style=flat)](https://www.versioneye.com/user/projects/569bd2562025a60031000001)
 [![GPLv2 License](https://img.shields.io/badge/license-GPLv2-green.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
 [![Project Stats](https://www.openhub.net/p/psi-probe/widgets/project_thin_badge.gif)](https://www.openhub.net/p/psi-probe)
