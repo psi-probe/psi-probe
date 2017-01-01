@@ -56,7 +56,7 @@ public final class SizeExpression {
    * <p>
    * An expression has three parts:
    * </p>
-   * <table>
+   * <table summary="Size Summary Table">
    * 
    * <thead>
    * <tr>
