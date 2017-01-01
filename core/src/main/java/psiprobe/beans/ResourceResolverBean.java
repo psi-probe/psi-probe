@@ -139,6 +139,11 @@ public class ResourceResolverBean implements ResourceResolver {
     if (contextBound) {
       try {
         javax.naming.Context ctx = !global ? new InitialContext() : getGlobalNamingContext();
+        if (ctx == null) {
+          logger.error("Unable to find context. This may indicate invalid setup. Check global resources versus requested resources");
+          resource.setLookedUp(false);
+          return;
+        }
         String jndiName = resolveJndiName(resource.getName(), global);
         Object obj = ctx.lookup(jndiName);
         resource.setLookedUp(true);
