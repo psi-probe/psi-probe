@@ -510,7 +510,6 @@
                             <!-- See https://github.com/ktoso/maven-git-commit-id-plugin/issues/61#issuecomment-27995746 -->
                             <always>true</always>
                         </gitDescribe>
-                        <runOnlyOnce>true</runOnlyOnce>
                     </configuration>
                 </plugin>
                 <plugin>
