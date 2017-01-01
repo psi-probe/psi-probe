@@ -25,6 +25,10 @@
     </description>
     <url>https://github.com/psi-probe/psi-probe/</url>
     <inceptionYear>2009</inceptionYear>
+    <organization>
+        <name>psi-probe</name>
+        <url>https://github.com/psi-probe/</url>
+    </organization>
     <licenses>
         <license>
             <name>GNU General Public License, version 2</name>
