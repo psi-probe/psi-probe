@@ -203,11 +203,9 @@ public class FlapListenerTests {
    * The listener interface for receiving mockFlap events. The class that is interested in
    * processing a mockFlap event implements this interface, and the object created with that class
    * is registered with a component using the component's
-   * <code>addMockFlapListener<code> method. When
+   * <code>addMockFlapListener</code> method. When
    * the mockFlap event occurs, that object's appropriate
    * method is invoked.
-   *
-   * @see MockFlapEvent
    */
   public static class MockFlapListener extends AbstractFlapListener {
 
