@@ -24,8 +24,13 @@ import java.util.List;
 import java.util.Set;
 
 import javax.inject.Inject;
+import javax.management.AttributeNotFoundException;
+import javax.management.InstanceNotFoundException;
+import javax.management.MBeanException;
 import javax.management.MBeanServer;
+import javax.management.MalformedObjectNameException;
 import javax.management.ObjectName;
+import javax.management.ReflectionException;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
@@ -307,15 +312,28 @@ public class ResourceResolverBean implements ResourceResolver {
     javax.naming.Context globalContext = null;
     MBeanServer mbeanServer = getMBeanServer();
     if (mbeanServer != null) {
-      try {
-        ObjectName name = new ObjectName("Catalina:type=Server");
-        Server server = (Server) mbeanServer.getAttribute(name, "managedResource");
-        // getGlobalNamingContext() was added to Server interface in Tomcat 7.0.11
-        if (server instanceof StandardServer) {
-          globalContext = server.getGlobalNamingContext();
+      for (String domain : mbeanServer.getDomains()) {
+
+        ObjectName name;
+        try {
+          name = new ObjectName(domain + ":type=Server");
+        } catch (MalformedObjectNameException e) {
+          logger.error("", e);
+          return null;
         }
-      } catch (Exception e) {
-        logger.error("There was an error getting globalContext through JMX server:", e);
+
+        Server server = null;
+        try {
+          server = (Server) mbeanServer.getAttribute(name, "managedResource");
+        } catch (AttributeNotFoundException | InstanceNotFoundException | MBeanException | ReflectionException e) {
+          logger.trace("JMX objectName {} does not contain any managedResource", name, e);
+        }
+
+        // getGlobalNamingContext() was added to Server interface in Tomcat 7.0.11
+        if (server != null && server instanceof StandardServer) {
+          globalContext = server.getGlobalNamingContext();
+          break;
+        }
       }
     }
 
