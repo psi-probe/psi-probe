@@ -17,6 +17,8 @@ import org.junit.Test;
 import com.jolbox.bonecp.BoneCPDataSource;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
+import mockit.Mocked;
+
 /**
  * The Class BoneCpDatasourceAccessorTest.
  */
@@ -26,6 +28,7 @@ public class BoneCpDatasourceAccessorTest {
     BoneCpDatasourceAccessor accessor;
 
     /** The source. */
+    @Mocked
     BoneCPDataSource source;
 
     /** The bad source. */
@@ -37,7 +40,6 @@ public class BoneCpDatasourceAccessorTest {
     @Before
     public void before() {
         accessor = new BoneCpDatasourceAccessor();
-        source = new BoneCPDataSource();
         badSource = new ComboPooledDataSource();
     }
 
@@ -55,6 +57,17 @@ public class BoneCpDatasourceAccessorTest {
     @Test
     public void cannotMapTest() {
         Assert.assertFalse(accessor.canMap(badSource));
+    }
+
+    /**
+     * Gets the info test.
+     *
+     * @return the info test
+     * @throws Exception the exception
+     */
+    @Test
+    public void getInfoTest() throws Exception {
+        accessor.getInfo(source);
     }
 
 }

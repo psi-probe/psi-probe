@@ -15,8 +15,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.jolbox.bonecp.BoneCPDataSource;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
+
+import mockit.Mocked;
 
 /**
  * The Class TomcatJdbcPoolDatasourceAccessorTest.
@@ -27,6 +28,7 @@ public class TomcatJdbcPoolDatasourceAccessorTest {
     TomcatJdbcPoolDatasourceAccessor accessor;
 
     /** The source. */
+    @Mocked
     DataSource source;
 
     /** The bad source. */
@@ -38,7 +40,6 @@ public class TomcatJdbcPoolDatasourceAccessorTest {
     @Before
     public void before() {
         accessor = new TomcatJdbcPoolDatasourceAccessor();
-        source = new DataSource();
         badSource = new ComboPooledDataSource();
     }
 
@@ -57,5 +58,16 @@ public class TomcatJdbcPoolDatasourceAccessorTest {
     public void cannotMapTest() {
         Assert.assertFalse(accessor.canMap(badSource));
     }
-    
+
+    /**
+     * Gets the info test.
+     *
+     * @return the info test
+     * @throws Exception the exception
+     */
+    @Test
+    public void getInfoTest() throws Exception {
+        accessor.getInfo(source);
+    }
+
 }

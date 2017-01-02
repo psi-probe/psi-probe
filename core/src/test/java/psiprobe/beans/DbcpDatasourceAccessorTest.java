@@ -56,5 +56,16 @@ public class DbcpDatasourceAccessorTest {
     public void cannotMapTest() {
         Assert.assertFalse(accessor.canMap(badSource));
     }
-    
+
+    /**
+     * Gets the info test.
+     *
+     * @return the info test
+     * @throws Exception the exception
+     */
+    @Test
+    public void getInfoTest() throws Exception {
+        accessor.getInfo(source);
+    }
+
 }

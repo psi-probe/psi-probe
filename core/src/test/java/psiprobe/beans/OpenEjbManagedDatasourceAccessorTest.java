@@ -18,16 +18,20 @@ import org.junit.Test;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
+import mockit.Mocked;
+import mockit.Tested;
+
 /**
  * The Class OpenEjbManagedDatasourceAccessorTest.
  */
-@Ignore
 public class OpenEjbManagedDatasourceAccessorTest {
 
     /** The accessor. */
+    @Tested
     OpenEjbManagedDatasourceAccessor accessor;
 
     /** The source. */
+    @Mocked
     ManagedDataSource source;
 
     /** The bad source. */
@@ -39,14 +43,13 @@ public class OpenEjbManagedDatasourceAccessorTest {
     @Before
     public void before() {
         accessor = new OpenEjbManagedDatasourceAccessor();
-        // TODO We need mocking to test this
-        source = new ManagedDataSource(null, null, null);
         badSource = new ComboPooledDataSource();
     }
 
     /**
      * Can map test.
      */
+    @Ignore
     @Test
     public void canMapTest() {
         Assert.assertTrue(accessor.canMap(source));
@@ -59,5 +62,16 @@ public class OpenEjbManagedDatasourceAccessorTest {
     public void cannotMapTest() {
         Assert.assertFalse(accessor.canMap(badSource));
     }
-    
+
+    /**
+     * Gets the info test.
+     *
+     * @return the info test
+     * @throws Exception the exception
+     */
+    @Test
+    public void getInfoTest() throws Exception {
+        accessor.getInfo(source);
+    }
+
 }
