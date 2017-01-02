@@ -43,7 +43,7 @@ if [ $TRAVIS_REPO_SLUG == "psi-probe/psi-probe" ] && [ $TRAVIS_PULL_REQUEST == "
 	# echo -e "Successfully deploy site under Travis job ${TRAVIS_JOB_NUMBER}"
   fi
 
-elif [ $TRAVIS_REPO_SLUG == "psi-probe/psi-probe" ] && [ $TRAVIS_PULL_REQUEST == "true" ]; then
+elif [ $TRAVIS_REPO_SLUG == "psi-probe/psi-probe" ] && [ $TRAVIS_PULL_REQUEST != "false" ]; then
 
   if [ $TRAVIS_JDK_VERSION == "oraclejdk8" ]; then
 	# Send coverage to coveralls
