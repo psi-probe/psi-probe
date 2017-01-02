@@ -104,6 +104,8 @@
 
         <github.global.server>github</github.global.server>
 
+        <probe.version>${project.version} (built at ${maven.build.timestamp})</probe.version>
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.build.resourceEncoding>UTF-8</project.build.resourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -1003,16 +1005,6 @@
                     </plugin>
                 </plugins>
             </build>
-        </profile>
-
-        <profile>
-            <id>development</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <probe.version>${project.version} (built at ${maven.build.timestamp})</probe.version>
-            </properties>
         </profile>
 
         <profile>
