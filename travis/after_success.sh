@@ -47,7 +47,7 @@ elif [ $TRAVIS_REPO_SLUG == "psi-probe/psi-probe" ] && [ $TRAVIS_PULL_REQUEST !=
 
   if [ $TRAVIS_JDK_VERSION == "oraclejdk8" ]; then
 	# Send coverage to coveralls
-	mvn clean jacoco:report coveralls:report -q
+	mvn clean test jacoco:report coveralls:report -q
 	echo -e "Successfully ran coveralls under Travis job ${TRAVIS_JOB_NUMBER}"
   fi
 
