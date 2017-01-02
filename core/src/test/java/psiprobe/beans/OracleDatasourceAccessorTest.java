@@ -11,6 +11,7 @@
 package psiprobe.beans;
 
 import java.sql.SQLException;
+import java.util.Properties;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -18,6 +19,8 @@ import org.junit.Test;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
+import mockit.Expectations;
+import mockit.Mocked;
 import oracle.jdbc.pool.OracleDataSource;
 
 /**
@@ -29,6 +32,7 @@ public class OracleDatasourceAccessorTest {
     OracleDatasourceAccessor accessor;
 
     /** The source. */
+    @Mocked
     OracleDataSource source;
 
     /** The bad source. */
@@ -42,7 +46,6 @@ public class OracleDatasourceAccessorTest {
     @Before
     public void before() throws SQLException {
         accessor = new OracleDatasourceAccessor();
-        source = new OracleDataSource();
         badSource = new ComboPooledDataSource();
     }
 
@@ -61,5 +64,22 @@ public class OracleDatasourceAccessorTest {
     public void cannotMapTest() {
         Assert.assertFalse(accessor.canMap(badSource));
     }
-    
+
+    /**
+     * Gets the info test.
+     *
+     * @return the info test
+     * @throws Exception the exception
+     */
+    @Test
+    public void getInfoTest() throws Exception {
+        new Expectations() {
+            {
+                source.getConnectionCacheProperties();
+                result = new Properties();
+            }
+        };
+        accessor.getInfo(source);
+    }
+
 }
