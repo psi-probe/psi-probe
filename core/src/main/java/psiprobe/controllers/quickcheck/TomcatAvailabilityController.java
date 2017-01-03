@@ -24,7 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class TomcatAvailabilityController extends BaseTomcatAvailabilityController {
 
-  @RequestMapping(path = "/adm/quickcheck.htm")
+  @RequestMapping(path = "/quickcheck.htm")
   @Override
   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
       throws Exception {
