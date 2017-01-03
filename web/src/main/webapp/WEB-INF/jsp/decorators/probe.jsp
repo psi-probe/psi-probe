@@ -97,7 +97,7 @@
 					</a>
 				</li>
 				<li>
-					<a class="${navTabQuickCheck}" href="<c:url value='/adm/quickcheck.htm'/>">
+					<a class="${navTabQuickCheck}" href="<c:url value='/quickcheck.htm'/>">
 						<spring:message code="probe.jsp.menu.quickcheck"/>
 					</a>
 				</li>
@@ -165,7 +165,7 @@
 					</a>
 				</li>
 				<li class="last">
-					<a href="<c:url value='/adm/quickcheck.htm'/>">
+					<a href="<c:url value='/quickcheck.htm'/>">
 						<spring:message code="probe.jsp.menu.quickcheck"/>
 					</a>
 				</li>
