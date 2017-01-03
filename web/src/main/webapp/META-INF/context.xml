@@ -11,4 +11,6 @@
     PURPOSE.
 
 -->
-<Context path="/probe" privileged="true" />
+<Context path="/probe" privileged="true">
+  <Loader delegate="false" />
+</Context> 
