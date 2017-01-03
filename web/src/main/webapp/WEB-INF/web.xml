@@ -47,12 +47,6 @@
 		<location>/WEB-INF/jsp/errors/servleterror.jsp</location>
 	</error-page>
 
-	<context-param>
-		<description>Role that can view session attribute values</description>
-		<param-name>attribute.value.roles</param-name>
-		<param-value>ROLE_MANAGER,ROLE_MANAGER-GUI</param-value>
-	</context-param>
-
 	<security-constraint>
 		<display-name>No anonymous access</display-name>
 		<web-resource-collection>

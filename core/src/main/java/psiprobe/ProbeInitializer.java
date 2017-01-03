@@ -40,6 +40,9 @@ public class ProbeInitializer implements WebApplicationInitializer {
     // Set spring security config location 
     servletContext.setInitParameter("contextConfigLocation", "/WEB-INF/spring-probe-security.xml");
 
+    // Set Role that can view session attribute values
+    servletContext.setInitParameter("attribute.value.roles", "ROLE_MANAGER,ROLE_MANAGER-GUI");
+
     // Set context loader listener
     servletContext.addListener(new ContextLoaderListener());
 
