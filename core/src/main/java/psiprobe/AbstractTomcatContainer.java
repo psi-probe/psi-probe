@@ -266,6 +266,14 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     if ("/".equals(result) || "/ROOT".equals(result)) {
       result = "";
     }
+    // For ROOT Parallel Deployment, remove "/ROOT"
+    if (result.startsWith("/ROOT##")) {
+      result = result.substring(5);
+    }
+    // For ROOT Parallel Usage, remove "/"
+    if (result.startsWith("/##")) {
+      result = result.substring(1);
+    }
     return result;
   }
 
