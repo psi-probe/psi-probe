@@ -25,6 +25,7 @@ import javax.servlet.SessionTrackingMode;
 
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
+import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.filter.DelegatingFilterProxy;
 
 import com.opensymphony.sitemesh.webapp.SiteMeshFilter;
@@ -37,21 +38,21 @@ public class ProbeInitializer implements WebApplicationInitializer {
   @Override
   public void onStartup(ServletContext servletContext) throws ServletException {
 
-    // Set spring security config location 
-    servletContext.setInitParameter("contextConfigLocation", "/WEB-INF/spring-probe-security.xml");
+    // Set spring config location 
+    AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
+    rootContext.register(ProbeConfig.class);
 
     // Set Role that can view session attribute values
     servletContext.setInitParameter("attribute.value.roles", "ROLE_MANAGER,ROLE_MANAGER-GUI");
 
     // Set context loader listener
-    servletContext.addListener(new ContextLoaderListener());
+    servletContext.addListener(new ContextLoaderListener(rootContext));
 
     // Set probe servlet
     ServletRegistration.Dynamic probe = servletContext.addServlet("probe", ProbeServlet.class);
 
     Map<String, String> initParameters = new HashMap<>();
-    initParameters.put("contextClass", "org.springframework.web.context.support.AnnotationConfigWebApplicationContext");
-    initParameters.put("contextConfigLocation", "psiprobe.ProbeConfig");
+    initParameters.put("contextConfigLocation", "");
     probe.setInitParameters(initParameters);
 
     probe.setLoadOnStartup(0);
