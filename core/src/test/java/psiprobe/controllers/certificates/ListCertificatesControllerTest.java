@@ -21,27 +21,27 @@ import javax.inject.Inject;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.web.context.WebApplicationContext;
 
 import com.codebox.bean.JavaBeanTester;
 
-import psiprobe.ProbeConfig;
+import psiprobe.ProbeInitializer;
 import psiprobe.model.certificates.Cert;
 
 /**
  * The Class ListCertificatesControllerTest.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = ProbeConfig.class)
+@ContextConfiguration(classes = ProbeInitializer.class)
 @WebAppConfiguration
 public class ListCertificatesControllerTest {
 
   /** The ctx. */
   @Inject
-  private ApplicationContext ctx;
+  private WebApplicationContext ctx;
 
   /**
    * Javabean tester.
