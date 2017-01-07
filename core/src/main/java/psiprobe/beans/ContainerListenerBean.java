@@ -242,7 +242,7 @@ public class ContainerListenerBean implements NotificationListener {
         }
       } catch (InstanceNotFoundException e) {
         logger.error("Failed to query entire thread pool {}", threadPoolObjectName);
-        logger.debug("  Stack trace:", e);
+        logger.debug("", e);
       }
     }
     return threadPools;
@@ -312,7 +312,7 @@ public class ContainerListenerBean implements NotificationListener {
                     Country country = response.getCountry();
                     rp.setRemoteAddrLocale(new Locale("", country.getIsoCode()));
                   } catch (AddressNotFoundException e) {
-                    logger.info("{}", e.getMessage());
+                    logger.debug("{}", e.getMessage());
                     logger.trace("", e);
                   }
                 }

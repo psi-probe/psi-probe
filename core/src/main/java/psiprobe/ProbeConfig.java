@@ -98,7 +98,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "containerListener")
   public ContainerListenerBean getContainerListenerBean() {
-    logger.info("Instantiated containerListener");
+    logger.debug("Instantiated containerListener");
     return new ContainerListenerBean();
   }
 
@@ -109,7 +109,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "containerWrapper")
   public ContainerWrapperBean getContainerWrapperBean() {
-    logger.info("Instantiated containerWrapper");
+    logger.debug("Instantiated containerWrapper");
     return new ContainerWrapperBean();
   }
 
@@ -120,7 +120,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "clusterWrapper")
   public ClusterWrapperBean getClusterWrapperBean() {
-    logger.info("Instantiated clusterWrapper");
+    logger.debug("Instantiated clusterWrapper");
     return new ClusterWrapperBean();
   }
 
@@ -131,7 +131,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "mailer")
   public Mailer getMailer() {
-    logger.info("Instantiated mailer");
+    logger.debug("Instantiated mailer");
     return new Mailer();
   }
 
@@ -142,7 +142,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "datasourceMappers")
   public List<String> getDefaultRes() {
-    logger.info("Instantiated datasourceMappers");
+    logger.debug("Instantiated datasourceMappers");
     List<String> list = new ArrayList<>();
     list.add("psiprobe.beans.accessors.BoneCpDatasourceAccessor");
     list.add("psiprobe.beans.accessors.C3P0DatasourceAccessor");
@@ -168,7 +168,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "default")
   public ResourceResolverBean getResourceResolverBean() {
-    logger.info("Instantiated default resourceResolverBean");
+    logger.debug("Instantiated default resourceResolverBean");
     return new ResourceResolverBean();
   }
 
@@ -179,7 +179,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "jboss")
   public JBossResourceResolverBean getJBossResourceResolverBean() {
-    logger.info("Instantiated jbossResourceResolverBean");
+    logger.debug("Instantiated jbossResourceResolverBean");
     return new JBossResourceResolverBean();
   }
 
@@ -194,7 +194,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
   public Map<String, ResourceResolver> getResourceResolvers(
       @Autowired JBossResourceResolverBean jbossResourceResolverBean,
       @Autowired ResourceResolverBean resourceResolverBean) {
-    logger.info("Instantiated resourceResolvers");
+    logger.debug("Instantiated resourceResolvers");
     Map<String, ResourceResolver> map = new HashMap<>();
     map.put("jboss", jbossResourceResolverBean);
     map.put("default", resourceResolverBean);
@@ -209,7 +209,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
   // TODO We should make this configurable
   @Bean(name = "adapterClasses")
   public List<String> getAdapterClasses() {
-    logger.info("Instantiated adapterClasses");
+    logger.debug("Instantiated adapterClasses");
     List<String> list = new ArrayList<>();
     list.add("psiprobe.Tomcat90ContainerAdapter");
     list.add("psiprobe.Tomcat85ContainerAdapter");
@@ -226,7 +226,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
   // TODO We should make this configurable
   @Bean(name = "stdoutFiles")
   public List<String> getStdoutFiles() {
-    logger.info("Instantiated stdoutFiles");
+    logger.debug("Instantiated stdoutFiles");
     List<String> list = new ArrayList<>();
     list.add("catalina.out");
     list.add("wrapper.log");
@@ -242,7 +242,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "logResolver")
   public LogResolverBean getLogResolverBean() {
-    logger.info("Instantiated logResolver");
+    logger.debug("Instantiated logResolver");
     return new LogResolverBean();
   }
 
@@ -253,7 +253,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "statsCollection")
   public StatsCollection getStatsCollection() {
-    logger.info("Instantiated statsCollection");
+    logger.debug("Instantiated statsCollection");
     return new StatsCollection();
   }
 
@@ -264,7 +264,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "connectorStatsCollector")
   public ConnectorStatsCollectorBean getConnectorStatsCollectorBean() {
-    logger.info("Instantiated connectorStatsCollector");
+    logger.debug("Instantiated connectorStatsCollector");
     return new ConnectorStatsCollectorBean();
   }
 
@@ -275,7 +275,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "clusterStatsCollector")
   public ClusterStatsCollectorBean getClusterStatsCollectorBean() {
-    logger.info("Instantiated clusterStatsCollector");
+    logger.debug("Instantiated clusterStatsCollector");
     return new ClusterStatsCollectorBean();
   }
 
@@ -286,7 +286,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "runtimeStatsCollector")
   public RuntimeStatsCollectorBean getRuntimeStatsCollectorBean() {
-    logger.info("Instantiated runtimeStatsCollector");
+    logger.debug("Instantiated runtimeStatsCollector");
     return new RuntimeStatsCollectorBean();
   }
 
@@ -297,7 +297,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "appStatsCollector")
   public AppStatsCollectorBean getAppStatsCollectorBean() {
-    logger.info("Instantiated appStatsCollector");
+    logger.debug("Instantiated appStatsCollector");
     return new AppStatsCollectorBean();
   }
 
@@ -308,7 +308,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "memoryStatsCollector")
   public JvmMemoryStatsCollectorBean getJvmMemoryStatsCollectorBean() {
-    logger.info("Instantiated memoryStatsCollector");
+    logger.debug("Instantiated memoryStatsCollector");
     return new JvmMemoryStatsCollectorBean();
   }
 
@@ -319,7 +319,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "datasourceStatsCollector")
   public DatasourceStatsCollectorBean getDatasourceStatsCollectorBean() {
-    logger.info("Instantiated datasourceStatsCollector");
+    logger.debug("Instantiated datasourceStatsCollector");
     return new DatasourceStatsCollectorBean();
   }
 
@@ -330,7 +330,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "jvmMemoryInfoAccessor")
   public JvmMemoryInfoAccessorBean getJvmMemoryInfoAccessorBean() {
-    logger.info("Instantiated jvmMemoryInfoAccessorBean");
+    logger.debug("Instantiated jvmMemoryInfoAccessorBean");
     return new JvmMemoryInfoAccessorBean();
   }
 
@@ -341,7 +341,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "runtimeInfoAccessor")
   public RuntimeInfoAccessorBean getRuntimeInfoAccessorBean() {
-    logger.info("Instantiated runtimeInfoAccessorBean");
+    logger.debug("Instantiated runtimeInfoAccessorBean");
     return new RuntimeInfoAccessorBean();
   }
 
@@ -352,7 +352,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "listeners")
   public List<StatsCollectionListener> getMemoryPoolMailingListener() {
-    logger.info("Instantiated listeners");
+    logger.debug("Instantiated listeners");
     List<StatsCollectionListener> list = new ArrayList<>();
     list.add(new MemoryPoolMailingListener());
     return list;
@@ -365,7 +365,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "jspViewResolver")
   public ViewResolver getViewResolver() {
-    logger.info("Instantiated internalResourceViewResolver");
+    logger.debug("Instantiated internalResourceViewResolver");
     InternalResourceViewResolver resolver = new InternalResourceViewResolver();
     resolver.setViewClass(JstlView.class);
     resolver.setPrefix("/WEB-INF/jsp/");
@@ -380,7 +380,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "themeResolver")
   public ThemeResolver getThemeResolver() {
-    logger.info("Instantiated fixedThemeResolver");
+    logger.debug("Instantiated fixedThemeResolver");
     FixedThemeResolver resolver = new FixedThemeResolver();
     resolver.setDefaultThemeName("theme-classic");
     return resolver;
@@ -393,7 +393,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "messageSource")
   public MessageSource getMessageSource() {
-    logger.info("Instantiated reloadableResourceBundleMessageSource");
+    logger.debug("Instantiated reloadableResourceBundleMessageSource");
     ReloadableResourceBundleMessageSource source = new ReloadableResourceBundleMessageSource();
     source.setBasename("/WEB-INF/messages");
     source.setCacheSeconds(1);
@@ -408,7 +408,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "localeResolver")
   public LocaleResolver getLocaleResolver() {
-    logger.info("Instantiated cookieLocaleResolver");
+    logger.debug("Instantiated cookieLocaleResolver");
     CookieLocaleResolver resolver = new CookieLocaleResolver();
     resolver.setDefaultLocale(Locale.ENGLISH);
     return resolver;
@@ -422,7 +422,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "handlerMapping")
   public HandlerMapping getHandlerMapping(@Autowired LocaleChangeInterceptor interceptor) {
-    logger.info("Instantiated beanNameUrlHandlerMapping");
+    logger.debug("Instantiated beanNameUrlHandlerMapping");
     BeanNameUrlHandlerMapping mapping = new BeanNameUrlHandlerMapping();
     mapping.setAlwaysUseFullPath(true);
     mapping.setInterceptors(new Object[] {interceptor});
@@ -431,7 +431,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
 
   @Override
   public void addInterceptors(InterceptorRegistry registry) {
-    logger.info("Registering localeChangeInterceptor");
+    logger.debug("Registering localeChangeInterceptor");
     registry.addInterceptor(getLocaleChangeInterceptor());
   }
 
@@ -442,7 +442,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "localeChangeInterceptor")
   public LocaleChangeInterceptor getLocaleChangeInterceptor() {
-    logger.info("Instantiated localeChangeInterceptor");
+    logger.debug("Instantiated localeChangeInterceptor");
     LocaleChangeInterceptor interceptor = new LocaleChangeInterceptor();
     interceptor.setParamName("lang");
     return interceptor;
@@ -455,7 +455,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "propertyPlaceholderConfigurer")
   public static PropertyPlaceholderConfigurer getPropertyPlaceholderConfigurer() {
-    logger.info("Instantiated propertyPlaceholderConfigurer");
+    logger.debug("Instantiated propertyPlaceholderConfigurer");
     PropertyPlaceholderConfigurer configurer = new PropertyPlaceholderConfigurer();
     configurer.setLocation(new ClassPathResource("stats.properties"));
     configurer.setNullValue("NULL");
@@ -477,7 +477,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "version")
   public PropertiesFactoryBean version() {
-    logger.info("Instantiated version");
+    logger.debug("Instantiated version");
     PropertiesFactoryBean bean = new PropertiesFactoryBean();
     bean.setLocation(new ClassPathResource("version.properties"));
     return bean;
@@ -490,7 +490,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "rcn")
   public ConnectorSeriesProvider getConnectorSeriesProvider() {
-    logger.info("Instantiated rcn");
+    logger.debug("Instantiated rcn");
     return new ConnectorSeriesProvider();
   }
 
@@ -501,7 +501,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "cl_traffic")
   public StandardSeriesProvider getClTraffic() {
-    logger.info("Instantiated cl_traffic");
+    logger.debug("Instantiated cl_traffic");
     List<String> list = new ArrayList<>();
     list.add("cluster.sent");
     list.add("cluster.received");
@@ -518,7 +518,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "cl_request")
   public StandardSeriesProvider getClRequest() {
-    logger.info("Instantiated cl_request");
+    logger.debug("Instantiated cl_request");
     List<String> list = new ArrayList<>();
     list.add("cluster.req.sent");
     list.add("cluster.req.received");
@@ -535,7 +535,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "connector")
   public StandardSeriesProvider getConnector() {
-    logger.info("Instantiated connector");
+    logger.debug("Instantiated connector");
     List<String> list = new ArrayList<>();
     list.add("stat.connector.{0}.requests");
     list.add("stat.connector.{0}.errors");
@@ -552,7 +552,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "traffic")
   public StandardSeriesProvider getTraffic() {
-    logger.info("Instantiated traffic");
+    logger.debug("Instantiated traffic");
     List<String> list = new ArrayList<>();
     list.add("stat.connector.{0}.sent");
     list.add("stat.connector.{0}.received");
@@ -569,7 +569,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "connector_proc_time")
   public StandardSeriesProvider getConnectorProcTime() {
-    logger.info("Instantiated connector_proc_time");
+    logger.debug("Instantiated connector_proc_time");
     List<String> list = new ArrayList<>();
     list.add("stat.connector.{0}.proc_time");
 
@@ -585,7 +585,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "memory_usage")
   public StandardSeriesProvider getMemoryUsage() {
-    logger.info("Instantiated memory_usage");
+    logger.debug("Instantiated memory_usage");
     List<String> list = new ArrayList<>();
     list.add("memory.pool.{0}");
 
@@ -601,7 +601,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "os_memory")
   public StandardSeriesProvider getOsMemory() {
-    logger.info("Instantiated os_memory");
+    logger.debug("Instantiated os_memory");
     List<String> list = new ArrayList<>();
     list.add("os.memory.physical");
     list.add("os.memory.committed");
@@ -618,7 +618,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "swap_usage")
   public StandardSeriesProvider getSwapUsage() {
-    logger.info("Instantiated swap_usage");
+    logger.debug("Instantiated swap_usage");
     List<String> list = new ArrayList<>();
     list.add("os.memory.swap");
 
@@ -634,7 +634,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "cpu_usage")
   public StandardSeriesProvider getCpuUsage() {
-    logger.info("Instantiated cpu_usage");
+    logger.debug("Instantiated cpu_usage");
     List<String> list = new ArrayList<>();
     list.add("os.cpu");
 
@@ -650,7 +650,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "fd_usage")
   public StandardSeriesProvider getFdUsage() {
-    logger.info("Instantiated fd_usage");
+    logger.debug("Instantiated fd_usage");
     List<String> list = new ArrayList<>();
     list.add("os.fd.open");
     list.add("os.fd.max");
@@ -667,7 +667,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "app_req")
   public StandardSeriesProvider getAppReq() {
-    logger.info("Instantiated app_req");
+    logger.debug("Instantiated app_req");
     List<String> list = new ArrayList<>();
     list.add("app.requests.{0}");
     list.add("app.errors.{0}");
@@ -684,7 +684,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "app_avg_proc_time")
   public StandardSeriesProvider getAppAvgProcTime() {
-    logger.info("Instantiated app_avg_proc_time");
+    logger.debug("Instantiated app_avg_proc_time");
     List<String> list = new ArrayList<>();
     list.add("app.avg_proc_time.{0}");
 
@@ -700,7 +700,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "total_avg_proc_time")
   public StandardSeriesProvider getTotalAvgProcTime() {
-    logger.info("Instantiated total_avg_proc_time");
+    logger.debug("Instantiated total_avg_proc_time");
     List<String> list = new ArrayList<>();
     list.add("total.avg_proc_time");
 
@@ -716,7 +716,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "total_req")
   public StandardSeriesProvider getTotalReq() {
-    logger.info("Instantiated total_req");
+    logger.debug("Instantiated total_req");
     List<String> list = new ArrayList<>();
     list.add("total.requests");
     list.add("total.errors");
@@ -733,7 +733,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "datasource_usage")
   public StandardSeriesProvider getDatasourceUsage() {
-    logger.info("Instantiated datasource_usage");
+    logger.debug("Instantiated datasource_usage");
     List<String> list = new ArrayList<>();
     list.add("ds.est.{0}");
     list.add("ds.busy.{0}");
@@ -750,7 +750,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "all_app_avg_proc_time")
   public MultipleSeriesProvider getAllAppAvgProcTime() {
-    logger.info("Instantiated all_app_avg_proc_time");
+    logger.debug("Instantiated all_app_avg_proc_time");
     MultipleSeriesProvider provider = new MultipleSeriesProvider();
     provider.setMovingAvgFrame(10);
     provider.setStatNamePrefix("app.avg_proc_time.");
@@ -765,7 +765,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "all_app_req")
   public MultipleSeriesProvider getAllAppReq() {
-    logger.info("Instantiated all_app_req");
+    logger.debug("Instantiated all_app_req");
     MultipleSeriesProvider provider = new MultipleSeriesProvider();
     provider.setMovingAvgFrame(10);
     provider.setStatNamePrefix("app.requests.");
@@ -780,7 +780,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "connectorStatsJobDetail")
   public ConnectorStatsJobDetail getConnectorStatsJobDetail() {
-    logger.info("Instantiated connectorStatsJobDetail");
+    logger.debug("Instantiated connectorStatsJobDetail");
     return new ConnectorStatsJobDetail();
   }
 
@@ -791,7 +791,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "clusterStatsJobDetail")
   public ClusterStatsJobDetail getClusterStatsJobDetail() {
-    logger.info("Instantiated clusterStatsJobDetail");
+    logger.debug("Instantiated clusterStatsJobDetail");
     return new ClusterStatsJobDetail();
   }
 
@@ -802,7 +802,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "memoryStatsJobDetail")
   public MemoryStatsJobDetail getMemoryStatsJobDetail() {
-    logger.info("Instantiated memoryStatsJobDetail");
+    logger.debug("Instantiated memoryStatsJobDetail");
     return new MemoryStatsJobDetail();
   }
 
@@ -813,7 +813,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "runtimeStatsJobDetail")
   public RuntimeStatsJobDetail getRuntimeStatsJobDetail() {
-    logger.info("Instantiated runtimeStatsJobDetail");
+    logger.debug("Instantiated runtimeStatsJobDetail");
     return new RuntimeStatsJobDetail();
   }
 
@@ -824,7 +824,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "appStatsJobDetail")
   public AppStatsJobDetail getAppStatsJobDetail() {
-    logger.info("Instantiated appStatsJobDetail");
+    logger.debug("Instantiated appStatsJobDetail");
     return new AppStatsJobDetail();
   }
 
@@ -835,7 +835,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "datasourceStatsJobDetail")
   public DatasourceStatsJobDetail getDatasourceStatsJobDetail() {
-    logger.info("Instantiated datasourceStatsJobDetail");
+    logger.debug("Instantiated datasourceStatsJobDetail");
     return new DatasourceStatsJobDetail();
   }
 
@@ -846,7 +846,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "statsSerializerJobDetail")
   public StatsSerializerJobDetail getStatsSerializerJobDetail() {
-    logger.info("Instantiated statsSerializerJobDetail");
+    logger.debug("Instantiated statsSerializerJobDetail");
     return new StatsSerializerJobDetail();
   }
 
@@ -857,7 +857,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "connectorStatsTrigger")
   public ConnectorStatsTrigger getConnectorStatsTrigger() {
-    logger.info("Instantiated connectorStatsTrigger");
+    logger.debug("Instantiated connectorStatsTrigger");
     ConnectorStatsTrigger trigger = new ConnectorStatsTrigger();
     trigger.setJobDetail(getConnectorStatsJobDetail().getObject());
     return trigger;
@@ -870,7 +870,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "clusterStatsTrigger")
   public ClusterStatsTrigger getClusterStatsTrigger() {
-    logger.info("Instantiated clusterStatsTrigger");
+    logger.debug("Instantiated clusterStatsTrigger");
     ClusterStatsTrigger trigger = new ClusterStatsTrigger();
     trigger.setJobDetail(getClusterStatsJobDetail().getObject());
     return trigger;
@@ -883,7 +883,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "memoryStatsTrigger")
   public MemoryStatsTrigger getMemoryStatsTrigger() {
-    logger.info("Instantiated memoryStatsTrigger");
+    logger.debug("Instantiated memoryStatsTrigger");
     MemoryStatsTrigger trigger = new MemoryStatsTrigger();
     trigger.setJobDetail(getMemoryStatsJobDetail().getObject());
     return trigger;
@@ -896,7 +896,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "runtimeStatsTrigger")
   public RuntimeStatsTrigger getRuntimeStatsTrigger() {
-    logger.info("Instantiated runtimeStatsTrigger");
+    logger.debug("Instantiated runtimeStatsTrigger");
     RuntimeStatsTrigger trigger = new RuntimeStatsTrigger();
     trigger.setJobDetail(getRuntimeStatsJobDetail().getObject());
     return trigger;
@@ -909,7 +909,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "appStatsTrigger")
   public AppStatsTrigger getAppStatsTrigger() {
-    logger.info("Instantiated appStatsTrigger");
+    logger.debug("Instantiated appStatsTrigger");
     AppStatsTrigger trigger = new AppStatsTrigger();
     trigger.setJobDetail(getAppStatsJobDetail().getObject());
     return trigger;
@@ -922,7 +922,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "datasourceStatsTrigger")
   public DatasourceStatsTrigger getDatasourceStatsTrigger() {
-    logger.info("Instantiated datasourceStatsTrigger");
+    logger.debug("Instantiated datasourceStatsTrigger");
     DatasourceStatsTrigger trigger = new DatasourceStatsTrigger();
     trigger.setJobDetail(getDatasourceStatsJobDetail().getObject());
     return trigger;
@@ -935,7 +935,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
    */
   @Bean(name = "statsSerializerTrigger")
   public StatsSerializerTrigger getStatsSerializerTrigger() {
-    logger.info("Instantiated statsSerializerTrigger");
+    logger.debug("Instantiated statsSerializerTrigger");
     StatsSerializerTrigger trigger = new StatsSerializerTrigger();
     trigger.setJobDetail(getStatsSerializerJobDetail().getObject());
     return trigger;
@@ -962,7 +962,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
       @Autowired RuntimeStatsTrigger runtimeStatsTrigger,
       @Autowired StatsSerializerTrigger statsSerializerTrigger) {
 
-    logger.info("Instantiated scheduler");
+    logger.debug("Instantiated scheduler");
     SchedulerFactoryBean bean = new SchedulerFactoryBean();
 
     // Add Triggers
