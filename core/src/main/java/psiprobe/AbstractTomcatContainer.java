@@ -207,7 +207,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
 
       File configFile = getConfigFile(ctx);
       if (configFile != null) {
-        logger.debug("Deleting " + configFile.getAbsolutePath());
+        logger.debug("Deleting '{}'", configFile.getAbsolutePath());
         Utils.delete(configFile);
       }
 
@@ -352,7 +352,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
                   } catch (Exception e) {
                     item.setState(Item.STATE_FAILED);
                     item.setException(e);
-                    logger.info("Compiled '{}': FAILED", name, e);
+                    logger.error("Compiled '{}': FAILED", name, e);
                   }
                   item.setCompileTime(System.currentTimeMillis() - time);
                 } else {

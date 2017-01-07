@@ -32,6 +32,9 @@
   <logger name="org.springframework.web.context.support" level="ERROR"/>
   <logger name="org.springframework.beans.factory.support" level="ERROR"/>
 
+  <!-- Reduce noise in case user runs with TRACE logging -->
+  <logger name="psiprobe.tools.ApplicationUtils" level="INFO"/>
+
   <root level="INFO">
     <appender-ref ref="PSI-PROBE"/>
   </root>
