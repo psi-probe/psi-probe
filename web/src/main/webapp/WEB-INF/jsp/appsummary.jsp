@@ -116,7 +116,7 @@
 					</div>
 				</div>
 
-				<%-- pereodical refreshing of runtime info --%>
+				<%-- periodical refreshing of runtime info --%>
 				<script type="text/javascript">
 
 					function updateAppInfo() {
