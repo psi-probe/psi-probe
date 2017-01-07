@@ -112,11 +112,11 @@
 					</div>
 					<h3><spring:message code="probe.jsp.app.summary.h3.runtime"/></h3>
 					<div id="runtimeAppInfo">
-						<jsp:include page="/appruntimeinfo.ajax"/>
+						<c:import url="/appruntimeinfo.ajax"/>
 					</div>
 				</div>
 
-				<%-- pereodical refreshing of runtime info --%>
+				<%-- periodical refreshing of runtime info --%>
 				<script type="text/javascript">
 
 					function updateAppInfo() {

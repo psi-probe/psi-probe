@@ -64,7 +64,7 @@
 		</ul>
 
 		<div id="servletListContainer" class="embeddedBlockContainer">
-			<jsp:include page="/servlets.ajax"/>
+			<c:import url="/servlets.ajax"/>
 		</div>
 
 		<script type="text/javascript">
