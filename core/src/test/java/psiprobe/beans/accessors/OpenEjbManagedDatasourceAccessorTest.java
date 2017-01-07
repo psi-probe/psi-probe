@@ -20,7 +20,6 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 import mockit.Mocked;
 import mockit.Tested;
-import psiprobe.beans.accessors.OpenEjbManagedDatasourceAccessor;
 
 /**
  * The Class OpenEjbManagedDatasourceAccessorTest.

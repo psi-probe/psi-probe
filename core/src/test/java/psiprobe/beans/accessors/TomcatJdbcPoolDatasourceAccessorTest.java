@@ -18,7 +18,6 @@ import org.junit.Test;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 import mockit.Mocked;
-import psiprobe.beans.accessors.TomcatJdbcPoolDatasourceAccessor;
 
 /**
  * The Class TomcatJdbcPoolDatasourceAccessorTest.

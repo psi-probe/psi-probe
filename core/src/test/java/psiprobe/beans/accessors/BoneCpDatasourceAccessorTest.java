@@ -18,7 +18,6 @@ import com.jolbox.bonecp.BoneCPDataSource;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 import mockit.Mocked;
-import psiprobe.beans.accessors.BoneCpDatasourceAccessor;
 
 /**
  * The Class BoneCpDatasourceAccessorTest.

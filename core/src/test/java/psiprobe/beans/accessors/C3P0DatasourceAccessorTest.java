@@ -17,8 +17,6 @@ import org.junit.Test;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import com.mchange.v2.c3p0.jboss.C3P0PooledDataSource;
 
-import psiprobe.beans.accessors.C3P0DatasourceAccessor;
-
 /**
  * The Class C3P0DatasourceAccessorTest.
  */

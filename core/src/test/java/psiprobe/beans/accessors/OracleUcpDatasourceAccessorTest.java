@@ -18,7 +18,6 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 import oracle.ucp.jdbc.PoolDataSourceImpl;
 import oracle.ucp.jdbc.PoolXADataSourceImpl;
-import psiprobe.beans.accessors.OracleUcpDatasourceAccessor;
 
 /**
  * The Class OracleUcpDatasourceAccessorTest.

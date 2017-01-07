@@ -22,7 +22,6 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 import mockit.Expectations;
 import mockit.Mocked;
 import oracle.jdbc.pool.OracleDataSource;
-import psiprobe.beans.accessors.OracleDatasourceAccessor;
 
 /**
  * The Class OracleDatasourceAccessorTest.
