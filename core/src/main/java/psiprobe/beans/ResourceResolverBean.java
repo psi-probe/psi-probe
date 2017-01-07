@@ -16,6 +16,8 @@ import org.apache.catalina.core.StandardServer;
 import org.apache.commons.modeler.Registry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import psiprobe.beans.accessors.DatasourceAccessor;
 import psiprobe.model.ApplicationResource;
 import psiprobe.model.DataSourceInfo;
 

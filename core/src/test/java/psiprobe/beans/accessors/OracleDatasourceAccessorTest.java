@@ -8,42 +8,45 @@
  * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
  * PURPOSE.
  */
-package psiprobe.beans;
+package psiprobe.beans.accessors;
+
+import java.sql.SQLException;
+import java.util.Properties;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.jolbox.bonecp.BoneCPDataSource;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
-import oracle.ucp.jdbc.PoolDataSourceImpl;
-import oracle.ucp.jdbc.PoolXADataSourceImpl;
+import mockit.Expectations;
+import mockit.Mocked;
+import oracle.jdbc.pool.OracleDataSource;
+import psiprobe.beans.accessors.OracleDatasourceAccessor;
 
 /**
- * The Class OracleUcpDatasourceAssessorTest.
+ * The Class OracleDatasourceAccessorTest.
  */
-public class OracleUcpDatasourceAssessorTest {
+public class OracleDatasourceAccessorTest {
 
     /** The accessor. */
-    OracleUcpDatasourceAssessor accessor;
+    OracleDatasourceAccessor accessor;
 
     /** The source. */
-    PoolDataSourceImpl source;
+    @Mocked
+    OracleDataSource source;
 
-    PoolXADataSourceImpl xaSource;
-    
     /** The bad source. */
     ComboPooledDataSource badSource;
 
     /**
      * Before.
+     *
+     * @throws SQLException the SQL exception
      */
     @Before
-    public void before() {
-        accessor = new OracleUcpDatasourceAssessor();
-        source = new PoolDataSourceImpl();
-        xaSource = new PoolXADataSourceImpl();
+    public void before() throws SQLException {
+        accessor = new OracleDatasourceAccessor();
         badSource = new ComboPooledDataSource();
     }
 
@@ -53,14 +56,6 @@ public class OracleUcpDatasourceAssessorTest {
     @Test
     public void canMapTest() {
         Assert.assertTrue(accessor.canMap(source));
-    }
-
-    /**
-     * Can map XA test.
-     */
-    @Test
-    public void canMapXATest() {
-        Assert.assertTrue(accessor.canMap(xaSource));
     }
 
     /**
@@ -79,6 +74,12 @@ public class OracleUcpDatasourceAssessorTest {
      */
     @Test
     public void getInfoTest() throws Exception {
+        new Expectations() {
+            {
+                source.getConnectionCacheProperties();
+                result = new Properties();
+            }
+        };
         accessor.getInfo(source);
     }
 

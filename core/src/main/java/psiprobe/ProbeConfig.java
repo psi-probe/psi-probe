@@ -144,18 +144,20 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
   public List<String> getDefaultRes() {
     logger.info("Instantiated datasourceMappers");
     List<String> list = new ArrayList<>();
-    list.add("psiprobe.beans.BoneCpDatasourceAccessor");
-    list.add("psiprobe.beans.C3P0DatasourceAccessor");
-    list.add("psiprobe.beans.DbcpDatasourceAccessor");
-    list.add("psiprobe.beans.Dbcp2DatasourceAccessor");
-    list.add("psiprobe.beans.Tomcat7DbcpDatasourceAccessor");
-    list.add("psiprobe.beans.Tomcat8DbcpDatasourceAccessor");
-    list.add("psiprobe.beans.Tomcat85DbcpDatasourceAccessor");
-    list.add("psiprobe.beans.Tomcat9DbcpDatasourceAccessor");
-    list.add("psiprobe.beans.TomcatJdbcPoolDatasourceAccessor");
-    list.add("psiprobe.beans.OracleDatasourceAccessor");
-    list.add("psiprobe.beans.OracleUcpDatasourceAssessor");
-    list.add("psiprobe.beans.OpenEjbManagedDatasourceAccessor");
+    list.add("psiprobe.beans.accessors.BoneCpDatasourceAccessor");
+    list.add("psiprobe.beans.accessors.C3P0DatasourceAccessor");
+    list.add("psiprobe.beans.accessors.DbcpDatasourceAccessor");
+    list.add("psiprobe.beans.accessors.Dbcp2DatasourceAccessor");
+    list.add("psiprobe.beans.accessors.HikariCpDatasourceAccessor");
+    list.add("psiprobe.beans.accessors.Tomcat7DbcpDatasourceAccessor");
+    list.add("psiprobe.beans.accessors.Tomcat8DbcpDatasourceAccessor");
+    list.add("psiprobe.beans.accessors.Tomcat85DbcpDatasourceAccessor");
+    list.add("psiprobe.beans.accessors.Tomcat9DbcpDatasourceAccessor");
+    list.add("psiprobe.beans.accessors.TomcatJdbcPoolDatasourceAccessor");
+    list.add("psiprobe.beans.accessors.OracleDatasourceAccessor");
+    list.add("psiprobe.beans.accessors.OracleUcpDatasourceAccessor");
+    list.add("psiprobe.beans.accessors.OpenEjbManagedDatasourceAccessor");
+    list.add("psiprobe.beans.accessors.ViburCpDatasourceAccessor");
     return list;
   }
 

@@ -8,7 +8,7 @@
  * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
  * PURPOSE.
  */
-package psiprobe.beans;
+package psiprobe.beans.accessors;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.junit.Assert;
@@ -16,6 +16,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
+
+import psiprobe.beans.accessors.Dbcp2DatasourceAccessor;
 
 /**
  * The Class Dbcp2DatasourceAccessorTest.

@@ -8,31 +8,27 @@
  * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
  * PURPOSE.
  */
-package psiprobe.beans;
+package psiprobe.beans.accessors;
 
-import org.apache.openejb.resource.jdbc.managed.local.ManagedDataSource;
+import org.apache.commons.dbcp.BasicDataSource;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
-import mockit.Mocked;
-import mockit.Tested;
+import psiprobe.beans.accessors.DbcpDatasourceAccessor;
 
 /**
- * The Class OpenEjbManagedDatasourceAccessorTest.
+ * The Class DbcpDatasourceAccessorTest.
  */
-public class OpenEjbManagedDatasourceAccessorTest {
+public class DbcpDatasourceAccessorTest {
 
     /** The accessor. */
-    @Tested
-    OpenEjbManagedDatasourceAccessor accessor;
+    DbcpDatasourceAccessor accessor;
 
     /** The source. */
-    @Mocked
-    ManagedDataSource source;
+    BasicDataSource source;
 
     /** The bad source. */
     ComboPooledDataSource badSource;
@@ -42,14 +38,14 @@ public class OpenEjbManagedDatasourceAccessorTest {
      */
     @Before
     public void before() {
-        accessor = new OpenEjbManagedDatasourceAccessor();
+        accessor = new DbcpDatasourceAccessor();
+        source = new BasicDataSource();
         badSource = new ComboPooledDataSource();
     }
 
     /**
      * Can map test.
      */
-    @Ignore
     @Test
     public void canMapTest() {
         Assert.assertTrue(accessor.canMap(source));

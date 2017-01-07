@@ -8,10 +8,11 @@
  * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
  * PURPOSE.
  */
-package psiprobe.beans;
+package psiprobe.beans.accessors;
 
 import org.apache.tomcat.dbcp.dbcp.BasicDataSource;
 
+import psiprobe.beans.accessors.DatasourceAccessor;
 import psiprobe.model.DataSourceInfo;
 
 /**

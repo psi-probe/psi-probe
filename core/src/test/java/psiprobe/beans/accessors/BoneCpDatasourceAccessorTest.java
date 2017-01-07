@@ -8,25 +8,29 @@
  * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
  * PURPOSE.
  */
-package psiprobe.beans;
+package psiprobe.beans.accessors;
 
-import org.apache.commons.dbcp.BasicDataSource;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.jolbox.bonecp.BoneCPDataSource;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
+import mockit.Mocked;
+import psiprobe.beans.accessors.BoneCpDatasourceAccessor;
+
 /**
- * The Class DbcpDatasourceAccessorTest.
+ * The Class BoneCpDatasourceAccessorTest.
  */
-public class DbcpDatasourceAccessorTest {
+public class BoneCpDatasourceAccessorTest {
 
     /** The accessor. */
-    DbcpDatasourceAccessor accessor;
+    BoneCpDatasourceAccessor accessor;
 
     /** The source. */
-    BasicDataSource source;
+    @Mocked
+    BoneCPDataSource source;
 
     /** The bad source. */
     ComboPooledDataSource badSource;
@@ -36,8 +40,7 @@ public class DbcpDatasourceAccessorTest {
      */
     @Before
     public void before() {
-        accessor = new DbcpDatasourceAccessor();
-        source = new BasicDataSource();
+        accessor = new BoneCpDatasourceAccessor();
         badSource = new ComboPooledDataSource();
     }
 

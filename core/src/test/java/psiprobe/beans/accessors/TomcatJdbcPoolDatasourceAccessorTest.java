@@ -8,7 +8,7 @@
  * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
  * PURPOSE.
  */
-package psiprobe.beans;
+package psiprobe.beans.accessors;
 
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.junit.Assert;
@@ -18,6 +18,7 @@ import org.junit.Test;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 import mockit.Mocked;
+import psiprobe.beans.accessors.TomcatJdbcPoolDatasourceAccessor;
 
 /**
  * The Class TomcatJdbcPoolDatasourceAccessorTest.

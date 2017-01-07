@@ -8,16 +8,17 @@
  * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
  * PURPOSE.
  */
-package psiprobe.beans;
+package psiprobe.beans.accessors;
 
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 
+import psiprobe.beans.accessors.DatasourceAccessor;
 import psiprobe.model.DataSourceInfo;
 
 /**
- * The Class Tomcat9DbcpDatasourceAccessor.
+ * The Class Tomcat85DbcpDatasourceAccessor.
  */
-public class Tomcat9DbcpDatasourceAccessor implements DatasourceAccessor {
+public class Tomcat85DbcpDatasourceAccessor implements DatasourceAccessor {
 
   @Override
   public DataSourceInfo getInfo(Object resource) throws Exception {
