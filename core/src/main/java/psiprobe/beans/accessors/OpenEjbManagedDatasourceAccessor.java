@@ -8,7 +8,7 @@
  * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
  * PURPOSE.
  */
-package psiprobe.beans;
+package psiprobe.beans.accessors;
 
 import org.apache.openejb.resource.jdbc.managed.local.ManagedDataSource;
 import org.apache.tomcat.jdbc.pool.DataSourceProxy;

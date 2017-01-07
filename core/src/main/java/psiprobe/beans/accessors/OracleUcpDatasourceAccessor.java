@@ -8,7 +8,7 @@
  * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
  * PURPOSE.
  */
-package psiprobe.beans;
+package psiprobe.beans.accessors;
 
 import oracle.ucp.jdbc.JDBCConnectionPoolStatistics;
 import oracle.ucp.jdbc.PoolDataSource;
@@ -17,7 +17,7 @@ import psiprobe.model.DataSourceInfo;
 /**
  * Accesses an Oracle Universal Connection Pool (UCP) resource.
  */
-public class OracleUcpDatasourceAssessor implements DatasourceAccessor {
+public class OracleUcpDatasourceAccessor implements DatasourceAccessor {
 
   @Override
   public DataSourceInfo getInfo(Object resource) throws Exception {

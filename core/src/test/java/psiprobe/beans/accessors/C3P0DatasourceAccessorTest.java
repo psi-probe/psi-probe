@@ -8,37 +8,37 @@
  * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
  * PURPOSE.
  */
-package psiprobe.beans;
+package psiprobe.beans.accessors;
 
-import org.apache.commons.dbcp2.BasicDataSource;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
+import com.mchange.v2.c3p0.jboss.C3P0PooledDataSource;
 
 /**
- * The Class Dbcp2DatasourceAccessorTest.
+ * The Class C3P0DatasourceAccessorTest.
  */
-public class Dbcp2DatasourceAccessorTest {
+public class C3P0DatasourceAccessorTest {
 
     /** The accessor. */
-    Dbcp2DatasourceAccessor accessor;
+    C3P0DatasourceAccessor accessor;
 
     /** The source. */
-    BasicDataSource source;
+    ComboPooledDataSource source;
 
     /** The bad source. */
-    ComboPooledDataSource badSource;
+    C3P0PooledDataSource badSource;
 
     /**
      * Before.
      */
     @Before
     public void before() {
-        accessor = new Dbcp2DatasourceAccessor();
-        source = new BasicDataSource();
-        badSource = new ComboPooledDataSource();
+        accessor = new C3P0DatasourceAccessor();
+        source = new ComboPooledDataSource();
+        badSource = new C3P0PooledDataSource();
     }
 
     /**

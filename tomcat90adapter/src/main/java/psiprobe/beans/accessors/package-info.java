@@ -11,4 +11,4 @@
 /**
  * Psi-Probe Beans Package.
  */
-package psiprobe.beans;
+package psiprobe.beans.accessors;

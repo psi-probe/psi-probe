@@ -8,38 +8,44 @@
  * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
  * PURPOSE.
  */
-package psiprobe.beans;
+package psiprobe.beans.accessors;
 
-import org.apache.tomcat.jdbc.pool.DataSource;
+import java.sql.SQLException;
+import java.util.Properties;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
+import mockit.Expectations;
 import mockit.Mocked;
+import oracle.jdbc.pool.OracleDataSource;
 
 /**
- * The Class TomcatJdbcPoolDatasourceAccessorTest.
+ * The Class OracleDatasourceAccessorTest.
  */
-public class TomcatJdbcPoolDatasourceAccessorTest {
+public class OracleDatasourceAccessorTest {
 
     /** The accessor. */
-    TomcatJdbcPoolDatasourceAccessor accessor;
+    OracleDatasourceAccessor accessor;
 
     /** The source. */
     @Mocked
-    DataSource source;
+    OracleDataSource source;
 
     /** The bad source. */
     ComboPooledDataSource badSource;
 
     /**
      * Before.
+     *
+     * @throws SQLException the SQL exception
      */
     @Before
-    public void before() {
-        accessor = new TomcatJdbcPoolDatasourceAccessor();
+    public void before() throws SQLException {
+        accessor = new OracleDatasourceAccessor();
         badSource = new ComboPooledDataSource();
     }
 
@@ -67,6 +73,12 @@ public class TomcatJdbcPoolDatasourceAccessorTest {
      */
     @Test
     public void getInfoTest() throws Exception {
+        new Expectations() {
+            {
+                source.getConnectionCacheProperties();
+                result = new Properties();
+            }
+        };
         accessor.getInfo(source);
     }
 

@@ -8,37 +8,41 @@
  * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
  * PURPOSE.
  */
-package psiprobe.beans;
+package psiprobe.beans.accessors;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
+import org.vibur.dbcp.ViburDBCPDataSource;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
-import com.mchange.v2.c3p0.jboss.C3P0PooledDataSource;
+
+import mockit.Expectations;
+import mockit.Mocked;
 
 /**
- * The Class C3P0DatasourceAccessorTest.
+ * The Class ViburCpDatasourceAccessorTest.
  */
-public class C3P0DatasourceAccessorTest {
+public class ViburCpDatasourceAccessorTest {
 
     /** The accessor. */
-    C3P0DatasourceAccessor accessor;
+    ViburCpDatasourceAccessor accessor;
 
     /** The source. */
-    ComboPooledDataSource source;
+    @Mocked
+    ViburDBCPDataSource source;
 
     /** The bad source. */
-    C3P0PooledDataSource badSource;
+    ComboPooledDataSource badSource;
 
     /**
      * Before.
      */
     @Before
     public void before() {
-        accessor = new C3P0DatasourceAccessor();
-        source = new ComboPooledDataSource();
-        badSource = new C3P0PooledDataSource();
+        accessor = new ViburCpDatasourceAccessor();
+        badSource = new ComboPooledDataSource();
     }
 
     /**
@@ -63,8 +67,15 @@ public class C3P0DatasourceAccessorTest {
      * @return the info test
      * @throws Exception the exception
      */
+    @Ignore
     @Test
     public void getInfoTest() throws Exception {
+        new Expectations() {
+          {
+            source.getJmxName();
+            result = "viburJmx";
+          }
+        };
         accessor.getInfo(source);
     }
 

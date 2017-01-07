@@ -8,7 +8,7 @@
  * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
  * PURPOSE.
  */
-package psiprobe.beans;
+package psiprobe.beans.accessors;
 
 import com.jolbox.bonecp.BoneCP;
 import com.jolbox.bonecp.BoneCPDataSource;

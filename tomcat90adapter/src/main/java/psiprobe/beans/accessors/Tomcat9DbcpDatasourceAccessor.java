@@ -8,16 +8,16 @@
  * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
  * PURPOSE.
  */
-package psiprobe.beans;
+package psiprobe.beans.accessors;
 
-import org.apache.commons.dbcp.BasicDataSource;
+import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 
 import psiprobe.model.DataSourceInfo;
 
 /**
- * DBCP datasource abstraction layer.
+ * The Class Tomcat9DbcpDatasourceAccessor.
  */
-public class DbcpDatasourceAccessor implements DatasourceAccessor {
+public class Tomcat9DbcpDatasourceAccessor implements DatasourceAccessor {
 
   @Override
   public DataSourceInfo getInfo(Object resource) throws Exception {
@@ -27,11 +27,11 @@ public class DbcpDatasourceAccessor implements DatasourceAccessor {
       dataSourceInfo = new DataSourceInfo();
       dataSourceInfo.setBusyConnections(source.getNumActive());
       dataSourceInfo.setEstablishedConnections(source.getNumIdle() + source.getNumActive());
-      dataSourceInfo.setMaxConnections(source.getMaxActive());
+      dataSourceInfo.setMaxConnections(source.getMaxTotal());
       dataSourceInfo.setJdbcUrl(source.getUrl());
       dataSourceInfo.setUsername(source.getUsername());
       dataSourceInfo.setResettable(false);
-      dataSourceInfo.setType("commons-dbcp");
+      dataSourceInfo.setType("tomcat-dbcp2");
     }
     return dataSourceInfo;
   }
@@ -43,7 +43,8 @@ public class DbcpDatasourceAccessor implements DatasourceAccessor {
 
   @Override
   public boolean canMap(Object resource) {
-    return "org.apache.commons.dbcp.BasicDataSource".equals(resource.getClass().getName())
+    return "org.apache.tomcat.dbcp.dbcp2.BasicDataSource".equals(resource.getClass().getName())
         && resource instanceof BasicDataSource;
   }
+
 }

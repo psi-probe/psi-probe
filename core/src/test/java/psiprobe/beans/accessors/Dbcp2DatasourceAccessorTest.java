@@ -8,31 +8,26 @@
  * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
  * PURPOSE.
  */
-package psiprobe.beans;
+package psiprobe.beans.accessors;
 
+import org.apache.commons.dbcp2.BasicDataSource;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.jolbox.bonecp.BoneCPDataSource;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
-import oracle.ucp.jdbc.PoolDataSourceImpl;
-import oracle.ucp.jdbc.PoolXADataSourceImpl;
-
 /**
- * The Class OracleUcpDatasourceAssessorTest.
+ * The Class Dbcp2DatasourceAccessorTest.
  */
-public class OracleUcpDatasourceAssessorTest {
+public class Dbcp2DatasourceAccessorTest {
 
     /** The accessor. */
-    OracleUcpDatasourceAssessor accessor;
+    Dbcp2DatasourceAccessor accessor;
 
     /** The source. */
-    PoolDataSourceImpl source;
+    BasicDataSource source;
 
-    PoolXADataSourceImpl xaSource;
-    
     /** The bad source. */
     ComboPooledDataSource badSource;
 
@@ -41,9 +36,8 @@ public class OracleUcpDatasourceAssessorTest {
      */
     @Before
     public void before() {
-        accessor = new OracleUcpDatasourceAssessor();
-        source = new PoolDataSourceImpl();
-        xaSource = new PoolXADataSourceImpl();
+        accessor = new Dbcp2DatasourceAccessor();
+        source = new BasicDataSource();
         badSource = new ComboPooledDataSource();
     }
 
@@ -53,14 +47,6 @@ public class OracleUcpDatasourceAssessorTest {
     @Test
     public void canMapTest() {
         Assert.assertTrue(accessor.canMap(source));
-    }
-
-    /**
-     * Can map XA test.
-     */
-    @Test
-    public void canMapXATest() {
-        Assert.assertTrue(accessor.canMap(xaSource));
     }
 
     /**
