@@ -34,12 +34,12 @@
 					<c:if test="${connector.keyStoreCerts != null}">
 						<c:set var="certs" value="${connector.keyStoreCerts}" scope="request" />
 						<h4><spring:message code="probe.jsp.certificates.keyStore"/></h4>
-						<jsp:include page="certificates_table.jsp" />
+						<c:import url="certificates_table.jsp" />
 					</c:if>
 					<c:if test="${connector.trustStoreCerts != null}">
 						<c:set var="certs" value="${connector.trustStoreCerts}" scope="request" />
 						<h4><spring:message code="probe.jsp.certificates.trustStore"/></h4>
-						<jsp:include page="certificates_table.jsp" />
+						<c:import url="certificates_table.jsp" />
 					</c:if>
 				</div>
 
