@@ -40,6 +40,7 @@ import javax.management.Notification;
 import javax.management.NotificationListener;
 import javax.management.ObjectInstance;
 import javax.management.ObjectName;
+import javax.management.RuntimeOperationsException;
 
 /**
  * This class interfaces Tomcat JMX functionality to read connection status. The class essentially
@@ -294,7 +295,11 @@ public class ContainerListenerBean implements NotificationListener {
               rp.setProcessingTime(JmxTools.getLongAttr(server, wrkName, "requestProcessingTime"));
               rp.setBytesSent(JmxTools.getLongAttr(server, wrkName, "requestBytesSent"));
               rp.setBytesReceived(JmxTools.getLongAttr(server, wrkName, "requestBytesReceived"));
-              rp.setRemoteAddr(JmxTools.getStringAttr(server, wrkName, "remoteAddr"));
+              try {
+                rp.setRemoteAddr(JmxTools.getStringAttr(server, wrkName, "remoteAddr"));
+              } catch (RuntimeOperationsException ex) {
+                logger.trace("", ex);
+              }
 
               if (rp.getRemoteAddr() != null) {
                 // Show flag as defined in jvm for localhost
