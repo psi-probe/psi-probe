@@ -112,7 +112,7 @@
 
         <spring.version>4.3.6.RELEASE</spring.version>
         <spring-security.version>4.2.1.RELEASE</spring-security.version>
-        <tomcat.version>8.5.9</tomcat.version>
+        <tomcat.version>8.5.11</tomcat.version>
     </properties>
 
     <repositories>
