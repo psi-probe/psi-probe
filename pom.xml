@@ -110,9 +110,9 @@
         <project.build.resourceEncoding>UTF-8</project.build.resourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <spring.version>4.3.5.RELEASE</spring.version>
+        <spring.version>4.3.6.RELEASE</spring.version>
         <spring-security.version>4.2.1.RELEASE</spring-security.version>
-        <tomcat.version>8.5.9</tomcat.version>
+        <tomcat.version>8.5.11</tomcat.version>
     </properties>
 
     <repositories>
@@ -200,7 +200,7 @@
             <dependency>
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
-                <version>1.1.8</version>
+                <version>1.1.9</version>
             </dependency>
             <dependency>
                 <groupId>com.oracle</groupId>
@@ -242,12 +242,12 @@
             <dependency>
                 <groupId>com.zaxxer</groupId>
                 <artifactId>HikariCP-java7</artifactId>
-                <version>2.4.9</version>
+                <version>2.4.10</version>
             </dependency>
             <dependency>
                 <groupId>org.vibur</groupId>
                 <artifactId>vibur-dbcp</artifactId>
-                <version>14.0</version>
+                <version>16.1</version>
             </dependency>
             <dependency>
                 <groupId>com.google.guava</groupId>
@@ -344,7 +344,7 @@
             <dependency>
                 <groupId>org.springframework.hateoas</groupId>
                 <artifactId>spring-hateoas</artifactId>
-                <version>0.22.0.RELEASE</version>
+                <version>0.23.0.RELEASE</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
@@ -545,12 +545,12 @@
                 <plugin>
                     <groupId>org.owasp</groupId>
                     <artifactId>dependency-check-maven</artifactId>
-                    <version>1.4.4.1</version>
+                    <version>1.4.5</version>
                 </plugin>
                 <plugin>
                     <groupId>pl.project13.maven</groupId>
                     <artifactId>git-commit-id-plugin</artifactId>
-                    <version>2.2.1</version>
+                    <version>2.2.2</version>
                     <configuration>
                         <failOnNoGitDirectory>false</failOnNoGitDirectory>
                         <gitDescribe>
@@ -585,7 +585,7 @@
                         <dependency>
                             <groupId>com.puppycrawl.tools</groupId>
                             <artifactId>checkstyle</artifactId>
-                            <version>7.3</version>
+                            <version>7.4</version>
                         </dependency>
                     </dependencies>
                 </plugin>
@@ -607,7 +607,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.6.0</version>
+                    <version>3.6.1</version>
                     <configuration>
                         <!-- Slightly faster builds, see https://issues.apache.org/jira/browse/MCOMPILER-209 -->
                         <useIncrementalCompilation>false</useIncrementalCompilation>
@@ -736,7 +736,7 @@
                 <plugin>
                     <groupId>com.versioneye</groupId>
                     <artifactId>versioneye-maven-plugin</artifactId>
-                    <version>3.11.0</version>
+                    <version>3.11.1</version>
                 </plugin>
                 <plugin>
                     <groupId>org.jasig.mojo.jspc</groupId>
