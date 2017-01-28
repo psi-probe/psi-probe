@@ -247,7 +247,7 @@
             <dependency>
                 <groupId>org.vibur</groupId>
                 <artifactId>vibur-dbcp</artifactId>
-                <version>14.0</version>
+                <version>16.1</version>
             </dependency>
             <dependency>
                 <groupId>com.google.guava</groupId>
