@@ -109,7 +109,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
    * @param statsName the stats name
    * @return true, if is collected
    */
-  public boolean isCollected(String statsName) {
+  public synchronized boolean isCollected(String statsName) {
     return statsData.get(statsName) != null;
   }
 
