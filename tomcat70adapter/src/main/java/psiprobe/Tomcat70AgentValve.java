@@ -43,8 +43,8 @@ public class Tomcat70AgentValve extends ValveBase {
     HttpSession session = servletRequest.getSession(false);
     if (session != null) {
       String ip = IpInfo.getClientAddress(servletRequest);
-      session.setAttribute(ApplicationSession.LAST_ACCESSED_BY_IP, ip);
-      session.setAttribute(ApplicationSession.LAST_ACCESSED_LOCALE, request.getLocale());
+      request.getSession(false).setAttribute(ApplicationSession.LAST_ACCESSED_BY_IP, ip);
+      request.getSession(false).setAttribute(ApplicationSession.LAST_ACCESSED_LOCALE, request.getLocale());
     }
   }
 

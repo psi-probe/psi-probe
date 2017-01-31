@@ -54,7 +54,7 @@ public class DisplayJspController extends AbstractContextHandlerController {
     }
     getContainerWrapper().getTomcatContainer().listContextJsps(context, summary, compile);
 
-    session.setAttribute(SUMMARY_ATTRIBUTE, summary);
+    request.getSession(false).setAttribute(SUMMARY_ATTRIBUTE, summary);
 
     if (compile) {
       return new ModelAndView(new RedirectView(
