@@ -20,7 +20,7 @@
 	<head>
 		<title><spring:message code="probe.jsp.title.threads"/></title>
 		<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/scriptaculous.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
 		<script type="text/javascript" src="<c:url value='/js/func.js'/>"></script>
 		<script type="text/javascript" src="<c:url value='/js/behaviour.js'/>"></script>
 	</head>
@@ -51,7 +51,7 @@
 
 				<display:table name="threads" uid="th" class="genericTbl" style="border-spacing:0;border-collapse:separate;" requestURI="" defaultsort="4"
 						defaultorder="ascending">
-					<display:column class="leftMostIcon" title="&nbsp;">
+					<display:column class="leftMostIcon" title="&#160;">
 						<c:set var="confirmMessage">
 							<spring:message code="probe.jsp.threads.killmsg" arguments="${th.name}"/>
 						</c:set>
@@ -65,7 +65,7 @@
 					<display:column property="name" sortable="true" titleKey="probe.jsp.threads.col.name" maxLength="30" style="white-space:nowrap;"/>
 					<display:column property="priority" sortable="true" titleKey="probe.jsp.threads.col.priority"/>
 					<display:column sortable="true" sortProperty="appName" titleKey="probe.jsp.threads.col.application" style="white-space:nowrap;">
-						${th.appName}&nbsp;
+						${th.appName}&#160;
 					</display:column>
 
 					<display:column sortable="true" sortProperty="classLoader" titleKey="probe.jsp.threads.col.classLoader" style="white-space:nowrap;">
@@ -73,7 +73,7 @@
 							<c:url value="/cldetails.ajax?thread=${th.name}"/>
 						</c:set>
 						<span class="expandable" onclick="toggleAndReloadPanel('dd${th_rowNum}','${clUrl}')">
-							<probe:out value="${th.classLoader}" maxLength="40" ellipsisRight="false"/>&nbsp;
+							<probe:out value="${th.classLoader}" maxLength="40" ellipsisRight="false"/>&#160;
 						</span>
 
 						<div id="dd${th_rowNum}" class="urlinfo" style="display: none;">
@@ -83,7 +83,7 @@
 					<display:column property="groupName" sortable="true" titleKey="probe.jsp.threads.col.groupName" maxLength="15" style="white-space:nowrap;"/>
 					<display:column property="threadClass" sortable="true" titleKey="probe.jsp.threads.col.threadClass" maxLength="30" style="white-space:nowrap;"/>
 					<display:column sortable="true" sortProperty="runnableClassName" titleKey="probe.jsp.threads.col.runnableClass" maxLength="30" style="white-space:nowrap;">
-						${th.runnableClassName}&nbsp;
+						${th.runnableClassName}&#160;
 					</display:column>
 					<display:column property="daemon" sortable="true" titleKey="probe.jsp.threads.col.daemon"/>
 					<display:column property="interrupted" sortable="true" titleKey="probe.jsp.threads.col.interrupted"/>

@@ -27,8 +27,8 @@ public class Error404Controller extends ParameterizableViewController {
 
   @RequestMapping(path = "/404.htm")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 

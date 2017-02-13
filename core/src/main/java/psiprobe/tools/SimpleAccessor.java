@@ -44,9 +44,8 @@ public class SimpleAccessor implements Accessor {
    * @return the 0
    * @throws IllegalAccessException the illegal access exception
    */
-  private Object get0(Object obj, Field field)
-      throws IllegalAccessException {
-    
+  private Object get0(Object obj, Field field) throws IllegalAccessException {
+
     if (field.isAccessible()) {
       return field.get(obj);
     }

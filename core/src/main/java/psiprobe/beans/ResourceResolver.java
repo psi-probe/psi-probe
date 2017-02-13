@@ -29,12 +29,12 @@ public interface ResourceResolver {
   /**
    * Standalone Tomcat supports declaration of application-local resources. In that case it makes
    * sense to associate display of resource/datasource information with the owner application. JBoss
-   * on other hand can only declate "global" resources, which alters the way resource information is
+   * on other hand can only declare "global" resources, which alters the way resource information is
    * displayed (and accessed).
    *
    * @return true if datasources can be associated with applications, otherwise false.
    *
-   * @see #getApplicationResources(org.apache.catalina.Context)
+   * @see #getApplicationResources(Context, ContainerWrapperBean)
    */
   boolean supportsPrivateResources();
 

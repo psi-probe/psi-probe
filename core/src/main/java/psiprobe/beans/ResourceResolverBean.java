@@ -17,6 +17,7 @@ import org.apache.commons.modeler.Registry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import psiprobe.beans.accessors.DatasourceAccessor;
 import psiprobe.model.ApplicationResource;
 import psiprobe.model.DataSourceInfo;
 
@@ -24,8 +25,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import javax.inject.Inject;
+import javax.management.AttributeNotFoundException;
+import javax.management.InstanceNotFoundException;
+import javax.management.MBeanException;
 import javax.management.MBeanServer;
+import javax.management.MalformedObjectNameException;
 import javax.management.ObjectName;
+import javax.management.ReflectionException;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
@@ -47,11 +54,12 @@ public class ResourceResolverBean implements ResourceResolver {
    * The default resource prefix for objects in a private application scope:
    * <code>java:comp/env/</code>.
    */
-  public static final String DEFAULT_RESOURCE_PREFIX = DEFAULT_GLOBAL_RESOURCE_PREFIX
-      + "java:comp/env/";
+  public static final String DEFAULT_RESOURCE_PREFIX =
+      DEFAULT_GLOBAL_RESOURCE_PREFIX + "java:comp/env/";
 
   /** The datasource mappers. */
-  private List<DatasourceAccessor> datasourceMappers;
+  @Inject
+  private List<String> datasourceMappers;
 
   @Override
   public List<ApplicationResource> getApplicationResources() throws NamingException {
@@ -102,15 +110,15 @@ public class ResourceResolverBean implements ResourceResolver {
         contextBound = true;
       } catch (NamingException e) {
         logger.error("Cannot bind to context. useNaming=false ?");
-        logger.debug("  Stack trace:", e);
+        logger.debug("", e);
       }
 
       try {
-        containerWrapper.getTomcatContainer()
-            .addContextResource(context, resourceList, contextBound);
+        containerWrapper.getTomcatContainer().addContextResource(context, resourceList,
+            contextBound);
 
-        containerWrapper.getTomcatContainer()
-            .addContextResourceLink(context, resourceList, contextBound);
+        containerWrapper.getTomcatContainer().addContextResourceLink(context, resourceList,
+            contextBound);
 
         for (ApplicationResource resourceList1 : resourceList) {
           lookupResource(resourceList1, contextBound, false);
@@ -138,10 +146,18 @@ public class ResourceResolverBean implements ResourceResolver {
     if (contextBound) {
       try {
         javax.naming.Context ctx = !global ? new InitialContext() : getGlobalNamingContext();
+        if (ctx == null) {
+          logger.error("Unable to find context. This may indicate invalid setup. Check global resources versus requested resources");
+          resource.setLookedUp(false);
+          return;
+        }
         String jndiName = resolveJndiName(resource.getName(), global);
         Object obj = ctx.lookup(jndiName);
         resource.setLookedUp(true);
-        for (DatasourceAccessor accessor : datasourceMappers) {
+        for (String accessorString : datasourceMappers) {
+          logger.debug("Looking up datasource adapter: {}", accessorString);
+          DatasourceAccessor accessor =
+              (DatasourceAccessor) Class.forName(accessorString).newInstance();
           dataSourceInfo = accessor.getInfo(obj);
           if (dataSourceInfo != null) {
             break;
@@ -174,7 +190,10 @@ public class ResourceResolverBean implements ResourceResolver {
       String jndiName = resolveJndiName(resourceName, context == null);
       Object obj = ctx.lookup(jndiName);
       try {
-        for (DatasourceAccessor accessor : datasourceMappers) {
+        for (String accessorString : datasourceMappers) {
+          logger.debug("Resetting datasource adapter: {}", accessorString);
+          DatasourceAccessor accessor =
+              (DatasourceAccessor) Class.forName(accessorString).newInstance();
           if (accessor.reset(obj)) {
             return true;
           }
@@ -220,7 +239,7 @@ public class ResourceResolverBean implements ResourceResolver {
    *
    * @return the datasource mappers
    */
-  public List<DatasourceAccessor> getDatasourceMappers() {
+  public List<String> getDatasourceMappers() {
     return datasourceMappers;
   }
 
@@ -229,7 +248,7 @@ public class ResourceResolverBean implements ResourceResolver {
    *
    * @param datasourceMappers the new datasource mappers
    */
-  public void setDatasourceMappers(List<DatasourceAccessor> datasourceMappers) {
+  public void setDatasourceMappers(List<String> datasourceMappers) {
     this.datasourceMappers = datasourceMappers;
   }
 
@@ -274,7 +293,8 @@ public class ResourceResolverBean implements ResourceResolver {
    * @param attributeName the attribute name
    * @return the string attribute
    */
-  private String getStringAttribute(MBeanServer server, ObjectName objectName, String attributeName) {
+  private String getStringAttribute(MBeanServer server, ObjectName objectName,
+      String attributeName) {
 
     try {
       return (String) server.getAttribute(objectName, attributeName);
@@ -294,15 +314,28 @@ public class ResourceResolverBean implements ResourceResolver {
     javax.naming.Context globalContext = null;
     MBeanServer mbeanServer = getMBeanServer();
     if (mbeanServer != null) {
-      try {
-        ObjectName name = new ObjectName("Catalina:type=Server");
-        Server server = (Server) mbeanServer.getAttribute(name, "managedResource");
-        // getGlobalNamingContext() was added to Server interface in Tomcat 7.0.11
-        if (server instanceof StandardServer) {
-          globalContext = server.getGlobalNamingContext();
+      for (String domain : mbeanServer.getDomains()) {
+
+        ObjectName name;
+        try {
+          name = new ObjectName(domain + ":type=Server");
+        } catch (MalformedObjectNameException e) {
+          logger.error("", e);
+          return null;
         }
-      } catch (Exception e) {
-        logger.error("There was an error getting globalContext through JMX server:", e);
+
+        Server server = null;
+        try {
+          server = (Server) mbeanServer.getAttribute(name, "managedResource");
+        } catch (AttributeNotFoundException | InstanceNotFoundException | MBeanException | ReflectionException e) {
+          logger.trace("JMX objectName {} does not contain any managedResource", name, e);
+        }
+
+        // getGlobalNamingContext() was added to Server interface in Tomcat 7.0.11
+        if (server != null && server instanceof StandardServer) {
+          globalContext = server.getGlobalNamingContext();
+          break;
+        }
       }
     }
 

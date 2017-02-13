@@ -58,8 +58,8 @@ public class BaseUndeployContextController extends AbstractContextHandlerControl
       HttpServletRequest request, HttpServletResponse response) throws Exception {
     try {
       if (request.getContextPath().equals(contextName)) {
-        throw new IllegalStateException(getMessageSourceAccessor().getMessage(
-            "probe.src.contextAction.cannotActOnSelf"));
+        throw new IllegalStateException(
+            getMessageSourceAccessor().getMessage("probe.src.contextAction.cannotActOnSelf"));
       }
 
       getContainerWrapper().getTomcatContainer().remove(contextName);
@@ -67,13 +67,14 @@ public class BaseUndeployContextController extends AbstractContextHandlerControl
       Authentication auth = SecurityContextHolder.getContext().getAuthentication();
       // get username logger
       String name = auth.getName();
-      logger.info(getMessageSourceAccessor().getMessage("probe.src.log.undeploy"), name, contextName);
+      logger.info(getMessageSourceAccessor().getMessage("probe.src.log.undeploy"), name,
+          contextName);
 
     } catch (Exception e) {
       request.setAttribute("errorMessage", e.getMessage());
       logger.error("Error during undeploy of '{}'", contextName, e);
-      return new ModelAndView(new InternalResourceView(getFailureViewName() == null ? getViewName()
-          : getFailureViewName()));
+      return new ModelAndView(new InternalResourceView(
+          getFailureViewName() == null ? getViewName() : getFailureViewName()));
     }
     return new ModelAndView(new RedirectView(request.getContextPath() + getViewName()));
   }

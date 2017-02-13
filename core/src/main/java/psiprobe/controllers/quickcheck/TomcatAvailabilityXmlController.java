@@ -24,17 +24,17 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class TomcatAvailabilityXmlController extends BaseTomcatAvailabilityController {
 
-    @RequestMapping(path = "/adm/quickcheck.xml.htm")
-    @Override
-    public ModelAndView handleRequest(HttpServletRequest request,
-        HttpServletResponse response) throws Exception {
-      return super.handleRequest(request, response);
-    }
+  @RequestMapping(path = "/quickcheck.xml.htm")
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
+    return super.handleRequest(request, response);
+  }
 
-    @Value("quickcheck.xml")
-    @Override
-    public void setViewName(String viewName) {
-      super.setViewName(viewName);
-    }
+  @Value("quickcheck.xml")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
+  }
 
 }

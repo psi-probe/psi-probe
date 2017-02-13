@@ -25,10 +25,12 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Base class preventing "destructive" actions to be executed on the Probe's context.
  */
-public abstract class AbstractNoSelfContextHandlerController extends AbstractContextHandlerController {
+public abstract class AbstractNoSelfContextHandlerController
+    extends AbstractContextHandlerController {
 
   /** The Constant logger. */
-  private static final Logger logger = LoggerFactory.getLogger(AbstractNoSelfContextHandlerController.class);
+  private static final Logger logger =
+      LoggerFactory.getLogger(AbstractNoSelfContextHandlerController.class);
 
   /** The pass query string. */
   private boolean passQueryString;
@@ -57,8 +59,8 @@ public abstract class AbstractNoSelfContextHandlerController extends AbstractCon
 
     try {
       if (request.getContextPath().equals(contextName)) {
-        throw new IllegalStateException(getMessageSourceAccessor().getMessage(
-            "probe.src.contextAction.cannotActOnSelf"));
+        throw new IllegalStateException(
+            getMessageSourceAccessor().getMessage("probe.src.contextAction.cannotActOnSelf"));
       }
 
       executeAction(contextName);

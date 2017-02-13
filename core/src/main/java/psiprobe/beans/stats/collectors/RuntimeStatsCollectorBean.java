@@ -10,8 +10,13 @@
  */
 package psiprobe.beans.stats.collectors;
 
+import javax.inject.Inject;
+
+import org.springframework.beans.factory.annotation.Value;
+
 import psiprobe.beans.RuntimeInfoAccessorBean;
 import psiprobe.model.jmx.RuntimeInformation;
+import psiprobe.tools.TimeExpression;
 
 /**
  * The Class RuntimeStatsCollectorBean.
@@ -19,6 +24,7 @@ import psiprobe.model.jmx.RuntimeInformation;
 public class RuntimeStatsCollectorBean extends AbstractStatsCollectorBean {
 
   /** The runtime info accessor bean. */
+  @Inject
   private RuntimeInfoAccessorBean runtimeInfoAccessorBean;
 
   /**
@@ -58,4 +64,16 @@ public class RuntimeStatsCollectorBean extends AbstractStatsCollectorBean {
       buildTimePercentageStats("os.cpu", processCpuTimeMs / ri.getAvailableProcessors(), time);
     }
   }
+
+  /**
+   * Sets the max series expression.
+   *
+   * @param period the period
+   * @param span the span
+   */
+  public void setMaxSeries(@Value("${psiprobe.beans.stats.collectors.runtime.period}") long period,
+      @Value("${psiprobe.beans.stats.collectors.runtime.span}") long span) {
+    super.setMaxSeries((int) TimeExpression.dataPoints(period, span));
+  }
+
 }

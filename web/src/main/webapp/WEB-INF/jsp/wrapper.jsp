@@ -19,8 +19,7 @@
 	<head>
 		<title><spring:message code="probe.jsp.title.wrapper"/></title>
 		<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/scriptaculous.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/func.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
 		<script type="text/javascript" src="<c:url value='/js/behaviour.js'/>"></script>
 	</head>
 
@@ -61,13 +60,13 @@
 			<div class="shadow" style="clear: none;">
 				<div class="info">
 					<p>
-						<spring:message code="probe.jsp.wrapper.user"/>&nbsp;<span class="value">${wrapperInfo.user}</span>
-						<spring:message code="probe.jsp.wrapper.interactive_user"/>&nbsp;<span class="value">${wrapperInfo.interactiveUser}</span>
-						<spring:message code="probe.jsp.wrapper.java_pid"/>&nbsp;<span class="value">${wrapperInfo.jvmPid}</span>
-						<spring:message code="probe.jsp.wrapper.pid"/>&nbsp;<span class="value">${wrapperInfo.wrapperPid}</span>
-						<spring:message code="probe.jsp.wrapper.service"/>&nbsp;<span class="value">${wrapperInfo.launchedAsService}</span>
-						<spring:message code="probe.jsp.wrapper.debug"/>&nbsp;<span class="value">${wrapperInfo.debugEnabled}</span>
-						<spring:message code="probe.jsp.wrapper.version"/>&nbsp;<span class="value">${wrapperInfo.version}</span>
+						<spring:message code="probe.jsp.wrapper.user"/>&#160;<span class="value">${wrapperInfo.user}</span>
+						<spring:message code="probe.jsp.wrapper.interactive_user"/>&#160;<span class="value">${wrapperInfo.interactiveUser}</span>
+						<spring:message code="probe.jsp.wrapper.java_pid"/>&#160;<span class="value">${wrapperInfo.jvmPid}</span>
+						<spring:message code="probe.jsp.wrapper.pid"/>&#160;<span class="value">${wrapperInfo.wrapperPid}</span>
+						<spring:message code="probe.jsp.wrapper.service"/>&#160;<span class="value">${wrapperInfo.launchedAsService}</span>
+						<spring:message code="probe.jsp.wrapper.debug"/>&#160;<span class="value">${wrapperInfo.debugEnabled}</span>
+						<spring:message code="probe.jsp.wrapper.version"/>&#160;<span class="value">${wrapperInfo.version}</span>
 					</p>
 				</div>
 			</div>

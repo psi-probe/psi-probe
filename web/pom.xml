@@ -11,7 +11,7 @@
     PURPOSE.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="https://maven.apache.org/POM/4.0.0" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -95,6 +95,7 @@
     </dependencies>
 
     <build>
+        <finalName>probe</finalName>
         <plugins>
             <plugin>
                 <groupId>org.jasig.mojo.jspc</groupId>
@@ -122,6 +123,9 @@
                         </resource>
                         <resource>
                             <directory>${project.basedir}/src/main/webapp</directory>
+                            <includes>
+                                <include>**/*messages*.properties</include>
+                            </includes>
                             <filtering>true</filtering>
                         </resource>
                         <resource>
@@ -134,8 +138,6 @@
                             <filtering>false</filtering>
                         </resource>
                     </webResources>
-                    <webappDirectory>${project.build.directory}/target/war_exploded</webappDirectory>
-                    <warName>probe</warName>
                 </configuration>
             </plugin>
         </plugins>

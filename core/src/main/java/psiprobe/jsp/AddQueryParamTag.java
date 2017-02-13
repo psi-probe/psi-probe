@@ -45,7 +45,8 @@ public class AddQueryParamTag extends TagSupport {
     for (String name : Collections.list(pageContext.getRequest().getParameterNames())) {
       if (!param.equals(name)) {
         query.append("&").append(StringEscapeUtils.escapeHtml4(name)).append("=")
-            .append(StringEscapeUtils.escapeHtml4(ServletRequestUtils.getStringParameter(pageContext.getRequest(), name, "")));
+            .append(StringEscapeUtils.escapeHtml4(
+                ServletRequestUtils.getStringParameter(pageContext.getRequest(), name, "")));
       }
     }
     try {

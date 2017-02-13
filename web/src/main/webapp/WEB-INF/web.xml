@@ -19,82 +19,8 @@
 
 	<display-name>PSI Probe for Apache Tomcat</display-name>
 
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/spring-probe-security.xml</param-value>
-	</context-param>
-
-	<listener>
-		<listener-class>psiprobe.AwtAppContextClassloaderListener</listener-class>
-	</listener>
-
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
-
-	<!--
-		Core dispatcher servlet
-	-->
-	<servlet>
-		<servlet-name>probe</servlet-name>
-		<servlet-class>psiprobe.ProbeServlet</servlet-class>
-		<init-param>
-			<param-name>contextConfigLocation</param-name>
-			<param-value>
-				<![CDATA[
-					/WEB-INF/spring-probe-servlet.xml,
-					/WEB-INF/spring-probe-resources.xml,
-					/WEB-INF/spring-probe-stats.xml,
-					/WEB-INF/spring-probe-controllers.xml
-				]]>
-			</param-value>
-		</init-param>
-		<load-on-startup>0</load-on-startup>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>probe</servlet-name>
-		<url-pattern>*.htm</url-pattern>
-		<url-pattern>*.ajax</url-pattern>
-		<url-pattern>/logs/*</url-pattern>
-		<url-pattern>/chart.png</url-pattern>
-	</servlet-mapping>
-
-	<!-- Sitemesh filter -->
-	<filter>
-		<filter-name>sitemesh</filter-name>
-		<filter-class>com.opensymphony.sitemesh.webapp.SiteMeshFilter</filter-class>
-	</filter>
-
-	<filter-mapping>
-		<filter-name>sitemesh</filter-name>
-		<url-pattern>/*</url-pattern>
-		<dispatcher>FORWARD</dispatcher>
-		<dispatcher>REQUEST</dispatcher>
-		<dispatcher>ERROR</dispatcher>
-	</filter-mapping>
-
-	<!-- Spring Security filter -->
-	<filter>
-		<filter-name>filterChainProxy</filter-name>
-		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-	</filter>
-
-	<filter-mapping>
-		<filter-name>filterChainProxy</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
-
 	<session-config>
 		<session-timeout>15</session-timeout>
-		<!-- Disable secure cookie until http session issues can be resolved. While tomcat
-		will handle this normally with http, spring has been shown to continually create new
-		sessions.  This may not be related to spring security but rather spring web mvc.
-		<cookie-config>
-			<secure>true</secure>
-		</cookie-config>
-		-->
-		<tracking-mode>COOKIE</tracking-mode>
 	</session-config>
 
 	<!-- no access error -->
@@ -120,12 +46,6 @@
 		<exception-type>java.lang.Throwable</exception-type>
 		<location>/WEB-INF/jsp/errors/servleterror.jsp</location>
 	</error-page>
-
-	<context-param>
-		<description>Role that can view session attribute values</description>
-		<param-name>attribute.value.roles</param-name>
-		<param-value>ROLE_MANAGER,ROLE_MANAGER-GUI</param-value>
-	</context-param>
 
 	<security-constraint>
 		<display-name>No anonymous access</display-name>

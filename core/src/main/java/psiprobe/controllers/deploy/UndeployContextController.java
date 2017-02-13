@@ -26,8 +26,8 @@ public class UndeployContextController extends BaseUndeployContextController {
 
   @RequestMapping(path = "/adm/undeploy.htm")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 

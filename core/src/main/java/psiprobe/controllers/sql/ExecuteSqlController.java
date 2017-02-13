@@ -51,8 +51,8 @@ public class ExecuteSqlController extends AbstractContextHandlerController {
 
   @RequestMapping(path = "/sql/recordset.ajax")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 
@@ -63,7 +63,7 @@ public class ExecuteSqlController extends AbstractContextHandlerController {
     String resourceName = ServletRequestUtils.getStringParameter(request, "resource");
     String sql = ServletRequestUtils.getStringParameter(request, "sql", null);
 
-    if (sql == null || sql.equals("") || sql.trim().equals("")) {
+    if (sql == null || sql.isEmpty() || sql.trim().isEmpty()) {
       request.setAttribute("errorMessage",
           getMessageSourceAccessor().getMessage("probe.src.dataSourceTest.sql.required"));
 
@@ -95,22 +95,17 @@ public class ExecuteSqlController extends AbstractContextHandlerController {
     DataSource dataSource = null;
 
     try {
-      dataSource =
-          getContainerWrapper().getResourceResolver().lookupDataSource(context, resourceName,
-              getContainerWrapper());
+      dataSource = getContainerWrapper().getResourceResolver().lookupDataSource(context,
+          resourceName, getContainerWrapper());
     } catch (NamingException e) {
-      request.setAttribute(
-          "errorMessage",
-          getMessageSourceAccessor().getMessage("probe.src.dataSourceTest.resource.lookup.failure",
-              new Object[] {resourceName}));
+      request.setAttribute("errorMessage", getMessageSourceAccessor().getMessage(
+          "probe.src.dataSourceTest.resource.lookup.failure", new Object[] {resourceName}));
       logger.trace("", e);
     }
 
     if (dataSource == null) {
-      request.setAttribute(
-          "errorMessage",
-          getMessageSourceAccessor().getMessage("probe.src.dataSourceTest.resource.lookup.failure",
-              new Object[] {resourceName}));
+      request.setAttribute("errorMessage", getMessageSourceAccessor().getMessage(
+          "probe.src.dataSourceTest.resource.lookup.failure", new Object[] {resourceName}));
     } else {
       List<Map<String, String>> results = null;
       int rowsAffected = 0;
@@ -138,9 +133,8 @@ public class ExecuteSqlController extends AbstractContextHandlerController {
                     String value = rs.getString(i);
 
                     if (rs.wasNull()) {
-                      value =
-                          getMessageSourceAccessor()
-                              .getMessage("probe.src.dataSourceTest.sql.null");
+                      value = getMessageSourceAccessor()
+                          .getMessage("probe.src.dataSourceTest.sql.null");
                     } else {
                       value = HtmlUtils.htmlEscape(value);
                     }
@@ -182,9 +176,8 @@ public class ExecuteSqlController extends AbstractContextHandlerController {
 
         return mv;
       } catch (SQLException e) {
-        String message =
-            getMessageSourceAccessor().getMessage("probe.src.dataSourceTest.sql.failure",
-                new Object[] {e.getMessage()});
+        String message = getMessageSourceAccessor()
+            .getMessage("probe.src.dataSourceTest.sql.failure", new Object[] {e.getMessage()});
         logger.error(message, e);
         request.setAttribute("errorMessage", message);
       }

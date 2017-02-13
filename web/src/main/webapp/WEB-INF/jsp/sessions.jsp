@@ -17,12 +17,8 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="https://github.com/psi-probe/psi-probe/jsp/tags" prefix="probe" %>
 
-<%--
-	List of sessions view for a particular web application.
-	It is assumed that the controller creates "session" command in the request.
-
-	Author: Vlad Ilyushchenko, Andy Shapoval
---%>
+<%-- List of sessions view for a particular web application. It is assumed that the controller
+ creates "session" command in the request. --%>
 
 <html>
 	<head>
@@ -35,7 +31,7 @@
 			</c:otherwise>
 		</c:choose>
 		<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/scriptaculous.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
 		<script type="text/javascript" src="<c:url value='/js/Tooltip.js'/>"></script>
 		<script type="text/javascript" src="<c:url value='/js/func.js'/>"></script>
 		<script type="text/javascript" src="<c:url value='/js/behaviour.js'/>"></script>
@@ -43,9 +39,7 @@
 
 	<body>
 
-		<%--
-			Make Tab #1 visually "active".
-		--%>
+		<%-- Make Tab #1 visually "active". --%>
 		<c:set var="navTabApps" value="active" scope="request"/>
 		<c:if test="${! empty param.webapp}">
 			<c:set var="use_decorator" value="application" scope="request"/>
@@ -110,14 +104,14 @@
 						<c:when test="${param.size}">
 							<li id="size">
 								<a href="?<probe:toggle param='size'/>">
-								   <spring:message code="probe.jsp.hidesize"/>
+									<spring:message code="probe.jsp.hidesize"/>
 								</a>
 							</li>
 						</c:when>
 						<c:otherwise>
 							<li id="size">
 								<a href="?<probe:toggle param='size'/>">
-								   <spring:message code="probe.jsp.showsize"/>
+									<spring:message code="probe.jsp.showsize"/>
 								</a>
 							</li>
 						</c:otherwise>
@@ -203,7 +197,7 @@
 						<display:table name="sessions" class="genericTbl" uid="session" style="border-spacing:0;border-collapse:separate;" pagesize="50"
 								requestURI="">
 
-							<display:column class="leftmost" title="&nbsp;">
+							<display:column class="leftmost" title="&#160;">
 								<input type="checkbox" name="sid_webapp" value="${session.id};${session.applicationName}"/>
 							</display:column>
 
@@ -212,7 +206,7 @@
 										titleKey="probe.jsp.sessions.col.applicationName">
 									<a href="<c:url value='/appsummary.htm'><c:param name='webapp' value='${session.applicationName}'/></c:url>">
 										${session.applicationName}
-									</a>&nbsp;
+									</a>&#160;
 								</display:column>
 							</c:if>
 
@@ -237,7 +231,7 @@
 								</c:choose>
 							</display:column>
 
-							<display:column title="&nbsp;" style="width:18px;">
+							<display:column title="&#160;" style="width:18px;">
 								<c:choose>
 									<c:when test="${! empty session.lastAccessedIpLocale.country && session.lastAccessedIpLocale.country != '**'}">
 										<img border="0" src="<c:url value='/flags/${fn:toLowerCase(session.lastAccessedIpLocale.country)}.png'/>"
@@ -245,7 +239,7 @@
 												title="${session.lastAccessedIpLocale.displayCountry}"/>
 									</c:when>
 									<c:otherwise>
-										&nbsp;
+										&#160;
 									</c:otherwise>
 								</c:choose>
 							</display:column>

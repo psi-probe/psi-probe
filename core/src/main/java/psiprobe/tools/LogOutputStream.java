@@ -89,7 +89,7 @@ public class LogOutputStream extends OutputStream {
   }
 
   /**
-   * Flushes the contents of this stream to its {@link Log}.
+   * Flushes the contents of this stream to its {@code Log}.
    */
   @Override
   public void flush() {

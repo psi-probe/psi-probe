@@ -32,34 +32,31 @@ public class DeployContextController extends AbstractTomcatContainerController {
 
   @RequestMapping(path = "/adm/deploycontext.htm")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 
   @Override
-  public ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response)
-      throws Exception {
+  public ModelAndView handleRequestInternal(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
 
     String contextName = ServletRequestUtils.getStringParameter(request, "context", null);
 
     if (contextName != null) {
       try {
         if (getContainerWrapper().getTomcatContainer().installContext(contextName)) {
-          request.setAttribute(
-              "successMessage",
-              getMessageSourceAccessor().getMessage("probe.src.deploy.context.success",
-                  new Object[] {contextName}));
+          request.setAttribute("successMessage", getMessageSourceAccessor()
+              .getMessage("probe.src.deploy.context.success", new Object[] {contextName}));
           // Logging action
           Authentication auth = SecurityContextHolder.getContext().getAuthentication();
           // get username logger
           String name = auth.getName();
-          logger.info(getMessageSourceAccessor().getMessage("probe.src.log.deploycontext"), name, contextName);
+          logger.info(getMessageSourceAccessor().getMessage("probe.src.log.deploycontext"), name,
+              contextName);
         } else {
-          request.setAttribute(
-              "errorMessage",
-              getMessageSourceAccessor().getMessage("probe.src.deploy.context.failure",
-                  new Object[] {contextName}));
+          request.setAttribute("errorMessage", getMessageSourceAccessor()
+              .getMessage("probe.src.deploy.context.failure", new Object[] {contextName}));
         }
       } catch (Exception e) {
         request.setAttribute("errorMessage", e.getMessage());

@@ -36,8 +36,8 @@ public class DisplayJspController extends AbstractContextHandlerController {
 
   @RequestMapping(path = "/app/jsp.htm")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 
@@ -57,8 +57,8 @@ public class DisplayJspController extends AbstractContextHandlerController {
     session.setAttribute(SUMMARY_ATTRIBUTE, summary);
 
     if (compile) {
-      return new ModelAndView(new RedirectView(request.getRequestURI() + "?webapp="
-          + (contextName.length() == 0 ? "/" : contextName)));
+      return new ModelAndView(new RedirectView(
+          request.getRequestURI() + "?webapp=" + (contextName.length() == 0 ? "/" : contextName)));
     }
     return new ModelAndView(getViewName(), "summary", summary);
   }

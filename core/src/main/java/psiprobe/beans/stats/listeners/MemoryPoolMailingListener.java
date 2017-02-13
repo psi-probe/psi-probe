@@ -11,6 +11,7 @@
 package psiprobe.beans.stats.listeners;
 
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.context.MessageSourceAware;
 import org.springframework.context.support.MessageSourceAccessor;
@@ -18,6 +19,7 @@ import org.springframework.context.support.MessageSourceAccessor;
 import psiprobe.tools.MailMessage;
 import psiprobe.tools.Mailer;
 
+import javax.inject.Inject;
 import javax.mail.MessagingException;
 
 /**
@@ -26,8 +28,8 @@ import javax.mail.MessagingException;
  * class is registered with a component using the component's {@code addMemoryPoolMailingListener}
  * method. When the memoryPoolMailing event occurs, that object's appropriate method is invoked.
  */
-public class MemoryPoolMailingListener extends AbstractFlapListener implements MessageSourceAware,
-    InitializingBean {
+public class MemoryPoolMailingListener extends AbstractFlapListener
+    implements MessageSourceAware, InitializingBean {
 
   /** The Constant BASE_PROPERTY. */
   private static final String BASE_PROPERTY = "probe.src.stats.listener.memory.pool.";
@@ -36,6 +38,7 @@ public class MemoryPoolMailingListener extends AbstractFlapListener implements M
   private MessageSourceAccessor messageSourceAccessor;
 
   /** The mailer. */
+  @Inject
   private Mailer mailer;
 
   /**
@@ -128,18 +131,46 @@ public class MemoryPoolMailingListener extends AbstractFlapListener implements M
       bodyPrefix =
           getMessageSourceAccessor().getMessage(BASE_PROPERTY + "flappingStop.body.prefix");
     }
-    String subject =
-        getMessageSourceAccessor().getMessage(BASE_PROPERTY + message + ".subject",
-            new Object[] {subjectInfix, name, value, threshold});
-    String body =
-        getMessageSourceAccessor().getMessage(BASE_PROPERTY + message + ".body",
-            new Object[] {bodyPrefix, name, value, threshold});
+    String subject = getMessageSourceAccessor().getMessage(BASE_PROPERTY + message + ".subject",
+        new Object[] {subjectInfix, name, value, threshold});
+    String body = getMessageSourceAccessor().getMessage(BASE_PROPERTY + message + ".body",
+        new Object[] {bodyPrefix, name, value, threshold});
     MailMessage mail = new MailMessage(null, subject, body);
     try {
       getMailer().send(mail);
     } catch (MessagingException ex) {
       logger.error("Cannot send message", ex);
     }
+  }
+
+  @Value("${psiprobe.beans.stats.listeners.flapInterval}")
+  @Override
+  public void setDefaultFlapInterval(int defaultFlapInterval) {
+    super.setDefaultFlapInterval(defaultFlapInterval);
+  }
+
+  @Value("${psiprobe.beans.stats.listeners.flapStartThreshold}")
+  @Override
+  public void setDefaultFlapStartThreshold(float defaultFlapStartThreshold) {
+    super.setDefaultFlapStartThreshold(defaultFlapStartThreshold);
+  }
+
+  @Value("${psiprobe.beans.stats.listeners.flapStopThreshold}")
+  @Override
+  public void setDefaultFlapStopThreshold(float defaultFlapStopThreshold) {
+    super.setDefaultFlapStopThreshold(defaultFlapStopThreshold);
+  }
+
+  @Value("${psiprobe.beans.stats.listeners.flapLowWeight}")
+  @Override
+  public void setDefaultFlapLowWeight(float defaultFlapLowWeight) {
+    super.setDefaultFlapLowWeight(defaultFlapLowWeight);
+  }
+
+  @Value("${psiprobe.beans.stats.listeners.flapHighWeight}")
+  @Override
+  public void setDefaultFlapHighWeight(float defaultFlapHighWeight) {
+    super.setDefaultFlapHighWeight(defaultFlapHighWeight);
   }
 
 }

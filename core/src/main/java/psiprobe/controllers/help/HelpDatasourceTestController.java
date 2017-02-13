@@ -28,8 +28,8 @@ public class HelpDatasourceTestController extends PostParameterizableViewControl
 
   @RequestMapping(path = "/help/datasourcetest.ajax")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 

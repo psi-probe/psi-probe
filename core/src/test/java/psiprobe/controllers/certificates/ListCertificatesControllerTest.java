@@ -17,28 +17,31 @@ import static org.junit.Assert.assertThat;
 import java.io.File;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.web.context.WebApplicationContext;
 
 import com.codebox.bean.JavaBeanTester;
 
-import psiprobe.ProbeConfigTest;
+import psiprobe.ProbeInitializer;
 import psiprobe.model.certificates.Cert;
 
 /**
  * The Class ListCertificatesControllerTest.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = ProbeConfigTest.class)
+@ContextConfiguration(classes = ProbeInitializer.class)
+@WebAppConfiguration
 public class ListCertificatesControllerTest {
 
   /** The ctx. */
-  @Autowired
-  private ApplicationContext ctx;
+  @Inject
+  private WebApplicationContext ctx;
 
   /**
    * Javabean tester.
@@ -84,9 +87,10 @@ public class ListCertificatesControllerTest {
     System.setProperty("catalina.base", certFolder.getPath());
 
     String storePassword = "123456";
-    
-    List<Cert> certs = controller.getCertificates(storeType, "localhost-truststore.jks", storePassword);
-    
+
+    List<Cert> certs =
+        controller.getCertificates(storeType, "localhost-truststore.jks", storePassword);
+
     assertThat(certs, notNullValue());
     assertThat(certs.size(), is(2));
     assertThat(certs.get(0).getAlias(), is("google internet authority g2"));
@@ -109,7 +113,8 @@ public class ListCertificatesControllerTest {
 
     String storePassword = "123456";
 
-    List<Cert> certs = controller.getCertificates(storeType, storeFile.toURI().toString(), storePassword);
+    List<Cert> certs =
+        controller.getCertificates(storeType, storeFile.toURI().toString(), storePassword);
 
     assertThat(certs, notNullValue());
     assertThat(certs.size(), is(2));
@@ -132,7 +137,8 @@ public class ListCertificatesControllerTest {
 
     String storePassword = "123456";
 
-    List<Cert> certs = controller.getCertificates(storeType, "./localhost-truststore.jks", storePassword);
+    List<Cert> certs =
+        controller.getCertificates(storeType, "./localhost-truststore.jks", storePassword);
 
     assertThat(certs, notNullValue());
     assertThat(certs.size(), is(2));

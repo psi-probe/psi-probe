@@ -14,12 +14,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
-<%--
-	Displays deployment descriptor (web.xml) or a context descriptor (context.xml) of a web application
-	displayTarget model object denotes type of a file to be to be displayed
-
-	Author: Andy Shapoval
---%>
+<%-- Displays deployment descriptor (web.xml) or a context descriptor (context.xml) of a web application
+ displayTarget model object denotes type of a file to be to be displayed --%>
 
 <html>
 	<head>
@@ -28,7 +24,7 @@
 		<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='scroller.css'/>"/>
 		<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>
 		<script type="text/javascript" src="<c:url value='/js/behaviour.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/scriptaculous.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
 		<script type="text/javascript" src="<c:url value='/js/areascroller.js'/>"></script>
 	</head>
 
@@ -65,8 +61,8 @@
 					<h3><spring:message code="probe.jsp.app.viewXMLConf.h3.scr" arguments="${fileName}"/></h3>
 					<table id="resultsTable" style="border-spacing:0;border-collapse:separate;">
 						<tr>
-							<td id="left_scroller" class="scroller">&nbsp;</td>
-							<td width="1%">&nbsp;</td>
+							<td id="left_scroller" class="scroller">&#160;</td>
+							<td width="1%">&#160;</td>
 							<td>
 								<div id="srccontent" class="scrollable_content">
 									<code>
@@ -74,7 +70,7 @@
 									</code>
 								</div>
 							</td>
-							<td id="right_scroller" class="scroller">&nbsp;</td>
+							<td id="right_scroller" class="scroller">&#160;</td>
 						</tr>
 					</table>
 					<script type="text/javascript">

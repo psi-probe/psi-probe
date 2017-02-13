@@ -15,11 +15,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="https://github.com/psi-probe/psi-probe/jsp/tags" prefix="probe" %>
 
-<%--
-	Displays a web application information summary and application statistics charts
-
-	Author: Andy Shapoval, Vlad Ilyushchenko
---%>
+<%-- Displays a web application information summary and application statistics charts --%>
 
 <html>
 	<head>
@@ -43,10 +39,9 @@
 			</c:when>
 			<c:otherwise>
 				<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>
-				<script type="text/javascript" src="<c:url value='/js/scriptaculous.js'/>"></script>
+				<script type="text/javascript" src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
 				<script type="text/javascript" src="<c:url value='/js/func.js'/>"></script>
 				<script type="text/javascript" src="<c:url value='/js/behaviour.js'/>"></script>
-				<script type="text/javascript" src="<c:url value='/js/effects.js'/>"></script>
 
 				<c:set var="confirmMessage">
 					<spring:message code="probe.jsp.app.summary.undeploy.confirm" arguments="${param.webapp}"/>
@@ -98,13 +93,13 @@
 
 					<h3><spring:message code="probe.jsp.app.summary.h3.static"/></h3>
 					<div id="appInfo">
-						<spring:message code="probe.jsp.app.summary.application"/>&nbsp;
+						<spring:message code="probe.jsp.app.summary.application"/>&#160;
 						<span class="value"><a href="${app.name}${app.name ne '/' ? '/' : ''}" target="_blank">${app.name}</a></span>
-						<spring:message code="probe.jsp.app.summary.docBase"/>&nbsp;<span class="value">${app.docBase}</span>
-						<spring:message code="probe.jsp.app.summary.description"/>&nbsp;<span class="value">${app.displayName}</span>
-						<spring:message code="probe.jsp.app.summary.servletVersion"/>&nbsp;<span class="value">${app.servletVersion}</span>
-						<spring:message code="probe.jsp.app.summary.servletCount"/>&nbsp;<span class="value"><a href="<c:url value='/servlets.htm'><c:param name='webapp' value='${app.name}'/></c:url>"><span id="servletCount"></span></a></span>
-						<spring:message code="probe.jsp.app.summary.sessionTimeout"/>&nbsp;<span class="value">${app.sessionTimeout} min.</span>
+						<spring:message code="probe.jsp.app.summary.docBase"/>&#160;<span class="value">${app.docBase}</span>
+						<spring:message code="probe.jsp.app.summary.description"/>&#160;<span class="value">${app.displayName}</span>
+						<spring:message code="probe.jsp.app.summary.servletVersion"/>&#160;<span class="value">${app.servletVersion}</span>
+						<spring:message code="probe.jsp.app.summary.servletCount"/>&#160;<span class="value"><a href="<c:url value='/servlets.htm'><c:param name='webapp' value='${app.name}'/></c:url>"><span id="servletCount"></span></a></span>
+						<spring:message code="probe.jsp.app.summary.sessionTimeout"/>&#160;<span class="value">${app.sessionTimeout} min.</span>
 						<spring:message code="probe.jsp.app.summary.distributable"/>
 						<c:choose>
 							<c:when test="${app.distributable}">
@@ -117,11 +112,11 @@
 					</div>
 					<h3><spring:message code="probe.jsp.app.summary.h3.runtime"/></h3>
 					<div id="runtimeAppInfo">
-						<jsp:include page="/appruntimeinfo.ajax"/>
+						<c:import url="/appruntimeinfo.ajax"/>
 					</div>
 				</div>
 
-				<%-- pereodical refreshing of runtime info --%>
+				<%-- periodical refreshing of runtime info --%>
 				<script type="text/javascript">
 
 					function updateAppInfo() {

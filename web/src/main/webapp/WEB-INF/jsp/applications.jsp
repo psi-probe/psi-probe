@@ -16,20 +16,15 @@
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@ taglib uri="https://github.com/psi-probe/psi-probe/jsp/tags" prefix="probe" %>
 
-<%--
-	Probe "home" page. Displays list of web applications.
-	It is assumed that command by the name "apps" is created by the controller.
-
-	Author: Vlad Ilyushchenko
---%>
+<%-- Probe "home" page. Displays list of web applications. It is assumed that command
+ by the name "apps" is created by the controller. --%>
 
 <html>
 
 	<head>
 		<title><spring:message code="probe.jsp.title.applications"/></title>
 		<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/scriptaculous.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/effects.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
 		<script type="text/javascript" src="<c:url value='/js/func.js'/>"></script>
 		<script type="text/javascript" src="<c:url value='/js/behaviour.js'/>"></script>
 	</head>
@@ -131,7 +126,7 @@
 		<display:table class="genericTbl" name="apps" uid="app" style="border-spacing:0;border-collapse:separate;" requestURI="" defaultsort="1"
 				defaultorder="ascending" cellpadding="0">
 
-			<display:column class="leftMostIcon" title="&nbsp;">
+			<display:column class="leftMostIcon" title="&#160;">
 				<c:set var="confirmMessage">
 					<spring:message code="probe.jsp.applications.undeploy.confirm" arguments="${app.name}"/>
 				</c:set>
@@ -173,7 +168,7 @@
 				</c:choose>
 			</display:column>
 
-			<display:column title="&nbsp;">
+			<display:column title="&#160;">
 				<a onclick="return handleContextReload('${app_rowNum}', '${app.name}');"
 						class="imglink"
 						href="<c:url value='/app/reload.htm'><c:param name='webapp' value='${app.name}' /></c:url>">
@@ -185,7 +180,7 @@
 			</display:column>
 
 			<display:column titleKey="probe.jsp.applications.col.description">
-				${app.displayName}&nbsp;
+				${app.displayName}&#160;
 			</display:column>
 
 			<display:column sortable="true" titleKey="probe.jsp.applications.col.requestCount" sortProperty="requestCount">

@@ -21,7 +21,7 @@
 		<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='scroller.css'/>"/>
 		<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>
 		<script type="text/javascript" src="<c:url value='/js/behaviour.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/scriptaculous.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
 		<script type="text/javascript" src="<c:url value='/js/areascroller.js'/>"></script>
 	</head>
 
@@ -62,8 +62,8 @@
 
 			<table id="resultsTable" style="border-spacing:0;border-collapse:separate;">
 				<tr>
-					<td id="left_scroller" class="scroller">&nbsp;</td>
-					<td id="separator" width="1%" style="display: none;">&nbsp;</td>
+					<td id="left_scroller" class="scroller">&#160;</td>
+					<td id="separator" width="1%" style="display: none;">&#160;</td>
 					<td>
 						<div class="scrollable_content" id="srccontent">
 							<code>
@@ -71,7 +71,7 @@
 							</code>
 						</div>
 					</td>
-					<td id="right_scroller" class="scroller">&nbsp;</td>
+					<td id="right_scroller" class="scroller">&#160;</td>
 				</tr>
 			</table>
 		</div>

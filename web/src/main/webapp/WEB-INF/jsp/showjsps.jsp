@@ -10,20 +10,17 @@
     PURPOSE.
 
 --%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" session="false" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@ taglib uri="https://github.com/psi-probe/psi-probe/jsp/tags" prefix="probe" %>
 
-
-<%@ page contentType="text/html;charset=UTF-8" language="java" session="false" %>
 <html>
 	<head>
 		<title><spring:message code="probe.jsp.title.jsps" arguments="${param.webapp}"/></title>
 		<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/effects.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/func.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
 	</head>
 
 	<c:set var="navTabApps" value="active" scope="request"/>
@@ -70,7 +67,7 @@
 						<display:table name="summary.items" uid="item" class="genericTbl" style="border-spacing:0;border-collapse:separate;" requestURI="" defaultsort="1"
 								defaultorder="descending">
 							<display:column titleKey="probe.jsp.jsps.col.name" sortable="true" class="leftmost" sortProperty="name">
-								<input type="checkbox" name="${item.name}"/>&nbsp;
+								<input type="checkbox" name="${item.name}"/>&#160;
 								<a href="<c:url value='/app/viewsource.htm'><c:param name='webapp' value='${param.webapp}' /><c:param name='source' value='${item.name}' /></c:url>">
 									${item.name}
 								</a>
@@ -95,7 +92,7 @@
 								</c:choose>
 							</display:column>
 							<display:column titleKey="probe.jsp.jsps.col.message" sortable="true">
-								<c:out value="${item.exception.message}" escapeXml="false"/>&nbsp;
+								<c:out value="${item.exception.message}" escapeXml="false"/>&#160;
 							</display:column>
 						</display:table>
 					</div>

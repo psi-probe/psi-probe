@@ -21,17 +21,19 @@
       <charset>utf-8</charset>
       <pattern>%d{HH:mm:ss.SSS} %-5level {%thread} [%logger{40}] %msg%n</pattern>
     </encoder>
-    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+    <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
       <fileNamePattern>${probe.log.path}/archive/probe-%d{yyyyMMdd}-%i.log.zip</fileNamePattern>
       <maxHistory>10</maxHistory>
-      <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-        <maxFileSize>20MB</maxFileSize>
-      </timeBasedFileNamingAndTriggeringPolicy>
+      <cleanHistoryOnStart>true</cleanHistoryOnStart>
+      <maxFileSize>20MB</maxFileSize>
     </rollingPolicy>
   </appender>
 
   <logger name="org.springframework.web.context.support" level="ERROR"/>
   <logger name="org.springframework.beans.factory.support" level="ERROR"/>
+
+  <!-- Reduce noise in case user runs with TRACE logging -->
+  <logger name="psiprobe.tools.ApplicationUtils" level="INFO"/>
 
   <root level="INFO">
     <appender-ref ref="PSI-PROBE"/>

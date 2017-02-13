@@ -26,8 +26,8 @@ public class GetConnectorProcTimeController extends BaseGetConnectorController {
 
   @RequestMapping(path = "/cnprocdetails.ajax")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 

@@ -22,7 +22,7 @@
 		<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='scroller.css'/>"/>
 		<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>
 		<script type="text/javascript" src="<c:url value='/js/behaviour.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/scriptaculous.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
 		<script type="text/javascript" src="<c:url value='/js/areascroller.js'/>"></script>
 	</head>
 
@@ -77,12 +77,12 @@
 
 					<div class="shadow">
 						<div class="info">
-							<p><spring:message code="probe.jsp.viewsource.appname"/>&nbsp;<span class="value">${param.webapp}</span>
-								<spring:message code="probe.jsp.viewsource.filename"/>&nbsp;<span class="value">${item.name}</span>
-								<spring:message code="probe.jsp.viewsource.size"/>&nbsp;<span class="value"><probe:volume value="${item.size}"/></span>
-								<spring:message code="probe.jsp.viewsource.lastmodified"/>&nbsp;<span class="value">${item.timestamp}</span>
-								<spring:message code="probe.jsp.viewsource.encoding"/>&nbsp;<span class="value">${item.encoding}</span>
-								<spring:message code="probe.jsp.viewsource.state"/>&nbsp;<span class="value">
+							<p><spring:message code="probe.jsp.viewsource.appname"/>&#160;<span class="value">${param.webapp}</span>
+								<spring:message code="probe.jsp.viewsource.filename"/>&#160;<span class="value">${item.name}</span>
+								<spring:message code="probe.jsp.viewsource.size"/>&#160;<span class="value"><probe:volume value="${item.size}"/></span>
+								<spring:message code="probe.jsp.viewsource.lastmodified"/>&#160;<span class="value">${item.timestamp}</span>
+								<spring:message code="probe.jsp.viewsource.encoding"/>&#160;<span class="value">${item.encoding}</span>
+								<spring:message code="probe.jsp.viewsource.state"/>&#160;<span class="value">
 									<c:choose>
 										<c:when test="${item.state == 1}"><spring:message code="probe.jsp.jsps.status.outdated"/>
 										</c:when>
@@ -106,8 +106,8 @@
 
 					<table id="resultsTable" style="border-spacing:0;border-collapse:separate;">
 						<tr>
-							<td id="left_scroller" class="scroller">&nbsp;</td>
-							<td width="1%">&nbsp;</td>
+							<td id="left_scroller" class="scroller">&#160;</td>
+							<td width="1%">&#160;</td>
 							<td>
 								<div id="srccontent" class="scrollable_content">
 									<code>
@@ -122,7 +122,7 @@
 									</code>
 								</div>
 							</td>
-							<td id="right_scroller" class="scroller">&nbsp;</td>
+							<td id="right_scroller" class="scroller">&#160;</td>
 						</tr>
 					</table>
 

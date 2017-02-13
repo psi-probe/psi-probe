@@ -11,8 +11,7 @@
     PURPOSE.
 
 -->
-<!DOCTYPE jboss-web PUBLIC "-//JBoss//DTD Web Application 2.4//EN"
-		"http://www.jboss.org/j2ee/dtd/jboss-web_4_0.dtd">
-<jboss-web>
-	<security-domain>java:/jaas/probe</security-domain>
+<jboss-web xmlns="http://www.jboss.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.jboss.com/xml/ns/javaee http://www.jboss.org/j2ee/schema/jboss-web_6_0.xsd" version="6.0">
+    <security-domain>java:/jaas/probe</security-domain>
 </jboss-web>

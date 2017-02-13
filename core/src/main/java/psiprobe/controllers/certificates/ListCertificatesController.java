@@ -54,8 +54,8 @@ public class ListCertificatesController extends AbstractTomcatContainerControlle
 
   @RequestMapping(path = "/certificates.htm")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 
@@ -73,12 +73,14 @@ public class ListCertificatesController extends AbstractTomcatContainerControlle
         List<Cert> certs;
 
         if (info.getKeystoreType() != null) {
-          certs = getCertificates(info.getKeystoreType(), info.getKeystoreFile(), info.getKeystorePass());
+          certs = getCertificates(info.getKeystoreType(), info.getKeystoreFile(),
+              info.getKeystorePass());
           info.setKeyStoreCerts(certs);
         }
 
         if (info.getTruststoreType() != null) {
-          certs = getCertificates(info.getTruststoreType(), info.getTruststoreFile(), info.getTruststorePass());
+          certs = getCertificates(info.getTruststoreType(), info.getTruststoreFile(),
+              info.getTruststorePass());
           info.setTrustStoreCerts(certs);
         }
       }

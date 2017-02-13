@@ -48,8 +48,7 @@ public class UniqueList<T extends Comparable<? super T>> extends ArrayList<T> {
       return super.add(obj);
     }
     int index;
-    index = comp == null
-        ? Collections.binarySearch(this, obj)
+    index = comp == null ? Collections.binarySearch(this, obj)
         : Collections.binarySearch(this, obj, comp);
     if (index < 0) {
       int insertionPoint = -index - 1;

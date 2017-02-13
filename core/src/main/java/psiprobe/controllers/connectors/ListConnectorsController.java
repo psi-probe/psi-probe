@@ -10,7 +10,6 @@
  */
 package psiprobe.controllers.connectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +23,7 @@ import psiprobe.tools.TimeExpression;
 
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -34,7 +34,7 @@ import javax.servlet.http.HttpServletResponse;
 public class ListConnectorsController extends AbstractTomcatContainerController {
 
   /** The container listener bean. */
-  @Autowired
+  @Inject
   private ContainerListenerBean containerListenerBean;
 
   /** The include request processors. */
@@ -110,8 +110,8 @@ public class ListConnectorsController extends AbstractTomcatContainerController 
 
   @RequestMapping(path = "/connectors.htm")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 

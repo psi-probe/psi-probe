@@ -88,18 +88,17 @@ public class JBossResourceResolverBean implements ResourceResolver {
             resource.setAuth("Container");
           }
           DataSourceInfo dsInfo = new DataSourceInfo();
-          dsInfo.setMaxConnections((Integer) server.getAttribute(managedConnectionPoolOName,
-              "MaxSize"));
-          dsInfo.setEstablishedConnections((Integer) server.getAttribute(
-              managedConnectionPoolOName, "ConnectionCount"));
-          dsInfo.setBusyConnections(((Long) server.getAttribute(managedConnectionPoolOName,
-              "InUseConnectionCount")).intValue());
-          ObjectName connectionFactoryOName =
-              new ObjectName("jboss.jca:service=ManagedConnectionFactory,name="
-                  + resource.getName());
-          Element elm =
-              (Element) server.getAttribute(connectionFactoryOName,
-                  "ManagedConnectionFactoryProperties");
+          dsInfo.setMaxConnections(
+              (Integer) server.getAttribute(managedConnectionPoolOName, "MaxSize"));
+          dsInfo.setEstablishedConnections(
+              (Integer) server.getAttribute(managedConnectionPoolOName, "ConnectionCount"));
+          dsInfo.setBusyConnections(
+              ((Long) server.getAttribute(managedConnectionPoolOName, "InUseConnectionCount"))
+                  .intValue());
+          ObjectName connectionFactoryOName = new ObjectName(
+              "jboss.jca:service=ManagedConnectionFactory,name=" + resource.getName());
+          Element elm = (Element) server.getAttribute(connectionFactoryOName,
+              "ManagedConnectionFactoryProperties");
 
           if (elm != null) {
             NodeList nl = elm.getChildNodes();
@@ -173,8 +172,8 @@ public class JBossResourceResolverBean implements ResourceResolver {
       return false;
     } catch (MalformedObjectNameException e) {
       logger.trace("", e);
-      throw new NamingException("Resource name: \"" + resourceName
-          + "\" makes a malformed ObjectName");
+      throw new NamingException(
+          "Resource name: \"" + resourceName + "\" makes a malformed ObjectName");
     }
   }
 

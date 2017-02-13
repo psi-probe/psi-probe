@@ -15,11 +15,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 
-<%--
-	an Ajax HTML snippet to display results returned by an SQL query
-
-	Author: Andy Shapoval
---%>
+<%-- An Ajax HTML snippet to display results returned by an SQL query --%>
 
 <div id="sqlResultsContainer">
 

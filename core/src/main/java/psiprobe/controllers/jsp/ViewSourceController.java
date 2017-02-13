@@ -44,8 +44,8 @@ public class ViewSourceController extends AbstractContextHandlerController {
 
   @RequestMapping(path = "/app/viewsource.htm")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 
@@ -55,9 +55,8 @@ public class ViewSourceController extends AbstractContextHandlerController {
 
     String jspName = ServletRequestUtils.getStringParameter(request, "source", null);
     boolean highlight = ServletRequestUtils.getBooleanParameter(request, "highlight", true);
-    Summary summary =
-        (Summary) (request.getSession(false) != null ? request.getSession(false).getAttribute(
-            DisplayJspController.SUMMARY_ATTRIBUTE) : null);
+    Summary summary = (Summary) (request.getSession(false) != null
+        ? request.getSession(false).getAttribute(DisplayJspController.SUMMARY_ATTRIBUTE) : null);
 
     if (jspName != null && summary != null && contextName.equals(summary.getName())) {
 

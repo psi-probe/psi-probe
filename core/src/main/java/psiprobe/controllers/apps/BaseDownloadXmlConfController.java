@@ -87,7 +87,8 @@ public class BaseDownloadXmlConfController extends AbstractContextHandlerControl
         logger.debug("File {} of {} application does not exists.", xmlPath, contextName);
       }
     } else {
-      logger.debug("Cannot determine path to {} file of {} application.", getDownloadTarget(), contextName);
+      logger.debug("Cannot determine path to {} file of {} application.", getDownloadTarget(),
+          contextName);
     }
     return null;
   }

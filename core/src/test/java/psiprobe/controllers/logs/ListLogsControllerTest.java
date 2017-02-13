@@ -24,7 +24,8 @@ public class ListLogsControllerTest {
    */
   @Test
   public void javabeanTester() {
-    JavaBeanTester.builder(ListLogsController.class).skip("applicationContext", "supportedMethods").test();
+    JavaBeanTester.builder(ListLogsController.class).skip("applicationContext", "supportedMethods")
+        .test();
   }
 
 }

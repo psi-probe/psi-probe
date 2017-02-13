@@ -18,6 +18,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.web.context.WebApplicationContext;
@@ -76,6 +77,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
    *
    * @param swapFileName the new swap file name
    */
+  @Value("stats.xml")
   public void setSwapFileName(String swapFileName) {
     this.swapFileName = swapFileName;
   }
@@ -90,10 +92,13 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
   }
 
   /**
-   * Sets the storage path.
+   * Sets the storage path. The default location for the stat files
+   * is $CALALINA_BASE/work/&lt;hostname&gt;/&lt;context_name&gt;.
+   * Use this property to override it.
    *
    * @param storagePath the new storage path
    */
+  // TODO We should make this configurable
   public void setStoragePath(String storagePath) {
     this.storagePath = storagePath;
   }
@@ -204,8 +209,8 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
    * @return the file
    */
   private File makeFile() {
-    return storagePath == null ? new File(contextTempDir, swapFileName) : new File(storagePath,
-        swapFileName);
+    return storagePath == null ? new File(contextTempDir, swapFileName)
+        : new File(storagePath, swapFileName);
   }
 
   /**
@@ -216,14 +221,15 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
   private void shiftFiles(int index) {
     if (index >= maxFiles - 1) {
       if (!new File(makeFile().getAbsolutePath() + "." + index).delete()) {
-          logger.error("Could not delete file {}", new File(makeFile().getAbsolutePath() + "." + index).getName());
+        logger.error("Could not delete file {}",
+            new File(makeFile().getAbsolutePath() + "." + index).getName());
       }
     } else {
       shiftFiles(index + 1);
       File srcFile = index == 0 ? makeFile() : new File(makeFile().getAbsolutePath() + "." + index);
       File destFile = new File(makeFile().getAbsolutePath() + "." + (index + 1));
       if (!srcFile.renameTo(destFile)) {
-          logger.error("Could not rename file {} to {}", srcFile.getName(), destFile.getName());
+        logger.error("Could not rename file {} to {}", srcFile.getName(), destFile.getName());
       }
     }
   }

@@ -15,6 +15,7 @@ import org.apache.catalina.Wrapper;
 import org.apache.catalina.util.ServerInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 
 import psiprobe.TomcatContainer;
 import psiprobe.model.ApplicationResource;
@@ -22,6 +23,8 @@ import psiprobe.model.ApplicationResource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import javax.inject.Inject;
 
 /**
  * This class wires support for Tomcat "privileged" context functionality into Spring. If
@@ -41,6 +44,7 @@ public class ContainerWrapperBean {
   private final Object lock = new Object();
 
   /** List of class names to adapt particular Tomcat implementation to TomcatContainer interface. */
+  @Inject
   private List<String> adapterClasses;
 
   /** The resource resolver. */
@@ -50,6 +54,7 @@ public class ContainerWrapperBean {
   private boolean forceFirstAdapter;
 
   /** The resource resolvers. */
+  @Inject
   private Map<String, ResourceResolver> resourceResolvers;
 
   /**
@@ -62,10 +67,14 @@ public class ContainerWrapperBean {
   }
 
   /**
-   * Sets the force first adapter.
+   * Sets the force first adapter. Setting this property to true will override
+   * the server polling each adapter performs to test for compatibility. Instead,
+   * it will use the first one in the adapterClasses list.
    *
    * @param forceFirstAdapter the new force first adapter
    */
+  // TODO We should make this configurable
+  @Value("false")
   public void setForceFirstAdapter(boolean forceFirstAdapter) {
     this.forceFirstAdapter = forceFirstAdapter;
   }
@@ -97,7 +106,8 @@ public class ContainerWrapperBean {
                 }
                 logger.debug("Cannot bind {} to {}", className, serverInfo);
               } else {
-                logger.error("{} does not implement {}", className, TomcatContainer.class.getName());
+                logger.error("{} does not implement {}", className,
+                    TomcatContainer.class.getName());
               }
             } catch (Exception e) {
               logger.debug("", e);

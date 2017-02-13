@@ -60,7 +60,7 @@ public final class ApplicationUtils {
   private ApplicationUtils() {
     // Prevent Instantiation
   }
-  
+
   /**
    * Gets the application.
    *
@@ -107,7 +107,8 @@ public final class ApplicationUtils {
     if (resourceResolver != null) {
       logger.debug("counting servlet attributes");
 
-      app.setContextAttributeCount(Collections.list(context.getServletContext().getAttributeNames()).size());
+      app.setContextAttributeCount(
+          Collections.list(context.getServletContext().getAttributeNames()).size());
 
       if (app.isAvailable()) {
         logger.debug("collecting session information");
@@ -232,8 +233,16 @@ public final class ApplicationUtils {
       sbean.setLastAccessTime(new Date(session.getLastAccessedTime()));
       sbean.setMaxIdleTime(session.getMaxInactiveInterval() * 1000);
       sbean.setManagerType(session.getManager().getClass().getName());
-      // sbean.setInfo(session.getInfo());
-      // TODO:fixmee
+
+      // Tomcat 8+ dropped support of getInfo off session. This patch allows it to continue working for
+      // tomcat 7.
+      try {
+        Object info = MethodUtils.invokeMethod(session, "getInfo", null);
+        sbean.setInfo(String.valueOf(info));
+      } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+        sbean.setInfo(session.getClass().getSimpleName());
+        logger.trace("Cannot determine session info for tomcat 8+", e);
+      }
 
       boolean sessionSerializable = true;
       int attributeCount = 0;
@@ -275,7 +284,8 @@ public final class ApplicationUtils {
             (String) httpSession.getAttribute(ApplicationSession.LAST_ACCESSED_BY_IP);
         if (lastAccessedIp != null) {
           sbean.setLastAccessedIp(lastAccessedIp);
-          sbean.setLastAccessedIpLocale((Locale) httpSession.getAttribute(ApplicationSession.LAST_ACCESSED_LOCALE));
+          sbean.setLastAccessedIpLocale(
+              (Locale) httpSession.getAttribute(ApplicationSession.LAST_ACCESSED_LOCALE));
         }
 
       } catch (IllegalStateException e) {
@@ -443,7 +453,8 @@ public final class ApplicationUtils {
    * @param containerWrapper the container wrapper
    * @return the application filters
    */
-  public static List<FilterInfo> getApplicationFilters(Context context, ContainerWrapperBean containerWrapper) {
+  public static List<FilterInfo> getApplicationFilters(Context context,
+      ContainerWrapperBean containerWrapper) {
     return containerWrapper.getTomcatContainer().getApplicationFilters(context);
   }
 

@@ -16,11 +16,7 @@
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@ taglib uri="https://github.com/psi-probe/psi-probe/jsp/tags" prefix="probe" %>
 
-<%--
-	Displays a list of web application filters
-
-	Author: Andy Shapoval
---%>
+<%-- Displays a list of web application filters --%>
 
 <html>
 
@@ -30,9 +26,7 @@
 		</title>
 	</head>
 
-	<%--
-		Make Tab #1 visually "active".
-	--%>
+	<%-- Make Tab #1 visually "active". --%>
 	<c:set var="navTabApps" value="active" scope="request"/>
 	<c:set var="use_decorator" value="application" scope="request"/>
 	<c:set var="appTabFilters" value="active" scope="request"/>
@@ -61,7 +55,7 @@
 						<display:column property="filterClass" sortable="true"
 								titleKey="probe.jsp.app.filters.col.filterClass" maxLength="50"/>
 						<display:column titleKey="probe.jsp.app.filters.col.filterDesc" sortable="false">
-							<probe:out value="${ftlr.filterDesc}" maxLength="50"/>&nbsp;
+							<probe:out value="${ftlr.filterDesc}" maxLength="50"/>&#160;
 						</display:column>
 					</display:table>
 				</c:when>

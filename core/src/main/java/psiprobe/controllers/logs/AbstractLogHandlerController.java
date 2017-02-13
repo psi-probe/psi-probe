@@ -12,7 +12,6 @@ package psiprobe.controllers.logs;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
@@ -20,6 +19,7 @@ import org.springframework.web.servlet.mvc.ParameterizableViewController;
 import psiprobe.beans.LogResolverBean;
 import psiprobe.tools.logging.LogDestination;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -32,7 +32,7 @@ public abstract class AbstractLogHandlerController extends ParameterizableViewCo
   private static final Logger logger = LoggerFactory.getLogger(AbstractLogHandlerController.class);
 
   /** The log resolver. */
-  @Autowired
+  @Inject
   private LogResolverBean logResolver;
 
   /**
@@ -78,7 +78,8 @@ public abstract class AbstractLogHandlerController extends ParameterizableViewCo
         logger.error("{}: file not found", dest.getFile());
       }
     } else {
-      logger.error("{}{} log{} not found", logType, root ? " root" : "", root ? "" : " '" + logName + "'");
+      logger.error("{}{} log{} not found", logType, root ? " root" : "",
+          root ? "" : " '" + logName + "'");
     }
     if (!logFound) {
       response.sendError(404);
@@ -95,7 +96,7 @@ public abstract class AbstractLogHandlerController extends ParameterizableViewCo
    * @return the model and view
    * @throws Exception the exception
    */
-  protected abstract ModelAndView handleLogFile(HttpServletRequest request, HttpServletResponse response,
-      LogDestination logDest) throws Exception;
+  protected abstract ModelAndView handleLogFile(HttpServletRequest request,
+      HttpServletResponse response, LogDestination logDest) throws Exception;
 
 }

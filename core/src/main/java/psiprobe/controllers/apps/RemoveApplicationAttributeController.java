@@ -31,8 +31,8 @@ public class RemoveApplicationAttributeController extends AbstractContextHandler
 
   @RequestMapping(path = "/app/rmappattr.htm")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 
@@ -43,8 +43,8 @@ public class RemoveApplicationAttributeController extends AbstractContextHandler
     String attrName = ServletRequestUtils.getStringParameter(request, "attr");
     context.getServletContext().removeAttribute(attrName);
 
-    return new ModelAndView(new RedirectView(request.getContextPath() + getViewName() + "?"
-        + request.getQueryString()));
+    return new ModelAndView(new RedirectView(
+        request.getContextPath() + getViewName() + "?" + request.getQueryString()));
   }
 
   @Value("appattributes")

@@ -15,11 +15,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 
-<%--
-	Displays a list of servlet context attributes for a given application
-
-	Author: Andy Shapoval
---%>
+<%-- Displays a list of servlet context attributes for a given application --%>
 
 <html>
 
@@ -30,13 +26,11 @@
 		<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='scroller.css'/>"/>
 		<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>
 		<script type="text/javascript" src="<c:url value='/js/behaviour.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/scriptaculous.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
 		<script type="text/javascript" src="<c:url value='/js/areascroller.js'/>"></script>
 	</head>
 
-	<%--
-		Make Tab #1 visually "active".
-	--%>
+	<%-- Make Tab #1 visually "active". --%>
 	<c:set var="navTabApps" value="active" scope="request"/>
 	<c:set var="use_decorator" value="application" scope="request"/>
 	<c:set var="appTabAttributes" value="active" scope="request"/>
@@ -57,14 +51,14 @@
 				<c:otherwise>
 					<table id="resultsTable" style="padding:0;border-spacing:0;border-collapse:separate;">
 						<tr>
-							<td id="left_scroller" class="scroller">&nbsp;</td>
-							<td id="separator" width="1%">&nbsp;</td>
+							<td id="left_scroller" class="scroller">&#160;</td>
+							<td id="separator" width="1%">&#160;</td>
 							<td>
 								<div id="appAttrTblContainer" class="scrollable_content">
 									<display:table htmlId="appAttrTbl" name="appAttributes" uid="attribute"
 											class="genericTbl" style="padding:0;border-spacing:0;border-collapse:separate;"
 											requestURI="" defaultsort="1">
-										<display:column title="&nbsp;" style="width:20px;" class="leftMostIcon">
+										<display:column title="&#160;" style="width:20px;" class="leftMostIcon">
 											<c:url value='/app/rmappattr.htm' var='rmappattr_url'>
 												<c:param name='webapp' value='${param.webapp}'/>
 												<c:param name='attr' value='${attribute.name}'/>
@@ -99,7 +93,7 @@
 									</display:table>
 								</div>
 							</td>
-							<td id="right_scroller" class="scroller">&nbsp;</td>
+							<td id="right_scroller" class="scroller">&#160;</td>
 						</tr>
 					</table>
 					<script type="text/javascript">

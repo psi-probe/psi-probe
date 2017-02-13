@@ -26,8 +26,9 @@ import javax.servlet.annotation.WebListener;
 public class AwtAppContextClassloaderListener implements ServletContextListener {
 
   /** The Constant logger. */
-  private static final Logger logger = LoggerFactory.getLogger(AwtAppContextClassloaderListener.class);
-    
+  private static final Logger logger =
+      LoggerFactory.getLogger(AwtAppContextClassloaderListener.class);
+
   /**
    * Forces the {@code sun.awt.AppContext} singleton to be created and initialized when the context
    * is initialized.
@@ -58,6 +59,7 @@ public class AwtAppContextClassloaderListener implements ServletContextListener 
         // restore the class loader
         Thread.currentThread().setContextClassLoader(active);
       }
+      logger.info("AwtAppContextClassloaderListener Initialized");
     } catch (Exception e) {
       logger.error("Failed to address PermGen leak.", e);
     }

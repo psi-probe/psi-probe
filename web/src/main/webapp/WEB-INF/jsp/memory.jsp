@@ -13,14 +13,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" session="false" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@ taglib uri="https://github.com/psi-probe/psi-probe/jsp/tags" prefix="probe" %>
 
 <html>
 	<head>
 		<title><spring:message code="probe.jsp.title.memory"/></title>
 		<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/scriptaculous.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
 		<script type="text/javascript" src="<c:url value='/js/func.js'/>"></script>
 	</head>
 
@@ -102,7 +101,7 @@
 									${pool.name}
 									<c:url var="toggleUrl" value="/remember.ajax?cn=mem_${pool.id}"/>
 									<img onclick="togglePanel('${pool.id}', '${toggleUrl}')"
-											src="${pageContext.request.contextPath}<spring:theme code='bullet_arrow_down.gif'/>" alt="+"/>
+											src="${pageContext.request.contextPath}<spring:theme code='bullet_arrow_down.png'/>" alt="+"/>
 								</dt>
 								<dd class="image"><img id="img_${pool.id}"
 													src="<c:out value='${chartUrl}' escapeXml='false'/>" width="${chartWidth}" height="${chartHeight}" alt="+"

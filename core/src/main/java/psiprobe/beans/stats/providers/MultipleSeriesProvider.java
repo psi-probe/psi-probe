@@ -120,7 +120,8 @@ public class MultipleSeriesProvider extends AbstractSeriesProvider {
       Collections.sort(seriesList, new Comparator<Series>() {
         @Override
         public int compare(Series s1, Series s2) {
-          return Double.compare(s1.avg, s2.avg) == 0 ? s1.key.compareTo(s2.key) : (Double.compare(s1.avg, s2.avg) > 0 ? -1 : 1);
+          return Double.compare(s1.avg, s2.avg) == 0 ? s1.key.compareTo(s2.key)
+              : (Double.compare(s1.avg, s2.avg) > 0 ? -1 : 1);
         }
       });
 

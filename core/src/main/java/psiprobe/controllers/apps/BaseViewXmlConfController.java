@@ -128,7 +128,8 @@ public class BaseViewXmlConfController extends AbstractContextHandlerController 
         logger.debug("File {} of {} application does not exists.", xmlPath, contextName);
       }
     } else {
-      logger.debug("Cannot determine path to {} file of {} application.", getDisplayTarget(), contextName);
+      logger.debug("Cannot determine path to {} file of {} application.", getDisplayTarget(),
+          contextName);
     }
 
     return mv;

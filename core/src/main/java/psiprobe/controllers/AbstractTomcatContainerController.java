@@ -10,9 +10,10 @@
  */
 package psiprobe.controllers;
 
+import javax.inject.Inject;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.mvc.AbstractController;
 
 import psiprobe.beans.ContainerWrapperBean;
@@ -26,7 +27,7 @@ public abstract class AbstractTomcatContainerController extends AbstractControll
   protected Logger logger = LoggerFactory.getLogger(getClass());
 
   /** The container wrapper. */
-  @Autowired
+  @Inject
   private ContainerWrapperBean containerWrapper;
 
   /** The view name. */

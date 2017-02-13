@@ -33,8 +33,8 @@ public class ListSessionAttributesController extends AbstractContextHandlerContr
 
   @RequestMapping(path = "/attributes.htm")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 
@@ -47,9 +47,8 @@ public class ListSessionAttributesController extends AbstractContextHandlerContr
         ServletRequestUtils.getBooleanParameter(request, "size", false) && privileged;
     String sid = ServletRequestUtils.getStringParameter(request, "sid");
 
-    ApplicationSession appSession =
-        ApplicationUtils.getApplicationSession(context.getManager().findSession(sid), calcSize,
-            true);
+    ApplicationSession appSession = ApplicationUtils
+        .getApplicationSession(context.getManager().findSession(sid), calcSize, true);
 
     if (appSession != null) {
       appSession.setAllowedToViewValues(privileged);

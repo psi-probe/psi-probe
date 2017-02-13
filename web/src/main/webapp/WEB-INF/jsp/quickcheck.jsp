@@ -14,11 +14,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
-<%--
-	Displays results of "quick check" controller.
-
-	Author: Vlad Ilyushchenko
---%>
+<%-- Displays results of "quick check" controller. --%>
 
 <html>
 	<head><title><spring:message code="probe.jsp.title.quickcheck"/></title></head>
@@ -80,7 +76,7 @@
 					</span>
 				</td>
 				<td>
-					&nbsp;
+					&#160;
 				</td>
 			</tr>
 			<tr>
@@ -109,7 +105,7 @@
 					</span>
 				</td>
 				<td>
-					&nbsp;
+					&#160;
 				</td>
 			</tr>
 			<tr>
@@ -138,7 +134,7 @@
 					</span>
 				</td>
 				<td>
-					&nbsp;
+					&#160;
 				</td>
 			</tr>
 		</table>

@@ -32,6 +32,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
+import javax.inject.Inject;
 import javax.management.InstanceNotFoundException;
 import javax.management.MBeanServer;
 import javax.management.MBeanServerNotification;
@@ -39,6 +40,7 @@ import javax.management.Notification;
 import javax.management.NotificationListener;
 import javax.management.ObjectInstance;
 import javax.management.ObjectName;
+import javax.management.RuntimeOperationsException;
 
 /**
  * This class interfaces Tomcat JMX functionality to read connection status. The class essentially
@@ -55,9 +57,8 @@ public class ContainerListenerBean implements NotificationListener {
   /** The executor names. */
   private List<ObjectName> executorNames;
 
-  /**
-   * Used to obtain required {@link MBeanServer} instance.
-   */
+  /** Used to obtain required {@link MBeanServer} instance. */
+  @Inject
   private ContainerWrapperBean containerWrapper;
 
   /**
@@ -112,25 +113,19 @@ public class ContainerListenerBean implements NotificationListener {
    */
   @Override
   public synchronized void handleNotification(Notification notification, Object object) {
-    if (notification instanceof MBeanServerNotification) {
+    if (notification instanceof MBeanServerNotification
+        && notification.getType().equals(MBeanServerNotification.REGISTRATION_NOTIFICATION)
+        || notification.getType().equals(MBeanServerNotification.UNREGISTRATION_NOTIFICATION)) {
+
       ObjectName objectName = ((MBeanServerNotification) notification).getMBeanName();
-
-      if (notification.getType().equals(MBeanServerNotification.REGISTRATION_NOTIFICATION)) {
-
-        if ("RequestProcessor".equals(objectName.getKeyProperty("type"))) {
-          ThreadPoolObjectName threadPoolObjectName = findPool(objectName.getKeyProperty("worker"));
-          if (threadPoolObjectName != null) {
-            threadPoolObjectName.getRequestProcessorNames().add(objectName);
-          }
-        }
-
-      } else if (notification.getType().equals(MBeanServerNotification.UNREGISTRATION_NOTIFICATION)) {
-
-        if ("RequestProcessor".equals(objectName.getKeyProperty("type"))) {
-          ThreadPoolObjectName threadPoolObjectName = findPool(objectName.getKeyProperty("worker"));
-          if (threadPoolObjectName != null) {
-            threadPoolObjectName.getRequestProcessorNames().remove(objectName);
-          }
+      if ("RequestProcessor".equals(objectName.getKeyProperty("type"))) {
+        ThreadPoolObjectName threadPoolObjectName = findPool(objectName.getKeyProperty("worker"));
+        if (threadPoolObjectName != null) {
+            if (notification.getType().equals(MBeanServerNotification.REGISTRATION_NOTIFICATION)) {
+              threadPoolObjectName.getRequestProcessorNames().add(objectName);
+            } else {
+              threadPoolObjectName.getRequestProcessorNames().remove(objectName);
+            }
         }
       }
     }
@@ -158,19 +153,18 @@ public class ContainerListenerBean implements NotificationListener {
       String name = threadPoolName.getKeyProperty("name");
 
       threadPoolObjectName.setThreadPoolName(threadPoolName);
-      ObjectName grpName =
-          server.getObjectInstance(
-              new ObjectName(threadPoolName.getDomain() + ":type=GlobalRequestProcessor,name="
-                  + name)).getObjectName();
+      ObjectName grpName = server
+          .getObjectInstance(new ObjectName(
+              threadPoolName.getDomain() + ":type=GlobalRequestProcessor,name=" + name))
+          .getObjectName();
       threadPoolObjectName.setGlobalRequestProcessorName(grpName);
 
       /*
        * unfortunately exact workers could not be found at the time of testing so we filter out the
        * relevant workers within the loop
        */
-      Set<ObjectInstance> workers =
-          server.queryMBeans(
-              new ObjectName(threadPoolName.getDomain() + ":type=RequestProcessor,*"), null);
+      Set<ObjectInstance> workers = server.queryMBeans(
+          new ObjectName(threadPoolName.getDomain() + ":type=RequestProcessor,*"), null);
 
       for (ObjectInstance worker : workers) {
         ObjectName wrkName = worker.getObjectName();
@@ -235,10 +229,10 @@ public class ContainerListenerBean implements NotificationListener {
           threadPool.setMinSpareThreads(JmxTools.getIntAttr(server, poolName, "minSpareThreads"));
         }
 
-        threadPool.setCurrentThreadsBusy(JmxTools
-            .getIntAttr(server, poolName, "currentThreadsBusy"));
-        threadPool.setCurrentThreadCount(JmxTools
-            .getIntAttr(server, poolName, "currentThreadCount"));
+        threadPool
+            .setCurrentThreadsBusy(JmxTools.getIntAttr(server, poolName, "currentThreadsBusy"));
+        threadPool
+            .setCurrentThreadCount(JmxTools.getIntAttr(server, poolName, "currentThreadCount"));
 
         /*
          * Tomcat will return -1 for maxThreads if the connector uses an executor for its
@@ -249,7 +243,7 @@ public class ContainerListenerBean implements NotificationListener {
         }
       } catch (InstanceNotFoundException e) {
         logger.error("Failed to query entire thread pool {}", threadPoolObjectName);
-        logger.debug("  Stack trace:", e);
+        logger.debug("", e);
       }
     }
     return threadPools;
@@ -301,23 +295,30 @@ public class ContainerListenerBean implements NotificationListener {
               rp.setProcessingTime(JmxTools.getLongAttr(server, wrkName, "requestProcessingTime"));
               rp.setBytesSent(JmxTools.getLongAttr(server, wrkName, "requestBytesSent"));
               rp.setBytesReceived(JmxTools.getLongAttr(server, wrkName, "requestBytesReceived"));
-              rp.setRemoteAddr(JmxTools.getStringAttr(server, wrkName, "remoteAddr"));
+              try {
+                rp.setRemoteAddr(JmxTools.getStringAttr(server, wrkName, "remoteAddr"));
+              } catch (RuntimeOperationsException ex) {
+                logger.trace("", ex);
+              }
 
               if (rp.getRemoteAddr() != null) {
                 // Show flag as defined in jvm for localhost
                 if (InetAddress.getByName(rp.getRemoteAddr()).isLoopbackAddress()) {
-                  rp.setRemoteAddrLocale(new Locale(System.getProperty("user.language"), System.getProperty("user.country")));
+                  rp.setRemoteAddrLocale(new Locale(System.getProperty("user.language"),
+                      System.getProperty("user.country")));
                 } else {
                   // Show flag for non-localhost using geo lite
-                  DatabaseReader reader = new DatabaseReader.Builder(new File(getClass().getClassLoader()
-                      .getResource("GeoLite2-Country.mmdb").toURI())).withCache(new CHMCache()).build();
+                  DatabaseReader reader = new DatabaseReader.Builder(new File(
+                      getClass().getClassLoader().getResource("GeoLite2-Country.mmdb").toURI()))
+                          .withCache(new CHMCache()).build();
                   try {
-                      CountryResponse response = reader.country(InetAddress.getByName(rp.getRemoteAddr()));
-                      Country country = response.getCountry();
-                      rp.setRemoteAddrLocale(new Locale("", country.getIsoCode()));
+                    CountryResponse response =
+                        reader.country(InetAddress.getByName(rp.getRemoteAddr()));
+                    Country country = response.getCountry();
+                    rp.setRemoteAddrLocale(new Locale("", country.getIsoCode()));
                   } catch (AddressNotFoundException e) {
-                      logger.info("{}", e.getMessage());
-                      logger.trace("", e);
+                    logger.debug("{}", e.getMessage());
+                    logger.trace("", e);
                   }
                 }
               }
@@ -325,8 +326,8 @@ public class ContainerListenerBean implements NotificationListener {
               rp.setVirtualHost(JmxTools.getStringAttr(server, wrkName, "virtualHost"));
               rp.setMethod(JmxTools.getStringAttr(server, wrkName, "method"));
               rp.setCurrentUri(JmxTools.getStringAttr(server, wrkName, "currentUri"));
-              rp.setCurrentQueryString(JmxTools
-                  .getStringAttr(server, wrkName, "currentQueryString"));
+              rp.setCurrentQueryString(
+                  JmxTools.getStringAttr(server, wrkName, "currentQueryString"));
               rp.setProtocol(JmxTools.getStringAttr(server, wrkName, "protocol"));
 
               // Relies on https://issues.apache.org/bugzilla/show_bug.cgi?id=41128

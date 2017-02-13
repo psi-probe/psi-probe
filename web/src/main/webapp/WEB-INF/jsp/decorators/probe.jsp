@@ -18,11 +18,7 @@
 <%@ taglib uri="https://github.com/psi-probe/psi-probe/jsp/tags" prefix="probe" %>
 
 
-<%--
-	Main site decorator. Face of the Probe.
-
-	Author: Vlad Ilyushchenko
---%>
+<%-- Main site decorator. Face of the Probe. --%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 		"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -101,7 +97,7 @@
 					</a>
 				</li>
 				<li>
-					<a class="${navTabQuickCheck}" href="<c:url value='/adm/quickcheck.htm'/>">
+					<a class="${navTabQuickCheck}" href="<c:url value='/quickcheck.htm'/>">
 						<spring:message code="probe.jsp.menu.quickcheck"/>
 					</a>
 				</li>
@@ -169,7 +165,7 @@
 					</a>
 				</li>
 				<li class="last">
-					<a href="<c:url value='/adm/quickcheck.htm'/>">
+					<a href="<c:url value='/quickcheck.htm'/>">
 						<spring:message code="probe.jsp.menu.quickcheck"/>
 					</a>
 				</li>

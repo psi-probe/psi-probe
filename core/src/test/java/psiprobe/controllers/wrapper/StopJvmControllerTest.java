@@ -24,7 +24,8 @@ public class StopJvmControllerTest {
    */
   @Test
   public void javabeanTester() {
-    JavaBeanTester.builder(StopJvmController.class).skip("applicationContext", "supportedMethods").test();
+    JavaBeanTester.builder(StopJvmController.class).skip("applicationContext", "supportedMethods")
+        .test();
   }
 
 }

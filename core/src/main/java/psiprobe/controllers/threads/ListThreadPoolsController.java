@@ -10,7 +10,6 @@
  */
 package psiprobe.controllers.threads;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +21,7 @@ import psiprobe.model.ThreadPool;
 
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -32,7 +32,7 @@ import javax.servlet.http.HttpServletResponse;
 public class ListThreadPoolsController extends AbstractTomcatContainerController {
 
   /** The container listener bean. */
-  @Autowired
+  @Inject
   private ContainerListenerBean containerListenerBean;
 
   /**
@@ -55,8 +55,8 @@ public class ListThreadPoolsController extends AbstractTomcatContainerController
 
   @RequestMapping(path = "/threadpools.htm")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 

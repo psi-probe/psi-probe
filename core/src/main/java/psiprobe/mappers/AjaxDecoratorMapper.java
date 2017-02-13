@@ -53,9 +53,8 @@ public class AjaxDecoratorMapper extends AbstractDecoratorMapper {
         originalUri = originalUri.substring(0, queryStringIndex);
       }
     }
-    callMapperChain =
-        (originalUri == null || !originalUri.endsWith(ajaxExtension))
-            && (!request.getServletPath().endsWith(ajaxExtension));
+    callMapperChain = (originalUri == null || !originalUri.endsWith(ajaxExtension))
+        && (!request.getServletPath().endsWith(ajaxExtension));
 
     return callMapperChain ? super.getDecorator(request, page) : null;
   }

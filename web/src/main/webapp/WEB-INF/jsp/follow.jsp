@@ -16,18 +16,14 @@
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@ taglib uri="https://github.com/psi-probe/psi-probe/jsp/tags" prefix="probe" %>
 
-<%--
-	Log file view. The view is a simple markup that gets updated via AJAX calls. Top menu does not go to the server but
-	rather does DOM tricks to modify content appearance.
-
-	Author: Vlad Ilyushchenko.
---%>
+<%-- Log file view. The view is a simple markup that gets updated via AJAX calls. Top menu does not go to the server but
+ rather does DOM tricks to modify content appearance. --%>
 
 <html>
 	<head>
 		<title><spring:message code="probe.jsp.title.follow"/></title>
 		<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/scriptaculous.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
 		<script type="text/javascript" src="<c:url value='/js/func.js'/>"></script>
 		<script type="text/javascript" src="<c:url value='/js/behaviour.js'/>"></script>
 	</head>

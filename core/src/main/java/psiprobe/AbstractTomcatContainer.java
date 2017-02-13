@@ -62,6 +62,9 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
   /** The logger. */
   protected final Logger logger = LoggerFactory.getLogger(getClass());
 
+  /** The Constant NO_JSP_SERVLET. */
+  private static final String NO_JSP_SERVLET =  "Context '{}' does not have 'JSP' servlet";
+
   /** The host. */
   protected Host host;
 
@@ -204,7 +207,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
 
       File configFile = getConfigFile(ctx);
       if (configFile != null) {
-        logger.debug("Deleting " + configFile.getAbsolutePath());
+        logger.debug("Deleting '{}'", configFile.getAbsolutePath());
         Utils.delete(configFile);
       }
 
@@ -263,6 +266,14 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     if ("/".equals(result) || "/ROOT".equals(result)) {
       result = "";
     }
+    // For ROOT Parallel Deployment, remove "/ROOT"
+    if (result.startsWith("/ROOT##")) {
+      result = result.substring(5);
+    }
+    // For ROOT Parallel Usage, remove "/"
+    if (result.startsWith("/##")) {
+      result = result.substring(1);
+    }
     return result;
   }
 
@@ -300,11 +311,10 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
       ServletContext sctx = context.getServletContext();
       Options opt = new EmbeddedServletOptions(servletConfig, sctx);
       JspRuntimeContext jrctx = new JspRuntimeContext(sctx, opt);
-      JspCompilationContext jcctx =
-          createJspCompilationContext(jspName, opt, sctx, jrctx, null);
+      JspCompilationContext jcctx = createJspCompilationContext(jspName, opt, sctx, jrctx, null);
       servletName = jcctx.getServletJavaFileName();
     } else {
-      logger.error("Context '{}' does not have 'JSP' servlet", context.getName());
+      logger.error(NO_JSP_SERVLET, context.getName());
     }
     return servletName;
   }
@@ -342,7 +352,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
                   } catch (Exception e) {
                     item.setState(Item.STATE_FAILED);
                     item.setException(e);
-                    logger.info("Compiled '{}': FAILED", name, e);
+                    logger.error("Compiled '{}': FAILED", name, e);
                   }
                   item.setCompileTime(System.currentTimeMillis() - time);
                 } else {
@@ -362,7 +372,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
         logger.error("summary is null for '{}', request ignored", context.getName());
       }
     } else {
-      logger.error("Context '{}' does not have 'JSP' servlet", context.getName());
+      logger.error(NO_JSP_SERVLET, context.getName());
     }
   }
 
@@ -391,9 +401,9 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
            * we need to pass context classloader here, so the jsps can reference /WEB-INF/classes
            * and /WEB-INF/lib. JspCompilationContext would only take URLClassLoader, so we fake it
            */
-          URLClassLoader urlcl = new URLClassLoader(
-              new URL[0], context.getLoader().getClassLoader());
-          
+          URLClassLoader urlcl =
+              new URLClassLoader(new URL[0], context.getLoader().getClassLoader());
+
           compileItem("/", opt, context, jrctx, summary, urlcl, 0, compile);
         } finally {
           jrctx.destroy();
@@ -413,7 +423,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
 
       summary.setItems(hashMap);
     } else {
-      logger.error("Context '{}' does not have 'JSP' servlet", context.getName());
+      logger.error(NO_JSP_SERVLET, context.getName());
     }
   }
 
@@ -487,8 +497,8 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
         boolean isJsp = false;
 
         try {
-          isJsp = name.endsWith(".jsp") || name.endsWith(".jspx")
-              || opt.getJspConfig().isJspPage(name);
+          isJsp =
+              name.endsWith(".jsp") || name.endsWith(".jspx") || opt.getJspConfig().isJspPage(name);
         } catch (Exception e) {
           // XXX Tomcat 7.0.x throws JasperException otherwise this could be removed.
           logger.info("isJspPage() thrown an error for '{}'", name, e);
@@ -569,18 +579,17 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
    * @throws Exception the exception
    */
   protected void checkChanges(String name) throws Exception {
-    Boolean result =
-        (Boolean) mbeanServer.invoke(deployerOName, "isServiced", new String[] {name},
-            new String[] {"java.lang.String"});
+    Boolean result = (Boolean) mbeanServer.invoke(deployerOName, "isServiced", new String[] {name},
+        new String[] {String.class.getName()});
     if (!result) {
       mbeanServer.invoke(deployerOName, "addServiced", new String[] {name},
-          new String[] {"java.lang.String"});
+          new String[] {String.class.getName()});
       try {
         mbeanServer.invoke(deployerOName, "check", new String[] {name},
-            new String[] {"java.lang.String"});
+            new String[] {String.class.getName()});
       } finally {
         mbeanServer.invoke(deployerOName, "removeServiced", new String[] {name},
-            new String[] {"java.lang.String"});
+            new String[] {String.class.getName()});
       }
     }
   }

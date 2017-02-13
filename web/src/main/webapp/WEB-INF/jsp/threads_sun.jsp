@@ -19,8 +19,7 @@
 	<head>
 		<title><spring:message code="probe.jsp.title.threads"/></title>
 		<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/scriptaculous.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/effects.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
 		<script type="text/javascript" src="<c:url value='/js/Tooltip.js'/>"></script>
 		<script type="text/javascript" src="<c:url value='/js/behaviour.js'/>"></script>
 		<script type="text/javascript" src="<c:url value='/js/func.js'/>"></script>
@@ -63,7 +62,7 @@
 				<display:table name="threads" uid="th" class="genericTbl" style="border-spacing:0;border-collapse:separate;" requestURI="" defaultsort="4"
 						defaultorder="ascending">
 
-					<display:column class="leftMostIcon" title="&nbsp;" style="width:20px;">
+					<display:column class="leftMostIcon" title="&#160;" style="width:20px;">
 						<c:set var="confirmMessage">
 							<spring:message code="probe.jsp.threads.killmsg" arguments="${th.name}"/>
 						</c:set>

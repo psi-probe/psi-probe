@@ -11,7 +11,6 @@
 package psiprobe.controllers.quickcheck;
 
 import org.apache.catalina.Context;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.ModelAndView;
 
 import psiprobe.beans.ContainerListenerBean;
@@ -28,6 +27,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -37,7 +37,7 @@ import javax.servlet.http.HttpServletResponse;
 public class BaseTomcatAvailabilityController extends AbstractTomcatContainerController {
 
   /** The container listener bean. */
-  @Autowired
+  @Inject
   private ContainerListenerBean containerListenerBean;
 
   /**
@@ -87,9 +87,8 @@ public class BaseTomcatAvailabilityController extends AbstractTomcatContainerCon
         }
       }
 
-      tomcatTestReport.setWebappAvailabilityTest(allContextsAvailable
-          ? TomcatTestReport.TEST_PASSED
-          : TomcatTestReport.TEST_FAILED);
+      tomcatTestReport.setWebappAvailabilityTest(
+          allContextsAvailable ? TomcatTestReport.TEST_PASSED : TomcatTestReport.TEST_FAILED);
 
     } else {
       List<ApplicationResource> resources =
@@ -129,9 +128,9 @@ public class BaseTomcatAvailabilityController extends AbstractTomcatContainerCon
       for (; fileCount > 0; fileCount--) {
         File file = new File(tmpDir, "tctest_" + fileCount);
         try (FileOutputStream fos = new FileOutputStream(file)) {
-            files.add(file);
-            fileStreams.add(fos);
-            fos.write("this is a test".getBytes(StandardCharsets.UTF_8));
+          files.add(file);
+          fileStreams.add(fos);
+          fos.write("this is a test".getBytes(StandardCharsets.UTF_8));
         }
       }
       tomcatTestReport.setFileTest(TomcatTestReport.TEST_PASSED);
@@ -148,7 +147,7 @@ public class BaseTomcatAvailabilityController extends AbstractTomcatContainerCon
       }
       for (File file : files) {
         if (!file.delete()) {
-            logger.error("failed to delete file {}", file.getName());
+          logger.error("failed to delete file {}", file.getName());
         }
       }
     }
@@ -159,14 +158,18 @@ public class BaseTomcatAvailabilityController extends AbstractTomcatContainerCon
 
     // TODO JWL 12/11/2016 - Why is this commented out? If not needed, delete it.
     // check the maximum execution time
-    /*
-     * List pools = containerListenerBean.getThreadPools(); for (int iPool = 0; iPool <
-     * pools.size(); iPool++) { ThreadPool threadPool = (ThreadPool) pools.get(iPool); List threads
-     * = threadPool.getRequestProcessors(); for (int iThread = 0; iThread < threads.size();
-     * iThread++) { RequestProcessor rp = (RequestProcessor) threads.get(iThread); if (rp.getStage()
-     * == 3) { // // the request processor is in SERVICE state // maxServiceTime =
-     * Math.max(maxServiceTime, rp.getProcessingTime()); } } }
-     */
+    // List<ThreadPool> pools = containerListenerBean.getThreadPools();
+    // for (int iPool = 0; iPool < pools.size(); iPool++) {
+    //  ThreadPool threadPool = (ThreadPool) pools.get(iPool);
+    //  List<RequestProcessor> threads = threadPool.getRequestProcessors();
+    //  for (int iThread = 0; iThread < threads.size(); iThread++) {
+    //    RequestProcessor rp = (RequestProcessor) threads.get(iThread);
+    //    if (rp.getStage() == 3) {
+    //      // the request processor is in SERVICE state
+    //      maxServiceTime = Math.max(maxServiceTime, rp.getProcessingTime());
+    //    }
+    //  }
+    // }
 
     tomcatTestReport.setMaxServiceTime(maxServiceTime);
 

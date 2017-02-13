@@ -10,7 +10,6 @@
  */
 package psiprobe.controllers.logs;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestUtils;
@@ -23,6 +22,7 @@ import psiprobe.tools.logging.LogDestination;
 
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -36,7 +36,7 @@ public class ListLogsController extends ParameterizableViewController {
   private String errorView;
 
   /** The log resolver. */
-  @Autowired
+  @Inject
   private LogResolverBean logResolver;
 
   /**
@@ -78,8 +78,8 @@ public class ListLogsController extends ParameterizableViewController {
 
   @RequestMapping(path = {"/logs", "/list.htm"})
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 

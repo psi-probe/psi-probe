@@ -26,8 +26,8 @@ public class GetConnectorRequestController extends BaseGetConnectorController {
 
   @RequestMapping(path = "/cnreqdetails.ajax")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 

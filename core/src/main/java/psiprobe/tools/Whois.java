@@ -92,8 +92,10 @@ public final class Whois {
     response.port = port;
 
     try (Socket connection = AsyncSocketFactory.createSocket(server, port, timeout);
-        PrintStream out = new PrintStream(connection.getOutputStream(), true, StandardCharsets.UTF_8.name());
-        BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8))) {
+        PrintStream out =
+            new PrintStream(connection.getOutputStream(), true, StandardCharsets.UTF_8.name());
+        BufferedReader in = new BufferedReader(
+            new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8))) {
       out.println(query);
       StringBuilder sb = new StringBuilder();
 
@@ -119,9 +121,8 @@ public final class Whois {
         try {
           UrlParser url = new UrlParser(referral);
           if ("whois".equals(url.getProtocol())) {
-            newResponse =
-                lookup(url.getHost(), url.getPort() == -1 ? 43 : url.getPort(), query, timeout,
-                    lineSeparator);
+            newResponse = lookup(url.getHost(), url.getPort() == -1 ? 43 : url.getPort(), query,
+                timeout, lineSeparator);
           }
         } catch (IOException e) {
           logger.trace("Could not contact '{}'", referral, e);

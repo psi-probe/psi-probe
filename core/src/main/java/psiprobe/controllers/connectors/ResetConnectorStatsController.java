@@ -10,7 +10,6 @@
  */
 package psiprobe.controllers.connectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestUtils;
@@ -21,6 +20,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import psiprobe.beans.stats.collectors.ConnectorStatsCollectorBean;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -31,7 +31,7 @@ import javax.servlet.http.HttpServletResponse;
 public class ResetConnectorStatsController extends ParameterizableViewController {
 
   /** The collector bean. */
-  @Autowired
+  @Inject
   private ConnectorStatsCollectorBean collectorBean;
 
   /**
@@ -54,8 +54,8 @@ public class ResetConnectorStatsController extends ParameterizableViewController
 
   @RequestMapping(path = "/app/connectorReset.htm")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 

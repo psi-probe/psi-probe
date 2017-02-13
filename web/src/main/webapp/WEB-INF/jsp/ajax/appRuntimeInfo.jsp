@@ -15,11 +15,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="https://github.com/psi-probe/psi-probe/jsp/tags" prefix="probe" %>
 
-<%--
-	An Ajax snippet that displays application runtime information
-
-	Author: Andy Shapoval, Vlad Ilyushchenko
---%>
+<%-- An Ajax snippet that displays application runtime information --%>
 
 <%-- a hidden servlet count value used to display the value in a static app info section --%>
 <span id="r_servletCount" style="display: none;">${app.servletCount}</span>
@@ -89,7 +85,7 @@
 										src="<c:url value='/css/classic/gifs/rb_{0}.gif'/>" alt="+"
 										title="<spring:message code='probe.jsp.applications.jdbcUsage.title' arguments='${app.dataSourceBusyScore},${app.dataSourceEstablishedScore}'/>"/></a>
 							</probe:score>
-							&nbsp;${app.dataSourceBusyScore}%
+							&#160;${app.dataSourceBusyScore}%
 						</td>
 					</c:if>
 				</tr>

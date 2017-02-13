@@ -46,7 +46,7 @@ public class Tomcat80AgentValveTest {
   @Test
   public void canBoundToTomEE() {
     final Tomcat80ContainerAdapter valve = new Tomcat80ContainerAdapter();
-    assertTrue(valve.canBoundTo("Apache Tomcat (TomEE)/8.0"));
+    assertFalse(valve.canBoundTo("Apache Tomcat (TomEE)/8.0"));
   }
 
   /**

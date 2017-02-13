@@ -11,7 +11,6 @@
 package psiprobe.controllers.apps;
 
 import org.apache.catalina.Context;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -22,6 +21,7 @@ import psiprobe.model.stats.StatsCollection;
 import psiprobe.tools.ApplicationUtils;
 import psiprobe.tools.SecurityUtils;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -34,7 +34,7 @@ public class BaseGetApplicationController extends AbstractContextHandlerControll
   private boolean extendedInfo;
 
   /** The stats collection. */
-  @Autowired
+  @Inject
   private StatsCollection statsCollection;
 
   /** The collection period. */
@@ -98,21 +98,19 @@ public class BaseGetApplicationController extends AbstractContextHandlerControll
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-    boolean calcSize =
-        ServletRequestUtils.getBooleanParameter(request, "size", false)
-            && SecurityUtils.hasAttributeValueRole(getServletContext(), request);
+    boolean calcSize = ServletRequestUtils.getBooleanParameter(request, "size", false)
+        && SecurityUtils.hasAttributeValueRole(getServletContext(), request);
 
     ResourceResolver resourceResolver = getContainerWrapper().getResourceResolver();
-    Application app = ApplicationUtils.getApplication(
-        context, isExtendedInfo() ? resourceResolver : null, calcSize, getContainerWrapper());
+    Application app = ApplicationUtils.getApplication(context,
+        isExtendedInfo() ? resourceResolver : null, calcSize, getContainerWrapper());
 
     if (isExtendedInfo() && getStatsCollection() != null) {
       String avgStatisticName = "app.avg_proc_time." + app.getName();
       app.setAvgTime(getStatsCollection().getLastValueForStat(avgStatisticName));
     }
 
-    return new ModelAndView(getViewName())
-        .addObject("app", app)
+    return new ModelAndView(getViewName()).addObject("app", app)
         .addObject("no_resources", !resourceResolver.supportsPrivateResources())
         .addObject("collectionPeriod", getCollectionPeriod());
   }

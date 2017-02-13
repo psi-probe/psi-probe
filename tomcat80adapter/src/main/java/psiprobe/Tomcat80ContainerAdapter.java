@@ -39,7 +39,6 @@ import java.util.Set;
 
 import javax.servlet.ServletContext;
 
-
 /**
  * The Class Tomcat80ContainerAdapter.
  */
@@ -56,9 +55,7 @@ public class Tomcat80ContainerAdapter extends AbstractTomcatContainer {
       return false;
     }
     return binding.startsWith("Apache Tomcat/8.0")
-      // Neither of the next two currently exist
-      || binding.startsWith("Apache Tomcat (TomEE)/8.0")
-      || binding.startsWith("Pivotal tc") && binding.contains("/8.0");
+        || binding.startsWith("Pivotal tc") && binding.contains("/8.0");
   }
 
   /**
@@ -108,12 +105,13 @@ public class Tomcat80ContainerAdapter extends AbstractTomcatContainer {
     NamingResourcesImpl namingResources = context.getNamingResources();
     for (ContextResourceLink link : namingResources.findResourceLinks()) {
       ApplicationResource resource = new ApplicationResource();
+
       logger.debug("reading resourceLink: {}", link.getName());
       resource.setApplicationName(context.getName());
       resource.setName(link.getName());
       resource.setType(link.getType());
       resource.setLinkTo(link.getGlobal());
-      // lookupResource(resource, contextBound, false);
+
       resourceList.add(resource);
     }
   }
@@ -121,7 +119,6 @@ public class Tomcat80ContainerAdapter extends AbstractTomcatContainer {
   @Override
   public void addContextResource(Context context, List<ApplicationResource> resourceList,
       boolean contextBound) {
-
     NamingResourcesImpl namingResources = context.getNamingResources();
     for (ContextResource contextResource : namingResources.findResources()) {
       ApplicationResource resource = new ApplicationResource();
@@ -134,7 +131,6 @@ public class Tomcat80ContainerAdapter extends AbstractTomcatContainer {
       resource.setAuth(contextResource.getAuth());
       resource.setDescription(contextResource.getDescription());
 
-      // lookupResource(resource, contextBound, false);
       resourceList.add(resource);
     }
   }
@@ -147,30 +143,21 @@ public class Tomcat80ContainerAdapter extends AbstractTomcatContainer {
       if (filterMap != null) {
         String dm;
         switch (filterMap.getDispatcherMapping()) {
+          case FilterMap.ASYNC:
+            dm = "ASYNC";
+            break;
           case FilterMap.ERROR:
             dm = "ERROR";
             break;
           case FilterMap.FORWARD:
             dm = "FORWARD";
             break;
-          // case FilterMap.FORWARD_ERROR: dm = "FORWARD,ERROR"; break;
           case FilterMap.INCLUDE:
             dm = "INCLUDE";
             break;
-          // case FilterMap.INCLUDE_ERROR: dm = "INCLUDE,ERROR"; break;
-          // case FilterMap.INCLUDE_ERROR_FORWARD: dm = "INCLUDE,ERROR,FORWARD"; break;
-          // case FilterMap.INCLUDE_FORWARD: dm = "INCLUDE,FORWARD"; break;
           case FilterMap.REQUEST:
             dm = "REQUEST";
             break;
-          // case FilterMap.REQUEST_ERROR: dm = "REQUEST,ERROR"; break;
-          // case FilterMap.REQUEST_ERROR_FORWARD: dm = "REQUEST,ERROR,FORWARD"; break;
-          // case FilterMap.REQUEST_ERROR_FORWARD_INCLUDE: dm = "REQUEST,ERROR,FORWARD,INCLUDE";
-          // break;
-          // case FilterMap.REQUEST_ERROR_INCLUDE: dm = "REQUEST,ERROR,INCLUDE"; break;
-          // case FilterMap.REQUEST_FORWARD: dm = "REQUEST,FORWARD"; break;
-          // case FilterMap.REQUEST_INCLUDE: dm = "REQUEST,INCLUDE"; break;
-          // case FilterMap.REQUEST_FORWARD_INCLUDE: dm = "REQUEST,FORWARD,INCLUDE"; break;
           default:
             dm = "";
         }
@@ -252,8 +239,8 @@ public class Tomcat80ContainerAdapter extends AbstractTomcatContainer {
        * if the parameter is declared in a deployment descriptor and it is not declared in a context
        * descriptor with override=false, the value comes from the deployment descriptor
        */
-      param.setFromDeplDescr(context.findParameter(paramName) != null
-          && !nonOverridableParams.contains(paramName));
+      param.setFromDeplDescr(
+          context.findParameter(paramName) != null && !nonOverridableParams.contains(paramName));
       initParams.add(param);
     }
     return initParams;

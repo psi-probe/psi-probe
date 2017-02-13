@@ -11,9 +11,16 @@
 package psiprobe.beans.stats.collectors;
 
 import psiprobe.beans.JvmMemoryInfoAccessorBean;
+import psiprobe.beans.stats.listeners.StatsCollectionListener;
 import psiprobe.model.jmx.MemoryPool;
+import psiprobe.tools.TimeExpression;
 
 import java.util.List;
+
+import javax.inject.Inject;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 
 /**
  * The Class JvmMemoryStatsCollectorBean.
@@ -21,6 +28,7 @@ import java.util.List;
 public class JvmMemoryStatsCollectorBean extends AbstractStatsCollectorBean {
 
   /** The jvm memory info accessor. */
+  @Inject
   private JvmMemoryInfoAccessorBean jvmMemoryInfoAccessor;
 
   /**
@@ -49,4 +57,22 @@ public class JvmMemoryStatsCollectorBean extends AbstractStatsCollectorBean {
       buildAbsoluteStats("memory.pool." + pool.getName(), pool.getUsed(), time);
     }
   }
+
+  /**
+   * Sets the max series expression.
+   *
+   * @param period the period
+   * @param span the span
+   */
+  public void setMaxSeries(@Value("${psiprobe.beans.stats.collectors.memory.period}") long period,
+      @Value("${psiprobe.beans.stats.collectors.memory.span}") long span) {
+    super.setMaxSeries((int) TimeExpression.dataPoints(period, span));
+  }
+
+  @Autowired
+  @Override
+  public void setListeners(List<StatsCollectionListener> listeners) {
+    super.setListeners(listeners);
+  }
+
 }

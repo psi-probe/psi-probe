@@ -13,14 +13,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" session="false" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
-<%@ taglib uri="https://github.com/psi-probe/psi-probe/jsp/tags" prefix="probe" %>
 
 <html>
 	<head>
 		<title><spring:message code="probe.jsp.title.datasources"/></title>
 		<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/scriptaculous.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
 		<script type="text/javascript" src="<c:url value='/js/func.js'/>"></script>
 		<script type="text/javascript" src="<c:url value='/js/behaviour.js'/>"></script>
 	</head>
@@ -67,7 +65,7 @@
 							<c:when test="${not empty globalResources}">
 								<c:set var="resources" value="${globalResources}" scope="request" />
 								<c:set var="isGlobalResources" value="true" scope="request" />
-								<jsp:include page="datasources_table.jsp" />
+								<c:import url="datasources_table.jsp" />
 							</c:when>
 							<c:otherwise>
 								<p><spring:message code="probe.jsp.datasources.global.empty" /></p>
@@ -83,7 +81,7 @@
 							<c:when test="${not empty privateResources}">
 								<c:set var="resources" value="${privateResources}" scope="request" />
 								<c:set var="isGlobalResources" value="false" scope="request" />
-								<jsp:include page="datasources_table.jsp" />
+								<c:import url="datasources_table.jsp" />
 							</c:when>
 							<c:otherwise>
 								<p><spring:message code="probe.jsp.datasources.app.empty" /></p>

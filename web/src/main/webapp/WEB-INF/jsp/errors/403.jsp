@@ -13,11 +13,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" session="false" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
-<%--
-	"403 - Forbidden" error handler.
-
-	Author: Vlad Ilyushchenko
---%>
+<%-- "403 - Forbidden" error handler. --%>
 
 <html>
 
