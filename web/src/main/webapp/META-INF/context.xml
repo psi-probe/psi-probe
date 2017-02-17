@@ -13,4 +13,12 @@
 -->
 <Context path="/probe" privileged="true">
   <Loader delegate="false" />
+  <JarScanner>
+     <JarScanFilter defaultPluggabilityScan="false"
+                    defaultTldScan="false"
+                    pluggabilityScan="${tomcat.util.scan.StandardJarScanFilter.jarsToScan},psi-probe-core-*.jar"
+                    pluggabilitySkip=""
+                    tldScan="${tomcat.util.scan.StandardJarScanFilter.jarsToScan},spring-webmvc-*.jar,displaytag-*.jar,javax.servlet.jsp.jstl-*.jar,sitemesh-*.jar"
+                    tldSkip="javax.servlet.jsp.jstl-api-*.jar" />
+  </JarScanner>
 </Context> 
