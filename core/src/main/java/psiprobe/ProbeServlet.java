@@ -41,7 +41,7 @@ public class ProbeServlet extends DispatcherServlet implements ContainerServlet 
   private static final Logger logger = LoggerFactory.getLogger(ProbeServlet.class);
 
   /** The wrapper. */
-  private Wrapper wrapper;
+  private transient Wrapper wrapper;
 
   @Override
   public Wrapper getWrapper() {
