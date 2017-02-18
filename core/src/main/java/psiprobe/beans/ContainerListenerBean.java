@@ -308,10 +308,9 @@ public class ContainerListenerBean implements NotificationListener {
                       System.getProperty("user.country")));
                 } else {
                   // Show flag for non-localhost using geo lite
-                  DatabaseReader reader = new DatabaseReader.Builder(new File(
+                  try (DatabaseReader reader = new DatabaseReader.Builder(new File(
                       getClass().getClassLoader().getResource("GeoLite2-Country.mmdb").toURI()))
-                          .withCache(new CHMCache()).build();
-                  try {
+                          .withCache(new CHMCache()).build()) {
                     CountryResponse response =
                         reader.country(InetAddress.getByName(rp.getRemoteAddr()));
                     Country country = response.getCountry();

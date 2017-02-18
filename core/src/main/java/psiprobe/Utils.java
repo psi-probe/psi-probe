@@ -38,6 +38,7 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Scanner;
 import java.util.Set;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
@@ -85,11 +86,9 @@ public final class Utils {
    * @throws IOException Signals that an I/O exception has occurred.
    */
   public static String readFile(File file, String charsetName) throws IOException {
-    String result = null;
     try (FileInputStream fis = new FileInputStream(file)) {
-      result = readStream(fis, charsetName);
+      return readStream(fis, charsetName);
     }
-    return result;
   }
 
   /**
@@ -154,11 +153,11 @@ public final class Utils {
    * @return the int
    */
   public static int toInt(String num, int defaultValue) {
-    if (num != null) {
-      try {
-        return Integer.parseInt(num);
-      } catch (NumberFormatException e) {
-        logger.trace("", e);
+    if (num != null && !num.contains(" ")) {
+      try (Scanner scanner = new Scanner(num)) {
+        if (scanner.hasNextInt()) {
+          return Integer.parseInt(num);
+        }
       }
     }
     return defaultValue;
@@ -183,15 +182,17 @@ public final class Utils {
    * @return the int
    */
   public static int toIntHex(String num, int defaultValue) {
-    try {
-      if (num != null && num.startsWith("#")) {
+    if (num != null && !num.contains(" ")) {
+      if (num.startsWith("#")) {
         num = num.substring(1);
       }
-      return Integer.parseInt(num, 16);
-    } catch (NumberFormatException e) {
-      logger.trace("", e);
-      return defaultValue;
+      try (Scanner scanner = new Scanner(num)) {
+        if (scanner.hasNextInt()) {
+          return Integer.parseInt(num, 16);
+        }
+      }
     }
+    return defaultValue;
   }
 
   /**
@@ -202,11 +203,11 @@ public final class Utils {
    * @return the long
    */
   public static long toLong(String num, long defaultValue) {
-    if (num != null) {
-      try {
-        return Long.parseLong(num);
-      } catch (NumberFormatException e) {
-        logger.trace("", e);
+    if (num != null && !num.contains(" ")) {
+      try (Scanner scanner = new Scanner(num)) {
+        if (scanner.hasNextLong()) {
+          return Long.parseLong(num);
+        }
       }
     }
     return defaultValue;
@@ -231,11 +232,11 @@ public final class Utils {
    * @return the float
    */
   public static float toFloat(String num, float defaultValue) {
-    if (num != null) {
-      try {
-        return Float.parseFloat(num);
-      } catch (NumberFormatException e) {
-        logger.trace("", e);
+    if (num != null && !num.contains(" ")) {
+      try (Scanner scanner = new Scanner(num)) {
+        if (scanner.hasNextFloat()) {
+          return Float.parseFloat(num);
+        }
       }
     }
     return defaultValue;

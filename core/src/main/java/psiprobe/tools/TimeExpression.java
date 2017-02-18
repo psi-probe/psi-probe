@@ -134,11 +134,11 @@ public final class TimeExpression {
       return 0;
     }
     if (expression.matches("[0-9]+[smhd]")) {
-      int multiplier = multiplier(expression.charAt(expression.length() - 1));
+      long multiplier = multiplier(expression.charAt(expression.length() - 1));
       if (multiplier == 0) {
         throw new IllegalArgumentException("Invalid unit in expression: " + expression);
       }
-      int value = Integer.parseInt(expression.substring(0, expression.length() - 1));
+      long value = Integer.parseInt(expression.substring(0, expression.length() - 1));
       if (value < 0) {
         throw new IllegalArgumentException("Invalid value in expression: " + expression);
       }

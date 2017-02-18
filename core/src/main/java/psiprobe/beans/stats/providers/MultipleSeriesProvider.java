@@ -141,7 +141,9 @@ public class MultipleSeriesProvider extends AbstractSeriesProvider {
     });
 
     for (Series ser : seriesList) {
-      dataset.addSeries(toSeries(ser.key, ser.stats));
+      synchronized(ser.stats) {
+        dataset.addSeries(toSeries(ser.key, ser.stats));
+      }
     }
   }
 

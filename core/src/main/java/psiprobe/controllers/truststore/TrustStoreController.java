@@ -21,7 +21,11 @@ import org.springframework.web.servlet.ModelAndView;
 import psiprobe.controllers.AbstractTomcatContainerController;
 
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -66,6 +70,8 @@ public class TrustStoreController extends AbstractTomcatContainerController {
       if (trustStore != null) {
         try (FileInputStream fis = new FileInputStream(trustStore)) {
           ks.load(fis, trustStorePassword != null ? trustStorePassword.toCharArray() : null);
+        } catch (NoSuchAlgorithmException | CertificateException | IOException e) {
+            logger.error("", e);
         }
         Map<String, String> attributes;
         for (String alias : Collections.list(ks.aliases())) {
@@ -81,8 +87,8 @@ public class TrustStoreController extends AbstractTomcatContainerController {
           }
         }
       }
-    } catch (Exception e) {
-      logger.error("There was an exception obtaining truststore: ", e);
+    } catch (KeyStoreException e) {
+        logger.error("There was an exception obtaining truststore: ", e);
     }
     ModelAndView mv = new ModelAndView(getViewName());
     mv.addObject("certificates", certificateList);
