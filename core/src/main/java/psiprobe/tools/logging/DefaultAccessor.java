@@ -12,6 +12,7 @@ package psiprobe.tools.logging;
 
 import org.apache.commons.beanutils.MethodUtils;
 import org.apache.commons.beanutils.PropertyUtils;
+import org.apache.commons.lang3.reflect.FieldUtils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -85,18 +86,35 @@ public class DefaultAccessor {
    * @param obj the obj
    * @param name the name
    * @param defaultValue the default value
+   * @param forced whether or not to force access to the field
    * @return the property
    */
-  protected Object getProperty(Object obj, String name, Object defaultValue) {
+  protected Object getProperty(Object obj, String name, Object defaultValue, boolean forced) {
     try {
-      return PropertyUtils.isReadable(obj, name) ? PropertyUtils.getProperty(obj, name)
+      if (forced) {
+        return FieldUtils.readField(obj, name, forced);
+      } else {
+        return PropertyUtils.isReadable(obj, name) ? PropertyUtils.getProperty(obj, name)
           : defaultValue;
+      }
     } catch (IllegalArgumentException | IllegalAccessException | InvocationTargetException
         | NoSuchMethodException e) {
       logger.error("", e);
     }
     logger.debug("Could not access property '{}' of object '{}'", name, obj);
     return defaultValue;
+  }
+  
+  /**
+   * Gets the property.
+   *
+   * @param obj the obj
+   * @param name the name
+   * @param defaultValue the default value
+   * @return the property
+   */
+  protected Object getProperty(Object obj, String name, Object defaultValue) {
+    return getProperty(obj, name, defaultValue, false);
   }
 
   /**

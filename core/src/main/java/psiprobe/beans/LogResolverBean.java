@@ -28,6 +28,9 @@ import psiprobe.tools.logging.jdk.Jdk14LoggerAccessor;
 import psiprobe.tools.logging.jdk.Jdk14ManagerAccessor;
 import psiprobe.tools.logging.log4j.Log4JLoggerAccessor;
 import psiprobe.tools.logging.log4j.Log4JManagerAccessor;
+import psiprobe.tools.logging.log4j2.Log4J2LoggerConfigAccessor;
+import psiprobe.tools.logging.log4j2.Log4J2LoggerContextAccessor;
+import psiprobe.tools.logging.log4j2.Log4J2WebLoggerContextUtilsAccessor;
 import psiprobe.tools.logging.logback.LogbackFactoryAccessor;
 import psiprobe.tools.logging.logback.LogbackLoggerAccessor;
 import psiprobe.tools.logging.slf4jlogback.TomcatSlf4jLogbackFactoryAccessor;
@@ -40,6 +43,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -228,10 +232,12 @@ public class LogResolverBean {
     } else if ("catalina".equals(logType) && ctx != null) {
       return getCatalinaLogDestination(ctx, application);
     } else if (logIndex != null
-        && ("jdk".equals(logType) || "log4j".equals(logType) || "logback".equals(logType))
+        && ("jdk".equals(logType) || "log4j".equals(logType) || "log4j2".equals(logType) || "logback".equals(logType))
         || "tomcatSlf4jLogback".equals(logType)) {
-      if (context && ctx != null) {
+      if (context && ctx != null && !"log4j2".equals(logType)) {
         return getCommonsLogDestination(ctx, application, logIndex);
+      } else if ("log4j2".equals(logType)) {
+        return getLog4J2LogDestination(ctx, application, root, logName, logIndex);
       }
       ClassLoader cl;
       ClassLoader prevCl = null;
@@ -285,6 +291,22 @@ public class LogResolverBean {
           catalinaAccessor.setApplication(application);
           catalinaAccessor.setTarget(contextLogger);
           allAppenders.add(catalinaAccessor);
+        }
+        
+        // Log4J 2 runs independently of the context logger
+        try {
+          Log4J2WebLoggerContextUtilsAccessor webLoggerContextUtilsAccessor = new Log4J2WebLoggerContextUtilsAccessor(ctx.getLoader().getClassLoader());
+          Log4J2LoggerContextAccessor loggerContext = webLoggerContextUtilsAccessor.getWebLoggerContext(ctx.getServletContext());
+          Map<String, Object> loggers = loggerContext.getLoggers();
+          for (Object currentLogger : loggers.values()) {
+            Log4J2LoggerConfigAccessor accessor = new Log4J2LoggerConfigAccessor();
+            accessor.setTarget(currentLogger);
+            accessor.setApplication(application);
+            accessor.setContext(true);
+            allAppenders.addAll(accessor.getAppenders());
+          }
+        } catch (Exception e) {
+          logger.debug("WebLoggerContextUtilsAccessor instantiation failed", e);
         }
       }
     } catch (Exception e) {
@@ -497,6 +519,37 @@ public class LogResolverBean {
       }
     } catch (Exception e) {
       logger.debug("getLog4JLogDestination failed", e);
+    }
+    return null;
+  }
+  
+  /**
+   * Gets the log4 j 2 log destination.
+   *
+   * @param ctx the ctx
+   * @param application the application
+   * @param root the root
+   * @param logName the log name
+   * @param appenderName the appender name
+   * @return the log4 j 2 log destination
+   */
+  private LogDestination getLog4J2LogDestination(Context ctx, Application application,
+      boolean root, String logName, String appenderName) {
+
+    try {
+      Log4J2WebLoggerContextUtilsAccessor webLoggerContextUtilsAccessor = new Log4J2WebLoggerContextUtilsAccessor(ctx.getLoader().getClassLoader());
+      Log4J2LoggerContextAccessor loggerContext = webLoggerContextUtilsAccessor.getWebLoggerContext(ctx.getServletContext());
+      Map<String, Object> loggers = loggerContext.getLoggers();
+      Object log = loggers.get(root ? "" : logName);
+      if (log != null) {
+        Log4J2LoggerConfigAccessor accessor = new Log4J2LoggerConfigAccessor();
+        accessor.setTarget(log);
+        accessor.setApplication(application);
+        accessor.setContext(true);
+        return accessor.getAppender(appenderName);
+      }
+    } catch (Exception e) {
+      logger.debug("WebLoggerContextUtilsAccessor instantiation failed", e);
     }
     return null;
   }

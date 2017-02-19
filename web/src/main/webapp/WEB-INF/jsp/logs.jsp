@@ -12,6 +12,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" session="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@ taglib uri="https://github.com/psi-probe/psi-probe/jsp/tags" prefix="probe" %>
@@ -71,7 +72,7 @@
 
 				<display:column titleKey="probe.jsp.logs.col.file" sortable="true" sortProperty="file">
 					<c:choose>
-						<c:when test="${log.file == 'stdout'}">
+						<c:when test="${log.file == 'stdout' || fn:startsWith(log.file, 'mailto:')}">
 							<probe:out value="${log.file}" maxLength="80" ellipsisRight="false"/>
 						</c:when>
 						<c:otherwise>
@@ -83,7 +84,7 @@
 										<c:param name="context" value="${log.context}"/>
 									</c:if>
 								</c:if>
-								<c:if test="${!log.context}">
+								<c:if test="${!log.context || log.logType == 'log4j2'}">
 									<c:choose>
 										<c:when test="${log.root}">
 											<c:param name="root" value="${log.root}"/>
@@ -105,7 +106,7 @@
 				</display:column>
 
 				<display:column title="&#160;">
-					<c:if test="${log.file != 'stdout'}">
+					<c:if test="${log.file != 'stdout' && !fn:startsWith(log.file, 'mailto:')}">
 						<c:url value="/logs/download" var="downloadUrl">
 							<c:param name="logType" value="${log.logType}"/>
 							<c:if test="${log.application != null}">
@@ -114,7 +115,7 @@
 									<c:param name="context" value="${log.context}"/>
 								</c:if>
 							</c:if>
-							<c:if test="${!log.context}">
+							<c:if test="${!log.context || log.logType == 'log4j2'}">
 								<c:choose>
 									<c:when test="${log.root}">
 										<c:param name="root" value="${log.root}"/>
