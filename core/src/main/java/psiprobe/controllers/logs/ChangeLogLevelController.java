@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import psiprobe.tools.logging.LogDestination;
 import psiprobe.tools.logging.jdk.Jdk14HandlerAccessor;
 import psiprobe.tools.logging.log4j.Log4JAppenderAccessor;
+import psiprobe.tools.logging.log4j2.Log4J2AppenderAccessor;
 import psiprobe.tools.logging.logback.LogbackAppenderAccessor;
 import psiprobe.tools.logging.slf4jlogback.TomcatSlf4jLogbackAppenderAccessor;
 
@@ -50,6 +51,9 @@ public class ChangeLogLevelController extends AbstractLogHandlerController {
 
       if (logDest instanceof Log4JAppenderAccessor) {
         Log4JAppenderAccessor accessor = (Log4JAppenderAccessor) logDest;
+        accessor.getLoggerAccessor().setLevel(level);
+      } else if (logDest instanceof Log4J2AppenderAccessor) {
+        Log4J2AppenderAccessor accessor = (Log4J2AppenderAccessor) logDest;
         accessor.getLoggerAccessor().setLevel(level);
       } else if (logDest instanceof Jdk14HandlerAccessor) {
         Jdk14HandlerAccessor accessor = (Jdk14HandlerAccessor) logDest;

@@ -15,7 +15,7 @@ import psiprobe.tools.logging.AbstractLogDestination;
 import java.io.File;
 
 /**
- * The Class Log4JAppenderAccessor.
+ * The Class Log4J2AppenderAccessor.
  */
 public class Log4J2AppenderAccessor extends AbstractLogDestination {
 

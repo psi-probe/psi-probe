@@ -373,7 +373,7 @@ public class LogResolverBean {
       logger.debug("Could not resolve logback loggers for '{}'", applicationName, e);
     }
 
-    // check for Logback loggers for tomcat-slf4j-logback
+    // check for tomcat-slf4j-logback loggers
     try {
       TomcatSlf4jLogbackFactoryAccessor tomcatSlf4jLogbackAccessor =
           new TomcatSlf4jLogbackFactoryAccessor(cl);
@@ -498,7 +498,7 @@ public class LogResolverBean {
   }
 
   /**
-   * Gets the log4 j log destination.
+   * Gets the log4j log destination.
    *
    * @param cl the cl
    * @param application the application
