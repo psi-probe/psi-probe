@@ -86,17 +86,19 @@ public class ViewSourceController extends AbstractContextHandlerController {
              * we have to read the JSP twice, once to figure out the content encoding the second
              * time to read the actual content using the correct encoding
              */
-            InputStream encodedStream =
-                getContainerWrapper().getTomcatContainer().getResourceStream(jspName, context);
-            item.setEncoding(Utils.getJspEncoding(encodedStream));
+            try (InputStream encodedStream =
+                getContainerWrapper().getTomcatContainer().getResourceStream(jspName, context)) {
+              item.setEncoding(Utils.getJspEncoding(encodedStream));
+            }
           }
-          InputStream jspStream =
-              getContainerWrapper().getTomcatContainer().getResourceStream(jspName, context);
-          if (highlight) {
-            request.setAttribute("highlightedContent",
+          try (InputStream jspStream =
+              getContainerWrapper().getTomcatContainer().getResourceStream(jspName, context)) {
+            if (highlight) {
+              request.setAttribute("highlightedContent",
                 Utils.highlightStream(jspName, jspStream, "xhtml", item.getEncoding()));
-          } else {
-            request.setAttribute("content", Utils.readStream(jspStream, item.getEncoding()));
+            } else {
+              request.setAttribute("content", Utils.readStream(jspStream, item.getEncoding()));
+            }
           }
 
         } else {

@@ -178,8 +178,8 @@ public final class AsyncSocketFactory {
 
     @Override
     public void run() {
-      try {
-        socketWrapper.setSocket(new Socket(socketWrapper.getServer(), socketWrapper.getPort()));
+      try (Socket socket = new Socket(socketWrapper.getServer(), socketWrapper.getPort())) {
+        socketWrapper.setSocket(socket);
         if (!socketWrapper.isValid()) {
           socketWrapper.getSocket().close();
           socketWrapper.setSocket(null);
