@@ -108,6 +108,7 @@ public class TomcatSlf4jLogbackFactoryAccessor extends DefaultAccessor {
    * @return a list of {@link TomcatSlf4jLogbackAppenderAccessor}s representing all appenders that
    *         are in use
    */
+  @SuppressWarnings("unchecked")
   public List<TomcatSlf4jLogbackAppenderAccessor> getAppenders() {
     List<TomcatSlf4jLogbackAppenderAccessor> appenders = new ArrayList<>();
     try {

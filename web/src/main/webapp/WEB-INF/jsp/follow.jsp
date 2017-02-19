@@ -82,7 +82,7 @@
 							<c:param name="context" value="${log.context}"/>
 						</c:if>
 					</c:if>
-					<c:if test="${!log.context}">
+					<c:if test="${!log.context || log.logType == 'log4j2'}">
 						<c:choose>
 							<c:when test="${log.root}">
 								<c:param name="root" value="${log.root}"/>
@@ -132,7 +132,7 @@
 
 				<display:column titleKey="probe.jsp.logs.col.name" sortable="true">
 					<c:choose>
-						<c:when test="${logsource.context}">
+						<c:when test="${logsource.context && logsource.logType != 'log4j2'}">
 							(CONTEXT)
 						</c:when>
 						<c:when test="${logsource.root}">
@@ -165,7 +165,7 @@
 									<c:param name="context" value="${logsource.context}"/>
 								</c:if>
 							</c:if>
-							<c:if test="${!logsource.context}">
+							<c:if test="${!logsource.context || logsource.logType == 'log4j2'}">
 								<c:choose>
 									<c:when test="${logsource.root}">
 										<c:param name="root" value="${logsource.root}"/>

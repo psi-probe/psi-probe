@@ -30,6 +30,7 @@ public class LogbackLoggerAccessor extends DefaultAccessor {
    * 
    * @return a list of {@link LogbackAppenderAccessor}s
    */
+  @SuppressWarnings("unchecked")
   public List<LogbackAppenderAccessor> getAppenders() {
     List<LogbackAppenderAccessor> appenders = new ArrayList<>();
     try {
@@ -142,6 +143,7 @@ public class LogbackLoggerAccessor extends DefaultAccessor {
    * @return the sifted appenders
    * @throws Exception the exception
    */
+  @SuppressWarnings("unchecked")
   private List<Object> getSiftedAppenders(Object appender) throws Exception {
     if ("ch.qos.logback.classic.sift.SiftingAppender".equals(appender.getClass().getName())) {
       Object tracker = MethodUtils.invokeMethod(appender, "getAppenderTracker", null);

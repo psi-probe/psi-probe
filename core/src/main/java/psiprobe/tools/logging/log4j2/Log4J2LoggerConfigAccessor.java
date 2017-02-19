@@ -8,43 +8,57 @@
  * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
  * PURPOSE.
  */
-package psiprobe.tools.logging.log4j;
+package psiprobe.tools.logging.log4j2;
 
 import org.apache.commons.beanutils.MethodUtils;
 
 import psiprobe.tools.logging.DefaultAccessor;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Enumeration;
 import java.util.List;
+import java.util.Map;
 
 /**
  * The Class Log4JLoggerAccessor.
  */
-public class Log4JLoggerAccessor extends DefaultAccessor {
+public class Log4J2LoggerConfigAccessor extends DefaultAccessor {
 
   /** The context. */
   private boolean context;
+  
+  /** The loggers Map of appenders **/
+  private Map<String, Object> appenderMap;
 
+  /**
+   * Sets the target.
+   *
+   * @param target the new target
+   */
+  @SuppressWarnings("unchecked")
+  public void setTarget(Object target) {
+    super.setTarget(target);
+    
+    try {
+      this.appenderMap = (Map<String, Object>) invokeMethod(target, "getAppenders", null, null);
+    } catch (Exception e) {
+      logger.error("{}#getAppenders() failed", target.getClass().getName(), e);
+    }
+  }
+  
   /**
    * Gets the appenders.
    *
    * @return the appenders
    */
-  @SuppressWarnings("unchecked")
-  public List<Log4JAppenderAccessor> getAppenders() {
-    List<Log4JAppenderAccessor> appenders = new ArrayList<>();
-    try {
-      for (Object unwrappedAppender : Collections.list(
-          (Enumeration<Object>) MethodUtils.invokeMethod(getTarget(), "getAllAppenders", null))) {
-        Log4JAppenderAccessor appender = wrapAppender(unwrappedAppender);
+  public List<Log4J2AppenderAccessor> getAppenders() {
+    List<Log4J2AppenderAccessor> appenders = new ArrayList<>();
+    if (appenderMap != null) {
+      for (Object unwrappedAppender : appenderMap.values()) {
+        Log4J2AppenderAccessor appender = wrapAppender(unwrappedAppender);
         if (appender != null) {
           appenders.add(appender);
         }
       }
-    } catch (Exception e) {
-      logger.error("{}#getAllAppenders() failed", getTarget().getClass().getName(), e);
     }
     return appenders;
   }
@@ -55,12 +69,10 @@ public class Log4JLoggerAccessor extends DefaultAccessor {
    * @param name the name
    * @return the appender
    */
-  public Log4JAppenderAccessor getAppender(String name) {
-    try {
-      Object appender = MethodUtils.invokeMethod(getTarget(), "getAppender", name);
+  public Log4J2AppenderAccessor getAppender(String name) {
+    if (this.appenderMap != null) {
+      Object appender = appenderMap.get(name);
       return wrapAppender(appender);
-    } catch (Exception e) {
-      logger.error("{}#getAppender() failed", getTarget().getClass().getName(), e);
     }
     return null;
   }
@@ -89,7 +101,7 @@ public class Log4JLoggerAccessor extends DefaultAccessor {
    * @return true, if is root
    */
   public boolean isRoot() {
-    return "root".equals(getName()) && "org.apache.log4j.spi.RootLogger".equals(getTargetClass());
+    return "".equals(getName());
   }
 
   /**
@@ -137,12 +149,12 @@ public class Log4JLoggerAccessor extends DefaultAccessor {
    * @param appender the appender
    * @return the log4 j appender accessor
    */
-  private Log4JAppenderAccessor wrapAppender(Object appender) {
+  private Log4J2AppenderAccessor wrapAppender(Object appender) {
     try {
       if (appender == null) {
         throw new IllegalArgumentException("appender is null");
       }
-      Log4JAppenderAccessor appenderAccessor = new Log4JAppenderAccessor();
+      Log4J2AppenderAccessor appenderAccessor = new Log4J2AppenderAccessor();
       appenderAccessor.setTarget(appender);
       appenderAccessor.setLoggerAccessor(this);
       appenderAccessor.setApplication(getApplication());

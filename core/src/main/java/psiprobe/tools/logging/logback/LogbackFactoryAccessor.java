@@ -103,6 +103,7 @@ public class LogbackFactoryAccessor extends DefaultAccessor {
    * 
    * @return a list of {@link LogbackAppenderAccessor}s representing all appenders that are in use
    */
+  @SuppressWarnings("unchecked")
   public List<LogbackAppenderAccessor> getAppenders() {
     List<LogbackAppenderAccessor> appenders = new ArrayList<>();
     try {
