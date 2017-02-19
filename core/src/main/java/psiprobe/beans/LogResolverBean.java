@@ -505,7 +505,7 @@ public class LogResolverBean {
    * @param root the root
    * @param logName the log name
    * @param appenderName the appender name
-   * @return the log4 j log destination
+   * @return the log4j log destination
    */
   private LogDestination getLog4JLogDestination(ClassLoader cl, Application application,
       boolean root, String logName, String appenderName) {
@@ -524,14 +524,14 @@ public class LogResolverBean {
   }
   
   /**
-   * Gets the log4 j 2 log destination.
+   * Gets the log4j2 log destination.
    *
    * @param ctx the ctx
    * @param application the application
    * @param root the root
    * @param logName the log name
    * @param appenderName the appender name
-   * @return the log4 j 2 log destination
+   * @return the log4j2 log destination
    */
   private LogDestination getLog4J2LogDestination(Context ctx, Application application,
       boolean root, String logName, String appenderName) {
