@@ -92,9 +92,9 @@ public class VisualScoreTag extends BodyTagSupport {
 
       String buf = calculateSuffix(body);
 
-      try (JspWriter out = bc.getEnclosingWriter()) {
-        out.print(buf);
-      }
+      // No resource leak here, attempting to fix results in output being already closed
+      JspWriter out = bc.getEnclosingWriter();
+      out.print(buf);
     } catch (IOException e) {
       logger.trace("", e);
       throw new JspException("Error:IOException while writing to client" + e.getMessage());
