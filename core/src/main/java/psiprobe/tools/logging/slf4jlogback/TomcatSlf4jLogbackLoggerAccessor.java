@@ -30,6 +30,7 @@ public class TomcatSlf4jLogbackLoggerAccessor extends DefaultAccessor {
    * 
    * @return a list of {@link TomcatSlf4jLogbackAppenderAccessor}s
    */
+  @SuppressWarnings("unchecked")
   public List<TomcatSlf4jLogbackAppenderAccessor> getAppenders() {
     List<TomcatSlf4jLogbackAppenderAccessor> appenders = new ArrayList<>();
 
@@ -143,6 +144,7 @@ public class TomcatSlf4jLogbackLoggerAccessor extends DefaultAccessor {
    * @return the sifted appenders
    * @throws Exception the exception
    */
+  @SuppressWarnings("unchecked")
   private List<Object> getSiftedAppenders(Object appender) throws Exception {
     if ("org.apache.juli.logging.ch.qos.logback.classic.sift.SiftingAppender"
         .equals(appender.getClass().getName())) {

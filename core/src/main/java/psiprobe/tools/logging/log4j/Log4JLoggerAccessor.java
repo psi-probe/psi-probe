@@ -32,6 +32,7 @@ public class Log4JLoggerAccessor extends DefaultAccessor {
    *
    * @return the appenders
    */
+  @SuppressWarnings("unchecked")
   public List<Log4JAppenderAccessor> getAppenders() {
     List<Log4JAppenderAccessor> appenders = new ArrayList<>();
     try {

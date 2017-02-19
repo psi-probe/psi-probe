@@ -84,6 +84,7 @@ public class Jdk14ManagerAccessor extends DefaultAccessor {
    *
    * @return the handlers
    */
+  @SuppressWarnings("unchecked")
   public List<LogDestination> getHandlers() {
     List<LogDestination> allHandlers = new ArrayList<>();
     try {
