@@ -19,7 +19,7 @@ addons:
       description: Build submitted via Travis CI
     notification_email: jeremylandis@hotmail.com
     build_command_prepend: ./mvnw clean
-    build_command: ./mvnw install -DskipTests -B -V
+    build_command: ./mvnw install -B -V
     branch_pattern: coverity_scan
 
 install: true
