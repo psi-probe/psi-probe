@@ -31,16 +31,23 @@
 				<h4 style="padding-top: 10px">${connector.name}</h4>
 
 				<div class="connectorCertificates">
-					<c:if test="${connector.keyStoreCerts != null}">
-						<c:set var="certs" value="${connector.keyStoreCerts}" scope="request" />
-						<h4><spring:message code="probe.jsp.certificates.keyStore"/></h4>
-						<c:import url="certificates_table.jsp" />
-					</c:if>
-					<c:if test="${connector.trustStoreCerts != null}">
-						<c:set var="certs" value="${connector.trustStoreCerts}" scope="request" />
-						<h4><spring:message code="probe.jsp.certificates.trustStore"/></h4>
-						<c:import url="certificates_table.jsp" />
-					</c:if>
+					
+					<c:forEach items="${connector.sslHostConfigInfos}" var="sslHostConfigInfo">
+						<c:if test="${sslHostConfigInfo.trustStoreCerts != null}">
+							<c:set var="certs" value="${sslHostConfigInfo.trustStoreCerts}" scope="request" />
+							<h4><spring:message code="probe.jsp.certificates.trustStore"/></h4>
+							<c:import url="certificates_table.jsp" />
+						</c:if>
+						
+						<c:forEach items="${sslHostConfigInfo.certificateInfos}" var="certificateInfo">
+							<c:if test="${certificateInfo.keyStoreCerts != null}">
+								<c:set var="certs" value="${certificateInfo.keyStoreCerts}" scope="request" />
+								<h4><spring:message code="probe.jsp.certificates.keyStore"/></h4>
+								<c:import url="certificates_table.jsp" />
+							</c:if>
+						</c:forEach>
+					</c:forEach>
+					
 				</div>
 
 			</c:forEach>

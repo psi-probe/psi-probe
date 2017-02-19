@@ -14,6 +14,8 @@ import org.apache.catalina.connector.Connector;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.coyote.ProtocolHandler;
 import org.apache.coyote.http11.AbstractHttp11JsseProtocol;
+import org.apache.tomcat.util.net.SSLHostConfig;
+import org.apache.tomcat.util.net.SSLHostConfigCertificate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,7 +25,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import psiprobe.controllers.AbstractTomcatContainerController;
 import psiprobe.model.certificates.Cert;
+import psiprobe.model.certificates.CertificateInfo;
 import psiprobe.model.certificates.ConnectorInfo;
+import psiprobe.model.certificates.SSLHostConfigInfo;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -38,6 +42,7 @@ import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 import javax.management.ObjectName;
 import javax.servlet.http.HttpServletRequest;
@@ -72,16 +77,19 @@ public class ListCertificatesController extends AbstractTomcatContainerControlle
       for (ConnectorInfo info : infos) {
         List<Cert> certs;
 
-        if (info.getKeystoreType() != null) {
-          certs = getCertificates(info.getKeystoreType(), info.getKeystoreFile(),
-              info.getKeystorePass());
-          info.setKeyStoreCerts(certs);
-        }
+        List<SSLHostConfigInfo> sslHostConfigInfos = info.getSslHostConfigInfos();
+        for (SSLHostConfigInfo sslHostConfigInfo : sslHostConfigInfos) {
+          certs = getCertificates(sslHostConfigInfo.getTruststoreType(),
+              sslHostConfigInfo.getTruststoreFile(), sslHostConfigInfo.getTruststorePassword());
+          sslHostConfigInfo.setTrustStoreCerts(certs);
 
-        if (info.getTruststoreType() != null) {
-          certs = getCertificates(info.getTruststoreType(), info.getTruststoreFile(),
-              info.getTruststorePass());
-          info.setTrustStoreCerts(certs);
+          List<CertificateInfo> certificateInfos = sslHostConfigInfo.getCertificateInfos();
+          for (CertificateInfo certificateInfo : certificateInfos) {
+            certs = getCertificates(certificateInfo.getCertificateKeystoreType(),
+                certificateInfo.getCertificateKeystoreFile(),
+                certificateInfo.getCertificateKeystorePassword());
+            certificateInfo.setKeyStoreCerts(certs);
+          }
         }
       }
 
@@ -216,9 +224,56 @@ public class ListCertificatesController extends AbstractTomcatContainerControlle
   private ConnectorInfo toConnectorInfo(AbstractHttp11JsseProtocol<?> protocol)
       throws IllegalAccessException, InvocationTargetException {
     ConnectorInfo info = new ConnectorInfo();
-    BeanUtils.copyProperties(info, protocol);
-    info.setName(ObjectName.unquote(info.getName()));
+    info.setName(ObjectName.unquote(protocol.getName()));
+    info.setDefaultSSLHostConfigName(protocol.getDefaultSSLHostConfigName());
+
+    SSLHostConfig[] sslHostConfigs = protocol.findSslHostConfigs();
+    List<SSLHostConfigInfo> sslHostConfigInfos = new ArrayList<>(sslHostConfigs.length);
+    info.setSslHostConfigInfos(sslHostConfigInfos);
+
+    for (SSLHostConfig sslHostConfig : sslHostConfigs) {
+      sslHostConfigInfos.add(toSSLHostConfigInfo(sslHostConfig));
+    }
+
     return info;
+  }
+
+  /**
+   * To SSLHostConfig info.
+   * 
+   * @param sslHostConfig the SSLHostConfig
+   * @return the SSLHostConfig info
+   * @throws IllegalAccessException the illegal access exception
+   * @throws InvocationTargetException the invocation target exception
+   */
+  private SSLHostConfigInfo toSSLHostConfigInfo(SSLHostConfig sslHostConfig)
+      throws IllegalAccessException, InvocationTargetException {
+    SSLHostConfigInfo sslHostConfigInfo = new SSLHostConfigInfo();
+    BeanUtils.copyProperties(sslHostConfigInfo, sslHostConfig);
+
+    Set<SSLHostConfigCertificate> certificates = sslHostConfig.getCertificates();
+    List<CertificateInfo> certificateInfos = new ArrayList<>(certificates.size());
+    sslHostConfigInfo.setCertificateInfos(certificateInfos);
+    for (SSLHostConfigCertificate sslHostConfigCertificate : certificates) {
+      certificateInfos.add(toCertificateInfo(sslHostConfigCertificate));
+    }
+
+    return sslHostConfigInfo;
+  }
+
+  /**
+   * To certificate info.
+   * 
+   * @param sslHostConfigCertificate the SSLHostConfigCertificate
+   * @return the certificate info
+   * @throws IllegalAccessException the illegal access exception
+   * @throws InvocationTargetException the invocation target exception
+   */
+  private CertificateInfo toCertificateInfo(SSLHostConfigCertificate sslHostConfigCertificate)
+      throws IllegalAccessException, InvocationTargetException {
+    CertificateInfo certificateInfo = new CertificateInfo();
+    BeanUtils.copyProperties(certificateInfo, sslHostConfigCertificate);
+    return certificateInfo;
   }
 
   /**
