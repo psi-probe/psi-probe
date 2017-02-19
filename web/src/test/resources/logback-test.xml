@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Licensed under the GPL License. You may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+      https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+
+    THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+    WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+    PURPOSE.
+
+-->
+<!DOCTYPE project>
+<configuration scan="true" debug="true">
+
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <charset>utf-8</charset>
+      <pattern>%d{HH:mm:ss.SSS} %-5level {%thread} [%logger{40}] %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <timestamp key="timestamp" datePattern="yyyyMMdd-HHmmss"/>
+
+  <appender name="PSI-PROBE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <File>target/temp/logs/probe-${timestamp}.log</File>
+    <append>true</append>
+    <encoder>
+      <charset>utf-8</charset>
+      <pattern>%d{HH:mm:ss.SSS} %-5level {%thread} [%logger{40}] %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <logger name="org.springframework.web.context.support" level="ERROR"/>
+  <logger name="org.springframework.beans.factory.support" level="ERROR"/>
+  <logger name="org.springframework.security.web.context.HttpSessionSecurityContextRepository" level="ERROR"/>
+
+  <root level="INFO">
+    <appender-ref ref="STDOUT"/>
+    <appender-ref ref="PSI-PROBE"/>
+  </root>
+</configuration>
