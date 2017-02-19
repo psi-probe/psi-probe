@@ -171,15 +171,16 @@ public class Mailer {
     if (smtp != null) {
       props.put(PROPERTY_KEY_SMTP, smtp);
     }
-    PrintStream debugOut = LogOutputStream.createPrintStream(logger, LogOutputStream.LEVEL_DEBUG);
 
-    Session session = Session.getDefaultInstance(props);
-    session.setDebug(true);
-    session.setDebugOut(debugOut);
+    try (PrintStream debugOut = LogOutputStream.createPrintStream(logger, LogOutputStream.LEVEL_DEBUG)) {
+      Session session = Session.getDefaultInstance(props);
+      session.setDebug(true);
+      session.setDebugOut(debugOut);
 
-    MimeMessage message = createMimeMessage(session, mailMessage);
-    logger.debug("Sending message");
-    Transport.send(message);
+      MimeMessage message = createMimeMessage(session, mailMessage);
+      logger.debug("Sending message");
+      Transport.send(message);
+    }
   }
 
   /**
@@ -240,7 +241,7 @@ public class Mailer {
    * Creates the addresses.
    *
    * @param addresses the addresses
-   * @return the internet address[]
+   * @return the Internet address[]
    * @throws AddressException the address exception
    */
   private static InternetAddress[] createAddresses(String[] addresses) throws AddressException {

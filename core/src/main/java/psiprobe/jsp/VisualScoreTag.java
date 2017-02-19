@@ -87,14 +87,14 @@ public class VisualScoreTag extends BodyTagSupport {
 
   @Override
   public int doAfterBody() throws JspException {
-    BodyContent bc = getBodyContent();
-    String body = bc.getString().trim();
+    try (BodyContent bc = getBodyContent()) {
+      String body = bc.getString().trim();
 
-    String buf = calculateSuffix(body);
+      String buf = calculateSuffix(body);
 
-    try {
-      JspWriter out = bc.getEnclosingWriter();
-      out.print(buf);
+      try (JspWriter out = bc.getEnclosingWriter()) {
+        out.print(buf);
+      }
     } catch (IOException e) {
       logger.trace("", e);
       throw new JspException("Error:IOException while writing to client" + e.getMessage());

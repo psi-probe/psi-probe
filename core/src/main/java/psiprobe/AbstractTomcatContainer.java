@@ -401,10 +401,13 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
            * we need to pass context classloader here, so the jsps can reference /WEB-INF/classes
            * and /WEB-INF/lib. JspCompilationContext would only take URLClassLoader, so we fake it
            */
-          URLClassLoader urlcl =
-              new URLClassLoader(new URL[0], context.getLoader().getClassLoader());
+          try (URLClassLoader urlcl =
+              new URLClassLoader(new URL[0], context.getLoader().getClassLoader())) {
 
-          compileItem("/", opt, context, jrctx, summary, urlcl, 0, compile);
+            compileItem("/", opt, context, jrctx, summary, urlcl, 0, compile);
+          } catch (IOException e) {
+            this.logger.error("", e);
+          }
         } finally {
           jrctx.destroy();
         }
