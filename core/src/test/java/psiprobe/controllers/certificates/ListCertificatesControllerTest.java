@@ -69,8 +69,8 @@ public class ListCertificatesControllerTest {
 
     assertThat(certs, notNullValue());
     assertThat(certs.size(), is(2));
-    assertThat(certs.get(0).getAlias(), is("google internet authority g2"));
-    assertThat(certs.get(1).getAlias(), is("*.google.com"));
+    assertThat(certs.get(0).getAlias(), is("*.google.com"));
+    assertThat(certs.get(1).getAlias(), is("google_g2_2017"));
   }
 
   /**
@@ -93,8 +93,8 @@ public class ListCertificatesControllerTest {
 
     assertThat(certs, notNullValue());
     assertThat(certs.size(), is(2));
-    assertThat(certs.get(0).getAlias(), is("google internet authority g2"));
-    assertThat(certs.get(1).getAlias(), is("*.google.com"));
+    assertThat(certs.get(0).getAlias(), is("*.google.com"));
+    assertThat(certs.get(1).getAlias(), is("google_g2_2017"));
   }
 
   /**
@@ -118,8 +118,8 @@ public class ListCertificatesControllerTest {
 
     assertThat(certs, notNullValue());
     assertThat(certs.size(), is(2));
-    assertThat(certs.get(0).getAlias(), is("google internet authority g2"));
-    assertThat(certs.get(1).getAlias(), is("*.google.com"));
+    assertThat(certs.get(0).getAlias(), is("*.google.com"));
+    assertThat(certs.get(1).getAlias(), is("google_g2_2017"));
   }
 
   /**
@@ -142,8 +142,8 @@ public class ListCertificatesControllerTest {
 
     assertThat(certs, notNullValue());
     assertThat(certs.size(), is(2));
-    assertThat(certs.get(0).getAlias(), is("google internet authority g2"));
-    assertThat(certs.get(1).getAlias(), is("*.google.com"));
+    assertThat(certs.get(0).getAlias(), is("*.google.com"));
+    assertThat(certs.get(1).getAlias(), is("google_g2_2017"));
   }
 
 }
