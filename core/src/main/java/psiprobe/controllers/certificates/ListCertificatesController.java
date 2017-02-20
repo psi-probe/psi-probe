@@ -78,16 +78,20 @@ public class ListCertificatesController extends AbstractTomcatContainerControlle
 
         List<SSLHostConfigInfo> sslHostConfigInfos = info.getSslHostConfigInfos();
         for (SSLHostConfigInfo sslHostConfigInfo : sslHostConfigInfos) {
-          certs = getCertificates(sslHostConfigInfo.getTruststoreType(),
+          if (sslHostConfigInfo.getTruststoreType() != null) {
+            certs = getCertificates(sslHostConfigInfo.getTruststoreType(),
               sslHostConfigInfo.getTruststoreFile(), sslHostConfigInfo.getTruststorePassword());
-          sslHostConfigInfo.setTrustStoreCerts(certs);
+            sslHostConfigInfo.setTrustStoreCerts(certs);
+          }
 
           List<CertificateInfo> certificateInfos = sslHostConfigInfo.getCertificateInfos();
           for (CertificateInfo certificateInfo : certificateInfos) {
-            certs = getCertificates(certificateInfo.getCertificateKeystoreType(),
+            if (certificateInfo.getCertificateKeystoreType() != null) {
+              certs = getCertificates(certificateInfo.getCertificateKeystoreType(),
                 certificateInfo.getCertificateKeystoreFile(),
                 certificateInfo.getCertificateKeystorePassword());
-            certificateInfo.setKeyStoreCerts(certs);
+              certificateInfo.setKeyStoreCerts(certs);
+            }
           }
         }
       }
@@ -231,16 +235,18 @@ public class ListCertificatesController extends AbstractTomcatContainerControlle
           MethodUtils.invokeMethod(protocol, "getDefaultSSLHostConfigName", null);
       if (defaultSSLHostConfigName == null) {
         logger.error("Cannot determine defaultSSLHostConfigName");
+        return info;
       }
       info.setDefaultSSLHostConfigName(String.valueOf(defaultSSLHostConfigName));
       new SSLHostConfigHelper(protocol, info);
     } catch (NoSuchMethodException e) {
       logger.trace("", e);
-      // We are using Tomcat 7, fill in the old way
+      // We are using Tomcat 7 or 8, fill in the old way
       OldConnectorInfo oldConnectorInfo = new OldConnectorInfo();
       BeanUtils.copyProperties(oldConnectorInfo, protocol);
-      oldConnectorInfo.setName(ObjectName.unquote(protocol.getName()));
-      info = oldConnectorInfo;
+
+      info.setDefaultSSLHostConfigName("_default_");
+      info.setSslHostConfigInfos(oldConnectorInfo.getSslHostConfigInfos());
     }
 
     return info;

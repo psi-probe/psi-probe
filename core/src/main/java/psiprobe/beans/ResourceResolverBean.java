@@ -152,6 +152,7 @@ public class ResourceResolverBean implements ResourceResolver {
           return;
         }
         String jndiName = resolveJndiName(resource.getName(), global);
+        logger.info("reading resource jndi name: {}", jndiName);
         Object obj = ctx.lookup(jndiName);
         resource.setLookedUp(true);
         for (String accessorString : datasourceMappers) {
