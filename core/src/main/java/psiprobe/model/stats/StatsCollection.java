@@ -261,6 +261,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
    * @param file the file
    * @return the map
    */
+  @SuppressWarnings("unchecked")
   private Map<String, List<XYDataItem>> deserialize(File file) {
     Map<String, List<XYDataItem>> stats = null;
     if (file.exists() && file.canRead()) {

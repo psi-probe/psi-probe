@@ -37,6 +37,7 @@ public class Log4J2LoggerConfigAccessor extends DefaultAccessor {
    *
    * @param target the new target
    */
+  @Override
   @SuppressWarnings("unchecked")
   public void setTarget(Object target) {
     super.setTarget(target);
