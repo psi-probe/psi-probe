@@ -78,7 +78,7 @@ public class ListCertificatesController extends AbstractTomcatContainerControlle
 
         List<SSLHostConfigInfo> sslHostConfigInfos = info.getSslHostConfigInfos();
         for (SSLHostConfigInfo sslHostConfigInfo : sslHostConfigInfos) {
-          if (sslHostConfigInfo.getTruststoreType() != null) {
+          if (sslHostConfigInfo.getTruststoreFile() != null) {
             certs = getCertificates(sslHostConfigInfo.getTruststoreType(),
               sslHostConfigInfo.getTruststoreFile(), sslHostConfigInfo.getTruststorePassword());
             sslHostConfigInfo.setTrustStoreCerts(certs);
@@ -86,7 +86,7 @@ public class ListCertificatesController extends AbstractTomcatContainerControlle
 
           List<CertificateInfo> certificateInfos = sslHostConfigInfo.getCertificateInfos();
           for (CertificateInfo certificateInfo : certificateInfos) {
-            if (certificateInfo.getCertificateKeystoreType() != null) {
+            if (certificateInfo.getCertificateKeystoreFile() != null) {
               certs = getCertificates(certificateInfo.getCertificateKeystoreType(),
                 certificateInfo.getCertificateKeystoreFile(),
                 certificateInfo.getCertificateKeystorePassword());
