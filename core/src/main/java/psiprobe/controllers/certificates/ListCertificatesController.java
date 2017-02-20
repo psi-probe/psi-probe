@@ -10,24 +10,6 @@
  */
 package psiprobe.controllers.certificates;
 
-import org.apache.catalina.connector.Connector;
-import org.apache.commons.beanutils.MethodUtils;
-import org.apache.coyote.ProtocolHandler;
-import org.apache.coyote.http11.AbstractHttp11JsseProtocol;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
-
-import psiprobe.controllers.AbstractTomcatContainerController;
-import psiprobe.model.certificates.Cert;
-import psiprobe.model.certificates.CertificateInfo;
-import psiprobe.model.certificates.ConnectorInfo;
-import psiprobe.model.certificates.SSLHostConfigInfo;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -41,9 +23,29 @@ import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
 import javax.management.ObjectName;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.catalina.connector.Connector;
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.MethodUtils;
+import org.apache.coyote.ProtocolHandler;
+import org.apache.coyote.http11.AbstractHttp11JsseProtocol;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import psiprobe.controllers.AbstractTomcatContainerController;
+import psiprobe.model.certificates.Cert;
+import psiprobe.model.certificates.CertificateInfo;
+import psiprobe.model.certificates.ConnectorInfo;
+import psiprobe.model.certificates.OldConnectorInfo;
+import psiprobe.model.certificates.SSLHostConfigInfo;
 
 /**
  * The Class ListCertificatesController.
@@ -225,17 +227,20 @@ public class ListCertificatesController extends AbstractTomcatContainerControlle
 
     try {
       // Introduced in Tomcat 8.5.x+
-      Object defaultSSLHostConfigName = MethodUtils.invokeMethod(protocol, "getDefaultSSLHostConfigName", null);
+      Object defaultSSLHostConfigName =
+          MethodUtils.invokeMethod(protocol, "getDefaultSSLHostConfigName", null);
       if (defaultSSLHostConfigName == null) {
-          // We are using Tomcat 7, fill in the old way
-          // TODO Build this out...
-          return info;
+        logger.error("Cannot determine defaultSSLHostConfigName");
       }
       info.setDefaultSSLHostConfigName(String.valueOf(defaultSSLHostConfigName));
       new SSLHostConfigHelper(protocol, info);
     } catch (NoSuchMethodException e) {
-        logger.error("Cannot determine defaultSSLHostConfigName");
-        logger.trace("", e);
+      logger.trace("", e);
+      // We are using Tomcat 7, fill in the old way
+      OldConnectorInfo oldConnectorInfo = new OldConnectorInfo();
+      BeanUtils.copyProperties(oldConnectorInfo, protocol);
+      oldConnectorInfo.setName(ObjectName.unquote(protocol.getName()));
+      info = oldConnectorInfo;
     }
 
     return info;
