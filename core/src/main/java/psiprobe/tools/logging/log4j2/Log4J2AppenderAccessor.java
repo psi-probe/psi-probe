@@ -68,7 +68,8 @@ public class Log4J2AppenderAccessor extends AbstractLogDestination {
   @Override
   public String getConversionPattern() {
     Object layout = invokeMethod(getTarget(), "getLayout", null, null);
-    if (layout != null && "org.apache.logging.log4j.core.layout.PatternLayout".equals(layout.getClass().getName())) {
+    if (layout != null && "org.apache.logging.log4j.core.layout.PatternLayout"
+        .equals(layout.getClass().getName())) {
       return (String) invokeMethod(layout, "getConversionPattern", null, null);
     }
     return null;
@@ -82,7 +83,8 @@ public class Log4J2AppenderAccessor extends AbstractLogDestination {
     } else {
       // Check for SMTPAppender information
       File result = null;
-      if ("org.apache.logging.log4j.core.appender.SmtpAppender".equals(getTarget().getClass().getName())) {
+      if ("org.apache.logging.log4j.core.appender.SmtpAppender"
+          .equals(getTarget().getClass().getName())) {
         Object smtpManager = getProperty(getTarget(), "manager", null, true);
         Object factoryData = getProperty(smtpManager, "data", null, true);
         Object cc = getProperty(factoryData, "cc", null, true);
@@ -91,15 +93,19 @@ public class Log4J2AppenderAccessor extends AbstractLogDestination {
         Object subjectSerializer = getProperty(factoryData, "subject", null, true);
         String subject = null;
         if (subjectSerializer != null) {
-          Object[] subjectFormatters = (Object[]) getProperty(subjectSerializer, "formatters", null, true);
+          Object[] subjectFormatters =
+              (Object[]) getProperty(subjectSerializer, "formatters", null, true);
           if (subjectFormatters != null) {
-            Object subjectFormatterConverter = getProperty(subjectFormatters[0], "converter", null, true);
+            Object subjectFormatterConverter =
+                getProperty(subjectFormatters[0], "converter", null, true);
             if (subjectFormatterConverter != null) {
               subject = (String) getProperty(subjectFormatterConverter, "literal", null, true);
             }
           }
         }
-        result = new File("mailto:" + getProperty(factoryData, "to", "", true) + (from != null ? "&from=" + from : "") + (cc != null ? "&cc=" + cc : "") + (bcc != null ? "&bcc=" + bcc : "") + (subject != null ? "&subject=" + subject : ""));
+        result = new File("mailto:" + getProperty(factoryData, "to", "", true)
+            + (from != null ? "&from=" + from : "") + (cc != null ? "&cc=" + cc : "")
+            + (bcc != null ? "&bcc=" + bcc : "") + (subject != null ? "&subject=" + subject : ""));
       } else {
         result = getStdoutFile();
       }

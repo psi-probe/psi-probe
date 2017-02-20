@@ -25,7 +25,10 @@ public class Log4J2LoggerConfigAccessor extends DefaultAccessor {
 
   /** The context. */
   private boolean context;
-  
+
+  /** The LoggerContext. */
+  private Log4J2LoggerContextAccessor loggerContext;
+
   /** The loggers Map of appenders **/
   private Map<String, Object> appenderMap;
 
@@ -37,14 +40,14 @@ public class Log4J2LoggerConfigAccessor extends DefaultAccessor {
   @SuppressWarnings("unchecked")
   public void setTarget(Object target) {
     super.setTarget(target);
-    
+
     try {
       this.appenderMap = (Map<String, Object>) invokeMethod(target, "getAppenders", null, null);
     } catch (Exception e) {
       logger.error("{}#getAppenders() failed", target.getClass().getName(), e);
     }
   }
-  
+
   /**
    * Gets the appenders.
    *
@@ -96,6 +99,15 @@ public class Log4J2LoggerConfigAccessor extends DefaultAccessor {
   }
 
   /**
+   * Sets the logger context.
+   *
+   * @param loggerContext the new logger context
+   */
+  public void setLoggerContext(Log4J2LoggerContextAccessor loggerContext) {
+    this.loggerContext = loggerContext;
+  }
+
+  /**
    * Checks if is root.
    *
    * @return true, if is root
@@ -138,6 +150,7 @@ public class Log4J2LoggerConfigAccessor extends DefaultAccessor {
       Object level = MethodUtils.invokeMethod(getTarget(), "getLevel", null);
       Object newLevel = MethodUtils.invokeMethod(level, "toLevel", newLevelStr);
       MethodUtils.invokeMethod(getTarget(), "setLevel", newLevel);
+      loggerContext.updateLoggers();
     } catch (Exception e) {
       logger.error("{}#setLevel('{}') failed", getTarget().getClass().getName(), newLevelStr, e);
     }

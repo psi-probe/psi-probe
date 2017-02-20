@@ -231,8 +231,8 @@ public class LogResolverBean {
       return getStdoutLogDestination(logName);
     } else if ("catalina".equals(logType) && ctx != null) {
       return getCatalinaLogDestination(ctx, application);
-    } else if (logIndex != null
-        && ("jdk".equals(logType) || "log4j".equals(logType) || "log4j2".equals(logType) || "logback".equals(logType))
+    } else if (logIndex != null && ("jdk".equals(logType) || "log4j".equals(logType)
+        || "log4j2".equals(logType) || "logback".equals(logType))
         || "tomcatSlf4jLogback".equals(logType)) {
       if (context && ctx != null && !"log4j2".equals(logType)) {
         return getCommonsLogDestination(ctx, application, logIndex);
@@ -292,17 +292,20 @@ public class LogResolverBean {
           catalinaAccessor.setTarget(contextLogger);
           allAppenders.add(catalinaAccessor);
         }
-        
+
         // Log4J 2 runs independently of the context logger
         try {
-          Log4J2WebLoggerContextUtilsAccessor webLoggerContextUtilsAccessor = new Log4J2WebLoggerContextUtilsAccessor(ctx.getLoader().getClassLoader());
-          Log4J2LoggerContextAccessor loggerContext = webLoggerContextUtilsAccessor.getWebLoggerContext(ctx.getServletContext());
+          Log4J2WebLoggerContextUtilsAccessor webLoggerContextUtilsAccessor =
+              new Log4J2WebLoggerContextUtilsAccessor(ctx.getLoader().getClassLoader());
+          Log4J2LoggerContextAccessor loggerContext =
+              webLoggerContextUtilsAccessor.getWebLoggerContext(ctx.getServletContext());
           Map<String, Object> loggers = loggerContext.getLoggers();
           for (Object currentLogger : loggers.values()) {
             Log4J2LoggerConfigAccessor accessor = new Log4J2LoggerConfigAccessor();
             accessor.setTarget(currentLogger);
             accessor.setApplication(application);
             accessor.setContext(true);
+            accessor.setLoggerContext(loggerContext);
             allAppenders.addAll(accessor.getAppenders());
           }
         } catch (Exception e) {
@@ -522,7 +525,7 @@ public class LogResolverBean {
     }
     return null;
   }
-  
+
   /**
    * Gets the log4j2 log destination.
    *
@@ -533,12 +536,14 @@ public class LogResolverBean {
    * @param appenderName the appender name
    * @return the log4j2 log destination
    */
-  private LogDestination getLog4J2LogDestination(Context ctx, Application application,
-      boolean root, String logName, String appenderName) {
+  private LogDestination getLog4J2LogDestination(Context ctx, Application application, boolean root,
+      String logName, String appenderName) {
 
     try {
-      Log4J2WebLoggerContextUtilsAccessor webLoggerContextUtilsAccessor = new Log4J2WebLoggerContextUtilsAccessor(ctx.getLoader().getClassLoader());
-      Log4J2LoggerContextAccessor loggerContext = webLoggerContextUtilsAccessor.getWebLoggerContext(ctx.getServletContext());
+      Log4J2WebLoggerContextUtilsAccessor webLoggerContextUtilsAccessor =
+          new Log4J2WebLoggerContextUtilsAccessor(ctx.getLoader().getClassLoader());
+      Log4J2LoggerContextAccessor loggerContext =
+          webLoggerContextUtilsAccessor.getWebLoggerContext(ctx.getServletContext());
       Map<String, Object> loggers = loggerContext.getLoggers();
       Object log = loggers.get(root ? "" : logName);
       if (log != null) {
@@ -546,6 +551,7 @@ public class LogResolverBean {
         accessor.setTarget(log);
         accessor.setApplication(application);
         accessor.setContext(true);
+        accessor.setLoggerContext(loggerContext);
         return accessor.getAppender(appenderName);
       }
     } catch (Exception e) {
