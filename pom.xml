@@ -111,7 +111,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <spring.version>4.3.7.RELEASE</spring.version>
-        <spring-security.version>4.2.1.RELEASE</spring-security.version>
+        <spring-security.version>4.2.2.RELEASE</spring-security.version>
         <tomcat.version>8.5.11</tomcat.version>
     </properties>
 
