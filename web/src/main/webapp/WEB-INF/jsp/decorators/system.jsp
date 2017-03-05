@@ -41,6 +41,11 @@
 			</a>
 		</li>
 		<li>
+			<a class="${systemTabOshi}" href="<c:url value='/adm/oshi.htm'/>">
+				<spring:message code="probe.jsp.decorator.system.oshi"/>
+			</a>
+		</li>
+		<li>
 			<a class="${systemTabWrapper}" href="<c:url value='/wrapper.htm'/>">
 				<spring:message code="probe.jsp.decorator.system.wrapper"/>
 			</a>
