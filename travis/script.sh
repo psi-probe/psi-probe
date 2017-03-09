@@ -13,5 +13,5 @@
 
 if [ "${COVERITY_SCAN_BRANCH}" != 1 ]; then
     # Standard Build
-    ./mvnw install -B -V
+    ./mvnw install -B -V --settings ./travis/settings.xml
 fi
