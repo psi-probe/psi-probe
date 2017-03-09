@@ -15,7 +15,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 <div id="tooltip_title">
-	${param.ip} (${domainName})
+	<c:url value="${param.ip}" /> (${domainName})
 </div>
 <div>
 	[${whoisServer}]

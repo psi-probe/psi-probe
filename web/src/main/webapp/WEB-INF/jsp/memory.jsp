@@ -14,6 +14,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="https://github.com/psi-probe/psi-probe/jsp/tags" prefix="probe" %>
+<%@ page import="org.apache.commons.lang3.StringEscapeUtils" %>
 
 <html>
 	<head>
@@ -143,7 +144,7 @@
 					}
 				}
 
-				new Ajax.PeriodicalUpdater('memoryPools', '<c:url value="/memory.ajax"/>?<%=request.getQueryString()%>', {method:'get', frequency: 5});
+				new Ajax.PeriodicalUpdater('memoryPools', '<c:url value="/memory.ajax"/>?<%=StringEscapeUtils.escapeHtml4(request.getQueryString())%>', {method:'get', frequency: 5});
 
 			</script>
 		</c:otherwise>

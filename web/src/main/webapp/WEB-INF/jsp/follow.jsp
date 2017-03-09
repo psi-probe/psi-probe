@@ -230,7 +230,7 @@
 				method:'get',
 				parameters: {
 					logType: '${probe:escapeJS(log.logType)}',
-					webapp: '${param.webapp}',
+					webapp: '<c:url value="${param.webapp}" />',
 					context: '${log.context}',
 					root: '${log.root}',
 					logName: '${probe:escapeJS(log.name)}',
@@ -253,7 +253,7 @@
 					method:'get',
 					parameters: {
 						logType: '${probe:escapeJS(log.logType)}',
-						webapp: '${param.webapp}',
+						webapp: '<c:url value="${param.webapp}" />',
 						context: '${log.context}',
 						root: '${log.root}',
 						logName: '${probe:escapeJS(log.name)}',
@@ -394,7 +394,7 @@
 		<c:if test="${cookie['file_content_font_size'] != null}">
 			<script type="text/javascript">
 				Event.observe(window, 'load', function() {
-					setFontSize($(file_content_div), '${cookie["file_content_font_size"].value}', false);
+					setFontSize($(file_content_div), `<c:url value='${cookie["file_content_font_size"].value}' />`, false);
 				});
 			</script>
 		</c:if>
