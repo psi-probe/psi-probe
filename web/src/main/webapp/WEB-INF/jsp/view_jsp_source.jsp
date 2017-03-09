@@ -77,7 +77,7 @@
 
 					<div class="shadow">
 						<div class="info">
-							<p><spring:message code="probe.jsp.viewsource.appname"/>&#160;<span class="value">${param.webapp}</span>
+							<p><spring:message code="probe.jsp.viewsource.appname"/>&#160;<span class="value"><c:url value="${param.webapp}" /></span>
 								<spring:message code="probe.jsp.viewsource.filename"/>&#160;<span class="value">${item.name}</span>
 								<spring:message code="probe.jsp.viewsource.size"/>&#160;<span class="value"><probe:volume value="${item.size}"/></span>
 								<spring:message code="probe.jsp.viewsource.lastmodified"/>&#160;<span class="value">${item.timestamp}</span>

@@ -90,9 +90,9 @@
 
 			<form id="sqlForm" action="" method="post">
 				<c:if test="${param.webapp != null}">
-					<input type="hidden" name="webapp" value="${param.webapp}"/>
+					<input type="hidden" name="webapp" value='<c:url value="${param.webapp}" />'/>
 				</c:if>
-				<input type="hidden" name="resource" value="${param.resource}"/>
+				<input type="hidden" name="resource" value='<c:url value="${param.resource}" />'/>
 				<dl id="sqlDL">
 					<dt><label for="sql"><spring:message code="probe.jsp.dataSourceTest.sqlForm.sql.label"/></label></dt>
 					<dd id="sqlContainer">
@@ -169,14 +169,14 @@
 				<dl>
 					<dt><spring:message code="probe.jsp.dataSourceTest.chart.usage.title"/></dt>
 					<dd class="image">
-						<img id="usage-${param.resource}" border="0" src="${usage_img}" width="${chartWidth}" height="${chartHeight}" alt="Datasource usage"/>
+						<img id='<c:url value="usage-${param.resource}" />' border="0" src="${usage_img}" width="${chartWidth}" height="${chartHeight}" alt="Datasource usage"/>
 					</dd>
 				</dl>
 			</div>
 		</div>
 
 		<script type="text/javascript">
-			new Ajax.ImgUpdater('usage-${param.resource}', '${probe:max(collectionPeriod, 5)}');
+			new Ajax.ImgUpdater('<c:url value="usage-${param.resource}" />', '${probe:max(collectionPeriod, 5)}');
 			setupAjaxActions(
 				'<c:url value="/sql/connection.ajax"/>',
 				'<c:url value="/sql/recordset.ajax"/>',

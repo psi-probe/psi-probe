@@ -69,7 +69,7 @@
 
 		<script type="text/javascript">
 			new Ajax.PeriodicalUpdater('servletListContainer',
-			'<c:url value="/servlets.ajax?${pageContext.request.queryString}"/>',
+			'<c:url value="/servlets.ajax"/>?<c:out value="${pageContext.request.queryString}"/>',
 			{method:'get', frequency: 5});
 		</script>
 

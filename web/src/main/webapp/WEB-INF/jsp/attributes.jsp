@@ -74,7 +74,7 @@
 					<div class="shadow">
 						<div class="info">
 							<p>
-							<spring:message code="probe.jsp.sessionAttibutes.card.application"/>&#160;<span class="value">${param.webapp}</span>
+							<spring:message code="probe.jsp.sessionAttibutes.card.application"/>&#160;<span class="value"><c:url value="${param.webapp}" /></span>
 							<spring:message code="probe.jsp.sessionAttibutes.card.id"/>&#160;<span class="value">${session.id}</span>
 							<spring:message code="probe.jsp.sessionAttibutes.card.serializable"/>&#160;
 							<c:choose>
