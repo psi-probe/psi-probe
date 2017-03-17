@@ -41,6 +41,9 @@ public final class TimeExpression {
    * @return the long
    */
   public static long dataPoints(long period, long span) {
+    if (period <= 0) {
+      return 0;
+    }
     return span / period;
   }
 
