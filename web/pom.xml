@@ -35,6 +35,10 @@
         <url>https://github.com/psi-probe/psi-probe/</url>
     </scm>
 
+    <properties>
+        <probe.log.path>${catalina.base}/logs</probe.log.path>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -139,15 +143,6 @@
     </build>
 
     <profiles>
-        <profile>
-            <id>tomcat</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <probe.log.path>${catalina.base}/logs</probe.log.path>
-            </properties>
-        </profile>
         <profile>
             <id>jboss</id>
             <properties>
