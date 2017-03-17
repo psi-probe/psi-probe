@@ -118,13 +118,14 @@
     <repositories>
         <repository>
             <!-- Required for ojdbc7 and ucp -->
+            <id>maven.oracle.com</id>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
             <snapshots>
                 <enabled>false</enabled>
-                <updatePolicy>never</updatePolicy>
             </snapshots>
-            <id>code.lds.org</id>
-            <name>code.lds.org</name>
-            <url>https://code.lds.org/nexus/content/repositories/main-repo/</url>
+            <url>https://maven.oracle.com</url>
             <layout>default</layout>
         </repository>
     </repositories>
@@ -203,12 +204,12 @@
                 <version>1.2.1</version>
             </dependency>
             <dependency>
-                <groupId>com.oracle</groupId>
+                <groupId>com.oracle.jdbc</groupId>
                 <artifactId>ucp</artifactId>
                 <version>12.1.0.2</version>
             </dependency>
             <dependency>
-                <groupId>com.oracle</groupId>
+                <groupId>com.oracle.jdbc</groupId>
                 <artifactId>ojdbc7</artifactId>
                 <version>12.1.0.2</version>
             </dependency>
