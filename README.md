@@ -23,7 +23,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for info on working on PSI Probe and send
 
 ## Latest Snapshot ##
 
-Please download latest snapshots from [here] (https://oss.sonatype.org/content/repositories/snapshots/com/github/psi-probe/)
+Please download latest snapshots from [here](https://oss.sonatype.org/content/repositories/snapshots/com/github/psi-probe/)
 
 ## Building from Source ##
 
