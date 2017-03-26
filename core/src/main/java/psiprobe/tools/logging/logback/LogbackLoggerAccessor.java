@@ -11,7 +11,8 @@
 package psiprobe.tools.logging.logback;
 
 import org.apache.commons.lang3.reflect.MethodUtils;
-import org.apache.commons.collections.IteratorUtils;
+
+import com.google.common.collect.Iterators;
 
 import psiprobe.tools.logging.DefaultAccessor;
 
@@ -35,7 +36,7 @@ public class LogbackLoggerAccessor extends DefaultAccessor {
     List<LogbackAppenderAccessor> appenders = new ArrayList<>();
     try {
       for (Object appender : Collections
-          .list(IteratorUtils.asEnumeration((Iterator<Object>) MethodUtils.invokeMethod(getTarget(),
+          .list(Iterators.asEnumeration((Iterator<Object>) MethodUtils.invokeMethod(getTarget(),
               "iteratorForAppenders")))) {
         List<Object> siftedAppenders = getSiftedAppenders(appender);
         if (siftedAppenders != null) {
