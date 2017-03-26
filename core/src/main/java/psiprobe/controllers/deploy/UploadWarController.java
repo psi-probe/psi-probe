@@ -11,14 +11,14 @@
 package psiprobe.controllers.deploy;
 
 import org.apache.catalina.Context;
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileItemFactory;
-import org.apache.commons.fileupload.FileUploadBase;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.apache.commons.fileupload.servlet.ServletRequestContext;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.tomcat.util.http.fileupload.FileItem;
+import org.apache.tomcat.util.http.fileupload.FileItemFactory;
+import org.apache.tomcat.util.http.fileupload.FileUploadBase;
+import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
+import org.apache.tomcat.util.http.fileupload.servlet.ServletRequestContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -77,7 +77,7 @@ public class UploadWarController extends AbstractTomcatContainerController {
       upload.setSizeMax(-1);
       upload.setHeaderEncoding(StandardCharsets.UTF_8.name());
       try {
-        List<FileItem> fileItems = upload.parseRequest(request);
+        List<FileItem> fileItems = upload.parseRequest(new ServletRequestContext(request));
         for (FileItem fi : fileItems) {
           if (!fi.isFormField()) {
             if (fi.getName() != null && fi.getName().length() > 0) {
