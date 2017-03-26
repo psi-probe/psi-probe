@@ -230,7 +230,7 @@
 				method:'get',
 				parameters: {
 					logType: '${probe:escapeJS(log.logType)}',
-					webapp: '<c:url value="${param.webapp}" />',
+					webapp: '${param.webapp}', // Escaped earlier
 					context: '${log.context}',
 					root: '${log.root}',
 					logName: '${probe:escapeJS(log.name)}',
@@ -253,7 +253,7 @@
 					method:'get',
 					parameters: {
 						logType: '${probe:escapeJS(log.logType)}',
-						webapp: '<c:url value="${param.webapp}" />',
+						webapp: '${param.webapp}', // Escaped earlier
 						context: '${log.context}',
 						root: '${log.root}',
 						logName: '${probe:escapeJS(log.name)}',
