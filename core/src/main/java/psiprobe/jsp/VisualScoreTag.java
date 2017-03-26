@@ -17,7 +17,6 @@ import java.io.IOException;
 import java.text.MessageFormat;
 
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.BodyContent;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
@@ -92,9 +91,7 @@ public class VisualScoreTag extends BodyTagSupport {
 
       String buf = calculateSuffix(body);
 
-      // No resource leak here, attempting to fix results in output being already closed
-      JspWriter out = bc.getEnclosingWriter();
-      out.print(buf);
+      bc.getEnclosingWriter().print(buf);
     } catch (IOException e) {
       logger.trace("", e);
       throw new JspException("Error:IOException while writing to client" + e.getMessage());

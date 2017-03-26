@@ -59,7 +59,7 @@ public class SSLHostConfigHelper {
       throws IllegalAccessException, InvocationTargetException {
     SSLHostConfigInfo sslHostConfigInfo = new SSLHostConfigInfo();
     BeanUtils.copyProperties(sslHostConfigInfo, sslHostConfig);
-  
+
     Set<SSLHostConfigCertificate> certificates = sslHostConfig.getCertificates();
     List<CertificateInfo> certificateInfos = new ArrayList<>(certificates.size());
     sslHostConfigInfo.setCertificateInfos(certificateInfos);
