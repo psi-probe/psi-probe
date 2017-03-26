@@ -14,7 +14,7 @@ import java.lang.reflect.Method;
 
 import javax.servlet.ServletContext;
 
-import org.apache.commons.beanutils.MethodUtils;
+import org.apache.commons.lang3.reflect.MethodUtils;
 
 import psiprobe.tools.logging.DefaultAccessor;
 

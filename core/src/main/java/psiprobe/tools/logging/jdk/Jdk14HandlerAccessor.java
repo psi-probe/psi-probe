@@ -10,7 +10,7 @@
  */
 package psiprobe.tools.logging.jdk;
 
-import org.apache.commons.beanutils.MethodUtils;
+import org.apache.commons.lang3.reflect.MethodUtils;
 
 import psiprobe.tools.logging.AbstractLogDestination;
 
@@ -89,7 +89,7 @@ public class Jdk14HandlerAccessor extends AbstractLogDestination {
    */
   public void setLevel(String newLevelStr) {
     try {
-      Object level = MethodUtils.invokeMethod(getTarget(), "getLevel", null);
+      Object level = MethodUtils.invokeMethod(getTarget(), "getLevel");
       Object newLevel = MethodUtils.invokeMethod(level, "parse", newLevelStr);
       MethodUtils.invokeMethod(getTarget(), "setLevel", newLevel);
     } catch (Exception e) {

@@ -30,7 +30,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.catalina.connector.Connector;
 import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.beanutils.MethodUtils;
+import org.apache.commons.lang3.reflect.MethodUtils;
 import org.apache.coyote.ProtocolHandler;
 import org.apache.coyote.http11.AbstractHttp11JsseProtocol;
 import org.slf4j.Logger;
@@ -232,7 +232,7 @@ public class ListCertificatesController extends AbstractTomcatContainerControlle
     try {
       // Introduced in Tomcat 8.5.x+
       Object defaultSSLHostConfigName =
-          MethodUtils.invokeMethod(protocol, "getDefaultSSLHostConfigName", null);
+          MethodUtils.invokeMethod(protocol, "getDefaultSSLHostConfigName");
       if (defaultSSLHostConfigName == null) {
         logger.error("Cannot determine defaultSSLHostConfigName");
         return info;

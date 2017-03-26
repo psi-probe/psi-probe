@@ -10,7 +10,7 @@
  */
 package psiprobe.tools.logging.jdk;
 
-import org.apache.commons.beanutils.MethodUtils;
+import org.apache.commons.lang3.reflect.MethodUtils;
 
 import psiprobe.tools.logging.DefaultAccessor;
 import psiprobe.tools.logging.LogDestination;
@@ -89,7 +89,7 @@ public class Jdk14ManagerAccessor extends DefaultAccessor {
     List<LogDestination> allHandlers = new ArrayList<>();
     try {
       for (String name : Collections.list(
-          (Enumeration<String>) MethodUtils.invokeMethod(getTarget(), "getLoggerNames", null))) {
+          (Enumeration<String>) MethodUtils.invokeMethod(getTarget(), "getLoggerNames"))) {
         Jdk14LoggerAccessor accessor = getLogger(name);
         if (accessor != null) {
           allHandlers.addAll(accessor.getHandlers());

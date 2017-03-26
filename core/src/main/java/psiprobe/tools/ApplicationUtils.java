@@ -15,7 +15,7 @@ import org.apache.catalina.Context;
 import org.apache.catalina.Session;
 import org.apache.catalina.Wrapper;
 import org.apache.catalina.core.StandardWrapper;
-import org.apache.commons.beanutils.MethodUtils;
+import org.apache.commons.lang3.reflect.MethodUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.ClassUtils;
@@ -237,7 +237,7 @@ public final class ApplicationUtils {
       // Tomcat 8+ dropped support of getInfo off session. This patch allows it to continue working for
       // tomcat 7.
       try {
-        Object info = MethodUtils.invokeMethod(session, "getInfo", null);
+        Object info = MethodUtils.invokeMethod(session, "getInfo");
         sbean.setInfo(String.valueOf(info));
       } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
         sbean.setInfo(session.getClass().getSimpleName());
@@ -384,7 +384,7 @@ public final class ApplicationUtils {
       // resulted in class being loaded if not already. This is why Null is returned
       // now.
       try {
-        Object singleThreaded = MethodUtils.invokeMethod(sw, "isSingleThreadModel", null);
+        Object singleThreaded = MethodUtils.invokeMethod(sw, "isSingleThreadModel");
         if (singleThreaded == null) {
           si.setSingleThreaded(false);
         } else {

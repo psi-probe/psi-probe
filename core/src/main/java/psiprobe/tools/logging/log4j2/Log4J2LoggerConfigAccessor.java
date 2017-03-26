@@ -10,7 +10,7 @@
  */
 package psiprobe.tools.logging.log4j2;
 
-import org.apache.commons.beanutils.MethodUtils;
+import org.apache.commons.lang3.reflect.MethodUtils;
 
 import psiprobe.tools.logging.DefaultAccessor;
 
@@ -133,8 +133,8 @@ public class Log4J2LoggerConfigAccessor extends DefaultAccessor {
    */
   public String getLevel() {
     try {
-      Object level = MethodUtils.invokeMethod(getTarget(), "getLevel", null);
-      return (String) MethodUtils.invokeMethod(level, "toString", null);
+      Object level = MethodUtils.invokeMethod(getTarget(), "getLevel");
+      return (String) MethodUtils.invokeMethod(level, "toString");
     } catch (Exception e) {
       logger.error("{}#getLevel() failed", getTarget().getClass().getName(), e);
     }
@@ -148,7 +148,7 @@ public class Log4J2LoggerConfigAccessor extends DefaultAccessor {
    */
   public void setLevel(String newLevelStr) {
     try {
-      Object level = MethodUtils.invokeMethod(getTarget(), "getLevel", null);
+      Object level = MethodUtils.invokeMethod(getTarget(), "getLevel");
       Object newLevel = MethodUtils.invokeMethod(level, "toLevel", newLevelStr);
       MethodUtils.invokeMethod(getTarget(), "setLevel", newLevel);
       loggerContext.updateLoggers();

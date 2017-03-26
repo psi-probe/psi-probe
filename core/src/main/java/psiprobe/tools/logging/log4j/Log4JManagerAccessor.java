@@ -10,7 +10,7 @@
  */
 package psiprobe.tools.logging.log4j;
 
-import org.apache.commons.beanutils.MethodUtils;
+import org.apache.commons.lang3.reflect.MethodUtils;
 
 import psiprobe.tools.logging.DefaultAccessor;
 
