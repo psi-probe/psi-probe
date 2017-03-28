@@ -10,7 +10,7 @@
  */
 package psiprobe.tools.logging.jdk;
 
-import org.apache.commons.beanutils.MethodUtils;
+import org.apache.commons.lang3.reflect.MethodUtils;
 
 import psiprobe.tools.logging.DefaultAccessor;
 import psiprobe.tools.logging.LogDestination;
@@ -35,7 +35,7 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
   public List<LogDestination> getHandlers() {
     List<LogDestination> handlerAccessors = new ArrayList<>();
     try {
-      Object[] handlers = (Object[]) MethodUtils.invokeMethod(getTarget(), "getHandlers", null);
+      Object[] handlers = (Object[]) MethodUtils.invokeMethod(getTarget(), "getHandlers");
       for (int h = 0; h < handlers.length; h++) {
         Object handler = handlers[h];
         Jdk14HandlerAccessor handlerAccessor = wrapHandler(handler, h);
@@ -119,7 +119,7 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
    */
   public Jdk14HandlerAccessor getHandler(int index) {
     try {
-      Object[] handlers = (Object[]) MethodUtils.invokeMethod(getTarget(), "getHandlers", null);
+      Object[] handlers = (Object[]) MethodUtils.invokeMethod(getTarget(), "getHandlers");
       return wrapHandler(handlers[index], index);
     } catch (Exception e) {
       logger.error("{}#handlers inaccessible", getTarget().getClass().getName(), e);
@@ -138,12 +138,12 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
       Object target = getTarget();
       while (level == null && target != null) {
         level = getLevelInternal(target);
-        target = MethodUtils.invokeMethod(target, "getParent", null);
+        target = MethodUtils.invokeMethod(target, "getParent");
       }
       if (level == null && isJuliRoot()) {
         return "INFO";
       }
-      return (String) MethodUtils.invokeMethod(level, "getName", null);
+      return (String) MethodUtils.invokeMethod(level, "getName");
     } catch (Exception e) {
       logger.error("{}#getLevel() failed", getTarget().getClass().getName(), e);
     }
@@ -175,7 +175,7 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
    * @throws Exception the exception
    */
   private Object getLevelInternal(Object target) throws Exception {
-    return MethodUtils.invokeMethod(target, "getLevel", null);
+    return MethodUtils.invokeMethod(target, "getLevel");
   }
 
   /**

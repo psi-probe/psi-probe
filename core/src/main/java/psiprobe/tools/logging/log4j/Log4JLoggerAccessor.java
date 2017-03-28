@@ -10,7 +10,7 @@
  */
 package psiprobe.tools.logging.log4j;
 
-import org.apache.commons.beanutils.MethodUtils;
+import org.apache.commons.lang3.reflect.MethodUtils;
 
 import psiprobe.tools.logging.DefaultAccessor;
 
@@ -37,7 +37,7 @@ public class Log4JLoggerAccessor extends DefaultAccessor {
     List<Log4JAppenderAccessor> appenders = new ArrayList<>();
     try {
       for (Object unwrappedAppender : Collections.list(
-          (Enumeration<Object>) MethodUtils.invokeMethod(getTarget(), "getAllAppenders", null))) {
+          (Enumeration<Object>) MethodUtils.invokeMethod(getTarget(), "getAllAppenders"))) {
         Log4JAppenderAccessor appender = wrapAppender(unwrappedAppender);
         if (appender != null) {
           appenders.add(appender);
@@ -108,8 +108,8 @@ public class Log4JLoggerAccessor extends DefaultAccessor {
    */
   public String getLevel() {
     try {
-      Object level = MethodUtils.invokeMethod(getTarget(), "getLevel", null);
-      return (String) MethodUtils.invokeMethod(level, "toString", null);
+      Object level = MethodUtils.invokeMethod(getTarget(), "getLevel");
+      return (String) MethodUtils.invokeMethod(level, "toString");
     } catch (Exception e) {
       logger.error("{}#getLevel() failed", getTarget().getClass().getName(), e);
     }
@@ -123,7 +123,7 @@ public class Log4JLoggerAccessor extends DefaultAccessor {
    */
   public void setLevel(String newLevelStr) {
     try {
-      Object level = MethodUtils.invokeMethod(getTarget(), "getLevel", null);
+      Object level = MethodUtils.invokeMethod(getTarget(), "getLevel");
       Object newLevel = MethodUtils.invokeMethod(level, "toLevel", newLevelStr);
       MethodUtils.invokeMethod(getTarget(), "setLevel", newLevel);
     } catch (Exception e) {

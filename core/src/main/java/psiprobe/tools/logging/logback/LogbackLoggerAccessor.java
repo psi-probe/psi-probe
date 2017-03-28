@@ -10,7 +10,7 @@
  */
 package psiprobe.tools.logging.logback;
 
-import org.apache.commons.beanutils.MethodUtils;
+import org.apache.commons.lang3.reflect.MethodUtils;
 import org.apache.commons.collections.IteratorUtils;
 
 import psiprobe.tools.logging.DefaultAccessor;
@@ -36,7 +36,7 @@ public class LogbackLoggerAccessor extends DefaultAccessor {
     try {
       for (Object appender : Collections
           .list(IteratorUtils.asEnumeration((Iterator<Object>) MethodUtils.invokeMethod(getTarget(),
-              "iteratorForAppenders", null)))) {
+              "iteratorForAppenders")))) {
         List<Object> siftedAppenders = getSiftedAppenders(appender);
         if (siftedAppenders != null) {
           for (Object siftedAppender : siftedAppenders) {
@@ -113,8 +113,8 @@ public class LogbackLoggerAccessor extends DefaultAccessor {
    */
   public String getLevel() {
     try {
-      Object level = MethodUtils.invokeMethod(getTarget(), "getLevel", null);
-      return (String) MethodUtils.invokeMethod(level, "toString", null);
+      Object level = MethodUtils.invokeMethod(getTarget(), "getLevel");
+      return (String) MethodUtils.invokeMethod(level, "toString");
     } catch (Exception e) {
       logger.error("{}#getLevel() failed", getTarget().getClass().getName(), e);
     }
@@ -128,7 +128,7 @@ public class LogbackLoggerAccessor extends DefaultAccessor {
    */
   public void setLevel(String newLevelStr) {
     try {
-      Object level = MethodUtils.invokeMethod(getTarget(), "getLevel", null);
+      Object level = MethodUtils.invokeMethod(getTarget(), "getLevel");
       Object newLevel = MethodUtils.invokeMethod(level, "toLevel", newLevelStr);
       MethodUtils.invokeMethod(getTarget(), "setLevel", newLevel);
     } catch (Exception e) {
@@ -146,14 +146,14 @@ public class LogbackLoggerAccessor extends DefaultAccessor {
   @SuppressWarnings("unchecked")
   private List<Object> getSiftedAppenders(Object appender) throws Exception {
     if ("ch.qos.logback.classic.sift.SiftingAppender".equals(appender.getClass().getName())) {
-      Object tracker = MethodUtils.invokeMethod(appender, "getAppenderTracker", null);
+      Object tracker = MethodUtils.invokeMethod(appender, "getAppenderTracker");
       if (tracker != null) {
         try {
-          return (List<Object>) MethodUtils.invokeMethod(tracker, "allComponents", null);
+          return (List<Object>) MethodUtils.invokeMethod(tracker, "allComponents");
         } catch (final NoSuchMethodException e) {
           // XXX Legacy 1.0.x and lower support for logback
           logger.trace("", e);
-          return (List<Object>) MethodUtils.invokeMethod(tracker, "valueList", null);
+          return (List<Object>) MethodUtils.invokeMethod(tracker, "valueList");
         }
       }
       return new ArrayList<>();
