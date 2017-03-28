@@ -39,6 +39,12 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>psi-probe-ojdbc</artifactId>
+            <version>${probe-ojdbc.version}</version>
+        </dependency>
+
         <!-- tomcat libs start -->
         <dependency>
             <groupId>org.apache.tomcat</groupId>
@@ -83,16 +89,6 @@
         <dependency>
             <groupId>com.mchange</groupId>
             <artifactId>c3p0</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.oracle.jdbc</groupId>
-            <artifactId>ucp</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.oracle.jdbc</groupId>
-            <artifactId>ojdbc7</artifactId>
             <scope>provided</scope>
         </dependency>
         <dependency>

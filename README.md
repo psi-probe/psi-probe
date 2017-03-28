@@ -43,21 +43,7 @@ Please download latest snapshots from [here](https://oss.sonatype.org/content/re
 
 	You may download it from the [Apache Maven website](https://maven.apache.org/download.cgi).
 
-4.	**Setup to retrieve the required ojdbc and ucp Maven artifacts.**
-
-	Oracle's JDBC drivers and connection pool are protected by the OTN (Oracle Technology Network) Development and
-    Distribution License.  For this reason, the .jar files cannot be legally hosted in any Maven repository or
-    distributed with PSI Probe.  Thankfully Oracle has made it possible to pull from their maven repo and currently
-    this is required to build psi-probe.
-    
-    Follow instructions located [here](http://www.oracle.com/webfolder/application/maven/index.html)
-
-    [optionally] Retrieve ojdbc and ucp from location noted in following poms and then Execute the following commands:
-
-    - mvn install:install-file -Dfile=/path/to/ojdbc7.jar -DpomFile=/path/to/ojdbc7-pom.xml
-	- mvn install:install-file -Dfile=/path/to/ucp.jar -DpomFile=/path/to/ucp-pom.xml
-    
-5.	**Run Maven.**
+4.	**Run Maven.**
 
 	Execute the following command from your PSI Probe base directory:
 

@@ -111,26 +111,12 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <logback.version>1.2.3</logback.version>
+        <probe-ojdbc.version>3.0.0</probe-ojdbc.version>
         <slf4j.version>1.7.25</slf4j.version>
         <spring.version>4.3.8.RELEASE</spring.version>
         <spring-security.version>4.2.2.RELEASE</spring-security.version>
         <tomcat.version>8.5.14</tomcat.version>
     </properties>
-
-    <repositories>
-        <repository>
-            <!-- Required for ojdbc7 and ucp -->
-            <id>maven.oracle.com</id>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <url>https://maven.oracle.com</url>
-            <layout>default</layout>
-        </repository>
-    </repositories>
 
     <dependencyManagement>
         <dependencies>
@@ -204,16 +190,6 @@
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
                 <version>${logback.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.oracle.jdbc</groupId>
-                <artifactId>ucp</artifactId>
-                <version>12.1.0.2</version>
-            </dependency>
-            <dependency>
-                <groupId>com.oracle.jdbc</groupId>
-                <artifactId>ojdbc7</artifactId>
-                <version>12.1.0.2</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.tomcat</groupId>
