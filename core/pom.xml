@@ -35,7 +35,7 @@
     </scm>
 
     <properties>
-        <jsr305.version>3.0.1</jsr305.version>
+        <jsr305.version>3.0.2</jsr305.version>
     </properties>
 
     <dependencies>
