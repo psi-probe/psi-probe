@@ -10,6 +10,7 @@
  */
 package psiprobe;
 
+import com.google.common.base.Strings;
 import com.uwyn.jhighlight.renderer.Renderer;
 import com.uwyn.jhighlight.renderer.XhtmlRendererFactory;
 
@@ -517,14 +518,10 @@ public final class Utils {
    * @return the string
    */
   public static String leftPad(String str, int len, String fill) {
-    StringBuilder sb = new StringBuilder(len);
-    if (str.length() < len) {
-      for (int i = str.length(); i < len; i++) {
-        sb.append(fill);
-      }
+    if (str != null && str.length() < len) {
+      return Strings.padStart(str, len, fill.charAt(0));
     }
-    sb.append(str);
-    return sb.toString();
+    return str;
   }
 
   /**
