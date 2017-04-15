@@ -60,7 +60,6 @@ public class C3P0DatasourceAccessorTest {
     /**
      * Gets the info test.
      *
-     * @return the info test
      * @throws Exception the exception
      */
     @Test
