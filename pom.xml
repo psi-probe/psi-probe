@@ -112,9 +112,9 @@
 
         <logback.version>1.2.3</logback.version>
         <slf4j.version>1.7.25</slf4j.version>
-        <spring.version>4.3.7.RELEASE</spring.version>
+        <spring.version>4.3.8.RELEASE</spring.version>
         <spring-security.version>4.2.2.RELEASE</spring-security.version>
-        <tomcat.version>8.5.13</tomcat.version>
+        <tomcat.version>8.5.14</tomcat.version>
     </properties>
 
     <repositories>
@@ -172,7 +172,7 @@
             <dependency>
                 <groupId>com.sun.mail</groupId>
                 <artifactId>javax.mail</artifactId>
-                <version>1.5.6</version>
+                <version>1.6.0-rc1</version>
                 <exclusions>
                     <exclusion>
                         <groupId>javax.activation</groupId>
