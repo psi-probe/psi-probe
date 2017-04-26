@@ -67,17 +67,6 @@ public final class Utils {
   }
 
   /**
-   * Calc pool usage score.
-   *
-   * @param max the max
-   * @param value the value
-   * @return the int
-   */
-  public static int calcPoolUsageScore(int max, int value) {
-    return max > 0 ? Math.max(0, value) * 100 / max : 0;
-  }
-
-  /**
    * Reads a file on disk. The method uses default file encoding (see: file.encoding system
    * property)
    *
@@ -162,17 +151,6 @@ public final class Utils {
       }
     }
     return defaultValue;
-  }
-
-  /**
-   * To int.
-   *
-   * @param num the num
-   * @param defaultValue the default value
-   * @return the int
-   */
-  public static int toInt(Integer num, int defaultValue) {
-    return num == null ? defaultValue : num;
   }
 
   /**

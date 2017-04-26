@@ -19,15 +19,6 @@ import org.junit.Test;
 public class UtilsTest {
 
   /**
-   * Calc pool usage score test.
-   */
-  @Test
-  public void calcPoolUsageScoreTest() {
-    Assert.assertEquals(100, Utils.calcPoolUsageScore(5, 5));
-    Assert.assertEquals(0, Utils.calcPoolUsageScore(0, 5));
-  }
-
-  /**
    * To int test.
    */
   @Test
@@ -36,15 +27,6 @@ public class UtilsTest {
     Assert.assertEquals(3, Utils.toInt("3", 5));
     Assert.assertEquals(5, Utils.toInt("3 3", 5));
     Assert.assertEquals(5, Utils.toInt((String) null, 5)); 
-  }
-
-  /**
-   * To integer int test.
-   */
-  @Test
-  public void toIntegerIntTest() {
-    Assert.assertEquals(5, Utils.toInt((Integer) null, 5));
-    Assert.assertEquals(1, Utils.toInt(new Integer(1), 5));
   }
 
   /**
