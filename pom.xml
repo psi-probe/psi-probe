@@ -437,6 +437,12 @@
                 <artifactId>jfreechart</artifactId>
                 <version>1.0.19</version>
             </dependency>
+            <!-- Override jcommon used in jfreechart -->
+            <dependency>
+                <groupId>org.jfree</groupId>
+                <artifactId>jcommon</artifactId>
+                <version>1.0.24</version>
+            </dependency>
             <dependency>
                 <groupId>com.github.oshi</groupId>
                 <artifactId>oshi-core</artifactId>
