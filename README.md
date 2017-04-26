@@ -27,29 +27,29 @@ Please download latest snapshots from [here](https://oss.sonatype.org/content/re
 
 ## Building from Source ##
 
-1.	**Clone PSI Probe's git repository.**
+1.  **Clone PSI Probe's git repository.**
 
-	*Note: If you plan to contribute to PSI Probe, you should create your own fork on GitHub first and clone that.  Otherwise, follow these steps to build the latest version of PSI Probe for yourself.*
+    *Note: If you plan to contribute to PSI Probe, you should create your own fork on GitHub first and clone that.  Otherwise, follow these steps to build the latest version of PSI Probe for yourself.*
 
-	Execute the following command:
+    Execute the following command:
 
-		git clone https://github.com/psi-probe/psi-probe
+        git clone https://github.com/psi-probe/psi-probe
 
-	This will create directory called `psi-probe`. Subsequent steps will refer to this as "your PSI Probe base directory."
+    This will create directory called `psi-probe`. Subsequent steps will refer to this as "your PSI Probe base directory."
 
 2.  Minimum JDK version required to run build is JDK7.  Project still targets JDK6.  The raise to JDK7 is a direct result of early Tomcat 9 support and maven plugins moving to JDK7.
-	
-3.	**Download and install Maven 3.**
 
-	You may download it from the [Apache Maven website](https://maven.apache.org/download.cgi).
+3.  **Download and install Maven 3.**
 
-4.	**Run Maven.**
+    You may download it from the [Apache Maven website](https://maven.apache.org/download.cgi).
 
-	Execute the following command from your PSI Probe base directory:
+4.  **Run Maven.**
 
-		mvn package
+    Execute the following command from your PSI Probe base directory:
 
-	This will create a deployable file at `web/target/probe.war`.
+        mvn package
+
+    This will create a deployable file at `web/target/probe.war`.
 
 ## User Groups
 
