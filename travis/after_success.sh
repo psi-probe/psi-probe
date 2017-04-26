@@ -30,16 +30,16 @@ if [ $TRAVIS_REPO_SLUG == "psi-probe/psi-probe" ] && [ $TRAVIS_PULL_REQUEST == "
 
   if [ $TRAVIS_JDK_VERSION == "oraclejdk8" ]; then
     # Deploy sonatype
-    mvn deploy -q --settings ./travis/settings.xml
+    ./mvnw deploy -q --settings ./travis/settings.xml
     echo -e "Successfully deployed SNAPSHOT artifacts to Sonatype under Travis job ${TRAVIS_JOB_NUMBER}"
 
 	# Send coverage to coveralls
-    mvn test jacoco:report coveralls:report -q --settings ./travis/settings.xml
+    ./mvnw test jacoco:report coveralls:report -q --settings ./travis/settings.xml
     echo -e "Successfully ran coveralls under Travis job ${TRAVIS_JOB_NUMBER}"
 
     # Deploy to site
     # Cannot currently run site this way
-	# mvn site site:deploy -q --settings ./travis/settings.xml
+	# ./mvnw site site:deploy -q --settings ./travis/settings.xml
 	# echo -e "Successfully deploy site under Travis job ${TRAVIS_JOB_NUMBER}"
   fi
 
@@ -47,7 +47,7 @@ elif [ $TRAVIS_REPO_SLUG == "psi-probe/psi-probe" ] && [ $TRAVIS_PULL_REQUEST !=
 
   if [ $TRAVIS_JDK_VERSION == "oraclejdk8" ]; then
 	# Send coverage to coveralls
-	mvn clean test jacoco:report coveralls:report -q --settings ./travis/settings.xml
+	./mvnw clean test jacoco:report coveralls:report -q --settings ./travis/settings.xml
 	echo -e "Successfully ran coveralls under Travis job ${TRAVIS_JOB_NUMBER}"
   fi
 
