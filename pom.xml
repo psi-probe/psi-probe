@@ -360,6 +360,22 @@
                     </exclusion>
                 </exclusions>
             </dependency>
+            <!-- Override Jackson used in geoip2 -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>2.8.8</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>2.8.8</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>2.8.8</version>
+            </dependency>
             <dependency>
                 <groupId>javax.transaction</groupId>
                 <artifactId>javax.transaction-api</artifactId>
@@ -421,10 +437,22 @@
                 <artifactId>jfreechart</artifactId>
                 <version>1.0.19</version>
             </dependency>
+            <!-- Override jcommon used in jfreechart -->
+            <dependency>
+                <groupId>org.jfree</groupId>
+                <artifactId>jcommon</artifactId>
+                <version>1.0.24</version>
+            </dependency>
             <dependency>
                 <groupId>com.github.oshi</groupId>
                 <artifactId>oshi-core</artifactId>
                 <version>3.4.2</version>
+            </dependency>
+            <!-- Override jna used in oshi -->
+            <dependency>
+                <groupId>net.java.dev.jna</groupId>
+                <artifactId>jna-platform</artifactId>
+                <version>4.4.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
