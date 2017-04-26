@@ -260,21 +260,6 @@
                 <version>3.5</version>
             </dependency>
             <dependency>
-                <groupId>commons-modeler</groupId>
-                <artifactId>commons-modeler</artifactId>
-                <version>2.0.1</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>commons-digester</groupId>
-                        <artifactId>commons-digester</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>commons-logging</groupId>
-                        <artifactId>commons-logging-api</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
                 <groupId>com.github.hazendaz</groupId>
                 <artifactId>displaytag</artifactId>
                 <version>2.1.5</version>

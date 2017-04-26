@@ -185,11 +185,6 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>commons-modeler</groupId>
-            <artifactId>commons-modeler</artifactId>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
             <groupId>com.maxmind.geoip2</groupId>
             <artifactId>geoip2</artifactId>
             <scope>compile</scope>

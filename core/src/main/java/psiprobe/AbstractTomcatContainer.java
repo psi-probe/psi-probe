@@ -19,7 +19,6 @@ import org.apache.catalina.Valve;
 import org.apache.catalina.Wrapper;
 import org.apache.catalina.connector.Connector;
 import org.apache.catalina.core.StandardContext;
-import org.apache.commons.modeler.Registry;
 import org.apache.jasper.EmbeddedServletOptions;
 import org.apache.jasper.JspCompilationContext;
 import org.apache.jasper.Options;
@@ -34,6 +33,7 @@ import psiprobe.model.jsp.Summary;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.management.ManagementFactory;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -92,7 +92,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
         logger.trace("", e);
       }
       host.getPipeline().addValve(valve);
-      mbeanServer = Registry.getRegistry(null, null).getMBeanServer();
+      mbeanServer = ManagementFactory.getPlatformMBeanServer();
     } else if (host != null) {
       host.getPipeline().removeValve(valve);
     }

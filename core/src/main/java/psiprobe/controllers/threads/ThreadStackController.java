@@ -10,7 +10,6 @@
  */
 package psiprobe.controllers.threads;
 
-import org.apache.commons.modeler.Registry;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestUtils;
@@ -21,6 +20,7 @@ import org.springframework.web.servlet.mvc.ParameterizableViewController;
 import psiprobe.model.ThreadStackElement;
 import psiprobe.tools.JmxTools;
 
+import java.lang.management.ManagementFactory;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,7 +73,7 @@ public class ThreadStackController extends ParameterizableViewController {
     String threadName = ServletRequestUtils.getStringParameter(request, "name", null);
 
     List<ThreadStackElement> stack = null;
-    MBeanServer mbeanServer = new Registry().getMBeanServer();
+    MBeanServer mbeanServer = ManagementFactory.getPlatformMBeanServer();
     ObjectName threadingOName = new ObjectName("java.lang:type=Threading");
 
     if (threadId == -1 && threadName != null) {
