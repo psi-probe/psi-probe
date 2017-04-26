@@ -10,12 +10,13 @@
  */
 package psiprobe.beans;
 
-import org.apache.commons.modeler.Registry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import psiprobe.model.jmx.RuntimeInformation;
 import psiprobe.tools.JmxTools;
+
+import java.lang.management.ManagementFactory;
 
 import javax.management.MBeanServer;
 import javax.management.ObjectName;
@@ -35,7 +36,7 @@ public class RuntimeInfoAccessorBean {
    * @throws Exception the exception
    */
   public RuntimeInformation getRuntimeInformation() throws Exception {
-    MBeanServer mbeanServer = new Registry().getMBeanServer();
+    MBeanServer mbeanServer = ManagementFactory.getPlatformMBeanServer();
     RuntimeInformation ri = new RuntimeInformation();
 
     try {

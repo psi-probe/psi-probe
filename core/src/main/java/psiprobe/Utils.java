@@ -14,7 +14,6 @@ import com.google.common.base.Strings;
 import com.uwyn.jhighlight.renderer.Renderer;
 import com.uwyn.jhighlight.renderer.XhtmlRendererFactory;
 
-import org.apache.commons.modeler.Registry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,6 +34,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.RandomAccessFile;
 import java.io.Reader;
+import java.lang.management.ManagementFactory;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
@@ -541,7 +541,7 @@ public final class Utils {
    */
   public static boolean isThreadingEnabled() {
     try {
-      MBeanServer mbeanServer = new Registry().getMBeanServer();
+      MBeanServer mbeanServer = ManagementFactory.getPlatformMBeanServer();
       ObjectName threadingOName = new ObjectName("java.lang:type=Threading");
       Set<ObjectInstance> threading = mbeanServer.queryMBeans(threadingOName, null);
       return threading != null && !threading.isEmpty();

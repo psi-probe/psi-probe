@@ -10,13 +10,13 @@
  */
 package psiprobe.beans;
 
-import org.apache.commons.modeler.Registry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import psiprobe.model.jmx.MemoryPool;
 import psiprobe.tools.JmxTools;
 
+import java.lang.management.ManagementFactory;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -43,7 +43,7 @@ public class JvmMemoryInfoAccessorBean {
   public List<MemoryPool> getPools() throws Exception {
 
     List<MemoryPool> memoryPools = new LinkedList<>();
-    MBeanServer mbeanServer = new Registry().getMBeanServer();
+    MBeanServer mbeanServer = ManagementFactory.getPlatformMBeanServer();
     Set<ObjectInstance> memoryOPools =
         mbeanServer.queryMBeans(new ObjectName("java.lang:type=MemoryPool,*"), null);
 

@@ -10,8 +10,6 @@
  */
 package psiprobe.beans;
 
-import org.apache.commons.modeler.Registry;
-
 import psiprobe.model.jmx.AsyncClusterSender;
 import psiprobe.model.jmx.Cluster;
 import psiprobe.model.jmx.ClusterSender;
@@ -19,6 +17,7 @@ import psiprobe.model.jmx.PooledClusterSender;
 import psiprobe.model.jmx.SyncClusterSender;
 import psiprobe.tools.JmxTools;
 
+import java.lang.management.ManagementFactory;
 import java.util.Set;
 
 import javax.management.MBeanServer;
@@ -44,7 +43,7 @@ public class ClusterWrapperBean {
 
     Cluster cluster = null;
 
-    MBeanServer mbeanServer = new Registry().getMBeanServer();
+    MBeanServer mbeanServer = ManagementFactory.getPlatformMBeanServer();
     ObjectName membershipOName =
         new ObjectName(serverName + ":type=ClusterMembership,host=" + hostName);
     ObjectName receiverOName =
