@@ -974,7 +974,6 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
     // Add Properties
     Properties properties = new Properties();
     properties.setProperty("org.quartz.scheduler.instanceName", "ProbeScheduler");
-    properties.setProperty("org.quartz.scheduler.skipUpdateCheck", "true");
     properties.setProperty("org.quartz.threadPool.threadCount", "5");
     properties.setProperty("org.quartz.threadPool.threadNamePrefix", "Probe_Quartz");
     bean.setQuartzProperties(properties);
