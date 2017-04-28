@@ -751,7 +751,7 @@ Object.extend(String.prototype, (function() {
       });
     }
     try {
-      if (!sanitize || json.isJSON()) return eval('(' + json + ')');
+      if (!sanitize || json.isJSON()) return JSON.parse(json);
     } catch (e) { }
     throw new SyntaxError('Badly formed JSON string: ' + this.inspect());
   }
@@ -1860,7 +1860,8 @@ Ajax.Request = Class.create(Ajax.Base, {
 
   evalResponse: function() {
     try {
-      return eval((this.transport.responseText || '').unfilterJSON());
+      var fn = new Function("text", "return text");
+      return fn((this.transport.responseText || '').unfilterJSON());
     } catch (e) {
       this.dispatchException(e);
     }
