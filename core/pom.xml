@@ -34,10 +34,6 @@
         <url>https://github.com/psi-probe/psi-probe/</url>
     </scm>
 
-    <properties>
-        <jsr305.version>3.0.2</jsr305.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -268,12 +264,6 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-web</artifactId>
             <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.google.code.findbugs</groupId>
-            <artifactId>jsr305</artifactId>
-            <version>${jsr305.version}</version>
-            <scope>provided</scope>
         </dependency>
     </dependencies>
 

@@ -134,6 +134,7 @@
         <jmockit.version>1.31</jmockit.version>
         <jna.version>4.4.0</jna.version>
         <jsp-api.version>2.3.2-b02</jsp-api.version>
+        <jsr305.version>3.0.2</jsr305.version>
         <jstl-api.version>1.2.1</jstl-api.version>
         <jstl.version>1.2.5-b03</jstl.version>
         <junit.version>4.12</junit.version>
@@ -200,6 +201,12 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- Sonar Needs Following for Scans -->
+            <dependency>
+                <groupId>com.google.code.findbugs</groupId>
+                <artifactId>jsr305</artifactId>
+                <version>${jsr305.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.jmockit</groupId>
                 <artifactId>jmockit</artifactId>
@@ -531,6 +538,12 @@
     </dependencyManagement>
 
     <dependencies>
+        <!-- Sonar Needs Following for Scans -->
+        <dependency>
+            <groupId>com.google.code.findbugs</groupId>
+            <artifactId>jsr305</artifactId>
+            <scope>provided</scope>
+        </dependency>
         <dependency>
             <groupId>org.jmockit</groupId>
             <artifactId>jmockit</artifactId>
