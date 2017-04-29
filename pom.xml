@@ -826,7 +826,7 @@
                     <dependencies>
                         <dependency>
                             <groupId>org.jasig.mojo.jspc</groupId>
-                            <artifactId>jspc-compiler-tomcat7</artifactId>
+                            <artifactId>jspc-compiler-tomcat8</artifactId>
                             <version>${jspc.plugin}</version>
                         </dependency>
                     </dependencies>
