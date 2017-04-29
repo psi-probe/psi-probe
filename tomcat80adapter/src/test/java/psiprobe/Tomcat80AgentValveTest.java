@@ -10,70 +10,56 @@
  */
 package psiprobe;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import java.io.IOException;
 
+import javax.servlet.ServletException;
+
+import org.apache.catalina.connector.Request;
+import org.apache.catalina.connector.Response;
+import org.apache.catalina.valves.ValveBase;
+import org.junit.Assert;
 import org.junit.Test;
 
-import psiprobe.Tomcat80ContainerAdapter;
+import mockit.Expectations;
+import mockit.Mocked;
+import mockit.Tested;
 
 /**
  * The Class Tomcat80AgentValveTest.
  */
 public class Tomcat80AgentValveTest {
 
-  /**
-   * Can bound to null.
-   */
-  @Test
-  public void canBoundToNull() {
-    final Tomcat80ContainerAdapter valve = new Tomcat80ContainerAdapter();
-    assertFalse(valve.canBoundTo(null));
-  }
+  /** The valve. */
+  @Tested
+  Tomcat80AgentValve valve;
+
+  /** The request. */
+  @Mocked
+  Request request;
+
+  /** The response. */
+  @Mocked
+  Response response;
+
+  /** The valve base. */
+  @Mocked
+  ValveBase valveBase;
 
   /**
-   * Can bound to tomcat7.
+   * Invoke.
+   *
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws ServletException the servlet exception
    */
   @Test
-  public void canBoundToTomcat7() {
-    final Tomcat80ContainerAdapter valve = new Tomcat80ContainerAdapter();
-    assertTrue(valve.canBoundTo("Apache Tomcat/8.0"));
-  }
-
-  /**
-   * Can bound to tom ee.
-   */
-  @Test
-  public void canBoundToTomEE() {
-    final Tomcat80ContainerAdapter valve = new Tomcat80ContainerAdapter();
-    assertFalse(valve.canBoundTo("Apache Tomcat (TomEE)/8.0"));
-  }
-
-  /**
-   * Can bound to pivotal7.
-   */
-  @Test
-  public void canBoundToPivotal7() {
-    final Tomcat80ContainerAdapter valve = new Tomcat80ContainerAdapter();
-    assertFalse(valve.canBoundTo("Pivotal tc..../7.0"));
-  }
-
-  /**
-   * Can bound to pivotal8.
-   */
-  @Test
-  public void canBoundToPivotal8() {
-    final Tomcat80ContainerAdapter valve = new Tomcat80ContainerAdapter();
-    assertTrue(valve.canBoundTo("Pivotal tc..../8.0"));
-  }
-
-  /**
-   * Can bound to other.
-   */
-  @Test
-  public void canBoundToOther() {
-    final Tomcat80ContainerAdapter valve = new Tomcat80ContainerAdapter();
-    assertFalse(valve.canBoundTo("Other"));
+  public void invoke() throws IOException, ServletException {
+    Assert.assertNotNull(new Expectations() {
+      {
+        valve.getNext();
+        result = valveBase;
+      }
+    });
+    valve.invoke(request, response);
   }
 
 }
