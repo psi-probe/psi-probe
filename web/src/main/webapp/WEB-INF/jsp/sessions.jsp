@@ -59,7 +59,7 @@
 				id="sessionForm">
 
 			<c:if test="${! empty param.webapp}">
-				<input type="hidden" name="webapp" value='<c:url value="${param.webapp}" />'/>
+				<input type="hidden" name="webapp" value='<c:out value="${param.webapp}" />'/>
 			</c:if>
 
 			<ul class="options">
