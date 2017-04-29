@@ -220,6 +220,8 @@
                 <version>${j2objc.version}</version>
             </dependency>
 
+            <!-- Unit Testing -->
+            <dependency>
                 <groupId>org.jmockit</groupId>
                 <artifactId>jmockit</artifactId>
                 <version>${jmockit.version}</version>
@@ -234,6 +236,8 @@
                 <artifactId>javabean-tester</artifactId>
                 <version>${javabean-tester.version}</version>
             </dependency>
+
+            <!-- API -->
             <dependency>
                 <groupId>javax.inject</groupId>
                 <artifactId>javax.inject</artifactId>
@@ -286,9 +290,26 @@
                 <version>${el-api.version}</version>
             </dependency>
             <dependency>
-                <groupId>ch.qos.logback</groupId>
-                <artifactId>logback-classic</artifactId>
-                <version>${logback.version}</version>
+                <groupId>javax.transaction</groupId>
+                <artifactId>javax.transaction-api</artifactId>
+                <version>${transaction-api.version}</version>
+            </dependency>
+
+            <!-- JDBC / Connection Pools -->
+            <dependency>
+                <groupId>com.mchange</groupId>
+                <artifactId>c3p0</artifactId>
+                <version>${c3p0.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-dbcp</groupId>
+                <artifactId>commons-dbcp</artifactId>
+                <version>${dbcp.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-dbcp2</artifactId>
+                <version>${dbcp2.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.tomcat</groupId>
@@ -327,6 +348,8 @@
                 <artifactId>vibur-dbcp</artifactId>
                 <version>${vibur-dbcp.version}</version>
             </dependency>
+
+            <!-- Commons -->
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
@@ -358,11 +381,15 @@
                 <artifactId>commons-lang3</artifactId>
                 <version>${lang3.version}</version>
             </dependency>
+
+            <!-- Displaytag -->
             <dependency>
                 <groupId>com.github.hazendaz</groupId>
                 <artifactId>displaytag</artifactId>
                 <version>${displaytag.version}</version>
             </dependency>
+
+            <!-- Logging -->
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>jcl-over-slf4j</artifactId>
@@ -373,6 +400,13 @@
                 <artifactId>slf4j-api</artifactId>
                 <version>${slf4j.version}</version>
             </dependency>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
+
+            <!-- Spring -->
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-beans</artifactId>
@@ -429,6 +463,8 @@
                 <artifactId>spring-security-web</artifactId>
                 <version>${spring-security.version}</version>
             </dependency>
+
+            <!-- Geo IP -->
             <dependency>
                 <groupId>com.maxmind.geoip2</groupId>
                 <artifactId>geoip2</artifactId>
@@ -460,11 +496,8 @@
                 <artifactId>jackson-core</artifactId>
                 <version>${jackson.version}</version>
             </dependency>
-            <dependency>
-                <groupId>javax.transaction</groupId>
-                <artifactId>javax.transaction-api</artifactId>
-                <version>${transaction-api.version}</version>
-            </dependency>
+
+            <!-- Quartz -->
             <dependency>
                 <groupId>org.quartz-scheduler</groupId>
                 <artifactId>quartz</artifactId>
@@ -484,6 +517,8 @@
                     </exclusion>
                 </exclusions>
             </dependency>
+
+            <!-- XML -->
             <dependency>
                 <groupId>opensymphony</groupId>
                 <artifactId>sitemesh</artifactId>
@@ -499,30 +534,12 @@
                 <artifactId>xstream</artifactId>
                 <version>${xstream.version}</version>
             </dependency>
+
+            <!-- Jfreechart -->
             <dependency>
                 <groupId>org.codelibs</groupId>
                 <artifactId>jhighlight</artifactId>
                 <version>${jhighlight.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.mchange</groupId>
-                <artifactId>c3p0</artifactId>
-                <version>${c3p0.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>commons-dbcp</groupId>
-                <artifactId>commons-dbcp</artifactId>
-                <version>${dbcp.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-dbcp2</artifactId>
-                <version>${dbcp2.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>tanukisoft</groupId>
-                <artifactId>wrapper</artifactId>
-                <version>${wrapper.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jfree</groupId>
@@ -535,6 +552,15 @@
                 <artifactId>jcommon</artifactId>
                 <version>${jcommon.version}</version>
             </dependency>
+
+            <!-- Tanuki Wrapper -->
+            <dependency>
+                <groupId>tanukisoft</groupId>
+                <artifactId>wrapper</artifactId>
+                <version>${wrapper.version}</version>
+            </dependency>
+
+            <!-- Operating System and Hardware Information -->
             <dependency>
                 <groupId>com.github.oshi</groupId>
                 <artifactId>oshi-core</artifactId>
@@ -567,6 +593,8 @@
             <scope>provided</scope>
         </dependency>
 
+        <!-- Unit Testing -->
+        <dependency>
             <groupId>org.jmockit</groupId>
             <artifactId>jmockit</artifactId>
             <scope>test</scope>
