@@ -72,22 +72,8 @@ public class Tomcat90ContainerAdapter extends AbstractTomcatContainer {
     String[] urls = fmap.getURLPatterns();
     String[] servlets = fmap.getServletNames();
     List<FilterMapping> results = new ArrayList<>(urls.length + servlets.length);
-    for (String url : urls) {
-      FilterMapping fm = new FilterMapping();
-      fm.setUrl(url);
-      fm.setFilterName(fmap.getFilterName());
-      fm.setDispatcherMap(dm);
-      fm.setFilterClass(filterClass);
-      results.add(fm);
-    }
-    for (String servlet : servlets) {
-      FilterMapping fm = new FilterMapping();
-      fm.setServletName(servlet);
-      fm.setFilterName(fmap.getFilterName());
-      fm.setDispatcherMap(dm);
-      fm.setFilterClass(filterClass);
-      results.add(fm);
-    }
+    addFilterMapping(fmap.getFilterName(), dm, filterClass, urls, results, FilterMapType.URL);
+    addFilterMapping(fmap.getFilterName(), dm, filterClass, servlets, results, FilterMapType.SERVLET_NAME);
     return results;
   }
 

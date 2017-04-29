@@ -28,6 +28,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.ClassUtils;
 
+import psiprobe.model.FilterMapping;
 import psiprobe.model.jsp.Item;
 import psiprobe.model.jsp.Summary;
 
@@ -76,6 +77,16 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
 
   /** The mbean server. */
   protected MBeanServer mbeanServer;
+
+  /** The Enum FilterMapType. */
+  public enum FilterMapType {
+
+    /** The url. */
+    URL,
+
+    /** The servlet name. */
+    SERVLET_NAME;
+  }
 
   @Override
   public void setWrapper(Wrapper wrapper) {
@@ -624,5 +635,31 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
    * @return the valve
    */
   protected abstract Valve createValve();
+
+  /**
+   * Adds the filter mapping.
+   *
+   * @param filterName the filter name
+   * @param dispatcherMap the dispatcher map
+   * @param filterClass the filter class
+   * @param types the types as urls or servlet name
+   * @param results the results
+   * @param filterMapType the filter map type
+   */
+  protected void addFilterMapping(String filterName, String dispatcherMap, String filterClass, String[] types,
+      List<FilterMapping> results, FilterMapType filterMapType) {
+    for (String type : types) {
+      FilterMapping fm = new FilterMapping();
+      if (filterMapType == FilterMapType.URL) {
+        fm.setUrl(type);
+      } else {
+        fm.setServletName(type);
+      }
+      fm.setFilterName(filterName);
+      fm.setDispatcherMap(dispatcherMap);
+      fm.setFilterClass(filterClass);
+      results.add(fm);
+    }
+  }
 
 }
