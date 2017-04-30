@@ -12,18 +12,35 @@ package psiprobe;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+
+import java.io.IOException;
+
+import javax.naming.NamingException;
+
 import static org.junit.Assert.assertEquals;
 
+import org.apache.catalina.Context;
 import org.apache.catalina.Valve;
+import org.apache.catalina.deploy.ApplicationParameter;
+import org.apache.catalina.deploy.FilterDef;
 import org.apache.catalina.deploy.FilterMap;
+import org.apache.jasper.JspCompilationContext;
+import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
+import mockit.Expectations;
+import mockit.Mocked;
 import psiprobe.Tomcat70ContainerAdapter;
 
 /**
  * The Class Tomcat70ContainerAdapterTest.
  */
 public class Tomcat70ContainerAdapterTest {
+
+  /** The context. */
+  @Mocked
+  Context context;
 
   /**
    * Creates the valve.
@@ -156,12 +173,135 @@ public class Tomcat70ContainerAdapterTest {
    * Filter mappings.
    */
   @Test
-  public void FilterMappings() {
+  public void filterMappings() {
     final Tomcat70ContainerAdapter adapter = new Tomcat70ContainerAdapter();
     FilterMap map = new FilterMap();
     map.addServletName("psi-probe");
     map.addURLPattern("/psi-probe");
     assertEquals(2, adapter.getFilterMappings(map, "dispatcherMap", "filterClass").size());
+  }
+
+  /**
+   * Creates the jsp compilation context.
+   */
+  @Test
+  public void createJspCompilationContext() {
+    final Tomcat70ContainerAdapter adapter = new Tomcat70ContainerAdapter();
+    JspCompilationContext context = adapter.createJspCompilationContext("name", null, null, null, ClassLoader.getSystemClassLoader());
+    assertEquals("org.apache.jsp.name", context.getFQCN());
+  }
+
+  /**
+   * Adds the context resource link.
+   *
+   * @throws NamingException the naming exception
+   */
+  @Test
+  public void addContextResourceLink() throws NamingException {
+    final Tomcat70ContainerAdapter adapter = new Tomcat70ContainerAdapter();
+    adapter.addContextResourceLink(context, null, false);
+  }
+
+  /**
+   * Adds the context resource.
+   *
+   * @throws NamingException the naming exception
+   */
+  @Test
+  public void addContextResource() throws NamingException {
+    final Tomcat70ContainerAdapter adapter = new Tomcat70ContainerAdapter();
+    adapter.addContextResource(context, null, false);
+  }
+
+  /**
+   * Gets the application filter maps.
+   */
+  @Test
+  public void applicationFilterMaps() {
+    Assert.assertNotNull(new Expectations() {
+      {
+        context.findFilterMaps();
+        result = new FilterMap();
+      }
+    });
+
+    final Tomcat70ContainerAdapter adapter = new Tomcat70ContainerAdapter();
+    assertEquals(0, adapter.getApplicationFilterMaps(context).size());
+  }
+
+  /**
+   * Application filters.
+   */
+  @Test
+  public void applicationFilters() {
+    Assert.assertNotNull(new Expectations() {
+      {
+        context.findFilterDefs();
+        result = new FilterDef();
+      }
+    });
+
+    final Tomcat70ContainerAdapter adapter = new Tomcat70ContainerAdapter();
+    assertEquals(1, adapter.getApplicationFilters(context).size());
+  }
+
+  /**
+   * Application init params.
+   */
+  @Test
+  public void applicationInitParams() {
+    Assert.assertNotNull(new Expectations() {
+      {
+        context.findApplicationParameters();
+        result = new ApplicationParameter();
+      }
+    });
+    final Tomcat70ContainerAdapter adapter = new Tomcat70ContainerAdapter();
+    assertEquals(0, adapter.getApplicationInitParams(context).size());
+  }
+
+  /**
+   * Resource exists.
+   */
+  @Test
+  public void resourceExists() {
+    final Tomcat70ContainerAdapter adapter = new Tomcat70ContainerAdapter();
+    assertFalse(adapter.resourceExists("name", context));
+  }
+
+  /**
+   * Resource stream.
+   *
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
+  // TODO Write working test
+  @Ignore
+  @Test
+  public void resourceStream() throws IOException {
+    final Tomcat70ContainerAdapter adapter = new Tomcat70ContainerAdapter();
+    adapter.getResourceStream("name", context);
+  }
+
+  /**
+   * Resource attributes.
+   */
+  // TODO Write working test
+  @Ignore
+  @Test
+  public void resourceAttributes() {
+    final Tomcat70ContainerAdapter adapter = new Tomcat70ContainerAdapter();
+    adapter.getResourceAttributes("name", context);
+  }
+
+  /**
+   * Gets the naming token.
+   *
+   * @return the naming token
+   */
+  @Test
+  public void getNamingToken() {
+    final Tomcat70ContainerAdapter adapter = new Tomcat70ContainerAdapter();
+    assertEquals(context, adapter.getNamingToken(context));
   }
 
 }
