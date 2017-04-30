@@ -43,7 +43,9 @@ function setupScrollers(container) {
 	var r = {
 		'#right_scroller': function(e) {
 			e.onmouseover = function(e) {
-				if (leftScroller) leftScroller.cancel();
+				if (leftScroller) {
+					leftScroller.cancel();
+				}
 				rightScroller = new Effect.Scroll(containerID, {
 					pps: 100, 
 					direction: 'right'
@@ -55,14 +57,18 @@ function setupScrollers(container) {
 				}
 			}
 			e.onmousedown = function(e) {
-				if (rightScroller) rightScroller.cancel();
+				if (rightScroller) {
+					rightScroller.cancel();
+				}
 				rightScroller = new Effect.Scroll(containerID, {
 					pps: 1000,
 					direction: 'right'
 				});
 			}
 			e.onmouseup = function(e) {
-				if (rightScroller) rightScroller.cancel();
+				if (rightScroller) {
+					rightScroller.cancel();
+				}
 				rightScroller = new Effect.Scroll(containerID, {
 					pps: 100,
 					direction: 'right'
@@ -71,7 +77,9 @@ function setupScrollers(container) {
 		},
 		'#left_scroller': function(e) {
 			e.onmouseover = function(e) {
-				if (rightScroller) rightScroller.cancel();
+				if (rightScroller) {
+					rightScroller.cancel();
+				}
 				leftScroller = new Effect.Scroll(containerID, {
 					pps: 100,
 					direction: 'left'
@@ -83,14 +91,18 @@ function setupScrollers(container) {
 				}
 			}
 			e.onmousedown = function(e) {
-				if (leftScroller) leftScroller.cancel();
+				if (leftScroller) {
+					leftScroller.cancel();
+				}
 				leftScroller = new Effect.Scroll(containerID, {
 					pps: 1000,
 					direction: 'left'
 				});
 			}
 			e.onmouseup = function(e) {
-				if (leftScroller) leftScroller.cancel();
+				if (leftScroller) {
+					leftScroller.cancel();
+				}
 				leftScroller = new Effect.Scroll(containerID, {
 					pps: 100,
 					direction: 'left'
