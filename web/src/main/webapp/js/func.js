@@ -9,7 +9,7 @@
  * PURPOSE.
  */
 function inverse($f) {
-	for ($i = 0; $i < $f.elements.length; $i++) {
+	for (let $i = 0; $i < $f.elements.length; $i++) {
 		if ($f.elements[$i].type == "checkbox") {
 			$f.elements[$i].checked = !$f.elements[$i].checked;
 		}
@@ -18,7 +18,7 @@ function inverse($f) {
 }
 
 function checkAll($f) {
-	for ($i = 0; $i < $f.elements.length; $i++) {
+	for (let $i = 0; $i < $f.elements.length; $i++) {
 		if ($f.elements[$i].type == "checkbox") {
 			$f.elements[$i].checked = true;
 		}
@@ -49,7 +49,9 @@ Ajax.ImgUpdater.prototype = {
 	},
 
 	stop: function() {
-		if (this.timer) clearTimeout(this.timer);
+		if (this.timer) {
+			clearTimeout(this.timer);
+		}
 	}
 }
 
@@ -93,7 +95,7 @@ function scaleImage(v, minX, maxX, minY, maxY) {
 	var images = document.getElementsByClassName('scale-image');
 	var w = (maxX - minX) * v + minX;
 	var h = (maxY - minY) * v + minY;
-	for (i = 0; i < images.length; i++) {
+	for (let i = 0; i < images.length; i++) {
 		$(images[i]).setStyle({
 			"width": w + 'px',
 			"height": h + 'px'
@@ -143,15 +145,17 @@ function getWindowWidth() {
 var helpTimerID;
 
 function setupHelpToggle(url) {
-	rules = {
+	var rules = {
 		'li#abbreviations': function(element) {
 			element.onclick = function() {
-				help_container = 'help';
+				var help_container = 'help';
 				if (Element.getStyle(help_container, "display") == 'none') {
 					new Ajax.Updater(help_container, url);
 				}
 				Effect.toggle(help_container, 'appear');
-				if (helpTimerID) clearTimeout(helpTimerID)
+				if (helpTimerID) {
+					clearTimeout(helpTimerID);
+				}
 				helpTimerID = setTimeout('Effect.Fade("' + help_container + '")', 15000);
 				return false;
 			}
@@ -170,12 +174,14 @@ function addAjaxTooltip(activator, tooltip, url) {
 	}
 
 	Tooltip.add(activator, tooltip);
-	tt_container = $$('#' + tooltip + ' .tt_content')[0];
+	var tt_container = $$('#' + tooltip + ' .tt_content')[0];
 	Event.observe(activator, 'click', function(e) {
 
-		t_title = $('tt_title');
+		var t_title = $('tt_title');
 
-		if (t_title) t_title.hide();
+		if (t_title) {
+			t_title.hide();
+		}
 
 		tt_container.style.width = '300px';
 
@@ -184,7 +190,7 @@ function addAjaxTooltip(activator, tooltip, url) {
 			method: 'get',
 			onComplete: function() {
 				tt_container.style.width = null;
-				the_title = $('tooltip_title');
+				var the_title = $('tooltip_title');
 				t_title = $('tt_title');
 
 				if (the_title && t_title) {
