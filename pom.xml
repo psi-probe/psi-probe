@@ -167,7 +167,7 @@
         <clean.plugin>3.0.0</clean.plugin>
         <compiler.plugin>3.6.1</compiler.plugin>
         <coveralls.plugin>4.3.0</coveralls.plugin>
-        <dependency.plugin>3.0.0</dependency.plugin>
+        <dependency.plugin>3.0.1</dependency.plugin>
         <dependency-check.plugin>1.4.5</dependency-check.plugin>
         <deploy.plugin>2.8.2</deploy.plugin>
         <findbugs.plugin>3.0.4</findbugs.plugin>
@@ -184,7 +184,7 @@
         <l10n.plugin>1.8</l10n.plugin>
         <license.plugin>3.0</license.plugin>
         <lifecycle-mapping.plugin>1.0.0</lifecycle-mapping.plugin>
-        <pmd.plugin>3.7</pmd.plugin>
+        <pmd.plugin>3.8</pmd.plugin>
         <project-info.plugin>2.9</project-info.plugin>
         <release.plugin>2.5.3</release.plugin>
         <resources.plugin>3.0.2</resources.plugin>
