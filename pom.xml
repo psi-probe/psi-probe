@@ -921,7 +921,7 @@
                             <exclude>LICENSE</exclude>
                             <exclude>LICENSE_HEADER</exclude>
                             <exclude>NOTICE</exclude>
-                            <exclude>mvnw.bat</exclude>
+                            <exclude>mvnw.cmd</exclude>
                             <exclude>mvnw</exclude>
                             <exclude>**/*GeoLite2-Country.mmdb</exclude>
                             <exclude>**/*maven-wrapper.properties</exclude>
