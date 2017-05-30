@@ -193,7 +193,7 @@
         <source.plugin>3.0.1</source.plugin>
         <surefire.plugin>2.19.1</surefire.plugin> <!-- TODO: Version 2.20 breaks whois tests -->
         <tidy.plugin>1.0.0</tidy.plugin>
-        <versioneye.plugin>3.11.2</versioneye.plugin>
+        <versioneye.plugin>3.11.4</versioneye.plugin>
         <versions.plugin>2.3</versions.plugin>
         <war.plugin>3.1.0</war.plugin>
 
