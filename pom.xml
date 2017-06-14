@@ -150,7 +150,7 @@
         <sitemesh.version>2.4.2</sitemesh.version>
         <slf4j.version>1.7.25</slf4j.version>
         <spring.version>4.3.9.RELEASE</spring.version>
-        <spring-security.version>4.2.2.RELEASE</spring-security.version>
+        <spring-security.version>4.2.3.RELEASE</spring-security.version>
         <transaction-api.version>1.2</transaction-api.version>
         <tomcat.version>8.5.15</tomcat.version>
         <wrapper.version>3.2.3</wrapper.version>
