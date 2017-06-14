@@ -123,7 +123,7 @@
         <geoip2.version>2.9.0</geoip2.version>
         <guava.version>20.0</guava.version> <!-- TODO: Version 21.0 is for java 8 only -->
         <hateoas.version>0.23.0.RELEASE</hateoas.version>
-        <hikaricp.version>2.4.11</hikaricp.version>
+        <hikaricp.version>2.4.12</hikaricp.version>
         <logback.version>1.2.3</logback.version>
         <inject.version>1</inject.version>
         <io.version>2.5</io.version>
