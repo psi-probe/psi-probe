@@ -140,7 +140,7 @@
         <jstl-api.version>1.2.1</jstl-api.version>
         <jstl.version>1.2.5-b03</jstl.version>
         <junit.version>4.12</junit.version>
-        <lang3.version>3.5</lang3.version>
+        <lang3.version>3.6</lang3.version>
         <mail.version>1.6.0-rc1</mail.version>
         <oshi.version>3.4.2</oshi.version>
         <openejb.version>4.7.4</openejb.version>
