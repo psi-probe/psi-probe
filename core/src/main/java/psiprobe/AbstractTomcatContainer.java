@@ -10,28 +10,6 @@
  */
 package psiprobe;
 
-import org.apache.catalina.Container;
-import org.apache.catalina.Context;
-import org.apache.catalina.Engine;
-import org.apache.catalina.Host;
-import org.apache.catalina.Service;
-import org.apache.catalina.Valve;
-import org.apache.catalina.Wrapper;
-import org.apache.catalina.connector.Connector;
-import org.apache.catalina.core.StandardContext;
-import org.apache.jasper.EmbeddedServletOptions;
-import org.apache.jasper.JspCompilationContext;
-import org.apache.jasper.Options;
-import org.apache.jasper.compiler.JspRuntimeContext;
-import org.apache.naming.ContextBindings;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.util.ClassUtils;
-
-import psiprobe.model.FilterMapping;
-import psiprobe.model.jsp.Item;
-import psiprobe.model.jsp.Summary;
-
 import java.io.File;
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
@@ -53,6 +31,28 @@ import javax.management.ObjectName;
 import javax.naming.NamingException;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
+
+import org.apache.catalina.Container;
+import org.apache.catalina.Context;
+import org.apache.catalina.Engine;
+import org.apache.catalina.Host;
+import org.apache.catalina.Service;
+import org.apache.catalina.Valve;
+import org.apache.catalina.Wrapper;
+import org.apache.catalina.connector.Connector;
+import org.apache.catalina.core.StandardContext;
+import org.apache.jasper.EmbeddedServletOptions;
+import org.apache.jasper.JspCompilationContext;
+import org.apache.jasper.Options;
+import org.apache.jasper.compiler.JspRuntimeContext;
+import org.apache.naming.ContextBindings;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.util.ClassUtils;
+
+import psiprobe.model.FilterMapping;
+import psiprobe.model.jsp.Item;
+import psiprobe.model.jsp.Summary;
 
 /**
  * Abstraction layer to implement some functionality, which is common between different container

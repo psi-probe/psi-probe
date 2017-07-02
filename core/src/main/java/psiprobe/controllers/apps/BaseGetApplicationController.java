@@ -10,6 +10,10 @@
  */
 package psiprobe.controllers.apps;
 
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.catalina.Context;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,10 +24,6 @@ import psiprobe.model.Application;
 import psiprobe.model.stats.StatsCollection;
 import psiprobe.tools.ApplicationUtils;
 import psiprobe.tools.SecurityUtils;
-
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * Retrieves Application model object populated with application information.

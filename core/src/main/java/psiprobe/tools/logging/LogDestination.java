@@ -10,10 +10,10 @@
  */
 package psiprobe.tools.logging;
 
-import psiprobe.model.Application;
-
 import java.io.File;
 import java.sql.Timestamp;
+
+import psiprobe.model.Application;
 
 /**
  * The Interface LogDestination.

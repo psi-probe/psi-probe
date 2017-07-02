@@ -10,9 +10,9 @@
  */
 package psiprobe.controllers.system;
 
-import org.junit.Test;
-
 import com.codebox.bean.JavaBeanTester;
+
+import org.junit.Test;
 
 /**
  * The Class AdviseGarbageCollectionControllerTest.

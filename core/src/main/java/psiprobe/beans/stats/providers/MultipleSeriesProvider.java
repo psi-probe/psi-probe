@@ -10,11 +10,6 @@
  */
 package psiprobe.beans.stats.providers;
 
-import org.jfree.data.xy.DefaultTableXYDataset;
-import org.jfree.data.xy.XYDataItem;
-
-import psiprobe.model.stats.StatsCollection;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -23,6 +18,11 @@ import java.util.ListIterator;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+
+import org.jfree.data.xy.DefaultTableXYDataset;
+import org.jfree.data.xy.XYDataItem;
+
+import psiprobe.model.stats.StatsCollection;
 
 /**
  * Retrieves stats series with names that start with the statNamePrefix. Either all matching series

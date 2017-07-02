@@ -10,20 +10,11 @@
  */
 package psiprobe.beans;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.maxmind.db.CHMCache;
 import com.maxmind.geoip2.DatabaseReader;
 import com.maxmind.geoip2.exception.AddressNotFoundException;
 import com.maxmind.geoip2.model.CountryResponse;
 import com.maxmind.geoip2.record.Country;
-
-import psiprobe.model.Connector;
-import psiprobe.model.RequestProcessor;
-import psiprobe.model.ThreadPool;
-import psiprobe.model.jmx.ThreadPoolObjectName;
-import psiprobe.tools.JmxTools;
 
 import java.io.File;
 import java.net.InetAddress;
@@ -41,6 +32,15 @@ import javax.management.NotificationListener;
 import javax.management.ObjectInstance;
 import javax.management.ObjectName;
 import javax.management.RuntimeOperationsException;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import psiprobe.model.Connector;
+import psiprobe.model.RequestProcessor;
+import psiprobe.model.ThreadPool;
+import psiprobe.model.jmx.ThreadPoolObjectName;
+import psiprobe.tools.JmxTools;
 
 /**
  * This class interfaces Tomcat JMX functionality to read connection status. The class essentially

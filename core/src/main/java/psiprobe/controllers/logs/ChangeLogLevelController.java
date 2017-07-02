@@ -10,6 +10,11 @@
  */
 package psiprobe.controllers.logs;
 
+import java.util.Arrays;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestUtils;
@@ -22,11 +27,6 @@ import psiprobe.tools.logging.log4j.Log4JAppenderAccessor;
 import psiprobe.tools.logging.log4j2.Log4J2AppenderAccessor;
 import psiprobe.tools.logging.logback.LogbackAppenderAccessor;
 import psiprobe.tools.logging.slf4jlogback.TomcatSlf4jLogbackAppenderAccessor;
-
-import java.util.Arrays;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * The Class ChangeLogLevelController.

@@ -10,9 +10,9 @@
  */
 package psiprobe.controllers.wrapper;
 
-import org.junit.Test;
-
 import com.codebox.bean.JavaBeanTester;
+
+import org.junit.Test;
 
 /**
  * The Class StopJvmControllerTest.

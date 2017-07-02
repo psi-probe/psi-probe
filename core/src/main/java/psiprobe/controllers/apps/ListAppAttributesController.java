@@ -10,6 +10,11 @@
  */
 package psiprobe.controllers.apps;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.catalina.Context;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -20,11 +25,6 @@ import psiprobe.controllers.AbstractContextHandlerController;
 import psiprobe.model.Attribute;
 import psiprobe.tools.ApplicationUtils;
 import psiprobe.tools.SecurityUtils;
-
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * Retrieves a list of servlet context attributes for a web application.

@@ -10,6 +10,9 @@
  */
 package psiprobe.controllers.sessions;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.catalina.Context;
 import org.apache.catalina.Session;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,9 +23,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.InternalResourceView;
 
 import psiprobe.controllers.AbstractContextHandlerController;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * Expires a single session of a particular web application.

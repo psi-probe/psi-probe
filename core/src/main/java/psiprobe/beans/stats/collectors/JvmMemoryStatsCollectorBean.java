@@ -10,17 +10,17 @@
  */
 package psiprobe.beans.stats.collectors;
 
-import psiprobe.beans.JvmMemoryInfoAccessorBean;
-import psiprobe.beans.stats.listeners.StatsCollectionListener;
-import psiprobe.model.jmx.MemoryPool;
-import psiprobe.tools.TimeExpression;
-
 import java.util.List;
 
 import javax.inject.Inject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+
+import psiprobe.beans.JvmMemoryInfoAccessorBean;
+import psiprobe.beans.stats.listeners.StatsCollectionListener;
+import psiprobe.model.jmx.MemoryPool;
+import psiprobe.tools.TimeExpression;
 
 /**
  * The Class JvmMemoryStatsCollectorBean.

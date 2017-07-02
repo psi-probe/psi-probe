@@ -10,11 +10,9 @@
  */
 package psiprobe.controllers.error;
 
-import org.junit.Test;
-
 import com.codebox.bean.JavaBeanTester;
 
-import psiprobe.controllers.error.Error403Controller;
+import org.junit.Test;
 
 /**
  * The Class Error403ControllerTest.

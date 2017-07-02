@@ -13,12 +13,12 @@ package psiprobe.beans.accessors;
 import com.jolbox.bonecp.BoneCP;
 import com.jolbox.bonecp.BoneCPDataSource;
 
+import java.lang.reflect.Field;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import psiprobe.model.DataSourceInfo;
-
-import java.lang.reflect.Field;
 
 /**
  * The Class BoneCpDatasourceAccessor.

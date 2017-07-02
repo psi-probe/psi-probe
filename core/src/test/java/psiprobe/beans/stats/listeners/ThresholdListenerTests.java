@@ -13,9 +13,6 @@ package psiprobe.beans.stats.listeners;
 import org.junit.Assert;
 import org.junit.Test;
 
-import psiprobe.beans.stats.listeners.StatsCollectionEvent;
-import psiprobe.beans.stats.listeners.AbstractThresholdListener;
-
 /**
  * The Class ThresholdListenerTests.
  */

@@ -10,6 +10,17 @@
  */
 package psiprobe;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import javax.naming.NamingException;
+import javax.servlet.ServletContext;
+
 import org.apache.catalina.Context;
 import org.apache.catalina.Valve;
 import org.apache.catalina.deploy.ApplicationParameter;
@@ -28,17 +39,6 @@ import psiprobe.model.ApplicationParam;
 import psiprobe.model.ApplicationResource;
 import psiprobe.model.FilterInfo;
 import psiprobe.model.FilterMapping;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import javax.naming.NamingException;
-import javax.servlet.ServletContext;
 
 /**
  * The Class Tomcat70ContainerAdapter.

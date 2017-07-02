@@ -10,14 +10,14 @@
  */
 package psiprobe.tools.logging.logback;
 
-import org.apache.commons.lang3.reflect.MethodUtils;
-
-import psiprobe.tools.logging.DefaultAccessor;
-
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.commons.lang3.reflect.MethodUtils;
+
+import psiprobe.tools.logging.DefaultAccessor;
 
 /**
  * Wraps a Logback logger factory from a given web application class loader.

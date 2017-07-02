@@ -10,6 +10,13 @@
  */
 package psiprobe.controllers.apps;
 
+import java.io.File;
+import java.io.FileInputStream;
+
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.catalina.Context;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,13 +24,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import psiprobe.Utils;
 import psiprobe.controllers.AbstractContextHandlerController;
-
-import java.io.File;
-import java.io.FileInputStream;
-
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * Displays a deployment descriptor (web.xml) or a context descriptor (context.xml) of a web

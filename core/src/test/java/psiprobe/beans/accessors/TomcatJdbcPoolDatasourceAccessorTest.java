@@ -10,12 +10,12 @@
  */
 package psiprobe.beans.accessors;
 
+import com.mchange.v2.c3p0.ComboPooledDataSource;
+
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 import mockit.Mocked;
 

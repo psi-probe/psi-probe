@@ -10,15 +10,15 @@
  */
 package psiprobe.jsp;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import psiprobe.tools.SizeExpression;
-
 import java.io.IOException;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import psiprobe.tools.SizeExpression;
 
 /**
  * JSP tag to convert size from bytes into human readable form: KB, MB, GB or TB depending on how

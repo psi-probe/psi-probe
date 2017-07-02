@@ -10,6 +10,9 @@
  */
 package psiprobe.controllers.sessions;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.catalina.Context;
 import org.apache.catalina.Manager;
 import org.apache.catalina.Session;
@@ -21,9 +24,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.InternalResourceView;
 
 import psiprobe.controllers.AbstractTomcatContainerController;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * Expires a list of sessionIDs. Accepts a list of sid_webapp parameters that are expected to be in

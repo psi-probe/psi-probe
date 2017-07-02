@@ -10,6 +10,10 @@
  */
 package psiprobe.controllers.sql;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,10 +22,6 @@ import org.springframework.web.servlet.mvc.ParameterizableViewController;
 
 import psiprobe.model.sql.DataSourceTestInfo;
 import psiprobe.tools.TimeExpression;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  * Displays a view that allows for a database connectivity testing. Supplies default values to input

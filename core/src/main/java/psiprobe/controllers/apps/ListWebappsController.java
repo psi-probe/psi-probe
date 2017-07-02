@@ -10,6 +10,12 @@
  */
 package psiprobe.controllers.apps;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.catalina.Context;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -21,12 +27,6 @@ import psiprobe.controllers.AbstractTomcatContainerController;
 import psiprobe.model.Application;
 import psiprobe.tools.ApplicationUtils;
 import psiprobe.tools.SecurityUtils;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * Creates the list of web application installed in the same "host" as the Probe.

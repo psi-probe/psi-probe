@@ -10,14 +10,13 @@
  */
 package psiprobe;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 
 import javax.naming.NamingException;
-
-import static org.junit.Assert.assertEquals;
 
 import org.apache.catalina.Context;
 import org.apache.catalina.Valve;
@@ -31,7 +30,6 @@ import org.junit.Test;
 
 import mockit.Expectations;
 import mockit.Mocked;
-import psiprobe.Tomcat70ContainerAdapter;
 
 /**
  * The Class Tomcat70ContainerAdapterTest.
