@@ -67,6 +67,8 @@
             </exclusions>
         </dependency>
         <!-- tomcat libs end -->
+
+        <!-- API -->
         <dependency>
             <groupId>javax.inject</groupId>
             <artifactId>javax.inject</artifactId>
@@ -82,6 +84,8 @@
             <artifactId>javax.mail</artifactId>
             <scope>compile</scope>
         </dependency>
+
+        <!-- dbcp -->
         <dependency>
             <groupId>com.mchange</groupId>
             <artifactId>c3p0</artifactId>
@@ -123,6 +127,8 @@
             <artifactId>vibur-dbcp</artifactId>
             <scope>provided</scope>
         </dependency>
+
+
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
@@ -143,6 +149,7 @@
             <artifactId>jcl-over-slf4j</artifactId>
             <scope>compile</scope>
         </dependency>
+
         <!-- misc -->
         <dependency>
             <groupId>com.thoughtworks.xstream</groupId>
@@ -215,6 +222,8 @@
             <artifactId>sitemesh</artifactId>
             <scope>compile</scope>
         </dependency>
+
+        <!-- Spring -->
         <dependency>
             <groupId>xpp3</groupId>
             <artifactId>xpp3_min</artifactId>
