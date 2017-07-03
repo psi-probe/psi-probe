@@ -119,7 +119,7 @@
         <dbcp2.version>2.1.1</dbcp2.version>
         <displaytag.version>2.1.5</displaytag.version>
         <el-api.version>3.0.1-b04</el-api.version>
-        <error-prone.version>2.0.19</error-prone.version>
+        <error-prone.version>2.0.21</error-prone.version>
         <geoip2.version>2.9.0</geoip2.version>
         <guava.version>22.0-android</guava.version> <!-- TODO: Switch off android once on java 8 -->
         <hateoas.version>0.23.0.RELEASE</hateoas.version>
