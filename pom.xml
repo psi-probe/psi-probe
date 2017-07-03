@@ -133,7 +133,7 @@
         <jcommon.version>1.0.24</jcommon.version>
         <jfreechart.version>1.0.19</jfreechart.version>
         <jhighlight.version>1.0.3</jhighlight.version>
-        <jmockit.version>1.31</jmockit.version>
+        <jmockit.version>1.32</jmockit.version>
         <jna.version>4.4.0</jna.version>
         <jsp-api.version>2.3.2-b02</jsp-api.version>
         <jsr305.version>3.0.2</jsr305.version>
@@ -144,6 +144,7 @@
         <mail.version>1.6.0-rc2</mail.version>
         <oshi.version>3.4.2</oshi.version>
         <openejb.version>4.7.4</openejb.version>
+        <persistence.version>2.1.1</persistence.version>
         <probe-ojdbc.version>3.0.0</probe-ojdbc.version>
         <quartz.version>2.3.0</quartz.version>
         <servlet-api.version>3.1.0</servlet-api.version> <!-- TODO: Version 4.0.0-b05 is for java 8 only-->
@@ -156,7 +157,7 @@
         <wrapper.version>3.2.3</wrapper.version>
         <xpp3_min.version>1.1.4c</xpp3_min.version>
         <xstream.version>1.4.10</xstream.version>
-        <vibur-dbcp.version>17.1</vibur-dbcp.version>
+        <vibur-dbcp.version>18.0</vibur-dbcp.version>
 
         <!-- Plugin Versions -->
         <antrun.plugin>1.8</antrun.plugin>
@@ -293,6 +294,11 @@
                 <groupId>javax.transaction</groupId>
                 <artifactId>javax.transaction-api</artifactId>
                 <version>${transaction-api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.eclipse.persistence</groupId>
+                <artifactId>javax.persistence</artifactId>
+                <version>${persistence.version}</version>
             </dependency>
 
             <!-- JDBC / Connection Pools -->
@@ -607,6 +613,13 @@
         <dependency>
             <groupId>com.github.hazendaz</groupId>
             <artifactId>javabean-tester</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Jmockit 1.32 started requiring -->
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>javax.persistence</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>
