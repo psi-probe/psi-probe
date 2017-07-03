@@ -10,11 +10,11 @@
  */
 package psiprobe.beans.stats.providers;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.jfree.data.xy.DefaultTableXYDataset;
 
 import psiprobe.model.stats.StatsCollection;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * Classes implementing this interface can be wired up with RenderChartController to provide Series

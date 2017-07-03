@@ -10,9 +10,9 @@
  */
 package psiprobe.tools.logging.log4j2;
 
-import psiprobe.tools.logging.AbstractLogDestination;
-
 import java.io.File;
+
+import psiprobe.tools.logging.AbstractLogDestination;
 
 /**
  * The Class Log4J2AppenderAccessor.

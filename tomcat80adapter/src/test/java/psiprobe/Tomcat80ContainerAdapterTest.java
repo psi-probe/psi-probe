@@ -29,7 +29,6 @@ import org.junit.Test;
 
 import mockit.Expectations;
 import mockit.Mocked;
-import psiprobe.Tomcat80ContainerAdapter;
 
 /**
  * The Class Tomcat80ContainerAdapterTest.

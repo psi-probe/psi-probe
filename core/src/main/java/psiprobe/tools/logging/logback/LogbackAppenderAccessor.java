@@ -14,9 +14,9 @@ import ch.qos.logback.core.OutputStreamAppender;
 import ch.qos.logback.core.encoder.Encoder;
 import ch.qos.logback.core.encoder.LayoutWrappingEncoder;
 
-import psiprobe.tools.logging.AbstractLogDestination;
-
 import java.io.File;
+
+import psiprobe.tools.logging.AbstractLogDestination;
 
 /**
  * A wrapper for a Logback appender for a specific logger.

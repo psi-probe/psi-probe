@@ -10,15 +10,6 @@
  */
 package psiprobe.controllers.quickcheck;
 
-import org.apache.catalina.Context;
-import org.springframework.web.servlet.ModelAndView;
-
-import psiprobe.beans.ContainerListenerBean;
-import psiprobe.controllers.AbstractTomcatContainerController;
-import psiprobe.model.ApplicationResource;
-import psiprobe.model.DataSourceInfo;
-import psiprobe.model.TomcatTestReport;
-
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -30,6 +21,15 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.catalina.Context;
+import org.springframework.web.servlet.ModelAndView;
+
+import psiprobe.beans.ContainerListenerBean;
+import psiprobe.controllers.AbstractTomcatContainerController;
+import psiprobe.model.ApplicationResource;
+import psiprobe.model.DataSourceInfo;
+import psiprobe.model.TomcatTestReport;
 
 /**
  * "Quick check" base controller.

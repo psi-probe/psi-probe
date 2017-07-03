@@ -10,9 +10,9 @@
  */
 package psiprobe.tools.logging.logback;
 
-import org.junit.Test;
-
 import com.codebox.bean.JavaBeanTester;
+
+import org.junit.Test;
 
 /**
  * The Class LogbackAppenderAccessorTest.

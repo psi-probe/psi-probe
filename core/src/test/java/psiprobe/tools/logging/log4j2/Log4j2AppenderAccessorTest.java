@@ -10,9 +10,9 @@
  */
 package psiprobe.tools.logging.log4j2;
 
-import org.junit.Test;
-
 import com.codebox.bean.JavaBeanTester;
+
+import org.junit.Test;
 
 /**
  * The Class Log4j2AppenderAccessorTest.

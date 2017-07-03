@@ -10,6 +10,10 @@
  */
 package psiprobe.controllers.logs;
 
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.ServletRequestUtils;
@@ -18,10 +22,6 @@ import org.springframework.web.servlet.mvc.ParameterizableViewController;
 
 import psiprobe.beans.LogResolverBean;
 import psiprobe.tools.logging.LogDestination;
-
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * The Class AbstractLogHandlerController.

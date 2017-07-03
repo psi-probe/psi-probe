@@ -10,6 +10,14 @@
  */
 package psiprobe;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.util.List;
+
+import javax.naming.NamingException;
+
 import org.apache.catalina.Context;
 import org.apache.catalina.Wrapper;
 import org.apache.catalina.connector.Connector;
@@ -19,14 +27,6 @@ import psiprobe.model.ApplicationResource;
 import psiprobe.model.FilterInfo;
 import psiprobe.model.FilterMapping;
 import psiprobe.model.jsp.Summary;
-
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.util.List;
-
-import javax.naming.NamingException;
 
 /**
  * Part of Tomcat container version abstraction layer.

@@ -10,6 +10,12 @@
  */
 package psiprobe.controllers.connectors;
 
+import java.util.List;
+
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,12 +26,6 @@ import psiprobe.controllers.AbstractTomcatContainerController;
 import psiprobe.model.Connector;
 import psiprobe.model.RequestProcessor;
 import psiprobe.tools.TimeExpression;
-
-import java.util.List;
-
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * The Class ListConnectorsController.

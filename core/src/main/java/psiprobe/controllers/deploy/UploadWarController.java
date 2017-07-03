@@ -10,6 +10,15 @@
  */
 package psiprobe.controllers.deploy;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.catalina.Context;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
@@ -32,15 +41,6 @@ import org.springframework.web.servlet.view.InternalResourceView;
 import psiprobe.controllers.AbstractTomcatContainerController;
 import psiprobe.controllers.jsp.DisplayJspController;
 import psiprobe.model.jsp.Summary;
-
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * Uploads and installs web application from a .WAR.

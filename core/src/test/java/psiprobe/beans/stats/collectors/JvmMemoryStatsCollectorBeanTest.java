@@ -10,9 +10,9 @@
  */
 package psiprobe.beans.stats.collectors;
 
-import org.junit.Test;
-
 import com.codebox.bean.JavaBeanTester;
+
+import org.junit.Test;
 
 /**
  * The Class JvmMemoryStatsCollectorBeanTest.

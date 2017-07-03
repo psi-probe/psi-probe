@@ -10,6 +10,12 @@
  */
 package psiprobe.controllers.logs;
 
+import java.util.List;
+
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestUtils;
@@ -19,12 +25,6 @@ import org.springframework.web.servlet.mvc.ParameterizableViewController;
 
 import psiprobe.beans.LogResolverBean;
 import psiprobe.tools.logging.LogDestination;
-
-import java.util.List;
-
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * The Class ListLogsController.

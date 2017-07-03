@@ -10,6 +10,10 @@
  */
 package psiprobe.mappers;
 
+import com.opensymphony.module.sitemesh.Config;
+import com.opensymphony.module.sitemesh.DecoratorMapper;
+import com.opensymphony.module.sitemesh.Page;
+
 import java.util.Properties;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,10 +21,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import com.opensymphony.module.sitemesh.Config;
-import com.opensymphony.module.sitemesh.DecoratorMapper;
-import com.opensymphony.module.sitemesh.Page;
 
 import mockit.Expectations;
 import mockit.Mocked;

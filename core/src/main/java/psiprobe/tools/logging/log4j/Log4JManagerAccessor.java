@@ -10,15 +10,15 @@
  */
 package psiprobe.tools.logging.log4j;
 
-import org.apache.commons.lang3.reflect.MethodUtils;
-
-import psiprobe.tools.logging.DefaultAccessor;
-
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.List;
+
+import org.apache.commons.lang3.reflect.MethodUtils;
+
+import psiprobe.tools.logging.DefaultAccessor;
 
 /**
  * The Class Log4JManagerAccessor.

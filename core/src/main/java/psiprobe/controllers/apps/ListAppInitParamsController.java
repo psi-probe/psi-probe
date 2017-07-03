@@ -10,6 +10,9 @@
  */
 package psiprobe.controllers.apps;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.catalina.Context;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -19,9 +22,6 @@ import org.springframework.web.servlet.ModelAndView;
 import psiprobe.controllers.AbstractContextHandlerController;
 import psiprobe.tools.ApplicationUtils;
 import psiprobe.tools.SecurityUtils;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * Retrieves a list of context initialization parameters for a web application.

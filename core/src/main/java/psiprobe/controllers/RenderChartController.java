@@ -10,6 +10,13 @@
  */
 package psiprobe.controllers;
 
+import java.awt.BasicStroke;
+import java.awt.Color;
+
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
@@ -30,13 +37,6 @@ import org.springframework.web.servlet.mvc.AbstractController;
 import psiprobe.Utils;
 import psiprobe.beans.stats.providers.SeriesProvider;
 import psiprobe.model.stats.StatsCollection;
-
-import java.awt.BasicStroke;
-import java.awt.Color;
-
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * Plots data from "statsCollection" bean. The data is converted to XYSeries using SeriesProvider,

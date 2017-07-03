@@ -14,14 +14,6 @@ import com.google.common.base.Strings;
 import com.uwyn.jhighlight.renderer.Renderer;
 import com.uwyn.jhighlight.renderer.XhtmlRendererFactory;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import psiprobe.tokenizer.StringTokenizer;
-import psiprobe.tokenizer.Token;
-import psiprobe.tokenizer.Tokenizer;
-import psiprobe.tokenizer.TokenizerSymbol;
-
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -50,6 +42,14 @@ import javax.management.ObjectInstance;
 import javax.management.ObjectName;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import psiprobe.tokenizer.StringTokenizer;
+import psiprobe.tokenizer.Token;
+import psiprobe.tokenizer.Tokenizer;
+import psiprobe.tokenizer.TokenizerSymbol;
 
 /**
  * Misc. static helper methods.

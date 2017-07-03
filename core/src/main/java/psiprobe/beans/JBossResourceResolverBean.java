@@ -10,16 +10,6 @@
  */
 package psiprobe.beans;
 
-import org.apache.catalina.Context;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-
-import psiprobe.model.ApplicationResource;
-import psiprobe.model.DataSourceInfo;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -30,6 +20,16 @@ import javax.management.MalformedObjectNameException;
 import javax.management.ObjectName;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+
+import org.apache.catalina.Context;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
+import psiprobe.model.ApplicationResource;
+import psiprobe.model.DataSourceInfo;
 
 /**
  * An Adapter to convert information retrieved from JBoss JMX beans into internal resource model.

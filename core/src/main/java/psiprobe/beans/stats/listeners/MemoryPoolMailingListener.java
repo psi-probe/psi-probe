@@ -10,6 +10,9 @@
  */
 package psiprobe.beans.stats.listeners;
 
+import javax.inject.Inject;
+import javax.mail.MessagingException;
+
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
@@ -18,9 +21,6 @@ import org.springframework.context.support.MessageSourceAccessor;
 
 import psiprobe.tools.MailMessage;
 import psiprobe.tools.Mailer;
-
-import javax.inject.Inject;
-import javax.mail.MessagingException;
 
 /**
  * The listener interface for receiving memoryPoolMailing events. The class that is interested in

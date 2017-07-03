@@ -10,6 +10,8 @@
  */
 package psiprobe;
 
+import com.opensymphony.sitemesh.webapp.SiteMeshFilter;
+
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -27,8 +29,6 @@ import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.filter.DelegatingFilterProxy;
-
-import com.opensymphony.sitemesh.webapp.SiteMeshFilter;
 
 /**
  * The class ProbeInitializer.

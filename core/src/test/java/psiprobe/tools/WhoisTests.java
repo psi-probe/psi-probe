@@ -10,14 +10,13 @@
  */
 package psiprobe.tools;
 
+import java.io.IOException;
+import java.net.InetAddress;
+
 import org.junit.Assert;
 import org.junit.Test;
 
-import psiprobe.tools.Whois;
 import psiprobe.tools.Whois.Response;
-
-import java.io.IOException;
-import java.net.InetAddress;
 
 /**
  * The Class WhoisTests.

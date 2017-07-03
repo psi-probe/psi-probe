@@ -10,14 +10,6 @@
  */
 package psiprobe;
 
-import org.apache.catalina.ContainerServlet;
-import org.apache.catalina.Wrapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.web.servlet.DispatcherServlet;
-
-import psiprobe.beans.ContainerWrapperBean;
-
 import java.nio.charset.StandardCharsets;
 
 import javax.servlet.ServletConfig;
@@ -25,6 +17,14 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.catalina.ContainerServlet;
+import org.apache.catalina.Wrapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.servlet.DispatcherServlet;
+
+import psiprobe.beans.ContainerWrapperBean;
 
 /**
  * Main dispatcher servlet. Spring default dispatcher servlet had to be superseded to handle
