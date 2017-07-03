@@ -14,7 +14,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="https://github.com/psi-probe/psi-probe/jsp/tags" prefix="probe" %>
-<%@ page import="org.apache.commons.lang3.StringEscapeUtils" %>
+<%@ page import="org.apache.commons.text.StringEscapeUtils" %>
 
 <html>
 	<head>

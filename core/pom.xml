@@ -188,6 +188,11 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-text</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
             <groupId>com.maxmind.geoip2</groupId>
             <artifactId>geoip2</artifactId>
             <scope>compile</scope>
