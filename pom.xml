@@ -200,7 +200,7 @@
         <war.plugin>3.1.0</war.plugin>
 
         <!-- Plugin Dependency Versions -->
-        <checkstyle.version>7.8.2</checkstyle.version>
+        <checkstyle.version>8.0</checkstyle.version>
     </properties>
 
     <dependencyManagement>
