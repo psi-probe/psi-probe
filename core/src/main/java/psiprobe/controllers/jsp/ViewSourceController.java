@@ -95,7 +95,7 @@ public class ViewSourceController extends AbstractContextHandlerController {
               getContainerWrapper().getTomcatContainer().getResourceStream(jspName, context)) {
             if (highlight) {
               request.setAttribute("highlightedContent",
-                Utils.highlightStream(jspName, jspStream, "xhtml", item.getEncoding()));
+                  Utils.highlightStream(jspName, jspStream, "xhtml", item.getEncoding()));
             } else {
               request.setAttribute("content", Utils.readStream(jspStream, item.getEncoding()));
             }

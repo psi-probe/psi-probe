@@ -55,8 +55,8 @@ public class Tomcat85AgentValveTest {
   public void invoke() throws IOException, ServletException {
     Assert.assertNotNull(new Expectations() {
       {
-         valve.getNext();
-         result = valveBase;
+        valve.getNext();
+        result = valveBase;
       }
     });
     valve.invoke(request, response);

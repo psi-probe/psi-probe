@@ -26,56 +26,56 @@ import mockit.Mocked;
  */
 public class ViburCpDatasourceAccessorTest {
 
-    /** The accessor. */
-    ViburCpDatasourceAccessor accessor;
+  /** The accessor. */
+  ViburCpDatasourceAccessor accessor;
 
-    /** The source. */
-    @Mocked
-    ViburDBCPDataSource source;
+  /** The source. */
+  @Mocked
+  ViburDBCPDataSource source;
 
-    /** The bad source. */
-    ComboPooledDataSource badSource;
+  /** The bad source. */
+  ComboPooledDataSource badSource;
 
-    /**
-     * Before.
-     */
-    @Before
-    public void before() {
-        accessor = new ViburCpDatasourceAccessor();
-        badSource = new ComboPooledDataSource();
-    }
+  /**
+   * Before.
+   */
+  @Before
+  public void before() {
+    accessor = new ViburCpDatasourceAccessor();
+    badSource = new ComboPooledDataSource();
+  }
 
-    /**
-     * Can map test.
-     */
-    @Test
-    public void canMapTest() {
-        Assert.assertTrue(accessor.canMap(source));
-    }
+  /**
+   * Can map test.
+   */
+  @Test
+  public void canMapTest() {
+    Assert.assertTrue(accessor.canMap(source));
+  }
 
-    /**
-     * Cannot map test.
-     */
-    @Test
-    public void cannotMapTest() {
-        Assert.assertFalse(accessor.canMap(badSource));
-    }
+  /**
+   * Cannot map test.
+   */
+  @Test
+  public void cannotMapTest() {
+    Assert.assertFalse(accessor.canMap(badSource));
+  }
 
-    /**
-     * Gets the info test.
-     *
-     * @throws Exception the exception
-     */
-    @Ignore
-    @Test
-    public void getInfoTest() throws Exception {
-        new Expectations() {
-          {
-            source.getJmxName();
-            result = "viburJmx";
-          }
-        };
-        accessor.getInfo(source);
-    }
+  /**
+   * Gets the info test.
+   *
+   * @throws Exception the exception
+   */
+  @Ignore
+  @Test
+  public void getInfoTest() throws Exception {
+    new Expectations() {
+      {
+        source.getJmxName();
+        result = "viburJmx";
+      }
+    };
+    accessor.getInfo(source);
+  }
 
 }

@@ -39,7 +39,8 @@ public class ProbeInitializer implements WebApplicationInitializer {
   public void onStartup(ServletContext servletContext) throws ServletException {
 
     // Set spring config location 
-    try (AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext()) {
+    try (AnnotationConfigWebApplicationContext rootContext =
+        new AnnotationConfigWebApplicationContext()) {
       rootContext.register(ProbeConfig.class);
 
       // Set Role that can view session attribute values
@@ -63,12 +64,18 @@ public class ProbeInitializer implements WebApplicationInitializer {
     probe.addMapping("/chart.png");
 
     // Set sitemesh filter
-    FilterRegistration.Dynamic sitemesh = servletContext.addFilter("sitemesh", SiteMeshFilter.class);
-    sitemesh.addMappingForUrlPatterns(EnumSet.of(DispatcherType.FORWARD, DispatcherType.REQUEST, DispatcherType.ERROR), false, "/*");
+    FilterRegistration.Dynamic sitemesh =
+        servletContext.addFilter("sitemesh", SiteMeshFilter.class);
+    sitemesh.addMappingForUrlPatterns(
+        EnumSet.of(DispatcherType.FORWARD, DispatcherType.REQUEST, DispatcherType.ERROR), false,
+        "/*");
 
     // Set security filter
-    FilterRegistration.Dynamic security = servletContext.addFilter("filterChainProxy", DelegatingFilterProxy.class);
-    security.addMappingForUrlPatterns(EnumSet.of(DispatcherType.FORWARD, DispatcherType.REQUEST, DispatcherType.ERROR), false, "/*");
+    FilterRegistration.Dynamic security =
+        servletContext.addFilter("filterChainProxy", DelegatingFilterProxy.class);
+    security.addMappingForUrlPatterns(
+        EnumSet.of(DispatcherType.FORWARD, DispatcherType.REQUEST, DispatcherType.ERROR), false,
+        "/*");
 
     // Set session cookie config
     servletContext.getSessionCookieConfig().setHttpOnly(true);

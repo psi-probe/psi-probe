@@ -121,7 +121,8 @@ public class Tomcat85ContainerAdapterTest {
   @Test
   public void createJspCompilationContext() {
     final Tomcat85ContainerAdapter adapter = new Tomcat85ContainerAdapter();
-    JspCompilationContext context = adapter.createJspCompilationContext("name", null, null, null, ClassLoader.getSystemClassLoader());
+    JspCompilationContext context = adapter.createJspCompilationContext("name", null, null, null,
+        ClassLoader.getSystemClassLoader());
     assertEquals("org.apache.jsp.name", context.getFQCN());
   }
 

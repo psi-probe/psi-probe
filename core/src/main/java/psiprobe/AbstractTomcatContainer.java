@@ -64,7 +64,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
   protected final Logger logger = LoggerFactory.getLogger(getClass());
 
   /** The Constant NO_JSP_SERVLET. */
-  private static final String NO_JSP_SERVLET =  "Context '{}' does not have 'JSP' servlet";
+  private static final String NO_JSP_SERVLET = "Context '{}' does not have 'JSP' servlet";
 
   /** The host. */
   protected Host host;
@@ -646,8 +646,8 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
    * @param results the results
    * @param filterMapType the filter map type
    */
-  protected void addFilterMapping(String filterName, String dispatcherMap, String filterClass, String[] types,
-      List<FilterMapping> results, FilterMapType filterMapType) {
+  protected void addFilterMapping(String filterName, String dispatcherMap, String filterClass,
+      String[] types, List<FilterMapping> results, FilterMapType filterMapType) {
     for (String type : types) {
       FilterMapping fm = new FilterMapping();
       if (filterMapType == FilterMapType.URL) {

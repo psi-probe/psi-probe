@@ -74,9 +74,9 @@ public class ProbeSecurityConfig extends WebSecurityConfigurerAdapter {
    */
   @Bean(name = "authenticationManager")
   public ProviderManager getProviderManager() {
-      List<AuthenticationProvider> providers = new ArrayList<>();
-      providers.add(getPreAuthenticatedAuthenticationProvider());
-      return new ProviderManager(providers);
+    List<AuthenticationProvider> providers = new ArrayList<>();
+    providers.add(getPreAuthenticatedAuthenticationProvider());
+    return new ProviderManager(providers);
   }
 
   /**
@@ -97,7 +97,8 @@ public class ProbeSecurityConfig extends WebSecurityConfigurerAdapter {
   @Bean(name = "preAuthenticatedAuthenticationProvider")
   public PreAuthenticatedAuthenticationProvider getPreAuthenticatedAuthenticationProvider() {
     PreAuthenticatedAuthenticationProvider provider = new PreAuthenticatedAuthenticationProvider();
-    provider.setPreAuthenticatedUserDetailsService(getPreAuthenticatedGrantedAuthoritiesUserDetailsService());
+    provider.setPreAuthenticatedUserDetailsService(
+        getPreAuthenticatedGrantedAuthoritiesUserDetailsService());
     return provider;
   }
 
@@ -120,7 +121,8 @@ public class ProbeSecurityConfig extends WebSecurityConfigurerAdapter {
   public J2eePreAuthenticatedProcessingFilter getJ2eePreAuthenticatedProcessingFilter() {
     J2eePreAuthenticatedProcessingFilter filter = new J2eePreAuthenticatedProcessingFilter();
     filter.setAuthenticationManager(getProviderManager());
-    filter.setAuthenticationDetailsSource(getJ2eeBasedPreAuthenticatedWebAuthenticationDetailsSource());
+    filter.setAuthenticationDetailsSource(
+        getJ2eeBasedPreAuthenticatedWebAuthenticationDetailsSource());
     return filter;
   }
 
@@ -161,7 +163,8 @@ public class ProbeSecurityConfig extends WebSecurityConfigurerAdapter {
    */
   @Bean(name = "authenticationDetailsSource")
   public J2eeBasedPreAuthenticatedWebAuthenticationDetailsSource getJ2eeBasedPreAuthenticatedWebAuthenticationDetailsSource() {
-    J2eeBasedPreAuthenticatedWebAuthenticationDetailsSource source = new J2eeBasedPreAuthenticatedWebAuthenticationDetailsSource();
+    J2eeBasedPreAuthenticatedWebAuthenticationDetailsSource source =
+        new J2eeBasedPreAuthenticatedWebAuthenticationDetailsSource();
     source.setMappableRolesRetriever(getWebXmlMappableAttributesRetriever());
     source.setUserRoles2GrantedAuthoritiesMapper(getSimpleAttributes2GrantedAuthoritiesMapper());
     return source;
@@ -174,7 +177,8 @@ public class ProbeSecurityConfig extends WebSecurityConfigurerAdapter {
    */
   @Bean(name = "j2eeUserRoles2GrantedAuthoritiesMapper")
   public SimpleAttributes2GrantedAuthoritiesMapper getSimpleAttributes2GrantedAuthoritiesMapper() {
-    SimpleAttributes2GrantedAuthoritiesMapper mapper = new SimpleAttributes2GrantedAuthoritiesMapper();
+    SimpleAttributes2GrantedAuthoritiesMapper mapper =
+        new SimpleAttributes2GrantedAuthoritiesMapper();
     mapper.setConvertAttributeToUpperCase(true);
     return mapper;
   }
@@ -196,7 +200,7 @@ public class ProbeSecurityConfig extends WebSecurityConfigurerAdapter {
    */
   @Bean(name = "etf")
   public ExceptionTranslationFilter getExceptionTranslationFilter() {
-     return new ExceptionTranslationFilter(getHttp403ForbiddenEntryPoint());
+    return new ExceptionTranslationFilter(getHttp403ForbiddenEntryPoint());
   }
 
   /**
@@ -228,16 +232,19 @@ public class ProbeSecurityConfig extends WebSecurityConfigurerAdapter {
     LinkedHashMap<RequestMatcher, Collection<ConfigAttribute>> requestMap = new LinkedHashMap<>();
     requestMap.put(new AntPathRequestMatcher("/adm/**"),
         SecurityConfig.createListFromCommaDelimitedString("ROLE_MANAGER,ROLE_MANAGER-GUI"));
-    requestMap.put(new AntPathRequestMatcher("/adm/restartvm.ajax"),
-        SecurityConfig.createListFromCommaDelimitedString("ROLE_POWERUSERPLUS,ROLE_MANAGER,ROLE_MANAGER-GUI"));
-    requestMap.put(new AntPathRequestMatcher("/sql/**"),
-        SecurityConfig.createListFromCommaDelimitedString("ROLE_POWERUSERPLUS,ROLE_MANAGER,ROLE_MANAGER-GUI"));
+    requestMap.put(new AntPathRequestMatcher("/adm/restartvm.ajax"), SecurityConfig
+        .createListFromCommaDelimitedString("ROLE_POWERUSERPLUS,ROLE_MANAGER,ROLE_MANAGER-GUI"));
+    requestMap.put(new AntPathRequestMatcher("/sql/**"), SecurityConfig
+        .createListFromCommaDelimitedString("ROLE_POWERUSERPLUS,ROLE_MANAGER,ROLE_MANAGER-GUI"));
     requestMap.put(new AntPathRequestMatcher("/app/**"),
-        SecurityConfig.createListFromCommaDelimitedString("ROLE_POWERUSER,ROLE_POWERUSERPLUS,ROLE_MANAGER,ROLE_MANAGER-GUI"));
+        SecurityConfig.createListFromCommaDelimitedString(
+            "ROLE_POWERUSER,ROLE_POWERUSERPLUS,ROLE_MANAGER,ROLE_MANAGER-GUI"));
     requestMap.put(new AntPathRequestMatcher("/**"),
-        SecurityConfig.createListFromCommaDelimitedString("ROLE_PROBEUSER,ROLE_POWERUSER,ROLE_POWERUSERPLUS,ROLE_MANAGER,ROLE_MANAGER-GUI"));
+        SecurityConfig.createListFromCommaDelimitedString(
+            "ROLE_PROBEUSER,ROLE_POWERUSER,ROLE_POWERUSERPLUS,ROLE_MANAGER,ROLE_MANAGER-GUI"));
 
-    interceptor.setSecurityMetadataSource(new DefaultFilterInvocationSecurityMetadataSource(requestMap));
+    interceptor
+        .setSecurityMetadataSource(new DefaultFilterInvocationSecurityMetadataSource(requestMap));
     return interceptor;
   }
 

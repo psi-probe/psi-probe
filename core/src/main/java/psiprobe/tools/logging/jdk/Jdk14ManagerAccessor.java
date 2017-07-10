@@ -88,8 +88,8 @@ public class Jdk14ManagerAccessor extends DefaultAccessor {
   public List<LogDestination> getHandlers() {
     List<LogDestination> allHandlers = new ArrayList<>();
     try {
-      for (String name : Collections.list(
-          (Enumeration<String>) MethodUtils.invokeMethod(getTarget(), "getLoggerNames"))) {
+      for (String name : Collections
+          .list((Enumeration<String>) MethodUtils.invokeMethod(getTarget(), "getLoggerNames"))) {
         Jdk14LoggerAccessor accessor = getLogger(name);
         if (accessor != null) {
           allHandlers.addAll(accessor.getHandlers());
