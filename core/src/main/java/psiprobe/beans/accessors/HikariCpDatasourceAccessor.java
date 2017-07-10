@@ -33,8 +33,10 @@ public class HikariCpDatasourceAccessor implements DatasourceAccessor {
       HikariDataSource source = (HikariDataSource) resource;
 
       MBeanServer mBeanServer = ManagementFactory.getPlatformMBeanServer();
-      ObjectName poolName = new ObjectName("com.zaxxer.hikari:type=Pool (" + source.getPoolName() + ")");
-      HikariPoolMXBean poolProxy = JMX.newMXBeanProxy(mBeanServer, poolName, HikariPoolMXBean.class);
+      ObjectName poolName =
+          new ObjectName("com.zaxxer.hikari:type=Pool (" + source.getPoolName() + ")");
+      HikariPoolMXBean poolProxy =
+          JMX.newMXBeanProxy(mBeanServer, poolName, HikariPoolMXBean.class);
 
       dataSourceInfo = new DataSourceInfo();
       dataSourceInfo.setBusyConnections(poolProxy.getActiveConnections());
@@ -56,7 +58,7 @@ public class HikariCpDatasourceAccessor implements DatasourceAccessor {
   @Override
   public boolean canMap(final Object resource) {
     return "com.zaxxer.hikari.HikariDataSource".equals(resource.getClass().getName())
-      && resource instanceof HikariDataSource;
+        && resource instanceof HikariDataSource;
   }
 
 }

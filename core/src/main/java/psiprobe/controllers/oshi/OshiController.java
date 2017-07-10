@@ -63,13 +63,14 @@ public class OshiController extends AbstractTomcatContainerController {
 
   @RequestMapping(path = "/adm/oshi.htm")
   @Override
-  public ModelAndView handleRequest(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
     return super.handleRequest(request, response);
   }
 
   @Override
-  protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
+  protected ModelAndView handleRequestInternal(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
 
     if (!oshi.isEmpty()) {
       ModelAndView mv = new ModelAndView(getViewName());
@@ -78,8 +79,10 @@ public class OshiController extends AbstractTomcatContainerController {
     }
 
     // TODO: Remove once no longer experimental
-    oshi.add("Oshi results are performed as a system dump to screen here using Oshi SystemInfoTest logic.");
-    oshi.add("Please be advised this is experimental in use and is slow. Resulting data is entirely cached.");
+    oshi.add(
+        "Oshi results are performed as a system dump to screen here using Oshi SystemInfoTest logic.");
+    oshi.add(
+        "Please be advised this is experimental in use and is slow. Resulting data is entirely cached.");
     oshi.add("Issues with library should be directed to https://github.com/oshi/oshi");
     oshi.add("For issues with our library usage of Oshi, please submit pull requests");
     oshi.add("");
@@ -171,7 +174,8 @@ public class OshiController extends AbstractTomcatContainerController {
     oshi.add("  description: " + firmware.getDescription());
     oshi.add("  version: " + firmware.getVersion());
     oshi.add("  release date: " + (firmware.getReleaseDate() == null ? "unknown"
-              : firmware.getReleaseDate() == null ? "unknown" : FormatUtil.formatDate(firmware.getReleaseDate())));
+        : firmware.getReleaseDate() == null ? "unknown"
+            : FormatUtil.formatDate(firmware.getReleaseDate())));
     final Baseboard baseboard = computerSystem.getBaseboard();
     oshi.add("baseboard:");
     oshi.add("  manufacturer: " + baseboard.getManufacturer());
@@ -201,9 +205,9 @@ public class OshiController extends AbstractTomcatContainerController {
    */
   private static void printMemory(GlobalMemory memory) {
     oshi.add("Memory: " + FormatUtil.formatBytes(memory.getAvailable()) + "/"
-      + FormatUtil.formatBytes(memory.getTotal()));
+        + FormatUtil.formatBytes(memory.getTotal()));
     oshi.add("Swap used: " + FormatUtil.formatBytes(memory.getSwapUsed()) + "/"
-      + FormatUtil.formatBytes(memory.getSwapTotal()));
+        + FormatUtil.formatBytes(memory.getSwapTotal()));
   }
 
   /**
@@ -230,15 +234,18 @@ public class OshiController extends AbstractTomcatContainerController {
     long totalCpu = user + nice + sys + idle + iowait + irq + softirq;
 
     oshi.add(String.format(
-      "User: %.1f%% Nice: %.1f%% System: %.1f%% Idle: %.1f%% IOwait: %.1f%% IRQ: %.1f%% SoftIRQ: %.1f%%%n",
-      100d * user / totalCpu, 100d * nice / totalCpu, 100d * sys / totalCpu, 100d * idle / totalCpu,
-      100d * iowait / totalCpu, 100d * irq / totalCpu, 100d * softirq / totalCpu));
-    oshi.add(String.format("CPU load: %.1f%% (counting ticks)%n", processor.getSystemCpuLoadBetweenTicks() * 100));
+        "User: %.1f%% Nice: %.1f%% System: %.1f%% Idle: %.1f%% IOwait: %.1f%% IRQ: %.1f%% SoftIRQ: %.1f%%%n",
+        100d * user / totalCpu, 100d * nice / totalCpu, 100d * sys / totalCpu,
+        100d * idle / totalCpu, 100d * iowait / totalCpu, 100d * irq / totalCpu,
+        100d * softirq / totalCpu));
+    oshi.add(String.format("CPU load: %.1f%% (counting ticks)%n",
+        processor.getSystemCpuLoadBetweenTicks() * 100));
     oshi.add(String.format("CPU load: %.1f%% (OS MXBean)%n", processor.getSystemCpuLoad() * 100));
     double[] loadAverage = processor.getSystemLoadAverage(3);
-    oshi.add("CPU load averages:" + (loadAverage[0] < 0 ? " N/A" : String.format(" %.2f", loadAverage[0]))
-      + (loadAverage[1] < 0 ? " N/A" : String.format(" %.2f", loadAverage[1]))
-      + (loadAverage[2] < 0 ? " N/A" : String.format(" %.2f", loadAverage[2])));
+    oshi.add("CPU load averages:"
+        + (loadAverage[0] < 0 ? " N/A" : String.format(" %.2f", loadAverage[0]))
+        + (loadAverage[1] < 0 ? " N/A" : String.format(" %.2f", loadAverage[1]))
+        + (loadAverage[2] < 0 ? " N/A" : String.format(" %.2f", loadAverage[2])));
     // per core CPU
     StringBuilder procCpu = new StringBuilder("CPU load per processor:");
     double[] load = processor.getProcessorCpuLoadBetweenTicks();
@@ -263,9 +270,10 @@ public class OshiController extends AbstractTomcatContainerController {
     for (int i = 0; i < procs.size() && i < 5; i++) {
       OSProcess p = procs.get(i);
       oshi.add(String.format(" %5d %5.1f %4.1f %9s %9s %s%n", p.getProcessID(),
-        100d * (p.getKernelTime() + p.getUserTime()) / p.getUpTime(),
-        100d * p.getResidentSetSize() / memory.getTotal(), FormatUtil.formatBytes(p.getVirtualSize()),
-        FormatUtil.formatBytes(p.getResidentSetSize()), p.getName()));
+          100d * (p.getKernelTime() + p.getUserTime()) / p.getUpTime(),
+          100d * p.getResidentSetSize() / memory.getTotal(),
+          FormatUtil.formatBytes(p.getVirtualSize()),
+          FormatUtil.formatBytes(p.getResidentSetSize()), p.getName()));
     }
   }
 
@@ -298,11 +306,12 @@ public class OshiController extends AbstractTomcatContainerController {
         sb.append("Calculating time remaining");
       } else {
         sb.append(String.format("%d:%02d remaining", (int) (timeRemaining / 3600),
-          (int) (timeRemaining / 60) % 60));
+            (int) (timeRemaining / 60) % 60));
       }
     }
     for (PowerSource pSource : powerSources) {
-      sb.append(String.format("%n %s @ %.1f%%", pSource.getName(), pSource.getRemainingCapacity() * 100d));
+      sb.append(String.format("%n %s @ %.1f%%", pSource.getName(),
+          pSource.getRemainingCapacity() * 100d));
     }
     oshi.add(sb.toString());
   }
@@ -316,22 +325,25 @@ public class OshiController extends AbstractTomcatContainerController {
     oshi.add("Disks:");
     for (HWDiskStore disk : diskStores) {
       boolean readwrite = disk.getReads() > 0 || disk.getWrites() > 0;
-      oshi.add(String.format(" %s: (model: %s - S/N: %s) size: %s, reads: %s (%s), writes: %s (%s), xfer: %s ms%n",
-        disk.getName(), disk.getModel(), disk.getSerial(),
-        disk.getSize() > 0 ? FormatUtil.formatBytesDecimal(disk.getSize()) : "?",
-        readwrite ? disk.getReads() : "?", readwrite ? FormatUtil.formatBytes(disk.getReadBytes()) : "?",
-        readwrite ? disk.getWrites() : "?", readwrite ? FormatUtil.formatBytes(disk.getWriteBytes()) : "?",
-        readwrite ? disk.getTransferTime() : "?"));
+      oshi.add(String.format(
+          " %s: (model: %s - S/N: %s) size: %s, reads: %s (%s), writes: %s (%s), xfer: %s ms%n",
+          disk.getName(), disk.getModel(), disk.getSerial(),
+          disk.getSize() > 0 ? FormatUtil.formatBytesDecimal(disk.getSize()) : "?",
+          readwrite ? disk.getReads() : "?",
+          readwrite ? FormatUtil.formatBytes(disk.getReadBytes()) : "?",
+          readwrite ? disk.getWrites() : "?",
+          readwrite ? FormatUtil.formatBytes(disk.getWriteBytes()) : "?",
+          readwrite ? disk.getTransferTime() : "?"));
       HWPartition[] partitions = disk.getPartitions();
       if (partitions == null) {
         // TODO Remove when all OS's implemented
         continue;
       }
       for (HWPartition part : partitions) {
-        oshi.add(String.format(" |-- %s: %s (%s) Maj:Min=%d:%d, size: %s%s%n", part.getIdentification(),
-          part.getName(), part.getType(), part.getMajor(), part.getMinor(),
-          FormatUtil.formatBytesDecimal(part.getSize()),
-          part.getMountPoint().isEmpty() ? "" : " @ " + part.getMountPoint()));
+        oshi.add(String.format(" |-- %s: %s (%s) Maj:Min=%d:%d, size: %s%s%n",
+            part.getIdentification(), part.getName(), part.getType(), part.getMajor(),
+            part.getMinor(), FormatUtil.formatBytesDecimal(part.getSize()),
+            part.getMountPoint().isEmpty() ? "" : " @ " + part.getMountPoint()));
       }
     }
   }
@@ -345,16 +357,16 @@ public class OshiController extends AbstractTomcatContainerController {
     oshi.add("File System:");
 
     oshi.add(String.format(" File Descriptors: %d/%d%n", fileSystem.getOpenFileDescriptors(),
-      fileSystem.getMaxFileDescriptors()));
+        fileSystem.getMaxFileDescriptors()));
 
     OSFileStore[] fsArray = fileSystem.getFileStores();
     for (OSFileStore fs : fsArray) {
       long usable = fs.getUsableSpace();
       long total = fs.getTotalSpace();
-      oshi.add(String.format(" %s (%s) [%s] %s of %s free (%.1f%%) is %s and is mounted at %s%n", fs.getName(),
-        fs.getDescription().isEmpty() ? "file system" : fs.getDescription(), fs.getType(),
-        FormatUtil.formatBytes(usable), FormatUtil.formatBytes(fs.getTotalSpace()), 100d * usable / total,
-          fs.getVolume(), fs.getMount()));
+      oshi.add(String.format(" %s (%s) [%s] %s of %s free (%.1f%%) is %s and is mounted at %s%n",
+          fs.getName(), fs.getDescription().isEmpty() ? "file system" : fs.getDescription(),
+          fs.getType(), FormatUtil.formatBytes(usable), FormatUtil.formatBytes(fs.getTotalSpace()),
+          100d * usable / total, fs.getVolume(), fs.getMount()));
     }
   }
 
@@ -368,18 +380,19 @@ public class OshiController extends AbstractTomcatContainerController {
     for (NetworkIF net : networkIFs) {
       oshi.add(String.format(" Name: %s (%s)%n", net.getName(), net.getDisplayName()));
       oshi.add(String.format("   MAC Address: %s %n", net.getMacaddr()));
-      oshi.add(String.format("   MTU: %s, Speed: %s %n", net.getMTU(), FormatUtil.formatValue(net.getSpeed(), "bps")));
+      oshi.add(String.format("   MTU: %s, Speed: %s %n", net.getMTU(),
+          FormatUtil.formatValue(net.getSpeed(), "bps")));
       oshi.add(String.format("   IPv4: %s %n", Arrays.toString(net.getIPv4addr())));
       oshi.add(String.format("   IPv6: %s %n", Arrays.toString(net.getIPv6addr())));
       boolean hasData = net.getBytesRecv() > 0 || net.getBytesSent() > 0 || net.getPacketsRecv() > 0
-        || net.getPacketsSent() > 0;
+          || net.getPacketsSent() > 0;
       oshi.add(String.format("   Traffic: received %s/%s%s; transmitted %s/%s%s %n",
-        hasData ? net.getPacketsRecv() + " packets" : "?",
-        hasData ? FormatUtil.formatBytes(net.getBytesRecv()) : "?",
-        hasData ? " (" + net.getInErrors() + " err)" : "",
-        hasData ? net.getPacketsSent() + " packets" : "?",
-        hasData ? FormatUtil.formatBytes(net.getBytesSent()) : "?",
-        hasData ? " (" + net.getOutErrors() + " err)" : ""));
+          hasData ? net.getPacketsRecv() + " packets" : "?",
+          hasData ? FormatUtil.formatBytes(net.getBytesRecv()) : "?",
+          hasData ? " (" + net.getInErrors() + " err)" : "",
+          hasData ? net.getPacketsSent() + " packets" : "?",
+          hasData ? FormatUtil.formatBytes(net.getBytesSent()) : "?",
+          hasData ? " (" + net.getOutErrors() + " err)" : ""));
     }
   }
 

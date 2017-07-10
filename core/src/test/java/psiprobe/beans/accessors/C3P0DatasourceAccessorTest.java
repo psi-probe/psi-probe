@@ -22,49 +22,49 @@ import org.junit.Test;
  */
 public class C3P0DatasourceAccessorTest {
 
-    /** The accessor. */
-    C3P0DatasourceAccessor accessor;
+  /** The accessor. */
+  C3P0DatasourceAccessor accessor;
 
-    /** The source. */
-    ComboPooledDataSource source;
+  /** The source. */
+  ComboPooledDataSource source;
 
-    /** The bad source. */
-    C3P0PooledDataSource badSource;
+  /** The bad source. */
+  C3P0PooledDataSource badSource;
 
-    /**
-     * Before.
-     */
-    @Before
-    public void before() {
-        accessor = new C3P0DatasourceAccessor();
-        source = new ComboPooledDataSource();
-        badSource = new C3P0PooledDataSource();
-    }
+  /**
+   * Before.
+   */
+  @Before
+  public void before() {
+    accessor = new C3P0DatasourceAccessor();
+    source = new ComboPooledDataSource();
+    badSource = new C3P0PooledDataSource();
+  }
 
-    /**
-     * Can map test.
-     */
-    @Test
-    public void canMapTest() {
-        Assert.assertTrue(accessor.canMap(source));
-    }
+  /**
+   * Can map test.
+   */
+  @Test
+  public void canMapTest() {
+    Assert.assertTrue(accessor.canMap(source));
+  }
 
-    /**
-     * Cannot map test.
-     */
-    @Test
-    public void cannotMapTest() {
-        Assert.assertFalse(accessor.canMap(badSource));
-    }
+  /**
+   * Cannot map test.
+   */
+  @Test
+  public void cannotMapTest() {
+    Assert.assertFalse(accessor.canMap(badSource));
+  }
 
-    /**
-     * Gets the info test.
-     *
-     * @throws Exception the exception
-     */
-    @Test
-    public void getInfoTest() throws Exception {
-        accessor.getInfo(source);
-    }
+  /**
+   * Gets the info test.
+   *
+   * @throws Exception the exception
+   */
+  @Test
+  public void getInfoTest() throws Exception {
+    accessor.getInfo(source);
+  }
 
 }

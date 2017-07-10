@@ -30,57 +30,57 @@ import mockit.Mocked;
  */
 public class AjaxDecoratorMapperTest {
 
-    /** The mapper. */
-    AjaxDecoratorMapper mapper;
+  /** The mapper. */
+  AjaxDecoratorMapper mapper;
 
-    /** The config. */
-    @Mocked
-    Config config;
+  /** The config. */
+  @Mocked
+  Config config;
 
-    /** The properties. */
-    Properties properties;
+  /** The properties. */
+  Properties properties;
 
-    /** The decorator mapper. */
-    @Mocked
-    DecoratorMapper decoratorMapper;
+  /** The decorator mapper. */
+  @Mocked
+  DecoratorMapper decoratorMapper;
 
-    /** The request. */
-    @Mocked
-    HttpServletRequest request;
+  /** The request. */
+  @Mocked
+  HttpServletRequest request;
 
-    /** The page. */
-    @Mocked
-    Page page;
+  /** The page. */
+  @Mocked
+  Page page;
 
-    /**
-     * Before.
-     */
-    @Before
-    public void before() {
-        mapper = new AjaxDecoratorMapper();
-        properties = new Properties();
-    }
+  /**
+   * Before.
+   */
+  @Before
+  public void before() {
+    mapper = new AjaxDecoratorMapper();
+    properties = new Properties();
+  }
 
-    /**
-     * Ajax decorator mapper test.
-     *
-     * @throws InstantiationException the instantiation exception
-     */
-    @Test
-    public void ajaxDecoratorMapperTest() throws InstantiationException {
-        properties.setProperty("ajaxExtension", ".ajax");
-        mapper.init(config, properties, decoratorMapper);
+  /**
+   * Ajax decorator mapper test.
+   *
+   * @throws InstantiationException the instantiation exception
+   */
+  @Test
+  public void ajaxDecoratorMapperTest() throws InstantiationException {
+    properties.setProperty("ajaxExtension", ".ajax");
+    mapper.init(config, properties, decoratorMapper);
 
-        new Expectations() {
-            {
-                request.getAttribute("javax.servlet.error.request_uri");
-                result = "http://localhost:8080/probe";
+    new Expectations() {
+      {
+        request.getAttribute("javax.servlet.error.request_uri");
+        result = "http://localhost:8080/probe";
 
-                request.getServletPath();
-                result = "probe/ws";
-            }
-        };
-        Assert.assertNotNull(mapper.getDecorator(request, page));
-    }
+        request.getServletPath();
+        result = "probe/ws";
+      }
+    };
+    Assert.assertNotNull(mapper.getDecorator(request, page));
+  }
 
 }

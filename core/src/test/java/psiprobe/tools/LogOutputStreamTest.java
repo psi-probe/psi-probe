@@ -23,22 +23,22 @@ import mockit.Mocked;
  */
 public class LogOutputStreamTest {
 
-    /** The stream. */
-    PrintStream stream;
+  /** The stream. */
+  PrintStream stream;
 
-    /** The log. */
-    @Mocked
-    Logger log;
+  /** The log. */
+  @Mocked
+  Logger log;
 
-    /**
-     * Logger test.
-     *
-     * @throws IOException Signals that an I/O exception has occurred.
-     */
-    @Test
-    public void loggerTest() throws IOException {
-        stream = LogOutputStream.createPrintStream(log, 5);
-        stream.write('\u0001');
-    }
+  /**
+   * Logger test.
+   *
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
+  @Test
+  public void loggerTest() throws IOException {
+    stream = LogOutputStream.createPrintStream(log, 5);
+    stream.write('\u0001');
+  }
 
 }

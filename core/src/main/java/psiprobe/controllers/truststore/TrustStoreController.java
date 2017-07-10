@@ -70,7 +70,7 @@ public class TrustStoreController extends AbstractTomcatContainerController {
         try (FileInputStream fis = new FileInputStream(trustStore)) {
           ks.load(fis, trustStorePassword != null ? trustStorePassword.toCharArray() : null);
         } catch (NoSuchAlgorithmException | CertificateException | IOException e) {
-            logger.error("", e);
+          logger.error("", e);
         }
         Map<String, String> attributes;
         for (String alias : Collections.list(ks.aliases())) {
@@ -87,7 +87,7 @@ public class TrustStoreController extends AbstractTomcatContainerController {
         }
       }
     } catch (KeyStoreException e) {
-        logger.error("There was an exception obtaining truststore: ", e);
+      logger.error("There was an exception obtaining truststore: ", e);
     }
     ModelAndView mv = new ModelAndView(getViewName());
     mv.addObject("certificates", certificateList);

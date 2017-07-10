@@ -25,55 +25,55 @@ import mockit.Verifications;
  */
 public class AwtAppContextClassloaderListenerTest {
 
-    /** The listener. */
-    @Tested
-    AwtAppContextClassloaderListener listener;
+  /** The listener. */
+  @Tested
+  AwtAppContextClassloaderListener listener;
 
-    /** The event. */
-    @Mocked
-    ServletContextEvent event;
+  /** The event. */
+  @Mocked
+  ServletContextEvent event;
 
-    /** The image IO. */
-    @Mocked
-    ImageIO imageIO;
+  /** The image IO. */
+  @Mocked
+  ImageIO imageIO;
 
-    /**
-     * Context initialized test.
-     */
-    @Test
-    public void contextInitializedTest() {
-        listener.contextInitialized(event);
+  /**
+   * Context initialized test.
+   */
+  @Test
+  public void contextInitializedTest() {
+    listener.contextInitialized(event);
 
-        new Verifications() {
-            {
-                ImageIO.getCacheDirectory();
-                times = 1;
-            }
-        };
-    }
+    new Verifications() {
+      {
+        ImageIO.getCacheDirectory();
+        times = 1;
+      }
+    };
+  }
 
-    /**
-     * Context initialized error test.
-     */
-    @Test
-    public void contextInitializedErrorTest() {
-        new Expectations() {
-            {
-                ImageIO.getCacheDirectory();
-                result = new Exception();
-            }
-        };
+  /**
+   * Context initialized error test.
+   */
+  @Test
+  public void contextInitializedErrorTest() {
+    new Expectations() {
+      {
+        ImageIO.getCacheDirectory();
+        result = new Exception();
+      }
+    };
 
-        listener.contextInitialized(event);
-    }
+    listener.contextInitialized(event);
+  }
 
-    /**
-     * Context destroyed test.
-     */
-    @Test
-    public void contextDestroyedTest() {
-        // Dummy Test as method is not implemented
-        listener.contextDestroyed(event);
-    }
+  /**
+   * Context destroyed test.
+   */
+  @Test
+  public void contextDestroyedTest() {
+    // Dummy Test as method is not implemented
+    listener.contextDestroyed(event);
+  }
 
 }

@@ -172,7 +172,8 @@ public class Mailer {
       props.put(PROPERTY_KEY_SMTP, smtp);
     }
 
-    try (PrintStream debugOut = LogOutputStream.createPrintStream(logger, LogOutputStream.LEVEL_DEBUG)) {
+    try (PrintStream debugOut =
+        LogOutputStream.createPrintStream(logger, LogOutputStream.LEVEL_DEBUG)) {
       Session session = Session.getDefaultInstance(props);
       session.setDebug(true);
       session.setDebugOut(debugOut);

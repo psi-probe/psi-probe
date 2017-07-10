@@ -36,9 +36,8 @@ public class TomcatSlf4jLogbackLoggerAccessor extends DefaultAccessor {
     List<TomcatSlf4jLogbackAppenderAccessor> appenders = new ArrayList<>();
 
     try {
-      for (Object appender : Collections
-          .list(Iterators.asEnumeration((Iterator<Object>) MethodUtils.invokeMethod(getTarget(),
-              "iteratorForAppenders")))) {
+      for (Object appender : Collections.list(Iterators.asEnumeration(
+          (Iterator<Object>) MethodUtils.invokeMethod(getTarget(), "iteratorForAppenders")))) {
         List<Object> siftedAppenders = getSiftedAppenders(appender);
         if (siftedAppenders != null) {
           for (Object siftedAppender : siftedAppenders) {

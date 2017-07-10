@@ -80,7 +80,8 @@ public class Tomcat70ContainerAdapter extends AbstractTomcatContainer {
     String[] servlets = fmap.getServletNames();
     List<FilterMapping> results = new ArrayList<>(urls.length + servlets.length);
     addFilterMapping(fmap.getFilterName(), dm, filterClass, urls, results, FilterMapType.URL);
-    addFilterMapping(fmap.getFilterName(), dm, filterClass, servlets, results, FilterMapType.SERVLET_NAME);
+    addFilterMapping(fmap.getFilterName(), dm, filterClass, servlets, results,
+        FilterMapType.SERVLET_NAME);
     return results;
   }
 

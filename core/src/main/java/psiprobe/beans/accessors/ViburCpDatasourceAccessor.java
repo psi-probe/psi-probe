@@ -34,11 +34,13 @@ public class ViburCpDatasourceAccessor implements DatasourceAccessor {
 
       MBeanServer mBeanServer = ManagementFactory.getPlatformMBeanServer();
       ObjectName poolName = new ObjectName(source.getJmxName());
-      ViburMonitoringMBean poolProxy = JMX.newMXBeanProxy(mBeanServer, poolName, ViburMonitoringMBean.class);
+      ViburMonitoringMBean poolProxy =
+          JMX.newMXBeanProxy(mBeanServer, poolName, ViburMonitoringMBean.class);
 
       dataSourceInfo = new DataSourceInfo();
       dataSourceInfo.setBusyConnections(poolProxy.getPoolTaken());
-      dataSourceInfo.setEstablishedConnections(poolProxy.getPoolRemainingCreated() + poolProxy.getPoolTaken());
+      dataSourceInfo.setEstablishedConnections(
+          poolProxy.getPoolRemainingCreated() + poolProxy.getPoolTaken());
       dataSourceInfo.setMaxConnections(source.getPoolMaxSize());
       dataSourceInfo.setJdbcUrl(source.getJdbcUrl());
       dataSourceInfo.setUsername(source.getUsername());
@@ -56,7 +58,7 @@ public class ViburCpDatasourceAccessor implements DatasourceAccessor {
   @Override
   public boolean canMap(final Object resource) {
     return "org.vibur.dbcp.ViburDBCPDataSource".equals(resource.getClass().getName())
-      && resource instanceof ViburDBCPDataSource;
+        && resource instanceof ViburDBCPDataSource;
   }
 
 }

@@ -94,7 +94,7 @@ public class DefaultAccessor {
         return FieldUtils.readField(obj, name, forced);
       } else {
         return PropertyUtils.isReadable(obj, name) ? PropertyUtils.getProperty(obj, name)
-          : defaultValue;
+            : defaultValue;
       }
     } catch (IllegalArgumentException | IllegalAccessException | InvocationTargetException
         | NoSuchMethodException e) {
@@ -103,7 +103,7 @@ public class DefaultAccessor {
     logger.debug("Could not access property '{}' of object '{}'", name, obj);
     return defaultValue;
   }
-  
+
   /**
    * Gets the property.
    *

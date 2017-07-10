@@ -15,6 +15,6 @@ package psiprobe.rest;
  */
 public interface Dummy {
 
-    // Future use case and protection from plugins being disabled on no code
+  // Future use case and protection from plugins being disabled on no code
 
 }

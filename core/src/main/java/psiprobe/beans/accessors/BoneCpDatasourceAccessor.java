@@ -47,7 +47,7 @@ public class BoneCpDatasourceAccessor implements DatasourceAccessor {
       dataSourceInfo = new DataSourceInfo();
       dataSourceInfo.setBusyConnections(source.getTotalLeased());
 
-      if(pool == null) {
+      if (pool == null) {
         // pool is coming up null....
         dataSourceInfo.setEstablishedConnections(source.getMinConnectionsPerPartition());
         logger.warn("pool is null {}", source.getJdbcUrl());

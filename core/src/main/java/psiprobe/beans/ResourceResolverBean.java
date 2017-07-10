@@ -147,7 +147,8 @@ public class ResourceResolverBean implements ResourceResolver {
       try {
         javax.naming.Context ctx = !global ? new InitialContext() : getGlobalNamingContext();
         if (ctx == null) {
-          logger.error("Unable to find context. This may indicate invalid setup. Check global resources versus requested resources");
+          logger.error(
+              "Unable to find context. This may indicate invalid setup. Check global resources versus requested resources");
           resource.setLookedUp(false);
           return;
         }
@@ -328,7 +329,8 @@ public class ResourceResolverBean implements ResourceResolver {
         Server server = null;
         try {
           server = (Server) mbeanServer.getAttribute(name, "managedResource");
-        } catch (AttributeNotFoundException | InstanceNotFoundException | MBeanException | ReflectionException e) {
+        } catch (AttributeNotFoundException | InstanceNotFoundException | MBeanException
+            | ReflectionException e) {
           logger.trace("JMX objectName {} does not contain any managedResource", name, e);
         }
 

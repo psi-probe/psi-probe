@@ -26,7 +26,7 @@ public class UtilsTest {
     Assert.assertEquals(5, Utils.toInt("garbage", 5));
     Assert.assertEquals(3, Utils.toInt("3", 5));
     Assert.assertEquals(5, Utils.toInt("3 3", 5));
-    Assert.assertEquals(5, Utils.toInt((String) null, 5)); 
+    Assert.assertEquals(5, Utils.toInt((String) null, 5));
   }
 
   /**
@@ -38,9 +38,9 @@ public class UtilsTest {
     Assert.assertEquals(3, Utils.toIntHex("3", 5));
     Assert.assertEquals(3, Utils.toIntHex("#3", 5));
     Assert.assertEquals(5, Utils.toIntHex("3 3", 5));
-    Assert.assertEquals(5, Utils.toIntHex((String) null, 5)); 
+    Assert.assertEquals(5, Utils.toIntHex((String) null, 5));
   }
-  
+
   /**
    * To long test.
    */
@@ -49,7 +49,7 @@ public class UtilsTest {
     Assert.assertEquals(5L, Utils.toLong("garbage", 5L));
     Assert.assertEquals(3L, Utils.toLong("3", 5L));
     Assert.assertEquals(5L, Utils.toLong("3 3", 5L));
-    Assert.assertEquals(5L, Utils.toLong((String) null, 5L)); 
+    Assert.assertEquals(5L, Utils.toLong((String) null, 5L));
   }
 
   /**
@@ -69,7 +69,7 @@ public class UtilsTest {
     Assert.assertEquals(5.0f, Utils.toFloat("garbage", 5.0f), 0.0);
     Assert.assertEquals(3.0f, Utils.toFloat("3", 5.0f), 0.0);
     Assert.assertEquals(5.0f, Utils.toFloat("3 3", 5.0f), 0.0);
-    Assert.assertEquals(5.0f, Utils.toFloat((String) null, 5.0f), 0.0); 
+    Assert.assertEquals(5.0f, Utils.toFloat((String) null, 5.0f), 0.0);
   }
 
   /**

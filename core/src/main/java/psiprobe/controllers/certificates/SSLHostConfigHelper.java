@@ -37,7 +37,8 @@ public class SSLHostConfigHelper {
    * @throws IllegalAccessException the illegal access exception
    * @throws InvocationTargetException the invocation target exception
    */
-  public SSLHostConfigHelper(AbstractHttp11JsseProtocol<?> protocol, ConnectorInfo info) throws IllegalAccessException, InvocationTargetException {
+  public SSLHostConfigHelper(AbstractHttp11JsseProtocol<?> protocol, ConnectorInfo info)
+      throws IllegalAccessException, InvocationTargetException {
     SSLHostConfig[] sslHostConfigs = protocol.findSslHostConfigs();
     List<SSLHostConfigInfo> sslHostConfigInfos = new ArrayList<>(sslHostConfigs.length);
     info.setSslHostConfigInfos(sslHostConfigInfos);
@@ -66,7 +67,7 @@ public class SSLHostConfigHelper {
     for (SSLHostConfigCertificate sslHostConfigCertificate : certificates) {
       certificateInfos.add(toCertificateInfo(sslHostConfigCertificate));
     }
-  
+
     return sslHostConfigInfo;
   }
 
