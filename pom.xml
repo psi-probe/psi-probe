@@ -133,7 +133,7 @@
         <jcommon.version>1.0.24</jcommon.version>
         <jfreechart.version>1.0.19</jfreechart.version>
         <jhighlight.version>1.0.3</jhighlight.version>
-        <jmockit.version>1.32</jmockit.version>
+        <jmockit.version>1.33</jmockit.version>
         <jna.version>4.4.0</jna.version>
         <jsp-api.version>2.3.2-b02</jsp-api.version>
         <jsr305.version>3.0.2</jsr305.version>
@@ -154,7 +154,7 @@
         <spring-security.version>4.2.3.RELEASE</spring-security.version>
         <text.version>1.1</text.version>
         <transaction-api.version>1.2</transaction-api.version>
-        <tomcat.version>8.5.15</tomcat.version>
+        <tomcat.version>8.5.16</tomcat.version>
         <wrapper.version>3.2.3</wrapper.version>
         <xpp3_min.version>1.1.4c</xpp3_min.version>
         <xstream.version>1.4.10</xstream.version>
@@ -200,7 +200,7 @@
         <war.plugin>3.1.0</war.plugin>
 
         <!-- Plugin Dependency Versions -->
-        <checkstyle.version>7.8.2</checkstyle.version>
+        <checkstyle.version>8.0</checkstyle.version>
     </properties>
 
     <dependencyManagement>
