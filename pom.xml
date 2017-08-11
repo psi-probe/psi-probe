@@ -142,7 +142,7 @@
         <junit.version>4.12</junit.version>
         <lang3.version>3.6</lang3.version>
         <mail.version>1.6.0</mail.version>
-        <oshi.version>3.4.2</oshi.version>
+        <oshi.version>3.4.3</oshi.version>
         <openejb.version>4.7.4</openejb.version>
         <persistence.version>2.1.1</persistence.version>
         <probe-ojdbc.version>3.0.0</probe-ojdbc.version>
