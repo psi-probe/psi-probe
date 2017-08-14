@@ -15,6 +15,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.naming.NamingException;
 
@@ -30,6 +31,7 @@ import org.junit.Test;
 
 import mockit.Expectations;
 import mockit.Mocked;
+import psiprobe.model.ApplicationResource;
 
 /**
  * The Class Tomcat70ContainerAdapterTest.
@@ -198,7 +200,7 @@ public class Tomcat70ContainerAdapterTest {
   @Test
   public void addContextResourceLink() throws NamingException {
     final Tomcat70ContainerAdapter adapter = new Tomcat70ContainerAdapter();
-    adapter.addContextResourceLink(context, null, false);
+    adapter.addContextResourceLink(context, new ArrayList<ApplicationResource>(), false);
   }
 
   /**
@@ -209,7 +211,7 @@ public class Tomcat70ContainerAdapterTest {
   @Test
   public void addContextResource() throws NamingException {
     final Tomcat70ContainerAdapter adapter = new Tomcat70ContainerAdapter();
-    adapter.addContextResource(context, null, false);
+    adapter.addContextResource(context, new ArrayList<ApplicationResource>(), false);
   }
 
   /**
