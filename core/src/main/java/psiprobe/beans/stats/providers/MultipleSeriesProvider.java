@@ -121,7 +121,7 @@ public class MultipleSeriesProvider extends AbstractSeriesProvider {
         @Override
         public int compare(Series s1, Series s2) {
           return Double.compare(s1.avg, s2.avg) == 0 ? s1.key.compareTo(s2.key)
-              : (Double.compare(s1.avg, s2.avg) > 0 ? -1 : 1);
+              : Double.compare(s1.avg, s2.avg) > 0 ? -1 : 1;
         }
       });
 
@@ -136,7 +136,7 @@ public class MultipleSeriesProvider extends AbstractSeriesProvider {
     Collections.sort(seriesList, new Comparator<Series>() {
       @Override
       public int compare(Series s1, Series s2) {
-        return (s1.key).compareTo(s2.key);
+        return s1.key.compareTo(s2.key);
       }
     });
 
@@ -187,7 +187,7 @@ public class MultipleSeriesProvider extends AbstractSeriesProvider {
           XYDataItem xy = it.next();
           sum += xy.getY().longValue();
 
-          if ((useMovingAvg && count % getMovingAvgFrame() == 0) || !it.hasNext()) {
+          if (useMovingAvg && count % getMovingAvgFrame() == 0 || !it.hasNext()) {
             double thisAvg = (double) sum / count;
             if (thisAvg > avg) {
               avg = thisAvg;

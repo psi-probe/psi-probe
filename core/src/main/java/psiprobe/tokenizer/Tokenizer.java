@@ -307,7 +307,7 @@ public class Tokenizer {
    */
   public boolean hasMore() throws IOException {
     loadCache(0);
-    return (cachePosition < cacheSize) || upcomingToken.type != Tokenizer.TT_ERROR || pushCount > 0;
+    return cachePosition < cacheSize || upcomingToken.type != Tokenizer.TT_ERROR || pushCount > 0;
   }
 
   /**
