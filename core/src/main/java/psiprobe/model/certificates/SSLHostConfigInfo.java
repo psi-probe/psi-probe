@@ -104,7 +104,7 @@ public class SSLHostConfigInfo implements Serializable {
   /**
    * Sets protocols.
    *
-   * @param sslProtocols new protocols
+   * @param protocols new protocols
    */
   public void setProtocols(String protocols) {
     this.protocols = protocols;
@@ -129,7 +129,7 @@ public class SSLHostConfigInfo implements Serializable {
   }
 
   /**
-   * Gets the certificate verification depth
+   * Gets the certificate verification depth.
    *
    * @return the certificate verification depth
    */

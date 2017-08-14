@@ -13,6 +13,9 @@ package psiprobe.model.certificates;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The Class OldConnectorInfo.
+ */
 public class OldConnectorInfo extends ConnectorInfo {
 
   /** The Constant serialVersionUID. */
@@ -42,6 +45,10 @@ public class OldConnectorInfo extends ConnectorInfo {
   /** The truststore type. */
   private String truststoreType;
 
+  /**
+   * Recent version of tomcat have changed how certificate setup works. As such this
+   * class supports the Old Connecter Info configuration.
+   */
   public OldConnectorInfo() {
     SSLHostConfigInfo configInfo = new SSLHostConfigInfo();
     List<CertificateInfo> certificateInfos = new ArrayList<>(1);

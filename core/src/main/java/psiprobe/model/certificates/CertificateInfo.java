@@ -84,7 +84,7 @@ public class CertificateInfo implements Serializable {
   /**
    * Sets the certificate keystore file.
    *
-   * @param certificateKeystoreFile the new certificate keystore file
+   * @param keystoreFile the new certificate keystore file
    */
   public void setCertificateKeystoreFile(String keystoreFile) {
     this.certificateKeystoreFile = keystoreFile;
@@ -102,7 +102,7 @@ public class CertificateInfo implements Serializable {
   /**
    * Sets the certificate keystore password.
    *
-   * @param certificateKeystorePassword the new certificate keystore password
+   * @param keystorePass the new certificate keystore password
    */
   public void setCertificateKeystorePassword(String keystorePass) {
     this.certificateKeystorePassword = keystorePass;
@@ -120,7 +120,7 @@ public class CertificateInfo implements Serializable {
   /**
    * Sets the certificate keystore provider.
    *
-   * @param certificateKeystoreProvider the new certificate keystore provider
+   * @param keystoreProvider the new certificate keystore provider
    */
   public void setCertificateKeystoreProvider(String keystoreProvider) {
     this.certificateKeystoreProvider = keystoreProvider;
@@ -138,7 +138,7 @@ public class CertificateInfo implements Serializable {
   /**
    * Sets the certificate keystore type.
    *
-   * @param certificateKeystoreType the new certificate keystore type
+   * @param keystoreType the new certificate keystore type
    */
   public void setCertificateKeystoreType(String keystoreType) {
     this.certificateKeystoreType = keystoreType;

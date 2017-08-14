@@ -29,7 +29,7 @@ public class Log4J2LoggerConfigAccessor extends DefaultAccessor {
   /** The LoggerContext. */
   private Log4J2LoggerContextAccessor loggerContext;
 
-  /** The loggers Map of appenders **/
+  /** The loggers Map of appenders. **/
   private Map<String, Object> appenderMap;
 
   /**
