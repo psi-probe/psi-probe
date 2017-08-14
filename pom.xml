@@ -192,7 +192,7 @@
         <site.plugin>3.6</site.plugin>
         <sonar.plugin>3.3.0.603</sonar.plugin>
         <source.plugin>3.0.1</source.plugin>
-        <spotbugs.plugin>3.0.6</spotbugs.plugin>
+        <spotbugs.plugin>3.1.0-RC4</spotbugs.plugin>
         <surefire.plugin>2.19.1</surefire.plugin> <!-- TODO: Version 2.20 breaks whois tests -->
         <tidy.plugin>1.0.0</tidy.plugin>
         <versioneye.plugin>3.11.4</versioneye.plugin>
