@@ -54,7 +54,7 @@ public class AjaxDecoratorMapper extends AbstractDecoratorMapper {
       }
     }
     callMapperChain = (originalUri == null || !originalUri.endsWith(ajaxExtension))
-        && (!request.getServletPath().endsWith(ajaxExtension));
+        && !request.getServletPath().endsWith(ajaxExtension);
 
     return callMapperChain ? super.getDecorator(request, page) : null;
   }

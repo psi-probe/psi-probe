@@ -16,6 +16,7 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.apache.catalina.Context;
 import org.apache.catalina.Valve;
@@ -29,6 +30,7 @@ import org.junit.Test;
 
 import mockit.Expectations;
 import mockit.Mocked;
+import psiprobe.model.ApplicationResource;
 
 /**
  * The Class Tomcat80ContainerAdapterTest.
@@ -132,7 +134,7 @@ public class Tomcat80ContainerAdapterTest {
   @Test
   public void addContextResourceLink() {
     final Tomcat80ContainerAdapter adapter = new Tomcat80ContainerAdapter();
-    adapter.addContextResourceLink(context, null, false);
+    adapter.addContextResourceLink(context, new ArrayList<ApplicationResource>(), false);
   }
 
   /**
@@ -141,7 +143,7 @@ public class Tomcat80ContainerAdapterTest {
   @Test
   public void addContextResource() {
     final Tomcat80ContainerAdapter adapter = new Tomcat80ContainerAdapter();
-    adapter.addContextResource(context, null, false);
+    adapter.addContextResource(context, new ArrayList<ApplicationResource>(), false);
   }
 
   /**

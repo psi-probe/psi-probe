@@ -29,6 +29,9 @@ public class Log4J2LoggerContextAccessor extends DefaultAccessor {
     return loggers;
   }
 
+  /**
+   * Update log4j2 loggers.
+   */
   public void updateLoggers() {
     invokeMethod(getTarget(), "updateLoggers", null, null);
   }
