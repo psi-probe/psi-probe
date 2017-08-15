@@ -158,6 +158,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
     list.add("psiprobe.beans.accessors.OracleUcpDatasourceAccessor");
     list.add("psiprobe.beans.accessors.OpenEjbManagedDatasourceAccessor");
     list.add("psiprobe.beans.accessors.ViburCpDatasourceAccessor");
+    list.add("psiprobe.beans.accessors.TomEEJdbcPoolDatasourceAccessor");
     return list;
   }
 
