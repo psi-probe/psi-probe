@@ -36,6 +36,9 @@
         <links>
             <item name="Psi-Probe" href="https://github.com/psi-probe/psi-probe" />
         </links>
+        <menu name="User Guide">
+            <item href="README.html" name="README" />
+        </menu>
         <menu ref="reports" />
     </body>
 </project>

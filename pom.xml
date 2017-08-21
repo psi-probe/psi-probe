@@ -201,9 +201,11 @@
 
         <!-- Plugin Dependency Versions -->
         <checkstyle.version>8.1</checkstyle.version>
+        <doxia.version>1.7</doxia.version>
         <fb-contrib.version>7.0.3</fb-contrib.version>
         <findsecbugs.version>1.7.1</findsecbugs.version>
         <plexus-compiler.version>2.8.2</plexus-compiler.version>
+        <wagon-git.version>2.0.3</wagon-git.version> <!-- Do not use 2.0.4 as it does not work -->
     </properties>
 
     <dependencyManagement>
@@ -707,6 +709,18 @@
                             </manifestEntries>
                         </archive>
                     </configuration>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.apache.maven.doxia</groupId>
+                            <artifactId>doxia-module-markdown</artifactId>
+                            <version>${doxia.version}</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>net.trajano.wagon</groupId>
+                            <artifactId>wagon-git</artifactId>
+                            <version>${wagon-git.version}</version>
+                        </dependency>
+                    </dependencies>
                 </plugin>
                 <plugin>
                     <groupId>org.owasp</groupId>
