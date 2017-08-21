@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="Date-Revision-yyyymmdd" content="20170821" />
     <meta http-equiv="Content-Language" content="en" />
-    <title>psi-probe &#x2013; About</title>
+    <title>psi-probe &#x2013; PMD Results</title>
     <link rel="stylesheet" href="./css/apache-maven-fluido-1.6.min.css" />
     <link rel="stylesheet" href="./css/site.css" />
     <link rel="stylesheet" href="./css/print.css" media="print" />
@@ -104,27 +104,21 @@
           <li class="nav-header">User Guide</li>
     <li><a href="README.html" title="README"><span class="none"></span>README</a>  </li>
           <li class="nav-header">Project Documentation</li>
-    <li><a href="project-info.html" title="Project Information"><span class="icon-chevron-down"></span>Project Information</a>
+    <li><a href="project-info.html" title="Project Information"><span class="icon-chevron-right"></span>Project Information</a>  </li>
+    <li><a href="project-reports.html" title="Project Reports"><span class="icon-chevron-down"></span>Project Reports</a>
       <ul class="nav nav-list">
-    <li><a href="integration.html" title="CI Management"><span class="none"></span>CI Management</a>  </li>
-    <li><a href="dependencies.html" title="Dependencies"><span class="none"></span>Dependencies</a>  </li>
-    <li><a href="dependency-convergence.html" title="Dependency Convergence"><span class="none"></span>Dependency Convergence</a>  </li>
-    <li><a href="dependency-info.html" title="Dependency Information"><span class="none"></span>Dependency Information</a>  </li>
-    <li><a href="dependency-management.html" title="Dependency Management"><span class="none"></span>Dependency Management</a>  </li>
-    <li><a href="distribution-management.html" title="Distribution Management"><span class="none"></span>Distribution Management</a>  </li>
-    <li class="active"><a href="#"><span class="none"></span>About</a>
+    <li><a href="dependency-updates-report.html" title="Dependency Updates Report"><span class="none"></span>Dependency Updates Report</a>  </li>
+    <li><a href="plugin-updates-report.html" title="Plugin Updates Report"><span class="none"></span>Plugin Updates Report</a>  </li>
+    <li><a href="property-updates-report.html" title="Property Updates Report"><span class="none"></span>Property Updates Report</a>  </li>
+    <li><a href="xref/index.html" title="Source Xref"><span class="none"></span>Source Xref</a>  </li>
+    <li><a href="xref-test/index.html" title="Test Source Xref"><span class="none"></span>Test Source Xref</a>  </li>
+    <li><a href="surefire-report.html" title="Surefire Report"><span class="none"></span>Surefire Report</a>  </li>
+    <li><a href="checkstyle-aggregate.html" title="Checkstyle"><span class="none"></span>Checkstyle</a>  </li>
+    <li><a href="cpd.html" title="CPD"><span class="none"></span>CPD</a>  </li>
+    <li class="active"><a href="#"><span class="none"></span>PMD</a>
   </li>
-    <li><a href="issue-tracking.html" title="Issue Management"><span class="none"></span>Issue Management</a>  </li>
-    <li><a href="license.html" title="Licenses"><span class="none"></span>Licenses</a>  </li>
-    <li><a href="mail-lists.html" title="Mailing Lists"><span class="none"></span>Mailing Lists</a>  </li>
-    <li><a href="modules.html" title="Project Modules"><span class="none"></span>Project Modules</a>  </li>
-    <li><a href="plugin-management.html" title="Plugin Management"><span class="none"></span>Plugin Management</a>  </li>
-    <li><a href="plugins.html" title="Plugins"><span class="none"></span>Plugins</a>  </li>
-    <li><a href="source-repository.html" title="Source Code Management"><span class="none"></span>Source Code Management</a>  </li>
-    <li><a href="project-summary.html" title="Summary"><span class="none"></span>Summary</a>  </li>
       </ul>
   </li>
-    <li><a href="project-reports.html" title="Project Reports"><span class="icon-chevron-right"></span>Project Reports</a>  </li>
   </ul>
           <hr />
           <div id="poweredBy">
@@ -138,36 +132,70 @@
         </div>
         <div id="bodyColumn"  class="span10" >
 <div class="section">
-<h2><a name="About_psi-probe"></a>About psi-probe</h2><a name="About_psi-probe"></a>
-<p>Psi Probe - Advanced manager and monitor for Tomcat, forked from Lambda Probe</p>
+<h2><a name="PMD_Results"></a>PMD Results</h2>
+<p>The following document contains the results of <a class="externalLink" href="http://pmd.sourceforge.net/">PMD</a> 5.6.1.</p></div>
 <div class="section">
-<h3><a name="Project_Modules"></a>Project Modules</h3><a name="Project_Modules"></a>
-<p>This project has declared the following modules:</p>
+<h2><a name="Files"></a>Files</h2>
+<div class="section">
+<h3><a name="psi-probe-core_-_psiprobeAbstractTomcatContainer.java"></a>psi-probe-core - psiprobe/AbstractTomcatContainer.java</h3>
 <table border="0" class="table table-striped">
 <tr class="a">
-<th>Name</th>
-<th>Description</th></tr>
+<th>Violation</th>
+<th>Line</th></tr>
 <tr class="b">
-<td><a href="psi-probe-core/index.html">psi-probe-core</a></td>
-<td>PSI Probe Core - Core logic, data models, and controllers</td></tr>
+<td>Avoid unused method parameters such as 'config'.</td>
+<td><a href="./xref/psiprobe/AbstractTomcatContainer.html#L251">251</a></td></tr></table></div>
+<div class="section">
+<h3><a name="psi-probe-core_-_psiprobeUtils.java"></a>psi-probe-core - psiprobe/Utils.java</h3>
+<table border="0" class="table table-striped">
 <tr class="a">
-<td><a href="psi-probe-rest/index.html">psi-probe-rest</a></td>
-<td>PSI Probe Rest - RESTful service endpoints.</td></tr>
+<th>Violation</th>
+<th>Line</th></tr>
 <tr class="b">
-<td><a href="psi-probe-tomcat7/index.html">psi-probe-tomcat7</a></td>
-<td>PSI Probe Tomcat 7.0.x Adapter - Implementation of features specific to Apache Tomcat 7.0.x</td></tr>
+<td>These nested if statements could be combined</td>
+<td><a href="./xref/psiprobe/Utils.html#L268">268</a>&#x2013;<a href="./xref/psiprobe/Utils.html#L271">271</a></td></tr>
 <tr class="a">
-<td><a href="psi-probe-tomcat8/index.html">psi-probe-tomcat8</a></td>
-<td>PSI Probe Tomcat 8.0.x Adapter - Implementation of features specific to Apache Tomcat 8.0.x</td></tr>
+<td>These nested if statements could be combined</td>
+<td><a href="./xref/psiprobe/Utils.html#L274">274</a>&#x2013;<a href="./xref/psiprobe/Utils.html#L279">279</a></td></tr>
 <tr class="b">
-<td><a href="psi-probe-tomcat85/index.html">psi-probe-tomcat85</a></td>
-<td>PSI Probe Tomcat 8.5.x Adapter - Implementation of features specific to Apache Tomcat 8.5.x</td></tr>
+<td>These nested if statements could be combined</td>
+<td><a href="./xref/psiprobe/Utils.html#L276">276</a>&#x2013;<a href="./xref/psiprobe/Utils.html#L278">278</a></td></tr>
 <tr class="a">
-<td><a href="psi-probe-web/index.html">psi-probe-web</a></td>
-<td>PSI Probe Web Application - Web view, message resources, and configuration</td></tr>
+<td>Avoid using java.lang.ThreadGroup; it is not thread safe</td>
+<td><a href="./xref/psiprobe/Utils.html#L394">394</a></td></tr></table></div>
+<div class="section">
+<h3><a name="psi-probe-core_-_psiprobebeansLogResolverBean.java"></a>psi-probe-core - psiprobe/beans/LogResolverBean.java</h3>
+<table border="0" class="table table-striped">
 <tr class="b">
-<td><a href="psi-probe-tomcat9/index.html">psi-probe-tomcat9</a></td>
-<td>PSI Probe Tomcat 9.0.x Adapter - Implementation of features specific to Apache Tomcat 9.0.x</td></tr></table></div></div>
+<th>Violation</th>
+<th>Line</th></tr>
+<tr class="a">
+<td>These nested if statements could be combined</td>
+<td><a href="./xref/psiprobe/beans/LogResolverBean.html#L122">122</a>&#x2013;<a href="./xref/psiprobe/beans/LogResolverBean.html#L124">124</a></td></tr></table></div>
+<div class="section">
+<h3><a name="psi-probe-core_-_psiprobecontrollersdeployCopySingleFileController.java"></a>psi-probe-core - psiprobe/controllers/deploy/CopySingleFileController.java</h3>
+<table border="0" class="table table-striped">
+<tr class="b">
+<th>Violation</th>
+<th>Line</th></tr>
+<tr class="a">
+<td>These nested if statements could be combined</td>
+<td><a href="./xref/psiprobe/controllers/deploy/CopySingleFileController.html#L169">169</a>&#x2013;<a href="./xref/psiprobe/controllers/deploy/CopySingleFileController.html#L174">174</a></td></tr></table></div>
+<div class="section">
+<h3><a name="psi-probe-core_-_psiprobecontrollersthreadsListThreadsController.java"></a>psi-probe-core - psiprobe/controllers/threads/ListThreadsController.java</h3>
+<table border="0" class="table table-striped">
+<tr class="b">
+<th>Violation</th>
+<th>Line</th></tr>
+<tr class="a">
+<td>Avoid using java.lang.ThreadGroup; it is not thread safe</td>
+<td><a href="./xref/psiprobe/controllers/threads/ListThreadsController.html#L72">72</a></td></tr>
+<tr class="b">
+<td>Avoid using java.lang.ThreadGroup; it is not thread safe</td>
+<td><a href="./xref/psiprobe/controllers/threads/ListThreadsController.html#L90">90</a></td></tr>
+<tr class="a">
+<td>Avoid using java.lang.ThreadGroup; it is not thread safe</td>
+<td><a href="./xref/psiprobe/controllers/threads/ListThreadsController.html#L91">91</a></td></tr></table></div></div>
         </div>
       </div>
     </div>
