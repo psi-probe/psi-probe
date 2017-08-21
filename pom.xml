@@ -158,19 +158,19 @@
         <wrapper.version>3.2.3</wrapper.version>
         <xpp3_min.version>1.1.4c</xpp3_min.version>
         <xstream.version>1.4.10</xstream.version>
-        <vibur-dbcp.version>19.0</vibur-dbcp.version>
+        <vibur-dbcp.version>19.1</vibur-dbcp.version>
 
         <!-- Plugin Versions -->
         <antrun.plugin>1.8</antrun.plugin>
-        <assembly.plugin>3.0.0</assembly.plugin>
+        <assembly.plugin>3.1.0</assembly.plugin>
         <build-helper.plugin>3.0.0</build-helper.plugin>
         <checkstyle.plugin>2.17</checkstyle.plugin>
         <changelog.plugin>2.3</changelog.plugin>
         <clean.plugin>3.0.0</clean.plugin>
-        <compiler.plugin>3.6.1</compiler.plugin>
+        <compiler.plugin>3.6.2</compiler.plugin>
         <coveralls.plugin>4.3.0</coveralls.plugin>
         <dependency.plugin>3.0.1</dependency.plugin>
-        <dependency-check.plugin>1.4.5</dependency-check.plugin>
+        <dependency-check.plugin>2.1.0</dependency-check.plugin>
         <deploy.plugin>2.8.2</deploy.plugin>
         <formatter.plugin>2.0.1</formatter.plugin>
         <git-commit.plugin>2.2.2</git-commit.plugin>
@@ -200,7 +200,7 @@
         <war.plugin>3.1.0</war.plugin>
 
         <!-- Plugin Dependency Versions -->
-        <checkstyle.version>8.0</checkstyle.version>
+        <checkstyle.version>8.1</checkstyle.version>
         <fb-contrib.version>7.0.3</fb-contrib.version>
         <findsecbugs.version>1.7.1</findsecbugs.version>
         <plexus-compiler.version>2.8.2</plexus-compiler.version>
