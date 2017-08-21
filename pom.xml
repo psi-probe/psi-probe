@@ -37,6 +37,25 @@
         </license>
     </licenses>
 
+    <developers>
+        <developer>
+            <id>jlandis</id>
+            <name>Jeremy Landis</name>
+            <email>jeremylandis@hotmail.com</email>
+            <url>https://www.linkedin.com/in/jeremy-landis-548b2719</url>
+            <organization>hazendaz</organization>
+            <organizationUrl>https://github.com/hazendaz</organizationUrl>
+            <roles>
+                <role>Architect</role>
+                <role>Developer</role>
+            </roles>
+            <timezone>-5</timezone>
+            <properties>
+                <picUrl>https://media.licdn.com/mpr/mpr/shrinknp_200_200/p/1/000/128/174/30cff69.jpg</picUrl>
+            </properties>
+        </developer>
+    </developers>
+
     <mailingLists>
         <mailingList>
             <name>PSI Probe Announcements</name>
