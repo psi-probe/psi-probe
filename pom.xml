@@ -167,7 +167,7 @@
         <checkstyle.plugin>2.17</checkstyle.plugin>
         <changelog.plugin>2.3</changelog.plugin>
         <clean.plugin>3.0.0</clean.plugin>
-        <compiler.plugin>3.6.1</compiler.plugin>
+        <compiler.plugin>3.6.2</compiler.plugin>
         <coveralls.plugin>4.3.0</coveralls.plugin>
         <dependency.plugin>3.0.1</dependency.plugin>
         <dependency-check.plugin>1.4.5</dependency-check.plugin>
