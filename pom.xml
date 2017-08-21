@@ -16,7 +16,7 @@
 
     <groupId>com.github.psi-probe</groupId>
     <artifactId>psi-probe</artifactId>
-    <version>3.0.0-SNAPSHOT</version>
+    <version>3.0.0.RC2</version>
     <packaging>pom</packaging>
 
     <name>psi-probe</name>
@@ -67,7 +67,7 @@
         <connection>scm:git:ssh://git@github.com/psi-probe/psi-probe.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/psi-probe/psi-probe.git</developerConnection>
         <url>https://github.com/psi-probe/psi-probe/</url>
-        <tag>HEAD</tag>
+        <tag>psi-probe-3.0.0.RC2-B</tag>
     </scm>
     <issueManagement>
         <system>GitHub Issues</system>
