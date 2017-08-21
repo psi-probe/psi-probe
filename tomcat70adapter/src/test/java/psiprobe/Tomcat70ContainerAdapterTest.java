@@ -296,8 +296,6 @@ public class Tomcat70ContainerAdapterTest {
 
   /**
    * Gets the naming token.
-   *
-   * @return the naming token
    */
   @Test
   public void getNamingToken() {
