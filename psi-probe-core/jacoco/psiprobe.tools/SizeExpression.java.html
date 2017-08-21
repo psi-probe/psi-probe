@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SizeExpression.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">psi-probe-core</a> &gt; <a href="index.source.html" class="el_package">psiprobe.tools</a> &gt; <span class="el_source">SizeExpression.java</span></div><h1>SizeExpression.java</h1><pre class="source lang-java linenums">/**
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ *
+ * THIS PACKAGE IS PROVIDED &quot;AS IS&quot; AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+ * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE.
+ */
+package psiprobe.tools;
+
+import java.text.NumberFormat;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+/**
+ * Tool for parsing and formatting SI-prefixed numbers in base-2 and base-10.
+ */
+public final class SizeExpression {
+
+  /** The Constant MULTIPLIER_2. */
+  public static final long MULTIPLIER_2 = 1024;
+
+  /** The Constant MULTIPLIER_10. */
+  public static final long MULTIPLIER_10 = 1000;
+
+  /** The Constant UNIT_BASE. */
+  public static final String UNIT_BASE = &quot;B&quot;;
+
+  /** The Constant PREFIX_KILO. */
+  public static final char PREFIX_KILO = 'K';
+
+  /** The Constant PREFIX_MEGA. */
+  public static final char PREFIX_MEGA = 'M';
+
+  /** The Constant PREFIX_GIGA. */
+  public static final char PREFIX_GIGA = 'G';
+
+  /** The Constant PREFIX_TERA. */
+  public static final char PREFIX_TERA = 'T';
+
+  /** The Constant PREFIX_PETA. */
+  public static final char PREFIX_PETA = 'P';
+
+  /**
+   * Prevent Instantiation.
+   */
+<span class="nc" id="L49">  private SizeExpression() {</span>
+    // Prevent Instantiation
+<span class="nc" id="L51">  }</span>
+
+  /**
+   * Parses the given expression into a numerical value.
+   * 
+   * &lt;p&gt;
+   * An expression has three parts:
+   * &lt;/p&gt;
+   * &lt;table summary=&quot;Size Summary Table&quot;&gt;
+   * 
+   * &lt;thead&gt;
+   * &lt;tr&gt;
+   * &lt;th&gt;Name&lt;/th&gt;
+   * &lt;th&gt;Description&lt;/th&gt;
+   * &lt;/tr&gt;
+   * &lt;/thead&gt;
+   * 
+   * &lt;tbody&gt;
+   * &lt;tr&gt;
+   * &lt;td&gt;Base Number&lt;/td&gt;
+   * &lt;td&gt;(Required) The mantissa or significand of the expression. This can include decimal values.&lt;/td&gt;
+   * &lt;/tr&gt;
+   * &lt;tr&gt;
+   * &lt;td&gt;Prefix&lt;/td&gt;
+   * &lt;td&gt;(Optional) The &lt;a href=&quot;https://en.wikipedia.org/wiki/Metric_prefix&quot; target=&quot;_blank&quot;&gt;SI
+   * prefix&lt;/a&gt;. These span from K for kilo- to P for peta-.&lt;/td&gt;
+   * &lt;/tr&gt;
+   * &lt;tr&gt;
+   * &lt;td&gt;Unit&lt;/td&gt;
+   * &lt;td&gt;(Optional) If the unit &quot;B&quot; (for bytes) is provided, the prefix is treated as base-2 (1024).
+   * Otherwise, it uses base-10 (1000).&lt;/td&gt;
+   * &lt;/tr&gt;
+   * &lt;/tbody&gt;
+   * 
+   * &lt;tfoot&gt;
+   * &lt;tr&gt;
+   * &lt;td colspan=&quot;2&quot;&gt;
+   * &lt;em&gt;Note: Whitespace may or may not exist between the Base Number and Prefix.&lt;/em&gt;&lt;/td&gt;
+   * &lt;/tr&gt;
+   * &lt;/tfoot&gt;
+   * 
+   * &lt;/table&gt;
+   * 
+   * &lt;p&gt;
+   * Examples:
+   * &lt;/p&gt;
+   * &lt;ul&gt;
+   * &lt;li&gt;&quot;2k&quot; returns {@code 2000}&lt;/li&gt;
+   * &lt;li&gt;&quot;3.5m&quot; returns {@code 3500000}&lt;/li&gt;
+   * &lt;li&gt;&quot;2kb&quot; returns {@code 2048}&lt;/li&gt;
+   * &lt;li&gt;&quot;3.5mb&quot; returns {@code 3670016}&lt;/li&gt;
+   * &lt;/ul&gt;
+   * 
+   * @param expression the expression to parse
+   * @return the parsed value
+   * @throws NumberFormatException if the given expression cannot be parsed
+   */
+  public static long parse(String expression) {
+<span class="nc" id="L109">    String prefixClass =</span>
+        &quot;[&quot; + PREFIX_KILO + PREFIX_MEGA + PREFIX_GIGA + PREFIX_TERA + PREFIX_PETA + &quot;]&quot;;
+<span class="nc" id="L111">    Pattern expPattern =</span>
+<span class="nc" id="L112">        Pattern.compile(&quot;(\\d+|\\d*\\.\\d+)\\s*(&quot; + prefixClass + &quot;)?(&quot; + UNIT_BASE + &quot;)?&quot;,</span>
+            Pattern.CASE_INSENSITIVE);
+<span class="nc" id="L114">    Matcher expMatcher = expPattern.matcher(expression);</span>
+<span class="nc bnc" id="L115" title="All 2 branches missed.">    if (expMatcher.matches()) {</span>
+<span class="nc" id="L116">      String value = expMatcher.group(1);</span>
+<span class="nc" id="L117">      String unitPrefix = expMatcher.group(2);</span>
+<span class="nc" id="L118">      String unitBase = expMatcher.group(3);</span>
+<span class="nc" id="L119">      double multiplier = 1;</span>
+<span class="nc bnc" id="L120" title="All 2 branches missed.">      if (unitPrefix != null) {</span>
+<span class="nc bnc" id="L121" title="All 2 branches missed.">        multiplier = multiplier(unitPrefix.charAt(0), unitBase != null);</span>
+      }
+<span class="nc" id="L123">      double rawValue = Double.parseDouble(value);</span>
+<span class="nc" id="L124">      return (long) (rawValue * multiplier);</span>
+    }
+<span class="nc" id="L126">    throw new NumberFormatException(&quot;Invalid expression format: &quot; + expression);</span>
+  }
+
+  /**
+   * Formats the value as an expression.
+   * 
+   * @param value the numerical value to be formatted
+   * @param decimalPlaces the number of decimal places in the mantissa
+   * @param base2 whether to use the base-2 (1024) multiplier and format with &quot;B&quot; units. If false,
+   *        uses the base-10 (1000) multiplier and no units.
+   * @return a formatted string expression of the value
+   */
+  public static String format(long value, int decimalPlaces, boolean base2) {
+<span class="nc" id="L139">    NumberFormat nf = NumberFormat.getInstance();</span>
+<span class="nc" id="L140">    nf.setMinimumFractionDigits(decimalPlaces);</span>
+
+    double doubleResult;
+<span class="nc bnc" id="L143" title="All 2 branches missed.">    String unit = base2 ? UNIT_BASE : &quot;&quot;;</span>
+<span class="nc" id="L144">    double multiplierKilo = multiplier(PREFIX_KILO, base2);</span>
+<span class="nc" id="L145">    double multiplierMega = multiplier(PREFIX_MEGA, base2);</span>
+<span class="nc" id="L146">    double multiplierGiga = multiplier(PREFIX_GIGA, base2);</span>
+<span class="nc" id="L147">    double multiplierTera = multiplier(PREFIX_TERA, base2);</span>
+<span class="nc" id="L148">    double multiplierPeta = multiplier(PREFIX_PETA, base2);</span>
+<span class="nc bnc" id="L149" title="All 2 branches missed.">    if (value &lt; multiplierKilo) {</span>
+<span class="nc" id="L150">      doubleResult = value;</span>
+<span class="nc" id="L151">      nf.setMinimumFractionDigits(0);</span>
+<span class="nc bnc" id="L152" title="All 4 branches missed.">    } else if (value &gt;= multiplierKilo &amp;&amp; value &lt; multiplierMega) {</span>
+<span class="nc" id="L153">      doubleResult = round(value / multiplierKilo, decimalPlaces);</span>
+<span class="nc" id="L154">      unit = PREFIX_KILO + unit;</span>
+<span class="nc bnc" id="L155" title="All 4 branches missed.">    } else if (value &gt;= multiplierMega &amp;&amp; value &lt; multiplierGiga) {</span>
+<span class="nc" id="L156">      doubleResult = round(value / multiplierMega, decimalPlaces);</span>
+<span class="nc" id="L157">      unit = PREFIX_MEGA + unit;</span>
+<span class="nc bnc" id="L158" title="All 4 branches missed.">    } else if (value &gt;= multiplierGiga &amp;&amp; value &lt; multiplierTera) {</span>
+<span class="nc" id="L159">      doubleResult = round(value / multiplierGiga, decimalPlaces);</span>
+<span class="nc" id="L160">      unit = PREFIX_GIGA + unit;</span>
+<span class="nc bnc" id="L161" title="All 4 branches missed.">    } else if (value &gt;= multiplierTera &amp;&amp; value &lt; multiplierPeta) {</span>
+<span class="nc" id="L162">      doubleResult = round(value / multiplierTera, decimalPlaces);</span>
+<span class="nc" id="L163">      unit = PREFIX_TERA + unit;</span>
+    } else {
+<span class="nc" id="L165">      doubleResult = round(value / multiplierPeta, decimalPlaces);</span>
+<span class="nc" id="L166">      unit = PREFIX_PETA + unit;</span>
+    }
+<span class="nc bnc" id="L168" title="All 2 branches missed.">    return nf.format(doubleResult) + (base2 ? &quot; &quot; : &quot;&quot;) + unit;</span>
+  }
+
+  /**
+   * Rounds a decimal value to the given decimal place.
+   * 
+   * @param value the value to round
+   * @param decimalPlaces the number of decimal places to preserve.
+   * @return the rounded value
+   */
+  private static double round(double value, int decimalPlaces) {
+<span class="nc" id="L179">    return Math.round(value * Math.pow(10, decimalPlaces)) / Math.pow(10, decimalPlaces);</span>
+  }
+
+  /**
+   * Returns the base-2 or base-10 multiplier for a given prefix.
+   * 
+   * @param unitPrefix the character representing the prefix. Can be K, M, G, T, or P.
+   * @param base2 whether to use the base-2 (1024) multiplier. If false, uses the base-10 (1000)
+   *        multiplier.
+   * @return the multiplier for the given prefix
+   */
+  private static double multiplier(char unitPrefix, boolean base2) {
+    long result;
+<span class="nc bnc" id="L192" title="All 2 branches missed.">    long multiplier = base2 ? MULTIPLIER_2 : MULTIPLIER_10;</span>
+<span class="nc bnc" id="L193" title="All 6 branches missed.">    switch (Character.toUpperCase(unitPrefix)) {</span>
+      case PREFIX_KILO:
+<span class="nc" id="L195">        result = multiplier;</span>
+<span class="nc" id="L196">        break;</span>
+      case PREFIX_MEGA:
+<span class="nc" id="L198">        result = multiplier * multiplier;</span>
+<span class="nc" id="L199">        break;</span>
+      case PREFIX_GIGA:
+<span class="nc" id="L201">        result = multiplier * multiplier * multiplier;</span>
+<span class="nc" id="L202">        break;</span>
+      case PREFIX_TERA:
+<span class="nc" id="L204">        result = multiplier * multiplier * multiplier * multiplier;</span>
+<span class="nc" id="L205">        break;</span>
+      case PREFIX_PETA:
+<span class="nc" id="L207">        result = multiplier * multiplier * multiplier * multiplier * multiplier;</span>
+<span class="nc" id="L208">        break;</span>
+      default:
+<span class="nc" id="L210">        throw new IllegalArgumentException(&quot;Invalid unit prefix: &quot; + unitPrefix);</span>
+    }
+<span class="nc" id="L212">    return result;</span>
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

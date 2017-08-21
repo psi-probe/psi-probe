@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Connector.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">psi-probe-core</a> &gt; <a href="index.source.html" class="el_package">psiprobe.model</a> &gt; <span class="el_source">Connector.java</span></div><h1>Connector.java</h1><pre class="source lang-java linenums">/**
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ *
+ * THIS PACKAGE IS PROVIDED &quot;AS IS&quot; AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+ * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE.
+ */
+package psiprobe.model;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * POJO representing a Connector and its RequestProcessors.
+ */
+<span class="fc" id="L19">public class Connector {</span>
+
+  /** The protocolHandler. */
+  private String protocolHandler;
+
+  /** The max time. */
+  private long maxTime;
+
+  /** The processing time. */
+  private long processingTime;
+
+  /** The request count. */
+  private int requestCount;
+
+  /** The error count. */
+  private int errorCount;
+
+  /** The bytes received. */
+  private long bytesReceived;
+
+  /** The bytes sent. */
+  private long bytesSent;
+
+  /** The request processors. */
+<span class="fc" id="L43">  private List&lt;RequestProcessor&gt; requestProcessors = new ArrayList&lt;&gt;();</span>
+
+  /**
+   * Gets the protocol handler.
+   *
+   * @return the protocol handler
+   */
+  public String getProtocolHandler() {
+<span class="fc" id="L51">    return protocolHandler;</span>
+  }
+
+  /**
+   * Sets the protocol handler.
+   *
+   * @param protocolHandler the new protocol handler
+   */
+  public void setProtocolHandler(String protocolHandler) {
+<span class="fc" id="L60">    this.protocolHandler = protocolHandler;</span>
+<span class="fc" id="L61">  }</span>
+
+  /**
+   * Gets the max time.
+   *
+   * @return the max time
+   */
+  public long getMaxTime() {
+<span class="fc" id="L69">    return maxTime;</span>
+  }
+
+  /**
+   * Sets the max time.
+   *
+   * @param maxTime the new max time
+   */
+  public void setMaxTime(long maxTime) {
+<span class="fc" id="L78">    this.maxTime = maxTime;</span>
+<span class="fc" id="L79">  }</span>
+
+  /**
+   * Gets the processing time.
+   *
+   * @return the processing time
+   */
+  public long getProcessingTime() {
+<span class="fc" id="L87">    return processingTime;</span>
+  }
+
+  /**
+   * Sets the processing time.
+   *
+   * @param processingTime the new processing time
+   */
+  public void setProcessingTime(long processingTime) {
+<span class="fc" id="L96">    this.processingTime = processingTime;</span>
+<span class="fc" id="L97">  }</span>
+
+  /**
+   * Gets the request count.
+   *
+   * @return the request count
+   */
+  public int getRequestCount() {
+<span class="fc" id="L105">    return requestCount;</span>
+  }
+
+  /**
+   * Sets the request count.
+   *
+   * @param requestCount the new request count
+   */
+  public void setRequestCount(int requestCount) {
+<span class="fc" id="L114">    this.requestCount = requestCount;</span>
+<span class="fc" id="L115">  }</span>
+
+  /**
+   * Gets the bytes received.
+   *
+   * @return the bytes received
+   */
+  public long getBytesReceived() {
+<span class="fc" id="L123">    return bytesReceived;</span>
+  }
+
+  /**
+   * Sets the bytes received.
+   *
+   * @param bytesReceived the new bytes received
+   */
+  public void setBytesReceived(long bytesReceived) {
+<span class="fc" id="L132">    this.bytesReceived = bytesReceived;</span>
+<span class="fc" id="L133">  }</span>
+
+  /**
+   * Gets the bytes sent.
+   *
+   * @return the bytes sent
+   */
+  public long getBytesSent() {
+<span class="fc" id="L141">    return bytesSent;</span>
+  }
+
+  /**
+   * Sets the bytes sent.
+   *
+   * @param bytesSent the new bytes sent
+   */
+  public void setBytesSent(long bytesSent) {
+<span class="fc" id="L150">    this.bytesSent = bytesSent;</span>
+<span class="fc" id="L151">  }</span>
+
+  /**
+   * Gets the error count.
+   *
+   * @return the error count
+   */
+  public int getErrorCount() {
+<span class="fc" id="L159">    return errorCount;</span>
+  }
+
+  /**
+   * Sets the error count.
+   *
+   * @param errorCount the new error count
+   */
+  public void setErrorCount(int errorCount) {
+<span class="fc" id="L168">    this.errorCount = errorCount;</span>
+<span class="fc" id="L169">  }</span>
+
+  /**
+   * Gets the request processors.
+   *
+   * @return the request processors
+   */
+  public List&lt;RequestProcessor&gt; getRequestProcessors() {
+<span class="fc" id="L177">    return requestProcessors;</span>
+  }
+
+  /**
+   * Sets the request processors.
+   *
+   * @param requestProcessors the new request processors
+   */
+  public void setRequestProcessors(List&lt;RequestProcessor&gt; requestProcessors) {
+<span class="fc" id="L186">    this.requestProcessors = requestProcessors;</span>
+<span class="fc" id="L187">  }</span>
+
+  /**
+   * Adds the request processor.
+   *
+   * @param rp the rp
+   */
+  public void addRequestProcessor(RequestProcessor rp) {
+<span class="nc" id="L195">    requestProcessors.add(rp);</span>
+<span class="nc" id="L196">  }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

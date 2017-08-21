@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CopySingleFileController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">psi-probe-core</a> &gt; <a href="index.source.html" class="el_package">psiprobe.controllers.deploy</a> &gt; <span class="el_source">CopySingleFileController.java</span></div><h1>CopySingleFileController.java</h1><pre class="source lang-java linenums">/**
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ *
+ * THIS PACKAGE IS PROVIDED &quot;AS IS&quot; AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+ * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE.
+ */
+package psiprobe.controllers.deploy;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.catalina.Context;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
+import org.apache.tomcat.util.http.fileupload.FileItem;
+import org.apache.tomcat.util.http.fileupload.FileItemFactory;
+import org.apache.tomcat.util.http.fileupload.FileUploadBase;
+import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
+import org.apache.tomcat.util.http.fileupload.servlet.ServletRequestContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.InternalResourceView;
+
+import psiprobe.controllers.AbstractTomcatContainerController;
+
+/**
+ * Lets an user to copy a single file to a deployed context.
+ */
+@Controller
+<span class="nc" id="L49">public class CopySingleFileController extends AbstractTomcatContainerController {</span>
+
+  /** The Constant logger. */
+<span class="nc" id="L52">  private static final Logger logger = LoggerFactory.getLogger(CopySingleFileController.class);</span>
+
+  @RequestMapping(path = &quot;/adm/deployfile.htm&quot;)
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
+<span class="nc" id="L58">    return super.handleRequest(request, response);</span>
+  }
+
+  @Override
+  protected ModelAndView handleRequestInternal(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+
+    List&lt;Context&gt; apps;
+    try {
+<span class="nc" id="L67">      apps = getContainerWrapper().getTomcatContainer().findContexts();</span>
+<span class="nc" id="L68">    } catch (NullPointerException ex) {</span>
+<span class="nc" id="L69">      throw new IllegalStateException(</span>
+<span class="nc" id="L70">          &quot;No container found for your server: &quot; + getServletContext().getServerInfo(), ex);</span>
+<span class="nc" id="L71">    }</span>
+
+<span class="nc" id="L73">    List&lt;Map&lt;String, String&gt;&gt; applications = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L74" title="All 2 branches missed.">    for (Context appContext : apps) {</span>
+      // check if this is not the ROOT webapp
+<span class="nc bnc" id="L76" title="All 4 branches missed.">      if (appContext.getName() != null &amp;&amp; appContext.getName().trim().length() &gt; 0) {</span>
+<span class="nc" id="L77">        Map&lt;String, String&gt; app = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L78">        app.put(&quot;value&quot;, appContext.getName());</span>
+<span class="nc" id="L79">        app.put(&quot;label&quot;, appContext.getName());</span>
+<span class="nc" id="L80">        applications.add(app);</span>
+      }
+<span class="nc" id="L82">    }</span>
+<span class="nc" id="L83">    request.setAttribute(&quot;apps&quot;, applications);</span>
+
+<span class="nc bnc" id="L85" title="All 2 branches missed.">    if (FileUploadBase.isMultipartContent(new ServletRequestContext(request))) {</span>
+
+<span class="nc" id="L87">      File tmpFile = null;</span>
+<span class="nc" id="L88">      String contextName = null;</span>
+<span class="nc" id="L89">      String where = null;</span>
+<span class="nc" id="L90">      boolean reload = false;</span>
+<span class="nc" id="L91">      boolean discard = false;</span>
+
+      // parse multipart request and extract the file
+<span class="nc" id="L94">      FileItemFactory factory =</span>
+<span class="nc" id="L95">          new DiskFileItemFactory(1048000, new File(System.getProperty(&quot;java.io.tmpdir&quot;)));</span>
+<span class="nc" id="L96">      ServletFileUpload upload = new ServletFileUpload(factory);</span>
+<span class="nc" id="L97">      upload.setSizeMax(-1);</span>
+<span class="nc" id="L98">      upload.setHeaderEncoding(StandardCharsets.UTF_8.name());</span>
+      try {
+<span class="nc" id="L100">        List&lt;FileItem&gt; fileItems = upload.parseRequest(new ServletRequestContext(request));</span>
+<span class="nc bnc" id="L101" title="All 2 branches missed.">        for (FileItem fi : fileItems) {</span>
+<span class="nc bnc" id="L102" title="All 2 branches missed.">          if (!fi.isFormField()) {</span>
+<span class="nc bnc" id="L103" title="All 4 branches missed.">            if (fi.getName() != null &amp;&amp; fi.getName().length() &gt; 0) {</span>
+<span class="nc" id="L104">              tmpFile = new File(System.getProperty(&quot;java.io.tmpdir&quot;),</span>
+<span class="nc" id="L105">                  FilenameUtils.getName(fi.getName()));</span>
+<span class="nc" id="L106">              fi.write(tmpFile);</span>
+            }
+<span class="nc bnc" id="L108" title="All 2 branches missed.">          } else if (&quot;context&quot;.equals(fi.getFieldName())) {</span>
+<span class="nc" id="L109">            contextName = fi.getString();</span>
+<span class="nc bnc" id="L110" title="All 2 branches missed.">          } else if (&quot;where&quot;.equals(fi.getFieldName())) {</span>
+<span class="nc" id="L111">            where = fi.getString();</span>
+<span class="nc bnc" id="L112" title="All 4 branches missed.">          } else if (&quot;reload&quot;.equals(fi.getFieldName()) &amp;&amp; &quot;yes&quot;.equals(fi.getString())) {</span>
+<span class="nc" id="L113">            reload = true;</span>
+<span class="nc bnc" id="L114" title="All 4 branches missed.">          } else if (&quot;discard&quot;.equals(fi.getFieldName()) &amp;&amp; &quot;yes&quot;.equals(fi.getString())) {</span>
+<span class="nc" id="L115">            discard = true;</span>
+          }
+<span class="nc" id="L117">        }</span>
+<span class="nc" id="L118">      } catch (Exception e) {</span>
+<span class="nc" id="L119">        logger.error(&quot;Could not process file upload&quot;, e);</span>
+<span class="nc" id="L120">        request.setAttribute(&quot;errorMessage&quot;, getMessageSourceAccessor()</span>
+<span class="nc" id="L121">            .getMessage(&quot;probe.src.deploy.file.uploadfailure&quot;, new Object[] {e.getMessage()}));</span>
+<span class="nc bnc" id="L122" title="All 6 branches missed.">        if (tmpFile != null &amp;&amp; tmpFile.exists() &amp;&amp; !tmpFile.delete()) {</span>
+<span class="nc" id="L123">          logger.error(&quot;Unable to delete temp upload file&quot;);</span>
+        }
+<span class="nc" id="L125">        tmpFile = null;</span>
+<span class="nc" id="L126">      }</span>
+
+<span class="nc" id="L128">      String errMsg = null;</span>
+
+<span class="nc bnc" id="L130" title="All 2 branches missed.">      if (tmpFile != null) {</span>
+        try {
+<span class="nc bnc" id="L132" title="All 4 branches missed.">          if (tmpFile.getName() != null &amp;&amp; tmpFile.getName().trim().length() &gt; 0) {</span>
+
+<span class="nc" id="L134">            contextName = getContainerWrapper().getTomcatContainer().formatContextName(contextName);</span>
+
+<span class="nc bnc" id="L136" title="All 2 branches missed.">            String visibleContextName = &quot;&quot;.equals(contextName) ? &quot;/&quot; : contextName;</span>
+<span class="nc" id="L137">            request.setAttribute(&quot;contextName&quot;, visibleContextName);</span>
+
+            // Check if context is already deployed
+<span class="nc bnc" id="L140" title="All 2 branches missed.">            if (getContainerWrapper().getTomcatContainer().findContext(contextName) != null) {</span>
+
+<span class="nc" id="L142">              File destFile = new File(getContainerWrapper().getTomcatContainer().getAppBase(),</span>
+                  contextName + where);
+
+              // Checks if the destination path exists
+<span class="nc bnc" id="L146" title="All 2 branches missed.">              if (destFile.exists()) {</span>
+<span class="nc bnc" id="L147" title="All 2 branches missed.">                if (!destFile.getAbsolutePath().contains(&quot;..&quot;)) {</span>
+                  // Copy the file overwriting it if it already exists
+<span class="nc" id="L149">                  FileUtils.copyFileToDirectory(tmpFile, destFile);</span>
+
+<span class="nc" id="L151">                  request.setAttribute(&quot;successFile&quot;, Boolean.TRUE);</span>
+                  // Logging action
+<span class="nc" id="L153">                  Authentication auth = SecurityContextHolder.getContext().getAuthentication();</span>
+                  // get username logger
+<span class="nc" id="L155">                  String name = auth.getName();</span>
+<span class="nc" id="L156">                  logger.info(getMessageSourceAccessor().getMessage(&quot;probe.src.log.copyfile&quot;), name,</span>
+                      contextName);
+<span class="nc" id="L158">                  Context context =</span>
+<span class="nc" id="L159">                      getContainerWrapper().getTomcatContainer().findContext(contextName);</span>
+                  // Checks if DISCARD &quot;work&quot; directory is selected
+<span class="nc bnc" id="L161" title="All 2 branches missed.">                  if (discard) {</span>
+<span class="nc" id="L162">                    getContainerWrapper().getTomcatContainer().discardWorkDir(context);</span>
+<span class="nc" id="L163">                    logger.info(getMessageSourceAccessor().getMessage(&quot;probe.src.log.discardwork&quot;),</span>
+                        name, contextName);
+                  }
+                  // Checks if RELOAD option is selected
+<span class="nc bnc" id="L167" title="All 2 branches missed.">                  if (reload) {</span>
+
+<span class="nc bnc" id="L169" title="All 2 branches missed.">                    if (context != null) {</span>
+<span class="nc" id="L170">                      context.reload();</span>
+<span class="nc" id="L171">                      request.setAttribute(&quot;reloadContext&quot;, Boolean.TRUE);</span>
+<span class="nc" id="L172">                      logger.info(getMessageSourceAccessor().getMessage(&quot;probe.src.log.reload&quot;),</span>
+                          name, contextName);
+                    }
+                  }
+<span class="nc" id="L176">                } else {</span>
+<span class="nc" id="L177">                  errMsg =</span>
+<span class="nc" id="L178">                      getMessageSourceAccessor().getMessage(&quot;probe.src.deploy.file.pathNotValid&quot;);</span>
+                }
+              } else {
+<span class="nc" id="L181">                errMsg = getMessageSourceAccessor().getMessage(&quot;probe.src.deploy.file.notPath&quot;);</span>
+              }
+<span class="nc" id="L183">            } else {</span>
+<span class="nc" id="L184">              errMsg = getMessageSourceAccessor().getMessage(&quot;probe.src.deploy.file.notExists&quot;,</span>
+                  new Object[] {visibleContextName});
+            }
+<span class="nc" id="L187">          } else {</span>
+<span class="nc" id="L188">            errMsg = getMessageSourceAccessor().getMessage(&quot;probe.src.deploy.file.notFile.failure&quot;);</span>
+          }
+<span class="nc" id="L190">        } catch (IOException e) {</span>
+<span class="nc" id="L191">          errMsg = getMessageSourceAccessor().getMessage(&quot;probe.src.deploy.file.failure&quot;,</span>
+<span class="nc" id="L192">              new Object[] {e.getMessage()});</span>
+<span class="nc" id="L193">          logger.error(&quot;Tomcat throw an exception when trying to deploy&quot;, e);</span>
+        } finally {
+<span class="nc bnc" id="L195" title="All 6 branches missed.">          if (errMsg != null) {</span>
+<span class="nc" id="L196">            request.setAttribute(&quot;errorMessage&quot;, errMsg);</span>
+          }
+<span class="nc bnc" id="L198" title="All 6 branches missed.">          if (!tmpFile.delete()) {</span>
+<span class="nc" id="L199">            logger.error(&quot;Unable to delete temp upload file&quot;);</span>
+          }
+        }
+      }
+    }
+<span class="nc" id="L204">    return new ModelAndView(new InternalResourceView(getViewName()));</span>
+  }
+
+  @Value(&quot;/adm/deploy.htm&quot;)
+  @Override
+  public void setViewName(String viewName) {
+<span class="nc" id="L210">    super.setViewName(viewName);</span>
+<span class="nc" id="L211">  }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

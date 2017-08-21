@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BaseTomcatAvailabilityController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">psi-probe-core</a> &gt; <a href="index.source.html" class="el_package">psiprobe.controllers.quickcheck</a> &gt; <span class="el_source">BaseTomcatAvailabilityController.java</span></div><h1>BaseTomcatAvailabilityController.java</h1><pre class="source lang-java linenums">/**
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ *
+ * THIS PACKAGE IS PROVIDED &quot;AS IS&quot; AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+ * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE.
+ */
+package psiprobe.controllers.quickcheck;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.catalina.Context;
+import org.springframework.web.servlet.ModelAndView;
+
+import psiprobe.beans.ContainerListenerBean;
+import psiprobe.controllers.AbstractTomcatContainerController;
+import psiprobe.model.ApplicationResource;
+import psiprobe.model.DataSourceInfo;
+import psiprobe.model.TomcatTestReport;
+
+/**
+ * &quot;Quick check&quot; base controller.
+ */
+<span class="fc" id="L37">public class BaseTomcatAvailabilityController extends AbstractTomcatContainerController {</span>
+
+  /** The container listener bean. */
+  @Inject
+  private ContainerListenerBean containerListenerBean;
+
+  /**
+   * Gets the container listener bean.
+   *
+   * @return the container listener bean
+   */
+  public ContainerListenerBean getContainerListenerBean() {
+<span class="fc" id="L49">    return containerListenerBean;</span>
+  }
+
+  /**
+   * Sets the container listener bean.
+   *
+   * @param containerListenerBean the new container listener bean
+   */
+  public void setContainerListenerBean(ContainerListenerBean containerListenerBean) {
+<span class="fc" id="L58">    this.containerListenerBean = containerListenerBean;</span>
+<span class="fc" id="L59">  }</span>
+
+  @Override
+  public ModelAndView handleRequestInternal(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+
+<span class="nc" id="L65">    final long start = System.currentTimeMillis();</span>
+<span class="nc" id="L66">    TomcatTestReport tomcatTestReport = new TomcatTestReport();</span>
+
+    // check datasource status
+<span class="nc" id="L69">    tomcatTestReport.setDatasourceUsageScore(0);</span>
+
+<span class="nc" id="L71">    boolean allContextsAvailable = true;</span>
+<span class="nc bnc" id="L72" title="All 2 branches missed.">    if (getContainerWrapper().getResourceResolver().supportsPrivateResources()) {</span>
+<span class="nc bnc" id="L73" title="All 2 branches missed.">      for (Context appContext : getContainerWrapper().getTomcatContainer().findContexts()) {</span>
+<span class="nc bnc" id="L74" title="All 2 branches missed.">        allContextsAvailable = allContextsAvailable</span>
+<span class="nc bnc" id="L75" title="All 2 branches missed.">            &amp;&amp; getContainerWrapper().getTomcatContainer().getAvailable(appContext);</span>
+
+<span class="nc" id="L77">        List&lt;ApplicationResource&gt; applicationResources = getContainerWrapper().getResourceResolver()</span>
+<span class="nc" id="L78">            .getApplicationResources(appContext, getContainerWrapper());</span>
+
+<span class="nc bnc" id="L80" title="All 2 branches missed.">        for (ApplicationResource appResource : applicationResources) {</span>
+<span class="nc" id="L81">          DataSourceInfo dsi = appResource.getDataSourceInfo();</span>
+<span class="nc bnc" id="L82" title="All 4 branches missed.">          if (dsi != null &amp;&amp; dsi.getBusyScore() &gt; tomcatTestReport.getDatasourceUsageScore()) {</span>
+<span class="nc" id="L83">            tomcatTestReport.setContextName(appContext.getName());</span>
+<span class="nc" id="L84">            tomcatTestReport.setDatasourceUsageScore(dsi.getBusyScore());</span>
+<span class="nc" id="L85">            tomcatTestReport.setDataSourceName(appResource.getName());</span>
+          }
+<span class="nc" id="L87">        }</span>
+<span class="nc" id="L88">      }</span>
+
+<span class="nc" id="L90">      tomcatTestReport.setWebappAvailabilityTest(</span>
+<span class="nc bnc" id="L91" title="All 2 branches missed.">          allContextsAvailable ? TomcatTestReport.TEST_PASSED : TomcatTestReport.TEST_FAILED);</span>
+
+    } else {
+<span class="nc" id="L94">      List&lt;ApplicationResource&gt; resources =</span>
+<span class="nc" id="L95">          getContainerWrapper().getResourceResolver().getApplicationResources();</span>
+<span class="nc bnc" id="L96" title="All 2 branches missed.">      for (ApplicationResource resource : resources) {</span>
+<span class="nc" id="L97">        DataSourceInfo dsi = resource.getDataSourceInfo();</span>
+<span class="nc bnc" id="L98" title="All 4 branches missed.">        if (dsi != null &amp;&amp; dsi.getBusyScore() &gt; tomcatTestReport.getDatasourceUsageScore()) {</span>
+<span class="nc" id="L99">          tomcatTestReport.setDatasourceUsageScore(dsi.getBusyScore());</span>
+<span class="nc" id="L100">          tomcatTestReport.setDataSourceName(resource.getName());</span>
+        }
+<span class="nc" id="L102">      }</span>
+    }
+<span class="nc" id="L104">    tomcatTestReport.setDatasourceTest(TomcatTestReport.TEST_PASSED);</span>
+
+    // try to allocate some memory
+<span class="nc" id="L107">    String word = &quot;hello&quot;;</span>
+<span class="nc" id="L108">    int count = TomcatTestReport.DEFAULT_MEMORY_SIZE / word.length();</span>
+
+    try {
+<span class="nc" id="L111">      ByteArrayOutputStream bos = new ByteArrayOutputStream();</span>
+<span class="nc bnc" id="L112" title="All 2 branches missed.">      for (; count &gt; 0; count--) {</span>
+<span class="nc" id="L113">        bos.write(word.getBytes(StandardCharsets.UTF_8));</span>
+      }
+<span class="nc" id="L115">      tomcatTestReport.setMemoryTest(TomcatTestReport.TEST_PASSED);</span>
+<span class="nc" id="L116">    } catch (IOException e) {</span>
+<span class="nc" id="L117">      tomcatTestReport.setMemoryTest(TomcatTestReport.TEST_FAILED);</span>
+<span class="nc" id="L118">      logger.trace(&quot;&quot;, e);</span>
+<span class="nc" id="L119">    }</span>
+
+    // try to open some files
+<span class="nc" id="L122">    File tmpDir = new File(System.getProperty(&quot;java.io.tmpdir&quot;));</span>
+<span class="nc" id="L123">    int fileCount = tomcatTestReport.getDefaultFileCount();</span>
+<span class="nc" id="L124">    List&lt;File&gt; files = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L125">    List&lt;FileOutputStream&gt; fileStreams = new ArrayList&lt;&gt;();</span>
+
+    try {
+<span class="nc bnc" id="L128" title="All 2 branches missed.">      for (; fileCount &gt; 0; fileCount--) {</span>
+<span class="nc" id="L129">        File file = new File(tmpDir, &quot;tctest_&quot; + fileCount);</span>
+<span class="nc" id="L130">        try (FileOutputStream fos = new FileOutputStream(file)) {</span>
+<span class="nc" id="L131">          files.add(file);</span>
+<span class="nc" id="L132">          fileStreams.add(fos);</span>
+<span class="nc" id="L133">          fos.write(&quot;this is a test&quot;.getBytes(StandardCharsets.UTF_8));</span>
+<span class="nc bnc" id="L134" title="All 4 branches missed.">        }</span>
+      }
+<span class="nc" id="L136">      tomcatTestReport.setFileTest(TomcatTestReport.TEST_PASSED);</span>
+<span class="nc" id="L137">    } catch (IOException e) {</span>
+<span class="nc" id="L138">      tomcatTestReport.setFileTest(TomcatTestReport.TEST_FAILED);</span>
+<span class="nc" id="L139">      logger.trace(&quot;&quot;, e);</span>
+    } finally {
+<span class="nc bnc" id="L141" title="All 6 branches missed.">      for (FileOutputStream fileStream : fileStreams) {</span>
+        try {
+<span class="nc" id="L143">          fileStream.close();</span>
+<span class="nc" id="L144">        } catch (IOException e) {</span>
+<span class="nc" id="L145">          logger.trace(&quot;&quot;, e);</span>
+<span class="nc" id="L146">        }</span>
+<span class="nc" id="L147">      }</span>
+<span class="nc bnc" id="L148" title="All 6 branches missed.">      for (File file : files) {</span>
+<span class="nc bnc" id="L149" title="All 6 branches missed.">        if (!file.delete()) {</span>
+<span class="nc" id="L150">          logger.error(&quot;failed to delete file {}&quot;, file.getName());</span>
+        }
+<span class="nc" id="L152">      }</span>
+<span class="nc" id="L153">    }</span>
+
+<span class="nc" id="L155">    tomcatTestReport.setTestDuration(System.currentTimeMillis() - start);</span>
+
+<span class="nc" id="L157">    long maxServiceTime = 0;</span>
+
+    // TODO JWL 12/11/2016 - Why is this commented out? If not needed, delete it.
+    // check the maximum execution time
+    // List&lt;ThreadPool&gt; pools = containerListenerBean.getThreadPools();
+    // for (int iPool = 0; iPool &lt; pools.size(); iPool++) {
+    //  ThreadPool threadPool = (ThreadPool) pools.get(iPool);
+    //  List&lt;RequestProcessor&gt; threads = threadPool.getRequestProcessors();
+    //  for (int iThread = 0; iThread &lt; threads.size(); iThread++) {
+    //    RequestProcessor rp = (RequestProcessor) threads.get(iThread);
+    //    if (rp.getStage() == 3) {
+    //      // the request processor is in SERVICE state
+    //      maxServiceTime = Math.max(maxServiceTime, rp.getProcessingTime());
+    //    }
+    //  }
+    // }
+
+<span class="nc" id="L174">    tomcatTestReport.setMaxServiceTime(maxServiceTime);</span>
+
+<span class="nc" id="L176">    return new ModelAndView(getViewName(), &quot;testReport&quot;, tomcatTestReport);</span>
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
