@@ -673,6 +673,7 @@
                     <artifactId>maven-release-plugin</artifactId>
                     <version>${release.plugin}</version>
                     <configuration>
+                        <autoVersionSubmodules>true</autoVersionSubmodules>
                         <releaseProfiles>release</releaseProfiles>
                         <addSchema>false</addSchema>
                     </configuration>
