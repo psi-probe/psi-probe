@@ -37,6 +37,7 @@ public class Log4J2WebLoggerContextUtilsAccessor extends DefaultAccessor {
   /**
    * Gets the logger context configured for the given ServletContext.
    *
+   * @param ctx the servlet context
    * @return the root logger
    */
   public Log4J2LoggerContextAccessor getWebLoggerContext(ServletContext ctx) {

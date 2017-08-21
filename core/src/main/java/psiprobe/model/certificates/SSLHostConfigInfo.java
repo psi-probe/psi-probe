@@ -68,7 +68,7 @@ public class SSLHostConfigInfo implements Serializable {
   /**
    * Sets the hostName.
    *
-   * @param sslProtocols teh new the hostName
+   * @param hostName the new the hostName
    */
   public void setHostName(String hostName) {
     this.hostName = hostName;

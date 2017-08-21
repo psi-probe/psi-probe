@@ -229,8 +229,6 @@ public class Tomcat90ContainerAdapterTest {
 
   /**
    * Gets the naming token.
-   *
-   * @return the naming token
    */
   @Test
   public void getNamingToken() {
