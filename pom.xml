@@ -163,7 +163,7 @@
         <mail.version>1.6.0</mail.version>
         <oshi.version>3.4.3</oshi.version>
         <openejb.version>4.7.4</openejb.version>
-        <persistence.version>2.1.1</persistence.version>
+        <persistence.version>2.2.0</persistence.version>
         <probe-ojdbc.version>3.0.0</probe-ojdbc.version>
         <quartz.version>2.3.0</quartz.version>
         <servlet-api.version>3.1.0</servlet-api.version> <!-- TODO: Version 4.0.0-b05 is for java 8 only-->
