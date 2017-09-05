@@ -138,7 +138,7 @@
         <dbcp2.version>2.1.1</dbcp2.version>
         <displaytag.version>2.1.5</displaytag.version>
         <el-api.version>3.0.1-b04</el-api.version>
-        <error-prone.version>2.0.21</error-prone.version>
+        <error-prone.version>2.1.1</error-prone.version>
         <geoip2.version>2.9.0</geoip2.version>
         <guava.version>23.0-android</guava.version> <!-- TODO: Switch off android once on java 8 -->
         <hateoas.version>0.23.0.RELEASE</hateoas.version>
@@ -152,7 +152,7 @@
         <jcommon.version>1.0.24</jcommon.version>
         <jfreechart.version>1.0.19</jfreechart.version>
         <jhighlight.version>1.0.3</jhighlight.version>
-        <jmockit.version>1.33</jmockit.version>
+        <jmockit.version>1.34</jmockit.version>
         <jna.version>4.4.0</jna.version>
         <jsp-api.version>2.3.2-b02</jsp-api.version>
         <jsr305.version>3.0.2</jsr305.version>
@@ -163,7 +163,7 @@
         <mail.version>1.6.0</mail.version>
         <oshi.version>3.4.3</oshi.version>
         <openejb.version>4.7.4</openejb.version>
-        <persistence.version>2.1.1</persistence.version>
+        <persistence.version>2.2.0</persistence.version>
         <probe-ojdbc.version>3.0.0</probe-ojdbc.version>
         <quartz.version>2.3.0</quartz.version>
         <servlet-api.version>3.1.0</servlet-api.version> <!-- TODO: Version 4.0.0-b05 is for java 8 only-->
@@ -189,16 +189,16 @@
         <compiler.plugin>3.6.2</compiler.plugin>
         <coveralls.plugin>4.3.0</coveralls.plugin>
         <dependency.plugin>3.0.1</dependency.plugin>
-        <dependency-check.plugin>2.1.0</dependency-check.plugin>
+        <dependency-check.plugin>2.1.1</dependency-check.plugin>
         <deploy.plugin>2.8.2</deploy.plugin>
         <formatter.plugin>2.0.1</formatter.plugin>
-        <git-commit.plugin>2.2.2</git-commit.plugin>
+        <git-commit.plugin>2.2.3</git-commit.plugin>
         <gpg.plugin>1.6</gpg.plugin>
         <install.plugin>2.5.2</install.plugin>
         <jacoco.plugin>0.7.9</jacoco.plugin>
         <jar.plugin>3.0.2</jar.plugin>
         <javadoc.plugin>2.10.4</javadoc.plugin>
-        <jdeps.plugin>3.0.0</jdeps.plugin>
+        <jdeps.plugin>3.1.0</jdeps.plugin>
         <jspc.plugin>2.0.2</jspc.plugin>
         <jxr.plugin>2.5</jxr.plugin>
         <l10n.plugin>1.8</l10n.plugin>
@@ -219,7 +219,7 @@
         <war.plugin>3.1.0</war.plugin>
 
         <!-- Plugin Dependency Versions -->
-        <checkstyle.version>8.1</checkstyle.version>
+        <checkstyle.version>8.2</checkstyle.version>
         <doxia.version>1.7</doxia.version>
         <fb-contrib.version>7.0.3</fb-contrib.version>
         <findsecbugs.version>1.7.1</findsecbugs.version>
