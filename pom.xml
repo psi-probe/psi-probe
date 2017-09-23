@@ -142,7 +142,7 @@
         <geoip2.version>2.9.0</geoip2.version>
         <guava.version>23.0-android</guava.version> <!-- TODO: Switch off android once on java 8 -->
         <hateoas.version>0.23.0.RELEASE</hateoas.version>
-        <hikaricp.version>2.4.12</hikaricp.version>
+        <hikaricp.version>2.4.13</hikaricp.version>
         <logback.version>1.2.3</logback.version>
         <inject.version>1</inject.version>
         <io.version>2.5</io.version>
