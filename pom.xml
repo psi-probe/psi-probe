@@ -173,7 +173,7 @@
         <spring-security.version>4.2.3.RELEASE</spring-security.version>
         <text.version>1.1</text.version>
         <transaction-api.version>1.2</transaction-api.version>
-        <tomcat.version>8.5.20</tomcat.version>
+        <tomcat.version>8.5.21</tomcat.version>
         <wrapper.version>3.2.3</wrapper.version>
         <xpp3_min.version>1.1.4c</xpp3_min.version>
         <xstream.version>1.4.10</xstream.version>
@@ -211,7 +211,7 @@
         <site.plugin>3.6</site.plugin>
         <sonar.plugin>3.3.0.603</sonar.plugin>
         <source.plugin>3.0.1</source.plugin>
-        <spotbugs.plugin>3.1.0-RC4</spotbugs.plugin>
+        <spotbugs.plugin>3.1.0-SNAPSHOT</spotbugs.plugin>
         <surefire.plugin>2.19.1</surefire.plugin> <!-- TODO: Version 2.20 breaks whois tests -->
         <tidy.plugin>1.0.0</tidy.plugin>
         <versioneye.plugin>3.11.4</versioneye.plugin>
@@ -803,7 +803,7 @@
                     </configuration>
                 </plugin>
                 <plugin>
-                    <groupId>com.github.hazendaz.spotbugs</groupId>
+                    <groupId>com.github.spotbugs</groupId>
                     <artifactId>spotbugs-maven-plugin</artifactId>
                     <version>${spotbugs.plugin}</version>
                     <configuration>
@@ -1129,7 +1129,7 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>com.github.hazendaz.spotbugs</groupId>
+                <groupId>com.github.spotbugs</groupId>
                 <artifactId>spotbugs-maven-plugin</artifactId>
             </plugin>
             <plugin>
