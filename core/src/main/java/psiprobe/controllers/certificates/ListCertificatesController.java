@@ -231,13 +231,13 @@ public class ListCertificatesController extends AbstractTomcatContainerControlle
 
     try {
       // Introduced in Tomcat 8.5.x+
-      Object defaultSSLHostConfigName =
+      Object defaultSslHostConfigName =
           MethodUtils.invokeMethod(protocol, "getDefaultSSLHostConfigName");
-      if (defaultSSLHostConfigName == null) {
+      if (defaultSslHostConfigName == null) {
         logger.error("Cannot determine defaultSSLHostConfigName");
         return info;
       }
-      info.setDefaultSSLHostConfigName(String.valueOf(defaultSSLHostConfigName));
+      info.setDefaultSSLHostConfigName(String.valueOf(defaultSslHostConfigName));
       new SSLHostConfigHelper(protocol, info);
     } catch (NoSuchMethodException e) {
       logger.trace("", e);

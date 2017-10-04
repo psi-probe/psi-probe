@@ -44,7 +44,7 @@ public class SSLHostConfigHelper {
     info.setSslHostConfigInfos(sslHostConfigInfos);
 
     for (SSLHostConfig sslHostConfig : sslHostConfigs) {
-      sslHostConfigInfos.add(toSSLHostConfigInfo(sslHostConfig));
+      sslHostConfigInfos.add(toSslHostConfigInfo(sslHostConfig));
     }
   }
 
@@ -56,7 +56,7 @@ public class SSLHostConfigHelper {
    * @throws IllegalAccessException the illegal access exception
    * @throws InvocationTargetException the invocation target exception
    */
-  private SSLHostConfigInfo toSSLHostConfigInfo(SSLHostConfig sslHostConfig)
+  private SSLHostConfigInfo toSslHostConfigInfo(SSLHostConfig sslHostConfig)
       throws IllegalAccessException, InvocationTargetException {
     SSLHostConfigInfo sslHostConfigInfo = new SSLHostConfigInfo();
     BeanUtils.copyProperties(sslHostConfigInfo, sslHostConfig);

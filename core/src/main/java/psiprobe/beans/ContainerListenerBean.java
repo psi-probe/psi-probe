@@ -57,7 +57,9 @@ public class ContainerListenerBean implements NotificationListener {
   /** The executor names. */
   private List<ObjectName> executorNames;
 
-  /** Used to obtain required {@link MBeanServer} instance. */
+  /**
+   * Used to obtain required {@link MBeanServer} instance.
+   */
   @Inject
   private ContainerWrapperBean containerWrapper;
 

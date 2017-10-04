@@ -32,11 +32,11 @@ public class HikariCpDatasourceAccessor implements DatasourceAccessor {
     if (canMap(resource)) {
       HikariDataSource source = (HikariDataSource) resource;
 
-      MBeanServer mBeanServer = ManagementFactory.getPlatformMBeanServer();
+      MBeanServer mbeanServer = ManagementFactory.getPlatformMBeanServer();
       ObjectName poolName =
           new ObjectName("com.zaxxer.hikari:type=Pool (" + source.getPoolName() + ")");
       HikariPoolMXBean poolProxy =
-          JMX.newMXBeanProxy(mBeanServer, poolName, HikariPoolMXBean.class);
+          JMX.newMXBeanProxy(mbeanServer, poolName, HikariPoolMXBean.class);
 
       dataSourceInfo = new DataSourceInfo();
       dataSourceInfo.setBusyConnections(poolProxy.getActiveConnections());

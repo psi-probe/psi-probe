@@ -164,14 +164,11 @@ public class CopySingleFileController extends AbstractTomcatContainerController 
                         name, contextName);
                   }
                   // Checks if RELOAD option is selected
-                  if (reload) {
-
-                    if (context != null) {
-                      context.reload();
-                      request.setAttribute("reloadContext", Boolean.TRUE);
-                      logger.info(getMessageSourceAccessor().getMessage("probe.src.log.reload"),
-                          name, contextName);
-                    }
+                  if (reload && context != null) {
+                    context.reload();
+                    request.setAttribute("reloadContext", Boolean.TRUE);
+                    logger.info(getMessageSourceAccessor().getMessage("probe.src.log.reload"),
+                        name, contextName);
                   }
                 } else {
                   errMsg =
