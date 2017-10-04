@@ -32,10 +32,10 @@ public class ViburCpDatasourceAccessor implements DatasourceAccessor {
     if (canMap(resource)) {
       ViburDBCPDataSource source = (ViburDBCPDataSource) resource;
 
-      MBeanServer mBeanServer = ManagementFactory.getPlatformMBeanServer();
+      MBeanServer mbeanServer = ManagementFactory.getPlatformMBeanServer();
       ObjectName poolName = new ObjectName(source.getJmxName());
       ViburMonitoringMBean poolProxy =
-          JMX.newMXBeanProxy(mBeanServer, poolName, ViburMonitoringMBean.class);
+          JMX.newMXBeanProxy(mbeanServer, poolName, ViburMonitoringMBean.class);
 
       dataSourceInfo = new DataSourceInfo();
       dataSourceInfo.setBusyConnections(poolProxy.getPoolTaken());

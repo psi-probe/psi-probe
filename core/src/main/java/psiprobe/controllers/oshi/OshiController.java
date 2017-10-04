@@ -58,7 +58,7 @@ public class OshiController extends AbstractTomcatContainerController {
   /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(OshiController.class);
 
-  /** Oshi Cache */
+  /** Oshi Cache. */
   private static List<String> oshi = new ArrayList<>();
 
   @RequestMapping(path = "/adm/oshi.htm")
@@ -309,9 +309,9 @@ public class OshiController extends AbstractTomcatContainerController {
             (int) (timeRemaining / 60) % 60));
       }
     }
-    for (PowerSource pSource : powerSources) {
-      sb.append(String.format("%n %s @ %.1f%%", pSource.getName(),
-          pSource.getRemainingCapacity() * 100d));
+    for (PowerSource powerSource : powerSources) {
+      sb.append(String.format("%n %s @ %.1f%%", powerSource.getName(),
+          powerSource.getRemainingCapacity() * 100d));
     }
     oshi.add(sb.toString());
   }

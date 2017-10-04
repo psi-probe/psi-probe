@@ -136,11 +136,11 @@
         <collections.version>3.2.2</collections.version>
         <dbcp.version>1.4</dbcp.version>
         <dbcp2.version>2.1.1</dbcp2.version>
-        <displaytag.version>2.1.5</displaytag.version>
+        <displaytag.version>2.1.6</displaytag.version>
         <el-api.version>3.0.1-b04</el-api.version>
         <error-prone.version>2.1.1</error-prone.version>
         <geoip2.version>2.9.0</geoip2.version>
-        <guava.version>23.0-android</guava.version> <!-- TODO: Switch off android once on java 8 -->
+        <guava.version>23.1-android</guava.version> <!-- TODO: Switch off android once on java 8 -->
         <hateoas.version>0.23.0.RELEASE</hateoas.version>
         <hikaricp.version>2.4.13</hikaricp.version>
         <logback.version>1.2.3</logback.version>
@@ -152,8 +152,8 @@
         <jcommon.version>1.0.24</jcommon.version>
         <jfreechart.version>1.0.19</jfreechart.version>
         <jhighlight.version>1.0.3</jhighlight.version>
-        <jmockit.version>1.34</jmockit.version>
-        <jna.version>4.4.0</jna.version>
+        <jmockit.version>1.35</jmockit.version>
+        <jna.version>4.5.0</jna.version>
         <jsp-api.version>2.3.2-b02</jsp-api.version>
         <jsr305.version>3.0.2</jsr305.version>
         <jstl-api.version>1.2.1</jstl-api.version>
@@ -173,11 +173,11 @@
         <spring-security.version>4.2.3.RELEASE</spring-security.version>
         <text.version>1.1</text.version>
         <transaction-api.version>1.2</transaction-api.version>
-        <tomcat.version>8.5.21</tomcat.version>
+        <tomcat.version>8.5.23</tomcat.version>
         <wrapper.version>3.2.3</wrapper.version>
         <xpp3_min.version>1.1.4c</xpp3_min.version>
         <xstream.version>1.4.10</xstream.version>
-        <vibur-dbcp.version>19.2</vibur-dbcp.version>
+        <vibur-dbcp.version>20.0</vibur-dbcp.version>
 
         <!-- Plugin Versions -->
         <antrun.plugin>1.8</antrun.plugin>
@@ -1271,7 +1271,6 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-compiler-plugin</artifactId>
-                        <version>${compiler.plugin}</version>
                         <configuration>
                             <compilerId>javac-with-errorprone</compilerId>
                             <forceJavacCompilerUse>true</forceJavacCompilerUse>
