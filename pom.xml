@@ -169,7 +169,7 @@
         <servlet-api.version>3.1.0</servlet-api.version> <!-- TODO: Version 4.0.0-b05 is for java 8 only-->
         <sitemesh.version>2.4.2</sitemesh.version>
         <slf4j.version>1.7.25</slf4j.version>
-        <spring.version>4.3.11.RELEASE</spring.version>
+        <spring.version>4.3.12.RELEASE</spring.version>
         <spring-security.version>4.2.3.RELEASE</spring-security.version>
         <text.version>1.1</text.version>
         <transaction-api.version>1.2</transaction-api.version>
@@ -211,17 +211,18 @@
         <site.plugin>3.6</site.plugin>
         <sonar.plugin>3.3.0.603</sonar.plugin>
         <source.plugin>3.0.1</source.plugin>
+        <findbugs.plugin>3.0.5</findbugs.plugin>
         <spotbugs.plugin>3.1.0-SNAPSHOT</spotbugs.plugin>
         <surefire.plugin>2.19.1</surefire.plugin> <!-- TODO: Version 2.20 breaks whois tests -->
         <tidy.plugin>1.0.0</tidy.plugin>
         <versioneye.plugin>3.11.4</versioneye.plugin>
-        <versions.plugin>2.4</versions.plugin>
+        <versions.plugin>2.5</versions.plugin>
         <war.plugin>3.1.0</war.plugin>
 
         <!-- Plugin Dependency Versions -->
         <checkstyle.version>8.2</checkstyle.version>
         <doxia.version>1.7</doxia.version>
-        <fb-contrib.version>7.0.3</fb-contrib.version>
+        <fb-contrib.version>7.0.5</fb-contrib.version>
         <findsecbugs.version>1.7.1</findsecbugs.version>
         <plexus-compiler.version>2.8.2</plexus-compiler.version>
         <wagon-git.version>2.0.3</wagon-git.version> <!-- Do not use 2.0.4 as it does not work -->
@@ -803,6 +804,25 @@
                     </configuration>
                 </plugin>
                 <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>findbugs-maven-plugin</artifactId>
+                    <version>${findbugs.plugin}</version>
+                    <configuration>
+                        <plugins>
+                            <plugin>
+                                <groupId>com.mebigfatguy.fb-contrib</groupId>
+                                <artifactId>fb-contrib</artifactId>
+                                <version>${fb-contrib.version}</version>
+                            </plugin>
+                            <plugin>
+                                <groupId>com.h3xstream.findsecbugs</groupId>
+                                <artifactId>findsecbugs-plugin</artifactId>
+                                <version>${findsecbugs.version}</version>
+                            </plugin>
+                        </plugins>
+                    </configuration>
+                </plugin>
+                <plugin>
                     <groupId>com.github.spotbugs</groupId>
                     <artifactId>spotbugs-maven-plugin</artifactId>
                     <version>${spotbugs.plugin}</version>
@@ -1127,6 +1147,10 @@
                 <configuration>
                     <configLocation>${checkstyle.configLocation}</configLocation>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
             </plugin>
             <plugin>
                 <groupId>com.github.spotbugs</groupId>
