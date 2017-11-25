@@ -140,7 +140,7 @@
         <el-api.version>3.0.1-b04</el-api.version>
         <error-prone.version>2.1.2</error-prone.version>
         <geoip2.version>2.10.0</geoip2.version>
-        <guava.version>23.1-android</guava.version> <!-- TODO: Switch off android once on java 8 -->
+        <guava.version>23.4-android</guava.version> <!-- TODO: Switch off android to jre once on java 8 -->
         <hateoas.version>0.23.0.RELEASE</hateoas.version>
         <hikaricp.version>2.4.13</hikaricp.version>
         <logback.version>1.2.3</logback.version>
