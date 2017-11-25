@@ -148,7 +148,7 @@
         <io.version>2.6</io.version>
         <j2objc.version>1.3</j2objc.version>
         <jackson.version>2.9.2</jackson.version>
-        <javabean-tester.version>1.4.2</javabean-tester.version>
+        <javabean-tester.version>1.4.2</javabean-tester.version> <!-- TODO: Versions higher than this need special consideration around serialization -->
         <jcommon.version>1.0.24</jcommon.version>
         <jfreechart.version>1.0.19</jfreechart.version>
         <jhighlight.version>1.0.3</jhighlight.version>
@@ -166,7 +166,7 @@
         <persistence.version>2.2.0</persistence.version>
         <probe-ojdbc.version>3.0.0</probe-ojdbc.version>
         <quartz.version>2.3.0</quartz.version>
-        <servlet-api.version>3.1.0</servlet-api.version> <!-- TODO: Version 4.0.0-b05 is for java 8 only-->
+        <servlet-api.version>3.1.0</servlet-api.version> <!-- TODO: Version 4.0.0+ is for java 8 only-->
         <sitemesh.version>2.4.2</sitemesh.version>
         <slf4j.version>1.7.25</slf4j.version>
         <spring.version>4.3.12.RELEASE</spring.version>
@@ -213,7 +213,7 @@
         <source.plugin>3.0.1</source.plugin>
         <findbugs.plugin>3.0.5</findbugs.plugin>
         <spotbugs.plugin>3.1.0-RC8</spotbugs.plugin>
-        <surefire.plugin>2.19.1</surefire.plugin> <!-- TODO: Version 2.20 breaks whois tests -->
+        <surefire.plugin>2.19.1</surefire.plugin> <!-- TODO: Version 2.20+ breaks whois tests -->
         <tidy.plugin>1.0.0</tidy.plugin>
         <versioneye.plugin>3.11.4</versioneye.plugin>
         <versions.plugin>2.5</versions.plugin>
