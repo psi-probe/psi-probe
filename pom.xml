@@ -220,7 +220,7 @@
         <war.plugin>3.2.0</war.plugin>
 
         <!-- Plugin Dependency Versions -->
-        <checkstyle.version>8.3</checkstyle.version>
+        <checkstyle.version>8.4</checkstyle.version>
         <doxia.version>1.7</doxia.version>
         <fb-contrib.version>7.0.5</fb-contrib.version>
         <findsecbugs.version>1.7.1</findsecbugs.version>
