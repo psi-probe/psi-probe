@@ -197,7 +197,7 @@
         <install.plugin>2.5.2</install.plugin>
         <jacoco.plugin>0.7.9</jacoco.plugin>
         <jar.plugin>3.0.2</jar.plugin>
-        <javadoc.plugin>2.10.4</javadoc.plugin>
+        <javadoc.plugin>3.0.0-M1</javadoc.plugin>
         <jdeps.plugin>3.1.0</jdeps.plugin>
         <jspc.plugin>2.0.2</jspc.plugin>
         <jxr.plugin>2.5</jxr.plugin>
