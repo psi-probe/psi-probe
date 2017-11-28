@@ -23,8 +23,10 @@ public class Jdk14FileHandlerAccessor extends Jdk14HandlerAccessor {
 	 */
 	@Override
 	public File getFile() {
-		String pattern = (String) Instruments.getField(getTarget(), "pattern");
-		String logFilePath = pattern.replace("%g", String.valueOf(LATEST_FILE_INDEX));
-		return new File(logFilePath);
+		File[] files = (File[]) Instruments.getField(getTarget(), "files");
+		if (files == null || files.length == 0) {
+			throw new IllegalStateException("File handler does not manage any files");
+		}
+		return files[LATEST_FILE_INDEX];
 	}
 }
