@@ -191,10 +191,13 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
         throw new IllegalArgumentException("handler is null");
       }
       Jdk14HandlerAccessor handlerAccessor = null;
-      if ("org.apache.juli.FileHandler".equals(handler.getClass().getName())) {
+      String className = handler.getClass().getName();
+      if ("org.apache.juli.FileHandler".equals(className)) {
         handlerAccessor = new JuliHandlerAccessor();
-      } else if ("java.util.logging.ConsoleHandler".equals(handler.getClass().getName())) {
+      } else if ("java.util.logging.ConsoleHandler".equals(className)) {
         handlerAccessor = new Jdk14HandlerAccessor();
+      } else if ( "java.util.logging.FileHandler".equals(className)) {
+        handlerAccessor = new Jdk14FileHandlerAccessor();
       }
 
       if (handlerAccessor != null) {
