@@ -447,7 +447,7 @@ public final class Utils {
         } else if (counter > 0) {
           buffer.append("<span class=\"codeline\">");
           buffer.append("<span class=\"linenum\">");
-          buffer.append(leftPad(Long.toString(counter), 6, "&nbsp;"));
+          buffer.append(leftPad(Long.toString(counter), 6, " ").replace(" ", "&nbsp;"));
           buffer.append("</span>");
           buffer.append(tk.getText());
           buffer.append("</span>");
