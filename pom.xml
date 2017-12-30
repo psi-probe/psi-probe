@@ -209,7 +209,7 @@
         <release.plugin>2.5.3</release.plugin>
         <resources.plugin>3.0.2</resources.plugin>
         <site.plugin>3.6</site.plugin>
-        <sonar.plugin>3.3.0.603</sonar.plugin>
+        <sonar.plugin>3.4.0.905</sonar.plugin>
         <source.plugin>3.0.1</source.plugin>
         <findbugs.plugin>3.0.5</findbugs.plugin>
         <spotbugs.plugin>3.1.0-RC8</spotbugs.plugin>
