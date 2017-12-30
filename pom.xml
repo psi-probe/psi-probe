@@ -158,7 +158,7 @@
         <jsr305.version>3.0.2</jsr305.version>
         <jstl-api.version>1.2.1</jstl-api.version>
         <jstl.version>1.2.5-b03</jstl.version>
-        <junit.version>4.12</junit.version>
+        <junit.version>4.12.2</junit.version>
         <lang3.version>3.7</lang3.version>
         <mail.version>1.6.0</mail.version>
         <oshi.version>3.4.4</oshi.version>
@@ -254,8 +254,8 @@
                 <version>${jmockit.version}</version>
             </dependency>
             <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
+                <groupId>org.junit.vintage</groupId>
+                <artifactId>junit-vintage-engine</artifactId>
                 <version>${junit.version}</version>
             </dependency>
             <dependency>
@@ -637,8 +637,8 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
