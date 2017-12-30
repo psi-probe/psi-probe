@@ -221,7 +221,7 @@
 
         <!-- Plugin Dependency Versions -->
         <checkstyle.version>8.5</checkstyle.version>
-        <doxia.version>1.7</doxia.version>
+        <doxia.version>1.8</doxia.version>
         <fb-contrib.version>7.0.5</fb-contrib.version>
         <findsecbugs.version>1.7.1</findsecbugs.version>
         <plexus-compiler.version>2.8.2</plexus-compiler.version>
