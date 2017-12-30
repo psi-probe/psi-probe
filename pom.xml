@@ -138,27 +138,27 @@
         <dbcp2.version>2.1.1</dbcp2.version>
         <displaytag.version>2.1.6</displaytag.version>
         <el-api.version>3.0.1-b04</el-api.version>
-        <error-prone.version>2.1.2</error-prone.version>
+        <error-prone.version>2.1.3</error-prone.version>
         <geoip2.version>2.10.0</geoip2.version>
-        <guava.version>23.5-android</guava.version> <!-- TODO: Switch off android to jre once on java 8 -->
+        <guava.version>23.6-android</guava.version> <!-- TODO: Switch off android to jre once on java 8 -->
         <hateoas.version>0.24.0.RELEASE</hateoas.version>
         <hikaricp.version>2.4.13</hikaricp.version>
         <logback.version>1.2.3</logback.version>
         <inject.version>1</inject.version>
         <io.version>2.6</io.version>
         <j2objc.version>1.3</j2objc.version>
-        <jackson.version>2.9.2</jackson.version>
+        <jackson.version>2.9.3</jackson.version>
         <javabean-tester.version>1.4.2</javabean-tester.version> <!-- TODO: Versions higher than this need special consideration around serialization -->
         <jcommon.version>1.0.24</jcommon.version>
         <jfreechart.version>1.0.19</jfreechart.version>
         <jhighlight.version>1.0.3</jhighlight.version>
-        <jmockit.version>1.36.3</jmockit.version>
+        <jmockit.version>1.37</jmockit.version>
         <jna.version>4.5.0</jna.version>
         <jsp-api.version>2.3.2-b02</jsp-api.version>
         <jsr305.version>3.0.2</jsr305.version>
         <jstl-api.version>1.2.1</jstl-api.version>
         <jstl.version>1.2.5-b03</jstl.version>
-        <junit.version>4.12</junit.version>
+        <junit.version>4.12.2</junit.version>
         <lang3.version>3.7</lang3.version>
         <mail.version>1.6.0</mail.version>
         <oshi.version>3.4.4</oshi.version>
@@ -169,15 +169,15 @@
         <servlet-api.version>3.1.0</servlet-api.version> <!-- TODO: Version 4.0.0+ is for java 8 only -->
         <sitemesh.version>2.4.2</sitemesh.version>
         <slf4j.version>1.7.25</slf4j.version>
-        <spring.version>4.3.12.RELEASE</spring.version> <!-- TODO: Version 5.0.0+ is for java 8 only -->
+        <spring.version>4.3.13.RELEASE</spring.version> <!-- TODO: Version 5.0.0+ is for java 8 only -->
         <spring-security.version>4.2.3.RELEASE</spring-security.version>
         <text.version>1.1</text.version>
         <transaction-api.version>1.2</transaction-api.version>
-        <tomcat.version>8.5.23</tomcat.version>
+        <tomcat.version>8.5.24</tomcat.version>
         <wrapper.version>3.2.3</wrapper.version>
         <xpp3_min.version>1.1.4c</xpp3_min.version>
         <xstream.version>1.4.10</xstream.version>
-        <vibur-dbcp.version>21.0</vibur-dbcp.version>
+        <vibur-dbcp.version>21.2</vibur-dbcp.version>
 
         <!-- Plugin Versions -->
         <antrun.plugin>1.8</antrun.plugin>
@@ -197,7 +197,7 @@
         <install.plugin>2.5.2</install.plugin>
         <jacoco.plugin>0.7.9</jacoco.plugin>
         <jar.plugin>3.0.2</jar.plugin>
-        <javadoc.plugin>3.0.0-M1</javadoc.plugin>
+        <javadoc.plugin>3.0.0</javadoc.plugin>
         <jdeps.plugin>3.1.0</jdeps.plugin>
         <jspc.plugin>2.0.2</jspc.plugin>
         <jxr.plugin>2.5</jxr.plugin>
@@ -209,10 +209,10 @@
         <release.plugin>2.5.3</release.plugin>
         <resources.plugin>3.0.2</resources.plugin>
         <site.plugin>3.6</site.plugin>
-        <sonar.plugin>3.3.0.603</sonar.plugin>
+        <sonar.plugin>3.4.0.905</sonar.plugin>
         <source.plugin>3.0.1</source.plugin>
         <findbugs.plugin>3.0.5</findbugs.plugin>
-        <spotbugs.plugin>3.1.0-RC8</spotbugs.plugin>
+        <spotbugs.plugin>3.1.1</spotbugs.plugin>
         <surefire.plugin>2.19.1</surefire.plugin> <!-- TODO: Version 2.20+ breaks whois tests -->
         <tidy.plugin>1.0.0</tidy.plugin>
         <versioneye.plugin>3.11.4</versioneye.plugin>
@@ -220,8 +220,8 @@
         <war.plugin>3.2.0</war.plugin>
 
         <!-- Plugin Dependency Versions -->
-        <checkstyle.version>8.4</checkstyle.version>
-        <doxia.version>1.7</doxia.version>
+        <checkstyle.version>8.5</checkstyle.version>
+        <doxia.version>1.8</doxia.version>
         <fb-contrib.version>7.0.5</fb-contrib.version>
         <findsecbugs.version>1.7.1</findsecbugs.version>
         <plexus-compiler.version>2.8.2</plexus-compiler.version>
@@ -254,8 +254,8 @@
                 <version>${jmockit.version}</version>
             </dependency>
             <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
+                <groupId>org.junit.vintage</groupId>
+                <artifactId>junit-vintage-engine</artifactId>
                 <version>${junit.version}</version>
             </dependency>
             <dependency>
@@ -637,8 +637,8 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>

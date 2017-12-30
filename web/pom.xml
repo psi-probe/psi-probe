@@ -156,9 +156,9 @@
             </properties>
         </profile>
         <profile>
-            <id>java18</id>
+            <id>jdk8plus</id>
             <activation>
-                <jdk>1.8</jdk>
+                <jdk>[1.8,9,10)</jdk>
             </activation>
             <dependencies>
                 <dependency>
