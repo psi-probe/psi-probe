@@ -200,7 +200,7 @@
         <jar.plugin>3.0.2</jar.plugin>
         <javadoc.plugin>3.0.0</javadoc.plugin>
         <jdeps.plugin>3.1.0</jdeps.plugin>
-        <jspc.plugin>2.1.0</jspc.plugin>
+        <jspc.plugin>9.2.19.v20160908</jspc.plugin> <!-- TODO: Do not go above as it requires java 8 -->
         <jxr.plugin>2.5</jxr.plugin>
         <l10n.plugin>1.8</l10n.plugin>
         <license.plugin>3.0</license.plugin>
@@ -212,7 +212,6 @@
         <site.plugin>3.6</site.plugin>
         <sonar.plugin>3.4.0.905</sonar.plugin>
         <source.plugin>3.0.1</source.plugin>
-        <findbugs.plugin>3.0.5</findbugs.plugin>
         <spotbugs.plugin>3.1.1</spotbugs.plugin>
         <surefire.plugin>2.19.1</surefire.plugin> <!-- TODO: Version 2.20+ breaks whois tests -->
         <tidy.plugin>1.1.0</tidy.plugin>
@@ -223,6 +222,7 @@
         <!-- Plugin Dependency Versions -->
         <checkstyle.version>8.5</checkstyle.version>
         <doxia.version>1.8</doxia.version>
+        <ecj.version>4.6.1</ecj.version>
         <fb-contrib.version>7.0.5</fb-contrib.version>
         <findsecbugs.version>1.7.1</findsecbugs.version>
         <plexus-compiler.version>2.8.2</plexus-compiler.version>
@@ -796,6 +796,10 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>${surefire.plugin}</version>
+                    <configuration>
+                        <!-- For java 9 and jmockit -->
+                        <argLine>-Djdk.attach.allowAttachSelf</argLine>
+                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -814,25 +818,6 @@
                     <configuration>
                         <!-- Slightly faster builds, see https://issues.apache.org/jira/browse/MCOMPILER-209 -->
                         <useIncrementalCompilation>false</useIncrementalCompilation>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>findbugs-maven-plugin</artifactId>
-                    <version>${findbugs.plugin}</version>
-                    <configuration>
-                        <plugins>
-                            <plugin>
-                                <groupId>com.mebigfatguy.fb-contrib</groupId>
-                                <artifactId>fb-contrib</artifactId>
-                                <version>${fb-contrib.version}</version>
-                            </plugin>
-                            <plugin>
-                                <groupId>com.h3xstream.findsecbugs</groupId>
-                                <artifactId>findsecbugs-plugin</artifactId>
-                                <version>${findsecbugs.version}</version>
-                            </plugin>
-                        </plugins>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -975,25 +960,36 @@
                     <version>${versioneye.plugin}</version>
                 </plugin>
                 <plugin>
-                    <groupId>org.apache.sling</groupId>
-                    <artifactId>jspc-maven-plugin</artifactId>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-jspc-maven-plugin</artifactId>
                     <version>${jspc.plugin}</version>
                     <configuration>
-                        <compile>false</compile>
-                        <includeInProject>false</includeInProject>
+                        <mergeFragment>false</mergeFragment>
+                        <generatedClasses>${project.build.directory}/jspc</generatedClasses>
                     </configuration>
                     <executions>
                         <execution>
                             <goals>
-                                <goal>compile</goal>
+                                <goal>jspc</goal>
                             </goals>
                         </execution>
                     </executions>
                     <dependencies>
                         <dependency>
-                            <groupId>org.jasig.mojo.jspc</groupId>
-                            <artifactId>jspc-compiler-tomcat8</artifactId>
-                            <version>${jspc.plugin}</version>
+                            <groupId>org.apache.tomcat</groupId>
+                            <artifactId>tomcat-jasper</artifactId>
+                            <version>${tomcat.version}</version>
+                            <exclusions>
+                                <exclusion>
+                                    <groupId>org.eclipse.jdt.core.compiler</groupId>
+                                    <artifactId>ecj</artifactId>
+                                </exclusion>
+                            </exclusions>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.eclipse.jdt.core.compiler</groupId>
+                            <artifactId>ecj</artifactId>
+                            <version>${ecj.version}</version>
                         </dependency>
                     </dependencies>
                 </plugin>
@@ -1160,10 +1156,6 @@
                 <configuration>
                     <configLocation>${checkstyle.configLocation}</configLocation>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>findbugs-maven-plugin</artifactId>
             </plugin>
             <plugin>
                 <groupId>com.github.spotbugs</groupId>

@@ -103,8 +103,8 @@
         <finalName>probe</finalName>
         <plugins>
             <plugin>
-                <groupId>org.jasig.mojo.jspc</groupId>
-                <artifactId>jspc-maven-plugin</artifactId>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-jspc-maven-plugin</artifactId>
                 <dependencies>
                     <dependency>
                         <groupId>${project.groupId}</groupId>
