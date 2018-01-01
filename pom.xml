@@ -130,6 +130,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <!-- Dependency Versions -->
+        <activation.version>1.2.0</activation.version>
         <beanutils.version>1.9.3</beanutils.version>
         <bonecp.version>0.8.0.RELEASE</bonecp.version>
         <c3p0.version>0.9.5.2</c3p0.version>
@@ -150,7 +151,7 @@
         <jackson.version>2.9.3</jackson.version>
         <javabean-tester.version>1.4.2</javabean-tester.version> <!-- TODO: Versions higher than this need special consideration around serialization -->
         <jcommon.version>1.0.24</jcommon.version>
-        <jfreechart.version>1.0.19</jfreechart.version>
+        <jfreechart.version>1.0.19</jfreechart.version> <!-- TODO: Upgrade to 1.5.0 -->
         <jhighlight.version>1.0.3</jhighlight.version>
         <jmockit.version>1.37</jmockit.version>
         <jna.version>4.5.0</jna.version>
@@ -192,14 +193,14 @@
         <dependency-check.plugin>3.0.2</dependency-check.plugin>
         <deploy.plugin>2.8.2</deploy.plugin>
         <formatter.plugin>2.7.0</formatter.plugin>
-        <git-commit.plugin>2.2.3</git-commit.plugin>
+        <git-commit.plugin>2.2.4</git-commit.plugin>
         <gpg.plugin>1.6</gpg.plugin>
         <install.plugin>2.5.2</install.plugin>
         <jacoco.plugin>0.7.9</jacoco.plugin>
         <jar.plugin>3.0.2</jar.plugin>
         <javadoc.plugin>3.0.0</javadoc.plugin>
         <jdeps.plugin>3.1.0</jdeps.plugin>
-        <jspc.plugin>2.0.2</jspc.plugin>
+        <jspc.plugin>2.1.0</jspc.plugin>
         <jxr.plugin>2.5</jxr.plugin>
         <l10n.plugin>1.8</l10n.plugin>
         <license.plugin>3.0</license.plugin>
@@ -214,7 +215,7 @@
         <findbugs.plugin>3.0.5</findbugs.plugin>
         <spotbugs.plugin>3.1.1</spotbugs.plugin>
         <surefire.plugin>2.19.1</surefire.plugin> <!-- TODO: Version 2.20+ breaks whois tests -->
-        <tidy.plugin>1.0.0</tidy.plugin>
+        <tidy.plugin>1.1.0</tidy.plugin>
         <versioneye.plugin>3.11.4</versioneye.plugin>
         <versions.plugin>2.5</versions.plugin>
         <war.plugin>3.2.0</war.plugin>
@@ -265,6 +266,11 @@
             </dependency>
 
             <!-- API -->
+            <dependency>
+                <groupId>javax.activation</groupId>
+                <artifactId>javax.activation-api</artifactId>
+                <version>${activation.version}</version>
+            </dependency>
             <dependency>
                 <groupId>javax.inject</groupId>
                 <artifactId>javax.inject</artifactId>
@@ -647,6 +653,13 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- Java 9 needs -->
+        <dependency>
+            <groupId>javax.activation</groupId>
+            <artifactId>javax.activation-api</artifactId>
+            <scope>test</scope>
+        </dependency>
+
         <!-- Jmockit 1.32 started requiring -->
         <dependency>
             <groupId>org.eclipse.persistence</groupId>
@@ -962,7 +975,7 @@
                     <version>${versioneye.plugin}</version>
                 </plugin>
                 <plugin>
-                    <groupId>org.jasig.mojo.jspc</groupId>
+                    <groupId>org.apache.sling</groupId>
                     <artifactId>jspc-maven-plugin</artifactId>
                     <version>${jspc.plugin}</version>
                     <configuration>
