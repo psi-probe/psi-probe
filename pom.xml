@@ -130,6 +130,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <!-- Dependency Versions -->
+        <activation.version>1.2.0</activation.version>
         <beanutils.version>1.9.3</beanutils.version>
         <bonecp.version>0.8.0.RELEASE</bonecp.version>
         <c3p0.version>0.9.5.2</c3p0.version>
@@ -265,6 +266,11 @@
             </dependency>
 
             <!-- API -->
+            <dependency>
+                <groupId>javax.activation</groupId>
+                <artifactId>javax.activation-api</artifactId>
+                <version>${activation.version}</version>
+            </dependency>
             <dependency>
                 <groupId>javax.inject</groupId>
                 <artifactId>javax.inject</artifactId>
@@ -644,6 +650,13 @@
         <dependency>
             <groupId>com.github.hazendaz</groupId>
             <artifactId>javabean-tester</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Java 9 needs -->
+        <dependency>
+            <groupId>javax.activation</groupId>
+            <artifactId>javax.activation-api</artifactId>
             <scope>test</scope>
         </dependency>
 
