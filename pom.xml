@@ -151,7 +151,7 @@
         <jackson.version>2.9.3</jackson.version>
         <javabean-tester.version>1.4.2</javabean-tester.version> <!-- TODO: Versions higher than this need special consideration around serialization -->
         <jcommon.version>1.0.24</jcommon.version>
-        <jfreechart.version>1.0.19</jfreechart.version>
+        <jfreechart.version>1.0.19</jfreechart.version> <!-- TODO: Upgrade to 1.5.0 -->
         <jhighlight.version>1.0.3</jhighlight.version>
         <jmockit.version>1.37</jmockit.version>
         <jna.version>4.5.0</jna.version>
