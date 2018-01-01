@@ -797,6 +797,10 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>${surefire.plugin}</version>
+                    <configuration>
+                        <!-- For java 9 and jmockit -->
+                        <argLine>-Djdk.attach.allowAttachSelf</argLine>
+                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
