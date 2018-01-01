@@ -200,7 +200,7 @@
         <jar.plugin>3.0.2</jar.plugin>
         <javadoc.plugin>3.0.0</javadoc.plugin>
         <jdeps.plugin>3.1.0</jdeps.plugin>
-        <jspc.plugin>9.4.8.v20171121</jspc.plugin>
+        <jspc.plugin>9.2.19.v20160908</jspc.plugin> <!-- TODO: Do not go above as it requires java 8 -->
         <jxr.plugin>2.5</jxr.plugin>
         <l10n.plugin>1.8</l10n.plugin>
         <license.plugin>3.0</license.plugin>
