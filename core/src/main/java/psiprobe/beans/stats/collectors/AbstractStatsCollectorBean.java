@@ -162,8 +162,7 @@ public abstract class AbstractStatsCollectorBean {
 
     List<XYDataItem> stats = statsCollection.getStats(name);
     if (stats == null) {
-      // TODO 12/10/2016 JWL Was this needed for something?
-      stats = statsCollection.newStats(name, maxSeries);
+      statsCollection.newStats(name, maxSeries);
     } else {
       XYDataItem data = new XYDataItem(time, value);
       statsCollection.lockForUpdate();
