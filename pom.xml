@@ -119,7 +119,7 @@
         <maven.compiler.testTarget>1.7</maven.compiler.testTarget>
 
         <checkstyle.configLocation>google_checks.xml</checkstyle.configLocation>
-        <copyright>2017</copyright>
+        <copyright>2018</copyright>
 
         <github.global.server>github</github.global.server>
 
