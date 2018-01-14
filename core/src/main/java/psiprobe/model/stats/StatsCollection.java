@@ -27,7 +27,6 @@ import java.util.TreeMap;
 import org.jfree.data.xy.XYDataItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Value;
@@ -344,7 +343,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
   }
 
   @Override
-  public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+  public void setApplicationContext(ApplicationContext applicationContext) {
     WebApplicationContext wac = (WebApplicationContext) applicationContext;
     contextTempDir = (File) wac.getServletContext().getAttribute("javax.servlet.context.tempdir");
   }
