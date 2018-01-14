@@ -24,7 +24,7 @@ public class SessionSearchInfoTest {
    */
   @Test
   public void javabeanTester() {
-    JavaBeanTester.builder(SessionSearchInfo.class).loadData().test();
+    JavaBeanTester.builder(SessionSearchInfo.class).loadData().skipStrictSerializable().test();
   }
 
 }

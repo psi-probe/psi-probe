@@ -30,7 +30,7 @@ public class VisualScoreTagTest {
    */
   @Test
   public void javabeanTester() {
-    JavaBeanTester.builder(VisualScoreTag.class).loadData().test();
+    JavaBeanTester.builder(VisualScoreTag.class).loadData().skipStrictSerializable().test();
   }
 
   /**

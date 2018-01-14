@@ -24,7 +24,7 @@ public class SystemInformationTest {
    */
   @Test
   public void javabeanTester() {
-    JavaBeanTester.builder(SystemInformation.class).loadData().test();
+    JavaBeanTester.builder(SystemInformation.class).loadData().skipStrictSerializable().test();
   }
 
 }

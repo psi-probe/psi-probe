@@ -24,7 +24,7 @@ public class DisconnectedLogDestinationTest {
    */
   @Test
   public void javabeanTester() {
-    JavaBeanTester.builder(DisconnectedLogDestination.class).loadData().test();
+    JavaBeanTester.builder(DisconnectedLogDestination.class).loadData().skipStrictSerializable().test();
   }
 
 }

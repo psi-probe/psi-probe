@@ -24,7 +24,7 @@ public class SummaryTest {
    */
   @Test
   public void javabeanTester() {
-    JavaBeanTester.builder(Summary.class).loadData().test();
+    JavaBeanTester.builder(Summary.class).loadData().skipStrictSerializable().test();
   }
 
 }
