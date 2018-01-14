@@ -29,6 +29,7 @@ import java.io.Reader;
 import java.lang.management.ManagementFactory;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -128,8 +129,10 @@ public final class Utils {
           delete(child);
         }
       }
-      if (!file.delete()) {
-        logger.debug("Cannot delete '{}'", file.getAbsolutePath());
+      try {
+        Files.delete(file.toPath());
+      } catch (IOException e) {
+        logger.debug("Cannot delete '{}'", file.getAbsolutePath(), e);
       }
     } else {
       logger.debug("'{}' does not exist", file);

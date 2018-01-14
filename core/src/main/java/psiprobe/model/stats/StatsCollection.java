@@ -15,7 +15,10 @@ import com.thoughtworks.xstream.XStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -219,7 +222,9 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
    */
   private void shiftFiles(int index) {
     if (index >= maxFiles - 1) {
-      if (!new File(makeFile().getAbsolutePath() + "." + index).delete()) {
+      try {
+        Files.delete(Paths.get(makeFile().getAbsolutePath() + "." + index));
+      } catch (IOException e) {
         logger.error("Could not delete file {}",
             new File(makeFile().getAbsolutePath() + "." + index).getName());
       }
