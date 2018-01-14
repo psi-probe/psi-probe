@@ -233,8 +233,8 @@ public abstract class AbstractStatsCollectorBean {
       entry.time = time;
       previousData2D.put(name, entry);
     } else {
-      double valueDelta = value - entry.value;
-      double timeDelta = time - entry.time;
+      double valueDelta = (double) value - entry.value;
+      double timeDelta = (double) time - entry.time;
       double statValue = valueDelta * 100 / timeDelta;
       statsCollection.lockForUpdate();
       try {
