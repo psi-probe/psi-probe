@@ -136,7 +136,7 @@
         <c3p0.version>0.9.5.2</c3p0.version>
         <collections.version>3.2.2</collections.version>
         <dbcp.version>1.4</dbcp.version>
-        <dbcp2.version>2.1.1</dbcp2.version>
+        <dbcp2.version>2.2.0</dbcp2.version>
         <displaytag.version>2.1.6</displaytag.version>
         <el-api.version>3.0.1-b04</el-api.version>
         <error-prone.version>2.2.0</error-prone.version>
