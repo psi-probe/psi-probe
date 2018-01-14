@@ -24,7 +24,7 @@ public class VolumeTagTest {
    */
   @Test
   public void javabeanTester() {
-    JavaBeanTester.builder(VolumeTag.class).loadData().test();
+    JavaBeanTester.builder(VolumeTag.class).loadData().skipStrictSerializable().test();
   }
 
 }

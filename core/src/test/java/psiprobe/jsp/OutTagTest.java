@@ -24,7 +24,7 @@ public class OutTagTest {
    */
   @Test
   public void javabeanTester() {
-    JavaBeanTester.builder(OutTag.class).loadData().test();
+    JavaBeanTester.builder(OutTag.class).loadData().skipStrictSerializable().test();
   }
 
 }

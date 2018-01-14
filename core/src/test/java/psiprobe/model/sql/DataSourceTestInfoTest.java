@@ -24,7 +24,7 @@ public class DataSourceTestInfoTest {
    */
   @Test
   public void javabeanTester() {
-    JavaBeanTester.builder(DataSourceTestInfo.class).loadData().test();
+    JavaBeanTester.builder(DataSourceTestInfo.class).loadData().skipStrictSerializable().test();
   }
 
 }

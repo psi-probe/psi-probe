@@ -24,7 +24,7 @@ public class ParamToggleTagTest {
    */
   @Test
   public void javabeanTester() {
-    JavaBeanTester.builder(ParamToggleTag.class).loadData().test();
+    JavaBeanTester.builder(ParamToggleTag.class).loadData().skipStrictSerializable().test();
   }
 
 }

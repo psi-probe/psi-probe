@@ -25,7 +25,6 @@ import org.apache.tomcat.util.descriptor.web.ApplicationParameter;
 import org.apache.tomcat.util.descriptor.web.FilterDef;
 import org.apache.tomcat.util.descriptor.web.FilterMap;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import mockit.Expectations;
@@ -208,8 +207,6 @@ public class Tomcat80ContainerAdapterTest {
    *
    * @throws IOException Signals that an I/O exception has occurred.
    */
-  // TODO Write working test
-  @Ignore
   @Test
   public void resourceStream() throws IOException {
     final Tomcat80ContainerAdapter adapter = new Tomcat80ContainerAdapter();
@@ -219,8 +216,6 @@ public class Tomcat80ContainerAdapterTest {
   /**
    * Resource attributes.
    */
-  // TODO Write working test
-  @Ignore
   @Test
   public void resourceAttributes() {
     final Tomcat80ContainerAdapter adapter = new Tomcat80ContainerAdapter();

@@ -24,7 +24,7 @@ public class ItemTest {
    */
   @Test
   public void javabeanTester() {
-    JavaBeanTester.builder(Item.class).skip("LastModified").test();
+    JavaBeanTester.builder(Item.class).skipStrictSerializable().test();
   }
 
 }

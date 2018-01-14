@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.naming.NamingException;
+import javax.naming.directory.DirContext;
 
 import org.apache.catalina.Context;
 import org.apache.catalina.Valve;
@@ -25,8 +26,9 @@ import org.apache.catalina.deploy.ApplicationParameter;
 import org.apache.catalina.deploy.FilterDef;
 import org.apache.catalina.deploy.FilterMap;
 import org.apache.jasper.JspCompilationContext;
+import org.apache.naming.resources.Resource;
+import org.apache.naming.resources.ResourceAttributes;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import mockit.Expectations;
@@ -41,6 +43,10 @@ public class Tomcat70ContainerAdapterTest {
   /** The context. */
   @Mocked
   Context context;
+
+  /** The resource. */
+  @Mocked
+  DirContext resource;
 
   /**
    * Creates the valve.
@@ -274,22 +280,35 @@ public class Tomcat70ContainerAdapterTest {
    * Resource stream.
    *
    * @throws IOException Signals that an I/O exception has occurred.
+   * @throws NamingException Signals that a Naming exception has occurred.
    */
-  // TODO Write working test
-  @Ignore
   @Test
-  public void resourceStream() throws IOException {
+  public void resourceStream() throws IOException, NamingException {
+    Assert.assertNotNull(new Expectations() {
+        {
+            resource.lookup(this.anyString);
+            this.result = new Resource();
+        }
+    });
+
     final Tomcat70ContainerAdapter adapter = new Tomcat70ContainerAdapter();
     adapter.getResourceStream("name", context);
   }
 
   /**
    * Resource attributes.
+   *
+   * @throws NamingException Signals that a Naming exception has occurred.
    */
-  // TODO Write working test
-  @Ignore
   @Test
-  public void resourceAttributes() {
+  public void resourceAttributes() throws NamingException {
+    Assert.assertNotNull(new Expectations() {
+      {
+        resource.getAttributes(this.anyString);
+        this.result = new ResourceAttributes();
+      }
+    });
+
     final Tomcat70ContainerAdapter adapter = new Tomcat70ContainerAdapter();
     adapter.getResourceAttributes("name", context);
   }
