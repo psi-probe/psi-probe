@@ -216,7 +216,7 @@ public class Tomcat80ContainerAdapter extends AbstractTomcatContainer {
         nonOverridableParams.add(appParam.getName());
       }
     }
-    List<ApplicationParam> initParams = new ArrayList<>();
+    List<ApplicationParam> initParams = new ArrayList<>(20);
     ServletContext servletCtx = context.getServletContext();
     for (String paramName : Collections.list(servletCtx.getInitParameterNames())) {
       ApplicationParam param = new ApplicationParam();
