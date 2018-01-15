@@ -164,9 +164,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
   @Override
   public boolean installContext(String contextName) throws Exception {
     contextName = formatContextName(contextName);
-    String contextFilename = formatContextFilename(contextName);
-    File contextFile = new File(getConfigBase(), contextFilename + ".xml");
-    installContextInternal(contextName, contextFile);
+    installContextInternal(contextName);
     return findContext(contextName) != null;
   }
 
@@ -245,10 +243,9 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
    * Install context internal.
    *
    * @param name the name
-   * @param config the config
    * @throws Exception the exception
    */
-  private void installContextInternal(String name, File config) throws Exception {
+  private void installContextInternal(String name) throws Exception {
     checkChanges(name);
   }
 
