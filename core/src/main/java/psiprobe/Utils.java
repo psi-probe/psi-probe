@@ -28,6 +28,7 @@ import java.io.RandomAccessFile;
 import java.io.Reader;
 import java.lang.management.ManagementFactory;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -252,7 +253,7 @@ public final class Utils {
     contentTypeTokenizer.addSymbol(";", true);
 
 
-    try (Reader reader = new InputStreamReader(is, "ISO-8859-1")) {
+    try (Reader reader = new InputStreamReader(is, StandardCharsets.ISO_8859_1)) {
       jspTokenizer.setReader(reader);
       while (jspTokenizer.hasMore()) {
         Token token = jspTokenizer.nextToken();
