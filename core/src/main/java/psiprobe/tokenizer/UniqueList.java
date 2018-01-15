@@ -70,8 +70,8 @@ public class UniqueList<T extends Comparable<? super T>> extends ArrayList<T> {
   public synchronized boolean addAll(Collection<? extends T> comp) {
     boolean ok = this != comp;
     if (ok) {
-      for (T aComp : comp) {
-        ok &= this.add(aComp);
+      for (T compItem : comp) {
+        ok &= this.add(compItem);
       }
     }
     return ok;
