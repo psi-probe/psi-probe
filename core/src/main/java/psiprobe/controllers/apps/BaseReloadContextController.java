@@ -22,7 +22,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 public class BaseReloadContextController extends AbstractNoSelfContextHandlerController {
 
   /** The Constant logger. */
-  private static final Logger logger = LoggerFactory.getLogger(BaseStartContextController.class);
+  private static final Logger logger = LoggerFactory.getLogger(BaseReloadContextController.class);
 
   @Override
   protected void executeAction(String contextName) throws Exception {

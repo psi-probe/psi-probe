@@ -318,7 +318,7 @@ public class ContainerListenerBean implements NotificationListener {
                     Country country = response.getCountry();
                     rp.setRemoteAddrLocale(new Locale("", country.getIsoCode()));
                   } catch (AddressNotFoundException e) {
-                    logger.debug("{}", e.getMessage());
+                    logger.debug("Address Not Found: {}", e.getMessage());
                     logger.trace("", e);
                   }
                 }

@@ -53,7 +53,7 @@ import psiprobe.tools.logging.slf4jlogback.TomcatSlf4jLogbackLoggerAccessor;
 public class LogResolverBean {
 
   /** The Constant logger. */
-  protected static final Logger logger = LoggerFactory.getLogger(LogResolverBean.class);
+  private static final Logger logger = LoggerFactory.getLogger(LogResolverBean.class);
 
   /** The container wrapper. */
   @Inject

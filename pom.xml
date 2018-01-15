@@ -221,7 +221,8 @@
 
         <!-- Plugin Dependency Versions -->
         <build-tools.version>1.1.6</build-tools.version>
-        <checkstyle.version>8.6</checkstyle.version>
+        <bugpattern.version>1.4.0</bugpattern.version>
+        <checkstyle.version>8.7</checkstyle.version>
         <doxia.version>1.8</doxia.version>
         <ecj.version>4.6.1</ecj.version>
         <fb-contrib.version>7.0.5</fb-contrib.version>
@@ -836,6 +837,11 @@
                                 <groupId>com.h3xstream.findsecbugs</groupId>
                                 <artifactId>findsecbugs-plugin</artifactId>
                                 <version>${findsecbugs.version}</version>
+                            </plugin>
+                            <plugin>
+                                <groupId>jp.skypencil.findbugs.slf4j</groupId>
+                                <artifactId>bug-pattern</artifactId>
+                                <version>${bugpattern.version}</version>
                             </plugin>
                         </plugins>
                     </configuration>
