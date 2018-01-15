@@ -12,6 +12,7 @@ Unlike many other server monitoring tools, PSI Probe does not require any change
 - Logs: View contents, download, change levels at runtime.
 - Threads: View execution stack, kill.
 - Connectors: Status, usage charts.
+- Certificates: System trust store and connector keystore / truststore.
 - Cluster: Status, usage charts.
 - JVM: Memory usage charts, advise GC
 - Java Service Wrapper: Restart JVM.
