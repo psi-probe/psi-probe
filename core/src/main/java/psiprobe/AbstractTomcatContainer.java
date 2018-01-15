@@ -302,8 +302,9 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
   public void discardWorkDir(Context context) {
     if (context instanceof StandardContext) {
       StandardContext standardContext = (StandardContext) context;
-      logger.info("Discarding '{}'", standardContext.getWorkPath());
-      Utils.delete(new File(standardContext.getWorkPath(), "org"));
+      String path = standardContext.getWorkPath();
+      logger.info("Discarding '{}'", path);
+      Utils.delete(new File(path, "org"));
     } else {
       logger.error("context '{}' is not an instance of '{}', expected StandardContext",
           context.getName(), context.getClass().getName());
