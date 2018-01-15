@@ -154,7 +154,7 @@
         <jfreechart.version>1.0.19</jfreechart.version> <!-- TODO: Upgrade to 1.5.0 -->
         <jhighlight.version>1.0.3</jhighlight.version>
         <jmockit.version>1.37</jmockit.version>
-        <jna.version>4.5.0</jna.version>
+        <jna.version>4.5.1</jna.version>
         <jsp-api.version>2.3.2-b02</jsp-api.version>
         <jsr305.version>3.0.2</jsr305.version>
         <jstl-api.version>1.2.1</jstl-api.version>
@@ -184,7 +184,7 @@
         <antrun.plugin>1.8</antrun.plugin>
         <assembly.plugin>3.1.0</assembly.plugin>
         <build-helper.plugin>3.0.0</build-helper.plugin>
-        <checkstyle.plugin>2.17</checkstyle.plugin>
+        <checkstyle.plugin>3.0.0</checkstyle.plugin>
         <changelog.plugin>2.3</changelog.plugin>
         <clean.plugin>3.0.0</clean.plugin>
         <compiler.plugin>3.7.0</compiler.plugin>
@@ -196,7 +196,7 @@
         <git-commit.plugin>2.2.4</git-commit.plugin>
         <gpg.plugin>1.6</gpg.plugin>
         <install.plugin>2.5.2</install.plugin>
-        <jacoco.plugin>0.7.9</jacoco.plugin>
+        <jacoco.plugin>0.8.0</jacoco.plugin>
         <jar.plugin>3.0.2</jar.plugin>
         <javadoc.plugin>3.0.0</javadoc.plugin>
         <jdeps.plugin>3.1.0</jdeps.plugin>
