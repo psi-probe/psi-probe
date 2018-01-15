@@ -118,7 +118,7 @@
         <maven.compiler.testSource>1.7</maven.compiler.testSource>
         <maven.compiler.testTarget>1.7</maven.compiler.testTarget>
 
-        <checkstyle.configLocation>google_checks.xml</checkstyle.configLocation>
+        <checkstyle.configLocation>checkstyle.xml</checkstyle.configLocation>
         <copyright>2018</copyright>
 
         <github.global.server>github</github.global.server>
@@ -220,6 +220,7 @@
         <war.plugin>3.2.0</war.plugin>
 
         <!-- Plugin Dependency Versions -->
+        <build-tools.version>1.1.6</build-tools.version>
         <checkstyle.version>8.5</checkstyle.version>
         <doxia.version>1.8</doxia.version>
         <ecj.version>4.6.1</ecj.version>
@@ -1115,6 +1116,11 @@
                         <groupId>com.puppycrawl.tools</groupId>
                         <artifactId>checkstyle</artifactId>
                         <version>${checkstyle.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.github.hazendaz</groupId>
+                        <artifactId>build-tools</artifactId>
+                        <version>${build-tools.version}</version>
                     </dependency>
                 </dependencies>
             </plugin>
