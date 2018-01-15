@@ -184,7 +184,7 @@
         <antrun.plugin>1.8</antrun.plugin>
         <assembly.plugin>3.1.0</assembly.plugin>
         <build-helper.plugin>3.0.0</build-helper.plugin>
-        <checkstyle.plugin>2.17</checkstyle.plugin>
+        <checkstyle.plugin>3.0.0</checkstyle.plugin>
         <changelog.plugin>2.3</changelog.plugin>
         <clean.plugin>3.0.0</clean.plugin>
         <compiler.plugin>3.7.0</compiler.plugin>
