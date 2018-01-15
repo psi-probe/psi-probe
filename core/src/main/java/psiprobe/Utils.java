@@ -78,7 +78,7 @@ public final class Utils {
    * @throws IOException Signals that an I/O exception has occurred.
    */
   public static String readFile(File file, String charsetName) throws IOException {
-    try (FileInputStream fis = new FileInputStream(file)) {
+    try (InputStream fis = Files.newInputStream(file.toPath())) {
       return readStream(fis, charsetName);
     }
   }
@@ -474,7 +474,7 @@ public final class Utils {
   public static void sendCompressedFile(HttpServletRequest request, HttpServletResponse response,
       File file) throws IOException {
     try (ZipOutputStream zip = new ZipOutputStream(response.getOutputStream());
-        InputStream fileInput = new BufferedInputStream(new FileInputStream(file))) {
+        InputStream fileInput = new BufferedInputStream(Files.newInputStream(file.toPath()))) {
       // set some headers
       response.setContentType("application/zip");
       response.setHeader("Content-Disposition", "attachment; filename=" + file.getName() + ".zip");
