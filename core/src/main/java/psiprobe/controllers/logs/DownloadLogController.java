@@ -53,7 +53,7 @@ public class DownloadLogController extends AbstractLogHandlerController {
     logger.info("Sending {}{} to {} ({})", file, compressed ? " compressed" : "",
         request.getRemoteAddr(), request.getRemoteUser());
     if (compressed) {
-      Utils.sendCompressedFile(request, response, file);
+      Utils.sendCompressedFile(response, file);
     } else {
       Utils.sendFile(request, response, file);
     }

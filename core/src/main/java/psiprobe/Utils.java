@@ -466,12 +466,11 @@ public final class Utils {
   /**
    * Send compressed file.
    *
-   * @param request the request
    * @param response the response
    * @param file the file
    * @throws IOException Signals that an I/O exception has occurred.
    */
-  public static void sendCompressedFile(HttpServletRequest request, HttpServletResponse response,
+  public static void sendCompressedFile(HttpServletResponse response,
       File file) throws IOException {
     try (ZipOutputStream zip = new ZipOutputStream(response.getOutputStream());
         InputStream fileInput = new BufferedInputStream(Files.newInputStream(file.toPath()))) {
