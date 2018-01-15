@@ -37,7 +37,7 @@ import psiprobe.model.DataSourceInfo;
 public class JBossResourceResolverBean implements ResourceResolver {
 
   /** The Constant logger. */
-  protected static final Logger logger = LoggerFactory.getLogger(JBossResourceResolverBean.class);
+  private static final Logger logger = LoggerFactory.getLogger(JBossResourceResolverBean.class);
 
   @Override
   public MBeanServer getMBeanServer() {

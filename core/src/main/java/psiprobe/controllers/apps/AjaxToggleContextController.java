@@ -32,7 +32,7 @@ import psiprobe.controllers.AbstractContextHandlerController;
 public class AjaxToggleContextController extends AbstractContextHandlerController {
 
   /** The Constant logger. */
-  private static final Logger logger = LoggerFactory.getLogger(AjaxReloadContextController.class);
+  private static final Logger logger = LoggerFactory.getLogger(AjaxToggleContextController.class);
 
   @RequestMapping(path = "/app/toggle.ajax")
   @Override
