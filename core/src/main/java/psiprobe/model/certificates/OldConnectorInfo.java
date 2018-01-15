@@ -50,21 +50,21 @@ public class OldConnectorInfo extends ConnectorInfo {
    * class supports the Old Connecter Info configuration.
    */
   public OldConnectorInfo() {
-    SSLHostConfigInfo configInfo = new SSLHostConfigInfo();
+    SslHostConfigInfo configInfo = new SslHostConfigInfo();
     List<CertificateInfo> certificateInfos = new ArrayList<>(1);
     certificateInfos.add(new CertificateInfo());
     configInfo.setCertificateInfos(certificateInfos);
-    List<SSLHostConfigInfo> sslHostConfigInfos = new ArrayList<>(1);
+    List<SslHostConfigInfo> sslHostConfigInfos = new ArrayList<>(1);
     sslHostConfigInfos.add(configInfo);
     setSslHostConfigInfos(sslHostConfigInfos);
   }
 
-  private SSLHostConfigInfo getInternalSSLHostConfigInfo() {
+  private SslHostConfigInfo getInternalSslHostConfigInfo() {
     return getSslHostConfigInfos().get(0);
   }
 
   private CertificateInfo getInternalCertificateInfo() {
-    return getInternalSSLHostConfigInfo().getCertificateInfos().get(0);
+    return getInternalSslHostConfigInfo().getCertificateInfos().get(0);
   }
 
   /**
@@ -159,7 +159,7 @@ public class OldConnectorInfo extends ConnectorInfo {
    */
   public void setTruststoreFile(String truststoreFile) {
     this.truststoreFile = truststoreFile;
-    getInternalSSLHostConfigInfo().setTruststoreFile(truststoreFile);
+    getInternalSslHostConfigInfo().setTruststoreFile(truststoreFile);
   }
 
   /**
@@ -178,7 +178,7 @@ public class OldConnectorInfo extends ConnectorInfo {
    */
   public void setTruststorePass(String truststorePass) {
     this.truststorePass = truststorePass;
-    getInternalSSLHostConfigInfo().setTruststorePassword(truststorePass);
+    getInternalSslHostConfigInfo().setTruststorePassword(truststorePass);
   }
 
   /**
@@ -197,7 +197,7 @@ public class OldConnectorInfo extends ConnectorInfo {
    */
   public void setTruststoreProvider(String truststoreProvider) {
     this.truststoreProvider = truststoreProvider;
-    getInternalSSLHostConfigInfo().setTruststoreProvider(truststoreProvider);
+    getInternalSslHostConfigInfo().setTruststoreProvider(truststoreProvider);
   }
 
   /**
@@ -216,7 +216,7 @@ public class OldConnectorInfo extends ConnectorInfo {
    */
   public void setTruststoreType(String truststoreType) {
     this.truststoreType = truststoreType;
-    getInternalSSLHostConfigInfo().setTruststoreType(truststoreType);
+    getInternalSslHostConfigInfo().setTruststoreType(truststoreType);
   }
 
 }
