@@ -22,12 +22,12 @@ import org.apache.tomcat.util.net.SSLHostConfigCertificate;
 
 import psiprobe.model.certificates.CertificateInfo;
 import psiprobe.model.certificates.ConnectorInfo;
-import psiprobe.model.certificates.SSLHostConfigInfo;
+import psiprobe.model.certificates.SslHostConfigInfo;
 
 /**
- * The Class SSLHostConfigHelper.
+ * The Class SslHostConfigHelper.
  */
-public class SSLHostConfigHelper {
+public class SslHostConfigHelper {
 
   /**
    * Instantiates a new SSL host config helper.
@@ -37,10 +37,10 @@ public class SSLHostConfigHelper {
    * @throws IllegalAccessException the illegal access exception
    * @throws InvocationTargetException the invocation target exception
    */
-  public SSLHostConfigHelper(AbstractHttp11JsseProtocol<?> protocol, ConnectorInfo info)
+  public SslHostConfigHelper(AbstractHttp11JsseProtocol<?> protocol, ConnectorInfo info)
       throws IllegalAccessException, InvocationTargetException {
     SSLHostConfig[] sslHostConfigs = protocol.findSslHostConfigs();
-    List<SSLHostConfigInfo> sslHostConfigInfos = new ArrayList<>(sslHostConfigs.length);
+    List<SslHostConfigInfo> sslHostConfigInfos = new ArrayList<>(sslHostConfigs.length);
     info.setSslHostConfigInfos(sslHostConfigInfos);
 
     for (SSLHostConfig sslHostConfig : sslHostConfigs) {
@@ -49,16 +49,16 @@ public class SSLHostConfigHelper {
   }
 
   /**
-   * To SSLHostConfig info.
+   * To SslHostConfig info.
    * 
-   * @param sslHostConfig the SSLHostConfig
-   * @return the SSLHostConfig info
+   * @param sslHostConfig the SslHostConfig
+   * @return the SslHostConfig info
    * @throws IllegalAccessException the illegal access exception
    * @throws InvocationTargetException the invocation target exception
    */
-  private SSLHostConfigInfo toSslHostConfigInfo(SSLHostConfig sslHostConfig)
+  private SslHostConfigInfo toSslHostConfigInfo(SSLHostConfig sslHostConfig)
       throws IllegalAccessException, InvocationTargetException {
-    SSLHostConfigInfo sslHostConfigInfo = new SSLHostConfigInfo();
+    SslHostConfigInfo sslHostConfigInfo = new SslHostConfigInfo();
     BeanUtils.copyProperties(sslHostConfigInfo, sslHostConfig);
 
     Set<SSLHostConfigCertificate> certificates = sslHostConfig.getCertificates();
@@ -74,7 +74,7 @@ public class SSLHostConfigHelper {
   /**
    * To certificate info.
    * 
-   * @param sslHostConfigCertificate the SSLHostConfigCertificate
+   * @param sslHostConfigCertificate the SslHostConfigCertificate
    * @return the certificate info
    * @throws IllegalAccessException the illegal access exception
    * @throws InvocationTargetException the invocation target exception

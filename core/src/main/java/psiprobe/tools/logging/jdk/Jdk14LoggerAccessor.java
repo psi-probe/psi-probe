@@ -196,7 +196,7 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
         handlerAccessor = new JuliHandlerAccessor();
       } else if ("java.util.logging.ConsoleHandler".equals(className)) {
         handlerAccessor = new Jdk14HandlerAccessor();
-      } else if ( "java.util.logging.FileHandler".equals(className)) {
+      } else if ("java.util.logging.FileHandler".equals(className)) {
         handlerAccessor = new Jdk14FileHandlerAccessor();
       }
 

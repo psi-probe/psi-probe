@@ -45,7 +45,7 @@ import psiprobe.model.certificates.Cert;
 import psiprobe.model.certificates.CertificateInfo;
 import psiprobe.model.certificates.ConnectorInfo;
 import psiprobe.model.certificates.OldConnectorInfo;
-import psiprobe.model.certificates.SSLHostConfigInfo;
+import psiprobe.model.certificates.SslHostConfigInfo;
 
 /**
  * The Class ListCertificatesController.
@@ -76,8 +76,8 @@ public class ListCertificatesController extends AbstractTomcatContainerControlle
       for (ConnectorInfo info : infos) {
         List<Cert> certs;
 
-        List<SSLHostConfigInfo> sslHostConfigInfos = info.getSslHostConfigInfos();
-        for (SSLHostConfigInfo sslHostConfigInfo : sslHostConfigInfos) {
+        List<SslHostConfigInfo> sslHostConfigInfos = info.getSslHostConfigInfos();
+        for (SslHostConfigInfo sslHostConfigInfo : sslHostConfigInfos) {
           if (sslHostConfigInfo.getTruststoreFile() != null) {
             certs = getCertificates(sslHostConfigInfo.getTruststoreType(),
                 sslHostConfigInfo.getTruststoreFile(), sslHostConfigInfo.getTruststorePassword());
@@ -189,7 +189,7 @@ public class ListCertificatesController extends AbstractTomcatContainerControlle
 
   /**
    * Tries to open a InputStream the same way as
-   * {@link org.apache.tomcat.util.file.ConfigFileLoader.getInputStream(String)}
+   * {@link org.apache.tomcat.util.file.ConfigFileLoader#getInputStream(String)}
    * 
    * @param path the path of a store file (absolute or relative to CATALINA.BASE), or URI to store
    *        file (absolute or relative to CATALINA.BASE).
@@ -234,18 +234,18 @@ public class ListCertificatesController extends AbstractTomcatContainerControlle
       Object defaultSslHostConfigName =
           MethodUtils.invokeMethod(protocol, "getDefaultSSLHostConfigName");
       if (defaultSslHostConfigName == null) {
-        logger.error("Cannot determine defaultSSLHostConfigName");
+        logger.error("Cannot determine defaultSslHostConfigName");
         return info;
       }
-      info.setDefaultSSLHostConfigName(String.valueOf(defaultSslHostConfigName));
-      new SSLHostConfigHelper(protocol, info);
+      info.setDefaultSslHostConfigName(String.valueOf(defaultSslHostConfigName));
+      new SslHostConfigHelper(protocol, info);
     } catch (NoSuchMethodException e) {
       logger.trace("", e);
       // We are using Tomcat 7 or 8, fill in the old way
       OldConnectorInfo oldConnectorInfo = new OldConnectorInfo();
       BeanUtils.copyProperties(oldConnectorInfo, protocol);
 
-      info.setDefaultSSLHostConfigName("_default_");
+      info.setDefaultSslHostConfigName("_default_");
       info.setSslHostConfigInfos(oldConnectorInfo.getSslHostConfigInfos());
     }
 

@@ -24,11 +24,11 @@ public class ConnectorInfo implements Serializable {
   /** The name. */
   private String name;
 
-  /** The default SSLHostConfig name. */
-  private String defaultSSLHostConfigName;
+  /** The default SslHostConfig name. */
+  private String defaultSslHostConfigName;
 
-  /** SSLHostConfig infos. */
-  private List<SSLHostConfigInfo> sslHostConfigInfos;
+  /** SslHostConfig infos. */
+  private List<SslHostConfigInfo> sslHostConfigInfos;
 
   /**
    * Gets the name.
@@ -49,39 +49,39 @@ public class ConnectorInfo implements Serializable {
   }
 
   /**
-   * Gets the SSLHostConfig infos.
+   * Gets the SslHostConfig infos.
    *
-   * @return the SSLHostConfig infos
+   * @return the SslHostConfig infos
    */
-  public List<SSLHostConfigInfo> getSslHostConfigInfos() {
+  public List<SslHostConfigInfo> getSslHostConfigInfos() {
     return sslHostConfigInfos;
   }
 
   /**
-   * Sets SSLHostConfig infos.
+   * Sets SslHostConfig infos.
    *
-   * @param sslHostConfigInfos new SSLHostConfig infos
+   * @param sslHostConfigInfos new SslHostConfig infos
    */
-  public void setSslHostConfigInfos(List<SSLHostConfigInfo> sslHostConfigInfos) {
+  public void setSslHostConfigInfos(List<SslHostConfigInfo> sslHostConfigInfos) {
     this.sslHostConfigInfos = sslHostConfigInfos;
   }
 
   /**
-   * Gets the default SSLHostConfig name.
+   * Gets the default SslHostConfig name.
    *
-   * @return the default SSLHostConfig name
+   * @return the default SslHostConfig name
    */
-  public String getDefaultSSLHostConfigName() {
-    return defaultSSLHostConfigName;
+  public String getDefaultSslHostConfigName() {
+    return defaultSslHostConfigName;
   }
 
   /**
-   * Sets the default SSLHostConfig name.
+   * Sets the default SslHostConfig name.
    *
-   * @param defaultSSLHostConfigName the new default SSLHostConfig name
+   * @param defaultSslHostConfigName the new default SslHostConfig name
    */
-  public void setDefaultSSLHostConfigName(String defaultSSLHostConfigName) {
-    this.defaultSSLHostConfigName = defaultSSLHostConfigName;
+  public void setDefaultSslHostConfigName(String defaultSslHostConfigName) {
+    this.defaultSslHostConfigName = defaultSslHostConfigName;
   }
 
 }

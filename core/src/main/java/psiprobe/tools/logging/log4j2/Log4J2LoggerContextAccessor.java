@@ -19,6 +19,11 @@ import psiprobe.tools.logging.DefaultAccessor;
  */
 public class Log4J2LoggerContextAccessor extends DefaultAccessor {
 
+  /**
+   * Gets the loggers.
+   *
+   * @return the loggers
+   */
   @SuppressWarnings("unchecked")
   public Map<String, Object> getLoggers() {
     Map<String, Object> loggers = null;

@@ -13,7 +13,7 @@ package psiprobe.model.certificates;
 import java.io.Serializable;
 import java.util.List;
 
-public class SSLHostConfigInfo implements Serializable {
+public class SslHostConfigInfo implements Serializable {
 
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = 8264467511525154728L;

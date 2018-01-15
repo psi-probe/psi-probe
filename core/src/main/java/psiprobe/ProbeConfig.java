@@ -427,7 +427,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
     logger.debug("Instantiated beanNameUrlHandlerMapping");
     BeanNameUrlHandlerMapping mapping = new BeanNameUrlHandlerMapping();
     mapping.setAlwaysUseFullPath(true);
-    mapping.setInterceptors(new Object[] {interceptor});
+    mapping.setInterceptors(interceptor);
     return mapping;
   }
 
