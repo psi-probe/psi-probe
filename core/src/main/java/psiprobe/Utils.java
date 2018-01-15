@@ -497,11 +497,11 @@ public final class Utils {
    * @param fill the fill
    * @return the string
    */
-  public static String leftPad(String str, int len, String fill) {
+  protected static String leftPad(String str, int len, String fill) {
     if (str != null && str.length() < len) {
       return Strings.padStart(str, len, fill.charAt(0));
     }
-    return str;
+    return str == null ? "" : str;
   }
 
   /**
