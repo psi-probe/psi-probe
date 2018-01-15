@@ -130,6 +130,7 @@
                             <directory>${project.basedir}/src/main/webapp</directory>
                             <includes>
                                 <include>**/*messages*.properties</include>
+                                <include>**/*web.xml</include>
                             </includes>
                             <filtering>true</filtering>
                         </resource>

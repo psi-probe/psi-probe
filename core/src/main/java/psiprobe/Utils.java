@@ -28,6 +28,8 @@ import java.io.RandomAccessFile;
 import java.io.Reader;
 import java.lang.management.ManagementFactory;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -76,7 +78,7 @@ public final class Utils {
    * @throws IOException Signals that an I/O exception has occurred.
    */
   public static String readFile(File file, String charsetName) throws IOException {
-    try (FileInputStream fis = new FileInputStream(file)) {
+    try (InputStream fis = Files.newInputStream(file.toPath())) {
       return readStream(fis, charsetName);
     }
   }
@@ -108,7 +110,7 @@ public final class Utils {
     try (BufferedReader reader = new BufferedReader(new InputStreamReader(is, charset), 4096)) {
       String line;
       while ((line = reader.readLine()) != null) {
-        out.append(line).append("\n");
+        out.append(line).append('\n');
       }
     }
 
@@ -127,8 +129,10 @@ public final class Utils {
           delete(child);
         }
       }
-      if (!file.delete()) {
-        logger.debug("Cannot delete '{}'", file.getAbsolutePath());
+      try {
+        Files.delete(file.toPath());
+      } catch (IOException e) {
+        logger.debug("Cannot delete '{}'", file.getAbsolutePath(), e);
       }
     } else {
       logger.debug("'{}' does not exist", file);
@@ -252,14 +256,14 @@ public final class Utils {
     contentTypeTokenizer.addSymbol(";", true);
 
 
-    try (Reader reader = new InputStreamReader(is, "ISO-8859-1")) {
+    try (Reader reader = new InputStreamReader(is, StandardCharsets.ISO_8859_1)) {
       jspTokenizer.setReader(reader);
       while (jspTokenizer.hasMore()) {
         Token token = jspTokenizer.nextToken();
         if ("dir".equals(token.getName())) {
           directiveTokenizer.setString(token.getInnerText());
           if (directiveTokenizer.hasMore()
-              && directiveTokenizer.nextToken().getText().equals("page")) {
+              && "page".equals(directiveTokenizer.nextToken().getText())) {
             while (directiveTokenizer.hasMore()) {
               Token directiveToken = directiveTokenizer.nextToken();
               if ("pageEncoding".equals(directiveToken.getText())) {
@@ -422,59 +426,62 @@ public final class Utils {
       String encoding) throws IOException {
 
     Renderer jspRenderer = XhtmlRendererFactory.getRenderer(rendererName);
-    if (jspRenderer != null) {
-      ByteArrayOutputStream bos = new ByteArrayOutputStream();
-      jspRenderer.highlight(name, input, bos, encoding, true);
-
-      ByteArrayInputStream bis = new ByteArrayInputStream(bos.toByteArray());
-
-      Tokenizer tokenizer = new Tokenizer(new InputStreamReader(bis, encoding));
-      tokenizer.addSymbol(new TokenizerSymbol("EOL", "\n", null, false, false, true, false));
-      tokenizer.addSymbol(new TokenizerSymbol("EOL", "\r\n", null, false, false, true, false));
-
-      //
-      // JHighlight adds HTML comment as the first line, so if
-      // we number the lines we could end up with a line number and no line
-      // to avoid that we just ignore the first line all together.
-      //
-      StringBuilder buffer = new StringBuilder();
-      long counter = 0;
-      while (tokenizer.hasMore()) {
-        Token tk = tokenizer.nextToken();
-        if ("EOL".equals(tk.getName())) {
-          counter++;
-          buffer.append(tk.getText());
-        } else if (counter > 0) {
-          buffer.append("<span class=\"codeline\">");
-          buffer.append("<span class=\"linenum\">");
-          buffer.append(leftPad(Long.toString(counter), 6, " ").replace(" ", "&nbsp;"));
-          buffer.append("</span>");
-          buffer.append(tk.getText());
-          buffer.append("</span>");
-        }
-      }
-      return buffer.toString();
+    if (jspRenderer == null) {
+      return null;
     }
-    return null;
+
+    ByteArrayOutputStream bos = new ByteArrayOutputStream();
+    jspRenderer.highlight(name, input, bos, encoding, true);
+
+    ByteArrayInputStream bis = new ByteArrayInputStream(bos.toByteArray());
+
+    Tokenizer tokenizer = new Tokenizer(new InputStreamReader(bis, encoding));
+    tokenizer.addSymbol(new TokenizerSymbol("EOL", "\n", null, false, false, true, false));
+    tokenizer.addSymbol(new TokenizerSymbol("EOL", "\r\n", null, false, false, true, false));
+
+    //
+    // JHighlight adds HTML comment as the first line, so if
+    // we number the lines we could end up with a line number and no line
+    // to avoid that we just ignore the first line all together.
+    //
+    StringBuilder buffer = new StringBuilder();
+    long counter = 0;
+    while (tokenizer.hasMore()) {
+      Token tk = tokenizer.nextToken();
+      if ("EOL".equals(tk.getName())) {
+        counter++;
+        buffer.append(tk.getText());
+      } else if (counter > 0) {
+        buffer.append("<span class=\"codeline\">");
+        buffer.append("<span class=\"linenum\">");
+        buffer.append(leftPad(Long.toString(counter), 6, " ").replace(" ", "&nbsp;"));
+        buffer.append("</span>");
+        buffer.append(tk.getText());
+        buffer.append("</span>");
+      }
+    }
+    return buffer.toString();
   }
 
   /**
    * Send compressed file.
    *
-   * @param request the request
    * @param response the response
    * @param file the file
    * @throws IOException Signals that an I/O exception has occurred.
    */
-  public static void sendCompressedFile(HttpServletRequest request, HttpServletResponse response,
+  public static void sendCompressedFile(HttpServletResponse response,
       File file) throws IOException {
     try (ZipOutputStream zip = new ZipOutputStream(response.getOutputStream());
-        InputStream fileInput = new BufferedInputStream(new FileInputStream(file))) {
+        InputStream fileInput = new BufferedInputStream(Files.newInputStream(file.toPath()))) {
+
+      String fileName = file.getName();
+
       // set some headers
       response.setContentType("application/zip");
-      response.setHeader("Content-Disposition", "attachment; filename=" + file.getName() + ".zip");
+      response.setHeader("Content-Disposition", "attachment; filename=" + fileName + ".zip");
 
-      zip.putNextEntry(new ZipEntry(file.getName()));
+      zip.putNextEntry(new ZipEntry(fileName));
 
       // send the file
       byte[] buffer = new byte[4096];
@@ -495,11 +502,11 @@ public final class Utils {
    * @param fill the fill
    * @return the string
    */
-  public static String leftPad(String str, int len, String fill) {
+  protected static String leftPad(String str, int len, String fill) {
     if (str != null && str.length() < len) {
       return Strings.padStart(str, len, fill.charAt(0));
     }
-    return str;
+    return str == null ? "" : str;
   }
 
   /**

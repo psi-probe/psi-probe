@@ -17,7 +17,7 @@
 						http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	version="3.0">
 
-	<display-name>PSI Probe for Apache Tomcat</display-name>
+	<display-name>PSI Probe for Apache Tomcat v${project.version}</display-name>
 
 	<session-config>
 		<session-timeout>15</session-timeout>

@@ -45,7 +45,7 @@ public class AjaxReloadContextController extends AbstractContextHandlerControlle
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-    if (!request.getContextPath().equals(contextName) && context != null) {
+    if (context != null && !request.getContextPath().equals(contextName)) {
       try {
         logger.info("{} requested RELOAD of {}", request.getRemoteAddr(), contextName);
         context.reload();
