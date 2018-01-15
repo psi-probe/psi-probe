@@ -13,9 +13,6 @@ package psiprobe;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import org.apache.catalina.connector.Request;
 import org.apache.catalina.connector.Response;
 import org.apache.catalina.valves.ValveBase;
@@ -39,10 +36,9 @@ public class Tomcat90AgentValve extends ValveBase {
   public void invoke(Request request, Response response) throws IOException, ServletException {
     getNext().invoke(request, response);
 
-    HttpServletRequest servletRequest = request.getRequest();
-    HttpSession session = servletRequest.getSession(false);
-    if (session != null) {
-      String ip = IpInfo.getClientAddress(servletRequest);
+    if (request.getSession(false) != null) {
+      String ip = IpInfo.getClientAddress(request.getRequest());
+      // Explicit calls to ensure result not lost
       request.getSession(false).setAttribute(ApplicationSession.LAST_ACCESSED_BY_IP, ip);
       request.getSession(false).setAttribute(ApplicationSession.LAST_ACCESSED_LOCALE,
           request.getLocale());
