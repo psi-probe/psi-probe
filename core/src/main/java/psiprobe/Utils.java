@@ -423,40 +423,41 @@ public final class Utils {
       String encoding) throws IOException {
 
     Renderer jspRenderer = XhtmlRendererFactory.getRenderer(rendererName);
-    if (jspRenderer != null) {
-      ByteArrayOutputStream bos = new ByteArrayOutputStream();
-      jspRenderer.highlight(name, input, bos, encoding, true);
-
-      ByteArrayInputStream bis = new ByteArrayInputStream(bos.toByteArray());
-
-      Tokenizer tokenizer = new Tokenizer(new InputStreamReader(bis, encoding));
-      tokenizer.addSymbol(new TokenizerSymbol("EOL", "\n", null, false, false, true, false));
-      tokenizer.addSymbol(new TokenizerSymbol("EOL", "\r\n", null, false, false, true, false));
-
-      //
-      // JHighlight adds HTML comment as the first line, so if
-      // we number the lines we could end up with a line number and no line
-      // to avoid that we just ignore the first line all together.
-      //
-      StringBuilder buffer = new StringBuilder();
-      long counter = 0;
-      while (tokenizer.hasMore()) {
-        Token tk = tokenizer.nextToken();
-        if ("EOL".equals(tk.getName())) {
-          counter++;
-          buffer.append(tk.getText());
-        } else if (counter > 0) {
-          buffer.append("<span class=\"codeline\">");
-          buffer.append("<span class=\"linenum\">");
-          buffer.append(leftPad(Long.toString(counter), 6, " ").replace(" ", "&nbsp;"));
-          buffer.append("</span>");
-          buffer.append(tk.getText());
-          buffer.append("</span>");
-        }
-      }
-      return buffer.toString();
+    if (jspRenderer == null) {
+      return null;
     }
-    return null;
+
+    ByteArrayOutputStream bos = new ByteArrayOutputStream();
+    jspRenderer.highlight(name, input, bos, encoding, true);
+
+    ByteArrayInputStream bis = new ByteArrayInputStream(bos.toByteArray());
+
+    Tokenizer tokenizer = new Tokenizer(new InputStreamReader(bis, encoding));
+    tokenizer.addSymbol(new TokenizerSymbol("EOL", "\n", null, false, false, true, false));
+    tokenizer.addSymbol(new TokenizerSymbol("EOL", "\r\n", null, false, false, true, false));
+
+    //
+    // JHighlight adds HTML comment as the first line, so if
+    // we number the lines we could end up with a line number and no line
+    // to avoid that we just ignore the first line all together.
+    //
+    StringBuilder buffer = new StringBuilder();
+    long counter = 0;
+    while (tokenizer.hasMore()) {
+      Token tk = tokenizer.nextToken();
+      if ("EOL".equals(tk.getName())) {
+        counter++;
+        buffer.append(tk.getText());
+      } else if (counter > 0) {
+        buffer.append("<span class=\"codeline\">");
+        buffer.append("<span class=\"linenum\">");
+        buffer.append(leftPad(Long.toString(counter), 6, " ").replace(" ", "&nbsp;"));
+        buffer.append("</span>");
+        buffer.append(tk.getText());
+        buffer.append("</span>");
+      }
+    }
+    return buffer.toString();
   }
 
   /**
