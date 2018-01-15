@@ -475,11 +475,14 @@ public final class Utils {
       File file) throws IOException {
     try (ZipOutputStream zip = new ZipOutputStream(response.getOutputStream());
         InputStream fileInput = new BufferedInputStream(Files.newInputStream(file.toPath()))) {
+
+      String fileName = file.getName();
+
       // set some headers
       response.setContentType("application/zip");
-      response.setHeader("Content-Disposition", "attachment; filename=" + file.getName() + ".zip");
+      response.setHeader("Content-Disposition", "attachment; filename=" + fileName + ".zip");
 
-      zip.putNextEntry(new ZipEntry(file.getName()));
+      zip.putNextEntry(new ZipEntry(fileName));
 
       // send the file
       byte[] buffer = new byte[4096];
