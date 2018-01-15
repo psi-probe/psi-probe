@@ -263,7 +263,7 @@ public final class Utils {
         if ("dir".equals(token.getName())) {
           directiveTokenizer.setString(token.getInnerText());
           if (directiveTokenizer.hasMore()
-              && directiveTokenizer.nextToken().getText().equals("page")) {
+              && "page".equals(directiveTokenizer.nextToken().getText())) {
             while (directiveTokenizer.hasMore()) {
               Token directiveToken = directiveTokenizer.nextToken();
               if ("pageEncoding".equals(directiveToken.getText())) {
