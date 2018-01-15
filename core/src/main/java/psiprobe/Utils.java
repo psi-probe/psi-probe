@@ -110,7 +110,7 @@ public final class Utils {
     try (BufferedReader reader = new BufferedReader(new InputStreamReader(is, charset), 4096)) {
       String line;
       while ((line = reader.readLine()) != null) {
-        out.append(line).append("\n");
+        out.append(line).append('\n');
       }
     }
 
