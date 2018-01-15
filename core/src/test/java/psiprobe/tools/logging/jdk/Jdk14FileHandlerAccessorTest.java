@@ -24,26 +24,26 @@ import psiprobe.model.Application;
 
 public class Jdk14FileHandlerAccessorTest {
 
-	@Rule
-	public TemporaryFolder folder = new TemporaryFolder();
+  @Rule
+  public TemporaryFolder folder = new TemporaryFolder();
 
-	@Test
-	public void getFile() throws Exception {
-		Jdk14FileHandlerAccessor handlerAccessor = new Jdk14FileHandlerAccessor();
-		handlerAccessor.setLoggerAccessor(new Jdk14LoggerAccessor());
+  @Test
+  public void getFile() throws Exception {
+    Jdk14FileHandlerAccessor handlerAccessor = new Jdk14FileHandlerAccessor();
+    handlerAccessor.setLoggerAccessor(new Jdk14LoggerAccessor());
 
-		String testPath = folder.newFolder().getAbsolutePath();
-		FileHandler target = new FileHandler(testPath + "test-%g.log", 1024, 3);
+    String testPath = folder.newFolder().getAbsolutePath();
+    FileHandler target = new FileHandler(testPath + "test-%g.log", 1024, 3);
 
-		handlerAccessor.setTarget(target);
-		handlerAccessor.setIndex(Integer.toString(0));
-		Application testApplication = new Application();
-		handlerAccessor.setApplication(testApplication);
+    handlerAccessor.setTarget(target);
+    handlerAccessor.setIndex(Integer.toString(0));
+    Application testApplication = new Application();
+    handlerAccessor.setApplication(testApplication);
 
-		File file = handlerAccessor.getFile();
+    File file = handlerAccessor.getFile();
 
-		assertThat(file.getAbsolutePath(), equalTo(testPath + "test-0.log") );
+    assertThat(file.getAbsolutePath(), equalTo(testPath + "test-0.log"));
 
-	}
+  }
 
 }
