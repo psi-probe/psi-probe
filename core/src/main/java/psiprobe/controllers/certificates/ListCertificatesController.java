@@ -188,8 +188,8 @@ public class ListCertificatesController extends AbstractTomcatContainerControlle
   }
 
   /**
-   * Tries to open a InputStream the same way as
-   * {@link org.apache.tomcat.util.file.ConfigFileLoader#getInputStream(String)}
+   * Tries to open a InputStream the same way as Tomcat ConfigFileLoader
+   * {@link org.apache.tomcat.util.file.ConfigFileLoader#getInputStream(String) getInputStream}.
    * 
    * @param path the path of a store file (absolute or relative to CATALINA.BASE), or URI to store
    *        file (absolute or relative to CATALINA.BASE).
