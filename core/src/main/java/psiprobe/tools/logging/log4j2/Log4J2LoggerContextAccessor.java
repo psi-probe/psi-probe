@@ -19,25 +19,33 @@ import psiprobe.tools.logging.DefaultAccessor;
  */
 public class Log4J2LoggerContextAccessor extends DefaultAccessor {
 
-  /**
-   * Gets the loggers.
-   *
-   * @return the loggers
-   */
-  @SuppressWarnings("unchecked")
-  public Map<String, Object> getLoggers() {
-    Map<String, Object> loggers = null;
-    Object configuration = invokeMethod(getTarget(), "getConfiguration", null, null);
-    if (configuration != null) {
-      loggers = (Map<String, Object>) invokeMethod(configuration, "getLoggers", null, null);
+    @SuppressWarnings("unchecked")
+    public Map<String, Object> getLoggers() {
+        Map<String, Object> loggers = null;
+        Object configuration = null;
+        try {
+            configuration = invokeMethod(getTarget(), "getConfiguration", null, null);
+        } catch (Exception e) {
+            logger.error("exception invoking getConfiguration", e);
+            throw e;
+        }
+        if (configuration != null) {
+            try {
+                loggers = (Map<String, Object>) invokeMethod(configuration, "getLoggers", null, null);
+            } catch (Exception e) {
+                logger.error("exception invoking getLoggers", e);
+                throw e;
+            }
+        }
+        return loggers;
     }
-    return loggers;
-  }
 
-  /**
-   * Update log4j2 loggers.
-   */
-  public void updateLoggers() {
-    invokeMethod(getTarget(), "updateLoggers", null, null);
-  }
+    public void updateLoggers() {
+        try {
+            invokeMethod(getTarget(), "updateLoggers", null, null);
+        } catch (Exception e) {
+            logger.error("exception invoking updateLoggers", e);
+            throw e;
+        }
+    }
 }
