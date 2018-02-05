@@ -11,12 +11,12 @@
 package psiprobe.controllers.certificates;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
 import java.net.URL;
+import java.nio.file.Files;
 import java.security.KeyStore;
 import java.security.cert.Certificate;
 import java.security.cert.X509Certificate;
@@ -199,14 +199,14 @@ public class ListCertificatesController extends AbstractTomcatContainerControlle
   private InputStream getStoreInputStream(String path) throws IOException {
     File file = new File(path);
     if (file.exists()) {
-      return new FileInputStream(file);
+      return Files.newInputStream(file.toPath());
     }
 
     File catalinaBaseFolder = new File(System.getProperty("catalina.base"));
     file = new File(catalinaBaseFolder, path);
 
     if (file.exists()) {
-      return new FileInputStream(file);
+      return Files.newInputStream(file.toPath());
     }
 
     URI uri = catalinaBaseFolder.toURI().resolve(path);

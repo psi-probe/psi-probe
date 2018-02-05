@@ -44,7 +44,7 @@ public class ListSessionAttributesController extends AbstractContextHandlerContr
 
     boolean privileged = SecurityUtils.hasAttributeValueRole(getServletContext(), request);
     boolean calcSize =
-        ServletRequestUtils.getBooleanParameter(request, "size", false) && privileged;
+        privileged && ServletRequestUtils.getBooleanParameter(request, "size", false);
     String sid = ServletRequestUtils.getStringParameter(request, "sid");
 
     ApplicationSession appSession = ApplicationUtils

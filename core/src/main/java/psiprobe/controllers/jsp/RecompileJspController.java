@@ -54,7 +54,7 @@ public class RecompileJspController extends AbstractContextHandlerController {
     HttpSession session = request.getSession(false);
     Summary summary = (Summary) session.getAttribute(DisplayJspController.SUMMARY_ATTRIBUTE);
 
-    if ("post".equalsIgnoreCase(request.getMethod()) && summary != null) {
+    if (summary != null && "post".equalsIgnoreCase(request.getMethod())) {
       List<String> names = new ArrayList<>();
       for (String name : Collections.list(request.getParameterNames())) {
         if ("on".equals(request.getParameter(name))) {

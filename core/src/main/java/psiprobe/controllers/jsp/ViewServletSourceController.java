@@ -11,7 +11,8 @@
 package psiprobe.controllers.jsp;
 
 import java.io.File;
-import java.io.FileInputStream;
+import java.io.InputStream;
+import java.nio.file.Files;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -61,7 +62,7 @@ public class ViewServletSourceController extends AbstractContextHandlerControlle
       if (servletName != null) {
         File servletFile = new File(servletName);
         if (servletFile.exists()) {
-          try (FileInputStream fis = new FileInputStream(servletFile)) {
+          try (InputStream fis = Files.newInputStream(servletFile.toPath())) {
             content = Utils.highlightStream(jspName, fis, "java", encoding);
           }
         }

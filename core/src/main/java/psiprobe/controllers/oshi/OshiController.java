@@ -141,7 +141,7 @@ public class OshiController extends AbstractTomcatContainerController {
     for (int i = 0; i < oshi.size(); i++) {
       output.append(oshi.get(i));
       if (!"\n".equals(oshi.get(i))) {
-        output.append("\n");
+        output.append('\n');
       }
     }
     logger.debug("Printing List: {}", output);

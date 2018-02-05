@@ -115,24 +115,25 @@ public class LogResolverBean {
   public List<LogDestination> getLogDestinations(boolean all) {
     List<LogDestination> allAppenders = getAllLogDestinations();
 
-    if (allAppenders != null) {
-      //
-      // this list has to guarantee the order in which elements are added
-      //
-      List<LogDestination> uniqueList = new LinkedList<>();
-      AbstractLogComparator cmp = new LogDestinationComparator(all);
+    if (allAppenders == null) {
+      return null;
+    }
 
-      Collections.sort(allAppenders, cmp);
-      for (LogDestination dest : allAppenders) {
-        if (Collections.binarySearch(uniqueList, dest, cmp) < 0) {
-          if (all || dest.getFile() == null || dest.getFile().exists()) {
-            uniqueList.add(new DisconnectedLogDestination().builder(dest));
-          }
+    //
+    // this list has to guarantee the order in which elements are added
+    //
+    List<LogDestination> uniqueList = new LinkedList<>();
+    AbstractLogComparator cmp = new LogDestinationComparator(all);
+
+    Collections.sort(allAppenders, cmp);
+    for (LogDestination dest : allAppenders) {
+      if (Collections.binarySearch(uniqueList, dest, cmp) < 0) {
+        if (all || dest.getFile() == null || dest.getFile().exists()) {
+          uniqueList.add(new DisconnectedLogDestination().builder(dest));
         }
       }
-      return uniqueList;
     }
-    return null;
+    return uniqueList;
   }
 
   /**
@@ -180,34 +181,35 @@ public class LogResolverBean {
    * @return the all log destinations
    */
   private List<LogDestination> getAllLogDestinations() {
-    if (Instruments.isInitialized()) {
-      List<LogDestination> allAppenders = new ArrayList<>();
-
-      //
-      // interrogate classloader hierarchy
-      //
-      ClassLoader cl2 = Thread.currentThread().getContextClassLoader().getParent();
-      while (cl2 != null) {
-        interrogateClassLoader(cl2, null, allAppenders);
-        cl2 = cl2.getParent();
-      }
-
-      //
-      // check for known stdout files, such as "catalina.out"
-      //
-      interrogateStdOutFiles(allAppenders);
-
-      //
-      // interrogate webapp classloaders and available loggers
-      //
-      List<Context> contexts = getContainerWrapper().getTomcatContainer().findContexts();
-      for (Context ctx : contexts) {
-        interrogateContext(ctx, allAppenders);
-      }
-
-      return allAppenders;
+    if (!Instruments.isInitialized()) {
+      return null;
     }
-    return null;
+
+    List<LogDestination> allAppenders = new ArrayList<>();
+
+    //
+    // interrogate classloader hierarchy
+    //
+    ClassLoader cl2 = Thread.currentThread().getContextClassLoader().getParent();
+    while (cl2 != null) {
+      interrogateClassLoader(cl2, null, allAppenders);
+      cl2 = cl2.getParent();
+    }
+
+    //
+    // check for known stdout files, such as "catalina.out"
+    //
+    interrogateStdOutFiles(allAppenders);
+
+    //
+    // interrogate webapp classloaders and available loggers
+    //
+    List<Context> contexts = getContainerWrapper().getTomcatContainer().findContexts();
+    for (Context ctx : contexts) {
+      interrogateContext(ctx, allAppenders);
+    }
+
+    return allAppenders;
   }
 
   /**

@@ -13,9 +13,8 @@ package psiprobe.model.stats;
 import com.thoughtworks.xstream.XStream;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -248,7 +247,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
     long start = System.currentTimeMillis();
     try {
       shiftFiles(0);
-      try (OutputStream os = new FileOutputStream(makeFile())) {
+      try (OutputStream os = Files.newOutputStream(makeFile().toPath())) {
         new XStream().toXML(statsData, os);
       }
     } catch (Exception e) {
@@ -271,7 +270,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
     if (file.exists() && file.canRead()) {
       long start = System.currentTimeMillis();
       try {
-        try (FileInputStream fis = new FileInputStream(file)) {
+        try (InputStream fis = Files.newInputStream(file.toPath())) {
           stats = (Map<String, List<XYDataItem>>) (new XStream().fromXML(fis));
 
           if (stats != null) {

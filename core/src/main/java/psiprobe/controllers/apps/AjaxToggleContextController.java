@@ -45,7 +45,7 @@ public class AjaxToggleContextController extends AbstractContextHandlerControlle
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-    if (!request.getContextPath().equals(contextName) && context != null) {
+    if (context != null && !request.getContextPath().equals(contextName)) {
       try {
         // Logging action
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

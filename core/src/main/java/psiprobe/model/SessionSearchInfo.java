@@ -277,8 +277,8 @@ public class SessionSearchInfo implements Serializable {
       apply = false;
       clear = false;
     } else {
-      apply = searchAction.equals(ACTION_APPLY);
-      clear = searchAction.equals(ACTION_CLEAR);
+      apply = ACTION_APPLY.equals(searchAction);
+      clear = ACTION_CLEAR.equals(searchAction);
     }
   }
 
