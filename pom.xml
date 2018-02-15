@@ -170,7 +170,7 @@
         <servlet-api.version>3.1.0</servlet-api.version> <!-- TODO: Version 4.0.0+ is for java 8 only -->
         <sitemesh.version>2.4.2</sitemesh.version>
         <slf4j.version>1.7.25</slf4j.version>
-        <spring.version>4.3.13.RELEASE</spring.version> <!-- TODO: Version 5.0.0+ is for java 8 only -->
+        <spring.version>4.3.14.RELEASE</spring.version> <!-- TODO: Version 5.0.0+ is for java 8 only -->
         <spring-security.version>4.2.3.RELEASE</spring-security.version>
         <text.version>1.2</text.version>
         <transaction-api.version>1.2</transaction-api.version>
