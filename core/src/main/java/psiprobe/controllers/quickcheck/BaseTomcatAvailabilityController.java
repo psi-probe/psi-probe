@@ -14,6 +14,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.ArrayList;
@@ -128,9 +129,9 @@ public class BaseTomcatAvailabilityController extends AbstractTomcatContainerCon
     try {
       for (; fileCount > 0; fileCount--) {
         File file = new File(tmpDir, "tctest_" + fileCount);
-        try (FileOutputStream fos = new FileOutputStream(file)) {
+        try (OutputStream fos = Files.newOutputStream(file.toPath())) {
           files.add(file);
-          fileStreams.add(fos);
+          fileStreams.add((FileOutputStream) fos);
           fos.write("this is a test".getBytes(StandardCharsets.UTF_8));
         }
       }

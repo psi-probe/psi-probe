@@ -65,7 +65,7 @@ public class DatasourceStatsCollectorBean extends AbstractStatsCollectorBean {
     } else {
       for (ApplicationResource ds : getContainerWrapper().getDataSources()) {
         String appName = ds.getApplicationName();
-        String name = (appName == null ? "" : appName) + "/" + ds.getName();
+        String name = (appName == null ? "" : appName) + '/' + ds.getName();
         DataSourceInfo dsi = ds.getDataSourceInfo();
         int numEstablished = dsi.getEstablishedConnections();
         int numBusy = dsi.getBusyConnections();
