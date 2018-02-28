@@ -98,9 +98,8 @@ public class ThresholdListenerTests {
    * The listener interface for receiving mockThreshold events. The class that is interested in
    * processing a mockThreshold event implements this interface, and the object created with that
    * class is registered with a component using the component's
-   * <code>addMockThresholdListener</code> method. When
-   * the mockThreshold event occurs, that object's appropriate
-   * method is invoked.
+   * <code>addMockThresholdListener</code> method. When the mockThreshold event occurs, that
+   * object's appropriate method is invoked.
    */
   public static class MockThresholdListener extends AbstractThresholdListener {
 

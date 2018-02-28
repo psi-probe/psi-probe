@@ -237,8 +237,8 @@ public class ContainerListenerBean implements NotificationListener {
             .setCurrentThreadCount(JmxTools.getIntAttr(server, poolName, "currentThreadCount"));
 
         /*
-         * Tomcat will return -1 for maxThreads if the connector uses an executor for its
-         * threads. In this case, don't add its ThreadPool to the results.
+         * Tomcat will return -1 for maxThreads if the connector uses an executor for its threads.
+         * In this case, don't add its ThreadPool to the results.
          */
         if (threadPool.getMaxThreads() > -1) {
           threadPools.add(threadPool);

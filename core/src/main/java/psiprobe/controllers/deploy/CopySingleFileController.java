@@ -167,8 +167,8 @@ public class CopySingleFileController extends AbstractTomcatContainerController 
                   if (reload && context != null) {
                     context.reload();
                     request.setAttribute("reloadContext", Boolean.TRUE);
-                    logger.info(getMessageSourceAccessor().getMessage("probe.src.log.reload"),
-                        name, contextName);
+                    logger.info(getMessageSourceAccessor().getMessage("probe.src.log.reload"), name,
+                        contextName);
                   }
                 } else {
                   errMsg =

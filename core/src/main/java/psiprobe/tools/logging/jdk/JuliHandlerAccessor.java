@@ -26,7 +26,8 @@ public class JuliHandlerAccessor extends Jdk14HandlerAccessor {
     String suffix = (String) Instruments.getField(getTarget(), "suffix");
     String date = (String) Instruments.getField(getTarget(), "date");
     return dir != null && prefix != null && suffix != null && date != null
-        ? new File(dir, prefix + date + suffix) : getStdoutFile();
+        ? new File(dir, prefix + date + suffix)
+        : getStdoutFile();
   }
 
 }

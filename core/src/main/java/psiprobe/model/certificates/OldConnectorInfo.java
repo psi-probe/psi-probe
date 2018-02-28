@@ -46,8 +46,8 @@ public class OldConnectorInfo extends ConnectorInfo {
   private String truststoreType;
 
   /**
-   * Recent version of tomcat have changed how certificate setup works. As such this
-   * class supports the Old Connecter Info configuration.
+   * Recent version of tomcat have changed how certificate setup works. As such this class supports
+   * the Old Connecter Info configuration.
    */
   public OldConnectorInfo() {
     SslHostConfigInfo configInfo = new SslHostConfigInfo();

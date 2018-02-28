@@ -43,7 +43,7 @@ public class OpenEjbBasicDatasourceAccessor implements DatasourceAccessor {
 
   @Override
   public boolean canMap(Object resource) {
-    return "org.apache.openejb.resource.jdbc.dbcp.BasicDataSource".equals(resource.getClass().getName())
-        && resource instanceof BasicDataSource;
+    return "org.apache.openejb.resource.jdbc.dbcp.BasicDataSource"
+        .equals(resource.getClass().getName()) && resource instanceof BasicDataSource;
   }
 }

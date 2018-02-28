@@ -470,8 +470,8 @@ public final class Utils {
    * @param file the file
    * @throws IOException Signals that an I/O exception has occurred.
    */
-  public static void sendCompressedFile(HttpServletResponse response,
-      File file) throws IOException {
+  public static void sendCompressedFile(HttpServletResponse response, File file)
+      throws IOException {
     try (ZipOutputStream zip = new ZipOutputStream(response.getOutputStream());
         InputStream fileInput = new BufferedInputStream(Files.newInputStream(file.toPath()))) {
 
