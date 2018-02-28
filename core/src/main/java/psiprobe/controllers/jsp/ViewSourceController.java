@@ -56,7 +56,8 @@ public class ViewSourceController extends AbstractContextHandlerController {
     String jspName = ServletRequestUtils.getStringParameter(request, "source", null);
     boolean highlight = ServletRequestUtils.getBooleanParameter(request, "highlight", true);
     Summary summary = (Summary) (request.getSession(false) != null
-        ? request.getSession(false).getAttribute(DisplayJspController.SUMMARY_ATTRIBUTE) : null);
+        ? request.getSession(false).getAttribute(DisplayJspController.SUMMARY_ATTRIBUTE)
+        : null);
 
     if (jspName != null && summary != null && contextName.equals(summary.getName())) {
 

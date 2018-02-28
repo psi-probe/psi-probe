@@ -53,7 +53,8 @@ public class WrapperInfoController extends ParameterizableViewController {
       wi.setUser(
           WrapperManager.getUser(false) != null ? WrapperManager.getUser(false).getUser() : null);
       wi.setInteractiveUser(WrapperManager.getInteractiveUser(false) != null
-          ? WrapperManager.getInteractiveUser(false).getUser() : null);
+          ? WrapperManager.getInteractiveUser(false).getUser()
+          : null);
       wi.setJvmPid(WrapperManager.getJavaPID());
       wi.setWrapperPid(WrapperManager.getWrapperPID());
       wi.setProperties(WrapperManager.getProperties().entrySet());

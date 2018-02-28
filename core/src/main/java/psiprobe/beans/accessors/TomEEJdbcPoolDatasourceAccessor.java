@@ -15,8 +15,8 @@ import org.apache.tomcat.jdbc.pool.DataSource;
 import psiprobe.model.DataSourceInfo;
 
 /**
- * Datasource accessor for tomEE.  sames as {@link TomEEJdbcPoolDatasourceAccessor} except
- * different string in {@link #canMap(Object)}
+ * Datasource accessor for tomEE. sames as {@link TomEEJdbcPoolDatasourceAccessor} except different
+ * string in {@link #canMap(Object)}
  */
 public class TomEEJdbcPoolDatasourceAccessor implements DatasourceAccessor {
 
@@ -44,8 +44,8 @@ public class TomEEJdbcPoolDatasourceAccessor implements DatasourceAccessor {
 
   @Override
   public boolean canMap(Object resource) {
-    return "org.apache.tomee.jdbc.TomEEDataSourceCreator$TomEEDataSource".equals(resource.getClass().getName())
-        && resource instanceof DataSource;
+    return "org.apache.tomee.jdbc.TomEEDataSourceCreator$TomEEDataSource"
+        .equals(resource.getClass().getName()) && resource instanceof DataSource;
   }
 
 }

@@ -20,8 +20,8 @@ public class PostParameterizableViewController extends ParameterizableViewContro
 
   /**
    * Instantiates a new post parameterizable view controller. As of spring 4.3.x, the
-   * ParameterizableViewController no longer allows POST but only GET/HEAD. This patch
-   * restores POST functionality.
+   * ParameterizableViewController no longer allows POST but only GET/HEAD. This patch restores POST
+   * functionality.
    */
   public PostParameterizableViewController() {
     super();

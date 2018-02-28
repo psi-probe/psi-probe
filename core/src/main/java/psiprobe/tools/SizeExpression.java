@@ -68,7 +68,8 @@ public final class SizeExpression {
    * <tbody>
    * <tr>
    * <td>Base Number</td>
-   * <td>(Required) The mantissa or significand of the expression. This can include decimal values.</td>
+   * <td>(Required) The mantissa or significand of the expression. This can include decimal
+   * values.</td>
    * </tr>
    * <tr>
    * <td>Prefix</td>
@@ -84,8 +85,8 @@ public final class SizeExpression {
    * 
    * <tfoot>
    * <tr>
-   * <td colspan="2">
-   * <em>Note: Whitespace may or may not exist between the Base Number and Prefix.</em></td>
+   * <td colspan="2"><em>Note: Whitespace may or may not exist between the Base Number and
+   * Prefix.</em></td>
    * </tr>
    * </tfoot>
    * 

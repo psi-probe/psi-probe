@@ -67,9 +67,9 @@ public class ContainerWrapperBean {
   }
 
   /**
-   * Sets the force first adapter. Setting this property to true will override
-   * the server polling each adapter performs to test for compatibility. Instead,
-   * it will use the first one in the adapterClasses list.
+   * Sets the force first adapter. Setting this property to true will override the server polling
+   * each adapter performs to test for compatibility. Instead, it will use the first one in the
+   * adapterClasses list.
    *
    * @param forceFirstAdapter the new force first adapter
    */

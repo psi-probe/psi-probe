@@ -93,9 +93,8 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
   }
 
   /**
-   * Sets the storage path. The default location for the stat files
-   * is $CALALINA_BASE/work/&lt;hostname&gt;/&lt;context_name&gt;.
-   * Use this property to override it.
+   * Sets the storage path. The default location for the stat files is
+   * $CALALINA_BASE/work/&lt;hostname&gt;/&lt;context_name&gt;. Use this property to override it.
    *
    * @param storagePath the new storage path
    */

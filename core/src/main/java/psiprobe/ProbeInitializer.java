@@ -38,7 +38,7 @@ public class ProbeInitializer implements WebApplicationInitializer {
   @Override
   public void onStartup(ServletContext servletContext) throws ServletException {
 
-    // Set spring config location 
+    // Set spring config location
     try (AnnotationConfigWebApplicationContext rootContext =
         new AnnotationConfigWebApplicationContext()) {
       rootContext.register(ProbeConfig.class);
@@ -80,9 +80,9 @@ public class ProbeInitializer implements WebApplicationInitializer {
     // Set session cookie config
     servletContext.getSessionCookieConfig().setHttpOnly(true);
     /**
-     *  Disable secure cookie until http session issues can be resolved. While tomcat
-     *  will handle this normally with http, spring has been shown to continually create new
-     *  sessions.  This may not be related to spring security but rather spring web mvc.
+     * Disable secure cookie until http session issues can be resolved. While tomcat will handle
+     * this normally with http, spring has been shown to continually create new sessions. This may
+     * not be related to spring security but rather spring web mvc.
      */
     // servletContext.getSessionCookieConfig().setSecure(true);
 
