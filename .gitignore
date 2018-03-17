@@ -15,3 +15,4 @@ target/
 *.log
 psi-probe.iws
 psi-probe.ipr
+.mvn/wrapper/maven-wrapper.jar
