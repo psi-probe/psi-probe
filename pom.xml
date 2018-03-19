@@ -205,7 +205,7 @@
         <l10n.plugin>1.8</l10n.plugin>
         <license.plugin>3.0</license.plugin>
         <lifecycle-mapping.plugin>1.0.0</lifecycle-mapping.plugin>
-        <pmd.plugin>3.8</pmd.plugin>
+        <pmd.plugin>3.9.0</pmd.plugin>
         <project-info.plugin>2.9</project-info.plugin>
         <release.plugin>2.5.3</release.plugin>
         <resources.plugin>3.0.2</resources.plugin>
