@@ -137,11 +137,11 @@
         <collections.version>3.2.2</collections.version>
         <dbcp.version>1.4</dbcp.version>
         <dbcp2.version>2.2.0</dbcp2.version>
-        <displaytag.version>2.1.6</displaytag.version>
+        <displaytag.version>2.1.7</displaytag.version>
         <el-api.version>3.0.1-b04</el-api.version>
         <error-prone.version>2.2.0</error-prone.version>
         <geoip2.version>2.11.0</geoip2.version>
-        <guava.version>24.0-android</guava.version> <!-- TODO: Switch off android to jre once on java 8 -->
+        <guava.version>24.1-android</guava.version> <!-- TODO: Switch off android to jre once on java 8 -->
         <hateoas.version>0.24.0.RELEASE</hateoas.version>
         <hikaricp.version>2.4.13</hikaricp.version>
         <logback.version>1.2.3</logback.version>
@@ -159,7 +159,7 @@
         <jsr305.version>3.0.2</jsr305.version>
         <jstl-api.version>1.2.1</jstl-api.version>
         <jstl.version>1.2.5-b03</jstl.version>
-        <junit.version>4.12.3</junit.version>
+        <junit.version>5.1.0</junit.version>
         <lang3.version>3.7</lang3.version>
         <mail.version>1.6.1</mail.version>
         <oshi.version>3.4.4</oshi.version>
@@ -173,8 +173,8 @@
         <spring.version>4.3.14.RELEASE</spring.version> <!-- TODO: Version 5.0.0+ is for java 8 only -->
         <spring-security.version>4.2.4.RELEASE</spring-security.version>
         <text.version>1.2</text.version>
-        <transaction-api.version>1.2</transaction-api.version>
-        <tomcat.version>8.5.28</tomcat.version>
+        <transaction-api.version>1.3</transaction-api.version>
+        <tomcat.version>8.5.29</tomcat.version>
         <wrapper.version>3.2.3</wrapper.version>
         <xpp3_min.version>1.1.4c</xpp3_min.version>
         <xstream.version>1.4.10</xstream.version>
@@ -190,7 +190,7 @@
         <compiler.plugin>3.7.0</compiler.plugin>
         <coveralls.plugin>4.3.0</coveralls.plugin>
         <dependency.plugin>3.0.2</dependency.plugin>
-        <dependency-check.plugin>3.0.2</dependency-check.plugin>
+        <dependency-check.plugin>3.1.1</dependency-check.plugin>
         <deploy.plugin>2.8.2</deploy.plugin>
         <formatter.plugin>2.7.0</formatter.plugin>
         <git-commit.plugin>2.2.4</git-commit.plugin>
@@ -205,14 +205,14 @@
         <l10n.plugin>1.8</l10n.plugin>
         <license.plugin>3.0</license.plugin>
         <lifecycle-mapping.plugin>1.0.0</lifecycle-mapping.plugin>
-        <pmd.plugin>3.8</pmd.plugin>
+        <pmd.plugin>3.9.0</pmd.plugin>
         <project-info.plugin>2.9</project-info.plugin>
         <release.plugin>2.5.3</release.plugin>
         <resources.plugin>3.0.2</resources.plugin>
         <site.plugin>3.7</site.plugin>
         <sonar.plugin>3.4.0.905</sonar.plugin>
         <source.plugin>3.0.1</source.plugin>
-        <spotbugs.plugin>3.1.1</spotbugs.plugin>
+        <spotbugs.plugin>3.1.3</spotbugs.plugin>
         <surefire.plugin>2.19.1</surefire.plugin> <!-- TODO: Version 2.20+ breaks whois tests -->
         <tidy.plugin>1.1.0</tidy.plugin>
         <versioneye.plugin>3.11.4</versioneye.plugin>
@@ -220,14 +220,14 @@
         <war.plugin>3.2.0</war.plugin>
 
         <!-- Plugin Dependency Versions -->
-        <build-tools.version>1.1.6</build-tools.version>
+        <build-tools.version>1.1.7</build-tools.version>
         <bugpattern.version>1.4.0</bugpattern.version>
-        <checkstyle.version>8.7</checkstyle.version>
+        <checkstyle.version>8.8</checkstyle.version>
         <doxia.version>1.8</doxia.version>
         <ecj.version>4.6.1</ecj.version>
-        <fb-contrib.version>7.0.5</fb-contrib.version>
+        <fb-contrib.version>7.2.0.sb</fb-contrib.version>
         <findsecbugs.version>1.7.1</findsecbugs.version>
-        <plexus-compiler.version>2.8.2</plexus-compiler.version>
+        <plexus-compiler.version>2.8.3</plexus-compiler.version>
         <wagon-git.version>2.0.3</wagon-git.version> <!-- Do not use 2.0.4 as it does not work -->
     </properties>
 
@@ -1031,6 +1031,7 @@
                             <exclude>mvnw</exclude>
                             <exclude>**/*GeoLite2-Country.mmdb</exclude>
                             <exclude>**/*maven-wrapper.properties</exclude>
+                            <exclude>**/*MavenWrapperDownloader.java</exclude>
                         </excludes>
                     </configuration>
                     <dependencies>
