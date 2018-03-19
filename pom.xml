@@ -1031,6 +1031,7 @@
                             <exclude>mvnw</exclude>
                             <exclude>**/*GeoLite2-Country.mmdb</exclude>
                             <exclude>**/*maven-wrapper.properties</exclude>
+                            <exclude>**/*MavenWrapperDownloader.java</exclude>
                         </excludes>
                     </configuration>
                     <dependencies>
