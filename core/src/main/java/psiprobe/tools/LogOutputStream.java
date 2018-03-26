@@ -54,7 +54,7 @@ public class LogOutputStream extends OutputStream {
   private final int level;
 
   /** The buf. */
-  private final StringBuffer buf = new StringBuffer();
+  private final StringBuilder buf = new StringBuilder();
 
   /**
    * Creates a new instance of {@code LogOutputStream} which will write to a given {@code Log} at

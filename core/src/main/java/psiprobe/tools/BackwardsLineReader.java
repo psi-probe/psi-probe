@@ -14,6 +14,7 @@ import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
 /**
@@ -94,7 +95,7 @@ public class BackwardsLineReader {
       byte[] byteArray = baos.toByteArray();
       reverse(byteArray);
       return encoding == null ? new String(byteArray, StandardCharsets.UTF_8)
-          : new String(byteArray, encoding);
+          : new String(byteArray, Charset.forName(encoding));
     }
     // return null if the end of the stream has been reached
     return null;

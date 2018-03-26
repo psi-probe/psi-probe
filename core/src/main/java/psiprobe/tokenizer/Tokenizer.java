@@ -400,10 +400,10 @@ public class Tokenizer {
   private static class TokenizerToken implements Token {
 
     /** The text. */
-    final StringBuffer text = new StringBuffer();
+    final StringBuilder text = new StringBuilder();
 
     /** The inner text. */
-    final StringBuffer innerText = new StringBuffer();
+    final StringBuilder innerText = new StringBuilder();
 
     /** The name. */
     String name = "";
