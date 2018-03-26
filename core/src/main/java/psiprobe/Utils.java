@@ -19,7 +19,6 @@ import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -435,7 +434,7 @@ public final class Utils {
 
     ByteArrayInputStream bis = new ByteArrayInputStream(bos.toByteArray());
 
-    Tokenizer tokenizer = new Tokenizer(new InputStreamReader(bis, encoding));
+    Tokenizer tokenizer = new Tokenizer(new InputStreamReader(bis, Charset.forName(encoding)));
     tokenizer.addSymbol(new TokenizerSymbol("EOL", "\n", null, false, false, true, false));
     tokenizer.addSymbol(new TokenizerSymbol("EOL", "\r\n", null, false, false, true, false));
 

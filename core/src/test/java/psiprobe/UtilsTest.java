@@ -58,7 +58,7 @@ public class UtilsTest {
   @Test
   public void toLongIntTest() {
     Assert.assertEquals(5, Utils.toLong((Long) null, 5));
-    Assert.assertEquals(1, Utils.toLong(new Long(1), 5));
+    Assert.assertEquals(1, Utils.toLong(Long.valueOf(1), 5));
   }
 
   /**
