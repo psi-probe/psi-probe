@@ -124,14 +124,14 @@ public class BaseTomcatAvailabilityController extends AbstractTomcatContainerCon
     File tmpDir = new File(System.getProperty("java.io.tmpdir"));
     int fileCount = tomcatTestReport.getDefaultFileCount();
     List<File> files = new ArrayList<>();
-    List<FileOutputStream> fileStreams = new ArrayList<>();
+    List<OutputStream> fileStreams = new ArrayList<>();
 
     try {
       for (; fileCount > 0; fileCount--) {
         File file = new File(tmpDir, "tctest_" + fileCount);
         try (OutputStream fos = Files.newOutputStream(file.toPath())) {
           files.add(file);
-          fileStreams.add((FileOutputStream) fos);
+          fileStreams.add(fos);
           fos.write("this is a test".getBytes(StandardCharsets.UTF_8));
         }
       }
@@ -140,7 +140,7 @@ public class BaseTomcatAvailabilityController extends AbstractTomcatContainerCon
       tomcatTestReport.setFileTest(TomcatTestReport.TEST_FAILED);
       logger.trace("", e);
     } finally {
-      for (FileOutputStream fileStream : fileStreams) {
+      for (OutputStream fileStream : fileStreams) {
         try {
           fileStream.close();
         } catch (IOException e) {
