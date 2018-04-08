@@ -22,7 +22,7 @@
       <pattern>%d{HH:mm:ss.SSS} %-5level {%thread} [%logger{40}] %msg%n</pattern>
     </encoder>
     <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-      <fileNamePattern>${probe.log.path}/archive/probe-%d{yyyyMMdd}-%i.log.tar.gz</fileNamePattern>
+      <fileNamePattern>${probe.log.path}/archive/probe-%d{yyyyMMdd}-%i.log.gz</fileNamePattern>
       <maxHistory>10</maxHistory>
       <cleanHistoryOnStart>true</cleanHistoryOnStart>
       <maxFileSize>20MB</maxFileSize>
