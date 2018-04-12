@@ -50,6 +50,7 @@
 				</div>
 			</div>
 
+
 			<c:forEach items="${connectors}" var="connector">
 
 				<c:set var="protocolHandler" value="${connector.protocolHandler}" />
@@ -116,6 +117,20 @@
 					<c:param name="cn" value="${protocolHandler}"/>
 				</c:url>
 
+				<c:choose>
+					<c:when test="${connector.status == 'STARTED'}">
+						<c:set var="op" value="stop"/>
+					</c:when>
+					<c:otherwise>
+						<c:set var="op" value="start"/>
+					</c:otherwise>
+				</c:choose>
+				<c:url value="/app/connectorStatus.htm" var="toggle_url">
+					<c:param name="cn" value="${connector.protocolHandler}"/>
+					<c:param name="port" value="${connector.port}"/>
+					<c:param name="operation" value="${op}"/>
+				</c:url>
+
 				<c:url value="/remember.ajax" var="remember_url">
 					<c:param name="cn" value="${protocolHandler}"/>
 				</c:url>
@@ -140,9 +155,17 @@
 						<img class="lnk" src="${pageContext.request.contextPath}<spring:theme code='section.expand.img'/>" alt="expand" id="invisible_chartdata-${probe:escapeHtml(protocolHandler)}" style="${style_expand}"/>
 						${protocolHandler}
 					</span>
+					--- ${connector.status}
+
 					<span class="actions">
 						<a href="${reset_url}">
 							<img border="0" src="${pageContext.request.contextPath}<spring:theme code='reset.gif'/>" alt="reset"/>
+						</a>
+					</span>
+
+					<span class="actions" style="margin-right: 20px;">
+						<a href="${toggle_url}">
+								${op}
 						</a>
 					</span>
 				</div>

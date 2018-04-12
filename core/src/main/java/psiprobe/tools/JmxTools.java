@@ -56,6 +56,19 @@ public final class JmxTools {
     }
   }
 
+  public static Object invoke(MBeanServer mbeanServer, ObjectName objName, String method, Object[] o
+          , String[] s) throws Exception {
+
+    try {
+      return mbeanServer.invoke(objName, method, o, s);
+
+    } catch (Exception e) {
+      logger.error("{} does not have '{}' attribute", objName, method);
+      logger.trace("", e);
+      return null;
+    }
+  }
+
   /**
    * Gets the long attr.
    *

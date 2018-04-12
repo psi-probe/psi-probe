@@ -30,6 +30,22 @@ public class Connector {
   /** The request count. */
   private int requestCount;
 
+  private String status;
+
+
+  private String protocol;
+
+  private Integer localPort;
+
+
+  private Integer port;
+
+  private String schema;
+
+  private boolean secure;
+
+
+
   /** The error count. */
   private int errorCount;
 
@@ -195,4 +211,59 @@ public class Connector {
     requestProcessors.add(rp);
   }
 
+  /**
+   * get current connector status
+   * @return the status
+   */
+  public String getStatus() {
+    return status;
+  }
+
+  public void setStatus(String status) {
+    this.status = status;
+  }
+
+  /**
+   * get current connector protocol
+   * @return the protocol
+   */
+  public String getProtocol() {
+    return protocol;
+  }
+
+  public void setProtocol(String protocol) {
+    this.protocol = protocol;
+  }
+
+  public Integer getLocalPort() {
+    return localPort;
+  }
+
+  public void setLocalPort(Integer localPort) {
+    this.localPort = localPort;
+  }
+
+  public Integer getPort() {
+    return port;
+  }
+
+  public void setPort(Integer port) {
+    this.port = port;
+  }
+
+  public String getSchema() {
+    return schema;
+  }
+
+  public void setSchema(String schema) {
+    this.schema = schema;
+  }
+
+  public boolean isSecure() {
+    return secure;
+  }
+
+  public void setSecure(boolean secure) {
+    this.secure = secure;
+  }
 }
