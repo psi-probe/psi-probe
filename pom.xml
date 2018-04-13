@@ -197,7 +197,7 @@
         <gpg.plugin>1.6</gpg.plugin>
         <install.plugin>2.5.2</install.plugin>
         <jacoco.plugin>0.8.0</jacoco.plugin>
-        <jar.plugin>3.0.2</jar.plugin>
+        <jar.plugin>3.1.0</jar.plugin>
         <javadoc.plugin>3.0.0</javadoc.plugin>
         <jdeps.plugin>3.1.0</jdeps.plugin>
         <jspc.plugin>9.2.19.v20160908</jspc.plugin> <!-- TODO: Do not go above as it requires java 8 -->
