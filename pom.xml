@@ -226,7 +226,7 @@
         <checkstyle.version>8.9</checkstyle.version>
         <doxia.version>1.8</doxia.version>
         <ecj.version>4.6.1</ecj.version>
-        <fb-contrib.version>7.2.0.sb</fb-contrib.version>
+        <fb-contrib.version>7.2.1.sb</fb-contrib.version>
         <findsecbugs.version>1.7.1</findsecbugs.version>
         <plexus-compiler.version>2.8.4</plexus-compiler.version>
         <wagon-git.version>2.0.3</wagon-git.version> <!-- Do not use 2.0.4 as it does not work -->
