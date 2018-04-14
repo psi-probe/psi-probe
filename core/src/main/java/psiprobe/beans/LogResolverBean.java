@@ -568,19 +568,21 @@ public class LogResolverBean {
       Log4J2LoggerContextAccessor loggerContextAccessor =
           webLoggerContextUtilsAccessor.getWebLoggerContext(ctx.getServletContext());
       List<Object> loggerContexts = getLoggerContexts(classLoader);
-      Log4J2LoggerConfigAccessor accessor;
+      Object loggerConfig = null;
       for (Object loggerContext : loggerContexts) {
         Map<String, Object> loggerConfigs = getLoggerConfigs(loggerContext);
-        Object loggerConfig = loggerConfigs.get(root ? "" : logName);
+        loggerConfig = loggerConfigs.get(root ? "" : logName);
         if (loggerConfig != null) {
-          accessor = new Log4J2LoggerConfigAccessor();
-          accessor.setTarget(loggerConfig);
-          accessor.setApplication(application);
-          accessor.setContext(true);
-          accessor.setLoggerContext(loggerContextAccessor);
-          result = accessor.getAppender(appenderName);
           break;
         }
+      }
+      if (loggerConfig != null) {
+        Log4J2LoggerConfigAccessor accessor = new Log4J2LoggerConfigAccessor();
+        accessor.setTarget(loggerConfig);
+        accessor.setApplication(application);
+        accessor.setContext(true);
+        accessor.setLoggerContext(loggerContextAccessor);
+        result = accessor.getAppender(appenderName);
       }
     } catch (Exception e) {
       logger.debug("getLog4J2LogDestination failed", e);
