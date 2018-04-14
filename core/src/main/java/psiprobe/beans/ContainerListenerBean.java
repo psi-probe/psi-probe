@@ -305,8 +305,6 @@ public class ContainerListenerBean implements NotificationListener {
 
         connector.setProtocolHandler(poolName.getKeyProperty("name"));
 
-        ObjectName grpName = threadPoolObjectName.getGlobalRequestProcessorName();
-
         if (name.startsWith("\"") && name.endsWith("\"")) {
           name = name.substring(1, name.length() - 1);
         }
@@ -331,6 +329,8 @@ public class ContainerListenerBean implements NotificationListener {
           connector.setLocalPort(JmxTools.getIntAttr(server, objectName, "localPort"));
           connector.setSchema(JmxTools.getStringAttr(server, objectName, "schema"));
         }
+
+        ObjectName grpName = threadPoolObjectName.getGlobalRequestProcessorName();
 
         connector.setMaxTime(JmxTools.getLongAttr(server, grpName, "maxTime"));
         connector.setProcessingTime(JmxTools.getLongAttr(server, grpName, "processingTime"));
