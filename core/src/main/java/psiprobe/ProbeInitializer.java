@@ -87,8 +87,7 @@ public class ProbeInitializer implements WebApplicationInitializer {
     // servletContext.getSessionCookieConfig().setSecure(true);
 
     // Set session tracking mode
-    Set<SessionTrackingMode> trackingMode = new HashSet<>();
-    trackingMode.add(SessionTrackingMode.COOKIE);
+    EnumSet<SessionTrackingMode> trackingMode = EnumSet.of(SessionTrackingMode.COOKIE);
     servletContext.setSessionTrackingModes(trackingMode);
   }
 

@@ -236,9 +236,9 @@ public class LogResolverBean {
       }
     }
 
-    if ("stdout".equals(logType) && logName != null) {
+    if (logName != null && "stdout".equals(logType)) {
       result = getStdoutLogDestination(logName);
-    } else if ("catalina".equals(logType) && ctx != null) {
+    } else if (ctx != null && "catalina".equals(logType)) {
       result = getCatalinaLogDestination(ctx, application);
     } else if (logIndex != null && ("jdk".equals(logType) || "log4j".equals(logType)
         || "log4j2".equals(logType) || "logback".equals(logType))
@@ -287,64 +287,57 @@ public class LogResolverBean {
   private void interrogateContext(Context ctx, List<LogDestination> allAppenders) {
     Application application = ApplicationUtils.getApplication(ctx, getContainerWrapper());
     ClassLoader cl = ctx.getLoader().getClassLoader();
-    try {
-      Object contextLogger = ctx.getLogger();
-      if (contextLogger != null) {
-        if (contextLogger.getClass().getName().startsWith("org.apache.commons.logging")) {
-          CommonsLoggerAccessor commonsAccessor = new CommonsLoggerAccessor();
-          commonsAccessor.setTarget(contextLogger);
-          commonsAccessor.setApplication(application);
-          allAppenders.addAll(commonsAccessor.getDestinations());
-        } else if (contextLogger.getClass().getName().startsWith("org.apache.catalina.logger")) {
-          CatalinaLoggerAccessor catalinaAccessor = new CatalinaLoggerAccessor();
-          catalinaAccessor.setApplication(application);
-          catalinaAccessor.setTarget(contextLogger);
-          allAppenders.add(catalinaAccessor);
-        }
+    Object contextLogger = ctx.getLogger();
+    if (contextLogger != null) {
+      if (contextLogger.getClass().getName().startsWith("org.apache.commons.logging")) {
+        CommonsLoggerAccessor commonsAccessor = new CommonsLoggerAccessor();
+        commonsAccessor.setTarget(contextLogger);
+        commonsAccessor.setApplication(application);
+        allAppenders.addAll(commonsAccessor.getDestinations());
+      } else if (contextLogger.getClass().getName().startsWith("org.apache.catalina.logger")) {
+        CatalinaLoggerAccessor catalinaAccessor = new CatalinaLoggerAccessor();
+        catalinaAccessor.setApplication(application);
+        catalinaAccessor.setTarget(contextLogger);
+        allAppenders.add(catalinaAccessor);
+      }
 
-        ServletContext servletContext = ctx.getServletContext();
+      ServletContext servletContext = ctx.getServletContext();
+      try {
+        Log4J2LoggerContextAccessor loggerContextAccessor = null;
         try {
-          Log4J2LoggerContextAccessor loggerContextAccessor = null;
-          try {
-            Log4J2WebLoggerContextUtilsAccessor webLoggerContextUtilsAccessor =
-                new Log4J2WebLoggerContextUtilsAccessor(cl);
-            loggerContextAccessor =
-                webLoggerContextUtilsAccessor.getWebLoggerContext(servletContext);
-          } catch (Exception e) {
-            logger.debug("Log4J2LoggerContextAccessor instantiation failed", e);
-          }
-          List<Object> loggerContexts = getLoggerContexts(cl);
-          for (Object loggerContext : loggerContexts) {
-            Map<String, Object> loggerConfigs = getLoggerConfigs(loggerContext);
-            for (Object loggerConfig : loggerConfigs.values()) {
-              Log4J2LoggerConfigAccessor logConfigAccessor = new Log4J2LoggerConfigAccessor();
-              logConfigAccessor.setTarget(loggerConfig);
-              logConfigAccessor.setApplication(application);
-              logConfigAccessor.setContext(true);
-              logConfigAccessor.setLoggerContext(loggerContextAccessor);
-              Method getAppenders =
-                  MethodUtils.getAccessibleMethod(loggerConfig.getClass(), "getAppenders");
-              @SuppressWarnings("unchecked")
-              Map<String, Object> appenders =
-                  (Map<String, Object>) getAppenders.invoke(loggerConfig);
-              for (Object appender : appenders.values()) {
-                Log4J2AppenderAccessor appenderAccessor = new Log4J2AppenderAccessor();
-                appenderAccessor.setTarget(appender);
-                appenderAccessor.setLoggerAccessor(logConfigAccessor);
-                appenderAccessor.setApplication(application);
-                allAppenders.add(appenderAccessor);
-              }
+          Log4J2WebLoggerContextUtilsAccessor webLoggerContextUtilsAccessor =
+              new Log4J2WebLoggerContextUtilsAccessor(cl);
+          loggerContextAccessor =
+              webLoggerContextUtilsAccessor.getWebLoggerContext(servletContext);
+        } catch (Exception e) {
+          logger.debug("Log4J2LoggerContextAccessor instantiation failed", e);
+        }
+        List<Object> loggerContexts = getLoggerContexts(cl);
+        for (Object loggerContext : loggerContexts) {
+          Map<String, Object> loggerConfigs = getLoggerConfigs(loggerContext);
+          for (Object loggerConfig : loggerConfigs.values()) {
+            Log4J2LoggerConfigAccessor logConfigAccessor = new Log4J2LoggerConfigAccessor();
+            logConfigAccessor.setTarget(loggerConfig);
+            logConfigAccessor.setApplication(application);
+            logConfigAccessor.setContext(true);
+            logConfigAccessor.setLoggerContext(loggerContextAccessor);
+            Method getAppenders =
+                MethodUtils.getAccessibleMethod(loggerConfig.getClass(), "getAppenders");
+            @SuppressWarnings("unchecked")
+            Map<String, Object> appenders =
+                (Map<String, Object>) getAppenders.invoke(loggerConfig);
+            for (Object appender : appenders.values()) {
+              Log4J2AppenderAccessor appenderAccessor = new Log4J2AppenderAccessor();
+              appenderAccessor.setTarget(appender);
+              appenderAccessor.setLoggerAccessor(logConfigAccessor);
+              appenderAccessor.setApplication(application);
+              allAppenders.add(appenderAccessor);
             }
           }
-        } catch (Exception e) {
-          logger.debug("getting appenders failed", e);
         }
+      } catch (Exception e) {
+        logger.debug("getting appenders failed", e);
       }
-    } catch (Exception e) {
-      logger.error(
-          "Could not interrogate context logger for {}. Enable debug logging to see the trace stack",
-          ctx.getName());
-      logger.debug("", e);
     }
 
     if (application.isAvailable()) {
@@ -575,18 +568,21 @@ public class LogResolverBean {
       Log4J2LoggerContextAccessor loggerContextAccessor =
           webLoggerContextUtilsAccessor.getWebLoggerContext(ctx.getServletContext());
       List<Object> loggerContexts = getLoggerContexts(classLoader);
+      Object loggerConfig = null;
       for (Object loggerContext : loggerContexts) {
         Map<String, Object> loggerConfigs = getLoggerConfigs(loggerContext);
-        Object loggerConfig = loggerConfigs.get(root ? "" : logName);
+        loggerConfig = loggerConfigs.get(root ? "" : logName);
         if (loggerConfig != null) {
-          Log4J2LoggerConfigAccessor accessor = new Log4J2LoggerConfigAccessor();
-          accessor.setTarget(loggerConfig);
-          accessor.setApplication(application);
-          accessor.setContext(true);
-          accessor.setLoggerContext(loggerContextAccessor);
-          result = accessor.getAppender(appenderName);
           break;
         }
+      }
+      if (loggerConfig != null) {
+        Log4J2LoggerConfigAccessor accessor = new Log4J2LoggerConfigAccessor();
+        accessor.setTarget(loggerConfig);
+        accessor.setApplication(application);
+        accessor.setContext(true);
+        accessor.setLoggerContext(loggerContextAccessor);
+        result = accessor.getAppender(appenderName);
       }
     } catch (Exception e) {
       logger.debug("getLog4J2LogDestination failed", e);
