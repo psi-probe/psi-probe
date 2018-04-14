@@ -20,6 +20,7 @@ import java.io.File;
 import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
@@ -52,7 +53,7 @@ public class ContainerListenerBean implements NotificationListener {
   /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(ContainerListenerBean.class);
 
-  private List<String> allowedOperation = Arrays.asList("start", "stop", "pause", "resume");
+  private Set<String> allowedOperation = new HashSet<>(Arrays.asList("start", "stop", "pause", "resume"));
 
   /** The pool names. */
   private List<ThreadPoolObjectName> poolNames;
@@ -272,7 +273,7 @@ public class ContainerListenerBean implements NotificationListener {
 
     JmxTools.invoke(server, objectName, operation, null, null);
 
-    logger.info("operation {} on Connector {} invoked success", operation, objectName.toString());
+    logger.info("operation {} on Connector {} invoked success", operation, objectName);
   }
 
   /**
@@ -324,7 +325,7 @@ public class ContainerListenerBean implements NotificationListener {
           connector.setStatus(JmxTools.getStringAttr(server, objectName, "stateName"));
           connector.setProtocol(JmxTools.getStringAttr(server, objectName, "protocol"));
           connector
-              .setSecure(Boolean.valueOf(JmxTools.getStringAttr(server, objectName, "secure")).booleanValue());
+              .setSecure(Boolean.parseBoolean(JmxTools.getStringAttr(server, objectName, "secure")));
           connector.setPort(JmxTools.getIntAttr(server, objectName, "port"));
           connector.setLocalPort(JmxTools.getIntAttr(server, objectName, "localPort"));
           connector.setSchema(JmxTools.getStringAttr(server, objectName, "schema"));
