@@ -12,7 +12,6 @@ package psiprobe.model.jmx;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.management.ObjectName;
 
 /**

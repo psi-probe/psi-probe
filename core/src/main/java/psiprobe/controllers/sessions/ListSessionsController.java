@@ -14,11 +14,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Pattern;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.apache.catalina.Context;
 import org.apache.catalina.Session;
 import org.apache.commons.lang3.StringUtils;
@@ -28,7 +26,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
 import psiprobe.controllers.AbstractContextHandlerController;
 import psiprobe.model.ApplicationSession;
 import psiprobe.model.Attribute;

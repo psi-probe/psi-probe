@@ -14,7 +14,6 @@ import java.lang.management.ManagementFactory;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-
 import javax.inject.Inject;
 import javax.management.AttributeNotFoundException;
 import javax.management.InstanceNotFoundException;
@@ -26,13 +25,11 @@ import javax.management.ReflectionException;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-
 import org.apache.catalina.Context;
 import org.apache.catalina.Server;
 import org.apache.catalina.core.StandardServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import psiprobe.beans.accessors.DatasourceAccessor;
 import psiprobe.model.ApplicationResource;
 import psiprobe.model.DataSourceInfo;

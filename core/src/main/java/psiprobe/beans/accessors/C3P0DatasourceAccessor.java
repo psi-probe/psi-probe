@@ -11,7 +11,6 @@
 package psiprobe.beans.accessors;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
-
 import psiprobe.model.DataSourceInfo;
 
 /**

@@ -13,7 +13,6 @@ package psiprobe.controllers.connectors;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
 import org.springframework.web.servlet.view.RedirectView;
-
 import psiprobe.beans.ContainerListenerBean;
 import psiprobe.beans.stats.collectors.ConnectorStatsCollectorBean;
 
@@ -34,7 +32,8 @@ import psiprobe.beans.stats.collectors.ConnectorStatsCollectorBean;
 public class ToggleConnectorStatusController extends ParameterizableViewController {
 
   /** The static logger. */
-  private static final Logger logger = LoggerFactory.getLogger(ToggleConnectorStatusController.class);
+  private static final Logger logger =
+      LoggerFactory.getLogger(ToggleConnectorStatusController.class);
 
   /** The collector bean. */
   @Inject

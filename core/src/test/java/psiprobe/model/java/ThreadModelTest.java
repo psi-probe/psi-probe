@@ -11,7 +11,6 @@
 package psiprobe.model.java;
 
 import com.codebox.bean.JavaBeanTester;
-
 import org.junit.Test;
 
 /**

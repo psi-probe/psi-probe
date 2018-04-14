@@ -12,14 +12,11 @@ package psiprobe.tools.logging.jdk;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
-
 import java.io.File;
 import java.util.logging.FileHandler;
-
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
-
 import psiprobe.model.Application;
 
 public class Jdk14FileHandlerAccessorTest {

@@ -16,7 +16,6 @@ import javax.management.MBeanInfo;
 import javax.management.MBeanServer;
 import javax.management.ObjectName;
 import javax.management.openmbean.CompositeData;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -56,6 +55,17 @@ public final class JmxTools {
     }
   }
 
+  /**
+   * Invoke.
+   *
+   * @param mbeanServer the mbean server
+   * @param objName the obj name
+   * @param method the method
+   * @param o the o
+   * @param s the s
+   * @return the object
+   * @throws Exception the exception
+   */
   public static Object invoke(MBeanServer mbeanServer, ObjectName objName, String method,
       Object[] o, String[] s) throws Exception {
 

@@ -11,14 +11,13 @@
 package psiprobe.beans.accessors;
 
 import org.apache.tomcat.jdbc.pool.DataSource;
-
 import psiprobe.model.DataSourceInfo;
 
 /**
- * Datasource accessor for tomEE. sames as {@link TomEEJdbcPoolDatasourceAccessor} except different
+ * Datasource accessor for tomEE. sames as {@link TomEeJdbcPoolDatasourceAccessor} except different
  * string in {@link #canMap(Object)}
  */
-public class TomEEJdbcPoolDatasourceAccessor implements DatasourceAccessor {
+public class TomEeJdbcPoolDatasourceAccessor implements DatasourceAccessor {
 
   @Override
   public DataSourceInfo getInfo(Object resource) throws Exception {

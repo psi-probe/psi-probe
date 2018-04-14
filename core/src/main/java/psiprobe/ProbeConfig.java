@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +41,6 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.theme.FixedThemeResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
-
 import psiprobe.beans.ClusterWrapperBean;
 import psiprobe.beans.ContainerListenerBean;
 import psiprobe.beans.ContainerWrapperBean;
@@ -158,7 +156,7 @@ public class ProbeConfig extends WebMvcConfigurerAdapter {
     list.add("psiprobe.beans.accessors.OracleUcpDatasourceAccessor");
     list.add("psiprobe.beans.accessors.OpenEjbManagedDatasourceAccessor");
     list.add("psiprobe.beans.accessors.ViburCpDatasourceAccessor");
-    list.add("psiprobe.beans.accessors.TomEEJdbcPoolDatasourceAccessor");
+    list.add("psiprobe.beans.accessors.TomEeJdbcPoolDatasourceAccessor");
     list.add("psiprobe.beans.accessors.OpenEjbBasicDatasourceAccessor");
     return list;
   }

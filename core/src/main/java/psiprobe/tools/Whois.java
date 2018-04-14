@@ -18,10 +18,8 @@ import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.TreeMap;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import psiprobe.tools.url.UrlParser;
 
 /**

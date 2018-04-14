@@ -11,13 +11,10 @@
 package psiprobe.tools.logging.log4j2;
 
 import java.lang.reflect.Method;
-
 import javax.servlet.ServletContext;
-
 import org.apache.commons.lang3.reflect.MethodUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import psiprobe.tools.logging.DefaultAccessor;
 
 /**
@@ -61,8 +58,8 @@ public class Log4J2WebLoggerContextUtilsAccessor extends DefaultAccessor {
       Class<?> clazz = (Class<?>) getTarget();
       Method getWebLoggerContext;
       try {
-        getWebLoggerContext = MethodUtils.getAccessibleMethod(clazz, "getWebLoggerContext",
-            ServletContext.class);
+        getWebLoggerContext =
+            MethodUtils.getAccessibleMethod(clazz, "getWebLoggerContext", ServletContext.class);
       } catch (Exception e) {
         logger.error("exception getting accessible method getWebLoggerContext", e);
         throw e;

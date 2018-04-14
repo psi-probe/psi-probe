@@ -15,13 +15,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.List;
-
 import javax.naming.NamingException;
-
 import org.apache.catalina.Context;
 import org.apache.catalina.Wrapper;
 import org.apache.catalina.connector.Connector;
-
 import psiprobe.model.ApplicationParam;
 import psiprobe.model.ApplicationResource;
 import psiprobe.model.FilterInfo;

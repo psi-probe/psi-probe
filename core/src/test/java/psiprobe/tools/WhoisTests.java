@@ -12,10 +12,8 @@ package psiprobe.tools;
 
 import java.io.IOException;
 import java.net.InetAddress;
-
 import org.junit.Assert;
 import org.junit.Test;
-
 import psiprobe.tools.Whois.Response;
 
 /**

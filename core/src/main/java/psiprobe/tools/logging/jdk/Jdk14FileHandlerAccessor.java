@@ -11,7 +11,6 @@
 package psiprobe.tools.logging.jdk;
 
 import java.io.File;
-
 import psiprobe.tools.Instruments;
 
 public class Jdk14FileHandlerAccessor extends Jdk14HandlerAccessor {

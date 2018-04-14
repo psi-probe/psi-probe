@@ -12,11 +12,9 @@ package psiprobe.beans;
 
 import java.lang.management.ManagementFactory;
 import java.util.Set;
-
 import javax.management.MBeanServer;
 import javax.management.ObjectInstance;
 import javax.management.ObjectName;
-
 import psiprobe.model.jmx.AsyncClusterSender;
 import psiprobe.model.jmx.Cluster;
 import psiprobe.model.jmx.ClusterSender;

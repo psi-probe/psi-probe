@@ -20,10 +20,8 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-
 import javax.inject.Inject;
 import javax.servlet.ServletContext;
-
 import org.apache.catalina.Context;
 import org.apache.catalina.Loader;
 import org.apache.commons.lang3.reflect.MethodUtils;
@@ -31,7 +29,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ClassUtils;
-
 import psiprobe.model.Application;
 import psiprobe.model.DisconnectedLogDestination;
 import psiprobe.tools.ApplicationUtils;
@@ -307,8 +304,7 @@ public class LogResolverBean {
         try {
           Log4J2WebLoggerContextUtilsAccessor webLoggerContextUtilsAccessor =
               new Log4J2WebLoggerContextUtilsAccessor(cl);
-          loggerContextAccessor =
-              webLoggerContextUtilsAccessor.getWebLoggerContext(servletContext);
+          loggerContextAccessor = webLoggerContextUtilsAccessor.getWebLoggerContext(servletContext);
         } catch (Exception e) {
           logger.debug("Log4J2LoggerContextAccessor instantiation failed", e);
         }
@@ -324,8 +320,7 @@ public class LogResolverBean {
             Method getAppenders =
                 MethodUtils.getAccessibleMethod(loggerConfig.getClass(), "getAppenders");
             @SuppressWarnings("unchecked")
-            Map<String, Object> appenders =
-                (Map<String, Object>) getAppenders.invoke(loggerConfig);
+            Map<String, Object> appenders = (Map<String, Object>) getAppenders.invoke(loggerConfig);
             for (Object appender : appenders.values()) {
               Log4J2AppenderAccessor appenderAccessor = new Log4J2AppenderAccessor();
               appenderAccessor.setTarget(appender);

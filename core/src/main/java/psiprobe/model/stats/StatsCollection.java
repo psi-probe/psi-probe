@@ -11,7 +11,6 @@
 package psiprobe.model.stats;
 
 import com.thoughtworks.xstream.XStream;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -25,7 +24,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeMap;
-
 import org.jfree.data.xy.XYDataItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,7 +33,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.web.context.WebApplicationContext;
-
 import psiprobe.tools.UpdateCommitLock;
 
 /**

@@ -13,13 +13,10 @@ package psiprobe.beans.stats.providers;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
-
 import org.jfree.data.xy.DefaultTableXYDataset;
 import org.jfree.data.xy.XYDataItem;
 import org.springframework.web.bind.ServletRequestUtils;
-
 import psiprobe.model.stats.StatsCollection;
 
 /**
