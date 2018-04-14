@@ -103,7 +103,7 @@ public class BaseSysInfoController extends AbstractTomcatContainerController {
 
     Map<String, String> sysProps = new HashMap<>();
     for (String propertyName : System.getProperties().stringPropertyNames()) {
-      String propertyValue = System.getProperties().getProperty(propertyName);
+      String propertyValue = System.getProperty(propertyName);
       sysProps.put(propertyName, propertyValue);
     }
 

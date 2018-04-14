@@ -22,7 +22,7 @@ import psiprobe.beans.ContainerWrapperBean;
 public abstract class AbstractTomcatContainerController extends AbstractController {
 
   /** The logger. */
-  protected Logger logger = LoggerFactory.getLogger(getClass());
+  protected final Logger logger = LoggerFactory.getLogger(getClass());
 
   /** The container wrapper. */
   @Inject

@@ -91,7 +91,7 @@ public class OshiController extends AbstractTomcatContainerController {
     HardwareAbstractionLayer hal = si.getHardware();
     OperatingSystem os = si.getOperatingSystem();
 
-    oshi.add(os.toString());
+    oshi.add(String.valueOf(os));
 
     logger.debug("Checking computer system...");
     printComputerSystem(hal.getComputerSystem());
@@ -187,7 +187,7 @@ public class OshiController extends AbstractTomcatContainerController {
    * @param processor the processor
    */
   private static void printProcessor(CentralProcessor processor) {
-    oshi.add(processor.toString());
+    oshi.add(String.valueOf(processor));
     oshi.add(" " + processor.getPhysicalProcessorCount() + " physical CPU(s)");
     oshi.add(" " + processor.getLogicalProcessorCount() + " logical CPU(s)");
 
@@ -417,7 +417,7 @@ public class OshiController extends AbstractTomcatContainerController {
     int i = 0;
     for (Display display : displays) {
       oshi.add(" Display " + i + ":");
-      oshi.add(display.toString());
+      oshi.add(String.valueOf(display));
       i++;
     }
   }
@@ -430,7 +430,7 @@ public class OshiController extends AbstractTomcatContainerController {
   private static void printUsbDevices(UsbDevice[] usbDevices) {
     oshi.add("USB Devices:");
     for (UsbDevice usbDevice : usbDevices) {
-      oshi.add(usbDevice.toString());
+      oshi.add(String.valueOf(usbDevice));
     }
   }
 

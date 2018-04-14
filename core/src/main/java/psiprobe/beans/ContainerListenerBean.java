@@ -115,14 +115,14 @@ public class ContainerListenerBean implements NotificationListener {
   @Override
   public synchronized void handleNotification(Notification notification, Object object) {
     if (notification instanceof MBeanServerNotification
-        && notification.getType().equals(MBeanServerNotification.REGISTRATION_NOTIFICATION)
-        || notification.getType().equals(MBeanServerNotification.UNREGISTRATION_NOTIFICATION)) {
+        && MBeanServerNotification.REGISTRATION_NOTIFICATION.equals(notification.getType())
+        || MBeanServerNotification.UNREGISTRATION_NOTIFICATION.equals(notification.getType())) {
 
       ObjectName objectName = ((MBeanServerNotification) notification).getMBeanName();
       if ("RequestProcessor".equals(objectName.getKeyProperty("type"))) {
         ThreadPoolObjectName threadPoolObjectName = findPool(objectName.getKeyProperty("worker"));
         if (threadPoolObjectName != null) {
-          if (notification.getType().equals(MBeanServerNotification.REGISTRATION_NOTIFICATION)) {
+          if (MBeanServerNotification.REGISTRATION_NOTIFICATION.equals(notification.getType())) {
             threadPoolObjectName.getRequestProcessorNames().add(objectName);
           } else {
             threadPoolObjectName.getRequestProcessorNames().remove(objectName);
@@ -313,7 +313,7 @@ public class ContainerListenerBean implements NotificationListener {
           port = arr[2];
         }
 
-        if (!port.equals("-1")) {
+        if (!"-1".equals(port)) {
           String str = "Catalina:type=Connector,port=" + port;
 
           ObjectName objectName = new ObjectName(str);
@@ -368,7 +368,7 @@ public class ContainerListenerBean implements NotificationListener {
                     Country country = response.getCountry();
                     rp.setRemoteAddrLocale(new Locale("", country.getIsoCode()));
                   } catch (AddressNotFoundException e) {
-                    logger.debug("{}", e.getMessage());
+                    logger.debug("Address Not Found: {}", e.getMessage());
                     logger.trace("", e);
                   }
                 }
