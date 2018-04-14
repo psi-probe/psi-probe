@@ -68,7 +68,10 @@ public class BeanToXmlController extends AbstractController {
       if (modelAndView.getModel() != null) {
         TransportableModel tm = new TransportableModel();
         tm.putAll(modelAndView.getModel());
-        new XStream().toXML(tm, response.getWriter());
+        XStream xstream = new XStream();
+        xstream.allowTypesByWildcard(new String[] {"psibrobe.controllers.**"});
+        XStream.setupDefaultSecurity(xstream);
+        xstream.toXML(tm, response.getWriter());
       }
     }
     return null;

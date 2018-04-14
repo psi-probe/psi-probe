@@ -244,7 +244,10 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
     try {
       shiftFiles(0);
       try (OutputStream os = Files.newOutputStream(makeFile().toPath())) {
-        new XStream().toXML(statsData, os);
+        XStream xstream = new XStream();
+        xstream.allowTypesByWildcard(new String[] {"psibrobe.model.stats.**"});
+        XStream.setupDefaultSecurity(xstream);
+        xstream.toXML(statsData, os);
       }
     } catch (Exception e) {
       logger.error("Could not write stats data to '{}'", makeFile().getAbsolutePath(), e);
