@@ -591,9 +591,7 @@ public class LogResolverBean {
     } catch (Exception e) {
       logger.debug("getLog4J2LogDestination failed", e);
     }
-    if (logger.isDebugEnabled()) {
-      logger.debug("getLog4J2LogDestination(): OUT: result=" + result);
-    }
+    logger.debug("getLog4J2LogDestination(): OUT: result={}", result);
 
     return result;
   }
