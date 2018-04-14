@@ -14,6 +14,8 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestUtils;
@@ -30,6 +32,9 @@ import psiprobe.beans.stats.collectors.ConnectorStatsCollectorBean;
  */
 @Controller
 public class ToggleConnectorStatusController extends ParameterizableViewController {
+
+  /** The static logger. */
+  private static final Logger logger = LoggerFactory.getLogger(ToggleConnectorStatusController.class);
 
   /** The collector bean. */
   @Inject
@@ -75,7 +80,7 @@ public class ToggleConnectorStatusController extends ParameterizableViewControll
 
     containerListener.toggleConnectorStatus(operation, port);
 
-    System.out.println("Hello, I'll Invoke connector status change");
+    logger.info("Connector status toggled for {}", connectorName);
     return new ModelAndView(new RedirectView(request.getContextPath() + getViewName()));
   }
 
