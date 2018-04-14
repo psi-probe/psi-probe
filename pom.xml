@@ -230,6 +230,9 @@
         <findsecbugs.version>1.7.1</findsecbugs.version>
         <plexus-compiler.version>2.8.4</plexus-compiler.version>
         <wagon-git.version>2.0.3</wagon-git.version> <!-- Do not use 2.0.4 as it does not work -->
+
+        <!-- Plugin Extensions -->
+        <wagon-ssh.version>3.0.0</wagon-ssh.version>
     </properties>
 
     <dependencyManagement>
@@ -1157,6 +1160,14 @@
                 </executions>
             </plugin>
         </plugins>
+
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-ssh</artifactId>
+                <version>${wagon-ssh.version}</version>
+            </extension>
+        </extensions>
     </build>
 
     <reporting>
