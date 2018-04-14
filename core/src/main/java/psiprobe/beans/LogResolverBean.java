@@ -307,8 +307,7 @@ public class LogResolverBean {
         try {
           Log4J2WebLoggerContextUtilsAccessor webLoggerContextUtilsAccessor =
               new Log4J2WebLoggerContextUtilsAccessor(cl);
-          loggerContextAccessor =
-              webLoggerContextUtilsAccessor.getWebLoggerContext(servletContext);
+          loggerContextAccessor = webLoggerContextUtilsAccessor.getWebLoggerContext(servletContext);
         } catch (Exception e) {
           logger.debug("Log4J2LoggerContextAccessor instantiation failed", e);
         }
@@ -324,8 +323,7 @@ public class LogResolverBean {
             Method getAppenders =
                 MethodUtils.getAccessibleMethod(loggerConfig.getClass(), "getAppenders");
             @SuppressWarnings("unchecked")
-            Map<String, Object> appenders =
-                (Map<String, Object>) getAppenders.invoke(loggerConfig);
+            Map<String, Object> appenders = (Map<String, Object>) getAppenders.invoke(loggerConfig);
             for (Object appender : appenders.values()) {
               Log4J2AppenderAccessor appenderAccessor = new Log4J2AppenderAccessor();
               appenderAccessor.setTarget(appender);

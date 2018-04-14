@@ -61,8 +61,8 @@ public class Log4J2WebLoggerContextUtilsAccessor extends DefaultAccessor {
       Class<?> clazz = (Class<?>) getTarget();
       Method getWebLoggerContext;
       try {
-        getWebLoggerContext = MethodUtils.getAccessibleMethod(clazz, "getWebLoggerContext",
-            ServletContext.class);
+        getWebLoggerContext =
+            MethodUtils.getAccessibleMethod(clazz, "getWebLoggerContext", ServletContext.class);
       } catch (Exception e) {
         logger.error("exception getting accessible method getWebLoggerContext", e);
         throw e;

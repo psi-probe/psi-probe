@@ -53,7 +53,8 @@ public class ContainerListenerBean implements NotificationListener {
   /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(ContainerListenerBean.class);
 
-  private Set<String> allowedOperation = new HashSet<>(Arrays.asList("start", "stop", "pause", "resume"));
+  private Set<String> allowedOperation =
+      new HashSet<>(Arrays.asList("start", "stop", "pause", "resume"));
 
   /** The pool names. */
   private List<ThreadPoolObjectName> poolNames;
@@ -324,8 +325,8 @@ public class ContainerListenerBean implements NotificationListener {
           // add some useful information for connector list
           connector.setStatus(JmxTools.getStringAttr(server, objectName, "stateName"));
           connector.setProtocol(JmxTools.getStringAttr(server, objectName, "protocol"));
-          connector
-              .setSecure(Boolean.parseBoolean(JmxTools.getStringAttr(server, objectName, "secure")));
+          connector.setSecure(
+              Boolean.parseBoolean(JmxTools.getStringAttr(server, objectName, "secure")));
           connector.setPort(JmxTools.getIntAttr(server, objectName, "port"));
           connector.setLocalPort(JmxTools.getIntAttr(server, objectName, "localPort"));
           connector.setSchema(JmxTools.getStringAttr(server, objectName, "schema"));

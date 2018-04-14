@@ -34,7 +34,8 @@ import psiprobe.beans.stats.collectors.ConnectorStatsCollectorBean;
 public class ToggleConnectorStatusController extends ParameterizableViewController {
 
   /** The static logger. */
-  private static final Logger logger = LoggerFactory.getLogger(ToggleConnectorStatusController.class);
+  private static final Logger logger =
+      LoggerFactory.getLogger(ToggleConnectorStatusController.class);
 
   /** The collector bean. */
   @Inject

@@ -160,15 +160,15 @@ public class BaseTomcatAvailabilityController extends AbstractTomcatContainerCon
     // check the maximum execution time
     // List<ThreadPool> pools = containerListenerBean.getThreadPools();
     // for (int iPool = 0; iPool < pools.size(); iPool++) {
-    //  ThreadPool threadPool = (ThreadPool) pools.get(iPool);
-    //  List<RequestProcessor> threads = threadPool.getRequestProcessors();
-    //  for (int iThread = 0; iThread < threads.size(); iThread++) {
-    //    RequestProcessor rp = (RequestProcessor) threads.get(iThread);
-    //    if (rp.getStage() == 3) {
-    //      // the request processor is in SERVICE state
-    //      maxServiceTime = Math.max(maxServiceTime, rp.getProcessingTime());
-    //    }
-    //  }
+    // ThreadPool threadPool = (ThreadPool) pools.get(iPool);
+    // List<RequestProcessor> threads = threadPool.getRequestProcessors();
+    // for (int iThread = 0; iThread < threads.size(); iThread++) {
+    // RequestProcessor rp = (RequestProcessor) threads.get(iThread);
+    // if (rp.getStage() == 3) {
+    // // the request processor is in SERVICE state
+    // maxServiceTime = Math.max(maxServiceTime, rp.getProcessingTime());
+    // }
+    // }
     // }
 
     tomcatTestReport.setMaxServiceTime(maxServiceTime);
