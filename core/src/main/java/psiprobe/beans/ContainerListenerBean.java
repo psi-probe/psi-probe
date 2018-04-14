@@ -324,7 +324,7 @@ public class ContainerListenerBean implements NotificationListener {
           connector.setStatus(JmxTools.getStringAttr(server, objectName, "stateName"));
           connector.setProtocol(JmxTools.getStringAttr(server, objectName, "protocol"));
           connector
-              .setSecure(Boolean.valueOf(JmxTools.getStringAttr(server, objectName, "secure")));
+              .setSecure(Boolean.valueOf(JmxTools.getStringAttr(server, objectName, "secure")).booleanValue());
           connector.setPort(JmxTools.getIntAttr(server, objectName, "port"));
           connector.setLocalPort(JmxTools.getIntAttr(server, objectName, "localPort"));
           connector.setSchema(JmxTools.getStringAttr(server, objectName, "schema"));
