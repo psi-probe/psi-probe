@@ -10,6 +10,8 @@
  */
 package psiprobe.controllers.deploy;
 
+import com.google.common.base.Strings;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -51,7 +53,7 @@ public class DeployController extends AbstractTomcatContainerController {
     List<Map<String, String>> applications = new ArrayList<>();
     for (Context appContext : apps) {
       // check if this is not the ROOT webapp
-      if (appContext.getName() != null && appContext.getName().trim().length() > 0) {
+      if (!Strings.isNullOrEmpty(appContext.getName())) {
         Map<String, String> app = new HashMap<>();
         app.put("value", appContext.getName());
         app.put("label", appContext.getName());
