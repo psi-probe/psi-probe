@@ -14,12 +14,10 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.coyote.http11.AbstractHttp11JsseProtocol;
 import org.apache.tomcat.util.net.SSLHostConfig;
 import org.apache.tomcat.util.net.SSLHostConfigCertificate;
-
 import psiprobe.model.certificates.CertificateInfo;
 import psiprobe.model.certificates.ConnectorInfo;
 import psiprobe.model.certificates.SslHostConfigInfo;

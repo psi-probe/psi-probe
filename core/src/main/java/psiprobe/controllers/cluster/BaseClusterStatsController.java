@@ -13,9 +13,7 @@ package psiprobe.controllers.cluster;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.web.servlet.ModelAndView;
-
 import psiprobe.TomcatContainer;
 import psiprobe.beans.ClusterWrapperBean;
 import psiprobe.controllers.AbstractTomcatContainerController;

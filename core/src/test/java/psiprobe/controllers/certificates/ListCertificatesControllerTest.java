@@ -13,21 +13,16 @@ package psiprobe.controllers.certificates;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
-
 import com.codebox.bean.JavaBeanTester;
-
 import java.io.File;
 import java.util.List;
-
 import javax.inject.Inject;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.web.context.WebApplicationContext;
-
 import psiprobe.ProbeInitializer;
 import psiprobe.model.certificates.Cert;
 

@@ -12,7 +12,6 @@ package psiprobe.tools.logging.commons;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import psiprobe.tools.logging.LogDestination;
 import psiprobe.tools.logging.jdk.Jdk14LoggerAccessor;
 import psiprobe.tools.logging.log4j.Log4JLoggerAccessor;

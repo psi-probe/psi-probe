@@ -17,10 +17,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 import javax.naming.NamingException;
 import javax.servlet.ServletContext;
-
 import org.apache.catalina.Context;
 import org.apache.catalina.Valve;
 import org.apache.catalina.deploy.ApplicationParameter;
@@ -34,7 +32,6 @@ import org.apache.jasper.Options;
 import org.apache.jasper.compiler.JspRuntimeContext;
 import org.apache.naming.resources.Resource;
 import org.apache.naming.resources.ResourceAttributes;
-
 import psiprobe.model.ApplicationParam;
 import psiprobe.model.ApplicationResource;
 import psiprobe.model.FilterInfo;

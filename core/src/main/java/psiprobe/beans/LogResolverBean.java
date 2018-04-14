@@ -20,10 +20,8 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-
 import javax.inject.Inject;
 import javax.servlet.ServletContext;
-
 import org.apache.catalina.Context;
 import org.apache.catalina.Loader;
 import org.apache.commons.lang3.reflect.MethodUtils;
@@ -31,7 +29,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ClassUtils;
-
 import psiprobe.model.Application;
 import psiprobe.model.DisconnectedLogDestination;
 import psiprobe.tools.ApplicationUtils;

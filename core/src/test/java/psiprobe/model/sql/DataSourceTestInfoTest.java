@@ -11,7 +11,6 @@
 package psiprobe.model.sql;
 
 import com.codebox.bean.JavaBeanTester;
-
 import org.junit.Test;
 
 /**

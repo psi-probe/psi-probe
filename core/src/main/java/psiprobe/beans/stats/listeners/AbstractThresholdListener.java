@@ -11,7 +11,6 @@
 package psiprobe.beans.stats.listeners;
 
 import java.util.HashMap;
-
 import psiprobe.Utils;
 import psiprobe.tools.SizeExpression;
 

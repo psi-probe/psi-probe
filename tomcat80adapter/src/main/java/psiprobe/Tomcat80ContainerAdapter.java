@@ -17,9 +17,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 import javax.servlet.ServletContext;
-
 import org.apache.catalina.Context;
 import org.apache.catalina.Valve;
 import org.apache.catalina.WebResource;
@@ -33,7 +31,6 @@ import org.apache.tomcat.util.descriptor.web.ContextResource;
 import org.apache.tomcat.util.descriptor.web.ContextResourceLink;
 import org.apache.tomcat.util.descriptor.web.FilterDef;
 import org.apache.tomcat.util.descriptor.web.FilterMap;
-
 import psiprobe.model.ApplicationParam;
 import psiprobe.model.ApplicationResource;
 import psiprobe.model.FilterInfo;

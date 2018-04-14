@@ -11,7 +11,6 @@
 package psiprobe.tools.logging.slf4jlogback;
 
 import java.io.File;
-
 import psiprobe.tools.logging.AbstractLogDestination;
 
 /**

@@ -14,15 +14,12 @@ import java.lang.management.ManagementFactory;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
-
 import javax.management.MBeanServer;
 import javax.management.ObjectInstance;
 import javax.management.ObjectName;
 import javax.management.openmbean.CompositeDataSupport;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import psiprobe.model.jmx.MemoryPool;
 import psiprobe.tools.JmxTools;
 

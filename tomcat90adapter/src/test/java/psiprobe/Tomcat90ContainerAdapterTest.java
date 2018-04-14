@@ -14,10 +14,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
-
 import java.io.IOException;
 import java.util.ArrayList;
-
 import org.apache.catalina.Context;
 import org.apache.catalina.Valve;
 import org.apache.jasper.JspCompilationContext;
@@ -26,7 +24,6 @@ import org.apache.tomcat.util.descriptor.web.FilterDef;
 import org.apache.tomcat.util.descriptor.web.FilterMap;
 import org.junit.Assert;
 import org.junit.Test;
-
 import mockit.Expectations;
 import mockit.Mocked;
 import psiprobe.model.ApplicationResource;

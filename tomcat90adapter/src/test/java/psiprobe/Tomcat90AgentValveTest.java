@@ -11,15 +11,12 @@
 package psiprobe;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
-
 import org.apache.catalina.connector.Request;
 import org.apache.catalina.connector.Response;
 import org.apache.catalina.valves.ValveBase;
 import org.junit.Assert;
 import org.junit.Test;
-
 import mockit.Expectations;
 import mockit.Mocked;
 import mockit.Tested;

@@ -11,13 +11,10 @@
 package psiprobe.beans;
 
 import java.util.List;
-
 import javax.management.MBeanServer;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-
 import org.apache.catalina.Context;
-
 import psiprobe.model.ApplicationResource;
 
 /**

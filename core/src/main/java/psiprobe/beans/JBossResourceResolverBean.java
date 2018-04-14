@@ -13,21 +13,18 @@ package psiprobe.beans;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-
 import javax.management.MBeanServer;
 import javax.management.MBeanServerFactory;
 import javax.management.MalformedObjectNameException;
 import javax.management.ObjectName;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-
 import org.apache.catalina.Context;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-
 import psiprobe.model.ApplicationResource;
 import psiprobe.model.DataSourceInfo;
 

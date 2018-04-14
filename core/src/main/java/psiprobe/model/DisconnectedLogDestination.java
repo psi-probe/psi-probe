@@ -13,7 +13,6 @@ package psiprobe.model;
 import java.io.File;
 import java.io.Serializable;
 import java.sql.Timestamp;
-
 import psiprobe.tools.logging.LogDestination;
 
 /**

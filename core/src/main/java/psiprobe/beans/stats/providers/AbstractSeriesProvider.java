@@ -11,7 +11,6 @@
 package psiprobe.beans.stats.providers;
 
 import java.util.List;
-
 import org.jfree.data.xy.XYDataItem;
 import org.jfree.data.xy.XYSeries;
 import org.slf4j.Logger;
