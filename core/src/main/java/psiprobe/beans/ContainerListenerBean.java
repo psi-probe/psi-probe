@@ -28,7 +28,6 @@ import javax.inject.Inject;
 import javax.management.InstanceNotFoundException;
 import javax.management.MBeanServer;
 import javax.management.MBeanServerNotification;
-import javax.management.MalformedObjectNameException;
 import javax.management.Notification;
 import javax.management.NotificationListener;
 import javax.management.ObjectInstance;
@@ -239,8 +238,8 @@ public class ContainerListenerBean implements NotificationListener {
             .setCurrentThreadCount(JmxTools.getIntAttr(server, poolName, "currentThreadCount"));
 
         /*
-         * Tomcat will return -1 for maxThreads if the connector uses an executor for its
-         * threads. In this case, don't add its ThreadPool to the results.
+         * Tomcat will return -1 for maxThreads if the connector uses an executor for its threads.
+         * In this case, don't add its ThreadPool to the results.
          */
         if (threadPool.getMaxThreads() > -1) {
           threadPools.add(threadPool);
@@ -253,8 +252,14 @@ public class ContainerListenerBean implements NotificationListener {
     return threadPools;
   }
 
-  public synchronized void toggleConnectorStatus(String operation, String port)
-          throws Exception {
+  /**
+   * Toggle connector status.
+   *
+   * @param operation the operation
+   * @param port the port
+   * @throws Exception the exception
+   */
+  public synchronized void toggleConnectorStatus(String operation, String port) throws Exception {
 
     if (!allowedOperation.contains(operation)) {
       logger.error("operation {} not supported", operation);
@@ -264,9 +269,6 @@ public class ContainerListenerBean implements NotificationListener {
     ObjectName objectName = new ObjectName("Catalina:type=Connector,port=" + port);
 
     MBeanServer server = getContainerWrapper().getResourceResolver().getMBeanServer();
-
-    // maybe retrieve status first,
-    String status = JmxTools.getStringAttr(server, objectName, "stateName");
 
     JmxTools.invoke(server, objectName, operation, null, null);
 
@@ -291,7 +293,7 @@ public class ContainerListenerBean implements NotificationListener {
 
     List<Connector> connectors = new ArrayList<>(poolNames.size());
 
-     MBeanServer server = getContainerWrapper().getResourceResolver().getMBeanServer();
+    MBeanServer server = getContainerWrapper().getResourceResolver().getMBeanServer();
 
     for (ThreadPoolObjectName threadPoolObjectName : poolNames) {
       try {
@@ -305,9 +307,8 @@ public class ContainerListenerBean implements NotificationListener {
 
         ObjectName grpName = threadPoolObjectName.getGlobalRequestProcessorName();
 
-
         if (name.startsWith("\"") && name.endsWith("\"")) {
-          name = name.substring(1, name.length() -1);
+          name = name.substring(1, name.length() - 1);
         }
 
         String[] arr = name.split("-");
@@ -316,27 +317,21 @@ public class ContainerListenerBean implements NotificationListener {
           port = arr[2];
         }
 
-
         if (!port.equals("-1")) {
-          String str ="Catalina:type=Connector,port=" + port;
+          String str = "Catalina:type=Connector,port=" + port;
 
           ObjectName objectName = new ObjectName(str);
 
           // add some useful information for connector list
           connector.setStatus(JmxTools.getStringAttr(server, objectName, "stateName"));
-
           connector.setProtocol(JmxTools.getStringAttr(server, objectName, "protocol"));
-
-
-          connector.setSecure(Boolean.valueOf(JmxTools.getStringAttr(server, objectName, "secure")));
-
+          connector
+              .setSecure(Boolean.valueOf(JmxTools.getStringAttr(server, objectName, "secure")));
           connector.setPort(JmxTools.getIntAttr(server, objectName, "port"));
-
           connector.setLocalPort(JmxTools.getIntAttr(server, objectName, "localPort"));
-
           connector.setSchema(JmxTools.getStringAttr(server, objectName, "schema"));
-
         }
+
         connector.setMaxTime(JmxTools.getLongAttr(server, grpName, "maxTime"));
         connector.setProcessingTime(JmxTools.getLongAttr(server, grpName, "processingTime"));
         connector.setBytesReceived(JmxTools.getLongAttr(server, grpName, "bytesReceived"));

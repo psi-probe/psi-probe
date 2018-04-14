@@ -38,7 +38,7 @@ public class Tomcat80AgentValve extends ValveBase {
 
     if (request.getSession(false) != null) {
       String ip = IpInfo.getClientAddress(request.getRequest());
-      // Explicit calls to ensure result not lost      
+      // Explicit calls to ensure result not lost
       request.getSession(false).setAttribute(ApplicationSession.LAST_ACCESSED_BY_IP, ip);
       request.getSession(false).setAttribute(ApplicationSession.LAST_ACCESSED_LOCALE,
           request.getLocale());

@@ -30,21 +30,23 @@ public class Connector {
   /** The request count. */
   private int requestCount;
 
+  /** The status. */
   private String status;
 
-
+  /** The protocol. */
   private String protocol;
 
+  /** The local port. */
   private Integer localPort;
 
-
+  /** The port. */
   private Integer port;
 
+  /** The schema. */
   private String schema;
 
+  /** The secure. */
   private boolean secure;
-
-
 
   /** The error count. */
   private int errorCount;
@@ -212,58 +214,111 @@ public class Connector {
   }
 
   /**
-   * get current connector status
+   * get current connector status.
+   *
    * @return the status
    */
   public String getStatus() {
     return status;
   }
 
+  /**
+   * Sets the status.
+   *
+   * @param status the new status
+   */
   public void setStatus(String status) {
     this.status = status;
   }
 
   /**
-   * get current connector protocol
+   * get current connector protocol.
+   *
    * @return the protocol
    */
   public String getProtocol() {
     return protocol;
   }
 
+  /**
+   * Sets the protocol.
+   *
+   * @param protocol the new protocol
+   */
   public void setProtocol(String protocol) {
     this.protocol = protocol;
   }
 
+  /**
+   * Gets the local port.
+   *
+   * @return the local port
+   */
   public Integer getLocalPort() {
     return localPort;
   }
 
+  /**
+   * Sets the local port.
+   *
+   * @param localPort the new local port
+   */
   public void setLocalPort(Integer localPort) {
     this.localPort = localPort;
   }
 
+  /**
+   * Gets the port.
+   *
+   * @return the port
+   */
   public Integer getPort() {
     return port;
   }
 
+  /**
+   * Sets the port.
+   *
+   * @param port the new port
+   */
   public void setPort(Integer port) {
     this.port = port;
   }
 
+  /**
+   * Gets the schema.
+   *
+   * @return the schema
+   */
   public String getSchema() {
     return schema;
   }
 
+  /**
+   * Sets the schema.
+   *
+   * @param schema the new schema
+   */
   public void setSchema(String schema) {
     this.schema = schema;
   }
 
+  /**
+   * Checks if is secure.
+   *
+   * @return true, if is secure
+   */
   public boolean isSecure() {
     return secure;
   }
 
+  /**
+   * Sets the secure.
+   *
+   * @param secure the new secure
+   */
   public void setSecure(boolean secure) {
     this.secure = secure;
   }
+
 }

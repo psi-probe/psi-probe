@@ -56,8 +56,8 @@ public final class JmxTools {
     }
   }
 
-  public static Object invoke(MBeanServer mbeanServer, ObjectName objName, String method, Object[] o
-          , String[] s) throws Exception {
+  public static Object invoke(MBeanServer mbeanServer, ObjectName objName, String method,
+      Object[] o, String[] s) throws Exception {
 
     try {
       return mbeanServer.invoke(objName, method, o, s);

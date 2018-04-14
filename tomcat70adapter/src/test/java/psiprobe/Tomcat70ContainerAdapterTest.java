@@ -285,10 +285,10 @@ public class Tomcat70ContainerAdapterTest {
   @Test
   public void resourceStream() throws IOException, NamingException {
     Assert.assertNotNull(new Expectations() {
-        {
-            resource.lookup(this.anyString);
-            this.result = new Resource();
-        }
+      {
+        resource.lookup(this.anyString);
+        this.result = new Resource();
+      }
     });
 
     final Tomcat70ContainerAdapter adapter = new Tomcat70ContainerAdapter();
