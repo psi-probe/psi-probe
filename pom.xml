@@ -1067,7 +1067,7 @@
                     <configuration>
                         <javaVersion>${maven.compiler.target}</javaVersion>
                     </configuration>
-                    </plugin>
+                </plugin>
             </plugins>
         </pluginManagement>
 
