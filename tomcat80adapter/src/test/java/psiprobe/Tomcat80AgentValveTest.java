@@ -15,8 +15,8 @@ import javax.servlet.ServletException;
 import org.apache.catalina.connector.Request;
 import org.apache.catalina.connector.Response;
 import org.apache.catalina.valves.ValveBase;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import mockit.Expectations;
 import mockit.Mocked;
 import mockit.Tested;
@@ -50,7 +50,7 @@ public class Tomcat80AgentValveTest {
    */
   @Test
   public void invoke() throws IOException, ServletException {
-    Assert.assertNotNull(new Expectations() {
+    Assertions.assertNotNull(new Expectations() {
       {
         valve.getNext();
         result = valveBase;

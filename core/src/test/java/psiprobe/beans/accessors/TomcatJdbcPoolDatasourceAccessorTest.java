@@ -12,9 +12,9 @@ package psiprobe.beans.accessors;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.apache.tomcat.jdbc.pool.DataSource;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import mockit.Mocked;
 
 /**
@@ -35,7 +35,7 @@ public class TomcatJdbcPoolDatasourceAccessorTest {
   /**
    * Before.
    */
-  @Before
+  @BeforeEach
   public void before() {
     accessor = new TomcatJdbcPoolDatasourceAccessor();
     badSource = new ComboPooledDataSource();
@@ -46,7 +46,7 @@ public class TomcatJdbcPoolDatasourceAccessorTest {
    */
   @Test
   public void canMapTest() {
-    Assert.assertTrue(accessor.canMap(source));
+    Assertions.assertTrue(accessor.canMap(source));
   }
 
   /**
@@ -54,7 +54,7 @@ public class TomcatJdbcPoolDatasourceAccessorTest {
    */
   @Test
   public void cannotMapTest() {
-    Assert.assertFalse(accessor.canMap(badSource));
+    Assertions.assertFalse(accessor.canMap(badSource));
   }
 
   /**

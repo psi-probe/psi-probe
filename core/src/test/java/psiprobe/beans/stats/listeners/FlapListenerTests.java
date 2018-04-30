@@ -10,8 +10,8 @@
  */
 package psiprobe.beans.stats.listeners;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * The Class FlapListenerTests.
@@ -76,7 +76,7 @@ public class FlapListenerTests {
     listener.reset();
     listener.statsCollected(aboveThreshold);
     listener.statsCollected(belowThreshold);
-    Assert.assertTrue(listener.isBelowThresholdNotFlapping());
+    Assertions.assertTrue(listener.isBelowThresholdNotFlapping());
   }
 
   /**
@@ -87,7 +87,7 @@ public class FlapListenerTests {
     listener.reset();
     listener.statsCollected(belowThreshold);
     listener.statsCollected(aboveThreshold);
-    Assert.assertTrue(listener.isAboveThresholdNotFlapping());
+    Assertions.assertTrue(listener.isAboveThresholdNotFlapping());
   }
 
   /**
@@ -99,7 +99,7 @@ public class FlapListenerTests {
     listener.statsCollected(belowThreshold);
     for (int i = 0; i < defaultInterval; i++) {
       listener.statsCollected(belowThreshold);
-      Assert.assertFalse(listener.isBelowThresholdNotFlapping());
+      Assertions.assertFalse(listener.isBelowThresholdNotFlapping());
     }
   }
 
@@ -112,7 +112,7 @@ public class FlapListenerTests {
     listener.statsCollected(aboveThreshold);
     for (int i = 0; i < defaultInterval; i++) {
       listener.statsCollected(aboveThreshold);
-      Assert.assertFalse(listener.isAboveThresholdNotFlapping());
+      Assertions.assertFalse(listener.isAboveThresholdNotFlapping());
     }
   }
 
@@ -125,7 +125,7 @@ public class FlapListenerTests {
     listener.statsCollected(aboveThreshold);
     listener.statsCollected(belowThreshold);
     listener.statsCollected(aboveThreshold);
-    Assert.assertTrue(listener.isFlappingStarted());
+    Assertions.assertTrue(listener.isFlappingStarted());
   }
 
   /**
@@ -137,7 +137,7 @@ public class FlapListenerTests {
     listener.statsCollected(belowThreshold);
     listener.statsCollected(aboveThreshold);
     listener.statsCollected(belowThreshold);
-    Assert.assertTrue(listener.isFlappingStarted());
+    Assertions.assertTrue(listener.isFlappingStarted());
   }
 
   /**
@@ -149,9 +149,9 @@ public class FlapListenerTests {
     listener.statsCollected(aboveThreshold);
     listener.statsCollected(belowThreshold);
     listener.statsCollected(aboveThreshold);
-    Assert.assertTrue(listener.isFlappingStarted());
+    Assertions.assertTrue(listener.isFlappingStarted());
     add(belowThreshold, 5);
-    Assert.assertTrue(listener.isBelowThresholdFlappingStopped());
+    Assertions.assertTrue(listener.isBelowThresholdFlappingStopped());
   }
 
   /**
@@ -163,9 +163,9 @@ public class FlapListenerTests {
     listener.statsCollected(aboveThreshold);
     listener.statsCollected(belowThreshold);
     listener.statsCollected(aboveThreshold);
-    Assert.assertTrue(listener.isFlappingStarted());
+    Assertions.assertTrue(listener.isFlappingStarted());
     add(aboveThreshold, 5);
-    Assert.assertTrue(listener.isAboveThresholdFlappingStopped());
+    Assertions.assertTrue(listener.isAboveThresholdFlappingStopped());
   }
 
   /**
@@ -177,9 +177,9 @@ public class FlapListenerTests {
     listener.statsCollected(belowThreshold);
     listener.statsCollected(aboveThreshold);
     listener.statsCollected(belowThreshold);
-    Assert.assertTrue(listener.isFlappingStarted());
+    Assertions.assertTrue(listener.isFlappingStarted());
     add(belowThreshold, 5);
-    Assert.assertTrue(listener.isBelowThresholdFlappingStopped());
+    Assertions.assertTrue(listener.isBelowThresholdFlappingStopped());
   }
 
   /**
@@ -191,9 +191,9 @@ public class FlapListenerTests {
     listener.statsCollected(belowThreshold);
     listener.statsCollected(aboveThreshold);
     listener.statsCollected(belowThreshold);
-    Assert.assertTrue(listener.isFlappingStarted());
+    Assertions.assertTrue(listener.isFlappingStarted());
     add(aboveThreshold, 5);
-    Assert.assertTrue(listener.isAboveThresholdFlappingStopped());
+    Assertions.assertTrue(listener.isAboveThresholdFlappingStopped());
   }
 
   /**

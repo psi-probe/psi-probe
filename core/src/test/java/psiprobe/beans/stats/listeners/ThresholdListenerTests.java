@@ -10,8 +10,8 @@
  */
 package psiprobe.beans.stats.listeners;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * The Class ThresholdListenerTests.
@@ -37,7 +37,7 @@ public class ThresholdListenerTests {
   public void testFirstBelowThreshold() {
     listener.reset();
     listener.statsCollected(belowThreshold);
-    Assert.assertTrue(listener.isRemainedBelowThreshold());
+    Assertions.assertTrue(listener.isRemainedBelowThreshold());
   }
 
   /**
@@ -47,7 +47,7 @@ public class ThresholdListenerTests {
   public void testFirstAboveThreshold() {
     listener.reset();
     listener.statsCollected(aboveThreshold);
-    Assert.assertTrue(listener.isCrossedAboveThreshold());
+    Assertions.assertTrue(listener.isCrossedAboveThreshold());
   }
 
   /**
@@ -58,7 +58,7 @@ public class ThresholdListenerTests {
     listener.reset();
     listener.statsCollected(belowThreshold);
     listener.statsCollected(belowThreshold);
-    Assert.assertTrue(listener.isRemainedBelowThreshold());
+    Assertions.assertTrue(listener.isRemainedBelowThreshold());
   }
 
   /**
@@ -69,7 +69,7 @@ public class ThresholdListenerTests {
     listener.reset();
     listener.statsCollected(aboveThreshold);
     listener.statsCollected(aboveThreshold);
-    Assert.assertTrue(listener.isRemainedAboveThreshold());
+    Assertions.assertTrue(listener.isRemainedAboveThreshold());
   }
 
   /**
@@ -80,7 +80,7 @@ public class ThresholdListenerTests {
     listener.reset();
     listener.statsCollected(aboveThreshold);
     listener.statsCollected(belowThreshold);
-    Assert.assertTrue(listener.isCrossedBelowThreshold());
+    Assertions.assertTrue(listener.isCrossedBelowThreshold());
   }
 
   /**
@@ -91,7 +91,7 @@ public class ThresholdListenerTests {
     listener.reset();
     listener.statsCollected(belowThreshold);
     listener.statsCollected(aboveThreshold);
-    Assert.assertTrue(listener.isCrossedAboveThreshold());
+    Assertions.assertTrue(listener.isCrossedAboveThreshold());
   }
 
   /**

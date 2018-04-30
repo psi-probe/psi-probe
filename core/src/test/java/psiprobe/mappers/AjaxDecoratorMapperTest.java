@@ -15,9 +15,9 @@ import com.opensymphony.module.sitemesh.DecoratorMapper;
 import com.opensymphony.module.sitemesh.Page;
 import java.util.Properties;
 import javax.servlet.http.HttpServletRequest;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import mockit.Expectations;
 import mockit.Mocked;
 
@@ -51,7 +51,7 @@ public class AjaxDecoratorMapperTest {
   /**
    * Before.
    */
-  @Before
+  @BeforeEach
   public void before() {
     mapper = new AjaxDecoratorMapper();
     properties = new Properties();
@@ -76,7 +76,7 @@ public class AjaxDecoratorMapperTest {
         result = "probe/ws";
       }
     };
-    Assert.assertNotNull(mapper.getDecorator(request, page));
+    Assertions.assertNotNull(mapper.getDecorator(request, page));
   }
 
 }

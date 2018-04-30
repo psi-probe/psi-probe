@@ -12,9 +12,9 @@ package psiprobe.beans.accessors;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.apache.commons.dbcp2.BasicDataSource;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * The Class Dbcp2DatasourceAccessorTest.
@@ -33,7 +33,7 @@ public class Dbcp2DatasourceAccessorTest {
   /**
    * Before.
    */
-  @Before
+  @BeforeEach
   public void before() {
     accessor = new Dbcp2DatasourceAccessor();
     source = new BasicDataSource();
@@ -45,7 +45,7 @@ public class Dbcp2DatasourceAccessorTest {
    */
   @Test
   public void canMapTest() {
-    Assert.assertTrue(accessor.canMap(source));
+    Assertions.assertTrue(accessor.canMap(source));
   }
 
   /**
@@ -53,7 +53,7 @@ public class Dbcp2DatasourceAccessorTest {
    */
   @Test
   public void cannotMapTest() {
-    Assert.assertFalse(accessor.canMap(badSource));
+    Assertions.assertFalse(accessor.canMap(badSource));
   }
 
   /**

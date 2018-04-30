@@ -12,7 +12,7 @@ package psiprobe.tools;
 
 import java.io.IOException;
 import java.io.PrintStream;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import mockit.Mocked;
 

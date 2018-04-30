@@ -10,9 +10,9 @@
  */
 package psiprobe;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.naming.NamingException;
@@ -25,8 +25,8 @@ import org.apache.catalina.deploy.FilterMap;
 import org.apache.jasper.JspCompilationContext;
 import org.apache.naming.resources.Resource;
 import org.apache.naming.resources.ResourceAttributes;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import mockit.Expectations;
 import mockit.Mocked;
 import psiprobe.model.ApplicationResource;
@@ -221,7 +221,7 @@ public class Tomcat70ContainerAdapterTest {
    */
   @Test
   public void applicationFilterMaps() {
-    Assert.assertNotNull(new Expectations() {
+    Assertions.assertNotNull(new Expectations() {
       {
         context.findFilterMaps();
         result = new FilterMap();
@@ -237,7 +237,7 @@ public class Tomcat70ContainerAdapterTest {
    */
   @Test
   public void applicationFilters() {
-    Assert.assertNotNull(new Expectations() {
+    Assertions.assertNotNull(new Expectations() {
       {
         context.findFilterDefs();
         result = new FilterDef();
@@ -253,7 +253,7 @@ public class Tomcat70ContainerAdapterTest {
    */
   @Test
   public void applicationInitParams() {
-    Assert.assertNotNull(new Expectations() {
+    Assertions.assertNotNull(new Expectations() {
       {
         context.findApplicationParameters();
         result = new ApplicationParameter();
@@ -280,7 +280,7 @@ public class Tomcat70ContainerAdapterTest {
    */
   @Test
   public void resourceStream() throws IOException, NamingException {
-    Assert.assertNotNull(new Expectations() {
+    Assertions.assertNotNull(new Expectations() {
       {
         resource.lookup(this.anyString);
         this.result = new Resource();
@@ -298,7 +298,7 @@ public class Tomcat70ContainerAdapterTest {
    */
   @Test
   public void resourceAttributes() throws NamingException {
-    Assert.assertNotNull(new Expectations() {
+    Assertions.assertNotNull(new Expectations() {
       {
         resource.getAttributes(this.anyString);
         this.result = new ResourceAttributes();

@@ -11,10 +11,10 @@
 package psiprobe.beans.accessors;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.vibur.dbcp.ViburDBCPDataSource;
 import mockit.Expectations;
 import mockit.Mocked;
@@ -37,7 +37,7 @@ public class ViburCpDatasourceAccessorTest {
   /**
    * Before.
    */
-  @Before
+  @BeforeEach
   public void before() {
     accessor = new ViburCpDatasourceAccessor();
     badSource = new ComboPooledDataSource();
@@ -48,7 +48,7 @@ public class ViburCpDatasourceAccessorTest {
    */
   @Test
   public void canMapTest() {
-    Assert.assertTrue(accessor.canMap(source));
+    Assertions.assertTrue(accessor.canMap(source));
   }
 
   /**
@@ -56,7 +56,7 @@ public class ViburCpDatasourceAccessorTest {
    */
   @Test
   public void cannotMapTest() {
-    Assert.assertFalse(accessor.canMap(badSource));
+    Assertions.assertFalse(accessor.canMap(badSource));
   }
 
   /**
@@ -64,7 +64,7 @@ public class ViburCpDatasourceAccessorTest {
    *
    * @throws Exception the exception
    */
-  @Ignore
+  @Disabled
   @Test
   public void getInfoTest() throws Exception {
     new Expectations() {
