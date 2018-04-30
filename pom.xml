@@ -229,8 +229,8 @@
         <ecj.version>4.6.1</ecj.version>
         <fb-contrib.version>7.2.1.sb</fb-contrib.version>
         <findsecbugs.version>1.7.1</findsecbugs.version>
-        <junit-platform.version>1.1.1</junit-platform.version>
         <junit-engine.version>5.2.0</junit-engine.version>
+        <junit-platform.version>1.2.0</junit-platform.version>
         <plexus-compiler.version>2.8.4</plexus-compiler.version>
         <wagon-git.version>2.0.3</wagon-git.version> <!-- Do not use 2.0.4 as it does not work -->
 
