@@ -772,6 +772,11 @@
                             <artifactId>wagon-git</artifactId>
                             <version>${wagon-git.version}</version>
                         </dependency>
+                        <dependency>
+                            <groupId>org.apache.maven.wagon</groupId>
+                            <artifactId>wagon-ssh</artifactId>
+                            <version>${wagon.version}</version>
+                        </dependency>
                     </dependencies>
                 </plugin>
                 <plugin>
