@@ -1,12 +1,23 @@
 language: java
 sudo: false
 
-jdk:
-  - openjdk10
-  - oraclejdk9
-  - openjdk9
-  - oraclejdk8
-  - openjdk8
+matrix:
+  include:
+# 10
+    - env: JDK='Oracle JDK 10'
+      install: . ./install-jdk.sh -F 10 -L BCL
+    - env: JDK='OpenJDK 10'
+      install: . ./install-jdk.sh -F 10 -L GPL
+# 9
+    - env: JDK='Oracle JDK 9'
+      jdk: oraclejdk9
+    - env: JDK='OpenJDK 9'
+      jdk: openjdk9
+# 8
+    - env: JDK='Oracle JDK 8'
+      jdk: oraclejdk8
+    - env: JDK='OpenJDK 8'
+      jdk: openjdk8
 
 env:
   global:
@@ -24,6 +35,10 @@ addons:
     build_command: "./mvnw install -B -V --settings ./travis/settings.xml"
     branch_pattern: coverity_scan
 
+before_install:
+  - wget https://raw.githubusercontent.com/sormuras/bach/master/install-jdk.sh
+  - ./mvnw install -q -DskipTests=true
+    
 install: true
 
 script:
