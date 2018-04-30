@@ -11,8 +11,6 @@ matrix:
 # 9
     - env: JDK='Oracle JDK 9'
       jdk: oraclejdk9
-    - env: JDK='OpenJDK 9'
-      jdk: openjdk9
 # 8
     - env: JDK='Oracle JDK 8'
       jdk: oraclejdk8
