@@ -11,7 +11,7 @@
 package psiprobe.tools.logging.slf4jlogback;
 
 import com.codebox.bean.JavaBeanTester;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * The Class TomcatSlf4jLogbackAppenderAccessorTest.

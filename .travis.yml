@@ -2,10 +2,10 @@ language: java
 sudo: false
 
 jdk:
+  - oraclejdk10
   - oraclejdk9
   - oraclejdk8
   - openjdk8
-  - openjdk7
 
 env:
   global:

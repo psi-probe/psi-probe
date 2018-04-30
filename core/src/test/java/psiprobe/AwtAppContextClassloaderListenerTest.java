@@ -13,7 +13,7 @@ package psiprobe;
 import javax.imageio.ImageIO;
 import javax.servlet.ServletContextEvent;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import mockit.Expectations;
 import mockit.Mocked;

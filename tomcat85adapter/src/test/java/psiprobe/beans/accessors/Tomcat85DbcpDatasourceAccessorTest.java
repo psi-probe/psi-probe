@@ -10,11 +10,11 @@
  */
 package psiprobe.beans.accessors;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * The Class Tomcat85DbcpDatasourceAccessorTest.

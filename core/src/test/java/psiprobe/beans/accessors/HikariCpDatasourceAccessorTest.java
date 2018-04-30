@@ -12,10 +12,10 @@ package psiprobe.beans.accessors;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import com.zaxxer.hikari.HikariDataSource;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import mockit.Mocked;
 
 /**
@@ -36,7 +36,7 @@ public class HikariCpDatasourceAccessorTest {
   /**
    * Before.
    */
-  @Before
+  @BeforeEach
   public void before() {
     accessor = new HikariCpDatasourceAccessor();
     badSource = new ComboPooledDataSource();
@@ -47,7 +47,7 @@ public class HikariCpDatasourceAccessorTest {
    */
   @Test
   public void canMapTest() {
-    Assert.assertTrue(accessor.canMap(source));
+    Assertions.assertTrue(accessor.canMap(source));
   }
 
   /**
@@ -55,7 +55,7 @@ public class HikariCpDatasourceAccessorTest {
    */
   @Test
   public void cannotMapTest() {
-    Assert.assertFalse(accessor.canMap(badSource));
+    Assertions.assertFalse(accessor.canMap(badSource));
   }
 
   /**
@@ -63,7 +63,7 @@ public class HikariCpDatasourceAccessorTest {
    *
    * @throws Exception the exception
    */
-  @Ignore
+  @Disabled
   @Test
   public void getInfoTest() throws Exception {
     accessor.getInfo(source);

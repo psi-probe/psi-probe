@@ -11,8 +11,8 @@
 package psiprobe.jsp;
 
 import com.codebox.bean.JavaBeanTester;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -97,7 +97,7 @@ public class VisualScoreTagTest {
         }
       }
     }
-    Assert.assertFalse("Incorrect values were founded " + count + " times", count > 0);
+    Assertions.assertFalse(count > 0, "Incorrect values were founded " + count + " times");
   }
 
   /**

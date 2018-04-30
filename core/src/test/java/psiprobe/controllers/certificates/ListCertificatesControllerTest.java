@@ -10,17 +10,16 @@
  */
 package psiprobe.controllers.certificates;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.junit.Assert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import com.codebox.bean.JavaBeanTester;
 import java.io.File;
 import java.util.List;
 import javax.inject.Inject;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.web.context.WebApplicationContext;
 import psiprobe.ProbeInitializer;
@@ -29,7 +28,7 @@ import psiprobe.model.certificates.Cert;
 /**
  * The Class ListCertificatesControllerTest.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = ProbeInitializer.class)
 @WebAppConfiguration
 public class ListCertificatesControllerTest {
@@ -62,10 +61,10 @@ public class ListCertificatesControllerTest {
 
     List<Cert> certs = controller.getCertificates(storeType, storeFile.toString(), storePassword);
 
-    assertThat(certs, notNullValue());
-    assertThat(certs.size(), is(2));
-    assertThat(certs.get(0).getAlias(), is("*.google.com"));
-    assertThat(certs.get(1).getAlias(), is("google_g2_2017"));
+    assertThat(certs).doesNotContainNull();
+    assertThat(certs.size()).isEqualTo(2);
+    assertThat(certs.get(0).getAlias()).isEqualTo("*.google.com");
+    assertThat(certs.get(1).getAlias()).isEqualTo("google_g2_2017");
   }
 
   /**
@@ -86,10 +85,10 @@ public class ListCertificatesControllerTest {
     List<Cert> certs =
         controller.getCertificates(storeType, "localhost-truststore.jks", storePassword);
 
-    assertThat(certs, notNullValue());
-    assertThat(certs.size(), is(2));
-    assertThat(certs.get(0).getAlias(), is("*.google.com"));
-    assertThat(certs.get(1).getAlias(), is("google_g2_2017"));
+    assertThat(certs).doesNotContainNull();
+    assertThat(certs.size()).isEqualTo(2);
+    assertThat(certs.get(0).getAlias()).isEqualTo("*.google.com");
+    assertThat(certs.get(1).getAlias()).isEqualTo("google_g2_2017");
   }
 
   /**
@@ -111,10 +110,10 @@ public class ListCertificatesControllerTest {
     List<Cert> certs =
         controller.getCertificates(storeType, storeFile.toURI().toString(), storePassword);
 
-    assertThat(certs, notNullValue());
-    assertThat(certs.size(), is(2));
-    assertThat(certs.get(0).getAlias(), is("*.google.com"));
-    assertThat(certs.get(1).getAlias(), is("google_g2_2017"));
+    assertThat(certs).doesNotContainNull();
+    assertThat(certs.size()).isEqualTo(2);
+    assertThat(certs.get(0).getAlias()).isEqualTo("*.google.com");
+    assertThat(certs.get(1).getAlias()).isEqualTo("google_g2_2017");
   }
 
   /**
@@ -135,10 +134,10 @@ public class ListCertificatesControllerTest {
     List<Cert> certs =
         controller.getCertificates(storeType, "./localhost-truststore.jks", storePassword);
 
-    assertThat(certs, notNullValue());
-    assertThat(certs.size(), is(2));
-    assertThat(certs.get(0).getAlias(), is("*.google.com"));
-    assertThat(certs.get(1).getAlias(), is("google_g2_2017"));
+    assertThat(certs).doesNotContainNull();
+    assertThat(certs.size()).isEqualTo(2);
+    assertThat(certs.get(0).getAlias()).isEqualTo("*.google.com");
+    assertThat(certs.get(1).getAlias()).isEqualTo("google_g2_2017");
   }
 
 }

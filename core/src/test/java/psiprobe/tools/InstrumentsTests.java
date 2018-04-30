@@ -10,8 +10,8 @@
  */
 package psiprobe.tools;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * The Class InstrumentsTests.
@@ -25,7 +25,7 @@ public class InstrumentsTests {
   public void testObject() {
     Object o = new Object();
     long objectSize = Instruments.sizeOf(o);
-    Assert.assertEquals(Instruments.SIZE_OBJECT, objectSize);
+    Assertions.assertEquals(Instruments.SIZE_OBJECT, objectSize);
   }
 
   /**
@@ -35,7 +35,7 @@ public class InstrumentsTests {
   public void testBoolean() {
     boolean b = false;
     long booleanSize = Instruments.sizeOf(Boolean.valueOf(b)) - Instruments.SIZE_OBJECT;
-    Assert.assertEquals(Instruments.SIZE_BOOLEAN, booleanSize);
+    Assertions.assertEquals(Instruments.SIZE_BOOLEAN, booleanSize);
   }
 
   /**
@@ -45,7 +45,7 @@ public class InstrumentsTests {
   public void testByte() {
     byte b = 0x00;
     long byteSize = Instruments.sizeOf(Byte.valueOf(b)) - Instruments.SIZE_OBJECT;
-    Assert.assertEquals(Instruments.SIZE_BYTE, byteSize);
+    Assertions.assertEquals(Instruments.SIZE_BYTE, byteSize);
   }
 
   /**
@@ -55,7 +55,7 @@ public class InstrumentsTests {
   public void testChar() {
     char c = '\0';
     long charSize = Instruments.sizeOf(Character.valueOf(c)) - Instruments.SIZE_OBJECT;
-    Assert.assertEquals(Instruments.SIZE_CHAR, charSize);
+    Assertions.assertEquals(Instruments.SIZE_CHAR, charSize);
   }
 
   /**
@@ -65,7 +65,7 @@ public class InstrumentsTests {
   public void testShort() {
     short s = 0;
     long shortSize = Instruments.sizeOf(Short.valueOf(s)) - Instruments.SIZE_OBJECT;
-    Assert.assertEquals(Instruments.SIZE_SHORT, shortSize);
+    Assertions.assertEquals(Instruments.SIZE_SHORT, shortSize);
   }
 
   /**
@@ -75,7 +75,7 @@ public class InstrumentsTests {
   public void testInt() {
     int i = 0;
     long intSize = Instruments.sizeOf(Integer.valueOf(i)) - Instruments.SIZE_OBJECT;
-    Assert.assertEquals(Instruments.SIZE_INT, intSize);
+    Assertions.assertEquals(Instruments.SIZE_INT, intSize);
   }
 
   /**
@@ -85,7 +85,7 @@ public class InstrumentsTests {
   public void testLong() {
     long l = 0;
     long longSize = Instruments.sizeOf(Long.valueOf(l)) - Instruments.SIZE_OBJECT;
-    Assert.assertEquals(Instruments.SIZE_LONG, longSize);
+    Assertions.assertEquals(Instruments.SIZE_LONG, longSize);
   }
 
   /**
@@ -95,7 +95,7 @@ public class InstrumentsTests {
   public void testFloat() {
     float f = 0.0f;
     long floatSize = Instruments.sizeOf(Float.valueOf(f)) - Instruments.SIZE_OBJECT;
-    Assert.assertEquals(Instruments.SIZE_FLOAT, floatSize);
+    Assertions.assertEquals(Instruments.SIZE_FLOAT, floatSize);
   }
 
   /**
@@ -105,7 +105,7 @@ public class InstrumentsTests {
   public void testDouble() {
     double d = 0.0;
     long doubleSize = Instruments.sizeOf(Double.valueOf(d)) - Instruments.SIZE_OBJECT;
-    Assert.assertEquals(Instruments.SIZE_DOUBLE, doubleSize);
+    Assertions.assertEquals(Instruments.SIZE_DOUBLE, doubleSize);
   }
 
 }

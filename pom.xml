@@ -113,10 +113,10 @@
     </distributionManagement>
 
     <properties>
-        <maven.compiler.source>1.7</maven.compiler.source>
-        <maven.compiler.target>1.7</maven.compiler.target>
-        <maven.compiler.testSource>1.7</maven.compiler.testSource>
-        <maven.compiler.testTarget>1.7</maven.compiler.testTarget>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.testSource>1.8</maven.compiler.testSource>
+        <maven.compiler.testTarget>1.8</maven.compiler.testTarget>
 
         <checkstyle.configLocation>checkstyle.xml</checkstyle.configLocation>
         <copyright>2018</copyright>
@@ -131,6 +131,7 @@
 
         <!-- Dependency Versions -->
         <activation.version>1.2.0</activation.version>
+        <assertj.version>3.9.1</assertj.version>
         <beanutils.version>1.9.3</beanutils.version>
         <bonecp.version>0.8.0.RELEASE</bonecp.version>
         <c3p0.version>0.9.5.2</c3p0.version>
@@ -149,7 +150,7 @@
         <io.version>2.6</io.version>
         <j2objc.version>1.3</j2objc.version>
         <jackson.version>2.9.5</jackson.version>
-        <javabean-tester.version>1.4.5</javabean-tester.version>
+        <javabean-tester.version>2.0.0-beta3</javabean-tester.version>
         <jcommon.version>1.0.24</jcommon.version>
         <jfreechart.version>1.0.19</jfreechart.version> <!-- TODO: Upgrade to 1.5.0 -->
         <jhighlight.version>1.0.3</jhighlight.version>
@@ -228,6 +229,8 @@
         <ecj.version>4.6.1</ecj.version>
         <fb-contrib.version>7.2.1.sb</fb-contrib.version>
         <findsecbugs.version>1.7.1</findsecbugs.version>
+        <junit-engine.version>5.1.1</junit-engine.version>
+        <junit-platform.version>1.1.1</junit-platform.version>
         <plexus-compiler.version>2.8.4</plexus-compiler.version>
         <wagon-git.version>2.0.3</wagon-git.version> <!-- Do not use 2.0.4 as it does not work -->
 
@@ -256,13 +259,18 @@
 
             <!-- Unit Testing -->
             <dependency>
+                <groupId>org.assertj</groupId>
+                <artifactId>assertj-core</artifactId>
+                <version>${assertj.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>org.jmockit</groupId>
                 <artifactId>jmockit</artifactId>
                 <version>${jmockit.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.junit.vintage</groupId>
-                <artifactId>junit-vintage-engine</artifactId>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-engine</artifactId>
                 <version>${junit.version}</version>
             </dependency>
             <dependency>
@@ -644,13 +652,18 @@
 
         <!-- Unit Testing -->
         <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>org.jmockit</groupId>
             <artifactId>jmockit</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.junit.vintage</groupId>
-            <artifactId>junit-vintage-engine</artifactId>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -806,6 +819,18 @@
                         <!-- For java 9 and jmockit -->
                         <argLine>-Djdk.attach.allowAttachSelf</argLine>
                     </configuration>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.junit.platform</groupId>
+                            <artifactId>junit-platform-surefire-provider</artifactId>
+                            <version>${junit-platform.version}</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.junit.jupiter</groupId>
+                            <artifactId>junit-jupiter-engine</artifactId>
+                            <version>${junit-engine.version}</version>
+                        </dependency>
+                    </dependencies>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -1439,7 +1464,7 @@
             <build>
                 <pluginManagement>
                     <plugins>
-                        <!--This plugin's configuration is used to store Eclipse m2e settings only. It 
+                        <!-- This plugin's configuration is used to store Eclipse m2e settings only. It
                             has no influence on the Maven build itself. -->
                         <plugin>
                             <groupId>org.eclipse.m2e</groupId>
