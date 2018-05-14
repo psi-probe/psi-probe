@@ -67,6 +67,11 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>psi-probe-tomcat9</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <scope>provided</scope>
@@ -155,19 +160,6 @@
             <properties>
                 <probe.log.path>${jboss.server.log.dir}</probe.log.path>
             </properties>
-        </profile>
-        <profile>
-            <id>jdk8plus</id>
-            <activation>
-                <jdk>[1.8,9,10)</jdk>
-            </activation>
-            <dependencies>
-                <dependency>
-                    <groupId>${project.groupId}</groupId>
-                    <artifactId>psi-probe-tomcat9</artifactId>
-                    <version>${project.version}</version>
-                </dependency>
-            </dependencies>
         </profile>
     </profiles>
 </project>
