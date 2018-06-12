@@ -49,6 +49,7 @@ public class ContainerListenerBean implements NotificationListener {
   /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(ContainerListenerBean.class);
 
+  /** The allowed operation. */
   private Set<String> allowedOperation =
       new HashSet<>(Arrays.asList("start", "stop", "pause", "resume"));
 
