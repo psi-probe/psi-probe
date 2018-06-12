@@ -34,7 +34,7 @@ import org.springframework.web.servlet.ThemeResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
@@ -84,7 +84,7 @@ import psiprobe.tools.Mailer;
 @EnableWebMvc
 @Configuration
 @ComponentScan(basePackages = {"psiprobe"})
-public class ProbeConfig extends WebMvcConfigurerAdapter {
+public class ProbeConfig implements WebMvcConfigurer {
 
   /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(ProbeConfig.class);
