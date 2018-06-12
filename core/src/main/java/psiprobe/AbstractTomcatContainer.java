@@ -24,12 +24,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
 import javax.management.MBeanServer;
 import javax.management.MalformedObjectNameException;
 import javax.management.ObjectName;
 import javax.naming.NamingException;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
+
 import org.apache.catalina.Container;
 import org.apache.catalina.Context;
 import org.apache.catalina.Engine;
@@ -44,9 +46,13 @@ import org.apache.jasper.JspCompilationContext;
 import org.apache.jasper.Options;
 import org.apache.jasper.compiler.JspRuntimeContext;
 import org.apache.naming.ContextBindings;
+import org.apache.naming.factory.ResourceLinkFactory;
+import org.apache.tomcat.util.descriptor.web.ContextResourceLink;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.ClassUtils;
+
+import psiprobe.beans.ResourceResolverBean;
 import psiprobe.model.FilterMapping;
 import psiprobe.model.jsp.Item;
 import psiprobe.model.jsp.Summary;
@@ -465,6 +471,14 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
   @Override
   public void unbindFromContext(Context context) throws NamingException {
     changeContextBinding(context, false);
+  }
+
+  /**
+   * Register access to global resources
+   * @param resourceLink
+   */
+  protected void registerGlobalResourceAccess(ContextResourceLink resourceLink) {
+     ResourceLinkFactory.registerGlobalResourceAccess(ResourceResolverBean.getGlobalNamingContext(), resourceLink.getName(), resourceLink.getGlobal());
   }
 
   /**
