@@ -479,7 +479,8 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
    * @param resourceLink the resource link
    */
   protected void registerGlobalResourceAccess(ContextResourceLink resourceLink) {
-    ResourceLinkFactory.registerGlobalResourceAccess(ResourceResolverBean.getGlobalNamingContext(), resourceLink.getName(), resourceLink.getGlobal());
+    ResourceLinkFactory.registerGlobalResourceAccess(ResourceResolverBean.getGlobalNamingContext(),
+        resourceLink.getName(), resourceLink.getGlobal());
   }
 
   /**
