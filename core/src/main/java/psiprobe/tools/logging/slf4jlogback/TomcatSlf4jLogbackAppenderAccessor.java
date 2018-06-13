@@ -10,6 +10,9 @@
  */
 package psiprobe.tools.logging.slf4jlogback;
 
+import ch.qos.logback.core.OutputStreamAppender;
+import ch.qos.logback.core.encoder.Encoder;
+import ch.qos.logback.core.encoder.LayoutWrappingEncoder;
 import java.io.File;
 import psiprobe.tools.logging.AbstractLogDestination;
 
@@ -90,6 +93,22 @@ public class TomcatSlf4jLogbackAppenderAccessor extends AbstractLogDestination {
   public File getFile() {
     String fileName = (String) getProperty(getTarget(), "file", null);
     return fileName != null ? new File(fileName) : getStdoutFile();
+  }
+
+  @Override
+  public String getEncoding() {
+    if (getTarget() instanceof OutputStreamAppender) {
+      OutputStreamAppender<?> appender = (OutputStreamAppender<?>) getTarget();
+      Encoder<?> encoder = appender.getEncoder();
+      if (encoder instanceof LayoutWrappingEncoder) {
+        LayoutWrappingEncoder<?> base = (LayoutWrappingEncoder<?>) encoder;
+        if (base.getCharset() != null) {
+          return base.getCharset().name();
+        }
+        return null;
+      }
+    }
+    return null;
   }
 
   /**
