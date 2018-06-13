@@ -36,7 +36,7 @@
 			<c:when test="${requestScope['javax.servlet.error.exception'] != null}">
 				<%
 				Throwable error = (Throwable) request.getAttribute("javax.servlet.error.exception");
-				if (error instanceof NoClassDefFoundError && error.getMessage().startsWith("org/apache/catalina")) {
+				if (error instanceof NoClassDefFoundError && error != null && error.getMessage().startsWith("org/apache/catalina")) {
 
 					File conf = new File(System.getProperty("catalina.base"), "conf/Catalina/localhost");
 
