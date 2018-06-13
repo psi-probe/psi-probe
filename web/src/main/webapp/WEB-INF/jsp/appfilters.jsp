@@ -22,7 +22,7 @@
 
 	<head>
 		<title>
-			<spring:message code="probe.jsp.title.app.filters" arguments="${param.webapp}"/>
+			<spring:message htmlEscape="true" code="probe.jsp.title.app.filters" arguments="${param.webapp}"/>
 		</title>
 	</head>
 

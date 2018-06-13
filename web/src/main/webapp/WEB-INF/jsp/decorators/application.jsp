@@ -17,7 +17,7 @@
 
 <div class="verticalMenu">
 	<div>
-		<p><spring:message code="probe.jsp.app.nav.title" arguments="${param.webapp}"/></p>
+		<p><spring:message htmlEscape="true" code="probe.jsp.app.nav.title" arguments="${param.webapp}"/></p>
 	</div>
 	<ul>
 		<li>

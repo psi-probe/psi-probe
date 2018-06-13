@@ -20,7 +20,7 @@
 <html>
 	<head>
 		<title>
-			<spring:message code="probe.jsp.title.app.summary" arguments="${param.webapp}"/>
+			<spring:message htmlEscape="true" code="probe.jsp.title.app.summary" arguments="${param.webapp}"/>
 		</title>
 	</head>
 
@@ -44,7 +44,7 @@
 				<script type="text/javascript" src="<c:url value='/js/behaviour.js'/>"></script>
 
 				<c:set var="confirmMessage">
-					<spring:message code="probe.jsp.app.summary.undeploy.confirm" arguments="${param.webapp}"/>
+					<spring:message htmlEscape="true" code="probe.jsp.app.summary.undeploy.confirm" arguments="${param.webapp}"/>
 				</c:set>
 				<ul class="options">
 					<li id="appSurfTo">
