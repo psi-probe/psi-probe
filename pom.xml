@@ -1025,6 +1025,8 @@
                     <configuration>
                         <mergeFragment>false</mergeFragment>
                         <generatedClasses>${project.build.directory}/jspc</generatedClasses>
+                        <sourceVersion>${maven.compiler.source}</sourceVersion>
+                        <targetVersion>${maven.compiler.target}</targetVersion>
                     </configuration>
                     <executions>
                         <execution>
