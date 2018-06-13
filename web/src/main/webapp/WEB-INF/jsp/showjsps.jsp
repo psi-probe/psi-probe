@@ -18,7 +18,7 @@
 
 <html>
 	<head>
-		<title><spring:message code="probe.jsp.title.jsps" arguments="${param.webapp}"/></title>
+		<title><spring:message htmlEscape="true" code="probe.jsp.title.jsps" arguments="${param.webapp}"/></title>
 		<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>
 		<script type="text/javascript" src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
 	</head>

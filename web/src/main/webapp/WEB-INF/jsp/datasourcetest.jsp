@@ -18,7 +18,7 @@
 <html>
 
 	<head>
-		<title><spring:message code="probe.jsp.title.testDataSource" arguments="${param.webapp},${param.resource}"/></title>
+		<title><spring:message htmlEscape="true" code="probe.jsp.title.testDataSource" arguments="${param.webapp},${param.resource}"/></title>
 		<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='datasourcetest.css'/>"/>
 		<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='scroller.css'/>"/>
 		<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>

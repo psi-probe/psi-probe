@@ -17,7 +17,7 @@
 
 <html>
 	<head>
-		<title><spring:message code="probe.jsp.title.viewsource" arguments="${param.source}"/></title>
+		<title><spring:message htmlEscape="true" code="probe.jsp.title.viewsource" arguments="${param.source}"/></title>
 		<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='syntax.css'/>"/>
 		<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='scroller.css'/>"/>
 		<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>

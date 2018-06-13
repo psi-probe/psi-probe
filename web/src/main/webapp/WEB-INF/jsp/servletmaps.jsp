@@ -26,7 +26,7 @@
 					<spring:message code="probe.jsp.title.servletmaps.all"/>
 				</c:when>
 				<c:otherwise>
-					<spring:message code="probe.jsp.title.servletmaps.app" arguments="${param.webapp}"/>
+					<spring:message htmlEscape="true" code="probe.jsp.title.servletmaps.app" arguments="${param.webapp}"/>
 				</c:otherwise>
 			</c:choose>
 		</title>

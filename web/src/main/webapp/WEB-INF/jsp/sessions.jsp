@@ -27,7 +27,7 @@
 				<title><spring:message code="probe.jsp.title.sessions.all"/></title>
 			</c:when>
 			<c:otherwise>
-				<title><spring:message code="probe.jsp.title.sessions" arguments="${param.webapp}"/></title>
+				<title><spring:message htmlEscape="true" code="probe.jsp.title.sessions" arguments="${param.webapp}"/></title>
 			</c:otherwise>
 		</c:choose>
 		<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>
