@@ -19,8 +19,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Prevents a classloader leak as suggested by
- * <a href="https://cdivilly.wordpress.com/2012/04/23/permgen-memory-leak/">Colm Divilly</a>
+ * Prevents a classloader leak.
+ * 
+ * As suggested by: <a href="https://cdivilly.wordpress.com/2012/04/23/permgen-memory-leak/">Colm
+ * Divilly</a>
  */
 @WebListener
 public class AwtAppContextClassloaderListener implements ServletContextListener {

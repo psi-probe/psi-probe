@@ -39,7 +39,8 @@ public class WhoisTests {
     byte[] bytes = new byte[] {(byte) a, (byte) b, (byte) c, (byte) d};
 
     Response response = Whois.lookup("whois.arin.net", 43, "n " + dotted, 5);
-    Assertions.assertEquals("SPECIAL-IPV4-LOOPBACK-IANA-RESERVED", response.getData().get("NetName"));
+    Assertions.assertEquals("SPECIAL-IPV4-LOOPBACK-IANA-RESERVED",
+        response.getData().get("NetName"));
     Assertions.assertEquals("127.0.0.1", InetAddress.getByName(dotted).getHostName());
     Assertions.assertEquals("127.0.0.1", InetAddress.getByAddress(bytes).getHostName());
   }

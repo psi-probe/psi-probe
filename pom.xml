@@ -694,7 +694,7 @@
         <defaultGoal>package</defaultGoal>
         <pluginManagement>
             <plugins>
-                <!-- Coverall Maven Plugins to ensure we are on latest per maven defaults -->
+                <!-- Cover all Maven Plugins to ensure we are on latest per maven defaults -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-antrun-plugin</artifactId>
