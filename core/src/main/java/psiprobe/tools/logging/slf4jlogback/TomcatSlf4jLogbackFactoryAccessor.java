@@ -44,10 +44,10 @@ public class TomcatSlf4jLogbackFactoryAccessor extends DefaultAccessor {
 
     // Get the singleton SLF4J binding, which may or may not be Logback, depending on the binding.
     Class<?> clazz = cl.loadClass("org.apache.juli.logging.org.slf4j.impl.StaticLoggerBinder");
-    Method getSingleton = MethodUtils.getAccessibleMethod(clazz, "getSingleton", new Class[0]);
+    Method getSingleton = MethodUtils.getAccessibleMethod(clazz, "getSingleton");
     Object singleton = getSingleton.invoke(null);
     Method getLoggerFactory =
-        MethodUtils.getAccessibleMethod(clazz, "getLoggerFactory", new Class[0]);
+        MethodUtils.getAccessibleMethod(clazz, "getLoggerFactory");
 
     Object loggerFactory = getLoggerFactory.invoke(singleton);
 
@@ -83,7 +83,7 @@ public class TomcatSlf4jLogbackFactoryAccessor extends DefaultAccessor {
     try {
       Class<? extends Object> clazz = getTarget().getClass();
       Method getLogger =
-          MethodUtils.getAccessibleMethod(clazz, "getLogger", new Class[] {String.class});
+          MethodUtils.getAccessibleMethod(clazz, "getLogger", String.class);
 
       Object logger = getLogger.invoke(getTarget(), name);
       if (logger == null) {
@@ -111,7 +111,7 @@ public class TomcatSlf4jLogbackFactoryAccessor extends DefaultAccessor {
     List<TomcatSlf4jLogbackAppenderAccessor> appenders = new ArrayList<>();
     try {
       Class<? extends Object> clazz = getTarget().getClass();
-      Method getLoggerList = MethodUtils.getAccessibleMethod(clazz, "getLoggerList", new Class[0]);
+      Method getLoggerList = MethodUtils.getAccessibleMethod(clazz, "getLoggerList");
 
       List<Object> loggers = (List<Object>) getLoggerList.invoke(getTarget());
       for (Object logger : loggers) {
