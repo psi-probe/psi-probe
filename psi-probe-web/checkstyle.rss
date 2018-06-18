@@ -23,9 +23,9 @@ under the License.
     <link>https://github.com/psi-probe/psi-probe/</link>
     <description>psi-probe-web - Checkstyle report</description>
     <language>en-us</language>
-    <copyright>&#169;2009 - 2017 psi-probe</copyright>
+    <copyright>&#169;2009 - 2018 psi-probe</copyright>
     <item>
-      <title>File: 2,
+      <title>File: 3,
              Errors: 0,
              Warnings: 0,
              Infos: 0
@@ -44,6 +44,20 @@ under the License.
             </tr>
           </thead>
           <tbody>
+                          <tr>
+                <td>
+                  <a href="https://github.com/psi-probe/psi-probe//checkstyle.html#stdout.properties">stdout.properties</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
                           <tr>
                 <td>
                   <a href="https://github.com/psi-probe/psi-probe//checkstyle.html#displaytag.properties">displaytag.properties</a>
