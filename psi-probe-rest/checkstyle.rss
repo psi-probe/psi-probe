@@ -23,11 +23,11 @@ under the License.
     <link>https://github.com/psi-probe/psi-probe/psi-probe-rest/</link>
     <description>psi-probe-rest - Checkstyle report</description>
     <language>en-us</language>
-    <copyright>&#169;2009 - 2017 psi-probe</copyright>
+    <copyright>&#169;2009 - 2018 psi-probe</copyright>
     <item>
       <title>File: 2,
              Errors: 0,
-             Warnings: 1,
+             Warnings: 0,
              Infos: 0
       </title>
             <link>https://github.com/psi-probe/psi-probe/psi-probe-rest//checkstyle.html</link>
@@ -66,7 +66,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   0
