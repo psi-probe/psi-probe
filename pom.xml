@@ -191,7 +191,7 @@
         <clean.plugin>3.1.0</clean.plugin>
         <compiler.plugin>3.7.0</compiler.plugin>
         <coveralls.plugin>4.3.0</coveralls.plugin>
-        <dependency.plugin>3.1.0</dependency.plugin>
+        <dependency.plugin>3.1.1</dependency.plugin>
         <dependency-check.plugin>3.2.1</dependency-check.plugin>
         <deploy.plugin>2.8.2</deploy.plugin>
         <formatter.plugin>2.7.3</formatter.plugin>
