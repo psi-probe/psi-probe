@@ -222,7 +222,7 @@
         <war.plugin>3.2.2</war.plugin>
 
         <!-- Plugin Dependency Versions -->
-        <build-tools.version>1.1.7</build-tools.version>
+        <build-tools.version>1.1.8</build-tools.version>
         <bugpattern.version>1.4.0</bugpattern.version>
         <checkstyle.version>8.10.1</checkstyle.version>
         <doxia.version>1.8</doxia.version>
