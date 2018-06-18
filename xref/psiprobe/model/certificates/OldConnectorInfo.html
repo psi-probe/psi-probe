@@ -54,25 +54,25 @@
 <a class="jxr_linenumber" name="L46" href="#L46">46</a>    <strong class="jxr_keyword">private</strong> String truststoreType;
 <a class="jxr_linenumber" name="L47" href="#L47">47</a>  
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>    <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L49" href="#L49">49</a>  <em class="jxr_javadoccomment">   * Recent version of tomcat have changed how certificate setup works. As such this</em>
-<a class="jxr_linenumber" name="L50" href="#L50">50</a>  <em class="jxr_javadoccomment">   * class supports the Old Connecter Info configuration.</em>
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>  <em class="jxr_javadoccomment">   * Recent version of tomcat have changed how certificate setup works. As such this class supports</em>
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>  <em class="jxr_javadoccomment">   * the Old Connecter Info configuration.</em>
 <a class="jxr_linenumber" name="L51" href="#L51">51</a>  <em class="jxr_javadoccomment">   */</em>
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>    <strong class="jxr_keyword">public</strong> <a href="../../../psiprobe/model/certificates/OldConnectorInfo.html">OldConnectorInfo</a>() {
-<a class="jxr_linenumber" name="L53" href="#L53">53</a>      <a href="../../../psiprobe/model/certificates/SSLHostConfigInfo.html">SSLHostConfigInfo</a> configInfo = <strong class="jxr_keyword">new</strong> <a href="../../../psiprobe/model/certificates/SSLHostConfigInfo.html">SSLHostConfigInfo</a>();
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>      <a href="../../../psiprobe/model/certificates/SslHostConfigInfo.html">SslHostConfigInfo</a> configInfo = <strong class="jxr_keyword">new</strong> <a href="../../../psiprobe/model/certificates/SslHostConfigInfo.html">SslHostConfigInfo</a>();
 <a class="jxr_linenumber" name="L54" href="#L54">54</a>      List&lt;CertificateInfo&gt; certificateInfos = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;(1);
 <a class="jxr_linenumber" name="L55" href="#L55">55</a>      certificateInfos.add(<strong class="jxr_keyword">new</strong> <a href="../../../psiprobe/model/certificates/CertificateInfo.html">CertificateInfo</a>());
 <a class="jxr_linenumber" name="L56" href="#L56">56</a>      configInfo.setCertificateInfos(certificateInfos);
-<a class="jxr_linenumber" name="L57" href="#L57">57</a>      List&lt;SSLHostConfigInfo&gt; sslHostConfigInfos = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;(1);
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>      List&lt;SslHostConfigInfo&gt; sslHostConfigInfos = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;(1);
 <a class="jxr_linenumber" name="L58" href="#L58">58</a>      sslHostConfigInfos.add(configInfo);
 <a class="jxr_linenumber" name="L59" href="#L59">59</a>      setSslHostConfigInfos(sslHostConfigInfos);
 <a class="jxr_linenumber" name="L60" href="#L60">60</a>    }
 <a class="jxr_linenumber" name="L61" href="#L61">61</a>  
-<a class="jxr_linenumber" name="L62" href="#L62">62</a>    <strong class="jxr_keyword">private</strong> <a href="../../../psiprobe/model/certificates/SSLHostConfigInfo.html">SSLHostConfigInfo</a> getInternalSSLHostConfigInfo() {
+<a class="jxr_linenumber" name="L62" href="#L62">62</a>    <strong class="jxr_keyword">private</strong> <a href="../../../psiprobe/model/certificates/SslHostConfigInfo.html">SslHostConfigInfo</a> getInternalSslHostConfigInfo() {
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>      <strong class="jxr_keyword">return</strong> getSslHostConfigInfos().get(0);
 <a class="jxr_linenumber" name="L64" href="#L64">64</a>    }
 <a class="jxr_linenumber" name="L65" href="#L65">65</a>  
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>    <strong class="jxr_keyword">private</strong> <a href="../../../psiprobe/model/certificates/CertificateInfo.html">CertificateInfo</a> getInternalCertificateInfo() {
-<a class="jxr_linenumber" name="L67" href="#L67">67</a>      <strong class="jxr_keyword">return</strong> getInternalSSLHostConfigInfo().getCertificateInfos().get(0);
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>      <strong class="jxr_keyword">return</strong> getInternalSslHostConfigInfo().getCertificateInfos().get(0);
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>    }
 <a class="jxr_linenumber" name="L69" href="#L69">69</a>  
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>    <em class="jxr_javadoccomment">/**</em>
@@ -167,7 +167,7 @@
 <a class="jxr_linenumber" name="L159" href="#L159">159</a> <em class="jxr_javadoccomment">   */</em>
 <a class="jxr_linenumber" name="L160" href="#L160">160</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setTruststoreFile(String truststoreFile) {
 <a class="jxr_linenumber" name="L161" href="#L161">161</a>     <strong class="jxr_keyword">this</strong>.truststoreFile = truststoreFile;
-<a class="jxr_linenumber" name="L162" href="#L162">162</a>     getInternalSSLHostConfigInfo().setTruststoreFile(truststoreFile);
+<a class="jxr_linenumber" name="L162" href="#L162">162</a>     getInternalSslHostConfigInfo().setTruststoreFile(truststoreFile);
 <a class="jxr_linenumber" name="L163" href="#L163">163</a>   }
 <a class="jxr_linenumber" name="L164" href="#L164">164</a> 
 <a class="jxr_linenumber" name="L165" href="#L165">165</a>   <em class="jxr_javadoccomment">/**</em>
@@ -186,7 +186,7 @@
 <a class="jxr_linenumber" name="L178" href="#L178">178</a> <em class="jxr_javadoccomment">   */</em>
 <a class="jxr_linenumber" name="L179" href="#L179">179</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setTruststorePass(String truststorePass) {
 <a class="jxr_linenumber" name="L180" href="#L180">180</a>     <strong class="jxr_keyword">this</strong>.truststorePass = truststorePass;
-<a class="jxr_linenumber" name="L181" href="#L181">181</a>     getInternalSSLHostConfigInfo().setTruststorePassword(truststorePass);
+<a class="jxr_linenumber" name="L181" href="#L181">181</a>     getInternalSslHostConfigInfo().setTruststorePassword(truststorePass);
 <a class="jxr_linenumber" name="L182" href="#L182">182</a>   }
 <a class="jxr_linenumber" name="L183" href="#L183">183</a> 
 <a class="jxr_linenumber" name="L184" href="#L184">184</a>   <em class="jxr_javadoccomment">/**</em>
@@ -205,7 +205,7 @@
 <a class="jxr_linenumber" name="L197" href="#L197">197</a> <em class="jxr_javadoccomment">   */</em>
 <a class="jxr_linenumber" name="L198" href="#L198">198</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setTruststoreProvider(String truststoreProvider) {
 <a class="jxr_linenumber" name="L199" href="#L199">199</a>     <strong class="jxr_keyword">this</strong>.truststoreProvider = truststoreProvider;
-<a class="jxr_linenumber" name="L200" href="#L200">200</a>     getInternalSSLHostConfigInfo().setTruststoreProvider(truststoreProvider);
+<a class="jxr_linenumber" name="L200" href="#L200">200</a>     getInternalSslHostConfigInfo().setTruststoreProvider(truststoreProvider);
 <a class="jxr_linenumber" name="L201" href="#L201">201</a>   }
 <a class="jxr_linenumber" name="L202" href="#L202">202</a> 
 <a class="jxr_linenumber" name="L203" href="#L203">203</a>   <em class="jxr_javadoccomment">/**</em>
@@ -224,12 +224,12 @@
 <a class="jxr_linenumber" name="L216" href="#L216">216</a> <em class="jxr_javadoccomment">   */</em>
 <a class="jxr_linenumber" name="L217" href="#L217">217</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setTruststoreType(String truststoreType) {
 <a class="jxr_linenumber" name="L218" href="#L218">218</a>     <strong class="jxr_keyword">this</strong>.truststoreType = truststoreType;
-<a class="jxr_linenumber" name="L219" href="#L219">219</a>     getInternalSSLHostConfigInfo().setTruststoreType(truststoreType);
+<a class="jxr_linenumber" name="L219" href="#L219">219</a>     getInternalSslHostConfigInfo().setTruststoreType(truststoreType);
 <a class="jxr_linenumber" name="L220" href="#L220">220</a>   }
 <a class="jxr_linenumber" name="L221" href="#L221">221</a> 
 <a class="jxr_linenumber" name="L222" href="#L222">222</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2009&#x2013;2017 <a href="https://github.com/psi-probe/">psi-probe</a>. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2009&#x2013;2018 <a href="https://github.com/psi-probe/">psi-probe</a>. All rights reserved.</div>
 </body>
 </html>
