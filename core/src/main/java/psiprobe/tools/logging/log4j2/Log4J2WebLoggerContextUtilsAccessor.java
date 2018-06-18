@@ -34,13 +34,7 @@ public class Log4J2WebLoggerContextUtilsAccessor extends DefaultAccessor {
    */
   public Log4J2WebLoggerContextUtilsAccessor(ClassLoader cl) throws ClassNotFoundException {
     logger.debug("Log4J2WebLoggerContextUtilsAccessor(): IN: cl={}", cl);
-    Class<?> clazz = null;
-    try {
-      clazz = cl.loadClass("org.apache.logging.log4j.web.WebLoggerContextUtils");
-    } catch (Exception e) {
-      logger.error("exception loading class org.apache.logging.log4j.web.WebLoggerContextUtils", e);
-      throw e;
-    }
+    Class<?> clazz = cl.loadClass("org.apache.logging.log4j.web.WebLoggerContextUtils");
     setTarget(clazz);
     logger.debug("Log4J2WebLoggerContextUtilsAccessor(): OUT: this={}", this);
   }
