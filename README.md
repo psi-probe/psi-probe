@@ -20,9 +20,21 @@
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for info on working on PSI Probe and sending patches.
 
-## Latest Snapshot ##
+## Latest Release via Github Releases ##
 
-Please download latest snapshots from [here](https://oss.sonatype.org/content/repositories/snapshots/com/github/psi-probe/)
+Please download latest probe.war from [here](https://github.com/psi-probe/psi-probe/releases/tag/3.1.0)
+
+## Latest Release via Maven Central ##
+
+Please download latest psi-probe.war release from [here](https://oss.sonatype.org/content/repositories/releases/com/github/psi-probe/)
+
+You can rename 'psi-probe.war' to the traditional 'probe.war' or other name as you see fit.
+
+## Latest Snapshot via Maven Central ##
+
+Please download latest psi-probe.war snapshots from [here](https://oss.sonatype.org/content/repositories/snapshots/com/github/psi-probe/)
+
+You can rename 'psi-probe.war' to the traditional 'probe.war' or other name as you see fit.
 
 ## Building from Source ##
 
