@@ -10,7 +10,6 @@
  */
 package psiprobe;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -231,11 +230,11 @@ public class ProbeConfig implements WebMvcConfigurer {
     logger.debug("Instantiated stdoutFiles");
     List<String> list = new ArrayList<>();
     try {
-        for (Entry<Object, Object> entry : stdout().getObject().entrySet()) {
-            list.add((String) entry.getValue());
-        }
+      for (Entry<Object, Object> entry : stdout().getObject().entrySet()) {
+        list.add((String) entry.getValue());
+      }
     } catch (Exception e) {
-        logger.error("", e);
+      logger.error("", e);
     }
     return list;
   }
