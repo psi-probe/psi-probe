@@ -76,7 +76,7 @@ public class Log4J2AppenderAccessor extends AbstractLogDestination {
 
   @Override
   public File getFile() {
-    String fileName = (String) invokeMethod(getTarget(), "getFileName", null, null);
+    String fileName = (String) getProperty(getTarget(), "fileName", null);
     if (fileName != null) {
       return new File(fileName);
     } else {
