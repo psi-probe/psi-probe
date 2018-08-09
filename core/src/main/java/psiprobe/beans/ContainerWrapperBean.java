@@ -19,7 +19,13 @@ import org.apache.catalina.Wrapper;
 import org.apache.catalina.util.ServerInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
+
 import psiprobe.TomcatContainer;
 import psiprobe.model.ApplicationResource;
 
@@ -29,6 +35,10 @@ import psiprobe.model.ApplicationResource;
  * request. ContainerWrapperBean wires the passed wrapper to the relevant Tomcat container adapter
  * class, which in turn helps the Probe to interpret the wrapper.
  */
+
+@Configuration
+@ComponentScan(basePackages = {"psiprobe"})
+@PropertySource(value="classpath:tomcatVersion.properties" , ignoreResourceNotFound=true)
 public class ContainerWrapperBean {
 
   /** The Constant logger. */
@@ -53,7 +63,10 @@ public class ContainerWrapperBean {
   /** The resource resolvers. */
   @Inject
   private Map<String, ResourceResolver> resourceResolvers;
-
+  
+  @Autowired
+  private Environment env;
+  
   /**
    * Checks if is force first adapter.
    *
@@ -87,29 +100,51 @@ public class ContainerWrapperBean {
       synchronized (lock) {
 
         if (tomcatContainer == null) {
-
-          String serverInfo = ServerInfo.getServerInfo();
-          logger.info("Server info: {}", serverInfo);
-          for (String className : adapterClasses) {
-            try {
-              Object obj = Class.forName(className).newInstance();
-              logger.debug("Testing container adapter: {}", className);
-              if (obj instanceof TomcatContainer) {
-                if (forceFirstAdapter || ((TomcatContainer) obj).canBoundTo(serverInfo)) {
-                  logger.info("Using {}", className);
-                  tomcatContainer = (TomcatContainer) obj;
-                  tomcatContainer.setWrapper(wrapper);
-                  break;
-                }
-                logger.debug("Cannot bind {} to {}", className, serverInfo);
-              } else {
-                logger.error("{} does not implement {}", className,
-                    TomcatContainer.class.getName());
-              }
-            } catch (Exception e) {
-              logger.debug("", e);
-              logger.info("Failed to load {}", className);
-            }
+        	
+        	// Test if manual tomcat version has been set, if so use this.
+        	String manualTomcatVersion = env.getProperty("tomcat.version");
+        	logger.info("Specified manual Tomcat version: {}", manualTomcatVersion);
+          if (!manualTomcatVersion.isEmpty()) {
+        	  logger.info("Using manual Tomcat version: {}", manualTomcatVersion);
+        	  try {
+	              Object obj = Class.forName(manualTomcatVersion).newInstance();
+	              logger.debug("Testing container adapter: {}", manualTomcatVersion);
+	              if (obj instanceof TomcatContainer) {
+	                  logger.info("Using {}", manualTomcatVersion);
+	                  tomcatContainer = (TomcatContainer) obj;
+	                  tomcatContainer.setWrapper(wrapper);
+	              } else {
+	                logger.error("{} is not an instance {}", manualTomcatVersion,
+	                    TomcatContainer.class.getName());
+	              }
+	            } catch (Exception e) {
+	              logger.debug("", e);
+	              logger.info("Failed to load manual version {}", manualTomcatVersion);
+	            }
+          } else {
+	          String serverInfo = ServerInfo.getServerInfo();
+	          logger.info("Server info: {}", serverInfo);
+	          for (String className : adapterClasses) {
+	            try {
+	              Object obj = Class.forName(className).newInstance();
+	              logger.debug("Testing container adapter: {}", className);
+	              if (obj instanceof TomcatContainer) {
+	                if (forceFirstAdapter || ((TomcatContainer) obj).canBoundTo(serverInfo)) {
+	                  logger.info("Using {}", className);
+	                  tomcatContainer = (TomcatContainer) obj;
+	                  tomcatContainer.setWrapper(wrapper);
+	                  break;
+	                }
+	                logger.debug("Cannot bind {} to {}", className, serverInfo);
+	              } else {
+	                logger.error("{} does not implement {}", className,
+	                    TomcatContainer.class.getName());
+	              }
+	            } catch (Exception e) {
+	              logger.debug("", e);
+	              logger.info("Failed to load {}", className);
+	            }
+	          }
           }
 
           if (tomcatContainer == null) {
