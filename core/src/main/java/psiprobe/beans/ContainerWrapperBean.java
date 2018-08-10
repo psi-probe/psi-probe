@@ -30,15 +30,16 @@ import psiprobe.TomcatContainer;
 import psiprobe.model.ApplicationResource;
 
 /**
- * This class wires support for Tomcat "privileged" context functionality into Spring. If
- * application context is privileged Tomcat would always call servlet.setWrapper method on each
- * request. ContainerWrapperBean wires the passed wrapper to the relevant Tomcat container adapter
- * class, which in turn helps the Probe to interpret the wrapper.
+ * This class wires support for Tomcat "privileged" context functionality into
+ * Spring. If application context is privileged Tomcat would always call
+ * servlet.setWrapper method on each request. ContainerWrapperBean wires the
+ * passed wrapper to the relevant Tomcat container adapter class, which in turn
+ * helps the Probe to interpret the wrapper.
  */
 
 @Configuration
-@ComponentScan(basePackages = {"psiprobe"})
-@PropertySource(value="classpath:tomcatVersion.properties" , ignoreResourceNotFound=true)
+@ComponentScan(basePackages = { "psiprobe" })
+@PropertySource(value = "classpath:tomcatVersion.properties", ignoreResourceNotFound = true)
 public class ContainerWrapperBean {
 
   /** The Constant logger. */
@@ -50,7 +51,10 @@ public class ContainerWrapperBean {
   /** The lock. */
   private final Object lock = new Object();
 
-  /** List of class names to adapt particular Tomcat implementation to TomcatContainer interface. */
+  /**
+   * List of class names to adapt particular Tomcat implementation to
+   * TomcatContainer interface.
+   */
   @Inject
   private List<String> adapterClasses;
 
@@ -63,10 +67,10 @@ public class ContainerWrapperBean {
   /** The resource resolvers. */
   @Inject
   private Map<String, ResourceResolver> resourceResolvers;
-  
+
   @Autowired
   private Environment env;
-  
+
   /**
    * Checks if is force first adapter.
    *
@@ -77,11 +81,12 @@ public class ContainerWrapperBean {
   }
 
   /**
-   * Sets the force first adapter. Setting this property to true will override the server polling
-   * each adapter performs to test for compatibility. Instead, it will use the first one in the
-   * adapterClasses list.
+   * Sets the force first adapter. Setting this property to true will override the
+   * server polling each adapter performs to test for compatibility. Instead, it
+   * will use the first one in the adapterClasses list.
    *
-   * @param forceFirstAdapter the new force first adapter
+   * @param forceFirstAdapter
+   *          the new force first adapter
    */
   // TODO We should make this configurable
   @Value("false")
@@ -92,7 +97,8 @@ public class ContainerWrapperBean {
   /**
    * Sets the wrapper.
    *
-   * @param wrapper the new wrapper
+   * @param wrapper
+   *          the new wrapper
    */
   public void setWrapper(Wrapper wrapper) {
     if (tomcatContainer == null) {
@@ -100,51 +106,49 @@ public class ContainerWrapperBean {
       synchronized (lock) {
 
         if (tomcatContainer == null) {
-        	
-        	// Test if manual tomcat version has been set, if so use this.
-        	String manualTomcatVersion = env.getProperty("tomcat.version");
-        	logger.info("Specified manual Tomcat version: {}", manualTomcatVersion);
+
+          // Test if manual tomcat version has been set, if so use this.
+          String manualTomcatVersion = env.getProperty("tomcat.version");
+          logger.info("Specified manual Tomcat version: {}", manualTomcatVersion);
           if (!manualTomcatVersion.isEmpty()) {
-        	  logger.info("Using manual Tomcat version: {}", manualTomcatVersion);
-        	  try {
-	              Object obj = Class.forName(manualTomcatVersion).newInstance();
-	              logger.debug("Testing container adapter: {}", manualTomcatVersion);
-	              if (obj instanceof TomcatContainer) {
-	                  logger.info("Using {}", manualTomcatVersion);
-	                  tomcatContainer = (TomcatContainer) obj;
-	                  tomcatContainer.setWrapper(wrapper);
-	              } else {
-	                logger.error("{} is not an instance {}", manualTomcatVersion,
-	                    TomcatContainer.class.getName());
-	              }
-	            } catch (Exception e) {
-	              logger.debug("", e);
-	              logger.info("Failed to load manual version {}", manualTomcatVersion);
-	            }
+            logger.info("Using manual Tomcat version: {}", manualTomcatVersion);
+            try {
+              Object obj = Class.forName(manualTomcatVersion).newInstance();
+              logger.debug("Testing container adapter: {}", manualTomcatVersion);
+              if (obj instanceof TomcatContainer) {
+                logger.info("Using {}", manualTomcatVersion);
+                tomcatContainer = (TomcatContainer) obj;
+                tomcatContainer.setWrapper(wrapper);
+              } else {
+                logger.error("{} is not an instance {}", manualTomcatVersion, TomcatContainer.class.getName());
+              }
+            } catch (Exception e) {
+              logger.debug("", e);
+              logger.info("Failed to load manual version {}", manualTomcatVersion);
+            }
           } else {
-	          String serverInfo = ServerInfo.getServerInfo();
-	          logger.info("Server info: {}", serverInfo);
-	          for (String className : adapterClasses) {
-	            try {
-	              Object obj = Class.forName(className).newInstance();
-	              logger.debug("Testing container adapter: {}", className);
-	              if (obj instanceof TomcatContainer) {
-	                if (forceFirstAdapter || ((TomcatContainer) obj).canBoundTo(serverInfo)) {
-	                  logger.info("Using {}", className);
-	                  tomcatContainer = (TomcatContainer) obj;
-	                  tomcatContainer.setWrapper(wrapper);
-	                  break;
-	                }
-	                logger.debug("Cannot bind {} to {}", className, serverInfo);
-	              } else {
-	                logger.error("{} does not implement {}", className,
-	                    TomcatContainer.class.getName());
-	              }
-	            } catch (Exception e) {
-	              logger.debug("", e);
-	              logger.info("Failed to load {}", className);
-	            }
-	          }
+            String serverInfo = ServerInfo.getServerInfo();
+            logger.info("Server info: {}", serverInfo);
+            for (String className : adapterClasses) {
+              try {
+                Object obj = Class.forName(className).newInstance();
+                logger.debug("Testing container adapter: {}", className);
+                if (obj instanceof TomcatContainer) {
+                  if (forceFirstAdapter || ((TomcatContainer) obj).canBoundTo(serverInfo)) {
+                    logger.info("Using {}", className);
+                    tomcatContainer = (TomcatContainer) obj;
+                    tomcatContainer.setWrapper(wrapper);
+                    break;
+                  }
+                  logger.debug("Cannot bind {} to {}", className, serverInfo);
+                } else {
+                  logger.error("{} does not implement {}", className, TomcatContainer.class.getName());
+                }
+              } catch (Exception e) {
+                logger.debug("", e);
+                logger.info("Failed to load {}", className);
+              }
+            }
           }
 
           if (tomcatContainer == null) {
@@ -185,7 +189,8 @@ public class ContainerWrapperBean {
   /**
    * Sets the adapter classes.
    *
-   * @param adapterClasses the new adapter classes
+   * @param adapterClasses
+   *          the new adapter classes
    */
   public void setAdapterClasses(List<String> adapterClasses) {
     this.adapterClasses = adapterClasses;
@@ -221,7 +226,8 @@ public class ContainerWrapperBean {
   /**
    * Sets the resource resolvers.
    *
-   * @param resourceResolvers the resource resolvers
+   * @param resourceResolvers
+   *          the resource resolvers
    */
   public void setResourceResolvers(Map<String, ResourceResolver> resourceResolvers) {
     this.resourceResolvers = resourceResolvers;
@@ -231,7 +237,8 @@ public class ContainerWrapperBean {
    * Gets the data sources.
    *
    * @return the data sources
-   * @throws Exception the exception
+   * @throws Exception
+   *           the exception
    */
   public List<ApplicationResource> getDataSources() throws Exception {
     List<ApplicationResource> resources = new ArrayList<>();
@@ -244,14 +251,14 @@ public class ContainerWrapperBean {
    * Gets the private data sources.
    *
    * @return the private data sources
-   * @throws Exception the exception
+   * @throws Exception
+   *           the exception
    */
   public List<ApplicationResource> getPrivateDataSources() throws Exception {
     List<ApplicationResource> resources = new ArrayList<>();
     if (tomcatContainer != null && getResourceResolver().supportsPrivateResources()) {
       for (Context app : getTomcatContainer().findContexts()) {
-        List<ApplicationResource> appResources =
-            getResourceResolver().getApplicationResources(app, this);
+        List<ApplicationResource> appResources = getResourceResolver().getApplicationResources(app, this);
         // add only those resources that have data source info
         filterDataSources(appResources, resources);
       }
@@ -263,7 +270,8 @@ public class ContainerWrapperBean {
    * Gets the global data sources.
    *
    * @return the global data sources
-   * @throws Exception the exception
+   * @throws Exception
+   *           the exception
    */
   public List<ApplicationResource> getGlobalDataSources() throws Exception {
     List<ApplicationResource> resources = new ArrayList<>();
@@ -278,11 +286,12 @@ public class ContainerWrapperBean {
   /**
    * Filter data sources.
    *
-   * @param resources the resources
-   * @param dataSources the data sources
+   * @param resources
+   *          the resources
+   * @param dataSources
+   *          the data sources
    */
-  protected void filterDataSources(List<ApplicationResource> resources,
-      List<ApplicationResource> dataSources) {
+  protected void filterDataSources(List<ApplicationResource> resources, List<ApplicationResource> dataSources) {
 
     for (ApplicationResource res : resources) {
       if (res.getDataSourceInfo() != null) {
