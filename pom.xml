@@ -166,7 +166,7 @@
         <mail.version>1.6.1</mail.version>
         <oshi.version>3.6.0</oshi.version>
         <openejb.version>4.7.5</openejb.version>
-        <persistence.version>2.2.0</persistence.version>
+        <persistence.version>2.2.1</persistence.version>
         <probe-ojdbc.version>3.1.0</probe-ojdbc.version>
         <quartz.version>2.3.0</quartz.version>
         <servlet-api.version>4.0.1</servlet-api.version>
