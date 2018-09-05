@@ -159,12 +159,12 @@
         <jna.version>4.5.2</jna.version>
         <jsp-api.version>2.3.3</jsp-api.version>
         <jsr305.version>3.0.2</jsr305.version>
-        <junit.version>5.3.0-M1</junit.version>
         <lang3.version>3.7</lang3.version>
         <mail.version>1.6.1</mail.version>
         <oshi.version>3.6.0</oshi.version>
         <jstl-api.version>1.2.2</jstl-api.version>
         <jstl.version>1.2.5</jstl.version>
+        <junit.version>5.3.0</junit.version>
         <openejb.version>4.7.5</openejb.version>
         <persistence.version>2.2.1</persistence.version>
         <probe-ojdbc.version>3.1.0</probe-ojdbc.version>
@@ -229,8 +229,8 @@
         <ecj.version>3.13.102</ecj.version>
         <fb-contrib.version>7.4.2.sb</fb-contrib.version>
         <findsecbugs.version>1.7.1</findsecbugs.version>
-        <junit-engine.version>5.3.0-M1</junit-engine.version>
         <junit-platform.version>1.3.0-M1</junit-platform.version>
+        <junit-engine.version>5.3.0</junit-engine.version>
         <plexus-compiler.version>2.8.4</plexus-compiler.version>
         <wagon-git.version>2.0.3</wagon-git.version> <!-- Do not use 2.0.4 as it does not work -->
 
