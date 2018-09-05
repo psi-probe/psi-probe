@@ -226,10 +226,10 @@
         <bugpattern.version>1.4.0</bugpattern.version>
         <checkstyle.version>8.12</checkstyle.version>
         <doxia.version>1.8</doxia.version>
-        <findsecbugs.version>1.7.1</findsecbugs.version>
         <junit-platform.version>1.3.0-M1</junit-platform.version>
         <ecj.version>3.14.0</ecj.version>
         <fb-contrib.version>7.4.3.sb</fb-contrib.version>
+        <findsecbugs.version>1.8.0</findsecbugs.version>
         <junit-engine.version>5.3.0</junit-engine.version>
         <plexus-compiler.version>2.8.4</plexus-compiler.version>
         <wagon-git.version>2.0.3</wagon-git.version> <!-- Do not use 2.0.4 as it does not work -->
