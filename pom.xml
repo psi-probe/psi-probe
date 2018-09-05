@@ -159,12 +159,12 @@
         <jna.version>4.5.2</jna.version>
         <jsp-api.version>2.3.3</jsp-api.version>
         <jsr305.version>3.0.2</jsr305.version>
-        <jstl.version>1.2.5-b03</jstl.version>
         <junit.version>5.3.0-M1</junit.version>
         <lang3.version>3.7</lang3.version>
         <mail.version>1.6.1</mail.version>
         <oshi.version>3.6.0</oshi.version>
         <jstl-api.version>1.2.2</jstl-api.version>
+        <jstl.version>1.2.5</jstl.version>
         <openejb.version>4.7.5</openejb.version>
         <persistence.version>2.2.1</persistence.version>
         <probe-ojdbc.version>3.1.0</probe-ojdbc.version>
