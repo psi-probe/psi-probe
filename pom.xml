@@ -234,7 +234,7 @@
         <findsecbugs.version>1.8.0</findsecbugs.version>
         <junit-engine.version>5.3.0</junit-engine.version>
         <junit-platform.version>1.3.0</junit-platform.version>
-        <plexus-compiler.version>2.8.4</plexus-compiler.version>
+        <plexus-compiler.version>2.8.5</plexus-compiler.version>
         <wagon-git.version>2.0.3</wagon-git.version> <!-- Do not use 2.0.4 as it does not work -->
 
         <!-- Plugin Extensions -->
