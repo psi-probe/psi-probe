@@ -132,51 +132,54 @@
 
         <!-- Dependency Versions -->
         <activation.version>1.2.0</activation.version>
-        <assertj.version>3.10.0</assertj.version>
+        <animal-sniffer.version>1.17</animal-sniffer.version>
+        <assertj.version>3.11.1</assertj.version>
         <beanutils.version>1.9.3</beanutils.version>
         <bonecp.version>0.8.0.RELEASE</bonecp.version>
         <c3p0.version>0.9.5.2</c3p0.version>
+        <checker.version>2.5.5</checker.version>
         <collections.version>3.2.2</collections.version>
         <dbcp.version>1.4</dbcp.version>
-        <dbcp2.version>2.4.0</dbcp2.version>
-        <displaytag.version>2.2.0</displaytag.version>
+        <dbcp2.version>2.5.0</dbcp2.version>
+        <displaytag.version>2.2.2</displaytag.version>
         <el-api.version>3.0.1-b06</el-api.version>
         <error-prone.version>2.3.1</error-prone.version>
         <geoip2.version>2.12.0</geoip2.version>
-        <guava.version>25.1-jre</guava.version>
-        <hateoas.version>0.24.0.RELEASE</hateoas.version>
-        <hikaricp.version>2.4.13</hikaricp.version>
+        <guava.version>26.0-jre</guava.version>
+        <hateoas.version>0.25.0.RELEASE</hateoas.version>
+        <hikaricp.version>3.2.0</hikaricp.version>
         <logback.version>1.2.3</logback.version>
         <inject.version>1</inject.version>
         <io.version>2.6</io.version>
         <j2objc.version>1.3</j2objc.version>
         <jackson.version>2.9.6</jackson.version>
-        <javabean-tester.version>2.0.0-beta3</javabean-tester.version>
+        <javabean-tester.version>2.0.0</javabean-tester.version>
         <jcommon.version>1.0.24</jcommon.version>
         <jfreechart.version>1.0.19</jfreechart.version> <!-- TODO: Upgrade to 1.5.0 -->
         <jhighlight.version>1.0.3</jhighlight.version>
         <jmockit.version>1.40</jmockit.version>
-        <jna.version>4.5.1</jna.version>
-        <jsp-api.version>2.3.2-b02</jsp-api.version>
+        <jna.version>4.5.2</jna.version>
+        <jsp-api.version>2.3.3</jsp-api.version>
         <jsr305.version>3.0.2</jsr305.version>
-        <jstl-api.version>1.2.1</jstl-api.version>
-        <jstl.version>1.2.5-b03</jstl.version>
-        <junit.version>5.3.0-M1</junit.version>
-        <lang3.version>3.7</lang3.version>
-        <mail.version>1.6.1</mail.version>
-        <oshi.version>3.6.0</oshi.version>
+        <jstl-api.version>1.2.2</jstl-api.version>
+        <jstl.version>1.2.5</jstl.version>
+        <junit.version>5.3.0</junit.version>
+        <lang3.version>3.8</lang3.version>
+        <mail.version>1.6.2</mail.version>
+        <oshi.version>3.6.2</oshi.version>
         <openejb.version>4.7.5</openejb.version>
-        <persistence.version>2.2.0</persistence.version>
+        <persistence.version>2.2.1</persistence.version>
+        <pool.version>1.6</pool.version>
         <probe-ojdbc.version>3.1.0</probe-ojdbc.version>
         <quartz.version>2.3.0</quartz.version>
         <servlet-api.version>4.0.1</servlet-api.version>
         <sitemesh.version>2.4.2</sitemesh.version>
         <slf4j.version>1.7.25</slf4j.version>
-        <spring.version>5.0.7.RELEASE</spring.version>
-        <spring-security.version>5.0.6.RELEASE</spring-security.version>
+        <spring.version>5.0.8.RELEASE</spring.version>
+        <spring-security.version>5.0.7.RELEASE</spring-security.version>
         <text.version>1.4</text.version>
         <transaction-api.version>1.3</transaction-api.version>
-        <tomcat.version>9.0.10</tomcat.version>
+        <tomcat.version>9.0.11</tomcat.version>
         <wrapper.version>3.2.3</wrapper.version>
         <xpp3_min.version>1.1.4c</xpp3_min.version>
         <xstream.version>1.4.10</xstream.version>
@@ -189,33 +192,33 @@
         <checkstyle.plugin>3.0.0</checkstyle.plugin>
         <changelog.plugin>2.3</changelog.plugin>
         <clean.plugin>3.1.0</clean.plugin>
-        <compiler.plugin>3.7.0</compiler.plugin>
+        <compiler.plugin>3.8.0</compiler.plugin>
         <coveralls.plugin>4.3.0</coveralls.plugin>
         <dependency.plugin>3.1.1</dependency.plugin>
-        <dependency-check.plugin>3.2.1</dependency-check.plugin>
+        <dependency-check.plugin>3.3.1</dependency-check.plugin>
         <deploy.plugin>2.8.2</deploy.plugin>
-        <formatter.plugin>2.7.3</formatter.plugin>
+        <formatter.plugin>2.7.4</formatter.plugin>
         <git-commit.plugin>2.2.4</git-commit.plugin>
         <gpg.plugin>1.6</gpg.plugin>
         <install.plugin>2.5.2</install.plugin>
-        <jacoco.plugin>0.8.1</jacoco.plugin>
+        <jacoco.plugin>0.8.2</jacoco.plugin>
         <jar.plugin>3.1.0</jar.plugin>
         <javadoc.plugin>3.0.1</javadoc.plugin>
         <jdeps.plugin>3.1.0</jdeps.plugin>
-        <jspc.plugin>9.4.11.v20180605</jspc.plugin>
+        <jspc.plugin>9.4.12.v20180830</jspc.plugin>
         <jxr.plugin>2.5</jxr.plugin>
         <l10n.plugin>1.8</l10n.plugin>
         <license.plugin>3.0</license.plugin>
         <lifecycle-mapping.plugin>1.0.0</lifecycle-mapping.plugin>
         <modernizer.plugin>1.6.0</modernizer.plugin>
         <pmd.plugin>3.10.0</pmd.plugin>
-        <project-info.plugin>2.9</project-info.plugin>
+        <project-info.plugin>3.0.0</project-info.plugin>
         <release.plugin>2.5.3</release.plugin>
         <resources.plugin>3.1.0</resources.plugin>
         <site.plugin>3.7.1</site.plugin>
-        <sonar.plugin>3.4.0.905</sonar.plugin>
+        <sonar.plugin>3.5.0.1254</sonar.plugin>
         <source.plugin>3.0.1</source.plugin>
-        <spotbugs.plugin>3.1.5</spotbugs.plugin>
+        <spotbugs.plugin>3.1.6</spotbugs.plugin>
         <surefire.plugin>2.22.0</surefire.plugin>
         <tidy.plugin>1.1.0</tidy.plugin>
         <versions.plugin>2.5</versions.plugin>
@@ -224,14 +227,14 @@
         <!-- Plugin Dependency Versions -->
         <build-tools.version>1.1.8</build-tools.version>
         <bugpattern.version>1.4.0</bugpattern.version>
-        <checkstyle.version>8.10.1</checkstyle.version>
+        <checkstyle.version>8.12</checkstyle.version>
         <doxia.version>1.8</doxia.version>
-        <ecj.version>3.13.102</ecj.version>
-        <fb-contrib.version>7.4.2.sb</fb-contrib.version>
-        <findsecbugs.version>1.7.1</findsecbugs.version>
-        <junit-engine.version>5.3.0-M1</junit-engine.version>
-        <junit-platform.version>1.3.0-M1</junit-platform.version>
-        <plexus-compiler.version>2.8.4</plexus-compiler.version>
+        <ecj.version>3.14.0</ecj.version>
+        <fb-contrib.version>7.4.3.sb</fb-contrib.version>
+        <findsecbugs.version>1.8.0</findsecbugs.version>
+        <junit-engine.version>5.3.0</junit-engine.version>
+        <junit-platform.version>1.3.0</junit-platform.version>
+        <plexus-compiler.version>2.8.5</plexus-compiler.version>
         <wagon-git.version>2.0.3</wagon-git.version> <!-- Do not use 2.0.4 as it does not work -->
 
         <!-- Plugin Extensions -->
@@ -373,6 +376,11 @@
                 <artifactId>tomcat-jdbc</artifactId>
                 <version>${tomcat.version}</version>
             </dependency>
+            <dependency> <!-- TODO: Override for commons-dbcp -->
+                <groupId>commons-pool</groupId>
+                <artifactId>commons-pool</artifactId>
+                <version>${pool.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.apache.openejb</groupId>
                 <artifactId>openejb-core</artifactId>
@@ -397,7 +405,7 @@
             </dependency>
             <dependency>
                 <groupId>com.zaxxer</groupId>
-                <artifactId>HikariCP-java7</artifactId>
+                <artifactId>HikariCP</artifactId>
                 <version>${hikaricp.version}</version>
             </dependency>
             <dependency>
@@ -406,12 +414,24 @@
                 <version>${vibur-dbcp.version}</version>
             </dependency>
 
-            <!-- Commons -->
+            <!-- Guava -->
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
             </dependency>
+            <dependency> <!-- Override while guava is behind -->
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>animal-sniffer-annotations</artifactId>
+                <version>${animal-sniffer.version}</version>
+            </dependency>
+            <dependency> <!-- Override while guava is behind -->
+                <groupId>org.checkerframework</groupId>
+                <artifactId>checker-qual</artifactId>
+                <version>${checker.version}</version>
+            </dependency>
+
+            <!-- Commons -->
             <dependency>
                 <groupId>commons-beanutils</groupId>
                 <artifactId>commons-beanutils</artifactId>
