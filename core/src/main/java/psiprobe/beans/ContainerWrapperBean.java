@@ -92,7 +92,7 @@ public class ContainerWrapperBean {
           logger.info("Server info: {}", serverInfo);
           for (String className : adapterClasses) {
             try {
-              Object obj = Class.forName(className).newInstance();
+              Object obj = Class.forName(className).getDeclaredConstructor().newInstance();
               logger.debug("Testing container adapter: {}", className);
               if (obj instanceof TomcatContainer) {
                 if (forceFirstAdapter || ((TomcatContainer) obj).canBoundTo(serverInfo)) {

@@ -42,9 +42,13 @@ public class ReflectiveAccessor implements Accessor {
    * @throws InstantiationException the instantiation exception
    * @throws IllegalAccessException the illegal access exception
    * @throws NoSuchMethodException the no such method exception
+   * @throws IllegalArgumentException the illegal argument exception
+   * @throws InvocationTargetException the invocation target exception
+   * @throws SecurityException the security exception
    */
   ReflectiveAccessor() throws ClassNotFoundException, InstantiationException,
-      IllegalAccessException, NoSuchMethodException {
+      IllegalAccessException, NoSuchMethodException, IllegalArgumentException,
+      InvocationTargetException, SecurityException {
 
     init();
   }
@@ -86,9 +90,13 @@ public class ReflectiveAccessor implements Accessor {
    * @throws InstantiationException the instantiation exception
    * @throws IllegalAccessException the illegal access exception
    * @throws NoSuchMethodException the no such method exception
+   * @throws IllegalArgumentException the illegal argument exception
+   * @throws InvocationTargetException the invocation target exception
+   * @throws SecurityException the security exception
    */
   private static void init() throws ClassNotFoundException, InstantiationException,
-      IllegalAccessException, NoSuchMethodException {
+      IllegalAccessException, NoSuchMethodException, IllegalArgumentException,
+      InvocationTargetException, SecurityException {
 
     String vmVendor = System.getProperty("java.vm.vendor");
     if (vmVendor != null
@@ -109,14 +117,20 @@ public class ReflectiveAccessor implements Accessor {
    * @throws ClassNotFoundException the class not found exception
    * @throws InstantiationException the instantiation exception
    * @throws IllegalAccessException the illegal access exception
+   * @throws IllegalArgumentException the illegal argument exception
+   * @throws InvocationTargetException the invocation target exception
+   * @throws NoSuchMethodException the no such method exception
+   * @throws SecurityException the security exception
    */
-  private static Object getReflectionFactory()
-      throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+  private static Object getReflectionFactory() throws ClassNotFoundException,
+      InstantiationException, IllegalAccessException, IllegalArgumentException,
+      InvocationTargetException, NoSuchMethodException, SecurityException {
 
     Class<?> getReflectionFactoryActionClass =
         Class.forName("sun.reflect.ReflectionFactory$GetReflectionFactoryAction");
     PrivilegedAction<?> getReflectionFactoryAction =
-        (PrivilegedAction<?>) getReflectionFactoryActionClass.newInstance();
+        (PrivilegedAction<?>) getReflectionFactoryActionClass.getDeclaredConstructor()
+            .newInstance();
     return AccessController.doPrivileged(getReflectionFactoryAction);
   }
 
