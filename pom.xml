@@ -137,6 +137,7 @@
         <beanutils.version>1.9.3</beanutils.version>
         <bonecp.version>0.8.0.RELEASE</bonecp.version>
         <c3p0.version>0.9.5.2</c3p0.version>
+        <checker.version>2.5.5</checker.version>
         <collections.version>3.2.2</collections.version>
         <dbcp.version>1.4</dbcp.version>
         <dbcp2.version>2.5.0</dbcp2.version>
@@ -407,7 +408,7 @@
                 <version>${vibur-dbcp.version}</version>
             </dependency>
 
-            <!-- Commons -->
+            <!-- Guava -->
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
@@ -418,6 +419,13 @@
                 <artifactId>animal-sniffer-annotations</artifactId>
                 <version>${animal-sniffer.version}</version>
             </dependency>
+            <dependency> <!-- Override while guava is behind -->
+                <groupId>org.checkerframework</groupId>
+                <artifactId>checker-qual</artifactId>
+                <version>${checker.version}</version>
+            </dependency>
+
+            <!-- Commons -->
             <dependency>
                 <groupId>commons-beanutils</groupId>
                 <artifactId>commons-beanutils</artifactId>
