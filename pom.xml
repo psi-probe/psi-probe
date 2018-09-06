@@ -132,6 +132,7 @@
 
         <!-- Dependency Versions -->
         <activation.version>1.2.0</activation.version>
+        <animal-sniffer.version>1.17</animal-sniffer.version>
         <assertj.version>3.11.1</assertj.version>
         <beanutils.version>1.9.3</beanutils.version>
         <bonecp.version>0.8.0.RELEASE</bonecp.version>
@@ -411,6 +412,11 @@
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
+            </dependency>
+            <dependency> <!-- Override while guava is behind -->
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>animal-sniffer-annotations</artifactId>
+                <version>${animal-sniffer.version}</version>
             </dependency>
             <dependency>
                 <groupId>commons-beanutils</groupId>
