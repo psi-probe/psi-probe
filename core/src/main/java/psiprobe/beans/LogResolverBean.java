@@ -598,10 +598,11 @@ public class LogResolverBean {
   }
 
   private List<Object> getLoggerContexts(ClassLoader cl) throws ClassNotFoundException,
-      InstantiationException, IllegalAccessException, InvocationTargetException {
+      InstantiationException, IllegalAccessException, InvocationTargetException,
+      IllegalArgumentException, NoSuchMethodException, SecurityException {
     Class<?> clazz =
         cl.loadClass("org.apache.logging.log4j.core.selector.ClassLoaderContextSelector");
-    Object classLoaderContextSelector = clazz.newInstance();
+    Object classLoaderContextSelector = clazz.getDeclaredConstructor().newInstance();
     Method getLoggerContexts = MethodUtils.getAccessibleMethod(clazz, "getLoggerContexts");
     return (List<Object>) getLoggerContexts.invoke(classLoaderContextSelector);
   }
