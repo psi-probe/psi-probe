@@ -45,8 +45,7 @@ public class LogbackFactoryAccessor extends DefaultAccessor {
     Class<?> clazz = cl.loadClass("org.slf4j.impl.StaticLoggerBinder");
     Method getSingleton = MethodUtils.getAccessibleMethod(clazz, "getSingleton");
     Object singleton = getSingleton.invoke(null);
-    Method getLoggerFactory =
-        MethodUtils.getAccessibleMethod(clazz, "getLoggerFactory");
+    Method getLoggerFactory = MethodUtils.getAccessibleMethod(clazz, "getLoggerFactory");
 
     Object loggerFactory = getLoggerFactory.invoke(singleton);
 
@@ -78,8 +77,7 @@ public class LogbackFactoryAccessor extends DefaultAccessor {
   public LogbackLoggerAccessor getLogger(String name) {
     try {
       Class<? extends Object> clazz = getTarget().getClass();
-      Method getLogger =
-          MethodUtils.getAccessibleMethod(clazz, "getLogger", String.class);
+      Method getLogger = MethodUtils.getAccessibleMethod(clazz, "getLogger", String.class);
 
       Object logger = getLogger.invoke(getTarget(), name);
       if (logger == null) {

@@ -72,8 +72,7 @@ public class Log4JManagerAccessor extends DefaultAccessor {
   public Log4JLoggerAccessor getLogger(String name) {
     try {
       Class<?> clazz = (Class<?>) getTarget();
-      Method getLogger =
-          MethodUtils.getAccessibleMethod(clazz, "getLogger", String.class);
+      Method getLogger = MethodUtils.getAccessibleMethod(clazz, "getLogger", String.class);
 
       Object logger = getLogger.invoke(null, name);
       if (logger == null) {
@@ -102,8 +101,7 @@ public class Log4JManagerAccessor extends DefaultAccessor {
       appenders.addAll(getRootLogger().getAppenders());
 
       Class<?> clazz = (Class<?>) getTarget();
-      Method getCurrentLoggers =
-          MethodUtils.getAccessibleMethod(clazz, "getCurrentLoggers");
+      Method getCurrentLoggers = MethodUtils.getAccessibleMethod(clazz, "getCurrentLoggers");
 
       for (Object currentLogger : Collections
           .list((Enumeration<Object>) getCurrentLoggers.invoke(null))) {
