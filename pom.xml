@@ -169,6 +169,7 @@
         <oshi.version>3.6.2</oshi.version>
         <openejb.version>4.7.5</openejb.version>
         <persistence.version>2.2.1</persistence.version>
+        <pool.version>1.6</pool.version>
         <probe-ojdbc.version>3.1.0</probe-ojdbc.version>
         <quartz.version>2.3.0</quartz.version>
         <servlet-api.version>4.0.1</servlet-api.version>
@@ -374,6 +375,11 @@
                 <groupId>org.apache.tomcat</groupId>
                 <artifactId>tomcat-jdbc</artifactId>
                 <version>${tomcat.version}</version>
+            </dependency>
+            <dependency> <!-- TODO: Override for commons-dbcp -->
+                <groupId>commons-pool</groupId>
+                <artifactId>commons-pool</artifactId>
+                <version>${pool.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.openejb</groupId>
