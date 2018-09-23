@@ -198,7 +198,7 @@
         <dependency-check.plugin>3.3.1</dependency-check.plugin>
         <deploy.plugin>2.8.2</deploy.plugin>
         <formatter.plugin>2.7.5</formatter.plugin>
-        <git-commit.plugin>2.2.4</git-commit.plugin>
+        <git-commit.plugin>2.2.5</git-commit.plugin>
         <gpg.plugin>1.6</gpg.plugin>
         <install.plugin>2.5.2</install.plugin>
         <jacoco.plugin>0.8.2</jacoco.plugin>
