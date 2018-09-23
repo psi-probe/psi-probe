@@ -232,8 +232,6 @@
         <ecj.version>3.14.0</ecj.version>
         <fb-contrib.version>7.4.3.sb</fb-contrib.version>
         <findsecbugs.version>1.8.0</findsecbugs.version>
-        <junit-engine.version>5.3.0</junit-engine.version>
-        <junit-platform.version>1.3.0</junit-platform.version>
         <plexus-compiler.version>2.8.5</plexus-compiler.version>
         <wagon-git.version>2.0.3</wagon-git.version> <!-- Do not use 2.0.4 as it does not work -->
 
@@ -847,18 +845,6 @@
                         <!-- For java 9 and jmockit -->
                         <argLine>-Djdk.attach.allowAttachSelf</argLine>
                     </configuration>
-                    <dependencies>
-                        <dependency>
-                            <groupId>org.junit.platform</groupId>
-                            <artifactId>junit-platform-surefire-provider</artifactId>
-                            <version>${junit-platform.version}</version>
-                        </dependency>
-                        <dependency>
-                            <groupId>org.junit.jupiter</groupId>
-                            <artifactId>junit-jupiter-engine</artifactId>
-                            <version>${junit-engine.version}</version>
-                        </dependency>
-                    </dependencies>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
