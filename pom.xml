@@ -152,18 +152,18 @@
         <inject.version>1</inject.version>
         <io.version>2.6</io.version>
         <j2objc.version>1.3</j2objc.version>
-        <jackson.version>2.9.6</jackson.version>
+        <jackson.version>2.9.7</jackson.version>
         <javabean-tester.version>2.0.0</javabean-tester.version>
         <jcommon.version>1.0.24</jcommon.version>
         <jfreechart.version>1.0.19</jfreechart.version> <!-- TODO: Upgrade to 1.5.0 -->
         <jhighlight.version>1.0.3</jhighlight.version>
-        <jmockit.version>1.40</jmockit.version>
+        <jmockit.version>1.41</jmockit.version>
         <jna.version>4.5.2</jna.version>
         <jsp-api.version>2.3.3</jsp-api.version>
         <jsr305.version>3.0.2</jsr305.version>
         <jstl-api.version>1.2.2</jstl-api.version>
         <jstl.version>1.2.5</jstl.version>
-        <junit.version>5.3.0</junit.version>
+        <junit.version>5.3.1</junit.version>
         <lang3.version>3.8</lang3.version>
         <mail.version>1.6.2</mail.version>
         <oshi.version>3.6.2</oshi.version>
@@ -175,11 +175,11 @@
         <servlet-api.version>4.0.1</servlet-api.version>
         <sitemesh.version>2.4.2</sitemesh.version>
         <slf4j.version>1.7.25</slf4j.version>
-        <spring.version>5.0.8.RELEASE</spring.version>
-        <spring-security.version>5.0.7.RELEASE</spring-security.version>
+        <spring.version>5.1.0.RELEASE</spring.version>
+        <spring-security.version>5.0.8.RELEASE</spring-security.version>
         <text.version>1.4</text.version>
         <transaction-api.version>1.3</transaction-api.version>
-        <tomcat.version>9.0.11</tomcat.version>
+        <tomcat.version>9.0.12</tomcat.version>
         <wrapper.version>3.2.3</wrapper.version>
         <xpp3_min.version>1.1.4c</xpp3_min.version>
         <xstream.version>1.4.10</xstream.version>
@@ -195,10 +195,10 @@
         <compiler.plugin>3.8.0</compiler.plugin>
         <coveralls.plugin>4.3.0</coveralls.plugin>
         <dependency.plugin>3.1.1</dependency.plugin>
-        <dependency-check.plugin>3.3.1</dependency-check.plugin>
+        <dependency-check.plugin>3.3.2</dependency-check.plugin>
         <deploy.plugin>2.8.2</deploy.plugin>
         <formatter.plugin>2.7.5</formatter.plugin>
-        <git-commit.plugin>2.2.4</git-commit.plugin>
+        <git-commit.plugin>2.2.5</git-commit.plugin>
         <gpg.plugin>1.6</gpg.plugin>
         <install.plugin>2.5.2</install.plugin>
         <jacoco.plugin>0.8.2</jacoco.plugin>
@@ -221,19 +221,17 @@
         <spotbugs.plugin>3.1.6</spotbugs.plugin>
         <surefire.plugin>2.22.0</surefire.plugin>
         <tidy.plugin>1.1.0</tidy.plugin>
-        <versions.plugin>2.5</versions.plugin>
+        <versions.plugin>2.7</versions.plugin>
         <war.plugin>3.2.2</war.plugin>
 
         <!-- Plugin Dependency Versions -->
         <build-tools.version>1.1.8</build-tools.version>
-        <bugpattern.version>1.4.0</bugpattern.version>
+        <bugpattern.version>1.4.1</bugpattern.version>
         <checkstyle.version>8.12</checkstyle.version>
         <doxia.version>1.8</doxia.version>
         <ecj.version>3.14.0</ecj.version>
         <fb-contrib.version>7.4.3.sb</fb-contrib.version>
         <findsecbugs.version>1.8.0</findsecbugs.version>
-        <junit-engine.version>5.3.0</junit-engine.version>
-        <junit-platform.version>1.3.0</junit-platform.version>
         <plexus-compiler.version>2.8.5</plexus-compiler.version>
         <wagon-git.version>2.0.3</wagon-git.version> <!-- Do not use 2.0.4 as it does not work -->
 
@@ -847,18 +845,6 @@
                         <!-- For java 9 and jmockit -->
                         <argLine>-Djdk.attach.allowAttachSelf</argLine>
                     </configuration>
-                    <dependencies>
-                        <dependency>
-                            <groupId>org.junit.platform</groupId>
-                            <artifactId>junit-platform-surefire-provider</artifactId>
-                            <version>${junit-platform.version}</version>
-                        </dependency>
-                        <dependency>
-                            <groupId>org.junit.jupiter</groupId>
-                            <artifactId>junit-jupiter-engine</artifactId>
-                            <version>${junit-engine.version}</version>
-                        </dependency>
-                    </dependencies>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
