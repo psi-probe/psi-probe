@@ -164,7 +164,7 @@
         <jstl-api.version>1.2.2</jstl-api.version>
         <jstl.version>1.2.5</jstl.version>
         <junit.version>5.3.1</junit.version>
-        <lang3.version>3.8</lang3.version>
+        <lang3.version>3.8.1</lang3.version>
         <mail.version>1.6.2</mail.version>
         <oshi.version>3.6.2</oshi.version>
         <openejb.version>4.7.5</openejb.version>
