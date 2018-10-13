@@ -229,7 +229,7 @@
         <bugpattern.version>1.4.2</bugpattern.version>
         <checkstyle.version>8.13</checkstyle.version>
         <doxia.version>1.8</doxia.version>
-        <ecj.version>3.14.0</ecj.version>
+        <ecj.version>3.15.0</ecj.version>
         <fb-contrib.version>7.4.3.sb</fb-contrib.version>
         <findsecbugs.version>1.8.0</findsecbugs.version>
         <plexus-compiler.version>2.8.5</plexus-compiler.version>
