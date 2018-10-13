@@ -226,8 +226,8 @@
 
         <!-- Plugin Dependency Versions -->
         <build-tools.version>1.1.8</build-tools.version>
-        <checkstyle.version>8.12</checkstyle.version>
         <bugpattern.version>1.4.2</bugpattern.version>
+        <checkstyle.version>8.13</checkstyle.version>
         <doxia.version>1.8</doxia.version>
         <ecj.version>3.14.0</ecj.version>
         <fb-contrib.version>7.4.3.sb</fb-contrib.version>
