@@ -12,10 +12,8 @@ package psiprobe.controllers.threads;
 
 import java.net.URLClassLoader;
 import java.util.Arrays;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,53 +22,52 @@ import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
-
 import psiprobe.Utils;
 
 /**
  * The Class GetClassLoaderUrlsController.
  */
 @Controller
-<span class="nc" id="L34">public class GetClassLoaderUrlsController extends ParameterizableViewController {</span>
+<span class="nc" id="L31">public class GetClassLoaderUrlsController extends ParameterizableViewController {</span>
 
   /** The Constant logger. */
-<span class="nc" id="L37">  private static final Logger logger = LoggerFactory.getLogger(GetClassLoaderUrlsController.class);</span>
+<span class="nc" id="L34">  private static final Logger logger = LoggerFactory.getLogger(GetClassLoaderUrlsController.class);</span>
 
   @RequestMapping(path = &quot;/cldetails.ajax&quot;)
   @Override
   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
       throws Exception {
-<span class="nc" id="L43">    return super.handleRequest(request, response);</span>
+<span class="nc" id="L40">    return super.handleRequest(request, response);</span>
   }
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 
-<span class="nc" id="L50">    String threadName = ServletRequestUtils.getStringParameter(request, &quot;thread&quot;, null);</span>
+<span class="nc" id="L47">    String threadName = ServletRequestUtils.getStringParameter(request, &quot;thread&quot;, null);</span>
 
-<span class="nc" id="L52">    Thread thread = Utils.getThreadByName(threadName);</span>
+<span class="nc" id="L49">    Thread thread = Utils.getThreadByName(threadName);</span>
 
-<span class="nc bnc" id="L54" title="All 2 branches missed.">    if (thread != null) {</span>
-<span class="nc" id="L55">      ClassLoader cl = thread.getContextClassLoader();</span>
-<span class="nc bnc" id="L56" title="All 4 branches missed.">      if (cl != null &amp;&amp; cl instanceof URLClassLoader) {</span>
+<span class="nc bnc" id="L51" title="All 2 branches missed.">    if (thread != null) {</span>
+<span class="nc" id="L52">      ClassLoader cl = thread.getContextClassLoader();</span>
+<span class="nc bnc" id="L53" title="All 4 branches missed.">      if (cl != null &amp;&amp; cl instanceof URLClassLoader) {</span>
         try {
-<span class="nc" id="L58">          request.setAttribute(&quot;urls&quot;, Arrays.asList(((URLClassLoader) cl).getURLs()));</span>
-<span class="nc" id="L59">        } catch (Exception e) {</span>
-<span class="nc" id="L60">          logger.error(&quot;There was an exception querying classloader for thread '{}'&quot;, threadName,</span>
+<span class="nc" id="L55">          request.setAttribute(&quot;urls&quot;, Arrays.asList(((URLClassLoader) cl).getURLs()));</span>
+<span class="nc" id="L56">        } catch (Exception e) {</span>
+<span class="nc" id="L57">          logger.error(&quot;There was an exception querying classloader for thread '{}'&quot;, threadName,</span>
               e);
-<span class="nc" id="L62">        }</span>
+<span class="nc" id="L59">        }</span>
       }
     }
 
-<span class="nc" id="L66">    return new ModelAndView(getViewName());</span>
+<span class="nc" id="L63">    return new ModelAndView(getViewName());</span>
   }
 
   @Value(&quot;ajax/classLoaderDetails&quot;)
   @Override
   public void setViewName(String viewName) {
-<span class="nc" id="L72">    super.setViewName(viewName);</span>
-<span class="nc" id="L73">  }</span>
+<span class="nc" id="L69">    super.setViewName(viewName);</span>
+<span class="nc" id="L70">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

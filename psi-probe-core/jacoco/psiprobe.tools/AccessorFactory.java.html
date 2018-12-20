@@ -10,6 +10,7 @@
  */
 package psiprobe.tools;
 
+import java.lang.reflect.InvocationTargetException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,14 +20,14 @@ import org.slf4j.LoggerFactory;
 public class AccessorFactory {
 
   /** The Constant logger. */
-<span class="nc" id="L22">  private static final Logger logger = LoggerFactory.getLogger(AccessorFactory.class);</span>
+<span class="fc" id="L23">  private static final Logger logger = LoggerFactory.getLogger(AccessorFactory.class);</span>
 
   /**
    * Prevent Instantiation of accessor factory.
    */
-<span class="nc" id="L27">  private AccessorFactory() {</span>
+  private AccessorFactory() {
     // Prevent Instantiation
-<span class="nc" id="L29">  }</span>
+  }
 
   /**
    * Gets the single instance of AccessorFactory.
@@ -34,7 +35,7 @@ public class AccessorFactory {
    * @return single instance of AccessorFactory
    */
   public static Accessor getInstance() {
-<span class="nc" id="L37">    return getSimple();</span>
+<span class="fc" id="L38">    return getSimple();</span>
   }
 
   /**
@@ -45,11 +46,12 @@ public class AccessorFactory {
   @SuppressWarnings(&quot;unused&quot;)
   private static Accessor getReflective() {
     try {
-<span class="nc" id="L48">      return new ReflectiveAccessor();</span>
-<span class="nc" id="L49">    } catch (ClassNotFoundException | InstantiationException | IllegalAccessException</span>
-        | NoSuchMethodException e) {
-<span class="nc" id="L51">      logger.trace(&quot;&quot;, e);</span>
-<span class="nc" id="L52">      return null;</span>
+<span class="nc" id="L49">      return new ReflectiveAccessor();</span>
+<span class="nc" id="L50">    } catch (ClassNotFoundException | InstantiationException | IllegalAccessException</span>
+        | NoSuchMethodException | IllegalArgumentException | InvocationTargetException
+        | SecurityException e) {
+<span class="nc" id="L53">      logger.trace(&quot;&quot;, e);</span>
+<span class="nc" id="L54">      return null;</span>
     }
   }
 
@@ -59,8 +61,8 @@ public class AccessorFactory {
    * @return the simple
    */
   private static Accessor getSimple() {
-<span class="nc" id="L62">    return new SimpleAccessor();</span>
+<span class="fc" id="L64">    return new SimpleAccessor();</span>
   }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

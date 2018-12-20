@@ -10,7 +10,7 @@
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_javadoccomment"> * Licensed under the GPL License. You may not use this file except in compliance with the License.</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_javadoccomment"> * You may obtain a copy of the License at</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_javadoccomment"> *</em>
-<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_javadoccomment"> *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</em>
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_javadoccomment"> *   <a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.html" target="alexandria_uri">https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</a></em>
 <a class="jxr_linenumber" name="L6" href="#L6">6</a>   <em class="jxr_javadoccomment"> *</em>
 <a class="jxr_linenumber" name="L7" href="#L7">7</a>   <em class="jxr_javadoccomment"> * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,</em>
 <a class="jxr_linenumber" name="L8" href="#L8">8</a>   <em class="jxr_javadoccomment"> * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR</em>
@@ -38,7 +38,7 @@
 <a class="jxr_linenumber" name="L30" href="#L30">30</a>  <em class="jxr_javadoccomment"> * pagination feature without re-executing a query that created the result set.</em>
 <a class="jxr_linenumber" name="L31" href="#L31">31</a>  <em class="jxr_javadoccomment"> */</em>
 <a class="jxr_linenumber" name="L32" href="#L32">32</a>  @Controller
-<a class="jxr_linenumber" name="L33" href="#L33">33</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../psiprobe/controllers/sql/CachedRecordSetController.html">CachedRecordSetController</a> <strong class="jxr_keyword">extends</strong> <a href="../../../psiprobe/PostParameterizableViewController.html">PostParameterizableViewController</a> {
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a name="CachedRecordSetController" href="../../../psiprobe/controllers/sql/CachedRecordSetController.html#CachedRecordSetController">CachedRecordSetController</a> <strong class="jxr_keyword">extends</strong> <a name="PostParameterizableViewController" href="../../../psiprobe/PostParameterizableViewController.html#PostParameterizableViewController">PostParameterizableViewController</a> {
 <a class="jxr_linenumber" name="L34" href="#L34">34</a>  
 <a class="jxr_linenumber" name="L35" href="#L35">35</a>    <em class="jxr_javadoccomment">/** The Constant logger. */</em>
 <a class="jxr_linenumber" name="L36" href="#L36">36</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> Logger logger = LoggerFactory.getLogger(CachedRecordSetController.<strong class="jxr_keyword">class</strong>);
@@ -64,8 +64,8 @@
 <a class="jxr_linenumber" name="L56" href="#L56">56</a>            .getMessage(<span class="jxr_string">"probe.src.dataSourceTest.cachedResultSet.failure"</span>));
 <a class="jxr_linenumber" name="L57" href="#L57">57</a>        logger.error(<span class="jxr_string">"Cannot retrieve a cached result set. Http session is NULL."</span>);
 <a class="jxr_linenumber" name="L58" href="#L58">58</a>      } <strong class="jxr_keyword">else</strong> {
-<a class="jxr_linenumber" name="L59" href="#L59">59</a>        <a href="../../../psiprobe/model/sql/DataSourceTestInfo.html">DataSourceTestInfo</a> sessData =
-<a class="jxr_linenumber" name="L60" href="#L60">60</a>            (<a href="../../../psiprobe/model/sql/DataSourceTestInfo.html">DataSourceTestInfo</a>) sess.getAttribute(DataSourceTestInfo.DS_TEST_SESS_ATTR);
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>        <a name="DataSourceTestInfo" href="../../../psiprobe/model/sql/DataSourceTestInfo.html#DataSourceTestInfo">DataSourceTestInfo</a> sessData =
+<a class="jxr_linenumber" name="L60" href="#L60">60</a>            (<a name="DataSourceTestInfo" href="../../../psiprobe/model/sql/DataSourceTestInfo.html#DataSourceTestInfo">DataSourceTestInfo</a>) sess.getAttribute(DataSourceTestInfo.DS_TEST_SESS_ATTR);
 <a class="jxr_linenumber" name="L61" href="#L61">61</a>  
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>        <strong class="jxr_keyword">if</strong> (sessData == <strong class="jxr_keyword">null</strong>) {
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>          request.setAttribute(<span class="jxr_string">"errorMessage"</span>, getMessageSourceAccessor()

@@ -10,7 +10,7 @@
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_javadoccomment"> * Licensed under the GPL License. You may not use this file except in compliance with the License.</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_javadoccomment"> * You may obtain a copy of the License at</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_javadoccomment"> *</em>
-<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_javadoccomment"> *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</em>
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_javadoccomment"> *   <a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.html" target="alexandria_uri">https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</a></em>
 <a class="jxr_linenumber" name="L6" href="#L6">6</a>   <em class="jxr_javadoccomment"> *</em>
 <a class="jxr_linenumber" name="L7" href="#L7">7</a>   <em class="jxr_javadoccomment"> * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,</em>
 <a class="jxr_linenumber" name="L8" href="#L8">8</a>   <em class="jxr_javadoccomment"> * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR</em>
@@ -23,7 +23,7 @@
 <a class="jxr_linenumber" name="L15" href="#L15">15</a>  <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L16" href="#L16">16</a>  <em class="jxr_javadoccomment"> * The Class TokenizerSymbol.</em>
 <a class="jxr_linenumber" name="L17" href="#L17">17</a>  <em class="jxr_javadoccomment"> */</em>
-<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../psiprobe/tokenizer/TokenizerSymbol.html">TokenizerSymbol</a> <strong class="jxr_keyword">implements</strong> Comparable&lt;Object&gt; {
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a name="TokenizerSymbol" href="../../psiprobe/tokenizer/TokenizerSymbol.html#TokenizerSymbol">TokenizerSymbol</a> <strong class="jxr_keyword">implements</strong> Comparable&lt;Object&gt; {
 <a class="jxr_linenumber" name="L19" href="#L19">19</a>  
 <a class="jxr_linenumber" name="L20" href="#L20">20</a>    <em class="jxr_javadoccomment">/** The name. */</em>
 <a class="jxr_linenumber" name="L21" href="#L21">21</a>    <strong class="jxr_keyword">final</strong> String name;
@@ -57,7 +57,7 @@
 <a class="jxr_linenumber" name="L49" href="#L49">49</a>  <em class="jxr_javadoccomment">   * @param enabled the enabled</em>
 <a class="jxr_linenumber" name="L50" href="#L50">50</a>  <em class="jxr_javadoccomment">   * @param canBeNested the can be nested</em>
 <a class="jxr_linenumber" name="L51" href="#L51">51</a>  <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L52" href="#L52">52</a>    <strong class="jxr_keyword">public</strong> <a href="../../psiprobe/tokenizer/TokenizerSymbol.html">TokenizerSymbol</a>(String name, String startText, String tailText, <strong class="jxr_keyword">boolean</strong> hidden,
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>    <strong class="jxr_keyword">public</strong> <a name="TokenizerSymbol" href="../../psiprobe/tokenizer/TokenizerSymbol.html#TokenizerSymbol">TokenizerSymbol</a>(String name, String startText, String tailText, <strong class="jxr_keyword">boolean</strong> hidden,
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>        <strong class="jxr_keyword">boolean</strong> decodePaired, <strong class="jxr_keyword">boolean</strong> enabled, <strong class="jxr_keyword">boolean</strong> canBeNested) {
 <a class="jxr_linenumber" name="L54" href="#L54">54</a>  
 <a class="jxr_linenumber" name="L55" href="#L55">55</a>      <strong class="jxr_keyword">this</strong>.name = name;
@@ -74,7 +74,7 @@
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>      <strong class="jxr_keyword">if</strong> (obj instanceof Character) {
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>        <strong class="jxr_keyword">return</strong> compareTo((Character) obj);
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>      }
-<a class="jxr_linenumber" name="L69" href="#L69">69</a>      <strong class="jxr_keyword">return</strong> compareTo((TokenizerSymbol) obj);
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>      <strong class="jxr_keyword">return</strong> compareTo((<a name="TokenizerSymbol" href="../../psiprobe/tokenizer/TokenizerSymbol.html#TokenizerSymbol">TokenizerSymbol</a>) obj);
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>    }
 <a class="jxr_linenumber" name="L71" href="#L71">71</a>  
 <a class="jxr_linenumber" name="L72" href="#L72">72</a>    <em class="jxr_javadoccomment">/**</em>
@@ -93,7 +93,7 @@
 <a class="jxr_linenumber" name="L85" href="#L85">85</a>  <em class="jxr_javadoccomment">   * @param symbol the symbol</em>
 <a class="jxr_linenumber" name="L86" href="#L86">86</a>  <em class="jxr_javadoccomment">   * @return the int</em>
 <a class="jxr_linenumber" name="L87" href="#L87">87</a>  <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L88" href="#L88">88</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">int</strong> compareTo(<a href="../../psiprobe/tokenizer/TokenizerSymbol.html">TokenizerSymbol</a> symbol) {
+<a class="jxr_linenumber" name="L88" href="#L88">88</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">int</strong> compareTo(<a name="TokenizerSymbol" href="../../psiprobe/tokenizer/TokenizerSymbol.html#TokenizerSymbol">TokenizerSymbol</a> symbol) {
 <a class="jxr_linenumber" name="L89" href="#L89">89</a>      <strong class="jxr_keyword">return</strong> symbol.startText.compareTo(startText);
 <a class="jxr_linenumber" name="L90" href="#L90">90</a>    }
 <a class="jxr_linenumber" name="L91" href="#L91">91</a>  
@@ -111,7 +111,7 @@
 <a class="jxr_linenumber" name="L103" href="#L103">103</a>     <strong class="jxr_keyword">if</strong> (getClass() != obj.getClass()) {
 <a class="jxr_linenumber" name="L104" href="#L104">104</a>       <strong class="jxr_keyword">return</strong> false;
 <a class="jxr_linenumber" name="L105" href="#L105">105</a>     }
-<a class="jxr_linenumber" name="L106" href="#L106">106</a>     <strong class="jxr_keyword">final</strong> <a href="../../psiprobe/tokenizer/TokenizerSymbol.html">TokenizerSymbol</a> other = (TokenizerSymbol) obj;
+<a class="jxr_linenumber" name="L106" href="#L106">106</a>     <strong class="jxr_keyword">final</strong> <a name="TokenizerSymbol"<a name="TokenizerSymbol" href="../../psiprobe/tokenizer/TokenizerSymbol.html#TokenizerSymbol">TokenizerSymbol</a>iprobe/tokenizer/TokenizerSymbol.html#TokenizerSymbol">TokenizerSymbol</a> other = (<a name="TokenizerSymbol" href="../../psiprobe/tokenizer/TokenizerSymbol.html#TokenizerSymbol">TokenizerSymbol</a>) obj;
 <a class="jxr_linenumber" name="L107" href="#L107">107</a>     <strong class="jxr_keyword">return</strong> Objects.equals(<strong class="jxr_keyword">this</strong>.name, other.name) &amp;&amp; Objects.equals(<strong class="jxr_keyword">this</strong>.startText, other.startText)
 <a class="jxr_linenumber" name="L108" href="#L108">108</a>         &amp;&amp; Objects.equals(<strong class="jxr_keyword">this</strong>.tailText, other.tailText)
 <a class="jxr_linenumber" name="L109" href="#L109">109</a>         &amp;&amp; Objects.equals(<strong class="jxr_keyword">this</strong>.hidden, other.hidden)

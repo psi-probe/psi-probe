@@ -18,7 +18,7 @@ import java.util.Map;
 /**
  * A class to store data source test tool related data in a session attribute.
  */
-<span class="fc" id="L21">public class DataSourceTestInfo implements Serializable {</span>
+public class DataSourceTestInfo implements Serializable {
 
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = 1L;
@@ -30,7 +30,7 @@ import java.util.Map;
   private List&lt;Map&lt;String, String&gt;&gt; results;
 
   /** The query history. */
-<span class="fc" id="L33">  private LinkedList&lt;String&gt; queryHistory = new LinkedList&lt;&gt;();</span>
+  private LinkedList&lt;String&gt; queryHistory;
 
   /** The max rows. */
   private int maxRows;
@@ -42,18 +42,25 @@ import java.util.Map;
   private int historySize;
 
   /**
+   * DataSourceTestInfo Constructor.
+   */
+<span class="fc" id="L47">  public DataSourceTestInfo() {</span>
+<span class="fc" id="L48">    queryHistory = new LinkedList&lt;&gt;();</span>
+<span class="fc" id="L49">  }</span>
+
+  /**
    * Adds the query to history.
    *
    * @param sql the sql
    */
   public void addQueryToHistory(String sql) {
-<span class="nc" id="L50">    queryHistory.remove(sql);</span>
-<span class="nc" id="L51">    queryHistory.addFirst(sql);</span>
+<span class="nc" id="L57">    queryHistory.remove(sql);</span>
+<span class="nc" id="L58">    queryHistory.addFirst(sql);</span>
 
-<span class="nc bnc" id="L53" title="All 4 branches missed.">    while (historySize &gt;= 0 &amp;&amp; queryHistory.size() &gt; historySize) {</span>
-<span class="nc" id="L54">      queryHistory.removeLast();</span>
+<span class="nc bnc" id="L60" title="All 4 branches missed.">    while (historySize &gt;= 0 &amp;&amp; queryHistory.size() &gt; historySize) {</span>
+<span class="nc" id="L61">      queryHistory.removeLast();</span>
     }
-<span class="nc" id="L56">  }</span>
+<span class="nc" id="L63">  }</span>
 
   /**
    * Gets the results.
@@ -61,7 +68,7 @@ import java.util.Map;
    * @return the results
    */
   public List&lt;Map&lt;String, String&gt;&gt; getResults() {
-<span class="fc" id="L64">    return results;</span>
+<span class="fc" id="L71">    return results;</span>
   }
 
   /**
@@ -70,8 +77,8 @@ import java.util.Map;
    * @param results the results
    */
   public void setResults(List&lt;Map&lt;String, String&gt;&gt; results) {
-<span class="fc" id="L73">    this.results = results;</span>
-<span class="fc" id="L74">  }</span>
+<span class="fc" id="L80">    this.results = results;</span>
+<span class="fc" id="L81">  }</span>
 
   /**
    * Gets the query history.
@@ -79,7 +86,7 @@ import java.util.Map;
    * @return the query history
    */
   public List&lt;String&gt; getQueryHistory() {
-<span class="nc" id="L82">    return queryHistory;</span>
+<span class="nc" id="L89">    return queryHistory;</span>
   }
 
   /**
@@ -88,7 +95,7 @@ import java.util.Map;
    * @return the max rows
    */
   public int getMaxRows() {
-<span class="fc" id="L91">    return maxRows;</span>
+<span class="fc" id="L98">    return maxRows;</span>
   }
 
   /**
@@ -97,8 +104,8 @@ import java.util.Map;
    * @param maxRows the new max rows
    */
   public void setMaxRows(int maxRows) {
-<span class="fc" id="L100">    this.maxRows = maxRows;</span>
-<span class="fc" id="L101">  }</span>
+<span class="fc" id="L107">    this.maxRows = maxRows;</span>
+<span class="fc" id="L108">  }</span>
 
   /**
    * Gets the rows per page.
@@ -106,7 +113,7 @@ import java.util.Map;
    * @return the rows per page
    */
   public int getRowsPerPage() {
-<span class="fc" id="L109">    return rowsPerPage;</span>
+<span class="fc" id="L116">    return rowsPerPage;</span>
   }
 
   /**
@@ -115,8 +122,8 @@ import java.util.Map;
    * @param rowsPerPage the new rows per page
    */
   public void setRowsPerPage(int rowsPerPage) {
-<span class="fc" id="L118">    this.rowsPerPage = rowsPerPage;</span>
-<span class="fc" id="L119">  }</span>
+<span class="fc" id="L125">    this.rowsPerPage = rowsPerPage;</span>
+<span class="fc" id="L126">  }</span>
 
   /**
    * Gets the history size.
@@ -124,7 +131,7 @@ import java.util.Map;
    * @return the history size
    */
   public int getHistorySize() {
-<span class="fc" id="L127">    return historySize;</span>
+<span class="fc" id="L134">    return historySize;</span>
   }
 
   /**
@@ -133,8 +140,8 @@ import java.util.Map;
    * @param historySize the new history size
    */
   public void setHistorySize(int historySize) {
-<span class="fc" id="L136">    this.historySize = historySize;</span>
-<span class="fc" id="L137">  }</span>
+<span class="fc" id="L143">    this.historySize = historySize;</span>
+<span class="fc" id="L144">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

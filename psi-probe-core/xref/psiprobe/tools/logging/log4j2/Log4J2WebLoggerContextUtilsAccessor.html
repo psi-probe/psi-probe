@@ -10,7 +10,7 @@
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_javadoccomment"> * Licensed under the GPL License. You may not use this file except in compliance with the License.</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_javadoccomment"> * You may obtain a copy of the License at</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_javadoccomment"> *</em>
-<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_javadoccomment"> *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</em>
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_javadoccomment"> *   <a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.html" target="alexandria_uri">https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</a></em>
 <a class="jxr_linenumber" name="L6" href="#L6">6</a>   <em class="jxr_javadoccomment"> *</em>
 <a class="jxr_linenumber" name="L7" href="#L7">7</a>   <em class="jxr_javadoccomment"> * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,</em>
 <a class="jxr_linenumber" name="L8" href="#L8">8</a>   <em class="jxr_javadoccomment"> * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR</em>
@@ -28,7 +28,7 @@
 <a class="jxr_linenumber" name="L20" href="#L20">20</a>  <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L21" href="#L21">21</a>  <em class="jxr_javadoccomment"> * The Class Log4J2WebLoggerContextUtilsAccessor.</em>
 <a class="jxr_linenumber" name="L22" href="#L22">22</a>  <em class="jxr_javadoccomment"> */</em>
-<a class="jxr_linenumber" name="L23" href="#L23">23</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../psiprobe/tools/logging/log4j2/Log4J2WebLoggerContextUtilsAccessor.html">Log4J2WebLoggerContextUtilsAccessor</a> <strong class="jxr_keyword">extends</strong> <a href="../../../../psiprobe/tools/logging/DefaultAccessor.html">DefaultAccessor</a> {
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a name="Log4J2WebLoggerContextUtilsAccessor" href="../../../../psiprobe/tools/logging/log4j2/Log4J2WebLoggerContextUtilsAccessor.html#Log4J2WebLoggerContextUtilsAccessor">Log4J2WebLoggerContextUtilsAccessor</a> <strong class="jxr_keyword">extends</strong> <a name="DefaultAccessor" href="../../../../psiprobe/tools/logging/DefaultAccessor.html#DefaultAccessor">DefaultAccessor</a> {
 <a class="jxr_linenumber" name="L24" href="#L24">24</a>  
 <a class="jxr_linenumber" name="L25" href="#L25">25</a>    <em class="jxr_javadoccomment">/** The Constant logger. */</em>
 <a class="jxr_linenumber" name="L26" href="#L26">26</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> Logger logger =
@@ -40,7 +40,7 @@
 <a class="jxr_linenumber" name="L32" href="#L32">32</a>  <em class="jxr_javadoccomment">   * @param cl the cl</em>
 <a class="jxr_linenumber" name="L33" href="#L33">33</a>  <em class="jxr_javadoccomment">   * @throws ClassNotFoundException the class not found exception</em>
 <a class="jxr_linenumber" name="L34" href="#L34">34</a>  <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L35" href="#L35">35</a>    <strong class="jxr_keyword">public</strong> <a href="../../../../psiprobe/tools/logging/log4j2/Log4J2WebLoggerContextUtilsAccessor.html">Log4J2WebLoggerContextUtilsAccessor</a>(ClassLoader cl) <strong class="jxr_keyword">throws</strong> ClassNotFoundException {
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>    <strong class="jxr_keyword">public</strong> <a name="Log4J2WebLoggerContextUtilsAccessor" href="../../../../psiprobe/tools/logging/log4j2/Log4J2WebLoggerContextUtilsAccessor.html#Log4J2WebLoggerContextUtilsAccessor">Log4J2WebLoggerContextUtilsAccessor</a>(ClassLoader cl) <strong class="jxr_keyword">throws</strong> ClassNotFoundException {
 <a class="jxr_linenumber" name="L36" href="#L36">36</a>      logger.debug(<span class="jxr_string">"Log4J2WebLoggerContextUtilsAccessor(): IN: cl={}"</span>, cl);
 <a class="jxr_linenumber" name="L37" href="#L37">37</a>      Class&lt;?&gt; clazz = cl.loadClass(<span class="jxr_string">"org.apache.logging.log4j.web.WebLoggerContextUtils"</span>);
 <a class="jxr_linenumber" name="L38" href="#L38">38</a>      setTarget(clazz);
@@ -53,9 +53,9 @@
 <a class="jxr_linenumber" name="L45" href="#L45">45</a>  <em class="jxr_javadoccomment">   * @param ctx the servlet context</em>
 <a class="jxr_linenumber" name="L46" href="#L46">46</a>  <em class="jxr_javadoccomment">   * @return the root logger</em>
 <a class="jxr_linenumber" name="L47" href="#L47">47</a>  <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L48" href="#L48">48</a>    <strong class="jxr_keyword">public</strong> <a href="../../../../psiprobe/tools/logging/log4j2/Log4J2LoggerContextAccessor.html">Log4J2LoggerContextAccessor</a> getWebLoggerContext(ServletContext ctx) {
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>    <strong class="jxr_keyword">public</strong> <a name="Log4J2LoggerContextAccessor" href="../../../../psiprobe/tools/logging/log4j2/Log4J2LoggerContextAccessor.html#Log4J2LoggerContextAccessor">Log4J2LoggerContextAccessor</a> getWebLoggerContext(ServletContext ctx) {
 <a class="jxr_linenumber" name="L49" href="#L49">49</a>      logger.debug(<span class="jxr_string">"getWebLoggerContext(): IN: ctx={}"</span>, ctx);
-<a class="jxr_linenumber" name="L50" href="#L50">50</a>      <a href="../../../../psiprobe/tools/logging/log4j2/Log4J2LoggerContextAccessor.html">Log4J2LoggerContextAccessor</a> result = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>      <a name="Log4J2LoggerContextAccessor" href="../../../../psiprobe/tools/logging/log4j2/Log4J2LoggerContextAccessor.html#Log4J2LoggerContextAccessor">Log4J2LoggerContextAccessor</a> result = <strong class="jxr_keyword">null</strong>;
 <a class="jxr_linenumber" name="L51" href="#L51">51</a>      <strong class="jxr_keyword">try</strong> {
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>        Class&lt;?&gt; clazz = (Class&lt;?&gt;) getTarget();
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>        Method getWebLoggerContext;
@@ -78,7 +78,7 @@
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>          <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> NullPointerException(getTarget().getClass().getName()
 <a class="jxr_linenumber" name="L71" href="#L71">71</a>              + <span class="jxr_string">"#getWebLoggerContext(Ljavax/servlet/ServletContext) returned null"</span>);
 <a class="jxr_linenumber" name="L72" href="#L72">72</a>        }
-<a class="jxr_linenumber" name="L73" href="#L73">73</a>        result = <strong class="jxr_keyword">new</strong> <a href="../../../../psiprobe/tools/logging/log4j2/Log4J2LoggerContextAccessor.html">Log4J2LoggerContextAccessor</a>();
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>        result = <strong class="jxr_keyword">new</strong> <a name="Log4J2LoggerContextAccessor" href="../../../../psiprobe/tools/logging/log4j2/Log4J2LoggerContextAccessor.html#Log4J2LoggerContextAccessor">Log4J2LoggerContextAccessor</a>();
 <a class="jxr_linenumber" name="L74" href="#L74">74</a>        result.setTarget(loggerContext);
 <a class="jxr_linenumber" name="L75" href="#L75">75</a>        result.setApplication(getApplication());
 <a class="jxr_linenumber" name="L76" href="#L76">76</a>      } <strong class="jxr_keyword">catch</strong> (Exception e) {

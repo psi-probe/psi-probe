@@ -11,10 +11,8 @@
 package psiprobe.tools;
 
 import java.util.Collection;
-
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 
@@ -26,9 +24,9 @@ public class SecurityUtils {
   /**
    * Prevent Instantiation of security utils.
    */
-<span class="nc" id="L29">  private SecurityUtils() {</span>
+  private SecurityUtils() {
     // Prevent Instantiation
-<span class="nc" id="L31">  }</span>
+  }
 
   /**
    * Checks for attribute value role.
@@ -40,13 +38,13 @@ public class SecurityUtils {
   public static boolean hasAttributeValueRole(ServletContext servletContext,
       HttpServletRequest request) {
 
-<span class="nc" id="L43">    String[] privilegedRoles = getPrivilegedRoles(servletContext).split(&quot;,&quot;);</span>
-<span class="nc bnc" id="L44" title="All 2 branches missed.">    for (String privilegedRole : privilegedRoles) {</span>
-<span class="nc bnc" id="L45" title="All 2 branches missed.">      if (userHasRole(privilegedRole)) {</span>
-<span class="nc" id="L46">        return true;</span>
+<span class="nc" id="L41">    String[] privilegedRoles = getPrivilegedRoles(servletContext).split(&quot;,&quot;);</span>
+<span class="nc bnc" id="L42" title="All 2 branches missed.">    for (String privilegedRole : privilegedRoles) {</span>
+<span class="nc bnc" id="L43" title="All 2 branches missed.">      if (userHasRole(privilegedRole)) {</span>
+<span class="nc" id="L44">        return true;</span>
       }
     }
-<span class="nc" id="L49">    return false;</span>
+<span class="nc" id="L47">    return false;</span>
   }
 
   /**
@@ -57,16 +55,16 @@ public class SecurityUtils {
    */
   private static boolean userHasRole(String privilegedRole) {
     Collection&lt;? extends GrantedAuthority&gt; authorities =
-<span class="nc" id="L60">        SecurityContextHolder.getContext().getAuthentication().getAuthorities();</span>
+<span class="nc" id="L58">        SecurityContextHolder.getContext().getAuthentication().getAuthorities();</span>
 
-<span class="nc" id="L62">    boolean result = false;</span>
-<span class="nc bnc" id="L63" title="All 2 branches missed.">    for (GrantedAuthority authority : authorities) {</span>
-<span class="nc bnc" id="L64" title="All 2 branches missed.">      if (privilegedRole.equals(authority.getAuthority())) {</span>
-<span class="nc" id="L65">        result = true;</span>
-<span class="nc" id="L66">        break;</span>
+<span class="nc" id="L60">    boolean result = false;</span>
+<span class="nc bnc" id="L61" title="All 2 branches missed.">    for (GrantedAuthority authority : authorities) {</span>
+<span class="nc bnc" id="L62" title="All 2 branches missed.">      if (privilegedRole.equals(authority.getAuthority())) {</span>
+<span class="nc" id="L63">        result = true;</span>
+<span class="nc" id="L64">        break;</span>
       }
-<span class="nc" id="L68">    }</span>
-<span class="nc" id="L69">    return result;</span>
+<span class="nc" id="L66">    }</span>
+<span class="nc" id="L67">    return result;</span>
   }
 
   /**
@@ -79,7 +77,7 @@ public class SecurityUtils {
   // TODO 12/10/2016 JWL Do we need this?
   @SuppressWarnings(&quot;unused&quot;)
   private static boolean userHasRole(String privilegedRole, HttpServletRequest request) {
-<span class="nc" id="L82">    return request.isUserInRole(privilegedRole);</span>
+<span class="nc" id="L80">    return request.isUserInRole(privilegedRole);</span>
   }
 
   /**
@@ -89,8 +87,8 @@ public class SecurityUtils {
    * @return the privileged roles
    */
   private static String getPrivilegedRoles(ServletContext servletContext) {
-<span class="nc" id="L92">    return servletContext.getInitParameter(&quot;attribute.value.roles&quot;);</span>
+<span class="nc" id="L90">    return servletContext.getInitParameter(&quot;attribute.value.roles&quot;);</span>
   }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

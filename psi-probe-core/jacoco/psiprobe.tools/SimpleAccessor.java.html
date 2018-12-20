@@ -11,28 +11,27 @@
 package psiprobe.tools;
 
 import java.lang.reflect.Field;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
  * The Class SimpleAccessor.
  */
-<span class="nc" id="L21">public class SimpleAccessor implements Accessor {</span>
+<span class="fc" id="L20">public class SimpleAccessor implements Accessor {</span>
 
   /** The Constant logger. */
-<span class="nc" id="L24">  private static final Logger logger = LoggerFactory.getLogger(SimpleAccessor.class);</span>
+<span class="fc" id="L23">  private static final Logger logger = LoggerFactory.getLogger(SimpleAccessor.class);</span>
 
   @Override
   public Object get(Object obj, Field field) {
-<span class="nc" id="L28">    boolean accessible = pre(field);</span>
+<span class="fc" id="L27">    boolean accessible = pre(field);</span>
     try {
-<span class="nc" id="L30">      return get0(obj, field);</span>
-<span class="nc" id="L31">    } catch (IllegalArgumentException | IllegalAccessException e) {</span>
-<span class="nc" id="L32">      logger.trace(&quot;&quot;, e);</span>
-<span class="nc" id="L33">      return null;</span>
+<span class="fc" id="L29">      return get0(obj, field);</span>
+<span class="nc" id="L30">    } catch (IllegalArgumentException | IllegalAccessException e) {</span>
+<span class="nc" id="L31">      logger.trace(&quot;&quot;, e);</span>
+<span class="nc" id="L32">      return null;</span>
     } finally {
-<span class="nc" id="L35">      post(field, accessible);</span>
+<span class="fc" id="L34">      post(field, accessible);</span>
     }
   }
 
@@ -46,10 +45,10 @@ import org.slf4j.LoggerFactory;
    */
   private Object get0(Object obj, Field field) throws IllegalAccessException {
 
-<span class="nc bnc" id="L49" title="All 2 branches missed.">    if (field.isAccessible()) {</span>
-<span class="nc" id="L50">      return field.get(obj);</span>
+<span class="pc bpc" id="L48" title="1 of 2 branches missed.">    if (field.isAccessible()) {</span>
+<span class="fc" id="L49">      return field.get(obj);</span>
     }
-<span class="nc" id="L52">    return null;</span>
+<span class="nc" id="L51">    return null;</span>
   }
 
   /**
@@ -59,15 +58,15 @@ import org.slf4j.LoggerFactory;
    * @return true, if successful
    */
   private boolean pre(Field field) {
-<span class="nc" id="L62">    boolean accessible = field.isAccessible();</span>
-<span class="nc bnc" id="L63" title="All 2 branches missed.">    if (!accessible) {</span>
+<span class="fc" id="L61">    boolean accessible = field.isAccessible();</span>
+<span class="pc bpc" id="L62" title="1 of 2 branches missed.">    if (!accessible) {</span>
       try {
-<span class="nc" id="L65">        field.setAccessible(true);</span>
-<span class="nc" id="L66">      } catch (SecurityException ex) {</span>
-<span class="nc" id="L67">        logger.trace(&quot;&quot;, ex);</span>
-<span class="nc" id="L68">      }</span>
+<span class="fc" id="L64">        field.setAccessible(true);</span>
+<span class="nc" id="L65">      } catch (SecurityException ex) {</span>
+<span class="nc" id="L66">        logger.trace(&quot;&quot;, ex);</span>
+<span class="fc" id="L67">      }</span>
     }
-<span class="nc" id="L70">    return accessible;</span>
+<span class="fc" id="L69">    return accessible;</span>
   }
 
   /**
@@ -77,14 +76,14 @@ import org.slf4j.LoggerFactory;
    * @param value the value
    */
   private void post(Field field, boolean value) {
-<span class="nc bnc" id="L80" title="All 2 branches missed.">    if (!value) {</span>
+<span class="pc bpc" id="L79" title="1 of 2 branches missed.">    if (!value) {</span>
       try {
-<span class="nc" id="L82">        field.setAccessible(false);</span>
-<span class="nc" id="L83">      } catch (SecurityException ex) {</span>
-<span class="nc" id="L84">        logger.trace(&quot;&quot;, ex);</span>
-<span class="nc" id="L85">      }</span>
+<span class="fc" id="L81">        field.setAccessible(false);</span>
+<span class="nc" id="L82">      } catch (SecurityException ex) {</span>
+<span class="nc" id="L83">        logger.trace(&quot;&quot;, ex);</span>
+<span class="fc" id="L84">      }</span>
     }
-<span class="nc" id="L87">  }</span>
+<span class="fc" id="L86">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

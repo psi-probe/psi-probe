@@ -10,7 +10,7 @@
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_javadoccomment"> * Licensed under the GPL License. You may not use this file except in compliance with the License.</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_javadoccomment"> * You may obtain a copy of the License at</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_javadoccomment"> *</em>
-<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_javadoccomment"> *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</em>
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_javadoccomment"> *   <a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.html" target="alexandria_uri">https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</a></em>
 <a class="jxr_linenumber" name="L6" href="#L6">6</a>   <em class="jxr_javadoccomment"> *</em>
 <a class="jxr_linenumber" name="L7" href="#L7">7</a>   <em class="jxr_javadoccomment"> * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,</em>
 <a class="jxr_linenumber" name="L8" href="#L8">8</a>   <em class="jxr_javadoccomment"> * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR</em>
@@ -39,7 +39,7 @@
 <a class="jxr_linenumber" name="L31" href="#L31">31</a>  <em class="jxr_javadoccomment"> * The Class ThreadStackController.</em>
 <a class="jxr_linenumber" name="L32" href="#L32">32</a>  <em class="jxr_javadoccomment"> */</em>
 <a class="jxr_linenumber" name="L33" href="#L33">33</a>  @Controller
-<a class="jxr_linenumber" name="L34" href="#L34">34</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../psiprobe/controllers/threads/ThreadStackController.html">ThreadStackController</a> <strong class="jxr_keyword">extends</strong> ParameterizableViewController {
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a name="ThreadStackController" href="../../../psiprobe/controllers/threads/ThreadStackController.html#ThreadStackController">ThreadStackController</a> <strong class="jxr_keyword">extends</strong> ParameterizableViewController {
 <a class="jxr_linenumber" name="L35" href="#L35">35</a>  
 <a class="jxr_linenumber" name="L36" href="#L36">36</a>    <em class="jxr_javadoccomment">/** The stack element count. */</em>
 <a class="jxr_linenumber" name="L37" href="#L37">37</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">int</strong> stackElementCount = 20;
@@ -105,7 +105,7 @@
 <a class="jxr_linenumber" name="L97" href="#L97">97</a>          stack = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;(elements.length);
 <a class="jxr_linenumber" name="L98" href="#L98">98</a>  
 <a class="jxr_linenumber" name="L99" href="#L99">99</a>          <strong class="jxr_keyword">for</strong> (CompositeData cd2 : elements) {
-<a class="jxr_linenumber" name="L100" href="#L100">100</a>           <a href="../../../psiprobe/model/ThreadStackElement.html">ThreadStackElement</a> tse = <strong class="jxr_keyword">new</strong> <a href="../../../psiprobe/model/ThreadStackElement.html">ThreadStackElement</a>();
+<a class="jxr_linenumber" name="L100" href="#L100">100</a>           <a name="ThreadStackElement" href="../../../psiprobe/model/ThreadS<a name="ThreadStackElement" href="../../../psiprobe/model/ThreadStackElement.html#ThreadStackElement">ThreadStackElement</a>hreadStackElement">ThreadStackElement</a> tse = <strong class="jxr_keyword">new</strong> <a name="ThreadStackElement" href="../../../psiprobe/model/ThreadStackElement.html#ThreadStackElement">ThreadStackElement</a>();
 <a class="jxr_linenumber" name="L101" href="#L101">101</a>           tse.setClassName(JmxTools.getStringAttr(cd2, <span class="jxr_string">"className"</span>));
 <a class="jxr_linenumber" name="L102" href="#L102">102</a>           tse.setFileName(JmxTools.getStringAttr(cd2, <span class="jxr_string">"fileName"</span>));
 <a class="jxr_linenumber" name="L103" href="#L103">103</a>           tse.setMethodName(JmxTools.getStringAttr(cd2, <span class="jxr_string">"methodName"</span>));

@@ -18,10 +18,8 @@ import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.TreeMap;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import psiprobe.tools.url.UrlParser;
 
 /**
@@ -30,14 +28,14 @@ import psiprobe.tools.url.UrlParser;
 public final class Whois {
 
   /** The Constant logger. */
-<span class="nc" id="L33">  private static final Logger logger = LoggerFactory.getLogger(Whois.class);</span>
+<span class="nc" id="L31">  private static final Logger logger = LoggerFactory.getLogger(Whois.class);</span>
 
   /**
    * Prevent Instantiation.
    */
-<span class="nc" id="L38">  private Whois() {</span>
+  private Whois() {
     // Prevent Instantiation
-<span class="nc" id="L40">  }</span>
+  }
 
   /**
    * Lookup.
@@ -49,7 +47,7 @@ public final class Whois {
    * @throws IOException Signals that an I/O exception has occurred.
    */
   public static Response lookup(String server, int port, String query) throws IOException {
-<span class="nc" id="L52">    return lookup(server, port, query, 5);</span>
+<span class="nc" id="L50">    return lookup(server, port, query, 5);</span>
   }
 
   /**
@@ -65,7 +63,7 @@ public final class Whois {
   public static Response lookup(String server, int port, String query, long timeout)
       throws IOException {
 
-<span class="nc" id="L68">    return lookup(server, port, query, timeout, System.getProperty(&quot;line.separator&quot;));</span>
+<span class="nc" id="L66">    return lookup(server, port, query, timeout, System.getProperty(&quot;line.separator&quot;));</span>
   }
 
   /**
@@ -82,70 +80,70 @@ public final class Whois {
   public static Response lookup(String server, int port, String query, long timeout,
       String lineSeparator) throws IOException {
 
-<span class="nc bnc" id="L85" title="All 2 branches missed.">    if (query == null) {</span>
-<span class="nc" id="L86">      return null;</span>
+<span class="nc bnc" id="L83" title="All 2 branches missed.">    if (query == null) {</span>
+<span class="nc" id="L84">      return null;</span>
     }
 
-<span class="nc" id="L89">    Response response = new Response();</span>
+<span class="nc" id="L87">    Response response = new Response();</span>
 
-<span class="nc" id="L91">    response.server = server;</span>
-<span class="nc" id="L92">    response.port = port;</span>
+<span class="nc" id="L89">    response.server = server;</span>
+<span class="nc" id="L90">    response.port = port;</span>
 
-<span class="nc" id="L94">    try (Socket connection = AsyncSocketFactory.createSocket(server, port, timeout);</span>
-<span class="nc" id="L95">        PrintStream out =</span>
-<span class="nc" id="L96">            new PrintStream(connection.getOutputStream(), true, StandardCharsets.UTF_8.name());</span>
-<span class="nc" id="L97">        BufferedReader in = new BufferedReader(</span>
-<span class="nc" id="L98">            new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8))) {</span>
-<span class="nc" id="L99">      out.println(query);</span>
-<span class="nc" id="L100">      StringBuilder sb = new StringBuilder();</span>
+<span class="nc" id="L92">    try (Socket connection = AsyncSocketFactory.createSocket(server, port, timeout);</span>
+<span class="nc" id="L93">        PrintStream out =</span>
+<span class="nc" id="L94">            new PrintStream(connection.getOutputStream(), true, StandardCharsets.UTF_8.name());</span>
+<span class="nc" id="L95">        BufferedReader in = new BufferedReader(</span>
+<span class="nc" id="L96">            new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8))) {</span>
+<span class="nc" id="L97">      out.println(query);</span>
+<span class="nc" id="L98">      StringBuilder sb = new StringBuilder();</span>
 
       String line;
-<span class="nc bnc" id="L103" title="All 2 branches missed.">      while ((line = in.readLine()) != null) {</span>
-<span class="nc" id="L104">        sb.append(line).append(lineSeparator);</span>
-<span class="nc" id="L105">        line = line.trim();</span>
-<span class="nc bnc" id="L106" title="All 4 branches missed.">        if (!line.startsWith(&quot;%&quot;) &amp;&amp; !line.startsWith(&quot;#&quot;)) {</span>
-<span class="nc" id="L107">          int fs = line.indexOf(':');</span>
-<span class="nc bnc" id="L108" title="All 2 branches missed.">          if (fs &gt; 0) {</span>
-<span class="nc" id="L109">            String name = line.substring(0, fs);</span>
-<span class="nc" id="L110">            String value = line.substring(fs + 1).trim();</span>
-<span class="nc" id="L111">            response.data.put(name, value);</span>
+<span class="nc bnc" id="L101" title="All 2 branches missed.">      while ((line = in.readLine()) != null) {</span>
+<span class="nc" id="L102">        sb.append(line).append(lineSeparator);</span>
+<span class="nc" id="L103">        line = line.trim();</span>
+<span class="nc bnc" id="L104" title="All 4 branches missed.">        if (!line.startsWith(&quot;%&quot;) &amp;&amp; !line.startsWith(&quot;#&quot;)) {</span>
+<span class="nc" id="L105">          int fs = line.indexOf(':');</span>
+<span class="nc bnc" id="L106" title="All 2 branches missed.">          if (fs &gt; 0) {</span>
+<span class="nc" id="L107">            String name = line.substring(0, fs);</span>
+<span class="nc" id="L108">            String value = line.substring(fs + 1).trim();</span>
+<span class="nc" id="L109">            response.data.put(name, value);</span>
           }
-<span class="nc" id="L113">        }</span>
+<span class="nc" id="L111">        }</span>
       }
-<span class="nc" id="L115">      response.summary = sb.toString();</span>
+<span class="nc" id="L113">      response.summary = sb.toString();</span>
 
-<span class="nc" id="L117">      Response newResponse = null;</span>
-<span class="nc" id="L118">      String referral = response.getData().get(&quot;ReferralServer&quot;);</span>
+<span class="nc" id="L115">      Response newResponse = null;</span>
+<span class="nc" id="L116">      String referral = response.getData().get(&quot;ReferralServer&quot;);</span>
 
-<span class="nc bnc" id="L120" title="All 2 branches missed.">      if (referral != null) {</span>
+<span class="nc bnc" id="L118" title="All 2 branches missed.">      if (referral != null) {</span>
         try {
-<span class="nc" id="L122">          UrlParser url = new UrlParser(referral);</span>
-<span class="nc bnc" id="L123" title="All 2 branches missed.">          if (&quot;whois&quot;.equals(url.getProtocol())) {</span>
-<span class="nc bnc" id="L124" title="All 2 branches missed.">            newResponse = lookup(url.getHost(), url.getPort() == -1 ? 43 : url.getPort(), query,</span>
+<span class="nc" id="L120">          UrlParser url = new UrlParser(referral);</span>
+<span class="nc bnc" id="L121" title="All 2 branches missed.">          if (&quot;whois&quot;.equals(url.getProtocol())) {</span>
+<span class="nc bnc" id="L122" title="All 2 branches missed.">            newResponse = lookup(url.getHost(), url.getPort() == -1 ? 43 : url.getPort(), query,</span>
                 timeout, lineSeparator);
           }
-<span class="nc" id="L127">        } catch (IOException e) {</span>
-<span class="nc" id="L128">          logger.trace(&quot;Could not contact '{}'&quot;, referral, e);</span>
-<span class="nc" id="L129">        }</span>
+<span class="nc" id="L125">        } catch (IOException e) {</span>
+<span class="nc" id="L126">          logger.trace(&quot;Could not contact '{}'&quot;, referral, e);</span>
+<span class="nc" id="L127">        }</span>
       }
-<span class="nc bnc" id="L131" title="All 2 branches missed.">      if (newResponse != null) {</span>
-<span class="nc" id="L132">        response = newResponse;</span>
+<span class="nc bnc" id="L129" title="All 2 branches missed.">      if (newResponse != null) {</span>
+<span class="nc" id="L130">        response = newResponse;</span>
       }
-<span class="nc bnc" id="L134" title="All 4 branches missed.">    }</span>
+    }
 
-<span class="nc" id="L136">    return response;</span>
+<span class="nc" id="L134">    return response;</span>
   }
 
   /**
    * The Class Response.
    */
-<span class="nc" id="L142">  public static class Response {</span>
+<span class="nc" id="L140">  public static class Response {</span>
 
     /** The summary. */
     String summary;
 
     /** The data. */
-<span class="nc" id="L148">    Map&lt;String, String&gt; data = new TreeMap&lt;&gt;();</span>
+<span class="nc" id="L146">    Map&lt;String, String&gt; data = new TreeMap&lt;&gt;();</span>
 
     /** The server. */
     String server;
@@ -159,7 +157,7 @@ public final class Whois {
      * @return the summary
      */
     public String getSummary() {
-<span class="nc" id="L162">      return summary;</span>
+<span class="nc" id="L160">      return summary;</span>
     }
 
     /**
@@ -168,7 +166,7 @@ public final class Whois {
      * @return the data
      */
     public Map&lt;String, String&gt; getData() {
-<span class="nc" id="L171">      return data;</span>
+<span class="nc" id="L169">      return data;</span>
     }
 
     /**
@@ -177,7 +175,7 @@ public final class Whois {
      * @return the server
      */
     public String getServer() {
-<span class="nc" id="L180">      return server;</span>
+<span class="nc" id="L178">      return server;</span>
     }
 
     /**
@@ -186,10 +184,10 @@ public final class Whois {
      * @return the port
      */
     public int getPort() {
-<span class="nc" id="L189">      return port;</span>
+<span class="nc" id="L187">      return port;</span>
     }
 
   }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

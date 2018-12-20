@@ -12,7 +12,6 @@ package psiprobe.tokenizer;
 
 import java.io.IOException;
 import java.io.StringReader;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,23 +21,23 @@ import org.slf4j.LoggerFactory;
 public class StringTokenizer extends Tokenizer {
 
   /** The Constant logger. */
-<span class="nc" id="L25">  private static final Logger logger = LoggerFactory.getLogger(StringTokenizer.class);</span>
+<span class="nc" id="L24">  private static final Logger logger = LoggerFactory.getLogger(StringTokenizer.class);</span>
 
   /**
    * Instantiates a new string tokenizer.
    */
-<span class="nc" id="L30">  public StringTokenizer() {</span>
+<span class="nc" id="L29">  public StringTokenizer() {</span>
     // Required due to override
-<span class="nc" id="L32">  }</span>
+<span class="nc" id="L31">  }</span>
 
   /**
    * Instantiates a new string tokenizer.
    *
    * @param str the str
    */
-<span class="nc" id="L39">  public StringTokenizer(final String str) {</span>
-<span class="nc" id="L40">    setString(str);</span>
-<span class="nc" id="L41">  }</span>
+<span class="nc" id="L38">  public StringTokenizer(final String str) {</span>
+<span class="nc" id="L39">    setString(str);</span>
+<span class="nc" id="L40">  }</span>
 
   /**
    * Sets the string.
@@ -46,38 +45,38 @@ public class StringTokenizer extends Tokenizer {
    * @param str the new string
    */
   public void setString(final String str) {
-<span class="nc" id="L49">    setReader(new StringReader(str));</span>
-<span class="nc" id="L50">  }</span>
+<span class="nc" id="L48">    setReader(new StringReader(str));</span>
+<span class="nc" id="L49">  }</span>
 
   @Override
   public boolean hasMore() {
     try {
-<span class="nc" id="L55">      return super.hasMore();</span>
-<span class="nc" id="L56">    } catch (IOException e) {</span>
-<span class="nc" id="L57">      logger.trace(&quot;&quot;, e);</span>
-<span class="nc" id="L58">      return false;</span>
+<span class="nc" id="L54">      return super.hasMore();</span>
+<span class="nc" id="L55">    } catch (IOException e) {</span>
+<span class="nc" id="L56">      logger.trace(&quot;&quot;, e);</span>
+<span class="nc" id="L57">      return false;</span>
     }
   }
 
   @Override
   public Token getToken() {
     try {
-<span class="nc" id="L65">      return super.getToken();</span>
-<span class="nc" id="L66">    } catch (IOException e) {</span>
-<span class="nc" id="L67">      logger.trace(&quot;&quot;, e);</span>
-<span class="nc" id="L68">      return null;</span>
+<span class="nc" id="L64">      return super.getToken();</span>
+<span class="nc" id="L65">    } catch (IOException e) {</span>
+<span class="nc" id="L66">      logger.trace(&quot;&quot;, e);</span>
+<span class="nc" id="L67">      return null;</span>
     }
   }
 
   @Override
   public Token nextToken() {
     try {
-<span class="nc" id="L75">      return super.nextToken();</span>
-<span class="nc" id="L76">    } catch (IOException e) {</span>
-<span class="nc" id="L77">      logger.trace(&quot;&quot;, e);</span>
-<span class="nc" id="L78">      return null;</span>
+<span class="nc" id="L74">      return super.nextToken();</span>
+<span class="nc" id="L75">    } catch (IOException e) {</span>
+<span class="nc" id="L76">      logger.trace(&quot;&quot;, e);</span>
+<span class="nc" id="L77">      return null;</span>
     }
   }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -10,7 +10,7 @@
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_javadoccomment"> * Licensed under the GPL License. You may not use this file except in compliance with the License.</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_javadoccomment"> * You may obtain a copy of the License at</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_javadoccomment"> *</em>
-<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_javadoccomment"> *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</em>
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_javadoccomment"> *   <a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.html" target="alexandria_uri">https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</a></em>
 <a class="jxr_linenumber" name="L6" href="#L6">6</a>   <em class="jxr_javadoccomment"> *</em>
 <a class="jxr_linenumber" name="L7" href="#L7">7</a>   <em class="jxr_javadoccomment"> * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,</em>
 <a class="jxr_linenumber" name="L8" href="#L8">8</a>   <em class="jxr_javadoccomment"> * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR</em>
@@ -39,7 +39,7 @@
 <a class="jxr_linenumber" name="L31" href="#L31">31</a>  <em class="jxr_javadoccomment"> * The Class ListSunThreadsController.</em>
 <a class="jxr_linenumber" name="L32" href="#L32">32</a>  <em class="jxr_javadoccomment"> */</em>
 <a class="jxr_linenumber" name="L33" href="#L33">33</a>  @Controller
-<a class="jxr_linenumber" name="L34" href="#L34">34</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../psiprobe/controllers/threads/ListSunThreadsController.html">ListSunThreadsController</a> <strong class="jxr_keyword">extends</strong> ParameterizableViewController {
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a name="ListSunThreadsController" href="../../../psiprobe/controllers/threads/ListSunThreadsController.html#ListSunThreadsController">ListSunThreadsController</a> <strong class="jxr_keyword">extends</strong> ParameterizableViewController {
 <a class="jxr_linenumber" name="L35" href="#L35">35</a>  
 <a class="jxr_linenumber" name="L36" href="#L36">36</a>    @RequestMapping(path = <span class="jxr_string">"/th_impl2.htm"</span>)
 <a class="jxr_linenumber" name="L37" href="#L37">37</a>    @Override
@@ -70,7 +70,7 @@
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>              <strong class="jxr_keyword">new</strong> Object[] {id, executionStackDepth}, <strong class="jxr_keyword">new</strong> String[] {<span class="jxr_string">"long"</span>, <span class="jxr_string">"int"</span>});
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>  
 <a class="jxr_linenumber" name="L64" href="#L64">64</a>          <strong class="jxr_keyword">if</strong> (cd != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L65" href="#L65">65</a>            <a href="../../../psiprobe/model/SunThread.html">SunThread</a> st = <strong class="jxr_keyword">new</strong> <a href="../../../psiprobe/model/SunThread.html">SunThread</a>();
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>            <a name="SunThread" href="../../../psiprobe/model/SunThr<a name="SunThread" href="../../../psiprobe/model/SunThread.html#SunThread">SunThread</a>SunThread">SunThread</a> st = <strong class="jxr_keyword">new</strong> <a name="SunThread" href="../../../psiprobe/model/SunThread.html#SunThread">SunThread</a>();
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>            st.setId(JmxTools.getLongAttr(cd, <span class="jxr_string">"threadId"</span>));
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>            st.setName(JmxTools.getStringAttr(cd, <span class="jxr_string">"threadName"</span>));
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>            st.setState(JmxTools.getStringAttr(cd, <span class="jxr_string">"threadState"</span>));
@@ -85,7 +85,7 @@
 <a class="jxr_linenumber" name="L77" href="#L77">77</a>            CompositeData[] stack = (CompositeData[]) cd.get(<span class="jxr_string">"stackTrace"</span>);
 <a class="jxr_linenumber" name="L78" href="#L78">78</a>            <strong class="jxr_keyword">if</strong> (stack.length &gt; 0) {
 <a class="jxr_linenumber" name="L79" href="#L79">79</a>              CompositeData cd2 = stack[0];
-<a class="jxr_linenumber" name="L80" href="#L80">80</a>              <a href="../../../psiprobe/model/ThreadStackElement.html">ThreadStackElement</a> tse = <strong class="jxr_keyword">new</strong> <a href="../../../psiprobe/model/ThreadStackElement.html">ThreadStackElement</a>();
+<a class="jxr_linenumber" name="L80" href="#L80">80</a>              <a name="ThreadStackElement" href="../../../psiprobe/model/ThreadS<a name="ThreadStackElement" href="../../../psiprobe/model/ThreadStackElement.html#ThreadStackElement">ThreadStackElement</a>hreadStackElement">ThreadStackElement</a> tse = <strong class="jxr_keyword">new</strong> <a name="ThreadStackElement" href="../../../psiprobe/model/ThreadStackElement.html#ThreadStackElement">ThreadStackElement</a>();
 <a class="jxr_linenumber" name="L81" href="#L81">81</a>              tse.setClassName(JmxTools.getStringAttr(cd2, <span class="jxr_string">"className"</span>));
 <a class="jxr_linenumber" name="L82" href="#L82">82</a>              tse.setFileName(JmxTools.getStringAttr(cd2, <span class="jxr_string">"fileName"</span>));
 <a class="jxr_linenumber" name="L83" href="#L83">83</a>              tse.setMethodName(JmxTools.getStringAttr(cd2, <span class="jxr_string">"methodName"</span>));

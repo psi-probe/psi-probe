@@ -19,15 +19,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Prevents a classloader leak as suggested by
- * &lt;a href=&quot;https://cdivilly.wordpress.com/2012/04/23/permgen-memory-leak/&quot;&gt;Colm Divilly&lt;/a&gt;
+ * Prevents a classloader leak.
+ * 
+ * As suggested by: &lt;a href=&quot;https://cdivilly.wordpress.com/2012/04/23/permgen-memory-leak/&quot;&gt;Colm
+ * Divilly&lt;/a&gt;
  */
 @WebListener
-<span class="fc" id="L26">public class AwtAppContextClassloaderListener implements ServletContextListener {</span>
+<span class="fc" id="L28">public class AwtAppContextClassloaderListener implements ServletContextListener {</span>
 
   /** The Constant logger. */
-<span class="fc" id="L29">  private static final Logger logger =</span>
-<span class="fc" id="L30">      LoggerFactory.getLogger(AwtAppContextClassloaderListener.class);</span>
+<span class="fc" id="L31">  private static final Logger logger =</span>
+<span class="fc" id="L32">      LoggerFactory.getLogger(AwtAppContextClassloaderListener.class);</span>
 
   /**
    * Forces the {@code sun.awt.AppContext} singleton to be created and initialized when the context
@@ -38,15 +40,15 @@ import org.slf4j.LoggerFactory;
   @Override
   public void contextInitialized(ServletContextEvent sce) {
     try {
-<span class="fc" id="L41">      final ClassLoader active = Thread.currentThread().getContextClassLoader();</span>
+<span class="fc" id="L43">      final ClassLoader active = Thread.currentThread().getContextClassLoader();</span>
       try {
         // Find the root classloader
-<span class="fc" id="L44">        ClassLoader root = active;</span>
-<span class="fc bfc" id="L45" title="All 2 branches covered.">        while (root.getParent() != null) {</span>
-<span class="fc" id="L46">          root = root.getParent();</span>
+<span class="fc" id="L46">        ClassLoader root = active;</span>
+<span class="fc bfc" id="L47" title="All 2 branches covered.">        while (root.getParent() != null) {</span>
+<span class="fc" id="L48">          root = root.getParent();</span>
         }
         // Temporarily make the root class loader the active class loader
-<span class="fc" id="L49">        Thread.currentThread().setContextClassLoader(root);</span>
+<span class="fc" id="L51">        Thread.currentThread().setContextClassLoader(root);</span>
         /*
          * Forces the sun.awt.AppContext singleton to be created and initialized. Call
          * ImageIO.getCacheDirectory() to avoid direct call to Oracle JVM internal class
@@ -54,21 +56,21 @@ import org.slf4j.LoggerFactory;
          * org.apache.catalina.core.JreMemoryLeakPreventionListener which is optional on Tomcat
          * 1.7.0_02 or greater.
          */
-<span class="fc" id="L57">        ImageIO.getCacheDirectory();</span>
+<span class="fc" id="L59">        ImageIO.getCacheDirectory();</span>
       } finally {
         // restore the class loader
-<span class="fc" id="L60">        Thread.currentThread().setContextClassLoader(active);</span>
-<span class="fc" id="L61">      }</span>
-<span class="fc" id="L62">      logger.info(&quot;AwtAppContextClassloaderListener Initialized&quot;);</span>
-<span class="fc" id="L63">    } catch (Exception e) {</span>
-<span class="fc" id="L64">      logger.error(&quot;Failed to address PermGen leak.&quot;, e);</span>
-<span class="fc" id="L65">    }</span>
-<span class="fc" id="L66">  }</span>
+<span class="fc" id="L62">        Thread.currentThread().setContextClassLoader(active);</span>
+      }
+<span class="fc" id="L64">      logger.info(&quot;AwtAppContextClassloaderListener Initialized&quot;);</span>
+<span class="fc" id="L65">    } catch (Exception e) {</span>
+<span class="fc" id="L66">      logger.error(&quot;Failed to address PermGen leak.&quot;, e);</span>
+<span class="fc" id="L67">    }</span>
+<span class="fc" id="L68">  }</span>
 
   @Override
   public void contextDestroyed(ServletContextEvent sce) {
     // Not Implemented
-<span class="fc" id="L71">  }</span>
+<span class="fc" id="L73">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

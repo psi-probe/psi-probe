@@ -12,7 +12,6 @@ package psiprobe.controllers.threads;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestUtils;
@@ -20,14 +19,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
 import org.springframework.web.servlet.view.RedirectView;
-
 import psiprobe.Utils;
 
 /**
  * The Class KillThreadController.
  */
 @Controller
-<span class="fc" id="L30">public class KillThreadController extends ParameterizableViewController {</span>
+<span class="fc" id="L28">public class KillThreadController extends ParameterizableViewController {</span>
 
   /** The replace pattern. */
   private String replacePattern;
@@ -38,7 +36,7 @@ import psiprobe.Utils;
    * @return the replace pattern
    */
   public String getReplacePattern() {
-<span class="fc" id="L41">    return replacePattern;</span>
+<span class="fc" id="L39">    return replacePattern;</span>
   }
 
   /**
@@ -48,46 +46,46 @@ import psiprobe.Utils;
    */
   @Value(&quot;^http(s)?://[a-zA-Z\\-\\.0-9]+(:[0-9]+)?&quot;)
   public void setReplacePattern(String replacePattern) {
-<span class="fc" id="L51">    this.replacePattern = replacePattern;</span>
-<span class="fc" id="L52">  }</span>
+<span class="fc" id="L49">    this.replacePattern = replacePattern;</span>
+<span class="fc" id="L50">  }</span>
 
   @RequestMapping(path = &quot;/adm/kill.htm&quot;)
   @Override
   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
       throws Exception {
-<span class="nc" id="L58">    return super.handleRequest(request, response);</span>
+<span class="nc" id="L56">    return super.handleRequest(request, response);</span>
   }
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 
-<span class="nc" id="L65">    String threadName = ServletRequestUtils.getStringParameter(request, &quot;thread&quot;, null);</span>
+<span class="nc" id="L63">    String threadName = ServletRequestUtils.getStringParameter(request, &quot;thread&quot;, null);</span>
 
-<span class="nc" id="L67">    Thread thread = null;</span>
-<span class="nc bnc" id="L68" title="All 2 branches missed.">    if (threadName != null) {</span>
-<span class="nc" id="L69">      thread = Utils.getThreadByName(threadName);</span>
+<span class="nc" id="L65">    Thread thread = null;</span>
+<span class="nc bnc" id="L66" title="All 2 branches missed.">    if (threadName != null) {</span>
+<span class="nc" id="L67">      thread = Utils.getThreadByName(threadName);</span>
     }
 
-<span class="nc bnc" id="L72" title="All 2 branches missed.">    if (thread != null) {</span>
-<span class="nc" id="L73">      thread.stop();</span>
+<span class="nc bnc" id="L70" title="All 2 branches missed.">    if (thread != null) {</span>
+<span class="nc" id="L71">      thread.stop();</span>
     }
 
-<span class="nc" id="L76">    String referer = request.getHeader(&quot;Referer&quot;);</span>
+<span class="nc" id="L74">    String referer = request.getHeader(&quot;Referer&quot;);</span>
     String redirectUrl;
-<span class="nc bnc" id="L78" title="All 2 branches missed.">    if (referer != null) {</span>
-<span class="nc" id="L79">      redirectUrl = referer.replaceAll(replacePattern, &quot;&quot;);</span>
+<span class="nc bnc" id="L76" title="All 2 branches missed.">    if (referer != null) {</span>
+<span class="nc" id="L77">      redirectUrl = referer.replaceAll(replacePattern, &quot;&quot;);</span>
     } else {
-<span class="nc" id="L81">      redirectUrl = request.getContextPath() + getViewName();</span>
+<span class="nc" id="L79">      redirectUrl = request.getContextPath() + getViewName();</span>
     }
-<span class="nc" id="L83">    return new ModelAndView(new RedirectView(redirectUrl));</span>
+<span class="nc" id="L81">    return new ModelAndView(new RedirectView(redirectUrl));</span>
   }
 
   @Value(&quot;redirect:/threads.htm&quot;)
   @Override
   public void setViewName(String viewName) {
-<span class="fc" id="L89">    super.setViewName(viewName);</span>
-<span class="fc" id="L90">  }</span>
+<span class="fc" id="L87">    super.setViewName(viewName);</span>
+<span class="fc" id="L88">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

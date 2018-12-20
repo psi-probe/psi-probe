@@ -11,20 +11,17 @@
 package psiprobe.tools.logging.logback;
 
 import com.google.common.collect.Iterators;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-
 import org.apache.commons.lang3.reflect.MethodUtils;
-
 import psiprobe.tools.logging.DefaultAccessor;
 
 /**
  * A wrapper for a Logback logger.
  */
-<span class="fc" id="L27">public class LogbackLoggerAccessor extends DefaultAccessor {</span>
+<span class="fc" id="L24">public class LogbackLoggerAccessor extends DefaultAccessor {</span>
 
   /**
    * Returns all appenders of this logger.
@@ -33,26 +30,26 @@ import psiprobe.tools.logging.DefaultAccessor;
    */
   @SuppressWarnings(&quot;unchecked&quot;)
   public List&lt;LogbackAppenderAccessor&gt; getAppenders() {
-<span class="nc" id="L36">    List&lt;LogbackAppenderAccessor&gt; appenders = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L33">    List&lt;LogbackAppenderAccessor&gt; appenders = new ArrayList&lt;&gt;();</span>
     try {
-<span class="nc bnc" id="L38" title="All 2 branches missed.">      for (Object appender : Collections.list(Iterators.asEnumeration(</span>
-<span class="nc" id="L39">          (Iterator&lt;Object&gt;) MethodUtils.invokeMethod(getTarget(), &quot;iteratorForAppenders&quot;)))) {</span>
-<span class="nc" id="L40">        List&lt;Object&gt; siftedAppenders = getSiftedAppenders(appender);</span>
-<span class="nc bnc" id="L41" title="All 2 branches missed.">        if (siftedAppenders != null) {</span>
-<span class="nc bnc" id="L42" title="All 2 branches missed.">          for (Object siftedAppender : siftedAppenders) {</span>
-<span class="nc" id="L43">            wrapAndAddAppender(siftedAppender, appenders);</span>
-<span class="nc" id="L44">          }</span>
+<span class="nc bnc" id="L35" title="All 2 branches missed.">      for (Object appender : Collections.list(Iterators.asEnumeration(</span>
+<span class="nc" id="L36">          (Iterator&lt;Object&gt;) MethodUtils.invokeMethod(getTarget(), &quot;iteratorForAppenders&quot;)))) {</span>
+<span class="nc" id="L37">        List&lt;Object&gt; siftedAppenders = getSiftedAppenders(appender);</span>
+<span class="nc bnc" id="L38" title="All 2 branches missed.">        if (siftedAppenders != null) {</span>
+<span class="nc bnc" id="L39" title="All 2 branches missed.">          for (Object siftedAppender : siftedAppenders) {</span>
+<span class="nc" id="L40">            wrapAndAddAppender(siftedAppender, appenders);</span>
+<span class="nc" id="L41">          }</span>
         } else {
-<span class="nc" id="L46">          wrapAndAddAppender(appender, appenders);</span>
+<span class="nc" id="L43">          wrapAndAddAppender(appender, appenders);</span>
         }
-<span class="nc" id="L48">      }</span>
-<span class="nc" id="L49">    } catch (NoClassDefFoundError e) {</span>
+<span class="nc" id="L45">      }</span>
+<span class="nc" id="L46">    } catch (NoClassDefFoundError e) {</span>
+<span class="nc" id="L47">      logger.error(&quot;{}#getAppenders() failed&quot;, getTarget().getClass().getName(), e);</span>
+<span class="nc" id="L48">      logger.error(&quot;To see this logger, upgrade slf4j to 1.7.21+&quot;);</span>
+<span class="nc" id="L49">    } catch (Exception e) {</span>
 <span class="nc" id="L50">      logger.error(&quot;{}#getAppenders() failed&quot;, getTarget().getClass().getName(), e);</span>
-<span class="nc" id="L51">      logger.error(&quot;To see this logger, upgrade slf4j to 1.7.21+&quot;);</span>
-<span class="nc" id="L52">    } catch (Exception e) {</span>
-<span class="nc" id="L53">      logger.error(&quot;{}#getAppenders() failed&quot;, getTarget().getClass().getName(), e);</span>
-<span class="nc" id="L54">    }</span>
-<span class="nc" id="L55">    return appenders;</span>
+<span class="nc" id="L51">    }</span>
+<span class="nc" id="L52">    return appenders;</span>
   }
 
   /**
@@ -63,20 +60,20 @@ import psiprobe.tools.logging.DefaultAccessor;
    */
   public LogbackAppenderAccessor getAppender(String name) {
     try {
-<span class="nc" id="L66">      Object appender = MethodUtils.invokeMethod(getTarget(), &quot;getAppender&quot;, name);</span>
-<span class="nc bnc" id="L67" title="All 2 branches missed.">      if (appender == null) {</span>
-<span class="nc" id="L68">        List&lt;LogbackAppenderAccessor&gt; appenders = getAppenders();</span>
-<span class="nc bnc" id="L69" title="All 2 branches missed.">        for (LogbackAppenderAccessor wrappedAppender : appenders) {</span>
-<span class="nc bnc" id="L70" title="All 2 branches missed.">          if (wrappedAppender.getIndex().equals(name)) {</span>
-<span class="nc" id="L71">            return wrappedAppender;</span>
+<span class="nc" id="L63">      Object appender = MethodUtils.invokeMethod(getTarget(), &quot;getAppender&quot;, name);</span>
+<span class="nc bnc" id="L64" title="All 2 branches missed.">      if (appender == null) {</span>
+<span class="nc" id="L65">        List&lt;LogbackAppenderAccessor&gt; appenders = getAppenders();</span>
+<span class="nc bnc" id="L66" title="All 2 branches missed.">        for (LogbackAppenderAccessor wrappedAppender : appenders) {</span>
+<span class="nc bnc" id="L67" title="All 2 branches missed.">          if (wrappedAppender.getIndex().equals(name)) {</span>
+<span class="nc" id="L68">            return wrappedAppender;</span>
           }
-<span class="nc" id="L73">        }</span>
+<span class="nc" id="L70">        }</span>
       }
-<span class="nc" id="L75">      return wrapAppender(appender);</span>
-<span class="nc" id="L76">    } catch (Exception e) {</span>
-<span class="nc" id="L77">      logger.error(&quot;{}#getAppender() failed&quot;, getTarget().getClass().getName(), e);</span>
+<span class="nc" id="L72">      return wrapAppender(appender);</span>
+<span class="nc" id="L73">    } catch (Exception e) {</span>
+<span class="nc" id="L74">      logger.error(&quot;{}#getAppender() failed&quot;, getTarget().getClass().getName(), e);</span>
     }
-<span class="nc" id="L79">    return null;</span>
+<span class="nc" id="L76">    return null;</span>
   }
 
   /**
@@ -85,7 +82,7 @@ import psiprobe.tools.logging.DefaultAccessor;
    * @return true, if is context
    */
   public boolean isContext() {
-<span class="nc" id="L88">    return false;</span>
+<span class="nc" id="L85">    return false;</span>
   }
 
   /**
@@ -94,7 +91,7 @@ import psiprobe.tools.logging.DefaultAccessor;
    * @return true, if is root
    */
   public boolean isRoot() {
-<span class="nc" id="L97">    return &quot;ROOT&quot;.equals(getName());</span>
+<span class="nc" id="L94">    return &quot;ROOT&quot;.equals(getName());</span>
   }
 
   /**
@@ -103,7 +100,7 @@ import psiprobe.tools.logging.DefaultAccessor;
    * @return the name
    */
   public String getName() {
-<span class="nc" id="L106">    return (String) getProperty(getTarget(), &quot;name&quot;, null);</span>
+<span class="nc" id="L103">    return (String) getProperty(getTarget(), &quot;name&quot;, null);</span>
   }
 
   /**
@@ -113,12 +110,12 @@ import psiprobe.tools.logging.DefaultAccessor;
    */
   public String getLevel() {
     try {
-<span class="nc" id="L116">      Object level = MethodUtils.invokeMethod(getTarget(), &quot;getLevel&quot;);</span>
-<span class="nc" id="L117">      return (String) MethodUtils.invokeMethod(level, &quot;toString&quot;);</span>
-<span class="nc" id="L118">    } catch (Exception e) {</span>
-<span class="nc" id="L119">      logger.error(&quot;{}#getLevel() failed&quot;, getTarget().getClass().getName(), e);</span>
+<span class="nc" id="L113">      Object level = MethodUtils.invokeMethod(getTarget(), &quot;getLevel&quot;);</span>
+<span class="nc" id="L114">      return (String) MethodUtils.invokeMethod(level, &quot;toString&quot;);</span>
+<span class="nc" id="L115">    } catch (Exception e) {</span>
+<span class="nc" id="L116">      logger.error(&quot;{}#getLevel() failed&quot;, getTarget().getClass().getName(), e);</span>
     }
-<span class="nc" id="L121">    return null;</span>
+<span class="nc" id="L118">    return null;</span>
   }
 
   /**
@@ -128,13 +125,13 @@ import psiprobe.tools.logging.DefaultAccessor;
    */
   public void setLevel(String newLevelStr) {
     try {
-<span class="nc" id="L131">      Object level = MethodUtils.invokeMethod(getTarget(), &quot;getLevel&quot;);</span>
-<span class="nc" id="L132">      Object newLevel = MethodUtils.invokeMethod(level, &quot;toLevel&quot;, newLevelStr);</span>
-<span class="nc" id="L133">      MethodUtils.invokeMethod(getTarget(), &quot;setLevel&quot;, newLevel);</span>
-<span class="nc" id="L134">    } catch (Exception e) {</span>
-<span class="nc" id="L135">      logger.error(&quot;{}#setLevel('{}') failed&quot;, getTarget().getClass().getName(), newLevelStr, e);</span>
-<span class="nc" id="L136">    }</span>
-<span class="nc" id="L137">  }</span>
+<span class="nc" id="L128">      Object level = MethodUtils.invokeMethod(getTarget(), &quot;getLevel&quot;);</span>
+<span class="nc" id="L129">      Object newLevel = MethodUtils.invokeMethod(level, &quot;toLevel&quot;, newLevelStr);</span>
+<span class="nc" id="L130">      MethodUtils.invokeMethod(getTarget(), &quot;setLevel&quot;, newLevel);</span>
+<span class="nc" id="L131">    } catch (Exception e) {</span>
+<span class="nc" id="L132">      logger.error(&quot;{}#setLevel('{}') failed&quot;, getTarget().getClass().getName(), newLevelStr, e);</span>
+<span class="nc" id="L133">    }</span>
+<span class="nc" id="L134">  }</span>
 
   /**
    * Gets the sifted appenders.
@@ -145,20 +142,20 @@ import psiprobe.tools.logging.DefaultAccessor;
    */
   @SuppressWarnings(&quot;unchecked&quot;)
   private List&lt;Object&gt; getSiftedAppenders(Object appender) throws Exception {
-<span class="nc bnc" id="L148" title="All 2 branches missed.">    if (&quot;ch.qos.logback.classic.sift.SiftingAppender&quot;.equals(appender.getClass().getName())) {</span>
-<span class="nc" id="L149">      Object tracker = MethodUtils.invokeMethod(appender, &quot;getAppenderTracker&quot;);</span>
-<span class="nc bnc" id="L150" title="All 2 branches missed.">      if (tracker != null) {</span>
+<span class="nc bnc" id="L145" title="All 2 branches missed.">    if (&quot;ch.qos.logback.classic.sift.SiftingAppender&quot;.equals(appender.getClass().getName())) {</span>
+<span class="nc" id="L146">      Object tracker = MethodUtils.invokeMethod(appender, &quot;getAppenderTracker&quot;);</span>
+<span class="nc bnc" id="L147" title="All 2 branches missed.">      if (tracker != null) {</span>
         try {
-<span class="nc" id="L152">          return (List&lt;Object&gt;) MethodUtils.invokeMethod(tracker, &quot;allComponents&quot;);</span>
-<span class="nc" id="L153">        } catch (final NoSuchMethodException e) {</span>
+<span class="nc" id="L149">          return (List&lt;Object&gt;) MethodUtils.invokeMethod(tracker, &quot;allComponents&quot;);</span>
+<span class="nc" id="L150">        } catch (final NoSuchMethodException e) {</span>
           // XXX Legacy 1.0.x and lower support for logback
-<span class="nc" id="L155">          logger.trace(&quot;&quot;, e);</span>
-<span class="nc" id="L156">          return (List&lt;Object&gt;) MethodUtils.invokeMethod(tracker, &quot;valueList&quot;);</span>
+<span class="nc" id="L152">          logger.trace(&quot;&quot;, e);</span>
+<span class="nc" id="L153">          return (List&lt;Object&gt;) MethodUtils.invokeMethod(tracker, &quot;valueList&quot;);</span>
         }
       }
-<span class="nc" id="L159">      return new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L156">      return new ArrayList&lt;&gt;();</span>
     }
-<span class="nc" id="L161">    return null;</span>
+<span class="nc" id="L158">    return null;</span>
   }
 
   /**
@@ -168,11 +165,11 @@ import psiprobe.tools.logging.DefaultAccessor;
    * @param appenders the appenders
    */
   private void wrapAndAddAppender(Object appender, List&lt;LogbackAppenderAccessor&gt; appenders) {
-<span class="nc" id="L171">    LogbackAppenderAccessor appenderAccessor = wrapAppender(appender);</span>
-<span class="nc bnc" id="L172" title="All 2 branches missed.">    if (appenderAccessor != null) {</span>
-<span class="nc" id="L173">      appenders.add(appenderAccessor);</span>
+<span class="nc" id="L168">    LogbackAppenderAccessor appenderAccessor = wrapAppender(appender);</span>
+<span class="nc bnc" id="L169" title="All 2 branches missed.">    if (appenderAccessor != null) {</span>
+<span class="nc" id="L170">      appenders.add(appenderAccessor);</span>
     }
-<span class="nc" id="L175">  }</span>
+<span class="nc" id="L172">  }</span>
 
   /**
    * Wrap appender.
@@ -182,19 +179,19 @@ import psiprobe.tools.logging.DefaultAccessor;
    */
   private LogbackAppenderAccessor wrapAppender(Object appender) {
     try {
-<span class="nc bnc" id="L185" title="All 2 branches missed.">      if (appender == null) {</span>
-<span class="nc" id="L186">        throw new IllegalArgumentException(&quot;appender is null&quot;);</span>
+<span class="nc bnc" id="L182" title="All 2 branches missed.">      if (appender == null) {</span>
+<span class="nc" id="L183">        throw new IllegalArgumentException(&quot;appender is null&quot;);</span>
       }
-<span class="nc" id="L188">      LogbackAppenderAccessor appenderAccessor = new LogbackAppenderAccessor();</span>
-<span class="nc" id="L189">      appenderAccessor.setTarget(appender);</span>
-<span class="nc" id="L190">      appenderAccessor.setLoggerAccessor(this);</span>
-<span class="nc" id="L191">      appenderAccessor.setApplication(getApplication());</span>
-<span class="nc" id="L192">      return appenderAccessor;</span>
-<span class="nc" id="L193">    } catch (Exception e) {</span>
-<span class="nc" id="L194">      logger.error(&quot;Could not wrap appender: '{}'&quot;, appender, e);</span>
+<span class="nc" id="L185">      LogbackAppenderAccessor appenderAccessor = new LogbackAppenderAccessor();</span>
+<span class="nc" id="L186">      appenderAccessor.setTarget(appender);</span>
+<span class="nc" id="L187">      appenderAccessor.setLoggerAccessor(this);</span>
+<span class="nc" id="L188">      appenderAccessor.setApplication(getApplication());</span>
+<span class="nc" id="L189">      return appenderAccessor;</span>
+<span class="nc" id="L190">    } catch (Exception e) {</span>
+<span class="nc" id="L191">      logger.error(&quot;Could not wrap appender: '{}'&quot;, appender, e);</span>
     }
-<span class="nc" id="L196">    return null;</span>
+<span class="nc" id="L193">    return null;</span>
   }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

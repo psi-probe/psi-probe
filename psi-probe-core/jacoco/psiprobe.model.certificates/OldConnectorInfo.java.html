@@ -46,25 +46,25 @@ public class OldConnectorInfo extends ConnectorInfo {
   private String truststoreType;
 
   /**
-   * Recent version of tomcat have changed how certificate setup works. As such this
-   * class supports the Old Connecter Info configuration.
+   * Recent version of tomcat have changed how certificate setup works. As such this class supports
+   * the Old Connecter Info configuration.
    */
 <span class="nc" id="L52">  public OldConnectorInfo() {</span>
-<span class="nc" id="L53">    SSLHostConfigInfo configInfo = new SSLHostConfigInfo();</span>
+<span class="nc" id="L53">    SslHostConfigInfo configInfo = new SslHostConfigInfo();</span>
 <span class="nc" id="L54">    List&lt;CertificateInfo&gt; certificateInfos = new ArrayList&lt;&gt;(1);</span>
 <span class="nc" id="L55">    certificateInfos.add(new CertificateInfo());</span>
 <span class="nc" id="L56">    configInfo.setCertificateInfos(certificateInfos);</span>
-<span class="nc" id="L57">    List&lt;SSLHostConfigInfo&gt; sslHostConfigInfos = new ArrayList&lt;&gt;(1);</span>
+<span class="nc" id="L57">    List&lt;SslHostConfigInfo&gt; sslHostConfigInfos = new ArrayList&lt;&gt;(1);</span>
 <span class="nc" id="L58">    sslHostConfigInfos.add(configInfo);</span>
 <span class="nc" id="L59">    setSslHostConfigInfos(sslHostConfigInfos);</span>
 <span class="nc" id="L60">  }</span>
 
-  private SSLHostConfigInfo getInternalSSLHostConfigInfo() {
+  private SslHostConfigInfo getInternalSslHostConfigInfo() {
 <span class="nc" id="L63">    return getSslHostConfigInfos().get(0);</span>
   }
 
   private CertificateInfo getInternalCertificateInfo() {
-<span class="nc" id="L67">    return getInternalSSLHostConfigInfo().getCertificateInfos().get(0);</span>
+<span class="nc" id="L67">    return getInternalSslHostConfigInfo().getCertificateInfos().get(0);</span>
   }
 
   /**
@@ -159,7 +159,7 @@ public class OldConnectorInfo extends ConnectorInfo {
    */
   public void setTruststoreFile(String truststoreFile) {
 <span class="nc" id="L161">    this.truststoreFile = truststoreFile;</span>
-<span class="nc" id="L162">    getInternalSSLHostConfigInfo().setTruststoreFile(truststoreFile);</span>
+<span class="nc" id="L162">    getInternalSslHostConfigInfo().setTruststoreFile(truststoreFile);</span>
 <span class="nc" id="L163">  }</span>
 
   /**
@@ -178,7 +178,7 @@ public class OldConnectorInfo extends ConnectorInfo {
    */
   public void setTruststorePass(String truststorePass) {
 <span class="nc" id="L180">    this.truststorePass = truststorePass;</span>
-<span class="nc" id="L181">    getInternalSSLHostConfigInfo().setTruststorePassword(truststorePass);</span>
+<span class="nc" id="L181">    getInternalSslHostConfigInfo().setTruststorePassword(truststorePass);</span>
 <span class="nc" id="L182">  }</span>
 
   /**
@@ -197,7 +197,7 @@ public class OldConnectorInfo extends ConnectorInfo {
    */
   public void setTruststoreProvider(String truststoreProvider) {
 <span class="nc" id="L199">    this.truststoreProvider = truststoreProvider;</span>
-<span class="nc" id="L200">    getInternalSSLHostConfigInfo().setTruststoreProvider(truststoreProvider);</span>
+<span class="nc" id="L200">    getInternalSslHostConfigInfo().setTruststoreProvider(truststoreProvider);</span>
 <span class="nc" id="L201">  }</span>
 
   /**
@@ -216,8 +216,8 @@ public class OldConnectorInfo extends ConnectorInfo {
    */
   public void setTruststoreType(String truststoreType) {
 <span class="nc" id="L218">    this.truststoreType = truststoreType;</span>
-<span class="nc" id="L219">    getInternalSSLHostConfigInfo().setTruststoreType(truststoreType);</span>
+<span class="nc" id="L219">    getInternalSslHostConfigInfo().setTruststoreType(truststoreType);</span>
 <span class="nc" id="L220">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

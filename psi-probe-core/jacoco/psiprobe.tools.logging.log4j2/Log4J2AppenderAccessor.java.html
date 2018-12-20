@@ -11,13 +11,12 @@
 package psiprobe.tools.logging.log4j2;
 
 import java.io.File;
-
 import psiprobe.tools.logging.AbstractLogDestination;
 
 /**
  * The Class Log4J2AppenderAccessor.
  */
-<span class="fc" id="L20">public class Log4J2AppenderAccessor extends AbstractLogDestination {</span>
+<span class="fc" id="L19">public class Log4J2AppenderAccessor extends AbstractLogDestination {</span>
 
   /** The logger accessor. */
   private Log4J2LoggerConfigAccessor loggerAccessor;
@@ -28,7 +27,7 @@ import psiprobe.tools.logging.AbstractLogDestination;
    * @return the logger accessor
    */
   public Log4J2LoggerConfigAccessor getLoggerAccessor() {
-<span class="fc" id="L31">    return loggerAccessor;</span>
+<span class="fc" id="L30">    return loggerAccessor;</span>
   }
 
   /**
@@ -37,91 +36,91 @@ import psiprobe.tools.logging.AbstractLogDestination;
    * @param loggerAccessor the new logger accessor
    */
   public void setLoggerAccessor(Log4J2LoggerConfigAccessor loggerAccessor) {
-<span class="fc" id="L40">    this.loggerAccessor = loggerAccessor;</span>
-<span class="fc" id="L41">  }</span>
+<span class="fc" id="L39">    this.loggerAccessor = loggerAccessor;</span>
+<span class="fc" id="L40">  }</span>
 
   @Override
   public boolean isContext() {
-<span class="nc" id="L45">    return getLoggerAccessor().isContext();</span>
+<span class="nc" id="L44">    return getLoggerAccessor().isContext();</span>
   }
 
   @Override
   public boolean isRoot() {
-<span class="nc" id="L50">    return getLoggerAccessor().isRoot();</span>
+<span class="nc" id="L49">    return getLoggerAccessor().isRoot();</span>
   }
 
   @Override
   public String getName() {
-<span class="nc" id="L55">    return getLoggerAccessor().getName();</span>
+<span class="nc" id="L54">    return getLoggerAccessor().getName();</span>
   }
 
   @Override
   public String getLogType() {
-<span class="nc" id="L60">    return &quot;log4j2&quot;;</span>
+<span class="nc" id="L59">    return &quot;log4j2&quot;;</span>
   }
 
   @Override
   public String getIndex() {
-<span class="nc" id="L65">    return (String) invokeMethod(getTarget(), &quot;getName&quot;, null, null);</span>
+<span class="nc" id="L64">    return (String) invokeMethod(getTarget(), &quot;getName&quot;, null, null);</span>
   }
 
   @Override
   public String getConversionPattern() {
-<span class="nc" id="L70">    Object layout = invokeMethod(getTarget(), &quot;getLayout&quot;, null, null);</span>
-<span class="nc bnc" id="L71" title="All 2 branches missed.">    if (layout != null &amp;&amp; &quot;org.apache.logging.log4j.core.layout.PatternLayout&quot;</span>
-<span class="nc bnc" id="L72" title="All 2 branches missed.">        .equals(layout.getClass().getName())) {</span>
-<span class="nc" id="L73">      return (String) invokeMethod(layout, &quot;getConversionPattern&quot;, null, null);</span>
+<span class="nc" id="L69">    Object layout = invokeMethod(getTarget(), &quot;getLayout&quot;, null, null);</span>
+<span class="nc bnc" id="L70" title="All 2 branches missed.">    if (layout != null &amp;&amp; &quot;org.apache.logging.log4j.core.layout.PatternLayout&quot;</span>
+<span class="nc bnc" id="L71" title="All 2 branches missed.">        .equals(layout.getClass().getName())) {</span>
+<span class="nc" id="L72">      return (String) invokeMethod(layout, &quot;getConversionPattern&quot;, null, null);</span>
     }
-<span class="nc" id="L75">    return null;</span>
+<span class="nc" id="L74">    return null;</span>
   }
 
   @Override
   public File getFile() {
-<span class="nc" id="L80">    String fileName = (String) invokeMethod(getTarget(), &quot;getFileName&quot;, null, null);</span>
-<span class="nc bnc" id="L81" title="All 2 branches missed.">    if (fileName != null) {</span>
-<span class="nc" id="L82">      return new File(fileName);</span>
+<span class="nc" id="L79">    String fileName = (String) getProperty(getTarget(), &quot;fileName&quot;, null);</span>
+<span class="nc bnc" id="L80" title="All 2 branches missed.">    if (fileName != null) {</span>
+<span class="nc" id="L81">      return new File(fileName);</span>
     } else {
       // Check for SMTPAppender information
-<span class="nc" id="L85">      File result = null;</span>
-<span class="nc" id="L86">      if (&quot;org.apache.logging.log4j.core.appender.SmtpAppender&quot;</span>
-<span class="nc bnc" id="L87" title="All 2 branches missed.">          .equals(getTarget().getClass().getName())) {</span>
-<span class="nc" id="L88">        Object smtpManager = getProperty(getTarget(), &quot;manager&quot;, null, true);</span>
-<span class="nc" id="L89">        Object factoryData = getProperty(smtpManager, &quot;data&quot;, null, true);</span>
-<span class="nc" id="L90">        Object cc = getProperty(factoryData, &quot;cc&quot;, null, true);</span>
-<span class="nc" id="L91">        Object bcc = getProperty(factoryData, &quot;bcc&quot;, null, true);</span>
-<span class="nc" id="L92">        Object from = getProperty(factoryData, &quot;from&quot;, null, true);</span>
-<span class="nc" id="L93">        Object subjectSerializer = getProperty(factoryData, &quot;subject&quot;, null, true);</span>
-<span class="nc" id="L94">        String subject = null;</span>
-<span class="nc bnc" id="L95" title="All 2 branches missed.">        if (subjectSerializer != null) {</span>
-<span class="nc" id="L96">          Object[] subjectFormatters =</span>
-<span class="nc" id="L97">              (Object[]) getProperty(subjectSerializer, &quot;formatters&quot;, null, true);</span>
-<span class="nc bnc" id="L98" title="All 2 branches missed.">          if (subjectFormatters != null) {</span>
-<span class="nc" id="L99">            Object subjectFormatterConverter =</span>
-<span class="nc" id="L100">                getProperty(subjectFormatters[0], &quot;converter&quot;, null, true);</span>
-<span class="nc bnc" id="L101" title="All 2 branches missed.">            if (subjectFormatterConverter != null) {</span>
-<span class="nc" id="L102">              subject = (String) getProperty(subjectFormatterConverter, &quot;literal&quot;, null, true);</span>
+<span class="nc" id="L84">      File result = null;</span>
+<span class="nc" id="L85">      if (&quot;org.apache.logging.log4j.core.appender.SmtpAppender&quot;</span>
+<span class="nc bnc" id="L86" title="All 2 branches missed.">          .equals(getTarget().getClass().getName())) {</span>
+<span class="nc" id="L87">        Object smtpManager = getProperty(getTarget(), &quot;manager&quot;, null, true);</span>
+<span class="nc" id="L88">        Object factoryData = getProperty(smtpManager, &quot;data&quot;, null, true);</span>
+<span class="nc" id="L89">        Object cc = getProperty(factoryData, &quot;cc&quot;, null, true);</span>
+<span class="nc" id="L90">        Object bcc = getProperty(factoryData, &quot;bcc&quot;, null, true);</span>
+<span class="nc" id="L91">        Object from = getProperty(factoryData, &quot;from&quot;, null, true);</span>
+<span class="nc" id="L92">        Object subjectSerializer = getProperty(factoryData, &quot;subject&quot;, null, true);</span>
+<span class="nc" id="L93">        String subject = null;</span>
+<span class="nc bnc" id="L94" title="All 2 branches missed.">        if (subjectSerializer != null) {</span>
+<span class="nc" id="L95">          Object[] subjectFormatters =</span>
+<span class="nc" id="L96">              (Object[]) getProperty(subjectSerializer, &quot;formatters&quot;, null, true);</span>
+<span class="nc bnc" id="L97" title="All 2 branches missed.">          if (subjectFormatters != null) {</span>
+<span class="nc" id="L98">            Object subjectFormatterConverter =</span>
+<span class="nc" id="L99">                getProperty(subjectFormatters[0], &quot;converter&quot;, null, true);</span>
+<span class="nc bnc" id="L100" title="All 2 branches missed.">            if (subjectFormatterConverter != null) {</span>
+<span class="nc" id="L101">              subject = (String) getProperty(subjectFormatterConverter, &quot;literal&quot;, null, true);</span>
             }
           }
         }
-<span class="nc" id="L106">        result = new File(&quot;mailto:&quot; + getProperty(factoryData, &quot;to&quot;, &quot;&quot;, true)</span>
-<span class="nc bnc" id="L107" title="All 4 branches missed.">            + (from != null ? &quot;&amp;from=&quot; + from : &quot;&quot;) + (cc != null ? &quot;&amp;cc=&quot; + cc : &quot;&quot;)</span>
-<span class="nc bnc" id="L108" title="All 4 branches missed.">            + (bcc != null ? &quot;&amp;bcc=&quot; + bcc : &quot;&quot;) + (subject != null ? &quot;&amp;subject=&quot; + subject : &quot;&quot;));</span>
-<span class="nc" id="L109">      } else {</span>
-<span class="nc" id="L110">        result = getStdoutFile();</span>
+<span class="nc" id="L105">        result = new File(&quot;mailto:&quot; + getProperty(factoryData, &quot;to&quot;, &quot;&quot;, true)</span>
+<span class="nc bnc" id="L106" title="All 4 branches missed.">            + (from != null ? &quot;&amp;from=&quot; + from : &quot;&quot;) + (cc != null ? &quot;&amp;cc=&quot; + cc : &quot;&quot;)</span>
+<span class="nc bnc" id="L107" title="All 4 branches missed.">            + (bcc != null ? &quot;&amp;bcc=&quot; + bcc : &quot;&quot;) + (subject != null ? &quot;&amp;subject=&quot; + subject : &quot;&quot;));</span>
+<span class="nc" id="L108">      } else {</span>
+<span class="nc" id="L109">        result = getStdoutFile();</span>
       }
-<span class="nc" id="L112">      return result;</span>
+<span class="nc" id="L111">      return result;</span>
     }
   }
 
   @Override
   public String getLevel() {
-<span class="nc" id="L118">    return getLoggerAccessor().getLevel();</span>
+<span class="nc" id="L117">    return getLoggerAccessor().getLevel();</span>
   }
 
   @Override
   public String[] getValidLevels() {
-<span class="nc" id="L123">    return new String[] {&quot;OFF&quot;, &quot;FATAL&quot;, &quot;ERROR&quot;, &quot;WARN&quot;, &quot;INFO&quot;, &quot;DEBUG&quot;, &quot;TRACE&quot;, &quot;ALL&quot;};</span>
+<span class="nc" id="L122">    return new String[] {&quot;OFF&quot;, &quot;FATAL&quot;, &quot;ERROR&quot;, &quot;WARN&quot;, &quot;INFO&quot;, &quot;DEBUG&quot;, &quot;TRACE&quot;, &quot;ALL&quot;};</span>
   }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

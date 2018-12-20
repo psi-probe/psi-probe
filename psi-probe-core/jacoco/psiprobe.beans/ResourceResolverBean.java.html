@@ -125,7 +125,7 @@ import psiprobe.model.DataSourceInfo;
 <span class="nc" id="L125">        }</span>
 
       } finally {
-<span class="nc bnc" id="L128" title="All 4 branches missed.">        if (contextBound) {</span>
+<span class="nc bnc" id="L128" title="All 2 branches missed.">        if (contextBound) {</span>
 <span class="nc" id="L129">          containerWrapper.getTomcatContainer().unbindFromContext(context);</span>
         }
       }
@@ -158,8 +158,8 @@ import psiprobe.model.DataSourceInfo;
 <span class="nc" id="L158">        resource.setLookedUp(true);</span>
 <span class="nc bnc" id="L159" title="All 2 branches missed.">        for (String accessorString : datasourceMappers) {</span>
 <span class="nc" id="L160">          logger.debug(&quot;Looking up datasource adapter: {}&quot;, accessorString);</span>
-<span class="nc" id="L161">          DatasourceAccessor accessor =</span>
-<span class="nc" id="L162">              (DatasourceAccessor) Class.forName(accessorString).newInstance();</span>
+<span class="nc" id="L161">          DatasourceAccessor accessor = (DatasourceAccessor) Class.forName(accessorString)</span>
+<span class="nc" id="L162">              .getDeclaredConstructor().newInstance();</span>
 <span class="nc" id="L163">          dataSourceInfo = accessor.getInfo(obj);</span>
 <span class="nc bnc" id="L164" title="All 2 branches missed.">          if (dataSourceInfo != null) {</span>
 <span class="nc" id="L165">            break;</span>
@@ -194,8 +194,8 @@ import psiprobe.model.DataSourceInfo;
       try {
 <span class="nc bnc" id="L195" title="All 2 branches missed.">        for (String accessorString : datasourceMappers) {</span>
 <span class="nc" id="L196">          logger.debug(&quot;Resetting datasource adapter: {}&quot;, accessorString);</span>
-<span class="nc" id="L197">          DatasourceAccessor accessor =</span>
-<span class="nc" id="L198">              (DatasourceAccessor) Class.forName(accessorString).newInstance();</span>
+<span class="nc" id="L197">          DatasourceAccessor accessor = (DatasourceAccessor) Class.forName(accessorString)</span>
+<span class="nc" id="L198">              .getDeclaredConstructor().newInstance();</span>
 <span class="nc bnc" id="L199" title="All 2 branches missed.">          if (accessor.reset(obj)) {</span>
 <span class="nc" id="L200">            return true;</span>
           }
@@ -206,7 +206,7 @@ import psiprobe.model.DataSourceInfo;
 <span class="nc" id="L206">        return false;</span>
       }
     } finally {
-<span class="nc bnc" id="L209" title="All 8 branches missed.">      if (context != null) {</span>
+<span class="nc bnc" id="L209" title="All 2 branches missed.">      if (context != null) {</span>
 <span class="nc" id="L210">        containerWrapper.getTomcatContainer().unbindFromContext(context);</span>
       }
     }
@@ -230,7 +230,7 @@ import psiprobe.model.DataSourceInfo;
       }
 <span class="nc" id="L231">      return null;</span>
     } finally {
-<span class="nc bnc" id="L233" title="All 6 branches missed.">      if (context != null) {</span>
+<span class="nc bnc" id="L233" title="All 2 branches missed.">      if (context != null) {</span>
 <span class="nc" id="L234">        containerWrapper.getTomcatContainer().unbindFromContext(context);</span>
       }
     }
@@ -311,10 +311,10 @@ import psiprobe.model.DataSourceInfo;
    *
    * @return the global JNDI context
    */
-  protected javax.naming.Context getGlobalNamingContext() {
+  public static javax.naming.Context getGlobalNamingContext() {
 
 <span class="nc" id="L316">    javax.naming.Context globalContext = null;</span>
-<span class="nc" id="L317">    MBeanServer mbeanServer = getMBeanServer();</span>
+<span class="nc" id="L317">    MBeanServer mbeanServer = ManagementFactory.getPlatformMBeanServer();</span>
 <span class="nc bnc" id="L318" title="All 2 branches missed.">    if (mbeanServer != null) {</span>
 <span class="nc bnc" id="L319" title="All 2 branches missed.">      for (String domain : mbeanServer.getDomains()) {</span>
 
@@ -345,4 +345,4 @@ import psiprobe.model.DataSourceInfo;
 <span class="nc" id="L345">    return globalContext;</span>
   }
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

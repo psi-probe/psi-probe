@@ -11,16 +11,13 @@
 package psiprobe.controllers.filters;
 
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.apache.catalina.Context;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
 import psiprobe.controllers.AbstractContextHandlerController;
 import psiprobe.model.FilterMapping;
 
@@ -28,30 +25,30 @@ import psiprobe.model.FilterMapping;
  * Retrieves a list of web application filter mappings.
  */
 @Controller
-<span class="nc" id="L31">public class ListAppFilterMapsController extends AbstractContextHandlerController {</span>
+<span class="nc" id="L28">public class ListAppFilterMapsController extends AbstractContextHandlerController {</span>
 
   @RequestMapping(path = &quot;/appfiltermaps.htm&quot;)
   @Override
   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
       throws Exception {
-<span class="nc" id="L37">    return super.handleRequest(request, response);</span>
+<span class="nc" id="L34">    return super.handleRequest(request, response);</span>
   }
 
   @Override
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-<span class="nc" id="L44">    List&lt;FilterMapping&gt; filterMaps =</span>
-<span class="nc" id="L45">        getContainerWrapper().getTomcatContainer().getApplicationFilterMaps(context);</span>
+<span class="nc" id="L41">    List&lt;FilterMapping&gt; filterMaps =</span>
+<span class="nc" id="L42">        getContainerWrapper().getTomcatContainer().getApplicationFilterMaps(context);</span>
 
-<span class="nc" id="L47">    return new ModelAndView(getViewName(), &quot;filterMaps&quot;, filterMaps);</span>
+<span class="nc" id="L44">    return new ModelAndView(getViewName(), &quot;filterMaps&quot;, filterMaps);</span>
   }
 
   @Value(&quot;appfiltermaps&quot;)
   @Override
   public void setViewName(String viewName) {
-<span class="nc" id="L53">    super.setViewName(viewName);</span>
-<span class="nc" id="L54">  }</span>
+<span class="nc" id="L50">    super.setViewName(viewName);</span>
+<span class="nc" id="L51">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

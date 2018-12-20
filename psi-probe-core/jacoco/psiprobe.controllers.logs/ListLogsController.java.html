@@ -11,18 +11,15 @@
 package psiprobe.controllers.logs;
 
 import java.util.List;
-
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
-
 import psiprobe.beans.LogResolverBean;
 import psiprobe.tools.logging.LogDestination;
 
@@ -30,7 +27,7 @@ import psiprobe.tools.logging.LogDestination;
  * The Class ListLogsController.
  */
 @Controller
-<span class="fc" id="L33">public class ListLogsController extends ParameterizableViewController {</span>
+<span class="fc" id="L30">public class ListLogsController extends ParameterizableViewController {</span>
 
   /** The error view. */
   private String errorView;
@@ -45,7 +42,7 @@ import psiprobe.tools.logging.LogDestination;
    * @return the error view
    */
   public String getErrorView() {
-<span class="fc" id="L48">    return errorView;</span>
+<span class="fc" id="L45">    return errorView;</span>
   }
 
   /**
@@ -55,8 +52,8 @@ import psiprobe.tools.logging.LogDestination;
    */
   @Value(&quot;logs_notsupported&quot;)
   public void setErrorView(String errorView) {
-<span class="fc" id="L58">    this.errorView = errorView;</span>
-<span class="fc" id="L59">  }</span>
+<span class="fc" id="L55">    this.errorView = errorView;</span>
+<span class="fc" id="L56">  }</span>
 
   /**
    * Gets the log resolver.
@@ -64,7 +61,7 @@ import psiprobe.tools.logging.LogDestination;
    * @return the log resolver
    */
   public LogResolverBean getLogResolver() {
-<span class="fc" id="L67">    return logResolver;</span>
+<span class="fc" id="L64">    return logResolver;</span>
   }
 
   /**
@@ -73,33 +70,33 @@ import psiprobe.tools.logging.LogDestination;
    * @param logResolver the new log resolver
    */
   public void setLogResolver(LogResolverBean logResolver) {
-<span class="fc" id="L76">    this.logResolver = logResolver;</span>
-<span class="fc" id="L77">  }</span>
+<span class="fc" id="L73">    this.logResolver = logResolver;</span>
+<span class="fc" id="L74">  }</span>
 
   @RequestMapping(path = {&quot;/logs&quot;, &quot;/list.htm&quot;})
   @Override
   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
       throws Exception {
-<span class="nc" id="L83">    return super.handleRequest(request, response);</span>
+<span class="nc" id="L80">    return super.handleRequest(request, response);</span>
   }
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 
-<span class="nc" id="L90">    boolean showAll = ServletRequestUtils.getBooleanParameter(request, &quot;apps&quot;, false);</span>
-<span class="nc" id="L91">    List&lt;LogDestination&gt; uniqueList = logResolver.getLogDestinations(showAll);</span>
-<span class="nc bnc" id="L92" title="All 2 branches missed.">    if (uniqueList != null) {</span>
-<span class="nc" id="L93">      return new ModelAndView(getViewName()).addObject(&quot;logs&quot;, uniqueList);</span>
+<span class="nc" id="L87">    boolean showAll = ServletRequestUtils.getBooleanParameter(request, &quot;apps&quot;, false);</span>
+<span class="nc" id="L88">    List&lt;LogDestination&gt; uniqueList = logResolver.getLogDestinations(showAll);</span>
+<span class="nc bnc" id="L89" title="All 2 branches missed.">    if (uniqueList != null) {</span>
+<span class="nc" id="L90">      return new ModelAndView(getViewName()).addObject(&quot;logs&quot;, uniqueList);</span>
     }
-<span class="nc" id="L95">    return new ModelAndView(errorView);</span>
+<span class="nc" id="L92">    return new ModelAndView(errorView);</span>
   }
 
   @Value(&quot;logs&quot;)
   @Override
   public void setViewName(String viewName) {
-<span class="fc" id="L101">    super.setViewName(viewName);</span>
-<span class="fc" id="L102">  }</span>
+<span class="fc" id="L98">    super.setViewName(viewName);</span>
+<span class="fc" id="L99">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

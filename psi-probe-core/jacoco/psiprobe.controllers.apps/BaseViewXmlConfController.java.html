@@ -11,17 +11,15 @@
 package psiprobe.controllers.apps;
 
 import java.io.File;
-import java.io.FileInputStream;
-
+import java.io.InputStream;
+import java.nio.file.Files;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.apache.catalina.Context;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.ModelAndView;
-
 import psiprobe.Utils;
 import psiprobe.controllers.AbstractContextHandlerController;
 
@@ -29,10 +27,10 @@ import psiprobe.controllers.AbstractContextHandlerController;
  * Displays a deployment descriptor (web.xml) or a context descriptor (context.xml) of a web
  * application
  */
-<span class="fc" id="L32">public class BaseViewXmlConfController extends AbstractContextHandlerController {</span>
+<span class="fc" id="L30">public class BaseViewXmlConfController extends AbstractContextHandlerController {</span>
 
   /** The Constant logger. */
-<span class="fc" id="L35">  private static final Logger logger = LoggerFactory.getLogger(BaseViewXmlConfController.class);</span>
+<span class="fc" id="L33">  private static final Logger logger = LoggerFactory.getLogger(BaseViewXmlConfController.class);</span>
 
   /** The Constant TARGET_WEB_XML. */
   private static final String TARGET_WEB_XML = &quot;web.xml&quot;;
@@ -52,7 +50,7 @@ import psiprobe.controllers.AbstractContextHandlerController;
    * @return the display target
    */
   public String getDisplayTarget() {
-<span class="fc" id="L55">    return displayTarget;</span>
+<span class="fc" id="L53">    return displayTarget;</span>
   }
 
   /**
@@ -61,8 +59,8 @@ import psiprobe.controllers.AbstractContextHandlerController;
    * @param displayTarget the new display target
    */
   public void setDisplayTarget(String displayTarget) {
-<span class="fc" id="L64">    this.displayTarget = displayTarget;</span>
-<span class="fc" id="L65">  }</span>
+<span class="fc" id="L62">    this.displayTarget = displayTarget;</span>
+<span class="fc" id="L63">  }</span>
 
   /**
    * Gets the download url.
@@ -70,7 +68,7 @@ import psiprobe.controllers.AbstractContextHandlerController;
    * @return the download url
    */
   public String getDownloadUrl() {
-<span class="fc" id="L73">    return downloadUrl;</span>
+<span class="fc" id="L71">    return downloadUrl;</span>
   }
 
   /**
@@ -79,61 +77,61 @@ import psiprobe.controllers.AbstractContextHandlerController;
    * @param downloadUrl the new download url
    */
   public void setDownloadUrl(String downloadUrl) {
-<span class="fc" id="L82">    this.downloadUrl = downloadUrl;</span>
-<span class="fc" id="L83">  }</span>
+<span class="fc" id="L80">    this.downloadUrl = downloadUrl;</span>
+<span class="fc" id="L81">  }</span>
 
   @Override
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-<span class="nc bnc" id="L89" title="All 2 branches missed.">    if (displayTarget == null) {</span>
-<span class="nc" id="L90">      throw new RuntimeException(&quot;Display target is not set for &quot; + getClass().getName());</span>
+<span class="nc bnc" id="L87" title="All 2 branches missed.">    if (displayTarget == null) {</span>
+<span class="nc" id="L88">      throw new RuntimeException(&quot;Display target is not set for &quot; + getClass().getName());</span>
     }
 
     String xmlPath;
-<span class="nc" id="L94">    File xmlFile = null;</span>
-<span class="nc" id="L95">    ModelAndView mv = new ModelAndView(getViewName());</span>
+<span class="nc" id="L92">    File xmlFile = null;</span>
+<span class="nc" id="L93">    ModelAndView mv = new ModelAndView(getViewName());</span>
 
-<span class="nc bnc" id="L97" title="All 2 branches missed.">    if (TARGET_WEB_XML.equals(displayTarget)) {</span>
-<span class="nc" id="L98">      ServletContext sctx = context.getServletContext();</span>
-<span class="nc" id="L99">      xmlPath = sctx.getRealPath(&quot;/WEB-INF/web.xml&quot;);</span>
-<span class="nc" id="L100">      xmlFile = new File(xmlPath);</span>
-<span class="nc" id="L101">      mv.addObject(&quot;fileDesc&quot;,</span>
-<span class="nc" id="L102">          getMessageSourceAccessor().getMessage(&quot;probe.src.app.viewxmlconf.webxml.desc&quot;));</span>
-<span class="nc bnc" id="L103" title="All 2 branches missed.">    } else if (TARGET_CONTEXT_XML.equals(displayTarget)) {</span>
-<span class="nc" id="L104">      xmlFile = getContainerWrapper().getTomcatContainer().getConfigFile(context);</span>
-<span class="nc bnc" id="L105" title="All 2 branches missed.">      if (xmlFile != null) {</span>
-<span class="nc" id="L106">        xmlPath = xmlFile.getPath();</span>
+<span class="nc bnc" id="L95" title="All 2 branches missed.">    if (TARGET_WEB_XML.equals(displayTarget)) {</span>
+<span class="nc" id="L96">      ServletContext sctx = context.getServletContext();</span>
+<span class="nc" id="L97">      xmlPath = sctx.getRealPath(&quot;/WEB-INF/web.xml&quot;);</span>
+<span class="nc" id="L98">      xmlFile = new File(xmlPath);</span>
+<span class="nc" id="L99">      mv.addObject(&quot;fileDesc&quot;,</span>
+<span class="nc" id="L100">          getMessageSourceAccessor().getMessage(&quot;probe.src.app.viewxmlconf.webxml.desc&quot;));</span>
+<span class="nc bnc" id="L101" title="All 2 branches missed.">    } else if (TARGET_CONTEXT_XML.equals(displayTarget)) {</span>
+<span class="nc" id="L102">      xmlFile = getContainerWrapper().getTomcatContainer().getConfigFile(context);</span>
+<span class="nc bnc" id="L103" title="All 2 branches missed.">      if (xmlFile != null) {</span>
+<span class="nc" id="L104">        xmlPath = xmlFile.getPath();</span>
       } else {
-<span class="nc" id="L108">        xmlPath = null;</span>
+<span class="nc" id="L106">        xmlPath = null;</span>
       }
-<span class="nc" id="L110">      mv.addObject(&quot;fileDesc&quot;,</span>
-<span class="nc" id="L111">          getMessageSourceAccessor().getMessage(&quot;probe.src.app.viewxmlconf.contextxml.desc&quot;));</span>
+<span class="nc" id="L108">      mv.addObject(&quot;fileDesc&quot;,</span>
+<span class="nc" id="L109">          getMessageSourceAccessor().getMessage(&quot;probe.src.app.viewxmlconf.contextxml.desc&quot;));</span>
     } else {
-<span class="nc" id="L113">      throw new RuntimeException(&quot;Unknown display target &quot; + getDisplayTarget());</span>
+<span class="nc" id="L111">      throw new RuntimeException(&quot;Unknown display target &quot; + getDisplayTarget());</span>
     }
 
-<span class="nc" id="L116">    mv.addObject(&quot;displayTarget&quot;, displayTarget);</span>
-<span class="nc" id="L117">    mv.addObject(&quot;downloadUrl&quot;, downloadUrl);</span>
+<span class="nc" id="L114">    mv.addObject(&quot;displayTarget&quot;, displayTarget);</span>
+<span class="nc" id="L115">    mv.addObject(&quot;downloadUrl&quot;, downloadUrl);</span>
 
-<span class="nc bnc" id="L119" title="All 2 branches missed.">    if (xmlFile != null) {</span>
-<span class="nc" id="L120">      mv.addObject(&quot;fileName&quot;, xmlFile.getName());</span>
-<span class="nc bnc" id="L121" title="All 2 branches missed.">      if (xmlFile.exists()) {</span>
-<span class="nc" id="L122">        try (FileInputStream fis = new FileInputStream(xmlFile)) {</span>
-<span class="nc" id="L123">          String encoding = System.getProperty(&quot;file.encoding&quot;);</span>
-<span class="nc" id="L124">          mv.addObject(&quot;content&quot;, Utils.highlightStream(&quot;web.xml&quot;, fis, &quot;xml&quot;,</span>
-<span class="nc bnc" id="L125" title="All 2 branches missed.">              encoding == null ? &quot;ISO-8859-1&quot; : encoding));</span>
-<span class="nc bnc" id="L126" title="All 4 branches missed.">        }</span>
+<span class="nc bnc" id="L117" title="All 2 branches missed.">    if (xmlFile != null) {</span>
+<span class="nc" id="L118">      mv.addObject(&quot;fileName&quot;, xmlFile.getName());</span>
+<span class="nc bnc" id="L119" title="All 2 branches missed.">      if (xmlFile.exists()) {</span>
+<span class="nc" id="L120">        try (InputStream fis = Files.newInputStream(xmlFile.toPath())) {</span>
+<span class="nc" id="L121">          String encoding = System.getProperty(&quot;file.encoding&quot;);</span>
+<span class="nc" id="L122">          mv.addObject(&quot;content&quot;, Utils.highlightStream(TARGET_WEB_XML, fis, &quot;xml&quot;,</span>
+<span class="nc bnc" id="L123" title="All 2 branches missed.">              encoding == null ? &quot;ISO-8859-1&quot; : encoding));</span>
+<span class="nc" id="L124">        }</span>
       } else {
-<span class="nc" id="L128">        logger.debug(&quot;File {} of {} application does not exists.&quot;, xmlPath, contextName);</span>
+<span class="nc" id="L126">        logger.debug(&quot;File {} of {} application does not exists.&quot;, xmlPath, contextName);</span>
       }
     } else {
-<span class="nc" id="L131">      logger.debug(&quot;Cannot determine path to {} file of {} application.&quot;, getDisplayTarget(),</span>
+<span class="nc" id="L129">      logger.debug(&quot;Cannot determine path to {} file of {} application.&quot;, getDisplayTarget(),</span>
           contextName);
     }
 
-<span class="nc" id="L135">    return mv;</span>
+<span class="nc" id="L133">    return mv;</span>
   }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

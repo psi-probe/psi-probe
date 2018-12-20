@@ -10,7 +10,7 @@
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_javadoccomment"> * Licensed under the GPL License. You may not use this file except in compliance with the License.</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_javadoccomment"> * You may obtain a copy of the License at</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_javadoccomment"> *</em>
-<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_javadoccomment"> *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</em>
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_javadoccomment"> *   <a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.html" target="alexandria_uri">https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</a></em>
 <a class="jxr_linenumber" name="L6" href="#L6">6</a>   <em class="jxr_javadoccomment"> *</em>
 <a class="jxr_linenumber" name="L7" href="#L7">7</a>   <em class="jxr_javadoccomment"> * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,</em>
 <a class="jxr_linenumber" name="L8" href="#L8">8</a>   <em class="jxr_javadoccomment"> * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR</em>
@@ -42,7 +42,7 @@
 <a class="jxr_linenumber" name="L34" href="#L34">34</a>  <em class="jxr_javadoccomment"> * The Class ViewSourceController.</em>
 <a class="jxr_linenumber" name="L35" href="#L35">35</a>  <em class="jxr_javadoccomment"> */</em>
 <a class="jxr_linenumber" name="L36" href="#L36">36</a>  @Controller
-<a class="jxr_linenumber" name="L37" href="#L37">37</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../psiprobe/controllers/jsp/ViewSourceController.html">ViewSourceController</a> <strong class="jxr_keyword">extends</strong> <a href="../../../psiprobe/controllers/AbstractContextHandlerController.html">AbstractContextHandlerController</a> {
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a name="ViewSourceController" href="../../../psiprobe/controllers/jsp/ViewSourceController.html#ViewSourceController">ViewSourceController</a> <strong class="jxr_keyword">extends</strong> <a name="AbstractContextHandlerController" href="../../../psiprobe/controllers/AbstractContextHandlerController.html#AbstractContextHandlerController">AbstractContextHandlerController</a> {
 <a class="jxr_linenumber" name="L38" href="#L38">38</a>  
 <a class="jxr_linenumber" name="L39" href="#L39">39</a>    <em class="jxr_javadoccomment">/** The Constant logger. */</em>
 <a class="jxr_linenumber" name="L40" href="#L40">40</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> Logger logger = LoggerFactory.getLogger(ViewSourceController.<strong class="jxr_keyword">class</strong>);
@@ -60,13 +60,13 @@
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>  
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>      String jspName = ServletRequestUtils.getStringParameter(request, <span class="jxr_string">"source"</span>, <strong class="jxr_keyword">null</strong>);
 <a class="jxr_linenumber" name="L54" href="#L54">54</a>      <strong class="jxr_keyword">boolean</strong> highlight = ServletRequestUtils.getBooleanParameter(request, <span class="jxr_string">"highlight"</span>, <strong class="jxr_keyword">true</strong>);
-<a class="jxr_linenumber" name="L55" href="#L55">55</a>      <a href="../../../psiprobe/model/jsp/Summary.html">Summary</a> summary = (Summary) (request.getSession(false) != <strong class="jxr_keyword">null</strong>
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>      <a name="Summary" h<a name="Summary" href="../../../psiprobe/model/jsp/Summary.html#Summary">Summary</a>/../../psiprobe/model/jsp/Summary.html#Summary">Summary</a> summary = (<a name="Summary" href="../../../psiprobe/model/jsp/Summary.html#Summary">Summary</a>) (request.getSession(false) != <strong class="jxr_keyword">null</strong>
 <a class="jxr_linenumber" name="L56" href="#L56">56</a>          ? request.getSession(false).getAttribute(DisplayJspController.SUMMARY_ATTRIBUTE)
 <a class="jxr_linenumber" name="L57" href="#L57">57</a>          : <strong class="jxr_keyword">null</strong>);
 <a class="jxr_linenumber" name="L58" href="#L58">58</a>  
 <a class="jxr_linenumber" name="L59" href="#L59">59</a>      <strong class="jxr_keyword">if</strong> (jspName != <strong class="jxr_keyword">null</strong> &amp;&amp; summary != <strong class="jxr_keyword">null</strong> &amp;&amp; contextName.equals(summary.getName())) {
 <a class="jxr_linenumber" name="L60" href="#L60">60</a>  
-<a class="jxr_linenumber" name="L61" href="#L61">61</a>        <a href="../../../psiprobe/model/jsp/Item.html">Item</a> item = summary.getItems().get(jspName);
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>        <a name="Item" href="../../../psiprobe/model/jsp/Item.html#Item">Item</a> item = summary.getItems().get(jspName);
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>  
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>        <strong class="jxr_keyword">if</strong> (item != <strong class="jxr_keyword">null</strong>) {
 <a class="jxr_linenumber" name="L64" href="#L64">64</a>          <em class="jxr_comment">// replace "\&quot; with "/"</em>

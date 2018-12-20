@@ -11,16 +11,13 @@
 package psiprobe.controllers.sql;
 
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
 import psiprobe.PostParameterizableViewController;
 import psiprobe.model.sql.DataSourceTestInfo;
 
@@ -28,39 +25,39 @@ import psiprobe.model.sql.DataSourceTestInfo;
  * Retrieves a history list of executed queries from a session variable.
  */
 @Controller
-<span class="nc" id="L31">public class QueryHistoryController extends PostParameterizableViewController {</span>
+<span class="nc" id="L28">public class QueryHistoryController extends PostParameterizableViewController {</span>
 
   @RequestMapping(path = &quot;/sql/queryHistory.ajax&quot;)
   @Override
   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
       throws Exception {
-<span class="nc" id="L37">    return super.handleRequest(request, response);</span>
+<span class="nc" id="L34">    return super.handleRequest(request, response);</span>
   }
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 
-<span class="nc" id="L44">    HttpSession sess = request.getSession(false);</span>
-<span class="nc" id="L45">    List&lt;String&gt; queryHistory = null;</span>
+<span class="nc" id="L41">    HttpSession sess = request.getSession(false);</span>
+<span class="nc" id="L42">    List&lt;String&gt; queryHistory = null;</span>
 
-<span class="nc bnc" id="L47" title="All 2 branches missed.">    if (sess != null) {</span>
-<span class="nc" id="L48">      DataSourceTestInfo sessData =</span>
-<span class="nc" id="L49">          (DataSourceTestInfo) sess.getAttribute(DataSourceTestInfo.DS_TEST_SESS_ATTR);</span>
+<span class="nc bnc" id="L44" title="All 2 branches missed.">    if (sess != null) {</span>
+<span class="nc" id="L45">      DataSourceTestInfo sessData =</span>
+<span class="nc" id="L46">          (DataSourceTestInfo) sess.getAttribute(DataSourceTestInfo.DS_TEST_SESS_ATTR);</span>
 
-<span class="nc bnc" id="L51" title="All 2 branches missed.">      if (sessData != null) {</span>
-<span class="nc" id="L52">        queryHistory = sessData.getQueryHistory();</span>
+<span class="nc bnc" id="L48" title="All 2 branches missed.">      if (sessData != null) {</span>
+<span class="nc" id="L49">        queryHistory = sessData.getQueryHistory();</span>
       }
     }
 
-<span class="nc" id="L56">    return new ModelAndView(getViewName(), &quot;queryHistory&quot;, queryHistory);</span>
+<span class="nc" id="L53">    return new ModelAndView(getViewName(), &quot;queryHistory&quot;, queryHistory);</span>
   }
 
   @Value(&quot;ajax/sql/queryHistory&quot;)
   @Override
   public void setViewName(String viewName) {
-<span class="nc" id="L62">    super.setViewName(viewName);</span>
-<span class="nc" id="L63">  }</span>
+<span class="nc" id="L59">    super.setViewName(viewName);</span>
+<span class="nc" id="L60">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

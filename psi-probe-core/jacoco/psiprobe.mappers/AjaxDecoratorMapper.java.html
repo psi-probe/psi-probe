@@ -15,49 +15,47 @@ import com.opensymphony.module.sitemesh.Decorator;
 import com.opensymphony.module.sitemesh.DecoratorMapper;
 import com.opensymphony.module.sitemesh.Page;
 import com.opensymphony.module.sitemesh.mapper.AbstractDecoratorMapper;
-
 import java.util.Properties;
-
 import javax.servlet.http.HttpServletRequest;
 
 /**
  * The AjaxDecoratorMapper will exclude all &quot;ajax&quot; requests from being decorated. It will also make
  * sure that error pages rendered during ajax request execution are not decorated.
  */
-<span class="fc" id="L27">public class AjaxDecoratorMapper extends AbstractDecoratorMapper {</span>
+<span class="fc" id="L25">public class AjaxDecoratorMapper extends AbstractDecoratorMapper {</span>
 
   /** The ajax extension. */
-<span class="fc" id="L30">  private String ajaxExtension = &quot;.ajax&quot;;</span>
+<span class="fc" id="L28">  private String ajaxExtension = &quot;.ajax&quot;;</span>
 
   @Override
   public void init(Config config, Properties properties, DecoratorMapper decoratorMapper)
       throws InstantiationException {
 
-<span class="fc" id="L36">    super.init(config, properties, decoratorMapper);</span>
-<span class="pc bpc" id="L37" title="1 of 2 branches missed.">    if (properties.get(&quot;ajaxExtension&quot;) != null) {</span>
-<span class="fc" id="L38">      ajaxExtension = (String) properties.get(&quot;ajaxExtension&quot;);</span>
+<span class="fc" id="L34">    super.init(config, properties, decoratorMapper);</span>
+<span class="pc bpc" id="L35" title="1 of 2 branches missed.">    if (properties.get(&quot;ajaxExtension&quot;) != null) {</span>
+<span class="fc" id="L36">      ajaxExtension = (String) properties.get(&quot;ajaxExtension&quot;);</span>
     }
-<span class="fc" id="L40">  }</span>
+<span class="fc" id="L38">  }</span>
 
   @Override
   public Decorator getDecorator(HttpServletRequest request, Page page) {
 
     boolean callMapperChain;
-<span class="fc" id="L46">    String originalUri = (String) request.getAttribute(&quot;javax.servlet.error.request_uri&quot;);</span>
-<span class="pc bpc" id="L47" title="1 of 2 branches missed.">    if (originalUri != null) {</span>
+<span class="fc" id="L44">    String originalUri = (String) request.getAttribute(&quot;javax.servlet.error.request_uri&quot;);</span>
+<span class="pc bpc" id="L45" title="1 of 2 branches missed.">    if (originalUri != null) {</span>
       //
       // cut off the query string
       //
-<span class="fc" id="L51">      int queryStringIndex = originalUri.indexOf('?');</span>
-<span class="pc bpc" id="L52" title="1 of 2 branches missed.">      if (queryStringIndex != -1) {</span>
-<span class="nc" id="L53">        originalUri = originalUri.substring(0, queryStringIndex);</span>
+<span class="fc" id="L49">      int queryStringIndex = originalUri.indexOf('?');</span>
+<span class="pc bpc" id="L50" title="1 of 2 branches missed.">      if (queryStringIndex != -1) {</span>
+<span class="nc" id="L51">        originalUri = originalUri.substring(0, queryStringIndex);</span>
       }
     }
-<span class="pc bpc" id="L56" title="2 of 4 branches missed.">    callMapperChain = (originalUri == null || !originalUri.endsWith(ajaxExtension))</span>
-<span class="pc bpc" id="L57" title="1 of 2 branches missed.">        &amp;&amp; !request.getServletPath().endsWith(ajaxExtension);</span>
+<span class="pc bpc" id="L54" title="2 of 4 branches missed.">    callMapperChain = (originalUri == null || !originalUri.endsWith(ajaxExtension))</span>
+<span class="pc bpc" id="L55" title="1 of 2 branches missed.">        &amp;&amp; !request.getServletPath().endsWith(ajaxExtension);</span>
 
-<span class="pc bpc" id="L59" title="1 of 2 branches missed.">    return callMapperChain ? super.getDecorator(request, page) : null;</span>
+<span class="pc bpc" id="L57" title="1 of 2 branches missed.">    return callMapperChain ? super.getDecorator(request, page) : null;</span>
   }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -13,44 +13,43 @@ package psiprobe.tools.logging.catalina;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import psiprobe.tools.Instruments;
 import psiprobe.tools.logging.AbstractLogDestination;
 
 /**
  * The Class CatalinaLoggerAccessor.
  */
-<span class="nc" id="L23">public class CatalinaLoggerAccessor extends AbstractLogDestination {</span>
+<span class="nc" id="L22">public class CatalinaLoggerAccessor extends AbstractLogDestination {</span>
 
   @Override
   public boolean isContext() {
-<span class="nc" id="L27">    return true;</span>
+<span class="nc" id="L26">    return true;</span>
   }
 
   @Override
   public String getName() {
-<span class="nc" id="L32">    return null;</span>
+<span class="nc" id="L31">    return null;</span>
   }
 
   @Override
   public String getLogType() {
-<span class="nc" id="L37">    return &quot;catalina&quot;;</span>
+<span class="nc" id="L36">    return &quot;catalina&quot;;</span>
   }
 
   @Override
   public File getFile() {
-<span class="nc" id="L42">    String dir = (String) invokeMethod(getTarget(), &quot;getDirectory&quot;, null, null);</span>
-<span class="nc" id="L43">    String prefix = (String) invokeMethod(getTarget(), &quot;getPrefix&quot;, null, null);</span>
-<span class="nc" id="L44">    String suffix = (String) invokeMethod(getTarget(), &quot;getSuffix&quot;, null, null);</span>
-<span class="nc" id="L45">    boolean timestamp =</span>
-<span class="nc" id="L46">        Boolean.parseBoolean(String.valueOf(Instruments.getField(getTarget(), &quot;timestamp&quot;)));</span>
-<span class="nc bnc" id="L47" title="All 2 branches missed.">    String date = timestamp ? new SimpleDateFormat(&quot;yyyy-MM-dd&quot;).format(new Date()) : &quot;&quot;;</span>
+<span class="nc" id="L41">    String dir = (String) invokeMethod(getTarget(), &quot;getDirectory&quot;, null, null);</span>
+<span class="nc" id="L42">    String prefix = (String) invokeMethod(getTarget(), &quot;getPrefix&quot;, null, null);</span>
+<span class="nc" id="L43">    String suffix = (String) invokeMethod(getTarget(), &quot;getSuffix&quot;, null, null);</span>
+<span class="nc" id="L44">    boolean timestamp =</span>
+<span class="nc" id="L45">        Boolean.parseBoolean(String.valueOf(Instruments.getField(getTarget(), &quot;timestamp&quot;)));</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">    String date = timestamp ? new SimpleDateFormat(&quot;yyyy-MM-dd&quot;).format(new Date()) : &quot;&quot;;</span>
 
-<span class="nc bnc" id="L49" title="All 2 branches missed.">    File file = notNull(date, dir, prefix, suffix) ? new File(dir, prefix + date + suffix) : null;</span>
-<span class="nc bnc" id="L50" title="All 4 branches missed.">    if (file != null &amp;&amp; !file.isAbsolute()) {</span>
-<span class="nc" id="L51">      return new File(System.getProperty(&quot;catalina.base&quot;), file.getPath());</span>
+<span class="nc bnc" id="L48" title="All 2 branches missed.">    File file = notNull(date, dir, prefix, suffix) ? new File(dir, prefix + date + suffix) : null;</span>
+<span class="nc bnc" id="L49" title="All 4 branches missed.">    if (file != null &amp;&amp; !file.isAbsolute()) {</span>
+<span class="nc" id="L50">      return new File(System.getProperty(&quot;catalina.base&quot;), file.getPath());</span>
     }
-<span class="nc" id="L53">    return file;</span>
+<span class="nc" id="L52">    return file;</span>
   }
 
   /**
@@ -60,13 +59,13 @@ import psiprobe.tools.logging.AbstractLogDestination;
    * @return true, if successful
    */
   private boolean notNull(String... strings) {
-<span class="nc bnc" id="L63" title="All 2 branches missed.">    for (String string : strings) {</span>
-<span class="nc bnc" id="L64" title="All 2 branches missed.">      if (string == null) {</span>
-<span class="nc" id="L65">        return false;</span>
+<span class="nc bnc" id="L62" title="All 2 branches missed.">    for (String string : strings) {</span>
+<span class="nc bnc" id="L63" title="All 2 branches missed.">      if (string == null) {</span>
+<span class="nc" id="L64">        return false;</span>
       }
     }
-<span class="nc" id="L68">    return true;</span>
+<span class="nc" id="L67">    return true;</span>
   }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

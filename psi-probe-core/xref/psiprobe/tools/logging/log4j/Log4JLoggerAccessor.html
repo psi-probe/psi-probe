@@ -10,7 +10,7 @@
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_javadoccomment"> * Licensed under the GPL License. You may not use this file except in compliance with the License.</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_javadoccomment"> * You may obtain a copy of the License at</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_javadoccomment"> *</em>
-<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_javadoccomment"> *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</em>
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_javadoccomment"> *   <a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.html" target="alexandria_uri">https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</a></em>
 <a class="jxr_linenumber" name="L6" href="#L6">6</a>   <em class="jxr_javadoccomment"> *</em>
 <a class="jxr_linenumber" name="L7" href="#L7">7</a>   <em class="jxr_javadoccomment"> * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,</em>
 <a class="jxr_linenumber" name="L8" href="#L8">8</a>   <em class="jxr_javadoccomment"> * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR</em>
@@ -28,7 +28,7 @@
 <a class="jxr_linenumber" name="L20" href="#L20">20</a>  <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L21" href="#L21">21</a>  <em class="jxr_javadoccomment"> * The Class Log4JLoggerAccessor.</em>
 <a class="jxr_linenumber" name="L22" href="#L22">22</a>  <em class="jxr_javadoccomment"> */</em>
-<a class="jxr_linenumber" name="L23" href="#L23">23</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../psiprobe/tools/logging/log4j/Log4JLoggerAccessor.html">Log4JLoggerAccessor</a> <strong class="jxr_keyword">extends</strong> <a href="../../../../psiprobe/tools/logging/DefaultAccessor.html">DefaultAccessor</a> {
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a name="Log4JLoggerAccessor" href="../../../../psiprobe/tools/logging/log4j/Log4JLoggerAccessor.html#Log4JLoggerAccessor">Log4JLoggerAccessor</a> <strong class="jxr_keyword">extends</strong> <a name="DefaultAccessor" href="../../../../psiprobe/tools/logging/DefaultAccessor.html#DefaultAccessor">DefaultAccessor</a> {
 <a class="jxr_linenumber" name="L24" href="#L24">24</a>  
 <a class="jxr_linenumber" name="L25" href="#L25">25</a>    <em class="jxr_javadoccomment">/** The context. */</em>
 <a class="jxr_linenumber" name="L26" href="#L26">26</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">boolean</strong> context;
@@ -44,7 +44,7 @@
 <a class="jxr_linenumber" name="L36" href="#L36">36</a>      <strong class="jxr_keyword">try</strong> {
 <a class="jxr_linenumber" name="L37" href="#L37">37</a>        <strong class="jxr_keyword">for</strong> (Object unwrappedAppender : Collections
 <a class="jxr_linenumber" name="L38" href="#L38">38</a>            .list((Enumeration&lt;Object&gt;) MethodUtils.invokeMethod(getTarget(), <span class="jxr_string">"getAllAppenders"</span>))) {
-<a class="jxr_linenumber" name="L39" href="#L39">39</a>          <a href="../../../../psiprobe/tools/logging/log4j/Log4JAppenderAccessor.html">Log4JAppenderAccessor</a> appender = wrapAppender(unwrappedAppender);
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>          <a name="Log4JAppenderAccessor" href="../../../../psiprobe/tools/logging/log4j/Log4JAppenderAccessor.html#Log4JAppenderAccessor">Log4JAppenderAccessor</a> appender = wrapAppender(unwrappedAppender);
 <a class="jxr_linenumber" name="L40" href="#L40">40</a>          <strong class="jxr_keyword">if</strong> (appender != <strong class="jxr_keyword">null</strong>) {
 <a class="jxr_linenumber" name="L41" href="#L41">41</a>            appenders.add(appender);
 <a class="jxr_linenumber" name="L42" href="#L42">42</a>          }
@@ -61,7 +61,7 @@
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>  <em class="jxr_javadoccomment">   * @param name the name</em>
 <a class="jxr_linenumber" name="L54" href="#L54">54</a>  <em class="jxr_javadoccomment">   * @return the appender</em>
 <a class="jxr_linenumber" name="L55" href="#L55">55</a>  <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L56" href="#L56">56</a>    <strong class="jxr_keyword">public</strong> <a href="../../../../psiprobe/tools/logging/log4j/Log4JAppenderAccessor.html">Log4JAppenderAccessor</a> getAppender(String name) {
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>    <strong class="jxr_keyword">public</strong> <a name="Log4JAppenderAccessor" href="../../../../psiprobe/tools/logging/log4j/Log4JAppenderAccessor.html#Log4JAppenderAccessor">Log4JAppenderAccessor</a> getAppender(String name) {
 <a class="jxr_linenumber" name="L57" href="#L57">57</a>      <strong class="jxr_keyword">try</strong> {
 <a class="jxr_linenumber" name="L58" href="#L58">58</a>        Object appender = MethodUtils.invokeMethod(getTarget(), <span class="jxr_string">"getAppender"</span>, name);
 <a class="jxr_linenumber" name="L59" href="#L59">59</a>        <strong class="jxr_keyword">return</strong> wrapAppender(appender);
@@ -143,12 +143,12 @@
 <a class="jxr_linenumber" name="L135" href="#L135">135</a> <em class="jxr_javadoccomment">   * @param appender the appender</em>
 <a class="jxr_linenumber" name="L136" href="#L136">136</a> <em class="jxr_javadoccomment">   * @return the log4 j appender accessor</em>
 <a class="jxr_linenumber" name="L137" href="#L137">137</a> <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L138" href="#L138">138</a>   <strong class="jxr_keyword">private</strong> <a href="../../../../psiprobe/tools/logging/log4j/Log4JAppenderAccessor.html">Log4JAppenderAccessor</a> wrapAppender(Object appender) {
+<a class="jxr_linenumber" name="L138" href="#L138">138</a>   <strong class="jxr_keyword">private</strong> <a name="Log4JAppenderAccessor" href="../../../../psiprobe/tools/logging/log4j/Log4JAppenderAccessor.html#Log4JAppenderAccessor">Log4JAppenderAccessor</a> wrapAppender(Object appender) {
 <a class="jxr_linenumber" name="L139" href="#L139">139</a>     <strong class="jxr_keyword">try</strong> {
 <a class="jxr_linenumber" name="L140" href="#L140">140</a>       <strong class="jxr_keyword">if</strong> (appender == <strong class="jxr_keyword">null</strong>) {
 <a class="jxr_linenumber" name="L141" href="#L141">141</a>         <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> IllegalArgumentException(<span class="jxr_string">"appender is null"</span>);
 <a class="jxr_linenumber" name="L142" href="#L142">142</a>       }
-<a class="jxr_linenumber" name="L143" href="#L143">143</a>       <a href="../../../../psiprobe/tools/logging/log4j/Log4JAppenderAccessor.html">Log4JAppenderAccessor</a> appenderAccessor = <strong class="jxr_keyword">new</strong> <a href="../../../../psiprobe/tools/logging/log4j/Log4JAppenderAccessor.html">Log4JAppenderAccessor</a>();
+<a class="jxr_linenumber" name="L143" href="#L143">143</a>       <a name="Log4JAppenderAccessor" href="../../../../psiprobe/tools/logging/log4j/Log<a name="Log4JAppenderAccessor" href="../../../../psiprobe/tools/logging/log4j/Log4JAppenderAccessor.html#Log4JAppenderAccessor">Log4JAppenderAccessor</a>ml#Log4JAppenderAccessor">Log4JAppenderAccessor</a> appenderAccessor = <strong class="jxr_keyword">new</strong> <a name="Log4JAppenderAccessor" href="../../../../psiprobe/tools/logging/log4j/Log4JAppenderAccessor.html#Log4JAppenderAccessor">Log4JAppenderAccessor</a>();
 <a class="jxr_linenumber" name="L144" href="#L144">144</a>       appenderAccessor.setTarget(appender);
 <a class="jxr_linenumber" name="L145" href="#L145">145</a>       appenderAccessor.setLoggerAccessor(<strong class="jxr_keyword">this</strong>);
 <a class="jxr_linenumber" name="L146" href="#L146">146</a>       appenderAccessor.setApplication(getApplication());

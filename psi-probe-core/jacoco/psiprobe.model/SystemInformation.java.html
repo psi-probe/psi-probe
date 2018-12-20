@@ -15,13 +15,12 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Map;
 import java.util.Set;
-
 import org.apache.catalina.util.ServerInfo;
 
 /**
  * POJO representing system information for &quot;system infromation&quot; tab.
  */
-<span class="fc" id="L24">public class SystemInformation implements Serializable {</span>
+<span class="fc" id="L23">public class SystemInformation implements Serializable {</span>
 
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = 1L;
@@ -41,7 +40,7 @@ import org.apache.catalina.util.ServerInfo;
    * @return the max memory
    */
   public long getMaxMemory() {
-<span class="nc" id="L44">    return Runtime.getRuntime().maxMemory();</span>
+<span class="nc" id="L43">    return Runtime.getRuntime().maxMemory();</span>
   }
 
   /**
@@ -50,7 +49,7 @@ import org.apache.catalina.util.ServerInfo;
    * @return the free memory
    */
   public long getFreeMemory() {
-<span class="nc" id="L53">    return Runtime.getRuntime().freeMemory();</span>
+<span class="nc" id="L52">    return Runtime.getRuntime().freeMemory();</span>
   }
 
   /**
@@ -59,7 +58,7 @@ import org.apache.catalina.util.ServerInfo;
    * @return the total memory
    */
   public long getTotalMemory() {
-<span class="nc" id="L62">    return Runtime.getRuntime().totalMemory();</span>
+<span class="nc" id="L61">    return Runtime.getRuntime().totalMemory();</span>
   }
 
   /**
@@ -68,7 +67,7 @@ import org.apache.catalina.util.ServerInfo;
    * @return the cpu count
    */
   public int getCpuCount() {
-<span class="nc" id="L71">    return Runtime.getRuntime().availableProcessors();</span>
+<span class="nc" id="L70">    return Runtime.getRuntime().availableProcessors();</span>
   }
 
   /**
@@ -77,7 +76,7 @@ import org.apache.catalina.util.ServerInfo;
    * @return the date
    */
   public Date getDate() {
-<span class="nc" id="L80">    return new Date();</span>
+<span class="nc" id="L79">    return new Date();</span>
   }
 
   /**
@@ -86,7 +85,7 @@ import org.apache.catalina.util.ServerInfo;
    * @return the server info
    */
   public String getServerInfo() {
-<span class="nc" id="L89">    return ServerInfo.getServerInfo();</span>
+<span class="nc" id="L88">    return ServerInfo.getServerInfo();</span>
   }
 
   /**
@@ -95,7 +94,7 @@ import org.apache.catalina.util.ServerInfo;
    * @return the working dir
    */
   public String getWorkingDir() {
-<span class="nc" id="L98">    return new File(&quot;&quot;).getAbsolutePath();</span>
+<span class="nc" id="L97">    return new File(&quot;&quot;).getAbsolutePath();</span>
   }
 
   /**
@@ -104,7 +103,7 @@ import org.apache.catalina.util.ServerInfo;
    * @return the app base
    */
   public String getAppBase() {
-<span class="fc" id="L107">    return appBase;</span>
+<span class="fc" id="L106">    return appBase;</span>
   }
 
   /**
@@ -113,8 +112,8 @@ import org.apache.catalina.util.ServerInfo;
    * @param appBase the new app base
    */
   public void setAppBase(String appBase) {
-<span class="fc" id="L116">    this.appBase = appBase;</span>
-<span class="fc" id="L117">  }</span>
+<span class="fc" id="L115">    this.appBase = appBase;</span>
+<span class="fc" id="L116">  }</span>
 
   /**
    * Gets the config base.
@@ -122,7 +121,7 @@ import org.apache.catalina.util.ServerInfo;
    * @return the config base
    */
   public String getConfigBase() {
-<span class="fc" id="L125">    return configBase;</span>
+<span class="fc" id="L124">    return configBase;</span>
   }
 
   /**
@@ -131,8 +130,8 @@ import org.apache.catalina.util.ServerInfo;
    * @param configBase the new config base
    */
   public void setConfigBase(String configBase) {
-<span class="fc" id="L134">    this.configBase = configBase;</span>
-<span class="fc" id="L135">  }</span>
+<span class="fc" id="L133">    this.configBase = configBase;</span>
+<span class="fc" id="L134">  }</span>
 
   /**
    * Gets the system properties.
@@ -140,7 +139,7 @@ import org.apache.catalina.util.ServerInfo;
    * @return the system properties
    */
   public Map&lt;String, String&gt; getSystemProperties() {
-<span class="fc" id="L143">    return systemProperties;</span>
+<span class="fc" id="L142">    return systemProperties;</span>
   }
 
   /**
@@ -149,8 +148,8 @@ import org.apache.catalina.util.ServerInfo;
    * @param systemProperties the system properties
    */
   public void setSystemProperties(Map&lt;String, String&gt; systemProperties) {
-<span class="fc" id="L152">    this.systemProperties = systemProperties;</span>
-<span class="fc" id="L153">  }</span>
+<span class="fc" id="L151">    this.systemProperties = systemProperties;</span>
+<span class="fc" id="L152">  }</span>
 
   /**
    * Gets the system property set.
@@ -158,8 +157,8 @@ import org.apache.catalina.util.ServerInfo;
    * @return the system property set
    */
   public Set&lt;Map.Entry&lt;String, String&gt;&gt; getSystemPropertySet() {
-<span class="nc" id="L161">    return systemProperties.entrySet();</span>
+<span class="nc" id="L160">    return systemProperties.entrySet();</span>
   }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

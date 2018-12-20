@@ -13,22 +13,19 @@ package psiprobe.beans.stats.providers;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
-
 import org.jfree.data.xy.DefaultTableXYDataset;
 import org.jfree.data.xy.XYDataItem;
 import org.springframework.web.bind.ServletRequestUtils;
-
 import psiprobe.model.stats.StatsCollection;
 
 /**
  * The Class StandardSeriesProvider.
  */
-<span class="fc" id="L28">public class StandardSeriesProvider extends AbstractSeriesProvider {</span>
+<span class="fc" id="L25">public class StandardSeriesProvider extends AbstractSeriesProvider {</span>
 
   /** The stat names. */
-<span class="fc" id="L31">  private List&lt;String&gt; statNames = new ArrayList&lt;&gt;(2);</span>
+<span class="fc" id="L28">  private List&lt;String&gt; statNames = new ArrayList&lt;&gt;(2);</span>
 
   /**
    * Gets the stat names.
@@ -36,7 +33,7 @@ import psiprobe.model.stats.StatsCollection;
    * @return the stat names
    */
   public List&lt;String&gt; getStatNames() {
-<span class="fc" id="L39">    return statNames;</span>
+<span class="fc" id="L36">    return statNames;</span>
   }
 
   /**
@@ -45,26 +42,26 @@ import psiprobe.model.stats.StatsCollection;
    * @param statNames the new stat names
    */
   public void setStatNames(List&lt;String&gt; statNames) {
-<span class="fc" id="L48">    this.statNames = statNames;</span>
-<span class="fc" id="L49">  }</span>
+<span class="fc" id="L45">    this.statNames = statNames;</span>
+<span class="fc" id="L46">  }</span>
 
   @Override
   public void populate(DefaultTableXYDataset dataset, StatsCollection statsCollection,
       HttpServletRequest request) {
 
-<span class="nc" id="L55">    String seriesParam = ServletRequestUtils.getStringParameter(request, &quot;sp&quot;, null);</span>
-<span class="nc bnc" id="L56" title="All 2 branches missed.">    for (int i = 0; i &lt; statNames.size(); i++) {</span>
-<span class="nc" id="L57">      String statName = statNames.get(i);</span>
-<span class="nc bnc" id="L58" title="All 2 branches missed.">      if (seriesParam != null) {</span>
-<span class="nc" id="L59">        statName = MessageFormat.format(statName, seriesParam);</span>
+<span class="nc" id="L52">    String seriesParam = ServletRequestUtils.getStringParameter(request, &quot;sp&quot;, null);</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">    for (int i = 0; i &lt; statNames.size(); i++) {</span>
+<span class="nc" id="L54">      String statName = statNames.get(i);</span>
+<span class="nc bnc" id="L55" title="All 2 branches missed.">      if (seriesParam != null) {</span>
+<span class="nc" id="L56">        statName = MessageFormat.format(statName, seriesParam);</span>
       }
-<span class="nc" id="L61">      List&lt;XYDataItem&gt; stats = statsCollection.getStats(statName);</span>
-<span class="nc bnc" id="L62" title="All 2 branches missed.">      if (stats != null) {</span>
-<span class="nc" id="L63">        String series =</span>
-<span class="nc" id="L64">            ServletRequestUtils.getStringParameter(request, &quot;s&quot; + (i + 1) + &quot;l&quot;, &quot;series&quot; + i);</span>
-<span class="nc" id="L65">        dataset.addSeries(toSeries(series, stats));</span>
+<span class="nc" id="L58">      List&lt;XYDataItem&gt; stats = statsCollection.getStats(statName);</span>
+<span class="nc bnc" id="L59" title="All 2 branches missed.">      if (stats != null) {</span>
+<span class="nc" id="L60">        String series =</span>
+<span class="nc" id="L61">            ServletRequestUtils.getStringParameter(request, &quot;s&quot; + (i + 1) + &quot;l&quot;, &quot;series&quot; + i);</span>
+<span class="nc" id="L62">        dataset.addSeries(toSeries(series, stats));</span>
       }
     }
-<span class="nc" id="L68">  }</span>
+<span class="nc" id="L65">  }</span>
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

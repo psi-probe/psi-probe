@@ -10,7 +10,7 @@
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_javadoccomment"> * Licensed under the GPL License. You may not use this file except in compliance with the License.</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_javadoccomment"> * You may obtain a copy of the License at</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_javadoccomment"> *</em>
-<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_javadoccomment"> *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</em>
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_javadoccomment"> *   <a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.html" target="alexandria_uri">https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</a></em>
 <a class="jxr_linenumber" name="L6" href="#L6">6</a>   <em class="jxr_javadoccomment"> *</em>
 <a class="jxr_linenumber" name="L7" href="#L7">7</a>   <em class="jxr_javadoccomment"> * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,</em>
 <a class="jxr_linenumber" name="L8" href="#L8">8</a>   <em class="jxr_javadoccomment"> * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR</em>
@@ -28,7 +28,7 @@
 <a class="jxr_linenumber" name="L20" href="#L20">20</a>  <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L21" href="#L21">21</a>  <em class="jxr_javadoccomment"> * An {@code OutputStream} which writes to a commons-logging {@code Log} at a particular level.</em>
 <a class="jxr_linenumber" name="L22" href="#L22">22</a>  <em class="jxr_javadoccomment"> */</em>
-<a class="jxr_linenumber" name="L23" href="#L23">23</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../psiprobe/tools/LogOutputStream.html">LogOutputStream</a> <strong class="jxr_keyword">extends</strong> OutputStream {
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a name="LogOutputStream" href="../../psiprobe/tools/LogOutputStream.html#LogOutputStream">LogOutputStream</a> <strong class="jxr_keyword">extends</strong> OutputStream {
 <a class="jxr_linenumber" name="L24" href="#L24">24</a>  
 <a class="jxr_linenumber" name="L25" href="#L25">25</a>    <em class="jxr_javadoccomment">/** The Constant INTERNAL_LOGGER. */</em>
 <a class="jxr_linenumber" name="L26" href="#L26">26</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> Logger INTERNAL_LOGGER = LoggerFactory.getLogger(LogOutputStream.<strong class="jxr_keyword">class</strong>);
@@ -70,7 +70,7 @@
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>  <em class="jxr_javadoccomment">   * @param log the {@code Log} to which to write</em>
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>  <em class="jxr_javadoccomment">   * @param level the level at which to write</em>
 <a class="jxr_linenumber" name="L64" href="#L64">64</a>  <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L65" href="#L65">65</a>    <strong class="jxr_keyword">private</strong> <a href="../../psiprobe/tools/LogOutputStream.html">LogOutputStream</a>(Logger log, <strong class="jxr_keyword">int</strong> level) {
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>    <strong class="jxr_keyword">private</strong> <a name="LogOutputStream" href="../../psiprobe/tools/LogOutputStream.html#LogOutputStream">LogOutputStream</a>(Logger log, <strong class="jxr_keyword">int</strong> level) {
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>      <strong class="jxr_keyword">if</strong> (log == <strong class="jxr_keyword">null</strong>) {
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>        <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> IllegalArgumentException(<span class="jxr_string">"Log cannot be null"</span>);
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>      }
@@ -87,7 +87,7 @@
 <a class="jxr_linenumber" name="L79" href="#L79">79</a>  <em class="jxr_javadoccomment">   * @return a {@code PrintStream} that writes to the given log</em>
 <a class="jxr_linenumber" name="L80" href="#L80">80</a>  <em class="jxr_javadoccomment">   */</em>
 <a class="jxr_linenumber" name="L81" href="#L81">81</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> PrintStream createPrintStream(Logger log, <strong class="jxr_keyword">int</strong> level) {
-<a class="jxr_linenumber" name="L82" href="#L82">82</a>      <strong class="jxr_keyword">try</strong> (LogOutputStream logStream = <strong class="jxr_keyword">new</strong> LogOutputStream(log, level)) {
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>      <strong class="jxr_keyword">try</strong> (<a name="LogOutputStream" href="../../psiprobe/tools/LogOutputStream.<a name="LogOutputStream" href="../../psiprobe/tools/LogOutputStream.html#LogOutputStream">LogOutputStream</a>tream">LogOutputStream</a> logStream = <strong class="jxr_keyword">new</strong> <a name="LogOutputStream" href="../../psiprobe/tools/LogOutputStream.html#LogOutputStream">LogOutputStream</a>(log, level)) {
 <a class="jxr_linenumber" name="L83" href="#L83">83</a>        <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> PrintStream(logStream, <strong class="jxr_keyword">true</strong>, StandardCharsets.UTF_8.name());
 <a class="jxr_linenumber" name="L84" href="#L84">84</a>      } <strong class="jxr_keyword">catch</strong> (IOException e) {
 <a class="jxr_linenumber" name="L85" href="#L85">85</a>        INTERNAL_LOGGER.error(<span class="jxr_string">""</span>, e);

@@ -11,23 +11,21 @@
 package psiprobe.jsp;
 
 import java.io.IOException;
-
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
  * Silly JSP tag to display duration in milliseconds as hours:minutes:seconds.milliseconds
  */
-<span class="fc" id="L24">public class DurationTag extends TagSupport {</span>
+<span class="fc" id="L22">public class DurationTag extends TagSupport {</span>
 
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = 1L;
 
   /** The Constant logger. */
-<span class="fc" id="L30">  private static final Logger logger = LoggerFactory.getLogger(DurationTag.class);</span>
+<span class="fc" id="L28">  private static final Logger logger = LoggerFactory.getLogger(DurationTag.class);</span>
 
   /** The value. */
   private long value;
@@ -38,18 +36,18 @@ import org.slf4j.LoggerFactory;
    * @param value the new value
    */
   public void setValue(long value) {
-<span class="nc" id="L41">    this.value = value;</span>
-<span class="nc" id="L42">  }</span>
+<span class="nc" id="L39">    this.value = value;</span>
+<span class="nc" id="L40">  }</span>
 
   @Override
   public int doStartTag() throws JspException {
     try {
-<span class="nc" id="L47">      pageContext.getOut().write(duration(value));</span>
-<span class="nc" id="L48">    } catch (IOException e) {</span>
-<span class="nc" id="L49">      logger.debug(&quot;Exception writing duration to JspWriter&quot;, e);</span>
-<span class="nc" id="L50">      throw new JspException(e);</span>
-<span class="nc" id="L51">    }</span>
-<span class="nc" id="L52">    return EVAL_BODY_INCLUDE;</span>
+<span class="nc" id="L45">      pageContext.getOut().write(duration(value));</span>
+<span class="nc" id="L46">    } catch (IOException e) {</span>
+<span class="nc" id="L47">      logger.debug(&quot;Exception writing duration to JspWriter&quot;, e);</span>
+<span class="nc" id="L48">      throw new JspException(e);</span>
+<span class="nc" id="L49">    }</span>
+<span class="nc" id="L50">    return EVAL_BODY_INCLUDE;</span>
   }
 
   /**
@@ -59,15 +57,15 @@ import org.slf4j.LoggerFactory;
    * @return the string
    */
   public static String duration(long value) {
-<span class="nc" id="L62">    long millis = value % 1000;</span>
-<span class="nc" id="L63">    long sec = value / 1000;</span>
-<span class="nc" id="L64">    long mins = sec / 60;</span>
-<span class="nc" id="L65">    long hours = mins / 60;</span>
+<span class="nc" id="L60">    long millis = value % 1000;</span>
+<span class="nc" id="L61">    long sec = value / 1000;</span>
+<span class="nc" id="L62">    long mins = sec / 60;</span>
+<span class="nc" id="L63">    long hours = mins / 60;</span>
 
-<span class="nc" id="L67">    sec = sec % 60;</span>
-<span class="nc" id="L68">    mins = mins % 60;</span>
+<span class="nc" id="L65">    sec = sec % 60;</span>
+<span class="nc" id="L66">    mins = mins % 60;</span>
 
-<span class="nc" id="L70">    return hours + &quot;:&quot; + long2Str(mins) + &quot;:&quot; + long2Str(sec) + &quot;.&quot; + long3Str(millis);</span>
+<span class="nc" id="L68">    return hours + &quot;:&quot; + long2Str(mins) + &quot;:&quot; + long2Str(sec) + &quot;.&quot; + long3Str(millis);</span>
   }
 
   /**
@@ -77,7 +75,7 @@ import org.slf4j.LoggerFactory;
    * @return the string
    */
   private static String long2Str(long value) {
-<span class="nc bnc" id="L80" title="All 2 branches missed.">    return value &lt; 10 ? &quot;0&quot; + value : Long.toString(value);</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">    return value &lt; 10 ? &quot;0&quot; + value : Long.toString(value);</span>
   }
 
   /**
@@ -87,14 +85,14 @@ import org.slf4j.LoggerFactory;
    * @return the string
    */
   private static String long3Str(long value) {
-<span class="nc bnc" id="L90" title="All 2 branches missed.">    if (value &lt; 10) {</span>
-<span class="nc" id="L91">      return &quot;00&quot; + value;</span>
-<span class="nc bnc" id="L92" title="All 2 branches missed.">    } else if (value &lt; 100) {</span>
-<span class="nc" id="L93">      return &quot;0&quot; + value;</span>
+<span class="nc bnc" id="L88" title="All 2 branches missed.">    if (value &lt; 10) {</span>
+<span class="nc" id="L89">      return &quot;00&quot; + value;</span>
+<span class="nc bnc" id="L90" title="All 2 branches missed.">    } else if (value &lt; 100) {</span>
+<span class="nc" id="L91">      return &quot;0&quot; + value;</span>
     } else {
-<span class="nc" id="L95">      return Long.toString(value);</span>
+<span class="nc" id="L93">      return Long.toString(value);</span>
     }
   }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

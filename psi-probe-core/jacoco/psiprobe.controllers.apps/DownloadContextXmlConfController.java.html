@@ -12,7 +12,6 @@ package psiprobe.controllers.apps;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,20 +21,20 @@ import org.springframework.web.servlet.ModelAndView;
  * Downloads a context descriptor (context.xml) of a web application.
  */
 @Controller
-<span class="fc" id="L25">public class DownloadContextXmlConfController extends BaseDownloadXmlConfController {</span>
+<span class="fc" id="L24">public class DownloadContextXmlConfController extends BaseDownloadXmlConfController {</span>
 
   @RequestMapping(path = &quot;/adm/downloadcontextxml.htm&quot;)
   @Override
   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
       throws Exception {
-<span class="nc" id="L31">    return super.handleRequest(request, response);</span>
+<span class="nc" id="L30">    return super.handleRequest(request, response);</span>
   }
 
   @Value(&quot;context.xml&quot;)
   @Override
   public void setDownloadTarget(String downloadTarget) {
-<span class="fc" id="L37">    super.setDownloadTarget(downloadTarget);</span>
-<span class="fc" id="L38">  }</span>
+<span class="fc" id="L36">    super.setDownloadTarget(downloadTarget);</span>
+<span class="fc" id="L37">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

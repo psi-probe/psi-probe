@@ -12,11 +12,9 @@ package psiprobe.controllers.sql;
 
 import java.util.List;
 import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,7 +22,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
 import psiprobe.PostParameterizableViewController;
 import psiprobe.model.sql.DataSourceTestInfo;
 
@@ -33,69 +30,69 @@ import psiprobe.model.sql.DataSourceTestInfo;
  * pagination feature without re-executing a query that created the result set.
  */
 @Controller
-<span class="nc" id="L36">public class CachedRecordSetController extends PostParameterizableViewController {</span>
+<span class="nc" id="L33">public class CachedRecordSetController extends PostParameterizableViewController {</span>
 
   /** The Constant logger. */
-<span class="nc" id="L39">  private static final Logger logger = LoggerFactory.getLogger(CachedRecordSetController.class);</span>
+<span class="nc" id="L36">  private static final Logger logger = LoggerFactory.getLogger(CachedRecordSetController.class);</span>
 
   @RequestMapping(path = &quot;/sql/cachedRecordset.ajax&quot;)
   @Override
   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
       throws Exception {
-<span class="nc" id="L45">    return super.handleRequest(request, response);</span>
+<span class="nc" id="L42">    return super.handleRequest(request, response);</span>
   }
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 
-<span class="nc" id="L52">    int rowsPerPage = ServletRequestUtils.getIntParameter(request, &quot;rowsPerPage&quot;, 0);</span>
-<span class="nc" id="L53">    List&lt;Map&lt;String, String&gt;&gt; results = null;</span>
-<span class="nc" id="L54">    int rowsAffected = 0;</span>
-<span class="nc" id="L55">    HttpSession sess = request.getSession(false);</span>
+<span class="nc" id="L49">    int rowsPerPage = ServletRequestUtils.getIntParameter(request, &quot;rowsPerPage&quot;, 0);</span>
+<span class="nc" id="L50">    List&lt;Map&lt;String, String&gt;&gt; results = null;</span>
+<span class="nc" id="L51">    int rowsAffected = 0;</span>
+<span class="nc" id="L52">    HttpSession sess = request.getSession(false);</span>
 
-<span class="nc bnc" id="L57" title="All 2 branches missed.">    if (sess == null) {</span>
-<span class="nc" id="L58">      request.setAttribute(&quot;errorMessage&quot;, getMessageSourceAccessor()</span>
-<span class="nc" id="L59">          .getMessage(&quot;probe.src.dataSourceTest.cachedResultSet.failure&quot;));</span>
-<span class="nc" id="L60">      logger.error(&quot;Cannot retrieve a cached result set. Http session is NULL.&quot;);</span>
+<span class="nc bnc" id="L54" title="All 2 branches missed.">    if (sess == null) {</span>
+<span class="nc" id="L55">      request.setAttribute(&quot;errorMessage&quot;, getMessageSourceAccessor()</span>
+<span class="nc" id="L56">          .getMessage(&quot;probe.src.dataSourceTest.cachedResultSet.failure&quot;));</span>
+<span class="nc" id="L57">      logger.error(&quot;Cannot retrieve a cached result set. Http session is NULL.&quot;);</span>
     } else {
-<span class="nc" id="L62">      DataSourceTestInfo sessData =</span>
-<span class="nc" id="L63">          (DataSourceTestInfo) sess.getAttribute(DataSourceTestInfo.DS_TEST_SESS_ATTR);</span>
+<span class="nc" id="L59">      DataSourceTestInfo sessData =</span>
+<span class="nc" id="L60">          (DataSourceTestInfo) sess.getAttribute(DataSourceTestInfo.DS_TEST_SESS_ATTR);</span>
 
-<span class="nc bnc" id="L65" title="All 2 branches missed.">      if (sessData == null) {</span>
-<span class="nc" id="L66">        request.setAttribute(&quot;errorMessage&quot;, getMessageSourceAccessor()</span>
-<span class="nc" id="L67">            .getMessage(&quot;probe.src.dataSourceTest.cachedResultSet.failure&quot;));</span>
-<span class="nc" id="L68">        logger.error(&quot;Cannot retrieve a cached result set. {} session attribute is NULL.&quot;,</span>
+<span class="nc bnc" id="L62" title="All 2 branches missed.">      if (sessData == null) {</span>
+<span class="nc" id="L63">        request.setAttribute(&quot;errorMessage&quot;, getMessageSourceAccessor()</span>
+<span class="nc" id="L64">            .getMessage(&quot;probe.src.dataSourceTest.cachedResultSet.failure&quot;));</span>
+<span class="nc" id="L65">        logger.error(&quot;Cannot retrieve a cached result set. {} session attribute is NULL.&quot;,</span>
             DataSourceTestInfo.DS_TEST_SESS_ATTR);
       } else {
-<span class="nc" id="L71">        synchronized (sess) {</span>
-<span class="nc" id="L72">          sessData.setRowsPerPage(rowsPerPage);</span>
-<span class="nc" id="L73">        }</span>
+<span class="nc" id="L68">        synchronized (sess) {</span>
+<span class="nc" id="L69">          sessData.setRowsPerPage(rowsPerPage);</span>
+<span class="nc" id="L70">        }</span>
 
-<span class="nc" id="L75">        results = sessData.getResults();</span>
+<span class="nc" id="L72">        results = sessData.getResults();</span>
 
-<span class="nc bnc" id="L77" title="All 2 branches missed.">        if (results == null) {</span>
-<span class="nc" id="L78">          request.setAttribute(&quot;errorMessage&quot;, getMessageSourceAccessor()</span>
-<span class="nc" id="L79">              .getMessage(&quot;probe.src.dataSourceTest.cachedResultSet.failure&quot;));</span>
-<span class="nc" id="L80">          logger.error(&quot;Cached results set is NULL.&quot;);</span>
+<span class="nc bnc" id="L74" title="All 2 branches missed.">        if (results == null) {</span>
+<span class="nc" id="L75">          request.setAttribute(&quot;errorMessage&quot;, getMessageSourceAccessor()</span>
+<span class="nc" id="L76">              .getMessage(&quot;probe.src.dataSourceTest.cachedResultSet.failure&quot;));</span>
+<span class="nc" id="L77">          logger.error(&quot;Cached results set is NULL.&quot;);</span>
         } else {
-<span class="nc" id="L82">          rowsAffected = results.size();</span>
+<span class="nc" id="L79">          rowsAffected = results.size();</span>
         }
       }
     }
 
-<span class="nc" id="L87">    ModelAndView mv = new ModelAndView(getViewName(), &quot;results&quot;, results);</span>
-<span class="nc" id="L88">    mv.addObject(&quot;rowsAffected&quot;, String.valueOf(rowsAffected));</span>
-<span class="nc" id="L89">    mv.addObject(&quot;rowsPerPage&quot;, String.valueOf(rowsPerPage));</span>
+<span class="nc" id="L84">    ModelAndView mv = new ModelAndView(getViewName(), &quot;results&quot;, results);</span>
+<span class="nc" id="L85">    mv.addObject(&quot;rowsAffected&quot;, String.valueOf(rowsAffected));</span>
+<span class="nc" id="L86">    mv.addObject(&quot;rowsPerPage&quot;, String.valueOf(rowsPerPage));</span>
 
-<span class="nc" id="L91">    return mv;</span>
+<span class="nc" id="L88">    return mv;</span>
   }
 
   @Value(&quot;ajax/sql/recordset&quot;)
   @Override
   public void setViewName(String viewName) {
-<span class="nc" id="L97">    super.setViewName(viewName);</span>
-<span class="nc" id="L98">  }</span>
+<span class="nc" id="L94">    super.setViewName(viewName);</span>
+<span class="nc" id="L95">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

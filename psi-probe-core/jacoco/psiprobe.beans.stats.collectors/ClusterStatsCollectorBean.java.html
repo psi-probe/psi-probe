@@ -11,9 +11,7 @@
 package psiprobe.beans.stats.collectors;
 
 import javax.inject.Inject;
-
 import org.springframework.beans.factory.annotation.Value;
-
 import psiprobe.TomcatContainer;
 import psiprobe.beans.ClusterWrapperBean;
 import psiprobe.beans.ContainerWrapperBean;
@@ -23,7 +21,7 @@ import psiprobe.tools.TimeExpression;
 /**
  * The Class ClusterStatsCollectorBean.
  */
-<span class="fc" id="L26">public class ClusterStatsCollectorBean extends AbstractStatsCollectorBean {</span>
+<span class="fc" id="L24">public class ClusterStatsCollectorBean extends AbstractStatsCollectorBean {</span>
 
   /** The container wrapper. */
   @Inject
@@ -39,7 +37,7 @@ import psiprobe.tools.TimeExpression;
    * @return the container wrapper
    */
   public ContainerWrapperBean getContainerWrapper() {
-<span class="fc" id="L42">    return containerWrapper;</span>
+<span class="fc" id="L40">    return containerWrapper;</span>
   }
 
   /**
@@ -48,8 +46,8 @@ import psiprobe.tools.TimeExpression;
    * @param containerWrapper the new container wrapper
    */
   public void setContainerWrapper(ContainerWrapperBean containerWrapper) {
-<span class="fc" id="L51">    this.containerWrapper = containerWrapper;</span>
-<span class="fc" id="L52">  }</span>
+<span class="fc" id="L49">    this.containerWrapper = containerWrapper;</span>
+<span class="fc" id="L50">  }</span>
 
   /**
    * Gets the cluster wrapper.
@@ -57,7 +55,7 @@ import psiprobe.tools.TimeExpression;
    * @return the cluster wrapper
    */
   public ClusterWrapperBean getClusterWrapper() {
-<span class="fc" id="L60">    return clusterWrapper;</span>
+<span class="fc" id="L58">    return clusterWrapper;</span>
   }
 
   /**
@@ -66,25 +64,25 @@ import psiprobe.tools.TimeExpression;
    * @param clusterWrapper the new cluster wrapper
    */
   public void setClusterWrapper(ClusterWrapperBean clusterWrapper) {
-<span class="fc" id="L69">    this.clusterWrapper = clusterWrapper;</span>
-<span class="fc" id="L70">  }</span>
+<span class="fc" id="L67">    this.clusterWrapper = clusterWrapper;</span>
+<span class="fc" id="L68">  }</span>
 
   @Override
   public void collect() throws Exception {
     // Job can be called before the servlet finished initialization. Make sure
     // we don't get an NPE.
-<span class="nc" id="L76">    TomcatContainer container = containerWrapper.getTomcatContainer();</span>
-<span class="nc bnc" id="L77" title="All 2 branches missed.">    if (container != null) {</span>
-<span class="nc" id="L78">      Cluster cluster =</span>
-<span class="nc" id="L79">          clusterWrapper.getCluster(container.getName(), container.getHostName(), false);</span>
-<span class="nc bnc" id="L80" title="All 2 branches missed.">      if (cluster != null) {</span>
-<span class="nc" id="L81">        buildDeltaStats(&quot;cluster.received&quot;, cluster.getTotalReceivedBytes());</span>
-<span class="nc" id="L82">        buildDeltaStats(&quot;cluster.sent&quot;, cluster.getSenderTotalBytes());</span>
-<span class="nc" id="L83">        buildDeltaStats(&quot;cluster.req.received&quot;, cluster.getNrOfMsgsReceived());</span>
-<span class="nc" id="L84">        buildDeltaStats(&quot;cluster.req.sent&quot;, cluster.getSenderNrOfRequests());</span>
+<span class="nc" id="L74">    TomcatContainer container = containerWrapper.getTomcatContainer();</span>
+<span class="nc bnc" id="L75" title="All 2 branches missed.">    if (container != null) {</span>
+<span class="nc" id="L76">      Cluster cluster =</span>
+<span class="nc" id="L77">          clusterWrapper.getCluster(container.getName(), container.getHostName(), false);</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">      if (cluster != null) {</span>
+<span class="nc" id="L79">        buildDeltaStats(&quot;cluster.received&quot;, cluster.getTotalReceivedBytes());</span>
+<span class="nc" id="L80">        buildDeltaStats(&quot;cluster.sent&quot;, cluster.getSenderTotalBytes());</span>
+<span class="nc" id="L81">        buildDeltaStats(&quot;cluster.req.received&quot;, cluster.getNrOfMsgsReceived());</span>
+<span class="nc" id="L82">        buildDeltaStats(&quot;cluster.req.sent&quot;, cluster.getSenderNrOfRequests());</span>
       }
     }
-<span class="nc" id="L87">  }</span>
+<span class="nc" id="L85">  }</span>
 
   /**
    * Sets the max series expression.
@@ -94,8 +92,8 @@ import psiprobe.tools.TimeExpression;
    */
   public void setMaxSeries(@Value(&quot;${psiprobe.beans.stats.collectors.cluster.period}&quot;) long period,
       @Value(&quot;${psiprobe.beans.stats.collectors.cluster.span}&quot;) long span) {
-<span class="nc" id="L97">    super.setMaxSeries((int) TimeExpression.dataPoints(period, span));</span>
-<span class="nc" id="L98">  }</span>
+<span class="nc" id="L95">    super.setMaxSeries((int) TimeExpression.dataPoints(period, span));</span>
+<span class="nc" id="L96">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

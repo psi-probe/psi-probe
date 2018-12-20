@@ -11,16 +11,13 @@
 package psiprobe.controllers.threads;
 
 import java.util.List;
-
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
 import psiprobe.beans.ContainerListenerBean;
 import psiprobe.controllers.AbstractTomcatContainerController;
 import psiprobe.model.ThreadPool;
@@ -29,7 +26,7 @@ import psiprobe.model.ThreadPool;
  * Creates the list of http connection thread pools.
  */
 @Controller
-<span class="fc" id="L32">public class ListThreadPoolsController extends AbstractTomcatContainerController {</span>
+<span class="fc" id="L29">public class ListThreadPoolsController extends AbstractTomcatContainerController {</span>
 
   /** The container listener bean. */
   @Inject
@@ -41,7 +38,7 @@ import psiprobe.model.ThreadPool;
    * @return the container listener bean
    */
   public ContainerListenerBean getContainerListenerBean() {
-<span class="fc" id="L44">    return containerListenerBean;</span>
+<span class="fc" id="L41">    return containerListenerBean;</span>
   }
 
   /**
@@ -50,29 +47,29 @@ import psiprobe.model.ThreadPool;
    * @param containerListenerBean the new container listener bean
    */
   public void setContainerListenerBean(ContainerListenerBean containerListenerBean) {
-<span class="fc" id="L53">    this.containerListenerBean = containerListenerBean;</span>
-<span class="fc" id="L54">  }</span>
+<span class="fc" id="L50">    this.containerListenerBean = containerListenerBean;</span>
+<span class="fc" id="L51">  }</span>
 
   @RequestMapping(path = &quot;/threadpools.htm&quot;)
   @Override
   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
       throws Exception {
-<span class="nc" id="L60">    return super.handleRequest(request, response);</span>
+<span class="nc" id="L57">    return super.handleRequest(request, response);</span>
   }
 
   @Override
   public ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 
-<span class="nc" id="L67">    List&lt;ThreadPool&gt; pools = containerListenerBean.getThreadPools();</span>
-<span class="nc" id="L68">    return new ModelAndView(getViewName()).addObject(&quot;pools&quot;, pools);</span>
+<span class="nc" id="L64">    List&lt;ThreadPool&gt; pools = containerListenerBean.getThreadPools();</span>
+<span class="nc" id="L65">    return new ModelAndView(getViewName()).addObject(&quot;pools&quot;, pools);</span>
   }
 
   @Value(&quot;threadpools&quot;)
   @Override
   public void setViewName(String viewName) {
-<span class="fc" id="L74">    super.setViewName(viewName);</span>
-<span class="fc" id="L75">  }</span>
+<span class="fc" id="L71">    super.setViewName(viewName);</span>
+<span class="fc" id="L72">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

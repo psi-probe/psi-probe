@@ -12,7 +12,6 @@ package psiprobe.controllers;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.apache.catalina.Context;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,28 +19,28 @@ import org.springframework.web.servlet.ModelAndView;
 /**
  * Base class for all controllers requiring &quot;webapp&quot; request parameter.
  */
-<span class="fc" id="L23">public abstract class AbstractContextHandlerController extends AbstractTomcatContainerController {</span>
+<span class="fc" id="L22">public abstract class AbstractContextHandlerController extends AbstractTomcatContainerController {</span>
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 
-<span class="nc" id="L29">    String contextName = ServletRequestUtils.getStringParameter(request, &quot;webapp&quot;, null);</span>
-<span class="nc" id="L30">    Context context = null;</span>
-<span class="nc bnc" id="L31" title="All 2 branches missed.">    if (contextName != null) {</span>
-<span class="nc" id="L32">      contextName = getContainerWrapper().getTomcatContainer().formatContextName(contextName);</span>
-<span class="nc" id="L33">      context = getContainerWrapper().getTomcatContainer().findContext(contextName);</span>
+<span class="nc" id="L28">    String contextName = ServletRequestUtils.getStringParameter(request, &quot;webapp&quot;, null);</span>
+<span class="nc" id="L29">    Context context = null;</span>
+<span class="nc bnc" id="L30" title="All 2 branches missed.">    if (contextName != null) {</span>
+<span class="nc" id="L31">      contextName = getContainerWrapper().getTomcatContainer().formatContextName(contextName);</span>
+<span class="nc" id="L32">      context = getContainerWrapper().getTomcatContainer().findContext(contextName);</span>
     }
 
-<span class="nc bnc" id="L36" title="All 4 branches missed.">    if (context != null || isContextOptional()) {</span>
-<span class="nc" id="L37">      return handleContext(contextName, context, request, response);</span>
+<span class="nc bnc" id="L35" title="All 4 branches missed.">    if (context != null || isContextOptional()) {</span>
+<span class="nc" id="L36">      return handleContext(contextName, context, request, response);</span>
     }
-<span class="nc bnc" id="L39" title="All 2 branches missed.">    if (contextName != null) {</span>
-<span class="nc" id="L40">      request.setAttribute(&quot;errorMessage&quot;, getMessageSourceAccessor()</span>
-<span class="nc" id="L41">          .getMessage(&quot;probe.src.contextDoesntExist&quot;, new Object[] {contextName}));</span>
+<span class="nc bnc" id="L38" title="All 2 branches missed.">    if (contextName != null) {</span>
+<span class="nc" id="L39">      request.setAttribute(&quot;errorMessage&quot;, getMessageSourceAccessor()</span>
+<span class="nc" id="L40">          .getMessage(&quot;probe.src.contextDoesntExist&quot;, new Object[] {contextName}));</span>
     }
 
-<span class="nc" id="L44">    return new ModelAndView(&quot;errors/paramerror&quot;);</span>
+<span class="nc" id="L43">    return new ModelAndView(&quot;errors/paramerror&quot;);</span>
   }
 
   /**
@@ -50,7 +49,7 @@ import org.springframework.web.servlet.ModelAndView;
    * @return true, if is context optional
    */
   protected boolean isContextOptional() {
-<span class="nc" id="L53">    return false;</span>
+<span class="nc" id="L52">    return false;</span>
   }
 
   /**
@@ -66,4 +65,4 @@ import org.springframework.web.servlet.ModelAndView;
   protected abstract ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception;
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

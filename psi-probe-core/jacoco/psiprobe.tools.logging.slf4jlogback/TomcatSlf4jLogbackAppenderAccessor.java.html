@@ -10,14 +10,16 @@
  */
 package psiprobe.tools.logging.slf4jlogback;
 
+import ch.qos.logback.core.OutputStreamAppender;
+import ch.qos.logback.core.encoder.Encoder;
+import ch.qos.logback.core.encoder.LayoutWrappingEncoder;
 import java.io.File;
-
 import psiprobe.tools.logging.AbstractLogDestination;
 
 /**
  * A wrapper for a TomcatSlf4jLogback appender for a specific logger.
  */
-<span class="fc" id="L20">public class TomcatSlf4jLogbackAppenderAccessor extends AbstractLogDestination {</span>
+<span class="fc" id="L22">public class TomcatSlf4jLogbackAppenderAccessor extends AbstractLogDestination {</span>
 
   /** The logger accessor. */
   private TomcatSlf4jLogbackLoggerAccessor loggerAccessor;
@@ -28,7 +30,7 @@ import psiprobe.tools.logging.AbstractLogDestination;
    * @return the logger accessor
    */
   public TomcatSlf4jLogbackLoggerAccessor getLoggerAccessor() {
-<span class="fc" id="L31">    return loggerAccessor;</span>
+<span class="fc" id="L33">    return loggerAccessor;</span>
   }
 
   /**
@@ -37,22 +39,22 @@ import psiprobe.tools.logging.AbstractLogDestination;
    * @param loggerAccessor the new logger accessor
    */
   public void setLoggerAccessor(TomcatSlf4jLogbackLoggerAccessor loggerAccessor) {
-<span class="fc" id="L40">    this.loggerAccessor = loggerAccessor;</span>
-<span class="fc" id="L41">  }</span>
+<span class="fc" id="L42">    this.loggerAccessor = loggerAccessor;</span>
+<span class="fc" id="L43">  }</span>
 
   @Override
   public boolean isContext() {
-<span class="nc" id="L45">    return getLoggerAccessor().isContext();</span>
+<span class="nc" id="L47">    return getLoggerAccessor().isContext();</span>
   }
 
   @Override
   public boolean isRoot() {
-<span class="nc" id="L50">    return getLoggerAccessor().isRoot();</span>
+<span class="nc" id="L52">    return getLoggerAccessor().isRoot();</span>
   }
 
   @Override
   public String getName() {
-<span class="nc" id="L55">    return getLoggerAccessor().getName();</span>
+<span class="nc" id="L57">    return getLoggerAccessor().getName();</span>
   }
 
   /**
@@ -63,7 +65,7 @@ import psiprobe.tools.logging.AbstractLogDestination;
    */
   @Override
   public String getLogType() {
-<span class="nc" id="L66">    return &quot;tomcatSlf4jLogback&quot;;</span>
+<span class="nc" id="L68">    return &quot;tomcatSlf4jLogback&quot;;</span>
   }
 
   /**
@@ -73,7 +75,7 @@ import psiprobe.tools.logging.AbstractLogDestination;
    */
   @Override
   public String getIndex() {
-<span class="nc" id="L76">    return (String) getProperty(getTarget(), &quot;name&quot;, null);</span>
+<span class="nc" id="L78">    return (String) getProperty(getTarget(), &quot;name&quot;, null);</span>
   }
 
   /**
@@ -89,8 +91,24 @@ import psiprobe.tools.logging.AbstractLogDestination;
    */
   @Override
   public File getFile() {
-<span class="nc" id="L92">    String fileName = (String) getProperty(getTarget(), &quot;file&quot;, null);</span>
-<span class="nc bnc" id="L93" title="All 2 branches missed.">    return fileName != null ? new File(fileName) : getStdoutFile();</span>
+<span class="nc" id="L94">    String fileName = (String) getProperty(getTarget(), &quot;file&quot;, null);</span>
+<span class="nc bnc" id="L95" title="All 2 branches missed.">    return fileName != null ? new File(fileName) : getStdoutFile();</span>
+  }
+
+  @Override
+  public String getEncoding() {
+<span class="nc bnc" id="L100" title="All 2 branches missed.">    if (getTarget() instanceof OutputStreamAppender) {</span>
+<span class="nc" id="L101">      OutputStreamAppender&lt;?&gt; appender = (OutputStreamAppender&lt;?&gt;) getTarget();</span>
+<span class="nc" id="L102">      Encoder&lt;?&gt; encoder = appender.getEncoder();</span>
+<span class="nc bnc" id="L103" title="All 2 branches missed.">      if (encoder instanceof LayoutWrappingEncoder) {</span>
+<span class="nc" id="L104">        LayoutWrappingEncoder&lt;?&gt; base = (LayoutWrappingEncoder&lt;?&gt;) encoder;</span>
+<span class="nc bnc" id="L105" title="All 2 branches missed.">        if (base.getCharset() != null) {</span>
+<span class="nc" id="L106">          return base.getCharset().name();</span>
+        }
+<span class="nc" id="L108">        return null;</span>
+      }
+    }
+<span class="nc" id="L111">    return null;</span>
   }
 
   /**
@@ -100,7 +118,7 @@ import psiprobe.tools.logging.AbstractLogDestination;
    */
   @Override
   public String getLevel() {
-<span class="nc" id="L103">    return getLoggerAccessor().getLevel();</span>
+<span class="nc" id="L121">    return getLoggerAccessor().getLevel();</span>
   }
 
   /**
@@ -114,8 +132,8 @@ import psiprobe.tools.logging.AbstractLogDestination;
    */
   @Override
   public String[] getValidLevels() {
-<span class="nc" id="L117">    return new String[] {&quot;OFF&quot;, &quot;ERROR&quot;, &quot;WARN&quot;, &quot;INFO&quot;, &quot;DEBUG&quot;, &quot;TRACE&quot;, &quot;ALL&quot;};</span>
+<span class="nc" id="L135">    return new String[] {&quot;OFF&quot;, &quot;ERROR&quot;, &quot;WARN&quot;, &quot;INFO&quot;, &quot;DEBUG&quot;, &quot;TRACE&quot;, &quot;ALL&quot;};</span>
   }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

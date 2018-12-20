@@ -11,14 +11,13 @@
 package psiprobe.tools.logging.commons;
 
 import java.util.List;
-
 import psiprobe.tools.logging.DefaultAccessor;
 import psiprobe.tools.logging.LogDestination;
 
 /**
  * The Class CommonsLoggerAccessor.
  */
-<span class="nc" id="L21">public class CommonsLoggerAccessor extends DefaultAccessor {</span>
+<span class="nc" id="L20">public class CommonsLoggerAccessor extends DefaultAccessor {</span>
 
   /**
    * Gets the destinations.
@@ -26,11 +25,11 @@ import psiprobe.tools.logging.LogDestination;
    * @return the destinations
    */
   public List&lt;LogDestination&gt; getDestinations() {
-<span class="nc" id="L29">    GetAllDestinationsVisitor visitor = new GetAllDestinationsVisitor();</span>
-<span class="nc" id="L30">    visitor.setTarget(getTarget());</span>
-<span class="nc" id="L31">    visitor.setApplication(getApplication());</span>
-<span class="nc" id="L32">    visitor.visit();</span>
-<span class="nc" id="L33">    return visitor.getDestinations();</span>
+<span class="nc" id="L28">    GetAllDestinationsVisitor visitor = new GetAllDestinationsVisitor();</span>
+<span class="nc" id="L29">    visitor.setTarget(getTarget());</span>
+<span class="nc" id="L30">    visitor.setApplication(getApplication());</span>
+<span class="nc" id="L31">    visitor.visit();</span>
+<span class="nc" id="L32">    return visitor.getDestinations();</span>
   }
 
   /**
@@ -40,12 +39,12 @@ import psiprobe.tools.logging.LogDestination;
    * @return the destination
    */
   public LogDestination getDestination(String logIndex) {
-<span class="nc" id="L43">    GetSingleDestinationVisitor visitor = new GetSingleDestinationVisitor(logIndex);</span>
-<span class="nc" id="L44">    visitor.setTarget(getTarget());</span>
-<span class="nc" id="L45">    visitor.setApplication(getApplication());</span>
-<span class="nc" id="L46">    visitor.visit();</span>
-<span class="nc" id="L47">    return visitor.getDestination();</span>
+<span class="nc" id="L42">    GetSingleDestinationVisitor visitor = new GetSingleDestinationVisitor(logIndex);</span>
+<span class="nc" id="L43">    visitor.setTarget(getTarget());</span>
+<span class="nc" id="L44">    visitor.setApplication(getApplication());</span>
+<span class="nc" id="L45">    visitor.visit();</span>
+<span class="nc" id="L46">    return visitor.getDestination();</span>
   }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

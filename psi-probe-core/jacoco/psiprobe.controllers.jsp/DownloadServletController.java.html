@@ -11,16 +11,13 @@
 package psiprobe.controllers.jsp;
 
 import java.io.File;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.apache.catalina.Context;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
 import psiprobe.Utils;
 import psiprobe.controllers.AbstractContextHandlerController;
 
@@ -28,33 +25,33 @@ import psiprobe.controllers.AbstractContextHandlerController;
  * The Class DownloadServletController.
  */
 @Controller
-<span class="nc" id="L31">public class DownloadServletController extends AbstractContextHandlerController {</span>
+<span class="nc" id="L28">public class DownloadServletController extends AbstractContextHandlerController {</span>
 
   @RequestMapping(path = &quot;/app/downloadserv.htm&quot;)
   @Override
   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
       throws Exception {
-<span class="nc" id="L37">    return super.handleRequest(request, response);</span>
+<span class="nc" id="L34">    return super.handleRequest(request, response);</span>
   }
 
   @Override
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-<span class="nc" id="L44">    String jspName = ServletRequestUtils.getStringParameter(request, &quot;source&quot;, null);</span>
+<span class="nc" id="L41">    String jspName = ServletRequestUtils.getStringParameter(request, &quot;source&quot;, null);</span>
 
-<span class="nc bnc" id="L46" title="All 2 branches missed.">    if (jspName != null) {</span>
-<span class="nc" id="L47">      String servletName =</span>
-<span class="nc" id="L48">          getContainerWrapper().getTomcatContainer().getServletFileNameForJsp(context, jspName);</span>
-<span class="nc bnc" id="L49" title="All 2 branches missed.">      if (servletName != null) {</span>
-<span class="nc" id="L50">        File servletFile = new File(servletName);</span>
-<span class="nc bnc" id="L51" title="All 2 branches missed.">        if (servletFile.exists()) {</span>
-<span class="nc" id="L52">          Utils.sendFile(request, response, servletFile);</span>
+<span class="nc bnc" id="L43" title="All 2 branches missed.">    if (jspName != null) {</span>
+<span class="nc" id="L44">      String servletName =</span>
+<span class="nc" id="L45">          getContainerWrapper().getTomcatContainer().getServletFileNameForJsp(context, jspName);</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">      if (servletName != null) {</span>
+<span class="nc" id="L47">        File servletFile = new File(servletName);</span>
+<span class="nc bnc" id="L48" title="All 2 branches missed.">        if (servletFile.exists()) {</span>
+<span class="nc" id="L49">          Utils.sendFile(request, response, servletFile);</span>
         }
       }
     }
-<span class="nc" id="L56">    return null;</span>
+<span class="nc" id="L53">    return null;</span>
   }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

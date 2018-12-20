@@ -16,12 +16,9 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
-
 import org.jfree.data.xy.DefaultTableXYDataset;
 import org.jfree.data.xy.XYDataItem;
-
 import psiprobe.model.stats.StatsCollection;
 
 /**
@@ -30,7 +27,7 @@ import psiprobe.model.stats.StatsCollection;
  * Derrives legend entries from series names by removing the statNamePrefix. Ignores series param
  * (sp) and legend (s...l) request parameters.
  */
-<span class="fc" id="L33">public class MultipleSeriesProvider extends AbstractSeriesProvider {</span>
+<span class="fc" id="L30">public class MultipleSeriesProvider extends AbstractSeriesProvider {</span>
 
   /** The stat name prefix. */
   private String statNamePrefix;
@@ -47,7 +44,7 @@ import psiprobe.model.stats.StatsCollection;
    * @return the stat name prefix
    */
   public String getStatNamePrefix() {
-<span class="fc" id="L50">    return statNamePrefix;</span>
+<span class="fc" id="L47">    return statNamePrefix;</span>
   }
 
   /**
@@ -56,8 +53,8 @@ import psiprobe.model.stats.StatsCollection;
    * @param statNamePrefix - only series with names that start with statNamePrefix are retrieved.
    */
   public void setStatNamePrefix(String statNamePrefix) {
-<span class="fc" id="L59">    this.statNamePrefix = statNamePrefix;</span>
-<span class="fc" id="L60">  }</span>
+<span class="fc" id="L56">    this.statNamePrefix = statNamePrefix;</span>
+<span class="fc" id="L57">  }</span>
 
   /**
    * Gets the top.
@@ -65,7 +62,7 @@ import psiprobe.model.stats.StatsCollection;
    * @return the top
    */
   public int getTop() {
-<span class="fc" id="L68">    return top;</span>
+<span class="fc" id="L65">    return top;</span>
   }
 
   /**
@@ -75,8 +72,8 @@ import psiprobe.model.stats.StatsCollection;
    *        many series with the greatest max moving avg values are retrieved.
    */
   public void setTop(int top) {
-<span class="fc" id="L78">    this.top = top;</span>
-<span class="fc" id="L79">  }</span>
+<span class="fc" id="L75">    this.top = top;</span>
+<span class="fc" id="L76">  }</span>
 
   /**
    * Gets the moving avg frame.
@@ -84,7 +81,7 @@ import psiprobe.model.stats.StatsCollection;
    * @return the moving avg frame
    */
   public int getMovingAvgFrame() {
-<span class="fc" id="L87">    return movingAvgFrame;</span>
+<span class="fc" id="L84">    return movingAvgFrame;</span>
   }
 
   /**
@@ -96,56 +93,56 @@ import psiprobe.model.stats.StatsCollection;
    *        to 0, top series are determined based on a simple avg of all series values.
    */
   public void setMovingAvgFrame(int movingAvgFrame) {
-<span class="fc" id="L99">    this.movingAvgFrame = movingAvgFrame;</span>
-<span class="fc" id="L100">  }</span>
+<span class="fc" id="L96">    this.movingAvgFrame = movingAvgFrame;</span>
+<span class="fc" id="L97">  }</span>
 
   @Override
   public void populate(DefaultTableXYDataset dataset, StatsCollection statsCollection,
       HttpServletRequest request) {
 
-<span class="nc" id="L106">    Map&lt;String, List&lt;XYDataItem&gt;&gt; statMap = statsCollection.getStatsByPrefix(statNamePrefix);</span>
-<span class="nc bnc" id="L107" title="All 4 branches missed.">    boolean useTop = getTop() &gt; 0 &amp;&amp; getTop() &lt; statMap.size();</span>
-<span class="nc" id="L108">    List&lt;Series&gt; seriesList = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L103">    Map&lt;String, List&lt;XYDataItem&gt;&gt; statMap = statsCollection.getStatsByPrefix(statNamePrefix);</span>
+<span class="nc bnc" id="L104" title="All 4 branches missed.">    boolean useTop = getTop() &gt; 0 &amp;&amp; getTop() &lt; statMap.size();</span>
+<span class="nc" id="L105">    List&lt;Series&gt; seriesList = new ArrayList&lt;&gt;(statMap.size());</span>
 
-<span class="nc bnc" id="L110" title="All 2 branches missed.">    for (Map.Entry&lt;String, List&lt;XYDataItem&gt;&gt; entry : statMap.entrySet()) {</span>
-<span class="nc" id="L111">      Series ser = new Series(entry);</span>
-<span class="nc bnc" id="L112" title="All 2 branches missed.">      if (useTop) {</span>
-<span class="nc" id="L113">        ser.calculateAvg();</span>
+<span class="nc bnc" id="L107" title="All 2 branches missed.">    for (Map.Entry&lt;String, List&lt;XYDataItem&gt;&gt; entry : statMap.entrySet()) {</span>
+<span class="nc" id="L108">      Series ser = new Series(entry);</span>
+<span class="nc bnc" id="L109" title="All 2 branches missed.">      if (useTop) {</span>
+<span class="nc" id="L110">        ser.calculateAvg();</span>
       }
-<span class="nc" id="L115">      seriesList.add(ser);</span>
-<span class="nc" id="L116">    }</span>
+<span class="nc" id="L112">      seriesList.add(ser);</span>
+<span class="nc" id="L113">    }</span>
 
-<span class="nc bnc" id="L118" title="All 2 branches missed.">    if (useTop) {</span>
+<span class="nc bnc" id="L115" title="All 2 branches missed.">    if (useTop) {</span>
       // sorting stats by the avg value to identify the top series
-<span class="nc" id="L120">      Collections.sort(seriesList, new Comparator&lt;Series&gt;() {</span>
+<span class="nc" id="L117">      Collections.sort(seriesList, new Comparator&lt;Series&gt;() {</span>
         @Override
         public int compare(Series s1, Series s2) {
-<span class="nc bnc" id="L123" title="All 2 branches missed.">          return Double.compare(s1.avg, s2.avg) == 0 ? s1.key.compareTo(s2.key)</span>
-<span class="nc bnc" id="L124" title="All 2 branches missed.">              : Double.compare(s1.avg, s2.avg) &gt; 0 ? -1 : 1;</span>
+<span class="nc bnc" id="L120" title="All 2 branches missed.">          return Double.compare(s1.avg, s2.avg) == 0 ? s1.key.compareTo(s2.key)</span>
+<span class="nc bnc" id="L121" title="All 2 branches missed.">              : Double.compare(s1.avg, s2.avg) &gt; 0 ? -1 : 1;</span>
         }
       });
 
       // keeping only the top series in the list
-<span class="nc bnc" id="L129" title="All 2 branches missed.">      for (ListIterator&lt;Series&gt; i = seriesList.listIterator(getTop()); i.hasNext();) {</span>
-<span class="nc" id="L130">        i.next();</span>
-<span class="nc" id="L131">        i.remove();</span>
+<span class="nc bnc" id="L126" title="All 2 branches missed.">      for (ListIterator&lt;Series&gt; i = seriesList.listIterator(getTop()); i.hasNext();) {</span>
+<span class="nc" id="L127">        i.next();</span>
+<span class="nc" id="L128">        i.remove();</span>
       }
     }
 
     // sorting the remaining series by name
-<span class="nc" id="L136">    Collections.sort(seriesList, new Comparator&lt;Series&gt;() {</span>
+<span class="nc" id="L133">    Collections.sort(seriesList, new Comparator&lt;Series&gt;() {</span>
       @Override
       public int compare(Series s1, Series s2) {
-<span class="nc" id="L139">        return s1.key.compareTo(s2.key);</span>
+<span class="nc" id="L136">        return s1.key.compareTo(s2.key);</span>
       }
     });
 
-<span class="nc bnc" id="L143" title="All 2 branches missed.">    for (Series ser : seriesList) {</span>
-<span class="nc" id="L144">      synchronized (ser.stats) {</span>
-<span class="nc" id="L145">        dataset.addSeries(toSeries(ser.key, ser.stats));</span>
-<span class="nc" id="L146">      }</span>
-<span class="nc" id="L147">    }</span>
-<span class="nc" id="L148">  }</span>
+<span class="nc bnc" id="L140" title="All 2 branches missed.">    for (Series ser : seriesList) {</span>
+<span class="nc" id="L141">      synchronized (ser.stats) {</span>
+<span class="nc" id="L142">        dataset.addSeries(toSeries(ser.key, ser.stats));</span>
+<span class="nc" id="L143">      }</span>
+<span class="nc" id="L144">    }</span>
+<span class="nc" id="L145">  }</span>
 
   /**
    * The Class Series.
@@ -160,46 +157,46 @@ import psiprobe.model.stats.StatsCollection;
     final List&lt;XYDataItem&gt; stats;
 
     /** The avg. */
-<span class="nc" id="L163">    double avg = 0;</span>
+<span class="nc" id="L160">    double avg = 0;</span>
 
     /**
      * Instantiates a new series.
      *
      * @param en the en
      */
-<span class="nc" id="L170">    Series(Map.Entry&lt;String, List&lt;XYDataItem&gt;&gt; en) {</span>
-<span class="nc" id="L171">      key = en.getKey().substring(statNamePrefix.length());</span>
-<span class="nc" id="L172">      stats = en.getValue();</span>
-<span class="nc" id="L173">    }</span>
+<span class="nc" id="L167">    Series(Map.Entry&lt;String, List&lt;XYDataItem&gt;&gt; en) {</span>
+<span class="nc" id="L168">      key = en.getKey().substring(statNamePrefix.length());</span>
+<span class="nc" id="L169">      stats = en.getValue();</span>
+<span class="nc" id="L170">    }</span>
 
     /**
      * Calculate avg.
      */
     // calculating an avg value that is used for identifying the top series
     void calculateAvg() {
-<span class="nc" id="L180">      long sum = 0;</span>
-<span class="nc" id="L181">      int count = 1;</span>
+<span class="nc" id="L177">      long sum = 0;</span>
+<span class="nc" id="L178">      int count = 1;</span>
 
-<span class="nc" id="L183">      synchronized (stats) {</span>
-<span class="nc bnc" id="L184" title="All 4 branches missed.">        boolean useMovingAvg = getMovingAvgFrame() &gt; 0 &amp;&amp; getMovingAvgFrame() &lt; stats.size();</span>
+<span class="nc" id="L180">      synchronized (stats) {</span>
+<span class="nc bnc" id="L181" title="All 4 branches missed.">        boolean useMovingAvg = getMovingAvgFrame() &gt; 0 &amp;&amp; getMovingAvgFrame() &lt; stats.size();</span>
 
-<span class="nc bnc" id="L186" title="All 2 branches missed.">        for (ListIterator&lt;XYDataItem&gt; it = stats.listIterator(); it.hasNext();) {</span>
-<span class="nc" id="L187">          XYDataItem xy = it.next();</span>
-<span class="nc" id="L188">          sum += xy.getY().longValue();</span>
+<span class="nc bnc" id="L183" title="All 2 branches missed.">        for (ListIterator&lt;XYDataItem&gt; it = stats.listIterator(); it.hasNext();) {</span>
+<span class="nc" id="L184">          XYDataItem xy = it.next();</span>
+<span class="nc" id="L185">          sum += xy.getY().longValue();</span>
 
-<span class="nc bnc" id="L190" title="All 6 branches missed.">          if (useMovingAvg &amp;&amp; count % getMovingAvgFrame() == 0 || !it.hasNext()) {</span>
-<span class="nc" id="L191">            double thisAvg = (double) sum / count;</span>
-<span class="nc bnc" id="L192" title="All 2 branches missed.">            if (thisAvg &gt; avg) {</span>
-<span class="nc" id="L193">              avg = thisAvg;</span>
+<span class="nc bnc" id="L187" title="All 6 branches missed.">          if (useMovingAvg &amp;&amp; count % getMovingAvgFrame() == 0 || !it.hasNext()) {</span>
+<span class="nc" id="L188">            double thisAvg = (double) sum / count;</span>
+<span class="nc bnc" id="L189" title="All 2 branches missed.">            if (thisAvg &gt; avg) {</span>
+<span class="nc" id="L190">              avg = thisAvg;</span>
             }
-<span class="nc" id="L195">            sum = 0;</span>
-<span class="nc" id="L196">            count = 1;</span>
-<span class="nc" id="L197">          } else {</span>
-<span class="nc" id="L198">            count++;</span>
+<span class="nc" id="L192">            sum = 0;</span>
+<span class="nc" id="L193">            count = 1;</span>
+<span class="nc" id="L194">          } else {</span>
+<span class="nc" id="L195">            count++;</span>
           }
-<span class="nc" id="L200">        }</span>
-<span class="nc" id="L201">      }</span>
-<span class="nc" id="L202">    }</span>
+<span class="nc" id="L197">        }</span>
+<span class="nc" id="L198">      }</span>
+<span class="nc" id="L199">    }</span>
   }
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

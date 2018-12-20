@@ -10,7 +10,7 @@
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_javadoccomment"> * Licensed under the GPL License. You may not use this file except in compliance with the License.</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_javadoccomment"> * You may obtain a copy of the License at</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_javadoccomment"> *</em>
-<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_javadoccomment"> *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</em>
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_javadoccomment"> *   <a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.html" target="alexandria_uri">https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</a></em>
 <a class="jxr_linenumber" name="L6" href="#L6">6</a>   <em class="jxr_javadoccomment"> *</em>
 <a class="jxr_linenumber" name="L7" href="#L7">7</a>   <em class="jxr_javadoccomment"> * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,</em>
 <a class="jxr_linenumber" name="L8" href="#L8">8</a>   <em class="jxr_javadoccomment"> * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR</em>
@@ -39,7 +39,7 @@
 <a class="jxr_linenumber" name="L31" href="#L31">31</a>  <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L32" href="#L32">32</a>  <em class="jxr_javadoccomment"> * An Adapter to convert information retrieved from JBoss JMX beans into internal resource model.</em>
 <a class="jxr_linenumber" name="L33" href="#L33">33</a>  <em class="jxr_javadoccomment"> */</em>
-<a class="jxr_linenumber" name="L34" href="#L34">34</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../psiprobe/beans/JBossResourceResolverBean.html">JBossResourceResolverBean</a> <strong class="jxr_keyword">implements</strong> <a href="../../psiprobe/beans/ResourceResolver.html">ResourceResolver</a> {
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a name="JBossResourceResolverBean" href="../../psiprobe/beans/JBossResourceResolverBean.html#JBossResourceResolverBean">JBossResourceResolverBean</a> <strong class="jxr_keyword">implements</strong> <a name="ResourceResolver" href="../../psiprobe/beans/ResourceResolver.html#ResourceResolver">ResourceResolver</a> {
 <a class="jxr_linenumber" name="L35" href="#L35">35</a>  
 <a class="jxr_linenumber" name="L36" href="#L36">36</a>    <em class="jxr_javadoccomment">/** The Constant logger. */</em>
 <a class="jxr_linenumber" name="L37" href="#L37">37</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> Logger logger = LoggerFactory.getLogger(JBossResourceResolverBean.<strong class="jxr_keyword">class</strong>);
@@ -81,7 +81,7 @@
 <a class="jxr_linenumber" name="L73" href="#L73">73</a>          Set&lt;ObjectName&gt; dsNames =
 <a class="jxr_linenumber" name="L74" href="#L74">74</a>              server.queryNames(<strong class="jxr_keyword">new</strong> ObjectName(<span class="jxr_string">"jboss.jca:service=ManagedConnectionPool,*"</span>), <strong class="jxr_keyword">null</strong>);
 <a class="jxr_linenumber" name="L75" href="#L75">75</a>          <strong class="jxr_keyword">for</strong> (ObjectName managedConnectionPoolOName : dsNames) {
-<a class="jxr_linenumber" name="L76" href="#L76">76</a>            <a href="../../psiprobe/model/ApplicationResource.html">ApplicationResource</a> resource = <strong class="jxr_keyword">new</strong> <a href="../../psiprobe/model/ApplicationResource.html">ApplicationResource</a>();
+<a class="jxr_linenumber" name="L76" href="#L76">76</a>            <a name="ApplicationResource" href="../../psiprobe/model/ApplicationReso<a name="ApplicationResource" href="../../psiprobe/model/ApplicationResource.html#ApplicationResource">ApplicationResource</a>onResource">ApplicationResource</a> resource = <strong class="jxr_keyword">new</strong> <a name="ApplicationResource" href="../../psiprobe/model/ApplicationResource.html#ApplicationResource">ApplicationResource</a>();
 <a class="jxr_linenumber" name="L77" href="#L77">77</a>            resource.setName(managedConnectionPoolOName.getKeyProperty(<span class="jxr_string">"name"</span>));
 <a class="jxr_linenumber" name="L78" href="#L78">78</a>            resource.setType(<span class="jxr_string">"jboss"</span>);
 <a class="jxr_linenumber" name="L79" href="#L79">79</a>            String criteria = (String) server.getAttribute(managedConnectionPoolOName, <span class="jxr_string">"Criteria"</span>);
@@ -153,14 +153,14 @@
 <a class="jxr_linenumber" name="L145" href="#L145">145</a> 
 <a class="jxr_linenumber" name="L146" href="#L146">146</a>   @Override
 <a class="jxr_linenumber" name="L147" href="#L147">147</a>   <strong class="jxr_keyword">public</strong> List&lt;ApplicationResource&gt; getApplicationResources(Context context,
-<a class="jxr_linenumber" name="L148" href="#L148">148</a>       <a href="../../psiprobe/beans/ContainerWrapperBean.html">ContainerWrapperBean</a> containerWrapper) <strong class="jxr_keyword">throws</strong> NamingException {
+<a class="jxr_linenumber" name="L148" href="#L148">148</a>       <a name="ContainerWrapperBean" href="../../psiprobe/beans/ContainerWrapperBean.html#ContainerWrapperBean">ContainerWrapperBean</a> containerWrapper) <strong class="jxr_keyword">throws</strong> NamingException {
 <a class="jxr_linenumber" name="L149" href="#L149">149</a> 
 <a class="jxr_linenumber" name="L150" href="#L150">150</a>     <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> UnsupportedOperationException(<span class="jxr_string">"Not supported yet."</span>);
 <a class="jxr_linenumber" name="L151" href="#L151">151</a>   }
 <a class="jxr_linenumber" name="L152" href="#L152">152</a> 
 <a class="jxr_linenumber" name="L153" href="#L153">153</a>   @Override
 <a class="jxr_linenumber" name="L154" href="#L154">154</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> resetResource(Context context, String resourceName,
-<a class="jxr_linenumber" name="L155" href="#L155">155</a>       <a href="../../psiprobe/beans/ContainerWrapperBean.html">ContainerWrapperBean</a> containerWrapper) <strong class="jxr_keyword">throws</strong> NamingException {
+<a class="jxr_linenumber" name="L155" href="#L155">155</a>       <a name="ContainerWrapperBean" href="../../psiprobe/beans/ContainerWrapperBean.html#ContainerWrapperBean">ContainerWrapperBean</a> containerWrapper) <strong class="jxr_keyword">throws</strong> NamingException {
 <a class="jxr_linenumber" name="L156" href="#L156">156</a>     <strong class="jxr_keyword">try</strong> {
 <a class="jxr_linenumber" name="L157" href="#L157">157</a>       ObjectName poolOName =
 <a class="jxr_linenumber" name="L158" href="#L158">158</a>           <strong class="jxr_keyword">new</strong> ObjectName(<span class="jxr_string">"jboss.jca:service=ManagedConnectionPool,name="</span> + resourceName);
@@ -184,7 +184,7 @@
 <a class="jxr_linenumber" name="L176" href="#L176">176</a> 
 <a class="jxr_linenumber" name="L177" href="#L177">177</a>   @Override
 <a class="jxr_linenumber" name="L178" href="#L178">178</a>   <strong class="jxr_keyword">public</strong> DataSource lookupDataSource(Context context, String resourceName,
-<a class="jxr_linenumber" name="L179" href="#L179">179</a>       <a href="../../psiprobe/beans/ContainerWrapperBean.html">ContainerWrapperBean</a> containerWrapper) <strong class="jxr_keyword">throws</strong> NamingException {
+<a class="jxr_linenumber" name="L179" href="#L179">179</a>       <a name="ContainerWrapperBean" href="../../psiprobe/beans/ContainerWrapperBean.html#ContainerWrapperBean">ContainerWrapperBean</a> containerWrapper) <strong class="jxr_keyword">throws</strong> NamingException {
 <a class="jxr_linenumber" name="L180" href="#L180">180</a>     <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> UnsupportedOperationException(
 <a class="jxr_linenumber" name="L181" href="#L181">181</a>         <span class="jxr_string">"This feature has not been implemented for JBoss server yet."</span>);
 <a class="jxr_linenumber" name="L182" href="#L182">182</a>   }

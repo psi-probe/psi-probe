@@ -14,10 +14,8 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Collections;
-
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.ServletRequestUtils;
@@ -25,42 +23,42 @@ import org.springframework.web.bind.ServletRequestUtils;
 /**
  * The Class ParamToggleTag.
  */
-<span class="fc" id="L28">public class ParamToggleTag extends TagSupport {</span>
+<span class="fc" id="L26">public class ParamToggleTag extends TagSupport {</span>
 
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = 1L;
 
   /** The Constant logger. */
-<span class="fc" id="L34">  private static final Logger logger = LoggerFactory.getLogger(ParamToggleTag.class);</span>
+<span class="fc" id="L32">  private static final Logger logger = LoggerFactory.getLogger(ParamToggleTag.class);</span>
 
   /** The param. */
-<span class="fc" id="L37">  private String param = &quot;size&quot;;</span>
+<span class="fc" id="L35">  private String param = &quot;size&quot;;</span>
 
   @Override
   public int doStartTag() throws JspException {
-<span class="nc" id="L41">    boolean getSize =</span>
-<span class="nc" id="L42">        ServletRequestUtils.getBooleanParameter(pageContext.getRequest(), param, false);</span>
-<span class="nc" id="L43">    StringBuilder query = new StringBuilder();</span>
-<span class="nc bnc" id="L44" title="All 2 branches missed.">    query.append(param).append(&quot;=&quot;).append(!getSize);</span>
-<span class="nc" id="L45">    String encoding = pageContext.getResponse().getCharacterEncoding();</span>
-<span class="nc bnc" id="L46" title="All 2 branches missed.">    for (String name : Collections.list(pageContext.getRequest().getParameterNames())) {</span>
-<span class="nc bnc" id="L47" title="All 2 branches missed.">      if (!param.equals(name)) {</span>
+<span class="nc" id="L39">    boolean getSize =</span>
+<span class="nc" id="L40">        ServletRequestUtils.getBooleanParameter(pageContext.getRequest(), param, false);</span>
+<span class="nc" id="L41">    StringBuilder query = new StringBuilder();</span>
+<span class="nc bnc" id="L42" title="All 2 branches missed.">    query.append(param).append(&quot;=&quot;).append(!getSize);</span>
+<span class="nc" id="L43">    String encoding = pageContext.getResponse().getCharacterEncoding();</span>
+<span class="nc bnc" id="L44" title="All 2 branches missed.">    for (String name : Collections.list(pageContext.getRequest().getParameterNames())) {</span>
+<span class="nc bnc" id="L45" title="All 2 branches missed.">      if (!param.equals(name)) {</span>
         try {
-<span class="nc" id="L49">          String value = ServletRequestUtils.getStringParameter(pageContext.getRequest(), name, &quot;&quot;);</span>
-<span class="nc" id="L50">          String encodedValue = URLEncoder.encode(value, encoding);</span>
-<span class="nc" id="L51">          query.append(&quot;&amp;&quot;).append(name).append(&quot;=&quot;).append(encodedValue);</span>
-<span class="nc" id="L52">        } catch (UnsupportedEncodingException e) {</span>
-<span class="nc" id="L53">          throw new JspException(e);</span>
-<span class="nc" id="L54">        }</span>
+<span class="nc" id="L47">          String value = ServletRequestUtils.getStringParameter(pageContext.getRequest(), name, &quot;&quot;);</span>
+<span class="nc" id="L48">          String encodedValue = URLEncoder.encode(value, encoding);</span>
+<span class="nc" id="L49">          query.append(&quot;&amp;&quot;).append(name).append(&quot;=&quot;).append(encodedValue);</span>
+<span class="nc" id="L50">        } catch (UnsupportedEncodingException e) {</span>
+<span class="nc" id="L51">          throw new JspException(e);</span>
+<span class="nc" id="L52">        }</span>
       }
-<span class="nc" id="L56">    }</span>
+<span class="nc" id="L54">    }</span>
     try {
-<span class="nc" id="L58">      pageContext.getOut().print(query);</span>
-<span class="nc" id="L59">    } catch (IOException e) {</span>
-<span class="nc" id="L60">      logger.debug(&quot;Exception printing query string to JspWriter&quot;, e);</span>
-<span class="nc" id="L61">      throw new JspException(e);</span>
-<span class="nc" id="L62">    }</span>
-<span class="nc" id="L63">    return EVAL_BODY_INCLUDE;</span>
+<span class="nc" id="L56">      pageContext.getOut().print(query);</span>
+<span class="nc" id="L57">    } catch (IOException e) {</span>
+<span class="nc" id="L58">      logger.debug(&quot;Exception printing query string to JspWriter&quot;, e);</span>
+<span class="nc" id="L59">      throw new JspException(e);</span>
+<span class="nc" id="L60">    }</span>
+<span class="nc" id="L61">    return EVAL_BODY_INCLUDE;</span>
   }
 
   /**
@@ -69,7 +67,7 @@ import org.springframework.web.bind.ServletRequestUtils;
    * @return the param
    */
   public String getParam() {
-<span class="fc" id="L72">    return param;</span>
+<span class="fc" id="L70">    return param;</span>
   }
 
   /**
@@ -78,8 +76,8 @@ import org.springframework.web.bind.ServletRequestUtils;
    * @param param the new param
    */
   public void setParam(String param) {
-<span class="fc" id="L81">    this.param = param;</span>
-<span class="fc" id="L82">  }</span>
+<span class="fc" id="L79">    this.param = param;</span>
+<span class="fc" id="L80">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

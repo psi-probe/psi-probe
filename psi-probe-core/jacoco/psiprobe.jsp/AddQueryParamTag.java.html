@@ -12,10 +12,8 @@ package psiprobe.jsp;
 
 import java.io.IOException;
 import java.util.Collections;
-
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
-
 import org.apache.commons.text.StringEscapeUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,13 +22,13 @@ import org.springframework.web.bind.ServletRequestUtils;
 /**
  * The Class AddQueryParamTag.
  */
-<span class="fc" id="L27">public class AddQueryParamTag extends TagSupport {</span>
+<span class="fc" id="L25">public class AddQueryParamTag extends TagSupport {</span>
 
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = 1L;
 
   /** The Constant logger. */
-<span class="fc" id="L33">  private static final Logger logger = LoggerFactory.getLogger(AddQueryParamTag.class);</span>
+<span class="fc" id="L31">  private static final Logger logger = LoggerFactory.getLogger(AddQueryParamTag.class);</span>
 
   /** The param. */
   private String param;
@@ -40,22 +38,22 @@ import org.springframework.web.bind.ServletRequestUtils;
 
   @Override
   public int doStartTag() throws JspException {
-<span class="nc" id="L43">    StringBuilder query = new StringBuilder();</span>
-<span class="nc" id="L44">    query.append(param).append(&quot;=&quot;).append(value);</span>
-<span class="nc bnc" id="L45" title="All 2 branches missed.">    for (String name : Collections.list(pageContext.getRequest().getParameterNames())) {</span>
-<span class="nc bnc" id="L46" title="All 2 branches missed.">      if (!param.equals(name)) {</span>
-<span class="nc" id="L47">        query.append(&quot;&amp;&quot;).append(StringEscapeUtils.escapeHtml4(name)).append(&quot;=&quot;)</span>
-<span class="nc" id="L48">            .append(StringEscapeUtils.escapeHtml4(</span>
-<span class="nc" id="L49">                ServletRequestUtils.getStringParameter(pageContext.getRequest(), name, &quot;&quot;)));</span>
+<span class="nc" id="L41">    StringBuilder query = new StringBuilder();</span>
+<span class="nc" id="L42">    query.append(param).append(&quot;=&quot;).append(value);</span>
+<span class="nc bnc" id="L43" title="All 2 branches missed.">    for (String name : Collections.list(pageContext.getRequest().getParameterNames())) {</span>
+<span class="nc bnc" id="L44" title="All 2 branches missed.">      if (!param.equals(name)) {</span>
+<span class="nc" id="L45">        query.append(&quot;&amp;&quot;).append(StringEscapeUtils.escapeHtml4(name)).append(&quot;=&quot;)</span>
+<span class="nc" id="L46">            .append(StringEscapeUtils.escapeHtml4(</span>
+<span class="nc" id="L47">                ServletRequestUtils.getStringParameter(pageContext.getRequest(), name, &quot;&quot;)));</span>
       }
-<span class="nc" id="L51">    }</span>
+<span class="nc" id="L49">    }</span>
     try {
-<span class="nc" id="L53">      pageContext.getOut().print(query);</span>
-<span class="nc" id="L54">    } catch (IOException e) {</span>
-<span class="nc" id="L55">      logger.debug(&quot;Exception printing query string to JspWriter&quot;, e);</span>
-<span class="nc" id="L56">      throw new JspException(e);</span>
-<span class="nc" id="L57">    }</span>
-<span class="nc" id="L58">    return EVAL_BODY_INCLUDE;</span>
+<span class="nc" id="L51">      pageContext.getOut().print(query);</span>
+<span class="nc" id="L52">    } catch (IOException e) {</span>
+<span class="nc" id="L53">      logger.debug(&quot;Exception printing query string to JspWriter&quot;, e);</span>
+<span class="nc" id="L54">      throw new JspException(e);</span>
+<span class="nc" id="L55">    }</span>
+<span class="nc" id="L56">    return EVAL_BODY_INCLUDE;</span>
   }
 
   /**
@@ -64,7 +62,7 @@ import org.springframework.web.bind.ServletRequestUtils;
    * @return the param
    */
   public String getParam() {
-<span class="fc" id="L67">    return param;</span>
+<span class="fc" id="L65">    return param;</span>
   }
 
   /**
@@ -73,8 +71,8 @@ import org.springframework.web.bind.ServletRequestUtils;
    * @param param the new param
    */
   public void setParam(String param) {
-<span class="fc" id="L76">    this.param = param;</span>
-<span class="fc" id="L77">  }</span>
+<span class="fc" id="L74">    this.param = param;</span>
+<span class="fc" id="L75">  }</span>
 
 
   /**
@@ -83,7 +81,7 @@ import org.springframework.web.bind.ServletRequestUtils;
    * @return the value
    */
   public String getValue() {
-<span class="fc" id="L86">    return value;</span>
+<span class="fc" id="L84">    return value;</span>
   }
 
   /**
@@ -92,8 +90,8 @@ import org.springframework.web.bind.ServletRequestUtils;
    * @param value the new value
    */
   public void setValue(String value) {
-<span class="fc" id="L95">    this.value = value;</span>
-<span class="fc" id="L96">  }</span>
+<span class="fc" id="L93">    this.value = value;</span>
+<span class="fc" id="L94">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

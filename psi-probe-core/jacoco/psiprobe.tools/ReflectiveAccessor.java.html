@@ -15,7 +15,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,7 +24,7 @@ import org.slf4j.LoggerFactory;
 public class ReflectiveAccessor implements Accessor {
 
   /** The Constant logger. */
-<span class="nc" id="L28">  private static final Logger logger = LoggerFactory.getLogger(ReflectiveAccessor.class);</span>
+<span class="nc" id="L27">  private static final Logger logger = LoggerFactory.getLogger(ReflectiveAccessor.class);</span>
 
   /** The reflection factory. */
   private static Object reflectionFactory;
@@ -43,24 +42,28 @@ public class ReflectiveAccessor implements Accessor {
    * @throws InstantiationException the instantiation exception
    * @throws IllegalAccessException the illegal access exception
    * @throws NoSuchMethodException the no such method exception
+   * @throws IllegalArgumentException the illegal argument exception
+   * @throws InvocationTargetException the invocation target exception
+   * @throws SecurityException the security exception
    */
   ReflectiveAccessor() throws ClassNotFoundException, InstantiationException,
-<span class="nc" id="L48">      IllegalAccessException, NoSuchMethodException {</span>
+      IllegalAccessException, NoSuchMethodException, IllegalArgumentException,
+<span class="nc" id="L51">      InvocationTargetException, SecurityException {</span>
 
-<span class="nc" id="L50">    init();</span>
-<span class="nc" id="L51">  }</span>
+<span class="nc" id="L53">    init();</span>
+<span class="nc" id="L54">  }</span>
 
   @Override
   public Object get(Object obj, Field field) {
     try {
-<span class="nc" id="L56">      Object fieldAccessor = getFieldAccessor(field);</span>
-<span class="nc bnc" id="L57" title="All 2 branches missed.">      if (fieldAccessor != null) {</span>
-<span class="nc" id="L58">        return get.invoke(fieldAccessor, obj);</span>
+<span class="nc" id="L59">      Object fieldAccessor = getFieldAccessor(field);</span>
+<span class="nc bnc" id="L60" title="All 2 branches missed.">      if (fieldAccessor != null) {</span>
+<span class="nc" id="L61">        return get.invoke(fieldAccessor, obj);</span>
       }
-<span class="nc" id="L60">    } catch (IllegalArgumentException | IllegalAccessException | InvocationTargetException e) {</span>
-<span class="nc" id="L61">      logger.trace(&quot;&quot;, e);</span>
-<span class="nc" id="L62">    }</span>
-<span class="nc" id="L63">    return null;</span>
+<span class="nc" id="L63">    } catch (IllegalArgumentException | IllegalAccessException | InvocationTargetException e) {</span>
+<span class="nc" id="L64">      logger.trace(&quot;&quot;, e);</span>
+<span class="nc" id="L65">    }</span>
+<span class="nc" id="L66">    return null;</span>
   }
 
   /**
@@ -74,10 +77,10 @@ public class ReflectiveAccessor implements Accessor {
   private static Object getFieldAccessor(Field field)
       throws IllegalAccessException, InvocationTargetException {
 
-<span class="nc bnc" id="L77" title="All 2 branches missed.">    if (newFieldAccessor.getParameterTypes().length == 1) {</span>
-<span class="nc" id="L78">      return newFieldAccessor.invoke(reflectionFactory, field);</span>
+<span class="nc bnc" id="L80" title="All 2 branches missed.">    if (newFieldAccessor.getParameterTypes().length == 1) {</span>
+<span class="nc" id="L81">      return newFieldAccessor.invoke(reflectionFactory, field);</span>
     }
-<span class="nc" id="L80">    return newFieldAccessor.invoke(reflectionFactory, field, Boolean.TRUE);</span>
+<span class="nc" id="L83">    return newFieldAccessor.invoke(reflectionFactory, field, Boolean.TRUE);</span>
   }
 
   /**
@@ -87,21 +90,25 @@ public class ReflectiveAccessor implements Accessor {
    * @throws InstantiationException the instantiation exception
    * @throws IllegalAccessException the illegal access exception
    * @throws NoSuchMethodException the no such method exception
+   * @throws IllegalArgumentException the illegal argument exception
+   * @throws InvocationTargetException the invocation target exception
+   * @throws SecurityException the security exception
    */
   private static void init() throws ClassNotFoundException, InstantiationException,
-      IllegalAccessException, NoSuchMethodException {
+      IllegalAccessException, NoSuchMethodException, IllegalArgumentException,
+      InvocationTargetException, SecurityException {
 
-<span class="nc" id="L94">    String vmVendor = System.getProperty(&quot;java.vm.vendor&quot;);</span>
-<span class="nc bnc" id="L95" title="All 2 branches missed.">    if (vmVendor != null</span>
-<span class="nc bnc" id="L96" title="All 4 branches missed.">        &amp;&amp; (vmVendor.contains(&quot;Sun Microsystems&quot;) || vmVendor.contains(&quot;Apple Computer&quot;)</span>
-<span class="nc bnc" id="L97" title="All 4 branches missed.">            || vmVendor.contains(&quot;Apple Inc.&quot;) || vmVendor.contains(&quot;IBM Corporation&quot;))) {</span>
+<span class="nc" id="L101">    String vmVendor = System.getProperty(&quot;java.vm.vendor&quot;);</span>
+<span class="nc bnc" id="L102" title="All 2 branches missed.">    if (vmVendor != null</span>
+<span class="nc bnc" id="L103" title="All 4 branches missed.">        &amp;&amp; (vmVendor.contains(&quot;Sun Microsystems&quot;) || vmVendor.contains(&quot;Apple Computer&quot;)</span>
+<span class="nc bnc" id="L104" title="All 4 branches missed.">            || vmVendor.contains(&quot;Apple Inc.&quot;) || vmVendor.contains(&quot;IBM Corporation&quot;))) {</span>
 
-<span class="nc" id="L99">      reflectionFactory = getReflectionFactory();</span>
-<span class="nc" id="L100">      Class&lt;?&gt;[] paramTypes = new Class[] {Field.class, Boolean.TYPE};</span>
-<span class="nc" id="L101">      newFieldAccessor = reflectionFactory.getClass().getMethod(&quot;newFieldAccessor&quot;, paramTypes);</span>
-<span class="nc" id="L102">      get = newFieldAccessor.getReturnType().getMethod(&quot;get&quot;, Object.class);</span>
+<span class="nc" id="L106">      reflectionFactory = getReflectionFactory();</span>
+<span class="nc" id="L107">      Class&lt;?&gt;[] paramTypes = new Class[] {Field.class, Boolean.TYPE};</span>
+<span class="nc" id="L108">      newFieldAccessor = reflectionFactory.getClass().getMethod(&quot;newFieldAccessor&quot;, paramTypes);</span>
+<span class="nc" id="L109">      get = newFieldAccessor.getReturnType().getMethod(&quot;get&quot;, Object.class);</span>
     }
-<span class="nc" id="L104">  }</span>
+<span class="nc" id="L111">  }</span>
 
   /**
    * Gets the reflection factory.
@@ -110,16 +117,22 @@ public class ReflectiveAccessor implements Accessor {
    * @throws ClassNotFoundException the class not found exception
    * @throws InstantiationException the instantiation exception
    * @throws IllegalAccessException the illegal access exception
+   * @throws IllegalArgumentException the illegal argument exception
+   * @throws InvocationTargetException the invocation target exception
+   * @throws NoSuchMethodException the no such method exception
+   * @throws SecurityException the security exception
    */
-  private static Object getReflectionFactory()
-      throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+  private static Object getReflectionFactory() throws ClassNotFoundException,
+      InstantiationException, IllegalAccessException, IllegalArgumentException,
+      InvocationTargetException, NoSuchMethodException, SecurityException {
 
-<span class="nc" id="L117">    Class&lt;?&gt; getReflectionFactoryActionClass =</span>
-<span class="nc" id="L118">        Class.forName(&quot;sun.reflect.ReflectionFactory$GetReflectionFactoryAction&quot;);</span>
-<span class="nc" id="L119">    PrivilegedAction&lt;?&gt; getReflectionFactoryAction =</span>
-<span class="nc" id="L120">        (PrivilegedAction&lt;?&gt;) getReflectionFactoryActionClass.newInstance();</span>
-<span class="nc" id="L121">    return AccessController.doPrivileged(getReflectionFactoryAction);</span>
+<span class="nc" id="L129">    Class&lt;?&gt; getReflectionFactoryActionClass =</span>
+<span class="nc" id="L130">        Class.forName(&quot;sun.reflect.ReflectionFactory$GetReflectionFactoryAction&quot;);</span>
+<span class="nc" id="L131">    PrivilegedAction&lt;?&gt; getReflectionFactoryAction =</span>
+<span class="nc" id="L132">        (PrivilegedAction&lt;?&gt;) getReflectionFactoryActionClass.getDeclaredConstructor()</span>
+<span class="nc" id="L133">            .newInstance();</span>
+<span class="nc" id="L134">    return AccessController.doPrivileged(getReflectionFactoryAction);</span>
   }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

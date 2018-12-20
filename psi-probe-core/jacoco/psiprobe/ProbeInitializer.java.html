@@ -11,20 +11,15 @@
 package psiprobe;
 
 import com.opensymphony.sitemesh.webapp.SiteMeshFilter;
-
 import java.util.EnumSet;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
-
 import javax.servlet.DispatcherType;
 import javax.servlet.FilterRegistration;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
 import javax.servlet.SessionTrackingMode;
-
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
@@ -33,64 +28,63 @@ import org.springframework.web.filter.DelegatingFilterProxy;
 /**
  * The class ProbeInitializer.
  */
-<span class="fc" id="L36">public class ProbeInitializer implements WebApplicationInitializer {</span>
+<span class="fc" id="L31">public class ProbeInitializer implements WebApplicationInitializer {</span>
 
   @Override
   public void onStartup(ServletContext servletContext) throws ServletException {
 
-    // Set spring config location 
-<span class="nc" id="L42">    try (AnnotationConfigWebApplicationContext rootContext =</span>
+    // Set spring config location
+<span class="nc" id="L37">    try (AnnotationConfigWebApplicationContext rootContext =</span>
         new AnnotationConfigWebApplicationContext()) {
-<span class="nc" id="L44">      rootContext.register(ProbeConfig.class);</span>
+<span class="nc" id="L39">      rootContext.register(ProbeConfig.class);</span>
 
       // Set Role that can view session attribute values
-<span class="nc" id="L47">      servletContext.setInitParameter(&quot;attribute.value.roles&quot;, &quot;ROLE_MANAGER,ROLE_MANAGER-GUI&quot;);</span>
+<span class="nc" id="L42">      servletContext.setInitParameter(&quot;attribute.value.roles&quot;, &quot;ROLE_MANAGER,ROLE_MANAGER-GUI&quot;);</span>
 
       // Set context loader listener
-<span class="nc" id="L50">      servletContext.addListener(new ContextLoaderListener(rootContext));</span>
-<span class="nc bnc" id="L51" title="All 4 branches missed.">    }</span>
+<span class="nc" id="L45">      servletContext.addListener(new ContextLoaderListener(rootContext));</span>
+    }
 
     // Set probe servlet
-<span class="nc" id="L54">    ServletRegistration.Dynamic probe = servletContext.addServlet(&quot;probe&quot;, ProbeServlet.class);</span>
+<span class="nc" id="L49">    ServletRegistration.Dynamic probe = servletContext.addServlet(&quot;probe&quot;, ProbeServlet.class);</span>
 
-<span class="nc" id="L56">    Map&lt;String, String&gt; initParameters = new HashMap&lt;&gt;();</span>
-<span class="nc" id="L57">    initParameters.put(&quot;contextConfigLocation&quot;, &quot;&quot;);</span>
-<span class="nc" id="L58">    probe.setInitParameters(initParameters);</span>
+<span class="nc" id="L51">    Map&lt;String, String&gt; initParameters = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L52">    initParameters.put(&quot;contextConfigLocation&quot;, &quot;&quot;);</span>
+<span class="nc" id="L53">    probe.setInitParameters(initParameters);</span>
 
-<span class="nc" id="L60">    probe.setLoadOnStartup(0);</span>
-<span class="nc" id="L61">    probe.addMapping(&quot;*.htm&quot;);</span>
-<span class="nc" id="L62">    probe.addMapping(&quot;*.ajax&quot;);</span>
-<span class="nc" id="L63">    probe.addMapping(&quot;/logs/*&quot;);</span>
-<span class="nc" id="L64">    probe.addMapping(&quot;/chart.png&quot;);</span>
+<span class="nc" id="L55">    probe.setLoadOnStartup(0);</span>
+<span class="nc" id="L56">    probe.addMapping(&quot;*.htm&quot;);</span>
+<span class="nc" id="L57">    probe.addMapping(&quot;*.ajax&quot;);</span>
+<span class="nc" id="L58">    probe.addMapping(&quot;/logs/*&quot;);</span>
+<span class="nc" id="L59">    probe.addMapping(&quot;/chart.png&quot;);</span>
 
     // Set sitemesh filter
-<span class="nc" id="L67">    FilterRegistration.Dynamic sitemesh =</span>
-<span class="nc" id="L68">        servletContext.addFilter(&quot;sitemesh&quot;, SiteMeshFilter.class);</span>
-<span class="nc" id="L69">    sitemesh.addMappingForUrlPatterns(</span>
-<span class="nc" id="L70">        EnumSet.of(DispatcherType.FORWARD, DispatcherType.REQUEST, DispatcherType.ERROR), false,</span>
+<span class="nc" id="L62">    FilterRegistration.Dynamic sitemesh =</span>
+<span class="nc" id="L63">        servletContext.addFilter(&quot;sitemesh&quot;, SiteMeshFilter.class);</span>
+<span class="nc" id="L64">    sitemesh.addMappingForUrlPatterns(</span>
+<span class="nc" id="L65">        EnumSet.of(DispatcherType.FORWARD, DispatcherType.REQUEST, DispatcherType.ERROR), false,</span>
         &quot;/*&quot;);
 
     // Set security filter
-<span class="nc" id="L74">    FilterRegistration.Dynamic security =</span>
-<span class="nc" id="L75">        servletContext.addFilter(&quot;filterChainProxy&quot;, DelegatingFilterProxy.class);</span>
-<span class="nc" id="L76">    security.addMappingForUrlPatterns(</span>
-<span class="nc" id="L77">        EnumSet.of(DispatcherType.FORWARD, DispatcherType.REQUEST, DispatcherType.ERROR), false,</span>
+<span class="nc" id="L69">    FilterRegistration.Dynamic security =</span>
+<span class="nc" id="L70">        servletContext.addFilter(&quot;filterChainProxy&quot;, DelegatingFilterProxy.class);</span>
+<span class="nc" id="L71">    security.addMappingForUrlPatterns(</span>
+<span class="nc" id="L72">        EnumSet.of(DispatcherType.FORWARD, DispatcherType.REQUEST, DispatcherType.ERROR), false,</span>
         &quot;/*&quot;);
 
     // Set session cookie config
-<span class="nc" id="L81">    servletContext.getSessionCookieConfig().setHttpOnly(true);</span>
+<span class="nc" id="L76">    servletContext.getSessionCookieConfig().setHttpOnly(true);</span>
     /**
-     *  Disable secure cookie until http session issues can be resolved. While tomcat
-     *  will handle this normally with http, spring has been shown to continually create new
-     *  sessions.  This may not be related to spring security but rather spring web mvc.
+     * Disable secure cookie until http session issues can be resolved. While tomcat will handle
+     * this normally with http, spring has been shown to continually create new sessions. This may
+     * not be related to spring security but rather spring web mvc.
      */
     // servletContext.getSessionCookieConfig().setSecure(true);
 
     // Set session tracking mode
-<span class="nc" id="L90">    Set&lt;SessionTrackingMode&gt; trackingMode = new HashSet&lt;&gt;();</span>
-<span class="nc" id="L91">    trackingMode.add(SessionTrackingMode.COOKIE);</span>
-<span class="nc" id="L92">    servletContext.setSessionTrackingModes(trackingMode);</span>
-<span class="nc" id="L93">  }</span>
+<span class="nc" id="L85">    EnumSet&lt;SessionTrackingMode&gt; trackingMode = EnumSet.of(SessionTrackingMode.COOKIE);</span>
+<span class="nc" id="L86">    servletContext.setSessionTrackingModes(trackingMode);</span>
+<span class="nc" id="L87">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

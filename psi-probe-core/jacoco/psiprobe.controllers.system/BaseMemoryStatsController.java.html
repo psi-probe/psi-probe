@@ -13,16 +13,14 @@ package psiprobe.controllers.system;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
-
 import psiprobe.beans.JvmMemoryInfoAccessorBean;
 
 /**
  * The Class BaseMemoryStatsController.
  */
-<span class="fc" id="L25">public class BaseMemoryStatsController extends ParameterizableViewController {</span>
+<span class="fc" id="L23">public class BaseMemoryStatsController extends ParameterizableViewController {</span>
 
   /** The jvm memory info accessor bean. */
   @Inject
@@ -37,7 +35,7 @@ import psiprobe.beans.JvmMemoryInfoAccessorBean;
    * @return the jvm memory info accessor bean
    */
   public JvmMemoryInfoAccessorBean getJvmMemoryInfoAccessorBean() {
-<span class="fc" id="L40">    return jvmMemoryInfoAccessorBean;</span>
+<span class="fc" id="L38">    return jvmMemoryInfoAccessorBean;</span>
   }
 
   /**
@@ -46,8 +44,8 @@ import psiprobe.beans.JvmMemoryInfoAccessorBean;
    * @param jvmMemoryInfoAccessorBean the new jvm memory info accessor bean
    */
   public void setJvmMemoryInfoAccessorBean(JvmMemoryInfoAccessorBean jvmMemoryInfoAccessorBean) {
-<span class="fc" id="L49">    this.jvmMemoryInfoAccessorBean = jvmMemoryInfoAccessorBean;</span>
-<span class="fc" id="L50">  }</span>
+<span class="fc" id="L47">    this.jvmMemoryInfoAccessorBean = jvmMemoryInfoAccessorBean;</span>
+<span class="fc" id="L48">  }</span>
 
   /**
    * Gets the collection period.
@@ -55,7 +53,7 @@ import psiprobe.beans.JvmMemoryInfoAccessorBean;
    * @return the collection period
    */
   public long getCollectionPeriod() {
-<span class="fc" id="L58">    return collectionPeriod;</span>
+<span class="fc" id="L56">    return collectionPeriod;</span>
   }
 
   /**
@@ -64,18 +62,18 @@ import psiprobe.beans.JvmMemoryInfoAccessorBean;
    * @param collectionPeriod the new collection period
    */
   public void setCollectionPeriod(long collectionPeriod) {
-<span class="fc" id="L67">    this.collectionPeriod = collectionPeriod;</span>
-<span class="fc" id="L68">  }</span>
+<span class="fc" id="L65">    this.collectionPeriod = collectionPeriod;</span>
+<span class="fc" id="L66">  }</span>
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 
-<span class="nc" id="L74">    ModelAndView mv = new ModelAndView(getViewName());</span>
-<span class="nc" id="L75">    mv.addObject(&quot;pools&quot;, getJvmMemoryInfoAccessorBean().getPools());</span>
-<span class="nc" id="L76">    mv.addObject(&quot;collectionPeriod&quot;, getCollectionPeriod());</span>
-<span class="nc" id="L77">    return mv;</span>
+<span class="nc" id="L72">    ModelAndView mv = new ModelAndView(getViewName());</span>
+<span class="nc" id="L73">    mv.addObject(&quot;pools&quot;, getJvmMemoryInfoAccessorBean().getPools());</span>
+<span class="nc" id="L74">    mv.addObject(&quot;collectionPeriod&quot;, getCollectionPeriod());</span>
+<span class="nc" id="L75">    return mv;</span>
   }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

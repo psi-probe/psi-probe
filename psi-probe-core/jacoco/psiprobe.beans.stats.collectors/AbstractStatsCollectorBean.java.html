@@ -13,11 +13,8 @@ package psiprobe.beans.stats.collectors;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-
 import javax.inject.Inject;
-
 import org.jfree.data.xy.XYDataItem;
-
 import psiprobe.Utils;
 import psiprobe.beans.stats.listeners.StatsCollectionEvent;
 import psiprobe.beans.stats.listeners.StatsCollectionListener;
@@ -26,23 +23,23 @@ import psiprobe.model.stats.StatsCollection;
 /**
  * The Class AbstractStatsCollectorBean.
  */
-<span class="fc" id="L29">public abstract class AbstractStatsCollectorBean {</span>
+<span class="fc" id="L26">public abstract class AbstractStatsCollectorBean {</span>
 
   /** The stats collection. */
   @Inject
   private StatsCollection statsCollection;
 
   /** The max series. */
-<span class="fc" id="L36">  private int maxSeries = 240;</span>
+<span class="fc" id="L33">  private int maxSeries = 240;</span>
 
   /** The listeners. */
   private List&lt;StatsCollectionListener&gt; listeners;
 
   /** The previous data. */
-<span class="fc" id="L42">  private final Map&lt;String, Long&gt; previousData = new TreeMap&lt;&gt;();</span>
+<span class="fc" id="L39">  private final Map&lt;String, Long&gt; previousData = new TreeMap&lt;&gt;();</span>
 
   /** The previous data2 d. */
-<span class="fc" id="L45">  private final Map&lt;String, Entry&gt; previousData2D = new TreeMap&lt;&gt;();</span>
+<span class="fc" id="L42">  private final Map&lt;String, Entry&gt; previousData2D = new TreeMap&lt;&gt;();</span>
 
   /**
    * Gets the stats collection.
@@ -50,7 +47,7 @@ import psiprobe.model.stats.StatsCollection;
    * @return the stats collection
    */
   public StatsCollection getStatsCollection() {
-<span class="fc" id="L53">    return statsCollection;</span>
+<span class="fc" id="L50">    return statsCollection;</span>
   }
 
   /**
@@ -59,8 +56,8 @@ import psiprobe.model.stats.StatsCollection;
    * @param statsCollection the new stats collection
    */
   public void setStatsCollection(StatsCollection statsCollection) {
-<span class="fc" id="L62">    this.statsCollection = statsCollection;</span>
-<span class="fc" id="L63">  }</span>
+<span class="fc" id="L59">    this.statsCollection = statsCollection;</span>
+<span class="fc" id="L60">  }</span>
 
   /**
    * Gets the max series.
@@ -68,7 +65,7 @@ import psiprobe.model.stats.StatsCollection;
    * @return the max series
    */
   public int getMaxSeries() {
-<span class="fc" id="L71">    return maxSeries;</span>
+<span class="fc" id="L68">    return maxSeries;</span>
   }
 
   /**
@@ -77,8 +74,8 @@ import psiprobe.model.stats.StatsCollection;
    * @param maxSeries the new max series
    */
   public void setMaxSeries(int maxSeries) {
-<span class="fc" id="L80">    this.maxSeries = maxSeries;</span>
-<span class="fc" id="L81">  }</span>
+<span class="fc" id="L77">    this.maxSeries = maxSeries;</span>
+<span class="fc" id="L78">  }</span>
 
   /**
    * Gets the listeners.
@@ -86,7 +83,7 @@ import psiprobe.model.stats.StatsCollection;
    * @return the listeners
    */
   public List&lt;StatsCollectionListener&gt; getListeners() {
-<span class="fc" id="L89">    return listeners;</span>
+<span class="fc" id="L86">    return listeners;</span>
   }
 
   /**
@@ -95,8 +92,8 @@ import psiprobe.model.stats.StatsCollection;
    * @param listeners the new listeners
    */
   public void setListeners(List&lt;StatsCollectionListener&gt; listeners) {
-<span class="fc" id="L98">    this.listeners = listeners;</span>
-<span class="fc" id="L99">  }</span>
+<span class="fc" id="L95">    this.listeners = listeners;</span>
+<span class="fc" id="L96">  }</span>
 
   /**
    * Collect.
@@ -114,7 +111,7 @@ import psiprobe.model.stats.StatsCollection;
    * @throws InterruptedException the interrupted exception
    */
   protected long buildDeltaStats(String name, long value) throws InterruptedException {
-<span class="nc" id="L117">    return buildDeltaStats(name, value, System.currentTimeMillis());</span>
+<span class="nc" id="L114">    return buildDeltaStats(name, value, System.currentTimeMillis());</span>
   }
 
   /**
@@ -127,15 +124,15 @@ import psiprobe.model.stats.StatsCollection;
    * @throws InterruptedException the interrupted exception
    */
   protected long buildDeltaStats(String name, long value, long time) throws InterruptedException {
-<span class="nc" id="L130">    long delta = 0;</span>
-<span class="nc bnc" id="L131" title="All 2 branches missed.">    if (statsCollection != null) {</span>
-<span class="nc" id="L132">      long previousValue = Utils.toLong(previousData.get(name), 0);</span>
-<span class="nc" id="L133">      delta = value - previousValue;</span>
-<span class="nc bnc" id="L134" title="All 2 branches missed.">      delta = delta &gt; 0 ? delta : 0;</span>
-<span class="nc" id="L135">      buildAbsoluteStats(name, delta, time);</span>
-<span class="nc" id="L136">      previousData.put(name, value);</span>
+<span class="nc" id="L127">    long delta = 0;</span>
+<span class="nc bnc" id="L128" title="All 2 branches missed.">    if (statsCollection != null) {</span>
+<span class="nc" id="L129">      long previousValue = Utils.toLong(previousData.get(name), 0);</span>
+<span class="nc" id="L130">      delta = value - previousValue;</span>
+<span class="nc bnc" id="L131" title="All 2 branches missed.">      delta = delta &gt; 0 ? delta : 0;</span>
+<span class="nc" id="L132">      buildAbsoluteStats(name, delta, time);</span>
+<span class="nc" id="L133">      previousData.put(name, value);</span>
     }
-<span class="nc" id="L138">    return delta;</span>
+<span class="nc" id="L135">    return delta;</span>
   }
 
   /**
@@ -146,8 +143,8 @@ import psiprobe.model.stats.StatsCollection;
    * @throws InterruptedException the interrupted exception
    */
   protected void buildAbsoluteStats(String name, long value) throws InterruptedException {
-<span class="nc" id="L149">    buildAbsoluteStats(name, value, System.currentTimeMillis());</span>
-<span class="nc" id="L150">  }</span>
+<span class="nc" id="L146">    buildAbsoluteStats(name, value, System.currentTimeMillis());</span>
+<span class="nc" id="L147">  }</span>
 
   /**
    * Builds the absolute stats.
@@ -160,29 +157,28 @@ import psiprobe.model.stats.StatsCollection;
   protected void buildAbsoluteStats(String name, long value, long time)
       throws InterruptedException {
 
-<span class="nc" id="L163">    List&lt;XYDataItem&gt; stats = statsCollection.getStats(name);</span>
-<span class="nc bnc" id="L164" title="All 2 branches missed.">    if (stats == null) {</span>
-      // TODO 12/10/2016 JWL Was this needed for something?
-<span class="nc" id="L166">      stats = statsCollection.newStats(name, maxSeries);</span>
+<span class="nc" id="L160">    List&lt;XYDataItem&gt; stats = statsCollection.getStats(name);</span>
+<span class="nc bnc" id="L161" title="All 2 branches missed.">    if (stats == null) {</span>
+<span class="nc" id="L162">      statsCollection.newStats(name, maxSeries);</span>
     } else {
-<span class="nc" id="L168">      XYDataItem data = new XYDataItem(time, value);</span>
-<span class="nc" id="L169">      statsCollection.lockForUpdate();</span>
+<span class="nc" id="L164">      XYDataItem data = new XYDataItem(time, value);</span>
+<span class="nc" id="L165">      statsCollection.lockForUpdate();</span>
       try {
-<span class="nc" id="L171">        stats.add(data);</span>
-<span class="nc" id="L172">        houseKeepStats(stats);</span>
+<span class="nc" id="L167">        stats.add(data);</span>
+<span class="nc" id="L168">        houseKeepStats(stats);</span>
       } finally {
-<span class="nc" id="L174">        statsCollection.releaseLock();</span>
-<span class="nc" id="L175">      }</span>
-<span class="nc bnc" id="L176" title="All 2 branches missed.">      if (listeners != null) {</span>
-<span class="nc" id="L177">        StatsCollectionEvent event = new StatsCollectionEvent(name, data);</span>
-<span class="nc bnc" id="L178" title="All 2 branches missed.">        for (StatsCollectionListener listener : listeners) {</span>
-<span class="nc bnc" id="L179" title="All 2 branches missed.">          if (listener.isEnabled()) {</span>
-<span class="nc" id="L180">            listener.statsCollected(event);</span>
+<span class="nc" id="L170">        statsCollection.releaseLock();</span>
+      }
+<span class="nc bnc" id="L172" title="All 2 branches missed.">      if (listeners != null) {</span>
+<span class="nc" id="L173">        StatsCollectionEvent event = new StatsCollectionEvent(name, data);</span>
+<span class="nc bnc" id="L174" title="All 2 branches missed.">        for (StatsCollectionListener listener : listeners) {</span>
+<span class="nc bnc" id="L175" title="All 2 branches missed.">          if (listener.isEnabled()) {</span>
+<span class="nc" id="L176">            listener.statsCollected(event);</span>
           }
-<span class="nc" id="L182">        }</span>
+<span class="nc" id="L178">        }</span>
       }
     }
-<span class="nc" id="L185">  }</span>
+<span class="nc" id="L181">  }</span>
 
   /**
    * The Class Entry.
@@ -198,9 +194,9 @@ import psiprobe.model.stats.StatsCollection;
     /**
      * Instantiates a new entry.
      */
-<span class="nc" id="L201">    public Entry() {</span>
+<span class="nc" id="L197">    public Entry() {</span>
       // Prevent Emulation by Synthetic Accessor
-<span class="nc" id="L203">    }</span>
+<span class="nc" id="L199">    }</span>
 
   }
 
@@ -227,29 +223,29 @@ import psiprobe.model.stats.StatsCollection;
   protected void buildTimePercentageStats(String name, long value, long time)
       throws InterruptedException {
 
-<span class="nc" id="L230">    Entry entry = previousData2D.get(name);</span>
-<span class="nc bnc" id="L231" title="All 2 branches missed.">    if (entry == null) {</span>
-<span class="nc" id="L232">      entry = new Entry();</span>
-<span class="nc" id="L233">      entry.value = value;</span>
-<span class="nc" id="L234">      entry.time = time;</span>
-<span class="nc" id="L235">      previousData2D.put(name, entry);</span>
+<span class="nc" id="L226">    Entry entry = previousData2D.get(name);</span>
+<span class="nc bnc" id="L227" title="All 2 branches missed.">    if (entry == null) {</span>
+<span class="nc" id="L228">      entry = new Entry();</span>
+<span class="nc" id="L229">      entry.value = value;</span>
+<span class="nc" id="L230">      entry.time = time;</span>
+<span class="nc" id="L231">      previousData2D.put(name, entry);</span>
     } else {
-<span class="nc" id="L237">      double valueDelta = value - entry.value;</span>
-<span class="nc" id="L238">      double timeDelta = time - entry.time;</span>
-<span class="nc" id="L239">      double statValue = valueDelta * 100 / timeDelta;</span>
-<span class="nc" id="L240">      statsCollection.lockForUpdate();</span>
+<span class="nc" id="L233">      double valueDelta = (double) value - entry.value;</span>
+<span class="nc" id="L234">      double timeDelta = (double) time - entry.time;</span>
+<span class="nc" id="L235">      double statValue = valueDelta * 100 / timeDelta;</span>
+<span class="nc" id="L236">      statsCollection.lockForUpdate();</span>
       try {
-<span class="nc" id="L242">        List&lt;XYDataItem&gt; stats = statsCollection.getStats(name);</span>
-<span class="nc bnc" id="L243" title="All 2 branches missed.">        if (stats == null) {</span>
-<span class="nc" id="L244">          stats = statsCollection.newStats(name, maxSeries);</span>
+<span class="nc" id="L238">        List&lt;XYDataItem&gt; stats = statsCollection.getStats(name);</span>
+<span class="nc bnc" id="L239" title="All 2 branches missed.">        if (stats == null) {</span>
+<span class="nc" id="L240">          stats = statsCollection.newStats(name, maxSeries);</span>
         }
-<span class="nc" id="L246">        stats.add(stats.size(), new XYDataItem(time, statValue));</span>
-<span class="nc" id="L247">        houseKeepStats(stats);</span>
+<span class="nc" id="L242">        stats.add(stats.size(), new XYDataItem(time, statValue));</span>
+<span class="nc" id="L243">        houseKeepStats(stats);</span>
       } finally {
-<span class="nc" id="L249">        statsCollection.releaseLock();</span>
-<span class="nc" id="L250">      }</span>
+<span class="nc" id="L245">        statsCollection.releaseLock();</span>
+      }
     }
-<span class="nc" id="L252">  }</span>
+<span class="nc" id="L248">  }</span>
 
   /**
    * Reset stats.
@@ -257,8 +253,8 @@ import psiprobe.model.stats.StatsCollection;
    * @param name the name
    */
   protected void resetStats(String name) {
-<span class="nc" id="L260">    statsCollection.resetStats(name);</span>
-<span class="nc" id="L261">  }</span>
+<span class="nc" id="L256">    statsCollection.resetStats(name);</span>
+<span class="nc" id="L257">  }</span>
 
   /**
    * House keep stats.
@@ -266,9 +262,9 @@ import psiprobe.model.stats.StatsCollection;
    * @param stats the stats
    */
   private void houseKeepStats(List&lt;XYDataItem&gt; stats) {
-<span class="nc bnc" id="L269" title="All 2 branches missed.">    while (stats.size() &gt; maxSeries) {</span>
-<span class="nc" id="L270">      stats.remove(0);</span>
+<span class="nc bnc" id="L265" title="All 2 branches missed.">    while (stats.size() &gt; maxSeries) {</span>
+<span class="nc" id="L266">      stats.remove(0);</span>
     }
-<span class="nc" id="L272">  }</span>
+<span class="nc" id="L268">  }</span>
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

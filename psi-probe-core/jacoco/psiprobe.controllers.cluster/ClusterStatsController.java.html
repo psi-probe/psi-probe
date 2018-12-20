@@ -12,25 +12,23 @@ package psiprobe.controllers.cluster;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
 import psiprobe.tools.TimeExpression;
 
 /**
  * The Class ClusterStatsController.
  */
 @Controller
-<span class="fc" id="L27">public class ClusterStatsController extends BaseClusterStatsController {</span>
+<span class="fc" id="L25">public class ClusterStatsController extends BaseClusterStatsController {</span>
 
   @Value(&quot;false&quot;)
   @Override
   public void setLoadMembers(boolean loadMembers) {
-<span class="fc" id="L32">    super.setLoadMembers(loadMembers);</span>
-<span class="fc" id="L33">  }</span>
+<span class="fc" id="L30">    super.setLoadMembers(loadMembers);</span>
+<span class="fc" id="L31">  }</span>
 
   /**
    * Sets the collection period.
@@ -39,21 +37,21 @@ import psiprobe.tools.TimeExpression;
    */
   @Value(&quot;${psiprobe.beans.stats.collectors.cluster.period}&quot;)
   public void setCollectionPeriod(String collectionPeriod) {
-<span class="nc" id="L42">    super.setCollectionPeriod(TimeExpression.inSeconds(collectionPeriod));</span>
-<span class="nc" id="L43">  }</span>
+<span class="nc" id="L40">    super.setCollectionPeriod(TimeExpression.inSeconds(collectionPeriod));</span>
+<span class="nc" id="L41">  }</span>
 
   @RequestMapping(path = &quot;/cluster.htm&quot;)
   @Override
   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
       throws Exception {
-<span class="nc" id="L49">    return super.handleRequest(request, response);</span>
+<span class="nc" id="L47">    return super.handleRequest(request, response);</span>
   }
 
   @Value(&quot;cluster&quot;)
   @Override
   public void setViewName(String viewName) {
-<span class="fc" id="L55">    super.setViewName(viewName);</span>
-<span class="fc" id="L56">  }</span>
+<span class="fc" id="L53">    super.setViewName(viewName);</span>
+<span class="fc" id="L54">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -12,7 +12,6 @@ package psiprobe.controllers.apps;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.apache.catalina.Context;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,59 +21,58 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
 import psiprobe.controllers.AbstractContextHandlerController;
 
 /**
  * Stops a web application.
  */
 @Controller
-<span class="nc" id="L32">public class AjaxToggleContextController extends AbstractContextHandlerController {</span>
+<span class="nc" id="L30">public class AjaxToggleContextController extends AbstractContextHandlerController {</span>
 
   /** The Constant logger. */
-<span class="nc" id="L35">  private static final Logger logger = LoggerFactory.getLogger(AjaxReloadContextController.class);</span>
+<span class="nc" id="L33">  private static final Logger logger = LoggerFactory.getLogger(AjaxToggleContextController.class);</span>
 
   @RequestMapping(path = &quot;/app/toggle.ajax&quot;)
   @Override
   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
       throws Exception {
-<span class="nc" id="L41">    return super.handleRequest(request, response);</span>
+<span class="nc" id="L39">    return super.handleRequest(request, response);</span>
   }
 
   @Override
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-<span class="nc bnc" id="L48" title="All 4 branches missed.">    if (!request.getContextPath().equals(contextName) &amp;&amp; context != null) {</span>
+<span class="nc bnc" id="L46" title="All 4 branches missed.">    if (context != null &amp;&amp; !request.getContextPath().equals(contextName)) {</span>
       try {
         // Logging action
-<span class="nc" id="L51">        Authentication auth = SecurityContextHolder.getContext().getAuthentication();</span>
+<span class="nc" id="L49">        Authentication auth = SecurityContextHolder.getContext().getAuthentication();</span>
         // get username logger
-<span class="nc" id="L53">        String name = auth.getName();</span>
-<span class="nc bnc" id="L54" title="All 2 branches missed.">        if (context.getState().isAvailable()) {</span>
-<span class="nc" id="L55">          logger.info(&quot;{} requested STOP of {}&quot;, request.getRemoteAddr(), contextName);</span>
-<span class="nc" id="L56">          getContainerWrapper().getTomcatContainer().stop(contextName);</span>
-<span class="nc" id="L57">          logger.info(getMessageSourceAccessor().getMessage(&quot;probe.src.log.stop&quot;), name,</span>
+<span class="nc" id="L51">        String name = auth.getName();</span>
+<span class="nc bnc" id="L52" title="All 2 branches missed.">        if (context.getState().isAvailable()) {</span>
+<span class="nc" id="L53">          logger.info(&quot;{} requested STOP of {}&quot;, request.getRemoteAddr(), contextName);</span>
+<span class="nc" id="L54">          getContainerWrapper().getTomcatContainer().stop(contextName);</span>
+<span class="nc" id="L55">          logger.info(getMessageSourceAccessor().getMessage(&quot;probe.src.log.stop&quot;), name,</span>
               contextName);
         } else {
-<span class="nc" id="L60">          logger.info(&quot;{} requested START of {}&quot;, request.getRemoteAddr(), contextName);</span>
-<span class="nc" id="L61">          getContainerWrapper().getTomcatContainer().start(contextName);</span>
-<span class="nc" id="L62">          logger.info(getMessageSourceAccessor().getMessage(&quot;probe.src.log.start&quot;), name,</span>
+<span class="nc" id="L58">          logger.info(&quot;{} requested START of {}&quot;, request.getRemoteAddr(), contextName);</span>
+<span class="nc" id="L59">          getContainerWrapper().getTomcatContainer().start(contextName);</span>
+<span class="nc" id="L60">          logger.info(getMessageSourceAccessor().getMessage(&quot;probe.src.log.start&quot;), name,</span>
               contextName);
         }
-<span class="nc" id="L65">      } catch (Exception e) {</span>
-<span class="nc" id="L66">        logger.error(&quot;Error during ajax request to START/STOP of '{}'&quot;, contextName, e);</span>
-<span class="nc" id="L67">      }</span>
+<span class="nc" id="L63">      } catch (Exception e) {</span>
+<span class="nc" id="L64">        logger.error(&quot;Error during ajax request to START/STOP of '{}'&quot;, contextName, e);</span>
+<span class="nc" id="L65">      }</span>
     }
-<span class="nc bnc" id="L69" title="All 2 branches missed.">    return new ModelAndView(getViewName(), &quot;available&quot;,</span>
-<span class="nc bnc" id="L70" title="All 2 branches missed.">        context != null &amp;&amp; getContainerWrapper().getTomcatContainer().getAvailable(context));</span>
+<span class="nc bnc" id="L67" title="All 2 branches missed.">    return new ModelAndView(getViewName(), &quot;available&quot;,</span>
+<span class="nc bnc" id="L68" title="All 2 branches missed.">        context != null &amp;&amp; getContainerWrapper().getTomcatContainer().getAvailable(context));</span>
   }
 
   @Value(&quot;ajax/context_status&quot;)
   @Override
   public void setViewName(String viewName) {
-<span class="nc" id="L76">    super.setViewName(viewName);</span>
-<span class="nc" id="L77">  }</span>
+<span class="nc" id="L74">    super.setViewName(viewName);</span>
+<span class="nc" id="L75">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -12,7 +12,6 @@ package psiprobe.controllers.apps;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,20 +21,20 @@ import org.springframework.web.servlet.ModelAndView;
  * The Class ReloadContextController.
  */
 @Controller
-<span class="fc" id="L25">public class ReloadContextController extends BaseReloadContextController {</span>
+<span class="fc" id="L24">public class ReloadContextController extends BaseReloadContextController {</span>
 
   @RequestMapping(path = &quot;/app/reload.htm&quot;)
   @Override
   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
       throws Exception {
-<span class="nc" id="L31">    return super.handleRequest(request, response);</span>
+<span class="nc" id="L30">    return super.handleRequest(request, response);</span>
   }
 
   @Value(&quot;/index.htm&quot;)
   @Override
   public void setViewName(String viewName) {
-<span class="fc" id="L37">    super.setViewName(viewName);</span>
-<span class="fc" id="L38">  }</span>
+<span class="fc" id="L36">    super.setViewName(viewName);</span>
+<span class="fc" id="L37">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

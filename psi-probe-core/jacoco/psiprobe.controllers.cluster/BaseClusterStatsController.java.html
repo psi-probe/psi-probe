@@ -13,9 +13,7 @@ package psiprobe.controllers.cluster;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.web.servlet.ModelAndView;
-
 import psiprobe.TomcatContainer;
 import psiprobe.beans.ClusterWrapperBean;
 import psiprobe.controllers.AbstractTomcatContainerController;
@@ -24,14 +22,14 @@ import psiprobe.model.jmx.Cluster;
 /**
  * The Class BaseClusterStatsController.
  */
-<span class="fc" id="L27">public class BaseClusterStatsController extends AbstractTomcatContainerController {</span>
+<span class="fc" id="L25">public class BaseClusterStatsController extends AbstractTomcatContainerController {</span>
 
   /** The cluster wrapper. */
   @Inject
   private ClusterWrapperBean clusterWrapper;
 
   /** The load members. */
-<span class="fc" id="L34">  private boolean loadMembers = true;</span>
+<span class="fc" id="L32">  private boolean loadMembers = true;</span>
 
   /** The collection period. */
   private long collectionPeriod;
@@ -42,7 +40,7 @@ import psiprobe.model.jmx.Cluster;
    * @return the cluster wrapper
    */
   public ClusterWrapperBean getClusterWrapper() {
-<span class="fc" id="L45">    return clusterWrapper;</span>
+<span class="fc" id="L43">    return clusterWrapper;</span>
   }
 
   /**
@@ -51,8 +49,8 @@ import psiprobe.model.jmx.Cluster;
    * @param clusterWrapper the new cluster wrapper
    */
   public void setClusterWrapper(ClusterWrapperBean clusterWrapper) {
-<span class="fc" id="L54">    this.clusterWrapper = clusterWrapper;</span>
-<span class="fc" id="L55">  }</span>
+<span class="fc" id="L52">    this.clusterWrapper = clusterWrapper;</span>
+<span class="fc" id="L53">  }</span>
 
   /**
    * Checks if is load members.
@@ -60,7 +58,7 @@ import psiprobe.model.jmx.Cluster;
    * @return true, if is load members
    */
   public boolean isLoadMembers() {
-<span class="fc" id="L63">    return loadMembers;</span>
+<span class="fc" id="L61">    return loadMembers;</span>
   }
 
   /**
@@ -69,8 +67,8 @@ import psiprobe.model.jmx.Cluster;
    * @param loadMembers the new load members
    */
   public void setLoadMembers(boolean loadMembers) {
-<span class="fc" id="L72">    this.loadMembers = loadMembers;</span>
-<span class="fc" id="L73">  }</span>
+<span class="fc" id="L70">    this.loadMembers = loadMembers;</span>
+<span class="fc" id="L71">  }</span>
 
   /**
    * Gets the collection period.
@@ -78,7 +76,7 @@ import psiprobe.model.jmx.Cluster;
    * @return the collection period
    */
   public long getCollectionPeriod() {
-<span class="fc" id="L81">    return collectionPeriod;</span>
+<span class="fc" id="L79">    return collectionPeriod;</span>
   }
 
   /**
@@ -87,19 +85,19 @@ import psiprobe.model.jmx.Cluster;
    * @param collectionPeriod the new collection period
    */
   public void setCollectionPeriod(long collectionPeriod) {
-<span class="fc" id="L90">    this.collectionPeriod = collectionPeriod;</span>
-<span class="fc" id="L91">  }</span>
+<span class="fc" id="L88">    this.collectionPeriod = collectionPeriod;</span>
+<span class="fc" id="L89">  }</span>
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 
-<span class="nc" id="L97">    TomcatContainer container = getContainerWrapper().getTomcatContainer();</span>
-<span class="nc" id="L98">    Cluster cluster = getClusterWrapper().getCluster(container.getName(), container.getHostName(),</span>
-<span class="nc" id="L99">        isLoadMembers());</span>
-<span class="nc" id="L100">    return new ModelAndView(getViewName()).addObject(&quot;cluster&quot;, cluster)</span>
-<span class="nc" id="L101">        .addObject(&quot;collectionPeriod&quot;, getCollectionPeriod());</span>
+<span class="nc" id="L95">    TomcatContainer container = getContainerWrapper().getTomcatContainer();</span>
+<span class="nc" id="L96">    Cluster cluster = getClusterWrapper().getCluster(container.getName(), container.getHostName(),</span>
+<span class="nc" id="L97">        isLoadMembers());</span>
+<span class="nc" id="L98">    return new ModelAndView(getViewName()).addObject(&quot;cluster&quot;, cluster)</span>
+<span class="nc" id="L99">        .addObject(&quot;collectionPeriod&quot;, getCollectionPeriod());</span>
   }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

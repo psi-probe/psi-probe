@@ -14,6 +14,7 @@ import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
 /**
@@ -29,7 +30,7 @@ public class BackwardsLineReader {
   private BufferedInputStream bis;
 
   /** The skip line feed. */
-<span class="nc" id="L32">  private boolean skipLineFeed = true;</span>
+<span class="nc" id="L33">  private boolean skipLineFeed = true;</span>
 
   /** The encoding. */
   private String encoding;
@@ -40,8 +41,8 @@ public class BackwardsLineReader {
    * @param is the is
    */
   public BackwardsLineReader(InputStream is) {
-<span class="nc" id="L43">    this(is, null);</span>
-<span class="nc" id="L44">  }</span>
+<span class="nc" id="L44">    this(is, null);</span>
+<span class="nc" id="L45">  }</span>
 
   /**
    * Instantiates a new backwards line reader.
@@ -49,10 +50,10 @@ public class BackwardsLineReader {
    * @param is the is
    * @param encoding the encoding
    */
-<span class="nc" id="L52">  public BackwardsLineReader(InputStream is, String encoding) {</span>
-<span class="nc" id="L53">    this.bis = new BufferedInputStream(is, 8192);</span>
-<span class="nc" id="L54">    this.encoding = encoding;</span>
-<span class="nc" id="L55">  }</span>
+<span class="nc" id="L53">  public BackwardsLineReader(InputStream is, String encoding) {</span>
+<span class="nc" id="L54">    this.bis = new BufferedInputStream(is, 8192);</span>
+<span class="nc" id="L55">    this.encoding = encoding;</span>
+<span class="nc" id="L56">  }</span>
 
   /**
    * Read line.
@@ -61,43 +62,43 @@ public class BackwardsLineReader {
    * @throws IOException Signals that an I/O exception has occurred.
    */
   public String readLine() throws IOException {
-<span class="nc" id="L64">    ByteArrayOutputStream baos = new ByteArrayOutputStream(512);</span>
-<span class="nc" id="L65">    boolean empty = false;</span>
+<span class="nc" id="L65">    ByteArrayOutputStream baos = new ByteArrayOutputStream(512);</span>
+<span class="nc" id="L66">    boolean empty = false;</span>
     while (true) {
-<span class="nc" id="L67">      byte chr = (byte) bis.read();</span>
-<span class="nc bnc" id="L68" title="All 2 branches missed.">      if (chr != -1) {</span>
-<span class="nc bnc" id="L69" title="All 2 branches missed.">        if (chr == '\n') {</span>
-<span class="nc" id="L70">          skipLineFeed = false;</span>
+<span class="nc" id="L68">      byte chr = (byte) bis.read();</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">      if (chr != -1) {</span>
+<span class="nc bnc" id="L70" title="All 2 branches missed.">        if (chr == '\n') {</span>
+<span class="nc" id="L71">          skipLineFeed = false;</span>
           // quit this loop
-<span class="nc" id="L72">          break;</span>
+<span class="nc" id="L73">          break;</span>
         }
-<span class="nc bnc" id="L74" title="All 2 branches missed.">        if (chr == '\r') {</span>
-<span class="nc bnc" id="L75" title="All 2 branches missed.">          if (skipLineFeed) {</span>
+<span class="nc bnc" id="L75" title="All 2 branches missed.">        if (chr == '\r') {</span>
+<span class="nc bnc" id="L76" title="All 2 branches missed.">          if (skipLineFeed) {</span>
             // quit this loop. if the carriage return only was read
-<span class="nc" id="L77">            break;</span>
+<span class="nc" id="L78">            break;</span>
           }
           // go to next loop, if both the carriage return and
           // the line feed were read
           continue;
         }
-<span class="nc" id="L83">        baos.write(chr);</span>
+<span class="nc" id="L84">        baos.write(chr);</span>
       } else {
         // quit this loop, if the first of the backwards stream is
         // reached
-<span class="nc bnc" id="L87" title="All 2 branches missed.">        if (baos.toByteArray().length == 0) {</span>
-<span class="nc" id="L88">          empty = true;</span>
+<span class="nc bnc" id="L88" title="All 2 branches missed.">        if (baos.toByteArray().length == 0) {</span>
+<span class="nc" id="L89">          empty = true;</span>
         }
         break;
       }
-<span class="nc" id="L92">    }</span>
-<span class="nc bnc" id="L93" title="All 2 branches missed.">    if (!empty) {</span>
-<span class="nc" id="L94">      byte[] byteArray = baos.toByteArray();</span>
-<span class="nc" id="L95">      reverse(byteArray);</span>
-<span class="nc bnc" id="L96" title="All 2 branches missed.">      return encoding == null ? new String(byteArray, StandardCharsets.UTF_8)</span>
-<span class="nc" id="L97">          : new String(byteArray, encoding);</span>
+<span class="nc" id="L93">    }</span>
+<span class="nc bnc" id="L94" title="All 2 branches missed.">    if (!empty) {</span>
+<span class="nc" id="L95">      byte[] byteArray = baos.toByteArray();</span>
+<span class="nc" id="L96">      reverse(byteArray);</span>
+<span class="nc bnc" id="L97" title="All 2 branches missed.">      return encoding == null ? new String(byteArray, StandardCharsets.UTF_8)</span>
+<span class="nc" id="L98">          : new String(byteArray, Charset.forName(encoding));</span>
     }
     // return null if the end of the stream has been reached
-<span class="nc" id="L100">    return null;</span>
+<span class="nc" id="L101">    return null;</span>
   }
 
   /**
@@ -106,10 +107,10 @@ public class BackwardsLineReader {
    * @throws IOException Signals that an I/O exception has occurred.
    */
   public void close() throws IOException {
-<span class="nc bnc" id="L109" title="All 2 branches missed.">    if (bis != null) {</span>
-<span class="nc" id="L110">      bis.close();</span>
+<span class="nc bnc" id="L110" title="All 2 branches missed.">    if (bis != null) {</span>
+<span class="nc" id="L111">      bis.close();</span>
     }
-<span class="nc" id="L112">  }</span>
+<span class="nc" id="L113">  }</span>
 
   /**
    * Reverse.
@@ -117,12 +118,12 @@ public class BackwardsLineReader {
    * @param byteArray the byte array
    */
   private void reverse(byte[] byteArray) {
-<span class="nc bnc" id="L120" title="All 2 branches missed.">    for (int i = 0; i &lt; byteArray.length / 2; i++) {</span>
-<span class="nc" id="L121">      byte temp = byteArray[i];</span>
-<span class="nc" id="L122">      byteArray[i] = byteArray[byteArray.length - i - 1];</span>
-<span class="nc" id="L123">      byteArray[byteArray.length - i - 1] = temp;</span>
+<span class="nc bnc" id="L121" title="All 2 branches missed.">    for (int i = 0; i &lt; byteArray.length / 2; i++) {</span>
+<span class="nc" id="L122">      byte temp = byteArray[i];</span>
+<span class="nc" id="L123">      byteArray[i] = byteArray[byteArray.length - i - 1];</span>
+<span class="nc" id="L124">      byteArray[byteArray.length - i - 1] = temp;</span>
     }
-<span class="nc" id="L125">  }</span>
+<span class="nc" id="L126">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -14,9 +14,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.apache.commons.lang3.reflect.MethodUtils;
-
 import psiprobe.tools.logging.DefaultAccessor;
 
 /**
@@ -41,24 +39,23 @@ public class LogbackFactoryAccessor extends DefaultAccessor {
    * @throws InvocationTargetException the invocation target exception
    */
   public LogbackFactoryAccessor(ClassLoader cl)
-<span class="nc" id="L44">      throws ClassNotFoundException, IllegalAccessException, InvocationTargetException {</span>
+<span class="nc" id="L42">      throws ClassNotFoundException, IllegalAccessException, InvocationTargetException {</span>
 
     // Get the singleton SLF4J binding, which may or may not be Logback, depending on the binding.
-<span class="nc" id="L47">    Class&lt;?&gt; clazz = cl.loadClass(&quot;org.slf4j.impl.StaticLoggerBinder&quot;);</span>
-<span class="nc" id="L48">    Method getSingleton = MethodUtils.getAccessibleMethod(clazz, &quot;getSingleton&quot;, new Class[0]);</span>
-<span class="nc" id="L49">    Object singleton = getSingleton.invoke(null);</span>
-<span class="nc" id="L50">    Method getLoggerFactory =</span>
-<span class="nc" id="L51">        MethodUtils.getAccessibleMethod(clazz, &quot;getLoggerFactory&quot;, new Class[0]);</span>
+<span class="nc" id="L45">    Class&lt;?&gt; clazz = cl.loadClass(&quot;org.slf4j.impl.StaticLoggerBinder&quot;);</span>
+<span class="nc" id="L46">    Method getSingleton = MethodUtils.getAccessibleMethod(clazz, &quot;getSingleton&quot;);</span>
+<span class="nc" id="L47">    Object singleton = getSingleton.invoke(null);</span>
+<span class="nc" id="L48">    Method getLoggerFactory = MethodUtils.getAccessibleMethod(clazz, &quot;getLoggerFactory&quot;);</span>
 
-<span class="nc" id="L53">    Object loggerFactory = getLoggerFactory.invoke(singleton);</span>
+<span class="nc" id="L50">    Object loggerFactory = getLoggerFactory.invoke(singleton);</span>
 
     // Check if the binding is indeed Logback
-<span class="nc" id="L56">    Class&lt;?&gt; loggerFactoryClass = cl.loadClass(&quot;ch.qos.logback.classic.LoggerContext&quot;);</span>
-<span class="nc bnc" id="L57" title="All 2 branches missed.">    if (!loggerFactoryClass.isInstance(loggerFactory)) {</span>
-<span class="nc" id="L58">      throw new RuntimeException(&quot;The singleton SLF4J binding was not Logback&quot;);</span>
+<span class="nc" id="L53">    Class&lt;?&gt; loggerFactoryClass = cl.loadClass(&quot;ch.qos.logback.classic.LoggerContext&quot;);</span>
+<span class="nc bnc" id="L54" title="All 2 branches missed.">    if (!loggerFactoryClass.isInstance(loggerFactory)) {</span>
+<span class="nc" id="L55">      throw new RuntimeException(&quot;The singleton SLF4J binding was not Logback&quot;);</span>
     }
-<span class="nc" id="L60">    setTarget(loggerFactory);</span>
-<span class="nc" id="L61">  }</span>
+<span class="nc" id="L57">    setTarget(loggerFactory);</span>
+<span class="nc" id="L58">  }</span>
 
   /**
    * Returns the Logback root logger.
@@ -68,7 +65,7 @@ public class LogbackFactoryAccessor extends DefaultAccessor {
   public LogbackLoggerAccessor getRootLogger() {
     // Logback has no dedicated getRootLogger() method, so we simply access the root logger
     // by its well-defined name.
-<span class="nc" id="L71">    return getLogger(&quot;ROOT&quot;);</span>
+<span class="nc" id="L68">    return getLogger(&quot;ROOT&quot;);</span>
   }
 
   /**
@@ -79,23 +76,22 @@ public class LogbackFactoryAccessor extends DefaultAccessor {
    */
   public LogbackLoggerAccessor getLogger(String name) {
     try {
-<span class="nc" id="L82">      Class&lt;? extends Object&gt; clazz = getTarget().getClass();</span>
-<span class="nc" id="L83">      Method getLogger =</span>
-<span class="nc" id="L84">          MethodUtils.getAccessibleMethod(clazz, &quot;getLogger&quot;, new Class[] {String.class});</span>
+<span class="nc" id="L79">      Class&lt;? extends Object&gt; clazz = getTarget().getClass();</span>
+<span class="nc" id="L80">      Method getLogger = MethodUtils.getAccessibleMethod(clazz, &quot;getLogger&quot;, String.class);</span>
 
-<span class="nc" id="L86">      Object logger = getLogger.invoke(getTarget(), name);</span>
-<span class="nc bnc" id="L87" title="All 2 branches missed.">      if (logger == null) {</span>
-<span class="nc" id="L88">        throw new NullPointerException(getTarget() + &quot;.getLogger(\&quot;&quot; + name + &quot;\&quot;) returned null&quot;);</span>
+<span class="nc" id="L82">      Object logger = getLogger.invoke(getTarget(), name);</span>
+<span class="nc bnc" id="L83" title="All 2 branches missed.">      if (logger == null) {</span>
+<span class="nc" id="L84">        throw new NullPointerException(getTarget() + &quot;.getLogger(\&quot;&quot; + name + &quot;\&quot;) returned null&quot;);</span>
       }
-<span class="nc" id="L90">      LogbackLoggerAccessor accessor = new LogbackLoggerAccessor();</span>
-<span class="nc" id="L91">      accessor.setTarget(logger);</span>
-<span class="nc" id="L92">      accessor.setApplication(getApplication());</span>
-<span class="nc" id="L93">      return accessor;</span>
+<span class="nc" id="L86">      LogbackLoggerAccessor accessor = new LogbackLoggerAccessor();</span>
+<span class="nc" id="L87">      accessor.setTarget(logger);</span>
+<span class="nc" id="L88">      accessor.setApplication(getApplication());</span>
+<span class="nc" id="L89">      return accessor;</span>
 
-<span class="nc" id="L95">    } catch (Exception e) {</span>
-<span class="nc" id="L96">      logger.error(&quot;{}.getLogger('{}') failed&quot;, getTarget(), name, e);</span>
+<span class="nc" id="L91">    } catch (Exception e) {</span>
+<span class="nc" id="L92">      logger.error(&quot;{}.getLogger('{}') failed&quot;, getTarget(), name, e);</span>
     }
-<span class="nc" id="L98">    return null;</span>
+<span class="nc" id="L94">    return null;</span>
   }
 
   /**
@@ -105,24 +101,24 @@ public class LogbackFactoryAccessor extends DefaultAccessor {
    */
   @SuppressWarnings(&quot;unchecked&quot;)
   public List&lt;LogbackAppenderAccessor&gt; getAppenders() {
-<span class="nc" id="L108">    List&lt;LogbackAppenderAccessor&gt; appenders = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L104">    List&lt;LogbackAppenderAccessor&gt; appenders = new ArrayList&lt;&gt;();</span>
     try {
-<span class="nc" id="L110">      Class&lt;? extends Object&gt; clazz = getTarget().getClass();</span>
-<span class="nc" id="L111">      Method getLoggerList = MethodUtils.getAccessibleMethod(clazz, &quot;getLoggerList&quot;, new Class[0]);</span>
+<span class="nc" id="L106">      Class&lt;? extends Object&gt; clazz = getTarget().getClass();</span>
+<span class="nc" id="L107">      Method getLoggerList = MethodUtils.getAccessibleMethod(clazz, &quot;getLoggerList&quot;);</span>
 
-<span class="nc" id="L113">      List&lt;Object&gt; loggers = (List&lt;Object&gt;) getLoggerList.invoke(getTarget());</span>
-<span class="nc bnc" id="L114" title="All 2 branches missed.">      for (Object logger : loggers) {</span>
-<span class="nc" id="L115">        LogbackLoggerAccessor accessor = new LogbackLoggerAccessor();</span>
-<span class="nc" id="L116">        accessor.setTarget(logger);</span>
-<span class="nc" id="L117">        accessor.setApplication(getApplication());</span>
+<span class="nc" id="L109">      List&lt;Object&gt; loggers = (List&lt;Object&gt;) getLoggerList.invoke(getTarget());</span>
+<span class="nc bnc" id="L110" title="All 2 branches missed.">      for (Object logger : loggers) {</span>
+<span class="nc" id="L111">        LogbackLoggerAccessor accessor = new LogbackLoggerAccessor();</span>
+<span class="nc" id="L112">        accessor.setTarget(logger);</span>
+<span class="nc" id="L113">        accessor.setApplication(getApplication());</span>
 
-<span class="nc" id="L119">        appenders.addAll(accessor.getAppenders());</span>
-<span class="nc" id="L120">      }</span>
-<span class="nc" id="L121">    } catch (Exception e) {</span>
-<span class="nc" id="L122">      logger.error(&quot;{}.getLoggerList() failed&quot;, getTarget(), e);</span>
-<span class="nc" id="L123">    }</span>
-<span class="nc" id="L124">    return appenders;</span>
+<span class="nc" id="L115">        appenders.addAll(accessor.getAppenders());</span>
+<span class="nc" id="L116">      }</span>
+<span class="nc" id="L117">    } catch (Exception e) {</span>
+<span class="nc" id="L118">      logger.error(&quot;{}.getLoggerList() failed&quot;, getTarget(), e);</span>
+<span class="nc" id="L119">    }</span>
+<span class="nc" id="L120">    return appenders;</span>
   }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

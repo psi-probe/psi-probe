@@ -10,7 +10,7 @@
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_javadoccomment"> * Licensed under the GPL License. You may not use this file except in compliance with the License.</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_javadoccomment"> * You may obtain a copy of the License at</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_javadoccomment"> *</em>
-<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_javadoccomment"> *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</em>
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_javadoccomment"> *   <a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.html" target="alexandria_uri">https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</a></em>
 <a class="jxr_linenumber" name="L6" href="#L6">6</a>   <em class="jxr_javadoccomment"> *</em>
 <a class="jxr_linenumber" name="L7" href="#L7">7</a>   <em class="jxr_javadoccomment"> * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,</em>
 <a class="jxr_linenumber" name="L8" href="#L8">8</a>   <em class="jxr_javadoccomment"> * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR</em>
@@ -37,7 +37,7 @@
 <a class="jxr_linenumber" name="L29" href="#L29">29</a>  <em class="jxr_javadoccomment"> * Produces a list of all datasources configured within the container grouped by JDBC URL.</em>
 <a class="jxr_linenumber" name="L30" href="#L30">30</a>  <em class="jxr_javadoccomment"> */</em>
 <a class="jxr_linenumber" name="L31" href="#L31">31</a>  @Controller
-<a class="jxr_linenumber" name="L32" href="#L32">32</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../psiprobe/controllers/datasources/ListAllJdbcResourceGroupsController.html">ListAllJdbcResourceGroupsController</a> <strong class="jxr_keyword">extends</strong> <a href="../../../psiprobe/controllers/AbstractTomcatContainerController.html">AbstractTomcatContainerController</a> {
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a name="ListAllJdbcResourceGroupsController" href="../../../psiprobe/controllers/datasources/ListAllJdbcResourceGroupsController.html#ListAllJdbcResourceGroupsController">ListAllJdbcResourceGroupsController</a> <strong class="jxr_keyword">extends</strong> <a name="AbstractTomcatContainerController" href="../../../psiprobe/controllers/AbstractTomcatContainerController.html#AbstractTomcatContainerController">AbstractTomcatContainerController</a> {
 <a class="jxr_linenumber" name="L33" href="#L33">33</a>  
 <a class="jxr_linenumber" name="L34" href="#L34">34</a>    @RequestMapping(path = <span class="jxr_string">"/datasourcegroups.htm"</span>)
 <a class="jxr_linenumber" name="L35" href="#L35">35</a>    @Override
@@ -76,10 +76,10 @@
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>      });
 <a class="jxr_linenumber" name="L69" href="#L69">69</a>  
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>      <em class="jxr_comment">// group datasources by JDBC URL and calculate aggregated totals</em>
-<a class="jxr_linenumber" name="L71" href="#L71">71</a>      <a href="../../../psiprobe/model/DataSourceInfoGroup.html">DataSourceInfoGroup</a> dsGroup = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>      <a name="DataSourceInfoGroup" href="../../../psiprobe/model/DataSourceInfoGroup.html#DataSourceInfoGroup">DataSourceInfoGroup</a> dsGroup = <strong class="jxr_keyword">null</strong>;
 <a class="jxr_linenumber" name="L72" href="#L72">72</a>      <strong class="jxr_keyword">for</strong> (DataSourceInfo ds : dataSources) {
 <a class="jxr_linenumber" name="L73" href="#L73">73</a>        <strong class="jxr_keyword">if</strong> (dsGroup == <strong class="jxr_keyword">null</strong> || !dsGroup.getJdbcUrl().equalsIgnoreCase(ds.getJdbcUrl())) {
-<a class="jxr_linenumber" name="L74" href="#L74">74</a>          dsGroup = <strong class="jxr_keyword">new</strong> <a href="../../../psiprobe/model/DataSourceInfoGroup.html">DataSourceInfoGroup</a>().builder(ds);
+<a class="jxr_linenumber" name="L74" href="#L74">74</a>          dsGroup = <strong class="jxr_keyword">new</strong> <a name="DataSourceInfoGroup" href="../../../psiprobe/model/DataSourceInfoGroup.html#DataSourceInfoGroup">DataSourceInfoGroup</a>().builder(ds);
 <a class="jxr_linenumber" name="L75" href="#L75">75</a>          dataSourceGroups.add(dsGroup);
 <a class="jxr_linenumber" name="L76" href="#L76">76</a>        } <strong class="jxr_keyword">else</strong> {
 <a class="jxr_linenumber" name="L77" href="#L77">77</a>          dsGroup.addDataSourceInfo(ds);
@@ -98,7 +98,7 @@
 <a class="jxr_linenumber" name="L90" href="#L90">90</a>    <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">void</strong> filterValidDataSources(List&lt;ApplicationResource&gt; resources,
 <a class="jxr_linenumber" name="L91" href="#L91">91</a>        List&lt;DataSourceInfo&gt; dataSources) {
 <a class="jxr_linenumber" name="L92" href="#L92">92</a>  
-<a class="jxr_linenumber" name="L93" href="#L93">93</a>      <strong class="jxr_keyword">for</strong> (ApplicationResource res : resources) {
+<a class="jxr_linenumber" name="L93" href="#L93">93</a>      <strong class="jxr_keyword">for</strong> (<a name="ApplicationResource" href="../../../psiprobe/model/ApplicationResource.html#ApplicationResource">ApplicationResource</a> res : resources) {
 <a class="jxr_linenumber" name="L94" href="#L94">94</a>        <strong class="jxr_keyword">if</strong> (res.isLookedUp() &amp;&amp; res.getDataSourceInfo() != <strong class="jxr_keyword">null</strong>
 <a class="jxr_linenumber" name="L95" href="#L95">95</a>            &amp;&amp; res.getDataSourceInfo().getJdbcUrl() != <strong class="jxr_keyword">null</strong>) {
 <a class="jxr_linenumber" name="L96" href="#L96">96</a>          dataSources.add(res.getDataSourceInfo());

@@ -13,13 +13,11 @@ package psiprobe.controllers.sql;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
-
 import psiprobe.model.sql.DataSourceTestInfo;
 import psiprobe.tools.TimeExpression;
 
@@ -28,7 +26,7 @@ import psiprobe.tools.TimeExpression;
  * fields of the view.
  */
 @Controller
-<span class="fc" id="L31">public class DataSourceTestController extends ParameterizableViewController {</span>
+<span class="fc" id="L29">public class DataSourceTestController extends ParameterizableViewController {</span>
 
   /** The max rows. */
   private int maxRows;
@@ -49,37 +47,37 @@ import psiprobe.tools.TimeExpression;
   @Override
   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
       throws Exception {
-<span class="nc" id="L52">    return super.handleRequest(request, response);</span>
+<span class="nc" id="L50">    return super.handleRequest(request, response);</span>
   }
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 
-<span class="nc" id="L59">    HttpSession sess = request.getSession(false);</span>
+<span class="nc" id="L57">    HttpSession sess = request.getSession(false);</span>
 
-<span class="nc" id="L61">    DataSourceTestInfo sessData = null;</span>
+<span class="nc" id="L59">    DataSourceTestInfo sessData = null;</span>
 
-<span class="nc bnc" id="L63" title="All 2 branches missed.">    if (sess != null) {</span>
-<span class="nc" id="L64">      sessData = (DataSourceTestInfo) sess.getAttribute(DataSourceTestInfo.DS_TEST_SESS_ATTR);</span>
+<span class="nc bnc" id="L61" title="All 2 branches missed.">    if (sess != null) {</span>
+<span class="nc" id="L62">      sessData = (DataSourceTestInfo) sess.getAttribute(DataSourceTestInfo.DS_TEST_SESS_ATTR);</span>
     }
 
-<span class="nc" id="L67">    String referer = request.getHeader(&quot;Referer&quot;);</span>
+<span class="nc" id="L65">    String referer = request.getHeader(&quot;Referer&quot;);</span>
     String backUrl;
-<span class="nc bnc" id="L69" title="All 2 branches missed.">    if (referer != null) {</span>
-<span class="nc" id="L70">      backUrl = referer.replaceAll(replacePattern, &quot;&quot;);</span>
+<span class="nc bnc" id="L67" title="All 2 branches missed.">    if (referer != null) {</span>
+<span class="nc" id="L68">      backUrl = referer.replaceAll(replacePattern, &quot;&quot;);</span>
     } else {
-<span class="nc" id="L72">      backUrl = null;</span>
+<span class="nc" id="L70">      backUrl = null;</span>
     }
 
-<span class="nc" id="L75">    return new ModelAndView(getViewName())</span>
-<span class="nc" id="L76">        .addObject(&quot;maxRows&quot;,</span>
-<span class="nc bnc" id="L77" title="All 2 branches missed.">            String.valueOf(sessData == null ? getMaxRows() : sessData.getMaxRows()))</span>
-<span class="nc" id="L78">        .addObject(&quot;rowsPerPage&quot;,</span>
-<span class="nc bnc" id="L79" title="All 2 branches missed.">            String.valueOf(sessData == null ? getRowsPerPage() : sessData.getRowsPerPage()))</span>
-<span class="nc" id="L80">        .addObject(&quot;historySize&quot;,</span>
-<span class="nc bnc" id="L81" title="All 2 branches missed.">            String.valueOf(sessData == null ? getHistorySize() : sessData.getHistorySize()))</span>
-<span class="nc" id="L82">        .addObject(&quot;backURL&quot;, backUrl).addObject(&quot;collectionPeriod&quot;, getCollectionPeriod());</span>
+<span class="nc" id="L73">    return new ModelAndView(getViewName())</span>
+<span class="nc" id="L74">        .addObject(&quot;maxRows&quot;,</span>
+<span class="nc bnc" id="L75" title="All 2 branches missed.">            String.valueOf(sessData == null ? getMaxRows() : sessData.getMaxRows()))</span>
+<span class="nc" id="L76">        .addObject(&quot;rowsPerPage&quot;,</span>
+<span class="nc bnc" id="L77" title="All 2 branches missed.">            String.valueOf(sessData == null ? getRowsPerPage() : sessData.getRowsPerPage()))</span>
+<span class="nc" id="L78">        .addObject(&quot;historySize&quot;,</span>
+<span class="nc bnc" id="L79" title="All 2 branches missed.">            String.valueOf(sessData == null ? getHistorySize() : sessData.getHistorySize()))</span>
+<span class="nc" id="L80">        .addObject(&quot;backURL&quot;, backUrl).addObject(&quot;collectionPeriod&quot;, getCollectionPeriod());</span>
   }
 
   /**
@@ -88,7 +86,7 @@ import psiprobe.tools.TimeExpression;
    * @return the collection period
    */
   public long getCollectionPeriod() {
-<span class="fc" id="L91">    return collectionPeriod;</span>
+<span class="fc" id="L89">    return collectionPeriod;</span>
   }
 
   /**
@@ -97,8 +95,8 @@ import psiprobe.tools.TimeExpression;
    * @param collectionPeriod the new collection period
    */
   public void setCollectionPeriod(long collectionPeriod) {
-<span class="fc" id="L100">    this.collectionPeriod = collectionPeriod;</span>
-<span class="fc" id="L101">  }</span>
+<span class="fc" id="L98">    this.collectionPeriod = collectionPeriod;</span>
+<span class="fc" id="L99">  }</span>
 
   /**
    * Sets the collection period using expression.
@@ -107,8 +105,8 @@ import psiprobe.tools.TimeExpression;
    */
   @Value(&quot;${psiprobe.beans.stats.collectors.connector.period}&quot;)
   public void setCollectionPeriod(String collectionPeriod) {
-<span class="nc" id="L110">    this.collectionPeriod = TimeExpression.inSeconds(collectionPeriod);</span>
-<span class="nc" id="L111">  }</span>
+<span class="nc" id="L108">    this.collectionPeriod = TimeExpression.inSeconds(collectionPeriod);</span>
+<span class="nc" id="L109">  }</span>
 
   /**
    * Gets the max rows.
@@ -116,7 +114,7 @@ import psiprobe.tools.TimeExpression;
    * @return the max rows
    */
   public int getMaxRows() {
-<span class="fc" id="L119">    return maxRows;</span>
+<span class="fc" id="L117">    return maxRows;</span>
   }
 
   /**
@@ -126,8 +124,8 @@ import psiprobe.tools.TimeExpression;
    */
   @Value(&quot;1000&quot;)
   public void setMaxRows(int maxRows) {
-<span class="fc" id="L129">    this.maxRows = maxRows;</span>
-<span class="fc" id="L130">  }</span>
+<span class="fc" id="L127">    this.maxRows = maxRows;</span>
+<span class="fc" id="L128">  }</span>
 
   /**
    * Gets the rows per page.
@@ -135,7 +133,7 @@ import psiprobe.tools.TimeExpression;
    * @return the rows per page
    */
   public int getRowsPerPage() {
-<span class="fc" id="L138">    return rowsPerPage;</span>
+<span class="fc" id="L136">    return rowsPerPage;</span>
   }
 
   /**
@@ -145,8 +143,8 @@ import psiprobe.tools.TimeExpression;
    */
   @Value(&quot;50&quot;)
   public void setRowsPerPage(int rowsPerPage) {
-<span class="fc" id="L148">    this.rowsPerPage = rowsPerPage;</span>
-<span class="fc" id="L149">  }</span>
+<span class="fc" id="L146">    this.rowsPerPage = rowsPerPage;</span>
+<span class="fc" id="L147">  }</span>
 
   /**
    * Gets the history size.
@@ -154,7 +152,7 @@ import psiprobe.tools.TimeExpression;
    * @return the history size
    */
   public int getHistorySize() {
-<span class="fc" id="L157">    return historySize;</span>
+<span class="fc" id="L155">    return historySize;</span>
   }
 
   /**
@@ -164,8 +162,8 @@ import psiprobe.tools.TimeExpression;
    */
   @Value(&quot;30&quot;)
   public void setHistorySize(int historySize) {
-<span class="fc" id="L167">    this.historySize = historySize;</span>
-<span class="fc" id="L168">  }</span>
+<span class="fc" id="L165">    this.historySize = historySize;</span>
+<span class="fc" id="L166">  }</span>
 
   /**
    * Gets the replace pattern.
@@ -173,7 +171,7 @@ import psiprobe.tools.TimeExpression;
    * @return the replace pattern
    */
   public String getReplacePattern() {
-<span class="fc" id="L176">    return replacePattern;</span>
+<span class="fc" id="L174">    return replacePattern;</span>
   }
 
   /**
@@ -183,14 +181,14 @@ import psiprobe.tools.TimeExpression;
    */
   @Value(&quot;^http(s)?://[a-zA-Z\\-\\.0-9]+(:[0-9]+)?&quot;)
   public void setReplacePattern(String replacePattern) {
-<span class="fc" id="L186">    this.replacePattern = replacePattern;</span>
-<span class="fc" id="L187">  }</span>
+<span class="fc" id="L184">    this.replacePattern = replacePattern;</span>
+<span class="fc" id="L185">  }</span>
 
   @Value(&quot;datasourcetest&quot;)
   @Override
   public void setViewName(String viewName) {
-<span class="fc" id="L192">    super.setViewName(viewName);</span>
-<span class="fc" id="L193">  }</span>
+<span class="fc" id="L190">    super.setViewName(viewName);</span>
+<span class="fc" id="L191">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

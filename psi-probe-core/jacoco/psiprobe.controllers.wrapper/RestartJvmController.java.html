@@ -12,7 +12,6 @@ package psiprobe.controllers.wrapper;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,40 +25,40 @@ import org.tanukisoftware.wrapper.WrapperManager;
  * The Class RestartJvmController.
  */
 @Controller
-<span class="nc" id="L29">public class RestartJvmController extends ParameterizableViewController {</span>
+<span class="nc" id="L28">public class RestartJvmController extends ParameterizableViewController {</span>
 
   /** The Constant logger. */
-<span class="nc" id="L32">  private static final Logger logger = LoggerFactory.getLogger(RestartJvmController.class);</span>
+<span class="nc" id="L31">  private static final Logger logger = LoggerFactory.getLogger(RestartJvmController.class);</span>
 
   @RequestMapping(path = &quot;/adm/restartvm.ajax&quot;)
   @Override
   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
       throws Exception {
-<span class="nc" id="L38">    return super.handleRequest(request, response);</span>
+<span class="nc" id="L37">    return super.handleRequest(request, response);</span>
   }
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 
-<span class="nc" id="L45">    boolean done = false;</span>
+<span class="nc" id="L44">    boolean done = false;</span>
     try {
-<span class="nc" id="L47">      Class.forName(&quot;org.tanukisoftware.wrapper.WrapperManager&quot;);</span>
-<span class="nc" id="L48">      logger.info(&quot;JVM is RESTARTED by {}&quot;, request.getRemoteAddr());</span>
-<span class="nc" id="L49">      WrapperManager.restartAndReturn();</span>
-<span class="nc" id="L50">      done = true;</span>
-<span class="nc" id="L51">    } catch (ClassNotFoundException e) {</span>
-<span class="nc" id="L52">      logger.info(&quot;WrapperManager not found. Do you have wrapper.jar in the classpath?&quot;);</span>
-<span class="nc" id="L53">      logger.trace(&quot;&quot;, e);</span>
-<span class="nc" id="L54">    }</span>
-<span class="nc" id="L55">    return new ModelAndView(getViewName(), &quot;done&quot;, done);</span>
+<span class="nc" id="L46">      Class.forName(&quot;org.tanukisoftware.wrapper.WrapperManager&quot;);</span>
+<span class="nc" id="L47">      logger.info(&quot;JVM is RESTARTED by {}&quot;, request.getRemoteAddr());</span>
+<span class="nc" id="L48">      WrapperManager.restartAndReturn();</span>
+<span class="nc" id="L49">      done = true;</span>
+<span class="nc" id="L50">    } catch (ClassNotFoundException e) {</span>
+<span class="nc" id="L51">      logger.info(&quot;WrapperManager not found. Do you have wrapper.jar in the classpath?&quot;);</span>
+<span class="nc" id="L52">      logger.trace(&quot;&quot;, e);</span>
+<span class="nc" id="L53">    }</span>
+<span class="nc" id="L54">    return new ModelAndView(getViewName(), &quot;done&quot;, done);</span>
   }
 
   @Value(&quot;ajax/jvm_restarted&quot;)
   @Override
   public void setViewName(String viewName) {
-<span class="nc" id="L61">    super.setViewName(viewName);</span>
-<span class="nc" id="L62">  }</span>
+<span class="nc" id="L60">    super.setViewName(viewName);</span>
+<span class="nc" id="L61">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

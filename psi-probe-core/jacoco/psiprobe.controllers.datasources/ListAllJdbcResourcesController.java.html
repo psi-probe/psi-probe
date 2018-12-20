@@ -11,15 +11,12 @@
 package psiprobe.controllers.datasources;
 
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
 import psiprobe.controllers.AbstractTomcatContainerController;
 import psiprobe.model.ApplicationResource;
 
@@ -27,38 +24,38 @@ import psiprobe.model.ApplicationResource;
  * Creates a list of all configured datasources for all web applications within the container.
  */
 @Controller
-<span class="nc" id="L30">public class ListAllJdbcResourcesController extends AbstractTomcatContainerController {</span>
+<span class="nc" id="L27">public class ListAllJdbcResourcesController extends AbstractTomcatContainerController {</span>
 
   @RequestMapping(path = &quot;/datasources.htm&quot;)
   @Override
   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
       throws Exception {
-<span class="nc" id="L36">    return super.handleRequest(request, response);</span>
+<span class="nc" id="L33">    return super.handleRequest(request, response);</span>
   }
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse httpServletResponse) throws Exception {
 
-<span class="nc" id="L43">    boolean supportsGlobal = getContainerWrapper().getResourceResolver().supportsGlobalResources();</span>
-<span class="nc" id="L44">    boolean supportsPrivate =</span>
-<span class="nc" id="L45">        getContainerWrapper().getResourceResolver().supportsPrivateResources();</span>
-<span class="nc" id="L46">    boolean supportsDataSourceLookup =</span>
-<span class="nc" id="L47">        getContainerWrapper().getResourceResolver().supportsDataSourceLookup();</span>
-<span class="nc" id="L48">    List&lt;ApplicationResource&gt; privateResources = getContainerWrapper().getPrivateDataSources();</span>
-<span class="nc" id="L49">    List&lt;ApplicationResource&gt; globalResources = getContainerWrapper().getGlobalDataSources();</span>
-<span class="nc" id="L50">    return new ModelAndView(getViewName()).addObject(&quot;supportsGlobal&quot;, supportsGlobal)</span>
-<span class="nc" id="L51">        .addObject(&quot;supportsPrivate&quot;, supportsPrivate)</span>
-<span class="nc" id="L52">        .addObject(&quot;supportsDSLookup&quot;, supportsDataSourceLookup)</span>
-<span class="nc" id="L53">        .addObject(&quot;privateResources&quot;, privateResources)</span>
-<span class="nc" id="L54">        .addObject(&quot;globalResources&quot;, globalResources);</span>
+<span class="nc" id="L40">    boolean supportsGlobal = getContainerWrapper().getResourceResolver().supportsGlobalResources();</span>
+<span class="nc" id="L41">    boolean supportsPrivate =</span>
+<span class="nc" id="L42">        getContainerWrapper().getResourceResolver().supportsPrivateResources();</span>
+<span class="nc" id="L43">    boolean supportsDataSourceLookup =</span>
+<span class="nc" id="L44">        getContainerWrapper().getResourceResolver().supportsDataSourceLookup();</span>
+<span class="nc" id="L45">    List&lt;ApplicationResource&gt; privateResources = getContainerWrapper().getPrivateDataSources();</span>
+<span class="nc" id="L46">    List&lt;ApplicationResource&gt; globalResources = getContainerWrapper().getGlobalDataSources();</span>
+<span class="nc" id="L47">    return new ModelAndView(getViewName()).addObject(&quot;supportsGlobal&quot;, supportsGlobal)</span>
+<span class="nc" id="L48">        .addObject(&quot;supportsPrivate&quot;, supportsPrivate)</span>
+<span class="nc" id="L49">        .addObject(&quot;supportsDSLookup&quot;, supportsDataSourceLookup)</span>
+<span class="nc" id="L50">        .addObject(&quot;privateResources&quot;, privateResources)</span>
+<span class="nc" id="L51">        .addObject(&quot;globalResources&quot;, globalResources);</span>
   }
 
   @Value(&quot;datasources&quot;)
   @Override
   public void setViewName(String viewName) {
-<span class="nc" id="L60">    super.setViewName(viewName);</span>
-<span class="nc" id="L61">  }</span>
+<span class="nc" id="L57">    super.setViewName(viewName);</span>
+<span class="nc" id="L58">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

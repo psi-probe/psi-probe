@@ -11,11 +11,12 @@
 package psiprobe.model.stats;
 
 import com.thoughtworks.xstream.XStream;
-
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -23,30 +24,27 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeMap;
-
 import org.jfree.data.xy.XYDataItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.web.context.WebApplicationContext;
-
 import psiprobe.tools.UpdateCommitLock;
 
 /**
  * The Class StatsCollection.
  */
-<span class="fc" id="L43">public class StatsCollection implements InitializingBean, DisposableBean, ApplicationContextAware {</span>
+<span class="fc" id="L41">public class StatsCollection implements InitializingBean, DisposableBean, ApplicationContextAware {</span>
 
   /** The Constant logger. */
-<span class="fc" id="L46">  private static final Logger logger = LoggerFactory.getLogger(StatsCollection.class);</span>
+<span class="fc" id="L44">  private static final Logger logger = LoggerFactory.getLogger(StatsCollection.class);</span>
 
   /** The stats data. */
-<span class="fc" id="L49">  private Map&lt;String, List&lt;XYDataItem&gt;&gt; statsData = new TreeMap&lt;&gt;();</span>
+<span class="fc" id="L47">  private Map&lt;String, List&lt;XYDataItem&gt;&gt; statsData = new TreeMap&lt;&gt;();</span>
 
   /** The swap file name. */
   private String swapFileName;
@@ -58,10 +56,10 @@ import psiprobe.tools.UpdateCommitLock;
   private File contextTempDir;
 
   /** The max files. */
-<span class="fc" id="L61">  private int maxFiles = 2;</span>
+<span class="fc" id="L59">  private int maxFiles = 2;</span>
 
   /** The lock. */
-<span class="fc" id="L64">  private final UpdateCommitLock lock = new UpdateCommitLock();</span>
+<span class="fc" id="L62">  private final UpdateCommitLock lock = new UpdateCommitLock();</span>
 
   /**
    * Gets the swap file name.
@@ -69,7 +67,7 @@ import psiprobe.tools.UpdateCommitLock;
    * @return the swap file name
    */
   public String getSwapFileName() {
-<span class="fc" id="L72">    return swapFileName;</span>
+<span class="fc" id="L70">    return swapFileName;</span>
   }
 
   /**
@@ -79,8 +77,8 @@ import psiprobe.tools.UpdateCommitLock;
    */
   @Value(&quot;stats.xml&quot;)
   public void setSwapFileName(String swapFileName) {
-<span class="fc" id="L82">    this.swapFileName = swapFileName;</span>
-<span class="fc" id="L83">  }</span>
+<span class="fc" id="L80">    this.swapFileName = swapFileName;</span>
+<span class="fc" id="L81">  }</span>
 
   /**
    * Gets the storage path.
@@ -88,20 +86,19 @@ import psiprobe.tools.UpdateCommitLock;
    * @return the storage path
    */
   public String getStoragePath() {
-<span class="fc" id="L91">    return storagePath;</span>
+<span class="fc" id="L89">    return storagePath;</span>
   }
 
   /**
-   * Sets the storage path. The default location for the stat files
-   * is $CALALINA_BASE/work/&amp;lt;hostname&amp;gt;/&amp;lt;context_name&amp;gt;.
-   * Use this property to override it.
+   * Sets the storage path. The default location for the stat files is
+   * $CALALINA_BASE/work/&amp;lt;hostname&amp;gt;/&amp;lt;context_name&amp;gt;. Use this property to override it.
    *
    * @param storagePath the new storage path
    */
   // TODO We should make this configurable
   public void setStoragePath(String storagePath) {
-<span class="fc" id="L103">    this.storagePath = storagePath;</span>
-<span class="fc" id="L104">  }</span>
+<span class="fc" id="L100">    this.storagePath = storagePath;</span>
+<span class="fc" id="L101">  }</span>
 
   /**
    * Checks if is collected.
@@ -110,7 +107,7 @@ import psiprobe.tools.UpdateCommitLock;
    * @return true, if is collected
    */
   public synchronized boolean isCollected(String statsName) {
-<span class="nc bnc" id="L113" title="All 2 branches missed.">    return statsData.get(statsName) != null;</span>
+<span class="nc bnc" id="L110" title="All 2 branches missed.">    return statsData.get(statsName) != null;</span>
   }
 
   /**
@@ -119,7 +116,7 @@ import psiprobe.tools.UpdateCommitLock;
    * @return the max files
    */
   public int getMaxFiles() {
-<span class="fc" id="L122">    return maxFiles;</span>
+<span class="fc" id="L119">    return maxFiles;</span>
   }
 
   /**
@@ -128,8 +125,8 @@ import psiprobe.tools.UpdateCommitLock;
    * @param maxFiles the new max files
    */
   public void setMaxFiles(int maxFiles) {
-<span class="pc bpc" id="L131" title="1 of 2 branches missed.">    this.maxFiles = maxFiles &gt; 0 ? maxFiles : 2;</span>
-<span class="fc" id="L132">  }</span>
+<span class="pc bpc" id="L128" title="1 of 2 branches missed.">    this.maxFiles = maxFiles &gt; 0 ? maxFiles : 2;</span>
+<span class="fc" id="L129">  }</span>
 
   /**
    * New stats.
@@ -139,9 +136,9 @@ import psiprobe.tools.UpdateCommitLock;
    * @return the list
    */
   public synchronized List&lt;XYDataItem&gt; newStats(String name, int maxElements) {
-<span class="nc" id="L142">    List&lt;XYDataItem&gt; stats = Collections.synchronizedList(new ArrayList&lt;XYDataItem&gt;(maxElements));</span>
-<span class="nc" id="L143">    statsData.put(name, stats);</span>
-<span class="nc" id="L144">    return stats;</span>
+<span class="nc" id="L139">    List&lt;XYDataItem&gt; stats = Collections.synchronizedList(new ArrayList&lt;XYDataItem&gt;(maxElements));</span>
+<span class="nc" id="L140">    statsData.put(name, stats);</span>
+<span class="nc" id="L141">    return stats;</span>
   }
 
   /**
@@ -150,11 +147,11 @@ import psiprobe.tools.UpdateCommitLock;
    * @param name the name
    */
   public synchronized void resetStats(String name) {
-<span class="nc" id="L153">    List&lt;XYDataItem&gt; stats = getStats(name);</span>
-<span class="nc bnc" id="L154" title="All 2 branches missed.">    if (stats != null) {</span>
-<span class="nc" id="L155">      stats.clear();</span>
+<span class="nc" id="L150">    List&lt;XYDataItem&gt; stats = getStats(name);</span>
+<span class="nc bnc" id="L151" title="All 2 branches missed.">    if (stats != null) {</span>
+<span class="nc" id="L152">      stats.clear();</span>
     }
-<span class="nc" id="L157">  }</span>
+<span class="nc" id="L154">  }</span>
 
   /**
    * Gets the stats.
@@ -163,7 +160,7 @@ import psiprobe.tools.UpdateCommitLock;
    * @return the stats
    */
   public synchronized List&lt;XYDataItem&gt; getStats(String name) {
-<span class="nc" id="L166">    return statsData.get(name);</span>
+<span class="nc" id="L163">    return statsData.get(name);</span>
   }
 
   /**
@@ -173,17 +170,17 @@ import psiprobe.tools.UpdateCommitLock;
    * @return the last value for stat
    */
   public long getLastValueForStat(String statName) {
-<span class="nc" id="L176">    long statValue = 0;</span>
+<span class="nc" id="L173">    long statValue = 0;</span>
 
-<span class="nc" id="L178">    List&lt;XYDataItem&gt; stats = getStats(statName);</span>
-<span class="nc bnc" id="L179" title="All 4 branches missed.">    if (stats != null &amp;&amp; !stats.isEmpty()) {</span>
-<span class="nc" id="L180">      XYDataItem xy = stats.get(stats.size() - 1);</span>
-<span class="nc bnc" id="L181" title="All 4 branches missed.">      if (xy != null &amp;&amp; xy.getY() != null) {</span>
-<span class="nc" id="L182">        statValue = xy.getY().longValue();</span>
+<span class="nc" id="L175">    List&lt;XYDataItem&gt; stats = getStats(statName);</span>
+<span class="nc bnc" id="L176" title="All 4 branches missed.">    if (stats != null &amp;&amp; !stats.isEmpty()) {</span>
+<span class="nc" id="L177">      XYDataItem xy = stats.get(stats.size() - 1);</span>
+<span class="nc bnc" id="L178" title="All 4 branches missed.">      if (xy != null &amp;&amp; xy.getY() != null) {</span>
+<span class="nc" id="L179">        statValue = xy.getY().longValue();</span>
       }
     }
 
-<span class="nc" id="L186">    return statValue;</span>
+<span class="nc" id="L183">    return statValue;</span>
   }
 
   /**
@@ -194,13 +191,13 @@ import psiprobe.tools.UpdateCommitLock;
    *         series.
    */
   public synchronized Map&lt;String, List&lt;XYDataItem&gt;&gt; getStatsByPrefix(String statNamePrefix) {
-<span class="nc" id="L197">    Map&lt;String, List&lt;XYDataItem&gt;&gt; map = new HashMap&lt;&gt;();</span>
-<span class="nc bnc" id="L198" title="All 2 branches missed.">    for (Map.Entry&lt;String, List&lt;XYDataItem&gt;&gt; en : statsData.entrySet()) {</span>
-<span class="nc bnc" id="L199" title="All 2 branches missed.">      if (en.getKey().startsWith(statNamePrefix)) {</span>
-<span class="nc" id="L200">        map.put(en.getKey(), en.getValue());</span>
+<span class="nc" id="L194">    Map&lt;String, List&lt;XYDataItem&gt;&gt; map = new HashMap&lt;&gt;();</span>
+<span class="nc bnc" id="L195" title="All 2 branches missed.">    for (Map.Entry&lt;String, List&lt;XYDataItem&gt;&gt; en : statsData.entrySet()) {</span>
+<span class="nc bnc" id="L196" title="All 2 branches missed.">      if (en.getKey().startsWith(statNamePrefix)) {</span>
+<span class="nc" id="L197">        map.put(en.getKey(), en.getValue());</span>
       }
-<span class="nc" id="L202">    }</span>
-<span class="nc" id="L203">    return map;</span>
+<span class="nc" id="L199">    }</span>
+<span class="nc" id="L200">    return map;</span>
   }
 
   /**
@@ -209,8 +206,8 @@ import psiprobe.tools.UpdateCommitLock;
    * @return the file
    */
   private File makeFile() {
-<span class="nc bnc" id="L212" title="All 2 branches missed.">    return storagePath == null ? new File(contextTempDir, swapFileName)</span>
-<span class="nc" id="L213">        : new File(storagePath, swapFileName);</span>
+<span class="nc bnc" id="L209" title="All 2 branches missed.">    return storagePath == null ? new File(contextTempDir, swapFileName)</span>
+<span class="nc" id="L210">        : new File(storagePath, swapFileName);</span>
   }
 
   /**
@@ -219,20 +216,22 @@ import psiprobe.tools.UpdateCommitLock;
    * @param index the index
    */
   private void shiftFiles(int index) {
-<span class="nc bnc" id="L222" title="All 2 branches missed.">    if (index &gt;= maxFiles - 1) {</span>
-<span class="nc bnc" id="L223" title="All 2 branches missed.">      if (!new File(makeFile().getAbsolutePath() + &quot;.&quot; + index).delete()) {</span>
-<span class="nc" id="L224">        logger.error(&quot;Could not delete file {}&quot;,</span>
-<span class="nc" id="L225">            new File(makeFile().getAbsolutePath() + &quot;.&quot; + index).getName());</span>
-      }
+<span class="nc bnc" id="L219" title="All 2 branches missed.">    if (index &gt;= maxFiles - 1) {</span>
+      try {
+<span class="nc" id="L221">        Files.delete(Paths.get(makeFile().getAbsolutePath() + &quot;.&quot; + index));</span>
+<span class="nc" id="L222">      } catch (IOException e) {</span>
+<span class="nc" id="L223">        logger.error(&quot;Could not delete file {}&quot;,</span>
+<span class="nc" id="L224">            new File(makeFile().getAbsolutePath() + &quot;.&quot; + index).getName());</span>
+<span class="nc" id="L225">      }</span>
     } else {
-<span class="nc" id="L228">      shiftFiles(index + 1);</span>
-<span class="nc bnc" id="L229" title="All 2 branches missed.">      File srcFile = index == 0 ? makeFile() : new File(makeFile().getAbsolutePath() + &quot;.&quot; + index);</span>
-<span class="nc" id="L230">      File destFile = new File(makeFile().getAbsolutePath() + &quot;.&quot; + (index + 1));</span>
-<span class="nc bnc" id="L231" title="All 2 branches missed.">      if (!srcFile.renameTo(destFile)) {</span>
-<span class="nc" id="L232">        logger.error(&quot;Could not rename file {} to {}&quot;, srcFile.getName(), destFile.getName());</span>
+<span class="nc" id="L227">      shiftFiles(index + 1);</span>
+<span class="nc bnc" id="L228" title="All 2 branches missed.">      File srcFile = index == 0 ? makeFile() : new File(makeFile().getAbsolutePath() + &quot;.&quot; + index);</span>
+<span class="nc" id="L229">      File destFile = new File(makeFile().getAbsolutePath() + &quot;.&quot; + (index + 1));</span>
+<span class="nc bnc" id="L230" title="All 2 branches missed.">      if (!srcFile.renameTo(destFile)) {</span>
+<span class="nc" id="L231">        logger.error(&quot;Could not rename file {} to {}&quot;, srcFile.getName(), destFile.getName());</span>
       }
     }
-<span class="nc" id="L235">  }</span>
+<span class="nc" id="L234">  }</span>
 
   /**
    * Writes stats data to file on disk.
@@ -240,20 +239,23 @@ import psiprobe.tools.UpdateCommitLock;
    * @throws InterruptedException if a lock cannot be obtained
    */
   public synchronized void serialize() throws InterruptedException {
-<span class="nc" id="L243">    lock.lockForCommit();</span>
-<span class="nc" id="L244">    long start = System.currentTimeMillis();</span>
+<span class="nc" id="L242">    lock.lockForCommit();</span>
+<span class="nc" id="L243">    long start = System.currentTimeMillis();</span>
     try {
-<span class="nc" id="L246">      shiftFiles(0);</span>
-<span class="nc" id="L247">      try (OutputStream os = new FileOutputStream(makeFile())) {</span>
-<span class="nc" id="L248">        new XStream().toXML(statsData, os);</span>
-<span class="nc" id="L249">      }</span>
-<span class="nc" id="L250">    } catch (Exception e) {</span>
-<span class="nc" id="L251">      logger.error(&quot;Could not write stats data to '{}'&quot;, makeFile().getAbsolutePath(), e);</span>
+<span class="nc" id="L245">      shiftFiles(0);</span>
+<span class="nc" id="L246">      try (OutputStream os = Files.newOutputStream(makeFile().toPath())) {</span>
+<span class="nc" id="L247">        XStream xstream = new XStream();</span>
+<span class="nc" id="L248">        xstream.allowTypesByWildcard(new String[] {&quot;psibrobe.model.stats.**&quot;});</span>
+<span class="nc" id="L249">        XStream.setupDefaultSecurity(xstream);</span>
+<span class="nc" id="L250">        xstream.toXML(statsData, os);</span>
+      }
+<span class="nc" id="L252">    } catch (Exception e) {</span>
+<span class="nc" id="L253">      logger.error(&quot;Could not write stats data to '{}'&quot;, makeFile().getAbsolutePath(), e);</span>
     } finally {
-<span class="nc" id="L253">      lock.releaseCommitLock();</span>
-<span class="nc" id="L254">      logger.debug(&quot;stats serialized in {}ms&quot;, System.currentTimeMillis() - start);</span>
-<span class="nc" id="L255">    }</span>
-<span class="nc" id="L256">  }</span>
+<span class="nc" id="L255">      lock.releaseCommitLock();</span>
+<span class="nc" id="L256">      logger.debug(&quot;stats serialized in {}ms&quot;, System.currentTimeMillis() - start);</span>
+    }
+<span class="nc" id="L258">  }</span>
 
   /**
    * Deserialize.
@@ -263,14 +265,14 @@ import psiprobe.tools.UpdateCommitLock;
    */
   @SuppressWarnings(&quot;unchecked&quot;)
   private Map&lt;String, List&lt;XYDataItem&gt;&gt; deserialize(File file) {
-<span class="nc" id="L266">    Map&lt;String, List&lt;XYDataItem&gt;&gt; stats = null;</span>
-<span class="nc bnc" id="L267" title="All 4 branches missed.">    if (file.exists() &amp;&amp; file.canRead()) {</span>
-<span class="nc" id="L268">      long start = System.currentTimeMillis();</span>
+<span class="nc" id="L268">    Map&lt;String, List&lt;XYDataItem&gt;&gt; stats = null;</span>
+<span class="nc bnc" id="L269" title="All 4 branches missed.">    if (file.exists() &amp;&amp; file.canRead()) {</span>
+<span class="nc" id="L270">      long start = System.currentTimeMillis();</span>
       try {
-<span class="nc" id="L270">        try (FileInputStream fis = new FileInputStream(file)) {</span>
-<span class="nc" id="L271">          stats = (Map&lt;String, List&lt;XYDataItem&gt;&gt;) (new XStream().fromXML(fis));</span>
+<span class="nc" id="L272">        try (InputStream fis = Files.newInputStream(file.toPath())) {</span>
+<span class="nc" id="L273">          stats = (Map&lt;String, List&lt;XYDataItem&gt;&gt;) (new XStream().fromXML(fis));</span>
 
-<span class="nc bnc" id="L273" title="All 2 branches missed.">          if (stats != null) {</span>
+<span class="nc bnc" id="L275" title="All 2 branches missed.">          if (stats != null) {</span>
             // adjust stats data so that charts look realistic.
             // we do that by ending the previous stats group with 0 value
             // and starting the current stats group also with 0
@@ -278,23 +280,23 @@ import psiprobe.tools.UpdateCommitLock;
             // and lets not bother about rotating stats;
             // regular stats collection cycle will do it
 
-<span class="nc bnc" id="L281" title="All 2 branches missed.">            for (Entry&lt;String, List&lt;XYDataItem&gt;&gt; set : stats.entrySet()) {</span>
-<span class="nc" id="L282">              List&lt;XYDataItem&gt; list = set.getValue();</span>
-<span class="nc bnc" id="L283" title="All 2 branches missed.">              if (!list.isEmpty()) {</span>
-<span class="nc" id="L284">                XYDataItem xy = list.get(list.size() - 1);</span>
-<span class="nc" id="L285">                list.add(new XYDataItem(xy.getX().longValue() + 1, 0));</span>
-<span class="nc" id="L286">                list.add(new XYDataItem(System.currentTimeMillis(), 0));</span>
+<span class="nc bnc" id="L283" title="All 2 branches missed.">            for (Entry&lt;String, List&lt;XYDataItem&gt;&gt; set : stats.entrySet()) {</span>
+<span class="nc" id="L284">              List&lt;XYDataItem&gt; list = set.getValue();</span>
+<span class="nc bnc" id="L285" title="All 2 branches missed.">              if (!list.isEmpty()) {</span>
+<span class="nc" id="L286">                XYDataItem xy = list.get(list.size() - 1);</span>
+<span class="nc" id="L287">                list.add(new XYDataItem(xy.getX().longValue() + 1, 0));</span>
+<span class="nc" id="L288">                list.add(new XYDataItem(System.currentTimeMillis(), 0));</span>
               }
-<span class="nc" id="L288">            }</span>
+<span class="nc" id="L290">            }</span>
           }
-<span class="nc" id="L290">        }</span>
-<span class="nc" id="L291">        logger.debug(&quot;stats data read in {}ms&quot;, System.currentTimeMillis() - start);</span>
-<span class="nc" id="L292">      } catch (Exception e) {</span>
-<span class="nc" id="L293">        logger.error(&quot;Could not read stats data from '{}'&quot;, file.getAbsolutePath(), e);</span>
-<span class="nc" id="L294">      }</span>
+        }
+<span class="nc" id="L293">        logger.debug(&quot;stats data read in {}ms&quot;, System.currentTimeMillis() - start);</span>
+<span class="nc" id="L294">      } catch (Exception e) {</span>
+<span class="nc" id="L295">        logger.error(&quot;Could not read stats data from '{}'&quot;, file.getAbsolutePath(), e);</span>
+<span class="nc" id="L296">      }</span>
     }
 
-<span class="nc" id="L297">    return stats;</span>
+<span class="nc" id="L299">    return stats;</span>
   }
 
   /**
@@ -303,51 +305,51 @@ import psiprobe.tools.UpdateCommitLock;
    * @throws InterruptedException the interrupted exception
    */
   public void lockForUpdate() throws InterruptedException {
-<span class="nc" id="L306">    lock.lockForUpdate();</span>
-<span class="nc" id="L307">  }</span>
+<span class="nc" id="L308">    lock.lockForUpdate();</span>
+<span class="nc" id="L309">  }</span>
 
   /**
    * Release lock.
    */
   public void releaseLock() {
-<span class="nc" id="L313">    lock.releaseUpdateLock();</span>
-<span class="nc" id="L314">  }</span>
+<span class="nc" id="L315">    lock.releaseUpdateLock();</span>
+<span class="nc" id="L316">  }</span>
 
   /**
    * Reads stats data from file on disk.
    */
   @Override
   public synchronized void afterPropertiesSet() {
-<span class="nc" id="L321">    int index = 0;</span>
+<span class="nc" id="L323">    int index = 0;</span>
     Map&lt;String, List&lt;XYDataItem&gt;&gt; stats;
 
     while (true) {
-<span class="nc bnc" id="L325" title="All 2 branches missed.">      File file = index == 0 ? makeFile() : new File(makeFile().getAbsolutePath() + &quot;.&quot; + index);</span>
-<span class="nc" id="L326">      stats = deserialize(file);</span>
-<span class="nc" id="L327">      index += 1;</span>
-<span class="nc bnc" id="L328" title="All 4 branches missed.">      if (stats != null || index &gt;= maxFiles - 1) {</span>
-<span class="nc" id="L329">        break;</span>
+<span class="nc bnc" id="L327" title="All 2 branches missed.">      File file = index == 0 ? makeFile() : new File(makeFile().getAbsolutePath() + &quot;.&quot; + index);</span>
+<span class="nc" id="L328">      stats = deserialize(file);</span>
+<span class="nc" id="L329">      index += 1;</span>
+<span class="nc bnc" id="L330" title="All 4 branches missed.">      if (stats != null || index &gt;= maxFiles - 1) {</span>
+<span class="nc" id="L331">        break;</span>
       }
-<span class="nc" id="L331">    }</span>
+<span class="nc" id="L333">    }</span>
 
-<span class="nc bnc" id="L333" title="All 2 branches missed.">    if (stats != null) {</span>
-<span class="nc" id="L334">      statsData = stats;</span>
+<span class="nc bnc" id="L335" title="All 2 branches missed.">    if (stats != null) {</span>
+<span class="nc" id="L336">      statsData = stats;</span>
     } else {
-<span class="nc" id="L336">      logger.debug(&quot;Stats data file not found. Empty file assumed.&quot;);</span>
+<span class="nc" id="L338">      logger.debug(&quot;Stats data file not found. Empty file assumed.&quot;);</span>
     }
 
-<span class="nc" id="L339">  }</span>
+<span class="nc" id="L341">  }</span>
 
   @Override
   public void destroy() throws Exception {
-<span class="nc" id="L343">    serialize();</span>
-<span class="nc" id="L344">  }</span>
+<span class="nc" id="L345">    serialize();</span>
+<span class="nc" id="L346">  }</span>
 
   @Override
-  public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-<span class="nc" id="L348">    WebApplicationContext wac = (WebApplicationContext) applicationContext;</span>
-<span class="nc" id="L349">    contextTempDir = (File) wac.getServletContext().getAttribute(&quot;javax.servlet.context.tempdir&quot;);</span>
-<span class="nc" id="L350">  }</span>
+  public void setApplicationContext(ApplicationContext applicationContext) {
+<span class="nc" id="L350">    WebApplicationContext wac = (WebApplicationContext) applicationContext;</span>
+<span class="nc" id="L351">    contextTempDir = (File) wac.getServletContext().getAttribute(&quot;javax.servlet.context.tempdir&quot;);</span>
+<span class="nc" id="L352">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -22,7 +22,7 @@ import java.util.Set;
 /**
  * The Class Instruments.
  */
-<span class="nc" id="L25">public class Instruments {</span>
+<span class="fc" id="L25">public class Instruments {</span>
 
   /** The Constant SIZE_VOID. */
   public static final long SIZE_VOID = 0;
@@ -58,29 +58,29 @@ import java.util.Set;
   public static final long SIZE_REFERENCE;
 
   /** The Constant ACCESSOR. */
-<span class="nc" id="L61">  private static final Accessor ACCESSOR = AccessorFactory.getInstance();</span>
+<span class="fc" id="L61">  private static final Accessor ACCESSOR = AccessorFactory.getInstance();</span>
 
   /** The Constant IGNORE_NIO. */
   private static final boolean IGNORE_NIO;
 
   static {
-<span class="nc" id="L67">    String ignoreNioProp = System.getProperty(&quot;psiprobe.intruments.ignoreNIO&quot;);</span>
-<span class="nc" id="L68">    String os64bitProp = System.getProperty(&quot;sun.arch.data.model&quot;);</span>
-<span class="nc bnc" id="L69" title="All 4 branches missed.">    IGNORE_NIO = ignoreNioProp == null || &quot;true&quot;.equalsIgnoreCase(ignoreNioProp);</span>
-<span class="nc bnc" id="L70" title="All 2 branches missed.">    SIZE_REFERENCE = &quot;64&quot;.equals(os64bitProp) ? 8 : 4;</span>
-<span class="nc" id="L71">  }</span>
+<span class="fc" id="L67">    String ignoreNioProp = System.getProperty(&quot;psiprobe.intruments.ignoreNIO&quot;);</span>
+<span class="fc" id="L68">    String os64bitProp = System.getProperty(&quot;sun.arch.data.model&quot;);</span>
+<span class="pc bpc" id="L69" title="3 of 4 branches missed.">    IGNORE_NIO = ignoreNioProp == null || &quot;true&quot;.equalsIgnoreCase(ignoreNioProp);</span>
+<span class="pc bpc" id="L70" title="1 of 2 branches missed.">    SIZE_REFERENCE = &quot;64&quot;.equals(os64bitProp) ? 8 : 4;</span>
+<span class="fc" id="L71">  }</span>
 
   /** The processed objects. */
-<span class="nc" id="L74">  private Set&lt;Object&gt; processedObjects = new HashSet&lt;&gt;(2048);</span>
+<span class="fc" id="L74">  private Set&lt;Object&gt; processedObjects = new HashSet&lt;&gt;(2048);</span>
 
   /** The this queue. */
-<span class="nc" id="L77">  private final List&lt;Object&gt; thisQueue = new LinkedList&lt;&gt;();</span>
+<span class="fc" id="L77">  private final List&lt;Object&gt; thisQueue = new LinkedList&lt;&gt;();</span>
 
   /** The next queue. */
-<span class="nc" id="L80">  private final List&lt;Object&gt; nextQueue = new LinkedList&lt;&gt;();</span>
+<span class="fc" id="L80">  private final List&lt;Object&gt; nextQueue = new LinkedList&lt;&gt;();</span>
 
   /** The class loader. */
-<span class="nc" id="L83">  private ClassLoader classLoader = null;</span>
+<span class="fc" id="L83">  private ClassLoader classLoader = null;</span>
 
   /**
    * Size of.
@@ -89,7 +89,7 @@ import java.util.Set;
    * @return the long
    */
   public static long sizeOf(Object obj) {
-<span class="nc" id="L92">    return new Instruments().internalSizeOf(obj);</span>
+<span class="fc" id="L92">    return new Instruments().internalSizeOf(obj);</span>
   }
 
   /**
@@ -125,36 +125,36 @@ import java.util.Set;
    * @return the long
    */
   private long internalSizeOf(Object root) {
-<span class="nc" id="L128">    long size = 0;</span>
-<span class="nc" id="L129">    thisQueue.add(root);</span>
-<span class="nc bnc" id="L130" title="All 2 branches missed.">    while (!thisQueue.isEmpty()) {</span>
-<span class="nc" id="L131">      Iterator&lt;Object&gt; it = thisQueue.iterator();</span>
-<span class="nc bnc" id="L132" title="All 2 branches missed.">      while (it.hasNext()) {</span>
-<span class="nc" id="L133">        Object obj = it.next();</span>
-<span class="nc bnc" id="L134" title="All 6 branches missed.">        if (isInitialized() &amp;&amp; obj != null</span>
-<span class="nc bnc" id="L135" title="All 4 branches missed.">            &amp;&amp; (classLoader == null || classLoader == obj.getClass().getClassLoader())</span>
-<span class="nc bnc" id="L136" title="All 2 branches missed.">            &amp;&amp; (!IGNORE_NIO || !obj.getClass().getName().startsWith(&quot;java.nio.&quot;))) {</span>
-<span class="nc" id="L137">          ObjectWrapper ow = new ObjectWrapper(obj);</span>
-<span class="nc bnc" id="L138" title="All 2 branches missed.">          if (!processedObjects.contains(ow)) {</span>
-<span class="nc bnc" id="L139" title="All 2 branches missed.">            if (obj.getClass().isArray()) {</span>
+<span class="fc" id="L128">    long size = 0;</span>
+<span class="fc" id="L129">    thisQueue.add(root);</span>
+<span class="fc bfc" id="L130" title="All 2 branches covered.">    while (!thisQueue.isEmpty()) {</span>
+<span class="fc" id="L131">      Iterator&lt;Object&gt; it = thisQueue.iterator();</span>
+<span class="fc bfc" id="L132" title="All 2 branches covered.">      while (it.hasNext()) {</span>
+<span class="fc" id="L133">        Object obj = it.next();</span>
+<span class="pc bpc" id="L134" title="3 of 6 branches missed.">        if (isInitialized() &amp;&amp; obj != null</span>
+<span class="pc bpc" id="L135" title="3 of 4 branches missed.">            &amp;&amp; (classLoader == null || classLoader == obj.getClass().getClassLoader())</span>
+<span class="pc bpc" id="L136" title="1 of 2 branches missed.">            &amp;&amp; (!IGNORE_NIO || !obj.getClass().getName().startsWith(&quot;java.nio.&quot;))) {</span>
+<span class="fc" id="L137">          ObjectWrapper ow = new ObjectWrapper(obj);</span>
+<span class="pc bpc" id="L138" title="1 of 2 branches missed.">          if (!processedObjects.contains(ow)) {</span>
+<span class="pc bpc" id="L139" title="1 of 2 branches missed.">            if (obj.getClass().isArray()) {</span>
 <span class="nc" id="L140">              size += sizeOfArray(obj);</span>
-<span class="nc bnc" id="L141" title="All 2 branches missed.">            } else if (obj.getClass().isPrimitive()) {</span>
+<span class="pc bpc" id="L141" title="1 of 2 branches missed.">            } else if (obj.getClass().isPrimitive()) {</span>
 <span class="nc" id="L142">              size += sizeOfPrimitive(obj.getClass());</span>
             } else {
-<span class="nc" id="L144">              processedObjects.add(ow);</span>
-<span class="nc" id="L145">              size += sizeOfObject(obj);</span>
+<span class="fc" id="L144">              processedObjects.add(ow);</span>
+<span class="fc" id="L145">              size += sizeOfObject(obj);</span>
             }
           }
         }
-<span class="nc" id="L149">        it.remove();</span>
-<span class="nc" id="L150">      }</span>
+<span class="fc" id="L149">        it.remove();</span>
+<span class="fc" id="L150">      }</span>
       // avoids ConcurrentModificationException
-<span class="nc bnc" id="L152" title="All 2 branches missed.">      if (!nextQueue.isEmpty()) {</span>
+<span class="pc bpc" id="L152" title="1 of 2 branches missed.">      if (!nextQueue.isEmpty()) {</span>
 <span class="nc" id="L153">        thisQueue.addAll(nextQueue);</span>
 <span class="nc" id="L154">        nextQueue.clear();</span>
       }
-<span class="nc" id="L156">    }</span>
-<span class="nc" id="L157">    return size;</span>
+<span class="fc" id="L156">    }</span>
+<span class="fc" id="L157">    return size;</span>
   }
 
   /**
@@ -164,14 +164,14 @@ import java.util.Set;
    * @return the long
    */
   private long sizeOfObject(Object obj) {
-<span class="nc" id="L167">    long size = SIZE_OBJECT;</span>
-<span class="nc" id="L168">    Class&lt;? extends Object&gt; clazz = obj.getClass();</span>
-<span class="nc bnc" id="L169" title="All 2 branches missed.">    while (clazz != null) {</span>
-<span class="nc" id="L170">      Field[] fields = clazz.getDeclaredFields();</span>
-<span class="nc bnc" id="L171" title="All 2 branches missed.">      for (Field field : fields) {</span>
-<span class="nc bnc" id="L172" title="All 2 branches missed.">        if (!Modifier.isStatic(field.getModifiers())) {</span>
-<span class="nc bnc" id="L173" title="All 2 branches missed.">          if (field.getType().isPrimitive()) {</span>
-<span class="nc" id="L174">            size += sizeOfPrimitive(field.getType());</span>
+<span class="fc" id="L167">    long size = SIZE_OBJECT;</span>
+<span class="fc" id="L168">    Class&lt;? extends Object&gt; clazz = obj.getClass();</span>
+<span class="fc bfc" id="L169" title="All 2 branches covered.">    while (clazz != null) {</span>
+<span class="fc" id="L170">      Field[] fields = clazz.getDeclaredFields();</span>
+<span class="fc bfc" id="L171" title="All 2 branches covered.">      for (Field field : fields) {</span>
+<span class="fc bfc" id="L172" title="All 2 branches covered.">        if (!Modifier.isStatic(field.getModifiers())) {</span>
+<span class="pc bpc" id="L173" title="1 of 2 branches missed.">          if (field.getType().isPrimitive()) {</span>
+<span class="fc" id="L174">            size += sizeOfPrimitive(field.getType());</span>
           } else {
 <span class="nc" id="L176">            Object val = ACCESSOR.get(obj, field);</span>
 <span class="nc bnc" id="L177" title="All 2 branches missed.">            if (field.getType().isArray()) {</span>
@@ -183,9 +183,9 @@ import java.util.Set;
           }
         }
       }
-<span class="nc" id="L186">      clazz = clazz.getSuperclass();</span>
-<span class="nc" id="L187">    }</span>
-<span class="nc" id="L188">    return size;</span>
+<span class="fc" id="L186">      clazz = clazz.getSuperclass();</span>
+<span class="fc" id="L187">    }</span>
+<span class="fc" id="L188">    return size;</span>
   }
 
   /**
@@ -215,22 +215,22 @@ import java.util.Set;
    * @return the long
    */
   private static &lt;T&gt; long sizeOfPrimitive(Class&lt;T&gt; type) {
-<span class="nc bnc" id="L218" title="All 2 branches missed.">    if (type == Boolean.TYPE) {</span>
-<span class="nc" id="L219">      return SIZE_BOOLEAN;</span>
-<span class="nc bnc" id="L220" title="All 2 branches missed.">    } else if (type == Byte.TYPE) {</span>
-<span class="nc" id="L221">      return SIZE_BYTE;</span>
-<span class="nc bnc" id="L222" title="All 2 branches missed.">    } else if (type == Character.TYPE) {</span>
-<span class="nc" id="L223">      return SIZE_CHAR;</span>
-<span class="nc bnc" id="L224" title="All 2 branches missed.">    } else if (type == Short.TYPE) {</span>
-<span class="nc" id="L225">      return SIZE_SHORT;</span>
-<span class="nc bnc" id="L226" title="All 2 branches missed.">    } else if (type == Integer.TYPE) {</span>
-<span class="nc" id="L227">      return SIZE_INT;</span>
-<span class="nc bnc" id="L228" title="All 2 branches missed.">    } else if (type == Long.TYPE) {</span>
-<span class="nc" id="L229">      return SIZE_LONG;</span>
-<span class="nc bnc" id="L230" title="All 2 branches missed.">    } else if (type == Float.TYPE) {</span>
-<span class="nc" id="L231">      return SIZE_FLOAT;</span>
-<span class="nc bnc" id="L232" title="All 2 branches missed.">    } else if (type == Double.TYPE) {</span>
-<span class="nc" id="L233">      return SIZE_DOUBLE;</span>
+<span class="fc bfc" id="L218" title="All 2 branches covered.">    if (type == Boolean.TYPE) {</span>
+<span class="fc" id="L219">      return SIZE_BOOLEAN;</span>
+<span class="fc bfc" id="L220" title="All 2 branches covered.">    } else if (type == Byte.TYPE) {</span>
+<span class="fc" id="L221">      return SIZE_BYTE;</span>
+<span class="fc bfc" id="L222" title="All 2 branches covered.">    } else if (type == Character.TYPE) {</span>
+<span class="fc" id="L223">      return SIZE_CHAR;</span>
+<span class="fc bfc" id="L224" title="All 2 branches covered.">    } else if (type == Short.TYPE) {</span>
+<span class="fc" id="L225">      return SIZE_SHORT;</span>
+<span class="fc bfc" id="L226" title="All 2 branches covered.">    } else if (type == Integer.TYPE) {</span>
+<span class="fc" id="L227">      return SIZE_INT;</span>
+<span class="fc bfc" id="L228" title="All 2 branches covered.">    } else if (type == Long.TYPE) {</span>
+<span class="fc" id="L229">      return SIZE_LONG;</span>
+<span class="fc bfc" id="L230" title="All 2 branches covered.">    } else if (type == Float.TYPE) {</span>
+<span class="fc" id="L231">      return SIZE_FLOAT;</span>
+<span class="pc bpc" id="L232" title="1 of 2 branches missed.">    } else if (type == Double.TYPE) {</span>
+<span class="fc" id="L233">      return SIZE_DOUBLE;</span>
 <span class="nc bnc" id="L234" title="All 2 branches missed.">    } else if (type == Void.TYPE) {</span>
 <span class="nc" id="L235">      return SIZE_VOID;</span>
     } else {
@@ -244,7 +244,7 @@ import java.util.Set;
    * @return true, if is initialized
    */
   public static boolean isInitialized() {
-<span class="nc bnc" id="L247" title="All 2 branches missed.">    return ACCESSOR != null;</span>
+<span class="pc bpc" id="L247" title="1 of 2 branches missed.">    return ACCESSOR != null;</span>
   }
 
   /**
@@ -255,10 +255,10 @@ import java.util.Set;
    * @return the field
    */
   public static Object getField(Object obj, String name) {
-<span class="nc bnc" id="L258" title="All 2 branches missed.">    if (isInitialized()) {</span>
-<span class="nc" id="L259">      Field field = findField(obj.getClass(), name);</span>
-<span class="nc bnc" id="L260" title="All 2 branches missed.">      if (field != null) {</span>
-<span class="nc" id="L261">        return ACCESSOR.get(obj, field);</span>
+<span class="pc bpc" id="L258" title="1 of 2 branches missed.">    if (isInitialized()) {</span>
+<span class="fc" id="L259">      Field field = findField(obj.getClass(), name);</span>
+<span class="pc bpc" id="L260" title="1 of 2 branches missed.">      if (field != null) {</span>
+<span class="fc" id="L261">        return ACCESSOR.get(obj, field);</span>
       }
     }
 <span class="nc" id="L264">    return null;</span>
@@ -273,10 +273,10 @@ import java.util.Set;
    * @return the field
    */
   public static &lt;T&gt; Field findField(Class&lt;T&gt; clazz, String name) {
-<span class="nc" id="L276">    Field[] fields = clazz.getDeclaredFields();</span>
-<span class="nc bnc" id="L277" title="All 2 branches missed.">    for (Field field : fields) {</span>
-<span class="nc bnc" id="L278" title="All 2 branches missed.">      if (name.equals(field.getName())) {</span>
-<span class="nc" id="L279">        return field;</span>
+<span class="fc" id="L276">    Field[] fields = clazz.getDeclaredFields();</span>
+<span class="pc bpc" id="L277" title="1 of 2 branches missed.">    for (Field field : fields) {</span>
+<span class="fc bfc" id="L278" title="All 2 branches covered.">      if (name.equals(field.getName())) {</span>
+<span class="fc" id="L279">        return field;</span>
       }
     }
 <span class="nc" id="L282">    Class&lt;?&gt; superClass = clazz.getSuperclass();</span>
@@ -287,4 +287,4 @@ import java.util.Set;
   }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -11,12 +11,9 @@
 package psiprobe.beans.stats.collectors;
 
 import java.util.List;
-
 import javax.inject.Inject;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-
 import psiprobe.beans.JvmMemoryInfoAccessorBean;
 import psiprobe.beans.stats.listeners.StatsCollectionListener;
 import psiprobe.model.jmx.MemoryPool;
@@ -25,7 +22,7 @@ import psiprobe.tools.TimeExpression;
 /**
  * The Class JvmMemoryStatsCollectorBean.
  */
-<span class="fc" id="L28">public class JvmMemoryStatsCollectorBean extends AbstractStatsCollectorBean {</span>
+<span class="fc" id="L25">public class JvmMemoryStatsCollectorBean extends AbstractStatsCollectorBean {</span>
 
   /** The jvm memory info accessor. */
   @Inject
@@ -37,7 +34,7 @@ import psiprobe.tools.TimeExpression;
    * @return the jvm memory info accessor
    */
   public JvmMemoryInfoAccessorBean getJvmMemoryInfoAccessor() {
-<span class="fc" id="L40">    return jvmMemoryInfoAccessor;</span>
+<span class="fc" id="L37">    return jvmMemoryInfoAccessor;</span>
   }
 
   /**
@@ -46,17 +43,17 @@ import psiprobe.tools.TimeExpression;
    * @param jvmMemoryInfoAccessor the new jvm memory info accessor
    */
   public void setJvmMemoryInfoAccessor(JvmMemoryInfoAccessorBean jvmMemoryInfoAccessor) {
-<span class="fc" id="L49">    this.jvmMemoryInfoAccessor = jvmMemoryInfoAccessor;</span>
-<span class="fc" id="L50">  }</span>
+<span class="fc" id="L46">    this.jvmMemoryInfoAccessor = jvmMemoryInfoAccessor;</span>
+<span class="fc" id="L47">  }</span>
 
   @Override
   public void collect() throws Exception {
-<span class="nc" id="L54">    List&lt;MemoryPool&gt; pools = jvmMemoryInfoAccessor.getPools();</span>
-<span class="nc" id="L55">    long time = System.currentTimeMillis();</span>
-<span class="nc bnc" id="L56" title="All 2 branches missed.">    for (MemoryPool pool : pools) {</span>
-<span class="nc" id="L57">      buildAbsoluteStats(&quot;memory.pool.&quot; + pool.getName(), pool.getUsed(), time);</span>
-<span class="nc" id="L58">    }</span>
-<span class="nc" id="L59">  }</span>
+<span class="nc" id="L51">    List&lt;MemoryPool&gt; pools = jvmMemoryInfoAccessor.getPools();</span>
+<span class="nc" id="L52">    long time = System.currentTimeMillis();</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">    for (MemoryPool pool : pools) {</span>
+<span class="nc" id="L54">      buildAbsoluteStats(&quot;memory.pool.&quot; + pool.getName(), pool.getUsed(), time);</span>
+<span class="nc" id="L55">    }</span>
+<span class="nc" id="L56">  }</span>
 
   /**
    * Sets the max series expression.
@@ -66,14 +63,14 @@ import psiprobe.tools.TimeExpression;
    */
   public void setMaxSeries(@Value(&quot;${psiprobe.beans.stats.collectors.memory.period}&quot;) long period,
       @Value(&quot;${psiprobe.beans.stats.collectors.memory.span}&quot;) long span) {
-<span class="nc" id="L69">    super.setMaxSeries((int) TimeExpression.dataPoints(period, span));</span>
-<span class="nc" id="L70">  }</span>
+<span class="nc" id="L66">    super.setMaxSeries((int) TimeExpression.dataPoints(period, span));</span>
+<span class="nc" id="L67">  }</span>
 
   @Autowired
   @Override
   public void setListeners(List&lt;StatsCollectionListener&gt; listeners) {
-<span class="fc" id="L75">    super.setListeners(listeners);</span>
-<span class="fc" id="L76">  }</span>
+<span class="fc" id="L72">    super.setListeners(listeners);</span>
+<span class="fc" id="L73">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

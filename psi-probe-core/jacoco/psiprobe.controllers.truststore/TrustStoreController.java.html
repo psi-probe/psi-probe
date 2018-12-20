@@ -10,8 +10,10 @@
  */
 package psiprobe.controllers.truststore;
 
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
@@ -23,82 +25,79 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
 import psiprobe.controllers.AbstractTomcatContainerController;
 
 /**
  * The Class TrustStoreController.
  */
 @Controller
-<span class="nc" id="L43">public class TrustStoreController extends AbstractTomcatContainerController {</span>
+<span class="nc" id="L42">public class TrustStoreController extends AbstractTomcatContainerController {</span>
 
   /** The Constant logger. */
-<span class="nc" id="L46">  private static final Logger logger = LoggerFactory.getLogger(TrustStoreController.class);</span>
+<span class="nc" id="L45">  private static final Logger logger = LoggerFactory.getLogger(TrustStoreController.class);</span>
 
   @RequestMapping(path = &quot;/truststore.htm&quot;)
   @Override
   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
       throws Exception {
-<span class="nc" id="L52">    return super.handleRequest(request, response);</span>
+<span class="nc" id="L51">    return super.handleRequest(request, response);</span>
   }
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
-<span class="nc" id="L58">    List&lt;Map&lt;String, String&gt;&gt; certificateList = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L57">    List&lt;Map&lt;String, String&gt;&gt; certificateList = new ArrayList&lt;&gt;();</span>
     try {
-<span class="nc" id="L60">      String trustStoreType = System.getProperty(&quot;javax.net.ssl.trustStoreType&quot;);</span>
+<span class="nc" id="L59">      String trustStoreType = System.getProperty(&quot;javax.net.ssl.trustStoreType&quot;);</span>
       KeyStore ks;
-<span class="nc bnc" id="L62" title="All 2 branches missed.">      if (trustStoreType != null) {</span>
-<span class="nc" id="L63">        ks = KeyStore.getInstance(trustStoreType);</span>
+<span class="nc bnc" id="L61" title="All 2 branches missed.">      if (trustStoreType != null) {</span>
+<span class="nc" id="L62">        ks = KeyStore.getInstance(trustStoreType);</span>
       } else {
-<span class="nc" id="L65">        ks = KeyStore.getInstance(&quot;JKS&quot;);</span>
+<span class="nc" id="L64">        ks = KeyStore.getInstance(&quot;JKS&quot;);</span>
       }
-<span class="nc" id="L67">      String trustStore = System.getProperty(&quot;javax.net.ssl.trustStore&quot;);</span>
-<span class="nc" id="L68">      String trustStorePassword = System.getProperty(&quot;javax.net.ssl.trustStorePassword&quot;);</span>
-<span class="nc bnc" id="L69" title="All 2 branches missed.">      if (trustStore != null) {</span>
-<span class="nc" id="L70">        try (FileInputStream fis = new FileInputStream(trustStore)) {</span>
-<span class="nc bnc" id="L71" title="All 2 branches missed.">          ks.load(fis, trustStorePassword != null ? trustStorePassword.toCharArray() : null);</span>
-<span class="nc bnc" id="L72" title="All 4 branches missed.">        } catch (NoSuchAlgorithmException | CertificateException | IOException e) {</span>
-<span class="nc" id="L73">          logger.error(&quot;&quot;, e);</span>
-<span class="nc" id="L74">        }</span>
+<span class="nc" id="L66">      String trustStore = System.getProperty(&quot;javax.net.ssl.trustStore&quot;);</span>
+<span class="nc" id="L67">      String trustStorePassword = System.getProperty(&quot;javax.net.ssl.trustStorePassword&quot;);</span>
+<span class="nc bnc" id="L68" title="All 2 branches missed.">      if (trustStore != null) {</span>
+<span class="nc" id="L69">        try (InputStream fis = Files.newInputStream(Paths.get(trustStore))) {</span>
+<span class="nc bnc" id="L70" title="All 2 branches missed.">          ks.load(fis, trustStorePassword != null ? trustStorePassword.toCharArray() : null);</span>
+<span class="nc" id="L71">        } catch (NoSuchAlgorithmException | CertificateException | IOException e) {</span>
+<span class="nc" id="L72">          logger.error(&quot;&quot;, e);</span>
+<span class="nc" id="L73">        }</span>
         Map&lt;String, String&gt; attributes;
-<span class="nc bnc" id="L76" title="All 2 branches missed.">        for (String alias : Collections.list(ks.aliases())) {</span>
-<span class="nc" id="L77">          attributes = new HashMap&lt;&gt;();</span>
-<span class="nc bnc" id="L78" title="All 2 branches missed.">          if (ks.getCertificate(alias).getType().equals(&quot;X.509&quot;)) {</span>
-<span class="nc" id="L79">            X509Certificate cert = (X509Certificate) ks.getCertificate(alias);</span>
+<span class="nc bnc" id="L75" title="All 2 branches missed.">        for (String alias : Collections.list(ks.aliases())) {</span>
+<span class="nc" id="L76">          attributes = new HashMap&lt;&gt;();</span>
+<span class="nc bnc" id="L77" title="All 2 branches missed.">          if (&quot;X.509&quot;.equals(ks.getCertificate(alias).getType())) {</span>
+<span class="nc" id="L78">            X509Certificate cert = (X509Certificate) ks.getCertificate(alias);</span>
 
-<span class="nc" id="L81">            attributes.put(&quot;alias&quot;, alias);</span>
-<span class="nc" id="L82">            attributes.put(&quot;cn&quot;, cert.getSubjectDN().toString());</span>
-<span class="nc" id="L83">            attributes.put(&quot;expirationDate&quot;,</span>
-<span class="nc" id="L84">                new SimpleDateFormat(&quot;yyyy-MM-dd&quot;).format(cert.getNotAfter()));</span>
-<span class="nc" id="L85">            certificateList.add(attributes);</span>
+<span class="nc" id="L80">            attributes.put(&quot;alias&quot;, alias);</span>
+<span class="nc" id="L81">            attributes.put(&quot;cn&quot;, cert.getSubjectDN().toString());</span>
+<span class="nc" id="L82">            attributes.put(&quot;expirationDate&quot;,</span>
+<span class="nc" id="L83">                new SimpleDateFormat(&quot;yyyy-MM-dd&quot;).format(cert.getNotAfter()));</span>
+<span class="nc" id="L84">            certificateList.add(attributes);</span>
           }
-<span class="nc" id="L87">        }</span>
+<span class="nc" id="L86">        }</span>
       }
-<span class="nc" id="L89">    } catch (KeyStoreException e) {</span>
-<span class="nc" id="L90">      logger.error(&quot;There was an exception obtaining truststore: &quot;, e);</span>
-<span class="nc" id="L91">    }</span>
-<span class="nc" id="L92">    ModelAndView mv = new ModelAndView(getViewName());</span>
-<span class="nc" id="L93">    mv.addObject(&quot;certificates&quot;, certificateList);</span>
-<span class="nc" id="L94">    return mv;</span>
+<span class="nc" id="L88">    } catch (KeyStoreException e) {</span>
+<span class="nc" id="L89">      logger.error(&quot;There was an exception obtaining truststore: &quot;, e);</span>
+<span class="nc" id="L90">    }</span>
+<span class="nc" id="L91">    ModelAndView mv = new ModelAndView(getViewName());</span>
+<span class="nc" id="L92">    mv.addObject(&quot;certificates&quot;, certificateList);</span>
+<span class="nc" id="L93">    return mv;</span>
   }
 
   @Value(&quot;truststore&quot;)
   @Override
   public void setViewName(String viewName) {
-<span class="nc" id="L100">    super.setViewName(viewName);</span>
-<span class="nc" id="L101">  }</span>
+<span class="nc" id="L99">    super.setViewName(viewName);</span>
+<span class="nc" id="L100">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

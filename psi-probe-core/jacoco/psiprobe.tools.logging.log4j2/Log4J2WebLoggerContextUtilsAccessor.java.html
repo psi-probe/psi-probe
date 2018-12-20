@@ -11,11 +11,10 @@
 package psiprobe.tools.logging.log4j2;
 
 import java.lang.reflect.Method;
-
 import javax.servlet.ServletContext;
-
 import org.apache.commons.lang3.reflect.MethodUtils;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import psiprobe.tools.logging.DefaultAccessor;
 
 /**
@@ -23,16 +22,22 @@ import psiprobe.tools.logging.DefaultAccessor;
  */
 public class Log4J2WebLoggerContextUtilsAccessor extends DefaultAccessor {
 
+  /** The Constant logger. */
+<span class="nc" id="L26">  private static final Logger logger =</span>
+<span class="nc" id="L27">      LoggerFactory.getLogger(Log4J2WebLoggerContextUtilsAccessor.class);</span>
+
   /**
    * Instantiates a new log4 j 2 web logger context utils accessor.
    *
    * @param cl the cl
    * @throws ClassNotFoundException the class not found exception
    */
-<span class="nc" id="L32">  public Log4J2WebLoggerContextUtilsAccessor(ClassLoader cl) throws ClassNotFoundException {</span>
-<span class="nc" id="L33">    Class&lt;?&gt; clazz = cl.loadClass(&quot;org.apache.logging.log4j.web.WebLoggerContextUtils&quot;);</span>
-<span class="nc" id="L34">    setTarget(clazz);</span>
-<span class="nc" id="L35">  }</span>
+<span class="nc" id="L35">  public Log4J2WebLoggerContextUtilsAccessor(ClassLoader cl) throws ClassNotFoundException {</span>
+<span class="nc" id="L36">    logger.debug(&quot;Log4J2WebLoggerContextUtilsAccessor(): IN: cl={}&quot;, cl);</span>
+<span class="nc" id="L37">    Class&lt;?&gt; clazz = cl.loadClass(&quot;org.apache.logging.log4j.web.WebLoggerContextUtils&quot;);</span>
+<span class="nc" id="L38">    setTarget(clazz);</span>
+<span class="nc" id="L39">    logger.debug(&quot;Log4J2WebLoggerContextUtilsAccessor(): OUT: this={}&quot;, this);</span>
+<span class="nc" id="L40">  }</span>
 
   /**
    * Gets the logger context configured for the given ServletContext.
@@ -41,25 +46,40 @@ public class Log4J2WebLoggerContextUtilsAccessor extends DefaultAccessor {
    * @return the root logger
    */
   public Log4J2LoggerContextAccessor getWebLoggerContext(ServletContext ctx) {
+<span class="nc" id="L49">    logger.debug(&quot;getWebLoggerContext(): IN: ctx={}&quot;, ctx);</span>
+<span class="nc" id="L50">    Log4J2LoggerContextAccessor result = null;</span>
     try {
-<span class="nc" id="L45">      Class&lt;?&gt; clazz = (Class&lt;?&gt;) getTarget();</span>
-<span class="nc" id="L46">      Method getWebLoggerContext = MethodUtils.getAccessibleMethod(clazz, &quot;getWebLoggerContext&quot;,</span>
-          new Class[] {ServletContext.class});
+<span class="nc" id="L52">      Class&lt;?&gt; clazz = (Class&lt;?&gt;) getTarget();</span>
+      Method getWebLoggerContext;
+      try {
+<span class="nc" id="L55">        getWebLoggerContext =</span>
+<span class="nc" id="L56">            MethodUtils.getAccessibleMethod(clazz, &quot;getWebLoggerContext&quot;, ServletContext.class);</span>
+<span class="nc" id="L57">      } catch (Exception e) {</span>
+<span class="nc" id="L58">        logger.error(&quot;exception getting accessible method getWebLoggerContext&quot;, e);</span>
+<span class="nc" id="L59">        throw e;</span>
+<span class="nc" id="L60">      }</span>
 
-<span class="nc" id="L49">      Object loggerContext = getWebLoggerContext.invoke(null, ctx);</span>
-<span class="nc bnc" id="L50" title="All 2 branches missed.">      if (loggerContext == null) {</span>
-<span class="nc" id="L51">        throw new NullPointerException(getTarget().getClass().getName()</span>
+      Object loggerContext;
+      try {
+<span class="nc" id="L64">        loggerContext = getWebLoggerContext.invoke(null, ctx);</span>
+<span class="nc" id="L65">      } catch (Exception e) {</span>
+<span class="nc" id="L66">        logger.error(&quot;exception in getWebLoggerContext&quot;, e);</span>
+<span class="nc" id="L67">        throw e;</span>
+<span class="nc" id="L68">      }</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">      if (loggerContext == null) {</span>
+<span class="nc" id="L70">        throw new NullPointerException(getTarget().getClass().getName()</span>
             + &quot;#getWebLoggerContext(Ljavax/servlet/ServletContext) returned null&quot;);
       }
-<span class="nc" id="L54">      Log4J2LoggerContextAccessor accessor = new Log4J2LoggerContextAccessor();</span>
-<span class="nc" id="L55">      accessor.setTarget(loggerContext);</span>
-<span class="nc" id="L56">      accessor.setApplication(getApplication());</span>
-<span class="nc" id="L57">      return accessor;</span>
-<span class="nc" id="L58">    } catch (Exception e) {</span>
-<span class="nc" id="L59">      logger.error(&quot;{}#getWebLoggerContext(Ljavax/servlet/ServletContext) failed&quot;,</span>
-<span class="nc" id="L60">          getTarget().getClass().getName(), e);</span>
-    }
-<span class="nc" id="L62">    return null;</span>
+<span class="nc" id="L73">      result = new Log4J2LoggerContextAccessor();</span>
+<span class="nc" id="L74">      result.setTarget(loggerContext);</span>
+<span class="nc" id="L75">      result.setApplication(getApplication());</span>
+<span class="nc" id="L76">    } catch (Exception e) {</span>
+<span class="nc" id="L77">      logger.error(&quot;{}#getWebLoggerContext(Ljavax/servlet/ServletContext) failed&quot;,</span>
+<span class="nc" id="L78">          getTarget().getClass().getName(), e);</span>
+<span class="nc" id="L79">    }</span>
+<span class="nc" id="L80">    logger.debug(&quot;getWebLoggerContext(): OUT: result={}&quot;, result);</span>
+<span class="nc" id="L81">    return result;</span>
   }
+
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

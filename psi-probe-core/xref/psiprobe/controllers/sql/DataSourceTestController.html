@@ -10,7 +10,7 @@
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_javadoccomment"> * Licensed under the GPL License. You may not use this file except in compliance with the License.</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_javadoccomment"> * You may obtain a copy of the License at</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_javadoccomment"> *</em>
-<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_javadoccomment"> *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</em>
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_javadoccomment"> *   <a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.html" target="alexandria_uri">https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</a></em>
 <a class="jxr_linenumber" name="L6" href="#L6">6</a>   <em class="jxr_javadoccomment"> *</em>
 <a class="jxr_linenumber" name="L7" href="#L7">7</a>   <em class="jxr_javadoccomment"> * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,</em>
 <a class="jxr_linenumber" name="L8" href="#L8">8</a>   <em class="jxr_javadoccomment"> * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR</em>
@@ -34,7 +34,7 @@
 <a class="jxr_linenumber" name="L26" href="#L26">26</a>  <em class="jxr_javadoccomment"> * fields of the view.</em>
 <a class="jxr_linenumber" name="L27" href="#L27">27</a>  <em class="jxr_javadoccomment"> */</em>
 <a class="jxr_linenumber" name="L28" href="#L28">28</a>  @Controller
-<a class="jxr_linenumber" name="L29" href="#L29">29</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../psiprobe/controllers/sql/DataSourceTestController.html">DataSourceTestController</a> <strong class="jxr_keyword">extends</strong> ParameterizableViewController {
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a name="DataSourceTestController" href="../../../psiprobe/controllers/sql/DataSourceTestController.html#DataSourceTestController">DataSourceTestController</a> <strong class="jxr_keyword">extends</strong> ParameterizableViewController {
 <a class="jxr_linenumber" name="L30" href="#L30">30</a>  
 <a class="jxr_linenumber" name="L31" href="#L31">31</a>    <em class="jxr_javadoccomment">/** The max rows. */</em>
 <a class="jxr_linenumber" name="L32" href="#L32">32</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">int</strong> maxRows;
@@ -64,10 +64,10 @@
 <a class="jxr_linenumber" name="L56" href="#L56">56</a>  
 <a class="jxr_linenumber" name="L57" href="#L57">57</a>      HttpSession sess = request.getSession(false);
 <a class="jxr_linenumber" name="L58" href="#L58">58</a>  
-<a class="jxr_linenumber" name="L59" href="#L59">59</a>      <a href="../../../psiprobe/model/sql/DataSourceTestInfo.html">DataSourceTestInfo</a> sessData = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>      <a name="DataSourceTestInfo" href="../../../psiprobe/model/sql/DataSourceTestInfo.html#DataSourceTestInfo">DataSourceTestInfo</a> sessData = <strong class="jxr_keyword">null</strong>;
 <a class="jxr_linenumber" name="L60" href="#L60">60</a>  
 <a class="jxr_linenumber" name="L61" href="#L61">61</a>      <strong class="jxr_keyword">if</strong> (sess != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L62" href="#L62">62</a>        sessData = (DataSourceTestInfo) sess.getAttribute(DataSourceTestInfo.DS_TEST_SESS_ATTR);
+<a class="jxr_linenumber" name="L62" href="#L62">62</a>        sessData = (<a name="DataSourceTestInfo" href="../../../psiprobe/model/sql/DataSourceTestInfo.html#DataSourceTestInfo">DataSourceTestInfo</a>) sess.getAttribute(DataSourceTestInfo.DS_TEST_SESS_ATTR);
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>      }
 <a class="jxr_linenumber" name="L64" href="#L64">64</a>  
 <a class="jxr_linenumber" name="L65" href="#L65">65</a>      String referer = request.getHeader(<span class="jxr_string">"Referer"</span>);

@@ -12,7 +12,6 @@ package psiprobe.controllers.error;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +23,7 @@ import org.springframework.web.servlet.mvc.AbstractController;
  * was AJAX or not.
  */
 @Controller
-<span class="fc" id="L27">public class Error403Controller extends AbstractController {</span>
+<span class="fc" id="L26">public class Error403Controller extends AbstractController {</span>
 
   /** The view name. */
   private String viewName;
@@ -41,7 +40,7 @@ import org.springframework.web.servlet.mvc.AbstractController;
    * @return the view name
    */
   public String getViewName() {
-<span class="fc" id="L44">    return viewName;</span>
+<span class="fc" id="L43">    return viewName;</span>
   }
 
   /**
@@ -51,8 +50,8 @@ import org.springframework.web.servlet.mvc.AbstractController;
    */
   @Value(&quot;errors/403&quot;)
   public void setViewName(String viewName) {
-<span class="fc" id="L54">    this.viewName = viewName;</span>
-<span class="fc" id="L55">  }</span>
+<span class="fc" id="L53">    this.viewName = viewName;</span>
+<span class="fc" id="L54">  }</span>
 
   /**
    * Gets the ajax view name.
@@ -60,7 +59,7 @@ import org.springframework.web.servlet.mvc.AbstractController;
    * @return the ajax view name
    */
   public String getAjaxViewName() {
-<span class="fc" id="L63">    return ajaxViewName;</span>
+<span class="fc" id="L62">    return ajaxViewName;</span>
   }
 
   /**
@@ -70,8 +69,8 @@ import org.springframework.web.servlet.mvc.AbstractController;
    */
   @Value(&quot;errors/403_ajax&quot;)
   public void setAjaxViewName(String ajaxViewName) {
-<span class="fc" id="L73">    this.ajaxViewName = ajaxViewName;</span>
-<span class="fc" id="L74">  }</span>
+<span class="fc" id="L72">    this.ajaxViewName = ajaxViewName;</span>
+<span class="fc" id="L73">  }</span>
 
   /**
    * Gets the ajax extension.
@@ -79,7 +78,7 @@ import org.springframework.web.servlet.mvc.AbstractController;
    * @return the ajax extension
    */
   public String getAjaxExtension() {
-<span class="fc" id="L82">    return ajaxExtension;</span>
+<span class="fc" id="L81">    return ajaxExtension;</span>
   }
 
   /**
@@ -89,26 +88,26 @@ import org.springframework.web.servlet.mvc.AbstractController;
    */
   @Value(&quot;.ajax&quot;)
   public void setAjaxExtension(String ajaxExtension) {
-<span class="fc" id="L92">    this.ajaxExtension = ajaxExtension;</span>
-<span class="fc" id="L93">  }</span>
+<span class="fc" id="L91">    this.ajaxExtension = ajaxExtension;</span>
+<span class="fc" id="L92">  }</span>
 
   @RequestMapping(path = &quot;/403.htm&quot;)
   @Override
   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
       throws Exception {
-<span class="nc" id="L99">    return super.handleRequest(request, response);</span>
+<span class="nc" id="L98">    return super.handleRequest(request, response);</span>
   }
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 
-<span class="nc" id="L106">    String originalUri = (String) request.getAttribute(&quot;javax.servlet.error.request_uri&quot;);</span>
-<span class="nc bnc" id="L107" title="All 4 branches missed.">    if (originalUri != null &amp;&amp; originalUri.endsWith(ajaxExtension)) {</span>
-<span class="nc" id="L108">      return new ModelAndView(ajaxViewName);</span>
+<span class="nc" id="L105">    String originalUri = (String) request.getAttribute(&quot;javax.servlet.error.request_uri&quot;);</span>
+<span class="nc bnc" id="L106" title="All 4 branches missed.">    if (originalUri != null &amp;&amp; originalUri.endsWith(ajaxExtension)) {</span>
+<span class="nc" id="L107">      return new ModelAndView(ajaxViewName);</span>
     }
-<span class="nc" id="L110">    return new ModelAndView(viewName);</span>
+<span class="nc" id="L109">    return new ModelAndView(viewName);</span>
   }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

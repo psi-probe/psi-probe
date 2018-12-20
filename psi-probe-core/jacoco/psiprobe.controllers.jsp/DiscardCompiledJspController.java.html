@@ -12,43 +12,41 @@ package psiprobe.controllers.jsp;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.apache.catalina.Context;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
-
 import psiprobe.controllers.AbstractContextHandlerController;
 
 /**
  * The Class DiscardCompiledJspController.
  */
 @Controller
-<span class="nc" id="L29">public class DiscardCompiledJspController extends AbstractContextHandlerController {</span>
+<span class="nc" id="L27">public class DiscardCompiledJspController extends AbstractContextHandlerController {</span>
 
   @RequestMapping(path = &quot;/adm/discard.htm&quot;)
   @Override
   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
       throws Exception {
-<span class="nc" id="L35">    return super.handleRequest(request, response);</span>
+<span class="nc" id="L33">    return super.handleRequest(request, response);</span>
   }
 
   @Override
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-<span class="nc" id="L42">    getContainerWrapper().getTomcatContainer().discardWorkDir(context);</span>
-<span class="nc" id="L43">    return new ModelAndView(new RedirectView(</span>
-<span class="nc" id="L44">        request.getContextPath() + getViewName() + &quot;?&quot; + request.getQueryString()));</span>
+<span class="nc" id="L40">    getContainerWrapper().getTomcatContainer().discardWorkDir(context);</span>
+<span class="nc" id="L41">    return new ModelAndView(new RedirectView(</span>
+<span class="nc" id="L42">        request.getContextPath() + getViewName() + &quot;?&quot; + request.getQueryString()));</span>
   }
 
   @Value(&quot;/app/jsp.htm&quot;)
   @Override
   public void setViewName(String viewName) {
-<span class="nc" id="L50">    super.setViewName(viewName);</span>
-<span class="nc" id="L51">  }</span>
+<span class="nc" id="L48">    super.setViewName(viewName);</span>
+<span class="nc" id="L49">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -12,21 +12,23 @@ package psiprobe.beans;
 
 import java.io.File;
 import java.io.Serializable;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-
 import javax.inject.Inject;
-
+import javax.servlet.ServletContext;
 import org.apache.catalina.Context;
+import org.apache.catalina.Loader;
+import org.apache.commons.lang3.reflect.MethodUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ClassUtils;
-
 import psiprobe.model.Application;
 import psiprobe.model.DisconnectedLogDestination;
 import psiprobe.tools.ApplicationUtils;
@@ -39,6 +41,7 @@ import psiprobe.tools.logging.jdk.Jdk14LoggerAccessor;
 import psiprobe.tools.logging.jdk.Jdk14ManagerAccessor;
 import psiprobe.tools.logging.log4j.Log4JLoggerAccessor;
 import psiprobe.tools.logging.log4j.Log4JManagerAccessor;
+import psiprobe.tools.logging.log4j2.Log4J2AppenderAccessor;
 import psiprobe.tools.logging.log4j2.Log4J2LoggerConfigAccessor;
 import psiprobe.tools.logging.log4j2.Log4J2LoggerContextAccessor;
 import psiprobe.tools.logging.log4j2.Log4J2WebLoggerContextUtilsAccessor;
@@ -50,17 +53,17 @@ import psiprobe.tools.logging.slf4jlogback.TomcatSlf4jLogbackLoggerAccessor;
 /**
  * The Class LogResolverBean.
  */
-<span class="fc" id="L53">public class LogResolverBean {</span>
+<span class="fc" id="L56">public class LogResolverBean {</span>
 
   /** The Constant logger. */
-<span class="fc" id="L56">  protected static final Logger logger = LoggerFactory.getLogger(LogResolverBean.class);</span>
+<span class="fc" id="L59">  private static final Logger logger = LoggerFactory.getLogger(LogResolverBean.class);</span>
 
   /** The container wrapper. */
   @Inject
   private ContainerWrapperBean containerWrapper;
 
   /** The stdout files. */
-<span class="fc" id="L63">  private List&lt;String&gt; stdoutFiles = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L66">  private List&lt;String&gt; stdoutFiles = new ArrayList&lt;&gt;();</span>
 
   /**
    * Gets the container wrapper.
@@ -68,7 +71,7 @@ import psiprobe.tools.logging.slf4jlogback.TomcatSlf4jLogbackLoggerAccessor;
    * @return the container wrapper
    */
   public ContainerWrapperBean getContainerWrapper() {
-<span class="nc" id="L71">    return containerWrapper;</span>
+<span class="nc" id="L74">    return containerWrapper;</span>
   }
 
   /**
@@ -77,8 +80,8 @@ import psiprobe.tools.logging.slf4jlogback.TomcatSlf4jLogbackLoggerAccessor;
    * @param containerWrapper the new container wrapper
    */
   public void setContainerWrapper(ContainerWrapperBean containerWrapper) {
-<span class="nc" id="L80">    this.containerWrapper = containerWrapper;</span>
-<span class="nc" id="L81">  }</span>
+<span class="nc" id="L83">    this.containerWrapper = containerWrapper;</span>
+<span class="nc" id="L84">  }</span>
 
   /**
    * Gets the stdout files.
@@ -86,7 +89,7 @@ import psiprobe.tools.logging.slf4jlogback.TomcatSlf4jLogbackLoggerAccessor;
    * @return the stdout files
    */
   public List&lt;String&gt; getStdoutFiles() {
-<span class="nc" id="L89">    return stdoutFiles;</span>
+<span class="nc" id="L92">    return stdoutFiles;</span>
   }
 
   /**
@@ -96,9 +99,9 @@ import psiprobe.tools.logging.slf4jlogback.TomcatSlf4jLogbackLoggerAccessor;
    */
   @Autowired
   public void setStdoutFiles(List&lt;String&gt; stdoutFiles) {
-<span class="nc" id="L99">    logger.info(&quot;stdoutFiles {}&quot;, stdoutFiles);</span>
-<span class="nc" id="L100">    this.stdoutFiles = stdoutFiles;</span>
-<span class="nc" id="L101">  }</span>
+<span class="nc" id="L102">    logger.info(&quot;stdoutFiles {}&quot;, stdoutFiles);</span>
+<span class="nc" id="L103">    this.stdoutFiles = stdoutFiles;</span>
+<span class="nc" id="L104">  }</span>
 
   /**
    * Gets the log destinations.
@@ -107,26 +110,27 @@ import psiprobe.tools.logging.slf4jlogback.TomcatSlf4jLogbackLoggerAccessor;
    * @return the log destinations
    */
   public List&lt;LogDestination&gt; getLogDestinations(boolean all) {
-<span class="nc" id="L110">    List&lt;LogDestination&gt; allAppenders = getAllLogDestinations();</span>
+<span class="nc" id="L113">    List&lt;LogDestination&gt; allAppenders = getAllLogDestinations();</span>
 
-<span class="nc bnc" id="L112" title="All 2 branches missed.">    if (allAppenders != null) {</span>
-      //
-      // this list has to guarantee the order in which elements are added
-      //
-<span class="nc" id="L116">      List&lt;LogDestination&gt; uniqueList = new LinkedList&lt;&gt;();</span>
-<span class="nc" id="L117">      AbstractLogComparator cmp = new LogDestinationComparator(all);</span>
-
-<span class="nc" id="L119">      Collections.sort(allAppenders, cmp);</span>
-<span class="nc bnc" id="L120" title="All 2 branches missed.">      for (LogDestination dest : allAppenders) {</span>
-<span class="nc bnc" id="L121" title="All 2 branches missed.">        if (Collections.binarySearch(uniqueList, dest, cmp) &lt; 0) {</span>
-<span class="nc bnc" id="L122" title="All 6 branches missed.">          if (all || dest.getFile() == null || dest.getFile().exists()) {</span>
-<span class="nc" id="L123">            uniqueList.add(new DisconnectedLogDestination().builder(dest));</span>
-          }
-        }
-<span class="nc" id="L126">      }</span>
-<span class="nc" id="L127">      return uniqueList;</span>
+<span class="nc bnc" id="L115" title="All 2 branches missed.">    if (allAppenders == null) {</span>
+<span class="nc" id="L116">      return null;</span>
     }
-<span class="nc" id="L129">    return null;</span>
+
+    //
+    // this list has to guarantee the order in which elements are added
+    //
+<span class="nc" id="L122">    List&lt;LogDestination&gt; uniqueList = new LinkedList&lt;&gt;();</span>
+<span class="nc" id="L123">    AbstractLogComparator cmp = new LogDestinationComparator(all);</span>
+
+<span class="nc" id="L125">    Collections.sort(allAppenders, cmp);</span>
+<span class="nc bnc" id="L126" title="All 2 branches missed.">    for (LogDestination dest : allAppenders) {</span>
+<span class="nc bnc" id="L127" title="All 2 branches missed.">      if (Collections.binarySearch(uniqueList, dest, cmp) &lt; 0) {</span>
+<span class="nc bnc" id="L128" title="All 6 branches missed.">        if (all || dest.getFile() == null || dest.getFile().exists()) {</span>
+<span class="nc" id="L129">          uniqueList.add(new DisconnectedLogDestination().builder(dest));</span>
+        }
+      }
+<span class="nc" id="L132">    }</span>
+<span class="nc" id="L133">    return uniqueList;</span>
   }
 
   /**
@@ -136,14 +140,14 @@ import psiprobe.tools.logging.slf4jlogback.TomcatSlf4jLogbackLoggerAccessor;
    * @return the log sources
    */
   public List&lt;LogDestination&gt; getLogSources(File logFile) {
-<span class="nc" id="L139">    List&lt;LogDestination&gt; filtered = new LinkedList&lt;&gt;();</span>
-<span class="nc" id="L140">    List&lt;LogDestination&gt; sources = getLogSources();</span>
-<span class="nc bnc" id="L141" title="All 2 branches missed.">    for (LogDestination dest : sources) {</span>
-<span class="nc bnc" id="L142" title="All 2 branches missed.">      if (logFile.equals(dest.getFile())) {</span>
-<span class="nc" id="L143">        filtered.add(dest);</span>
+<span class="nc" id="L143">    List&lt;LogDestination&gt; filtered = new LinkedList&lt;&gt;();</span>
+<span class="nc" id="L144">    List&lt;LogDestination&gt; sources = getLogSources();</span>
+<span class="nc bnc" id="L145" title="All 2 branches missed.">    for (LogDestination dest : sources) {</span>
+<span class="nc bnc" id="L146" title="All 2 branches missed.">      if (logFile.equals(dest.getFile())) {</span>
+<span class="nc" id="L147">        filtered.add(dest);</span>
       }
-<span class="nc" id="L145">    }</span>
-<span class="nc" id="L146">    return filtered;</span>
+<span class="nc" id="L149">    }</span>
+<span class="nc" id="L150">    return filtered;</span>
   }
 
   /**
@@ -152,20 +156,20 @@ import psiprobe.tools.logging.slf4jlogback.TomcatSlf4jLogbackLoggerAccessor;
    * @return the log sources
    */
   public List&lt;LogDestination&gt; getLogSources() {
-<span class="nc" id="L155">    List&lt;LogDestination&gt; sources = new LinkedList&lt;&gt;();</span>
+<span class="nc" id="L159">    List&lt;LogDestination&gt; sources = new LinkedList&lt;&gt;();</span>
 
-<span class="nc" id="L157">    List&lt;LogDestination&gt; allAppenders = getAllLogDestinations();</span>
-<span class="nc bnc" id="L158" title="All 2 branches missed.">    if (allAppenders != null) {</span>
-<span class="nc" id="L159">      AbstractLogComparator cmp = new LogSourceComparator();</span>
+<span class="nc" id="L161">    List&lt;LogDestination&gt; allAppenders = getAllLogDestinations();</span>
+<span class="nc bnc" id="L162" title="All 2 branches missed.">    if (allAppenders != null) {</span>
+<span class="nc" id="L163">      AbstractLogComparator cmp = new LogSourceComparator();</span>
 
-<span class="nc" id="L161">      Collections.sort(allAppenders, cmp);</span>
-<span class="nc bnc" id="L162" title="All 2 branches missed.">      for (LogDestination dest : allAppenders) {</span>
-<span class="nc bnc" id="L163" title="All 2 branches missed.">        if (Collections.binarySearch(sources, dest, cmp) &lt; 0) {</span>
-<span class="nc" id="L164">          sources.add(new DisconnectedLogDestination().builder(dest));</span>
+<span class="nc" id="L165">      Collections.sort(allAppenders, cmp);</span>
+<span class="nc bnc" id="L166" title="All 2 branches missed.">      for (LogDestination dest : allAppenders) {</span>
+<span class="nc bnc" id="L167" title="All 2 branches missed.">        if (Collections.binarySearch(sources, dest, cmp) &lt; 0) {</span>
+<span class="nc" id="L168">          sources.add(new DisconnectedLogDestination().builder(dest));</span>
         }
-<span class="nc" id="L166">      }</span>
+<span class="nc" id="L170">      }</span>
     }
-<span class="nc" id="L168">    return sources;</span>
+<span class="nc" id="L172">    return sources;</span>
   }
 
   /**
@@ -174,34 +178,35 @@ import psiprobe.tools.logging.slf4jlogback.TomcatSlf4jLogbackLoggerAccessor;
    * @return the all log destinations
    */
   private List&lt;LogDestination&gt; getAllLogDestinations() {
-<span class="nc bnc" id="L177" title="All 2 branches missed.">    if (Instruments.isInitialized()) {</span>
-<span class="nc" id="L178">      List&lt;LogDestination&gt; allAppenders = new ArrayList&lt;&gt;();</span>
-
-      //
-      // interrogate classloader hierarchy
-      //
-<span class="nc" id="L183">      ClassLoader cl2 = Thread.currentThread().getContextClassLoader().getParent();</span>
-<span class="nc bnc" id="L184" title="All 2 branches missed.">      while (cl2 != null) {</span>
-<span class="nc" id="L185">        interrogateClassLoader(cl2, null, allAppenders);</span>
-<span class="nc" id="L186">        cl2 = cl2.getParent();</span>
-      }
-
-      //
-      // check for known stdout files, such as &quot;catalina.out&quot;
-      //
-<span class="nc" id="L192">      interrogateStdOutFiles(allAppenders);</span>
-
-      //
-      // interrogate webapp classloaders and available loggers
-      //
-<span class="nc" id="L197">      List&lt;Context&gt; contexts = getContainerWrapper().getTomcatContainer().findContexts();</span>
-<span class="nc bnc" id="L198" title="All 2 branches missed.">      for (Context ctx : contexts) {</span>
-<span class="nc" id="L199">        interrogateContext(ctx, allAppenders);</span>
-<span class="nc" id="L200">      }</span>
-
-<span class="nc" id="L202">      return allAppenders;</span>
+<span class="nc bnc" id="L181" title="All 2 branches missed.">    if (!Instruments.isInitialized()) {</span>
+<span class="nc" id="L182">      return null;</span>
     }
-<span class="nc" id="L204">    return null;</span>
+
+<span class="nc" id="L185">    List&lt;LogDestination&gt; allAppenders = new ArrayList&lt;&gt;();</span>
+
+    //
+    // interrogate classloader hierarchy
+    //
+<span class="nc" id="L190">    ClassLoader cl2 = Thread.currentThread().getContextClassLoader().getParent();</span>
+<span class="nc bnc" id="L191" title="All 2 branches missed.">    while (cl2 != null) {</span>
+<span class="nc" id="L192">      interrogateClassLoader(cl2, null, allAppenders);</span>
+<span class="nc" id="L193">      cl2 = cl2.getParent();</span>
+    }
+
+    //
+    // check for known stdout files, such as &quot;catalina.out&quot;
+    //
+<span class="nc" id="L199">    interrogateStdOutFiles(allAppenders);</span>
+
+    //
+    // interrogate webapp classloaders and available loggers
+    //
+<span class="nc" id="L204">    List&lt;Context&gt; contexts = getContainerWrapper().getTomcatContainer().findContexts();</span>
+<span class="nc bnc" id="L205" title="All 2 branches missed.">    for (Context ctx : contexts) {</span>
+<span class="nc" id="L206">      interrogateContext(ctx, allAppenders);</span>
+<span class="nc" id="L207">    }</span>
+
+<span class="nc" id="L209">    return allAppenders;</span>
   }
 
   /**
@@ -218,54 +223,56 @@ import psiprobe.tools.logging.slf4jlogback.TomcatSlf4jLogbackLoggerAccessor;
   public LogDestination getLogDestination(String logType, String webapp, boolean context,
       boolean root, String logName, String logIndex) {
 
-<span class="nc" id="L221">    Context ctx = null;</span>
-<span class="nc" id="L222">    Application application = null;</span>
-<span class="nc bnc" id="L223" title="All 2 branches missed.">    if (webapp != null) {</span>
-<span class="nc" id="L224">      ctx = getContainerWrapper().getTomcatContainer().findContext(webapp);</span>
-<span class="nc bnc" id="L225" title="All 2 branches missed.">      if (ctx != null) {</span>
-<span class="nc" id="L226">        application = ApplicationUtils.getApplication(ctx, getContainerWrapper());</span>
+<span class="nc" id="L226">    LogDestination result = null;</span>
+<span class="nc" id="L227">    Context ctx = null;</span>
+<span class="nc" id="L228">    Application application = null;</span>
+<span class="nc bnc" id="L229" title="All 2 branches missed.">    if (webapp != null) {</span>
+<span class="nc" id="L230">      ctx = getContainerWrapper().getTomcatContainer().findContext(webapp);</span>
+<span class="nc bnc" id="L231" title="All 2 branches missed.">      if (ctx != null) {</span>
+<span class="nc" id="L232">        application = ApplicationUtils.getApplication(ctx, getContainerWrapper());</span>
       }
     }
 
-<span class="nc bnc" id="L230" title="All 4 branches missed.">    if (&quot;stdout&quot;.equals(logType) &amp;&amp; logName != null) {</span>
-<span class="nc" id="L231">      return getStdoutLogDestination(logName);</span>
-<span class="nc bnc" id="L232" title="All 4 branches missed.">    } else if (&quot;catalina&quot;.equals(logType) &amp;&amp; ctx != null) {</span>
-<span class="nc" id="L233">      return getCatalinaLogDestination(ctx, application);</span>
-<span class="nc bnc" id="L234" title="All 6 branches missed.">    } else if (logIndex != null &amp;&amp; (&quot;jdk&quot;.equals(logType) || &quot;log4j&quot;.equals(logType)</span>
-<span class="nc bnc" id="L235" title="All 4 branches missed.">        || &quot;log4j2&quot;.equals(logType) || &quot;logback&quot;.equals(logType))</span>
-<span class="nc bnc" id="L236" title="All 2 branches missed.">        || &quot;tomcatSlf4jLogback&quot;.equals(logType)) {</span>
-<span class="nc bnc" id="L237" title="All 6 branches missed.">      if (context &amp;&amp; ctx != null &amp;&amp; !&quot;log4j2&quot;.equals(logType)) {</span>
-<span class="nc" id="L238">        return getCommonsLogDestination(ctx, application, logIndex);</span>
-<span class="nc bnc" id="L239" title="All 2 branches missed.">      } else if (&quot;log4j2&quot;.equals(logType)) {</span>
-<span class="nc" id="L240">        return getLog4J2LogDestination(ctx, application, root, logName, logIndex);</span>
-      }
-      ClassLoader cl;
-<span class="nc" id="L243">      ClassLoader prevCl = null;</span>
-<span class="nc bnc" id="L244" title="All 2 branches missed.">      if (ctx != null) {</span>
-<span class="nc" id="L245">        cl = ctx.getLoader().getClassLoader();</span>
-<span class="nc" id="L246">        prevCl = ClassUtils.overrideThreadContextClassLoader(cl);</span>
+<span class="nc bnc" id="L236" title="All 4 branches missed.">    if (logName != null &amp;&amp; &quot;stdout&quot;.equals(logType)) {</span>
+<span class="nc" id="L237">      result = getStdoutLogDestination(logName);</span>
+<span class="nc bnc" id="L238" title="All 4 branches missed.">    } else if (ctx != null &amp;&amp; &quot;catalina&quot;.equals(logType)) {</span>
+<span class="nc" id="L239">      result = getCatalinaLogDestination(ctx, application);</span>
+<span class="nc bnc" id="L240" title="All 6 branches missed.">    } else if (logIndex != null &amp;&amp; (&quot;jdk&quot;.equals(logType) || &quot;log4j&quot;.equals(logType)</span>
+<span class="nc bnc" id="L241" title="All 4 branches missed.">        || &quot;log4j2&quot;.equals(logType) || &quot;logback&quot;.equals(logType))</span>
+<span class="nc bnc" id="L242" title="All 2 branches missed.">        || &quot;tomcatSlf4jLogback&quot;.equals(logType)) {</span>
+<span class="nc bnc" id="L243" title="All 6 branches missed.">      if (context &amp;&amp; ctx != null &amp;&amp; !&quot;log4j2&quot;.equals(logType)) {</span>
+<span class="nc" id="L244">        result = getCommonsLogDestination(ctx, application, logIndex);</span>
+<span class="nc bnc" id="L245" title="All 4 branches missed.">      } else if (ctx != null &amp;&amp; &quot;log4j2&quot;.equals(logType)) {</span>
+<span class="nc" id="L246">        result = getLog4J2LogDestination(ctx, application, root, logName, logIndex);</span>
       } else {
-<span class="nc" id="L248">        cl = Thread.currentThread().getContextClassLoader().getParent();</span>
-      }
-      try {
-<span class="nc bnc" id="L251" title="All 6 branches missed.">        if ((root || logName != null) &amp;&amp; logIndex != null) {</span>
-<span class="nc bnc" id="L252" title="All 2 branches missed.">          if (&quot;jdk&quot;.equals(logType)) {</span>
-<span class="nc" id="L253">            return getJdk14LogDestination(cl, application, root, logName, logIndex);</span>
-<span class="nc bnc" id="L254" title="All 2 branches missed.">          } else if (&quot;log4j&quot;.equals(logType)) {</span>
-<span class="nc" id="L255">            return getLog4JLogDestination(cl, application, root, logName, logIndex);</span>
-<span class="nc bnc" id="L256" title="All 2 branches missed.">          } else if (&quot;logback&quot;.equals(logType)) {</span>
-<span class="nc" id="L257">            return getLogbackLogDestination(cl, application, root, logName, logIndex);</span>
-<span class="nc bnc" id="L258" title="All 2 branches missed.">          } else if (&quot;tomcatSlf4jLogback&quot;.equals(logType)) {</span>
-<span class="nc" id="L259">            return getLogbackTomcatJuliLogDestination(cl, application, root, logName, logIndex);</span>
-          }
+        ClassLoader cl;
+<span class="nc" id="L249">        ClassLoader prevCl = null;</span>
+<span class="nc bnc" id="L250" title="All 2 branches missed.">        if (ctx != null) {</span>
+<span class="nc" id="L251">          cl = ctx.getLoader().getClassLoader();</span>
+<span class="nc" id="L252">          prevCl = ClassUtils.overrideThreadContextClassLoader(cl);</span>
+        } else {
+<span class="nc" id="L254">          cl = Thread.currentThread().getContextClassLoader().getParent();</span>
         }
-      } finally {
-<span class="nc bnc" id="L263" title="All 12 branches missed.">        if (prevCl != null) {</span>
-<span class="nc" id="L264">          ClassUtils.overrideThreadContextClassLoader(prevCl);</span>
+        try {
+<span class="nc bnc" id="L257" title="All 6 branches missed.">          if ((root || logName != null) &amp;&amp; logIndex != null) {</span>
+<span class="nc bnc" id="L258" title="All 2 branches missed.">            if (&quot;jdk&quot;.equals(logType)) {</span>
+<span class="nc" id="L259">              result = getJdk14LogDestination(cl, application, root, logName, logIndex);</span>
+<span class="nc bnc" id="L260" title="All 2 branches missed.">            } else if (&quot;log4j&quot;.equals(logType)) {</span>
+<span class="nc" id="L261">              result = getLog4JLogDestination(cl, application, root, logName, logIndex);</span>
+<span class="nc bnc" id="L262" title="All 2 branches missed.">            } else if (&quot;logback&quot;.equals(logType)) {</span>
+<span class="nc" id="L263">              result = getLogbackLogDestination(cl, application, root, logName, logIndex);</span>
+<span class="nc bnc" id="L264" title="All 2 branches missed.">            } else if (&quot;tomcatSlf4jLogback&quot;.equals(logType)) {</span>
+<span class="nc" id="L265">              result = getLogbackTomcatJuliLogDestination(cl, application, root, logName, logIndex);</span>
+            }
+          }
+        } finally {
+<span class="nc bnc" id="L269" title="All 2 branches missed.">          if (prevCl != null) {</span>
+<span class="nc" id="L270">            ClassUtils.overrideThreadContextClassLoader(prevCl);</span>
+          }
         }
       }
     }
-<span class="nc" id="L268">    return null;</span>
+<span class="nc" id="L275">    return result;</span>
   }
 
   /**
@@ -275,66 +282,75 @@ import psiprobe.tools.logging.slf4jlogback.TomcatSlf4jLogbackLoggerAccessor;
    * @param allAppenders the all appenders
    */
   private void interrogateContext(Context ctx, List&lt;LogDestination&gt; allAppenders) {
-<span class="nc" id="L278">    Application application = ApplicationUtils.getApplication(ctx, getContainerWrapper());</span>
-<span class="nc" id="L279">    ClassLoader cl = ctx.getLoader().getClassLoader();</span>
-
-    try {
-<span class="nc" id="L282">      Object contextLogger = ctx.getLogger();</span>
-<span class="nc bnc" id="L283" title="All 2 branches missed.">      if (contextLogger != null) {</span>
-<span class="nc bnc" id="L284" title="All 2 branches missed.">        if (contextLogger.getClass().getName().startsWith(&quot;org.apache.commons.logging&quot;)) {</span>
-<span class="nc" id="L285">          CommonsLoggerAccessor commonsAccessor = new CommonsLoggerAccessor();</span>
-<span class="nc" id="L286">          commonsAccessor.setTarget(contextLogger);</span>
-<span class="nc" id="L287">          commonsAccessor.setApplication(application);</span>
-<span class="nc" id="L288">          allAppenders.addAll(commonsAccessor.getDestinations());</span>
-<span class="nc bnc" id="L289" title="All 2 branches missed.">        } else if (contextLogger.getClass().getName().startsWith(&quot;org.apache.catalina.logger&quot;)) {</span>
-<span class="nc" id="L290">          CatalinaLoggerAccessor catalinaAccessor = new CatalinaLoggerAccessor();</span>
-<span class="nc" id="L291">          catalinaAccessor.setApplication(application);</span>
-<span class="nc" id="L292">          catalinaAccessor.setTarget(contextLogger);</span>
-<span class="nc" id="L293">          allAppenders.add(catalinaAccessor);</span>
-        }
-
-        // Log4J 2 runs independently of the context logger
-        try {
-<span class="nc" id="L298">          Log4J2WebLoggerContextUtilsAccessor webLoggerContextUtilsAccessor =</span>
-<span class="nc" id="L299">              new Log4J2WebLoggerContextUtilsAccessor(ctx.getLoader().getClassLoader());</span>
-<span class="nc" id="L300">          Log4J2LoggerContextAccessor loggerContext =</span>
-<span class="nc" id="L301">              webLoggerContextUtilsAccessor.getWebLoggerContext(ctx.getServletContext());</span>
-<span class="nc" id="L302">          Map&lt;String, Object&gt; loggers = loggerContext.getLoggers();</span>
-<span class="nc bnc" id="L303" title="All 2 branches missed.">          for (Object currentLogger : loggers.values()) {</span>
-<span class="nc" id="L304">            Log4J2LoggerConfigAccessor accessor = new Log4J2LoggerConfigAccessor();</span>
-<span class="nc" id="L305">            accessor.setTarget(currentLogger);</span>
-<span class="nc" id="L306">            accessor.setApplication(application);</span>
-<span class="nc" id="L307">            accessor.setContext(true);</span>
-<span class="nc" id="L308">            accessor.setLoggerContext(loggerContext);</span>
-<span class="nc" id="L309">            allAppenders.addAll(accessor.getAppenders());</span>
-<span class="nc" id="L310">          }</span>
-<span class="nc" id="L311">        } catch (Exception e) {</span>
-<span class="nc" id="L312">          logger.debug(&quot;WebLoggerContextUtilsAccessor instantiation failed&quot;, e);</span>
-<span class="nc" id="L313">        }</span>
+<span class="nc" id="L285">    Application application = ApplicationUtils.getApplication(ctx, getContainerWrapper());</span>
+<span class="nc" id="L286">    ClassLoader cl = ctx.getLoader().getClassLoader();</span>
+<span class="nc" id="L287">    Object contextLogger = ctx.getLogger();</span>
+<span class="nc bnc" id="L288" title="All 2 branches missed.">    if (contextLogger != null) {</span>
+<span class="nc bnc" id="L289" title="All 2 branches missed.">      if (contextLogger.getClass().getName().startsWith(&quot;org.apache.commons.logging&quot;)) {</span>
+<span class="nc" id="L290">        CommonsLoggerAccessor commonsAccessor = new CommonsLoggerAccessor();</span>
+<span class="nc" id="L291">        commonsAccessor.setTarget(contextLogger);</span>
+<span class="nc" id="L292">        commonsAccessor.setApplication(application);</span>
+<span class="nc" id="L293">        allAppenders.addAll(commonsAccessor.getDestinations());</span>
+<span class="nc bnc" id="L294" title="All 2 branches missed.">      } else if (contextLogger.getClass().getName().startsWith(&quot;org.apache.catalina.logger&quot;)) {</span>
+<span class="nc" id="L295">        CatalinaLoggerAccessor catalinaAccessor = new CatalinaLoggerAccessor();</span>
+<span class="nc" id="L296">        catalinaAccessor.setApplication(application);</span>
+<span class="nc" id="L297">        catalinaAccessor.setTarget(contextLogger);</span>
+<span class="nc" id="L298">        allAppenders.add(catalinaAccessor);</span>
       }
-<span class="nc" id="L315">    } catch (Exception e) {</span>
-<span class="nc" id="L316">      logger.error(</span>
-          &quot;Could not interrogate context logger for {}. Enable debug logging to see the trace stack&quot;,
-<span class="nc" id="L318">          ctx.getName());</span>
-<span class="nc" id="L319">      logger.debug(&quot;&quot;, e);</span>
-<span class="nc" id="L320">    }</span>
 
-<span class="nc bnc" id="L322" title="All 2 branches missed.">    if (application.isAvailable()) {</span>
-<span class="nc" id="L323">      ClassLoader prevCl = ClassUtils.overrideThreadContextClassLoader(cl);</span>
+<span class="nc" id="L301">      ServletContext servletContext = ctx.getServletContext();</span>
       try {
-<span class="nc" id="L325">        interrogateClassLoader(cl, application, allAppenders);</span>
-<span class="nc" id="L326">      } catch (Exception e) {</span>
-<span class="nc" id="L327">        logger.error(</span>
+<span class="nc" id="L303">        Log4J2LoggerContextAccessor loggerContextAccessor = null;</span>
+        try {
+<span class="nc" id="L305">          Log4J2WebLoggerContextUtilsAccessor webLoggerContextUtilsAccessor =</span>
+              new Log4J2WebLoggerContextUtilsAccessor(cl);
+<span class="nc" id="L307">          loggerContextAccessor = webLoggerContextUtilsAccessor.getWebLoggerContext(servletContext);</span>
+<span class="nc" id="L308">        } catch (Exception e) {</span>
+<span class="nc" id="L309">          logger.debug(&quot;Log4J2LoggerContextAccessor instantiation failed&quot;, e);</span>
+<span class="nc" id="L310">        }</span>
+<span class="nc" id="L311">        List&lt;Object&gt; loggerContexts = getLoggerContexts(cl);</span>
+<span class="nc bnc" id="L312" title="All 2 branches missed.">        for (Object loggerContext : loggerContexts) {</span>
+<span class="nc" id="L313">          Map&lt;String, Object&gt; loggerConfigs = getLoggerConfigs(loggerContext);</span>
+<span class="nc bnc" id="L314" title="All 2 branches missed.">          for (Object loggerConfig : loggerConfigs.values()) {</span>
+<span class="nc" id="L315">            Log4J2LoggerConfigAccessor logConfigAccessor = new Log4J2LoggerConfigAccessor();</span>
+<span class="nc" id="L316">            logConfigAccessor.setTarget(loggerConfig);</span>
+<span class="nc" id="L317">            logConfigAccessor.setApplication(application);</span>
+<span class="nc" id="L318">            logConfigAccessor.setContext(true);</span>
+<span class="nc" id="L319">            logConfigAccessor.setLoggerContext(loggerContextAccessor);</span>
+<span class="nc" id="L320">            Method getAppenders =</span>
+<span class="nc" id="L321">                MethodUtils.getAccessibleMethod(loggerConfig.getClass(), &quot;getAppenders&quot;);</span>
+            @SuppressWarnings(&quot;unchecked&quot;)
+<span class="nc" id="L323">            Map&lt;String, Object&gt; appenders = (Map&lt;String, Object&gt;) getAppenders.invoke(loggerConfig);</span>
+<span class="nc bnc" id="L324" title="All 2 branches missed.">            for (Object appender : appenders.values()) {</span>
+<span class="nc" id="L325">              Log4J2AppenderAccessor appenderAccessor = new Log4J2AppenderAccessor();</span>
+<span class="nc" id="L326">              appenderAccessor.setTarget(appender);</span>
+<span class="nc" id="L327">              appenderAccessor.setLoggerAccessor(logConfigAccessor);</span>
+<span class="nc" id="L328">              appenderAccessor.setApplication(application);</span>
+<span class="nc" id="L329">              allAppenders.add(appenderAccessor);</span>
+<span class="nc" id="L330">            }</span>
+<span class="nc" id="L331">          }</span>
+<span class="nc" id="L332">        }</span>
+<span class="nc" id="L333">      } catch (Exception e) {</span>
+<span class="nc" id="L334">        logger.debug(&quot;getting appenders failed&quot;, e);</span>
+<span class="nc" id="L335">      }</span>
+    }
+
+<span class="nc bnc" id="L338" title="All 2 branches missed.">    if (application.isAvailable()) {</span>
+<span class="nc" id="L339">      ClassLoader prevCl = ClassUtils.overrideThreadContextClassLoader(cl);</span>
+      try {
+<span class="nc" id="L341">        interrogateClassLoader(cl, application, allAppenders);</span>
+<span class="nc" id="L342">      } catch (Exception e) {</span>
+<span class="nc" id="L343">        logger.error(</span>
             &quot;Could not interrogate classloader loggers for {}. Enable debug logging to see the trace stack&quot;,
-<span class="nc" id="L329">            ctx.getName());</span>
-<span class="nc" id="L330">        logger.debug(&quot;&quot;, e);</span>
+<span class="nc" id="L345">            ctx.getName());</span>
+<span class="nc" id="L346">        logger.debug(&quot;&quot;, e);</span>
       } finally {
-<span class="nc bnc" id="L332" title="All 6 branches missed.">        if (prevCl != null) {</span>
-<span class="nc" id="L333">          ClassUtils.overrideThreadContextClassLoader(prevCl);</span>
+<span class="nc bnc" id="L348" title="All 2 branches missed.">        if (prevCl != null) {</span>
+<span class="nc" id="L349">          ClassUtils.overrideThreadContextClassLoader(prevCl);</span>
         }
       }
     }
-<span class="nc" id="L337">  }</span>
+<span class="nc" id="L353">  }</span>
 
   /**
    * Interrogate class loader.
@@ -347,45 +363,45 @@ import psiprobe.tools.logging.slf4jlogback.TomcatSlf4jLogbackLoggerAccessor;
       List&lt;LogDestination&gt; appenders) {
 
     String applicationName =
-<span class="nc bnc" id="L350" title="All 2 branches missed.">        application != null ? &quot;application \&quot;&quot; + application.getName() + &quot;\&quot;&quot; : &quot;server&quot;;</span>
+<span class="nc bnc" id="L366" title="All 2 branches missed.">        application != null ? &quot;application \&quot;&quot; + application.getName() + &quot;\&quot;&quot; : &quot;server&quot;;</span>
 
     // check for JDK loggers
     try {
-<span class="nc" id="L354">      Jdk14ManagerAccessor jdk14accessor = new Jdk14ManagerAccessor(cl);</span>
-<span class="nc" id="L355">      jdk14accessor.setApplication(application);</span>
-<span class="nc" id="L356">      appenders.addAll(jdk14accessor.getHandlers());</span>
-<span class="nc" id="L357">    } catch (Exception e) {</span>
-<span class="nc" id="L358">      logger.debug(&quot;Could not resolve JDK loggers for '{}'&quot;, applicationName, e);</span>
-<span class="nc" id="L359">    }</span>
+<span class="nc" id="L370">      Jdk14ManagerAccessor jdk14accessor = new Jdk14ManagerAccessor(cl);</span>
+<span class="nc" id="L371">      jdk14accessor.setApplication(application);</span>
+<span class="nc" id="L372">      appenders.addAll(jdk14accessor.getHandlers());</span>
+<span class="nc" id="L373">    } catch (Exception e) {</span>
+<span class="nc" id="L374">      logger.debug(&quot;Could not resolve JDK loggers for '{}'&quot;, applicationName, e);</span>
+<span class="nc" id="L375">    }</span>
 
     // check for Log4J loggers
     try {
-<span class="nc" id="L363">      Log4JManagerAccessor log4JAccessor = new Log4JManagerAccessor(cl);</span>
-<span class="nc" id="L364">      log4JAccessor.setApplication(application);</span>
-<span class="nc" id="L365">      appenders.addAll(log4JAccessor.getAppenders());</span>
-<span class="nc" id="L366">    } catch (Exception e) {</span>
-<span class="nc" id="L367">      logger.debug(&quot;Could not resolve log4j loggers for '{}'&quot;, applicationName, e);</span>
-<span class="nc" id="L368">    }</span>
+<span class="nc" id="L379">      Log4JManagerAccessor log4JAccessor = new Log4JManagerAccessor(cl);</span>
+<span class="nc" id="L380">      log4JAccessor.setApplication(application);</span>
+<span class="nc" id="L381">      appenders.addAll(log4JAccessor.getAppenders());</span>
+<span class="nc" id="L382">    } catch (Exception e) {</span>
+<span class="nc" id="L383">      logger.debug(&quot;Could not resolve log4j loggers for '{}'&quot;, applicationName, e);</span>
+<span class="nc" id="L384">    }</span>
 
     // check for Logback loggers
     try {
-<span class="nc" id="L372">      LogbackFactoryAccessor logbackAccessor = new LogbackFactoryAccessor(cl);</span>
-<span class="nc" id="L373">      logbackAccessor.setApplication(application);</span>
-<span class="nc" id="L374">      appenders.addAll(logbackAccessor.getAppenders());</span>
-<span class="nc" id="L375">    } catch (Exception e) {</span>
-<span class="nc" id="L376">      logger.debug(&quot;Could not resolve logback loggers for '{}'&quot;, applicationName, e);</span>
-<span class="nc" id="L377">    }</span>
+<span class="nc" id="L388">      LogbackFactoryAccessor logbackAccessor = new LogbackFactoryAccessor(cl);</span>
+<span class="nc" id="L389">      logbackAccessor.setApplication(application);</span>
+<span class="nc" id="L390">      appenders.addAll(logbackAccessor.getAppenders());</span>
+<span class="nc" id="L391">    } catch (Exception e) {</span>
+<span class="nc" id="L392">      logger.debug(&quot;Could not resolve logback loggers for '{}'&quot;, applicationName, e);</span>
+<span class="nc" id="L393">    }</span>
 
     // check for tomcat-slf4j-logback loggers
     try {
-<span class="nc" id="L381">      TomcatSlf4jLogbackFactoryAccessor tomcatSlf4jLogbackAccessor =</span>
+<span class="nc" id="L397">      TomcatSlf4jLogbackFactoryAccessor tomcatSlf4jLogbackAccessor =</span>
           new TomcatSlf4jLogbackFactoryAccessor(cl);
-<span class="nc" id="L383">      tomcatSlf4jLogbackAccessor.setApplication(application);</span>
-<span class="nc" id="L384">      appenders.addAll(tomcatSlf4jLogbackAccessor.getAppenders());</span>
-<span class="nc" id="L385">    } catch (Exception e) {</span>
-<span class="nc" id="L386">      logger.debug(&quot;Could not resolve tomcat-slf4j-logback loggers for '{}'&quot;, applicationName, e);</span>
-<span class="nc" id="L387">    }</span>
-<span class="nc" id="L388">  }</span>
+<span class="nc" id="L399">      tomcatSlf4jLogbackAccessor.setApplication(application);</span>
+<span class="nc" id="L400">      appenders.addAll(tomcatSlf4jLogbackAccessor.getAppenders());</span>
+<span class="nc" id="L401">    } catch (Exception e) {</span>
+<span class="nc" id="L402">      logger.debug(&quot;Could not resolve tomcat-slf4j-logback loggers for '{}'&quot;, applicationName, e);</span>
+<span class="nc" id="L403">    }</span>
+<span class="nc" id="L404">  }</span>
 
   /**
    * Interrogate std out files.
@@ -393,13 +409,13 @@ import psiprobe.tools.logging.slf4jlogback.TomcatSlf4jLogbackLoggerAccessor;
    * @param appenders the appenders
    */
   private void interrogateStdOutFiles(List&lt;LogDestination&gt; appenders) {
-<span class="nc bnc" id="L396" title="All 2 branches missed.">    for (String fileName : stdoutFiles) {</span>
-<span class="nc" id="L397">      FileLogAccessor fla = resolveStdoutLogDestination(fileName);</span>
-<span class="nc bnc" id="L398" title="All 2 branches missed.">      if (fla != null) {</span>
-<span class="nc" id="L399">        appenders.add(fla);</span>
+<span class="nc bnc" id="L412" title="All 2 branches missed.">    for (String fileName : stdoutFiles) {</span>
+<span class="nc" id="L413">      FileLogAccessor fla = resolveStdoutLogDestination(fileName);</span>
+<span class="nc bnc" id="L414" title="All 2 branches missed.">      if (fla != null) {</span>
+<span class="nc" id="L415">        appenders.add(fla);</span>
       }
-<span class="nc" id="L401">    }</span>
-<span class="nc" id="L402">  }</span>
+<span class="nc" id="L417">    }</span>
+<span class="nc" id="L418">  }</span>
 
   /**
    * Gets the stdout log destination.
@@ -408,15 +424,15 @@ import psiprobe.tools.logging.slf4jlogback.TomcatSlf4jLogbackLoggerAccessor;
    * @return the stdout log destination
    */
   private LogDestination getStdoutLogDestination(String logName) {
-<span class="nc bnc" id="L411" title="All 2 branches missed.">    for (String fileName : stdoutFiles) {</span>
-<span class="nc bnc" id="L412" title="All 2 branches missed.">      if (fileName.equals(logName)) {</span>
-<span class="nc" id="L413">        FileLogAccessor fla = resolveStdoutLogDestination(fileName);</span>
-<span class="nc bnc" id="L414" title="All 2 branches missed.">        if (fla != null) {</span>
-<span class="nc" id="L415">          return fla;</span>
+<span class="nc bnc" id="L427" title="All 2 branches missed.">    for (String fileName : stdoutFiles) {</span>
+<span class="nc bnc" id="L428" title="All 2 branches missed.">      if (fileName.equals(logName)) {</span>
+<span class="nc" id="L429">        FileLogAccessor fla = resolveStdoutLogDestination(fileName);</span>
+<span class="nc bnc" id="L430" title="All 2 branches missed.">        if (fla != null) {</span>
+<span class="nc" id="L431">          return fla;</span>
         }
       }
-<span class="nc" id="L418">    }</span>
-<span class="nc" id="L419">    return null;</span>
+<span class="nc" id="L434">    }</span>
+<span class="nc" id="L435">    return null;</span>
   }
 
   /**
@@ -426,14 +442,14 @@ import psiprobe.tools.logging.slf4jlogback.TomcatSlf4jLogbackLoggerAccessor;
    * @return the file log accessor
    */
   private FileLogAccessor resolveStdoutLogDestination(String fileName) {
-<span class="nc" id="L429">    File stdout = new File(System.getProperty(&quot;catalina.base&quot;), &quot;logs/&quot; + fileName);</span>
-<span class="nc bnc" id="L430" title="All 2 branches missed.">    if (stdout.exists()) {</span>
-<span class="nc" id="L431">      FileLogAccessor fla = new FileLogAccessor();</span>
-<span class="nc" id="L432">      fla.setName(fileName);</span>
-<span class="nc" id="L433">      fla.setFile(stdout);</span>
-<span class="nc" id="L434">      return fla;</span>
+<span class="nc" id="L445">    File stdout = new File(System.getProperty(&quot;catalina.base&quot;), &quot;logs/&quot; + fileName);</span>
+<span class="nc bnc" id="L446" title="All 2 branches missed.">    if (stdout.exists()) {</span>
+<span class="nc" id="L447">      FileLogAccessor fla = new FileLogAccessor();</span>
+<span class="nc" id="L448">      fla.setName(fileName);</span>
+<span class="nc" id="L449">      fla.setFile(stdout);</span>
+<span class="nc" id="L450">      return fla;</span>
     }
-<span class="nc" id="L436">    return null;</span>
+<span class="nc" id="L452">    return null;</span>
   }
 
   /**
@@ -444,16 +460,16 @@ import psiprobe.tools.logging.slf4jlogback.TomcatSlf4jLogbackLoggerAccessor;
    * @return the catalina log destination
    */
   private LogDestination getCatalinaLogDestination(Context ctx, Application application) {
-<span class="nc" id="L447">    Object log = ctx.getLogger();</span>
-<span class="nc bnc" id="L448" title="All 2 branches missed.">    if (log != null) {</span>
-<span class="nc" id="L449">      CatalinaLoggerAccessor logAccessor = new CatalinaLoggerAccessor();</span>
-<span class="nc" id="L450">      logAccessor.setTarget(log);</span>
-<span class="nc" id="L451">      logAccessor.setApplication(application);</span>
-<span class="nc bnc" id="L452" title="All 2 branches missed.">      if (logAccessor.getFile().exists()) {</span>
-<span class="nc" id="L453">        return logAccessor;</span>
+<span class="nc" id="L463">    Object log = ctx.getLogger();</span>
+<span class="nc bnc" id="L464" title="All 2 branches missed.">    if (log != null) {</span>
+<span class="nc" id="L465">      CatalinaLoggerAccessor logAccessor = new CatalinaLoggerAccessor();</span>
+<span class="nc" id="L466">      logAccessor.setTarget(log);</span>
+<span class="nc" id="L467">      logAccessor.setApplication(application);</span>
+<span class="nc bnc" id="L468" title="All 2 branches missed.">      if (logAccessor.getFile().exists()) {</span>
+<span class="nc" id="L469">        return logAccessor;</span>
       }
     }
-<span class="nc" id="L456">    return null;</span>
+<span class="nc" id="L472">    return null;</span>
   }
 
   /**
@@ -466,12 +482,11 @@ import psiprobe.tools.logging.slf4jlogback.TomcatSlf4jLogbackLoggerAccessor;
    */
   private LogDestination getCommonsLogDestination(Context ctx, Application application,
       String logIndex) {
-
-<span class="nc" id="L470">    Object contextLogger = ctx.getLogger();</span>
-<span class="nc" id="L471">    CommonsLoggerAccessor commonsAccessor = new CommonsLoggerAccessor();</span>
-<span class="nc" id="L472">    commonsAccessor.setTarget(contextLogger);</span>
-<span class="nc" id="L473">    commonsAccessor.setApplication(application);</span>
-<span class="nc" id="L474">    return commonsAccessor.getDestination(logIndex);</span>
+<span class="nc" id="L485">    Object contextLogger = ctx.getLogger();</span>
+<span class="nc" id="L486">    CommonsLoggerAccessor commonsAccessor = new CommonsLoggerAccessor();</span>
+<span class="nc" id="L487">    commonsAccessor.setTarget(contextLogger);</span>
+<span class="nc" id="L488">    commonsAccessor.setApplication(application);</span>
+<span class="nc" id="L489">    return commonsAccessor.getDestination(logIndex);</span>
   }
 
   /**
@@ -488,16 +503,16 @@ import psiprobe.tools.logging.slf4jlogback.TomcatSlf4jLogbackLoggerAccessor;
       boolean root, String logName, String handlerIndex) {
 
     try {
-<span class="nc" id="L491">      Jdk14ManagerAccessor manager = new Jdk14ManagerAccessor(cl);</span>
-<span class="nc" id="L492">      manager.setApplication(application);</span>
-<span class="nc bnc" id="L493" title="All 2 branches missed.">      Jdk14LoggerAccessor log = root ? manager.getRootLogger() : manager.getLogger(logName);</span>
-<span class="nc bnc" id="L494" title="All 2 branches missed.">      if (log != null) {</span>
-<span class="nc" id="L495">        return log.getHandler(handlerIndex);</span>
+<span class="nc" id="L506">      Jdk14ManagerAccessor manager = new Jdk14ManagerAccessor(cl);</span>
+<span class="nc" id="L507">      manager.setApplication(application);</span>
+<span class="nc bnc" id="L508" title="All 2 branches missed.">      Jdk14LoggerAccessor log = root ? manager.getRootLogger() : manager.getLogger(logName);</span>
+<span class="nc bnc" id="L509" title="All 2 branches missed.">      if (log != null) {</span>
+<span class="nc" id="L510">        return log.getHandler(handlerIndex);</span>
       }
-<span class="nc" id="L497">    } catch (Exception e) {</span>
-<span class="nc" id="L498">      logger.debug(&quot;getJdk14LogDestination failed&quot;, e);</span>
-<span class="nc" id="L499">    }</span>
-<span class="nc" id="L500">    return null;</span>
+<span class="nc" id="L512">    } catch (Exception e) {</span>
+<span class="nc" id="L513">      logger.debug(&quot;getJdk14LogDestination failed&quot;, e);</span>
+<span class="nc" id="L514">    }</span>
+<span class="nc" id="L515">    return null;</span>
   }
 
   /**
@@ -514,16 +529,16 @@ import psiprobe.tools.logging.slf4jlogback.TomcatSlf4jLogbackLoggerAccessor;
       boolean root, String logName, String appenderName) {
 
     try {
-<span class="nc" id="L517">      Log4JManagerAccessor manager = new Log4JManagerAccessor(cl);</span>
-<span class="nc" id="L518">      manager.setApplication(application);</span>
-<span class="nc bnc" id="L519" title="All 2 branches missed.">      Log4JLoggerAccessor log = root ? manager.getRootLogger() : manager.getLogger(logName);</span>
-<span class="nc bnc" id="L520" title="All 2 branches missed.">      if (log != null) {</span>
-<span class="nc" id="L521">        return log.getAppender(appenderName);</span>
+<span class="nc" id="L532">      Log4JManagerAccessor manager = new Log4JManagerAccessor(cl);</span>
+<span class="nc" id="L533">      manager.setApplication(application);</span>
+<span class="nc bnc" id="L534" title="All 2 branches missed.">      Log4JLoggerAccessor log = root ? manager.getRootLogger() : manager.getLogger(logName);</span>
+<span class="nc bnc" id="L535" title="All 2 branches missed.">      if (log != null) {</span>
+<span class="nc" id="L536">        return log.getAppender(appenderName);</span>
       }
-<span class="nc" id="L523">    } catch (Exception e) {</span>
-<span class="nc" id="L524">      logger.debug(&quot;getLog4JLogDestination failed&quot;, e);</span>
-<span class="nc" id="L525">    }</span>
-<span class="nc" id="L526">    return null;</span>
+<span class="nc" id="L538">    } catch (Exception e) {</span>
+<span class="nc" id="L539">      logger.debug(&quot;getLog4JLogDestination failed&quot;, e);</span>
+<span class="nc" id="L540">    }</span>
+<span class="nc" id="L541">    return null;</span>
   }
 
   /**
@@ -539,25 +554,57 @@ import psiprobe.tools.logging.slf4jlogback.TomcatSlf4jLogbackLoggerAccessor;
   private LogDestination getLog4J2LogDestination(Context ctx, Application application, boolean root,
       String logName, String appenderName) {
 
+<span class="nc" id="L557">    Log4J2AppenderAccessor result = null;</span>
     try {
-<span class="nc" id="L543">      Log4J2WebLoggerContextUtilsAccessor webLoggerContextUtilsAccessor =</span>
-<span class="nc" id="L544">          new Log4J2WebLoggerContextUtilsAccessor(ctx.getLoader().getClassLoader());</span>
-<span class="nc" id="L545">      Log4J2LoggerContextAccessor loggerContext =</span>
-<span class="nc" id="L546">          webLoggerContextUtilsAccessor.getWebLoggerContext(ctx.getServletContext());</span>
-<span class="nc" id="L547">      Map&lt;String, Object&gt; loggers = loggerContext.getLoggers();</span>
-<span class="nc bnc" id="L548" title="All 2 branches missed.">      Object log = loggers.get(root ? &quot;&quot; : logName);</span>
-<span class="nc bnc" id="L549" title="All 2 branches missed.">      if (log != null) {</span>
-<span class="nc" id="L550">        Log4J2LoggerConfigAccessor accessor = new Log4J2LoggerConfigAccessor();</span>
-<span class="nc" id="L551">        accessor.setTarget(log);</span>
-<span class="nc" id="L552">        accessor.setApplication(application);</span>
-<span class="nc" id="L553">        accessor.setContext(true);</span>
-<span class="nc" id="L554">        accessor.setLoggerContext(loggerContext);</span>
-<span class="nc" id="L555">        return accessor.getAppender(appenderName);</span>
+<span class="nc" id="L559">      Loader loader = ctx.getLoader();</span>
+<span class="nc" id="L560">      ClassLoader classLoader = loader.getClassLoader();</span>
+<span class="nc" id="L561">      Log4J2WebLoggerContextUtilsAccessor webLoggerContextUtilsAccessor =</span>
+          new Log4J2WebLoggerContextUtilsAccessor(classLoader);
+<span class="nc" id="L563">      Log4J2LoggerContextAccessor loggerContextAccessor =</span>
+<span class="nc" id="L564">          webLoggerContextUtilsAccessor.getWebLoggerContext(ctx.getServletContext());</span>
+<span class="nc" id="L565">      List&lt;Object&gt; loggerContexts = getLoggerContexts(classLoader);</span>
+<span class="nc" id="L566">      Object loggerConfig = null;</span>
+<span class="nc bnc" id="L567" title="All 2 branches missed.">      for (Object loggerContext : loggerContexts) {</span>
+<span class="nc" id="L568">        Map&lt;String, Object&gt; loggerConfigs = getLoggerConfigs(loggerContext);</span>
+<span class="nc bnc" id="L569" title="All 2 branches missed.">        loggerConfig = loggerConfigs.get(root ? &quot;&quot; : logName);</span>
+<span class="nc bnc" id="L570" title="All 2 branches missed.">        if (loggerConfig != null) {</span>
+<span class="nc" id="L571">          break;</span>
+        }
+<span class="nc" id="L573">      }</span>
+<span class="nc bnc" id="L574" title="All 2 branches missed.">      if (loggerConfig != null) {</span>
+<span class="nc" id="L575">        Log4J2LoggerConfigAccessor accessor = new Log4J2LoggerConfigAccessor();</span>
+<span class="nc" id="L576">        accessor.setTarget(loggerConfig);</span>
+<span class="nc" id="L577">        accessor.setApplication(application);</span>
+<span class="nc" id="L578">        accessor.setContext(true);</span>
+<span class="nc" id="L579">        accessor.setLoggerContext(loggerContextAccessor);</span>
+<span class="nc" id="L580">        result = accessor.getAppender(appenderName);</span>
       }
-<span class="nc" id="L557">    } catch (Exception e) {</span>
-<span class="nc" id="L558">      logger.debug(&quot;WebLoggerContextUtilsAccessor instantiation failed&quot;, e);</span>
-<span class="nc" id="L559">    }</span>
-<span class="nc" id="L560">    return null;</span>
+<span class="nc" id="L582">    } catch (Exception e) {</span>
+<span class="nc" id="L583">      logger.debug(&quot;getLog4J2LogDestination failed&quot;, e);</span>
+<span class="nc" id="L584">    }</span>
+<span class="nc" id="L585">    logger.debug(&quot;getLog4J2LogDestination(): OUT: result={}&quot;, result);</span>
+
+<span class="nc" id="L587">    return result;</span>
+  }
+
+  private Map&lt;String, Object&gt; getLoggerConfigs(Object loggerContext)
+      throws IllegalAccessException, InvocationTargetException {
+<span class="nc" id="L592">    Method getConfiguration =</span>
+<span class="nc" id="L593">        MethodUtils.getAccessibleMethod(loggerContext.getClass(), &quot;getConfiguration&quot;);</span>
+<span class="nc" id="L594">    Object configuration = getConfiguration.invoke(loggerContext);</span>
+<span class="nc" id="L595">    Method getLoggerConfigs =</span>
+<span class="nc" id="L596">        MethodUtils.getAccessibleMethod(configuration.getClass(), &quot;getLoggers&quot;);</span>
+<span class="nc" id="L597">    return (Map&lt;String, Object&gt;) getLoggerConfigs.invoke(configuration);</span>
+  }
+
+  private List&lt;Object&gt; getLoggerContexts(ClassLoader cl) throws ClassNotFoundException,
+      InstantiationException, IllegalAccessException, InvocationTargetException,
+      IllegalArgumentException, NoSuchMethodException, SecurityException {
+<span class="nc" id="L603">    Class&lt;?&gt; clazz =</span>
+<span class="nc" id="L604">        cl.loadClass(&quot;org.apache.logging.log4j.core.selector.ClassLoaderContextSelector&quot;);</span>
+<span class="nc" id="L605">    Object classLoaderContextSelector = clazz.getDeclaredConstructor().newInstance();</span>
+<span class="nc" id="L606">    Method getLoggerContexts = MethodUtils.getAccessibleMethod(clazz, &quot;getLoggerContexts&quot;);</span>
+<span class="nc" id="L607">    return (List&lt;Object&gt;) getLoggerContexts.invoke(classLoaderContextSelector);</span>
   }
 
   /**
@@ -574,16 +621,16 @@ import psiprobe.tools.logging.slf4jlogback.TomcatSlf4jLogbackLoggerAccessor;
       boolean root, String logName, String appenderName) {
 
     try {
-<span class="nc" id="L577">      LogbackFactoryAccessor manager = new LogbackFactoryAccessor(cl);</span>
-<span class="nc" id="L578">      manager.setApplication(application);</span>
-<span class="nc bnc" id="L579" title="All 2 branches missed.">      LogbackLoggerAccessor log = root ? manager.getRootLogger() : manager.getLogger(logName);</span>
-<span class="nc bnc" id="L580" title="All 2 branches missed.">      if (log != null) {</span>
-<span class="nc" id="L581">        return log.getAppender(appenderName);</span>
+<span class="nc" id="L624">      LogbackFactoryAccessor manager = new LogbackFactoryAccessor(cl);</span>
+<span class="nc" id="L625">      manager.setApplication(application);</span>
+<span class="nc bnc" id="L626" title="All 2 branches missed.">      LogbackLoggerAccessor log = root ? manager.getRootLogger() : manager.getLogger(logName);</span>
+<span class="nc bnc" id="L627" title="All 2 branches missed.">      if (log != null) {</span>
+<span class="nc" id="L628">        return log.getAppender(appenderName);</span>
       }
-<span class="nc" id="L583">    } catch (Exception e) {</span>
-<span class="nc" id="L584">      logger.debug(&quot;getLogbackLogDestination failed&quot;, e);</span>
-<span class="nc" id="L585">    }</span>
-<span class="nc" id="L586">    return null;</span>
+<span class="nc" id="L630">    } catch (Exception e) {</span>
+<span class="nc" id="L631">      logger.debug(&quot;getLogbackLogDestination failed&quot;, e);</span>
+<span class="nc" id="L632">    }</span>
+<span class="nc" id="L633">    return null;</span>
   }
 
   /**
@@ -600,23 +647,23 @@ import psiprobe.tools.logging.slf4jlogback.TomcatSlf4jLogbackLoggerAccessor;
       boolean root, String logName, String appenderName) {
 
     try {
-<span class="nc" id="L603">      TomcatSlf4jLogbackFactoryAccessor manager = new TomcatSlf4jLogbackFactoryAccessor(cl);</span>
-<span class="nc" id="L604">      manager.setApplication(application);</span>
+<span class="nc" id="L650">      TomcatSlf4jLogbackFactoryAccessor manager = new TomcatSlf4jLogbackFactoryAccessor(cl);</span>
+<span class="nc" id="L651">      manager.setApplication(application);</span>
       TomcatSlf4jLogbackLoggerAccessor log =
-<span class="nc bnc" id="L606" title="All 2 branches missed.">          root ? manager.getRootLogger() : manager.getLogger(logName);</span>
-<span class="nc bnc" id="L607" title="All 2 branches missed.">      if (log != null) {</span>
-<span class="nc" id="L608">        return log.getAppender(appenderName);</span>
+<span class="nc bnc" id="L653" title="All 2 branches missed.">          root ? manager.getRootLogger() : manager.getLogger(logName);</span>
+<span class="nc bnc" id="L654" title="All 2 branches missed.">      if (log != null) {</span>
+<span class="nc" id="L655">        return log.getAppender(appenderName);</span>
       }
-<span class="nc" id="L610">    } catch (Exception e) {</span>
-<span class="nc" id="L611">      logger.debug(&quot;getTomcatSlf4jLogbackLogDestination failed&quot;, e);</span>
-<span class="nc" id="L612">    }</span>
-<span class="nc" id="L613">    return null;</span>
+<span class="nc" id="L657">    } catch (Exception e) {</span>
+<span class="nc" id="L658">      logger.debug(&quot;getTomcatSlf4jLogbackLogDestination failed&quot;, e);</span>
+<span class="nc" id="L659">    }</span>
+<span class="nc" id="L660">    return null;</span>
   }
 
   /**
    * The Class AbstractLogComparator.
    */
-<span class="nc" id="L619">  private abstract static class AbstractLogComparator</span>
+  private abstract static class AbstractLogComparator
       implements Comparator&lt;LogDestination&gt;, Serializable {
 
     /** The Constant serialVersionUID. */
@@ -627,9 +674,9 @@ import psiprobe.tools.logging.slf4jlogback.TomcatSlf4jLogbackLoggerAccessor;
 
     @Override
     public final int compare(LogDestination o1, LogDestination o2) {
-<span class="nc" id="L630">      String name1 = convertToString(o1);</span>
-<span class="nc" id="L631">      String name2 = convertToString(o2);</span>
-<span class="nc" id="L632">      return name1.compareTo(name2);</span>
+<span class="nc" id="L677">      String name1 = convertToString(o1);</span>
+<span class="nc" id="L678">      String name2 = convertToString(o2);</span>
+<span class="nc" id="L679">      return name1.compareTo(name2);</span>
     }
 
     /**
@@ -659,26 +706,26 @@ import psiprobe.tools.logging.slf4jlogback.TomcatSlf4jLogbackLoggerAccessor;
      *
      * @param all the all
      */
-<span class="nc" id="L662">    public LogDestinationComparator(boolean all) {</span>
-<span class="nc" id="L663">      this.all = all;</span>
-<span class="nc" id="L664">    }</span>
+<span class="nc" id="L709">    public LogDestinationComparator(boolean all) {</span>
+<span class="nc" id="L710">      this.all = all;</span>
+<span class="nc" id="L711">    }</span>
 
     @Override
     protected String convertToString(LogDestination dest) {
-<span class="nc" id="L668">      File file = dest.getFile();</span>
-<span class="nc bnc" id="L669" title="All 2 branches missed.">      String fileName = file == null ? &quot;&quot; : file.getAbsolutePath();</span>
+<span class="nc" id="L715">      File file = dest.getFile();</span>
+<span class="nc bnc" id="L716" title="All 2 branches missed.">      String fileName = file == null ? &quot;&quot; : file.getAbsolutePath();</span>
       String name;
-<span class="nc bnc" id="L671" title="All 2 branches missed.">      if (all) {</span>
-<span class="nc" id="L672">        Application app = dest.getApplication();</span>
-<span class="nc bnc" id="L673" title="All 2 branches missed.">        String appName = app == null ? Character.toString(DELIM) : app.getName();</span>
-<span class="nc bnc" id="L674" title="All 2 branches missed.">        String context = dest.isContext() ? &quot;is&quot; : &quot;not&quot;;</span>
-<span class="nc bnc" id="L675" title="All 2 branches missed.">        String root = dest.isRoot() ? &quot;is&quot; : &quot;not&quot;;</span>
-<span class="nc" id="L676">        String logType = dest.getLogType();</span>
-<span class="nc" id="L677">        name = appName + DELIM + context + DELIM + root + DELIM + logType + DELIM + fileName;</span>
-<span class="nc" id="L678">      } else {</span>
-<span class="nc" id="L679">        name = fileName;</span>
+<span class="nc bnc" id="L718" title="All 2 branches missed.">      if (all) {</span>
+<span class="nc" id="L719">        Application app = dest.getApplication();</span>
+<span class="nc bnc" id="L720" title="All 2 branches missed.">        String appName = app == null ? Character.toString(DELIM) : app.getName();</span>
+<span class="nc bnc" id="L721" title="All 2 branches missed.">        String context = dest.isContext() ? &quot;is&quot; : &quot;not&quot;;</span>
+<span class="nc bnc" id="L722" title="All 2 branches missed.">        String root = dest.isRoot() ? &quot;is&quot; : &quot;not&quot;;</span>
+<span class="nc" id="L723">        String logType = dest.getLogType();</span>
+<span class="nc" id="L724">        name = appName + DELIM + context + DELIM + root + DELIM + logType + DELIM + fileName;</span>
+<span class="nc" id="L725">      } else {</span>
+<span class="nc" id="L726">        name = fileName;</span>
       }
-<span class="nc" id="L681">      return name;</span>
+<span class="nc" id="L728">      return name;</span>
     }
 
   }
@@ -686,26 +733,26 @@ import psiprobe.tools.logging.slf4jlogback.TomcatSlf4jLogbackLoggerAccessor;
   /**
    * The Class LogSourceComparator.
    */
-<span class="nc" id="L689">  private static class LogSourceComparator extends AbstractLogComparator implements Serializable {</span>
+<span class="nc" id="L736">  private static class LogSourceComparator extends AbstractLogComparator implements Serializable {</span>
 
     /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 1L;
 
     @Override
     protected String convertToString(LogDestination dest) {
-<span class="nc" id="L696">      File file = dest.getFile();</span>
-<span class="nc bnc" id="L697" title="All 2 branches missed.">      String fileName = file == null ? &quot;&quot; : file.getAbsolutePath();</span>
-<span class="nc" id="L698">      Application app = dest.getApplication();</span>
-<span class="nc bnc" id="L699" title="All 2 branches missed.">      String appName = app == null ? Character.toString(DELIM) : app.getName();</span>
-<span class="nc" id="L700">      String logType = dest.getLogType();</span>
-<span class="nc bnc" id="L701" title="All 2 branches missed.">      String context = dest.isContext() ? &quot;is&quot; : &quot;not&quot;;</span>
-<span class="nc bnc" id="L702" title="All 2 branches missed.">      String root = dest.isRoot() ? &quot;is&quot; : &quot;not&quot;;</span>
-<span class="nc" id="L703">      String logName = dest.getName();</span>
-<span class="nc" id="L704">      return appName + DELIM + logType + DELIM + context + DELIM + root + DELIM + logName + DELIM</span>
+<span class="nc" id="L743">      File file = dest.getFile();</span>
+<span class="nc bnc" id="L744" title="All 2 branches missed.">      String fileName = file == null ? &quot;&quot; : file.getAbsolutePath();</span>
+<span class="nc" id="L745">      Application app = dest.getApplication();</span>
+<span class="nc bnc" id="L746" title="All 2 branches missed.">      String appName = app == null ? Character.toString(DELIM) : app.getName();</span>
+<span class="nc" id="L747">      String logType = dest.getLogType();</span>
+<span class="nc bnc" id="L748" title="All 2 branches missed.">      String context = dest.isContext() ? &quot;is&quot; : &quot;not&quot;;</span>
+<span class="nc bnc" id="L749" title="All 2 branches missed.">      String root = dest.isRoot() ? &quot;is&quot; : &quot;not&quot;;</span>
+<span class="nc" id="L750">      String logName = dest.getName();</span>
+<span class="nc" id="L751">      return appName + DELIM + logType + DELIM + context + DELIM + root + DELIM + logName + DELIM</span>
           + fileName;
     }
 
   }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

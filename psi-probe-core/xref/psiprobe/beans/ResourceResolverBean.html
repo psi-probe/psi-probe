@@ -10,7 +10,7 @@
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_javadoccomment"> * Licensed under the GPL License. You may not use this file except in compliance with the License.</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_javadoccomment"> * You may obtain a copy of the License at</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_javadoccomment"> *</em>
-<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_javadoccomment"> *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</em>
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_javadoccomment"> *   <a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.html" target="alexandria_uri">https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</a></em>
 <a class="jxr_linenumber" name="L6" href="#L6">6</a>   <em class="jxr_javadoccomment"> *</em>
 <a class="jxr_linenumber" name="L7" href="#L7">7</a>   <em class="jxr_javadoccomment"> * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,</em>
 <a class="jxr_linenumber" name="L8" href="#L8">8</a>   <em class="jxr_javadoccomment"> * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR</em>
@@ -48,7 +48,7 @@
 <a class="jxr_linenumber" name="L40" href="#L40">40</a>  <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L41" href="#L41">41</a>  <em class="jxr_javadoccomment"> * The Class ResourceResolverBean.</em>
 <a class="jxr_linenumber" name="L42" href="#L42">42</a>  <em class="jxr_javadoccomment"> */</em>
-<a class="jxr_linenumber" name="L43" href="#L43">43</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../psiprobe/beans/ResourceResolverBean.html">ResourceResolverBean</a> <strong class="jxr_keyword">implements</strong> <a href="../../psiprobe/beans/ResourceResolver.html">ResourceResolver</a> {
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a name="ResourceResolverBean" href="../../psiprobe/beans/ResourceResolverBean.html#ResourceResolverBean">ResourceResolverBean</a> <strong class="jxr_keyword">implements</strong> <a name="ResourceResolver" href="../../psiprobe/beans/ResourceResolver.html#ResourceResolver">ResourceResolver</a> {
 <a class="jxr_linenumber" name="L44" href="#L44">44</a>  
 <a class="jxr_linenumber" name="L45" href="#L45">45</a>    <em class="jxr_javadoccomment">/** The Constant logger. */</em>
 <a class="jxr_linenumber" name="L46" href="#L46">46</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> Logger logger = LoggerFactory.getLogger(ResourceResolverBean.<strong class="jxr_keyword">class</strong>);
@@ -80,7 +80,7 @@
 <a class="jxr_linenumber" name="L72" href="#L72">72</a>          Set&lt;ObjectName&gt; dsNames =
 <a class="jxr_linenumber" name="L73" href="#L73">73</a>              server.queryNames(<strong class="jxr_keyword">new</strong> ObjectName(<span class="jxr_string">"Catalina:type=Resource,resourcetype=Global,*"</span>), <strong class="jxr_keyword">null</strong>);
 <a class="jxr_linenumber" name="L74" href="#L74">74</a>          <strong class="jxr_keyword">for</strong> (ObjectName objectName : dsNames) {
-<a class="jxr_linenumber" name="L75" href="#L75">75</a>            <a href="../../psiprobe/model/ApplicationResource.html">ApplicationResource</a> resource = <strong class="jxr_keyword">new</strong> <a href="../../psiprobe/model/ApplicationResource.html">ApplicationResource</a>();
+<a class="jxr_linenumber" name="L75" href="#L75">75</a>            <a name="ApplicationResource" href="../../psiprobe/model/ApplicationReso<a name="ApplicationResource" href="../../psiprobe/model/ApplicationResource.html#ApplicationResource">ApplicationResource</a>onResource">ApplicationResource</a> resource = <strong class="jxr_keyword">new</strong> <a name="ApplicationResource" href="../../psiprobe/model/ApplicationResource.html#ApplicationResource">ApplicationResource</a>();
 <a class="jxr_linenumber" name="L76" href="#L76">76</a>  
 <a class="jxr_linenumber" name="L77" href="#L77">77</a>            logger.info(<span class="jxr_string">"reading resource: {}"</span>, objectName);
 <a class="jxr_linenumber" name="L78" href="#L78">78</a>            resource.setName(getStringAttribute(server, objectName, <span class="jxr_string">"name"</span>));
@@ -102,7 +102,7 @@
 <a class="jxr_linenumber" name="L94" href="#L94">94</a>  
 <a class="jxr_linenumber" name="L95" href="#L95">95</a>    @Override
 <a class="jxr_linenumber" name="L96" href="#L96">96</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">synchronized</strong> List&lt;ApplicationResource&gt; getApplicationResources(Context context,
-<a class="jxr_linenumber" name="L97" href="#L97">97</a>        <a href="../../psiprobe/beans/ContainerWrapperBean.html">ContainerWrapperBean</a> containerWrapper) <strong class="jxr_keyword">throws</strong> NamingException {
+<a class="jxr_linenumber" name="L97" href="#L97">97</a>        <a name="ContainerWrapperBean" href="../../psiprobe/beans/ContainerWrapperBean.html#ContainerWrapperBean">ContainerWrapperBean</a> containerWrapper) <strong class="jxr_keyword">throws</strong> NamingException {
 <a class="jxr_linenumber" name="L98" href="#L98">98</a>  
 <a class="jxr_linenumber" name="L99" href="#L99">99</a>      List&lt;ApplicationResource&gt; resourceList = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;();
 <a class="jxr_linenumber" name="L100" href="#L100">100</a> 
@@ -128,7 +128,7 @@
 <a class="jxr_linenumber" name="L120" href="#L120">120</a>         containerWrapper.getTomcatContainer().addContextResourceLink(context, resourceList,
 <a class="jxr_linenumber" name="L121" href="#L121">121</a>             contextBound);
 <a class="jxr_linenumber" name="L122" href="#L122">122</a> 
-<a class="jxr_linenumber" name="L123" href="#L123">123</a>         <strong class="jxr_keyword">for</strong> (ApplicationResource resourceList1 : resourceList) {
+<a class="jxr_linenumber" name="L123" href="#L123">123</a>         <strong class="jxr_keyword">for</strong> (<a name="ApplicationResource" href="../../psiprobe/model/ApplicationResource.html#ApplicationResource">ApplicationResource</a> resourceList1 : resourceList) {
 <a class="jxr_linenumber" name="L124" href="#L124">124</a>           lookupResource(resourceList1, contextBound, false);
 <a class="jxr_linenumber" name="L125" href="#L125">125</a>         }
 <a class="jxr_linenumber" name="L126" href="#L126">126</a> 
@@ -149,7 +149,7 @@
 <a class="jxr_linenumber" name="L141" href="#L141">141</a> <em class="jxr_javadoccomment">   * @param contextBound the context bound</em>
 <a class="jxr_linenumber" name="L142" href="#L142">142</a> <em class="jxr_javadoccomment">   * @param global the global</em>
 <a class="jxr_linenumber" name="L143" href="#L143">143</a> <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L144" href="#L144">144</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> lookupResource(<a href="../../psiprobe/model/ApplicationResource.html">ApplicationResource</a> resource, <strong class="jxr_keyword">boolean</strong> contextBound, <strong class="jxr_keyword">boolean</strong> global) {
+<a class="jxr_linenumber" name="L144" href="#L144">144</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> lookupResource(<a name="ApplicationResource" href="../../psiprobe/model/ApplicationResource.html#ApplicationResource">ApplicationResource</a> resource, <strong class="jxr_keyword">boolean</strong> contextBound, <strong class="jxr_keyword">boolean</strong> global) {
 <a class="jxr_linenumber" name="L145" href="#L145">145</a>     DataSourceInfo dataSourceInfo = <strong class="jxr_keyword">null</strong>;
 <a class="jxr_linenumber" name="L146" href="#L146">146</a>     <strong class="jxr_keyword">if</strong> (contextBound) {
 <a class="jxr_linenumber" name="L147" href="#L147">147</a>       <strong class="jxr_keyword">try</strong> {
@@ -166,8 +166,8 @@
 <a class="jxr_linenumber" name="L158" href="#L158">158</a>         resource.setLookedUp(<strong class="jxr_keyword">true</strong>);
 <a class="jxr_linenumber" name="L159" href="#L159">159</a>         <strong class="jxr_keyword">for</strong> (String accessorString : datasourceMappers) {
 <a class="jxr_linenumber" name="L160" href="#L160">160</a>           logger.debug(<span class="jxr_string">"Looking up datasource adapter: {}"</span>, accessorString);
-<a class="jxr_linenumber" name="L161" href="#L161">161</a>           DatasourceAccessor accessor =
-<a class="jxr_linenumber" name="L162" href="#L162">162</a>               (DatasourceAccessor) Class.forName(accessorString).newInstance();
+<a class="jxr_linenumber" name="L161" href="#L161">161</a>           DatasourceAccessor accessor = (DatasourceAccessor) Class.forName(accessorString)
+<a class="jxr_linenumber" name="L162" href="#L162">162</a>               .getDeclaredConstructor().newInstance();
 <a class="jxr_linenumber" name="L163" href="#L163">163</a>           dataSourceInfo = accessor.getInfo(obj);
 <a class="jxr_linenumber" name="L164" href="#L164">164</a>           <strong class="jxr_keyword">if</strong> (dataSourceInfo != <strong class="jxr_keyword">null</strong>) {
 <a class="jxr_linenumber" name="L165" href="#L165">165</a>             <strong class="jxr_keyword">break</strong>;
@@ -189,7 +189,7 @@
 <a class="jxr_linenumber" name="L181" href="#L181">181</a> 
 <a class="jxr_linenumber" name="L182" href="#L182">182</a>   @Override
 <a class="jxr_linenumber" name="L183" href="#L183">183</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">synchronized</strong> <strong class="jxr_keyword">boolean</strong> resetResource(<strong class="jxr_keyword">final</strong> Context context, String resourceName,
-<a class="jxr_linenumber" name="L184" href="#L184">184</a>       <a href="../../psiprobe/beans/ContainerWrapperBean.html">ContainerWrapperBean</a> containerWrapper) <strong class="jxr_keyword">throws</strong> NamingException {
+<a class="jxr_linenumber" name="L184" href="#L184">184</a>       <a name="ContainerWrapperBean" href="../../psiprobe/beans/ContainerWrapperBean.html#ContainerWrapperBean">ContainerWrapperBean</a> containerWrapper) <strong class="jxr_keyword">throws</strong> NamingException {
 <a class="jxr_linenumber" name="L185" href="#L185">185</a> 
 <a class="jxr_linenumber" name="L186" href="#L186">186</a>     <strong class="jxr_keyword">if</strong> (context != <strong class="jxr_keyword">null</strong>) {
 <a class="jxr_linenumber" name="L187" href="#L187">187</a>       containerWrapper.getTomcatContainer().bindToContext(context);
@@ -202,8 +202,8 @@
 <a class="jxr_linenumber" name="L194" href="#L194">194</a>       <strong class="jxr_keyword">try</strong> {
 <a class="jxr_linenumber" name="L195" href="#L195">195</a>         <strong class="jxr_keyword">for</strong> (String accessorString : datasourceMappers) {
 <a class="jxr_linenumber" name="L196" href="#L196">196</a>           logger.debug(<span class="jxr_string">"Resetting datasource adapter: {}"</span>, accessorString);
-<a class="jxr_linenumber" name="L197" href="#L197">197</a>           DatasourceAccessor accessor =
-<a class="jxr_linenumber" name="L198" href="#L198">198</a>               (DatasourceAccessor) Class.forName(accessorString).newInstance();
+<a class="jxr_linenumber" name="L197" href="#L197">197</a>           DatasourceAccessor accessor = (DatasourceAccessor) Class.forName(accessorString)
+<a class="jxr_linenumber" name="L198" href="#L198">198</a>               .getDeclaredConstructor().newInstance();
 <a class="jxr_linenumber" name="L199" href="#L199">199</a>           <strong class="jxr_keyword">if</strong> (accessor.reset(obj)) {
 <a class="jxr_linenumber" name="L200" href="#L200">200</a>             <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">true</strong>;
 <a class="jxr_linenumber" name="L201" href="#L201">201</a>           }
@@ -222,7 +222,7 @@
 <a class="jxr_linenumber" name="L214" href="#L214">214</a> 
 <a class="jxr_linenumber" name="L215" href="#L215">215</a>   @Override
 <a class="jxr_linenumber" name="L216" href="#L216">216</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">synchronized</strong> DataSource lookupDataSource(<strong class="jxr_keyword">final</strong> Context context, String resourceName,
-<a class="jxr_linenumber" name="L217" href="#L217">217</a>       <a href="../../psiprobe/beans/ContainerWrapperBean.html">ContainerWrapperBean</a> containerWrapper) <strong class="jxr_keyword">throws</strong> NamingException {
+<a class="jxr_linenumber" name="L217" href="#L217">217</a>       <a name="ContainerWrapperBean" href="../../psiprobe/beans/ContainerWrapperBean.html#ContainerWrapperBean">ContainerWrapperBean</a> containerWrapper) <strong class="jxr_keyword">throws</strong> NamingException {
 <a class="jxr_linenumber" name="L218" href="#L218">218</a> 
 <a class="jxr_linenumber" name="L219" href="#L219">219</a>     <strong class="jxr_keyword">if</strong> (context != <strong class="jxr_keyword">null</strong>) {
 <a class="jxr_linenumber" name="L220" href="#L220">220</a>       containerWrapper.getTomcatContainer().bindToContext(context);

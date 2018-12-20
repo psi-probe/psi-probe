@@ -12,7 +12,6 @@ package psiprobe.controllers.deploy;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.apache.catalina.Context;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,16 +20,15 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.InternalResourceView;
 import org.springframework.web.servlet.view.RedirectView;
-
 import psiprobe.controllers.AbstractContextHandlerController;
 
 /**
  * Undeploys a web application.
  */
-<span class="fc" id="L30">public class BaseUndeployContextController extends AbstractContextHandlerController {</span>
+<span class="fc" id="L28">public class BaseUndeployContextController extends AbstractContextHandlerController {</span>
 
   /** The Constant logger. */
-<span class="fc" id="L33">  private static final Logger logger = LoggerFactory.getLogger(BaseUndeployContextController.class);</span>
+<span class="fc" id="L31">  private static final Logger logger = LoggerFactory.getLogger(BaseUndeployContextController.class);</span>
 
   /** The failure view name. */
   private String failureViewName;
@@ -41,7 +39,7 @@ import psiprobe.controllers.AbstractContextHandlerController;
    * @return the failure view name
    */
   public String getFailureViewName() {
-<span class="fc" id="L44">    return failureViewName;</span>
+<span class="fc" id="L42">    return failureViewName;</span>
   }
 
   /**
@@ -50,33 +48,33 @@ import psiprobe.controllers.AbstractContextHandlerController;
    * @param failureViewName the new failure view name
    */
   public void setFailureViewName(String failureViewName) {
-<span class="fc" id="L53">    this.failureViewName = failureViewName;</span>
-<span class="fc" id="L54">  }</span>
+<span class="fc" id="L51">    this.failureViewName = failureViewName;</span>
+<span class="fc" id="L52">  }</span>
 
   @Override
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
     try {
-<span class="nc bnc" id="L60" title="All 2 branches missed.">      if (request.getContextPath().equals(contextName)) {</span>
-<span class="nc" id="L61">        throw new IllegalStateException(</span>
-<span class="nc" id="L62">            getMessageSourceAccessor().getMessage(&quot;probe.src.contextAction.cannotActOnSelf&quot;));</span>
+<span class="nc bnc" id="L58" title="All 2 branches missed.">      if (request.getContextPath().equals(contextName)) {</span>
+<span class="nc" id="L59">        throw new IllegalStateException(</span>
+<span class="nc" id="L60">            getMessageSourceAccessor().getMessage(&quot;probe.src.contextAction.cannotActOnSelf&quot;));</span>
       }
 
-<span class="nc" id="L65">      getContainerWrapper().getTomcatContainer().remove(contextName);</span>
+<span class="nc" id="L63">      getContainerWrapper().getTomcatContainer().remove(contextName);</span>
       // Logging action
-<span class="nc" id="L67">      Authentication auth = SecurityContextHolder.getContext().getAuthentication();</span>
+<span class="nc" id="L65">      Authentication auth = SecurityContextHolder.getContext().getAuthentication();</span>
       // get username logger
-<span class="nc" id="L69">      String name = auth.getName();</span>
-<span class="nc" id="L70">      logger.info(getMessageSourceAccessor().getMessage(&quot;probe.src.log.undeploy&quot;), name,</span>
+<span class="nc" id="L67">      String name = auth.getName();</span>
+<span class="nc" id="L68">      logger.info(getMessageSourceAccessor().getMessage(&quot;probe.src.log.undeploy&quot;), name,</span>
           contextName);
 
-<span class="nc" id="L73">    } catch (Exception e) {</span>
-<span class="nc" id="L74">      request.setAttribute(&quot;errorMessage&quot;, e.getMessage());</span>
-<span class="nc" id="L75">      logger.error(&quot;Error during undeploy of '{}'&quot;, contextName, e);</span>
-<span class="nc" id="L76">      return new ModelAndView(new InternalResourceView(</span>
-<span class="nc bnc" id="L77" title="All 2 branches missed.">          getFailureViewName() == null ? getViewName() : getFailureViewName()));</span>
-<span class="nc" id="L78">    }</span>
-<span class="nc" id="L79">    return new ModelAndView(new RedirectView(request.getContextPath() + getViewName()));</span>
+<span class="nc" id="L71">    } catch (Exception e) {</span>
+<span class="nc" id="L72">      request.setAttribute(&quot;errorMessage&quot;, e.getMessage());</span>
+<span class="nc" id="L73">      logger.error(&quot;Error during undeploy of '{}'&quot;, contextName, e);</span>
+<span class="nc" id="L74">      return new ModelAndView(new InternalResourceView(</span>
+<span class="nc bnc" id="L75" title="All 2 branches missed.">          getFailureViewName() == null ? getViewName() : getFailureViewName()));</span>
+<span class="nc" id="L76">    }</span>
+<span class="nc" id="L77">    return new ModelAndView(new RedirectView(request.getContextPath() + getViewName()));</span>
   }
 
   /**
@@ -87,7 +85,7 @@ import psiprobe.controllers.AbstractContextHandlerController;
    */
   protected void executeAction(String contextName) throws Exception {
     // Not Implemented
-<span class="nc" id="L90">  }</span>
+<span class="nc" id="L88">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
