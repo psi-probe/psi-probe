@@ -1,9 +1,7 @@
 language: java
-sudo: false
 
 jdk:
   - oraclejdk11
-  - openjdk10
   - oraclejdk8
 
 env:

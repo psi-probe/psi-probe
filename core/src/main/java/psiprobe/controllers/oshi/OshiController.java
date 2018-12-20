@@ -35,6 +35,7 @@ import oshi.hardware.HardwareAbstractionLayer;
 import oshi.hardware.NetworkIF;
 import oshi.hardware.PowerSource;
 import oshi.hardware.Sensors;
+import oshi.hardware.SoundCard;
 import oshi.hardware.UsbDevice;
 import oshi.software.os.FileSystem;
 import oshi.software.os.NetworkParams;
@@ -134,6 +135,9 @@ public class OshiController extends AbstractTomcatContainerController {
     logger.debug("Checking USB Devices...");
     printUsbDevices(hal.getUsbDevices(true));
 
+    logger.debug("Checking Sound Cards...");
+    printSoundCards(hal.getSoundCards());
+
     StringBuilder output = new StringBuilder();
     for (int i = 0; i < oshi.size(); i++) {
       output.append(oshi.get(i));
@@ -171,14 +175,16 @@ public class OshiController extends AbstractTomcatContainerController {
     oshi.add("  description: " + firmware.getDescription());
     oshi.add("  version: " + firmware.getVersion());
     oshi.add("  release date: " + (firmware.getReleaseDate() == null ? "unknown"
-        : firmware.getReleaseDate() == null ? "unknown"
-            : FormatUtil.formatDate(firmware.getReleaseDate())));
+        : firmware.getReleaseDate() == null ? "unknown" : firmware.getReleaseDate()));
     final Baseboard baseboard = computerSystem.getBaseboard();
     oshi.add("baseboard:");
     oshi.add("  manufacturer: " + baseboard.getManufacturer());
     oshi.add("  model: " + baseboard.getModel());
     oshi.add("  version: " + baseboard.getVersion());
     oshi.add("  serialnumber: " + baseboard.getSerialNumber());
+    if (Util.identifyVM().length() > 0) {
+      oshi.add("virtualization: " + Util.identifyVM());
+    }
   }
 
   /**
@@ -188,7 +194,8 @@ public class OshiController extends AbstractTomcatContainerController {
    */
   private static void printProcessor(CentralProcessor processor) {
     oshi.add(String.valueOf(processor));
-    oshi.add(" " + processor.getPhysicalProcessorCount() + " physical CPU(s)");
+    oshi.add(" " + processor.getPhysicalPackageCount() + " physical CPU package(s)");
+    oshi.add(" " + processor.getPhysicalProcessorCount() + " physical CPU core(s)");
     oshi.add(" " + processor.getLogicalProcessorCount() + " logical CPU(s)");
 
     oshi.add("Identifier: " + processor.getIdentifier());
@@ -214,6 +221,8 @@ public class OshiController extends AbstractTomcatContainerController {
    */
   private static void printCpu(CentralProcessor processor) {
     oshi.add("Uptime: " + FormatUtil.formatElapsedSecs(processor.getSystemUptime()));
+    oshi.add("Context Switches/Interrupts: " + processor.getContextSwitches() + " / "
+        + processor.getInterrupts());
 
     long[] prevTicks = processor.getSystemCpuLoadTicks();
     oshi.add("CPU, IOWait, and IRQ ticks @ 0 sec:" + Arrays.toString(prevTicks));
@@ -228,13 +237,14 @@ public class OshiController extends AbstractTomcatContainerController {
     long iowait = ticks[TickType.IOWAIT.getIndex()] - prevTicks[TickType.IOWAIT.getIndex()];
     long irq = ticks[TickType.IRQ.getIndex()] - prevTicks[TickType.IRQ.getIndex()];
     long softirq = ticks[TickType.SOFTIRQ.getIndex()] - prevTicks[TickType.SOFTIRQ.getIndex()];
-    long totalCpu = user + nice + sys + idle + iowait + irq + softirq;
+    long steal = ticks[TickType.STEAL.getIndex()] - prevTicks[TickType.STEAL.getIndex()];
+    long totalCpu = user + nice + sys + idle + iowait + irq + softirq + steal;
 
     oshi.add(String.format(
-        "User: %.1f%% Nice: %.1f%% System: %.1f%% Idle: %.1f%% IOwait: %.1f%% IRQ: %.1f%% SoftIRQ: %.1f%%%n",
+        "User: %.1f%% Nice: %.1f%% System: %.1f%% Idle: %.1f%% IOwait: %.1f%% IRQ: %.1f%% SoftIRQ: %.1f%% Steal: %.1f%%%n",
         100d * user / totalCpu, 100d * nice / totalCpu, 100d * sys / totalCpu,
         100d * idle / totalCpu, 100d * iowait / totalCpu, 100d * irq / totalCpu,
-        100d * softirq / totalCpu));
+        100d * softirq / totalCpu, 100d * steal / totalCpu));
     oshi.add(String.format("CPU load: %.1f%% (counting ticks)%n",
         processor.getSystemCpuLoadBetweenTicks() * 100));
     oshi.add(String.format("CPU load: %.1f%% (OS MXBean)%n", processor.getSystemCpuLoad() * 100));
@@ -360,10 +370,16 @@ public class OshiController extends AbstractTomcatContainerController {
     for (OSFileStore fs : fsArray) {
       long usable = fs.getUsableSpace();
       long total = fs.getTotalSpace();
-      oshi.add(String.format(" %s (%s) [%s] %s of %s free (%.1f%%) is %s and is mounted at %s%n",
+      oshi.add(String.format(
+          " %s (%s) [%s] %s of %s free (%.1f%%), %s of %s files free (%.1f%%) is %s "
+              + (fs.getLogicalVolume() != null && fs.getLogicalVolume().length() > 0 ? "[%s]"
+                  : "%s")
+              + " and is mounted at %s%n",
           fs.getName(), fs.getDescription().isEmpty() ? "file system" : fs.getDescription(),
           fs.getType(), FormatUtil.formatBytes(usable), FormatUtil.formatBytes(fs.getTotalSpace()),
-          100d * usable / total, fs.getVolume(), fs.getMount()));
+          100d * usable / total, fs.getFreeInodes(), fs.getTotalInodes(),
+          100d * fs.getFreeInodes() / fs.getTotalInodes(), fs.getVolume(), fs.getLogicalVolume(),
+          fs.getMount()));
     }
   }
 
@@ -434,4 +450,15 @@ public class OshiController extends AbstractTomcatContainerController {
     }
   }
 
+  /**
+   * Prints the sound cards.
+   *
+   * @param cards the cards
+   */
+  private static void printSoundCards(SoundCard[] cards) {
+    oshi.add("Sound Cards:");
+    for (SoundCard card : cards) {
+      oshi.add(String.valueOf(card));
+    }
+  }
 }
