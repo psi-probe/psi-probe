@@ -11,15 +11,10 @@
 package psiprobe;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import org.apache.catalina.connector.Request;
 import org.apache.catalina.connector.Response;
 import org.apache.catalina.valves.ValveBase;
-
 import psiprobe.model.ApplicationSession;
 import psiprobe.model.IpInfo;
 
@@ -32,22 +27,21 @@ public class Tomcat85AgentValve extends ValveBase {
    * Instantiates a new tomcat85 agent valve.
    */
   public Tomcat85AgentValve() {
-<span class="fc" id="L35">    super(true);</span>
-<span class="fc" id="L36">  }</span>
+<span class="fc" id="L30">    super(true);</span>
+<span class="fc" id="L31">  }</span>
 
   @Override
   public void invoke(Request request, Response response) throws IOException, ServletException {
-<span class="fc" id="L40">    getNext().invoke(request, response);</span>
+<span class="fc" id="L35">    getNext().invoke(request, response);</span>
 
-<span class="fc" id="L42">    HttpServletRequest servletRequest = request.getRequest();</span>
-<span class="fc" id="L43">    HttpSession session = servletRequest.getSession(false);</span>
-<span class="pc bpc" id="L44" title="1 of 2 branches missed.">    if (session != null) {</span>
-<span class="fc" id="L45">      String ip = IpInfo.getClientAddress(servletRequest);</span>
-<span class="fc" id="L46">      request.getSession(false).setAttribute(ApplicationSession.LAST_ACCESSED_BY_IP, ip);</span>
-<span class="fc" id="L47">      request.getSession(false).setAttribute(ApplicationSession.LAST_ACCESSED_LOCALE,</span>
-<span class="fc" id="L48">          request.getLocale());</span>
+<span class="pc bpc" id="L37" title="1 of 2 branches missed.">    if (request.getSession(false) != null) {</span>
+<span class="fc" id="L38">      String ip = IpInfo.getClientAddress(request.getRequest());</span>
+      // Explicit calls to ensure result not lost
+<span class="fc" id="L40">      request.getSession(false).setAttribute(ApplicationSession.LAST_ACCESSED_BY_IP, ip);</span>
+<span class="fc" id="L41">      request.getSession(false).setAttribute(ApplicationSession.LAST_ACCESSED_LOCALE,</span>
+<span class="fc" id="L42">          request.getLocale());</span>
     }
-<span class="fc" id="L50">  }</span>
+<span class="fc" id="L44">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
