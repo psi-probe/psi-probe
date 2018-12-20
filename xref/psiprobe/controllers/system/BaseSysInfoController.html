@@ -10,7 +10,7 @@
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_javadoccomment"> * Licensed under the GPL License. You may not use this file except in compliance with the License.</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_javadoccomment"> * You may obtain a copy of the License at</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_javadoccomment"> *</em>
-<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_javadoccomment"> *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</em>
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_javadoccomment"> *   <a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.html" target="alexandria_uri">https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</a></em>
 <a class="jxr_linenumber" name="L6" href="#L6">6</a>   <em class="jxr_javadoccomment"> *</em>
 <a class="jxr_linenumber" name="L7" href="#L7">7</a>   <em class="jxr_javadoccomment"> * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,</em>
 <a class="jxr_linenumber" name="L8" href="#L8">8</a>   <em class="jxr_javadoccomment"> * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR</em>
@@ -34,14 +34,14 @@
 <a class="jxr_linenumber" name="L26" href="#L26">26</a>  <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L27" href="#L27">27</a>  <em class="jxr_javadoccomment"> * Creates an instance of SystemInformation.</em>
 <a class="jxr_linenumber" name="L28" href="#L28">28</a>  <em class="jxr_javadoccomment"> */</em>
-<a class="jxr_linenumber" name="L29" href="#L29">29</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../psiprobe/controllers/system/BaseSysInfoController.html">BaseSysInfoController</a> <strong class="jxr_keyword">extends</strong> <a href="../../../psiprobe/controllers/AbstractTomcatContainerController.html">AbstractTomcatContainerController</a> {
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a name="BaseSysInfoController" href="../../../psiprobe/controllers/system/BaseSysInfoController.html#BaseSysInfoController">BaseSysInfoController</a> <strong class="jxr_keyword">extends</strong> <a name="AbstractTomcatContainerController" href="../../../psiprobe/controllers/AbstractTomcatContainerController.html#AbstractTomcatContainerController">AbstractTomcatContainerController</a> {
 <a class="jxr_linenumber" name="L30" href="#L30">30</a>  
 <a class="jxr_linenumber" name="L31" href="#L31">31</a>    <em class="jxr_javadoccomment">/** The filter out keys. */</em>
 <a class="jxr_linenumber" name="L32" href="#L32">32</a>    <strong class="jxr_keyword">private</strong> List&lt;String&gt; filterOutKeys = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;();
 <a class="jxr_linenumber" name="L33" href="#L33">33</a>  
 <a class="jxr_linenumber" name="L34" href="#L34">34</a>    <em class="jxr_javadoccomment">/** The runtime info accessor. */</em>
 <a class="jxr_linenumber" name="L35" href="#L35">35</a>    @Inject
-<a class="jxr_linenumber" name="L36" href="#L36">36</a>    <strong class="jxr_keyword">private</strong> <a href="../../../psiprobe/beans/RuntimeInfoAccessorBean.html">RuntimeInfoAccessorBean</a> runtimeInfoAccessor;
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>    <strong class="jxr_keyword">private</strong> <a name="RuntimeInfoAccessorBean" href="../../../psiprobe/beans/RuntimeInfoAccessorBean.html#RuntimeInfoAccessorBean">RuntimeInfoAccessorBean</a> runtimeInfoAccessor;
 <a class="jxr_linenumber" name="L37" href="#L37">37</a>  
 <a class="jxr_linenumber" name="L38" href="#L38">38</a>    <em class="jxr_javadoccomment">/** The collection period. */</em>
 <a class="jxr_linenumber" name="L39" href="#L39">39</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">long</strong> collectionPeriod;
@@ -69,7 +69,7 @@
 <a class="jxr_linenumber" name="L61" href="#L61">61</a>  <em class="jxr_javadoccomment">   *</em>
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>  <em class="jxr_javadoccomment">   * @return the runtime info accessor</em>
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>  <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>    <strong class="jxr_keyword">public</strong> <a href="../../../psiprobe/beans/RuntimeInfoAccessorBean.html">RuntimeInfoAccessorBean</a> getRuntimeInfoAccessor() {
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>    <strong class="jxr_keyword">public</strong> <a name="RuntimeInfoAccessorBean" href="../../../psiprobe/beans/RuntimeInfoAccessorBean.html#RuntimeInfoAccessorBean">RuntimeInfoAccessorBean</a> getRuntimeInfoAccessor() {
 <a class="jxr_linenumber" name="L65" href="#L65">65</a>      <strong class="jxr_keyword">return</strong> runtimeInfoAccessor;
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>    }
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>  
@@ -78,7 +78,7 @@
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>  <em class="jxr_javadoccomment">   *</em>
 <a class="jxr_linenumber" name="L71" href="#L71">71</a>  <em class="jxr_javadoccomment">   * @param runtimeInfoAccessor the new runtime info accessor</em>
 <a class="jxr_linenumber" name="L72" href="#L72">72</a>  <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L73" href="#L73">73</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setRuntimeInfoAccessor(<a href="../../../psiprobe/beans/RuntimeInfoAccessorBean.html">RuntimeInfoAccessorBean</a> runtimeInfoAccessor) {
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setRuntimeInfoAccessor(<a name="RuntimeInfoAccessorBean" href="../../../psiprobe/beans/RuntimeInfoAccessorBean.html#RuntimeInfoAccessorBean">RuntimeInfoAccessorBean</a> runtimeInfoAccessor) {
 <a class="jxr_linenumber" name="L74" href="#L74">74</a>      <strong class="jxr_keyword">this</strong>.runtimeInfoAccessor = runtimeInfoAccessor;
 <a class="jxr_linenumber" name="L75" href="#L75">75</a>    }
 <a class="jxr_linenumber" name="L76" href="#L76">76</a>  
@@ -104,7 +104,7 @@
 <a class="jxr_linenumber" name="L96" href="#L96">96</a>    <strong class="jxr_keyword">protected</strong> ModelAndView handleRequestInternal(HttpServletRequest request,
 <a class="jxr_linenumber" name="L97" href="#L97">97</a>        HttpServletResponse response) <strong class="jxr_keyword">throws</strong> Exception {
 <a class="jxr_linenumber" name="L98" href="#L98">98</a>  
-<a class="jxr_linenumber" name="L99" href="#L99">99</a>      <a href="../../../psiprobe/model/SystemInformation.html">SystemInformation</a> systemInformation = <strong class="jxr_keyword">new</strong> <a href="../../../psiprobe/model/SystemInformation.html">SystemInformation</a>();
+<a class="jxr_linenumber" name="L99" href="#L99">99</a>      <a name="SystemInformation" href="../../../psiprobe/model/SystemInformation.htm<a name="SystemInformation" href="../../../psiprobe/model/SystemInformation.html#SystemInformation">SystemInformation</a>on">SystemInformation</a> systemInformation = <strong class="jxr_keyword">new</strong> <a name="SystemInformation" href="../../../psiprobe/model/SystemInformation.html#SystemInformation">SystemInformation</a>();
 <a class="jxr_linenumber" name="L100" href="#L100">100</a>     systemInformation
 <a class="jxr_linenumber" name="L101" href="#L101">101</a>         .setAppBase(getContainerWrapper().getTomcatContainer().getAppBase().getAbsolutePath());
 <a class="jxr_linenumber" name="L102" href="#L102">102</a>     systemInformation.setConfigBase(getContainerWrapper().getTomcatContainer().getConfigBase());

@@ -10,7 +10,7 @@
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_javadoccomment"> * Licensed under the GPL License. You may not use this file except in compliance with the License.</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_javadoccomment"> * You may obtain a copy of the License at</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_javadoccomment"> *</em>
-<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_javadoccomment"> *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</em>
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_javadoccomment"> *   <a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.html" target="alexandria_uri">https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</a></em>
 <a class="jxr_linenumber" name="L6" href="#L6">6</a>   <em class="jxr_javadoccomment"> *</em>
 <a class="jxr_linenumber" name="L7" href="#L7">7</a>   <em class="jxr_javadoccomment"> * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,</em>
 <a class="jxr_linenumber" name="L8" href="#L8">8</a>   <em class="jxr_javadoccomment"> * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR</em>
@@ -34,14 +34,14 @@
 <a class="jxr_linenumber" name="L26" href="#L26">26</a>  <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L27" href="#L27">27</a>  <em class="jxr_javadoccomment"> * Retrieves Application model object populated with application information.</em>
 <a class="jxr_linenumber" name="L28" href="#L28">28</a>  <em class="jxr_javadoccomment"> */</em>
-<a class="jxr_linenumber" name="L29" href="#L29">29</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../psiprobe/controllers/apps/BaseGetApplicationController.html">BaseGetApplicationController</a> <strong class="jxr_keyword">extends</strong> <a href="../../../psiprobe/controllers/AbstractContextHandlerController.html">AbstractContextHandlerController</a> {
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a name="BaseGetApplicationController" href="../../../psiprobe/controllers/apps/BaseGetApplicationController.html#BaseGetApplicationController">BaseGetApplicationController</a> <strong class="jxr_keyword">extends</strong> <a name="AbstractContextHandlerController" href="../../../psiprobe/controllers/AbstractContextHandlerController.html#AbstractContextHandlerController">AbstractContextHandlerController</a> {
 <a class="jxr_linenumber" name="L30" href="#L30">30</a>  
 <a class="jxr_linenumber" name="L31" href="#L31">31</a>    <em class="jxr_javadoccomment">/** denotes whether extended application information and statistics should be collected. */</em>
 <a class="jxr_linenumber" name="L32" href="#L32">32</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">boolean</strong> extendedInfo;
 <a class="jxr_linenumber" name="L33" href="#L33">33</a>  
 <a class="jxr_linenumber" name="L34" href="#L34">34</a>    <em class="jxr_javadoccomment">/** The stats collection. */</em>
 <a class="jxr_linenumber" name="L35" href="#L35">35</a>    @Inject
-<a class="jxr_linenumber" name="L36" href="#L36">36</a>    <strong class="jxr_keyword">private</strong> <a href="../../../psiprobe/model/stats/StatsCollection.html">StatsCollection</a> statsCollection;
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>    <strong class="jxr_keyword">private</strong> <a name="StatsCollection" href="../../../psiprobe/model/stats/StatsCollection.html#StatsCollection">StatsCollection</a> statsCollection;
 <a class="jxr_linenumber" name="L37" href="#L37">37</a>  
 <a class="jxr_linenumber" name="L38" href="#L38">38</a>    <em class="jxr_javadoccomment">/** The collection period. */</em>
 <a class="jxr_linenumber" name="L39" href="#L39">39</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">long</strong> collectionPeriod;
@@ -69,7 +69,7 @@
 <a class="jxr_linenumber" name="L61" href="#L61">61</a>  <em class="jxr_javadoccomment">   *</em>
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>  <em class="jxr_javadoccomment">   * @return the stats collection</em>
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>  <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>    <strong class="jxr_keyword">public</strong> <a href="../../../psiprobe/model/stats/StatsCollection.html">StatsCollection</a> getStatsCollection() {
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>    <strong class="jxr_keyword">public</strong> <a name="StatsCollection" href="../../../psiprobe/model/stats/StatsCollection.html#StatsCollection">StatsCollection</a> getStatsCollection() {
 <a class="jxr_linenumber" name="L65" href="#L65">65</a>      <strong class="jxr_keyword">return</strong> statsCollection;
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>    }
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>  
@@ -78,7 +78,7 @@
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>  <em class="jxr_javadoccomment">   *</em>
 <a class="jxr_linenumber" name="L71" href="#L71">71</a>  <em class="jxr_javadoccomment">   * @param statsCollection the new stats collection</em>
 <a class="jxr_linenumber" name="L72" href="#L72">72</a>  <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L73" href="#L73">73</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setStatsCollection(<a href="../../../psiprobe/model/stats/StatsCollection.html">StatsCollection</a> statsCollection) {
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setStatsCollection(<a name="StatsCollection" href="../../../psiprobe/model/stats/StatsCollection.html#StatsCollection">StatsCollection</a> statsCollection) {
 <a class="jxr_linenumber" name="L74" href="#L74">74</a>      <strong class="jxr_keyword">this</strong>.statsCollection = statsCollection;
 <a class="jxr_linenumber" name="L75" href="#L75">75</a>    }
 <a class="jxr_linenumber" name="L76" href="#L76">76</a>  
@@ -107,8 +107,8 @@
 <a class="jxr_linenumber" name="L99" href="#L99">99</a>      <strong class="jxr_keyword">boolean</strong> calcSize = ServletRequestUtils.getBooleanParameter(request, <span class="jxr_string">"size"</span>, false)
 <a class="jxr_linenumber" name="L100" href="#L100">100</a>         &amp;&amp; SecurityUtils.hasAttributeValueRole(getServletContext(), request);
 <a class="jxr_linenumber" name="L101" href="#L101">101</a> 
-<a class="jxr_linenumber" name="L102" href="#L102">102</a>     <a href="../../../psiprobe/beans/ResourceResolver.html">ResourceResolver</a> resourceResolver = getContainerWrapper().getResourceResolver();
-<a class="jxr_linenumber" name="L103" href="#L103">103</a>     <a href="../../../psiprobe/model/Application.html">Application</a> app = ApplicationUtils.getApplication(context,
+<a class="jxr_linenumber" name="L102" href="#L102">102</a>     <a name="ResourceResolver" href="../../../psiprobe/beans/ResourceResolver.html#ResourceResolver">ResourceResolver</a> resourceResolver = getContainerWrapper().getResourceResolver();
+<a class="jxr_linenumber" name="L103" href="#L103">103</a>     <a name="Application" href="../../../psiprobe/model/Application.html#Application">Application</a> app = ApplicationUtils.getApplication(context,
 <a class="jxr_linenumber" name="L104" href="#L104">104</a>         isExtendedInfo() ? resourceResolver : <strong class="jxr_keyword">null</strong>, calcSize, getContainerWrapper());
 <a class="jxr_linenumber" name="L105" href="#L105">105</a> 
 <a class="jxr_linenumber" name="L106" href="#L106">106</a>     <strong class="jxr_keyword">if</strong> (isExtendedInfo() &amp;&amp; getStatsCollection() != <strong class="jxr_keyword">null</strong>) {

@@ -10,7 +10,7 @@
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_javadoccomment"> * Licensed under the GPL License. You may not use this file except in compliance with the License.</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_javadoccomment"> * You may obtain a copy of the License at</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_javadoccomment"> *</em>
-<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_javadoccomment"> *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</em>
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_javadoccomment"> *   <a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.html" target="alexandria_uri">https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</a></em>
 <a class="jxr_linenumber" name="L6" href="#L6">6</a>   <em class="jxr_javadoccomment"> *</em>
 <a class="jxr_linenumber" name="L7" href="#L7">7</a>   <em class="jxr_javadoccomment"> * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,</em>
 <a class="jxr_linenumber" name="L8" href="#L8">8</a>   <em class="jxr_javadoccomment"> * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR</em>
@@ -26,7 +26,7 @@
 <a class="jxr_linenumber" name="L18" href="#L18">18</a>  <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L19" href="#L19">19</a>  <em class="jxr_javadoccomment"> * A factory for creating AsyncSocket objects.</em>
 <a class="jxr_linenumber" name="L20" href="#L20">20</a>  <em class="jxr_javadoccomment"> */</em>
-<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">class</strong> <a href="../../psiprobe/tools/AsyncSocketFactory.html">AsyncSocketFactory</a> {
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">class</strong> <a name="AsyncSocketFactory" href="../../psiprobe/tools/AsyncSocketFactory.html#AsyncSocketFactory">AsyncSocketFactory</a> {
 <a class="jxr_linenumber" name="L22" href="#L22">22</a>  
 <a class="jxr_linenumber" name="L23" href="#L23">23</a>    <em class="jxr_javadoccomment">/** The Constant logger. */</em>
 <a class="jxr_linenumber" name="L24" href="#L24">24</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> Logger logger = LoggerFactory.getLogger(AsyncSocketFactory.<strong class="jxr_keyword">class</strong>);
@@ -34,7 +34,7 @@
 <a class="jxr_linenumber" name="L26" href="#L26">26</a>    <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L27" href="#L27">27</a>  <em class="jxr_javadoccomment">   * Prevent Instantiation.</em>
 <a class="jxr_linenumber" name="L28" href="#L28">28</a>  <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L29" href="#L29">29</a>    <strong class="jxr_keyword">private</strong> <a href="../../psiprobe/tools/AsyncSocketFactory.html">AsyncSocketFactory</a>() {
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>    <strong class="jxr_keyword">private</strong> <a name="AsyncSocketFactory" href="../../psiprobe/tools/AsyncSocketFactory.html#AsyncSocketFactory">AsyncSocketFactory</a>() {
 <a class="jxr_linenumber" name="L30" href="#L30">30</a>      <em class="jxr_comment">// Prevent Instantiation</em>
 <a class="jxr_linenumber" name="L31" href="#L31">31</a>    }
 <a class="jxr_linenumber" name="L32" href="#L32">32</a>  
@@ -48,14 +48,14 @@
 <a class="jxr_linenumber" name="L40" href="#L40">40</a>  <em class="jxr_javadoccomment">   * @throws IOException Signals that an I/O exception has occurred.</em>
 <a class="jxr_linenumber" name="L41" href="#L41">41</a>  <em class="jxr_javadoccomment">   */</em>
 <a class="jxr_linenumber" name="L42" href="#L42">42</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> Socket createSocket(String server, <strong class="jxr_keyword">int</strong> port, <strong class="jxr_keyword">long</strong> timeout) <strong class="jxr_keyword">throws</strong> IOException {
-<a class="jxr_linenumber" name="L43" href="#L43">43</a>      <a href="../../psiprobe/tools/AsyncSocketFactory.html">SocketWrapper</a> socketWrapper = <strong class="jxr_keyword">new</strong> <a href="../../psiprobe/tools/AsyncSocketFactory.html">SocketWrapper</a>();
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>      SocketWrapper socketWrapper = <strong class="jxr_keyword">new</strong> SocketWrapper();
 <a class="jxr_linenumber" name="L44" href="#L44">44</a>      socketWrapper.server = server;
 <a class="jxr_linenumber" name="L45" href="#L45">45</a>      socketWrapper.port = port;
 <a class="jxr_linenumber" name="L46" href="#L46">46</a>  
 <a class="jxr_linenumber" name="L47" href="#L47">47</a>      Object sync = <strong class="jxr_keyword">new</strong> Object();
-<a class="jxr_linenumber" name="L48" href="#L48">48</a>      Thread socketThread = <strong class="jxr_keyword">new</strong> Thread(<strong class="jxr_keyword">new</strong> <a href="../../psiprobe/tools/AsyncSocketFactory.html">SocketRunnable</a>(socketWrapper, sync));
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>      Thread socketThread = <strong class="jxr_keyword">new</strong> Thread(<strong class="jxr_keyword">new</strong> SocketRunnable(socketWrapper, sync));
 <a class="jxr_linenumber" name="L49" href="#L49">49</a>      socketThread.setDaemon(<strong class="jxr_keyword">true</strong>);
-<a class="jxr_linenumber" name="L50" href="#L50">50</a>      Thread timeoutThread = <strong class="jxr_keyword">new</strong> Thread(<strong class="jxr_keyword">new</strong> <a href="../../psiprobe/tools/AsyncSocketFactory.html">TimeoutRunnable</a>(sync, timeout * 1000));
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>      Thread timeoutThread = <strong class="jxr_keyword">new</strong> Thread(<strong class="jxr_keyword">new</strong> TimeoutRunnable(sync, timeout * 1000));
 <a class="jxr_linenumber" name="L51" href="#L51">51</a>      timeoutThread.setDaemon(<strong class="jxr_keyword">true</strong>);
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>  
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>      timeoutThread.start();
@@ -79,7 +79,7 @@
 <a class="jxr_linenumber" name="L71" href="#L71">71</a>      <strong class="jxr_keyword">if</strong> (socketWrapper.getSocket() == <strong class="jxr_keyword">null</strong> &amp;&amp; socketWrapper.exception != <strong class="jxr_keyword">null</strong>) {
 <a class="jxr_linenumber" name="L72" href="#L72">72</a>        <strong class="jxr_keyword">throw</strong> socketWrapper.exception;
 <a class="jxr_linenumber" name="L73" href="#L73">73</a>      } <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (socketWrapper.getSocket() == <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L74" href="#L74">74</a>        <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../psiprobe/tools/TimeoutException.html">TimeoutException</a>();
+<a class="jxr_linenumber" name="L74" href="#L74">74</a>        <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a name="TimeoutException" href="../../psiprobe/tools/TimeoutException.html#TimeoutException">TimeoutException</a>();
 <a class="jxr_linenumber" name="L75" href="#L75">75</a>      }
 <a class="jxr_linenumber" name="L76" href="#L76">76</a>  
 <a class="jxr_linenumber" name="L77" href="#L77">77</a>      <strong class="jxr_keyword">return</strong> socketWrapper.getSocket();
@@ -88,7 +88,7 @@
 <a class="jxr_linenumber" name="L80" href="#L80">80</a>    <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L81" href="#L81">81</a>  <em class="jxr_javadoccomment">   * The Class SocketWrapper.</em>
 <a class="jxr_linenumber" name="L82" href="#L82">82</a>  <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L83" href="#L83">83</a>    <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">class</strong> <a href="../../psiprobe/tools/AsyncSocketFactory.html">SocketWrapper</a> {
+<a class="jxr_linenumber" name="L83" href="#L83">83</a>    <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">class</strong> SocketWrapper {
 <a class="jxr_linenumber" name="L84" href="#L84">84</a>  
 <a class="jxr_linenumber" name="L85" href="#L85">85</a>      <em class="jxr_javadoccomment">/** The socket. */</em>
 <a class="jxr_linenumber" name="L86" href="#L86">86</a>      Socket socket;
@@ -164,10 +164,10 @@
 <a class="jxr_linenumber" name="L156" href="#L156">156</a>   <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L157" href="#L157">157</a> <em class="jxr_javadoccomment">   * The Class SocketRunnable.</em>
 <a class="jxr_linenumber" name="L158" href="#L158">158</a> <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L159" href="#L159">159</a>   <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">class</strong> <a href="../../psiprobe/tools/AsyncSocketFactory.html">SocketRunnable</a> <strong class="jxr_keyword">implements</strong> Runnable {
+<a class="jxr_linenumber" name="L159" href="#L159">159</a>   <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">class</strong> SocketRunnable <strong class="jxr_keyword">implements</strong> Runnable {
 <a class="jxr_linenumber" name="L160" href="#L160">160</a> 
 <a class="jxr_linenumber" name="L161" href="#L161">161</a>     <em class="jxr_javadoccomment">/** The socket wrapper. */</em>
-<a class="jxr_linenumber" name="L162" href="#L162">162</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <a href="../../psiprobe/tools/AsyncSocketFactory.html">SocketWrapper</a> socketWrapper;
+<a class="jxr_linenumber" name="L162" href="#L162">162</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> SocketWrapper socketWrapper;
 <a class="jxr_linenumber" name="L163" href="#L163">163</a> 
 <a class="jxr_linenumber" name="L164" href="#L164">164</a>     <em class="jxr_javadoccomment">/** The sync. */</em>
 <a class="jxr_linenumber" name="L165" href="#L165">165</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> Object sync;
@@ -178,7 +178,7 @@
 <a class="jxr_linenumber" name="L170" href="#L170">170</a> <em class="jxr_javadoccomment">     * @param socketWrapper the socket wrapper</em>
 <a class="jxr_linenumber" name="L171" href="#L171">171</a> <em class="jxr_javadoccomment">     * @param sync the sync</em>
 <a class="jxr_linenumber" name="L172" href="#L172">172</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L173" href="#L173">173</a>     <strong class="jxr_keyword">public</strong> <a href="../../psiprobe/tools/AsyncSocketFactory.html">SocketRunnable</a>(<a href="../../psiprobe/tools/AsyncSocketFactory.html">SocketWrapper</a> socketWrapper, Object sync) {
+<a class="jxr_linenumber" name="L173" href="#L173">173</a>     <strong class="jxr_keyword">public</strong> SocketRunnable(SocketWrapper socketWrapper, Object sync) {
 <a class="jxr_linenumber" name="L174" href="#L174">174</a>       <strong class="jxr_keyword">this</strong>.socketWrapper = socketWrapper;
 <a class="jxr_linenumber" name="L175" href="#L175">175</a>       <strong class="jxr_keyword">this</strong>.sync = sync;
 <a class="jxr_linenumber" name="L176" href="#L176">176</a>     }
@@ -205,7 +205,7 @@
 <a class="jxr_linenumber" name="L197" href="#L197">197</a>   <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L198" href="#L198">198</a> <em class="jxr_javadoccomment">   * The Class TimeoutRunnable.</em>
 <a class="jxr_linenumber" name="L199" href="#L199">199</a> <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L200" href="#L200">200</a>   <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">class</strong> <a href="../../psiprobe/tools/AsyncSocketFactory.html">TimeoutRunnable</a> <strong class="jxr_keyword">implements</strong> Runnable {
+<a class="jxr_linenumber" name="L200" href="#L200">200</a>   <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">class</strong> TimeoutRunnable <strong class="jxr_keyword">implements</strong> Runnable {
 <a class="jxr_linenumber" name="L201" href="#L201">201</a> 
 <a class="jxr_linenumber" name="L202" href="#L202">202</a>     <em class="jxr_javadoccomment">/** The sync. */</em>
 <a class="jxr_linenumber" name="L203" href="#L203">203</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> Object sync;
@@ -219,7 +219,7 @@
 <a class="jxr_linenumber" name="L211" href="#L211">211</a> <em class="jxr_javadoccomment">     * @param sync the sync</em>
 <a class="jxr_linenumber" name="L212" href="#L212">212</a> <em class="jxr_javadoccomment">     * @param timeout the timeout</em>
 <a class="jxr_linenumber" name="L213" href="#L213">213</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L214" href="#L214">214</a>     <strong class="jxr_keyword">public</strong> <a href="../../psiprobe/tools/AsyncSocketFactory.html">TimeoutRunnable</a>(Object sync, <strong class="jxr_keyword">long</strong> timeout) {
+<a class="jxr_linenumber" name="L214" href="#L214">214</a>     <strong class="jxr_keyword">public</strong> TimeoutRunnable(Object sync, <strong class="jxr_keyword">long</strong> timeout) {
 <a class="jxr_linenumber" name="L215" href="#L215">215</a>       <strong class="jxr_keyword">this</strong>.sync = sync;
 <a class="jxr_linenumber" name="L216" href="#L216">216</a>       <strong class="jxr_keyword">this</strong>.timeout = timeout;
 <a class="jxr_linenumber" name="L217" href="#L217">217</a>     }

@@ -10,7 +10,7 @@
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_javadoccomment"> * Licensed under the GPL License. You may not use this file except in compliance with the License.</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_javadoccomment"> * You may obtain a copy of the License at</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_javadoccomment"> *</em>
-<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_javadoccomment"> *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</em>
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_javadoccomment"> *   <a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.html" target="alexandria_uri">https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</a></em>
 <a class="jxr_linenumber" name="L6" href="#L6">6</a>   <em class="jxr_javadoccomment"> *</em>
 <a class="jxr_linenumber" name="L7" href="#L7">7</a>   <em class="jxr_javadoccomment"> * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,</em>
 <a class="jxr_linenumber" name="L8" href="#L8">8</a>   <em class="jxr_javadoccomment"> * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR</em>
@@ -28,7 +28,7 @@
 <a class="jxr_linenumber" name="L20" href="#L20">20</a>  <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L21" href="#L21">21</a>  <em class="jxr_javadoccomment"> * The Class Tokenizer.</em>
 <a class="jxr_linenumber" name="L22" href="#L22">22</a>  <em class="jxr_javadoccomment"> */</em>
-<a class="jxr_linenumber" name="L23" href="#L23">23</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../psiprobe/tokenizer/Tokenizer.html">Tokenizer</a> {
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a name="Tokenizer" href="../../psiprobe/tokenizer/Tokenizer.html#Tokenizer">Tokenizer</a> {
 <a class="jxr_linenumber" name="L24" href="#L24">24</a>  
 <a class="jxr_linenumber" name="L25" href="#L25">25</a>    <em class="jxr_javadoccomment">/** The Constant logger. */</em>
 <a class="jxr_linenumber" name="L26" href="#L26">26</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> Logger logger = LoggerFactory.getLogger(Tokenizer.<strong class="jxr_keyword">class</strong>);
@@ -55,10 +55,10 @@
 <a class="jxr_linenumber" name="L47" href="#L47">47</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">int</strong> pushCount;
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>  
 <a class="jxr_linenumber" name="L49" href="#L49">49</a>    <em class="jxr_javadoccomment">/** The token. */</em>
-<a class="jxr_linenumber" name="L50" href="#L50">50</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <a href="../../psiprobe/tokenizer/Tokenizer.html">TokenizerToken</a> token;
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> TokenizerToken token;
 <a class="jxr_linenumber" name="L51" href="#L51">51</a>  
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>    <em class="jxr_javadoccomment">/** The upcoming token. */</em>
-<a class="jxr_linenumber" name="L53" href="#L53">53</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <a href="../../psiprobe/tokenizer/Tokenizer.html">TokenizerToken</a> upcomingToken;
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> TokenizerToken upcomingToken;
 <a class="jxr_linenumber" name="L54" href="#L54">54</a>  
 <a class="jxr_linenumber" name="L55" href="#L55">55</a>    <em class="jxr_javadoccomment">/** The cache position. */</em>
 <a class="jxr_linenumber" name="L56" href="#L56">56</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">int</strong> cachePosition;
@@ -75,7 +75,7 @@
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>    <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>  <em class="jxr_javadoccomment">   * Instantiates a new tokenizer.</em>
 <a class="jxr_linenumber" name="L69" href="#L69">69</a>  <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L70" href="#L70">70</a>    <strong class="jxr_keyword">public</strong> <a href="../../psiprobe/tokenizer/Tokenizer.html">Tokenizer</a>() {
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>    <strong class="jxr_keyword">public</strong> <a name="Tokenizer" href="../../psiprobe/tokenizer/Tokenizer.html#Tokenizer">Tokenizer</a>() {
 <a class="jxr_linenumber" name="L71" href="#L71">71</a>      <strong class="jxr_keyword">this</strong>(<strong class="jxr_keyword">null</strong>, 4096);
 <a class="jxr_linenumber" name="L72" href="#L72">72</a>    }
 <a class="jxr_linenumber" name="L73" href="#L73">73</a>  
@@ -84,7 +84,7 @@
 <a class="jxr_linenumber" name="L76" href="#L76">76</a>  <em class="jxr_javadoccomment">   *</em>
 <a class="jxr_linenumber" name="L77" href="#L77">77</a>  <em class="jxr_javadoccomment">   * @param reader the reader</em>
 <a class="jxr_linenumber" name="L78" href="#L78">78</a>  <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L79" href="#L79">79</a>    <strong class="jxr_keyword">public</strong> <a href="../../psiprobe/tokenizer/Tokenizer.html">Tokenizer</a>(Reader reader) {
+<a class="jxr_linenumber" name="L79" href="#L79">79</a>    <strong class="jxr_keyword">public</strong> <a name="Tokenizer" href="../../psiprobe/tokenizer/Tokenizer.html#Tokenizer">Tokenizer</a>(Reader reader) {
 <a class="jxr_linenumber" name="L80" href="#L80">80</a>      <strong class="jxr_keyword">this</strong>(reader, 4096);
 <a class="jxr_linenumber" name="L81" href="#L81">81</a>    }
 <a class="jxr_linenumber" name="L82" href="#L82">82</a>  
@@ -94,10 +94,10 @@
 <a class="jxr_linenumber" name="L86" href="#L86">86</a>  <em class="jxr_javadoccomment">   * @param reader the reader</em>
 <a class="jxr_linenumber" name="L87" href="#L87">87</a>  <em class="jxr_javadoccomment">   * @param cacheBufferSize the cache buffer size</em>
 <a class="jxr_linenumber" name="L88" href="#L88">88</a>  <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L89" href="#L89">89</a>    <strong class="jxr_keyword">public</strong> <a href="../../psiprobe/tokenizer/Tokenizer.html">Tokenizer</a>(Reader reader, <strong class="jxr_keyword">int</strong> cacheBufferSize) {
+<a class="jxr_linenumber" name="L89" href="#L89">89</a>    <strong class="jxr_keyword">public</strong> <a name="Tokenizer" href="../../psiprobe/tokenizer/Tokenizer.html#Tokenizer">Tokenizer</a>(Reader reader, <strong class="jxr_keyword">int</strong> cacheBufferSize) {
 <a class="jxr_linenumber" name="L90" href="#L90">90</a>      symbols = <strong class="jxr_keyword">new</strong> UniqueList&lt;&gt;();
-<a class="jxr_linenumber" name="L91" href="#L91">91</a>      token = <strong class="jxr_keyword">new</strong> <a href="../../psiprobe/tokenizer/Tokenizer.html">TokenizerToken</a>();
-<a class="jxr_linenumber" name="L92" href="#L92">92</a>      upcomingToken = <strong class="jxr_keyword">new</strong> <a href="../../psiprobe/tokenizer/Tokenizer.html">TokenizerToken</a>();
+<a class="jxr_linenumber" name="L91" href="#L91">91</a>      token = <strong class="jxr_keyword">new</strong> TokenizerToken();
+<a class="jxr_linenumber" name="L92" href="#L92">92</a>      upcomingToken = <strong class="jxr_keyword">new</strong> TokenizerToken();
 <a class="jxr_linenumber" name="L93" href="#L93">93</a>      cacheBuffer = <strong class="jxr_keyword">new</strong> <strong class="jxr_keyword">char</strong>[cacheBufferSize];
 <a class="jxr_linenumber" name="L94" href="#L94">94</a>      setReader(reader);
 <a class="jxr_linenumber" name="L95" href="#L95">95</a>    }
@@ -140,7 +140,7 @@
 <a class="jxr_linenumber" name="L132" href="#L132">132</a> <em class="jxr_javadoccomment">   * @return the token</em>
 <a class="jxr_linenumber" name="L133" href="#L133">133</a> <em class="jxr_javadoccomment">   * @throws IOException Signals that an I/O exception has occurred.</em>
 <a class="jxr_linenumber" name="L134" href="#L134">134</a> <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L135" href="#L135">135</a>   <strong class="jxr_keyword">public</strong> <a href="../../psiprobe/tokenizer/Token.html">Token</a> getToken() <strong class="jxr_keyword">throws</strong> IOException {
+<a class="jxr_linenumber" name="L135" href="#L135">135</a>   <strong class="jxr_keyword">public</strong> <a name="Token" href="../../psiprobe/tokenizer/Token.html#Token">Token</a> getToken() <strong class="jxr_keyword">throws</strong> IOException {
 <a class="jxr_linenumber" name="L136" href="#L136">136</a>     <strong class="jxr_keyword">if</strong> (token.type == Tokenizer.TT_ERROR) {
 <a class="jxr_linenumber" name="L137" href="#L137">137</a>       <strong class="jxr_keyword">return</strong> nextToken();
 <a class="jxr_linenumber" name="L138" href="#L138">138</a>     }
@@ -153,7 +153,7 @@
 <a class="jxr_linenumber" name="L145" href="#L145">145</a> <em class="jxr_javadoccomment">   * @return the token</em>
 <a class="jxr_linenumber" name="L146" href="#L146">146</a> <em class="jxr_javadoccomment">   * @throws IOException Signals that an I/O exception has occurred.</em>
 <a class="jxr_linenumber" name="L147" href="#L147">147</a> <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L148" href="#L148">148</a>   <strong class="jxr_keyword">public</strong> <a href="../../psiprobe/tokenizer/Token.html">Token</a> nextToken() <strong class="jxr_keyword">throws</strong> IOException {
+<a class="jxr_linenumber" name="L148" href="#L148">148</a>   <strong class="jxr_keyword">public</strong> <a name="Token" href="../../psiprobe/tokenizer/Token.html#Token">Token</a> nextToken() <strong class="jxr_keyword">throws</strong> IOException {
 <a class="jxr_linenumber" name="L149" href="#L149">149</a>     <strong class="jxr_keyword">if</strong> (pushCount &gt; 0) {
 <a class="jxr_linenumber" name="L150" href="#L150">150</a>       pushCount--;
 <a class="jxr_linenumber" name="L151" href="#L151">151</a>       <strong class="jxr_keyword">return</strong> token;
@@ -171,9 +171,9 @@
 <a class="jxr_linenumber" name="L163" href="#L163">163</a> 
 <a class="jxr_linenumber" name="L164" href="#L164">164</a>         <strong class="jxr_keyword">if</strong> (symbolIndex != -1) {
 <a class="jxr_linenumber" name="L165" href="#L165">165</a>           <em class="jxr_comment">// we have found a symbol</em>
-<a class="jxr_linenumber" name="L166" href="#L166">166</a>           <a href="../../psiprobe/tokenizer/Tokenizer.html">TokenizerToken</a> workToken =
+<a class="jxr_linenumber" name="L166" href="#L166">166</a>           TokenizerToken workToken =
 <a class="jxr_linenumber" name="L167" href="#L167">167</a>               token.type == Tokenizer.TT_TOKEN &amp;&amp; token.text.length() &gt; 0 ? upcomingToken : token;
-<a class="jxr_linenumber" name="L168" href="#L168">168</a>           <a href="../../psiprobe/tokenizer/TokenizerSymbol.html">TokenizerSymbol</a> symbol = symbols.get(symbolIndex);
+<a class="jxr_linenumber" name="L168" href="#L168">168</a>           <a name="TokenizerSymbol" href="../../psiprobe/tokenizer/TokenizerSymbol.html#TokenizerSymbol">TokenizerSymbol</a> symbol = symbols.get(symbolIndex);
 <a class="jxr_linenumber" name="L169" href="#L169">169</a>           <strong class="jxr_keyword">boolean</strong> hideSymbol = symbol.hidden;
 <a class="jxr_linenumber" name="L170" href="#L170">170</a> 
 <a class="jxr_linenumber" name="L171" href="#L171">171</a>           <strong class="jxr_keyword">if</strong> (!hideSymbol) {
@@ -275,7 +275,7 @@
 <a class="jxr_linenumber" name="L267" href="#L267">267</a>         index--;
 <a class="jxr_linenumber" name="L268" href="#L268">268</a>       }
 <a class="jxr_linenumber" name="L269" href="#L269">269</a>       <strong class="jxr_keyword">while</strong> (index &lt; symbols.size()) {
-<a class="jxr_linenumber" name="L270" href="#L270">270</a>         <a href="../../psiprobe/tokenizer/TokenizerSymbol.html">TokenizerSymbol</a> symbol = symbols.get(index);
+<a class="jxr_linenumber" name="L270" href="#L270">270</a>         <a name="TokenizerSymbol" href="../../psiprobe/tokenizer/TokenizerSymbol.html#TokenizerSymbol">TokenizerSymbol</a> symbol = symbols.get(index);
 <a class="jxr_linenumber" name="L271" href="#L271">271</a>         <strong class="jxr_keyword">if</strong> (symbol.compareTo(chrObj) == 0) {
 <a class="jxr_linenumber" name="L272" href="#L272">272</a>           <strong class="jxr_keyword">if</strong> (compare(symbol.startText.toCharArray(), 1)) {
 <a class="jxr_linenumber" name="L273" href="#L273">273</a>             result = index;
@@ -323,7 +323,7 @@
 <a class="jxr_linenumber" name="L315" href="#L315">315</a> <em class="jxr_javadoccomment">   * @param text the text</em>
 <a class="jxr_linenumber" name="L316" href="#L316">316</a> <em class="jxr_javadoccomment">   */</em>
 <a class="jxr_linenumber" name="L317" href="#L317">317</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> addSymbol(String text) {
-<a class="jxr_linenumber" name="L318" href="#L318">318</a>     symbols.add(<strong class="jxr_keyword">new</strong> <a href="../../psiprobe/tokenizer/TokenizerSymbol.html">TokenizerSymbol</a>(<strong class="jxr_keyword">null</strong>, text, <strong class="jxr_keyword">null</strong>, false, false, <strong class="jxr_keyword">true</strong>, false));
+<a class="jxr_linenumber" name="L318" href="#L318">318</a>     symbols.add(<strong class="jxr_keyword">new</strong> <a name="TokenizerSymbol" href="../../psiprobe/tokenizer/TokenizerSymbol.html#TokenizerSymbol">TokenizerSymbol</a>(<strong class="jxr_keyword">null</strong>, text, <strong class="jxr_keyword">null</strong>, false, false, <strong class="jxr_keyword">true</strong>, false));
 <a class="jxr_linenumber" name="L319" href="#L319">319</a>   }
 <a class="jxr_linenumber" name="L320" href="#L320">320</a> 
 <a class="jxr_linenumber" name="L321" href="#L321">321</a>   <em class="jxr_javadoccomment">/**</em>
@@ -333,7 +333,7 @@
 <a class="jxr_linenumber" name="L325" href="#L325">325</a> <em class="jxr_javadoccomment">   * @param hidden the hidden</em>
 <a class="jxr_linenumber" name="L326" href="#L326">326</a> <em class="jxr_javadoccomment">   */</em>
 <a class="jxr_linenumber" name="L327" href="#L327">327</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> addSymbol(String text, <strong class="jxr_keyword">boolean</strong> hidden) {
-<a class="jxr_linenumber" name="L328" href="#L328">328</a>     symbols.add(<strong class="jxr_keyword">new</strong> <a href="../../psiprobe/tokenizer/TokenizerSymbol.html">TokenizerSymbol</a>(<strong class="jxr_keyword">null</strong>, text, <strong class="jxr_keyword">null</strong>, hidden, false, <strong class="jxr_keyword">true</strong>, false));
+<a class="jxr_linenumber" name="L328" href="#L328">328</a>     symbols.add(<strong class="jxr_keyword">new</strong> <a name="TokenizerSymbol" href="../../psiprobe/tokenizer/TokenizerSymbol.html#TokenizerSymbol">TokenizerSymbol</a>(<strong class="jxr_keyword">null</strong>, text, <strong class="jxr_keyword">null</strong>, hidden, false, <strong class="jxr_keyword">true</strong>, false));
 <a class="jxr_linenumber" name="L329" href="#L329">329</a>   }
 <a class="jxr_linenumber" name="L330" href="#L330">330</a> 
 <a class="jxr_linenumber" name="L331" href="#L331">331</a>   <em class="jxr_javadoccomment">/**</em>
@@ -344,7 +344,7 @@
 <a class="jxr_linenumber" name="L336" href="#L336">336</a> <em class="jxr_javadoccomment">   * @param hidden the hidden</em>
 <a class="jxr_linenumber" name="L337" href="#L337">337</a> <em class="jxr_javadoccomment">   */</em>
 <a class="jxr_linenumber" name="L338" href="#L338">338</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> addSymbol(String startText, String endText, <strong class="jxr_keyword">boolean</strong> hidden) {
-<a class="jxr_linenumber" name="L339" href="#L339">339</a>     symbols.add(<strong class="jxr_keyword">new</strong> <a href="../../psiprobe/tokenizer/TokenizerSymbol.html">TokenizerSymbol</a>(<strong class="jxr_keyword">null</strong>, startText, endText, hidden, false, <strong class="jxr_keyword">true</strong>, false));
+<a class="jxr_linenumber" name="L339" href="#L339">339</a>     symbols.add(<strong class="jxr_keyword">new</strong> <a name="TokenizerSymbol" href="../../psiprobe/tokenizer/TokenizerSymbol.html#TokenizerSymbol">TokenizerSymbol</a>(<strong class="jxr_keyword">null</strong>, startText, endText, hidden, false, <strong class="jxr_keyword">true</strong>, false));
 <a class="jxr_linenumber" name="L340" href="#L340">340</a>   }
 <a class="jxr_linenumber" name="L341" href="#L341">341</a> 
 <a class="jxr_linenumber" name="L342" href="#L342">342</a>   <em class="jxr_javadoccomment">/**</em>
@@ -352,7 +352,7 @@
 <a class="jxr_linenumber" name="L344" href="#L344">344</a> <em class="jxr_javadoccomment">   *</em>
 <a class="jxr_linenumber" name="L345" href="#L345">345</a> <em class="jxr_javadoccomment">   * @param symbol the symbol</em>
 <a class="jxr_linenumber" name="L346" href="#L346">346</a> <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L347" href="#L347">347</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> addSymbol(<a href="../../psiprobe/tokenizer/TokenizerSymbol.html">TokenizerSymbol</a> symbol) {
+<a class="jxr_linenumber" name="L347" href="#L347">347</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> addSymbol(<a name="TokenizerSymbol" href="../../psiprobe/tokenizer/TokenizerSymbol.html#TokenizerSymbol">TokenizerSymbol</a> symbol) {
 <a class="jxr_linenumber" name="L348" href="#L348">348</a>     symbols.add(symbol);
 <a class="jxr_linenumber" name="L349" href="#L349">349</a>   }
 <a class="jxr_linenumber" name="L350" href="#L350">350</a> 
@@ -404,7 +404,7 @@
 <a class="jxr_linenumber" name="L396" href="#L396">396</a>   <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L397" href="#L397">397</a> <em class="jxr_javadoccomment">   * The Class TokenizerToken.</em>
 <a class="jxr_linenumber" name="L398" href="#L398">398</a> <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L399" href="#L399">399</a>   <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">class</strong> <a href="../../psiprobe/tokenizer/Tokenizer.html">TokenizerToken</a> <strong class="jxr_keyword">implements</strong> <a href="../../psiprobe/tokenizer/Token.html">Token</a> {
+<a class="jxr_linenumber" name="L399" href="#L399">399</a>   <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">class</strong> TokenizerToken <strong class="jxr_keyword">implements</strong> <a name="Token" href="../../psiprobe/tokenizer/Token.html#Token">Token</a> {
 <a class="jxr_linenumber" name="L400" href="#L400">400</a> 
 <a class="jxr_linenumber" name="L401" href="#L401">401</a>     <em class="jxr_javadoccomment">/** The text. */</em>
 <a class="jxr_linenumber" name="L402" href="#L402">402</a>     <strong class="jxr_keyword">final</strong> StringBuilder text = <strong class="jxr_keyword">new</strong> StringBuilder();
@@ -427,7 +427,7 @@
 <a class="jxr_linenumber" name="L419" href="#L419">419</a>     <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L420" href="#L420">420</a> <em class="jxr_javadoccomment">     * Instantiates a new tokenizer token.</em>
 <a class="jxr_linenumber" name="L421" href="#L421">421</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L422" href="#L422">422</a>     <strong class="jxr_keyword">public</strong> <a href="../../psiprobe/tokenizer/Tokenizer.html">TokenizerToken</a>() {
+<a class="jxr_linenumber" name="L422" href="#L422">422</a>     <strong class="jxr_keyword">public</strong> TokenizerToken() {
 <a class="jxr_linenumber" name="L423" href="#L423">423</a>       type = Tokenizer.TT_ERROR;
 <a class="jxr_linenumber" name="L424" href="#L424">424</a>     }
 <a class="jxr_linenumber" name="L425" href="#L425">425</a> 
@@ -471,7 +471,7 @@
 <a class="jxr_linenumber" name="L463" href="#L463">463</a> <em class="jxr_javadoccomment">     *</em>
 <a class="jxr_linenumber" name="L464" href="#L464">464</a> <em class="jxr_javadoccomment">     * @param token the token</em>
 <a class="jxr_linenumber" name="L465" href="#L465">465</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L466" href="#L466">466</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> assign(<a href="../../psiprobe/tokenizer/Tokenizer.html">TokenizerToken</a> token) {
+<a class="jxr_linenumber" name="L466" href="#L466">466</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> assign(TokenizerToken token) {
 <a class="jxr_linenumber" name="L467" href="#L467">467</a>       <strong class="jxr_keyword">this</strong>.text.setLength(0);
 <a class="jxr_linenumber" name="L468" href="#L468">468</a>       <strong class="jxr_keyword">this</strong>.text.append(token.text);
 <a class="jxr_linenumber" name="L469" href="#L469">469</a>       <strong class="jxr_keyword">this</strong>.innerText.setLength(0);

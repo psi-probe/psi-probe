@@ -10,7 +10,7 @@
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_javadoccomment"> * Licensed under the GPL License. You may not use this file except in compliance with the License.</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_javadoccomment"> * You may obtain a copy of the License at</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_javadoccomment"> *</em>
-<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_javadoccomment"> *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</em>
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_javadoccomment"> *   <a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.html" target="alexandria_uri">https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</a></em>
 <a class="jxr_linenumber" name="L6" href="#L6">6</a>   <em class="jxr_javadoccomment"> *</em>
 <a class="jxr_linenumber" name="L7" href="#L7">7</a>   <em class="jxr_javadoccomment"> * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,</em>
 <a class="jxr_linenumber" name="L8" href="#L8">8</a>   <em class="jxr_javadoccomment"> * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR</em>
@@ -52,7 +52,7 @@
 <a class="jxr_linenumber" name="L44" href="#L44">44</a>  <em class="jxr_javadoccomment"> * This class interfaces Tomcat JMX functionality to read connection status. The class essentially</em>
 <a class="jxr_linenumber" name="L45" href="#L45">45</a>  <em class="jxr_javadoccomment"> * provides and maintains the list of connection ThreadPools.</em>
 <a class="jxr_linenumber" name="L46" href="#L46">46</a>  <em class="jxr_javadoccomment"> */</em>
-<a class="jxr_linenumber" name="L47" href="#L47">47</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../psiprobe/beans/ContainerListenerBean.html">ContainerListenerBean</a> <strong class="jxr_keyword">implements</strong> NotificationListener {
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a name="ContainerListenerBean" href="../../psiprobe/beans/ContainerListenerBean.html#ContainerListenerBean">ContainerListenerBean</a> <strong class="jxr_keyword">implements</strong> NotificationListener {
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>  
 <a class="jxr_linenumber" name="L49" href="#L49">49</a>    <em class="jxr_javadoccomment">/** The Constant logger. */</em>
 <a class="jxr_linenumber" name="L50" href="#L50">50</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> Logger logger = LoggerFactory.getLogger(ContainerListenerBean.<strong class="jxr_keyword">class</strong>);
@@ -69,14 +69,14 @@
 <a class="jxr_linenumber" name="L61" href="#L61">61</a>  
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>    <em class="jxr_javadoccomment">/** Used to obtain required {@link MBeanServer} instance. */</em>
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>    @Inject
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>    <strong class="jxr_keyword">private</strong> <a href="../../psiprobe/beans/ContainerWrapperBean.html">ContainerWrapperBean</a> containerWrapper;
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>    <strong class="jxr_keyword">private</strong> <a name="ContainerWrapperBean" href="../../psiprobe/beans/ContainerWrapperBean.html#ContainerWrapperBean">ContainerWrapperBean</a> containerWrapper;
 <a class="jxr_linenumber" name="L65" href="#L65">65</a>  
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>    <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>  <em class="jxr_javadoccomment">   * Gets the container wrapper.</em>
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>  <em class="jxr_javadoccomment">   *</em>
 <a class="jxr_linenumber" name="L69" href="#L69">69</a>  <em class="jxr_javadoccomment">   * @return the container wrapper</em>
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>  <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L71" href="#L71">71</a>    <strong class="jxr_keyword">public</strong> <a href="../../psiprobe/beans/ContainerWrapperBean.html">ContainerWrapperBean</a> getContainerWrapper() {
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>    <strong class="jxr_keyword">public</strong> <a name="ContainerWrapperBean" href="../../psiprobe/beans/ContainerWrapperBean.html#ContainerWrapperBean">ContainerWrapperBean</a> getContainerWrapper() {
 <a class="jxr_linenumber" name="L72" href="#L72">72</a>      <strong class="jxr_keyword">return</strong> containerWrapper;
 <a class="jxr_linenumber" name="L73" href="#L73">73</a>    }
 <a class="jxr_linenumber" name="L74" href="#L74">74</a>  
@@ -85,7 +85,7 @@
 <a class="jxr_linenumber" name="L77" href="#L77">77</a>  <em class="jxr_javadoccomment">   *</em>
 <a class="jxr_linenumber" name="L78" href="#L78">78</a>  <em class="jxr_javadoccomment">   * @param containerWrapper the new container wrapper</em>
 <a class="jxr_linenumber" name="L79" href="#L79">79</a>  <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L80" href="#L80">80</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setContainerWrapper(<a href="../../psiprobe/beans/ContainerWrapperBean.html">ContainerWrapperBean</a> containerWrapper) {
+<a class="jxr_linenumber" name="L80" href="#L80">80</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setContainerWrapper(<a name="ContainerWrapperBean" href="../../psiprobe/beans/ContainerWrapperBean.html#ContainerWrapperBean">ContainerWrapperBean</a> containerWrapper) {
 <a class="jxr_linenumber" name="L81" href="#L81">81</a>      <strong class="jxr_keyword">this</strong>.containerWrapper = containerWrapper;
 <a class="jxr_linenumber" name="L82" href="#L82">82</a>    }
 <a class="jxr_linenumber" name="L83" href="#L83">83</a>  
@@ -104,9 +104,9 @@
 <a class="jxr_linenumber" name="L96" href="#L96">96</a>  <em class="jxr_javadoccomment">   * @param name - pool name</em>
 <a class="jxr_linenumber" name="L97" href="#L97">97</a>  <em class="jxr_javadoccomment">   * @return null if the input name is null or ThreadPoolObjectName is not found</em>
 <a class="jxr_linenumber" name="L98" href="#L98">98</a>  <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L99" href="#L99">99</a>    <strong class="jxr_keyword">private</strong> <a href="../../psiprobe/model/jmx/ThreadPoolObjectName.html">ThreadPoolObjectName</a> findPool(String name) {
+<a class="jxr_linenumber" name="L99" href="#L99">99</a>    <strong class="jxr_keyword">private</strong> <a name="ThreadPoolObjectName" href="../../psiprobe/model/jmx/ThreadPoolObjectName.html#ThreadPoolObjectName">ThreadPoolObjectName</a> findPool(String name) {
 <a class="jxr_linenumber" name="L100" href="#L100">100</a>     <strong class="jxr_keyword">if</strong> (name != <strong class="jxr_keyword">null</strong> &amp;&amp; isInitialized()) {
-<a class="jxr_linenumber" name="L101" href="#L101">101</a>       <strong class="jxr_keyword">for</strong> (ThreadPoolObjectName threadPoolObjectName : poolNames) {
+<a class="jxr_linenumber" name="L101" href="#L101">101</a>       <strong class="jxr_keyword">for</strong> (<a name="ThreadPoolObjectName" href="../../psiprobe/model/jmx/ThreadPoolObjectName.html#ThreadPoolObjectName">ThreadPoolObjectName</a> threadPoolObjectName : poolNames) {
 <a class="jxr_linenumber" name="L102" href="#L102">102</a>         <strong class="jxr_keyword">if</strong> (name.equals(threadPoolObjectName.getThreadPoolName().getKeyProperty(<span class="jxr_string">"name"</span>))) {
 <a class="jxr_linenumber" name="L103" href="#L103">103</a>           <strong class="jxr_keyword">return</strong> threadPoolObjectName;
 <a class="jxr_linenumber" name="L104" href="#L104">104</a>         }
@@ -129,7 +129,7 @@
 <a class="jxr_linenumber" name="L121" href="#L121">121</a> 
 <a class="jxr_linenumber" name="L122" href="#L122">122</a>       ObjectName objectName = ((MBeanServerNotification) notification).getMBeanName();
 <a class="jxr_linenumber" name="L123" href="#L123">123</a>       <strong class="jxr_keyword">if</strong> (<span class="jxr_string">"RequestProcessor"</span>.equals(objectName.getKeyProperty(<span class="jxr_string">"type"</span>))) {
-<a class="jxr_linenumber" name="L124" href="#L124">124</a>         <a href="../../psiprobe/model/jmx/ThreadPoolObjectName.html">ThreadPoolObjectName</a> threadPoolObjectName = findPool(objectName.getKeyProperty(<span class="jxr_string">"worker"</span>));
+<a class="jxr_linenumber" name="L124" href="#L124">124</a>         <a name="ThreadPoolObjectName" href="../../psiprobe/model/jmx/ThreadPoolObjectName.html#ThreadPoolObjectName">ThreadPoolObjectName</a> threadPoolObjectName = findPool(objectName.getKeyProperty(<span class="jxr_string">"worker"</span>));
 <a class="jxr_linenumber" name="L125" href="#L125">125</a>         <strong class="jxr_keyword">if</strong> (threadPoolObjectName != <strong class="jxr_keyword">null</strong>) {
 <a class="jxr_linenumber" name="L126" href="#L126">126</a>           <strong class="jxr_keyword">if</strong> (MBeanServerNotification.REGISTRATION_NOTIFICATION.equals(notification.getType())) {
 <a class="jxr_linenumber" name="L127" href="#L127">127</a>             threadPoolObjectName.getRequestProcessorNames().add(objectName);
@@ -157,7 +157,7 @@
 <a class="jxr_linenumber" name="L149" href="#L149">149</a>     poolNames = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;(threadPools.size());
 <a class="jxr_linenumber" name="L150" href="#L150">150</a>     <strong class="jxr_keyword">for</strong> (ObjectInstance threadPool : threadPools) {
 <a class="jxr_linenumber" name="L151" href="#L151">151</a> 
-<a class="jxr_linenumber" name="L152" href="#L152">152</a>       <a href="../../psiprobe/model/jmx/ThreadPoolObjectName.html">ThreadPoolObjectName</a> threadPoolObjectName = <strong class="jxr_keyword">new</strong> <a href="../../psiprobe/model/jmx/ThreadPoolObjectName.html">ThreadPoolObjectName</a>();
+<a class="jxr_linenumber" name="L152" href="#L152">152</a>       <a name="ThreadPoolObjectName" href="../../psiprobe/model/jmx/ThreadPoolObjectName.ht<a name="ThreadPoolObjectName" href="../../psiprobe/model/jmx/ThreadPoolObjectName.html#ThreadPoolObjectName">ThreadPoolObjectName</a>ame">ThreadPoolObjectName</a> threadPoolObjectName = <strong class="jxr_keyword">new</strong> <a name="ThreadPoolObjectName" href="../../psiprobe/model/jmx/ThreadPoolObjectName.html#ThreadPoolObjectName">ThreadPoolObjectName</a>();
 <a class="jxr_linenumber" name="L153" href="#L153">153</a>       ObjectName threadPoolName = threadPool.getObjectName();
 <a class="jxr_linenumber" name="L154" href="#L154">154</a> 
 <a class="jxr_linenumber" name="L155" href="#L155">155</a>       String name = threadPoolName.getKeyProperty(<span class="jxr_string">"name"</span>);
@@ -216,7 +216,7 @@
 <a class="jxr_linenumber" name="L208" href="#L208">208</a>     MBeanServer server = getContainerWrapper().getResourceResolver().getMBeanServer();
 <a class="jxr_linenumber" name="L209" href="#L209">209</a> 
 <a class="jxr_linenumber" name="L210" href="#L210">210</a>     <strong class="jxr_keyword">for</strong> (ObjectName executorName : executorNames) {
-<a class="jxr_linenumber" name="L211" href="#L211">211</a>       <a href="../../psiprobe/model/ThreadPool.html">ThreadPool</a> threadPool = <strong class="jxr_keyword">new</strong> <a href="../../psiprobe/model/ThreadPool.html">ThreadPool</a>();
+<a class="jxr_linenumber" name="L211" href="#L211">211</a>       <a name="ThreadPool" href="../../psiprobe/model/ThreadPool.html#T<a name="ThreadPool" href="../../psiprobe/model/ThreadPool.html#ThreadPool">ThreadPool</a>>ThreadPool</a> threadPool = <strong class="jxr_keyword">new</strong> <a name="ThreadPool" href="../../psiprobe/model/ThreadPool.html#ThreadPool">ThreadPool</a>();
 <a class="jxr_linenumber" name="L212" href="#L212">212</a>       threadPool.setName(executorName.getKeyProperty(<span class="jxr_string">"name"</span>));
 <a class="jxr_linenumber" name="L213" href="#L213">213</a>       threadPool.setMaxThreads(JmxTools.getIntAttr(server, executorName, <span class="jxr_string">"maxThreads"</span>));
 <a class="jxr_linenumber" name="L214" href="#L214">214</a>       threadPool.setMaxSpareThreads(JmxTools.getIntAttr(server, executorName, <span class="jxr_string">"largestPoolSize"</span>));
@@ -226,11 +226,11 @@
 <a class="jxr_linenumber" name="L218" href="#L218">218</a>       threadPools.add(threadPool);
 <a class="jxr_linenumber" name="L219" href="#L219">219</a>     }
 <a class="jxr_linenumber" name="L220" href="#L220">220</a> 
-<a class="jxr_linenumber" name="L221" href="#L221">221</a>     <strong class="jxr_keyword">for</strong> (ThreadPoolObjectName threadPoolObjectName : poolNames) {
+<a class="jxr_linenumber" name="L221" href="#L221">221</a>     <strong class="jxr_keyword">for</strong> (<a name="ThreadPoolObjectName" href="../../psiprobe/model/jmx/ThreadPoolObjectName.html#ThreadPoolObjectName">ThreadPoolObjectName</a> threadPoolObjectName : poolNames) {
 <a class="jxr_linenumber" name="L222" href="#L222">222</a>       <strong class="jxr_keyword">try</strong> {
 <a class="jxr_linenumber" name="L223" href="#L223">223</a>         ObjectName poolName = threadPoolObjectName.getThreadPoolName();
 <a class="jxr_linenumber" name="L224" href="#L224">224</a> 
-<a class="jxr_linenumber" name="L225" href="#L225">225</a>         <a href="../../psiprobe/model/ThreadPool.html">ThreadPool</a> threadPool = <strong class="jxr_keyword">new</strong> <a href="../../psiprobe/model/ThreadPool.html">ThreadPool</a>();
+<a class="jxr_linenumber" name="L225" href="#L225">225</a>         <a name="ThreadPool" href="../../psiprobe/model/ThreadPool.html#T<a name="ThreadPool" href="../../psiprobe/model/ThreadPool.html#ThreadPool">ThreadPool</a>>ThreadPool</a> threadPool = <strong class="jxr_keyword">new</strong> <a name="ThreadPool" href="../../psiprobe/model/ThreadPool.html#ThreadPool">ThreadPool</a>();
 <a class="jxr_linenumber" name="L226" href="#L226">226</a>         threadPool.setName(poolName.getKeyProperty(<span class="jxr_string">"name"</span>));
 <a class="jxr_linenumber" name="L227" href="#L227">227</a>         threadPool.setMaxThreads(JmxTools.getIntAttr(server, poolName, <span class="jxr_string">"maxThreads"</span>));
 <a class="jxr_linenumber" name="L228" href="#L228">228</a> 
@@ -302,11 +302,11 @@
 <a class="jxr_linenumber" name="L294" href="#L294">294</a> 
 <a class="jxr_linenumber" name="L295" href="#L295">295</a>     MBeanServer server = getContainerWrapper().getResourceResolver().getMBeanServer();
 <a class="jxr_linenumber" name="L296" href="#L296">296</a> 
-<a class="jxr_linenumber" name="L297" href="#L297">297</a>     <strong class="jxr_keyword">for</strong> (ThreadPoolObjectName threadPoolObjectName : poolNames) {
+<a class="jxr_linenumber" name="L297" href="#L297">297</a>     <strong class="jxr_keyword">for</strong> (<a name="ThreadPoolObjectName" href="../../psiprobe/model/jmx/ThreadPoolObjectName.html#ThreadPoolObjectName">ThreadPoolObjectName</a> threadPoolObjectName : poolNames) {
 <a class="jxr_linenumber" name="L298" href="#L298">298</a>       <strong class="jxr_keyword">try</strong> {
 <a class="jxr_linenumber" name="L299" href="#L299">299</a>         ObjectName poolName = threadPoolObjectName.getThreadPoolName();
 <a class="jxr_linenumber" name="L300" href="#L300">300</a> 
-<a class="jxr_linenumber" name="L301" href="#L301">301</a>         <a href="../../psiprobe/model/Connector.html">Connector</a> connector = <strong class="jxr_keyword">new</strong> <a href="../../psiprobe/model/Connector.html">Connector</a>();
+<a class="jxr_linenumber" name="L301" href="#L301">301</a>         <a name="Connector" href="../../psiprobe/model/Connector.html#C<a name="Connector" href="../../psiprobe/model/Connector.html#Connector">Connector</a>>Connector</a> connector = <strong class="jxr_keyword">new</strong> <a name="Connector" href="../../psiprobe/model/Connector.html#Connector">Connector</a>();
 <a class="jxr_linenumber" name="L302" href="#L302">302</a> 
 <a class="jxr_linenumber" name="L303" href="#L303">303</a>         String name = poolName.getKeyProperty(<span class="jxr_string">"name"</span>);
 <a class="jxr_linenumber" name="L304" href="#L304">304</a> 
@@ -350,7 +350,7 @@
 <a class="jxr_linenumber" name="L342" href="#L342">342</a>           List&lt;ObjectName&gt; wrkNames = threadPoolObjectName.getRequestProcessorNames();
 <a class="jxr_linenumber" name="L343" href="#L343">343</a>           <strong class="jxr_keyword">for</strong> (ObjectName wrkName : wrkNames) {
 <a class="jxr_linenumber" name="L344" href="#L344">344</a>             <strong class="jxr_keyword">try</strong> {
-<a class="jxr_linenumber" name="L345" href="#L345">345</a>               <a href="../../psiprobe/model/RequestProcessor.html">RequestProcessor</a> rp = <strong class="jxr_keyword">new</strong> <a href="../../psiprobe/model/RequestProcessor.html">RequestProcessor</a>();
+<a class="jxr_linenumber" name="L345" href="#L345">345</a>               <a name="RequestProcessor" href="../../psiprobe/model/RequestPr<a name="RequestProcessor" href="../../psiprobe/model/RequestProcessor.html#RequestProcessor">RequestProcessor</a>uestProcessor">RequestProcessor</a> rp = <strong class="jxr_keyword">new</strong> <a name="RequestProcessor" href="../../psiprobe/model/RequestProcessor.html#RequestProcessor">RequestProcessor</a>();
 <a class="jxr_linenumber" name="L346" href="#L346">346</a>               rp.setName(wrkName.getKeyProperty(<span class="jxr_string">"name"</span>));
 <a class="jxr_linenumber" name="L347" href="#L347">347</a>               rp.setStage(JmxTools.getIntAttr(server, wrkName, <span class="jxr_string">"stage"</span>));
 <a class="jxr_linenumber" name="L348" href="#L348">348</a>               rp.setProcessingTime(JmxTools.getLongAttr(server, wrkName, <span class="jxr_string">"requestProcessingTime"</span>));

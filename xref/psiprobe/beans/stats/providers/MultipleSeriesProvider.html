@@ -10,7 +10,7 @@
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_javadoccomment"> * Licensed under the GPL License. You may not use this file except in compliance with the License.</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_javadoccomment"> * You may obtain a copy of the License at</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_javadoccomment"> *</em>
-<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_javadoccomment"> *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</em>
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_javadoccomment"> *   <a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.html" target="alexandria_uri">https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</a></em>
 <a class="jxr_linenumber" name="L6" href="#L6">6</a>   <em class="jxr_javadoccomment"> *</em>
 <a class="jxr_linenumber" name="L7" href="#L7">7</a>   <em class="jxr_javadoccomment"> * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,</em>
 <a class="jxr_linenumber" name="L8" href="#L8">8</a>   <em class="jxr_javadoccomment"> * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR</em>
@@ -35,7 +35,7 @@
 <a class="jxr_linenumber" name="L27" href="#L27">27</a>  <em class="jxr_javadoccomment"> * Derrives legend entries from series names by removing the statNamePrefix. Ignores series param</em>
 <a class="jxr_linenumber" name="L28" href="#L28">28</a>  <em class="jxr_javadoccomment"> * (sp) and legend (s...l) request parameters.</em>
 <a class="jxr_linenumber" name="L29" href="#L29">29</a>  <em class="jxr_javadoccomment"> */</em>
-<a class="jxr_linenumber" name="L30" href="#L30">30</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../psiprobe/beans/stats/providers/MultipleSeriesProvider.html">MultipleSeriesProvider</a> <strong class="jxr_keyword">extends</strong> <a href="../../../../psiprobe/beans/stats/providers/AbstractSeriesProvider.html">AbstractSeriesProvider</a> {
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a name="MultipleSeriesProvider" href="../../../../psiprobe/beans/stats/providers/MultipleSeriesProvider.html#MultipleSeriesProvider">MultipleSeriesProvider</a> <strong class="jxr_keyword">extends</strong> <a name="AbstractSeriesProvider" href="../../../../psiprobe/beans/stats/providers/AbstractSeriesProvider.html#AbstractSeriesProvider">AbstractSeriesProvider</a> {
 <a class="jxr_linenumber" name="L31" href="#L31">31</a>  
 <a class="jxr_linenumber" name="L32" href="#L32">32</a>    <em class="jxr_javadoccomment">/** The stat name prefix. */</em>
 <a class="jxr_linenumber" name="L33" href="#L33">33</a>    <strong class="jxr_keyword">private</strong> String statNamePrefix;
@@ -105,7 +105,7 @@
 <a class="jxr_linenumber" name="L97" href="#L97">97</a>    }
 <a class="jxr_linenumber" name="L98" href="#L98">98</a>  
 <a class="jxr_linenumber" name="L99" href="#L99">99</a>    @Override
-<a class="jxr_linenumber" name="L100" href="#L100">100</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> populate(DefaultTableXYDataset dataset, <a href="../../../../psiprobe/model/stats/StatsCollection.html">StatsCollection</a> statsCollection,
+<a class="jxr_linenumber" name="L100" href="#L100">100</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> populate(DefaultTableXYDataset dataset, <a name="StatsCollection" href="../../../../psiprobe/model/stats/StatsCollection.html#StatsCollection">StatsCollection</a> statsCollection,
 <a class="jxr_linenumber" name="L101" href="#L101">101</a>       HttpServletRequest request) {
 <a class="jxr_linenumber" name="L102" href="#L102">102</a> 
 <a class="jxr_linenumber" name="L103" href="#L103">103</a>     Map&lt;String, List&lt;XYDataItem&gt;&gt; statMap = statsCollection.getStatsByPrefix(statNamePrefix);
@@ -113,7 +113,7 @@
 <a class="jxr_linenumber" name="L105" href="#L105">105</a>     List&lt;Series&gt; seriesList = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;(statMap.size());
 <a class="jxr_linenumber" name="L106" href="#L106">106</a> 
 <a class="jxr_linenumber" name="L107" href="#L107">107</a>     <strong class="jxr_keyword">for</strong> (Map.Entry&lt;String, List&lt;XYDataItem&gt;&gt; entry : statMap.entrySet()) {
-<a class="jxr_linenumber" name="L108" href="#L108">108</a>       <a href="../../../../psiprobe/beans/stats/providers/MultipleSeriesProvider.html">Series</a> ser = <strong class="jxr_keyword">new</strong> <a href="../../../../psiprobe/beans/stats/providers/MultipleSeriesProvider.html">Series</a>(entry);
+<a class="jxr_linenumber" name="L108" href="#L108">108</a>       Series ser = <strong class="jxr_keyword">new</strong> Series(entry);
 <a class="jxr_linenumber" name="L109" href="#L109">109</a>       <strong class="jxr_keyword">if</strong> (useTop) {
 <a class="jxr_linenumber" name="L110" href="#L110">110</a>         ser.calculateAvg();
 <a class="jxr_linenumber" name="L111" href="#L111">111</a>       }
@@ -124,7 +124,7 @@
 <a class="jxr_linenumber" name="L116" href="#L116">116</a>       <em class="jxr_comment">// sorting stats by the avg value to identify the top series</em>
 <a class="jxr_linenumber" name="L117" href="#L117">117</a>       Collections.sort(seriesList, <strong class="jxr_keyword">new</strong> Comparator&lt;Series&gt;() {
 <a class="jxr_linenumber" name="L118" href="#L118">118</a>         @Override
-<a class="jxr_linenumber" name="L119" href="#L119">119</a>         <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">int</strong> compare(<a href="../../../../psiprobe/beans/stats/providers/MultipleSeriesProvider.html">Series</a> s1, <a href="../../../../psiprobe/beans/stats/providers/MultipleSeriesProvider.html">Series</a> s2) {
+<a class="jxr_linenumber" name="L119" href="#L119">119</a>         <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">int</strong> compare(Series s1, Series s2) {
 <a class="jxr_linenumber" name="L120" href="#L120">120</a>           <strong class="jxr_keyword">return</strong> Double.compare(s1.avg, s2.avg) == 0 ? s1.key.compareTo(s2.key)
 <a class="jxr_linenumber" name="L121" href="#L121">121</a>               : Double.compare(s1.avg, s2.avg) &gt; 0 ? -1 : 1;
 <a class="jxr_linenumber" name="L122" href="#L122">122</a>         }
@@ -140,7 +140,7 @@
 <a class="jxr_linenumber" name="L132" href="#L132">132</a>     <em class="jxr_comment">// sorting the remaining series by name</em>
 <a class="jxr_linenumber" name="L133" href="#L133">133</a>     Collections.sort(seriesList, <strong class="jxr_keyword">new</strong> Comparator&lt;Series&gt;() {
 <a class="jxr_linenumber" name="L134" href="#L134">134</a>       @Override
-<a class="jxr_linenumber" name="L135" href="#L135">135</a>       <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">int</strong> compare(<a href="../../../../psiprobe/beans/stats/providers/MultipleSeriesProvider.html">Series</a> s1, <a href="../../../../psiprobe/beans/stats/providers/MultipleSeriesProvider.html">Series</a> s2) {
+<a class="jxr_linenumber" name="L135" href="#L135">135</a>       <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">int</strong> compare(Series s1, Series s2) {
 <a class="jxr_linenumber" name="L136" href="#L136">136</a>         <strong class="jxr_keyword">return</strong> s1.key.compareTo(s2.key);
 <a class="jxr_linenumber" name="L137" href="#L137">137</a>       }
 <a class="jxr_linenumber" name="L138" href="#L138">138</a>     });
@@ -156,7 +156,7 @@
 <a class="jxr_linenumber" name="L148" href="#L148">148</a> <em class="jxr_javadoccomment">   * The Class Series.</em>
 <a class="jxr_linenumber" name="L149" href="#L149">149</a> <em class="jxr_javadoccomment">   */</em>
 <a class="jxr_linenumber" name="L150" href="#L150">150</a>   <em class="jxr_comment">// a helper class that holds series and calculates an avg value</em>
-<a class="jxr_linenumber" name="L151" href="#L151">151</a>   <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../psiprobe/beans/stats/providers/MultipleSeriesProvider.html">Series</a> {
+<a class="jxr_linenumber" name="L151" href="#L151">151</a>   <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">class</strong> Series {
 <a class="jxr_linenumber" name="L152" href="#L152">152</a> 
 <a class="jxr_linenumber" name="L153" href="#L153">153</a>     <em class="jxr_javadoccomment">/** The key. */</em>
 <a class="jxr_linenumber" name="L154" href="#L154">154</a>     <strong class="jxr_keyword">final</strong> String key;
@@ -172,7 +172,7 @@
 <a class="jxr_linenumber" name="L164" href="#L164">164</a> <em class="jxr_javadoccomment">     *</em>
 <a class="jxr_linenumber" name="L165" href="#L165">165</a> <em class="jxr_javadoccomment">     * @param en the en</em>
 <a class="jxr_linenumber" name="L166" href="#L166">166</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L167" href="#L167">167</a>     <a href="../../../../psiprobe/beans/stats/providers/MultipleSeriesProvider.html">Series</a>(Map.Entry&lt;String, List&lt;XYDataItem&gt;&gt; en) {
+<a class="jxr_linenumber" name="L167" href="#L167">167</a>     Series(Map.Entry&lt;String, List&lt;XYDataItem&gt;&gt; en) {
 <a class="jxr_linenumber" name="L168" href="#L168">168</a>       key = en.getKey().substring(statNamePrefix.length());
 <a class="jxr_linenumber" name="L169" href="#L169">169</a>       stats = en.getValue();
 <a class="jxr_linenumber" name="L170" href="#L170">170</a>     }

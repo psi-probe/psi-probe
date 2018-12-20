@@ -10,7 +10,7 @@
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_javadoccomment"> * Licensed under the GPL License. You may not use this file except in compliance with the License.</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_javadoccomment"> * You may obtain a copy of the License at</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_javadoccomment"> *</em>
-<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_javadoccomment"> *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</em>
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_javadoccomment"> *   <a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.html" target="alexandria_uri">https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</a></em>
 <a class="jxr_linenumber" name="L6" href="#L6">6</a>   <em class="jxr_javadoccomment"> *</em>
 <a class="jxr_linenumber" name="L7" href="#L7">7</a>   <em class="jxr_javadoccomment"> * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,</em>
 <a class="jxr_linenumber" name="L8" href="#L8">8</a>   <em class="jxr_javadoccomment"> * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR</em>
@@ -32,21 +32,21 @@
 <a class="jxr_linenumber" name="L24" href="#L24">24</a>  <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L25" href="#L25">25</a>  <em class="jxr_javadoccomment"> * The Class AbstractLogHandlerController.</em>
 <a class="jxr_linenumber" name="L26" href="#L26">26</a>  <em class="jxr_javadoccomment"> */</em>
-<a class="jxr_linenumber" name="L27" href="#L27">27</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">abstract</strong> <strong class="jxr_keyword">class</strong> <a href="../../../psiprobe/controllers/logs/AbstractLogHandlerController.html">AbstractLogHandlerController</a> <strong class="jxr_keyword">extends</strong> ParameterizableViewController {
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">abstract</strong> <strong class="jxr_keyword">class</strong> <a name="AbstractLogHandlerController" href="../../../psiprobe/controllers/logs/AbstractLogHandlerController.html#AbstractLogHandlerController">AbstractLogHandlerController</a> <strong class="jxr_keyword">extends</strong> ParameterizableViewController {
 <a class="jxr_linenumber" name="L28" href="#L28">28</a>  
 <a class="jxr_linenumber" name="L29" href="#L29">29</a>    <em class="jxr_javadoccomment">/** The Constant logger. */</em>
 <a class="jxr_linenumber" name="L30" href="#L30">30</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> Logger logger = LoggerFactory.getLogger(AbstractLogHandlerController.<strong class="jxr_keyword">class</strong>);
 <a class="jxr_linenumber" name="L31" href="#L31">31</a>  
 <a class="jxr_linenumber" name="L32" href="#L32">32</a>    <em class="jxr_javadoccomment">/** The log resolver. */</em>
 <a class="jxr_linenumber" name="L33" href="#L33">33</a>    @Inject
-<a class="jxr_linenumber" name="L34" href="#L34">34</a>    <strong class="jxr_keyword">private</strong> <a href="../../../psiprobe/beans/LogResolverBean.html">LogResolverBean</a> logResolver;
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>    <strong class="jxr_keyword">private</strong> <a name="LogResolverBean" href="../../../psiprobe/beans/LogResolverBean.html#LogResolverBean">LogResolverBean</a> logResolver;
 <a class="jxr_linenumber" name="L35" href="#L35">35</a>  
 <a class="jxr_linenumber" name="L36" href="#L36">36</a>    <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L37" href="#L37">37</a>  <em class="jxr_javadoccomment">   * Gets the log resolver.</em>
 <a class="jxr_linenumber" name="L38" href="#L38">38</a>  <em class="jxr_javadoccomment">   *</em>
 <a class="jxr_linenumber" name="L39" href="#L39">39</a>  <em class="jxr_javadoccomment">   * @return the log resolver</em>
 <a class="jxr_linenumber" name="L40" href="#L40">40</a>  <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L41" href="#L41">41</a>    <strong class="jxr_keyword">public</strong> <a href="../../../psiprobe/beans/LogResolverBean.html">LogResolverBean</a> getLogResolver() {
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>    <strong class="jxr_keyword">public</strong> <a name="LogResolverBean" href="../../../psiprobe/beans/LogResolverBean.html#LogResolverBean">LogResolverBean</a> getLogResolver() {
 <a class="jxr_linenumber" name="L42" href="#L42">42</a>      <strong class="jxr_keyword">return</strong> logResolver;
 <a class="jxr_linenumber" name="L43" href="#L43">43</a>    }
 <a class="jxr_linenumber" name="L44" href="#L44">44</a>  
@@ -55,7 +55,7 @@
 <a class="jxr_linenumber" name="L47" href="#L47">47</a>  <em class="jxr_javadoccomment">   *</em>
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>  <em class="jxr_javadoccomment">   * @param logResolver the new log resolver</em>
 <a class="jxr_linenumber" name="L49" href="#L49">49</a>  <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L50" href="#L50">50</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setLogResolver(<a href="../../../psiprobe/beans/LogResolverBean.html">LogResolverBean</a> logResolver) {
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setLogResolver(<a name="LogResolverBean" href="../../../psiprobe/beans/LogResolverBean.html#LogResolverBean">LogResolverBean</a> logResolver) {
 <a class="jxr_linenumber" name="L51" href="#L51">51</a>      <strong class="jxr_keyword">this</strong>.logResolver = logResolver;
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>    }
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>  
@@ -71,7 +71,7 @@
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>      String logName = ServletRequestUtils.getStringParameter(request, <span class="jxr_string">"logName"</span>);
 <a class="jxr_linenumber" name="L64" href="#L64">64</a>      String logIndex = ServletRequestUtils.getStringParameter(request, <span class="jxr_string">"logIndex"</span>);
 <a class="jxr_linenumber" name="L65" href="#L65">65</a>  
-<a class="jxr_linenumber" name="L66" href="#L66">66</a>      <a href="../../../psiprobe/tools/logging/LogDestination.html">LogDestination</a> dest =
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>      <a name="LogDestination" href="../../../psiprobe/tools/logging/LogDestination.html#LogDestination">LogDestination</a> dest =
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>          logResolver.getLogDestination(logType, webapp, context, root, logName, logIndex);
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>  
 <a class="jxr_linenumber" name="L69" href="#L69">69</a>      ModelAndView modelAndView = <strong class="jxr_keyword">null</strong>;
@@ -103,7 +103,7 @@
 <a class="jxr_linenumber" name="L95" href="#L95">95</a>  <em class="jxr_javadoccomment">   * @throws Exception the exception</em>
 <a class="jxr_linenumber" name="L96" href="#L96">96</a>  <em class="jxr_javadoccomment">   */</em>
 <a class="jxr_linenumber" name="L97" href="#L97">97</a>    <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">abstract</strong> ModelAndView handleLogFile(HttpServletRequest request,
-<a class="jxr_linenumber" name="L98" href="#L98">98</a>        HttpServletResponse response, <a href="../../../psiprobe/tools/logging/LogDestination.html">LogDestination</a> logDest) <strong class="jxr_keyword">throws</strong> Exception;
+<a class="jxr_linenumber" name="L98" href="#L98">98</a>        HttpServletResponse response, <a name="LogDestination" href="../../../psiprobe/tools/logging/LogDestination.html#LogDestination">LogDestination</a> logDest) <strong class="jxr_keyword">throws</strong> Exception;
 <a class="jxr_linenumber" name="L99" href="#L99">99</a>  
 <a class="jxr_linenumber" name="L100" href="#L100">100</a> }
 </pre>

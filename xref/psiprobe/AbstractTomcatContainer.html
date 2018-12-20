@@ -10,7 +10,7 @@
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_javadoccomment"> * Licensed under the GPL License. You may not use this file except in compliance with the License.</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_javadoccomment"> * You may obtain a copy of the License at</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_javadoccomment"> *</em>
-<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_javadoccomment"> *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</em>
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_javadoccomment"> *   <a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.html" target="alexandria_uri">https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</a></em>
 <a class="jxr_linenumber" name="L6" href="#L6">6</a>   <em class="jxr_javadoccomment"> *</em>
 <a class="jxr_linenumber" name="L7" href="#L7">7</a>   <em class="jxr_javadoccomment"> * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,</em>
 <a class="jxr_linenumber" name="L8" href="#L8">8</a>   <em class="jxr_javadoccomment"> * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR</em>
@@ -69,7 +69,7 @@
 <a class="jxr_linenumber" name="L61" href="#L61">61</a>  <em class="jxr_javadoccomment"> * Abstraction layer to implement some functionality, which is common between different container</em>
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>  <em class="jxr_javadoccomment"> * adapters.</em>
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>  <em class="jxr_javadoccomment"> */</em>
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">abstract</strong> <strong class="jxr_keyword">class</strong> <a href="../psiprobe/AbstractTomcatContainer.html">AbstractTomcatContainer</a> <strong class="jxr_keyword">implements</strong> <a href="../psiprobe/TomcatContainer.html">TomcatContainer</a> {
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">abstract</strong> <strong class="jxr_keyword">class</strong> <a name="AbstractTomcatContainer" href="../psiprobe/AbstractTomcatContainer.html#AbstractTomcatContainer">AbstractTomcatContainer</a> <strong class="jxr_keyword">implements</strong> <a name="TomcatContainer" href="../psiprobe/TomcatContainer.html#TomcatContainer">TomcatContainer</a> {
 <a class="jxr_linenumber" name="L65" href="#L65">65</a>  
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>    <em class="jxr_javadoccomment">/** The logger. */</em>
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>    <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">final</strong> Logger logger = LoggerFactory.getLogger(getClass());
@@ -81,7 +81,7 @@
 <a class="jxr_linenumber" name="L73" href="#L73">73</a>    <strong class="jxr_keyword">protected</strong> Host host;
 <a class="jxr_linenumber" name="L74" href="#L74">74</a>  
 <a class="jxr_linenumber" name="L75" href="#L75">75</a>    <em class="jxr_javadoccomment">/** The connectors. */</em>
-<a class="jxr_linenumber" name="L76" href="#L76">76</a>    <strong class="jxr_keyword">protected</strong> <a href="../psiprobe/model/Connector.html">Connector</a>[] connectors;
+<a class="jxr_linenumber" name="L76" href="#L76">76</a>    <strong class="jxr_keyword">protected</strong> <a name="Connector" href="../psiprobe/model/Connector.html#Connector">Connector</a>[] connectors;
 <a class="jxr_linenumber" name="L77" href="#L77">77</a>  
 <a class="jxr_linenumber" name="L78" href="#L78">78</a>    <em class="jxr_javadoccomment">/** The deployer o name. */</em>
 <a class="jxr_linenumber" name="L79" href="#L79">79</a>    <strong class="jxr_keyword">protected</strong> ObjectName deployerOName;
@@ -90,7 +90,7 @@
 <a class="jxr_linenumber" name="L82" href="#L82">82</a>    <strong class="jxr_keyword">protected</strong> MBeanServer mbeanServer;
 <a class="jxr_linenumber" name="L83" href="#L83">83</a>  
 <a class="jxr_linenumber" name="L84" href="#L84">84</a>    <em class="jxr_javadoccomment">/** The Enum FilterMapType. */</em>
-<a class="jxr_linenumber" name="L85" href="#L85">85</a>    <strong class="jxr_keyword">public</strong> enum <a href="../psiprobe/AbstractTomcatContainer.html">FilterMapType</a> {
+<a class="jxr_linenumber" name="L85" href="#L85">85</a>    <strong class="jxr_keyword">public</strong> enum FilterMapType {
 <a class="jxr_linenumber" name="L86" href="#L86">86</a>  
 <a class="jxr_linenumber" name="L87" href="#L87">87</a>      <em class="jxr_javadoccomment">/** The url. */</em>
 <a class="jxr_linenumber" name="L88" href="#L88">88</a>      URL,
@@ -340,7 +340,7 @@
 <a class="jxr_linenumber" name="L332" href="#L332">332</a>   }
 <a class="jxr_linenumber" name="L333" href="#L333">333</a> 
 <a class="jxr_linenumber" name="L334" href="#L334">334</a>   @Override
-<a class="jxr_linenumber" name="L335" href="#L335">335</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> recompileJsps(Context context, <a href="../psiprobe/model/jsp/Summary.html">Summary</a> summary, List&lt;String&gt; names) {
+<a class="jxr_linenumber" name="L335" href="#L335">335</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> recompileJsps(Context context, <a name="Summary" href="../psiprobe/model/jsp/Summary.html#Summary">Summary</a> summary, List&lt;String&gt; names) {
 <a class="jxr_linenumber" name="L336" href="#L336">336</a>     ServletConfig servletConfig = (ServletConfig) context.findChild(<span class="jxr_string">"jsp"</span>);
 <a class="jxr_linenumber" name="L337" href="#L337">337</a>     <strong class="jxr_keyword">if</strong> (servletConfig != <strong class="jxr_keyword">null</strong>) {
 <a class="jxr_linenumber" name="L338" href="#L338">338</a>       <strong class="jxr_keyword">if</strong> (summary != <strong class="jxr_keyword">null</strong>) {
@@ -361,7 +361,7 @@
 <a class="jxr_linenumber" name="L353" href="#L353">353</a>                   createJspCompilationContext(name, opt, sctx, jrctx, classLoader);
 <a class="jxr_linenumber" name="L354" href="#L354">354</a>               ClassLoader prevCl = ClassUtils.overrideThreadContextClassLoader(classLoader);
 <a class="jxr_linenumber" name="L355" href="#L355">355</a>               <strong class="jxr_keyword">try</strong> {
-<a class="jxr_linenumber" name="L356" href="#L356">356</a>                 <a href="../psiprobe/model/jsp/Item.html">Item</a> item = summary.getItems().get(name);
+<a class="jxr_linenumber" name="L356" href="#L356">356</a>                 <a name="Item" href="../psiprobe/model/jsp/Item.html#Item">Item</a> item = summary.getItems().get(name);
 <a class="jxr_linenumber" name="L357" href="#L357">357</a>                 <strong class="jxr_keyword">if</strong> (item != <strong class="jxr_keyword">null</strong>) {
 <a class="jxr_linenumber" name="L358" href="#L358">358</a>                   <strong class="jxr_keyword">try</strong> {
 <a class="jxr_linenumber" name="L359" href="#L359">359</a>                     org.apache.jasper.compiler.Compiler compiler = jcctx.createCompiler();
@@ -397,7 +397,7 @@
 <a class="jxr_linenumber" name="L389" href="#L389">389</a>   }
 <a class="jxr_linenumber" name="L390" href="#L390">390</a> 
 <a class="jxr_linenumber" name="L391" href="#L391">391</a>   @Override
-<a class="jxr_linenumber" name="L392" href="#L392">392</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> listContextJsps(Context context, <a href="../psiprobe/model/jsp/Summary.html">Summary</a> summary, <strong class="jxr_keyword">boolean</strong> compile) {
+<a class="jxr_linenumber" name="L392" href="#L392">392</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> listContextJsps(Context context, <a name="Summary" href="../psiprobe/model/jsp/Summary.html#Summary">Summary</a> summary, <strong class="jxr_keyword">boolean</strong> compile) {
 <a class="jxr_linenumber" name="L393" href="#L393">393</a>     ServletConfig servletConfig = (ServletConfig) context.findChild(<span class="jxr_string">"jsp"</span>);
 <a class="jxr_linenumber" name="L394" href="#L394">394</a>     <strong class="jxr_keyword">if</strong> (servletConfig != <strong class="jxr_keyword">null</strong>) {
 <a class="jxr_linenumber" name="L395" href="#L395">395</a>       <strong class="jxr_keyword">synchronized</strong> (servletConfig) {
@@ -413,7 +413,7 @@
 <a class="jxr_linenumber" name="L405" href="#L405">405</a>           <em class="jxr_comment">/*</em>
 <a class="jxr_linenumber" name="L406" href="#L406">406</a> <em class="jxr_comment">           * mark all items as missing</em>
 <a class="jxr_linenumber" name="L407" href="#L407">407</a> <em class="jxr_comment">           */</em>
-<a class="jxr_linenumber" name="L408" href="#L408">408</a>           <strong class="jxr_keyword">for</strong> (Item item : summary.getItems().values()) {
+<a class="jxr_linenumber" name="L408" href="#L408">408</a>           <strong class="jxr_keyword">for</strong> (<a name="Item" href="../psiprobe/model/jsp/Item.html#Item">Item</a> item : summary.getItems().values()) {
 <a class="jxr_linenumber" name="L409" href="#L409">409</a>             item.setMissing(<strong class="jxr_keyword">true</strong>);
 <a class="jxr_linenumber" name="L410" href="#L410">410</a>           }
 <a class="jxr_linenumber" name="L411" href="#L411">411</a> 
@@ -438,7 +438,7 @@
 <a class="jxr_linenumber" name="L430" href="#L430">430</a>       <em class="jxr_comment">//</em>
 <a class="jxr_linenumber" name="L431" href="#L431">431</a>       Map&lt;String, Item&gt; hashMap = <strong class="jxr_keyword">new</strong> HashMap&lt;&gt;();
 <a class="jxr_linenumber" name="L432" href="#L432">432</a>       <strong class="jxr_keyword">for</strong> (String key : summary.getItems().keySet()) {
-<a class="jxr_linenumber" name="L433" href="#L433">433</a>         <a href="../psiprobe/model/jsp/Item.html">Item</a> item = summary.getItems().get(key);
+<a class="jxr_linenumber" name="L433" href="#L433">433</a>         <a name="Item" href="../psiprobe/model/jsp/Item.html#Item">Item</a> item = summary.getItems().get(key);
 <a class="jxr_linenumber" name="L434" href="#L434">434</a>         <strong class="jxr_keyword">if</strong> (!item.isMissing()) {
 <a class="jxr_linenumber" name="L435" href="#L435">435</a>           hashMap.put(key, item);
 <a class="jxr_linenumber" name="L436" href="#L436">436</a>         }
@@ -521,7 +521,7 @@
 <a class="jxr_linenumber" name="L513" href="#L513">513</a> <em class="jxr_javadoccomment">   * @param compile whether or not to compile the item or just to check whether it's out of date</em>
 <a class="jxr_linenumber" name="L514" href="#L514">514</a> <em class="jxr_javadoccomment">   */</em>
 <a class="jxr_linenumber" name="L515" href="#L515">515</a>   <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">void</strong> compileItem(String jspName, Options opt, Context ctx, JspRuntimeContext jrctx,
-<a class="jxr_linenumber" name="L516" href="#L516">516</a>       <a href="../psiprobe/model/jsp/Summary.html">Summary</a> summary, URLClassLoader classLoader, <strong class="jxr_keyword">int</strong> level, <strong class="jxr_keyword">boolean</strong> compile) {
+<a class="jxr_linenumber" name="L516" href="#L516">516</a>       <a name="Summary" href="../psiprobe/model/jsp/Summary.html#Summary">Summary</a> summary, URLClassLoader classLoader, <strong class="jxr_keyword">int</strong> level, <strong class="jxr_keyword">boolean</strong> compile) {
 <a class="jxr_linenumber" name="L517" href="#L517">517</a>     ServletContext sctx = ctx.getServletContext();
 <a class="jxr_linenumber" name="L518" href="#L518">518</a>     Set&lt;String&gt; paths = sctx.getResourcePaths(jspName);
 <a class="jxr_linenumber" name="L519" href="#L519">519</a> 
@@ -542,10 +542,10 @@
 <a class="jxr_linenumber" name="L534" href="#L534">534</a>               createJspCompilationContext(name, opt, sctx, jrctx, classLoader);
 <a class="jxr_linenumber" name="L535" href="#L535">535</a>           ClassLoader prevCl = ClassUtils.overrideThreadContextClassLoader(classLoader);
 <a class="jxr_linenumber" name="L536" href="#L536">536</a>           <strong class="jxr_keyword">try</strong> {
-<a class="jxr_linenumber" name="L537" href="#L537">537</a>             <a href="../psiprobe/model/jsp/Item.html">Item</a> item = summary.getItems().get(name);
+<a class="jxr_linenumber" name="L537" href="#L537">537</a>             <a name="Item" href="../psiprobe/model/jsp/Item.html#Item">Item</a> item = summary.getItems().get(name);
 <a class="jxr_linenumber" name="L538" href="#L538">538</a> 
 <a class="jxr_linenumber" name="L539" href="#L539">539</a>             <strong class="jxr_keyword">if</strong> (item == <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L540" href="#L540">540</a>               item = <strong class="jxr_keyword">new</strong> <a href="../psiprobe/model/jsp/Item.html">Item</a>();
+<a class="jxr_linenumber" name="L540" href="#L540">540</a>               item = <strong class="jxr_keyword">new</strong> <a name="Item" href="../psiprobe/model/jsp/Item.html#Item">Item</a>();
 <a class="jxr_linenumber" name="L541" href="#L541">541</a>               item.setName(name);
 <a class="jxr_linenumber" name="L542" href="#L542">542</a>             }
 <a class="jxr_linenumber" name="L543" href="#L543">543</a> 
@@ -666,9 +666,9 @@
 <a class="jxr_linenumber" name="L658" href="#L658">658</a> <em class="jxr_javadoccomment">   * @param filterMapType the filter map type</em>
 <a class="jxr_linenumber" name="L659" href="#L659">659</a> <em class="jxr_javadoccomment">   */</em>
 <a class="jxr_linenumber" name="L660" href="#L660">660</a>   <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">void</strong> addFilterMapping(String filterName, String dispatcherMap, String filterClass,
-<a class="jxr_linenumber" name="L661" href="#L661">661</a>       String[] types, List&lt;FilterMapping&gt; results, <a href="../psiprobe/AbstractTomcatContainer.html">FilterMapType</a> filterMapType) {
+<a class="jxr_linenumber" name="L661" href="#L661">661</a>       String[] types, List&lt;FilterMapping&gt; results, FilterMapType filterMapType) {
 <a class="jxr_linenumber" name="L662" href="#L662">662</a>     <strong class="jxr_keyword">for</strong> (String type : types) {
-<a class="jxr_linenumber" name="L663" href="#L663">663</a>       <a href="../psiprobe/model/FilterMapping.html">FilterMapping</a> fm = <strong class="jxr_keyword">new</strong> <a href="../psiprobe/model/FilterMapping.html">FilterMapping</a>();
+<a class="jxr_linenumber" name="L663" href="#L663">663</a>       <a name="FilterMapping" href="../psiprobe/model/FilterMappin<a name="FilterMapping" href="../psiprobe/model/FilterMapping.html#FilterMapping">FilterMapping</a>Mapping">FilterMapping</a> fm = <strong class="jxr_keyword">new</strong> <a name="FilterMapping" href="../psiprobe/model/FilterMapping.html#FilterMapping">FilterMapping</a>();
 <a class="jxr_linenumber" name="L664" href="#L664">664</a>       <strong class="jxr_keyword">if</strong> (filterMapType == FilterMapType.URL) {
 <a class="jxr_linenumber" name="L665" href="#L665">665</a>         fm.setUrl(type);
 <a class="jxr_linenumber" name="L666" href="#L666">666</a>       } <strong class="jxr_keyword">else</strong> {

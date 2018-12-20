@@ -10,7 +10,7 @@
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_javadoccomment"> * Licensed under the GPL License. You may not use this file except in compliance with the License.</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_javadoccomment"> * You may obtain a copy of the License at</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_javadoccomment"> *</em>
-<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_javadoccomment"> *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</em>
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_javadoccomment"> *   <a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.html" target="alexandria_uri">https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</a></em>
 <a class="jxr_linenumber" name="L6" href="#L6">6</a>   <em class="jxr_javadoccomment"> *</em>
 <a class="jxr_linenumber" name="L7" href="#L7">7</a>   <em class="jxr_javadoccomment"> * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,</em>
 <a class="jxr_linenumber" name="L8" href="#L8">8</a>   <em class="jxr_javadoccomment"> * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR</em>
@@ -34,7 +34,7 @@
 <a class="jxr_linenumber" name="L26" href="#L26">26</a>  <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L27" href="#L27">27</a>  <em class="jxr_javadoccomment"> * The Class JvmMemoryInfoAccessorBean.</em>
 <a class="jxr_linenumber" name="L28" href="#L28">28</a>  <em class="jxr_javadoccomment"> */</em>
-<a class="jxr_linenumber" name="L29" href="#L29">29</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../psiprobe/beans/JvmMemoryInfoAccessorBean.html">JvmMemoryInfoAccessorBean</a> {
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a name="JvmMemoryInfoAccessorBean" href="../../psiprobe/beans/JvmMemoryInfoAccessorBean.html#JvmMemoryInfoAccessorBean">JvmMemoryInfoAccessorBean</a> {
 <a class="jxr_linenumber" name="L30" href="#L30">30</a>  
 <a class="jxr_linenumber" name="L31" href="#L31">31</a>    <em class="jxr_javadoccomment">/** The Constant logger. */</em>
 <a class="jxr_linenumber" name="L32" href="#L32">32</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> Logger logger = LoggerFactory.getLogger(JvmMemoryInfoAccessorBean.<strong class="jxr_keyword">class</strong>);
@@ -60,7 +60,7 @@
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>  
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>      <strong class="jxr_keyword">for</strong> (ObjectInstance oi : memoryOPools) {
 <a class="jxr_linenumber" name="L54" href="#L54">54</a>        ObjectName objName = oi.getObjectName();
-<a class="jxr_linenumber" name="L55" href="#L55">55</a>        <a href="../../psiprobe/model/jmx/MemoryPool.html">MemoryPool</a> memoryPool = <strong class="jxr_keyword">new</strong> <a href="../../psiprobe/model/jmx/MemoryPool.html">MemoryPool</a>();
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>        <a name="MemoryPool" href="../../psiprobe/model/jmx/MemoryPool.ht<a name="MemoryPool" href="../../psiprobe/model/jmx/MemoryPool.html#MemoryPool">MemoryPool</a>ool">MemoryPool</a> memoryPool = <strong class="jxr_keyword">new</strong> <a name="MemoryPool" href="../../psiprobe/model/jmx/MemoryPool.html#MemoryPool">MemoryPool</a>();
 <a class="jxr_linenumber" name="L56" href="#L56">56</a>        memoryPool.setName(JmxTools.getStringAttr(mbeanServer, objName, <span class="jxr_string">"Name"</span>));
 <a class="jxr_linenumber" name="L57" href="#L57">57</a>        memoryPool.setType(JmxTools.getStringAttr(mbeanServer, objName, <span class="jxr_string">"Type"</span>));
 <a class="jxr_linenumber" name="L58" href="#L58">58</a>  
@@ -87,7 +87,7 @@
 <a class="jxr_linenumber" name="L79" href="#L79">79</a>      }
 <a class="jxr_linenumber" name="L80" href="#L80">80</a>  
 <a class="jxr_linenumber" name="L81" href="#L81">81</a>      <strong class="jxr_keyword">if</strong> (!memoryPools.isEmpty()) {
-<a class="jxr_linenumber" name="L82" href="#L82">82</a>        <a href="../../psiprobe/model/jmx/MemoryPool.html">MemoryPool</a> pool = <strong class="jxr_keyword">new</strong> <a href="../../psiprobe/model/jmx/MemoryPool.html">MemoryPool</a>();
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>        <a name="MemoryPool" href="../../psiprobe/model/jmx/MemoryP<a name="MemoryPool" href="../../psiprobe/model/jmx/MemoryPool.html#MemoryPool">MemoryPool</a>emoryPool">MemoryPool</a> pool = <strong class="jxr_keyword">new</strong> <a name="MemoryPool" href="../../psiprobe/model/jmx/MemoryPool.html#MemoryPool">MemoryPool</a>();
 <a class="jxr_linenumber" name="L83" href="#L83">83</a>        pool.setName(<span class="jxr_string">"Total"</span>);
 <a class="jxr_linenumber" name="L84" href="#L84">84</a>        pool.setType(<span class="jxr_string">"TOTAL"</span>);
 <a class="jxr_linenumber" name="L85" href="#L85">85</a>        pool.setInit(totalInit);
