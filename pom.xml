@@ -163,7 +163,7 @@
         <jackson.version>2.9.8</jackson.version>
         <javabean-tester.version>2.1.1</javabean-tester.version>
         <jcommon.version>1.0.24</jcommon.version>
-        <jfreechart.version>1.0.19</jfreechart.version> <!-- TODO: Upgrade to 1.5.0 -->
+        <jfreechart.version>1.5.0</jfreechart.version> <!-- TODO: Upgrade to 1.5.0 -->
         <jhighlight.version>1.0.3</jhighlight.version>
         <jmockit.version>1.44</jmockit.version>
         <jna.version>5.2.0</jna.version>
