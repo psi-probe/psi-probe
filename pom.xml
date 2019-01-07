@@ -139,7 +139,7 @@
         <argLine>-javaagent:${settings.localRepository}/org/jmockit/jmockit/${jmockit.version}/jmockit-${jmockit.version}.jar</argLine>
 
         <!-- Dependency Versions -->
-        <activation.version>1.2.0</activation.version>
+        <activation.version>1.2.1</activation.version>
         <animal-sniffer.version>1.17</animal-sniffer.version>
         <assertj.version>3.11.1</assertj.version>
         <beanutils.version>1.9.3</beanutils.version>
@@ -173,7 +173,7 @@
         <jstl.version>1.2.5</jstl.version>
         <junit.version>5.3.2</junit.version>
         <lang3.version>3.8.1</lang3.version>
-        <mail.version>1.6.2</mail.version>
+        <mail.version>1.6.3</mail.version>
         <oshi.version>3.12.1</oshi.version>
         <openejb.version>4.7.5</openejb.version>
         <persistence.version>2.2.1</persistence.version>
@@ -244,7 +244,7 @@
         <wagon-git.version>2.0.3</wagon-git.version> <!-- Do not use 2.0.4 as it does not work with ssh -->
 
         <!-- Plugin Extensions -->
-        <wagon-ssh.version>3.2.0</wagon-ssh.version>
+        <wagon-ssh.version>3.3.1</wagon-ssh.version>
     </properties>
 
     <dependencyManagement>
@@ -290,13 +290,13 @@
 
             <!-- API -->
             <dependency>
-                <groupId>javax.activation</groupId>
-                <artifactId>javax.activation-api</artifactId>
+                <groupId>jakarta.activation</groupId>
+                <artifactId>jakarta.activation-api</artifactId>
                 <version>${activation.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.sun.activation</groupId>
-                <artifactId>javax.activation</artifactId>
+                <artifactId>jakarta.activation</artifactId>
                 <version>${activation.version}</version>
             </dependency>
             <dependency>
@@ -321,14 +321,8 @@
             </dependency>
             <dependency>
                 <groupId>com.sun.mail</groupId>
-                <artifactId>javax.mail</artifactId>
+                <artifactId>jakarta.mail</artifactId>
                 <version>${mail.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>javax.activation</groupId>
-                        <artifactId>activation</artifactId>
-                    </exclusion>
-                </exclusions>
             </dependency>
             <dependency>
                 <groupId>org.glassfish.web</groupId>
@@ -492,6 +486,12 @@
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
                 <version>${logback.version}</version>
+                <exclusions>
+                    <exclusion>
+                       <groupId>com.sun.mail</groupId>
+                       <artifactId>javax.mail</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
 
             <!-- Spring -->
@@ -657,6 +657,11 @@
             <!-- Override jna used in oshi -->
             <dependency>
                 <groupId>net.java.dev.jna</groupId>
+                <artifactId>jna</artifactId>
+                <version>${jna.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.java.dev.jna</groupId>
                 <artifactId>jna-platform</artifactId>
                 <version>${jna.version}</version>
             </dependency>
@@ -705,13 +710,13 @@
 
         <!-- Java 9 needs -->
         <dependency>
-            <groupId>javax.activation</groupId>
-            <artifactId>javax.activation-api</artifactId>
+            <groupId>jakarta.activation</groupId>
+            <artifactId>jakarta.activation-api</artifactId>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.sun.activation</groupId>
-            <artifactId>javax.activation</artifactId>
+            <artifactId>jakarta.activation</artifactId>
             <scope>compile</scope>
         </dependency>
     </dependencies>
