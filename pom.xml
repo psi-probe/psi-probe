@@ -173,7 +173,7 @@
         <jstl.version>1.2.5</jstl.version>
         <junit.version>5.3.2</junit.version>
         <lang3.version>3.8.1</lang3.version>
-        <mail.version>1.6.2</mail.version>
+        <mail.version>1.6.3</mail.version>
         <oshi.version>3.12.1</oshi.version>
         <openejb.version>4.7.5</openejb.version>
         <persistence.version>2.2.1</persistence.version>
@@ -321,14 +321,8 @@
             </dependency>
             <dependency>
                 <groupId>com.sun.mail</groupId>
-                <artifactId>javax.mail</artifactId>
+                <artifactId>jakarta.mail</artifactId>
                 <version>${mail.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>javax.activation</groupId>
-                        <artifactId>activation</artifactId>
-                    </exclusion>
-                </exclusions>
             </dependency>
             <dependency>
                 <groupId>org.glassfish.web</groupId>
@@ -492,6 +486,12 @@
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
                 <version>${logback.version}</version>
+                <exclusions>
+                    <exclusion>
+                       <groupId>com.sun.mail</groupId>
+                       <artifactId>javax.mail</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
 
             <!-- Spring -->
