@@ -176,7 +176,7 @@
         <mail.version>1.6.3</mail.version>
         <oshi.version>3.12.2</oshi.version>
         <openejb.version>4.7.5</openejb.version>
-        <persistence.version>2.2.1</persistence.version>
+        <persistence.version>2.2.2</persistence.version>
         <pool.version>1.6</pool.version>
         <probe-ojdbc.version>3.1.0</probe-ojdbc.version>
         <quartz.version>2.3.0</quartz.version>
@@ -341,7 +341,7 @@
             </dependency>
             <dependency>
                 <groupId>org.eclipse.persistence</groupId>
-                <artifactId>javax.persistence</artifactId>
+                <artifactId>jakarta.persistence</artifactId>
                 <version>${persistence.version}</version>
             </dependency>
 
