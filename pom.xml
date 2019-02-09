@@ -122,7 +122,7 @@
 
         <!-- Checkstyle / Copyright -->
         <checkstyle.configLocation>checkstyle.xml</checkstyle.configLocation>
-        <copyright>2018</copyright>
+        <copyright>2019</copyright>
 
         <!-- Github Settings -->
         <github.global.server>github</github.global.server>
