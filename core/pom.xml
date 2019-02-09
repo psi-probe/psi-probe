@@ -33,7 +33,7 @@
         <developerConnection>scm:git:ssh://git@github.com/psi-probe/psi-probe.git</developerConnection>
         <url>https://github.com/psi-probe/psi-probe/</url>
       <tag>HEAD</tag>
-  </scm>
+    </scm>
 
     <dependencies>
         <dependency>
@@ -76,8 +76,8 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
             <scope>provided</scope>
         </dependency>
         <dependency>
