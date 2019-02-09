@@ -167,7 +167,7 @@
         <jhighlight.version>1.0.3</jhighlight.version>
         <jmockit.version>1.45</jmockit.version>
         <jna.version>5.2.0</jna.version>
-        <jsp-api.version>2.3.3</jsp-api.version>
+        <jsp-api.version>2.3.5</jsp-api.version>
         <jsr305.version>3.0.2</jsr305.version>
         <jstl-api.version>1.2.4</jstl-api.version>
         <jstl.version>1.2.6</jstl.version>
@@ -310,8 +310,8 @@
                 <version>${servlet-api.version}</version>
             </dependency>
             <dependency>
-                <groupId>javax.servlet.jsp</groupId>
-                <artifactId>javax.servlet.jsp-api</artifactId>
+                <groupId>jakarta.servlet.jsp</groupId>
+                <artifactId>jakarta.servlet.jsp-api</artifactId>
                 <version>${jsp-api.version}</version>
             </dependency>
             <dependency>
