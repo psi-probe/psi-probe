@@ -170,7 +170,7 @@
         <jsp-api.version>2.3.3</jsp-api.version>
         <jsr305.version>3.0.2</jsr305.version>
         <jstl-api.version>1.2.2</jstl-api.version>
-        <jstl.version>1.2.5</jstl.version>
+        <jstl.version>1.2.6</jstl.version>
         <junit.version>5.3.2</junit.version>
         <lang3.version>3.8.1</lang3.version>
         <mail.version>1.6.3</mail.version>
@@ -326,18 +326,8 @@
             </dependency>
             <dependency>
                 <groupId>org.glassfish.web</groupId>
-                <artifactId>javax.servlet.jsp.jstl</artifactId>
+                <artifactId>jakarta.servlet.jsp.jstl</artifactId>
                 <version>${jstl.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>javax.servlet.jsp</groupId>
-                        <artifactId>jsp-api</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>javax.servlet.jsp.jstl</groupId>
-                        <artifactId>jstl-api</artifactId>
-                    </exclusion>
-                </exclusions>
             </dependency>
             <dependency>
                 <groupId>jakarta.el</groupId>
