@@ -90,8 +90,8 @@
             <artifactId>javax.servlet.jsp.jstl</artifactId>
         </dependency>
         <dependency>
-            <groupId>javax.el</groupId>
-            <artifactId>javax.el-api</artifactId>
+            <groupId>jakarta.el</groupId>
+            <artifactId>jakarta.el-api</artifactId>
             <scope>provided</scope>
         </dependency>
         <dependency>
