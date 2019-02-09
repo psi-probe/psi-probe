@@ -169,7 +169,7 @@
         <jna.version>5.2.0</jna.version>
         <jsp-api.version>2.3.3</jsp-api.version>
         <jsr305.version>3.0.2</jsr305.version>
-        <jstl-api.version>1.2.2</jstl-api.version>
+        <jstl-api.version>1.2.4</jstl-api.version>
         <jstl.version>1.2.6</jstl.version>
         <junit.version>5.3.2</junit.version>
         <lang3.version>3.8.1</lang3.version>
@@ -315,8 +315,8 @@
                 <version>${jsp-api.version}</version>
             </dependency>
             <dependency>
-                <groupId>javax.servlet.jsp.jstl</groupId>
-                <artifactId>javax.servlet.jsp.jstl-api</artifactId>
+                <groupId>jakarta.servlet.jsp.jstl</groupId>
+                <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
                 <version>${jstl-api.version}</version>
             </dependency>
             <dependency>
