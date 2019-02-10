@@ -18,7 +18,7 @@
                     defaultTldScan="false"
                     pluggabilityScan="${tomcat.util.scan.StandardJarScanFilter.jarsToScan},psi-probe-core-*.jar"
                     pluggabilitySkip=""
-                    tldScan="${tomcat.util.scan.StandardJarScanFilter.jarsToScan},spring-webmvc-*.jar,displaytag-*.jar,javax.servlet.jsp.jstl-*.jar,sitemesh-*.jar"
-                    tldSkip="javax.servlet.jsp.jstl-api-*.jar" />
+                    tldScan="${tomcat.util.scan.StandardJarScanFilter.jarsToScan},spring-webmvc-*.jar,displaytag-*.jar,jakarta.servlet.jsp.jstl-*.jar,sitemesh-*.jar"
+                    tldSkip="jakarta.servlet.jsp.jstl-api-*.jar" />
   </JarScanner>
 </Context> 
