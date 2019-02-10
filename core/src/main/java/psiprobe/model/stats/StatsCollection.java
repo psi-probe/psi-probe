@@ -24,6 +24,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeMap;
+
+import javax.inject.Inject;
+
 import org.jfree.data.xy.XYDataItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,6 +48,10 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
 
   /** The stats data. */
   private Map<String, List<XYDataItem>> statsData = new TreeMap<>();
+
+  /** The xstream. */
+  @Inject
+  private XStream xstream;
 
   /** The swap file name. */
   private String swapFileName;
@@ -244,9 +251,6 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
     try {
       shiftFiles(0);
       try (OutputStream os = Files.newOutputStream(makeFile().toPath())) {
-        XStream xstream = new XStream();
-        xstream.allowTypesByWildcard(new String[] {"psibrobe.model.stats.**"});
-        XStream.setupDefaultSecurity(xstream);
         xstream.toXML(statsData, os);
       }
     } catch (Exception e) {
