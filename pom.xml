@@ -148,7 +148,7 @@
         <checker.version>2.6.0</checker.version>
         <collections.version>3.2.2</collections.version>
         <dbcp.version>1.4</dbcp.version>
-        <dbcp2.version>2.5.0</dbcp2.version>
+        <dbcp2.version>2.6.0</dbcp2.version>
         <displaytag.version>2.2.3</displaytag.version>
         <el-api.version>3.0.2</el-api.version>
         <error-prone.version>2.3.2</error-prone.version>
