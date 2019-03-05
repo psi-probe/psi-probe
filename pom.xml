@@ -211,7 +211,7 @@
         <install.plugin>3.0.0-M1</install.plugin>
         <jacoco.plugin>0.8.3</jacoco.plugin>
         <jar.plugin>3.1.1</jar.plugin>
-        <javadoc.plugin>3.0.1</javadoc.plugin>
+        <javadoc.plugin>3.1.0</javadoc.plugin>
         <jdeps.plugin>3.1.1</jdeps.plugin>
         <jspc.plugin>9.4.15.v20190215</jspc.plugin>
         <jxr.plugin>3.0.0</jxr.plugin>
