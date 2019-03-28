@@ -239,7 +239,7 @@
         <doxia.version>1.8</doxia.version>
         <ecj.version>3.17.0</ecj.version>
         <fb-contrib.version>7.4.3.sb</fb-contrib.version>
-        <findsecbugs.version>1.8.0</findsecbugs.version>
+        <findsecbugs.version>1.9.0</findsecbugs.version>
         <javac.version>9+181-r4173-1</javac.version>
         <wagon-git.version>2.0.3</wagon-git.version> <!-- Do not use 2.0.4 as it does not work with ssh -->
 
