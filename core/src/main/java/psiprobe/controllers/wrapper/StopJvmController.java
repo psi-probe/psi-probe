@@ -18,14 +18,14 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.ParameterizableViewController;
 import org.tanukisoftware.wrapper.WrapperManager;
+import psiprobe.PostParameterizableViewController;
 
 /**
  * The Class StopJvmController.
  */
 @Controller
-public class StopJvmController extends ParameterizableViewController {
+public class StopJvmController extends PostParameterizableViewController {
 
   /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(StopJvmController.class);
