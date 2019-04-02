@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/psi-probe/psi-probe.svg?branch=master)](https://travis-ci.org/psi-probe/psi-probe)
 [![Coverity Scan Build Status](https://scan.coverity.com/projects/11611/badge.svg)](https://scan.coverity.com/projects/11611)
 [![Coverage Status](https://coveralls.io/repos/github/psi-probe/psi-probe/badge.svg?branch=master)](https://coveralls.io/github/psi-probe/psi-probe?branch=master)
+[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=psi-probe/psi-probe)](https://dependabot.com)
 [![Maven central](https://maven-badges.herokuapp.com/maven-central/com.github.psi-probe/psi-probe-web/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.psi-probe/psi-probe-web)
 [![releases](http://github-release-version.herokuapp.com/github/psi-probe/psi-probe/release.svg?style=flat)](https://github.com/psi-probe/psi-probe/releases/download/3.2.0/probe.war)
 [![GPLv2 License](https://img.shields.io/badge/license-GPLv2-green.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
