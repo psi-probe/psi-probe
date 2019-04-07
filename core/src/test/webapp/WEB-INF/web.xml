@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Licensed under the GPL License. You may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+      https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+
+    THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+    WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+    PURPOSE.
+
+-->
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+						http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
+
+	<display-name>PSI Probe for Apache Tomcat v${project.version}</display-name>
+
+	<session-config>
+		<session-timeout>15</session-timeout>
+	</session-config>
+
+	<!-- no access error -->
+	<error-page>
+		<error-code>403</error-code>
+		<location>/403.htm</location>
+	</error-page>
+
+	<!-- page not found error -->
+	<error-page>
+		<error-code>404</error-code>
+		<location>/404.htm</location>
+	</error-page>
+
+	<!-- 500 error -->
+	<error-page>
+		<error-code>500</error-code>
+		<location>/WEB-INF/jsp/errors/servleterror.jsp</location>
+	</error-page>
+
+	<!--exception page -->
+	<error-page>
+		<exception-type>java.lang.Throwable</exception-type>
+		<location>/WEB-INF/jsp/errors/servleterror.jsp</location>
+	</error-page>
+
+	<security-constraint>
+		<display-name>No anonymous access</display-name>
+		<web-resource-collection>
+			<web-resource-name>All areas</web-resource-name>
+			<url-pattern>/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>probeuser</role-name>
+			<role-name>poweruser</role-name>
+			<role-name>manager</role-name>
+			<role-name>manager-gui</role-name>
+			<role-name>poweruserplus</role-name>
+		</auth-constraint>
+		<user-data-constraint>
+			<transport-guarantee>NONE</transport-guarantee>
+		</user-data-constraint>
+	</security-constraint>
+
+	<!-- Defines the Login Configuration for this Application -->
+	<login-config>
+		<auth-method>BASIC</auth-method>
+		<realm-name>PSI Probe</realm-name>
+	</login-config>
+
+	<!--Security roles referenced by this web application -->
+	<security-role>
+		<role-name>manager-gui</role-name>
+	</security-role>
+
+	<security-role>
+		<role-name>manager</role-name>
+	</security-role>
+
+	<security-role>
+		<role-name>poweruser</role-name>
+	</security-role>
+
+	<security-role>
+		<role-name>poweruserplus</role-name>
+	</security-role>
+
+	<security-role>
+		<role-name>probeuser</role-name>
+	</security-role>
+
+</web-app>
