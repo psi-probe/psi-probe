@@ -63,7 +63,7 @@ public class ResourceResolverBean implements ResourceResolver {
 
   @Override
   public List<ApplicationResource> getApplicationResources() throws NamingException {
-    logger.info("Reading GLOBAL resources");
+    logger.debug("Reading GLOBAL resources");
     List<ApplicationResource> resources = new ArrayList<>();
 
     MBeanServer server = getMBeanServer();
@@ -74,7 +74,7 @@ public class ResourceResolverBean implements ResourceResolver {
         for (ObjectName objectName : dsNames) {
           ApplicationResource resource = new ApplicationResource();
 
-          logger.info("reading resource: {}", objectName);
+          logger.debug("reading resource: {}", objectName);
           resource.setName(getStringAttribute(server, objectName, "name"));
           resource.setType(getStringAttribute(server, objectName, "type"));
           resource.setScope(getStringAttribute(server, objectName, "scope"));
@@ -101,7 +101,7 @@ public class ResourceResolverBean implements ResourceResolver {
     boolean contextAvailable = containerWrapper.getTomcatContainer().getAvailable(context);
     if (contextAvailable) {
 
-      logger.info("Reading CONTEXT {}", context.getName());
+      logger.debug("Reading CONTEXT {}", context.getName());
 
       boolean contextBound = false;
 
@@ -153,7 +153,7 @@ public class ResourceResolverBean implements ResourceResolver {
           return;
         }
         String jndiName = resolveJndiName(resource.getName(), global);
-        logger.info("reading resource jndi name: {}", jndiName);
+        logger.debug("reading resource jndi name: {}", jndiName);
         Object obj = ctx.lookup(jndiName);
         resource.setLookedUp(true);
         for (String accessorString : datasourceMappers) {
