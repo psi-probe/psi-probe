@@ -156,7 +156,6 @@
         <guava.version>27.1-jre</guava.version>
         <hateoas.version>0.25.1.RELEASE</hateoas.version>
         <hikaricp.version>3.3.1</hikaricp.version>
-        <logback.version>1.3.0-alpha4</logback.version>
         <inject.version>1</inject.version>
         <io.version>2.6</io.version>
         <j2objc.version>1.3</j2objc.version>
@@ -173,6 +172,7 @@
         <jstl.version>1.2.6</jstl.version>
         <junit.version>5.4.2</junit.version>
         <lang3.version>3.9</lang3.version>
+        <logback.version>1.2.3</logback.version>
         <mail.version>1.6.3</mail.version>
         <oshi.version>3.13.2</oshi.version>
         <openejb.version>4.7.5</openejb.version>
@@ -182,12 +182,12 @@
         <quartz.version>2.3.1</quartz.version>
         <servlet-api.version>4.0.2</servlet-api.version>
         <sitemesh.version>2.4.2</sitemesh.version>
-        <slf4j.version>1.8.0-beta4</slf4j.version>
+        <slf4j.version>1.7.26</slf4j.version>
         <spring.version>5.1.6.RELEASE</spring.version>
         <spring-security.version>5.1.5.RELEASE</spring-security.version>
         <text.version>1.6</text.version>
         <transaction-api.version>1.3.2</transaction-api.version>
-        <tomcat.version>9.0.17</tomcat.version>
+        <tomcat.version>9.0.19</tomcat.version>
         <wrapper.version>3.2.3</wrapper.version>
         <xpp3_min.version>1.1.4c</xpp3_min.version>
         <xstream.version>1.4.11.1</xstream.version>
@@ -203,7 +203,7 @@
         <compiler.plugin>3.8.1</compiler.plugin>
         <coveralls.plugin>4.3.0</coveralls.plugin>
         <dependency.plugin>3.1.1</dependency.plugin>
-        <dependency-check.plugin>4.0.2</dependency-check.plugin>
+        <dependency-check.plugin>5.0.0-M3</dependency-check.plugin>
         <deploy.plugin>3.0.0-M1</deploy.plugin>
         <formatter.plugin>2.9.0</formatter.plugin>
         <git-commit.plugin>3.0.0</git-commit.plugin>
@@ -238,7 +238,7 @@
         <checkstyle.version>8.20</checkstyle.version>
         <doxia.version>1.8</doxia.version>
         <ecj.version>3.17.0</ecj.version>
-        <fb-contrib.version>7.4.3.sb</fb-contrib.version>
+        <sb-contrib.version>7.4.5</sb-contrib.version>
         <findsecbugs.version>1.9.0</findsecbugs.version>
         <javac.version>9+181-r4173-1</javac.version>
         <wagon-git.version>2.0.3</wagon-git.version> <!-- Do not use 2.0.4 as it does not work with ssh -->
@@ -899,9 +899,9 @@
                     <configuration>
                         <plugins>
                             <plugin>
-                                <groupId>com.mebigfatguy.fb-contrib</groupId>
-                                <artifactId>fb-contrib</artifactId>
-                                <version>${fb-contrib.version}</version>
+                                <groupId>com.mebigfatguy.sb-contrib</groupId>
+                                <artifactId>sb-contrib</artifactId>
+                                <version>${sb-contrib.version}</version>
                             </plugin>
                             <plugin>
                                 <groupId>com.h3xstream.findsecbugs</groupId>
