@@ -71,7 +71,7 @@
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>  
 <a class="jxr_linenumber" name="L64" href="#L64">64</a>    @Override
 <a class="jxr_linenumber" name="L65" href="#L65">65</a>    <strong class="jxr_keyword">public</strong> List&lt;ApplicationResource&gt; getApplicationResources() <strong class="jxr_keyword">throws</strong> NamingException {
-<a class="jxr_linenumber" name="L66" href="#L66">66</a>      logger.info(<span class="jxr_string">"Reading GLOBAL resources"</span>);
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>      logger.debug(<span class="jxr_string">"Reading GLOBAL resources"</span>);
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>      List&lt;ApplicationResource&gt; resources = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;();
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>  
 <a class="jxr_linenumber" name="L69" href="#L69">69</a>      MBeanServer server = getMBeanServer();
@@ -82,7 +82,7 @@
 <a class="jxr_linenumber" name="L74" href="#L74">74</a>          <strong class="jxr_keyword">for</strong> (ObjectName objectName : dsNames) {
 <a class="jxr_linenumber" name="L75" href="#L75">75</a>            <a name="ApplicationResource" href="../../psiprobe/model/ApplicationReso<a name="ApplicationResource" href="../../psiprobe/model/ApplicationResource.html#ApplicationResource">ApplicationResource</a>onResource">ApplicationResource</a> resource = <strong class="jxr_keyword">new</strong> <a name="ApplicationResource" href="../../psiprobe/model/ApplicationResource.html#ApplicationResource">ApplicationResource</a>();
 <a class="jxr_linenumber" name="L76" href="#L76">76</a>  
-<a class="jxr_linenumber" name="L77" href="#L77">77</a>            logger.info(<span class="jxr_string">"reading resource: {}"</span>, objectName);
+<a class="jxr_linenumber" name="L77" href="#L77">77</a>            logger.debug(<span class="jxr_string">"reading resource: {}"</span>, objectName);
 <a class="jxr_linenumber" name="L78" href="#L78">78</a>            resource.setName(getStringAttribute(server, objectName, <span class="jxr_string">"name"</span>));
 <a class="jxr_linenumber" name="L79" href="#L79">79</a>            resource.setType(getStringAttribute(server, objectName, <span class="jxr_string">"type"</span>));
 <a class="jxr_linenumber" name="L80" href="#L80">80</a>            resource.setScope(getStringAttribute(server, objectName, <span class="jxr_string">"scope"</span>));
@@ -109,7 +109,7 @@
 <a class="jxr_linenumber" name="L101" href="#L101">101</a>     <strong class="jxr_keyword">boolean</strong> contextAvailable = containerWrapper.getTomcatContainer().getAvailable(context);
 <a class="jxr_linenumber" name="L102" href="#L102">102</a>     <strong class="jxr_keyword">if</strong> (contextAvailable) {
 <a class="jxr_linenumber" name="L103" href="#L103">103</a> 
-<a class="jxr_linenumber" name="L104" href="#L104">104</a>       logger.info(<span class="jxr_string">"Reading CONTEXT {}"</span>, context.getName());
+<a class="jxr_linenumber" name="L104" href="#L104">104</a>       logger.debug(<span class="jxr_string">"Reading CONTEXT {}"</span>, context.getName());
 <a class="jxr_linenumber" name="L105" href="#L105">105</a> 
 <a class="jxr_linenumber" name="L106" href="#L106">106</a>       <strong class="jxr_keyword">boolean</strong> contextBound = false;
 <a class="jxr_linenumber" name="L107" href="#L107">107</a> 
@@ -161,7 +161,7 @@
 <a class="jxr_linenumber" name="L153" href="#L153">153</a>           <strong class="jxr_keyword">return</strong>;
 <a class="jxr_linenumber" name="L154" href="#L154">154</a>         }
 <a class="jxr_linenumber" name="L155" href="#L155">155</a>         String jndiName = resolveJndiName(resource.getName(), global);
-<a class="jxr_linenumber" name="L156" href="#L156">156</a>         logger.info(<span class="jxr_string">"reading resource jndi name: {}"</span>, jndiName);
+<a class="jxr_linenumber" name="L156" href="#L156">156</a>         logger.debug(<span class="jxr_string">"reading resource jndi name: {}"</span>, jndiName);
 <a class="jxr_linenumber" name="L157" href="#L157">157</a>         Object obj = ctx.lookup(jndiName);
 <a class="jxr_linenumber" name="L158" href="#L158">158</a>         resource.setLookedUp(<strong class="jxr_keyword">true</strong>);
 <a class="jxr_linenumber" name="L159" href="#L159">159</a>         <strong class="jxr_keyword">for</strong> (String accessorString : datasourceMappers) {
@@ -355,6 +355,6 @@
 <a class="jxr_linenumber" name="L347" href="#L347">347</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2009&#x2013;2018 <a href="https://github.com/psi-probe/">psi-probe</a>. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2009&#x2013;2019 <a href="https://github.com/psi-probe/">psi-probe</a>. All rights reserved.</div>
 </body>
 </html>

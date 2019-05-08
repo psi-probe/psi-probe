@@ -10,6 +10,8 @@
  */
 package psiprobe;
 
+import com.thoughtworks.xstream.XStream;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedHashMap;
@@ -51,7 +53,7 @@ import org.springframework.security.web.util.matcher.RequestMatcher;
  */
 @Configuration
 @EnableWebSecurity
-<span class="nc" id="L54">public class ProbeSecurityConfig extends WebSecurityConfigurerAdapter {</span>
+<span class="fc" id="L56">public class ProbeSecurityConfig extends WebSecurityConfigurerAdapter {</span>
 
   /**
    * Gets the filter chain proxy.
@@ -60,10 +62,10 @@ import org.springframework.security.web.util.matcher.RequestMatcher;
    */
   @Bean(name = &quot;filterChainProxy&quot;)
   public FilterChainProxy getFilterChainProxy() {
-<span class="nc" id="L63">    SecurityFilterChain chain = new DefaultSecurityFilterChain(new AntPathRequestMatcher(&quot;/**&quot;),</span>
-<span class="nc" id="L64">        getSecurityContextPersistenceFilter(), getJ2eePreAuthenticatedProcessingFilter(),</span>
-<span class="nc" id="L65">        getLogoutFilter(), getExceptionTranslationFilter(), getFilterSecurityInterceptor());</span>
-<span class="nc" id="L66">    return new FilterChainProxy(chain);</span>
+<span class="fc" id="L65">    SecurityFilterChain chain = new DefaultSecurityFilterChain(new AntPathRequestMatcher(&quot;/**&quot;),</span>
+<span class="fc" id="L66">        getSecurityContextPersistenceFilter(), getJ2eePreAuthenticatedProcessingFilter(),</span>
+<span class="fc" id="L67">        getLogoutFilter(), getExceptionTranslationFilter(), getFilterSecurityInterceptor());</span>
+<span class="fc" id="L68">    return new FilterChainProxy(chain);</span>
   }
 
   /**
@@ -73,9 +75,9 @@ import org.springframework.security.web.util.matcher.RequestMatcher;
    */
   @Bean(name = &quot;authenticationManager&quot;)
   public ProviderManager getProviderManager() {
-<span class="nc" id="L76">    List&lt;AuthenticationProvider&gt; providers = new ArrayList&lt;&gt;();</span>
-<span class="nc" id="L77">    providers.add(getPreAuthenticatedAuthenticationProvider());</span>
-<span class="nc" id="L78">    return new ProviderManager(providers);</span>
+<span class="fc" id="L78">    List&lt;AuthenticationProvider&gt; providers = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L79">    providers.add(getPreAuthenticatedAuthenticationProvider());</span>
+<span class="fc" id="L80">    return new ProviderManager(providers);</span>
   }
 
   /**
@@ -85,7 +87,7 @@ import org.springframework.security.web.util.matcher.RequestMatcher;
    */
   @Bean(name = &quot;sif&quot;)
   public SecurityContextPersistenceFilter getSecurityContextPersistenceFilter() {
-<span class="nc" id="L88">    return new SecurityContextPersistenceFilter();</span>
+<span class="fc" id="L90">    return new SecurityContextPersistenceFilter();</span>
   }
 
   /**
@@ -95,10 +97,10 @@ import org.springframework.security.web.util.matcher.RequestMatcher;
    */
   @Bean(name = &quot;preAuthenticatedAuthenticationProvider&quot;)
   public PreAuthenticatedAuthenticationProvider getPreAuthenticatedAuthenticationProvider() {
-<span class="nc" id="L98">    PreAuthenticatedAuthenticationProvider provider = new PreAuthenticatedAuthenticationProvider();</span>
-<span class="nc" id="L99">    provider.setPreAuthenticatedUserDetailsService(</span>
-<span class="nc" id="L100">        getPreAuthenticatedGrantedAuthoritiesUserDetailsService());</span>
-<span class="nc" id="L101">    return provider;</span>
+<span class="fc" id="L100">    PreAuthenticatedAuthenticationProvider provider = new PreAuthenticatedAuthenticationProvider();</span>
+<span class="fc" id="L101">    provider.setPreAuthenticatedUserDetailsService(</span>
+<span class="fc" id="L102">        getPreAuthenticatedGrantedAuthoritiesUserDetailsService());</span>
+<span class="fc" id="L103">    return provider;</span>
   }
 
   /**
@@ -108,7 +110,7 @@ import org.springframework.security.web.util.matcher.RequestMatcher;
    */
   @Bean(name = &quot;preAuthenticatedUserDetailsService&quot;)
   public PreAuthenticatedGrantedAuthoritiesUserDetailsService getPreAuthenticatedGrantedAuthoritiesUserDetailsService() {
-<span class="nc" id="L111">    return new PreAuthenticatedGrantedAuthoritiesUserDetailsService();</span>
+<span class="fc" id="L113">    return new PreAuthenticatedGrantedAuthoritiesUserDetailsService();</span>
   }
 
   /**
@@ -118,11 +120,11 @@ import org.springframework.security.web.util.matcher.RequestMatcher;
    */
   @Bean(name = &quot;j2eePreAuthenticatedProcessingFilter&quot;)
   public J2eePreAuthenticatedProcessingFilter getJ2eePreAuthenticatedProcessingFilter() {
-<span class="nc" id="L121">    J2eePreAuthenticatedProcessingFilter filter = new J2eePreAuthenticatedProcessingFilter();</span>
-<span class="nc" id="L122">    filter.setAuthenticationManager(getProviderManager());</span>
-<span class="nc" id="L123">    filter.setAuthenticationDetailsSource(</span>
-<span class="nc" id="L124">        getJ2eeBasedPreAuthenticatedWebAuthenticationDetailsSource());</span>
-<span class="nc" id="L125">    return filter;</span>
+<span class="fc" id="L123">    J2eePreAuthenticatedProcessingFilter filter = new J2eePreAuthenticatedProcessingFilter();</span>
+<span class="fc" id="L124">    filter.setAuthenticationManager(getProviderManager());</span>
+<span class="fc" id="L125">    filter.setAuthenticationDetailsSource(</span>
+<span class="fc" id="L126">        getJ2eeBasedPreAuthenticatedWebAuthenticationDetailsSource());</span>
+<span class="fc" id="L127">    return filter;</span>
   }
 
   /**
@@ -132,7 +134,7 @@ import org.springframework.security.web.util.matcher.RequestMatcher;
    */
   @Bean(name = &quot;preAuthenticatedProcessingFilterEntryPoint&quot;)
   public Http403ForbiddenEntryPoint getHttp403ForbiddenEntryPoint() {
-<span class="nc" id="L135">    return new Http403ForbiddenEntryPoint();</span>
+<span class="fc" id="L137">    return new Http403ForbiddenEntryPoint();</span>
   }
 
   /**
@@ -142,7 +144,7 @@ import org.springframework.security.web.util.matcher.RequestMatcher;
    */
   @Bean(name = &quot;logoutFilter&quot;)
   public LogoutFilter getLogoutFilter() {
-<span class="nc" id="L145">    return new LogoutFilter(&quot;/&quot;, getSecurityContextLogoutHandler());</span>
+<span class="fc" id="L147">    return new LogoutFilter(&quot;/&quot;, getSecurityContextLogoutHandler());</span>
   }
 
   /**
@@ -152,7 +154,7 @@ import org.springframework.security.web.util.matcher.RequestMatcher;
    */
   @Bean(name = &quot;securityContextLogoutHandler&quot;)
   public SecurityContextLogoutHandler getSecurityContextLogoutHandler() {
-<span class="nc" id="L155">    return new SecurityContextLogoutHandler();</span>
+<span class="fc" id="L157">    return new SecurityContextLogoutHandler();</span>
   }
 
   /**
@@ -162,11 +164,11 @@ import org.springframework.security.web.util.matcher.RequestMatcher;
    */
   @Bean(name = &quot;authenticationDetailsSource&quot;)
   public J2eeBasedPreAuthenticatedWebAuthenticationDetailsSource getJ2eeBasedPreAuthenticatedWebAuthenticationDetailsSource() {
-<span class="nc" id="L165">    J2eeBasedPreAuthenticatedWebAuthenticationDetailsSource source =</span>
+<span class="fc" id="L167">    J2eeBasedPreAuthenticatedWebAuthenticationDetailsSource source =</span>
         new J2eeBasedPreAuthenticatedWebAuthenticationDetailsSource();
-<span class="nc" id="L167">    source.setMappableRolesRetriever(getWebXmlMappableAttributesRetriever());</span>
-<span class="nc" id="L168">    source.setUserRoles2GrantedAuthoritiesMapper(getSimpleAttributes2GrantedAuthoritiesMapper());</span>
-<span class="nc" id="L169">    return source;</span>
+<span class="fc" id="L169">    source.setMappableRolesRetriever(getWebXmlMappableAttributesRetriever());</span>
+<span class="fc" id="L170">    source.setUserRoles2GrantedAuthoritiesMapper(getSimpleAttributes2GrantedAuthoritiesMapper());</span>
+<span class="fc" id="L171">    return source;</span>
   }
 
   /**
@@ -176,10 +178,10 @@ import org.springframework.security.web.util.matcher.RequestMatcher;
    */
   @Bean(name = &quot;j2eeUserRoles2GrantedAuthoritiesMapper&quot;)
   public SimpleAttributes2GrantedAuthoritiesMapper getSimpleAttributes2GrantedAuthoritiesMapper() {
-<span class="nc" id="L179">    SimpleAttributes2GrantedAuthoritiesMapper mapper =</span>
+<span class="fc" id="L181">    SimpleAttributes2GrantedAuthoritiesMapper mapper =</span>
         new SimpleAttributes2GrantedAuthoritiesMapper();
-<span class="nc" id="L181">    mapper.setConvertAttributeToUpperCase(true);</span>
-<span class="nc" id="L182">    return mapper;</span>
+<span class="fc" id="L183">    mapper.setConvertAttributeToUpperCase(true);</span>
+<span class="fc" id="L184">    return mapper;</span>
   }
 
   /**
@@ -189,7 +191,7 @@ import org.springframework.security.web.util.matcher.RequestMatcher;
    */
   @Bean(name = &quot;j2eeMappableRolesRetriever&quot;)
   public WebXmlMappableAttributesRetriever getWebXmlMappableAttributesRetriever() {
-<span class="nc" id="L192">    return new WebXmlMappableAttributesRetriever();</span>
+<span class="fc" id="L194">    return new WebXmlMappableAttributesRetriever();</span>
   }
 
   /**
@@ -199,7 +201,7 @@ import org.springframework.security.web.util.matcher.RequestMatcher;
    */
   @Bean(name = &quot;etf&quot;)
   public ExceptionTranslationFilter getExceptionTranslationFilter() {
-<span class="nc" id="L202">    return new ExceptionTranslationFilter(getHttp403ForbiddenEntryPoint());</span>
+<span class="fc" id="L204">    return new ExceptionTranslationFilter(getHttp403ForbiddenEntryPoint());</span>
   }
 
   /**
@@ -209,12 +211,12 @@ import org.springframework.security.web.util.matcher.RequestMatcher;
    */
   @Bean(name = &quot;httpRequestAccessDecisionManager&quot;)
   public AffirmativeBased getAffirmativeBased() {
-<span class="nc" id="L212">    List&lt;AccessDecisionVoter&lt;? extends Object&gt;&gt; decisionVoters = new ArrayList&lt;&gt;();</span>
-<span class="nc" id="L213">    decisionVoters.add(getRoleVoter());</span>
+<span class="fc" id="L214">    List&lt;AccessDecisionVoter&lt;? extends Object&gt;&gt; decisionVoters = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L215">    decisionVoters.add(getRoleVoter());</span>
 
-<span class="nc" id="L215">    AffirmativeBased based = new AffirmativeBased(decisionVoters);</span>
-<span class="nc" id="L216">    based.setAllowIfAllAbstainDecisions(false);</span>
-<span class="nc" id="L217">    return based;</span>
+<span class="fc" id="L217">    AffirmativeBased based = new AffirmativeBased(decisionVoters);</span>
+<span class="fc" id="L218">    based.setAllowIfAllAbstainDecisions(false);</span>
+<span class="fc" id="L219">    return based;</span>
   }
 
   /**
@@ -224,27 +226,27 @@ import org.springframework.security.web.util.matcher.RequestMatcher;
    */
   @Bean(name = &quot;fsi&quot;)
   public FilterSecurityInterceptor getFilterSecurityInterceptor() {
-<span class="nc" id="L227">    FilterSecurityInterceptor interceptor = new FilterSecurityInterceptor();</span>
-<span class="nc" id="L228">    interceptor.setAuthenticationManager(getProviderManager());</span>
-<span class="nc" id="L229">    interceptor.setAccessDecisionManager(getAffirmativeBased());</span>
+<span class="fc" id="L229">    FilterSecurityInterceptor interceptor = new FilterSecurityInterceptor();</span>
+<span class="fc" id="L230">    interceptor.setAuthenticationManager(getProviderManager());</span>
+<span class="fc" id="L231">    interceptor.setAccessDecisionManager(getAffirmativeBased());</span>
 
-<span class="nc" id="L231">    LinkedHashMap&lt;RequestMatcher, Collection&lt;ConfigAttribute&gt;&gt; requestMap = new LinkedHashMap&lt;&gt;();</span>
-<span class="nc" id="L232">    requestMap.put(new AntPathRequestMatcher(&quot;/adm/**&quot;),</span>
-<span class="nc" id="L233">        SecurityConfig.createListFromCommaDelimitedString(&quot;ROLE_MANAGER,ROLE_MANAGER-GUI&quot;));</span>
-<span class="nc" id="L234">    requestMap.put(new AntPathRequestMatcher(&quot;/adm/restartvm.ajax&quot;), SecurityConfig</span>
-<span class="nc" id="L235">        .createListFromCommaDelimitedString(&quot;ROLE_POWERUSERPLUS,ROLE_MANAGER,ROLE_MANAGER-GUI&quot;));</span>
-<span class="nc" id="L236">    requestMap.put(new AntPathRequestMatcher(&quot;/sql/**&quot;), SecurityConfig</span>
-<span class="nc" id="L237">        .createListFromCommaDelimitedString(&quot;ROLE_POWERUSERPLUS,ROLE_MANAGER,ROLE_MANAGER-GUI&quot;));</span>
-<span class="nc" id="L238">    requestMap.put(new AntPathRequestMatcher(&quot;/app/**&quot;),</span>
-<span class="nc" id="L239">        SecurityConfig.createListFromCommaDelimitedString(</span>
+<span class="fc" id="L233">    LinkedHashMap&lt;RequestMatcher, Collection&lt;ConfigAttribute&gt;&gt; requestMap = new LinkedHashMap&lt;&gt;();</span>
+<span class="fc" id="L234">    requestMap.put(new AntPathRequestMatcher(&quot;/adm/**&quot;),</span>
+<span class="fc" id="L235">        SecurityConfig.createListFromCommaDelimitedString(&quot;ROLE_MANAGER,ROLE_MANAGER-GUI&quot;));</span>
+<span class="fc" id="L236">    requestMap.put(new AntPathRequestMatcher(&quot;/adm/restartvm.ajax&quot;), SecurityConfig</span>
+<span class="fc" id="L237">        .createListFromCommaDelimitedString(&quot;ROLE_POWERUSERPLUS,ROLE_MANAGER,ROLE_MANAGER-GUI&quot;));</span>
+<span class="fc" id="L238">    requestMap.put(new AntPathRequestMatcher(&quot;/sql/**&quot;), SecurityConfig</span>
+<span class="fc" id="L239">        .createListFromCommaDelimitedString(&quot;ROLE_POWERUSERPLUS,ROLE_MANAGER,ROLE_MANAGER-GUI&quot;));</span>
+<span class="fc" id="L240">    requestMap.put(new AntPathRequestMatcher(&quot;/app/**&quot;),</span>
+<span class="fc" id="L241">        SecurityConfig.createListFromCommaDelimitedString(</span>
             &quot;ROLE_POWERUSER,ROLE_POWERUSERPLUS,ROLE_MANAGER,ROLE_MANAGER-GUI&quot;));
-<span class="nc" id="L241">    requestMap.put(new AntPathRequestMatcher(&quot;/**&quot;),</span>
-<span class="nc" id="L242">        SecurityConfig.createListFromCommaDelimitedString(</span>
+<span class="fc" id="L243">    requestMap.put(new AntPathRequestMatcher(&quot;/**&quot;),</span>
+<span class="fc" id="L244">        SecurityConfig.createListFromCommaDelimitedString(</span>
             &quot;ROLE_PROBEUSER,ROLE_POWERUSER,ROLE_POWERUSERPLUS,ROLE_MANAGER,ROLE_MANAGER-GUI&quot;));
 
-<span class="nc" id="L245">    interceptor</span>
-<span class="nc" id="L246">        .setSecurityMetadataSource(new DefaultFilterInvocationSecurityMetadataSource(requestMap));</span>
-<span class="nc" id="L247">    return interceptor;</span>
+<span class="fc" id="L247">    interceptor</span>
+<span class="fc" id="L248">        .setSecurityMetadataSource(new DefaultFilterInvocationSecurityMetadataSource(requestMap));</span>
+<span class="fc" id="L249">    return interceptor;</span>
   }
 
   /**
@@ -254,7 +256,7 @@ import org.springframework.security.web.util.matcher.RequestMatcher;
    */
   @Bean(name = &quot;roleVoter&quot;)
   public RoleVoter getRoleVoter() {
-<span class="nc" id="L257">    return new RoleVoter();</span>
+<span class="fc" id="L259">    return new RoleVoter();</span>
   }
 
   /**
@@ -264,7 +266,7 @@ import org.springframework.security.web.util.matcher.RequestMatcher;
    */
   @Bean(name = &quot;securityContextHolderAwareRequestFilter&quot;)
   public SecurityContextHolderAwareRequestFilter getSecurityContextHolderAwareRequestFilter() {
-<span class="nc" id="L267">    return new SecurityContextHolderAwareRequestFilter();</span>
+<span class="fc" id="L269">    return new SecurityContextHolderAwareRequestFilter();</span>
   }
 
   /**
@@ -274,10 +276,22 @@ import org.springframework.security.web.util.matcher.RequestMatcher;
    */
   @Bean(name = &quot;httpSessionRequestCache&quot;)
   public HttpSessionRequestCache getHttpSessionRequestCache() {
-<span class="nc" id="L277">    HttpSessionRequestCache cache = new HttpSessionRequestCache();</span>
-<span class="nc" id="L278">    cache.setCreateSessionAllowed(false);</span>
-<span class="nc" id="L279">    return cache;</span>
+<span class="fc" id="L279">    HttpSessionRequestCache cache = new HttpSessionRequestCache();</span>
+<span class="fc" id="L280">    cache.setCreateSessionAllowed(false);</span>
+<span class="fc" id="L281">    return cache;</span>
+  }
+
+  /**
+   * Gets the xstream.
+   *
+   * @return the xstream
+   */
+  @Bean(name = &quot;xstream&quot;)
+  public XStream getXstream() {
+<span class="fc" id="L291">      XStream xstream = new XStream();</span>
+<span class="fc" id="L292">      XStream.setupDefaultSecurity(xstream);</span>
+<span class="fc" id="L293">      return xstream;</span>
   }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

@@ -51,13 +51,13 @@ import psiprobe.controllers.AbstractTomcatContainerController;
  * Creates an instance of Operating System and Hardware Information.
  */
 @Controller
-<span class="nc" id="L54">public class OshiController extends AbstractTomcatContainerController {</span>
+<span class="fc" id="L54">public class OshiController extends AbstractTomcatContainerController {</span>
 
   /** The Constant logger. */
-<span class="nc" id="L57">  private static final Logger logger = LoggerFactory.getLogger(OshiController.class);</span>
+<span class="fc" id="L57">  private static final Logger logger = LoggerFactory.getLogger(OshiController.class);</span>
 
   /** Oshi Cache. */
-<span class="nc" id="L60">  private static List&lt;String&gt; oshi = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L60">  private static List&lt;String&gt; oshi = new ArrayList&lt;&gt;();</span>
 
   @RequestMapping(path = &quot;/adm/oshi.htm&quot;)
   @Override
@@ -155,8 +155,8 @@ import psiprobe.controllers.AbstractTomcatContainerController;
   @Value(&quot;oshi&quot;)
   @Override
   public void setViewName(String viewName) {
-<span class="nc" id="L158">    super.setViewName(viewName);</span>
-<span class="nc" id="L159">  }</span>
+<span class="fc" id="L158">    super.setViewName(viewName);</span>
+<span class="fc" id="L159">  }</span>
 
   /**
    * Prints the computer system.
@@ -462,4 +462,4 @@ import psiprobe.controllers.AbstractTomcatContainerController;
     }
 <span class="nc" id="L463">  }</span>
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

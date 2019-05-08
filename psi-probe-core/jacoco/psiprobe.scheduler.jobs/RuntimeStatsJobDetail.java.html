@@ -16,25 +16,25 @@ import org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean;
 /**
  * The Class ConnectorStatsJobDetail.
  */
-<span class="nc" id="L19">public class RuntimeStatsJobDetail extends MethodInvokingJobDetailFactoryBean {</span>
+<span class="fc" id="L19">public class RuntimeStatsJobDetail extends MethodInvokingJobDetailFactoryBean {</span>
 
   @Override
   @Value(&quot;false&quot;)
   public void setConcurrent(boolean concurrent) {
-<span class="nc" id="L24">    super.setConcurrent(concurrent);</span>
-<span class="nc" id="L25">  }</span>
+<span class="fc" id="L24">    super.setConcurrent(concurrent);</span>
+<span class="fc" id="L25">  }</span>
 
   @Override
   @Value(&quot;runtimeStatsCollector&quot;)
   public void setTargetBeanName(String targetBeanName) {
-<span class="nc" id="L30">    super.setTargetBeanName(targetBeanName);</span>
-<span class="nc" id="L31">  }</span>
+<span class="fc" id="L30">    super.setTargetBeanName(targetBeanName);</span>
+<span class="fc" id="L31">  }</span>
 
   @Override
   @Value(&quot;collect&quot;)
   public void setTargetMethod(String targetMethod) {
-<span class="nc" id="L36">    super.setTargetMethod(targetMethod);</span>
-<span class="nc" id="L37">  }</span>
+<span class="fc" id="L36">    super.setTargetMethod(targetMethod);</span>
+<span class="fc" id="L37">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

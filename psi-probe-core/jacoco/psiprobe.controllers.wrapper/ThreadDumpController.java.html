@@ -18,17 +18,17 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.ParameterizableViewController;
 import org.tanukisoftware.wrapper.WrapperManager;
+import psiprobe.PostParameterizableViewController;
 
 /**
  * The Class ThreadDumpController.
  */
 @Controller
-<span class="nc" id="L28">public class ThreadDumpController extends ParameterizableViewController {</span>
+<span class="fc" id="L28">public class ThreadDumpController extends PostParameterizableViewController {</span>
 
   /** The Constant logger. */
-<span class="nc" id="L31">  private static final Logger logger = LoggerFactory.getLogger(ThreadDumpController.class);</span>
+<span class="fc" id="L31">  private static final Logger logger = LoggerFactory.getLogger(ThreadDumpController.class);</span>
 
   @RequestMapping(path = &quot;/adm/threaddump.ajax&quot;)
   @Override
@@ -57,8 +57,8 @@ import org.tanukisoftware.wrapper.WrapperManager;
   @Value(&quot;ajax/thread_dump&quot;)
   @Override
   public void setViewName(String viewName) {
-<span class="nc" id="L60">    super.setViewName(viewName);</span>
-<span class="nc" id="L61">  }</span>
+<span class="fc" id="L60">    super.setViewName(viewName);</span>
+<span class="fc" id="L61">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

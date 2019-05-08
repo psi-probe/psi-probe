@@ -40,10 +40,10 @@ import psiprobe.model.DataSourceInfo;
 /**
  * The Class ResourceResolverBean.
  */
-<span class="nc" id="L43">public class ResourceResolverBean implements ResourceResolver {</span>
+<span class="fc" id="L43">public class ResourceResolverBean implements ResourceResolver {</span>
 
   /** The Constant logger. */
-<span class="nc" id="L46">  private static final Logger logger = LoggerFactory.getLogger(ResourceResolverBean.class);</span>
+<span class="fc" id="L46">  private static final Logger logger = LoggerFactory.getLogger(ResourceResolverBean.class);</span>
 
   /**
    * The default resource prefix for JNDI objects in the global scope: &lt;code&gt;java:&lt;/code&gt;.
@@ -63,7 +63,7 @@ import psiprobe.model.DataSourceInfo;
 
   @Override
   public List&lt;ApplicationResource&gt; getApplicationResources() throws NamingException {
-<span class="nc" id="L66">    logger.info(&quot;Reading GLOBAL resources&quot;);</span>
+<span class="nc" id="L66">    logger.debug(&quot;Reading GLOBAL resources&quot;);</span>
 <span class="nc" id="L67">    List&lt;ApplicationResource&gt; resources = new ArrayList&lt;&gt;();</span>
 
 <span class="nc" id="L69">    MBeanServer server = getMBeanServer();</span>
@@ -74,7 +74,7 @@ import psiprobe.model.DataSourceInfo;
 <span class="nc bnc" id="L74" title="All 2 branches missed.">        for (ObjectName objectName : dsNames) {</span>
 <span class="nc" id="L75">          ApplicationResource resource = new ApplicationResource();</span>
 
-<span class="nc" id="L77">          logger.info(&quot;reading resource: {}&quot;, objectName);</span>
+<span class="nc" id="L77">          logger.debug(&quot;reading resource: {}&quot;, objectName);</span>
 <span class="nc" id="L78">          resource.setName(getStringAttribute(server, objectName, &quot;name&quot;));</span>
 <span class="nc" id="L79">          resource.setType(getStringAttribute(server, objectName, &quot;type&quot;));</span>
 <span class="nc" id="L80">          resource.setScope(getStringAttribute(server, objectName, &quot;scope&quot;));</span>
@@ -101,7 +101,7 @@ import psiprobe.model.DataSourceInfo;
 <span class="nc" id="L101">    boolean contextAvailable = containerWrapper.getTomcatContainer().getAvailable(context);</span>
 <span class="nc bnc" id="L102" title="All 2 branches missed.">    if (contextAvailable) {</span>
 
-<span class="nc" id="L104">      logger.info(&quot;Reading CONTEXT {}&quot;, context.getName());</span>
+<span class="nc" id="L104">      logger.debug(&quot;Reading CONTEXT {}&quot;, context.getName());</span>
 
 <span class="nc" id="L106">      boolean contextBound = false;</span>
 
@@ -153,7 +153,7 @@ import psiprobe.model.DataSourceInfo;
 <span class="nc" id="L153">          return;</span>
         }
 <span class="nc" id="L155">        String jndiName = resolveJndiName(resource.getName(), global);</span>
-<span class="nc" id="L156">        logger.info(&quot;reading resource jndi name: {}&quot;, jndiName);</span>
+<span class="nc" id="L156">        logger.debug(&quot;reading resource jndi name: {}&quot;, jndiName);</span>
 <span class="nc" id="L157">        Object obj = ctx.lookup(jndiName);</span>
 <span class="nc" id="L158">        resource.setLookedUp(true);</span>
 <span class="nc bnc" id="L159" title="All 2 branches missed.">        for (String accessorString : datasourceMappers) {</span>
@@ -345,4 +345,4 @@ import psiprobe.model.DataSourceInfo;
 <span class="nc" id="L345">    return globalContext;</span>
   }
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

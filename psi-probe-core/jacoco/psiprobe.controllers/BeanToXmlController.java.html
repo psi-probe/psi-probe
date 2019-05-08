@@ -11,6 +11,8 @@
 package psiprobe.controllers;
 
 import com.thoughtworks.xstream.XStream;
+
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,10 +26,14 @@ import psiprobe.model.TransportableModel;
  * The Class BeanToXmlController.
  */
 @org.springframework.stereotype.Controller
-<span class="fc" id="L27">public class BeanToXmlController extends AbstractController {</span>
+<span class="fc" id="L29">public class BeanToXmlController extends AbstractController {</span>
 
   /** The xml marker. */
   private String xmlMarker;
+
+  /** The xstream. */
+  @Inject
+  private XStream xstream;
 
   /**
    * Gets the xml marker.
@@ -35,7 +41,7 @@ import psiprobe.model.TransportableModel;
    * @return the xml marker
    */
   public String getXmlMarker() {
-<span class="fc" id="L38">    return xmlMarker;</span>
+<span class="fc" id="L44">    return xmlMarker;</span>
   }
 
   /**
@@ -45,36 +51,33 @@ import psiprobe.model.TransportableModel;
    */
   @Value(&quot;.oxml&quot;)
   public void setXmlMarker(String xmlMarker) {
-<span class="fc" id="L48">    this.xmlMarker = xmlMarker;</span>
-<span class="fc" id="L49">  }</span>
+<span class="fc" id="L54">    this.xmlMarker = xmlMarker;</span>
+<span class="fc" id="L55">  }</span>
 
   @RequestMapping(path = &quot;/*.oxml.htm&quot;)
   @Override
   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
       throws Exception {
-<span class="nc" id="L55">    return super.handleRequest(request, response);</span>
+<span class="nc" id="L61">    return super.handleRequest(request, response);</span>
   }
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 
-<span class="nc" id="L62">    String path = request.getServletPath();</span>
-<span class="nc" id="L63">    String internalPath = path.replaceAll(xmlMarker, &quot;&quot;);</span>
+<span class="nc" id="L68">    String path = request.getServletPath();</span>
+<span class="nc" id="L69">    String internalPath = path.replaceAll(xmlMarker, &quot;&quot;);</span>
 
-<span class="nc" id="L65">    Controller controller = (Controller) getApplicationContext().getBean(internalPath);</span>
-<span class="nc bnc" id="L66" title="All 2 branches missed.">    if (controller != null) {</span>
-<span class="nc" id="L67">      ModelAndView modelAndView = controller.handleRequest(request, response);</span>
-<span class="nc bnc" id="L68" title="All 2 branches missed.">      if (modelAndView.getModel() != null) {</span>
-<span class="nc" id="L69">        TransportableModel tm = new TransportableModel();</span>
-<span class="nc" id="L70">        tm.putAll(modelAndView.getModel());</span>
-<span class="nc" id="L71">        XStream xstream = new XStream();</span>
-<span class="nc" id="L72">        xstream.allowTypesByWildcard(new String[] {&quot;psibrobe.controllers.**&quot;});</span>
-<span class="nc" id="L73">        XStream.setupDefaultSecurity(xstream);</span>
-<span class="nc" id="L74">        xstream.toXML(tm, response.getWriter());</span>
+<span class="nc" id="L71">    Controller controller = (Controller) getApplicationContext().getBean(internalPath);</span>
+<span class="nc bnc" id="L72" title="All 2 branches missed.">    if (controller != null) {</span>
+<span class="nc" id="L73">      ModelAndView modelAndView = controller.handleRequest(request, response);</span>
+<span class="nc bnc" id="L74" title="All 2 branches missed.">      if (modelAndView.getModel() != null) {</span>
+<span class="nc" id="L75">        TransportableModel tm = new TransportableModel();</span>
+<span class="nc" id="L76">        tm.putAll(modelAndView.getModel());</span>
+<span class="nc" id="L77">        xstream.toXML(tm, response.getWriter());</span>
       }
     }
-<span class="nc" id="L77">    return null;</span>
+<span class="nc" id="L80">    return null;</span>
   }
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>
