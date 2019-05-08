@@ -238,7 +238,7 @@
         <checkstyle.version>8.20</checkstyle.version>
         <doxia.version>1.8</doxia.version>
         <ecj.version>3.17.0</ecj.version>
-        <fb-contrib.version>7.4.3.sb</fb-contrib.version>
+        <sb-contrib.version>7.4.5</sb-contrib.version>
         <findsecbugs.version>1.9.0</findsecbugs.version>
         <javac.version>9+181-r4173-1</javac.version>
         <wagon-git.version>2.0.3</wagon-git.version> <!-- Do not use 2.0.4 as it does not work with ssh -->
@@ -899,9 +899,9 @@
                     <configuration>
                         <plugins>
                             <plugin>
-                                <groupId>com.mebigfatguy.fb-contrib</groupId>
-                                <artifactId>fb-contrib</artifactId>
-                                <version>${fb-contrib.version}</version>
+                                <groupId>com.mebigfatguy.sb-contrib</groupId>
+                                <artifactId>sb-contrib</artifactId>
+                                <version>${sb-contrib.version}</version>
                             </plugin>
                             <plugin>
                                 <groupId>com.h3xstream.findsecbugs</groupId>
