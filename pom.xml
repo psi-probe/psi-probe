@@ -210,7 +210,7 @@
         <gpg.plugin>1.6</gpg.plugin>
         <install.plugin>3.0.0-M1</install.plugin>
         <jacoco.plugin>0.8.3</jacoco.plugin>
-        <jar.plugin>3.1.1</jar.plugin>
+        <jar.plugin>3.1.2</jar.plugin>
         <javadoc.plugin>3.1.0</javadoc.plugin>
         <jdeps.plugin>3.1.1</jdeps.plugin>
         <jspc.plugin>9.4.18.v20190429</jspc.plugin>
