@@ -238,7 +238,7 @@
         <checkstyle.version>8.21</checkstyle.version>
         <doxia.version>1.9</doxia.version>
         <ecj.version>3.17.0</ecj.version>
-        <sb-contrib.version>7.4.5</sb-contrib.version>
+        <sb-contrib.version>7.4.6</sb-contrib.version>
         <findsecbugs.version>1.9.0</findsecbugs.version>
         <javac.version>9+181-r4173-1</javac.version>
         <wagon-git.version>2.0.3</wagon-git.version> <!-- Do not use 2.0.4 as it does not work with ssh -->
