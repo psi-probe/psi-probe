@@ -205,7 +205,7 @@
         <dependency.plugin>3.1.1</dependency.plugin>
         <dependency-check.plugin>5.0.0</dependency-check.plugin>
         <deploy.plugin>3.0.0-M1</deploy.plugin>
-        <formatter.plugin>2.9.0</formatter.plugin>
+        <formatter.plugin>2.10.0</formatter.plugin>
         <git-commit.plugin>3.0.0</git-commit.plugin>
         <gpg.plugin>1.6</gpg.plugin>
         <install.plugin>3.0.0-M1</install.plugin>
