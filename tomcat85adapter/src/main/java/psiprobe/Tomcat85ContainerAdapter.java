@@ -56,6 +56,7 @@ public class Tomcat85ContainerAdapter extends AbstractTomcatContainer {
     }
     return binding.startsWith("Apache Tomcat/8.5")
         || binding.startsWith("Apache Tomcat (TomEE)/8.5")
+        || binding.startsWith("NonStop(tm) Servlets For JavaServer Pages(tm) v8.5")
         || binding.startsWith("Pivotal tc") && binding.contains("/8.5");
   }
 

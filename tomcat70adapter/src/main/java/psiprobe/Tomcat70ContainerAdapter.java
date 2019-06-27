@@ -56,7 +56,6 @@ public class Tomcat70ContainerAdapter extends AbstractTomcatContainer {
         || binding.startsWith("Apache Tomcat (TomEE)/7.0")
         // JBoss Dropped Tomcat in favor of Undertow after these versions
         || binding.startsWith("JBoss Web/3.0") || binding.startsWith("JBoss Web/7.0")
-        // HP Nonstop plans to support Tomcat 8 in late 2017
         || binding.startsWith("NonStop(tm) Servlets For JavaServer Pages(tm) v7.0")
         // Next three are all really the same re-bundled as springsource evolved to pivotal
         || binding.startsWith("SpringSource tc") && binding.contains("/7.0")
