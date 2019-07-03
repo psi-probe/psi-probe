@@ -209,7 +209,7 @@
         <git-commit.plugin>3.0.0</git-commit.plugin>
         <gpg.plugin>1.6</gpg.plugin>
         <install.plugin>3.0.0-M1</install.plugin>
-        <jacoco.plugin>0.8.3</jacoco.plugin>
+        <jacoco.plugin>0.8.4</jacoco.plugin>
         <jar.plugin>3.1.2</jar.plugin>
         <javadoc.plugin>3.1.0</javadoc.plugin>
         <jdeps.plugin>3.1.2</jdeps.plugin>
