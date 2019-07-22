@@ -226,7 +226,7 @@
         <site.plugin>3.7.1</site.plugin>
         <sonar.plugin>3.6.0.1398</sonar.plugin>
         <source.plugin>3.1.0</source.plugin>
-        <spotbugs.plugin>3.1.12</spotbugs.plugin>
+        <spotbugs.plugin>3.1.12.1</spotbugs.plugin>
         <surefire.plugin>3.0.0-M3</surefire.plugin>
         <tidy.plugin>1.1.0</tidy.plugin>
         <versions.plugin>2.7</versions.plugin>
