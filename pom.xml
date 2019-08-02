@@ -145,7 +145,7 @@
         <beanutils.version>1.9.3</beanutils.version>
         <bonecp.version>0.8.0.RELEASE</bonecp.version>
         <c3p0.version>0.9.5.4</c3p0.version>
-        <checker.version>2.9.0</checker.version>
+        <checker.version>2.10.0</checker.version>
         <collections.version>3.2.2</collections.version>
         <dbcp.version>1.4</dbcp.version>
         <dbcp2.version>2.6.0</dbcp2.version>
