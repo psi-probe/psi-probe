@@ -86,6 +86,23 @@ public class OshiController extends AbstractTomcatContainerController {
     oshi.add("");
     oshi.add("");
 
+    this.initialize();
+
+    ModelAndView mv = new ModelAndView(getViewName());
+    mv.addObject("oshi", oshi);
+    return mv;
+  }
+
+  @Value("oshi")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
+  }
+
+  /**
+   * Process initialization using Oshi System Info Test.
+   */
+  private void initialize() {
     logger.debug("Initializing System...");
     SystemInfo si = new SystemInfo();
 
@@ -146,16 +163,6 @@ public class OshiController extends AbstractTomcatContainerController {
       }
     }
     logger.debug("Printing List: {}", output);
-
-    ModelAndView mv = new ModelAndView(getViewName());
-    mv.addObject("oshi", oshi);
-    return mv;
-  }
-
-  @Value("oshi")
-  @Override
-  public void setViewName(String viewName) {
-    super.setViewName(viewName);
   }
 
   /**
