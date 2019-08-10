@@ -10,6 +10,7 @@
  */
 package psiprobe.controllers.oshi;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -37,6 +38,7 @@ import oshi.hardware.PowerSource;
 import oshi.hardware.Sensors;
 import oshi.hardware.SoundCard;
 import oshi.hardware.UsbDevice;
+import oshi.hardware.VirtualMemory;
 import oshi.software.os.FileSystem;
 import oshi.software.os.NetworkParams;
 import oshi.software.os.OSFileStore;
@@ -86,13 +88,32 @@ public class OshiController extends AbstractTomcatContainerController {
     oshi.add("");
     oshi.add("");
 
+    this.initialize();
+
+    ModelAndView mv = new ModelAndView(getViewName());
+    mv.addObject("oshi", oshi);
+    return mv;
+  }
+
+  @Value("oshi")
+  @Override
+  public void setViewName(String viewName) {
+    super.setViewName(viewName);
+  }
+
+  /**
+   * Process initialization using Oshi System Info Test (code copied from Oshi).
+   * 
+   * Logging switched from 'info' to 'debug' for psi probe usage.
+   */
+  private void initialize() {
     logger.debug("Initializing System...");
     SystemInfo si = new SystemInfo();
 
     HardwareAbstractionLayer hal = si.getHardware();
     OperatingSystem os = si.getOperatingSystem();
 
-    oshi.add(String.valueOf(os));
+    printOperatingSystem(os);
 
     logger.debug("Checking computer system...");
     printComputerSystem(hal.getComputerSystem());
@@ -141,21 +162,23 @@ public class OshiController extends AbstractTomcatContainerController {
     StringBuilder output = new StringBuilder();
     for (int i = 0; i < oshi.size(); i++) {
       output.append(oshi.get(i));
-      if (!"\n".equals(oshi.get(i))) {
+      if (oshi.get(i) != null && !oshi.get(i).equals("\n")) {
         output.append('\n');
       }
     }
-    logger.debug("Printing List: {}", output);
-
-    ModelAndView mv = new ModelAndView(getViewName());
-    mv.addObject("oshi", oshi);
-    return mv;
+    logger.debug("Printing Operating System and Hardware Info:{}{}", '\n', output);
   }
 
-  @Value("oshi")
-  @Override
-  public void setViewName(String viewName) {
-    super.setViewName(viewName);
+  /**
+   * Prints the operating system.
+   *
+   * @param operatingSystem the operating system
+   */
+  private static void printOperatingSystem(final OperatingSystem os) {
+    oshi.add(String.valueOf(os));
+    oshi.add("Booted: " + Instant.ofEpochSecond(os.getSystemBootTime()));
+    oshi.add("Uptime: " + FormatUtil.formatElapsedSecs(os.getSystemUptime()));
+    oshi.add("Running with" + (os.isElevated() ? "" : "out") + " elevated permissions.");
   }
 
   /**
@@ -182,9 +205,6 @@ public class OshiController extends AbstractTomcatContainerController {
     oshi.add("  model: " + baseboard.getModel());
     oshi.add("  version: " + baseboard.getVersion());
     oshi.add("  serialnumber: " + baseboard.getSerialNumber());
-    if (Util.identifyVM().length() > 0) {
-      oshi.add("virtualization: " + Util.identifyVM());
-    }
   }
 
   /**
@@ -210,8 +230,9 @@ public class OshiController extends AbstractTomcatContainerController {
   private static void printMemory(GlobalMemory memory) {
     oshi.add("Memory: " + FormatUtil.formatBytes(memory.getAvailable()) + "/"
         + FormatUtil.formatBytes(memory.getTotal()));
-    oshi.add("Swap used: " + FormatUtil.formatBytes(memory.getSwapUsed()) + "/"
-        + FormatUtil.formatBytes(memory.getSwapTotal()));
+    final VirtualMemory vm = memory.getVirtualMemory();
+    oshi.add("Swap used: " + FormatUtil.formatBytes(vm.getSwapUsed()) + "/"
+        + FormatUtil.formatBytes(vm.getSwapTotal()));
   }
 
   /**
@@ -220,11 +241,11 @@ public class OshiController extends AbstractTomcatContainerController {
    * @param processor the processor
    */
   private static void printCpu(CentralProcessor processor) {
-    oshi.add("Uptime: " + FormatUtil.formatElapsedSecs(processor.getSystemUptime()));
     oshi.add("Context Switches/Interrupts: " + processor.getContextSwitches() + " / "
         + processor.getInterrupts());
 
     long[] prevTicks = processor.getSystemCpuLoadTicks();
+    long[][] prevProcTicks = processor.getProcessorCpuLoadTicks();
     oshi.add("CPU, IOWait, and IRQ ticks @ 0 sec:" + Arrays.toString(prevTicks));
     // Wait a second...
     Util.sleep(1000);
@@ -245,9 +266,8 @@ public class OshiController extends AbstractTomcatContainerController {
         100d * user / totalCpu, 100d * nice / totalCpu, 100d * sys / totalCpu,
         100d * idle / totalCpu, 100d * iowait / totalCpu, 100d * irq / totalCpu,
         100d * softirq / totalCpu, 100d * steal / totalCpu));
-    oshi.add(String.format("CPU load: %.1f%% (counting ticks)%n",
-        processor.getSystemCpuLoadBetweenTicks() * 100));
-    oshi.add(String.format("CPU load: %.1f%% (OS MXBean)%n", processor.getSystemCpuLoad() * 100));
+    oshi.add(String.format("CPU load: %.1f%%%n",
+        processor.getSystemCpuLoadBetweenTicks(prevTicks) * 100));
     double[] loadAverage = processor.getSystemLoadAverage(3);
     oshi.add("CPU load averages:"
         + (loadAverage[0] < 0 ? " N/A" : String.format(" %.2f", loadAverage[0]))
@@ -255,11 +275,30 @@ public class OshiController extends AbstractTomcatContainerController {
         + (loadAverage[2] < 0 ? " N/A" : String.format(" %.2f", loadAverage[2])));
     // per core CPU
     StringBuilder procCpu = new StringBuilder("CPU load per processor:");
-    double[] load = processor.getProcessorCpuLoadBetweenTicks();
+    double[] load = processor.getProcessorCpuLoadBetweenTicks(prevProcTicks);
     for (double avg : load) {
       procCpu.append(String.format(" %.1f%%", avg * 100));
     }
     oshi.add(procCpu.toString());
+    long freq = processor.getVendorFreq();
+    if (freq > 0) {
+      oshi.add("Vendor Frequency: " + FormatUtil.formatHertz(freq));
+    }
+    freq = processor.getMaxFreq();
+    if (freq > 0) {
+      oshi.add("Max Frequency: " + FormatUtil.formatHertz(freq));
+    }
+    long[] freqs = processor.getCurrentFreq();
+    if (freqs[0] > 0) {
+      StringBuilder sb = new StringBuilder("Current Frequencies: ");
+      for (int i = 0; i < freqs.length; i++) {
+        if (i > 0) {
+          sb.append(", ");
+        }
+        sb.append(FormatUtil.formatHertz(freqs[i]));
+      }
+      oshi.add(sb.toString());
+    }
   }
 
   /**
@@ -377,7 +416,8 @@ public class OshiController extends AbstractTomcatContainerController {
               + " and is mounted at %s%n",
           fs.getName(), fs.getDescription().isEmpty() ? "file system" : fs.getDescription(),
           fs.getType(), FormatUtil.formatBytes(usable), FormatUtil.formatBytes(fs.getTotalSpace()),
-          100d * usable / total, fs.getFreeInodes(), fs.getTotalInodes(),
+          100d * usable / total, FormatUtil.formatValue(fs.getFreeInodes(), ""),
+          FormatUtil.formatValue(fs.getTotalInodes(), ""),
           100d * fs.getFreeInodes() / fs.getTotalInodes(), fs.getVolume(), fs.getLogicalVolume(),
           fs.getMount()));
     }
@@ -461,4 +501,5 @@ public class OshiController extends AbstractTomcatContainerController {
       oshi.add(String.valueOf(card));
     }
   }
+
 }
