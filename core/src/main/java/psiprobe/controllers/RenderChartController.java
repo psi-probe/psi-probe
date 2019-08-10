@@ -16,14 +16,13 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartUtilities;
+import org.jfree.chart.ChartUtils;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.DateAxis;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.renderer.xy.XYAreaRenderer;
-import org.jfree.chart.renderer.xy.XYLine3DRenderer;
+import org.jfree.chart.ui.RectangleInsets;
 import org.jfree.data.xy.DefaultTableXYDataset;
-import org.jfree.ui.RectangleInsets;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -33,6 +32,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
 import psiprobe.Utils;
 import psiprobe.beans.stats.providers.SeriesProvider;
+import psiprobe.jfreechart.XYLine3DRenderer;
 import psiprobe.model.stats.StatsCollection;
 
 /**
@@ -197,7 +197,7 @@ public class RenderChartController extends AbstractController {
 
       response.setHeader("Content-type", "image/png");
       response.getOutputStream()
-          .write(ChartUtilities.encodeAsPNG(chart.createBufferedImage(width, height)));
+          .write(ChartUtils.encodeAsPNG(chart.createBufferedImage(width, height)));
     }
 
     return null;
