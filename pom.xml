@@ -206,7 +206,7 @@
         <dependency-check.plugin>5.2.1</dependency-check.plugin>
         <deploy.plugin>3.0.0-M1</deploy.plugin>
         <formatter.plugin>2.10.0</formatter.plugin>
-        <git-commit.plugin>3.0.0</git-commit.plugin>
+        <git-commit.plugin>3.0.1</git-commit.plugin>
         <gpg.plugin>1.6</gpg.plugin>
         <install.plugin>3.0.0-M1</install.plugin>
         <jacoco.plugin>0.8.4</jacoco.plugin>
