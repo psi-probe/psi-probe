@@ -180,7 +180,7 @@
         <pool.version>1.6</pool.version>
         <probe-ojdbc.version>3.1.1</probe-ojdbc.version>
         <quartz.version>2.3.1</quartz.version>
-        <servlet-api.version>4.0.2</servlet-api.version>
+        <servlet-api.version>4.0.3</servlet-api.version>
         <sitemesh.version>2.4.2</sitemesh.version>
         <slf4j.version>1.7.28</slf4j.version>
         <spring.version>5.1.9.RELEASE</spring.version>
