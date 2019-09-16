@@ -56,12 +56,11 @@ import psiprobe.model.FilterMapping;
 <span class="fc bfc" id="L56" title="All 2 branches covered.">        || binding.startsWith(&quot;Apache Tomcat (TomEE)/7.0&quot;)</span>
         // JBoss Dropped Tomcat in favor of Undertow after these versions
 <span class="fc bfc" id="L58" title="All 4 branches covered.">        || binding.startsWith(&quot;JBoss Web/3.0&quot;) || binding.startsWith(&quot;JBoss Web/7.0&quot;)</span>
-        // HP Nonstop plans to support Tomcat 8 in late 2017
-<span class="fc bfc" id="L60" title="All 2 branches covered.">        || binding.startsWith(&quot;NonStop(tm) Servlets For JavaServer Pages(tm) v7.0&quot;)</span>
+<span class="fc bfc" id="L59" title="All 2 branches covered.">        || binding.startsWith(&quot;NonStop(tm) Servlets For JavaServer Pages(tm) v7.0&quot;)</span>
         // Next three are all really the same re-bundled as springsource evolved to pivotal
-<span class="fc bfc" id="L62" title="All 4 branches covered.">        || binding.startsWith(&quot;SpringSource tc&quot;) &amp;&amp; binding.contains(&quot;/7.0&quot;)</span>
-<span class="fc bfc" id="L63" title="All 4 branches covered.">        || binding.startsWith(&quot;VMware vFabric tc&quot;) &amp;&amp; binding.contains(&quot;/7.0&quot;)</span>
-<span class="fc bfc" id="L64" title="All 4 branches covered.">        || binding.startsWith(&quot;Pivotal tc&quot;) &amp;&amp; binding.contains(&quot;/7.0&quot;);</span>
+<span class="fc bfc" id="L61" title="All 4 branches covered.">        || binding.startsWith(&quot;SpringSource tc&quot;) &amp;&amp; binding.contains(&quot;/7.0&quot;)</span>
+<span class="fc bfc" id="L62" title="All 4 branches covered.">        || binding.startsWith(&quot;VMware vFabric tc&quot;) &amp;&amp; binding.contains(&quot;/7.0&quot;)</span>
+<span class="fc bfc" id="L63" title="All 4 branches covered.">        || binding.startsWith(&quot;Pivotal tc&quot;) &amp;&amp; binding.contains(&quot;/7.0&quot;);</span>
   }
 
   /**
@@ -73,112 +72,112 @@ import psiprobe.model.FilterMapping;
    * @return the filter mappings
    */
   protected List&lt;FilterMapping&gt; getFilterMappings(FilterMap fmap, String dm, String filterClass) {
-<span class="fc" id="L76">    String[] urls = fmap.getURLPatterns();</span>
-<span class="fc" id="L77">    String[] servlets = fmap.getServletNames();</span>
-<span class="fc" id="L78">    List&lt;FilterMapping&gt; results = new ArrayList&lt;&gt;(urls.length + servlets.length);</span>
-<span class="fc" id="L79">    addFilterMapping(fmap.getFilterName(), dm, filterClass, urls, results, FilterMapType.URL);</span>
-<span class="fc" id="L80">    addFilterMapping(fmap.getFilterName(), dm, filterClass, servlets, results,</span>
+<span class="fc" id="L75">    String[] urls = fmap.getURLPatterns();</span>
+<span class="fc" id="L76">    String[] servlets = fmap.getServletNames();</span>
+<span class="fc" id="L77">    List&lt;FilterMapping&gt; results = new ArrayList&lt;&gt;(urls.length + servlets.length);</span>
+<span class="fc" id="L78">    addFilterMapping(fmap.getFilterName(), dm, filterClass, urls, results, FilterMapType.URL);</span>
+<span class="fc" id="L79">    addFilterMapping(fmap.getFilterName(), dm, filterClass, servlets, results,</span>
         FilterMapType.SERVLET_NAME);
-<span class="fc" id="L82">    return results;</span>
+<span class="fc" id="L81">    return results;</span>
   }
 
   @Override
   protected JspCompilationContext createJspCompilationContext(String name, Options opt,
       ServletContext sctx, JspRuntimeContext jrctx, ClassLoader classLoader) {
 
-<span class="fc" id="L89">    JspCompilationContext jcctx = new JspCompilationContext(name, opt, sctx, null, jrctx);</span>
-<span class="fc" id="L90">    jcctx.setClassLoader(classLoader);</span>
-<span class="fc" id="L91">    return jcctx;</span>
+<span class="fc" id="L88">    JspCompilationContext jcctx = new JspCompilationContext(name, opt, sctx, null, jrctx);</span>
+<span class="fc" id="L89">    jcctx.setClassLoader(classLoader);</span>
+<span class="fc" id="L90">    return jcctx;</span>
   }
 
   @Override
   public void addContextResourceLink(Context context, List&lt;ApplicationResource&gt; resourceList,
       boolean contextBound) {
 
-<span class="fc" id="L98">    NamingResources namingResources = context.getNamingResources();</span>
-<span class="pc bpc" id="L99" title="1 of 2 branches missed.">    for (ContextResourceLink link : namingResources.findResourceLinks()) {</span>
-<span class="nc" id="L100">      ApplicationResource resource = new ApplicationResource();</span>
+<span class="fc" id="L97">    NamingResources namingResources = context.getNamingResources();</span>
+<span class="pc bpc" id="L98" title="1 of 2 branches missed.">    for (ContextResourceLink link : namingResources.findResourceLinks()) {</span>
+<span class="nc" id="L99">      ApplicationResource resource = new ApplicationResource();</span>
 
-<span class="nc" id="L102">      logger.debug(&quot;reading resourceLink: {}&quot;, link.getName());</span>
-<span class="nc" id="L103">      resource.setApplicationName(context.getName());</span>
-<span class="nc" id="L104">      resource.setName(link.getName());</span>
-<span class="nc" id="L105">      resource.setType(link.getType());</span>
-<span class="nc" id="L106">      resource.setLinkTo(link.getGlobal());</span>
+<span class="nc" id="L101">      logger.debug(&quot;reading resourceLink: {}&quot;, link.getName());</span>
+<span class="nc" id="L102">      resource.setApplicationName(context.getName());</span>
+<span class="nc" id="L103">      resource.setName(link.getName());</span>
+<span class="nc" id="L104">      resource.setType(link.getType());</span>
+<span class="nc" id="L105">      resource.setLinkTo(link.getGlobal());</span>
 
-<span class="nc" id="L108">      resourceList.add(resource);</span>
+<span class="nc" id="L107">      resourceList.add(resource);</span>
     }
-<span class="fc" id="L110">  }</span>
+<span class="fc" id="L109">  }</span>
 
   @Override
   public void addContextResource(Context context, List&lt;ApplicationResource&gt; resourceList,
       boolean contextBound) {
-<span class="fc" id="L115">    NamingResources namingResources = context.getNamingResources();</span>
-<span class="pc bpc" id="L116" title="1 of 2 branches missed.">    for (ContextResource contextResource : namingResources.findResources()) {</span>
-<span class="nc" id="L117">      ApplicationResource resource = new ApplicationResource();</span>
+<span class="fc" id="L114">    NamingResources namingResources = context.getNamingResources();</span>
+<span class="pc bpc" id="L115" title="1 of 2 branches missed.">    for (ContextResource contextResource : namingResources.findResources()) {</span>
+<span class="nc" id="L116">      ApplicationResource resource = new ApplicationResource();</span>
 
-<span class="nc" id="L119">      logger.info(&quot;reading resource: {}&quot;, contextResource.getName());</span>
-<span class="nc" id="L120">      resource.setApplicationName(context.getName());</span>
-<span class="nc" id="L121">      resource.setName(contextResource.getName());</span>
-<span class="nc" id="L122">      resource.setType(contextResource.getType());</span>
-<span class="nc" id="L123">      resource.setScope(contextResource.getScope());</span>
-<span class="nc" id="L124">      resource.setAuth(contextResource.getAuth());</span>
-<span class="nc" id="L125">      resource.setDescription(contextResource.getDescription());</span>
+<span class="nc" id="L118">      logger.info(&quot;reading resource: {}&quot;, contextResource.getName());</span>
+<span class="nc" id="L119">      resource.setApplicationName(context.getName());</span>
+<span class="nc" id="L120">      resource.setName(contextResource.getName());</span>
+<span class="nc" id="L121">      resource.setType(contextResource.getType());</span>
+<span class="nc" id="L122">      resource.setScope(contextResource.getScope());</span>
+<span class="nc" id="L123">      resource.setAuth(contextResource.getAuth());</span>
+<span class="nc" id="L124">      resource.setDescription(contextResource.getDescription());</span>
 
-<span class="nc" id="L127">      resourceList.add(resource);</span>
+<span class="nc" id="L126">      resourceList.add(resource);</span>
     }
-<span class="fc" id="L129">  }</span>
+<span class="fc" id="L128">  }</span>
 
   @Override
   public List&lt;FilterMapping&gt; getApplicationFilterMaps(Context context) {
-<span class="fc" id="L133">    FilterMap[] fms = context.findFilterMaps();</span>
-<span class="fc" id="L134">    List&lt;FilterMapping&gt; filterMaps = new ArrayList&lt;&gt;(fms.length);</span>
-<span class="fc bfc" id="L135" title="All 2 branches covered.">    for (FilterMap filterMap : fms) {</span>
-<span class="pc bpc" id="L136" title="1 of 2 branches missed.">      if (filterMap != null) {</span>
+<span class="fc" id="L132">    FilterMap[] fms = context.findFilterMaps();</span>
+<span class="fc" id="L133">    List&lt;FilterMapping&gt; filterMaps = new ArrayList&lt;&gt;(fms.length);</span>
+<span class="fc bfc" id="L134" title="All 2 branches covered.">    for (FilterMap filterMap : fms) {</span>
+<span class="pc bpc" id="L135" title="1 of 2 branches missed.">      if (filterMap != null) {</span>
         String dm;
-<span class="pc bpc" id="L138" title="5 of 6 branches missed.">        switch (filterMap.getDispatcherMapping()) {</span>
+<span class="pc bpc" id="L137" title="5 of 6 branches missed.">        switch (filterMap.getDispatcherMapping()) {</span>
           case FilterMap.ASYNC:
-<span class="nc" id="L140">            dm = &quot;ASYNC&quot;;</span>
-<span class="nc" id="L141">            break;</span>
+<span class="nc" id="L139">            dm = &quot;ASYNC&quot;;</span>
+<span class="nc" id="L140">            break;</span>
           case FilterMap.ERROR:
-<span class="nc" id="L143">            dm = &quot;ERROR&quot;;</span>
-<span class="nc" id="L144">            break;</span>
+<span class="nc" id="L142">            dm = &quot;ERROR&quot;;</span>
+<span class="nc" id="L143">            break;</span>
           case FilterMap.FORWARD:
-<span class="nc" id="L146">            dm = &quot;FORWARD&quot;;</span>
-<span class="nc" id="L147">            break;</span>
+<span class="nc" id="L145">            dm = &quot;FORWARD&quot;;</span>
+<span class="nc" id="L146">            break;</span>
           case FilterMap.INCLUDE:
-<span class="nc" id="L149">            dm = &quot;INCLUDE&quot;;</span>
-<span class="nc" id="L150">            break;</span>
+<span class="nc" id="L148">            dm = &quot;INCLUDE&quot;;</span>
+<span class="nc" id="L149">            break;</span>
           case FilterMap.REQUEST:
-<span class="fc" id="L152">            dm = &quot;REQUEST&quot;;</span>
-<span class="fc" id="L153">            break;</span>
+<span class="fc" id="L151">            dm = &quot;REQUEST&quot;;</span>
+<span class="fc" id="L152">            break;</span>
           default:
-<span class="nc" id="L155">            dm = &quot;&quot;;</span>
+<span class="nc" id="L154">            dm = &quot;&quot;;</span>
         }
 
-<span class="fc" id="L158">        String filterClass = &quot;&quot;;</span>
-<span class="fc" id="L159">        FilterDef fd = context.findFilterDef(filterMap.getFilterName());</span>
-<span class="pc bpc" id="L160" title="1 of 2 branches missed.">        if (fd != null) {</span>
-<span class="fc" id="L161">          filterClass = fd.getFilterClass();</span>
+<span class="fc" id="L157">        String filterClass = &quot;&quot;;</span>
+<span class="fc" id="L158">        FilterDef fd = context.findFilterDef(filterMap.getFilterName());</span>
+<span class="pc bpc" id="L159" title="1 of 2 branches missed.">        if (fd != null) {</span>
+<span class="fc" id="L160">          filterClass = fd.getFilterClass();</span>
         }
 
-<span class="fc" id="L164">        List&lt;FilterMapping&gt; filterMappings = getFilterMappings(filterMap, dm, filterClass);</span>
-<span class="fc" id="L165">        filterMaps.addAll(filterMappings);</span>
+<span class="fc" id="L163">        List&lt;FilterMapping&gt; filterMappings = getFilterMappings(filterMap, dm, filterClass);</span>
+<span class="fc" id="L164">        filterMaps.addAll(filterMappings);</span>
       }
     }
-<span class="fc" id="L168">    return filterMaps;</span>
+<span class="fc" id="L167">    return filterMaps;</span>
   }
 
   @Override
   public List&lt;FilterInfo&gt; getApplicationFilters(Context context) {
-<span class="fc" id="L173">    FilterDef[] fds = context.findFilterDefs();</span>
-<span class="fc" id="L174">    List&lt;FilterInfo&gt; filterDefs = new ArrayList&lt;&gt;(fds.length);</span>
-<span class="fc bfc" id="L175" title="All 2 branches covered.">    for (FilterDef filterDef : fds) {</span>
-<span class="pc bpc" id="L176" title="1 of 2 branches missed.">      if (filterDef != null) {</span>
-<span class="fc" id="L177">        FilterInfo fi = getFilterInfo(filterDef);</span>
-<span class="fc" id="L178">        filterDefs.add(fi);</span>
+<span class="fc" id="L172">    FilterDef[] fds = context.findFilterDefs();</span>
+<span class="fc" id="L173">    List&lt;FilterInfo&gt; filterDefs = new ArrayList&lt;&gt;(fds.length);</span>
+<span class="fc bfc" id="L174" title="All 2 branches covered.">    for (FilterDef filterDef : fds) {</span>
+<span class="pc bpc" id="L175" title="1 of 2 branches missed.">      if (filterDef != null) {</span>
+<span class="fc" id="L176">        FilterInfo fi = getFilterInfo(filterDef);</span>
+<span class="fc" id="L177">        filterDefs.add(fi);</span>
       }
     }
-<span class="fc" id="L181">    return filterDefs;</span>
+<span class="fc" id="L180">    return filterDefs;</span>
   }
 
   /**
@@ -188,11 +187,11 @@ import psiprobe.model.FilterMapping;
    * @return the filter info
    */
   private static FilterInfo getFilterInfo(FilterDef fd) {
-<span class="fc" id="L191">    FilterInfo fi = new FilterInfo();</span>
-<span class="fc" id="L192">    fi.setFilterName(fd.getFilterName());</span>
-<span class="fc" id="L193">    fi.setFilterClass(fd.getFilterClass());</span>
-<span class="fc" id="L194">    fi.setFilterDesc(fd.getDescription());</span>
-<span class="fc" id="L195">    return fi;</span>
+<span class="fc" id="L190">    FilterInfo fi = new FilterInfo();</span>
+<span class="fc" id="L191">    fi.setFilterName(fd.getFilterName());</span>
+<span class="fc" id="L192">    fi.setFilterClass(fd.getFilterClass());</span>
+<span class="fc" id="L193">    fi.setFilterDesc(fd.getDescription());</span>
+<span class="fc" id="L194">    return fi;</span>
   }
 
   @Override
@@ -216,66 +215,66 @@ import psiprobe.model.FilterMapping;
      * creating a set of parameter names that are declared in a context descriptor and can not be
      * overridden in a deployment descriptor.
      */
-<span class="fc" id="L219">    Set&lt;String&gt; nonOverridableParams = new HashSet&lt;&gt;();</span>
-<span class="fc bfc" id="L220" title="All 2 branches covered.">    for (ApplicationParameter appParam : context.findApplicationParameters()) {</span>
-<span class="pc bpc" id="L221" title="2 of 4 branches missed.">      if (appParam != null &amp;&amp; !appParam.getOverride()) {</span>
-<span class="nc" id="L222">        nonOverridableParams.add(appParam.getName());</span>
+<span class="fc" id="L218">    Set&lt;String&gt; nonOverridableParams = new HashSet&lt;&gt;();</span>
+<span class="fc bfc" id="L219" title="All 2 branches covered.">    for (ApplicationParameter appParam : context.findApplicationParameters()) {</span>
+<span class="pc bpc" id="L220" title="2 of 4 branches missed.">      if (appParam != null &amp;&amp; !appParam.getOverride()) {</span>
+<span class="nc" id="L221">        nonOverridableParams.add(appParam.getName());</span>
       }
     }
-<span class="fc" id="L225">    List&lt;ApplicationParam&gt; initParams = new ArrayList&lt;&gt;(20);</span>
-<span class="fc" id="L226">    ServletContext servletCtx = context.getServletContext();</span>
-<span class="pc bpc" id="L227" title="1 of 2 branches missed.">    for (String paramName : Collections.list(servletCtx.getInitParameterNames())) {</span>
-<span class="nc" id="L228">      ApplicationParam param = new ApplicationParam();</span>
-<span class="nc" id="L229">      param.setName(paramName);</span>
-<span class="nc" id="L230">      param.setValue(servletCtx.getInitParameter(paramName));</span>
+<span class="fc" id="L224">    List&lt;ApplicationParam&gt; initParams = new ArrayList&lt;&gt;(20);</span>
+<span class="fc" id="L225">    ServletContext servletCtx = context.getServletContext();</span>
+<span class="pc bpc" id="L226" title="1 of 2 branches missed.">    for (String paramName : Collections.list(servletCtx.getInitParameterNames())) {</span>
+<span class="nc" id="L227">      ApplicationParam param = new ApplicationParam();</span>
+<span class="nc" id="L228">      param.setName(paramName);</span>
+<span class="nc" id="L229">      param.setValue(servletCtx.getInitParameter(paramName));</span>
       /*
        * if the parameter is declared in a deployment descriptor and it is not declared in a context
        * descriptor with override=false, the value comes from the deployment descriptor
        */
-<span class="nc" id="L235">      param.setFromDeplDescr(</span>
-<span class="nc bnc" id="L236" title="All 4 branches missed.">          context.findParameter(paramName) != null &amp;&amp; !nonOverridableParams.contains(paramName));</span>
-<span class="nc" id="L237">      initParams.add(param);</span>
-<span class="nc" id="L238">    }</span>
-<span class="fc" id="L239">    return initParams;</span>
+<span class="nc" id="L234">      param.setFromDeplDescr(</span>
+<span class="nc bnc" id="L235" title="All 4 branches missed.">          context.findParameter(paramName) != null &amp;&amp; !nonOverridableParams.contains(paramName));</span>
+<span class="nc" id="L236">      initParams.add(param);</span>
+<span class="nc" id="L237">    }</span>
+<span class="fc" id="L238">    return initParams;</span>
   }
 
   @Override
   public boolean resourceExists(String name, Context context) {
     try {
-<span class="pc bpc" id="L245" title="1 of 2 branches missed.">      return context.getResources().lookup(name) != null;</span>
-<span class="nc" id="L246">    } catch (NamingException ex) {</span>
-<span class="nc" id="L247">      logger.trace(&quot;&quot;, ex);</span>
-<span class="nc" id="L248">      throw new RuntimeException(ex);</span>
+<span class="pc bpc" id="L244" title="1 of 2 branches missed.">      return context.getResources().lookup(name) != null;</span>
+<span class="nc" id="L245">    } catch (NamingException ex) {</span>
+<span class="nc" id="L246">      logger.trace(&quot;&quot;, ex);</span>
+<span class="nc" id="L247">      throw new RuntimeException(ex);</span>
     }
   }
 
   @Override
   public InputStream getResourceStream(String name, Context context) throws IOException {
     try {
-<span class="fc" id="L255">      return ((Resource) context.getResources().lookup(name)).streamContent();</span>
-<span class="nc" id="L256">    } catch (NamingException ex) {</span>
-<span class="nc" id="L257">      logger.trace(&quot;&quot;, ex);</span>
-<span class="nc" id="L258">      throw new RuntimeException(ex);</span>
+<span class="fc" id="L254">      return ((Resource) context.getResources().lookup(name)).streamContent();</span>
+<span class="nc" id="L255">    } catch (NamingException ex) {</span>
+<span class="nc" id="L256">      logger.trace(&quot;&quot;, ex);</span>
+<span class="nc" id="L257">      throw new RuntimeException(ex);</span>
     }
   }
 
   @Override
   public Long[] getResourceAttributes(String name, Context context) {
-<span class="fc" id="L264">    Long[] result = new Long[2];</span>
+<span class="fc" id="L263">    Long[] result = new Long[2];</span>
     try {
-<span class="fc" id="L266">      ResourceAttributes resource = (ResourceAttributes) context.getResources().getAttributes(name);</span>
-<span class="fc" id="L267">      result[0] = resource.getContentLength();</span>
-<span class="fc" id="L268">      result[1] = resource.getLastModified();</span>
-<span class="nc" id="L269">    } catch (NamingException ex) {</span>
-<span class="nc" id="L270">      logger.trace(&quot;&quot;, ex);</span>
-<span class="fc" id="L271">    }</span>
-<span class="fc" id="L272">    return result;</span>
+<span class="fc" id="L265">      ResourceAttributes resource = (ResourceAttributes) context.getResources().getAttributes(name);</span>
+<span class="fc" id="L266">      result[0] = resource.getContentLength();</span>
+<span class="fc" id="L267">      result[1] = resource.getLastModified();</span>
+<span class="nc" id="L268">    } catch (NamingException ex) {</span>
+<span class="nc" id="L269">      logger.trace(&quot;&quot;, ex);</span>
+<span class="fc" id="L270">    }</span>
+<span class="fc" id="L271">    return result;</span>
   }
 
   @Override
   protected Object getNamingToken(Context context) {
-<span class="fc" id="L277">    return context;</span>
+<span class="fc" id="L276">    return context;</span>
   }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>
