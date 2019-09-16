@@ -159,6 +159,8 @@ public class OshiController extends AbstractTomcatContainerController {
     logger.debug("Checking Sound Cards...");
     printSoundCards(hal.getSoundCards());
 
+    oshi.add("Finished Operating System and Hardware Info Dump");
+
     StringBuilder output = new StringBuilder();
     for (int i = 0; i < oshi.size(); i++) {
       output.append(oshi.get(i));
@@ -166,7 +168,7 @@ public class OshiController extends AbstractTomcatContainerController {
         output.append('\n');
       }
     }
-    logger.debug("Printing Operating System and Hardware Info:{}{}", '\n', output);
+    logger.info("Printing Operating System and Hardware Info:{}{}", '\n', output);
   }
 
   /**
