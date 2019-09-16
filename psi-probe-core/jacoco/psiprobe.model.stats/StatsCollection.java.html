@@ -223,26 +223,26 @@ import psiprobe.tools.UpdateCommitLock;
    * @param index the index
    */
   private void shiftFiles(int index) {
-<span class="fc bfc" id="L226" title="All 2 branches covered.">    if (index &gt;= maxFiles - 1) {</span>
+<span class="nc bnc" id="L226" title="All 2 branches missed.">    if (index &gt;= maxFiles - 1) {</span>
       try {
-<span class="pc bpc" id="L228" title="1 of 2 branches missed.">        if (Files.exists(Paths.get(makeFile().getAbsolutePath() + &quot;.&quot; + index))) {</span>
-<span class="fc" id="L229">          Files.delete(Paths.get(makeFile().getAbsolutePath() + &quot;.&quot; + index));</span>
+<span class="nc bnc" id="L228" title="All 2 branches missed.">        if (Files.exists(Paths.get(makeFile().getAbsolutePath() + &quot;.&quot; + index))) {</span>
+<span class="nc" id="L229">          Files.delete(Paths.get(makeFile().getAbsolutePath() + &quot;.&quot; + index));</span>
         }
 <span class="nc" id="L231">      } catch (IOException e) {</span>
 <span class="nc" id="L232">        logger.error(&quot;Could not delete file {}&quot;,</span>
 <span class="nc" id="L233">            new File(makeFile().getAbsolutePath() + &quot;.&quot; + index).getName());</span>
-<span class="pc" id="L234">      }</span>
+<span class="nc" id="L234">      }</span>
     } else {
-<span class="fc" id="L236">      shiftFiles(index + 1);</span>
-<span class="pc bpc" id="L237" title="1 of 2 branches missed.">      File srcFile = index == 0 ? makeFile() : new File(makeFile().getAbsolutePath() + &quot;.&quot; + index);</span>
-<span class="pc bpc" id="L238" title="1 of 2 branches missed.">      if (Files.exists(srcFile.toPath())) {</span>
-<span class="fc" id="L239">        File destFile = new File(makeFile().getAbsolutePath() + &quot;.&quot; + (index + 1));</span>
-<span class="pc bpc" id="L240" title="1 of 2 branches missed.">        if (!srcFile.renameTo(destFile)) {</span>
+<span class="nc" id="L236">      shiftFiles(index + 1);</span>
+<span class="nc bnc" id="L237" title="All 2 branches missed.">      File srcFile = index == 0 ? makeFile() : new File(makeFile().getAbsolutePath() + &quot;.&quot; + index);</span>
+<span class="nc bnc" id="L238" title="All 2 branches missed.">      if (Files.exists(srcFile.toPath())) {</span>
+<span class="nc" id="L239">        File destFile = new File(makeFile().getAbsolutePath() + &quot;.&quot; + (index + 1));</span>
+<span class="nc bnc" id="L240" title="All 2 branches missed.">        if (!srcFile.renameTo(destFile)) {</span>
 <span class="nc" id="L241">          logger.error(&quot;Could not rename file {} to {}&quot;, srcFile.getName(), destFile.getName());</span>
         }
       }
     }
-<span class="fc" id="L245">  }</span>
+<span class="nc" id="L245">  }</span>
 
   /**
    * Writes stats data to file on disk.
@@ -250,11 +250,11 @@ import psiprobe.tools.UpdateCommitLock;
    * @throws InterruptedException if a lock cannot be obtained
    */
   public synchronized void serialize() throws InterruptedException {
-<span class="fc" id="L253">    lock.lockForCommit();</span>
-<span class="fc" id="L254">    long start = System.currentTimeMillis();</span>
+<span class="nc" id="L253">    lock.lockForCommit();</span>
+<span class="nc" id="L254">    long start = System.currentTimeMillis();</span>
     try {
-<span class="fc" id="L256">      shiftFiles(0);</span>
-<span class="fc" id="L257">      try (OutputStream os = Files.newOutputStream(makeFile().toPath())) {</span>
+<span class="nc" id="L256">      shiftFiles(0);</span>
+<span class="nc" id="L257">      try (OutputStream os = Files.newOutputStream(makeFile().toPath())) {</span>
 <span class="nc" id="L258">        xstream.toXML(statsData, os);</span>
       }
 <span class="nc" id="L260">    } catch (Exception e) {</span>
@@ -288,14 +288,14 @@ import psiprobe.tools.UpdateCommitLock;
             // and lets not bother about rotating stats;
             // regular stats collection cycle will do it
 
-<span class="fc bfc" id="L291" title="All 2 branches covered.">            for (Entry&lt;String, List&lt;XYDataItem&gt;&gt; set : stats.entrySet()) {</span>
-<span class="fc" id="L292">              List&lt;XYDataItem&gt; list = set.getValue();</span>
-<span class="pc bpc" id="L293" title="1 of 2 branches missed.">              if (!list.isEmpty()) {</span>
+<span class="pc bpc" id="L291" title="1 of 2 branches missed.">            for (Entry&lt;String, List&lt;XYDataItem&gt;&gt; set : stats.entrySet()) {</span>
+<span class="nc" id="L292">              List&lt;XYDataItem&gt; list = set.getValue();</span>
+<span class="nc bnc" id="L293" title="All 2 branches missed.">              if (!list.isEmpty()) {</span>
 <span class="nc" id="L294">                XYDataItem xy = list.get(list.size() - 1);</span>
 <span class="nc" id="L295">                list.add(new XYDataItem(xy.getX().longValue() + 1, 0));</span>
 <span class="nc" id="L296">                list.add(new XYDataItem(System.currentTimeMillis(), 0));</span>
               }
-<span class="fc" id="L298">            }</span>
+<span class="nc" id="L298">            }</span>
           }
         }
 <span class="fc" id="L301">        logger.debug(&quot;stats data read in {}ms&quot;, System.currentTimeMillis() - start);</span>
@@ -360,4 +360,4 @@ import psiprobe.tools.UpdateCommitLock;
 <span class="fc" id="L360">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

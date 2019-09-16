@@ -145,7 +145,7 @@ import psiprobe.tools.JmxTools;
 <span class="nc" id="L145">    MBeanServer server = getContainerWrapper().getResourceResolver().getMBeanServer();</span>
 <span class="nc" id="L146">    String serverName = getContainerWrapper().getTomcatContainer().getName();</span>
 <span class="nc" id="L147">    Set&lt;ObjectInstance&gt; threadPools =</span>
-<span class="nc" id="L148">        server.queryMBeans(new ObjectName(serverName + &quot;:type=ThreadPool,*&quot;), null);</span>
+<span class="nc" id="L148">        server.queryMBeans(new ObjectName(serverName + &quot;:type=ThreadPool,name=\&quot;*\&quot;&quot;), null);  </span>
 <span class="nc" id="L149">    poolNames = new ArrayList&lt;&gt;(threadPools.size());</span>
 <span class="nc bnc" id="L150" title="All 2 branches missed.">    for (ObjectInstance threadPool : threadPools) {</span>
 
@@ -415,4 +415,4 @@ import psiprobe.tools.JmxTools;
   }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

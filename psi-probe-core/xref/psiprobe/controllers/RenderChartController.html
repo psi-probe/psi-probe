@@ -24,23 +24,23 @@
 <a class="jxr_linenumber" name="L16" href="#L16">16</a>  <strong class="jxr_keyword">import</strong> javax.servlet.http.HttpServletRequest;
 <a class="jxr_linenumber" name="L17" href="#L17">17</a>  <strong class="jxr_keyword">import</strong> javax.servlet.http.HttpServletResponse;
 <a class="jxr_linenumber" name="L18" href="#L18">18</a>  <strong class="jxr_keyword">import</strong> org.jfree.chart.ChartFactory;
-<a class="jxr_linenumber" name="L19" href="#L19">19</a>  <strong class="jxr_keyword">import</strong> org.jfree.chart.ChartUtilities;
+<a class="jxr_linenumber" name="L19" href="#L19">19</a>  <strong class="jxr_keyword">import</strong> org.jfree.chart.ChartUtils;
 <a class="jxr_linenumber" name="L20" href="#L20">20</a>  <strong class="jxr_keyword">import</strong> org.jfree.chart.JFreeChart;
 <a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">import</strong> org.jfree.chart.axis.DateAxis;
 <a class="jxr_linenumber" name="L22" href="#L22">22</a>  <strong class="jxr_keyword">import</strong> org.jfree.chart.plot.PlotOrientation;
 <a class="jxr_linenumber" name="L23" href="#L23">23</a>  <strong class="jxr_keyword">import</strong> org.jfree.chart.renderer.xy.XYAreaRenderer;
-<a class="jxr_linenumber" name="L24" href="#L24">24</a>  <strong class="jxr_keyword">import</strong> org.jfree.chart.renderer.xy.XYLine3DRenderer;
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>  <strong class="jxr_keyword">import</strong> org.jfree.chart.ui.RectangleInsets;
 <a class="jxr_linenumber" name="L25" href="#L25">25</a>  <strong class="jxr_keyword">import</strong> org.jfree.data.xy.DefaultTableXYDataset;
-<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <strong class="jxr_keyword">import</strong> org.jfree.ui.RectangleInsets;
-<a class="jxr_linenumber" name="L27" href="#L27">27</a>  <strong class="jxr_keyword">import</strong> org.slf4j.Logger;
-<a class="jxr_linenumber" name="L28" href="#L28">28</a>  <strong class="jxr_keyword">import</strong> org.slf4j.LoggerFactory;
-<a class="jxr_linenumber" name="L29" href="#L29">29</a>  <strong class="jxr_keyword">import</strong> org.springframework.stereotype.Controller;
-<a class="jxr_linenumber" name="L30" href="#L30">30</a>  <strong class="jxr_keyword">import</strong> org.springframework.web.bind.ServletRequestUtils;
-<a class="jxr_linenumber" name="L31" href="#L31">31</a>  <strong class="jxr_keyword">import</strong> org.springframework.web.bind.annotation.RequestMapping;
-<a class="jxr_linenumber" name="L32" href="#L32">32</a>  <strong class="jxr_keyword">import</strong> org.springframework.web.servlet.ModelAndView;
-<a class="jxr_linenumber" name="L33" href="#L33">33</a>  <strong class="jxr_keyword">import</strong> org.springframework.web.servlet.mvc.AbstractController;
-<a class="jxr_linenumber" name="L34" href="#L34">34</a>  <strong class="jxr_keyword">import</strong> psiprobe.Utils;
-<a class="jxr_linenumber" name="L35" href="#L35">35</a>  <strong class="jxr_keyword">import</strong> psiprobe.beans.stats.providers.SeriesProvider;
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <strong class="jxr_keyword">import</strong> org.slf4j.Logger;
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>  <strong class="jxr_keyword">import</strong> org.slf4j.LoggerFactory;
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>  <strong class="jxr_keyword">import</strong> org.springframework.stereotype.Controller;
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>  <strong class="jxr_keyword">import</strong> org.springframework.web.bind.ServletRequestUtils;
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>  <strong class="jxr_keyword">import</strong> org.springframework.web.bind.annotation.RequestMapping;
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>  <strong class="jxr_keyword">import</strong> org.springframework.web.servlet.ModelAndView;
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>  <strong class="jxr_keyword">import</strong> org.springframework.web.servlet.mvc.AbstractController;
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>  <strong class="jxr_keyword">import</strong> psiprobe.Utils;
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>  <strong class="jxr_keyword">import</strong> psiprobe.beans.stats.providers.SeriesProvider;
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>  <strong class="jxr_keyword">import</strong> psiprobe.jfreechart.XYLine3DRenderer;
 <a class="jxr_linenumber" name="L36" href="#L36">36</a>  <strong class="jxr_keyword">import</strong> psiprobe.model.stats.StatsCollection;
 <a class="jxr_linenumber" name="L37" href="#L37">37</a>  
 <a class="jxr_linenumber" name="L38" href="#L38">38</a>  <em class="jxr_javadoccomment">/**</em>
@@ -173,7 +173,7 @@
 <a class="jxr_linenumber" name="L165" href="#L165">165</a>       chart = ChartFactory.createXYLineChart(<span class="jxr_string">""</span>, labelX, labelY, ds, PlotOrientation.VERTICAL,
 <a class="jxr_linenumber" name="L166" href="#L166">166</a>           showLegend, false, false);
 <a class="jxr_linenumber" name="L167" href="#L167">167</a> 
-<a class="jxr_linenumber" name="L168" href="#L168">168</a>       <strong class="jxr_keyword">final</strong> XYLine3DRenderer renderer = <strong class="jxr_keyword">new</strong> XYLine3DRenderer();
+<a class="jxr_linenumber" name="L168" href="#L168">168</a>       <strong class="jxr_keyword">final</strong> <a name="XYLine3DRenderer" href="../../psiprobe/jfreechart/XYLine3DRe<a name="XYLine3DRenderer" href="../../psiprobe/jfreechart/XYLine3DRenderer.html#XYLine3DRenderer">XYLine3DRenderer</a>ne3DRenderer">XYLine3DRenderer</a> renderer = <strong class="jxr_keyword">new</strong> <a name="XYLine3DRenderer" href="../../psiprobe/jfreechart/XYLine3DRenderer.html#XYLine3DRenderer">XYLine3DRenderer</a>();
 <a class="jxr_linenumber" name="L169" href="#L169">169</a>       renderer.setDrawOutlines(<strong class="jxr_keyword">true</strong>);
 <a class="jxr_linenumber" name="L170" href="#L170">170</a>       <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">int</strong> i = 0; i &lt; seriesMaxCount; i++) {
 <a class="jxr_linenumber" name="L171" href="#L171">171</a>         renderer.setSeriesLinesVisible(i, <strong class="jxr_keyword">true</strong>);
@@ -205,7 +205,7 @@
 <a class="jxr_linenumber" name="L197" href="#L197">197</a> 
 <a class="jxr_linenumber" name="L198" href="#L198">198</a>       response.setHeader(<span class="jxr_string">"Content-type"</span>, <span class="jxr_string">"image/png"</span>);
 <a class="jxr_linenumber" name="L199" href="#L199">199</a>       response.getOutputStream()
-<a class="jxr_linenumber" name="L200" href="#L200">200</a>           .write(ChartUtilities.encodeAsPNG(chart.createBufferedImage(width, height)));
+<a class="jxr_linenumber" name="L200" href="#L200">200</a>           .write(ChartUtils.encodeAsPNG(chart.createBufferedImage(width, height)));
 <a class="jxr_linenumber" name="L201" href="#L201">201</a>     }
 <a class="jxr_linenumber" name="L202" href="#L202">202</a> 
 <a class="jxr_linenumber" name="L203" href="#L203">203</a>     <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong>;
