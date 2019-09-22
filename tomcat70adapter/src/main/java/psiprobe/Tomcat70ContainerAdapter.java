@@ -54,7 +54,6 @@ public class Tomcat70ContainerAdapter extends AbstractTomcatContainer {
     }
     return binding.startsWith("Apache Tomcat/7.0")
         || binding.startsWith("Apache Tomcat (TomEE)/7.0")
-        || binding.startsWith("JBoss Web/7.0")
         || binding.startsWith("NonStop(tm) Servlets For JavaServer Pages(tm) v7.0")
         || binding.startsWith("Pivotal tc") && binding.contains("/7.0");
   }
