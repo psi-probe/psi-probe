@@ -57,19 +57,19 @@ public class Tomcat90ContainerAdapterTest {
   }
 
   /**
-   * Can bound to tomcat7.
+   * Can bound to tomcat9.
    */
   @Test
-  public void canBoundToTomcat7() {
+  public void canBoundToTomcat9() {
     final Tomcat90ContainerAdapter adapter = new Tomcat90ContainerAdapter();
     assertTrue(adapter.canBoundTo("Apache Tomcat/9.0"));
   }
 
   /**
-   * Can bound to tom ee.
+   * Can bound to tomEE9.
    */
   @Test
-  public void canBoundToTomEE() {
+  public void canBoundToTomEE9() {
     final Tomcat90ContainerAdapter adapter = new Tomcat90ContainerAdapter();
     assertTrue(adapter.canBoundTo("Apache Tomcat (TomEE)/9.0"));
   }
