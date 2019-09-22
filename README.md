@@ -63,6 +63,30 @@ You can rename 'psi-probe-web.war' to the traditional 'probe.war' or other name 
 
     This will create a deployable file at `web/target/probe.war`.
 
+## Supported Tomcat Versions
+
+Generally supported versions for third party tomcat providers align with their support but earlier versions may still work.  Currently all tomcat in the series is supported but will soon begin to drop support for earlier versions due to vulnerability related issues.  It is advisable in every case to use only supported tomcat releases per specific vendor.
+
+* Tomcat 7.0 Series
+
+    - Tomcat 7.0.0 to 7.0.96
+    - TomEE 1.7.5 (Based on Tomcat 7.0.81)
+    - NonStop(tm) Servlets For JavaServer Pages(tm) v7.0 (Based on Tomcat 7.0.10)
+    - Pivotal tc 3.2.4 through 3.2.17 release (Based on Tomcat 7.0.72 through 7.0.96)
+
+* Tomcat 8.5 Series
+
+    - Tomcat 8.5.0 to 8.5.46
+    - TomEE 7.0.6 / 7.1.1 (Based on Tomcat 8.5.41)
+    - NonStop(tm) Servlets For JavaServer Pages(tm) v8.5 (Based on Tomcat 8.5.9)
+    - Pivotal tc 3.2.4 through 3.2.17 release (Based on Tomcat 8.5.9 through 8.5.43)
+
+* Tomcat 9.0 Series
+
+    - Tomcat 9.0.0 to 9.0.26
+    - TomEE 8.0.0 (Based on Tomcat 9.0.22)
+    - Pivotal tc 4.0.0 through 4.0.8 release (Based on Tomcat 9.0.0 to 9.0.22)
+
 ## User Groups
 
 * [Announcements](https://groups.google.com/forum/#!forum/psi-probe)
