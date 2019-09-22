@@ -109,51 +109,6 @@ public class Tomcat70ContainerAdapterTest {
   }
 
   /**
-   * Can bound to spring tc6.
-   */
-  @Test
-  public void canBoundToSpringTc6() {
-    final Tomcat70ContainerAdapter adapter = new Tomcat70ContainerAdapter();
-    assertFalse(adapter.canBoundTo("SpringSource tc..../6.0"));
-  }
-
-  /**
-   * Can bound to spring tc7.
-   */
-  @Test
-  public void canBoundToSpringTc7() {
-    final Tomcat70ContainerAdapter adapter = new Tomcat70ContainerAdapter();
-    assertTrue(adapter.canBoundTo("SpringSource tc..../7.0"));
-  }
-
-  /**
-   * Can bound to vm ware6.
-   */
-  @Test
-  public void canBoundToVmWare6() {
-    final Tomcat70ContainerAdapter adapter = new Tomcat70ContainerAdapter();
-    assertFalse(adapter.canBoundTo("VMware vFabric tc..../6.0"));
-  }
-
-  /**
-   * Can bound to vm ware7.
-   */
-  @Test
-  public void canBoundToVmWare7() {
-    final Tomcat70ContainerAdapter adapter = new Tomcat70ContainerAdapter();
-    assertTrue(adapter.canBoundTo("VMware vFabric tc..../7.0"));
-  }
-
-  /**
-   * Can bound to pivotal6.
-   */
-  @Test
-  public void canBoundToPivotal6() {
-    final Tomcat70ContainerAdapter valve = new Tomcat70ContainerAdapter();
-    assertFalse(valve.canBoundTo("Pivotal tc..../6.0"));
-  }
-
-  /**
    * Can bound to pivotal7.
    */
   @Test
