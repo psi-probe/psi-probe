@@ -82,15 +82,6 @@ public class Tomcat70ContainerAdapterTest {
   }
 
   /**
-   * Can bound to jboss3.
-   */
-  @Test
-  public void canBoundToJBoss3() {
-    final Tomcat70ContainerAdapter adapter = new Tomcat70ContainerAdapter();
-    assertTrue(adapter.canBoundTo("JBoss Web/3.0"));
-  }
-
-  /**
    * Can bound to jboss7.
    */
   @Test
