@@ -57,9 +57,6 @@ public class Tomcat70ContainerAdapter extends AbstractTomcatContainer {
         // JBoss Dropped Tomcat in favor of Undertow after these versions
         || binding.startsWith("JBoss Web/3.0") || binding.startsWith("JBoss Web/7.0")
         || binding.startsWith("NonStop(tm) Servlets For JavaServer Pages(tm) v7.0")
-        // Next three are all really the same re-bundled as springsource evolved to pivotal
-        || binding.startsWith("SpringSource tc") && binding.contains("/7.0")
-        || binding.startsWith("VMware vFabric tc") && binding.contains("/7.0")
         || binding.startsWith("Pivotal tc") && binding.contains("/7.0");
   }
 
