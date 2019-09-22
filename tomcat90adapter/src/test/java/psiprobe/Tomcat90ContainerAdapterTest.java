@@ -75,15 +75,6 @@ public class Tomcat90ContainerAdapterTest {
   }
 
   /**
-   * Can bound to pivotal8.
-   */
-  @Test
-  public void canBoundToPivotal8() {
-    final Tomcat90ContainerAdapter adapter = new Tomcat90ContainerAdapter();
-    assertFalse(adapter.canBoundTo("Pivotal tc..../8.0"));
-  }
-
-  /**
    * Can bound to pivotal9.
    */
   @Test

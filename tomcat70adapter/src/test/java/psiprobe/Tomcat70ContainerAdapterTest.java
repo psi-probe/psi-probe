@@ -109,15 +109,6 @@ public class Tomcat70ContainerAdapterTest {
   }
 
   /**
-   * Can bound to pivotal6.
-   */
-  @Test
-  public void canBoundToPivotal6() {
-    final Tomcat70ContainerAdapter valve = new Tomcat70ContainerAdapter();
-    assertFalse(valve.canBoundTo("Pivotal tc..../6.0"));
-  }
-
-  /**
    * Can bound to pivotal7.
    */
   @Test
