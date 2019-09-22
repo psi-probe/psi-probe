@@ -75,6 +75,15 @@ public class Tomcat85ContainerAdapterTest {
   }
 
   /**
+   * Can bound to nsjsp85.
+   */
+  @Test
+  public void canBoundToNsJsp85() {
+    final Tomcat85ContainerAdapter adapter = new Tomcat85ContainerAdapter();
+    assertTrue(adapter.canBoundTo("NonStop(tm) Servlets For JavaServer Pages(tm) v8.5"));
+  }
+
+  /**
    * Can bound to pivotal85.
    */
   @Test
