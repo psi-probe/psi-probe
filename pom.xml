@@ -77,7 +77,6 @@
         <module>core</module>
         <module>rest</module>
         <module>tomcat70adapter</module>
-        <module>tomcat80adapter</module>
         <module>tomcat85adapter</module>
         <module>tomcat90adapter</module>
         <module>web</module>
