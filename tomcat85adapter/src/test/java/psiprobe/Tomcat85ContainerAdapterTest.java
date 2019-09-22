@@ -66,10 +66,10 @@ public class Tomcat85ContainerAdapterTest {
   }
 
   /**
-   * Can bound to tom ee.
+   * Can bound to tomEE85.
    */
   @Test
-  public void canBoundToTomEE() {
+  public void canBoundToTomEE85() {
     final Tomcat85ContainerAdapter adapter = new Tomcat85ContainerAdapter();
     assertTrue(adapter.canBoundTo("Apache Tomcat (TomEE)/8.5"));
   }
