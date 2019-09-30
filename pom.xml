@@ -233,7 +233,7 @@
         <!-- Plugin Dependency Versions -->
         <build-tools.version>1.2.0</build-tools.version>
         <bugpattern.version>1.5.0</bugpattern.version>
-        <checkstyle.version>8.24</checkstyle.version>
+        <checkstyle.version>8.25</checkstyle.version>
         <doxia.version>1.9</doxia.version>
         <ecj.version>3.19.0</ecj.version>
         <sb-contrib.version>7.4.6</sb-contrib.version>
