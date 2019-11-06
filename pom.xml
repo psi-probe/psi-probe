@@ -180,7 +180,7 @@
         <quartz.version>2.3.2</quartz.version>
         <servlet-api.version>4.0.3</servlet-api.version>
         <sitemesh.version>2.4.2</sitemesh.version>
-        <slf4j.version>1.7.28</slf4j.version>
+        <slf4j.version>1.7.29</slf4j.version>
         <spring.version>5.2.0.RELEASE</spring.version>
         <spring-security.version>5.2.1.RELEASE</spring-security.version>
         <text.version>1.8</text.version>
