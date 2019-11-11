@@ -19,8 +19,7 @@ addons:
     build_command_prepend: "./mvnw clean --settings ./travis/settings.xml"
     build_command: "./mvnw install -B -V --settings ./travis/settings.xml"
     branch_pattern: coverity_scan
-
- sonarcloud:
+  sonarcloud:
     organization: "psi-probe"
     token:
       secure: "C3090XiEzrmBBhssSw+EMg5d57ON3YlsGXK6O0UUtBo78g4nVTvYZ/NFfI2GwmV/8IHO7MZRuJeCX+0QWZEvi3QMRtPv4nmvUIEzwRqD646HzWwVfWTkPovEVgx4QP0UexYI34gs748yr7hsKBytYPn4gUsQC1e5RbgITPe8o2A="
