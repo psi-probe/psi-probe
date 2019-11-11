@@ -28,7 +28,7 @@ echo "Current commit detected: ${commit_message}"
 
 if [ $TRAVIS_REPO_SLUG == "psi-probe/psi-probe" ] && [ $TRAVIS_PULL_REQUEST == "false" ] && [ $TRAVIS_BRANCH == "master" ] && [[ "$commit_message" != *"[maven-release-plugin]"* ]]; then
 
-  if [ $TRAVIS_JDK_VERSION == "oraclejdk8" ]; then
+  if [ $TRAVIS_JDK_VERSION == "openjdk8" ]; then
     # Deploy sonatype
     ./mvnw deploy -q --settings ./travis/settings.xml
     echo -e "Successfully deployed SNAPSHOT artifacts to Sonatype under Travis job ${TRAVIS_JOB_NUMBER}"
@@ -49,10 +49,10 @@ if [ $TRAVIS_REPO_SLUG == "psi-probe/psi-probe" ] && [ $TRAVIS_PULL_REQUEST == "
 
 elif [ $TRAVIS_REPO_SLUG == "psi-probe/psi-probe" ] && [ $TRAVIS_PULL_REQUEST != "false" ]; then
 
-  if [ $TRAVIS_JDK_VERSION == "oraclejdk8" ]; then
-	# Send coverage to coveralls
-	./mvnw clean test jacoco:report coveralls:report -q --settings ./travis/settings.xml
-	echo -e "Successfully ran coveralls under Travis job ${TRAVIS_JOB_NUMBER}"
+  if [ $TRAVIS_JDK_VERSION == "openjdk8" ]; then
+    # Send coverage to coveralls
+    ./mvnw clean test jacoco:report coveralls:report -q --settings ./travis/settings.xml
+    echo -e "Successfully ran coveralls under Travis job ${TRAVIS_JOB_NUMBER}"
   fi
 
 else
