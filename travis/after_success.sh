@@ -33,14 +33,18 @@ if [ $TRAVIS_REPO_SLUG == "psi-probe/psi-probe" ] && [ $TRAVIS_PULL_REQUEST == "
     ./mvnw deploy -q --settings ./travis/settings.xml
     echo -e "Successfully deployed SNAPSHOT artifacts to Sonatype under Travis job ${TRAVIS_JOB_NUMBER}"
 
-	# Send coverage to coveralls
+    # Send coverage to coveralls
     ./mvnw test jacoco:report coveralls:report -q --settings ./travis/settings.xml
     echo -e "Successfully ran coveralls under Travis job ${TRAVIS_JOB_NUMBER}"
 
+    # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
+    ./mvnw clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=psi-probe_psi-probe -q --settings ./travis/settings.xml
+    echo -e "Successfully ran sonarcloud under Travis job ${TRAVIS_JOB_NUMBER}"
+
     # Deploy to site
     # Cannot currently run site this way
-	# ./mvnw site site:deploy -q --settings ./travis/settings.xml
-	# echo -e "Successfully deploy site under Travis job ${TRAVIS_JOB_NUMBER}"
+    # ./mvnw site site:deploy -q --settings ./travis/settings.xml
+    # echo -e "Successfully deploy site under Travis job ${TRAVIS_JOB_NUMBER}"
   fi
 
 elif [ $TRAVIS_REPO_SLUG == "psi-probe/psi-probe" ] && [ $TRAVIS_PULL_REQUEST != "false" ]; then
