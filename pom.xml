@@ -201,7 +201,7 @@
         <compiler.plugin>3.8.1</compiler.plugin>
         <coveralls.plugin>4.3.0</coveralls.plugin>
         <dependency.plugin>3.1.1</dependency.plugin>
-        <dependency-check.plugin>5.2.3</dependency-check.plugin>
+        <dependency-check.plugin>5.2.4</dependency-check.plugin>
         <deploy.plugin>3.0.0-M1</deploy.plugin>
         <formatter.plugin>2.11.0</formatter.plugin>
         <git-commit.plugin>3.0.1</git-commit.plugin>
