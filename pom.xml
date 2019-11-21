@@ -1420,7 +1420,7 @@
                 <jdk>[9,)</jdk>
             </activation>
             <properties>
-                <!-- Downgrade until jmockit fixes bug with jacoco 0.8.4 support -->
+                <!-- Downgrade until jmockit fixes bug with jacoco 0.8.4+ support -->
                 <jacoco.plugin>0.8.3</jacoco.plugin>
             </properties>
         </profile>
