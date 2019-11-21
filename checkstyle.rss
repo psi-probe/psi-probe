@@ -25,9 +25,9 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2009 - 2019 psi-probe</copyright>
     <item>
-      <title>File: 358,
+      <title>File: 355,
              Errors: 0,
-             Warnings: 774,
+             Warnings: 766,
              Infos: 0
       </title>
             <link>https://github.com/psi-probe/psi-probe//checkstyle.html</link>
@@ -1298,7 +1298,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  5
+                  4
                 </td>
                 <td>
                   0
@@ -1377,20 +1377,6 @@ under the License.
                           <tr>
                 <td>
                   <a href="https://github.com/psi-probe/psi-probe//checkstyle.html#psiprobe.beans.JvmMemoryInfoAccessorBean.java">psiprobe/beans/JvmMemoryInfoAccessorBean.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  2
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://github.com/psi-probe/psi-probe//checkstyle.html#psiprobe.Tomcat80AgentValve.java">psiprobe/Tomcat80AgentValve.java</a>
                 </td>
                 <td>
                   0
@@ -2510,20 +2496,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/psi-probe/psi-probe//checkstyle.html#psiprobe.beans.accessors.Tomcat8DbcpDatasourceAccessor.java">psiprobe/beans/accessors/Tomcat8DbcpDatasourceAccessor.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  2
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="https://github.com/psi-probe/psi-probe//checkstyle.html#psiprobe.Tomcat70ContainerAdapter.java">psiprobe/Tomcat70ContainerAdapter.java</a>
                 </td>
                 <td>
@@ -3602,20 +3574,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/psi-probe/psi-probe//checkstyle.html#psiprobe.Tomcat80ContainerAdapter.java">psiprobe/Tomcat80ContainerAdapter.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  2
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="https://github.com/psi-probe/psi-probe//checkstyle.html#psiprobe.beans.accessors.OpenEjbManagedDatasourceAccessor.java">psiprobe/beans/accessors/OpenEjbManagedDatasourceAccessor.java</a>
                 </td>
                 <td>
@@ -3762,7 +3720,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  5
+                  4
                 </td>
                 <td>
                   0
