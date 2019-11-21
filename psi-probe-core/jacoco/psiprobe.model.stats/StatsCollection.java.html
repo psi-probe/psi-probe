@@ -288,14 +288,14 @@ import psiprobe.tools.UpdateCommitLock;
             // and lets not bother about rotating stats;
             // regular stats collection cycle will do it
 
-<span class="pc bpc" id="L291" title="1 of 2 branches missed.">            for (Entry&lt;String, List&lt;XYDataItem&gt;&gt; set : stats.entrySet()) {</span>
-<span class="nc" id="L292">              List&lt;XYDataItem&gt; list = set.getValue();</span>
-<span class="nc bnc" id="L293" title="All 2 branches missed.">              if (!list.isEmpty()) {</span>
+<span class="fc bfc" id="L291" title="All 2 branches covered.">            for (Entry&lt;String, List&lt;XYDataItem&gt;&gt; set : stats.entrySet()) {</span>
+<span class="fc" id="L292">              List&lt;XYDataItem&gt; list = set.getValue();</span>
+<span class="pc bpc" id="L293" title="1 of 2 branches missed.">              if (!list.isEmpty()) {</span>
 <span class="nc" id="L294">                XYDataItem xy = list.get(list.size() - 1);</span>
 <span class="nc" id="L295">                list.add(new XYDataItem(xy.getX().longValue() + 1, 0));</span>
 <span class="nc" id="L296">                list.add(new XYDataItem(System.currentTimeMillis(), 0));</span>
               }
-<span class="nc" id="L298">            }</span>
+<span class="fc" id="L298">            }</span>
           }
         }
 <span class="fc" id="L301">        logger.debug(&quot;stats data read in {}ms&quot;, System.currentTimeMillis() - start);</span>
@@ -360,4 +360,4 @@ import psiprobe.tools.UpdateCommitLock;
 <span class="fc" id="L360">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

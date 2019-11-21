@@ -56,7 +56,8 @@ public final class SizeExpression {
    * &lt;p&gt;
    * An expression has three parts:
    * &lt;/p&gt;
-   * &lt;table summary=&quot;Size Summary Table&quot;&gt;
+   * &lt;table&gt;
+   * &lt;caption&gt;Size Summary Table&lt;/caption&gt;
    * 
    * &lt;thead&gt;
    * &lt;tr&gt;
@@ -107,24 +108,24 @@ public final class SizeExpression {
    * @throws NumberFormatException if the given expression cannot be parsed
    */
   public static long parse(String expression) {
-<span class="fc" id="L110">    String prefixClass =</span>
+<span class="fc" id="L111">    String prefixClass =</span>
         &quot;[&quot; + PREFIX_KILO + PREFIX_MEGA + PREFIX_GIGA + PREFIX_TERA + PREFIX_PETA + &quot;]&quot;;
-<span class="fc" id="L112">    Pattern expPattern =</span>
-<span class="fc" id="L113">        Pattern.compile(&quot;(\\d+|\\d*\\.\\d+)\\s*(&quot; + prefixClass + &quot;)?(&quot; + UNIT_BASE + &quot;)?&quot;,</span>
+<span class="fc" id="L113">    Pattern expPattern =</span>
+<span class="fc" id="L114">        Pattern.compile(&quot;(\\d+|\\d*\\.\\d+)\\s*(&quot; + prefixClass + &quot;)?(&quot; + UNIT_BASE + &quot;)?&quot;,</span>
             Pattern.CASE_INSENSITIVE);
-<span class="fc" id="L115">    Matcher expMatcher = expPattern.matcher(expression);</span>
-<span class="pc bpc" id="L116" title="1 of 2 branches missed.">    if (expMatcher.matches()) {</span>
-<span class="fc" id="L117">      String value = expMatcher.group(1);</span>
-<span class="fc" id="L118">      String unitPrefix = expMatcher.group(2);</span>
-<span class="fc" id="L119">      String unitBase = expMatcher.group(3);</span>
-<span class="fc" id="L120">      double multiplier = 1;</span>
-<span class="fc bfc" id="L121" title="All 2 branches covered.">      if (unitPrefix != null) {</span>
-<span class="fc bfc" id="L122" title="All 2 branches covered.">        multiplier = multiplier(unitPrefix.charAt(0), unitBase != null);</span>
+<span class="fc" id="L116">    Matcher expMatcher = expPattern.matcher(expression);</span>
+<span class="pc bpc" id="L117" title="1 of 2 branches missed.">    if (expMatcher.matches()) {</span>
+<span class="fc" id="L118">      String value = expMatcher.group(1);</span>
+<span class="fc" id="L119">      String unitPrefix = expMatcher.group(2);</span>
+<span class="fc" id="L120">      String unitBase = expMatcher.group(3);</span>
+<span class="fc" id="L121">      double multiplier = 1;</span>
+<span class="fc bfc" id="L122" title="All 2 branches covered.">      if (unitPrefix != null) {</span>
+<span class="fc bfc" id="L123" title="All 2 branches covered.">        multiplier = multiplier(unitPrefix.charAt(0), unitBase != null);</span>
       }
-<span class="fc" id="L124">      double rawValue = Double.parseDouble(value);</span>
-<span class="fc" id="L125">      return (long) (rawValue * multiplier);</span>
+<span class="fc" id="L125">      double rawValue = Double.parseDouble(value);</span>
+<span class="fc" id="L126">      return (long) (rawValue * multiplier);</span>
     }
-<span class="nc" id="L127">    throw new NumberFormatException(&quot;Invalid expression format: &quot; + expression);</span>
+<span class="nc" id="L128">    throw new NumberFormatException(&quot;Invalid expression format: &quot; + expression);</span>
   }
 
   /**
@@ -137,36 +138,36 @@ public final class SizeExpression {
    * @return a formatted string expression of the value
    */
   public static String format(long value, int decimalPlaces, boolean base2) {
-<span class="fc" id="L140">    NumberFormat nf = NumberFormat.getInstance();</span>
-<span class="fc" id="L141">    nf.setMinimumFractionDigits(decimalPlaces);</span>
+<span class="fc" id="L141">    NumberFormat nf = NumberFormat.getInstance();</span>
+<span class="fc" id="L142">    nf.setMinimumFractionDigits(decimalPlaces);</span>
 
     double doubleResult;
-<span class="fc bfc" id="L144" title="All 2 branches covered.">    String unit = base2 ? UNIT_BASE : &quot;&quot;;</span>
-<span class="fc" id="L145">    double multiplierKilo = multiplier(PREFIX_KILO, base2);</span>
-<span class="fc" id="L146">    double multiplierMega = multiplier(PREFIX_MEGA, base2);</span>
-<span class="fc" id="L147">    double multiplierGiga = multiplier(PREFIX_GIGA, base2);</span>
-<span class="fc" id="L148">    double multiplierTera = multiplier(PREFIX_TERA, base2);</span>
-<span class="fc" id="L149">    double multiplierPeta = multiplier(PREFIX_PETA, base2);</span>
-<span class="fc bfc" id="L150" title="All 2 branches covered.">    if (value &lt; multiplierKilo) {</span>
-<span class="fc" id="L151">      doubleResult = value;</span>
-<span class="fc" id="L152">      nf.setMinimumFractionDigits(0);</span>
-<span class="pc bpc" id="L153" title="1 of 4 branches missed.">    } else if (value &gt;= multiplierKilo &amp;&amp; value &lt; multiplierMega) {</span>
-<span class="fc" id="L154">      doubleResult = round(value / multiplierKilo, decimalPlaces);</span>
-<span class="fc" id="L155">      unit = PREFIX_KILO + unit;</span>
-<span class="pc bpc" id="L156" title="1 of 4 branches missed.">    } else if (value &gt;= multiplierMega &amp;&amp; value &lt; multiplierGiga) {</span>
-<span class="fc" id="L157">      doubleResult = round(value / multiplierMega, decimalPlaces);</span>
-<span class="fc" id="L158">      unit = PREFIX_MEGA + unit;</span>
-<span class="pc bpc" id="L159" title="1 of 4 branches missed.">    } else if (value &gt;= multiplierGiga &amp;&amp; value &lt; multiplierTera) {</span>
-<span class="fc" id="L160">      doubleResult = round(value / multiplierGiga, decimalPlaces);</span>
-<span class="fc" id="L161">      unit = PREFIX_GIGA + unit;</span>
-<span class="pc bpc" id="L162" title="1 of 4 branches missed.">    } else if (value &gt;= multiplierTera &amp;&amp; value &lt; multiplierPeta) {</span>
-<span class="fc" id="L163">      doubleResult = round(value / multiplierTera, decimalPlaces);</span>
-<span class="fc" id="L164">      unit = PREFIX_TERA + unit;</span>
+<span class="fc bfc" id="L145" title="All 2 branches covered.">    String unit = base2 ? UNIT_BASE : &quot;&quot;;</span>
+<span class="fc" id="L146">    double multiplierKilo = multiplier(PREFIX_KILO, base2);</span>
+<span class="fc" id="L147">    double multiplierMega = multiplier(PREFIX_MEGA, base2);</span>
+<span class="fc" id="L148">    double multiplierGiga = multiplier(PREFIX_GIGA, base2);</span>
+<span class="fc" id="L149">    double multiplierTera = multiplier(PREFIX_TERA, base2);</span>
+<span class="fc" id="L150">    double multiplierPeta = multiplier(PREFIX_PETA, base2);</span>
+<span class="fc bfc" id="L151" title="All 2 branches covered.">    if (value &lt; multiplierKilo) {</span>
+<span class="fc" id="L152">      doubleResult = value;</span>
+<span class="fc" id="L153">      nf.setMinimumFractionDigits(0);</span>
+<span class="pc bpc" id="L154" title="1 of 4 branches missed.">    } else if (value &gt;= multiplierKilo &amp;&amp; value &lt; multiplierMega) {</span>
+<span class="fc" id="L155">      doubleResult = round(value / multiplierKilo, decimalPlaces);</span>
+<span class="fc" id="L156">      unit = PREFIX_KILO + unit;</span>
+<span class="pc bpc" id="L157" title="1 of 4 branches missed.">    } else if (value &gt;= multiplierMega &amp;&amp; value &lt; multiplierGiga) {</span>
+<span class="fc" id="L158">      doubleResult = round(value / multiplierMega, decimalPlaces);</span>
+<span class="fc" id="L159">      unit = PREFIX_MEGA + unit;</span>
+<span class="pc bpc" id="L160" title="1 of 4 branches missed.">    } else if (value &gt;= multiplierGiga &amp;&amp; value &lt; multiplierTera) {</span>
+<span class="fc" id="L161">      doubleResult = round(value / multiplierGiga, decimalPlaces);</span>
+<span class="fc" id="L162">      unit = PREFIX_GIGA + unit;</span>
+<span class="pc bpc" id="L163" title="1 of 4 branches missed.">    } else if (value &gt;= multiplierTera &amp;&amp; value &lt; multiplierPeta) {</span>
+<span class="fc" id="L164">      doubleResult = round(value / multiplierTera, decimalPlaces);</span>
+<span class="fc" id="L165">      unit = PREFIX_TERA + unit;</span>
     } else {
-<span class="fc" id="L166">      doubleResult = round(value / multiplierPeta, decimalPlaces);</span>
-<span class="fc" id="L167">      unit = PREFIX_PETA + unit;</span>
+<span class="fc" id="L167">      doubleResult = round(value / multiplierPeta, decimalPlaces);</span>
+<span class="fc" id="L168">      unit = PREFIX_PETA + unit;</span>
     }
-<span class="fc bfc" id="L169" title="All 2 branches covered.">    return nf.format(doubleResult) + (base2 ? &quot; &quot; : &quot;&quot;) + unit;</span>
+<span class="fc bfc" id="L170" title="All 2 branches covered.">    return nf.format(doubleResult) + (base2 ? &quot; &quot; : &quot;&quot;) + unit;</span>
   }
 
   /**
@@ -177,7 +178,7 @@ public final class SizeExpression {
    * @return the rounded value
    */
   private static double round(double value, int decimalPlaces) {
-<span class="fc" id="L180">    return Math.round(value * Math.pow(10, decimalPlaces)) / Math.pow(10, decimalPlaces);</span>
+<span class="fc" id="L181">    return Math.round(value * Math.pow(10, decimalPlaces)) / Math.pow(10, decimalPlaces);</span>
   }
 
   /**
@@ -190,28 +191,28 @@ public final class SizeExpression {
    */
   private static double multiplier(char unitPrefix, boolean base2) {
     long result;
-<span class="fc bfc" id="L193" title="All 2 branches covered.">    long multiplier = base2 ? MULTIPLIER_2 : MULTIPLIER_10;</span>
-<span class="pc bpc" id="L194" title="1 of 6 branches missed.">    switch (Character.toUpperCase(unitPrefix)) {</span>
+<span class="fc bfc" id="L194" title="All 2 branches covered.">    long multiplier = base2 ? MULTIPLIER_2 : MULTIPLIER_10;</span>
+<span class="pc bpc" id="L195" title="1 of 6 branches missed.">    switch (Character.toUpperCase(unitPrefix)) {</span>
       case PREFIX_KILO:
-<span class="fc" id="L196">        result = multiplier;</span>
-<span class="fc" id="L197">        break;</span>
+<span class="fc" id="L197">        result = multiplier;</span>
+<span class="fc" id="L198">        break;</span>
       case PREFIX_MEGA:
-<span class="fc" id="L199">        result = multiplier * multiplier;</span>
-<span class="fc" id="L200">        break;</span>
+<span class="fc" id="L200">        result = multiplier * multiplier;</span>
+<span class="fc" id="L201">        break;</span>
       case PREFIX_GIGA:
-<span class="fc" id="L202">        result = multiplier * multiplier * multiplier;</span>
-<span class="fc" id="L203">        break;</span>
+<span class="fc" id="L203">        result = multiplier * multiplier * multiplier;</span>
+<span class="fc" id="L204">        break;</span>
       case PREFIX_TERA:
-<span class="fc" id="L205">        result = multiplier * multiplier * multiplier * multiplier;</span>
-<span class="fc" id="L206">        break;</span>
+<span class="fc" id="L206">        result = multiplier * multiplier * multiplier * multiplier;</span>
+<span class="fc" id="L207">        break;</span>
       case PREFIX_PETA:
-<span class="fc" id="L208">        result = multiplier * multiplier * multiplier * multiplier * multiplier;</span>
-<span class="fc" id="L209">        break;</span>
+<span class="fc" id="L209">        result = multiplier * multiplier * multiplier * multiplier * multiplier;</span>
+<span class="fc" id="L210">        break;</span>
       default:
-<span class="nc" id="L211">        throw new IllegalArgumentException(&quot;Invalid unit prefix: &quot; + unitPrefix);</span>
+<span class="nc" id="L212">        throw new IllegalArgumentException(&quot;Invalid unit prefix: &quot; + unitPrefix);</span>
     }
-<span class="fc" id="L213">    return result;</span>
+<span class="fc" id="L214">    return result;</span>
   }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>
