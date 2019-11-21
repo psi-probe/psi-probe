@@ -150,7 +150,6 @@ public class ProbeConfig implements WebMvcConfigurer {
     list.add("psiprobe.beans.accessors.Dbcp2DatasourceAccessor");
     list.add("psiprobe.beans.accessors.HikariCpDatasourceAccessor");
     list.add("psiprobe.beans.accessors.Tomcat7DbcpDatasourceAccessor");
-    list.add("psiprobe.beans.accessors.Tomcat8DbcpDatasourceAccessor");
     list.add("psiprobe.beans.accessors.Tomcat85DbcpDatasourceAccessor");
     list.add("psiprobe.beans.accessors.Tomcat9DbcpDatasourceAccessor");
     list.add("psiprobe.beans.accessors.TomcatJdbcPoolDatasourceAccessor");
@@ -215,7 +214,6 @@ public class ProbeConfig implements WebMvcConfigurer {
     List<String> list = new ArrayList<>();
     list.add("psiprobe.Tomcat90ContainerAdapter");
     list.add("psiprobe.Tomcat85ContainerAdapter");
-    list.add("psiprobe.Tomcat80ContainerAdapter");
     list.add("psiprobe.Tomcat70ContainerAdapter");
     return list;
   }
