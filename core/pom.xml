@@ -210,6 +210,12 @@
             <groupId>org.quartz-scheduler</groupId>
             <artifactId>quartz</artifactId>
             <scope>compile</scope>
+            <exclusions>
+                 <exclusion>
+                      <groupId>com.zaxxer</groupId>
+                      <artifactId>HikariCP-java7</artifactId>
+                 </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>opensymphony</groupId>
