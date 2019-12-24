@@ -114,10 +114,16 @@
 
     <properties>
         <!-- Java Settings -->
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <maven.compiler.testSource>1.8</maven.compiler.testSource>
-        <maven.compiler.testTarget>1.8</maven.compiler.testTarget>
+        <java.version>1.8</java.version>
+        <java.release.version>8</java.release.version>
+        <java.test.version>${java.version}</java.test.version>
+        <java.test.release.version>${java.release.version}</java.test.release.version>
+
+        <maven.compiler.compilerVersion>${java.version}</maven.compiler.compilerVersion>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <maven.compiler.testSource>${java.test.version}</maven.compiler.testSource>
+        <maven.compiler.testTarget>${java.test.version}</maven.compiler.testTarget>
 
         <!-- Checkstyle / Copyright -->
         <checkstyle.configLocation>checkstyle.xml</checkstyle.configLocation>
@@ -933,6 +939,7 @@
                     <configuration>
                         <archive>
                             <manifest>
+                                <addBuildEnvironmentEntries>true</addBuildEnvironmentEntries>
                                 <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                                 <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
                             </manifest>
@@ -980,6 +987,7 @@
                     <configuration>
                         <archive>
                             <manifest>
+                                <addBuildEnvironmentEntries>true</addBuildEnvironmentEntries>
                                 <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                                 <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
                             </manifest>
@@ -1014,6 +1022,7 @@
                             </manifestEntries>
                             <manifest>
                                 <addClasspath>true</addClasspath>
+                                <addBuildEnvironmentEntries>true</addBuildEnvironmentEntries>
                                 <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                                 <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
                                 <classpathPrefix>lib/</classpathPrefix>
@@ -1420,9 +1429,74 @@
                 <jdk>[9,)</jdk>
             </activation>
             <properties>
+                <maven.compiler.release>${java.release.version}</maven.compiler.release>
+                <maven.compiler.testRelease>${java.test.release.version}</maven.compiler.testRelease>
+
                 <!-- Downgrade until jmockit fixes bug with jacoco 0.8.4+ support -->
                 <jacoco.plugin>0.8.3</jacoco.plugin>
             </properties>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-jar-plugin</artifactId>
+                            <configuration>
+                                <archive>
+                                    <manifestEntries>
+                                        <X-Compile-Release-JDK>${maven.compiler.release}</X-Compile-Release-JDK>
+                                    </manifestEntries>
+                                </archive>
+                            </configuration>
+                        </plugin>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-javadoc-plugin</artifactId>
+                            <configuration>
+                                <additionalOptions>-html5</additionalOptions>
+                                <archive>
+                                    <manifestEntries>
+                                        <X-Compile-Release-JDK>${maven.compiler.release}</X-Compile-Release-JDK>
+                                    </manifestEntries>
+                                </archive>
+                            </configuration>
+                        </plugin>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-source-plugin</artifactId>
+                            <configuration>
+                                <archive>
+                                    <manifestEntries>
+                                        <X-Compile-Release-JDK>${maven.compiler.release}</X-Compile-Release-JDK>
+                                    </manifestEntries>
+                                </archive>
+                            </configuration>
+                        </plugin>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-site-plugin</artifactId>
+                            <configuration>
+                                <archive>
+                                    <manifestEntries>
+                                        <X-Compile-Release-JDK>${maven.compiler.release}</X-Compile-Release-JDK>
+                                    </manifestEntries>
+                                </archive>
+                            </configuration>
+                        </plugin>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-war-plugin</artifactId>
+                            <configuration>
+                                <archive>
+                                    <manifestEntries>
+                                        <X-Compile-Release-JDK>${maven.compiler.release}</X-Compile-Release-JDK>
+                                    </manifestEntries>
+                                </archive>
+                            </configuration>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+            </build>
         </profile>
 
         <profile>
