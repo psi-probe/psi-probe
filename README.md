@@ -72,20 +72,20 @@ Generally supported versions for third party tomcat providers align with their s
     - Tomcat 7.0.0 to 7.0.99
     - TomEE 1.7.5 (Based on Tomcat 7.0.81)
     - NonStop(tm) Servlets For JavaServer Pages(tm) v7.0 (Based on Tomcat 7.0.10)
-    - Pivotal tc 3.2.4 through 3.2.17 release (Based on Tomcat 7.0.72 through 7.0.96)
+    - Pivotal tc 3.2.4 through 3.2.19 release (Based on Tomcat 7.0.72 through 7.0.99)
 
 * Tomcat 8.5 Series
 
     - Tomcat 8.5.0 to 8.5.50
     - TomEE 7.0.6 / 7.1.1 (Based on Tomcat 8.5.41)
     - NonStop(tm) Servlets For JavaServer Pages(tm) v8.5 (Based on Tomcat 8.5.9)
-    - Pivotal tc 3.2.4 through 3.2.17 release (Based on Tomcat 8.5.9 through 8.5.43)
+    - Pivotal tc 3.2.4 through 3.2.19 release (Based on Tomcat 8.5.9 through 8.5.50)
 
 * Tomcat 9.0 Series
 
     - Tomcat 9.0.0 to 9.0.30
     - TomEE 8.0.0 (Based on Tomcat 9.0.22)
-    - Pivotal tc 4.0.0 through 4.0.8 release (Based on Tomcat 9.0.0 to 9.0.22)
+    - Pivotal tc 4.0.0 through 4.0.10 release (Based on Tomcat 9.0.0 to 9.0.30)
 
 ## User Groups
 
