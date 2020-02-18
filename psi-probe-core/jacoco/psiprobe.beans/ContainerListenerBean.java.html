@@ -87,7 +87,7 @@ import psiprobe.tools.JmxTools;
    * @return true, if is initialized
    */
   private boolean isInitialized() {
-<span class="nc bnc" id="L90" title="All 4 branches missed.">    return poolNames != null &amp;&amp; !poolNames.isEmpty();</span>
+<span class="pc bpc" id="L90" title="3 of 4 branches missed.">    return poolNames != null &amp;&amp; !poolNames.isEmpty();</span>
   }
 
   /**
@@ -142,7 +142,7 @@ import psiprobe.tools.JmxTools;
    */
   private synchronized void initialize() throws Exception {
 
-<span class="nc" id="L145">    MBeanServer server = getContainerWrapper().getResourceResolver().getMBeanServer();</span>
+<span class="fc" id="L145">    MBeanServer server = getContainerWrapper().getResourceResolver().getMBeanServer();</span>
 <span class="nc" id="L146">    String serverName = getContainerWrapper().getTomcatContainer().getName();</span>
 <span class="nc" id="L147">    Set&lt;ObjectInstance&gt; threadPools =</span>
 <span class="nc" id="L148">        server.queryMBeans(new ObjectName(serverName + &quot;:type=ThreadPool,name=\&quot;*\&quot;&quot;), null);  </span>
@@ -284,9 +284,9 @@ import psiprobe.tools.JmxTools;
   public synchronized List&lt;Connector&gt; getConnectors(boolean includeRequestProcessors)
       throws Exception {
 
-<span class="nc" id="L287">    boolean workerThreadNameSupported = true;</span>
+<span class="fc" id="L287">    boolean workerThreadNameSupported = true;</span>
 
-<span class="nc bnc" id="L289" title="All 2 branches missed.">    if (!isInitialized()) {</span>
+<span class="pc bpc" id="L289" title="1 of 2 branches missed.">    if (!isInitialized()) {</span>
 <span class="nc" id="L290">      initialize();</span>
     }
 
@@ -415,4 +415,4 @@ import psiprobe.tools.JmxTools;
   }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

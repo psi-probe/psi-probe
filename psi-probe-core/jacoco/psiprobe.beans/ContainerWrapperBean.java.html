@@ -135,7 +135,7 @@ import psiprobe.model.ApplicationResource;
    * @return the tomcat container
    */
   public TomcatContainer getTomcatContainer() {
-<span class="nc" id="L138">    return tomcatContainer;</span>
+<span class="fc" id="L138">    return tomcatContainer;</span>
   }
 
   /**
@@ -162,16 +162,16 @@ import psiprobe.model.ApplicationResource;
    * @return the resource resolver
    */
   public ResourceResolver getResourceResolver() {
-<span class="nc bnc" id="L165" title="All 2 branches missed.">    if (resourceResolver == null) {</span>
-<span class="nc bnc" id="L166" title="All 2 branches missed.">      if (System.getProperty(&quot;jboss.server.name&quot;) != null) {</span>
+<span class="pc bpc" id="L165" title="1 of 2 branches missed.">    if (resourceResolver == null) {</span>
+<span class="pc bpc" id="L166" title="1 of 2 branches missed.">      if (System.getProperty(&quot;jboss.server.name&quot;) != null) {</span>
 <span class="nc" id="L167">        resourceResolver = resourceResolvers.get(&quot;jboss&quot;);</span>
 <span class="nc" id="L168">        logger.info(&quot;Using JBOSS resource resolver&quot;);</span>
       } else {
-<span class="nc" id="L170">        resourceResolver = resourceResolvers.get(&quot;default&quot;);</span>
-<span class="nc" id="L171">        logger.info(&quot;Using DEFAULT resource resolver&quot;);</span>
+<span class="fc" id="L170">        resourceResolver = resourceResolvers.get(&quot;default&quot;);</span>
+<span class="fc" id="L171">        logger.info(&quot;Using DEFAULT resource resolver&quot;);</span>
       }
     }
-<span class="nc" id="L174">    return resourceResolver;</span>
+<span class="fc" id="L174">    return resourceResolver;</span>
   }
 
   /**
@@ -257,4 +257,4 @@ import psiprobe.model.ApplicationResource;
 <span class="nc" id="L257">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -15,6 +15,8 @@ import java.util.Objects;
 /**
  * The Class TokenizerSymbol.
  */
+// Keep 'supressWarnings' due to error-prone violation that is covered, see https://errorprone.info/bugpattern/ComparableType
+@SuppressWarnings(&quot;ComparableType&quot;)
 public class TokenizerSymbol implements Comparable&lt;Object&gt; {
 
   /** The name. */
@@ -50,23 +52,23 @@ public class TokenizerSymbol implements Comparable&lt;Object&gt; {
    * @param canBeNested the can be nested
    */
   public TokenizerSymbol(String name, String startText, String tailText, boolean hidden,
-<span class="nc" id="L53">      boolean decodePaired, boolean enabled, boolean canBeNested) {</span>
+<span class="nc" id="L55">      boolean decodePaired, boolean enabled, boolean canBeNested) {</span>
 
-<span class="nc" id="L55">    this.name = name;</span>
-<span class="nc" id="L56">    this.startText = startText;</span>
-<span class="nc" id="L57">    this.tailText = tailText;</span>
-<span class="nc" id="L58">    this.hidden = hidden;</span>
-<span class="nc" id="L59">    this.decodePaired = decodePaired;</span>
-<span class="nc" id="L60">    this.enabled = enabled;</span>
-<span class="nc" id="L61">    this.canBeNested = canBeNested;</span>
-<span class="nc" id="L62">  }</span>
+<span class="nc" id="L57">    this.name = name;</span>
+<span class="nc" id="L58">    this.startText = startText;</span>
+<span class="nc" id="L59">    this.tailText = tailText;</span>
+<span class="nc" id="L60">    this.hidden = hidden;</span>
+<span class="nc" id="L61">    this.decodePaired = decodePaired;</span>
+<span class="nc" id="L62">    this.enabled = enabled;</span>
+<span class="nc" id="L63">    this.canBeNested = canBeNested;</span>
+<span class="nc" id="L64">  }</span>
 
   @Override
   public int compareTo(Object obj) {
-<span class="nc bnc" id="L66" title="All 2 branches missed.">    if (obj instanceof Character) {</span>
-<span class="nc" id="L67">      return compareTo((Character) obj);</span>
+<span class="nc bnc" id="L68" title="All 2 branches missed.">    if (obj instanceof Character) {</span>
+<span class="nc" id="L69">      return compareTo((Character) obj);</span>
     }
-<span class="nc" id="L69">    return compareTo((TokenizerSymbol) obj);</span>
+<span class="nc" id="L71">    return compareTo((TokenizerSymbol) obj);</span>
   }
 
   /**
@@ -76,7 +78,7 @@ public class TokenizerSymbol implements Comparable&lt;Object&gt; {
    * @return the int
    */
   public int compareTo(Character chr) {
-<span class="nc" id="L79">    return chr - startText.charAt(0);</span>
+<span class="nc" id="L81">    return chr - startText.charAt(0);</span>
   }
 
   /**
@@ -86,31 +88,31 @@ public class TokenizerSymbol implements Comparable&lt;Object&gt; {
    * @return the int
    */
   public int compareTo(TokenizerSymbol symbol) {
-<span class="nc" id="L89">    return symbol.startText.compareTo(startText);</span>
+<span class="nc" id="L91">    return symbol.startText.compareTo(startText);</span>
   }
 
   @Override
   public int hashCode() {
-<span class="nc" id="L94">    return Objects.hash(this.name, this.startText, this.tailText, this.hidden, this.decodePaired,</span>
-<span class="nc" id="L95">        this.enabled, this.canBeNested);</span>
+<span class="nc" id="L96">    return Objects.hash(this.name, this.startText, this.tailText, this.hidden, this.decodePaired,</span>
+<span class="nc" id="L97">        this.enabled, this.canBeNested);</span>
   }
 
   @Override
   public boolean equals(Object obj) {
-<span class="nc bnc" id="L100" title="All 2 branches missed.">    if (obj == null) {</span>
-<span class="nc" id="L101">      return false;</span>
+<span class="nc bnc" id="L102" title="All 2 branches missed.">    if (obj == null) {</span>
+<span class="nc" id="L103">      return false;</span>
     }
-<span class="nc bnc" id="L103" title="All 2 branches missed.">    if (getClass() != obj.getClass()) {</span>
-<span class="nc" id="L104">      return false;</span>
+<span class="nc bnc" id="L105" title="All 2 branches missed.">    if (getClass() != obj.getClass()) {</span>
+<span class="nc" id="L106">      return false;</span>
     }
-<span class="nc" id="L106">    final TokenizerSymbol other = (TokenizerSymbol) obj;</span>
-<span class="nc bnc" id="L107" title="All 4 branches missed.">    return Objects.equals(this.name, other.name) &amp;&amp; Objects.equals(this.startText, other.startText)</span>
-<span class="nc bnc" id="L108" title="All 2 branches missed.">        &amp;&amp; Objects.equals(this.tailText, other.tailText)</span>
-<span class="nc bnc" id="L109" title="All 2 branches missed.">        &amp;&amp; Objects.equals(this.hidden, other.hidden)</span>
-<span class="nc bnc" id="L110" title="All 2 branches missed.">        &amp;&amp; Objects.equals(this.decodePaired, other.decodePaired)</span>
-<span class="nc bnc" id="L111" title="All 2 branches missed.">        &amp;&amp; Objects.equals(this.enabled, other.enabled)</span>
-<span class="nc bnc" id="L112" title="All 2 branches missed.">        &amp;&amp; Objects.equals(this.canBeNested, other.canBeNested);</span>
+<span class="nc" id="L108">    final TokenizerSymbol other = (TokenizerSymbol) obj;</span>
+<span class="nc bnc" id="L109" title="All 4 branches missed.">    return Objects.equals(this.name, other.name) &amp;&amp; Objects.equals(this.startText, other.startText)</span>
+<span class="nc bnc" id="L110" title="All 2 branches missed.">        &amp;&amp; Objects.equals(this.tailText, other.tailText)</span>
+<span class="nc bnc" id="L111" title="All 2 branches missed.">        &amp;&amp; Objects.equals(this.hidden, other.hidden)</span>
+<span class="nc bnc" id="L112" title="All 2 branches missed.">        &amp;&amp; Objects.equals(this.decodePaired, other.decodePaired)</span>
+<span class="nc bnc" id="L113" title="All 2 branches missed.">        &amp;&amp; Objects.equals(this.enabled, other.enabled)</span>
+<span class="nc bnc" id="L114" title="All 2 branches missed.">        &amp;&amp; Objects.equals(this.canBeNested, other.canBeNested);</span>
   }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
