@@ -36,10 +36,10 @@
   </scm>
 
     <properties>
-        <!-- TODO: Downcast jmockit to 1.47 as tests break with 1.48 -->
+        <!-- TODO: Downcast jmockit to 1.47 as tests break with 1.48+ -->
         <jmockit.version>1.47</jmockit.version>
 
-        <tomcat.version>7.0.99</tomcat.version>
+        <tomcat.version>7.0.100</tomcat.version>
     </properties>
 
     <dependencies>
