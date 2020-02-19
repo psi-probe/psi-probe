@@ -140,7 +140,7 @@ public class OshiController extends AbstractTomcatContainerController {
     logger.debug("Initializing System...");
     SystemInfo si = new SystemInfo();
 
-    if (!PlatformEnum.UNKNOWN.equals(SystemInfo.getCurrentPlatformEnum())) {
+    if (PlatformEnum.UNKNOWN.equals(SystemInfo.getCurrentPlatformEnum())) {
       logger.error("Oshi not supported on current platform");
       oshi.add("Oshi not supported on current platform");
       oshi.add("");
