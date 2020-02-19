@@ -148,7 +148,7 @@
 <a class="jxr_linenumber" name="L140" href="#L140">140</a>     logger.debug(<span class="jxr_string">"Initializing System..."</span>);
 <a class="jxr_linenumber" name="L141" href="#L141">141</a>     SystemInfo si = <strong class="jxr_keyword">new</strong> SystemInfo();
 <a class="jxr_linenumber" name="L142" href="#L142">142</a> 
-<a class="jxr_linenumber" name="L143" href="#L143">143</a>     <strong class="jxr_keyword">if</strong> (!PlatformEnum.UNKNOWN.equals(SystemInfo.getCurrentPlatformEnum())) {
+<a class="jxr_linenumber" name="L143" href="#L143">143</a>     <strong class="jxr_keyword">if</strong> (PlatformEnum.UNKNOWN.equals(SystemInfo.getCurrentPlatformEnum())) {
 <a class="jxr_linenumber" name="L144" href="#L144">144</a>       logger.error(<span class="jxr_string">"Oshi not supported on current platform"</span>);
 <a class="jxr_linenumber" name="L145" href="#L145">145</a>       oshi.add(<span class="jxr_string">"Oshi not supported on current platform"</span>);
 <a class="jxr_linenumber" name="L146" href="#L146">146</a>       oshi.add(<span class="jxr_string">""</span>);
