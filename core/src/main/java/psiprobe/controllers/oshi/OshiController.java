@@ -108,13 +108,6 @@ public class OshiController extends AbstractTomcatContainerController {
       return mv;
     }
 
-    if (!PlatformEnum.UNKNOWN.equals(SystemInfo.getCurrentPlatformEnum())) {
-      logger.error("Oshi not supported on current platform");
-      ModelAndView mv = new ModelAndView(getViewName());
-      mv.addObject("oshi", oshi);
-      return mv;
-    }
-
     // TODO: Remove once no longer experimental
     oshi.add(
         "Oshi results are performed as a system dump to screen here using Oshi SystemInfoTest logic.");
@@ -146,6 +139,13 @@ public class OshiController extends AbstractTomcatContainerController {
   private void initialize() {
     logger.debug("Initializing System...");
     SystemInfo si = new SystemInfo();
+
+    if (!PlatformEnum.UNKNOWN.equals(SystemInfo.getCurrentPlatformEnum())) {
+      logger.error("Oshi not supported on current platform");
+      oshi.add("Oshi not supported on current platform");
+      oshi.add("");
+      return;
+    }
 
     HardwareAbstractionLayer hal = si.getHardware();
     OperatingSystem os = si.getOperatingSystem();
