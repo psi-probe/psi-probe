@@ -70,7 +70,7 @@ public class AjaxDecoratorMapperTest {
     new Expectations() {
       {
         request.getAttribute("javax.servlet.error.request_uri");
-        result = "http://localhost:8080/probe";
+        result = "https://localhost:8443/probe";
 
         request.getServletPath();
         result = "probe/ws";

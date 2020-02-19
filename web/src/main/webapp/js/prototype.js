@@ -4545,11 +4545,11 @@ Prototype._original_property = window.Sizzle;
 
 /*!
  * Sizzle CSS Selector Engine v1.10.18
- * http://sizzlejs.com/
+ * https://github.com/jquery/sizzle/wiki
  *
  * Copyright 2013 jQuery Foundation, Inc. and other contributors
  * Released under the MIT license
- * http://jquery.org/license
+ * https://jquery.org/license/
  *
  * Date: 2014-02-05
  */
