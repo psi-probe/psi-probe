@@ -27,7 +27,7 @@ function checkAll($f) {
 }
 
 /**
- * Requires prototype.js (http://prototype.conio.net/)
+ * Requires prototype.js (http://www.prototypejs.org/)
  */
 Ajax.ImgUpdater = Class.create();
 Ajax.ImgUpdater.prototype = {
