@@ -108,35 +108,28 @@ import psiprobe.controllers.AbstractTomcatContainerController;
 <span class="nc" id="L108">      return mv;</span>
     }
 
-<span class="nc bnc" id="L111" title="All 2 branches missed.">    if (!PlatformEnum.UNKNOWN.equals(SystemInfo.getCurrentPlatformEnum())) {</span>
-<span class="nc" id="L112">      logger.error(&quot;Oshi not supported on current platform&quot;);</span>
-<span class="nc" id="L113">      ModelAndView mv = new ModelAndView(getViewName());</span>
-<span class="nc" id="L114">      mv.addObject(&quot;oshi&quot;, oshi);</span>
-<span class="nc" id="L115">      return mv;</span>
-    }
-
     // TODO: Remove once no longer experimental
-<span class="nc" id="L119">    oshi.add(</span>
+<span class="nc" id="L112">    oshi.add(</span>
         &quot;Oshi results are performed as a system dump to screen here using Oshi SystemInfoTest logic.&quot;);
-<span class="nc" id="L121">    oshi.add(</span>
+<span class="nc" id="L114">    oshi.add(</span>
         &quot;Please be advised this is experimental in use and is slow. Resulting data is entirely cached.&quot;);
-<span class="nc" id="L123">    oshi.add(&quot;Issues with library should be directed to https://github.com/oshi/oshi&quot;);</span>
-<span class="nc" id="L124">    oshi.add(&quot;For issues with our library usage of Oshi, please submit pull requests&quot;);</span>
-<span class="nc" id="L125">    oshi.add(&quot;&quot;);</span>
-<span class="nc" id="L126">    oshi.add(&quot;&quot;);</span>
+<span class="nc" id="L116">    oshi.add(&quot;Issues with library should be directed to https://github.com/oshi/oshi&quot;);</span>
+<span class="nc" id="L117">    oshi.add(&quot;For issues with our library usage of Oshi, please submit pull requests&quot;);</span>
+<span class="nc" id="L118">    oshi.add(&quot;&quot;);</span>
+<span class="nc" id="L119">    oshi.add(&quot;&quot;);</span>
 
-<span class="nc" id="L128">    this.initialize();</span>
+<span class="nc" id="L121">    this.initialize();</span>
 
-<span class="nc" id="L130">    ModelAndView mv = new ModelAndView(getViewName());</span>
-<span class="nc" id="L131">    mv.addObject(&quot;oshi&quot;, oshi);</span>
-<span class="nc" id="L132">    return mv;</span>
+<span class="nc" id="L123">    ModelAndView mv = new ModelAndView(getViewName());</span>
+<span class="nc" id="L124">    mv.addObject(&quot;oshi&quot;, oshi);</span>
+<span class="nc" id="L125">    return mv;</span>
   }
 
   @Value(&quot;oshi&quot;)
   @Override
   public void setViewName(String viewName) {
-<span class="fc" id="L138">    super.setViewName(viewName);</span>
-<span class="fc" id="L139">  }</span>
+<span class="fc" id="L131">    super.setViewName(viewName);</span>
+<span class="fc" id="L132">  }</span>
 
   /**
    * Process initialization using Oshi System Info Test (code copied from Oshi SystemInfoTest.main).
@@ -144,8 +137,15 @@ import psiprobe.controllers.AbstractTomcatContainerController;
    * Logging switched from 'info' to 'debug' for psi probe usage.
    */
   private void initialize() {
-<span class="nc" id="L147">    logger.debug(&quot;Initializing System...&quot;);</span>
-<span class="nc" id="L148">    SystemInfo si = new SystemInfo();</span>
+<span class="nc" id="L140">    logger.debug(&quot;Initializing System...&quot;);</span>
+<span class="nc" id="L141">    SystemInfo si = new SystemInfo();</span>
+
+<span class="nc bnc" id="L143" title="All 2 branches missed.">    if (!PlatformEnum.UNKNOWN.equals(SystemInfo.getCurrentPlatformEnum())) {</span>
+<span class="nc" id="L144">      logger.error(&quot;Oshi not supported on current platform&quot;);</span>
+<span class="nc" id="L145">      oshi.add(&quot;Oshi not supported on current platform&quot;);</span>
+<span class="nc" id="L146">      oshi.add(&quot;&quot;);</span>
+<span class="nc" id="L147">      return;</span>
+    }
 
 <span class="nc" id="L150">    HardwareAbstractionLayer hal = si.getHardware();</span>
 <span class="nc" id="L151">    OperatingSystem os = si.getOperatingSystem();</span>
