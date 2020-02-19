@@ -140,7 +140,7 @@ import psiprobe.controllers.AbstractTomcatContainerController;
 <span class="nc" id="L140">    logger.debug(&quot;Initializing System...&quot;);</span>
 <span class="nc" id="L141">    SystemInfo si = new SystemInfo();</span>
 
-<span class="nc bnc" id="L143" title="All 2 branches missed.">    if (!PlatformEnum.UNKNOWN.equals(SystemInfo.getCurrentPlatformEnum())) {</span>
+<span class="nc bnc" id="L143" title="All 2 branches missed.">    if (PlatformEnum.UNKNOWN.equals(SystemInfo.getCurrentPlatformEnum())) {</span>
 <span class="nc" id="L144">      logger.error(&quot;Oshi not supported on current platform&quot;);</span>
 <span class="nc" id="L145">      oshi.add(&quot;Oshi not supported on current platform&quot;);</span>
 <span class="nc" id="L146">      oshi.add(&quot;&quot;);</span>
