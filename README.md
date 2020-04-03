@@ -87,6 +87,10 @@ Generally supported versions for third party tomcat providers align with their s
     - TomEE 8.0.0 (Based on Tomcat 9.0.22)
     - Pivotal tc 4.0.0 through 4.0.10 release (Based on Tomcat 9.0.0 to 9.0.30)
 
+* Tomcat 10.0 Series (pending)
+
+    - Tomcat 10.0.0.M3 to 10.0.0.M4
+
 ## User Groups
 
 * [Announcements](https://groups.google.com/forum/#!forum/psi-probe)
