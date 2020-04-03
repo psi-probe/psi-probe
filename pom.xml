@@ -73,13 +73,12 @@
     </mailingLists>
 
     <modules>
-        <!-- TODO: Rename Directories to include psi-probe prefix -->
-        <module>core</module>
-        <module>rest</module>
-        <module>tomcat70adapter</module>
-        <module>tomcat85adapter</module>
-        <module>tomcat90adapter</module>
-        <module>web</module>
+        <module>psi-probe-core</module>
+        <module>psi-probe-rest</module>
+        <module>psi-probe-tomcat7</module>
+        <module>psi-probe-tomcat85</module>
+        <module>psi-probe-tomcat9</module>
+        <module>psi-probe-web</module>
     </modules>
 
     <scm>
