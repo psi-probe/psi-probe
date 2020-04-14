@@ -236,7 +236,7 @@
         <war.plugin>3.2.3</war.plugin>
 
         <!-- Plugin Dependency Versions -->
-        <build-tools.version>1.2.2</build-tools.version>
+        <build-tools.version>1.2.3</build-tools.version>
         <bugpattern.version>1.5.0</bugpattern.version>
         <checkstyle.version>8.31</checkstyle.version>
         <doxia.version>1.9.1</doxia.version>
