@@ -869,19 +869,6 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>${compiler.plugin}</version>
                     <configuration>
-                        <annotationProcessorPaths>
-                            <path>
-                                <groupId>com.google.errorprone</groupId>
-                                <artifactId>error_prone_core</artifactId>
-                                <version>${error-prone.version}</version>
-                            </path>
-                        </annotationProcessorPaths>
-
-                        <compilerArgs>
-                            <arg>-XDcompilePolicy=simple</arg>
-                            <arg>-Xplugin:ErrorProne -Xep:Finally:OFF</arg>
-                        </compilerArgs>
-
                         <showDeprecation>true</showDeprecation>
                         <showWarnings>true</showWarnings>
 
@@ -1396,6 +1383,37 @@
                         </executions>
                     </plugin>
                 </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>error-prone</id>
+            <activation>
+                <jdk>[1.8,12)</jdk>
+            </activation>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-compiler-plugin</artifactId>
+                            <configuration>
+                                <annotationProcessorPaths>
+                                    <path>
+                                        <groupId>com.google.errorprone</groupId>
+                                        <artifactId>error_prone_core</artifactId>
+                                        <version>${error-prone.version}</version>
+                                    </path>
+                                </annotationProcessorPaths>
+
+                                <compilerArgs>
+                                    <arg>-XDcompilePolicy=simple</arg>
+                                    <arg>-Xplugin:ErrorProne -Xep:Finally:OFF</arg>
+                                </compilerArgs>
+                            </configuration>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
             </build>
         </profile>
 
