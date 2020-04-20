@@ -216,11 +216,11 @@ public class OshiController extends AbstractTomcatContainerController {
    *
    * @param operatingSystem the operating system
    */
-  private static void printOperatingSystem(OperatingSystem os) {
-    oshi.add(String.valueOf(os));
-    oshi.add("Booted: " + Instant.ofEpochSecond(os.getSystemBootTime()));
-    oshi.add("Uptime: " + FormatUtil.formatElapsedSecs(os.getSystemUptime()));
-    oshi.add("Running with" + (os.isElevated() ? "" : "out") + " elevated permissions.");
+  private static void printOperatingSystem(OperatingSystem operatingSystem) {
+    oshi.add(String.valueOf(operatingSystem));
+    oshi.add("Booted: " + Instant.ofEpochSecond(operatingSystem.getSystemBootTime()));
+    oshi.add("Uptime: " + FormatUtil.formatElapsedSecs(operatingSystem.getSystemUptime()));
+    oshi.add("Running with" + (operatingSystem.isElevated() ? "" : "out") + " elevated permissions.");
   }
 
   /**

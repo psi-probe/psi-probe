@@ -119,8 +119,8 @@ public class MemoryPoolMailingListener extends AbstractFlapListener
     if (isSeriesDisabled(name)) {
       return;
     }
-    Long value = sce.getValue();
-    Long threshold = this.getThreshold(name);
+    long value = sce.getValue();
+    long threshold = this.getThreshold(name);
     String subjectInfix = "";
     String bodyPrefix = "";
     if (flappingStop) {

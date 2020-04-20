@@ -273,7 +273,7 @@ function setupShortcuts() {
 		'body': function(element) {
 			element.onkeydown = function() {
 				var sUserAgent = navigator.userAgent;
-				var isIE = sUserAgent.indexOf('compatible') > -1 && sUserAgent.indexOf('MSIE') > -1
+				var isIE = sUserAgent.indexOf('compatible') > -1 && sUserAgent.indexOf('MSIE') > -1;
 				var e;
 
 				if (isIE) {

@@ -35,7 +35,7 @@ public class ContainerWrapperBean {
   private static final Logger logger = LoggerFactory.getLogger(ContainerWrapperBean.class);
 
   /** The tomcat container. */
-  private TomcatContainer tomcatContainer;
+  private volatile TomcatContainer tomcatContainer;
 
   /** The lock. */
   private final Object lock = new Object();
