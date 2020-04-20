@@ -113,7 +113,7 @@ public final class ApplicationUtils {
         app.setSessionCount(context.getManager().findSessions().length);
 
         boolean serializable = true;
-        int sessionAttributeCount = 0;
+        long sessionAttributeCount = 0;
         long size = 0;
 
         for (Session session : context.getManager().findSessions()) {

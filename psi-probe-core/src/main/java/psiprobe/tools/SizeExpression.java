@@ -151,16 +151,16 @@ public final class SizeExpression {
     if (value < multiplierKilo) {
       doubleResult = value;
       nf.setMinimumFractionDigits(0);
-    } else if (value >= multiplierKilo && value < multiplierMega) {
+    } else if (value < multiplierMega) {
       doubleResult = round(value / multiplierKilo, decimalPlaces);
       unit = PREFIX_KILO + unit;
-    } else if (value >= multiplierMega && value < multiplierGiga) {
+    } else if (value < multiplierGiga) {
       doubleResult = round(value / multiplierMega, decimalPlaces);
       unit = PREFIX_MEGA + unit;
-    } else if (value >= multiplierGiga && value < multiplierTera) {
+    } else if (value < multiplierTera) {
       doubleResult = round(value / multiplierGiga, decimalPlaces);
       unit = PREFIX_GIGA + unit;
-    } else if (value >= multiplierTera && value < multiplierPeta) {
+    } else if (value < multiplierPeta) {
       doubleResult = round(value / multiplierTera, decimalPlaces);
       unit = PREFIX_TERA + unit;
     } else {
