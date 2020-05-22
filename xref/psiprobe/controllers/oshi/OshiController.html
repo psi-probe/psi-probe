@@ -224,11 +224,11 @@
 <a class="jxr_linenumber" name="L216" href="#L216">216</a> <em class="jxr_javadoccomment">   *</em>
 <a class="jxr_linenumber" name="L217" href="#L217">217</a> <em class="jxr_javadoccomment">   * @param operatingSystem the operating system</em>
 <a class="jxr_linenumber" name="L218" href="#L218">218</a> <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L219" href="#L219">219</a>   <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">void</strong> printOperatingSystem(OperatingSystem os) {
-<a class="jxr_linenumber" name="L220" href="#L220">220</a>     oshi.add(String.valueOf(os));
-<a class="jxr_linenumber" name="L221" href="#L221">221</a>     oshi.add(<span class="jxr_string">"Booted: "</span> + Instant.ofEpochSecond(os.getSystemBootTime()));
-<a class="jxr_linenumber" name="L222" href="#L222">222</a>     oshi.add(<span class="jxr_string">"Uptime: "</span> + FormatUtil.formatElapsedSecs(os.getSystemUptime()));
-<a class="jxr_linenumber" name="L223" href="#L223">223</a>     oshi.add(<span class="jxr_string">"Running with"</span> + (os.isElevated() ? <span class="jxr_string">""</span> : <span class="jxr_string">"out"</span>) + <span class="jxr_string">" elevated permissions."</span>);
+<a class="jxr_linenumber" name="L219" href="#L219">219</a>   <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">void</strong> printOperatingSystem(OperatingSystem operatingSystem) {
+<a class="jxr_linenumber" name="L220" href="#L220">220</a>     oshi.add(String.valueOf(operatingSystem));
+<a class="jxr_linenumber" name="L221" href="#L221">221</a>     oshi.add(<span class="jxr_string">"Booted: "</span> + Instant.ofEpochSecond(operatingSystem.getSystemBootTime()));
+<a class="jxr_linenumber" name="L222" href="#L222">222</a>     oshi.add(<span class="jxr_string">"Uptime: "</span> + FormatUtil.formatElapsedSecs(operatingSystem.getSystemUptime()));
+<a class="jxr_linenumber" name="L223" href="#L223">223</a>     oshi.add(<span class="jxr_string">"Running with"</span> + (operatingSystem.isElevated() ? <span class="jxr_string">""</span> : <span class="jxr_string">"out"</span>) + <span class="jxr_string">" elevated permissions."</span>);
 <a class="jxr_linenumber" name="L224" href="#L224">224</a>   }
 <a class="jxr_linenumber" name="L225" href="#L225">225</a> 
 <a class="jxr_linenumber" name="L226" href="#L226">226</a>   <em class="jxr_javadoccomment">/**</em>

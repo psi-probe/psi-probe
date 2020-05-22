@@ -159,16 +159,16 @@
 <a class="jxr_linenumber" name="L151" href="#L151">151</a>     <strong class="jxr_keyword">if</strong> (value &lt; multiplierKilo) {
 <a class="jxr_linenumber" name="L152" href="#L152">152</a>       doubleResult = value;
 <a class="jxr_linenumber" name="L153" href="#L153">153</a>       nf.setMinimumFractionDigits(0);
-<a class="jxr_linenumber" name="L154" href="#L154">154</a>     } <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (value &gt;= multiplierKilo &amp;&amp; value &lt; multiplierMega) {
+<a class="jxr_linenumber" name="L154" href="#L154">154</a>     } <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (value &lt; multiplierMega) {
 <a class="jxr_linenumber" name="L155" href="#L155">155</a>       doubleResult = round(value / multiplierKilo, decimalPlaces);
 <a class="jxr_linenumber" name="L156" href="#L156">156</a>       unit = PREFIX_KILO + unit;
-<a class="jxr_linenumber" name="L157" href="#L157">157</a>     } <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (value &gt;= multiplierMega &amp;&amp; value &lt; multiplierGiga) {
+<a class="jxr_linenumber" name="L157" href="#L157">157</a>     } <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (value &lt; multiplierGiga) {
 <a class="jxr_linenumber" name="L158" href="#L158">158</a>       doubleResult = round(value / multiplierMega, decimalPlaces);
 <a class="jxr_linenumber" name="L159" href="#L159">159</a>       unit = PREFIX_MEGA + unit;
-<a class="jxr_linenumber" name="L160" href="#L160">160</a>     } <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (value &gt;= multiplierGiga &amp;&amp; value &lt; multiplierTera) {
+<a class="jxr_linenumber" name="L160" href="#L160">160</a>     } <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (value &lt; multiplierTera) {
 <a class="jxr_linenumber" name="L161" href="#L161">161</a>       doubleResult = round(value / multiplierGiga, decimalPlaces);
 <a class="jxr_linenumber" name="L162" href="#L162">162</a>       unit = PREFIX_GIGA + unit;
-<a class="jxr_linenumber" name="L163" href="#L163">163</a>     } <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (value &gt;= multiplierTera &amp;&amp; value &lt; multiplierPeta) {
+<a class="jxr_linenumber" name="L163" href="#L163">163</a>     } <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (value &lt; multiplierPeta) {
 <a class="jxr_linenumber" name="L164" href="#L164">164</a>       doubleResult = round(value / multiplierTera, decimalPlaces);
 <a class="jxr_linenumber" name="L165" href="#L165">165</a>       unit = PREFIX_TERA + unit;
 <a class="jxr_linenumber" name="L166" href="#L166">166</a>     } <strong class="jxr_keyword">else</strong> {
