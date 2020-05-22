@@ -27,7 +27,7 @@ under the License.
     <item>
       <title>File: 341,
              Errors: 0,
-             Warnings: 760,
+             Warnings: 761,
              Infos: 0
       </title>
             <link>https://github.com/psi-probe/psi-probe/psi-probe-core//checkstyle.html</link>
@@ -1130,7 +1130,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  2
+                  3
                 </td>
                 <td>
                   0

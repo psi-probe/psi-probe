@@ -119,8 +119,8 @@ import psiprobe.tools.Mailer;
 <span class="nc bnc" id="L119" title="All 2 branches missed.">    if (isSeriesDisabled(name)) {</span>
 <span class="nc" id="L120">      return;</span>
     }
-<span class="nc" id="L122">    Long value = sce.getValue();</span>
-<span class="nc" id="L123">    Long threshold = this.getThreshold(name);</span>
+<span class="nc" id="L122">    long value = sce.getValue();</span>
+<span class="nc" id="L123">    long threshold = this.getThreshold(name);</span>
 <span class="nc" id="L124">    String subjectInfix = &quot;&quot;;</span>
 <span class="nc" id="L125">    String bodyPrefix = &quot;&quot;;</span>
 <span class="nc bnc" id="L126" title="All 2 branches missed.">    if (flappingStop) {</span>
@@ -130,9 +130,9 @@ import psiprobe.tools.Mailer;
 <span class="nc" id="L130">          getMessageSourceAccessor().getMessage(BASE_PROPERTY + &quot;flappingStop.body.prefix&quot;);</span>
     }
 <span class="nc" id="L132">    String subject = getMessageSourceAccessor().getMessage(BASE_PROPERTY + message + &quot;.subject&quot;,</span>
-        new Object[] {subjectInfix, name, value, threshold});
+<span class="nc" id="L133">        new Object[] {subjectInfix, name, value, threshold});</span>
 <span class="nc" id="L134">    String body = getMessageSourceAccessor().getMessage(BASE_PROPERTY + message + &quot;.body&quot;,</span>
-        new Object[] {bodyPrefix, name, value, threshold});
+<span class="nc" id="L135">        new Object[] {bodyPrefix, name, value, threshold});</span>
 <span class="nc" id="L136">    MailMessage mail = new MailMessage(null, subject, body);</span>
     try {
 <span class="nc" id="L138">      getMailer().send(mail);</span>

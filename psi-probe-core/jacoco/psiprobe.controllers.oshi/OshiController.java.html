@@ -216,11 +216,11 @@ import psiprobe.controllers.AbstractTomcatContainerController;
    *
    * @param operatingSystem the operating system
    */
-  private static void printOperatingSystem(OperatingSystem os) {
-<span class="nc" id="L220">    oshi.add(String.valueOf(os));</span>
-<span class="nc" id="L221">    oshi.add(&quot;Booted: &quot; + Instant.ofEpochSecond(os.getSystemBootTime()));</span>
-<span class="nc" id="L222">    oshi.add(&quot;Uptime: &quot; + FormatUtil.formatElapsedSecs(os.getSystemUptime()));</span>
-<span class="nc bnc" id="L223" title="All 2 branches missed.">    oshi.add(&quot;Running with&quot; + (os.isElevated() ? &quot;&quot; : &quot;out&quot;) + &quot; elevated permissions.&quot;);</span>
+  private static void printOperatingSystem(OperatingSystem operatingSystem) {
+<span class="nc" id="L220">    oshi.add(String.valueOf(operatingSystem));</span>
+<span class="nc" id="L221">    oshi.add(&quot;Booted: &quot; + Instant.ofEpochSecond(operatingSystem.getSystemBootTime()));</span>
+<span class="nc" id="L222">    oshi.add(&quot;Uptime: &quot; + FormatUtil.formatElapsedSecs(operatingSystem.getSystemUptime()));</span>
+<span class="nc bnc" id="L223" title="All 2 branches missed.">    oshi.add(&quot;Running with&quot; + (operatingSystem.isElevated() ? &quot;&quot; : &quot;out&quot;) + &quot; elevated permissions.&quot;);</span>
 <span class="nc" id="L224">  }</span>
 
   /**

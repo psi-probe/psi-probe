@@ -35,7 +35,7 @@ import psiprobe.model.ApplicationResource;
 <span class="fc" id="L35">  private static final Logger logger = LoggerFactory.getLogger(ContainerWrapperBean.class);</span>
 
   /** The tomcat container. */
-  private TomcatContainer tomcatContainer;
+  private volatile TomcatContainer tomcatContainer;
 
   /** The lock. */
 <span class="fc" id="L41">  private final Object lock = new Object();</span>

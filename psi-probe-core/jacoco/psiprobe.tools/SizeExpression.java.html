@@ -151,16 +151,16 @@ public final class SizeExpression {
 <span class="fc bfc" id="L151" title="All 2 branches covered.">    if (value &lt; multiplierKilo) {</span>
 <span class="fc" id="L152">      doubleResult = value;</span>
 <span class="fc" id="L153">      nf.setMinimumFractionDigits(0);</span>
-<span class="pc bpc" id="L154" title="1 of 4 branches missed.">    } else if (value &gt;= multiplierKilo &amp;&amp; value &lt; multiplierMega) {</span>
+<span class="fc bfc" id="L154" title="All 2 branches covered.">    } else if (value &lt; multiplierMega) {</span>
 <span class="fc" id="L155">      doubleResult = round(value / multiplierKilo, decimalPlaces);</span>
 <span class="fc" id="L156">      unit = PREFIX_KILO + unit;</span>
-<span class="pc bpc" id="L157" title="1 of 4 branches missed.">    } else if (value &gt;= multiplierMega &amp;&amp; value &lt; multiplierGiga) {</span>
+<span class="fc bfc" id="L157" title="All 2 branches covered.">    } else if (value &lt; multiplierGiga) {</span>
 <span class="fc" id="L158">      doubleResult = round(value / multiplierMega, decimalPlaces);</span>
 <span class="fc" id="L159">      unit = PREFIX_MEGA + unit;</span>
-<span class="pc bpc" id="L160" title="1 of 4 branches missed.">    } else if (value &gt;= multiplierGiga &amp;&amp; value &lt; multiplierTera) {</span>
+<span class="fc bfc" id="L160" title="All 2 branches covered.">    } else if (value &lt; multiplierTera) {</span>
 <span class="fc" id="L161">      doubleResult = round(value / multiplierGiga, decimalPlaces);</span>
 <span class="fc" id="L162">      unit = PREFIX_GIGA + unit;</span>
-<span class="pc bpc" id="L163" title="1 of 4 branches missed.">    } else if (value &gt;= multiplierTera &amp;&amp; value &lt; multiplierPeta) {</span>
+<span class="fc bfc" id="L163" title="All 2 branches covered.">    } else if (value &lt; multiplierPeta) {</span>
 <span class="fc" id="L164">      doubleResult = round(value / multiplierTera, decimalPlaces);</span>
 <span class="fc" id="L165">      unit = PREFIX_TERA + unit;</span>
     } else {
