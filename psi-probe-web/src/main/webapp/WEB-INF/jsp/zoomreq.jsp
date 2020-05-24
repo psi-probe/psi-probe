@@ -23,9 +23,6 @@
 		<script type="text/javascript" src="<c:url value='/js/func.js'/>"></script>
 	</head>
 
-	<c:set var="fullChartWidth" value="800"/>
-	<c:set var="fullChartHeight" value="350"/>
-	
 	<c:url value="/chart.png" var="imgurl" scope="request">
 		<c:param name="l" value="true"/>
 		<c:param name="p" value="${param.p}"/>
@@ -77,10 +74,22 @@
 			</div>
 
 			<div>
-				<img id="img" class="scale-image" src="${imgurl}&xz=${fullChartWidth}&yz=${fullChartHeight}" width="${fullChartWidth}" height="${fullChartHeight}" alt=""/>
+				<img id="img" class="scale-image" src="${imgurl}&xz=${fullChartWidth}&yz=${fullChartHeight}" alt=""/>
 			</div>
 
 			<script type="text/javascript">
+				window.onload = onloadImg();
+				var fullChartWidth;
+				var fullChartHeight;
+				function onloadImg(){
+					fullChartWidth = getWindowWidth() / 2;
+					fullChartHeight = getWindowHeight() / 2;
+					const scaleImage = document.getElementById("img");
+					scaleImage.src = "${imgurl}&xz="+ fullChartWidth + "&yz=" + fullChartHeight;
+					scaleImage.style.width = fullChartWidth + "px";
+					scaleImage.style.height = fullChartHeight + "px";
+				}
+
 
 				// "animate" our slider
 				var slider = new Control.Slider('handle', 'track', {axis:'horizontal', alignX: -5, increment: 2, sliderValue: 0});
@@ -88,16 +97,23 @@
 				// resize the image as the slider moves. The image quality would deteriorate, but it
 				// would not be final anyway. Once slider is released the image is re-requested from the server, where
 				// it is rebuilt from vector format
+				var v;
 				slider.options.onSlide = function(value) {
-					scaleImage(value, '${fullChartWidth}', '${fullChartWidth * 2}', '${fullChartHeight}', '${fullChartHeight * 2}');
+					v= scaleImage(value, fullChartWidth, fullChartWidth * 2, fullChartHeight, fullChartHeight * 2);
 				}
 
 				// this is where the slider is released and the image is reloaded
 				// we use current style settings to work our the required image dimensions
 				slider.options.onChange = function(value) {
+					if(value !== v) {
+						scaleImage(value, fullChartWidth, fullChartWidth * 2, fullChartHeight, fullChartHeight * 2)
+					}
+
 					// chop off "px" and round up float values
 					var width = Math.round(Element.getStyle('img', 'width').replace('px', ''));
-					var height = Math.round(width / '${fullChartWidth / fullChartHeight}');
+
+					var height = Math.round(width / (fullChartWidth / fullChartHeight));
+
 					// reload the images
 					document.images.img.src = '<c:out value="${imgurl}" escapeXml="false"/>&xz=' + width + '&yz=' + height;
 					// reset the image auto-updater
