@@ -95,12 +95,17 @@ function scaleImage(v, minX, maxX, minY, maxY) {
 	var images = document.getElementsByClassName('scale-image');
 	var w = (maxX - minX) * v + minX;
 	var h = (maxY - minY) * v + minY;
+	if(v > 0.8) {
+		w = w -30;
+		h = h - 100;
+	}
 	for (let i = 0; i < images.length; i++) {
 		$(images[i]).setStyle({
 			"width": w + 'px',
 			"height": h + 'px'
 		});
 	}
+	return v;
 }
 
 function toggleAndReloadPanel(container, url) {
@@ -120,23 +125,17 @@ function getWindowHeight() {
 	} else if (document.documentElement && document.documentElement.clientHeight) {
 		//IE 6+ in 'standards compliant mode'
 		myHeight = document.documentElement.clientHeight;
-	} else if (document.body && document.body.clientHeight) {
-		//IE 4 compatible
-		myHeight = document.body.clientHeight;
 	}
 	return myHeight;
 }
 
 function getWindowWidth() {
 	var myWidth = 0;
-	if (typeof( window.innerWidth ) == 'number') {
+	if (typeof( document.body.clientWidth ) == 'number') {
 		//Non-IE
-		myWidth = window.innerWidth;
-	} else if (document.documentElement && document.documentElement.clientWidth) {
-		//IE 6+ in 'standards compliant mode'
-		myWidth = document.documentElement.clientWidth;
+		myWidth = document.body.clientWidth;
 	} else if (document.body && document.body.clientWidth) {
-		//IE 4 compatible
+		//IE 6+ in 'standards compliant mode'
 		myWidth = document.body.clientWidth;
 	}
 	return myWidth;
