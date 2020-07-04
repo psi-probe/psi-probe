@@ -194,7 +194,7 @@
         <tomcat.version>9.0.35</tomcat.version>
         <wrapper.version>3.2.3</wrapper.version>
         <xpp3_min.version>1.1.4c</xpp3_min.version>
-        <xstream.version>1.4.12</xstream.version>
+        <xstream.version>1.4.12-java7</xstream.version>
         <vibur-dbcp.version>25.0</vibur-dbcp.version>
 
         <!-- Plugin Versions -->
