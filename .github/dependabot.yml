@@ -1,0 +1,36 @@
+version: 2
+updates:
+- package-ecosystem: maven
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: com.mebigfatguy.fb-contrib:fb-contrib
+    versions:
+    - "< 7.4.4"
+    - "> 7.4.3.sb"
+  - dependency-name: net.trajano.wagon:wagon-git
+    versions:
+    - "< 2.0.5"
+    - ">= 2.0.4.a"
+  - dependency-name: org.apache.tomcat:tomcat-catalina
+    versions:
+    - "< 9.0.14"
+    - ">= 9.0.13.a"
+  - dependency-name: org.apache.tomcat:tomcat-coyote
+    versions:
+    - "< 9.0.14"
+    - ">= 9.0.13.a"
+  - dependency-name: org.apache.tomcat:tomcat-dbcp
+    versions:
+    - "< 9.0.14"
+    - ">= 9.0.13.a"
+  - dependency-name: org.apache.tomcat:tomcat-dbcp
+    versions:
+    - "< 9.0.15"
+    - ">= 9.0.14.a"
+  - dependency-name: org.apache.tomcat:tomcat-jasper
+    versions:
+    - "< 9.0.14"
+    - ">= 9.0.13.a"
