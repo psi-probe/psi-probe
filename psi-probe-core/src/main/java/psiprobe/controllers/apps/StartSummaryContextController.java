@@ -12,7 +12,7 @@ package psiprobe.controllers.apps;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.catalina.Context;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,9 +26,7 @@ public class StartSummaryContextController extends BaseStartContextController {
 
   @RequestMapping(path = "/app/start_summary.htm")
   @Override
-  protected ModelAndView handleContext(String contextName, Context context,
-      HttpServletRequest request, HttpServletResponse response) throws Exception {
-    return super.handleContext(contextName, context, request, response);
+    return super.handleRequest(request, response);
   }
 
   @Value("/appsummary.htm")
