@@ -26,6 +26,7 @@ public class StartSummaryContextController extends BaseStartContextController {
 
   @RequestMapping(path = "/app/start_summary.htm")
   @Override
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
     return super.handleRequest(request, response);
   }
 
