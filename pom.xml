@@ -234,7 +234,7 @@
         <surefire.plugin>3.0.0-M5</surefire.plugin>
         <tidy.plugin>1.1.0</tidy.plugin>
         <versions.plugin>2.7</versions.plugin>
-        <war.plugin>3.3.0</war.plugin>
+        <war.plugin>3.3.1</war.plugin>
 
         <!-- Plugin Dependency Versions -->
         <build-tools.version>1.2.4</build-tools.version>
