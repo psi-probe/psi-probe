@@ -37,12 +37,18 @@
 
     <properties>
         <!-- TODO: Downcast jmockit to 1.47 as tests break with 1.48+ -->
-        <jmockit.version>1.47</jmockit.version>
+        <jmockit-legacy.version>1.47</jmockit-legacy.version>
 
-        <tomcat.version>7.0.104</tomcat.version>
+        <tomcat.version>7.0.105</tomcat.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.jmockit</groupId>
+            <artifactId>jmockit</artifactId>
+            <version>${jmockit-legacy.version}</version>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>psi-probe-core</artifactId>
