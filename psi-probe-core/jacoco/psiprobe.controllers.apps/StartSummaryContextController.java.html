@@ -12,7 +12,7 @@ package psiprobe.controllers.apps;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.catalina.Context;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,22 +26,21 @@ import org.springframework.web.servlet.ModelAndView;
 
   @RequestMapping(path = &quot;/app/start_summary.htm&quot;)
   @Override
-  protected ModelAndView handleContext(String contextName, Context context,
-      HttpServletRequest request, HttpServletResponse response) throws Exception {
-<span class="nc" id="L31">    return super.handleContext(contextName, context, request, response);</span>
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+<span class="nc" id="L30">    return super.handleRequest(request, response);</span>
   }
 
   @Value(&quot;/appsummary.htm&quot;)
   @Override
   public void setViewName(String viewName) {
-<span class="fc" id="L37">    super.setViewName(viewName);</span>
-<span class="fc" id="L38">  }</span>
+<span class="fc" id="L36">    super.setViewName(viewName);</span>
+<span class="fc" id="L37">  }</span>
 
   @Value(&quot;true&quot;)
   @Override
   public void setPassQueryString(boolean passQueryString) {
-<span class="fc" id="L43">    super.setPassQueryString(passQueryString);</span>
-<span class="fc" id="L44">  }</span>
+<span class="fc" id="L42">    super.setPassQueryString(passQueryString);</span>
+<span class="fc" id="L43">  }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
