@@ -146,7 +146,7 @@
         <!-- Dependency Versions -->
         <activation.version>1.2.2</activation.version>
         <animal-sniffer.version>1.19</animal-sniffer.version>
-        <assertj.version>3.17.0</assertj.version>
+        <assertj.version>3.17.1</assertj.version>
         <beanutils.version>1.9.4</beanutils.version>
         <bonecp.version>0.8.0.RELEASE</bonecp.version>
         <c3p0.version>0.9.5.5</c3p0.version>
