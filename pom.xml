@@ -224,7 +224,7 @@
         <lifecycle-mapping.plugin>1.0.0</lifecycle-mapping.plugin>
         <modernizer.plugin>2.1.0</modernizer.plugin>
         <pmd.plugin>3.13.0</pmd.plugin>
-        <project-info.plugin>3.1.0</project-info.plugin>
+        <project-info.plugin>3.1.1</project-info.plugin>
         <release.plugin>2.5.3</release.plugin>
         <resources.plugin>3.2.0</resources.plugin>
         <site.plugin>3.9.1</site.plugin>
