@@ -174,7 +174,7 @@
         <jsr305.version>3.0.2</jsr305.version>
         <jstl-api.version>1.2.7</jstl-api.version>
         <jstl.version>1.2.6</jstl.version>
-        <junit.version>5.6.2</junit.version>
+        <junit.version>5.7.0</junit.version>
         <lang3.version>3.11</lang3.version>
         <logback.version>1.2.3</logback.version>
         <mail.version>1.6.5</mail.version>
