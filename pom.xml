@@ -161,7 +161,7 @@
         <guava.version>30.0-jre</guava.version>
         <hateoas.version>1.2.1</hateoas.version>
         <hikaricp.version>3.4.5</hikaricp.version>
-        <inject.version>1.0.1</inject.version>
+        <inject.version>1.0.3</inject.version>
         <io.version>2.8.0</io.version>
         <j2objc.version>1.3</j2objc.version>
         <jackson.version>2.11.3</jackson.version>
