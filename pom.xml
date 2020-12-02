@@ -150,7 +150,7 @@
         <beanutils.version>1.9.4</beanutils.version>
         <bonecp.version>0.8.0.RELEASE</bonecp.version>
         <c3p0.version>0.9.5.5</c3p0.version>
-        <checker.version>3.7.1</checker.version>
+        <checker.version>3.8.0</checker.version>
         <collections.version>3.2.2</collections.version>
         <dbcp.version>1.4</dbcp.version>
         <dbcp2.version>2.8.0</dbcp2.version>
