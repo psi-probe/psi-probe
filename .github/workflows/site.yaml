@@ -1,0 +1,44 @@
+#
+# Licensed under the GPL License. You may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+#
+# THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+# WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+# PURPOSE.
+#
+
+name: Site
+
+on:
+  push:
+    branches:
+      - site
+
+jobs:
+  build:
+    if: github.repository_owner == 'psi-probe' && ! contains(toJSON(github.event.head_commit.message), '[maven-release-plugin]')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - uses: webfactory/ssh-agent@master
+        with:
+          ssh-private-key: ${{ secrets.DEPLOY_KEY }}
+      - name: Build site
+        run: ./mvnw site site:stage -DskipTests -B --file Source/JNA/pom.xml
+        env:
+          CI_DEPLOY_USERNAME: ${{ secrets.CI_DEPLOY_USERNAME }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Deploy Site to gh-pages
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          SSH: true
+          BRANCH: gh-pages
+          FOLDER: Source/JNA/target/staging
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
