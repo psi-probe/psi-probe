@@ -1,0 +1,36 @@
+#
+# Licensed under the GPL License. You may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+#
+# THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+# WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+# PURPOSE.
+#
+
+name: SonarCloud
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    if: github.repository_owner == 'psi-probe'
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          # Disabling shallow clone is recommended for improving relevancy of reporting
+          fetch-depth: 0
+      - name: Set up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Analyze with SonarCloud
+        run: ./mvnw verify sonar:sonar -B -D"sonar.projectKey=Psi-probe_psi-probe" -D"sonar.organization=psi-probe" -D"sonar.host.url=https://sonarcloud.io" -D"sonar.login=$SONAR_TOKEN"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

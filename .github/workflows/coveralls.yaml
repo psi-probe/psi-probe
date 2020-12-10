@@ -1,0 +1,36 @@
+#
+# Licensed under the GPL License. You may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+#
+# THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+# WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+# PURPOSE.
+#
+
+name: Coveralls
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    if: github.repository_owner == 'psi-probe'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 8
+      - name: Report Coverage to Coveralls for Pull Requests
+        if: github.event_name == 'pull_request'
+        run: ./mvnw test jacoco:report coveralls:report -q -Dlicense.skip=true -DrepoToken=$GITHUB_TOKEN -DserviceName=github -DpullRequest=$PR_NUMBER
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.number }}
+      - name: Report Coverage to Coveralls for General Push
+        if: github.event_name == 'push'
+        run: ./mvnw test jacoco:report coveralls:report -q -Dlicense.skip=true -DrepoToken=$GITHUB_TOKEN -DserviceName=github
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

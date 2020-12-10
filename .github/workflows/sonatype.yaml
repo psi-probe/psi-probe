@@ -9,29 +9,25 @@
 # PURPOSE.
 #
 
----
-name: Java CI
+name: Sonatype
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - master
 
 jobs:
-  test:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-18.04, macOS-latest, windows-2016]
-        java: [8, 11, 15, 16-ea]
-      fail-fast: false
-      max-parallel: 4
-    name: Test JDK ${{ matrix.java }}, ${{ matrix.os }}
-
+  build:
+    if: github.repository_owner == 'psi-probe' && ! contains(toJSON(github.event.head_commit.message), '[maven-release-plugin]')
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK
         uses: actions/setup-java@v1
         with:
-          java-version: ${{ matrix.java }}
-      - name: Test with Maven
-        run: mvn test -B --file pom.xml
-
-...
+          java-version: 11
+      - name: Deploy to Sonatype
+        run: ./mvnw deploy -DskipTests -B --settings ./.mvn/settings.xml
+        env:
+          CI_DEPLOY_USERNAME: ${{ secrets.CI_DEPLOY_USERNAME }}
+          CI_DEPLOY_PASSWORD: ${{ secrets.CI_DEPLOY_PASSWORD }}
