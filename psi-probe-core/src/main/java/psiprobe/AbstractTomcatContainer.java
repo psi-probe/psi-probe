@@ -399,7 +399,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
         JspRuntimeContext jrctx = new JspRuntimeContext(sctx, opt);
         try {
           if (summary.getItems() == null) {
-            summary.setItems(new HashMap<String, Item>());
+            summary.setItems(new HashMap<>());
           }
 
           /*
