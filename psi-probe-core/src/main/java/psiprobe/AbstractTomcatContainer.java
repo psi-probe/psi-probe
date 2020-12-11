@@ -606,7 +606,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
   protected void checkChanges(String name) throws Exception {
     Boolean result = (Boolean) mbeanServer.invoke(deployerOName, "isServiced", new String[] {name},
         new String[] {String.class.getName()});
-    if (!result) {
+    if (!result.booleanValue()) {
       mbeanServer.invoke(deployerOName, "addServiced", new String[] {name},
           new String[] {String.class.getName()});
       try {
