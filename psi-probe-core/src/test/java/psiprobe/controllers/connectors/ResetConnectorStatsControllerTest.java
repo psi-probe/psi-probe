@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class ResetConnectorStatsControllerTest.
  */
-public class ResetConnectorStatsControllerTest {
+class ResetConnectorStatsControllerTest {
 
   /**
    * Javabean tester.

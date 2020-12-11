@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class GetApplicationControllerTest.
  */
-public class GetApplicationControllerTest {
+class GetApplicationControllerTest {
 
   /**
    * Javabean tester proc details.

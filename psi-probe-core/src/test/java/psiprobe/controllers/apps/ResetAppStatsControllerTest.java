@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class ResetAppStatsControllerTest.
  */
-public class ResetAppStatsControllerTest {
+class ResetAppStatsControllerTest {
 
   /**
    * Javabean tester.

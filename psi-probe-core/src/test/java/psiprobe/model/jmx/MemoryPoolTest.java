@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class MemoryPoolTest.
  */
-public class MemoryPoolTest {
+class MemoryPoolTest {
 
   /**
    * Javabean tester.

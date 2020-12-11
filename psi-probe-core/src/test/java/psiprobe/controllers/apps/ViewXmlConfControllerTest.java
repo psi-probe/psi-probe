@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class ViewXmlConfControllerTest.
  */
-public class ViewXmlConfControllerTest {
+class ViewXmlConfControllerTest {
 
   /**
    * Javabean tester context.

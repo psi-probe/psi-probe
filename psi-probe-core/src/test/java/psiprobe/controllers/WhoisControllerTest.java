@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class WhoisControllerTest.
  */
-public class WhoisControllerTest {
+class WhoisControllerTest {
 
   /**
    * Javabean tester.

@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class DataSourceTestInfoTest.
  */
-public class DataSourceTestInfoTest {
+class DataSourceTestInfoTest {
 
   /**
    * Javabean tester.

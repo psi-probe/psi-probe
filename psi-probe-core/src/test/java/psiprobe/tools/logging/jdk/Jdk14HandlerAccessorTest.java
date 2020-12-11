@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class Jdk14HandlerAccessorTest.
  */
-public class Jdk14HandlerAccessorTest {
+class Jdk14HandlerAccessorTest {
 
   /**
    * Javabean tester.

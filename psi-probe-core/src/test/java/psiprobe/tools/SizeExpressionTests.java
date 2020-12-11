@@ -19,7 +19,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class SizeExpressionTests.
  */
-public class SizeExpressionTests {
+class SizeExpressionTests {
 
   /** The default locale. */
   private Locale defaultLocale;

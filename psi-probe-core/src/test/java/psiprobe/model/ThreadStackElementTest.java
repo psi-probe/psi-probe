@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class ThreadStackElementTest.
  */
-public class ThreadStackElementTest {
+class ThreadStackElementTest {
 
   /**
    * Javabean tester.

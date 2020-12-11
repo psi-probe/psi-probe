@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class GetConnectorControllerTest.
  */
-public class GetConnectorControllerTest {
+class GetConnectorControllerTest {
 
   /**
    * Javabean tester proc time.

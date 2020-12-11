@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class ApplicationParamTest.
  */
-public class ApplicationParamTest {
+class ApplicationParamTest {
 
   /**
    * Javabean tester.

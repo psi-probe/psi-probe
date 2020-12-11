@@ -317,7 +317,7 @@ public final class Utils {
       // accept attempts to resume download (if any)
       String range = request.getHeader("Range");
       if (range != null && range.startsWith("bytes=")) {
-        String pureRange = range.replaceAll("bytes=", "");
+        String pureRange = range.replace("bytes=", "");
         int rangeSep = pureRange.indexOf('-');
 
         try {

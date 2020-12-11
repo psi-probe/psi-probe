@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class BeanToXmlControllerTest.
  */
-public class BeanToXmlControllerTest {
+class BeanToXmlControllerTest {
 
   /**
    * Javabean tester.

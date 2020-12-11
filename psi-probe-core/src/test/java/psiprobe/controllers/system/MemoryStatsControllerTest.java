@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class MemoryStatsControllerTest.
  */
-public class MemoryStatsControllerTest {
+class MemoryStatsControllerTest {
 
   /**
    * Javabean tester.

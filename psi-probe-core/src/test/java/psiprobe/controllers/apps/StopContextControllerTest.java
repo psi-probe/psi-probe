@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class StopContextControllerTest.
  */
-public class StopContextControllerTest {
+class StopContextControllerTest {
 
   /**
    * Javabean tester.

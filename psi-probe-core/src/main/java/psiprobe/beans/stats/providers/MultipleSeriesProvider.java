@@ -114,13 +114,8 @@ public class MultipleSeriesProvider extends AbstractSeriesProvider {
 
     if (useTop) {
       // sorting stats by the avg value to identify the top series
-      Collections.sort(seriesList, new Comparator<Series>() {
-        @Override
-        public int compare(Series s1, Series s2) {
-          return Double.compare(s1.avg, s2.avg) == 0 ? s1.key.compareTo(s2.key)
-              : Double.compare(s1.avg, s2.avg) > 0 ? -1 : 1;
-        }
-      });
+      Collections.sort(seriesList, (s1, s2) -> Double.compare(s1.avg, s2.avg) == 0 ? s1.key.compareTo(s2.key)
+              : Double.compare(s1.avg, s2.avg) > 0 ? -1 : 1);
 
       // keeping only the top series in the list
       for (ListIterator<Series> i = seriesList.listIterator(getTop()); i.hasNext();) {
@@ -130,12 +125,7 @@ public class MultipleSeriesProvider extends AbstractSeriesProvider {
     }
 
     // sorting the remaining series by name
-    Collections.sort(seriesList, new Comparator<Series>() {
-      @Override
-      public int compare(Series s1, Series s2) {
-        return s1.key.compareTo(s2.key);
-      }
-    });
+    Collections.sort(seriesList, (s1, s2) -> s1.key.compareTo(s2.key));
 
     for (Series ser : seriesList) {
       synchronized (ser.stats) {

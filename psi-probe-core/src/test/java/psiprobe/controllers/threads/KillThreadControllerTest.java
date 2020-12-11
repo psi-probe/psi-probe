@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class KillThreadControllerTest.
  */
-public class KillThreadControllerTest {
+class KillThreadControllerTest {
 
   /**
    * Javabean tester.

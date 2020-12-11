@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class ResetDataSourceControllerTest.
  */
-public class ResetDataSourceControllerTest {
+class ResetDataSourceControllerTest {
 
   /**
    * Javabean tester.

@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class RequestProcessorTest.
  */
-public class RequestProcessorTest {
+class RequestProcessorTest {
 
   /**
    * Javabean tester.

@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class RuntimeStatsCollectorBeanTest.
  */
-public class RuntimeStatsCollectorBeanTest {
+class RuntimeStatsCollectorBeanTest {
 
   /**
    * Javabean tester.

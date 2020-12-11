@@ -24,7 +24,7 @@ import mockit.Mocked;
 /**
  * The Class AjaxDecoratorMapperTest.
  */
-public class AjaxDecoratorMapperTest {
+class AjaxDecoratorMapperTest {
 
   /** The mapper. */
   AjaxDecoratorMapper mapper;

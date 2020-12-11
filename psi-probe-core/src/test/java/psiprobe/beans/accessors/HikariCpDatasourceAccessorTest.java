@@ -21,7 +21,7 @@ import mockit.Mocked;
 /**
  * The Class HikariCpDatasourceAccessorTest.
  */
-public class HikariCpDatasourceAccessorTest {
+class HikariCpDatasourceAccessorTest {
 
   /** The accessor. */
   HikariCpDatasourceAccessor accessor;

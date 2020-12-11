@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class ImplSelectorControllerTest.
  */
-public class ImplSelectorControllerTest {
+class ImplSelectorControllerTest {
 
   /**
    * Javabean tester.

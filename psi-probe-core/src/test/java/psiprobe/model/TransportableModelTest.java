@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class TransportableModelTest.
  */
-public class TransportableModelTest {
+class TransportableModelTest {
 
   /**
    * Javabean tester.

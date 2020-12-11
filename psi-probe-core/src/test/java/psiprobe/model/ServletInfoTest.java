@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class ServletInfoTest.
  */
-public class ServletInfoTest {
+class ServletInfoTest {
 
   /**
    * Javabean tester.

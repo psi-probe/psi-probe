@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class UrlParserTest.
  */
-public class UrlParserTest {
+class UrlParserTest {
 
   /**
    * Javabean tester.

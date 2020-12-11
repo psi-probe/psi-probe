@@ -19,7 +19,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class C3P0DatasourceAccessorTest.
  */
-public class C3P0DatasourceAccessorTest {
+class C3P0DatasourceAccessorTest {
 
   /** The accessor. */
   C3P0DatasourceAccessor accessor;

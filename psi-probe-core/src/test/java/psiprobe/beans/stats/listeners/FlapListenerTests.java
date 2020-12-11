@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class FlapListenerTests.
  */
-public class FlapListenerTests {
+class FlapListenerTests {
 
   /** The default threshold. */
   private final int defaultThreshold = 10;

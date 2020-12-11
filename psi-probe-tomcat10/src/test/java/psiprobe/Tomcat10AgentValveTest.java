@@ -24,7 +24,7 @@ import mockit.Tested;
 /**
  * The Class Tomcat10AgentValveTest.
  */
-public class Tomcat10AgentValveTest {
+class Tomcat10AgentValveTest {
 
   /** The valve. */
   @Tested

@@ -20,7 +20,7 @@ import mockit.Mocked;
 /**
  * The Class BoneCpDatasourceAccessorTest.
  */
-public class BoneCpDatasourceAccessorTest {
+class BoneCpDatasourceAccessorTest {
 
   /** The accessor. */
   BoneCpDatasourceAccessor accessor;

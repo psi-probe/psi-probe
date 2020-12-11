@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class AddQueryParamTagTest.
  */
-public class AddQueryParamTagTest {
+class AddQueryParamTagTest {
 
   /**
    * Javabean tester.

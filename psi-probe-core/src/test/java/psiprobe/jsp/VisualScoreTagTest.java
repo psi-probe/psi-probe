@@ -19,7 +19,7 @@ import org.slf4j.LoggerFactory;
 /**
  * The Class VisualScoreTagTest.
  */
-public class VisualScoreTagTest {
+class VisualScoreTagTest {
 
   /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(VisualScoreTagTest.class);

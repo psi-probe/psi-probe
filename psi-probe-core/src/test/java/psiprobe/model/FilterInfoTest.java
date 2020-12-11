@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class FilterInfoTest.
  */
-public class FilterInfoTest {
+class FilterInfoTest {
 
   /**
    * Javabean tester.

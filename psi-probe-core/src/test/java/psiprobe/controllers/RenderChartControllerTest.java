@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class RenderChartControllerTest.
  */
-public class RenderChartControllerTest {
+class RenderChartControllerTest {
 
   /**
    * Javabean tester.

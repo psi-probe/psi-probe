@@ -18,7 +18,7 @@ import org.slf4j.LoggerFactory;
 /**
  * The Class LogbackConfigTest.
  */
-public class LogbackConfigTest {
+class LogbackConfigTest {
 
   /**
    * Test.

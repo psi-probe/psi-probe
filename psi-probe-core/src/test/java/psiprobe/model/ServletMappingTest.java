@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class ServletMappingTest.
  */
-public class ServletMappingTest {
+class ServletMappingTest {
 
   /**
    * Javabean tester.

@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class ApplicationResourceTest.
  */
-public class ApplicationResourceTest {
+class ApplicationResourceTest {
 
   /**
    * Javabean tester.

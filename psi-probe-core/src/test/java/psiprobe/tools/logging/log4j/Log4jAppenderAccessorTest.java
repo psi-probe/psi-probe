@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class Log4jAppenderAccessorTest.
  */
-public class Log4jAppenderAccessorTest {
+class Log4jAppenderAccessorTest {
 
   /**
    * Javabean tester.

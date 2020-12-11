@@ -19,7 +19,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class DbcpDatasourceAccessorTest.
  */
-public class DbcpDatasourceAccessorTest {
+class DbcpDatasourceAccessorTest {
 
   /** The accessor. */
   DbcpDatasourceAccessor accessor;

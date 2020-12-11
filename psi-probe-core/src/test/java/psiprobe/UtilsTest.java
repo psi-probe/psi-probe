@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class UtilsTest.
  */
-public class UtilsTest {
+class UtilsTest {
 
   /**
    * To int test.
