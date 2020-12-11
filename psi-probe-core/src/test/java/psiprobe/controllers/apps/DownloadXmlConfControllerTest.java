@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class DownloadXmlConfControllerTest.
  */
-public class DownloadXmlConfControllerTest {
+class DownloadXmlConfControllerTest {
 
   /**
    * Javabean tester web.

@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class WrapperInfoTest.
  */
-public class WrapperInfoTest {
+class WrapperInfoTest {
 
   /**
    * Javabean tester.

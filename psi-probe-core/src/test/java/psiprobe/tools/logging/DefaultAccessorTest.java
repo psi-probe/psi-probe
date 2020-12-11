@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class DefaultAccessorTest.
  */
-public class DefaultAccessorTest {
+class DefaultAccessorTest {
 
   /**
    * Javabean tester.

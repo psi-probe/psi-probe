@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class SysInfoControllerTest.
  */
-public class SysInfoControllerTest {
+class SysInfoControllerTest {
 
   /**
    * Javabean tester os info ajax.

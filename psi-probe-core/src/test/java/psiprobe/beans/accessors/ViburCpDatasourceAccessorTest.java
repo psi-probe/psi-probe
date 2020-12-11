@@ -22,7 +22,7 @@ import mockit.Mocked;
 /**
  * The Class ViburCpDatasourceAccessorTest.
  */
-public class ViburCpDatasourceAccessorTest {
+class ViburCpDatasourceAccessorTest {
 
   /** The accessor. */
   ViburCpDatasourceAccessor accessor;

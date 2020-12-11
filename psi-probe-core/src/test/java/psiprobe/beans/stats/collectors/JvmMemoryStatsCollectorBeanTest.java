@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class JvmMemoryStatsCollectorBeanTest.
  */
-public class JvmMemoryStatsCollectorBeanTest {
+class JvmMemoryStatsCollectorBeanTest {
 
   /**
    * Javabean tester.

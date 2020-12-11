@@ -20,7 +20,7 @@ import psiprobe.tools.Whois.Response;
 /**
  * The Class WhoisTests.
  */
-public class WhoisTests {
+class WhoisTests {
 
   /**
    * Test localhost.

@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class FilterMappingTest.
  */
-public class FilterMappingTest {
+class FilterMappingTest {
 
   /**
    * Javabean tester.

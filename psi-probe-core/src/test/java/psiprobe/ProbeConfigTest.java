@@ -25,7 +25,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @ContextConfiguration(classes = ProbeConfig.class, loader=AnnotationConfigWebContextLoader.class)
 @WebAppConfiguration("file:src/test/webapp")
 @ExtendWith(SpringExtension.class)
-public class ProbeConfigTest {
+class ProbeConfigTest {
 
   @Inject
   private List<String> datasourceMappers;

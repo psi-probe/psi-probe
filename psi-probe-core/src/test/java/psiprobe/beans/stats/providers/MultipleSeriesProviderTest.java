@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class MultipleSeriesProviderTest.
  */
-public class MultipleSeriesProviderTest {
+class MultipleSeriesProviderTest {
 
   /**
    * Javabean tester.

@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class ListLogsControllerTest.
  */
-public class ListLogsControllerTest {
+class ListLogsControllerTest {
 
   /**
    * Javabean tester.

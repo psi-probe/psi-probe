@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class VolumeTagTest.
  */
-public class VolumeTagTest {
+class VolumeTagTest {
 
   /**
    * Javabean tester.

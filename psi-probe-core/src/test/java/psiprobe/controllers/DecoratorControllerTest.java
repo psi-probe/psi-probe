@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class DecoratorControllerTest.
  */
-public class DecoratorControllerTest {
+class DecoratorControllerTest {
 
   /**
    * Javabean tester.

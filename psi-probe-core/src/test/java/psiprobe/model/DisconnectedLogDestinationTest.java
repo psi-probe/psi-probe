@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class DisconnectedLogDestinationTest.
  */
-public class DisconnectedLogDestinationTest {
+class DisconnectedLogDestinationTest {
 
   /**
    * Javabean tester.

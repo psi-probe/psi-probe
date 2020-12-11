@@ -22,7 +22,7 @@ import mockit.Tested;
 /**
  * The Class OpenEjbManagedDatasourceAccessorTest.
  */
-public class OpenEjbManagedDatasourceAccessorTest {
+class OpenEjbManagedDatasourceAccessorTest {
 
   /** The accessor. */
   @Tested

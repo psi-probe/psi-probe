@@ -19,7 +19,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class Tomcat10DbcpDatasourceAccessorTest.
  */
-public class Tomcat10DbcpDatasourceAccessorTest {
+class Tomcat10DbcpDatasourceAccessorTest {
 
   /**
    * Tomcat 10 dbcp datasource accessor.

@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class PooledClusterSenderTest.
  */
-public class PooledClusterSenderTest {
+class PooledClusterSenderTest {
 
   /**
    * Javabean tester.

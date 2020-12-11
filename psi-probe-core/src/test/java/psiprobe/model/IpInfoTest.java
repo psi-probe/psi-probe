@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class IpInfoTest.
  */
-public class IpInfoTest {
+class IpInfoTest {
 
   /**
    * Javabean tester.

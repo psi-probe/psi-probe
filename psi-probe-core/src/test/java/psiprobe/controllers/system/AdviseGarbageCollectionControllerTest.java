@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class AdviseGarbageCollectionControllerTest.
  */
-public class AdviseGarbageCollectionControllerTest {
+class AdviseGarbageCollectionControllerTest {
 
   /**
    * Javabean tester.

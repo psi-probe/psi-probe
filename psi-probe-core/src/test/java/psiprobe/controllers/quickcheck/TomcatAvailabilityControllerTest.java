@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class TomcatAvailabilityControllerTest.
  */
-public class TomcatAvailabilityControllerTest {
+class TomcatAvailabilityControllerTest {
 
   /**
    * Javabean tester.

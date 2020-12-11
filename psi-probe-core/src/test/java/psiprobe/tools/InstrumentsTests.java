@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class InstrumentsTests.
  */
-public class InstrumentsTests {
+class InstrumentsTests {
 
   /**
    * Test object.

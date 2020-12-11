@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class LogHandlerControllerTest.
  */
-public class LogHandlerControllerTest {
+class LogHandlerControllerTest {
 
   /**
    * Javabean tester change log level.

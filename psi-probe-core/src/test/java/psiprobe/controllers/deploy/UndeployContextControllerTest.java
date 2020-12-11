@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class UndeployContextControllerTest.
  */
-public class UndeployContextControllerTest {
+class UndeployContextControllerTest {
 
   /**
    * Javabean tester.

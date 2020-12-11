@@ -31,7 +31,7 @@ import psiprobe.model.ApplicationResource;
 /**
  * The Class Tomcat90ContainerAdapterTest.
  */
-public class Tomcat90ContainerAdapterTest {
+class Tomcat90ContainerAdapterTest {
 
   /** The context. */
   @Mocked

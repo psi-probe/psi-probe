@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class Error403ControllerTest.
  */
-public class Error403ControllerTest {
+class Error403ControllerTest {
 
   /**
    * Javabean tester.

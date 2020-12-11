@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class SunThreadTest.
  */
-public class SunThreadTest {
+class SunThreadTest {
 
   /**
    * Javabean tester.

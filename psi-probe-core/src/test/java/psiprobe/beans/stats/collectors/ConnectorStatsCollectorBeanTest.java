@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class ConnectorStatsCollectorBeanTest.
  */
-public class ConnectorStatsCollectorBeanTest {
+class ConnectorStatsCollectorBeanTest {
 
   /**
    * Javabean tester.

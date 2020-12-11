@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class ThresholdListenerTests.
  */
-public class ThresholdListenerTests {
+class ThresholdListenerTests {
 
   /** The default threshold. */
   private final long defaultThreshold = 10;

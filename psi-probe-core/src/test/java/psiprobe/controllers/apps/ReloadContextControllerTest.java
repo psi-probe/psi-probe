@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class ReloadContextControllerTest.
  */
-public class ReloadContextControllerTest {
+class ReloadContextControllerTest {
 
   /**
    * Javabean tester.

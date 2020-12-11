@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class SummaryTest.
  */
-public class SummaryTest {
+class SummaryTest {
 
   /**
    * Javabean tester.

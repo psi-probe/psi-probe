@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class ListConnectorsControllerTest.
  */
-public class ListConnectorsControllerTest {
+class ListConnectorsControllerTest {
 
   /**
    * Javabean tester.

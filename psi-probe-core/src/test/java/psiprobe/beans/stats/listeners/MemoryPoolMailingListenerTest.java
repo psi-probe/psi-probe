@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class MemoryPoolMailingListenerTest.
  */
-public class MemoryPoolMailingListenerTest {
+class MemoryPoolMailingListenerTest {
 
   /**
    * Javabean tester.

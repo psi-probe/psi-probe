@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class ClusterStatsCollectorBeanTest.
  */
-public class ClusterStatsCollectorBeanTest {
+class ClusterStatsCollectorBeanTest {
 
   /**
    * Javabean tester.

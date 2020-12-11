@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class MailerTest.
  */
-public class MailerTest {
+class MailerTest {
 
   /**
    * Javabean tester.

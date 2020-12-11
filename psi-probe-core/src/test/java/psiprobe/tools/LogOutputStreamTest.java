@@ -19,7 +19,7 @@ import mockit.Mocked;
 /**
  * The Class LogOutputStreamTest.
  */
-public class LogOutputStreamTest {
+class LogOutputStreamTest {
 
   /** The stream. */
   PrintStream stream;

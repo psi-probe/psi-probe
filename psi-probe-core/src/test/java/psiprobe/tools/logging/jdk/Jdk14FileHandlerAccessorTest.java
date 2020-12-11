@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Test;
 
 import psiprobe.model.Application;
 
-public class Jdk14FileHandlerAccessorTest {
+class Jdk14FileHandlerAccessorTest {
 
   @Test
   public void getFile() throws Exception {

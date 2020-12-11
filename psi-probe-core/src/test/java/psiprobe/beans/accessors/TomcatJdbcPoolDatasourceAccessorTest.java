@@ -20,7 +20,7 @@ import mockit.Mocked;
 /**
  * The Class TomcatJdbcPoolDatasourceAccessorTest.
  */
-public class TomcatJdbcPoolDatasourceAccessorTest {
+class TomcatJdbcPoolDatasourceAccessorTest {
 
   /** The accessor. */
   TomcatJdbcPoolDatasourceAccessor accessor;

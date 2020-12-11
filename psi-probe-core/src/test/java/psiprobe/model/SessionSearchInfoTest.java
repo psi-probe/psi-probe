@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class SessionSearchInfoTest.
  */
-public class SessionSearchInfoTest {
+class SessionSearchInfoTest {
 
   /**
    * Javabean tester.

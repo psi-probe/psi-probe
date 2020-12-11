@@ -23,7 +23,7 @@ import mockit.Verifications;
 /**
  * The Class AwtAppContextClassloaderListenerTest.
  */
-public class AwtAppContextClassloaderListenerTest {
+class AwtAppContextClassloaderListenerTest {
 
   /** The listener. */
   @Tested

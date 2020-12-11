@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class AllAppStatsControllerTest.
  */
-public class AllAppStatsControllerTest {
+class AllAppStatsControllerTest {
 
   /**
    * Javabean tester.

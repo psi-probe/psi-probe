@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class ParamToggleTagTest.
  */
-public class ParamToggleTagTest {
+class ParamToggleTagTest {
 
   /**
    * Javabean tester.

@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class StatsCollectionEventTest.
  */
-public class StatsCollectionEventTest {
+class StatsCollectionEventTest {
 
   /**
    * Javabean tester.

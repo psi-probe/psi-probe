@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class ContainerWrapperBeanTest.
  */
-public class ContainerWrapperBeanTest {
+class ContainerWrapperBeanTest {
 
   /**
    * Javabean tester.

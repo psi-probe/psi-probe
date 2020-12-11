@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class ThreadPoolTest.
  */
-public class ThreadPoolTest {
+class ThreadPoolTest {
 
   /**
    * Javabean tester.

@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class ThreadModelTest.
  */
-public class ThreadModelTest {
+class ThreadModelTest {
 
   /**
    * Javabean tester.

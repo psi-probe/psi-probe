@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class OutTagTest.
  */
-public class OutTagTest {
+class OutTagTest {
 
   /**
    * Javabean tester.

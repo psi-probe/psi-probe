@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class StopJvmControllerTest.
  */
-public class StopJvmControllerTest {
+class StopJvmControllerTest {
 
   /**
    * Javabean tester.

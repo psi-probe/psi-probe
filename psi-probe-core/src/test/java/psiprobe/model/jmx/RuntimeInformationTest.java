@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class RuntimeInformationTest.
  */
-public class RuntimeInformationTest {
+class RuntimeInformationTest {
 
   /**
    * Javabean tester.

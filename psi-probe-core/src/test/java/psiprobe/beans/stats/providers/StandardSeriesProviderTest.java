@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class StandardSeriesProviderTest.
  */
-public class StandardSeriesProviderTest {
+class StandardSeriesProviderTest {
 
   /**
    * Javabean tester.

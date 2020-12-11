@@ -31,7 +31,7 @@ import psiprobe.model.certificates.Cert;
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = ProbeInitializer.class)
 @WebAppConfiguration
-public class ListCertificatesControllerTest {
+class ListCertificatesControllerTest {
 
   /** The ctx. */
   @Inject

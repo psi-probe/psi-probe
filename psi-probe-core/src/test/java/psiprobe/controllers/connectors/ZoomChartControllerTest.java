@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class ZoomChartControllerTest.
  */
-public class ZoomChartControllerTest {
+class ZoomChartControllerTest {
 
   /**
    * Javabean tester.
