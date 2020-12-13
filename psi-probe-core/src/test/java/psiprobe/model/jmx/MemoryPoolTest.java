@@ -22,7 +22,7 @@ class MemoryPoolTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(MemoryPool.class).loadData().test();
   }
 

@@ -22,7 +22,7 @@ class IpInfoTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(IpInfo.class).loadData().test();
   }
 

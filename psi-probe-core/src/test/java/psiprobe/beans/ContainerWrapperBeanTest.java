@@ -22,7 +22,7 @@ class ContainerWrapperBeanTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(ContainerWrapperBean.class).loadData().test();
   }
 

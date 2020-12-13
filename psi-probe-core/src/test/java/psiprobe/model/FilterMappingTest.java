@@ -22,7 +22,7 @@ class FilterMappingTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(FilterMapping.class).loadData().test();
   }
 

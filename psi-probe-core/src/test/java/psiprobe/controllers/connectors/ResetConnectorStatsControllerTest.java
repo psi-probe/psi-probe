@@ -22,7 +22,7 @@ class ResetConnectorStatsControllerTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(ResetConnectorStatsController.class)
         .skip("applicationContext", "supportedMethods").test();
   }

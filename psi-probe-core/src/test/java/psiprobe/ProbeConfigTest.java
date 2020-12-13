@@ -31,7 +31,7 @@ class ProbeConfigTest {
   private List<String> datasourceMappers;
 
   @Test
-  public void checkListenerTest() {
+  void checkListenerTest() {
     Assertions.assertNotNull(datasourceMappers);
   }
 

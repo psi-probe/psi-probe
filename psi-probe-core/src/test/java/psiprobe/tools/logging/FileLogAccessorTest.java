@@ -22,7 +22,7 @@ class FileLogAccessorTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(FileLogAccessor.class).loadData().test();
   }
 

@@ -22,7 +22,7 @@ class ThreadPoolTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(ThreadPool.class).loadData().test();
   }
 

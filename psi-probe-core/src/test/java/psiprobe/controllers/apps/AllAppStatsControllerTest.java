@@ -22,7 +22,7 @@ class AllAppStatsControllerTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(AllAppStatsController.class)
         .skip("applicationContext", "supportedMethods").test();
   }

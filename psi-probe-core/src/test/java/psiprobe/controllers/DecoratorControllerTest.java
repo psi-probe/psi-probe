@@ -22,7 +22,7 @@ class DecoratorControllerTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(DecoratorController.class).skip("applicationContext", "supportedMethods")
         .test();
   }

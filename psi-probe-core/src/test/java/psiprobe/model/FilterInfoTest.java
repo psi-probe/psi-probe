@@ -22,7 +22,7 @@ class FilterInfoTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(FilterInfo.class).loadData().test();
   }
 

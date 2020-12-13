@@ -22,7 +22,7 @@ class SyncClusterSenderTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(SyncClusterSender.class).loadData().test();
   }
 

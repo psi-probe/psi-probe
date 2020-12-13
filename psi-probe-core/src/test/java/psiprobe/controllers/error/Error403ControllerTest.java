@@ -22,7 +22,7 @@ class Error403ControllerTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(Error403Controller.class).skip("applicationContext", "supportedMethods")
         .test();
   }

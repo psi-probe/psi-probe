@@ -22,7 +22,7 @@ class DataSourceTestControllerTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(DataSourceTestController.class)
         .skip("applicationContext", "supportedMethods").test();
   }

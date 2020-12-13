@@ -22,7 +22,7 @@ class TomcatAvailabilityControllerTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(TomcatAvailabilityController.class)
         .skip("applicationContext", "supportedMethods").test();
   }
@@ -31,7 +31,7 @@ class TomcatAvailabilityControllerTest {
    * Javabean tester xml.
    */
   @Test
-  public void javabeanTesterXml() {
+  void javabeanTesterXml() {
     JavaBeanTester.builder(TomcatAvailabilityXmlController.class)
         .skip("applicationContext", "supportedMethods").test();
   }

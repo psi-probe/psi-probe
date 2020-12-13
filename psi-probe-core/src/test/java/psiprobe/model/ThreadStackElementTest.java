@@ -22,7 +22,7 @@ class ThreadStackElementTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(ThreadStackElement.class).loadData().test();
   }
 

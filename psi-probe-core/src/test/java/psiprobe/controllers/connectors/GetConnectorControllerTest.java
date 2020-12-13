@@ -22,7 +22,7 @@ class GetConnectorControllerTest {
    * Javabean tester proc time.
    */
   @Test
-  public void javabeanTesterProcTime() {
+  void javabeanTesterProcTime() {
     JavaBeanTester.builder(GetConnectorProcTimeController.class)
         .skip("applicationContext", "supportedMethods").test();
   }
@@ -31,7 +31,7 @@ class GetConnectorControllerTest {
    * Javabean tester request.
    */
   @Test
-  public void javabeanTesterRequest() {
+  void javabeanTesterRequest() {
     JavaBeanTester.builder(GetConnectorRequestController.class)
         .skip("applicationContext", "supportedMethods").test();
   }
@@ -40,7 +40,7 @@ class GetConnectorControllerTest {
    * Javabean tester traffic.
    */
   @Test
-  public void javabeanTesterTraffic() {
+  void javabeanTesterTraffic() {
     JavaBeanTester.builder(GetConnectorTrafficController.class)
         .skip("applicationContext", "supportedMethods").test();
   }

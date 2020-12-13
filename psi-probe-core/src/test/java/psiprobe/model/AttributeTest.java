@@ -22,7 +22,7 @@ class AttributeTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(Attribute.class).loadData().test();
   }
 

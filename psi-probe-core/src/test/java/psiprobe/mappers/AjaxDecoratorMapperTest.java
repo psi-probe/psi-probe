@@ -52,7 +52,7 @@ class AjaxDecoratorMapperTest {
    * Before.
    */
   @BeforeEach
-  public void before() {
+  void before() {
     mapper = new AjaxDecoratorMapper();
     properties = new Properties();
   }
@@ -63,7 +63,7 @@ class AjaxDecoratorMapperTest {
    * @throws InstantiationException the instantiation exception
    */
   @Test
-  public void ajaxDecoratorMapperTest() throws InstantiationException {
+  void ajaxDecoratorMapperTest() throws InstantiationException {
     properties.setProperty("ajaxExtension", ".ajax");
     mapper.init(config, properties, decoratorMapper);
 

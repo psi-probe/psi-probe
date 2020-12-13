@@ -22,7 +22,7 @@ class ThreadModelTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(ThreadModel.class).loadData().test();
   }
 

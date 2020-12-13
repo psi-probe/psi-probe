@@ -49,7 +49,7 @@ class Tomcat85AgentValveTest {
    * @throws ServletException the servlet exception
    */
   @Test
-  public void invoke() throws IOException, ServletException {
+  void invoke() throws IOException, ServletException {
     Assertions.assertNotNull(new Expectations() {
       {
         valve.getNext();

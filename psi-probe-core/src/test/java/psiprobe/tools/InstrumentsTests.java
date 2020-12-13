@@ -22,7 +22,7 @@ class InstrumentsTests {
    * Test object.
    */
   @Test
-  public void testObject() {
+  void testObject() {
     Object o = new Object();
     long objectSize = Instruments.sizeOf(o);
     Assertions.assertEquals(Instruments.SIZE_OBJECT, objectSize);
@@ -32,7 +32,7 @@ class InstrumentsTests {
    * Test boolean.
    */
   @Test
-  public void testBoolean() {
+  void testBoolean() {
     boolean b = false;
     long booleanSize = Instruments.sizeOf(Boolean.valueOf(b)) - Instruments.SIZE_OBJECT;
     Assertions.assertEquals(Instruments.SIZE_BOOLEAN, booleanSize);
@@ -42,7 +42,7 @@ class InstrumentsTests {
    * Test byte.
    */
   @Test
-  public void testByte() {
+  void testByte() {
     byte b = 0x00;
     long byteSize = Instruments.sizeOf(Byte.valueOf(b)) - Instruments.SIZE_OBJECT;
     Assertions.assertEquals(Instruments.SIZE_BYTE, byteSize);
@@ -52,7 +52,7 @@ class InstrumentsTests {
    * Test char.
    */
   @Test
-  public void testChar() {
+  void testChar() {
     char c = '\0';
     long charSize = Instruments.sizeOf(Character.valueOf(c)) - Instruments.SIZE_OBJECT;
     Assertions.assertEquals(Instruments.SIZE_CHAR, charSize);
@@ -62,7 +62,7 @@ class InstrumentsTests {
    * Test short.
    */
   @Test
-  public void testShort() {
+  void testShort() {
     short s = 0;
     long shortSize = Instruments.sizeOf(Short.valueOf(s)) - Instruments.SIZE_OBJECT;
     Assertions.assertEquals(Instruments.SIZE_SHORT, shortSize);
@@ -72,7 +72,7 @@ class InstrumentsTests {
    * Test int.
    */
   @Test
-  public void testInt() {
+  void testInt() {
     int i = 0;
     long intSize = Instruments.sizeOf(Integer.valueOf(i)) - Instruments.SIZE_OBJECT;
     Assertions.assertEquals(Instruments.SIZE_INT, intSize);
@@ -82,7 +82,7 @@ class InstrumentsTests {
    * Test long.
    */
   @Test
-  public void testLong() {
+  void testLong() {
     long l = 0;
     long longSize = Instruments.sizeOf(Long.valueOf(l)) - Instruments.SIZE_OBJECT;
     Assertions.assertEquals(Instruments.SIZE_LONG, longSize);
@@ -92,7 +92,7 @@ class InstrumentsTests {
    * Test float.
    */
   @Test
-  public void testFloat() {
+  void testFloat() {
     float f = 0.0f;
     long floatSize = Instruments.sizeOf(Float.valueOf(f)) - Instruments.SIZE_OBJECT;
     Assertions.assertEquals(Instruments.SIZE_FLOAT, floatSize);
@@ -102,7 +102,7 @@ class InstrumentsTests {
    * Test double.
    */
   @Test
-  public void testDouble() {
+  void testDouble() {
     double d = 0.0;
     long doubleSize = Instruments.sizeOf(Double.valueOf(d)) - Instruments.SIZE_OBJECT;
     Assertions.assertEquals(Instruments.SIZE_DOUBLE, doubleSize);

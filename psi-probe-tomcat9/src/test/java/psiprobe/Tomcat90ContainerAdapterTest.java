@@ -41,7 +41,7 @@ class Tomcat90ContainerAdapterTest {
    * Creates the valve.
    */
   @Test
-  public void createValve() {
+  void createValve() {
     final Tomcat90ContainerAdapter adapter = new Tomcat90ContainerAdapter();
     Valve valve = adapter.createValve();
     assertEquals("Tomcat90AgentValve[Container is null]", valve.toString());
@@ -51,7 +51,7 @@ class Tomcat90ContainerAdapterTest {
    * Can bound to null.
    */
   @Test
-  public void canBoundToNull() {
+  void canBoundToNull() {
     final Tomcat90ContainerAdapter adapter = new Tomcat90ContainerAdapter();
     assertFalse(adapter.canBoundTo(null));
   }
@@ -60,7 +60,7 @@ class Tomcat90ContainerAdapterTest {
    * Can bound to tomcat9.
    */
   @Test
-  public void canBoundToTomcat9() {
+  void canBoundToTomcat9() {
     final Tomcat90ContainerAdapter adapter = new Tomcat90ContainerAdapter();
     assertTrue(adapter.canBoundTo("Apache Tomcat/9.0"));
   }
@@ -69,7 +69,7 @@ class Tomcat90ContainerAdapterTest {
    * Can bound to tomEE9.
    */
   @Test
-  public void canBoundToTomEE9() {
+  void canBoundToTomEE9() {
     final Tomcat90ContainerAdapter adapter = new Tomcat90ContainerAdapter();
     assertTrue(adapter.canBoundTo("Apache Tomcat (TomEE)/9.0"));
   }
@@ -78,7 +78,7 @@ class Tomcat90ContainerAdapterTest {
    * Can bound to pivotal9.
    */
   @Test
-  public void canBoundToPivotal9() {
+  void canBoundToPivotal9() {
     final Tomcat90ContainerAdapter adapter = new Tomcat90ContainerAdapter();
     assertTrue(adapter.canBoundTo("Pivotal tc..../9.0"));
   }
@@ -87,7 +87,7 @@ class Tomcat90ContainerAdapterTest {
    * Can bound to other.
    */
   @Test
-  public void canBoundToOther() {
+  void canBoundToOther() {
     final Tomcat90ContainerAdapter adapter = new Tomcat90ContainerAdapter();
     assertFalse(adapter.canBoundTo("Other"));
   }
@@ -96,7 +96,7 @@ class Tomcat90ContainerAdapterTest {
    * Filter mappings.
    */
   @Test
-  public void filterMappings() {
+  void filterMappings() {
     final Tomcat90ContainerAdapter adapter = new Tomcat90ContainerAdapter();
     FilterMap map = new FilterMap();
     map.addServletName("psi-probe");
@@ -108,7 +108,7 @@ class Tomcat90ContainerAdapterTest {
    * Creates the jsp compilation context.
    */
   @Test
-  public void createJspCompilationContext() {
+  void createJspCompilationContext() {
     final Tomcat90ContainerAdapter adapter = new Tomcat90ContainerAdapter();
     JspCompilationContext context = adapter.createJspCompilationContext("name", null, null, null,
         ClassLoader.getSystemClassLoader());
@@ -119,7 +119,7 @@ class Tomcat90ContainerAdapterTest {
    * Adds the context resource link.
    */
   @Test
-  public void addContextResourceLink() {
+  void addContextResourceLink() {
     final Tomcat90ContainerAdapter adapter = new Tomcat90ContainerAdapter();
     adapter.addContextResourceLink(context, new ArrayList<ApplicationResource>(), false);
   }
@@ -128,7 +128,7 @@ class Tomcat90ContainerAdapterTest {
    * Adds the context resource.
    */
   @Test
-  public void addContextResource() {
+  void addContextResource() {
     final Tomcat90ContainerAdapter adapter = new Tomcat90ContainerAdapter();
     adapter.addContextResource(context, new ArrayList<ApplicationResource>(), false);
   }
@@ -137,7 +137,7 @@ class Tomcat90ContainerAdapterTest {
    * Gets the application filter maps.
    */
   @Test
-  public void applicationFilterMaps() {
+  void applicationFilterMaps() {
     Assertions.assertNotNull(new Expectations() {
       {
         context.findFilterMaps();
@@ -153,7 +153,7 @@ class Tomcat90ContainerAdapterTest {
    * Application filters.
    */
   @Test
-  public void applicationFilters() {
+  void applicationFilters() {
     Assertions.assertNotNull(new Expectations() {
       {
         context.findFilterDefs();
@@ -169,7 +169,7 @@ class Tomcat90ContainerAdapterTest {
    * Application init params.
    */
   @Test
-  public void applicationInitParams() {
+  void applicationInitParams() {
     Assertions.assertNotNull(new Expectations() {
       {
         context.findApplicationParameters();
@@ -184,7 +184,7 @@ class Tomcat90ContainerAdapterTest {
    * Resource exists.
    */
   @Test
-  public void resourceExists() {
+  void resourceExists() {
     final Tomcat90ContainerAdapter adapter = new Tomcat90ContainerAdapter();
     assertTrue(adapter.resourceExists("name", context));
   }
@@ -196,7 +196,7 @@ class Tomcat90ContainerAdapterTest {
    * @throws IOException Signals that an I/O exception has occurred.
    */
   @Test
-  public void resourceStream() throws IOException {
+  void resourceStream() throws IOException {
     final Tomcat90ContainerAdapter adapter = new Tomcat90ContainerAdapter();
     adapter.getResourceStream("name", context);
   }
@@ -205,7 +205,7 @@ class Tomcat90ContainerAdapterTest {
    * Resource attributes.
    */
   @Test
-  public void resourceAttributes() {
+  void resourceAttributes() {
     final Tomcat90ContainerAdapter adapter = new Tomcat90ContainerAdapter();
     adapter.getResourceAttributes("name", context);
   }
@@ -214,7 +214,7 @@ class Tomcat90ContainerAdapterTest {
    * Gets the naming token.
    */
   @Test
-  public void getNamingToken() {
+  void getNamingToken() {
     final Tomcat90ContainerAdapter adapter = new Tomcat90ContainerAdapter();
     assertNull(adapter.getNamingToken(context));
   }

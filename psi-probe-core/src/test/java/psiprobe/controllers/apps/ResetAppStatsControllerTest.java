@@ -22,7 +22,7 @@ class ResetAppStatsControllerTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(ResetAppStatsController.class)
         .skip("applicationContext", "supportedMethods").test();
   }

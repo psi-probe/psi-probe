@@ -22,7 +22,7 @@ class ServletInfoTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(ServletInfo.class).loadData().test();
   }
 

@@ -48,7 +48,7 @@ class Tomcat70ContainerAdapterTest {
    * Creates the valve.
    */
   @Test
-  public void createValve() {
+  void createValve() {
     final Tomcat70ContainerAdapter adapter = new Tomcat70ContainerAdapter();
     Valve valve = adapter.createValve();
     assertEquals("psiprobe.Tomcat70AgentValve[Container is null]", valve.toString());
@@ -58,7 +58,7 @@ class Tomcat70ContainerAdapterTest {
    * Can bound to null.
    */
   @Test
-  public void canBoundToNull() {
+  void canBoundToNull() {
     final Tomcat70ContainerAdapter adapter = new Tomcat70ContainerAdapter();
     assertFalse(adapter.canBoundTo(null));
   }
@@ -67,7 +67,7 @@ class Tomcat70ContainerAdapterTest {
    * Can bound to tomcat7.
    */
   @Test
-  public void canBoundToTomcat7() {
+  void canBoundToTomcat7() {
     final Tomcat70ContainerAdapter adapter = new Tomcat70ContainerAdapter();
     assertTrue(adapter.canBoundTo("Apache Tomcat/7.0"));
   }
@@ -76,7 +76,7 @@ class Tomcat70ContainerAdapterTest {
    * Can bound to tom ee.
    */
   @Test
-  public void canBoundToTomEE() {
+  void canBoundToTomEE() {
     final Tomcat70ContainerAdapter adapter = new Tomcat70ContainerAdapter();
     assertTrue(adapter.canBoundTo("Apache Tomcat (TomEE)/7.0"));
   }
@@ -85,7 +85,7 @@ class Tomcat70ContainerAdapterTest {
    * Can bound to nsjsp7.
    */
   @Test
-  public void canBoundToNsJsp7() {
+  void canBoundToNsJsp7() {
     final Tomcat70ContainerAdapter adapter = new Tomcat70ContainerAdapter();
     assertTrue(adapter.canBoundTo("NonStop(tm) Servlets For JavaServer Pages(tm) v7.0"));
   }
@@ -94,7 +94,7 @@ class Tomcat70ContainerAdapterTest {
    * Can bound to pivotal7.
    */
   @Test
-  public void canBoundToPivotal7() {
+  void canBoundToPivotal7() {
     final Tomcat70ContainerAdapter adapter = new Tomcat70ContainerAdapter();
     assertTrue(adapter.canBoundTo("Pivotal tc..../7.0"));
   }
@@ -103,7 +103,7 @@ class Tomcat70ContainerAdapterTest {
    * Can bound to other.
    */
   @Test
-  public void canBoundToOther() {
+  void canBoundToOther() {
     final Tomcat70ContainerAdapter adapter = new Tomcat70ContainerAdapter();
     assertFalse(adapter.canBoundTo("Other"));
   }
@@ -112,7 +112,7 @@ class Tomcat70ContainerAdapterTest {
    * Filter mappings.
    */
   @Test
-  public void filterMappings() {
+  void filterMappings() {
     final Tomcat70ContainerAdapter adapter = new Tomcat70ContainerAdapter();
     FilterMap map = new FilterMap();
     map.addServletName("psi-probe");
@@ -124,7 +124,7 @@ class Tomcat70ContainerAdapterTest {
    * Creates the jsp compilation context.
    */
   @Test
-  public void createJspCompilationContext() {
+  void createJspCompilationContext() {
     final Tomcat70ContainerAdapter adapter = new Tomcat70ContainerAdapter();
     JspCompilationContext context = adapter.createJspCompilationContext("name", null, null, null,
         ClassLoader.getSystemClassLoader());
@@ -137,7 +137,7 @@ class Tomcat70ContainerAdapterTest {
    * @throws NamingException the naming exception
    */
   @Test
-  public void addContextResourceLink() throws NamingException {
+  void addContextResourceLink() throws NamingException {
     final Tomcat70ContainerAdapter adapter = new Tomcat70ContainerAdapter();
     adapter.addContextResourceLink(context, new ArrayList<ApplicationResource>(), false);
   }
@@ -148,7 +148,7 @@ class Tomcat70ContainerAdapterTest {
    * @throws NamingException the naming exception
    */
   @Test
-  public void addContextResource() throws NamingException {
+  void addContextResource() throws NamingException {
     final Tomcat70ContainerAdapter adapter = new Tomcat70ContainerAdapter();
     adapter.addContextResource(context, new ArrayList<ApplicationResource>(), false);
   }
@@ -157,7 +157,7 @@ class Tomcat70ContainerAdapterTest {
    * Gets the application filter maps.
    */
   @Test
-  public void applicationFilterMaps() {
+  void applicationFilterMaps() {
     Assertions.assertNotNull(new Expectations() {
       {
         context.findFilterMaps();
@@ -173,7 +173,7 @@ class Tomcat70ContainerAdapterTest {
    * Application filters.
    */
   @Test
-  public void applicationFilters() {
+  void applicationFilters() {
     Assertions.assertNotNull(new Expectations() {
       {
         context.findFilterDefs();
@@ -189,7 +189,7 @@ class Tomcat70ContainerAdapterTest {
    * Application init params.
    */
   @Test
-  public void applicationInitParams() {
+  void applicationInitParams() {
     Assertions.assertNotNull(new Expectations() {
       {
         context.findApplicationParameters();
@@ -204,7 +204,7 @@ class Tomcat70ContainerAdapterTest {
    * Resource exists.
    */
   @Test
-  public void resourceExists() {
+  void resourceExists() {
     final Tomcat70ContainerAdapter adapter = new Tomcat70ContainerAdapter();
     assertFalse(adapter.resourceExists("name", context));
   }
@@ -216,7 +216,7 @@ class Tomcat70ContainerAdapterTest {
    * @throws NamingException Signals that a Naming exception has occurred.
    */
   @Test
-  public void resourceStream() throws IOException, NamingException {
+  void resourceStream() throws IOException, NamingException {
     Assertions.assertNotNull(new Expectations() {
       {
         resource.lookup(this.anyString);
@@ -234,7 +234,7 @@ class Tomcat70ContainerAdapterTest {
    * @throws NamingException Signals that a Naming exception has occurred.
    */
   @Test
-  public void resourceAttributes() throws NamingException {
+  void resourceAttributes() throws NamingException {
     Assertions.assertNotNull(new Expectations() {
       {
         resource.getAttributes(this.anyString);
@@ -250,7 +250,7 @@ class Tomcat70ContainerAdapterTest {
    * Gets the naming token.
    */
   @Test
-  public void getNamingToken() {
+  void getNamingToken() {
     final Tomcat70ContainerAdapter adapter = new Tomcat70ContainerAdapter();
     assertEquals(context, adapter.getNamingToken(context));
   }

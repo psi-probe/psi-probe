@@ -22,7 +22,7 @@ class MemoryStatsControllerTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(MemoryStatsController.class)
         .skip("applicationContext", "supportedMethods").test();
   }
@@ -31,7 +31,7 @@ class MemoryStatsControllerTest {
    * Javabean tester ajax.
    */
   @Test
-  public void javabeanTesterAjax() {
+  void javabeanTesterAjax() {
     JavaBeanTester.builder(MemoryStatsAjaxController.class)
         .skip("applicationContext", "supportedMethods").test();
   }

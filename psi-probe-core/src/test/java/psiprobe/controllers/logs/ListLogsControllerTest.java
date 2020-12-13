@@ -22,7 +22,7 @@ class ListLogsControllerTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(ListLogsController.class).skip("applicationContext", "supportedMethods")
         .test();
   }

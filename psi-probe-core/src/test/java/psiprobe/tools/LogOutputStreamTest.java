@@ -34,7 +34,7 @@ class LogOutputStreamTest {
    * @throws IOException Signals that an I/O exception has occurred.
    */
   @Test
-  public void loggerTest() throws IOException {
+  void loggerTest() throws IOException {
     stream = LogOutputStream.createPrintStream(log, 5);
     stream.write('\u0001');
   }

@@ -22,7 +22,7 @@ class LogHandlerControllerTest {
    * Javabean tester change log level.
    */
   @Test
-  public void javabeanTesterChangeLogLevel() {
+  void javabeanTesterChangeLogLevel() {
     JavaBeanTester.builder(ChangeLogLevelController.class)
         .skip("applicationContext", "supportedMethods").test();
   }
@@ -31,7 +31,7 @@ class LogHandlerControllerTest {
    * Javabean tester download log.
    */
   @Test
-  public void javabeanTesterDownloadLog() {
+  void javabeanTesterDownloadLog() {
     JavaBeanTester.builder(DownloadLogController.class)
         .skip("applicationContext", "supportedMethods").test();
   }
@@ -40,7 +40,7 @@ class LogHandlerControllerTest {
    * Javabean tester follow.
    */
   @Test
-  public void javabeanTesterFollow() {
+  void javabeanTesterFollow() {
     JavaBeanTester.builder(FollowController.class).skip("applicationContext", "supportedMethods")
         .test();
   }
@@ -49,7 +49,7 @@ class LogHandlerControllerTest {
    * Javabean tester followed file info.
    */
   @Test
-  public void javabeanTesterFollowedFileInfo() {
+  void javabeanTesterFollowedFileInfo() {
     JavaBeanTester.builder(FollowedFileInfoController.class)
         .skip("applicationContext", "supportedMethods").test();
   }
@@ -58,7 +58,7 @@ class LogHandlerControllerTest {
    * Javabean tester setup follow.
    */
   @Test
-  public void javabeanTesterSetupFollow() {
+  void javabeanTesterSetupFollow() {
     JavaBeanTester.builder(SetupFollowController.class)
         .skip("applicationContext", "supportedMethods").test();
   }

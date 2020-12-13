@@ -30,7 +30,7 @@ class SizeExpressionTests {
    * @throws Exception the exception
    */
   @BeforeEach
-  public void setUp() throws Exception {
+  void setUp() throws Exception {
     this.defaultLocale = Locale.getDefault();
     Locale.setDefault(Locale.US);
   }
@@ -41,7 +41,7 @@ class SizeExpressionTests {
    * @throws Exception the exception
    */
   @AfterEach
-  public void tearDown() throws Exception {
+  void tearDown() throws Exception {
     Locale.setDefault(defaultLocale);
   }
 
@@ -49,7 +49,7 @@ class SizeExpressionTests {
    * Test format no decimal base2.
    */
   @Test
-  public void testFormatNoDecimalBase2() {
+  void testFormatNoDecimalBase2() {
     Assertions.assertEquals("1 B", SizeExpression.format(1, 0, true));
     Assertions.assertEquals("10 B", SizeExpression.format(10, 0, true));
     Assertions.assertEquals("100 B", SizeExpression.format(100, 0, true));
@@ -64,7 +64,7 @@ class SizeExpressionTests {
    * Test format no decimal base10.
    */
   @Test
-  public void testFormatNoDecimalBase10() {
+  void testFormatNoDecimalBase10() {
     Assertions.assertEquals("1", SizeExpression.format(1, 0, false));
     Assertions.assertEquals("10", SizeExpression.format(10, 0, false));
     Assertions.assertEquals("100", SizeExpression.format(100, 0, false));
@@ -79,7 +79,7 @@ class SizeExpressionTests {
    * Test format one decimal base2.
    */
   @Test
-  public void testFormatOneDecimalBase2() {
+  void testFormatOneDecimalBase2() {
     Assertions.assertEquals("1 B", SizeExpression.format(1, 1, true));
     Assertions.assertEquals("10 B", SizeExpression.format(10, 1, true));
     Assertions.assertEquals("100 B", SizeExpression.format(100, 1, true));
@@ -94,7 +94,7 @@ class SizeExpressionTests {
    * Test format one decimal base10.
    */
   @Test
-  public void testFormatOneDecimalBase10() {
+  void testFormatOneDecimalBase10() {
     Assertions.assertEquals("1", SizeExpression.format(1, 1, false));
     Assertions.assertEquals("10", SizeExpression.format(10, 1, false));
     Assertions.assertEquals("100", SizeExpression.format(100, 1, false));
@@ -109,7 +109,7 @@ class SizeExpressionTests {
    * Test format all prefixes base2.
    */
   @Test
-  public void testFormatAllPrefixesBase2() {
+  void testFormatAllPrefixesBase2() {
     Assertions.assertEquals("1 B", SizeExpression.format(1, 0, true));
     Assertions.assertEquals("1 KB", SizeExpression.format(1024, 0, true));
     Assertions.assertEquals("1 MB", SizeExpression.format(1048576, 0, true));
@@ -122,7 +122,7 @@ class SizeExpressionTests {
    * Test format all prefixes base10.
    */
   @Test
-  public void testFormatAllPrefixesBase10() {
+  void testFormatAllPrefixesBase10() {
     Assertions.assertEquals("1", SizeExpression.format(1, 0, false));
     Assertions.assertEquals("1K", SizeExpression.format(1000, 0, false));
     Assertions.assertEquals("1M", SizeExpression.format(1000000, 0, false));
@@ -135,7 +135,7 @@ class SizeExpressionTests {
    * Test parse with unit.
    */
   @Test
-  public void testParseWithUnit() {
+  void testParseWithUnit() {
     Assertions.assertEquals(1, SizeExpression.parse("1B"));
     Assertions.assertEquals(10, SizeExpression.parse("10B"));
     Assertions.assertEquals(100, SizeExpression.parse("100B"));
@@ -154,7 +154,7 @@ class SizeExpressionTests {
    * Test parse without unit.
    */
   @Test
-  public void testParseWithoutUnit() {
+  void testParseWithoutUnit() {
     Assertions.assertEquals(1, SizeExpression.parse("1"));
     Assertions.assertEquals(10, SizeExpression.parse("10"));
     Assertions.assertEquals(100, SizeExpression.parse("100"));

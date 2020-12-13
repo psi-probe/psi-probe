@@ -39,7 +39,7 @@ class OpenEjbManagedDatasourceAccessorTest {
    * Before.
    */
   @BeforeEach
-  public void before() {
+  void before() {
     accessor = new OpenEjbManagedDatasourceAccessor();
     badSource = new ComboPooledDataSource();
   }
@@ -49,7 +49,7 @@ class OpenEjbManagedDatasourceAccessorTest {
    */
   @Disabled
   @Test
-  public void canMapTest() {
+  void canMapTest() {
     Assertions.assertTrue(accessor.canMap(source));
   }
 
@@ -57,7 +57,7 @@ class OpenEjbManagedDatasourceAccessorTest {
    * Cannot map test.
    */
   @Test
-  public void cannotMapTest() {
+  void cannotMapTest() {
     Assertions.assertFalse(accessor.canMap(badSource));
   }
 
@@ -67,7 +67,7 @@ class OpenEjbManagedDatasourceAccessorTest {
    * @throws Exception the exception
    */
   @Test
-  public void getInfoTest() throws Exception {
+  void getInfoTest() throws Exception {
     accessor.getInfo(source);
   }
 

@@ -22,7 +22,7 @@ class RuntimeStatsCollectorBeanTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(RuntimeStatsCollectorBean.class).loadData().test();
   }
 

@@ -22,7 +22,7 @@ class MultipleSeriesProviderTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(MultipleSeriesProvider.class).loadData().test();
   }
 

@@ -22,7 +22,7 @@ class MailerTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(Mailer.class).loadData().test();
   }
 

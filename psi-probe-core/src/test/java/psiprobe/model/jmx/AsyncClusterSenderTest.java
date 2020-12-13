@@ -22,7 +22,7 @@ class AsyncClusterSenderTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(AsyncClusterSender.class).loadData().test();
   }
 

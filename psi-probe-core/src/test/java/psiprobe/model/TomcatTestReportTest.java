@@ -22,7 +22,7 @@ class TomcatTestReportTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(TomcatTestReport.class).loadData().test();
   }
 

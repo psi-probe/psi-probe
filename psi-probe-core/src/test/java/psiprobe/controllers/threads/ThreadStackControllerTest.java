@@ -22,7 +22,7 @@ class ThreadStackControllerTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(ThreadStackController.class)
         .skip("applicationContext", "supportedMethods").test();
   }

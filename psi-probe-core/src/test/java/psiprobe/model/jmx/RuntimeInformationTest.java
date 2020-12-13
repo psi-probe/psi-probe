@@ -22,7 +22,7 @@ class RuntimeInformationTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(RuntimeInformation.class).loadData().test();
   }
 

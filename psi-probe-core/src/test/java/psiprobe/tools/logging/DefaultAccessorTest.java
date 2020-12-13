@@ -22,7 +22,7 @@ class DefaultAccessorTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(DefaultAccessor.class).loadData().test();
   }
 

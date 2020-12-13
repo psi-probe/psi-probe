@@ -22,7 +22,7 @@ class ListThreadPoolsControllerTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(ListThreadPoolsController.class)
         .skip("applicationContext", "supportedMethods").test();
   }

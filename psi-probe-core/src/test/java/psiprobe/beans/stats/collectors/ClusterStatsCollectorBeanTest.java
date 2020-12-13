@@ -22,7 +22,7 @@ class ClusterStatsCollectorBeanTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(ClusterStatsCollectorBean.class).loadData().test();
   }
 

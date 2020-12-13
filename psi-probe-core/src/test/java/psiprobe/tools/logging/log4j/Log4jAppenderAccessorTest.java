@@ -22,7 +22,7 @@ class Log4jAppenderAccessorTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(Log4JAppenderAccessor.class).skip("level").test();
   }
 

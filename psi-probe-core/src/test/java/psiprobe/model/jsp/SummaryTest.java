@@ -22,7 +22,7 @@ class SummaryTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(Summary.class).loadData().skipStrictSerializable().test();
   }
 

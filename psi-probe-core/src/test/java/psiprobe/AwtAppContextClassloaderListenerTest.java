@@ -41,7 +41,7 @@ class AwtAppContextClassloaderListenerTest {
    * Context initialized test.
    */
   @Test
-  public void contextInitializedTest() {
+  void contextInitializedTest() {
     listener.contextInitialized(event);
 
     new Verifications() {
@@ -56,7 +56,7 @@ class AwtAppContextClassloaderListenerTest {
    * Context initialized error test.
    */
   @Test
-  public void contextInitializedErrorTest() {
+  void contextInitializedErrorTest() {
     new Expectations() {
       {
         ImageIO.getCacheDirectory();
@@ -71,7 +71,7 @@ class AwtAppContextClassloaderListenerTest {
    * Context destroyed test.
    */
   @Test
-  public void contextDestroyedTest() {
+  void contextDestroyedTest() {
     // Dummy Test as method is not implemented
     listener.contextDestroyed(event);
   }

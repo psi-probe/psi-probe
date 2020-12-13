@@ -22,7 +22,7 @@ class GetApplicationControllerTest {
    * Javabean tester proc details.
    */
   @Test
-  public void javabeanTesterProcDetails() {
+  void javabeanTesterProcDetails() {
     JavaBeanTester.builder(GetApplicationProcDetailsController.class)
         .skip("applicationContext", "supportedMethods").test();
   }
@@ -31,7 +31,7 @@ class GetApplicationControllerTest {
    * Javabean tester request details.
    */
   @Test
-  public void javabeanTesterRequestDetails() {
+  void javabeanTesterRequestDetails() {
     JavaBeanTester.builder(GetApplicationRequestDetailsController.class)
         .skip("applicationContext", "supportedMethods").test();
   }
@@ -40,7 +40,7 @@ class GetApplicationControllerTest {
    * Javabean tester runtime info.
    */
   @Test
-  public void javabeanTesterRuntimeInfo() {
+  void javabeanTesterRuntimeInfo() {
     JavaBeanTester.builder(GetApplicationRuntimeInfoController.class)
         .skip("applicationContext", "supportedMethods").test();
   }
@@ -49,7 +49,7 @@ class GetApplicationControllerTest {
    * Javabean tester summary.
    */
   @Test
-  public void javabeanTesterSummary() {
+  void javabeanTesterSummary() {
     JavaBeanTester.builder(GetApplicationSummaryController.class)
         .skip("applicationContext", "supportedMethods").test();
   }

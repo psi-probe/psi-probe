@@ -22,7 +22,7 @@ class SunThreadTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(SunThread.class).loadData().test();
   }
 

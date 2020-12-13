@@ -22,7 +22,7 @@ class JvmMemoryStatsCollectorBeanTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(JvmMemoryStatsCollectorBean.class).loadData().test();
   }
 

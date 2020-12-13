@@ -22,7 +22,7 @@ class Jdk14HandlerAccessorTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(Jdk14HandlerAccessor.class).skip("level").test();
   }
 

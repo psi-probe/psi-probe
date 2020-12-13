@@ -22,7 +22,7 @@ class SystemInformationTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(SystemInformation.class).loadData().skipStrictSerializable().test();
   }
 

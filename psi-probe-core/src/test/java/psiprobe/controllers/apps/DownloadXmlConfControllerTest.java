@@ -22,7 +22,7 @@ class DownloadXmlConfControllerTest {
    * Javabean tester web.
    */
   @Test
-  public void javabeanTesterWeb() {
+  void javabeanTesterWeb() {
     JavaBeanTester.builder(DownloadWebXmlConfController.class)
         .skip("applicationContext", "supportedMethods").test();
   }
@@ -31,7 +31,7 @@ class DownloadXmlConfControllerTest {
    * Javabean tester context.
    */
   @Test
-  public void javabeanTesterContext() {
+  void javabeanTesterContext() {
     JavaBeanTester.builder(DownloadContextXmlConfController.class)
         .skip("applicationContext", "supportedMethods").test();
   }

@@ -36,7 +36,7 @@ class TomcatJdbcPoolDatasourceAccessorTest {
    * Before.
    */
   @BeforeEach
-  public void before() {
+  void before() {
     accessor = new TomcatJdbcPoolDatasourceAccessor();
     badSource = new ComboPooledDataSource();
   }
@@ -45,7 +45,7 @@ class TomcatJdbcPoolDatasourceAccessorTest {
    * Can map test.
    */
   @Test
-  public void canMapTest() {
+  void canMapTest() {
     Assertions.assertTrue(accessor.canMap(source));
   }
 
@@ -53,7 +53,7 @@ class TomcatJdbcPoolDatasourceAccessorTest {
    * Cannot map test.
    */
   @Test
-  public void cannotMapTest() {
+  void cannotMapTest() {
     Assertions.assertFalse(accessor.canMap(badSource));
   }
 
@@ -63,7 +63,7 @@ class TomcatJdbcPoolDatasourceAccessorTest {
    * @throws Exception the exception
    */
   @Test
-  public void getInfoTest() throws Exception {
+  void getInfoTest() throws Exception {
     accessor.getInfo(source);
   }
 
