@@ -34,7 +34,7 @@ class ThresholdListenerTests {
    * Test first below threshold.
    */
   @Test
-  public void testFirstBelowThreshold() {
+  void testFirstBelowThreshold() {
     listener.reset();
     listener.statsCollected(belowThreshold);
     Assertions.assertTrue(listener.isRemainedBelowThreshold());
@@ -44,7 +44,7 @@ class ThresholdListenerTests {
    * Test first above threshold.
    */
   @Test
-  public void testFirstAboveThreshold() {
+  void testFirstAboveThreshold() {
     listener.reset();
     listener.statsCollected(aboveThreshold);
     Assertions.assertTrue(listener.isCrossedAboveThreshold());
@@ -54,7 +54,7 @@ class ThresholdListenerTests {
    * Test remain below threshold.
    */
   @Test
-  public void testRemainBelowThreshold() {
+  void testRemainBelowThreshold() {
     listener.reset();
     listener.statsCollected(belowThreshold);
     listener.statsCollected(belowThreshold);
@@ -65,7 +65,7 @@ class ThresholdListenerTests {
    * Test remain above threshold.
    */
   @Test
-  public void testRemainAboveThreshold() {
+  void testRemainAboveThreshold() {
     listener.reset();
     listener.statsCollected(aboveThreshold);
     listener.statsCollected(aboveThreshold);
@@ -76,7 +76,7 @@ class ThresholdListenerTests {
    * Test crossed below threshold.
    */
   @Test
-  public void testCrossedBelowThreshold() {
+  void testCrossedBelowThreshold() {
     listener.reset();
     listener.statsCollected(aboveThreshold);
     listener.statsCollected(belowThreshold);
@@ -87,7 +87,7 @@ class ThresholdListenerTests {
    * Test crossed above threshold.
    */
   @Test
-  public void testCrossedAboveThreshold() {
+  void testCrossedAboveThreshold() {
     listener.reset();
     listener.statsCollected(belowThreshold);
     listener.statsCollected(aboveThreshold);

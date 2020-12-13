@@ -34,7 +34,7 @@ class Dbcp2DatasourceAccessorTest {
    * Before.
    */
   @BeforeEach
-  public void before() {
+  void before() {
     accessor = new Dbcp2DatasourceAccessor();
     source = new BasicDataSource();
     badSource = new ComboPooledDataSource();
@@ -44,7 +44,7 @@ class Dbcp2DatasourceAccessorTest {
    * Can map test.
    */
   @Test
-  public void canMapTest() {
+  void canMapTest() {
     Assertions.assertTrue(accessor.canMap(source));
   }
 
@@ -52,7 +52,7 @@ class Dbcp2DatasourceAccessorTest {
    * Cannot map test.
    */
   @Test
-  public void cannotMapTest() {
+  void cannotMapTest() {
     Assertions.assertFalse(accessor.canMap(badSource));
   }
 
@@ -62,7 +62,7 @@ class Dbcp2DatasourceAccessorTest {
    * @throws Exception the exception
    */
   @Test
-  public void getInfoTest() throws Exception {
+  void getInfoTest() throws Exception {
     accessor.getInfo(source);
   }
 

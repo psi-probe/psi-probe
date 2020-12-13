@@ -22,7 +22,7 @@ class DatasourceStatsCollectorBeanTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(DatasourceStatsCollectorBean.class).loadData().test();
   }
 

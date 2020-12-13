@@ -22,7 +22,7 @@ class ItemTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(Item.class).skipStrictSerializable().test();
   }
 

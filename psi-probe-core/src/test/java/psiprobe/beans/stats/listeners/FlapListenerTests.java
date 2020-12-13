@@ -72,7 +72,7 @@ class FlapListenerTests {
    * Test below threshold not flapping.
    */
   @Test
-  public void testBelowThresholdNotFlapping() {
+  void testBelowThresholdNotFlapping() {
     listener.reset();
     listener.statsCollected(aboveThreshold);
     listener.statsCollected(belowThreshold);
@@ -83,7 +83,7 @@ class FlapListenerTests {
    * Test above threshold not flapping.
    */
   @Test
-  public void testAboveThresholdNotFlapping() {
+  void testAboveThresholdNotFlapping() {
     listener.reset();
     listener.statsCollected(belowThreshold);
     listener.statsCollected(aboveThreshold);
@@ -94,7 +94,7 @@ class FlapListenerTests {
    * Test still below threshold.
    */
   @Test
-  public void testStillBelowThreshold() {
+  void testStillBelowThreshold() {
     listener.reset();
     listener.statsCollected(belowThreshold);
     for (int i = 0; i < defaultInterval; i++) {
@@ -107,7 +107,7 @@ class FlapListenerTests {
    * Test still above threshold.
    */
   @Test
-  public void testStillAboveThreshold() {
+  void testStillAboveThreshold() {
     listener.reset();
     listener.statsCollected(aboveThreshold);
     for (int i = 0; i < defaultInterval; i++) {
@@ -120,7 +120,7 @@ class FlapListenerTests {
    * Test flapping started.
    */
   @Test
-  public void testFlappingStarted() {
+  void testFlappingStarted() {
     fill(belowThreshold);
     listener.statsCollected(aboveThreshold);
     listener.statsCollected(belowThreshold);
@@ -132,7 +132,7 @@ class FlapListenerTests {
    * Test flapping started2.
    */
   @Test
-  public void testFlappingStarted2() {
+  void testFlappingStarted2() {
     fill(aboveThreshold);
     listener.statsCollected(belowThreshold);
     listener.statsCollected(aboveThreshold);
@@ -144,7 +144,7 @@ class FlapListenerTests {
    * Test below threshold flapping stopped below.
    */
   @Test
-  public void testBelowThresholdFlappingStoppedBelow() {
+  void testBelowThresholdFlappingStoppedBelow() {
     fill(belowThreshold);
     listener.statsCollected(aboveThreshold);
     listener.statsCollected(belowThreshold);
@@ -158,7 +158,7 @@ class FlapListenerTests {
    * Test below threshold flapping stopped above.
    */
   @Test
-  public void testBelowThresholdFlappingStoppedAbove() {
+  void testBelowThresholdFlappingStoppedAbove() {
     fill(belowThreshold);
     listener.statsCollected(aboveThreshold);
     listener.statsCollected(belowThreshold);
@@ -172,7 +172,7 @@ class FlapListenerTests {
    * Test above threshold flapping stopped below.
    */
   @Test
-  public void testAboveThresholdFlappingStoppedBelow() {
+  void testAboveThresholdFlappingStoppedBelow() {
     fill(aboveThreshold);
     listener.statsCollected(belowThreshold);
     listener.statsCollected(aboveThreshold);
@@ -186,7 +186,7 @@ class FlapListenerTests {
    * Test above threshold flapping stopped above.
    */
   @Test
-  public void testAboveThresholdFlappingStoppedAbove() {
+  void testAboveThresholdFlappingStoppedAbove() {
     fill(aboveThreshold);
     listener.statsCollected(belowThreshold);
     listener.statsCollected(aboveThreshold);

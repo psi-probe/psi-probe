@@ -22,7 +22,7 @@ class LogbackAppenderAccessorTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(LogbackAppenderAccessor.class).skip("level").test();
   }
 

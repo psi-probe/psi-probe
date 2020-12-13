@@ -22,7 +22,7 @@ class DataSourceTestInfoTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(DataSourceTestInfo.class).loadData().skipStrictSerializable().test();
   }
 

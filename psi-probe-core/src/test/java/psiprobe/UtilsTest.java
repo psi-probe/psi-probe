@@ -23,7 +23,7 @@ class UtilsTest {
    * To int test.
    */
   @Test
-  public void toIntTest() {
+  void toIntTest() {
     Assertions.assertEquals(5, Utils.toInt("garbage", 5));
     Assertions.assertEquals(3, Utils.toInt("3", 5));
     Assertions.assertEquals(5, Utils.toInt("3 3", 5));
@@ -34,7 +34,7 @@ class UtilsTest {
    * To int hex test.
    */
   @Test
-  public void toIntHexTest() {
+  void toIntHexTest() {
     Assertions.assertEquals(5, Utils.toIntHex("garbage", 5));
     Assertions.assertEquals(3, Utils.toIntHex("3", 5));
     Assertions.assertEquals(3, Utils.toIntHex("#3", 5));
@@ -46,7 +46,7 @@ class UtilsTest {
    * To long test.
    */
   @Test
-  public void toLongTest() {
+  void toLongTest() {
     Assertions.assertEquals(5L, Utils.toLong("garbage", 5L));
     Assertions.assertEquals(3L, Utils.toLong("3", 5L));
     Assertions.assertEquals(5L, Utils.toLong("3 3", 5L));
@@ -57,7 +57,7 @@ class UtilsTest {
    * To long int test.
    */
   @Test
-  public void toLongIntTest() {
+  void toLongIntTest() {
     Assertions.assertEquals(5, Utils.toLong((Long) null, 5));
     Assertions.assertEquals(1, Utils.toLong(Long.valueOf(1), 5));
   }
@@ -68,7 +68,7 @@ class UtilsTest {
   // TODO Breaks with junit 5.1.1
   @Disabled
   @Test
-  public void toFloatTest() {
+  void toFloatTest() {
     Assertions.assertEquals(5.0f, Utils.toFloat("garbage", 5.0f), 0.0);
     Assertions.assertEquals(3.0f, Utils.toFloat("3", 5.0f), 0.0);
     Assertions.assertEquals(5.0f, Utils.toFloat("3 3", 5.0f), 0.0);
@@ -79,7 +79,7 @@ class UtilsTest {
    * Left pad test.
    */
   @Test
-  public void leftPadTest() {
+  void leftPadTest() {
     Assertions.assertEquals("0005", Utils.leftPad("5", 4, "0"));
     Assertions.assertEquals("5", Utils.leftPad("5", 1, "0"));
     Assertions.assertEquals("", Utils.leftPad(null, 4, "0"));

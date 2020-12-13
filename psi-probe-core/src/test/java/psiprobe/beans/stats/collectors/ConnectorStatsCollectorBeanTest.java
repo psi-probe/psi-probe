@@ -22,7 +22,7 @@ class ConnectorStatsCollectorBeanTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(ConnectorStatsCollectorBean.class).loadData().test();
   }
 

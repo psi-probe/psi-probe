@@ -27,7 +27,7 @@ class Tomcat7DbcpDatasourceAccessorTest {
    * @throws Exception the exception
    */
   @Test
-  public void Tomcat7DbcpDatasourceAccessor() throws Exception {
+  void Tomcat7DbcpDatasourceAccessor() throws Exception {
     Tomcat7DbcpDatasourceAccessor accessor = new Tomcat7DbcpDatasourceAccessor();
     assertEquals("tomcat-dbcp", accessor.getInfo(new BasicDataSource()).getType());
   }
@@ -38,7 +38,7 @@ class Tomcat7DbcpDatasourceAccessorTest {
    * @throws Exception the exception
    */
   @Test
-  public void Tomcat7DbcpDatasourceAccessorInvalid() throws Exception {
+  void Tomcat7DbcpDatasourceAccessorInvalid() throws Exception {
     Tomcat7DbcpDatasourceAccessor accessor = new Tomcat7DbcpDatasourceAccessor();
     assertNull(accessor.getInfo(new Object()));
   }
@@ -49,7 +49,7 @@ class Tomcat7DbcpDatasourceAccessorTest {
    * @throws Exception the exception
    */
   @Test
-  public void reset() throws Exception {
+  void reset() throws Exception {
     Tomcat7DbcpDatasourceAccessor accessor = new Tomcat7DbcpDatasourceAccessor();
     assertFalse(accessor.reset(new Object()));
   }

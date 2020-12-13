@@ -22,7 +22,7 @@ class TransportableModelTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(TransportableModel.class).loadData().test();
   }
 

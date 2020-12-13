@@ -22,7 +22,7 @@ class DurationTagTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(DurationTag.class).loadData().skipStrictSerializable().test();
   }
 

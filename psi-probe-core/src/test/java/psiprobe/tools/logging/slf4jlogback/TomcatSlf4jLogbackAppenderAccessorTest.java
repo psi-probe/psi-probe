@@ -22,7 +22,7 @@ class TomcatSlf4jLogbackAppenderAccessorTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(TomcatSlf4jLogbackAppenderAccessor.class).skip("level").test();
   }
 

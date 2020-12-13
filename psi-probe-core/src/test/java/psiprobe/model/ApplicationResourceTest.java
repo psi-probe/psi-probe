@@ -22,7 +22,7 @@ class ApplicationResourceTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(ApplicationResource.class).loadData().test();
   }
 

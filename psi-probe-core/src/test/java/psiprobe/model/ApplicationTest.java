@@ -23,7 +23,7 @@ class ApplicationTest {
    */
   // TODO Not sure why serialization fails on this one...
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(Application.class).loadData().skipStrictSerializable().test();
   }
 

@@ -37,7 +37,7 @@ class HikariCpDatasourceAccessorTest {
    * Before.
    */
   @BeforeEach
-  public void before() {
+  void before() {
     accessor = new HikariCpDatasourceAccessor();
     badSource = new ComboPooledDataSource();
   }
@@ -46,7 +46,7 @@ class HikariCpDatasourceAccessorTest {
    * Can map test.
    */
   @Test
-  public void canMapTest() {
+  void canMapTest() {
     Assertions.assertTrue(accessor.canMap(source));
   }
 
@@ -54,7 +54,7 @@ class HikariCpDatasourceAccessorTest {
    * Cannot map test.
    */
   @Test
-  public void cannotMapTest() {
+  void cannotMapTest() {
     Assertions.assertFalse(accessor.canMap(badSource));
   }
 
@@ -65,7 +65,7 @@ class HikariCpDatasourceAccessorTest {
    */
   @Disabled
   @Test
-  public void getInfoTest() throws Exception {
+  void getInfoTest() throws Exception {
     accessor.getInfo(source);
   }
 

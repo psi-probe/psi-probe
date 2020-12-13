@@ -22,7 +22,7 @@ class MemoryPoolMailingListenerTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(MemoryPoolMailingListener.class).loadData().test();
   }
 

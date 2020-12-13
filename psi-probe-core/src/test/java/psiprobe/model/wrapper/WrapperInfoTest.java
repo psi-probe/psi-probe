@@ -22,7 +22,7 @@ class WrapperInfoTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(WrapperInfo.class).loadData().test();
   }
 

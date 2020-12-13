@@ -22,7 +22,7 @@ class RequestProcessorTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(RequestProcessor.class).loadData().test();
   }
 

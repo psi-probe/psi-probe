@@ -22,7 +22,7 @@ class PooledClusterSenderTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(PooledClusterSender.class).loadData().test();
   }
 

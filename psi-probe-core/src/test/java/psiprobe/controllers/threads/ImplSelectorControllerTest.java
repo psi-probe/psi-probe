@@ -22,7 +22,7 @@ class ImplSelectorControllerTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(ImplSelectorController.class)
         .skip("applicationContext", "supportedMethods").test();
   }

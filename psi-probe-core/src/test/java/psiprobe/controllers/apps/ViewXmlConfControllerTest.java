@@ -22,7 +22,7 @@ class ViewXmlConfControllerTest {
    * Javabean tester context.
    */
   @Test
-  public void javabeanTesterContext() {
+  void javabeanTesterContext() {
     JavaBeanTester.builder(ViewContextXmlConfController.class)
         .skip("applicationContext", "supportedMethods").test();
   }
@@ -31,7 +31,7 @@ class ViewXmlConfControllerTest {
    * Javabean tester web.
    */
   @Test
-  public void javabeanTesterWeb() {
+  void javabeanTesterWeb() {
     JavaBeanTester.builder(ViewWebXmlConfController.class)
         .skip("applicationContext", "supportedMethods").test();
   }

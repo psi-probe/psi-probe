@@ -22,7 +22,7 @@ class UndeployContextControllerTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(BaseUndeployContextController.class)
         .skip("applicationContext", "supportedMethods").test();
   }
@@ -31,7 +31,7 @@ class UndeployContextControllerTest {
    * Javabean tester summary.
    */
   @Test
-  public void javabeanTesterSummary() {
+  void javabeanTesterSummary() {
     JavaBeanTester.builder(UndeploySummaryContextController.class)
         .skip("applicationContext", "supportedMethods").test();
   }

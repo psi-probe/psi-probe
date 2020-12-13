@@ -22,7 +22,7 @@ class ListConnectorsControllerTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(ListConnectorsController.class)
         .skip("applicationContext", "supportedMethods").test();
   }

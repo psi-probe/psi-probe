@@ -22,7 +22,7 @@ class AppStatsCollectorBeanTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(AppStatsCollectorBean.class).loadData().test();
   }
 

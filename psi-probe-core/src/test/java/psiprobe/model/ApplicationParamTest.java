@@ -22,7 +22,7 @@ class ApplicationParamTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(ApplicationParam.class).loadData().test();
   }
 

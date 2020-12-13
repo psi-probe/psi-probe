@@ -34,7 +34,7 @@ class C3P0DatasourceAccessorTest {
    * Before.
    */
   @BeforeEach
-  public void before() {
+  void before() {
     accessor = new C3P0DatasourceAccessor();
     source = new ComboPooledDataSource();
     badSource = new C3P0PooledDataSource();
@@ -44,7 +44,7 @@ class C3P0DatasourceAccessorTest {
    * Can map test.
    */
   @Test
-  public void canMapTest() {
+  void canMapTest() {
     Assertions.assertTrue(accessor.canMap(source));
   }
 
@@ -52,7 +52,7 @@ class C3P0DatasourceAccessorTest {
    * Cannot map test.
    */
   @Test
-  public void cannotMapTest() {
+  void cannotMapTest() {
     Assertions.assertFalse(accessor.canMap(badSource));
   }
 
@@ -62,7 +62,7 @@ class C3P0DatasourceAccessorTest {
    * @throws Exception the exception
    */
   @Test
-  public void getInfoTest() throws Exception {
+  void getInfoTest() throws Exception {
     accessor.getInfo(source);
   }
 

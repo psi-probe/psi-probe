@@ -22,7 +22,7 @@ class UrlParserTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(UrlParser.class).loadData().test();
   }
 

@@ -22,7 +22,7 @@ class ApplicationSessionTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(ApplicationSession.class).loadData().test();
   }
 

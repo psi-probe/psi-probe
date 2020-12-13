@@ -28,7 +28,7 @@ class VisualScoreTagTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(VisualScoreTag.class).loadData().skipStrictSerializable().test();
   }
 
@@ -36,7 +36,7 @@ class VisualScoreTagTest {
    * Test range scan.
    */
   @Test
-  public void testRangeScan() {
+  void testRangeScan() {
     // As used in appRuntimeInfo.jsp
     doTestRangeScan(8, 5, false);
     doTestRangeScan(8, 5, true);

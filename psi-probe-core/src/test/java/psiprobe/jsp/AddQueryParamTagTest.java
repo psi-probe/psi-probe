@@ -22,7 +22,7 @@ class AddQueryParamTagTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(AddQueryParamTag.class).loadData().skipStrictSerializable().test();
   }
 

@@ -22,7 +22,7 @@ class StatsCollectionEventTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(StatsCollectionEvent.class).loadData().test();
   }
 

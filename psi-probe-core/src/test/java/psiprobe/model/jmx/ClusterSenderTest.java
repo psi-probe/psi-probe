@@ -22,7 +22,7 @@ class ClusterSenderTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(ClusterSender.class).loadData().test();
   }
 

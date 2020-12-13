@@ -30,7 +30,7 @@ class WhoisTests {
   // TODO breaks with latest surefire versions
   @Disabled
   @Test
-  public void testLocalhost() throws IOException {
+  void testLocalhost() throws IOException {
     int a = 127;
     int b = 0;
     int c = 0;
@@ -53,7 +53,7 @@ class WhoisTests {
   // TODO breaks with latest surefire versions
   @Disabled
   @Test
-  public void testGoogle() throws IOException {
+  void testGoogle() throws IOException {
     int a = 74;
     int b = 125;
     int c = 45;

@@ -22,7 +22,7 @@ class StandardSeriesProviderTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(StandardSeriesProvider.class).loadData().test();
   }
 

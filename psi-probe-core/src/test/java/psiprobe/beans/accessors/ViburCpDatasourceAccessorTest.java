@@ -38,7 +38,7 @@ class ViburCpDatasourceAccessorTest {
    * Before.
    */
   @BeforeEach
-  public void before() {
+  void before() {
     accessor = new ViburCpDatasourceAccessor();
     badSource = new ComboPooledDataSource();
   }
@@ -47,7 +47,7 @@ class ViburCpDatasourceAccessorTest {
    * Can map test.
    */
   @Test
-  public void canMapTest() {
+  void canMapTest() {
     Assertions.assertTrue(accessor.canMap(source));
   }
 
@@ -55,7 +55,7 @@ class ViburCpDatasourceAccessorTest {
    * Cannot map test.
    */
   @Test
-  public void cannotMapTest() {
+  void cannotMapTest() {
     Assertions.assertFalse(accessor.canMap(badSource));
   }
 
@@ -66,7 +66,7 @@ class ViburCpDatasourceAccessorTest {
    */
   @Disabled
   @Test
-  public void getInfoTest() throws Exception {
+  void getInfoTest() throws Exception {
     new Expectations() {
       {
         source.getJmxName();

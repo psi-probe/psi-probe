@@ -41,7 +41,7 @@ class ListCertificatesControllerTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(ListCertificatesController.class)
         .skip("applicationContext", "supportedMethods").test();
   }
@@ -52,7 +52,7 @@ class ListCertificatesControllerTest {
    * @throws Exception the exception
    */
   @Test
-  public void testGetCertificates() throws Exception {
+  void testGetCertificates() throws Exception {
     ListCertificatesController controller = new ListCertificatesController();
 
     String storeType = "jks";
@@ -73,7 +73,7 @@ class ListCertificatesControllerTest {
    * @throws Exception the exception
    */
   @Test
-  public void testGetCertificatesRelative() throws Exception {
+  void testGetCertificatesRelative() throws Exception {
     ListCertificatesController controller = new ListCertificatesController();
 
     String storeType = "jks";
@@ -97,7 +97,7 @@ class ListCertificatesControllerTest {
    * @throws Exception the exception
    */
   @Test
-  public void testGetCertificatesRelativeUri() throws Exception {
+  void testGetCertificatesRelativeUri() throws Exception {
     ListCertificatesController controller = new ListCertificatesController();
 
     String storeType = "jks";
@@ -122,7 +122,7 @@ class ListCertificatesControllerTest {
    * @throws Exception the exception
    */
   @Test
-  public void testGetCertificatesAbsoluteUri() throws Exception {
+  void testGetCertificatesAbsoluteUri() throws Exception {
     ListCertificatesController controller = new ListCertificatesController();
 
     String storeType = "jks";

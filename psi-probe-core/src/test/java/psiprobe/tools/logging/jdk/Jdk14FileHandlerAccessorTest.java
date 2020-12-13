@@ -23,7 +23,7 @@ import psiprobe.model.Application;
 class Jdk14FileHandlerAccessorTest {
 
   @Test
-  public void getFile() throws Exception {
+  void getFile() throws Exception {
     Jdk14FileHandlerAccessor handlerAccessor = new Jdk14FileHandlerAccessor();
     handlerAccessor.setLoggerAccessor(new Jdk14LoggerAccessor());
 

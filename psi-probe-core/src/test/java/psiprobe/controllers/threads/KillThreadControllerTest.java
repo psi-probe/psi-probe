@@ -22,7 +22,7 @@ class KillThreadControllerTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(KillThreadController.class)
         .skip("applicationContext", "supportedMethods").test();
   }

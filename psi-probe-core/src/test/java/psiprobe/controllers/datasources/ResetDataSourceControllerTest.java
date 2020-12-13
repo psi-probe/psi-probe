@@ -22,7 +22,7 @@ class ResetDataSourceControllerTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(ResetDataSourceController.class)
         .skip("applicationContext", "supportedMethods").test();
   }

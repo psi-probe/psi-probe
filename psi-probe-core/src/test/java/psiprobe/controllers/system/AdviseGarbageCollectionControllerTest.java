@@ -22,7 +22,7 @@ class AdviseGarbageCollectionControllerTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(AdviseGarbageCollectionController.class)
         .skip("applicationContext", "supportedMethods").test();
   }

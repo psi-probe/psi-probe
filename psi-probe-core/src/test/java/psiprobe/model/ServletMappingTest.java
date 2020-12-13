@@ -22,7 +22,7 @@ class ServletMappingTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(ServletMapping.class).loadData().test();
   }
 

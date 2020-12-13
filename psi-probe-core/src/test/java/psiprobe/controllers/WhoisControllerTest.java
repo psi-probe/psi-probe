@@ -22,7 +22,7 @@ class WhoisControllerTest {
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(WhoisController.class).skip("applicationContext", "supportedMethods")
         .test();
   }
