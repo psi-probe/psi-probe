@@ -228,7 +228,8 @@ public class OshiController extends AbstractTomcatContainerController {
     oshi.add(String.valueOf(operatingSystem));
     oshi.add("Booted: " + Instant.ofEpochSecond(operatingSystem.getSystemBootTime()));
     oshi.add("Uptime: " + FormatUtil.formatElapsedSecs(operatingSystem.getSystemUptime()));
-    oshi.add("Running with" + (operatingSystem.isElevated() ? "" : "out") + " elevated permissions.");
+    oshi.add(
+        "Running with" + (operatingSystem.isElevated() ? "" : "out") + " elevated permissions.");
     oshi.add("Sessions:");
     for (OSSession s : operatingSystem.getSessions()) {
       oshi.add(" " + s.toString());
@@ -279,7 +280,8 @@ public class OshiController extends AbstractTomcatContainerController {
    * @param processor the processor
    */
   private static void printCpu(CentralProcessor processor) {
-    oshi.add("Context Switches/Interrupts: " + processor.getContextSwitches() + " / " + processor.getInterrupts());
+    oshi.add("Context Switches/Interrupts: " + processor.getContextSwitches() + " / "
+        + processor.getInterrupts());
 
     long[] prevTicks = processor.getSystemCpuLoadTicks();
     long[][] prevProcTicks = processor.getProcessorCpuLoadTicks();
@@ -300,11 +302,14 @@ public class OshiController extends AbstractTomcatContainerController {
 
     oshi.add(String.format(
         "User: %.1f%% Nice: %.1f%% System: %.1f%% Idle: %.1f%% IOwait: %.1f%% IRQ: %.1f%% SoftIRQ: %.1f%% Steal: %.1f%%",
-        100d * user / totalCpu, 100d * nice / totalCpu, 100d * sys / totalCpu, 100d * idle / totalCpu,
-        100d * iowait / totalCpu, 100d * irq / totalCpu, 100d * softirq / totalCpu, 100d * steal / totalCpu));
-    oshi.add(String.format("CPU load: %.1f%%", processor.getSystemCpuLoadBetweenTicks(prevTicks) * 100));
+        100d * user / totalCpu, 100d * nice / totalCpu, 100d * sys / totalCpu,
+        100d * idle / totalCpu, 100d * iowait / totalCpu, 100d * irq / totalCpu,
+        100d * softirq / totalCpu, 100d * steal / totalCpu));
+    oshi.add(
+        String.format("CPU load: %.1f%%", processor.getSystemCpuLoadBetweenTicks(prevTicks) * 100));
     double[] loadAverage = processor.getSystemLoadAverage(3);
-    oshi.add("CPU load averages:" + (loadAverage[0] < 0 ? " N/A" : String.format(" %.2f", loadAverage[0]))
+    oshi.add("CPU load averages:"
+        + (loadAverage[0] < 0 ? " N/A" : String.format(" %.2f", loadAverage[0]))
         + (loadAverage[1] < 0 ? " N/A" : String.format(" %.2f", loadAverage[1]))
         + (loadAverage[2] < 0 ? " N/A" : String.format(" %.2f", loadAverage[2])));
     // per core CPU
@@ -344,8 +349,8 @@ public class OshiController extends AbstractTomcatContainerController {
   private static void printProcesses(OperatingSystem os, GlobalMemory memory) {
     OSProcess myProc = os.getProcess(os.getProcessId());
     // current process will never be null. Other code should check for null here
-    oshi.add(
-            "My PID: " + myProc.getProcessID() + " with affinity " + Long.toBinaryString(myProc.getAffinityMask()));
+    oshi.add("My PID: " + myProc.getProcessID() + " with affinity "
+        + Long.toBinaryString(myProc.getAffinityMask()));
     oshi.add("Processes: " + os.getProcessCount() + ", Threads: " + os.getThreadCount());
     // Sort by highest CPU
     List<OSProcess> procs = os.getProcesses(5, ProcessSort.CPU);
@@ -354,7 +359,8 @@ public class OshiController extends AbstractTomcatContainerController {
       OSProcess p = procs.get(i);
       oshi.add(String.format(" %5d %5.1f %4.1f %9s %9s %s", p.getProcessID(),
           100d * (p.getKernelTime() + p.getUserTime()) / p.getUpTime(),
-          100d * p.getResidentSetSize() / memory.getTotal(), FormatUtil.formatBytes(p.getVirtualSize()),
+          100d * p.getResidentSetSize() / memory.getTotal(),
+          FormatUtil.formatBytes(p.getVirtualSize()),
           FormatUtil.formatBytes(p.getResidentSetSize()), p.getName()));
     }
   }
@@ -441,11 +447,13 @@ public class OshiController extends AbstractTomcatContainerController {
       long total = fs.getTotalSpace();
       oshi.add(String.format(
           " %s (%s) [%s] %s of %s free (%.1f%%), %s of %s files free (%.1f%%) is %s "
-              + (fs.getLogicalVolume() != null && fs.getLogicalVolume().length() > 0 ? "[%s]" : "%s")
+              + (fs.getLogicalVolume() != null && fs.getLogicalVolume().length() > 0 ? "[%s]"
+                  : "%s")
               + " and is mounted at %s",
-          fs.getName(), fs.getDescription().isEmpty() ? "file system" : fs.getDescription(), fs.getType(),
-          FormatUtil.formatBytes(usable), FormatUtil.formatBytes(fs.getTotalSpace()), 100d * usable / total,
-          FormatUtil.formatValue(fs.getFreeInodes(), ""), FormatUtil.formatValue(fs.getTotalInodes(), ""),
+          fs.getName(), fs.getDescription().isEmpty() ? "file system" : fs.getDescription(),
+          fs.getType(), FormatUtil.formatBytes(usable), FormatUtil.formatBytes(fs.getTotalSpace()),
+          100d * usable / total, FormatUtil.formatValue(fs.getFreeInodes(), ""),
+          FormatUtil.formatValue(fs.getTotalInodes(), ""),
           100d * fs.getFreeInodes() / fs.getTotalInodes(), fs.getVolume(), fs.getLogicalVolume(),
           fs.getMount()));
     }
@@ -537,11 +545,11 @@ public class OshiController extends AbstractTomcatContainerController {
   private static void printGraphicsCards(List<GraphicsCard> list) {
     oshi.add("Graphics Cards:");
     if (list.isEmpty()) {
-        oshi.add(" None detected.");
+      oshi.add(" None detected.");
     } else {
-        for (GraphicsCard card : list) {
-            oshi.add(" " + card);
-        }
+      for (GraphicsCard card : list) {
+        oshi.add(" " + card);
+      }
     }
   }
 
