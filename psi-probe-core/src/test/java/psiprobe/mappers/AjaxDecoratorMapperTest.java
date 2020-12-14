@@ -13,13 +13,17 @@ package psiprobe.mappers;
 import com.opensymphony.module.sitemesh.Config;
 import com.opensymphony.module.sitemesh.DecoratorMapper;
 import com.opensymphony.module.sitemesh.Page;
+
 import java.util.Properties;
+
 import javax.servlet.http.HttpServletRequest;
+
+import mockit.Expectations;
+import mockit.Mocked;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import mockit.Expectations;
-import mockit.Mocked;
 
 /**
  * The Class AjaxDecoratorMapperTest.

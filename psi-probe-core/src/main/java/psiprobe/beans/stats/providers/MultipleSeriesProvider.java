@@ -12,7 +12,6 @@ package psiprobe.beans.stats.providers;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
@@ -114,7 +113,8 @@ public class MultipleSeriesProvider extends AbstractSeriesProvider {
 
     if (useTop) {
       // sorting stats by the avg value to identify the top series
-      Collections.sort(seriesList, (s1, s2) -> Double.compare(s1.avg, s2.avg) == 0 ? s1.key.compareTo(s2.key)
+      Collections.sort(seriesList,
+          (s1, s2) -> Double.compare(s1.avg, s2.avg) == 0 ? s1.key.compareTo(s2.key)
               : Double.compare(s1.avg, s2.avg) > 0 ? -1 : 1);
 
       // keeping only the top series in the list

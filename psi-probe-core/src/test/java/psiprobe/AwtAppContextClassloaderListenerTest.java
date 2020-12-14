@@ -13,12 +13,12 @@ package psiprobe;
 import javax.imageio.ImageIO;
 import javax.servlet.ServletContextEvent;
 
-import org.junit.jupiter.api.Test;
-
 import mockit.Expectations;
 import mockit.Mocked;
 import mockit.Tested;
 import mockit.Verifications;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * The Class AwtAppContextClassloaderListenerTest.

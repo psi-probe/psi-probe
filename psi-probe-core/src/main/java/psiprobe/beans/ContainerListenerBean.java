@@ -145,7 +145,7 @@ public class ContainerListenerBean implements NotificationListener {
     MBeanServer server = getContainerWrapper().getResourceResolver().getMBeanServer();
     String serverName = getContainerWrapper().getTomcatContainer().getName();
     Set<ObjectInstance> threadPools =
-        server.queryMBeans(new ObjectName(serverName + ":type=ThreadPool,name=\"*\""), null);  
+        server.queryMBeans(new ObjectName(serverName + ":type=ThreadPool,name=\"*\""), null);
     poolNames = new ArrayList<>(threadPools.size());
     for (ObjectInstance threadPool : threadPools) {
 

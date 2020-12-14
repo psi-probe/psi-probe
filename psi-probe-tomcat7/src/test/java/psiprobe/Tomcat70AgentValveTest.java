@@ -11,15 +11,18 @@
 package psiprobe;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
+
+import mockit.Expectations;
+import mockit.Mocked;
+import mockit.Tested;
+
 import org.apache.catalina.connector.Request;
 import org.apache.catalina.connector.Response;
 import org.apache.catalina.valves.ValveBase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import mockit.Expectations;
-import mockit.Mocked;
-import mockit.Tested;
 
 /**
  * The Class Tomcat70AgentValveTest.
