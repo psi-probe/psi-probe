@@ -11,11 +11,14 @@
 package psiprobe.beans.accessors;
 
 import java.lang.management.ManagementFactory;
+
 import javax.management.JMX;
 import javax.management.MBeanServer;
 import javax.management.ObjectName;
+
 import org.vibur.dbcp.ViburDBCPDataSource;
 import org.vibur.dbcp.ViburMonitoringMBean;
+
 import psiprobe.model.DataSourceInfo;
 
 /**

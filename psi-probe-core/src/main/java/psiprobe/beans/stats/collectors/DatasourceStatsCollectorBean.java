@@ -11,9 +11,11 @@
 package psiprobe.beans.stats.collectors;
 
 import javax.inject.Inject;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+
 import psiprobe.beans.ContainerWrapperBean;
 import psiprobe.model.ApplicationResource;
 import psiprobe.model.DataSourceInfo;

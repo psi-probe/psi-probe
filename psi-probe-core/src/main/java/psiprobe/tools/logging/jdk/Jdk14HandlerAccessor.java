@@ -11,6 +11,7 @@
 package psiprobe.tools.logging.jdk;
 
 import org.apache.commons.lang3.reflect.MethodUtils;
+
 import psiprobe.tools.logging.AbstractLogDestination;
 
 /**

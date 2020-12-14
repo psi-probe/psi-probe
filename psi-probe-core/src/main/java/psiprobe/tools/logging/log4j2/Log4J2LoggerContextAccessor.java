@@ -11,6 +11,7 @@
 package psiprobe.tools.logging.log4j2;
 
 import java.util.Map;
+
 import psiprobe.tools.logging.DefaultAccessor;
 
 /**

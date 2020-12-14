@@ -1069,7 +1069,7 @@
                     <artifactId>impsort-maven-plugin</artifactId>
                     <version>${impsort.plugin}</version>
                     <configuration>
-                        <groups>ch,com,jakarta,java,javax,mockit,org,psiprobe</groups>
+                        <groups>ch,com,jakarta,java,javax,mockit,org,oshi,psiprobe</groups>
                         <staticGroups>java,*</staticGroups>
                         <removeUnused>true</removeUnused>
                     </configuration>

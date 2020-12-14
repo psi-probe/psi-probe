@@ -12,9 +12,11 @@ package psiprobe.tools;
 
 import java.io.IOException;
 import java.io.PrintStream;
+
+import mockit.Mocked;
+
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
-import mockit.Mocked;
 
 /**
  * The Class LogOutputStreamTest.

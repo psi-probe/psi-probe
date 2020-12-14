@@ -12,11 +12,13 @@ package psiprobe.beans.stats.collectors;
 
 import javax.inject.Inject;
 import javax.servlet.ServletContext;
+
 import org.apache.catalina.Context;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.context.ServletContextAware;
+
 import psiprobe.TomcatContainer;
 import psiprobe.beans.ContainerWrapperBean;
 import psiprobe.model.Application;

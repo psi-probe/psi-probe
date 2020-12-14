@@ -11,6 +11,7 @@
 package psiprobe.tools.logging.commons;
 
 import java.util.List;
+
 import psiprobe.tools.logging.DefaultAccessor;
 import psiprobe.tools.logging.LogDestination;
 

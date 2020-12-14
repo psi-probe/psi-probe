@@ -22,7 +22,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.AnnotationConfigWebContextLoader;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-@ContextConfiguration(classes = ProbeConfig.class, loader=AnnotationConfigWebContextLoader.class)
+@ContextConfiguration(classes = ProbeConfig.class, loader = AnnotationConfigWebContextLoader.class)
 @WebAppConfiguration("file:src/test/webapp")
 @ExtendWith(SpringExtension.class)
 class ProbeConfigTest {
