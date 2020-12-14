@@ -12,6 +12,7 @@ package psiprobe.beans.stats.listeners;
 
 import java.util.HashMap;
 import java.util.LinkedList;
+
 import psiprobe.Utils;
 
 /**
@@ -23,7 +24,7 @@ import psiprobe.Utils;
  * @see &lt;a href=&quot;https://assets.nagios.com/downloads/nagioscore/docs/nagioscore/3/en/flapping.html&quot;&gt;
  *      Detection and Handling of State Flapping (nagios)&lt;/a&gt;
  */
-<span class="fc" id="L26">public abstract class AbstractFlapListener extends AbstractThresholdListener {</span>
+<span class="fc" id="L27">public abstract class AbstractFlapListener extends AbstractThresholdListener {</span>
 
   /** The default flap interval. */
   private int defaultFlapInterval;
@@ -41,10 +42,10 @@ import psiprobe.Utils;
   private float defaultFlapHighWeight;
 
   /** The flaps. */
-<span class="fc" id="L44">  private final HashMap&lt;String, LinkedList&lt;Boolean&gt;&gt; flaps = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L45">  private final HashMap&lt;String, LinkedList&lt;Boolean&gt;&gt; flaps = new HashMap&lt;&gt;();</span>
 
   /** The flapping states. */
-<span class="fc" id="L47">  private final HashMap&lt;String, Boolean&gt; flappingStates = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L48">  private final HashMap&lt;String, Boolean&gt; flappingStates = new HashMap&lt;&gt;();</span>
 
   /**
    * Flapping started.
@@ -83,30 +84,30 @@ import psiprobe.Utils;
 
   @Override
   protected void crossedAboveThreshold(StatsCollectionEvent sce) {
-<span class="fc" id="L86">    statsCollected(sce, true, true);</span>
-<span class="fc" id="L87">  }</span>
+<span class="fc" id="L87">    statsCollected(sce, true, true);</span>
+<span class="fc" id="L88">  }</span>
 
   @Override
   protected void crossedBelowThreshold(StatsCollectionEvent sce) {
-<span class="fc" id="L91">    statsCollected(sce, true, false);</span>
-<span class="fc" id="L92">  }</span>
+<span class="fc" id="L92">    statsCollected(sce, true, false);</span>
+<span class="fc" id="L93">  }</span>
 
   @Override
   protected void remainedAboveThreshold(StatsCollectionEvent sce) {
-<span class="fc" id="L96">    statsCollected(sce, false, true);</span>
-<span class="fc" id="L97">  }</span>
+<span class="fc" id="L97">    statsCollected(sce, false, true);</span>
+<span class="fc" id="L98">  }</span>
 
   @Override
   protected void remainedBelowThreshold(StatsCollectionEvent sce) {
-<span class="fc" id="L101">    statsCollected(sce, false, false);</span>
-<span class="fc" id="L102">  }</span>
+<span class="fc" id="L102">    statsCollected(sce, false, false);</span>
+<span class="fc" id="L103">  }</span>
 
   @Override
   public void reset() {
-<span class="fc" id="L106">    flaps.clear();</span>
-<span class="fc" id="L107">    flappingStates.clear();</span>
-<span class="fc" id="L108">    super.reset();</span>
-<span class="fc" id="L109">  }</span>
+<span class="fc" id="L107">    flaps.clear();</span>
+<span class="fc" id="L108">    flappingStates.clear();</span>
+<span class="fc" id="L109">    super.reset();</span>
+<span class="fc" id="L110">  }</span>
 
   /**
    * Stats collected.
@@ -116,25 +117,25 @@ import psiprobe.Utils;
    * @param above the above
    */
   protected void statsCollected(StatsCollectionEvent sce, boolean crossedThreshold, boolean above) {
-<span class="fc" id="L119">    String name = sce.getName();</span>
-<span class="fc" id="L120">    boolean flappingStateChanged = checkFlappingStateChanged(name, crossedThreshold);</span>
-<span class="fc" id="L121">    boolean flappingState = getFlappingState(name);</span>
-<span class="fc bfc" id="L122" title="All 2 branches covered.">    if (flappingStateChanged) {</span>
-<span class="fc bfc" id="L123" title="All 2 branches covered.">      if (flappingState) {</span>
-<span class="fc" id="L124">        flappingStarted(sce);</span>
-<span class="fc bfc" id="L125" title="All 2 branches covered.">      } else if (above) {</span>
-<span class="fc" id="L126">        aboveThresholdFlappingStopped(sce);</span>
+<span class="fc" id="L120">    String name = sce.getName();</span>
+<span class="fc" id="L121">    boolean flappingStateChanged = checkFlappingStateChanged(name, crossedThreshold);</span>
+<span class="fc" id="L122">    boolean flappingState = getFlappingState(name);</span>
+<span class="fc bfc" id="L123" title="All 2 branches covered.">    if (flappingStateChanged) {</span>
+<span class="fc bfc" id="L124" title="All 2 branches covered.">      if (flappingState) {</span>
+<span class="fc" id="L125">        flappingStarted(sce);</span>
+<span class="fc bfc" id="L126" title="All 2 branches covered.">      } else if (above) {</span>
+<span class="fc" id="L127">        aboveThresholdFlappingStopped(sce);</span>
       } else {
-<span class="fc" id="L128">        belowThresholdFlappingStopped(sce);</span>
+<span class="fc" id="L129">        belowThresholdFlappingStopped(sce);</span>
       }
-<span class="fc bfc" id="L130" title="All 2 branches covered.">    } else if (crossedThreshold) {</span>
-<span class="fc bfc" id="L131" title="All 2 branches covered.">      if (above) {</span>
-<span class="fc" id="L132">        aboveThresholdNotFlapping(sce);</span>
+<span class="fc bfc" id="L131" title="All 2 branches covered.">    } else if (crossedThreshold) {</span>
+<span class="fc bfc" id="L132" title="All 2 branches covered.">      if (above) {</span>
+<span class="fc" id="L133">        aboveThresholdNotFlapping(sce);</span>
       } else {
-<span class="fc" id="L134">        belowThresholdNotFlapping(sce);</span>
+<span class="fc" id="L135">        belowThresholdNotFlapping(sce);</span>
       }
     }
-<span class="fc" id="L137">  }</span>
+<span class="fc" id="L138">  }</span>
 
   /**
    * Check flapping state changed.
@@ -144,17 +145,17 @@ import psiprobe.Utils;
    * @return true, if successful
    */
   protected boolean checkFlappingStateChanged(String name, boolean crossedThreshold) {
-<span class="fc" id="L147">    addFlap(name, crossedThreshold);</span>
-<span class="fc" id="L148">    boolean oldFlappingState = getFlappingState(name);</span>
-<span class="fc" id="L149">    float transitionPercent = calculateStateTransitionPercentage(name, oldFlappingState);</span>
+<span class="fc" id="L148">    addFlap(name, crossedThreshold);</span>
+<span class="fc" id="L149">    boolean oldFlappingState = getFlappingState(name);</span>
+<span class="fc" id="L150">    float transitionPercent = calculateStateTransitionPercentage(name, oldFlappingState);</span>
     boolean newFlappingState;
-<span class="fc bfc" id="L151" title="All 2 branches covered.">    if (oldFlappingState) {</span>
-<span class="pc bpc" id="L152" title="1 of 2 branches missed.">      newFlappingState = transitionPercent &lt;= getFlapStopThreshold(name);</span>
+<span class="fc bfc" id="L152" title="All 2 branches covered.">    if (oldFlappingState) {</span>
+<span class="pc bpc" id="L153" title="1 of 2 branches missed.">      newFlappingState = transitionPercent &lt;= getFlapStopThreshold(name);</span>
     } else {
-<span class="fc bfc" id="L154" title="All 2 branches covered.">      newFlappingState = transitionPercent &gt; getFlapStartThreshold(name);</span>
+<span class="fc bfc" id="L155" title="All 2 branches covered.">      newFlappingState = transitionPercent &gt; getFlapStartThreshold(name);</span>
     }
-<span class="fc" id="L156">    setFlappingState(name, newFlappingState);</span>
-<span class="fc bfc" id="L157" title="All 2 branches covered.">    return oldFlappingState != newFlappingState;</span>
+<span class="fc" id="L157">    setFlappingState(name, newFlappingState);</span>
+<span class="fc bfc" id="L158" title="All 2 branches covered.">    return oldFlappingState != newFlappingState;</span>
   }
 
   /**
@@ -165,20 +166,20 @@ import psiprobe.Utils;
    * @return the float
    */
   protected float calculateStateTransitionPercentage(String name, boolean flapping) {
-<span class="fc" id="L168">    int flapInterval = getFlapInterval(name);</span>
-<span class="fc" id="L169">    LinkedList&lt;Boolean&gt; list = getFlaps(name);</span>
-<span class="fc" id="L170">    float lowWeight = getFlapLowWeight(name);</span>
-<span class="fc" id="L171">    float highWeight = getFlapHighWeight(name);</span>
-<span class="fc" id="L172">    float weightRange = highWeight - lowWeight;</span>
-<span class="fc" id="L173">    float result = 0;</span>
-<span class="fc bfc" id="L174" title="All 2 branches covered.">    for (int i = list.size() - 1; i &gt;= 0; i--) {</span>
-<span class="fc" id="L175">      boolean thisFlap = list.get(i);</span>
-<span class="fc bfc" id="L176" title="All 2 branches covered.">      if (flapping != thisFlap) {</span>
-<span class="fc" id="L177">        float weight = lowWeight + (weightRange * i / (flapInterval - 1));</span>
-<span class="fc" id="L178">        result += weight;</span>
+<span class="fc" id="L169">    int flapInterval = getFlapInterval(name);</span>
+<span class="fc" id="L170">    LinkedList&lt;Boolean&gt; list = getFlaps(name);</span>
+<span class="fc" id="L171">    float lowWeight = getFlapLowWeight(name);</span>
+<span class="fc" id="L172">    float highWeight = getFlapHighWeight(name);</span>
+<span class="fc" id="L173">    float weightRange = highWeight - lowWeight;</span>
+<span class="fc" id="L174">    float result = 0;</span>
+<span class="fc bfc" id="L175" title="All 2 branches covered.">    for (int i = list.size() - 1; i &gt;= 0; i--) {</span>
+<span class="fc" id="L176">      boolean thisFlap = list.get(i);</span>
+<span class="fc bfc" id="L177" title="All 2 branches covered.">      if (flapping != thisFlap) {</span>
+<span class="fc" id="L178">        float weight = lowWeight + (weightRange * i / (flapInterval - 1));</span>
+<span class="fc" id="L179">        result += weight;</span>
       }
     }
-<span class="fc" id="L181">    return result / flapInterval;</span>
+<span class="fc" id="L182">    return result / flapInterval;</span>
   }
 
   /**
@@ -188,14 +189,14 @@ import psiprobe.Utils;
    * @param flap the flap
    */
   protected void addFlap(String name, boolean flap) {
-<span class="fc" id="L191">    int flapInterval = getFlapInterval(name);</span>
-<span class="fc" id="L192">    LinkedList&lt;Boolean&gt; list = getFlaps(name);</span>
-<span class="fc" id="L193">    Boolean value = flap;</span>
-<span class="fc" id="L194">    list.addLast(value);</span>
-<span class="fc bfc" id="L195" title="All 2 branches covered.">    while (list.size() &gt; flapInterval) {</span>
-<span class="fc" id="L196">      list.removeFirst();</span>
+<span class="fc" id="L192">    int flapInterval = getFlapInterval(name);</span>
+<span class="fc" id="L193">    LinkedList&lt;Boolean&gt; list = getFlaps(name);</span>
+<span class="fc" id="L194">    Boolean value = flap;</span>
+<span class="fc" id="L195">    list.addLast(value);</span>
+<span class="fc bfc" id="L196" title="All 2 branches covered.">    while (list.size() &gt; flapInterval) {</span>
+<span class="fc" id="L197">      list.removeFirst();</span>
     }
-<span class="fc" id="L198">  }</span>
+<span class="fc" id="L199">  }</span>
 
   /**
    * Gets the flapping state.
@@ -204,12 +205,12 @@ import psiprobe.Utils;
    * @return the flapping state
    */
   protected boolean getFlappingState(String name) {
-<span class="fc" id="L207">    Boolean flapping = flappingStates.get(name);</span>
-<span class="fc bfc" id="L208" title="All 2 branches covered.">    if (flapping == null) {</span>
-<span class="fc" id="L209">      flapping = Boolean.FALSE;</span>
-<span class="fc" id="L210">      setFlappingState(name, false);</span>
+<span class="fc" id="L208">    Boolean flapping = flappingStates.get(name);</span>
+<span class="fc bfc" id="L209" title="All 2 branches covered.">    if (flapping == null) {</span>
+<span class="fc" id="L210">      flapping = Boolean.FALSE;</span>
+<span class="fc" id="L211">      setFlappingState(name, false);</span>
     }
-<span class="fc" id="L212">    return flapping;</span>
+<span class="fc" id="L213">    return flapping;</span>
   }
 
   /**
@@ -219,8 +220,8 @@ import psiprobe.Utils;
    * @param flapping the flapping
    */
   protected void setFlappingState(String name, boolean flapping) {
-<span class="fc" id="L222">    flappingStates.put(name, flapping);</span>
-<span class="fc" id="L223">  }</span>
+<span class="fc" id="L223">    flappingStates.put(name, flapping);</span>
+<span class="fc" id="L224">  }</span>
 
   /**
    * Gets the flaps.
@@ -229,12 +230,12 @@ import psiprobe.Utils;
    * @return the flaps
    */
   protected LinkedList&lt;Boolean&gt; getFlaps(String name) {
-<span class="fc" id="L232">    LinkedList&lt;Boolean&gt; list = flaps.get(name);</span>
-<span class="fc bfc" id="L233" title="All 2 branches covered.">    if (list == null) {</span>
-<span class="fc" id="L234">      list = new LinkedList&lt;&gt;();</span>
-<span class="fc" id="L235">      flaps.put(name, list);</span>
+<span class="fc" id="L233">    LinkedList&lt;Boolean&gt; list = flaps.get(name);</span>
+<span class="fc bfc" id="L234" title="All 2 branches covered.">    if (list == null) {</span>
+<span class="fc" id="L235">      list = new LinkedList&lt;&gt;();</span>
+<span class="fc" id="L236">      flaps.put(name, list);</span>
     }
-<span class="fc" id="L237">    return list;</span>
+<span class="fc" id="L238">    return list;</span>
   }
 
   /**
@@ -244,8 +245,8 @@ import psiprobe.Utils;
    * @return the flap interval
    */
   protected int getFlapInterval(String name) {
-<span class="fc" id="L247">    String interval = getPropertyValue(name, &quot;flapInterval&quot;);</span>
-<span class="fc" id="L248">    return Utils.toInt(interval, getDefaultFlapInterval());</span>
+<span class="fc" id="L248">    String interval = getPropertyValue(name, &quot;flapInterval&quot;);</span>
+<span class="fc" id="L249">    return Utils.toInt(interval, getDefaultFlapInterval());</span>
   }
 
   /**
@@ -255,8 +256,8 @@ import psiprobe.Utils;
    * @return the flap start threshold
    */
   protected float getFlapStartThreshold(String name) {
-<span class="fc" id="L258">    String startThreshold = getPropertyValue(name, &quot;flapStartThreshold&quot;);</span>
-<span class="fc" id="L259">    return Utils.toFloat(startThreshold, getDefaultFlapStartThreshold());</span>
+<span class="fc" id="L259">    String startThreshold = getPropertyValue(name, &quot;flapStartThreshold&quot;);</span>
+<span class="fc" id="L260">    return Utils.toFloat(startThreshold, getDefaultFlapStartThreshold());</span>
   }
 
   /**
@@ -266,8 +267,8 @@ import psiprobe.Utils;
    * @return the flap stop threshold
    */
   protected float getFlapStopThreshold(String name) {
-<span class="fc" id="L269">    String stopThreshold = getPropertyValue(name, &quot;flapStopThreshold&quot;);</span>
-<span class="fc" id="L270">    return Utils.toFloat(stopThreshold, getDefaultFlapStopThreshold());</span>
+<span class="fc" id="L270">    String stopThreshold = getPropertyValue(name, &quot;flapStopThreshold&quot;);</span>
+<span class="fc" id="L271">    return Utils.toFloat(stopThreshold, getDefaultFlapStopThreshold());</span>
   }
 
   /**
@@ -277,8 +278,8 @@ import psiprobe.Utils;
    * @return the flap low weight
    */
   protected float getFlapLowWeight(String name) {
-<span class="fc" id="L280">    String lowWeight = getPropertyValue(name, &quot;flapLowWeight&quot;);</span>
-<span class="fc" id="L281">    return Utils.toFloat(lowWeight, getDefaultFlapLowWeight());</span>
+<span class="fc" id="L281">    String lowWeight = getPropertyValue(name, &quot;flapLowWeight&quot;);</span>
+<span class="fc" id="L282">    return Utils.toFloat(lowWeight, getDefaultFlapLowWeight());</span>
   }
 
   /**
@@ -288,8 +289,8 @@ import psiprobe.Utils;
    * @return the flap high weight
    */
   protected float getFlapHighWeight(String name) {
-<span class="fc" id="L291">    String highWeight = getPropertyValue(name, &quot;flapHighWeight&quot;);</span>
-<span class="fc" id="L292">    return Utils.toFloat(highWeight, getDefaultFlapHighWeight());</span>
+<span class="fc" id="L292">    String highWeight = getPropertyValue(name, &quot;flapHighWeight&quot;);</span>
+<span class="fc" id="L293">    return Utils.toFloat(highWeight, getDefaultFlapHighWeight());</span>
   }
 
   /**
@@ -298,7 +299,7 @@ import psiprobe.Utils;
    * @return the default flap interval
    */
   public int getDefaultFlapInterval() {
-<span class="fc" id="L301">    return defaultFlapInterval;</span>
+<span class="fc" id="L302">    return defaultFlapInterval;</span>
   }
 
   /**
@@ -307,8 +308,8 @@ import psiprobe.Utils;
    * @param defaultFlapInterval the new default flap interval
    */
   public void setDefaultFlapInterval(int defaultFlapInterval) {
-<span class="fc" id="L310">    this.defaultFlapInterval = defaultFlapInterval;</span>
-<span class="fc" id="L311">  }</span>
+<span class="fc" id="L311">    this.defaultFlapInterval = defaultFlapInterval;</span>
+<span class="fc" id="L312">  }</span>
 
   /**
    * Gets the default flap start threshold.
@@ -316,7 +317,7 @@ import psiprobe.Utils;
    * @return the default flap start threshold
    */
   public float getDefaultFlapStartThreshold() {
-<span class="fc" id="L319">    return defaultFlapStartThreshold;</span>
+<span class="fc" id="L320">    return defaultFlapStartThreshold;</span>
   }
 
   /**
@@ -325,8 +326,8 @@ import psiprobe.Utils;
    * @param defaultFlapStartThreshold the new default flap start threshold
    */
   public void setDefaultFlapStartThreshold(float defaultFlapStartThreshold) {
-<span class="fc" id="L328">    this.defaultFlapStartThreshold = defaultFlapStartThreshold;</span>
-<span class="fc" id="L329">  }</span>
+<span class="fc" id="L329">    this.defaultFlapStartThreshold = defaultFlapStartThreshold;</span>
+<span class="fc" id="L330">  }</span>
 
   /**
    * Gets the default flap stop threshold.
@@ -334,7 +335,7 @@ import psiprobe.Utils;
    * @return the default flap stop threshold
    */
   public float getDefaultFlapStopThreshold() {
-<span class="fc" id="L337">    return defaultFlapStopThreshold;</span>
+<span class="fc" id="L338">    return defaultFlapStopThreshold;</span>
   }
 
   /**
@@ -343,8 +344,8 @@ import psiprobe.Utils;
    * @param defaultFlapStopThreshold the new default flap stop threshold
    */
   public void setDefaultFlapStopThreshold(float defaultFlapStopThreshold) {
-<span class="fc" id="L346">    this.defaultFlapStopThreshold = defaultFlapStopThreshold;</span>
-<span class="fc" id="L347">  }</span>
+<span class="fc" id="L347">    this.defaultFlapStopThreshold = defaultFlapStopThreshold;</span>
+<span class="fc" id="L348">  }</span>
 
   /**
    * Gets the default flap low weight.
@@ -352,7 +353,7 @@ import psiprobe.Utils;
    * @return the default flap low weight
    */
   public float getDefaultFlapLowWeight() {
-<span class="fc" id="L355">    return defaultFlapLowWeight;</span>
+<span class="fc" id="L356">    return defaultFlapLowWeight;</span>
   }
 
   /**
@@ -361,8 +362,8 @@ import psiprobe.Utils;
    * @param defaultFlapLowWeight the new default flap low weight
    */
   public void setDefaultFlapLowWeight(float defaultFlapLowWeight) {
-<span class="fc" id="L364">    this.defaultFlapLowWeight = defaultFlapLowWeight;</span>
-<span class="fc" id="L365">  }</span>
+<span class="fc" id="L365">    this.defaultFlapLowWeight = defaultFlapLowWeight;</span>
+<span class="fc" id="L366">  }</span>
 
   /**
    * Gets the default flap high weight.
@@ -370,7 +371,7 @@ import psiprobe.Utils;
    * @return the default flap high weight
    */
   public float getDefaultFlapHighWeight() {
-<span class="fc" id="L373">    return defaultFlapHighWeight;</span>
+<span class="fc" id="L374">    return defaultFlapHighWeight;</span>
   }
 
   /**
@@ -379,8 +380,8 @@ import psiprobe.Utils;
    * @param defaultFlapHighWeight the new default flap high weight
    */
   public void setDefaultFlapHighWeight(float defaultFlapHighWeight) {
-<span class="fc" id="L382">    this.defaultFlapHighWeight = defaultFlapHighWeight;</span>
-<span class="fc" id="L383">  }</span>
+<span class="fc" id="L383">    this.defaultFlapHighWeight = defaultFlapHighWeight;</span>
+<span class="fc" id="L384">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

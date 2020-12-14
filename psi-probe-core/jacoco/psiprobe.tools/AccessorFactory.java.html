@@ -11,6 +11,7 @@
 package psiprobe.tools;
 
 import java.lang.reflect.InvocationTargetException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,7 +21,7 @@ import org.slf4j.LoggerFactory;
 public class AccessorFactory {
 
   /** The Constant logger. */
-<span class="fc" id="L23">  private static final Logger logger = LoggerFactory.getLogger(AccessorFactory.class);</span>
+<span class="fc" id="L24">  private static final Logger logger = LoggerFactory.getLogger(AccessorFactory.class);</span>
 
   /**
    * Prevent Instantiation of accessor factory.
@@ -35,7 +36,7 @@ public class AccessorFactory {
    * @return single instance of AccessorFactory
    */
   public static Accessor getInstance() {
-<span class="fc" id="L38">    return getSimple();</span>
+<span class="fc" id="L39">    return getSimple();</span>
   }
 
   /**
@@ -46,12 +47,12 @@ public class AccessorFactory {
   @SuppressWarnings(&quot;unused&quot;)
   private static Accessor getReflective() {
     try {
-<span class="nc" id="L49">      return new ReflectiveAccessor();</span>
-<span class="nc" id="L50">    } catch (ClassNotFoundException | InstantiationException | IllegalAccessException</span>
+<span class="nc" id="L50">      return new ReflectiveAccessor();</span>
+<span class="nc" id="L51">    } catch (ClassNotFoundException | InstantiationException | IllegalAccessException</span>
         | NoSuchMethodException | IllegalArgumentException | InvocationTargetException
         | SecurityException e) {
-<span class="nc" id="L53">      logger.trace(&quot;&quot;, e);</span>
-<span class="nc" id="L54">      return null;</span>
+<span class="nc" id="L54">      logger.trace(&quot;&quot;, e);</span>
+<span class="nc" id="L55">      return null;</span>
     }
   }
 
@@ -61,8 +62,8 @@ public class AccessorFactory {
    * @return the simple
    */
   private static Accessor getSimple() {
-<span class="fc" id="L64">    return new SimpleAccessor();</span>
+<span class="fc" id="L65">    return new SimpleAccessor();</span>
   }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

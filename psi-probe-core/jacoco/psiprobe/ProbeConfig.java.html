@@ -17,6 +17,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Properties;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.FactoryBean;
@@ -43,6 +44,7 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.theme.FixedThemeResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+
 import psiprobe.beans.ClusterWrapperBean;
 import psiprobe.beans.ContainerListenerBean;
 import psiprobe.beans.ContainerWrapperBean;
@@ -86,10 +88,10 @@ import psiprobe.tools.Mailer;
 @EnableWebMvc
 @Configuration
 @ComponentScan(basePackages = {&quot;psiprobe&quot;})
-<span class="fc" id="L89">public class ProbeConfig implements WebMvcConfigurer {</span>
+<span class="fc" id="L91">public class ProbeConfig implements WebMvcConfigurer {</span>
 
   /** The Constant logger. */
-<span class="fc" id="L92">  private static final Logger logger = LoggerFactory.getLogger(ProbeConfig.class);</span>
+<span class="fc" id="L94">  private static final Logger logger = LoggerFactory.getLogger(ProbeConfig.class);</span>
 
   /**
    * Gets the container listener bean.
@@ -98,8 +100,8 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;containerListener&quot;)
   public ContainerListenerBean getContainerListenerBean() {
-<span class="fc" id="L101">    logger.debug(&quot;Instantiated containerListener&quot;);</span>
-<span class="fc" id="L102">    return new ContainerListenerBean();</span>
+<span class="fc" id="L103">    logger.debug(&quot;Instantiated containerListener&quot;);</span>
+<span class="fc" id="L104">    return new ContainerListenerBean();</span>
   }
 
   /**
@@ -109,8 +111,8 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;containerWrapper&quot;)
   public ContainerWrapperBean getContainerWrapperBean() {
-<span class="fc" id="L112">    logger.debug(&quot;Instantiated containerWrapper&quot;);</span>
-<span class="fc" id="L113">    return new ContainerWrapperBean();</span>
+<span class="fc" id="L114">    logger.debug(&quot;Instantiated containerWrapper&quot;);</span>
+<span class="fc" id="L115">    return new ContainerWrapperBean();</span>
   }
 
   /**
@@ -120,8 +122,8 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;clusterWrapper&quot;)
   public ClusterWrapperBean getClusterWrapperBean() {
-<span class="fc" id="L123">    logger.debug(&quot;Instantiated clusterWrapper&quot;);</span>
-<span class="fc" id="L124">    return new ClusterWrapperBean();</span>
+<span class="fc" id="L125">    logger.debug(&quot;Instantiated clusterWrapper&quot;);</span>
+<span class="fc" id="L126">    return new ClusterWrapperBean();</span>
   }
 
   /**
@@ -131,8 +133,8 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;mailer&quot;)
   public Mailer getMailer() {
-<span class="fc" id="L134">    logger.debug(&quot;Instantiated mailer&quot;);</span>
-<span class="fc" id="L135">    return new Mailer();</span>
+<span class="fc" id="L136">    logger.debug(&quot;Instantiated mailer&quot;);</span>
+<span class="fc" id="L137">    return new Mailer();</span>
   }
 
   /**
@@ -142,24 +144,24 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;datasourceMappers&quot;)
   public List&lt;String&gt; getDefaultRes() {
-<span class="fc" id="L145">    logger.debug(&quot;Instantiated datasourceMappers&quot;);</span>
-<span class="fc" id="L146">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L147">    list.add(&quot;psiprobe.beans.accessors.BoneCpDatasourceAccessor&quot;);</span>
-<span class="fc" id="L148">    list.add(&quot;psiprobe.beans.accessors.C3P0DatasourceAccessor&quot;);</span>
-<span class="fc" id="L149">    list.add(&quot;psiprobe.beans.accessors.DbcpDatasourceAccessor&quot;);</span>
-<span class="fc" id="L150">    list.add(&quot;psiprobe.beans.accessors.Dbcp2DatasourceAccessor&quot;);</span>
-<span class="fc" id="L151">    list.add(&quot;psiprobe.beans.accessors.HikariCpDatasourceAccessor&quot;);</span>
-<span class="fc" id="L152">    list.add(&quot;psiprobe.beans.accessors.Tomcat7DbcpDatasourceAccessor&quot;);</span>
-<span class="fc" id="L153">    list.add(&quot;psiprobe.beans.accessors.Tomcat85DbcpDatasourceAccessor&quot;);</span>
-<span class="fc" id="L154">    list.add(&quot;psiprobe.beans.accessors.Tomcat9DbcpDatasourceAccessor&quot;);</span>
-<span class="fc" id="L155">    list.add(&quot;psiprobe.beans.accessors.TomcatJdbcPoolDatasourceAccessor&quot;);</span>
-<span class="fc" id="L156">    list.add(&quot;psiprobe.beans.accessors.OracleDatasourceAccessor&quot;);</span>
-<span class="fc" id="L157">    list.add(&quot;psiprobe.beans.accessors.OracleUcpDatasourceAccessor&quot;);</span>
-<span class="fc" id="L158">    list.add(&quot;psiprobe.beans.accessors.OpenEjbManagedDatasourceAccessor&quot;);</span>
-<span class="fc" id="L159">    list.add(&quot;psiprobe.beans.accessors.ViburCpDatasourceAccessor&quot;);</span>
-<span class="fc" id="L160">    list.add(&quot;psiprobe.beans.accessors.TomEeJdbcPoolDatasourceAccessor&quot;);</span>
-<span class="fc" id="L161">    list.add(&quot;psiprobe.beans.accessors.OpenEjbBasicDatasourceAccessor&quot;);</span>
-<span class="fc" id="L162">    return list;</span>
+<span class="fc" id="L147">    logger.debug(&quot;Instantiated datasourceMappers&quot;);</span>
+<span class="fc" id="L148">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L149">    list.add(&quot;psiprobe.beans.accessors.BoneCpDatasourceAccessor&quot;);</span>
+<span class="fc" id="L150">    list.add(&quot;psiprobe.beans.accessors.C3P0DatasourceAccessor&quot;);</span>
+<span class="fc" id="L151">    list.add(&quot;psiprobe.beans.accessors.DbcpDatasourceAccessor&quot;);</span>
+<span class="fc" id="L152">    list.add(&quot;psiprobe.beans.accessors.Dbcp2DatasourceAccessor&quot;);</span>
+<span class="fc" id="L153">    list.add(&quot;psiprobe.beans.accessors.HikariCpDatasourceAccessor&quot;);</span>
+<span class="fc" id="L154">    list.add(&quot;psiprobe.beans.accessors.Tomcat7DbcpDatasourceAccessor&quot;);</span>
+<span class="fc" id="L155">    list.add(&quot;psiprobe.beans.accessors.Tomcat85DbcpDatasourceAccessor&quot;);</span>
+<span class="fc" id="L156">    list.add(&quot;psiprobe.beans.accessors.Tomcat9DbcpDatasourceAccessor&quot;);</span>
+<span class="fc" id="L157">    list.add(&quot;psiprobe.beans.accessors.TomcatJdbcPoolDatasourceAccessor&quot;);</span>
+<span class="fc" id="L158">    list.add(&quot;psiprobe.beans.accessors.OracleDatasourceAccessor&quot;);</span>
+<span class="fc" id="L159">    list.add(&quot;psiprobe.beans.accessors.OracleUcpDatasourceAccessor&quot;);</span>
+<span class="fc" id="L160">    list.add(&quot;psiprobe.beans.accessors.OpenEjbManagedDatasourceAccessor&quot;);</span>
+<span class="fc" id="L161">    list.add(&quot;psiprobe.beans.accessors.ViburCpDatasourceAccessor&quot;);</span>
+<span class="fc" id="L162">    list.add(&quot;psiprobe.beans.accessors.TomEeJdbcPoolDatasourceAccessor&quot;);</span>
+<span class="fc" id="L163">    list.add(&quot;psiprobe.beans.accessors.OpenEjbBasicDatasourceAccessor&quot;);</span>
+<span class="fc" id="L164">    return list;</span>
   }
 
   /**
@@ -169,8 +171,8 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;default&quot;)
   public ResourceResolverBean getResourceResolverBean() {
-<span class="fc" id="L172">    logger.debug(&quot;Instantiated default resourceResolverBean&quot;);</span>
-<span class="fc" id="L173">    return new ResourceResolverBean();</span>
+<span class="fc" id="L174">    logger.debug(&quot;Instantiated default resourceResolverBean&quot;);</span>
+<span class="fc" id="L175">    return new ResourceResolverBean();</span>
   }
 
   /**
@@ -180,8 +182,8 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;jboss&quot;)
   public JBossResourceResolverBean getJBossResourceResolverBean() {
-<span class="fc" id="L183">    logger.debug(&quot;Instantiated jbossResourceResolverBean&quot;);</span>
-<span class="fc" id="L184">    return new JBossResourceResolverBean();</span>
+<span class="fc" id="L185">    logger.debug(&quot;Instantiated jbossResourceResolverBean&quot;);</span>
+<span class="fc" id="L186">    return new JBossResourceResolverBean();</span>
   }
 
   /**
@@ -195,11 +197,11 @@ import psiprobe.tools.Mailer;
   public Map&lt;String, ResourceResolver&gt; getResourceResolvers(
       @Autowired JBossResourceResolverBean jbossResourceResolverBean,
       @Autowired ResourceResolverBean resourceResolverBean) {
-<span class="fc" id="L198">    logger.debug(&quot;Instantiated resourceResolvers&quot;);</span>
-<span class="fc" id="L199">    Map&lt;String, ResourceResolver&gt; map = new HashMap&lt;&gt;();</span>
-<span class="fc" id="L200">    map.put(&quot;jboss&quot;, jbossResourceResolverBean);</span>
-<span class="fc" id="L201">    map.put(&quot;default&quot;, resourceResolverBean);</span>
-<span class="fc" id="L202">    return map;</span>
+<span class="fc" id="L200">    logger.debug(&quot;Instantiated resourceResolvers&quot;);</span>
+<span class="fc" id="L201">    Map&lt;String, ResourceResolver&gt; map = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L202">    map.put(&quot;jboss&quot;, jbossResourceResolverBean);</span>
+<span class="fc" id="L203">    map.put(&quot;default&quot;, resourceResolverBean);</span>
+<span class="fc" id="L204">    return map;</span>
   }
 
   /**
@@ -210,12 +212,12 @@ import psiprobe.tools.Mailer;
   // TODO We should make this configurable
   @Bean(name = &quot;adapterClasses&quot;)
   public List&lt;String&gt; getAdapterClasses() {
-<span class="fc" id="L213">    logger.debug(&quot;Instantiated adapterClasses&quot;);</span>
-<span class="fc" id="L214">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L215">    list.add(&quot;psiprobe.Tomcat90ContainerAdapter&quot;);</span>
-<span class="fc" id="L216">    list.add(&quot;psiprobe.Tomcat85ContainerAdapter&quot;);</span>
-<span class="fc" id="L217">    list.add(&quot;psiprobe.Tomcat70ContainerAdapter&quot;);</span>
-<span class="fc" id="L218">    return list;</span>
+<span class="fc" id="L215">    logger.debug(&quot;Instantiated adapterClasses&quot;);</span>
+<span class="fc" id="L216">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L217">    list.add(&quot;psiprobe.Tomcat90ContainerAdapter&quot;);</span>
+<span class="fc" id="L218">    list.add(&quot;psiprobe.Tomcat85ContainerAdapter&quot;);</span>
+<span class="fc" id="L219">    list.add(&quot;psiprobe.Tomcat70ContainerAdapter&quot;);</span>
+<span class="fc" id="L220">    return list;</span>
   }
 
   /**
@@ -225,16 +227,16 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;stdoutFiles&quot;)
   public List&lt;String&gt; getStdoutFiles() {
-<span class="fc" id="L228">    logger.debug(&quot;Instantiated stdoutFiles&quot;);</span>
-<span class="fc" id="L229">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L230">    logger.debug(&quot;Instantiated stdoutFiles&quot;);</span>
+<span class="fc" id="L231">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
     try {
-<span class="fc bfc" id="L231" title="All 2 branches covered.">      for (Entry&lt;Object, Object&gt; entry : stdout().getObject().entrySet()) {</span>
-<span class="fc" id="L232">        list.add((String) entry.getValue());</span>
-<span class="fc" id="L233">      }</span>
-<span class="nc" id="L234">    } catch (Exception e) {</span>
-<span class="nc" id="L235">      logger.error(&quot;&quot;, e);</span>
-<span class="fc" id="L236">    }</span>
-<span class="fc" id="L237">    return list;</span>
+<span class="fc bfc" id="L233" title="All 2 branches covered.">      for (Entry&lt;Object, Object&gt; entry : stdout().getObject().entrySet()) {</span>
+<span class="fc" id="L234">        list.add((String) entry.getValue());</span>
+<span class="fc" id="L235">      }</span>
+<span class="nc" id="L236">    } catch (Exception e) {</span>
+<span class="nc" id="L237">      logger.error(&quot;&quot;, e);</span>
+<span class="fc" id="L238">    }</span>
+<span class="fc" id="L239">    return list;</span>
   }
 
   /**
@@ -244,10 +246,10 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;stdout&quot;)
   public FactoryBean&lt;Properties&gt; stdout() {
-<span class="fc" id="L247">    logger.debug(&quot;Instantiated stdout&quot;);</span>
-<span class="fc" id="L248">    PropertiesFactoryBean bean = new PropertiesFactoryBean();</span>
-<span class="fc" id="L249">    bean.setLocation(new ClassPathResource(&quot;stdout.properties&quot;));</span>
-<span class="fc" id="L250">    return bean;</span>
+<span class="fc" id="L249">    logger.debug(&quot;Instantiated stdout&quot;);</span>
+<span class="fc" id="L250">    PropertiesFactoryBean bean = new PropertiesFactoryBean();</span>
+<span class="fc" id="L251">    bean.setLocation(new ClassPathResource(&quot;stdout.properties&quot;));</span>
+<span class="fc" id="L252">    return bean;</span>
   }
 
   /**
@@ -257,8 +259,8 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;logResolver&quot;)
   public LogResolverBean getLogResolverBean() {
-<span class="fc" id="L260">    logger.debug(&quot;Instantiated logResolver&quot;);</span>
-<span class="fc" id="L261">    return new LogResolverBean();</span>
+<span class="fc" id="L262">    logger.debug(&quot;Instantiated logResolver&quot;);</span>
+<span class="fc" id="L263">    return new LogResolverBean();</span>
   }
 
   /**
@@ -268,8 +270,8 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;statsCollection&quot;)
   public StatsCollection getStatsCollection() {
-<span class="fc" id="L271">    logger.debug(&quot;Instantiated statsCollection&quot;);</span>
-<span class="fc" id="L272">    return new StatsCollection();</span>
+<span class="fc" id="L273">    logger.debug(&quot;Instantiated statsCollection&quot;);</span>
+<span class="fc" id="L274">    return new StatsCollection();</span>
   }
 
   /**
@@ -279,8 +281,8 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;connectorStatsCollector&quot;)
   public ConnectorStatsCollectorBean getConnectorStatsCollectorBean() {
-<span class="fc" id="L282">    logger.debug(&quot;Instantiated connectorStatsCollector&quot;);</span>
-<span class="fc" id="L283">    return new ConnectorStatsCollectorBean();</span>
+<span class="fc" id="L284">    logger.debug(&quot;Instantiated connectorStatsCollector&quot;);</span>
+<span class="fc" id="L285">    return new ConnectorStatsCollectorBean();</span>
   }
 
   /**
@@ -290,8 +292,8 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;clusterStatsCollector&quot;)
   public ClusterStatsCollectorBean getClusterStatsCollectorBean() {
-<span class="fc" id="L293">    logger.debug(&quot;Instantiated clusterStatsCollector&quot;);</span>
-<span class="fc" id="L294">    return new ClusterStatsCollectorBean();</span>
+<span class="fc" id="L295">    logger.debug(&quot;Instantiated clusterStatsCollector&quot;);</span>
+<span class="fc" id="L296">    return new ClusterStatsCollectorBean();</span>
   }
 
   /**
@@ -301,8 +303,8 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;runtimeStatsCollector&quot;)
   public RuntimeStatsCollectorBean getRuntimeStatsCollectorBean() {
-<span class="fc" id="L304">    logger.debug(&quot;Instantiated runtimeStatsCollector&quot;);</span>
-<span class="fc" id="L305">    return new RuntimeStatsCollectorBean();</span>
+<span class="fc" id="L306">    logger.debug(&quot;Instantiated runtimeStatsCollector&quot;);</span>
+<span class="fc" id="L307">    return new RuntimeStatsCollectorBean();</span>
   }
 
   /**
@@ -312,8 +314,8 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;appStatsCollector&quot;)
   public AppStatsCollectorBean getAppStatsCollectorBean() {
-<span class="fc" id="L315">    logger.debug(&quot;Instantiated appStatsCollector&quot;);</span>
-<span class="fc" id="L316">    return new AppStatsCollectorBean();</span>
+<span class="fc" id="L317">    logger.debug(&quot;Instantiated appStatsCollector&quot;);</span>
+<span class="fc" id="L318">    return new AppStatsCollectorBean();</span>
   }
 
   /**
@@ -323,8 +325,8 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;memoryStatsCollector&quot;)
   public JvmMemoryStatsCollectorBean getJvmMemoryStatsCollectorBean() {
-<span class="fc" id="L326">    logger.debug(&quot;Instantiated memoryStatsCollector&quot;);</span>
-<span class="fc" id="L327">    return new JvmMemoryStatsCollectorBean();</span>
+<span class="fc" id="L328">    logger.debug(&quot;Instantiated memoryStatsCollector&quot;);</span>
+<span class="fc" id="L329">    return new JvmMemoryStatsCollectorBean();</span>
   }
 
   /**
@@ -334,8 +336,8 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;datasourceStatsCollector&quot;)
   public DatasourceStatsCollectorBean getDatasourceStatsCollectorBean() {
-<span class="fc" id="L337">    logger.debug(&quot;Instantiated datasourceStatsCollector&quot;);</span>
-<span class="fc" id="L338">    return new DatasourceStatsCollectorBean();</span>
+<span class="fc" id="L339">    logger.debug(&quot;Instantiated datasourceStatsCollector&quot;);</span>
+<span class="fc" id="L340">    return new DatasourceStatsCollectorBean();</span>
   }
 
   /**
@@ -345,8 +347,8 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;jvmMemoryInfoAccessor&quot;)
   public JvmMemoryInfoAccessorBean getJvmMemoryInfoAccessorBean() {
-<span class="fc" id="L348">    logger.debug(&quot;Instantiated jvmMemoryInfoAccessorBean&quot;);</span>
-<span class="fc" id="L349">    return new JvmMemoryInfoAccessorBean();</span>
+<span class="fc" id="L350">    logger.debug(&quot;Instantiated jvmMemoryInfoAccessorBean&quot;);</span>
+<span class="fc" id="L351">    return new JvmMemoryInfoAccessorBean();</span>
   }
 
   /**
@@ -356,8 +358,8 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;runtimeInfoAccessor&quot;)
   public RuntimeInfoAccessorBean getRuntimeInfoAccessorBean() {
-<span class="fc" id="L359">    logger.debug(&quot;Instantiated runtimeInfoAccessorBean&quot;);</span>
-<span class="fc" id="L360">    return new RuntimeInfoAccessorBean();</span>
+<span class="fc" id="L361">    logger.debug(&quot;Instantiated runtimeInfoAccessorBean&quot;);</span>
+<span class="fc" id="L362">    return new RuntimeInfoAccessorBean();</span>
   }
 
   /**
@@ -367,10 +369,10 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;listeners&quot;)
   public List&lt;StatsCollectionListener&gt; getMemoryPoolMailingListener() {
-<span class="fc" id="L370">    logger.debug(&quot;Instantiated listeners&quot;);</span>
-<span class="fc" id="L371">    List&lt;StatsCollectionListener&gt; list = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L372">    list.add(new MemoryPoolMailingListener());</span>
-<span class="fc" id="L373">    return list;</span>
+<span class="fc" id="L372">    logger.debug(&quot;Instantiated listeners&quot;);</span>
+<span class="fc" id="L373">    List&lt;StatsCollectionListener&gt; list = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L374">    list.add(new MemoryPoolMailingListener());</span>
+<span class="fc" id="L375">    return list;</span>
   }
 
   /**
@@ -380,12 +382,12 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;jspViewResolver&quot;)
   public ViewResolver getViewResolver() {
-<span class="fc" id="L383">    logger.debug(&quot;Instantiated internalResourceViewResolver&quot;);</span>
-<span class="fc" id="L384">    InternalResourceViewResolver resolver = new InternalResourceViewResolver();</span>
-<span class="fc" id="L385">    resolver.setViewClass(JstlView.class);</span>
-<span class="fc" id="L386">    resolver.setPrefix(&quot;/WEB-INF/jsp/&quot;);</span>
-<span class="fc" id="L387">    resolver.setSuffix(&quot;.jsp&quot;);</span>
-<span class="fc" id="L388">    return resolver;</span>
+<span class="fc" id="L385">    logger.debug(&quot;Instantiated internalResourceViewResolver&quot;);</span>
+<span class="fc" id="L386">    InternalResourceViewResolver resolver = new InternalResourceViewResolver();</span>
+<span class="fc" id="L387">    resolver.setViewClass(JstlView.class);</span>
+<span class="fc" id="L388">    resolver.setPrefix(&quot;/WEB-INF/jsp/&quot;);</span>
+<span class="fc" id="L389">    resolver.setSuffix(&quot;.jsp&quot;);</span>
+<span class="fc" id="L390">    return resolver;</span>
   }
 
   /**
@@ -395,10 +397,10 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;themeResolver&quot;)
   public ThemeResolver getThemeResolver() {
-<span class="fc" id="L398">    logger.debug(&quot;Instantiated fixedThemeResolver&quot;);</span>
-<span class="fc" id="L399">    FixedThemeResolver resolver = new FixedThemeResolver();</span>
-<span class="fc" id="L400">    resolver.setDefaultThemeName(&quot;theme-classic&quot;);</span>
-<span class="fc" id="L401">    return resolver;</span>
+<span class="fc" id="L400">    logger.debug(&quot;Instantiated fixedThemeResolver&quot;);</span>
+<span class="fc" id="L401">    FixedThemeResolver resolver = new FixedThemeResolver();</span>
+<span class="fc" id="L402">    resolver.setDefaultThemeName(&quot;theme-classic&quot;);</span>
+<span class="fc" id="L403">    return resolver;</span>
   }
 
   /**
@@ -408,12 +410,12 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;messageSource&quot;)
   public MessageSource getMessageSource() {
-<span class="fc" id="L411">    logger.debug(&quot;Instantiated reloadableResourceBundleMessageSource&quot;);</span>
-<span class="fc" id="L412">    ReloadableResourceBundleMessageSource source = new ReloadableResourceBundleMessageSource();</span>
-<span class="fc" id="L413">    source.setBasename(&quot;/WEB-INF/messages&quot;);</span>
-<span class="fc" id="L414">    source.setCacheSeconds(1);</span>
-<span class="fc" id="L415">    source.setFallbackToSystemLocale(false);</span>
-<span class="fc" id="L416">    return source;</span>
+<span class="fc" id="L413">    logger.debug(&quot;Instantiated reloadableResourceBundleMessageSource&quot;);</span>
+<span class="fc" id="L414">    ReloadableResourceBundleMessageSource source = new ReloadableResourceBundleMessageSource();</span>
+<span class="fc" id="L415">    source.setBasename(&quot;/WEB-INF/messages&quot;);</span>
+<span class="fc" id="L416">    source.setCacheSeconds(1);</span>
+<span class="fc" id="L417">    source.setFallbackToSystemLocale(false);</span>
+<span class="fc" id="L418">    return source;</span>
   }
 
   /**
@@ -423,10 +425,10 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;localeResolver&quot;)
   public LocaleResolver getLocaleResolver() {
-<span class="fc" id="L426">    logger.debug(&quot;Instantiated cookieLocaleResolver&quot;);</span>
-<span class="fc" id="L427">    CookieLocaleResolver resolver = new CookieLocaleResolver();</span>
-<span class="fc" id="L428">    resolver.setDefaultLocale(Locale.ENGLISH);</span>
-<span class="fc" id="L429">    return resolver;</span>
+<span class="fc" id="L428">    logger.debug(&quot;Instantiated cookieLocaleResolver&quot;);</span>
+<span class="fc" id="L429">    CookieLocaleResolver resolver = new CookieLocaleResolver();</span>
+<span class="fc" id="L430">    resolver.setDefaultLocale(Locale.ENGLISH);</span>
+<span class="fc" id="L431">    return resolver;</span>
   }
 
   /**
@@ -437,18 +439,18 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;handlerMapping&quot;)
   public HandlerMapping getHandlerMapping(@Autowired LocaleChangeInterceptor interceptor) {
-<span class="fc" id="L440">    logger.debug(&quot;Instantiated beanNameUrlHandlerMapping&quot;);</span>
-<span class="fc" id="L441">    BeanNameUrlHandlerMapping mapping = new BeanNameUrlHandlerMapping();</span>
-<span class="fc" id="L442">    mapping.setAlwaysUseFullPath(true);</span>
-<span class="fc" id="L443">    mapping.setInterceptors(interceptor);</span>
-<span class="fc" id="L444">    return mapping;</span>
+<span class="fc" id="L442">    logger.debug(&quot;Instantiated beanNameUrlHandlerMapping&quot;);</span>
+<span class="fc" id="L443">    BeanNameUrlHandlerMapping mapping = new BeanNameUrlHandlerMapping();</span>
+<span class="fc" id="L444">    mapping.setAlwaysUseFullPath(true);</span>
+<span class="fc" id="L445">    mapping.setInterceptors(interceptor);</span>
+<span class="fc" id="L446">    return mapping;</span>
   }
 
   @Override
   public void addInterceptors(InterceptorRegistry registry) {
-<span class="fc" id="L449">    logger.debug(&quot;Registering localeChangeInterceptor&quot;);</span>
-<span class="fc" id="L450">    registry.addInterceptor(getLocaleChangeInterceptor());</span>
-<span class="fc" id="L451">  }</span>
+<span class="fc" id="L451">    logger.debug(&quot;Registering localeChangeInterceptor&quot;);</span>
+<span class="fc" id="L452">    registry.addInterceptor(getLocaleChangeInterceptor());</span>
+<span class="fc" id="L453">  }</span>
 
   /**
    * Gets the locale change interceptor.
@@ -457,10 +459,10 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;localeChangeInterceptor&quot;)
   public LocaleChangeInterceptor getLocaleChangeInterceptor() {
-<span class="fc" id="L460">    logger.debug(&quot;Instantiated localeChangeInterceptor&quot;);</span>
-<span class="fc" id="L461">    LocaleChangeInterceptor interceptor = new LocaleChangeInterceptor();</span>
-<span class="fc" id="L462">    interceptor.setParamName(&quot;lang&quot;);</span>
-<span class="fc" id="L463">    return interceptor;</span>
+<span class="fc" id="L462">    logger.debug(&quot;Instantiated localeChangeInterceptor&quot;);</span>
+<span class="fc" id="L463">    LocaleChangeInterceptor interceptor = new LocaleChangeInterceptor();</span>
+<span class="fc" id="L464">    interceptor.setParamName(&quot;lang&quot;);</span>
+<span class="fc" id="L465">    return interceptor;</span>
   }
 
   /**
@@ -470,19 +472,19 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;propertyPlaceholderConfigurer&quot;)
   public static PropertyPlaceholderConfigurer getPropertyPlaceholderConfigurer() {
-<span class="fc" id="L473">    logger.debug(&quot;Instantiated propertyPlaceholderConfigurer&quot;);</span>
-<span class="fc" id="L474">    PropertyPlaceholderConfigurer configurer = new PropertyPlaceholderConfigurer();</span>
-<span class="fc" id="L475">    configurer.setLocation(new ClassPathResource(&quot;stats.properties&quot;));</span>
-<span class="fc" id="L476">    configurer.setNullValue(&quot;NULL&quot;);</span>
+<span class="fc" id="L475">    logger.debug(&quot;Instantiated propertyPlaceholderConfigurer&quot;);</span>
+<span class="fc" id="L476">    PropertyPlaceholderConfigurer configurer = new PropertyPlaceholderConfigurer();</span>
+<span class="fc" id="L477">    configurer.setLocation(new ClassPathResource(&quot;stats.properties&quot;));</span>
+<span class="fc" id="L478">    configurer.setNullValue(&quot;NULL&quot;);</span>
 
-<span class="fc" id="L478">    Properties properties = new Properties();</span>
-<span class="fc" id="L479">    properties.put(&quot;psiprobe.tools.mail.to&quot;, &quot;NULL&quot;);</span>
-<span class="fc" id="L480">    properties.put(&quot;psiprobe.tools.mail.subjectPrefix&quot;, &quot;[PSI Probe]&quot;);</span>
-<span class="fc" id="L481">    configurer.setProperties(properties);</span>
+<span class="fc" id="L480">    Properties properties = new Properties();</span>
+<span class="fc" id="L481">    properties.put(&quot;psiprobe.tools.mail.to&quot;, &quot;NULL&quot;);</span>
+<span class="fc" id="L482">    properties.put(&quot;psiprobe.tools.mail.subjectPrefix&quot;, &quot;[PSI Probe]&quot;);</span>
+<span class="fc" id="L483">    configurer.setProperties(properties);</span>
 
-<span class="fc" id="L483">    configurer.setSystemPropertiesModeName(&quot;SYSTEM_PROPERTIES_MODE_OVERRIDE&quot;);</span>
+<span class="fc" id="L485">    configurer.setSystemPropertiesModeName(&quot;SYSTEM_PROPERTIES_MODE_OVERRIDE&quot;);</span>
 
-<span class="fc" id="L485">    return configurer;</span>
+<span class="fc" id="L487">    return configurer;</span>
   }
 
   /**
@@ -492,10 +494,10 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;version&quot;)
   public PropertiesFactoryBean version() {
-<span class="fc" id="L495">    logger.debug(&quot;Instantiated version&quot;);</span>
-<span class="fc" id="L496">    PropertiesFactoryBean bean = new PropertiesFactoryBean();</span>
-<span class="fc" id="L497">    bean.setLocation(new ClassPathResource(&quot;version.properties&quot;));</span>
-<span class="fc" id="L498">    return bean;</span>
+<span class="fc" id="L497">    logger.debug(&quot;Instantiated version&quot;);</span>
+<span class="fc" id="L498">    PropertiesFactoryBean bean = new PropertiesFactoryBean();</span>
+<span class="fc" id="L499">    bean.setLocation(new ClassPathResource(&quot;version.properties&quot;));</span>
+<span class="fc" id="L500">    return bean;</span>
   }
 
   /**
@@ -505,8 +507,8 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;rcn&quot;)
   public ConnectorSeriesProvider getConnectorSeriesProvider() {
-<span class="fc" id="L508">    logger.debug(&quot;Instantiated rcn&quot;);</span>
-<span class="fc" id="L509">    return new ConnectorSeriesProvider();</span>
+<span class="fc" id="L510">    logger.debug(&quot;Instantiated rcn&quot;);</span>
+<span class="fc" id="L511">    return new ConnectorSeriesProvider();</span>
   }
 
   /**
@@ -516,14 +518,14 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;cl_traffic&quot;)
   public StandardSeriesProvider getClTraffic() {
-<span class="fc" id="L519">    logger.debug(&quot;Instantiated cl_traffic&quot;);</span>
-<span class="fc" id="L520">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L521">    list.add(&quot;cluster.sent&quot;);</span>
-<span class="fc" id="L522">    list.add(&quot;cluster.received&quot;);</span>
+<span class="fc" id="L521">    logger.debug(&quot;Instantiated cl_traffic&quot;);</span>
+<span class="fc" id="L522">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L523">    list.add(&quot;cluster.sent&quot;);</span>
+<span class="fc" id="L524">    list.add(&quot;cluster.received&quot;);</span>
 
-<span class="fc" id="L524">    StandardSeriesProvider provider = new StandardSeriesProvider();</span>
-<span class="fc" id="L525">    provider.setStatNames(list);</span>
-<span class="fc" id="L526">    return provider;</span>
+<span class="fc" id="L526">    StandardSeriesProvider provider = new StandardSeriesProvider();</span>
+<span class="fc" id="L527">    provider.setStatNames(list);</span>
+<span class="fc" id="L528">    return provider;</span>
   }
 
   /**
@@ -533,14 +535,14 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;cl_request&quot;)
   public StandardSeriesProvider getClRequest() {
-<span class="fc" id="L536">    logger.debug(&quot;Instantiated cl_request&quot;);</span>
-<span class="fc" id="L537">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L538">    list.add(&quot;cluster.req.sent&quot;);</span>
-<span class="fc" id="L539">    list.add(&quot;cluster.req.received&quot;);</span>
+<span class="fc" id="L538">    logger.debug(&quot;Instantiated cl_request&quot;);</span>
+<span class="fc" id="L539">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L540">    list.add(&quot;cluster.req.sent&quot;);</span>
+<span class="fc" id="L541">    list.add(&quot;cluster.req.received&quot;);</span>
 
-<span class="fc" id="L541">    StandardSeriesProvider provider = new StandardSeriesProvider();</span>
-<span class="fc" id="L542">    provider.setStatNames(list);</span>
-<span class="fc" id="L543">    return provider;</span>
+<span class="fc" id="L543">    StandardSeriesProvider provider = new StandardSeriesProvider();</span>
+<span class="fc" id="L544">    provider.setStatNames(list);</span>
+<span class="fc" id="L545">    return provider;</span>
   }
 
   /**
@@ -550,14 +552,14 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;connector&quot;)
   public StandardSeriesProvider getConnector() {
-<span class="fc" id="L553">    logger.debug(&quot;Instantiated connector&quot;);</span>
-<span class="fc" id="L554">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L555">    list.add(&quot;stat.connector.{0}.requests&quot;);</span>
-<span class="fc" id="L556">    list.add(&quot;stat.connector.{0}.errors&quot;);</span>
+<span class="fc" id="L555">    logger.debug(&quot;Instantiated connector&quot;);</span>
+<span class="fc" id="L556">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L557">    list.add(&quot;stat.connector.{0}.requests&quot;);</span>
+<span class="fc" id="L558">    list.add(&quot;stat.connector.{0}.errors&quot;);</span>
 
-<span class="fc" id="L558">    StandardSeriesProvider provider = new StandardSeriesProvider();</span>
-<span class="fc" id="L559">    provider.setStatNames(list);</span>
-<span class="fc" id="L560">    return provider;</span>
+<span class="fc" id="L560">    StandardSeriesProvider provider = new StandardSeriesProvider();</span>
+<span class="fc" id="L561">    provider.setStatNames(list);</span>
+<span class="fc" id="L562">    return provider;</span>
   }
 
   /**
@@ -567,14 +569,14 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;traffic&quot;)
   public StandardSeriesProvider getTraffic() {
-<span class="fc" id="L570">    logger.debug(&quot;Instantiated traffic&quot;);</span>
-<span class="fc" id="L571">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L572">    list.add(&quot;stat.connector.{0}.sent&quot;);</span>
-<span class="fc" id="L573">    list.add(&quot;stat.connector.{0}.received&quot;);</span>
+<span class="fc" id="L572">    logger.debug(&quot;Instantiated traffic&quot;);</span>
+<span class="fc" id="L573">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L574">    list.add(&quot;stat.connector.{0}.sent&quot;);</span>
+<span class="fc" id="L575">    list.add(&quot;stat.connector.{0}.received&quot;);</span>
 
-<span class="fc" id="L575">    StandardSeriesProvider provider = new StandardSeriesProvider();</span>
-<span class="fc" id="L576">    provider.setStatNames(list);</span>
-<span class="fc" id="L577">    return provider;</span>
+<span class="fc" id="L577">    StandardSeriesProvider provider = new StandardSeriesProvider();</span>
+<span class="fc" id="L578">    provider.setStatNames(list);</span>
+<span class="fc" id="L579">    return provider;</span>
   }
 
   /**
@@ -584,13 +586,13 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;connector_proc_time&quot;)
   public StandardSeriesProvider getConnectorProcTime() {
-<span class="fc" id="L587">    logger.debug(&quot;Instantiated connector_proc_time&quot;);</span>
-<span class="fc" id="L588">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L589">    list.add(&quot;stat.connector.{0}.proc_time&quot;);</span>
+<span class="fc" id="L589">    logger.debug(&quot;Instantiated connector_proc_time&quot;);</span>
+<span class="fc" id="L590">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L591">    list.add(&quot;stat.connector.{0}.proc_time&quot;);</span>
 
-<span class="fc" id="L591">    StandardSeriesProvider provider = new StandardSeriesProvider();</span>
-<span class="fc" id="L592">    provider.setStatNames(list);</span>
-<span class="fc" id="L593">    return provider;</span>
+<span class="fc" id="L593">    StandardSeriesProvider provider = new StandardSeriesProvider();</span>
+<span class="fc" id="L594">    provider.setStatNames(list);</span>
+<span class="fc" id="L595">    return provider;</span>
   }
 
   /**
@@ -600,13 +602,13 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;memory_usage&quot;)
   public StandardSeriesProvider getMemoryUsage() {
-<span class="fc" id="L603">    logger.debug(&quot;Instantiated memory_usage&quot;);</span>
-<span class="fc" id="L604">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L605">    list.add(&quot;memory.pool.{0}&quot;);</span>
+<span class="fc" id="L605">    logger.debug(&quot;Instantiated memory_usage&quot;);</span>
+<span class="fc" id="L606">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L607">    list.add(&quot;memory.pool.{0}&quot;);</span>
 
-<span class="fc" id="L607">    StandardSeriesProvider provider = new StandardSeriesProvider();</span>
-<span class="fc" id="L608">    provider.setStatNames(list);</span>
-<span class="fc" id="L609">    return provider;</span>
+<span class="fc" id="L609">    StandardSeriesProvider provider = new StandardSeriesProvider();</span>
+<span class="fc" id="L610">    provider.setStatNames(list);</span>
+<span class="fc" id="L611">    return provider;</span>
   }
 
   /**
@@ -616,14 +618,14 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;os_memory&quot;)
   public StandardSeriesProvider getOsMemory() {
-<span class="fc" id="L619">    logger.debug(&quot;Instantiated os_memory&quot;);</span>
-<span class="fc" id="L620">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L621">    list.add(&quot;os.memory.physical&quot;);</span>
-<span class="fc" id="L622">    list.add(&quot;os.memory.committed&quot;);</span>
+<span class="fc" id="L621">    logger.debug(&quot;Instantiated os_memory&quot;);</span>
+<span class="fc" id="L622">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L623">    list.add(&quot;os.memory.physical&quot;);</span>
+<span class="fc" id="L624">    list.add(&quot;os.memory.committed&quot;);</span>
 
-<span class="fc" id="L624">    StandardSeriesProvider provider = new StandardSeriesProvider();</span>
-<span class="fc" id="L625">    provider.setStatNames(list);</span>
-<span class="fc" id="L626">    return provider;</span>
+<span class="fc" id="L626">    StandardSeriesProvider provider = new StandardSeriesProvider();</span>
+<span class="fc" id="L627">    provider.setStatNames(list);</span>
+<span class="fc" id="L628">    return provider;</span>
   }
 
   /**
@@ -633,13 +635,13 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;swap_usage&quot;)
   public StandardSeriesProvider getSwapUsage() {
-<span class="fc" id="L636">    logger.debug(&quot;Instantiated swap_usage&quot;);</span>
-<span class="fc" id="L637">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L638">    list.add(&quot;os.memory.swap&quot;);</span>
+<span class="fc" id="L638">    logger.debug(&quot;Instantiated swap_usage&quot;);</span>
+<span class="fc" id="L639">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L640">    list.add(&quot;os.memory.swap&quot;);</span>
 
-<span class="fc" id="L640">    StandardSeriesProvider provider = new StandardSeriesProvider();</span>
-<span class="fc" id="L641">    provider.setStatNames(list);</span>
-<span class="fc" id="L642">    return provider;</span>
+<span class="fc" id="L642">    StandardSeriesProvider provider = new StandardSeriesProvider();</span>
+<span class="fc" id="L643">    provider.setStatNames(list);</span>
+<span class="fc" id="L644">    return provider;</span>
   }
 
   /**
@@ -649,13 +651,13 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;cpu_usage&quot;)
   public StandardSeriesProvider getCpuUsage() {
-<span class="fc" id="L652">    logger.debug(&quot;Instantiated cpu_usage&quot;);</span>
-<span class="fc" id="L653">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L654">    list.add(&quot;os.cpu&quot;);</span>
+<span class="fc" id="L654">    logger.debug(&quot;Instantiated cpu_usage&quot;);</span>
+<span class="fc" id="L655">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L656">    list.add(&quot;os.cpu&quot;);</span>
 
-<span class="fc" id="L656">    StandardSeriesProvider provider = new StandardSeriesProvider();</span>
-<span class="fc" id="L657">    provider.setStatNames(list);</span>
-<span class="fc" id="L658">    return provider;</span>
+<span class="fc" id="L658">    StandardSeriesProvider provider = new StandardSeriesProvider();</span>
+<span class="fc" id="L659">    provider.setStatNames(list);</span>
+<span class="fc" id="L660">    return provider;</span>
   }
 
   /**
@@ -665,14 +667,14 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;fd_usage&quot;)
   public StandardSeriesProvider getFdUsage() {
-<span class="fc" id="L668">    logger.debug(&quot;Instantiated fd_usage&quot;);</span>
-<span class="fc" id="L669">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L670">    list.add(&quot;os.fd.open&quot;);</span>
-<span class="fc" id="L671">    list.add(&quot;os.fd.max&quot;);</span>
+<span class="fc" id="L670">    logger.debug(&quot;Instantiated fd_usage&quot;);</span>
+<span class="fc" id="L671">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L672">    list.add(&quot;os.fd.open&quot;);</span>
+<span class="fc" id="L673">    list.add(&quot;os.fd.max&quot;);</span>
 
-<span class="fc" id="L673">    StandardSeriesProvider provider = new StandardSeriesProvider();</span>
-<span class="fc" id="L674">    provider.setStatNames(list);</span>
-<span class="fc" id="L675">    return provider;</span>
+<span class="fc" id="L675">    StandardSeriesProvider provider = new StandardSeriesProvider();</span>
+<span class="fc" id="L676">    provider.setStatNames(list);</span>
+<span class="fc" id="L677">    return provider;</span>
   }
 
   /**
@@ -682,14 +684,14 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;app_req&quot;)
   public StandardSeriesProvider getAppReq() {
-<span class="fc" id="L685">    logger.debug(&quot;Instantiated app_req&quot;);</span>
-<span class="fc" id="L686">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L687">    list.add(&quot;app.requests.{0}&quot;);</span>
-<span class="fc" id="L688">    list.add(&quot;app.errors.{0}&quot;);</span>
+<span class="fc" id="L687">    logger.debug(&quot;Instantiated app_req&quot;);</span>
+<span class="fc" id="L688">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L689">    list.add(&quot;app.requests.{0}&quot;);</span>
+<span class="fc" id="L690">    list.add(&quot;app.errors.{0}&quot;);</span>
 
-<span class="fc" id="L690">    StandardSeriesProvider provider = new StandardSeriesProvider();</span>
-<span class="fc" id="L691">    provider.setStatNames(list);</span>
-<span class="fc" id="L692">    return provider;</span>
+<span class="fc" id="L692">    StandardSeriesProvider provider = new StandardSeriesProvider();</span>
+<span class="fc" id="L693">    provider.setStatNames(list);</span>
+<span class="fc" id="L694">    return provider;</span>
   }
 
   /**
@@ -699,13 +701,13 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;app_avg_proc_time&quot;)
   public StandardSeriesProvider getAppAvgProcTime() {
-<span class="fc" id="L702">    logger.debug(&quot;Instantiated app_avg_proc_time&quot;);</span>
-<span class="fc" id="L703">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L704">    list.add(&quot;app.avg_proc_time.{0}&quot;);</span>
+<span class="fc" id="L704">    logger.debug(&quot;Instantiated app_avg_proc_time&quot;);</span>
+<span class="fc" id="L705">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L706">    list.add(&quot;app.avg_proc_time.{0}&quot;);</span>
 
-<span class="fc" id="L706">    StandardSeriesProvider provider = new StandardSeriesProvider();</span>
-<span class="fc" id="L707">    provider.setStatNames(list);</span>
-<span class="fc" id="L708">    return provider;</span>
+<span class="fc" id="L708">    StandardSeriesProvider provider = new StandardSeriesProvider();</span>
+<span class="fc" id="L709">    provider.setStatNames(list);</span>
+<span class="fc" id="L710">    return provider;</span>
   }
 
   /**
@@ -715,13 +717,13 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;total_avg_proc_time&quot;)
   public StandardSeriesProvider getTotalAvgProcTime() {
-<span class="fc" id="L718">    logger.debug(&quot;Instantiated total_avg_proc_time&quot;);</span>
-<span class="fc" id="L719">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L720">    list.add(&quot;total.avg_proc_time&quot;);</span>
+<span class="fc" id="L720">    logger.debug(&quot;Instantiated total_avg_proc_time&quot;);</span>
+<span class="fc" id="L721">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L722">    list.add(&quot;total.avg_proc_time&quot;);</span>
 
-<span class="fc" id="L722">    StandardSeriesProvider provider = new StandardSeriesProvider();</span>
-<span class="fc" id="L723">    provider.setStatNames(list);</span>
-<span class="fc" id="L724">    return provider;</span>
+<span class="fc" id="L724">    StandardSeriesProvider provider = new StandardSeriesProvider();</span>
+<span class="fc" id="L725">    provider.setStatNames(list);</span>
+<span class="fc" id="L726">    return provider;</span>
   }
 
   /**
@@ -731,14 +733,14 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;total_req&quot;)
   public StandardSeriesProvider getTotalReq() {
-<span class="fc" id="L734">    logger.debug(&quot;Instantiated total_req&quot;);</span>
-<span class="fc" id="L735">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L736">    list.add(&quot;total.requests&quot;);</span>
-<span class="fc" id="L737">    list.add(&quot;total.errors&quot;);</span>
+<span class="fc" id="L736">    logger.debug(&quot;Instantiated total_req&quot;);</span>
+<span class="fc" id="L737">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L738">    list.add(&quot;total.requests&quot;);</span>
+<span class="fc" id="L739">    list.add(&quot;total.errors&quot;);</span>
 
-<span class="fc" id="L739">    StandardSeriesProvider provider = new StandardSeriesProvider();</span>
-<span class="fc" id="L740">    provider.setStatNames(list);</span>
-<span class="fc" id="L741">    return provider;</span>
+<span class="fc" id="L741">    StandardSeriesProvider provider = new StandardSeriesProvider();</span>
+<span class="fc" id="L742">    provider.setStatNames(list);</span>
+<span class="fc" id="L743">    return provider;</span>
   }
 
   /**
@@ -748,14 +750,14 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;datasource_usage&quot;)
   public StandardSeriesProvider getDatasourceUsage() {
-<span class="fc" id="L751">    logger.debug(&quot;Instantiated datasource_usage&quot;);</span>
-<span class="fc" id="L752">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L753">    list.add(&quot;ds.est.{0}&quot;);</span>
-<span class="fc" id="L754">    list.add(&quot;ds.busy.{0}&quot;);</span>
+<span class="fc" id="L753">    logger.debug(&quot;Instantiated datasource_usage&quot;);</span>
+<span class="fc" id="L754">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L755">    list.add(&quot;ds.est.{0}&quot;);</span>
+<span class="fc" id="L756">    list.add(&quot;ds.busy.{0}&quot;);</span>
 
-<span class="fc" id="L756">    StandardSeriesProvider provider = new StandardSeriesProvider();</span>
-<span class="fc" id="L757">    provider.setStatNames(list);</span>
-<span class="fc" id="L758">    return provider;</span>
+<span class="fc" id="L758">    StandardSeriesProvider provider = new StandardSeriesProvider();</span>
+<span class="fc" id="L759">    provider.setStatNames(list);</span>
+<span class="fc" id="L760">    return provider;</span>
   }
 
   /**
@@ -765,12 +767,12 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;all_app_avg_proc_time&quot;)
   public MultipleSeriesProvider getAllAppAvgProcTime() {
-<span class="fc" id="L768">    logger.debug(&quot;Instantiated all_app_avg_proc_time&quot;);</span>
-<span class="fc" id="L769">    MultipleSeriesProvider provider = new MultipleSeriesProvider();</span>
-<span class="fc" id="L770">    provider.setMovingAvgFrame(10);</span>
-<span class="fc" id="L771">    provider.setStatNamePrefix(&quot;app.avg_proc_time.&quot;);</span>
-<span class="fc" id="L772">    provider.setTop(4);</span>
-<span class="fc" id="L773">    return provider;</span>
+<span class="fc" id="L770">    logger.debug(&quot;Instantiated all_app_avg_proc_time&quot;);</span>
+<span class="fc" id="L771">    MultipleSeriesProvider provider = new MultipleSeriesProvider();</span>
+<span class="fc" id="L772">    provider.setMovingAvgFrame(10);</span>
+<span class="fc" id="L773">    provider.setStatNamePrefix(&quot;app.avg_proc_time.&quot;);</span>
+<span class="fc" id="L774">    provider.setTop(4);</span>
+<span class="fc" id="L775">    return provider;</span>
   }
 
   /**
@@ -780,12 +782,12 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;all_app_req&quot;)
   public MultipleSeriesProvider getAllAppReq() {
-<span class="fc" id="L783">    logger.debug(&quot;Instantiated all_app_req&quot;);</span>
-<span class="fc" id="L784">    MultipleSeriesProvider provider = new MultipleSeriesProvider();</span>
-<span class="fc" id="L785">    provider.setMovingAvgFrame(10);</span>
-<span class="fc" id="L786">    provider.setStatNamePrefix(&quot;app.requests.&quot;);</span>
-<span class="fc" id="L787">    provider.setTop(4);</span>
-<span class="fc" id="L788">    return provider;</span>
+<span class="fc" id="L785">    logger.debug(&quot;Instantiated all_app_req&quot;);</span>
+<span class="fc" id="L786">    MultipleSeriesProvider provider = new MultipleSeriesProvider();</span>
+<span class="fc" id="L787">    provider.setMovingAvgFrame(10);</span>
+<span class="fc" id="L788">    provider.setStatNamePrefix(&quot;app.requests.&quot;);</span>
+<span class="fc" id="L789">    provider.setTop(4);</span>
+<span class="fc" id="L790">    return provider;</span>
   }
 
   /**
@@ -795,8 +797,8 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;connectorStatsJobDetail&quot;)
   public ConnectorStatsJobDetail getConnectorStatsJobDetail() {
-<span class="fc" id="L798">    logger.debug(&quot;Instantiated connectorStatsJobDetail&quot;);</span>
-<span class="fc" id="L799">    return new ConnectorStatsJobDetail();</span>
+<span class="fc" id="L800">    logger.debug(&quot;Instantiated connectorStatsJobDetail&quot;);</span>
+<span class="fc" id="L801">    return new ConnectorStatsJobDetail();</span>
   }
 
   /**
@@ -806,8 +808,8 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;clusterStatsJobDetail&quot;)
   public ClusterStatsJobDetail getClusterStatsJobDetail() {
-<span class="fc" id="L809">    logger.debug(&quot;Instantiated clusterStatsJobDetail&quot;);</span>
-<span class="fc" id="L810">    return new ClusterStatsJobDetail();</span>
+<span class="fc" id="L811">    logger.debug(&quot;Instantiated clusterStatsJobDetail&quot;);</span>
+<span class="fc" id="L812">    return new ClusterStatsJobDetail();</span>
   }
 
   /**
@@ -817,8 +819,8 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;memoryStatsJobDetail&quot;)
   public MemoryStatsJobDetail getMemoryStatsJobDetail() {
-<span class="fc" id="L820">    logger.debug(&quot;Instantiated memoryStatsJobDetail&quot;);</span>
-<span class="fc" id="L821">    return new MemoryStatsJobDetail();</span>
+<span class="fc" id="L822">    logger.debug(&quot;Instantiated memoryStatsJobDetail&quot;);</span>
+<span class="fc" id="L823">    return new MemoryStatsJobDetail();</span>
   }
 
   /**
@@ -828,8 +830,8 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;runtimeStatsJobDetail&quot;)
   public RuntimeStatsJobDetail getRuntimeStatsJobDetail() {
-<span class="fc" id="L831">    logger.debug(&quot;Instantiated runtimeStatsJobDetail&quot;);</span>
-<span class="fc" id="L832">    return new RuntimeStatsJobDetail();</span>
+<span class="fc" id="L833">    logger.debug(&quot;Instantiated runtimeStatsJobDetail&quot;);</span>
+<span class="fc" id="L834">    return new RuntimeStatsJobDetail();</span>
   }
 
   /**
@@ -839,8 +841,8 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;appStatsJobDetail&quot;)
   public AppStatsJobDetail getAppStatsJobDetail() {
-<span class="fc" id="L842">    logger.debug(&quot;Instantiated appStatsJobDetail&quot;);</span>
-<span class="fc" id="L843">    return new AppStatsJobDetail();</span>
+<span class="fc" id="L844">    logger.debug(&quot;Instantiated appStatsJobDetail&quot;);</span>
+<span class="fc" id="L845">    return new AppStatsJobDetail();</span>
   }
 
   /**
@@ -850,8 +852,8 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;datasourceStatsJobDetail&quot;)
   public DatasourceStatsJobDetail getDatasourceStatsJobDetail() {
-<span class="fc" id="L853">    logger.debug(&quot;Instantiated datasourceStatsJobDetail&quot;);</span>
-<span class="fc" id="L854">    return new DatasourceStatsJobDetail();</span>
+<span class="fc" id="L855">    logger.debug(&quot;Instantiated datasourceStatsJobDetail&quot;);</span>
+<span class="fc" id="L856">    return new DatasourceStatsJobDetail();</span>
   }
 
   /**
@@ -861,8 +863,8 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;statsSerializerJobDetail&quot;)
   public StatsSerializerJobDetail getStatsSerializerJobDetail() {
-<span class="fc" id="L864">    logger.debug(&quot;Instantiated statsSerializerJobDetail&quot;);</span>
-<span class="fc" id="L865">    return new StatsSerializerJobDetail();</span>
+<span class="fc" id="L866">    logger.debug(&quot;Instantiated statsSerializerJobDetail&quot;);</span>
+<span class="fc" id="L867">    return new StatsSerializerJobDetail();</span>
   }
 
   /**
@@ -872,10 +874,10 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;connectorStatsTrigger&quot;)
   public ConnectorStatsTrigger getConnectorStatsTrigger() {
-<span class="fc" id="L875">    logger.debug(&quot;Instantiated connectorStatsTrigger&quot;);</span>
-<span class="fc" id="L876">    ConnectorStatsTrigger trigger = new ConnectorStatsTrigger();</span>
-<span class="fc" id="L877">    trigger.setJobDetail(getConnectorStatsJobDetail().getObject());</span>
-<span class="fc" id="L878">    return trigger;</span>
+<span class="fc" id="L877">    logger.debug(&quot;Instantiated connectorStatsTrigger&quot;);</span>
+<span class="fc" id="L878">    ConnectorStatsTrigger trigger = new ConnectorStatsTrigger();</span>
+<span class="fc" id="L879">    trigger.setJobDetail(getConnectorStatsJobDetail().getObject());</span>
+<span class="fc" id="L880">    return trigger;</span>
   }
 
   /**
@@ -885,10 +887,10 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;clusterStatsTrigger&quot;)
   public ClusterStatsTrigger getClusterStatsTrigger() {
-<span class="fc" id="L888">    logger.debug(&quot;Instantiated clusterStatsTrigger&quot;);</span>
-<span class="fc" id="L889">    ClusterStatsTrigger trigger = new ClusterStatsTrigger();</span>
-<span class="fc" id="L890">    trigger.setJobDetail(getClusterStatsJobDetail().getObject());</span>
-<span class="fc" id="L891">    return trigger;</span>
+<span class="fc" id="L890">    logger.debug(&quot;Instantiated clusterStatsTrigger&quot;);</span>
+<span class="fc" id="L891">    ClusterStatsTrigger trigger = new ClusterStatsTrigger();</span>
+<span class="fc" id="L892">    trigger.setJobDetail(getClusterStatsJobDetail().getObject());</span>
+<span class="fc" id="L893">    return trigger;</span>
   }
 
   /**
@@ -898,10 +900,10 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;memoryStatsTrigger&quot;)
   public MemoryStatsTrigger getMemoryStatsTrigger() {
-<span class="fc" id="L901">    logger.debug(&quot;Instantiated memoryStatsTrigger&quot;);</span>
-<span class="fc" id="L902">    MemoryStatsTrigger trigger = new MemoryStatsTrigger();</span>
-<span class="fc" id="L903">    trigger.setJobDetail(getMemoryStatsJobDetail().getObject());</span>
-<span class="fc" id="L904">    return trigger;</span>
+<span class="fc" id="L903">    logger.debug(&quot;Instantiated memoryStatsTrigger&quot;);</span>
+<span class="fc" id="L904">    MemoryStatsTrigger trigger = new MemoryStatsTrigger();</span>
+<span class="fc" id="L905">    trigger.setJobDetail(getMemoryStatsJobDetail().getObject());</span>
+<span class="fc" id="L906">    return trigger;</span>
   }
 
   /**
@@ -911,10 +913,10 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;runtimeStatsTrigger&quot;)
   public RuntimeStatsTrigger getRuntimeStatsTrigger() {
-<span class="fc" id="L914">    logger.debug(&quot;Instantiated runtimeStatsTrigger&quot;);</span>
-<span class="fc" id="L915">    RuntimeStatsTrigger trigger = new RuntimeStatsTrigger();</span>
-<span class="fc" id="L916">    trigger.setJobDetail(getRuntimeStatsJobDetail().getObject());</span>
-<span class="fc" id="L917">    return trigger;</span>
+<span class="fc" id="L916">    logger.debug(&quot;Instantiated runtimeStatsTrigger&quot;);</span>
+<span class="fc" id="L917">    RuntimeStatsTrigger trigger = new RuntimeStatsTrigger();</span>
+<span class="fc" id="L918">    trigger.setJobDetail(getRuntimeStatsJobDetail().getObject());</span>
+<span class="fc" id="L919">    return trigger;</span>
   }
 
   /**
@@ -924,10 +926,10 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;appStatsTrigger&quot;)
   public AppStatsTrigger getAppStatsTrigger() {
-<span class="fc" id="L927">    logger.debug(&quot;Instantiated appStatsTrigger&quot;);</span>
-<span class="fc" id="L928">    AppStatsTrigger trigger = new AppStatsTrigger();</span>
-<span class="fc" id="L929">    trigger.setJobDetail(getAppStatsJobDetail().getObject());</span>
-<span class="fc" id="L930">    return trigger;</span>
+<span class="fc" id="L929">    logger.debug(&quot;Instantiated appStatsTrigger&quot;);</span>
+<span class="fc" id="L930">    AppStatsTrigger trigger = new AppStatsTrigger();</span>
+<span class="fc" id="L931">    trigger.setJobDetail(getAppStatsJobDetail().getObject());</span>
+<span class="fc" id="L932">    return trigger;</span>
   }
 
   /**
@@ -937,10 +939,10 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;datasourceStatsTrigger&quot;)
   public DatasourceStatsTrigger getDatasourceStatsTrigger() {
-<span class="fc" id="L940">    logger.debug(&quot;Instantiated datasourceStatsTrigger&quot;);</span>
-<span class="fc" id="L941">    DatasourceStatsTrigger trigger = new DatasourceStatsTrigger();</span>
-<span class="fc" id="L942">    trigger.setJobDetail(getDatasourceStatsJobDetail().getObject());</span>
-<span class="fc" id="L943">    return trigger;</span>
+<span class="fc" id="L942">    logger.debug(&quot;Instantiated datasourceStatsTrigger&quot;);</span>
+<span class="fc" id="L943">    DatasourceStatsTrigger trigger = new DatasourceStatsTrigger();</span>
+<span class="fc" id="L944">    trigger.setJobDetail(getDatasourceStatsJobDetail().getObject());</span>
+<span class="fc" id="L945">    return trigger;</span>
   }
 
   /**
@@ -950,10 +952,10 @@ import psiprobe.tools.Mailer;
    */
   @Bean(name = &quot;statsSerializerTrigger&quot;)
   public StatsSerializerTrigger getStatsSerializerTrigger() {
-<span class="fc" id="L953">    logger.debug(&quot;Instantiated statsSerializerTrigger&quot;);</span>
-<span class="fc" id="L954">    StatsSerializerTrigger trigger = new StatsSerializerTrigger();</span>
-<span class="fc" id="L955">    trigger.setJobDetail(getStatsSerializerJobDetail().getObject());</span>
-<span class="fc" id="L956">    return trigger;</span>
+<span class="fc" id="L955">    logger.debug(&quot;Instantiated statsSerializerTrigger&quot;);</span>
+<span class="fc" id="L956">    StatsSerializerTrigger trigger = new StatsSerializerTrigger();</span>
+<span class="fc" id="L957">    trigger.setJobDetail(getStatsSerializerJobDetail().getObject());</span>
+<span class="fc" id="L958">    return trigger;</span>
   }
 
   /**
@@ -977,24 +979,24 @@ import psiprobe.tools.Mailer;
       @Autowired RuntimeStatsTrigger runtimeStatsTrigger,
       @Autowired StatsSerializerTrigger statsSerializerTrigger) {
 
-<span class="fc" id="L980">    logger.debug(&quot;Instantiated scheduler&quot;);</span>
-<span class="fc" id="L981">    SchedulerFactoryBean bean = new SchedulerFactoryBean();</span>
+<span class="fc" id="L982">    logger.debug(&quot;Instantiated scheduler&quot;);</span>
+<span class="fc" id="L983">    SchedulerFactoryBean bean = new SchedulerFactoryBean();</span>
 
     // Add Triggers
-<span class="fc" id="L984">    bean.setTriggers(appStatsTrigger.getObject(), clusterStatsTrigger.getObject(),</span>
-<span class="fc" id="L985">        connectorStatsTrigger.getObject(), datasourceStatsTrigger.getObject(),</span>
-<span class="fc" id="L986">        memoryStatsTrigger.getObject(), runtimeStatsTrigger.getObject(),</span>
-<span class="fc" id="L987">        statsSerializerTrigger.getObject());</span>
+<span class="fc" id="L986">    bean.setTriggers(appStatsTrigger.getObject(), clusterStatsTrigger.getObject(),</span>
+<span class="fc" id="L987">        connectorStatsTrigger.getObject(), datasourceStatsTrigger.getObject(),</span>
+<span class="fc" id="L988">        memoryStatsTrigger.getObject(), runtimeStatsTrigger.getObject(),</span>
+<span class="fc" id="L989">        statsSerializerTrigger.getObject());</span>
 
     // Add Properties
-<span class="fc" id="L990">    Properties properties = new Properties();</span>
-<span class="fc" id="L991">    properties.setProperty(&quot;org.quartz.scheduler.instanceName&quot;, &quot;ProbeScheduler&quot;);</span>
-<span class="fc" id="L992">    properties.setProperty(&quot;org.quartz.threadPool.threadCount&quot;, &quot;5&quot;);</span>
-<span class="fc" id="L993">    properties.setProperty(&quot;org.quartz.threadPool.threadNamePrefix&quot;, &quot;Probe_Quartz&quot;);</span>
-<span class="fc" id="L994">    bean.setQuartzProperties(properties);</span>
+<span class="fc" id="L992">    Properties properties = new Properties();</span>
+<span class="fc" id="L993">    properties.setProperty(&quot;org.quartz.scheduler.instanceName&quot;, &quot;ProbeScheduler&quot;);</span>
+<span class="fc" id="L994">    properties.setProperty(&quot;org.quartz.threadPool.threadCount&quot;, &quot;5&quot;);</span>
+<span class="fc" id="L995">    properties.setProperty(&quot;org.quartz.threadPool.threadNamePrefix&quot;, &quot;Probe_Quartz&quot;);</span>
+<span class="fc" id="L996">    bean.setQuartzProperties(properties);</span>
 
-<span class="fc" id="L996">    return bean;</span>
+<span class="fc" id="L998">    return bean;</span>
   }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

@@ -13,14 +13,16 @@ package psiprobe.tools.logging.jdk;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.apache.commons.lang3.reflect.MethodUtils;
+
 import psiprobe.tools.logging.DefaultAccessor;
 import psiprobe.tools.logging.LogDestination;
 
 /**
  * The Class Jdk14LoggerAccessor.
  */
-<span class="fc" id="L23">public class Jdk14LoggerAccessor extends DefaultAccessor {</span>
+<span class="fc" id="L25">public class Jdk14LoggerAccessor extends DefaultAccessor {</span>
 
   /** The context. */
   private boolean context;
@@ -31,20 +33,20 @@ import psiprobe.tools.logging.LogDestination;
    * @return the handlers
    */
   public List&lt;LogDestination&gt; getHandlers() {
-<span class="nc" id="L34">    List&lt;LogDestination&gt; handlerAccessors = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L36">    List&lt;LogDestination&gt; handlerAccessors = new ArrayList&lt;&gt;();</span>
     try {
-<span class="nc" id="L36">      Object[] handlers = (Object[]) MethodUtils.invokeMethod(getTarget(), &quot;getHandlers&quot;);</span>
-<span class="nc bnc" id="L37" title="All 2 branches missed.">      for (int h = 0; h &lt; handlers.length; h++) {</span>
-<span class="nc" id="L38">        Object handler = handlers[h];</span>
-<span class="nc" id="L39">        Jdk14HandlerAccessor handlerAccessor = wrapHandler(handler, h);</span>
-<span class="nc bnc" id="L40" title="All 2 branches missed.">        if (handlerAccessor != null) {</span>
-<span class="nc" id="L41">          handlerAccessors.add(handlerAccessor);</span>
+<span class="nc" id="L38">      Object[] handlers = (Object[]) MethodUtils.invokeMethod(getTarget(), &quot;getHandlers&quot;);</span>
+<span class="nc bnc" id="L39" title="All 2 branches missed.">      for (int h = 0; h &lt; handlers.length; h++) {</span>
+<span class="nc" id="L40">        Object handler = handlers[h];</span>
+<span class="nc" id="L41">        Jdk14HandlerAccessor handlerAccessor = wrapHandler(handler, h);</span>
+<span class="nc bnc" id="L42" title="All 2 branches missed.">        if (handlerAccessor != null) {</span>
+<span class="nc" id="L43">          handlerAccessors.add(handlerAccessor);</span>
         }
       }
-<span class="nc" id="L44">    } catch (Exception e) {</span>
-<span class="nc" id="L45">      logger.error(&quot;{}#handlers inaccessible&quot;, getTarget().getClass().getName(), e);</span>
-<span class="nc" id="L46">    }</span>
-<span class="nc" id="L47">    return handlerAccessors;</span>
+<span class="nc" id="L46">    } catch (Exception e) {</span>
+<span class="nc" id="L47">      logger.error(&quot;{}#handlers inaccessible&quot;, getTarget().getClass().getName(), e);</span>
+<span class="nc" id="L48">    }</span>
+<span class="nc" id="L49">    return handlerAccessors;</span>
   }
 
   /**
@@ -53,7 +55,7 @@ import psiprobe.tools.logging.LogDestination;
    * @return true, if is context
    */
   public boolean isContext() {
-<span class="nc" id="L56">    return context;</span>
+<span class="nc" id="L58">    return context;</span>
   }
 
   /**
@@ -62,8 +64,8 @@ import psiprobe.tools.logging.LogDestination;
    * @param context the new context
    */
   public void setContext(boolean context) {
-<span class="nc" id="L65">    this.context = context;</span>
-<span class="nc" id="L66">  }</span>
+<span class="nc" id="L67">    this.context = context;</span>
+<span class="nc" id="L68">  }</span>
 
   /**
    * Checks if is root.
@@ -71,7 +73,7 @@ import psiprobe.tools.logging.LogDestination;
    * @return true, if is root
    */
   public boolean isRoot() {
-<span class="nc bnc" id="L74" title="All 4 branches missed.">    return &quot;&quot;.equals(getName()) || isJuliRoot();</span>
+<span class="nc bnc" id="L76" title="All 4 branches missed.">    return &quot;&quot;.equals(getName()) || isJuliRoot();</span>
   }
 
   /**
@@ -80,7 +82,7 @@ import psiprobe.tools.logging.LogDestination;
    * @return true, if is juli root
    */
   public boolean isJuliRoot() {
-<span class="nc" id="L83">    return &quot;org.apache.juli.ClassLoaderLogManager$RootLogger&quot;.equals(getTargetClass());</span>
+<span class="nc" id="L85">    return &quot;org.apache.juli.ClassLoaderLogManager$RootLogger&quot;.equals(getTargetClass());</span>
   }
 
   /**
@@ -89,7 +91,7 @@ import psiprobe.tools.logging.LogDestination;
    * @return the name
    */
   public String getName() {
-<span class="nc" id="L92">    return (String) getProperty(getTarget(), &quot;name&quot;, null);</span>
+<span class="nc" id="L94">    return (String) getProperty(getTarget(), &quot;name&quot;, null);</span>
   }
 
   /**
@@ -99,14 +101,14 @@ import psiprobe.tools.logging.LogDestination;
    * @return the handler
    */
   public Jdk14HandlerAccessor getHandler(String logIndex) {
-<span class="nc" id="L102">    int index = 0;</span>
+<span class="nc" id="L104">    int index = 0;</span>
     try {
-<span class="nc" id="L104">      index = Integer.parseInt(logIndex);</span>
-<span class="nc" id="L105">    } catch (Exception e) {</span>
-<span class="nc" id="L106">      logger.info(&quot;Could not parse integer from: {}.  Assuming 0.&quot;, logIndex);</span>
-<span class="nc" id="L107">      logger.trace(&quot;&quot;, e);</span>
-<span class="nc" id="L108">    }</span>
-<span class="nc" id="L109">    return getHandler(index);</span>
+<span class="nc" id="L106">      index = Integer.parseInt(logIndex);</span>
+<span class="nc" id="L107">    } catch (Exception e) {</span>
+<span class="nc" id="L108">      logger.info(&quot;Could not parse integer from: {}.  Assuming 0.&quot;, logIndex);</span>
+<span class="nc" id="L109">      logger.trace(&quot;&quot;, e);</span>
+<span class="nc" id="L110">    }</span>
+<span class="nc" id="L111">    return getHandler(index);</span>
   }
 
   /**
@@ -117,12 +119,12 @@ import psiprobe.tools.logging.LogDestination;
    */
   public Jdk14HandlerAccessor getHandler(int index) {
     try {
-<span class="nc" id="L120">      Object[] handlers = (Object[]) MethodUtils.invokeMethod(getTarget(), &quot;getHandlers&quot;);</span>
-<span class="nc" id="L121">      return wrapHandler(handlers[index], index);</span>
-<span class="nc" id="L122">    } catch (Exception e) {</span>
-<span class="nc" id="L123">      logger.error(&quot;{}#handlers inaccessible&quot;, getTarget().getClass().getName(), e);</span>
+<span class="nc" id="L122">      Object[] handlers = (Object[]) MethodUtils.invokeMethod(getTarget(), &quot;getHandlers&quot;);</span>
+<span class="nc" id="L123">      return wrapHandler(handlers[index], index);</span>
+<span class="nc" id="L124">    } catch (Exception e) {</span>
+<span class="nc" id="L125">      logger.error(&quot;{}#handlers inaccessible&quot;, getTarget().getClass().getName(), e);</span>
     }
-<span class="nc" id="L125">    return null;</span>
+<span class="nc" id="L127">    return null;</span>
   }
 
   /**
@@ -132,20 +134,20 @@ import psiprobe.tools.logging.LogDestination;
    */
   public String getLevel() {
     try {
-<span class="nc" id="L135">      Object level = null;</span>
-<span class="nc" id="L136">      Object target = getTarget();</span>
-<span class="nc bnc" id="L137" title="All 4 branches missed.">      while (level == null &amp;&amp; target != null) {</span>
-<span class="nc" id="L138">        level = getLevelInternal(target);</span>
-<span class="nc" id="L139">        target = MethodUtils.invokeMethod(target, &quot;getParent&quot;);</span>
+<span class="nc" id="L137">      Object level = null;</span>
+<span class="nc" id="L138">      Object target = getTarget();</span>
+<span class="nc bnc" id="L139" title="All 4 branches missed.">      while (level == null &amp;&amp; target != null) {</span>
+<span class="nc" id="L140">        level = getLevelInternal(target);</span>
+<span class="nc" id="L141">        target = MethodUtils.invokeMethod(target, &quot;getParent&quot;);</span>
       }
-<span class="nc bnc" id="L141" title="All 4 branches missed.">      if (level == null &amp;&amp; isJuliRoot()) {</span>
-<span class="nc" id="L142">        return &quot;INFO&quot;;</span>
+<span class="nc bnc" id="L143" title="All 4 branches missed.">      if (level == null &amp;&amp; isJuliRoot()) {</span>
+<span class="nc" id="L144">        return &quot;INFO&quot;;</span>
       }
-<span class="nc" id="L144">      return (String) MethodUtils.invokeMethod(level, &quot;getName&quot;);</span>
-<span class="nc" id="L145">    } catch (Exception e) {</span>
-<span class="nc" id="L146">      logger.error(&quot;{}#getLevel() failed&quot;, getTarget().getClass().getName(), e);</span>
+<span class="nc" id="L146">      return (String) MethodUtils.invokeMethod(level, &quot;getName&quot;);</span>
+<span class="nc" id="L147">    } catch (Exception e) {</span>
+<span class="nc" id="L148">      logger.error(&quot;{}#getLevel() failed&quot;, getTarget().getClass().getName(), e);</span>
     }
-<span class="nc" id="L148">    return null;</span>
+<span class="nc" id="L150">    return null;</span>
   }
 
   /**
@@ -155,15 +157,15 @@ import psiprobe.tools.logging.LogDestination;
    */
   public void setLevel(String newLevelStr) {
     try {
-<span class="nc" id="L158">      Class&lt;?&gt; levelClass =</span>
-<span class="nc" id="L159">          getTarget().getClass().getClassLoader().loadClass(&quot;java.util.logging.Level&quot;);</span>
-<span class="nc" id="L160">      Method parse = MethodUtils.getAccessibleMethod(levelClass, &quot;parse&quot;, String.class);</span>
-<span class="nc" id="L161">      Object newLevel = parse.invoke(null, newLevelStr);</span>
-<span class="nc" id="L162">      MethodUtils.invokeMethod(getTarget(), &quot;setLevel&quot;, newLevel);</span>
-<span class="nc" id="L163">    } catch (Exception e) {</span>
-<span class="nc" id="L164">      logger.error(&quot;{}#setLevel('{}') failed&quot;, getTarget().getClass().getName(), newLevelStr, e);</span>
-<span class="nc" id="L165">    }</span>
-<span class="nc" id="L166">  }</span>
+<span class="nc" id="L160">      Class&lt;?&gt; levelClass =</span>
+<span class="nc" id="L161">          getTarget().getClass().getClassLoader().loadClass(&quot;java.util.logging.Level&quot;);</span>
+<span class="nc" id="L162">      Method parse = MethodUtils.getAccessibleMethod(levelClass, &quot;parse&quot;, String.class);</span>
+<span class="nc" id="L163">      Object newLevel = parse.invoke(null, newLevelStr);</span>
+<span class="nc" id="L164">      MethodUtils.invokeMethod(getTarget(), &quot;setLevel&quot;, newLevel);</span>
+<span class="nc" id="L165">    } catch (Exception e) {</span>
+<span class="nc" id="L166">      logger.error(&quot;{}#setLevel('{}') failed&quot;, getTarget().getClass().getName(), newLevelStr, e);</span>
+<span class="nc" id="L167">    }</span>
+<span class="nc" id="L168">  }</span>
 
   /**
    * Gets the level internal.
@@ -173,7 +175,7 @@ import psiprobe.tools.logging.LogDestination;
    * @throws Exception the exception
    */
   private Object getLevelInternal(Object target) throws Exception {
-<span class="nc" id="L176">    return MethodUtils.invokeMethod(target, &quot;getLevel&quot;);</span>
+<span class="nc" id="L178">    return MethodUtils.invokeMethod(target, &quot;getLevel&quot;);</span>
   }
 
   /**
@@ -185,31 +187,31 @@ import psiprobe.tools.logging.LogDestination;
    */
   private Jdk14HandlerAccessor wrapHandler(Object handler, int index) {
     try {
-<span class="nc bnc" id="L188" title="All 2 branches missed.">      if (handler == null) {</span>
-<span class="nc" id="L189">        throw new IllegalArgumentException(&quot;handler is null&quot;);</span>
+<span class="nc bnc" id="L190" title="All 2 branches missed.">      if (handler == null) {</span>
+<span class="nc" id="L191">        throw new IllegalArgumentException(&quot;handler is null&quot;);</span>
       }
-<span class="nc" id="L191">      Jdk14HandlerAccessor handlerAccessor = null;</span>
-<span class="nc" id="L192">      String className = handler.getClass().getName();</span>
-<span class="nc bnc" id="L193" title="All 2 branches missed.">      if (&quot;org.apache.juli.FileHandler&quot;.equals(className)) {</span>
-<span class="nc" id="L194">        handlerAccessor = new JuliHandlerAccessor();</span>
-<span class="nc bnc" id="L195" title="All 2 branches missed.">      } else if (&quot;java.util.logging.ConsoleHandler&quot;.equals(className)) {</span>
-<span class="nc" id="L196">        handlerAccessor = new Jdk14HandlerAccessor();</span>
-<span class="nc bnc" id="L197" title="All 2 branches missed.">      } else if (&quot;java.util.logging.FileHandler&quot;.equals(className)) {</span>
-<span class="nc" id="L198">        handlerAccessor = new Jdk14FileHandlerAccessor();</span>
+<span class="nc" id="L193">      Jdk14HandlerAccessor handlerAccessor = null;</span>
+<span class="nc" id="L194">      String className = handler.getClass().getName();</span>
+<span class="nc bnc" id="L195" title="All 2 branches missed.">      if (&quot;org.apache.juli.FileHandler&quot;.equals(className)) {</span>
+<span class="nc" id="L196">        handlerAccessor = new JuliHandlerAccessor();</span>
+<span class="nc bnc" id="L197" title="All 2 branches missed.">      } else if (&quot;java.util.logging.ConsoleHandler&quot;.equals(className)) {</span>
+<span class="nc" id="L198">        handlerAccessor = new Jdk14HandlerAccessor();</span>
+<span class="nc bnc" id="L199" title="All 2 branches missed.">      } else if (&quot;java.util.logging.FileHandler&quot;.equals(className)) {</span>
+<span class="nc" id="L200">        handlerAccessor = new Jdk14FileHandlerAccessor();</span>
       }
 
-<span class="nc bnc" id="L201" title="All 2 branches missed.">      if (handlerAccessor != null) {</span>
-<span class="nc" id="L202">        handlerAccessor.setLoggerAccessor(this);</span>
-<span class="nc" id="L203">        handlerAccessor.setTarget(handler);</span>
-<span class="nc" id="L204">        handlerAccessor.setIndex(Integer.toString(index));</span>
-<span class="nc" id="L205">        handlerAccessor.setApplication(getApplication());</span>
+<span class="nc bnc" id="L203" title="All 2 branches missed.">      if (handlerAccessor != null) {</span>
+<span class="nc" id="L204">        handlerAccessor.setLoggerAccessor(this);</span>
+<span class="nc" id="L205">        handlerAccessor.setTarget(handler);</span>
+<span class="nc" id="L206">        handlerAccessor.setIndex(Integer.toString(index));</span>
+<span class="nc" id="L207">        handlerAccessor.setApplication(getApplication());</span>
       }
-<span class="nc" id="L207">      return handlerAccessor;</span>
-<span class="nc" id="L208">    } catch (Exception e) {</span>
-<span class="nc" id="L209">      logger.error(&quot;Could not wrap handler: '{}'&quot;, handler, e);</span>
+<span class="nc" id="L209">      return handlerAccessor;</span>
+<span class="nc" id="L210">    } catch (Exception e) {</span>
+<span class="nc" id="L211">      logger.error(&quot;Could not wrap handler: '{}'&quot;, handler, e);</span>
     }
-<span class="nc" id="L211">    return null;</span>
+<span class="nc" id="L213">    return null;</span>
   }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

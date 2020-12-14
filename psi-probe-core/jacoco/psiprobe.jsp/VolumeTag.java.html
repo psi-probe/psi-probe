@@ -11,23 +11,26 @@
 package psiprobe.jsp;
 
 import java.io.IOException;
+
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import psiprobe.tools.SizeExpression;
 
 /**
  * JSP tag to convert size from bytes into human readable form: KB, MB, GB or TB depending on how
  * large the value in bytes is.
  */
-<span class="fc" id="L24">public class VolumeTag extends TagSupport {</span>
+<span class="fc" id="L27">public class VolumeTag extends TagSupport {</span>
 
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = 1L;
 
   /** The Constant logger. */
-<span class="fc" id="L30">  private static final Logger logger = LoggerFactory.getLogger(VolumeTag.class);</span>
+<span class="fc" id="L33">  private static final Logger logger = LoggerFactory.getLogger(VolumeTag.class);</span>
 
   /** The value. */
   private long value;
@@ -41,8 +44,8 @@ import psiprobe.tools.SizeExpression;
    * @param value the new value
    */
   public void setValue(long value) {
-<span class="nc" id="L44">    this.value = value;</span>
-<span class="nc" id="L45">  }</span>
+<span class="nc" id="L47">    this.value = value;</span>
+<span class="nc" id="L48">  }</span>
 
   /**
    * Gets the fractions.
@@ -50,7 +53,7 @@ import psiprobe.tools.SizeExpression;
    * @return the fractions
    */
   public int getFractions() {
-<span class="fc" id="L53">    return fractions;</span>
+<span class="fc" id="L56">    return fractions;</span>
   }
 
   /**
@@ -59,22 +62,22 @@ import psiprobe.tools.SizeExpression;
    * @param fractions the new fractions
    */
   public void setFractions(int fractions) {
-<span class="fc" id="L62">    this.fractions = fractions;</span>
-<span class="fc" id="L63">  }</span>
+<span class="fc" id="L65">    this.fractions = fractions;</span>
+<span class="fc" id="L66">  }</span>
 
   @Override
   public int doStartTag() throws JspException {
-<span class="nc" id="L67">    String title = Long.toString(value);</span>
-<span class="nc" id="L68">    String newValue = SizeExpression.format(value, fractions, true);</span>
+<span class="nc" id="L70">    String title = Long.toString(value);</span>
+<span class="nc" id="L71">    String newValue = SizeExpression.format(value, fractions, true);</span>
     try {
-<span class="nc" id="L70">      pageContext.getOut().write(&quot;&lt;span title=\&quot;&quot; + title + &quot;\&quot;&gt;&quot; + newValue + &quot;&lt;/span&gt;&quot;);</span>
-<span class="nc" id="L71">    } catch (IOException e) {</span>
-<span class="nc" id="L72">      logger.debug(&quot;Exception writing value to JspWriter&quot;, e);</span>
-<span class="nc" id="L73">      throw new JspException(e);</span>
-<span class="nc" id="L74">    }</span>
+<span class="nc" id="L73">      pageContext.getOut().write(&quot;&lt;span title=\&quot;&quot; + title + &quot;\&quot;&gt;&quot; + newValue + &quot;&lt;/span&gt;&quot;);</span>
+<span class="nc" id="L74">    } catch (IOException e) {</span>
+<span class="nc" id="L75">      logger.debug(&quot;Exception writing value to JspWriter&quot;, e);</span>
+<span class="nc" id="L76">      throw new JspException(e);</span>
+<span class="nc" id="L77">    }</span>
 
-<span class="nc" id="L76">    return EVAL_BODY_INCLUDE;</span>
+<span class="nc" id="L79">    return EVAL_BODY_INCLUDE;</span>
   }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

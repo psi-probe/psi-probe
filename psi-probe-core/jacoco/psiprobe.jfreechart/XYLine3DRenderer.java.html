@@ -68,233 +68,223 @@ import org.jfree.chart.util.PaintUtils;
 import org.jfree.chart.util.SerialUtils;
 
 /**
- * A XYLineAndShapeRenderer that adds a shadow line to the graph
- * to emulate a 3D-effect.
+ * A XYLineAndShapeRenderer that adds a shadow line to the graph to emulate a 3D-effect.
  */
-public class XYLine3DRenderer extends XYLineAndShapeRenderer
-                              implements Effect3D, Serializable {
+public class XYLine3DRenderer extends XYLineAndShapeRenderer implements Effect3D, Serializable {
 
-    /** For serialization. */
-    private static final long serialVersionUID = 588933208243446087L;
+  /** For serialization. */
+  private static final long serialVersionUID = 588933208243446087L;
 
-    /** The default x-offset for the 3D effect. */
-    public static final double DEFAULT_X_OFFSET = 12.0;
+  /** The default x-offset for the 3D effect. */
+  public static final double DEFAULT_X_OFFSET = 12.0;
 
-    /** The default y-offset for the 3D effect. */
-    public static final double DEFAULT_Y_OFFSET = 8.0;
+  /** The default y-offset for the 3D effect. */
+  public static final double DEFAULT_Y_OFFSET = 8.0;
 
-    /** The default wall paint. */
-<span class="nc" id="L87">    public static final Paint DEFAULT_WALL_PAINT = new Color(0xDD, 0xDD, 0xDD);</span>
+  /** The default wall paint. */
+<span class="nc" id="L85">  public static final Paint DEFAULT_WALL_PAINT = new Color(0xDD, 0xDD, 0xDD);</span>
 
-    /** The size of x-offset for the 3D effect. */
-    private double xOffset;
+  /** The size of x-offset for the 3D effect. */
+  private double xOffset;
 
-    /** The size of y-offset for the 3D effect. */
-    private double yOffset;
+  /** The size of y-offset for the 3D effect. */
+  private double yOffset;
 
-    /** The paint used to shade the left and lower 3D wall. */
-    private transient Paint wallPaint;
+  /** The paint used to shade the left and lower 3D wall. */
+  private transient Paint wallPaint;
 
-    /**
-     * Creates a new renderer.
-     */
-<span class="nc" id="L101">    public XYLine3DRenderer() {</span>
-<span class="nc" id="L102">        this.wallPaint = DEFAULT_WALL_PAINT;</span>
-<span class="nc" id="L103">        this.xOffset = DEFAULT_X_OFFSET;</span>
-<span class="nc" id="L104">        this.yOffset = DEFAULT_Y_OFFSET;</span>
-<span class="nc" id="L105">    }</span>
+  /**
+   * Creates a new renderer.
+   */
+<span class="nc" id="L99">  public XYLine3DRenderer() {</span>
+<span class="nc" id="L100">    this.wallPaint = DEFAULT_WALL_PAINT;</span>
+<span class="nc" id="L101">    this.xOffset = DEFAULT_X_OFFSET;</span>
+<span class="nc" id="L102">    this.yOffset = DEFAULT_Y_OFFSET;</span>
+<span class="nc" id="L103">  }</span>
 
-    /**
-     * Returns the x-offset for the 3D effect.
-     *
-     * @return The 3D effect.
-     */
-    @Override
-    public double getXOffset() {
-<span class="nc" id="L114">        return this.xOffset;</span>
+  /**
+   * Returns the x-offset for the 3D effect.
+   *
+   * @return The 3D effect.
+   */
+  @Override
+  public double getXOffset() {
+<span class="nc" id="L112">    return this.xOffset;</span>
+  }
+
+  /**
+   * Returns the y-offset for the 3D effect.
+   *
+   * @return The 3D effect.
+   */
+  @Override
+  public double getYOffset() {
+<span class="nc" id="L122">    return this.yOffset;</span>
+  }
+
+  /**
+   * Sets the x-offset and sends a {@link RendererChangeEvent} to all registered listeners.
+   *
+   * @param xOffset the x-offset.
+   */
+  public void setXOffset(double xOffset) {
+<span class="nc" id="L131">    this.xOffset = xOffset;</span>
+<span class="nc" id="L132">    fireChangeEvent();</span>
+<span class="nc" id="L133">  }</span>
+
+  /**
+   * Sets the y-offset and sends a {@link RendererChangeEvent} to all registered listeners.
+   *
+   * @param yOffset the y-offset.
+   */
+  public void setYOffset(double yOffset) {
+<span class="nc" id="L141">    this.yOffset = yOffset;</span>
+<span class="nc" id="L142">    fireChangeEvent();</span>
+<span class="nc" id="L143">  }</span>
+
+  /**
+   * Returns the paint used to highlight the left and bottom wall in the plot background.
+   *
+   * @return The paint.
+   */
+  public Paint getWallPaint() {
+<span class="nc" id="L151">    return this.wallPaint;</span>
+  }
+
+  /**
+   * Sets the paint used to hightlight the left and bottom walls in the plot background and sends a
+   * {@link RendererChangeEvent} to all registered listeners.
+   *
+   * @param paint the paint.
+   */
+  public void setWallPaint(Paint paint) {
+<span class="nc" id="L161">    this.wallPaint = paint;</span>
+<span class="nc" id="L162">    fireChangeEvent();</span>
+<span class="nc" id="L163">  }</span>
+
+  /**
+   * Returns the number of passes through the data that the renderer requires in order to draw the
+   * chart. Most charts will require a single pass, but some require two passes.
+   *
+   * @return The pass count.
+   */
+  @Override
+  public int getPassCount() {
+<span class="nc" id="L173">    return 3;</span>
+  }
+
+  /**
+   * Returns {@code true} if the specified pass involves drawing lines.
+   *
+   * @param pass the pass.
+   *
+   * @return A boolean.
+   */
+  @Override
+  protected boolean isLinePass(int pass) {
+<span class="nc bnc" id="L185" title="All 4 branches missed.">    return pass == 0 || pass == 1;</span>
+  }
+
+  /**
+   * Returns {@code true} if the specified pass involves drawing items.
+   *
+   * @param pass the pass.
+   *
+   * @return A boolean.
+   */
+  @Override
+  protected boolean isItemPass(int pass) {
+<span class="nc bnc" id="L197" title="All 2 branches missed.">    return pass == 2;</span>
+  }
+
+  /**
+   * Returns {@code true} if the specified pass involves drawing shadows.
+   *
+   * @param pass the pass.
+   *
+   * @return A boolean.
+   */
+  protected boolean isShadowPass(int pass) {
+<span class="nc bnc" id="L208" title="All 2 branches missed.">    return pass == 0;</span>
+  }
+
+  /**
+   * Overrides the method in the subclass to draw a shadow in the first pass.
+   *
+   * @param g2 the graphics device.
+   * @param pass the pass.
+   * @param series the series index (zero-based).
+   * @param item the item index (zero-based).
+   * @param shape the shape.
+   */
+  @Override
+  protected void drawFirstPassShape(Graphics2D g2, int pass, int series, int item, Shape shape) {
+<span class="nc bnc" id="L222" title="All 2 branches missed.">    if (isShadowPass(pass)) {</span>
+<span class="nc bnc" id="L223" title="All 2 branches missed.">      if (getWallPaint() != null) {</span>
+<span class="nc" id="L224">        g2.setStroke(getItemStroke(series, item));</span>
+<span class="nc" id="L225">        g2.setPaint(getWallPaint());</span>
+<span class="nc" id="L226">        g2.translate(getXOffset(), getYOffset());</span>
+<span class="nc" id="L227">        g2.draw(shape);</span>
+<span class="nc" id="L228">        g2.translate(-getXOffset(), -getYOffset());</span>
+      }
+    } else {
+      // now draw the real shape
+<span class="nc" id="L232">      super.drawFirstPassShape(g2, pass, series, item, shape);</span>
     }
+<span class="nc" id="L234">  }</span>
 
-    /**
-     * Returns the y-offset for the 3D effect.
-     *
-     * @return The 3D effect.
-     */
-    @Override
-    public double getYOffset() {
-<span class="nc" id="L124">        return this.yOffset;</span>
+  /**
+   * Tests this renderer for equality with an arbitrary object.
+   *
+   * @param obj the object ({@code null} permitted).
+   *
+   * @return A boolean.
+   */
+  @Override
+  public boolean equals(Object obj) {
+<span class="nc bnc" id="L245" title="All 2 branches missed.">    if (obj == this) {</span>
+<span class="nc" id="L246">      return true;</span>
     }
-
-    /**
-     * Sets the x-offset and sends a {@link RendererChangeEvent} to all
-     * registered listeners.
-     *
-     * @param xOffset  the x-offset.
-     */
-    public void setXOffset(double xOffset) {
-<span class="nc" id="L134">        this.xOffset = xOffset;</span>
-<span class="nc" id="L135">        fireChangeEvent();</span>
-<span class="nc" id="L136">    }</span>
-
-    /**
-     * Sets the y-offset and sends a {@link RendererChangeEvent} to all
-     * registered listeners.
-     *
-     * @param yOffset  the y-offset.
-     */
-    public void setYOffset(double yOffset) {
-<span class="nc" id="L145">        this.yOffset = yOffset;</span>
-<span class="nc" id="L146">        fireChangeEvent();</span>
-<span class="nc" id="L147">    }</span>
-
-    /**
-     * Returns the paint used to highlight the left and bottom wall in the plot
-     * background.
-     *
-     * @return The paint.
-     */
-    public Paint getWallPaint() {
-<span class="nc" id="L156">        return this.wallPaint;</span>
+<span class="nc bnc" id="L248" title="All 2 branches missed.">    if (!(obj instanceof XYLine3DRenderer)) {</span>
+<span class="nc" id="L249">      return false;</span>
     }
-
-    /**
-     * Sets the paint used to hightlight the left and bottom walls in the plot
-     * background and sends a {@link RendererChangeEvent} to all registered
-     * listeners.
-     *
-     * @param paint  the paint.
-     */
-    public void setWallPaint(Paint paint) {
-<span class="nc" id="L167">        this.wallPaint = paint;</span>
-<span class="nc" id="L168">        fireChangeEvent();</span>
-<span class="nc" id="L169">    }</span>
-
-    /**
-     * Returns the number of passes through the data that the renderer requires
-     * in order to draw the chart.  Most charts will require a single pass,
-     * but some require two passes.
-     *
-     * @return The pass count.
-     */
-    @Override
-    public int getPassCount() {
-<span class="nc" id="L180">        return 3;</span>
+<span class="nc" id="L251">    XYLine3DRenderer that = (XYLine3DRenderer) obj;</span>
+<span class="nc bnc" id="L252" title="All 2 branches missed.">    if (this.xOffset != that.xOffset) {</span>
+<span class="nc" id="L253">      return false;</span>
     }
-
-    /**
-     * Returns {@code true} if the specified pass involves drawing lines.
-     *
-     * @param pass  the pass.
-     *
-     * @return A boolean.
-     */
-    @Override
-    protected boolean isLinePass(int pass) {
-<span class="nc bnc" id="L192" title="All 4 branches missed.">        return pass == 0 || pass == 1;</span>
+<span class="nc bnc" id="L255" title="All 2 branches missed.">    if (this.yOffset != that.yOffset) {</span>
+<span class="nc" id="L256">      return false;</span>
     }
-
-    /**
-     * Returns {@code true} if the specified pass involves drawing items.
-     *
-     * @param pass  the pass.
-     *
-     * @return A boolean.
-     */
-    @Override
-    protected boolean isItemPass(int pass) {
-<span class="nc bnc" id="L204" title="All 2 branches missed.">        return pass == 2;</span>
+<span class="nc bnc" id="L258" title="All 2 branches missed.">    if (!PaintUtils.equal(this.wallPaint, that.wallPaint)) {</span>
+<span class="nc" id="L259">      return false;</span>
     }
+<span class="nc" id="L261">    return super.equals(obj);</span>
+  }
 
-    /**
-     * Returns {@code true} if the specified pass involves drawing shadows.
-     *
-     * @param pass  the pass.
-     *
-     * @return A boolean.
-     */
-    protected boolean isShadowPass (int pass) {
-<span class="nc bnc" id="L215" title="All 2 branches missed.">        return pass == 0;</span>
-    }
+  /**
+   * Provides serialization support.
+   *
+   * @param stream the input stream.
+   *
+   * @throws IOException if there is an I/O error.
+   * @throws ClassNotFoundException if there is a classpath problem.
+   */
+  private void readObject(ObjectInputStream stream) throws IOException, ClassNotFoundException {
+<span class="nc" id="L273">    stream.defaultReadObject();</span>
+<span class="nc" id="L274">    this.wallPaint = SerialUtils.readPaint(stream);</span>
+<span class="nc" id="L275">  }</span>
 
-    /**
-     * Overrides the method in the subclass to draw a shadow in the first pass.
-     *
-     * @param g2  the graphics device.
-     * @param pass  the pass.
-     * @param series  the series index (zero-based).
-     * @param item  the item index (zero-based).
-     * @param shape  the shape.
-     */
-    @Override
-    protected void drawFirstPassShape(Graphics2D g2, int pass, int series,
-            int item, Shape shape) {
-<span class="nc bnc" id="L230" title="All 2 branches missed.">        if (isShadowPass(pass)) {</span>
-<span class="nc bnc" id="L231" title="All 2 branches missed.">            if (getWallPaint() != null) {</span>
-<span class="nc" id="L232">                g2.setStroke(getItemStroke(series, item));</span>
-<span class="nc" id="L233">                g2.setPaint(getWallPaint());</span>
-<span class="nc" id="L234">                g2.translate(getXOffset(), getYOffset());</span>
-<span class="nc" id="L235">                g2.draw(shape);</span>
-<span class="nc" id="L236">                g2.translate(-getXOffset(), -getYOffset());</span>
-            }
-        }
-        else {
-            // now draw the real shape
-<span class="nc" id="L241">            super.drawFirstPassShape(g2, pass, series, item, shape);</span>
-        }
-<span class="nc" id="L243">    }</span>
-
-    /**
-     * Tests this renderer for equality with an arbitrary object.
-     *
-     * @param obj  the object ({@code null} permitted).
-     *
-     * @return A boolean.
-     */
-    @Override
-    public boolean equals(Object obj) {
-<span class="nc bnc" id="L254" title="All 2 branches missed.">        if (obj == this) {</span>
-<span class="nc" id="L255">            return true;</span>
-        }
-<span class="nc bnc" id="L257" title="All 2 branches missed.">        if (!(obj instanceof XYLine3DRenderer)) {</span>
-<span class="nc" id="L258">            return false;</span>
-        }
-<span class="nc" id="L260">        XYLine3DRenderer that = (XYLine3DRenderer) obj;</span>
-<span class="nc bnc" id="L261" title="All 2 branches missed.">        if (this.xOffset != that.xOffset) {</span>
-<span class="nc" id="L262">            return false;</span>
-        }
-<span class="nc bnc" id="L264" title="All 2 branches missed.">        if (this.yOffset != that.yOffset) {</span>
-<span class="nc" id="L265">            return false;</span>
-        }
-<span class="nc bnc" id="L267" title="All 2 branches missed.">        if (!PaintUtils.equal(this.wallPaint, that.wallPaint)) {</span>
-<span class="nc" id="L268">            return false;</span>
-        }
-<span class="nc" id="L270">        return super.equals(obj);</span>
-    }
-
-    /**
-     * Provides serialization support.
-     *
-     * @param stream  the input stream.
-     *
-     * @throws IOException  if there is an I/O error.
-     * @throws ClassNotFoundException  if there is a classpath problem.
-     */
-    private void readObject(ObjectInputStream stream)
-            throws IOException, ClassNotFoundException {
-<span class="nc" id="L283">        stream.defaultReadObject();</span>
-<span class="nc" id="L284">        this.wallPaint = SerialUtils.readPaint(stream);</span>
-<span class="nc" id="L285">    }</span>
-
-    /**
-     * Provides serialization support.
-     *
-     * @param stream  the output stream.
-     *
-     * @throws IOException  if there is an I/O error.
-     */
-    private void writeObject(ObjectOutputStream stream) throws IOException {
-<span class="nc" id="L295">        stream.defaultWriteObject();</span>
-<span class="nc" id="L296">        SerialUtils.writePaint(this.wallPaint, stream);</span>
-<span class="nc" id="L297">    }</span>
+  /**
+   * Provides serialization support.
+   *
+   * @param stream the output stream.
+   *
+   * @throws IOException if there is an I/O error.
+   */
+  private void writeObject(ObjectOutputStream stream) throws IOException {
+<span class="nc" id="L285">    stream.defaultWriteObject();</span>
+<span class="nc" id="L286">    SerialUtils.writePaint(this.wallPaint, stream);</span>
+<span class="nc" id="L287">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

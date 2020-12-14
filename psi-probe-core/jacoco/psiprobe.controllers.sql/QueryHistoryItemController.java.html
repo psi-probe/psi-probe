@@ -12,9 +12,11 @@ package psiprobe.controllers.sql;
 
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -22,54 +24,55 @@ import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
+
 import psiprobe.model.sql.DataSourceTestInfo;
 
 /**
  * Retrieves a single query from a history list.
  */
 @Controller
-<span class="fc" id="L31">public class QueryHistoryItemController extends AbstractController {</span>
+<span class="fc" id="L34">public class QueryHistoryItemController extends AbstractController {</span>
 
   /** The Constant logger. */
-<span class="fc" id="L34">  private static final Logger logger = LoggerFactory.getLogger(QueryHistoryItemController.class);</span>
+<span class="fc" id="L37">  private static final Logger logger = LoggerFactory.getLogger(QueryHistoryItemController.class);</span>
 
   @RequestMapping(path = &quot;/sql/queryHistoryItem.ajax&quot;)
   @Override
   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
       throws Exception {
-<span class="nc" id="L40">    return super.handleRequest(request, response);</span>
+<span class="nc" id="L43">    return super.handleRequest(request, response);</span>
   }
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 
-<span class="nc" id="L47">    int sqlId = ServletRequestUtils.getIntParameter(request, &quot;sqlId&quot;, -1);</span>
+<span class="nc" id="L50">    int sqlId = ServletRequestUtils.getIntParameter(request, &quot;sqlId&quot;, -1);</span>
 
-<span class="nc" id="L49">    HttpSession sess = request.getSession(false);</span>
+<span class="nc" id="L52">    HttpSession sess = request.getSession(false);</span>
 
-<span class="nc bnc" id="L51" title="All 2 branches missed.">    if (sess != null) {</span>
-<span class="nc" id="L52">      DataSourceTestInfo sessData =</span>
-<span class="nc" id="L53">          (DataSourceTestInfo) sess.getAttribute(DataSourceTestInfo.DS_TEST_SESS_ATTR);</span>
+<span class="nc bnc" id="L54" title="All 2 branches missed.">    if (sess != null) {</span>
+<span class="nc" id="L55">      DataSourceTestInfo sessData =</span>
+<span class="nc" id="L56">          (DataSourceTestInfo) sess.getAttribute(DataSourceTestInfo.DS_TEST_SESS_ATTR);</span>
 
-<span class="nc bnc" id="L55" title="All 2 branches missed.">      if (sessData != null) {</span>
-<span class="nc" id="L56">        List&lt;String&gt; queryHistory = sessData.getQueryHistory();</span>
+<span class="nc bnc" id="L58" title="All 2 branches missed.">      if (sessData != null) {</span>
+<span class="nc" id="L59">        List&lt;String&gt; queryHistory = sessData.getQueryHistory();</span>
 
-<span class="nc bnc" id="L58" title="All 2 branches missed.">        if (queryHistory != null) {</span>
+<span class="nc bnc" id="L61" title="All 2 branches missed.">        if (queryHistory != null) {</span>
           try {
-<span class="nc" id="L60">            String sql = queryHistory.get(sqlId);</span>
-<span class="nc" id="L61">            response.setCharacterEncoding(StandardCharsets.UTF_8.name());</span>
-<span class="nc" id="L62">            response.getWriter().print(sql);</span>
-<span class="nc" id="L63">          } catch (IndexOutOfBoundsException e) {</span>
-<span class="nc" id="L64">            logger.error(&quot;Cannot find a query history entry for history item id = {}&quot;, sqlId);</span>
-<span class="nc" id="L65">            logger.trace(&quot;&quot;, e);</span>
-<span class="nc" id="L66">          }</span>
+<span class="nc" id="L63">            String sql = queryHistory.get(sqlId);</span>
+<span class="nc" id="L64">            response.setCharacterEncoding(StandardCharsets.UTF_8.name());</span>
+<span class="nc" id="L65">            response.getWriter().print(sql);</span>
+<span class="nc" id="L66">          } catch (IndexOutOfBoundsException e) {</span>
+<span class="nc" id="L67">            logger.error(&quot;Cannot find a query history entry for history item id = {}&quot;, sqlId);</span>
+<span class="nc" id="L68">            logger.trace(&quot;&quot;, e);</span>
+<span class="nc" id="L69">          }</span>
         }
       }
     }
 
-<span class="nc" id="L71">    return null;</span>
+<span class="nc" id="L74">    return null;</span>
   }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

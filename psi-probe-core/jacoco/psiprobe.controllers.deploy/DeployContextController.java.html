@@ -12,6 +12,7 @@ package psiprobe.controllers.deploy;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,56 +21,57 @@ import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.InternalResourceView;
+
 import psiprobe.controllers.AbstractTomcatContainerController;
 
 /**
  * Forces Tomcat to install a pre-configured context name.
  */
 @Controller
-<span class="fc" id="L29">public class DeployContextController extends AbstractTomcatContainerController {</span>
+<span class="fc" id="L31">public class DeployContextController extends AbstractTomcatContainerController {</span>
 
   @RequestMapping(path = &quot;/adm/deploycontext.htm&quot;)
   @Override
   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
       throws Exception {
-<span class="nc" id="L35">    return super.handleRequest(request, response);</span>
+<span class="nc" id="L37">    return super.handleRequest(request, response);</span>
   }
 
   @Override
   public ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 
-<span class="nc" id="L42">    String contextName = ServletRequestUtils.getStringParameter(request, &quot;context&quot;, null);</span>
+<span class="nc" id="L44">    String contextName = ServletRequestUtils.getStringParameter(request, &quot;context&quot;, null);</span>
 
-<span class="nc bnc" id="L44" title="All 2 branches missed.">    if (contextName != null) {</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">    if (contextName != null) {</span>
       try {
-<span class="nc bnc" id="L46" title="All 2 branches missed.">        if (getContainerWrapper().getTomcatContainer().installContext(contextName)) {</span>
-<span class="nc" id="L47">          request.setAttribute(&quot;successMessage&quot;, getMessageSourceAccessor()</span>
-<span class="nc" id="L48">              .getMessage(&quot;probe.src.deploy.context.success&quot;, new Object[] {contextName}));</span>
+<span class="nc bnc" id="L48" title="All 2 branches missed.">        if (getContainerWrapper().getTomcatContainer().installContext(contextName)) {</span>
+<span class="nc" id="L49">          request.setAttribute(&quot;successMessage&quot;, getMessageSourceAccessor()</span>
+<span class="nc" id="L50">              .getMessage(&quot;probe.src.deploy.context.success&quot;, new Object[] {contextName}));</span>
           // Logging action
-<span class="nc" id="L50">          Authentication auth = SecurityContextHolder.getContext().getAuthentication();</span>
+<span class="nc" id="L52">          Authentication auth = SecurityContextHolder.getContext().getAuthentication();</span>
           // get username logger
-<span class="nc" id="L52">          String name = auth.getName();</span>
-<span class="nc" id="L53">          logger.info(getMessageSourceAccessor().getMessage(&quot;probe.src.log.deploycontext&quot;), name,</span>
+<span class="nc" id="L54">          String name = auth.getName();</span>
+<span class="nc" id="L55">          logger.info(getMessageSourceAccessor().getMessage(&quot;probe.src.log.deploycontext&quot;), name,</span>
               contextName);
-<span class="nc" id="L55">        } else {</span>
-<span class="nc" id="L56">          request.setAttribute(&quot;errorMessage&quot;, getMessageSourceAccessor()</span>
-<span class="nc" id="L57">              .getMessage(&quot;probe.src.deploy.context.failure&quot;, new Object[] {contextName}));</span>
+<span class="nc" id="L57">        } else {</span>
+<span class="nc" id="L58">          request.setAttribute(&quot;errorMessage&quot;, getMessageSourceAccessor()</span>
+<span class="nc" id="L59">              .getMessage(&quot;probe.src.deploy.context.failure&quot;, new Object[] {contextName}));</span>
         }
-<span class="nc" id="L59">      } catch (Exception e) {</span>
-<span class="nc" id="L60">        request.setAttribute(&quot;errorMessage&quot;, e.getMessage());</span>
-<span class="nc" id="L61">        logger.trace(&quot;&quot;, e);</span>
-<span class="nc" id="L62">      }</span>
+<span class="nc" id="L61">      } catch (Exception e) {</span>
+<span class="nc" id="L62">        request.setAttribute(&quot;errorMessage&quot;, e.getMessage());</span>
+<span class="nc" id="L63">        logger.trace(&quot;&quot;, e);</span>
+<span class="nc" id="L64">      }</span>
     }
 
-<span class="nc" id="L65">    return new ModelAndView(new InternalResourceView(getViewName()));</span>
+<span class="nc" id="L67">    return new ModelAndView(new InternalResourceView(getViewName()));</span>
   }
 
   @Value(&quot;/adm/deploy.htm&quot;)
   @Override
   public void setViewName(String viewName) {
-<span class="fc" id="L71">    super.setViewName(viewName);</span>
-<span class="fc" id="L72">  }</span>
+<span class="fc" id="L73">    super.setViewName(viewName);</span>
+<span class="fc" id="L74">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

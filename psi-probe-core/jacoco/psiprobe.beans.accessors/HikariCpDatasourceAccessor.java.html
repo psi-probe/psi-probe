@@ -12,51 +12,54 @@ package psiprobe.beans.accessors;
 
 import com.zaxxer.hikari.HikariDataSource;
 import com.zaxxer.hikari.HikariPoolMXBean;
+
 import java.lang.management.ManagementFactory;
+
 import javax.management.JMX;
 import javax.management.MBeanServer;
 import javax.management.ObjectName;
+
 import psiprobe.model.DataSourceInfo;
 
 /**
  * The Class HikariCpDatasourceAccessor.
  */
-<span class="fc" id="L24">public class HikariCpDatasourceAccessor implements DatasourceAccessor {</span>
+<span class="fc" id="L27">public class HikariCpDatasourceAccessor implements DatasourceAccessor {</span>
 
   @Override
   public DataSourceInfo getInfo(final Object resource) throws Exception {
-<span class="nc" id="L28">    DataSourceInfo dataSourceInfo = null;</span>
-<span class="nc bnc" id="L29" title="All 2 branches missed.">    if (canMap(resource)) {</span>
-<span class="nc" id="L30">      HikariDataSource source = (HikariDataSource) resource;</span>
+<span class="nc" id="L31">    DataSourceInfo dataSourceInfo = null;</span>
+<span class="nc bnc" id="L32" title="All 2 branches missed.">    if (canMap(resource)) {</span>
+<span class="nc" id="L33">      HikariDataSource source = (HikariDataSource) resource;</span>
 
-<span class="nc" id="L32">      MBeanServer mbeanServer = ManagementFactory.getPlatformMBeanServer();</span>
-<span class="nc" id="L33">      ObjectName poolName =</span>
-<span class="nc" id="L34">          new ObjectName(&quot;com.zaxxer.hikari:type=Pool (&quot; + source.getPoolName() + &quot;)&quot;);</span>
-<span class="nc" id="L35">      HikariPoolMXBean poolProxy =</span>
-<span class="nc" id="L36">          JMX.newMXBeanProxy(mbeanServer, poolName, HikariPoolMXBean.class);</span>
+<span class="nc" id="L35">      MBeanServer mbeanServer = ManagementFactory.getPlatformMBeanServer();</span>
+<span class="nc" id="L36">      ObjectName poolName =</span>
+<span class="nc" id="L37">          new ObjectName(&quot;com.zaxxer.hikari:type=Pool (&quot; + source.getPoolName() + &quot;)&quot;);</span>
+<span class="nc" id="L38">      HikariPoolMXBean poolProxy =</span>
+<span class="nc" id="L39">          JMX.newMXBeanProxy(mbeanServer, poolName, HikariPoolMXBean.class);</span>
 
-<span class="nc" id="L38">      dataSourceInfo = new DataSourceInfo();</span>
-<span class="nc" id="L39">      dataSourceInfo.setBusyConnections(poolProxy.getActiveConnections());</span>
-<span class="nc" id="L40">      dataSourceInfo.setEstablishedConnections(poolProxy.getTotalConnections());</span>
-<span class="nc" id="L41">      dataSourceInfo.setMaxConnections(source.getMaximumPoolSize());</span>
-<span class="nc" id="L42">      dataSourceInfo.setJdbcUrl(source.getJdbcUrl());</span>
-<span class="nc" id="L43">      dataSourceInfo.setUsername(source.getUsername());</span>
-<span class="nc" id="L44">      dataSourceInfo.setResettable(false);</span>
-<span class="nc" id="L45">      dataSourceInfo.setType(&quot;hikari&quot;);</span>
+<span class="nc" id="L41">      dataSourceInfo = new DataSourceInfo();</span>
+<span class="nc" id="L42">      dataSourceInfo.setBusyConnections(poolProxy.getActiveConnections());</span>
+<span class="nc" id="L43">      dataSourceInfo.setEstablishedConnections(poolProxy.getTotalConnections());</span>
+<span class="nc" id="L44">      dataSourceInfo.setMaxConnections(source.getMaximumPoolSize());</span>
+<span class="nc" id="L45">      dataSourceInfo.setJdbcUrl(source.getJdbcUrl());</span>
+<span class="nc" id="L46">      dataSourceInfo.setUsername(source.getUsername());</span>
+<span class="nc" id="L47">      dataSourceInfo.setResettable(false);</span>
+<span class="nc" id="L48">      dataSourceInfo.setType(&quot;hikari&quot;);</span>
     }
-<span class="nc" id="L47">    return dataSourceInfo;</span>
+<span class="nc" id="L50">    return dataSourceInfo;</span>
   }
 
   @Override
   public boolean reset(final Object resource) throws Exception {
-<span class="nc" id="L52">    return false;</span>
+<span class="nc" id="L55">    return false;</span>
   }
 
   @Override
   public boolean canMap(final Object resource) {
-<span class="pc bpc" id="L57" title="1 of 4 branches missed.">    return &quot;com.zaxxer.hikari.HikariDataSource&quot;.equals(resource.getClass().getName())</span>
+<span class="pc bpc" id="L60" title="1 of 4 branches missed.">    return &quot;com.zaxxer.hikari.HikariDataSource&quot;.equals(resource.getClass().getName())</span>
         &amp;&amp; resource instanceof HikariDataSource;
   }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

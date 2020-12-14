@@ -12,11 +12,13 @@ package psiprobe.beans.stats.collectors;
 
 import javax.inject.Inject;
 import javax.servlet.ServletContext;
+
 import org.apache.catalina.Context;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.context.ServletContextAware;
+
 import psiprobe.TomcatContainer;
 import psiprobe.beans.ContainerWrapperBean;
 import psiprobe.model.Application;
@@ -26,11 +28,11 @@ import psiprobe.tools.TimeExpression;
 /**
  * Collects application statistics.
  */
-<span class="fc" id="L29">public class AppStatsCollectorBean extends AbstractStatsCollectorBean</span>
+<span class="fc" id="L31">public class AppStatsCollectorBean extends AbstractStatsCollectorBean</span>
     implements ServletContextAware {
 
   /** The Constant logger. */
-<span class="fc" id="L33">  private static final Logger logger = LoggerFactory.getLogger(AppStatsCollectorBean.class);</span>
+<span class="fc" id="L35">  private static final Logger logger = LoggerFactory.getLogger(AppStatsCollectorBean.class);</span>
 
   /** The container wrapper. */
   @Inject
@@ -49,7 +51,7 @@ import psiprobe.tools.TimeExpression;
    * @return the container wrapper
    */
   public ContainerWrapperBean getContainerWrapper() {
-<span class="fc" id="L52">    return containerWrapper;</span>
+<span class="fc" id="L54">    return containerWrapper;</span>
   }
 
   /**
@@ -58,8 +60,8 @@ import psiprobe.tools.TimeExpression;
    * @param containerWrapper the new container wrapper
    */
   public void setContainerWrapper(ContainerWrapperBean containerWrapper) {
-<span class="fc" id="L61">    this.containerWrapper = containerWrapper;</span>
-<span class="fc" id="L62">  }</span>
+<span class="fc" id="L63">    this.containerWrapper = containerWrapper;</span>
+<span class="fc" id="L64">  }</span>
 
   /**
    * Checks if is self ignored.
@@ -67,7 +69,7 @@ import psiprobe.tools.TimeExpression;
    * @return true, if is self ignored
    */
   public boolean isSelfIgnored() {
-<span class="fc" id="L70">    return selfIgnored;</span>
+<span class="fc" id="L72">    return selfIgnored;</span>
   }
 
   /**
@@ -77,8 +79,8 @@ import psiprobe.tools.TimeExpression;
    */
   @Value(&quot;${psiprobe.beans.stats.collectors.app.selfIgnored}&quot;)
   public void setSelfIgnored(boolean selfIgnored) {
-<span class="fc" id="L80">    this.selfIgnored = selfIgnored;</span>
-<span class="fc" id="L81">  }</span>
+<span class="fc" id="L82">    this.selfIgnored = selfIgnored;</span>
+<span class="fc" id="L83">  }</span>
 
   /**
    * Gets the servlet context.
@@ -86,68 +88,68 @@ import psiprobe.tools.TimeExpression;
    * @return the servlet context
    */
   protected ServletContext getServletContext() {
-<span class="nc" id="L89">    return servletContext;</span>
+<span class="nc" id="L91">    return servletContext;</span>
   }
 
   @Override
   public void setServletContext(ServletContext servletContext) {
-<span class="fc" id="L94">    this.servletContext = servletContext;</span>
-<span class="fc" id="L95">  }</span>
+<span class="fc" id="L96">    this.servletContext = servletContext;</span>
+<span class="fc" id="L97">  }</span>
 
   @Override
   public void collect() throws Exception {
 
-<span class="nc" id="L100">    long currentTime = System.currentTimeMillis();</span>
+<span class="nc" id="L102">    long currentTime = System.currentTimeMillis();</span>
 
-<span class="nc bnc" id="L102" title="All 2 branches missed.">    if (containerWrapper == null) {</span>
-<span class="nc" id="L103">      logger.error(&quot;Cannot collect application stats. Container wrapper is not set.&quot;);</span>
+<span class="nc bnc" id="L104" title="All 2 branches missed.">    if (containerWrapper == null) {</span>
+<span class="nc" id="L105">      logger.error(&quot;Cannot collect application stats. Container wrapper is not set.&quot;);</span>
     } else {
-<span class="nc" id="L105">      TomcatContainer tomcatContainer = getContainerWrapper().getTomcatContainer();</span>
+<span class="nc" id="L107">      TomcatContainer tomcatContainer = getContainerWrapper().getTomcatContainer();</span>
 
       // check if the containerWtapper has been initialized
-<span class="nc bnc" id="L108" title="All 2 branches missed.">      if (tomcatContainer != null) {</span>
-<span class="nc" id="L109">        long totalReqDelta = 0;</span>
-<span class="nc" id="L110">        long totalErrDelta = 0;</span>
-<span class="nc" id="L111">        long totalAvgProcTime = 0;</span>
-<span class="nc" id="L112">        int participatingAppCount = 0;</span>
+<span class="nc bnc" id="L110" title="All 2 branches missed.">      if (tomcatContainer != null) {</span>
+<span class="nc" id="L111">        long totalReqDelta = 0;</span>
+<span class="nc" id="L112">        long totalErrDelta = 0;</span>
+<span class="nc" id="L113">        long totalAvgProcTime = 0;</span>
+<span class="nc" id="L114">        int participatingAppCount = 0;</span>
 
-<span class="nc bnc" id="L114" title="All 2 branches missed.">        for (Context ctx : tomcatContainer.findContexts()) {</span>
-<span class="nc bnc" id="L115" title="All 4 branches missed.">          if (ctx != null &amp;&amp; ctx.getName() != null) {</span>
-<span class="nc" id="L116">            Application app = new Application();</span>
-<span class="nc" id="L117">            ApplicationUtils.collectApplicationServletStats(ctx, app);</span>
+<span class="nc bnc" id="L116" title="All 2 branches missed.">        for (Context ctx : tomcatContainer.findContexts()) {</span>
+<span class="nc bnc" id="L117" title="All 4 branches missed.">          if (ctx != null &amp;&amp; ctx.getName() != null) {</span>
+<span class="nc" id="L118">            Application app = new Application();</span>
+<span class="nc" id="L119">            ApplicationUtils.collectApplicationServletStats(ctx, app);</span>
 
-<span class="nc bnc" id="L119" title="All 2 branches missed.">            String appName = &quot;&quot;.equals(ctx.getName()) ? &quot;/&quot; : ctx.getName();</span>
+<span class="nc bnc" id="L121" title="All 2 branches missed.">            String appName = &quot;&quot;.equals(ctx.getName()) ? &quot;/&quot; : ctx.getName();</span>
 
-<span class="nc" id="L121">            long reqDelta =</span>
-<span class="nc" id="L122">                buildDeltaStats(&quot;app.requests.&quot; + appName, app.getRequestCount(), currentTime);</span>
-<span class="nc" id="L123">            long errDelta = buildDeltaStats(&quot;app.errors.&quot; + appName, app.getErrorCount());</span>
-<span class="nc" id="L124">            long procTimeDelta =</span>
-<span class="nc" id="L125">                buildDeltaStats(&quot;app.proc_time.&quot; + appName, app.getProcessingTime(), currentTime);</span>
+<span class="nc" id="L123">            long reqDelta =</span>
+<span class="nc" id="L124">                buildDeltaStats(&quot;app.requests.&quot; + appName, app.getRequestCount(), currentTime);</span>
+<span class="nc" id="L125">            long errDelta = buildDeltaStats(&quot;app.errors.&quot; + appName, app.getErrorCount());</span>
+<span class="nc" id="L126">            long procTimeDelta =</span>
+<span class="nc" id="L127">                buildDeltaStats(&quot;app.proc_time.&quot; + appName, app.getProcessingTime(), currentTime);</span>
 
-<span class="nc bnc" id="L127" title="All 2 branches missed.">            long avgProcTime = reqDelta == 0 ? 0 : procTimeDelta / reqDelta;</span>
-<span class="nc" id="L128">            buildAbsoluteStats(&quot;app.avg_proc_time.&quot; + appName, avgProcTime, currentTime);</span>
+<span class="nc bnc" id="L129" title="All 2 branches missed.">            long avgProcTime = reqDelta == 0 ? 0 : procTimeDelta / reqDelta;</span>
+<span class="nc" id="L130">            buildAbsoluteStats(&quot;app.avg_proc_time.&quot; + appName, avgProcTime, currentTime);</span>
 
             /*
              * make sure applications that did not serve any requests do not participate in average
              * response time equation thus diluting the value
              */
-<span class="nc bnc" id="L134" title="All 4 branches missed.">            if (reqDelta &gt; 0 &amp;&amp; !excludeFromTotal(ctx)) {</span>
-<span class="nc" id="L135">              totalReqDelta += reqDelta;</span>
-<span class="nc" id="L136">              totalErrDelta += errDelta;</span>
-<span class="nc" id="L137">              totalAvgProcTime += avgProcTime;</span>
-<span class="nc" id="L138">              participatingAppCount++;</span>
+<span class="nc bnc" id="L136" title="All 4 branches missed.">            if (reqDelta &gt; 0 &amp;&amp; !excludeFromTotal(ctx)) {</span>
+<span class="nc" id="L137">              totalReqDelta += reqDelta;</span>
+<span class="nc" id="L138">              totalErrDelta += errDelta;</span>
+<span class="nc" id="L139">              totalAvgProcTime += avgProcTime;</span>
+<span class="nc" id="L140">              participatingAppCount++;</span>
             }
           }
-<span class="nc" id="L141">        }</span>
+<span class="nc" id="L143">        }</span>
         // build totals for all applications
-<span class="nc" id="L143">        buildAbsoluteStats(&quot;total.requests&quot;, totalReqDelta, currentTime);</span>
-<span class="nc" id="L144">        buildAbsoluteStats(&quot;total.errors&quot;, totalErrDelta, currentTime);</span>
-<span class="nc" id="L145">        buildAbsoluteStats(&quot;total.avg_proc_time&quot;,</span>
-<span class="nc bnc" id="L146" title="All 2 branches missed.">            participatingAppCount == 0 ? 0 : totalAvgProcTime / participatingAppCount, currentTime);</span>
+<span class="nc" id="L145">        buildAbsoluteStats(&quot;total.requests&quot;, totalReqDelta, currentTime);</span>
+<span class="nc" id="L146">        buildAbsoluteStats(&quot;total.errors&quot;, totalErrDelta, currentTime);</span>
+<span class="nc" id="L147">        buildAbsoluteStats(&quot;total.avg_proc_time&quot;,</span>
+<span class="nc bnc" id="L148" title="All 2 branches missed.">            participatingAppCount == 0 ? 0 : totalAvgProcTime / participatingAppCount, currentTime);</span>
       }
-<span class="nc" id="L148">      logger.debug(&quot;app stats collected in {}ms&quot;, System.currentTimeMillis() - currentTime);</span>
+<span class="nc" id="L150">      logger.debug(&quot;app stats collected in {}ms&quot;, System.currentTimeMillis() - currentTime);</span>
     }
-<span class="nc" id="L150">  }</span>
+<span class="nc" id="L152">  }</span>
 
   /**
    * Exclude from total.
@@ -156,30 +158,30 @@ import psiprobe.tools.TimeExpression;
    * @return true, if successful
    */
   private boolean excludeFromTotal(Context ctx) {
-<span class="nc bnc" id="L159" title="All 4 branches missed.">    return isSelfIgnored() &amp;&amp; getServletContext().equals(ctx.getServletContext());</span>
+<span class="nc bnc" id="L161" title="All 4 branches missed.">    return isSelfIgnored() &amp;&amp; getServletContext().equals(ctx.getServletContext());</span>
   }
 
   /**
    * Reset.
    */
   public void reset() {
-<span class="nc bnc" id="L166" title="All 2 branches missed.">    if (containerWrapper == null) {</span>
-<span class="nc" id="L167">      logger.error(&quot;Cannot reset application stats. Container wrapper is not set.&quot;);</span>
+<span class="nc bnc" id="L168" title="All 2 branches missed.">    if (containerWrapper == null) {</span>
+<span class="nc" id="L169">      logger.error(&quot;Cannot reset application stats. Container wrapper is not set.&quot;);</span>
     } else {
-<span class="nc" id="L169">      TomcatContainer tomcatContainer = getContainerWrapper().getTomcatContainer();</span>
-<span class="nc bnc" id="L170" title="All 2 branches missed.">      if (tomcatContainer != null) {</span>
-<span class="nc bnc" id="L171" title="All 2 branches missed.">        for (Context ctx : tomcatContainer.findContexts()) {</span>
-<span class="nc bnc" id="L172" title="All 4 branches missed.">          if (ctx != null &amp;&amp; ctx.getName() != null) {</span>
-<span class="nc bnc" id="L173" title="All 2 branches missed.">            String appName = &quot;&quot;.equals(ctx.getName()) ? &quot;/&quot; : ctx.getName();</span>
-<span class="nc" id="L174">            reset(appName);</span>
+<span class="nc" id="L171">      TomcatContainer tomcatContainer = getContainerWrapper().getTomcatContainer();</span>
+<span class="nc bnc" id="L172" title="All 2 branches missed.">      if (tomcatContainer != null) {</span>
+<span class="nc bnc" id="L173" title="All 2 branches missed.">        for (Context ctx : tomcatContainer.findContexts()) {</span>
+<span class="nc bnc" id="L174" title="All 4 branches missed.">          if (ctx != null &amp;&amp; ctx.getName() != null) {</span>
+<span class="nc bnc" id="L175" title="All 2 branches missed.">            String appName = &quot;&quot;.equals(ctx.getName()) ? &quot;/&quot; : ctx.getName();</span>
+<span class="nc" id="L176">            reset(appName);</span>
           }
-<span class="nc" id="L176">        }</span>
+<span class="nc" id="L178">        }</span>
       }
     }
-<span class="nc" id="L179">    resetStats(&quot;total.requests&quot;);</span>
-<span class="nc" id="L180">    resetStats(&quot;total.errors&quot;);</span>
-<span class="nc" id="L181">    resetStats(&quot;total.avg_proc_time&quot;);</span>
-<span class="nc" id="L182">  }</span>
+<span class="nc" id="L181">    resetStats(&quot;total.requests&quot;);</span>
+<span class="nc" id="L182">    resetStats(&quot;total.errors&quot;);</span>
+<span class="nc" id="L183">    resetStats(&quot;total.avg_proc_time&quot;);</span>
+<span class="nc" id="L184">  }</span>
 
   /**
    * Reset.
@@ -187,11 +189,11 @@ import psiprobe.tools.TimeExpression;
    * @param appName the app name
    */
   public void reset(String appName) {
-<span class="nc" id="L190">    resetStats(&quot;app.requests.&quot; + appName);</span>
-<span class="nc" id="L191">    resetStats(&quot;app.proc_time.&quot; + appName);</span>
-<span class="nc" id="L192">    resetStats(&quot;app.errors.&quot; + appName);</span>
-<span class="nc" id="L193">    resetStats(&quot;app.avg_proc_time.&quot; + appName);</span>
-<span class="nc" id="L194">  }</span>
+<span class="nc" id="L192">    resetStats(&quot;app.requests.&quot; + appName);</span>
+<span class="nc" id="L193">    resetStats(&quot;app.proc_time.&quot; + appName);</span>
+<span class="nc" id="L194">    resetStats(&quot;app.errors.&quot; + appName);</span>
+<span class="nc" id="L195">    resetStats(&quot;app.avg_proc_time.&quot; + appName);</span>
+<span class="nc" id="L196">  }</span>
 
   /**
    * Sets the max series expression.
@@ -201,8 +203,8 @@ import psiprobe.tools.TimeExpression;
    */
   public void setMaxSeries(@Value(&quot;${psiprobe.beans.stats.collectors.app.period}&quot;) long period,
       @Value(&quot;${psiprobe.beans.stats.collectors.app.span}&quot;) long span) {
-<span class="nc" id="L204">    super.setMaxSeries((int) TimeExpression.dataPoints(period, span));</span>
-<span class="nc" id="L205">  }</span>
+<span class="nc" id="L206">    super.setMaxSeries((int) TimeExpression.dataPoints(period, span));</span>
+<span class="nc" id="L207">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

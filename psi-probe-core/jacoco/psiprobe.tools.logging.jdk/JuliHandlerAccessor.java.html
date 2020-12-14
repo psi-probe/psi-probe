@@ -11,23 +11,24 @@
 package psiprobe.tools.logging.jdk;
 
 import java.io.File;
+
 import psiprobe.tools.Instruments;
 
 /**
  * The Class JuliHandlerAccessor.
  */
-<span class="nc" id="L19">public class JuliHandlerAccessor extends Jdk14HandlerAccessor {</span>
+<span class="nc" id="L20">public class JuliHandlerAccessor extends Jdk14HandlerAccessor {</span>
 
   @Override
   public File getFile() {
-<span class="nc" id="L23">    String dir = (String) Instruments.getField(getTarget(), &quot;directory&quot;);</span>
-<span class="nc" id="L24">    String prefix = (String) Instruments.getField(getTarget(), &quot;prefix&quot;);</span>
-<span class="nc" id="L25">    String suffix = (String) Instruments.getField(getTarget(), &quot;suffix&quot;);</span>
-<span class="nc" id="L26">    String date = (String) Instruments.getField(getTarget(), &quot;date&quot;);</span>
-<span class="nc bnc" id="L27" title="All 8 branches missed.">    return dir != null &amp;&amp; prefix != null &amp;&amp; suffix != null &amp;&amp; date != null</span>
-<span class="nc" id="L28">        ? new File(dir, prefix + date + suffix)</span>
-<span class="nc" id="L29">        : getStdoutFile();</span>
+<span class="nc" id="L24">    String dir = (String) Instruments.getField(getTarget(), &quot;directory&quot;);</span>
+<span class="nc" id="L25">    String prefix = (String) Instruments.getField(getTarget(), &quot;prefix&quot;);</span>
+<span class="nc" id="L26">    String suffix = (String) Instruments.getField(getTarget(), &quot;suffix&quot;);</span>
+<span class="nc" id="L27">    String date = (String) Instruments.getField(getTarget(), &quot;date&quot;);</span>
+<span class="nc bnc" id="L28" title="All 8 branches missed.">    return dir != null &amp;&amp; prefix != null &amp;&amp; suffix != null &amp;&amp; date != null</span>
+<span class="nc" id="L29">        ? new File(dir, prefix + date + suffix)</span>
+<span class="nc" id="L30">        : getStdoutFile();</span>
   }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

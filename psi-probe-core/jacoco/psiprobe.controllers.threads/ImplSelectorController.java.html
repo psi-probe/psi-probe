@@ -12,19 +12,21 @@ package psiprobe.controllers.threads;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
+
 import psiprobe.Utils;
 
 /**
  * The Class ImplSelectorController.
  */
 @Controller
-<span class="fc" id="L27">public class ImplSelectorController extends AbstractController {</span>
+<span class="fc" id="L29">public class ImplSelectorController extends AbstractController {</span>
 
   /** The impl1 controller. */
   private String impl1Controller;
@@ -38,7 +40,7 @@ import psiprobe.Utils;
    * @return the impl1 controller
    */
   public String getImpl1Controller() {
-<span class="fc" id="L41">    return impl1Controller;</span>
+<span class="fc" id="L43">    return impl1Controller;</span>
   }
 
   /**
@@ -48,8 +50,8 @@ import psiprobe.Utils;
    */
   @Value(&quot;forward:/th_impl1.htm&quot;)
   public void setImpl1Controller(String impl1Controller) {
-<span class="fc" id="L51">    this.impl1Controller = impl1Controller;</span>
-<span class="fc" id="L52">  }</span>
+<span class="fc" id="L53">    this.impl1Controller = impl1Controller;</span>
+<span class="fc" id="L54">  }</span>
 
   /**
    * Gets the impl2 controller.
@@ -57,7 +59,7 @@ import psiprobe.Utils;
    * @return the impl2 controller
    */
   public String getImpl2Controller() {
-<span class="fc" id="L60">    return impl2Controller;</span>
+<span class="fc" id="L62">    return impl2Controller;</span>
   }
 
   /**
@@ -67,25 +69,25 @@ import psiprobe.Utils;
    */
   @Value(&quot;forward:/th_impl2.htm&quot;)
   public void setImpl2Controller(String impl2Controller) {
-<span class="fc" id="L70">    this.impl2Controller = impl2Controller;</span>
-<span class="fc" id="L71">  }</span>
+<span class="fc" id="L72">    this.impl2Controller = impl2Controller;</span>
+<span class="fc" id="L73">  }</span>
 
   @RequestMapping(path = &quot;/threads.htm&quot;)
   @Override
   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
       throws Exception {
-<span class="nc" id="L77">    return super.handleRequest(request, response);</span>
+<span class="nc" id="L79">    return super.handleRequest(request, response);</span>
   }
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
-<span class="nc" id="L83">    boolean forceOld = ServletRequestUtils.getBooleanParameter(request, &quot;forceold&quot;, false);</span>
-<span class="nc bnc" id="L84" title="All 4 branches missed.">    if (!forceOld &amp;&amp; Utils.isThreadingEnabled()) {</span>
-<span class="nc" id="L85">      return new ModelAndView(impl2Controller);</span>
+<span class="nc" id="L85">    boolean forceOld = ServletRequestUtils.getBooleanParameter(request, &quot;forceold&quot;, false);</span>
+<span class="nc bnc" id="L86" title="All 4 branches missed.">    if (!forceOld &amp;&amp; Utils.isThreadingEnabled()) {</span>
+<span class="nc" id="L87">      return new ModelAndView(impl2Controller);</span>
     }
-<span class="nc" id="L87">    return new ModelAndView(impl1Controller);</span>
+<span class="nc" id="L89">    return new ModelAndView(impl1Controller);</span>
   }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

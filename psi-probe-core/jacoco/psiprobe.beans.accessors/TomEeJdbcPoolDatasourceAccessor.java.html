@@ -11,41 +11,42 @@
 package psiprobe.beans.accessors;
 
 import org.apache.tomcat.jdbc.pool.DataSource;
+
 import psiprobe.model.DataSourceInfo;
 
 /**
  * Datasource accessor for tomEE. sames as {@link TomEeJdbcPoolDatasourceAccessor} except different
  * string in {@link #canMap(Object)}
  */
-<span class="nc" id="L20">public class TomEeJdbcPoolDatasourceAccessor implements DatasourceAccessor {</span>
+<span class="nc" id="L21">public class TomEeJdbcPoolDatasourceAccessor implements DatasourceAccessor {</span>
 
   @Override
   public DataSourceInfo getInfo(Object resource) throws Exception {
-<span class="nc" id="L24">    DataSourceInfo dataSourceInfo = null;</span>
-<span class="nc bnc" id="L25" title="All 2 branches missed.">    if (canMap(resource)) {</span>
-<span class="nc" id="L26">      DataSource source = (DataSource) resource;</span>
-<span class="nc" id="L27">      dataSourceInfo = new DataSourceInfo();</span>
-<span class="nc" id="L28">      dataSourceInfo.setBusyConnections(source.getNumActive());</span>
-<span class="nc" id="L29">      dataSourceInfo.setEstablishedConnections(source.getNumIdle() + source.getNumActive());</span>
-<span class="nc" id="L30">      dataSourceInfo.setMaxConnections(source.getMaxActive());</span>
-<span class="nc" id="L31">      dataSourceInfo.setJdbcUrl(source.getUrl());</span>
-<span class="nc" id="L32">      dataSourceInfo.setUsername(source.getUsername());</span>
-<span class="nc" id="L33">      dataSourceInfo.setResettable(false);</span>
-<span class="nc" id="L34">      dataSourceInfo.setType(&quot;tomcat-jdbc&quot;);</span>
+<span class="nc" id="L25">    DataSourceInfo dataSourceInfo = null;</span>
+<span class="nc bnc" id="L26" title="All 2 branches missed.">    if (canMap(resource)) {</span>
+<span class="nc" id="L27">      DataSource source = (DataSource) resource;</span>
+<span class="nc" id="L28">      dataSourceInfo = new DataSourceInfo();</span>
+<span class="nc" id="L29">      dataSourceInfo.setBusyConnections(source.getNumActive());</span>
+<span class="nc" id="L30">      dataSourceInfo.setEstablishedConnections(source.getNumIdle() + source.getNumActive());</span>
+<span class="nc" id="L31">      dataSourceInfo.setMaxConnections(source.getMaxActive());</span>
+<span class="nc" id="L32">      dataSourceInfo.setJdbcUrl(source.getUrl());</span>
+<span class="nc" id="L33">      dataSourceInfo.setUsername(source.getUsername());</span>
+<span class="nc" id="L34">      dataSourceInfo.setResettable(false);</span>
+<span class="nc" id="L35">      dataSourceInfo.setType(&quot;tomcat-jdbc&quot;);</span>
     }
-<span class="nc" id="L36">    return dataSourceInfo;</span>
+<span class="nc" id="L37">    return dataSourceInfo;</span>
   }
 
   @Override
   public boolean reset(Object resource) throws Exception {
-<span class="nc" id="L41">    return false;</span>
+<span class="nc" id="L42">    return false;</span>
   }
 
   @Override
   public boolean canMap(Object resource) {
-<span class="nc" id="L46">    return &quot;org.apache.tomee.jdbc.TomEEDataSourceCreator$TomEEDataSource&quot;</span>
-<span class="nc bnc" id="L47" title="All 4 branches missed.">        .equals(resource.getClass().getName()) &amp;&amp; resource instanceof DataSource;</span>
+<span class="nc" id="L47">    return &quot;org.apache.tomee.jdbc.TomEEDataSourceCreator$TomEEDataSource&quot;</span>
+<span class="nc bnc" id="L48" title="All 4 branches missed.">        .equals(resource.getClass().getName()) &amp;&amp; resource instanceof DataSource;</span>
   }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

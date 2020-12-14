@@ -399,7 +399,7 @@ import psiprobe.model.jsp.Summary;
 <span class="nc" id="L399">        JspRuntimeContext jrctx = new JspRuntimeContext(sctx, opt);</span>
         try {
 <span class="nc bnc" id="L401" title="All 2 branches missed.">          if (summary.getItems() == null) {</span>
-<span class="nc" id="L402">            summary.setItems(new HashMap&lt;String, Item&gt;());</span>
+<span class="nc" id="L402">            summary.setItems(new HashMap&lt;&gt;());</span>
           }
 
           /*
@@ -606,7 +606,7 @@ import psiprobe.model.jsp.Summary;
   protected void checkChanges(String name) throws Exception {
 <span class="nc" id="L607">    Boolean result = (Boolean) mbeanServer.invoke(deployerOName, &quot;isServiced&quot;, new String[] {name},</span>
 <span class="nc" id="L608">        new String[] {String.class.getName()});</span>
-<span class="nc bnc" id="L609" title="All 2 branches missed.">    if (!result) {</span>
+<span class="nc bnc" id="L609" title="All 2 branches missed.">    if (!result.booleanValue()) {</span>
 <span class="nc" id="L610">      mbeanServer.invoke(deployerOName, &quot;addServiced&quot;, new String[] {name},</span>
 <span class="nc" id="L611">          new String[] {String.class.getName()});</span>
       try {
@@ -674,4 +674,4 @@ import psiprobe.model.jsp.Summary;
 <span class="nc" id="L674">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

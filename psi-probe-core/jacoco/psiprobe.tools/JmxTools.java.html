@@ -16,6 +16,7 @@ import javax.management.MBeanInfo;
 import javax.management.MBeanServer;
 import javax.management.ObjectName;
 import javax.management.openmbean.CompositeData;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,7 +26,7 @@ import org.slf4j.LoggerFactory;
 public final class JmxTools {
 
   /** The Constant logger. */
-<span class="nc" id="L28">  private static final Logger logger = LoggerFactory.getLogger(JmxTools.class);</span>
+<span class="nc" id="L29">  private static final Logger logger = LoggerFactory.getLogger(JmxTools.class);</span>
 
   /**
    * Prevent Instantiation.
@@ -47,11 +48,11 @@ public final class JmxTools {
       throws Exception {
 
     try {
-<span class="nc" id="L50">      return mbeanServer.getAttribute(objName, attrName);</span>
-<span class="nc" id="L51">    } catch (AttributeNotFoundException e) {</span>
-<span class="nc" id="L52">      logger.error(&quot;{} does not have '{}' attribute&quot;, objName, attrName);</span>
-<span class="nc" id="L53">      logger.trace(&quot;&quot;, e);</span>
-<span class="nc" id="L54">      return null;</span>
+<span class="nc" id="L51">      return mbeanServer.getAttribute(objName, attrName);</span>
+<span class="nc" id="L52">    } catch (AttributeNotFoundException e) {</span>
+<span class="nc" id="L53">      logger.error(&quot;{} does not have '{}' attribute&quot;, objName, attrName);</span>
+<span class="nc" id="L54">      logger.trace(&quot;&quot;, e);</span>
+<span class="nc" id="L55">      return null;</span>
     }
   }
 
@@ -70,12 +71,12 @@ public final class JmxTools {
       Object[] o, String[] s) throws Exception {
 
     try {
-<span class="nc" id="L73">      return mbeanServer.invoke(objName, method, o, s);</span>
+<span class="nc" id="L74">      return mbeanServer.invoke(objName, method, o, s);</span>
 
-<span class="nc" id="L75">    } catch (Exception e) {</span>
-<span class="nc" id="L76">      logger.error(&quot;{} does not have '{}' attribute&quot;, objName, method);</span>
-<span class="nc" id="L77">      logger.trace(&quot;&quot;, e);</span>
-<span class="nc" id="L78">      return null;</span>
+<span class="nc" id="L76">    } catch (Exception e) {</span>
+<span class="nc" id="L77">      logger.error(&quot;{} does not have '{}' attribute&quot;, objName, method);</span>
+<span class="nc" id="L78">      logger.trace(&quot;&quot;, e);</span>
+<span class="nc" id="L79">      return null;</span>
     }
   }
 
@@ -92,11 +93,11 @@ public final class JmxTools {
       long defaultValue) {
 
     try {
-<span class="nc" id="L95">      Object obj = mbeanServer.getAttribute(objName, attrName);</span>
-<span class="nc bnc" id="L96" title="All 2 branches missed.">      return obj == null ? defaultValue : ((Long) obj);</span>
-<span class="nc" id="L97">    } catch (Exception e) {</span>
-<span class="nc" id="L98">      logger.trace(&quot;&quot;, e);</span>
-<span class="nc" id="L99">      return defaultValue;</span>
+<span class="nc" id="L96">      Object obj = mbeanServer.getAttribute(objName, attrName);</span>
+<span class="nc bnc" id="L97" title="All 2 branches missed.">      return obj == null ? defaultValue : ((Long) obj);</span>
+<span class="nc" id="L98">    } catch (Exception e) {</span>
+<span class="nc" id="L99">      logger.trace(&quot;&quot;, e);</span>
+<span class="nc" id="L100">      return defaultValue;</span>
     }
   }
 
@@ -108,11 +109,11 @@ public final class JmxTools {
    * @return the long attr
    */
   public static long getLongAttr(CompositeData cds, String name) {
-<span class="nc" id="L111">    Object obj = cds.get(name);</span>
-<span class="nc bnc" id="L112" title="All 4 branches missed.">    if (obj != null &amp;&amp; obj instanceof Long) {</span>
-<span class="nc" id="L113">      return (Long) obj;</span>
+<span class="nc" id="L112">    Object obj = cds.get(name);</span>
+<span class="nc bnc" id="L113" title="All 4 branches missed.">    if (obj != null &amp;&amp; obj instanceof Long) {</span>
+<span class="nc" id="L114">      return (Long) obj;</span>
     }
-<span class="nc" id="L115">    return 0;</span>
+<span class="nc" id="L116">    return 0;</span>
   }
 
   /**
@@ -127,7 +128,7 @@ public final class JmxTools {
   public static long getLongAttr(MBeanServer mbeanServer, ObjectName objName, String attrName)
       throws Exception {
 
-<span class="nc" id="L130">    return (Long) mbeanServer.getAttribute(objName, attrName);</span>
+<span class="nc" id="L131">    return (Long) mbeanServer.getAttribute(objName, attrName);</span>
   }
 
   /**
@@ -142,7 +143,7 @@ public final class JmxTools {
   public static int getIntAttr(MBeanServer mbeanServer, ObjectName objName, String attrName)
       throws Exception {
 
-<span class="nc" id="L145">    return (Integer) mbeanServer.getAttribute(objName, attrName);</span>
+<span class="nc" id="L146">    return (Integer) mbeanServer.getAttribute(objName, attrName);</span>
   }
 
   /**
@@ -154,12 +155,12 @@ public final class JmxTools {
    * @return the int attr
    */
   public static int getIntAttr(CompositeData cds, String name, int defaultValue) {
-<span class="nc" id="L157">    Object obj = cds.get(name);</span>
+<span class="nc" id="L158">    Object obj = cds.get(name);</span>
 
-<span class="nc bnc" id="L159" title="All 4 branches missed.">    if (obj != null &amp;&amp; obj instanceof Integer) {</span>
-<span class="nc" id="L160">      return (Integer) obj;</span>
+<span class="nc bnc" id="L160" title="All 4 branches missed.">    if (obj != null &amp;&amp; obj instanceof Integer) {</span>
+<span class="nc" id="L161">      return (Integer) obj;</span>
     }
-<span class="nc" id="L162">    return defaultValue;</span>
+<span class="nc" id="L163">    return defaultValue;</span>
   }
 
   /**
@@ -174,8 +175,8 @@ public final class JmxTools {
   public static String getStringAttr(MBeanServer mbeanServer, ObjectName objName, String attrName)
       throws Exception {
 
-<span class="nc" id="L177">    Object obj = getAttribute(mbeanServer, objName, attrName);</span>
-<span class="nc bnc" id="L178" title="All 2 branches missed.">    return obj == null ? null : obj.toString();</span>
+<span class="nc" id="L178">    Object obj = getAttribute(mbeanServer, objName, attrName);</span>
+<span class="nc bnc" id="L179" title="All 2 branches missed.">    return obj == null ? null : obj.toString();</span>
   }
 
   /**
@@ -186,8 +187,8 @@ public final class JmxTools {
    * @return the string attr
    */
   public static String getStringAttr(CompositeData cds, String name) {
-<span class="nc" id="L189">    Object obj = cds.get(name);</span>
-<span class="nc bnc" id="L190" title="All 2 branches missed.">    return obj != null ? obj.toString() : null;</span>
+<span class="nc" id="L190">    Object obj = cds.get(name);</span>
+<span class="nc bnc" id="L191" title="All 2 branches missed.">    return obj != null ? obj.toString() : null;</span>
   }
 
   /**
@@ -198,8 +199,8 @@ public final class JmxTools {
    * @return the boolean attr
    */
   public static boolean getBooleanAttr(CompositeData cds, String name) {
-<span class="nc" id="L201">    Object obj = cds.get(name);</span>
-<span class="nc bnc" id="L202" title="All 6 branches missed.">    return obj != null &amp;&amp; obj instanceof Boolean &amp;&amp; ((Boolean) obj);</span>
+<span class="nc" id="L202">    Object obj = cds.get(name);</span>
+<span class="nc bnc" id="L203" title="All 6 branches missed.">    return obj != null &amp;&amp; obj instanceof Boolean &amp;&amp; ((Boolean) obj);</span>
   }
 
   /**
@@ -214,15 +215,15 @@ public final class JmxTools {
   public static boolean hasAttribute(MBeanServer server, ObjectName mbean, String attrName)
       throws Exception {
 
-<span class="nc" id="L217">    MBeanInfo info = server.getMBeanInfo(mbean);</span>
-<span class="nc" id="L218">    MBeanAttributeInfo[] ai = info.getAttributes();</span>
-<span class="nc bnc" id="L219" title="All 2 branches missed.">    for (MBeanAttributeInfo attribInfo : ai) {</span>
-<span class="nc bnc" id="L220" title="All 2 branches missed.">      if (attribInfo.getName().equals(attrName)) {</span>
-<span class="nc" id="L221">        return true;</span>
+<span class="nc" id="L218">    MBeanInfo info = server.getMBeanInfo(mbean);</span>
+<span class="nc" id="L219">    MBeanAttributeInfo[] ai = info.getAttributes();</span>
+<span class="nc bnc" id="L220" title="All 2 branches missed.">    for (MBeanAttributeInfo attribInfo : ai) {</span>
+<span class="nc bnc" id="L221" title="All 2 branches missed.">      if (attribInfo.getName().equals(attrName)) {</span>
+<span class="nc" id="L222">        return true;</span>
       }
     }
-<span class="nc" id="L224">    return false;</span>
+<span class="nc" id="L225">    return false;</span>
   }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

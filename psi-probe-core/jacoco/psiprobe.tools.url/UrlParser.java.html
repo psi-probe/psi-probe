@@ -11,6 +11,7 @@
 package psiprobe.tools.url;
 
 import java.net.MalformedURLException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,7 +21,7 @@ import org.slf4j.LoggerFactory;
 public class UrlParser {
 
   /** The Constant logger. */
-<span class="fc" id="L23">  private static final Logger logger = LoggerFactory.getLogger(UrlParser.class);</span>
+<span class="fc" id="L24">  private static final Logger logger = LoggerFactory.getLogger(UrlParser.class);</span>
 
   /** The protocol. */
   private String protocol;
@@ -29,7 +30,7 @@ public class UrlParser {
   private String host;
 
   /** The port. */
-<span class="fc" id="L32">  private int port = -1;</span>
+<span class="fc" id="L33">  private int port = -1;</span>
 
   /** The path. */
   private String path;
@@ -40,43 +41,43 @@ public class UrlParser {
    * @param url the url
    * @throws MalformedURLException the malformed URL exception
    */
-<span class="fc" id="L43">  public UrlParser(String url) throws MalformedURLException {</span>
-<span class="pc bpc" id="L44" title="2 of 4 branches missed.">    if (url != null &amp;&amp; url.length() &gt; 0) {</span>
-<span class="fc" id="L45">      int ppos = url.indexOf(&quot;://&quot;);</span>
+<span class="fc" id="L44">  public UrlParser(String url) throws MalformedURLException {</span>
+<span class="pc bpc" id="L45" title="2 of 4 branches missed.">    if (url != null &amp;&amp; url.length() &gt; 0) {</span>
+<span class="fc" id="L46">      int ppos = url.indexOf(&quot;://&quot;);</span>
 
       // get protocol first
-<span class="pc bpc" id="L48" title="1 of 2 branches missed.">      if (ppos &gt;= 0) {</span>
-<span class="nc" id="L49">        protocol = url.substring(0, ppos);</span>
-<span class="nc" id="L50">        url = url.substring(ppos + 3);</span>
+<span class="pc bpc" id="L49" title="1 of 2 branches missed.">      if (ppos &gt;= 0) {</span>
+<span class="nc" id="L50">        protocol = url.substring(0, ppos);</span>
+<span class="nc" id="L51">        url = url.substring(ppos + 3);</span>
       }
 
       String hostport;
 
-<span class="fc" id="L55">      ppos = url.indexOf('/');</span>
-<span class="pc bpc" id="L56" title="1 of 2 branches missed.">      if (ppos &gt;= 0) {</span>
-<span class="nc" id="L57">        hostport = url.substring(0, ppos);</span>
-<span class="nc" id="L58">        path = url.substring(ppos + 1);</span>
+<span class="fc" id="L56">      ppos = url.indexOf('/');</span>
+<span class="pc bpc" id="L57" title="1 of 2 branches missed.">      if (ppos &gt;= 0) {</span>
+<span class="nc" id="L58">        hostport = url.substring(0, ppos);</span>
+<span class="nc" id="L59">        path = url.substring(ppos + 1);</span>
       } else {
-<span class="fc" id="L60">        hostport = url;</span>
+<span class="fc" id="L61">        hostport = url;</span>
       }
 
-<span class="fc" id="L63">      ppos = hostport.indexOf(':');</span>
-<span class="pc bpc" id="L64" title="1 of 2 branches missed.">      if (ppos &gt;= 0) {</span>
-<span class="nc" id="L65">        host = hostport.substring(0, ppos);</span>
-<span class="nc" id="L66">        String portString = hostport.substring(ppos + 1);</span>
+<span class="fc" id="L64">      ppos = hostport.indexOf(':');</span>
+<span class="pc bpc" id="L65" title="1 of 2 branches missed.">      if (ppos &gt;= 0) {</span>
+<span class="nc" id="L66">        host = hostport.substring(0, ppos);</span>
+<span class="nc" id="L67">        String portString = hostport.substring(ppos + 1);</span>
         try {
-<span class="nc" id="L68">          this.port = Integer.parseInt(portString);</span>
-<span class="nc" id="L69">        } catch (NumberFormatException e) {</span>
-<span class="nc" id="L70">          logger.trace(&quot;&quot;, e);</span>
-<span class="nc" id="L71">          throw new MalformedURLException(&quot;Invalid port &quot; + portString);</span>
-<span class="nc" id="L72">        }</span>
-<span class="nc" id="L73">      } else {</span>
-<span class="fc" id="L74">        host = hostport;</span>
+<span class="nc" id="L69">          this.port = Integer.parseInt(portString);</span>
+<span class="nc" id="L70">        } catch (NumberFormatException e) {</span>
+<span class="nc" id="L71">          logger.trace(&quot;&quot;, e);</span>
+<span class="nc" id="L72">          throw new MalformedURLException(&quot;Invalid port &quot; + portString);</span>
+<span class="nc" id="L73">        }</span>
+<span class="nc" id="L74">      } else {</span>
+<span class="fc" id="L75">        host = hostport;</span>
       }
-<span class="fc" id="L76">    } else {</span>
-<span class="nc" id="L77">      throw new MalformedURLException(&quot;Empty URL&quot;);</span>
+<span class="fc" id="L77">    } else {</span>
+<span class="nc" id="L78">      throw new MalformedURLException(&quot;Empty URL&quot;);</span>
     }
-<span class="fc" id="L79">  }</span>
+<span class="fc" id="L80">  }</span>
 
   /**
    * Gets the protocol.
@@ -84,7 +85,7 @@ public class UrlParser {
    * @return the protocol
    */
   public String getProtocol() {
-<span class="fc" id="L87">    return protocol;</span>
+<span class="fc" id="L88">    return protocol;</span>
   }
 
   /**
@@ -93,8 +94,8 @@ public class UrlParser {
    * @param protocol the new protocol
    */
   public void setProtocol(String protocol) {
-<span class="fc" id="L96">    this.protocol = protocol;</span>
-<span class="fc" id="L97">  }</span>
+<span class="fc" id="L97">    this.protocol = protocol;</span>
+<span class="fc" id="L98">  }</span>
 
   /**
    * Gets the host.
@@ -102,7 +103,7 @@ public class UrlParser {
    * @return the host
    */
   public String getHost() {
-<span class="fc" id="L105">    return host;</span>
+<span class="fc" id="L106">    return host;</span>
   }
 
   /**
@@ -111,8 +112,8 @@ public class UrlParser {
    * @param host the new host
    */
   public void setHost(String host) {
-<span class="fc" id="L114">    this.host = host;</span>
-<span class="fc" id="L115">  }</span>
+<span class="fc" id="L115">    this.host = host;</span>
+<span class="fc" id="L116">  }</span>
 
   /**
    * Gets the port.
@@ -120,7 +121,7 @@ public class UrlParser {
    * @return the port
    */
   public int getPort() {
-<span class="fc" id="L123">    return port;</span>
+<span class="fc" id="L124">    return port;</span>
   }
 
   /**
@@ -129,8 +130,8 @@ public class UrlParser {
    * @param port the new port
    */
   public void setPort(int port) {
-<span class="fc" id="L132">    this.port = port;</span>
-<span class="fc" id="L133">  }</span>
+<span class="fc" id="L133">    this.port = port;</span>
+<span class="fc" id="L134">  }</span>
 
   /**
    * Gets the path.
@@ -138,7 +139,7 @@ public class UrlParser {
    * @return the path
    */
   public String getPath() {
-<span class="fc" id="L141">    return path;</span>
+<span class="fc" id="L142">    return path;</span>
   }
 
   /**
@@ -147,8 +148,8 @@ public class UrlParser {
    * @param path the new path
    */
   public void setPath(String path) {
-<span class="fc" id="L150">    this.path = path;</span>
-<span class="fc" id="L151">  }</span>
+<span class="fc" id="L151">    this.path = path;</span>
+<span class="fc" id="L152">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

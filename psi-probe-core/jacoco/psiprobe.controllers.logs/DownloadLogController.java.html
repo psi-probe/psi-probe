@@ -11,8 +11,10 @@
 package psiprobe.controllers.logs;
 
 import java.io.File;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,6 +22,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
 import psiprobe.Utils;
 import psiprobe.tools.logging.LogDestination;
 
@@ -27,41 +30,41 @@ import psiprobe.tools.logging.LogDestination;
  * The Class DownloadLogController.
  */
 @Controller
-<span class="fc" id="L30">public class DownloadLogController extends AbstractLogHandlerController {</span>
+<span class="fc" id="L33">public class DownloadLogController extends AbstractLogHandlerController {</span>
 
   /** The Constant logger. */
-<span class="fc" id="L33">  private static final Logger logger = LoggerFactory.getLogger(DownloadLogController.class);</span>
+<span class="fc" id="L36">  private static final Logger logger = LoggerFactory.getLogger(DownloadLogController.class);</span>
 
   @RequestMapping(path = &quot;/download&quot;)
   @Override
   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
       throws Exception {
-<span class="nc" id="L39">    return super.handleRequest(request, response);</span>
+<span class="nc" id="L42">    return super.handleRequest(request, response);</span>
   }
 
   @Override
   protected ModelAndView handleLogFile(HttpServletRequest request, HttpServletResponse response,
       LogDestination logDest) throws Exception {
 
-<span class="nc" id="L46">    boolean compressed =</span>
-<span class="nc" id="L47">        &quot;true&quot;.equals(ServletRequestUtils.getStringParameter(request, &quot;compressed&quot;));</span>
+<span class="nc" id="L49">    boolean compressed =</span>
+<span class="nc" id="L50">        &quot;true&quot;.equals(ServletRequestUtils.getStringParameter(request, &quot;compressed&quot;));</span>
 
-<span class="nc" id="L49">    File file = logDest.getFile();</span>
-<span class="nc bnc" id="L50" title="All 2 branches missed.">    logger.info(&quot;Sending {}{} to {} ({})&quot;, file, compressed ? &quot; compressed&quot; : &quot;&quot;,</span>
-<span class="nc" id="L51">        request.getRemoteAddr(), request.getRemoteUser());</span>
-<span class="nc bnc" id="L52" title="All 2 branches missed.">    if (compressed) {</span>
-<span class="nc" id="L53">      Utils.sendCompressedFile(response, file);</span>
+<span class="nc" id="L52">    File file = logDest.getFile();</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">    logger.info(&quot;Sending {}{} to {} ({})&quot;, file, compressed ? &quot; compressed&quot; : &quot;&quot;,</span>
+<span class="nc" id="L54">        request.getRemoteAddr(), request.getRemoteUser());</span>
+<span class="nc bnc" id="L55" title="All 2 branches missed.">    if (compressed) {</span>
+<span class="nc" id="L56">      Utils.sendCompressedFile(response, file);</span>
     } else {
-<span class="nc" id="L55">      Utils.sendFile(request, response, file);</span>
+<span class="nc" id="L58">      Utils.sendFile(request, response, file);</span>
     }
-<span class="nc" id="L57">    return null;</span>
+<span class="nc" id="L60">    return null;</span>
   }
 
   @Value(&quot;&quot;)
   @Override
   public void setViewName(String viewName) {
-<span class="fc" id="L63">    super.setViewName(viewName);</span>
-<span class="fc" id="L64">  }</span>
+<span class="fc" id="L66">    super.setViewName(viewName);</span>
+<span class="fc" id="L67">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

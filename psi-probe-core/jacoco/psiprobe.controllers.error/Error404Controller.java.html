@@ -12,6 +12,7 @@ package psiprobe.controllers.error;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,20 +23,20 @@ import org.springframework.web.servlet.mvc.ParameterizableViewController;
  * The Class Error404Controller.
  */
 @Controller
-<span class="fc" id="L25">public class Error404Controller extends ParameterizableViewController {</span>
+<span class="fc" id="L26">public class Error404Controller extends ParameterizableViewController {</span>
 
   @RequestMapping(path = &quot;/404.htm&quot;)
   @Override
   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
       throws Exception {
-<span class="nc" id="L31">    return super.handleRequest(request, response);</span>
+<span class="nc" id="L32">    return super.handleRequest(request, response);</span>
   }
 
   @Value(&quot;errors/404&quot;)
   @Override
   public void setViewName(String viewName) {
-<span class="fc" id="L37">    super.setViewName(viewName);</span>
-<span class="fc" id="L38">  }</span>
+<span class="fc" id="L38">    super.setViewName(viewName);</span>
+<span class="fc" id="L39">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

@@ -12,6 +12,7 @@ package psiprobe.controllers.sessions;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.catalina.Context;
 import org.apache.catalina.Session;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,38 +21,39 @@ import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.InternalResourceView;
+
 import psiprobe.controllers.AbstractContextHandlerController;
 
 /**
  * Expires a single session of a particular web application.
  */
 @Controller
-<span class="fc" id="L29">public class ExpireSessionController extends AbstractContextHandlerController {</span>
+<span class="fc" id="L31">public class ExpireSessionController extends AbstractContextHandlerController {</span>
 
   @RequestMapping(path = &quot;/app/expire.htm&quot;)
   @Override
   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
       throws Exception {
-<span class="nc" id="L35">    return super.handleRequest(request, response);</span>
+<span class="nc" id="L37">    return super.handleRequest(request, response);</span>
   }
 
   @Override
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-<span class="nc" id="L42">    String sessionId = ServletRequestUtils.getStringParameter(request, &quot;sid&quot;);</span>
-<span class="nc" id="L43">    Session session = context.getManager().findSession(sessionId);</span>
-<span class="nc bnc" id="L44" title="All 2 branches missed.">    if (session != null) {</span>
-<span class="nc" id="L45">      session.expire();</span>
+<span class="nc" id="L44">    String sessionId = ServletRequestUtils.getStringParameter(request, &quot;sid&quot;);</span>
+<span class="nc" id="L45">    Session session = context.getManager().findSession(sessionId);</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">    if (session != null) {</span>
+<span class="nc" id="L47">      session.expire();</span>
     }
-<span class="nc" id="L47">    return new ModelAndView(new InternalResourceView(getViewName()));</span>
+<span class="nc" id="L49">    return new ModelAndView(new InternalResourceView(getViewName()));</span>
   }
 
   @Value(&quot;/sessions.htm&quot;)
   @Override
   public void setViewName(String viewName) {
-<span class="fc" id="L53">    super.setViewName(viewName);</span>
-<span class="fc" id="L54">  }</span>
+<span class="fc" id="L55">    super.setViewName(viewName);</span>
+<span class="fc" id="L56">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

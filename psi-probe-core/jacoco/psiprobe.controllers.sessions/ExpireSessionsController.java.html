@@ -12,6 +12,7 @@ package psiprobe.controllers.sessions;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.catalina.Context;
 import org.apache.catalina.Manager;
 import org.apache.catalina.Session;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.InternalResourceView;
+
 import psiprobe.controllers.AbstractTomcatContainerController;
 
 /**
@@ -28,48 +30,48 @@ import psiprobe.controllers.AbstractTomcatContainerController;
  * a form of &quot;sid;webapp&quot;
  */
 @Controller
-<span class="fc" id="L31">public class ExpireSessionsController extends AbstractTomcatContainerController {</span>
+<span class="fc" id="L33">public class ExpireSessionsController extends AbstractTomcatContainerController {</span>
 
   @RequestMapping(path = &quot;/app/expire_list.htm&quot;)
   @Override
   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
       throws Exception {
-<span class="nc" id="L37">    return super.handleRequest(request, response);</span>
+<span class="nc" id="L39">    return super.handleRequest(request, response);</span>
   }
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 
-<span class="nc bnc" id="L44" title="All 2 branches missed.">    for (String sidWebApp : ServletRequestUtils.getStringParameters(request, &quot;sid_webapp&quot;)) {</span>
-<span class="nc bnc" id="L45" title="All 2 branches missed.">      if (sidWebApp != null) {</span>
-<span class="nc" id="L46">        String[] ss = sidWebApp.split(&quot;;&quot;);</span>
-<span class="nc bnc" id="L47" title="All 2 branches missed.">        if (ss.length == 2) {</span>
-<span class="nc" id="L48">          String sessionId = ss[0];</span>
-<span class="nc" id="L49">          String appName = ss[1];</span>
-<span class="nc" id="L50">          Context context = getContainerWrapper().getTomcatContainer().findContext(appName);</span>
-<span class="nc bnc" id="L51" title="All 2 branches missed.">          if (context != null) {</span>
-<span class="nc" id="L52">            Manager manager = context.getManager();</span>
-<span class="nc" id="L53">            Session session = manager.findSession(sessionId);</span>
-<span class="nc bnc" id="L54" title="All 4 branches missed.">            if (session != null &amp;&amp; session.isValid()) {</span>
-<span class="nc" id="L55">              session.expire();</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">    for (String sidWebApp : ServletRequestUtils.getStringParameters(request, &quot;sid_webapp&quot;)) {</span>
+<span class="nc bnc" id="L47" title="All 2 branches missed.">      if (sidWebApp != null) {</span>
+<span class="nc" id="L48">        String[] ss = sidWebApp.split(&quot;;&quot;);</span>
+<span class="nc bnc" id="L49" title="All 2 branches missed.">        if (ss.length == 2) {</span>
+<span class="nc" id="L50">          String sessionId = ss[0];</span>
+<span class="nc" id="L51">          String appName = ss[1];</span>
+<span class="nc" id="L52">          Context context = getContainerWrapper().getTomcatContainer().findContext(appName);</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">          if (context != null) {</span>
+<span class="nc" id="L54">            Manager manager = context.getManager();</span>
+<span class="nc" id="L55">            Session session = manager.findSession(sessionId);</span>
+<span class="nc bnc" id="L56" title="All 4 branches missed.">            if (session != null &amp;&amp; session.isValid()) {</span>
+<span class="nc" id="L57">              session.expire();</span>
             }
-<span class="nc" id="L57">          } else {</span>
-<span class="nc" id="L58">            return new ModelAndView(&quot;errors/paramerror&quot;);</span>
+<span class="nc" id="L59">          } else {</span>
+<span class="nc" id="L60">            return new ModelAndView(&quot;errors/paramerror&quot;);</span>
           }
-<span class="nc" id="L60">        } else {</span>
-<span class="nc" id="L61">          return new ModelAndView(&quot;errors/paramerror&quot;);</span>
+<span class="nc" id="L62">        } else {</span>
+<span class="nc" id="L63">          return new ModelAndView(&quot;errors/paramerror&quot;);</span>
         }
       }
     }
-<span class="nc" id="L65">    return new ModelAndView(new InternalResourceView(getViewName()));</span>
+<span class="nc" id="L67">    return new ModelAndView(new InternalResourceView(getViewName()));</span>
   }
 
   @Value(&quot;/sessions.htm&quot;)
   @Override
   public void setViewName(String viewName) {
-<span class="fc" id="L71">    super.setViewName(viewName);</span>
-<span class="fc" id="L72">  }</span>
+<span class="fc" id="L73">    super.setViewName(viewName);</span>
+<span class="fc" id="L74">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

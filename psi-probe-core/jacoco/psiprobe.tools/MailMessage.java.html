@@ -13,6 +13,7 @@ package psiprobe.tools;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
 
@@ -22,22 +23,22 @@ import javax.activation.FileDataSource;
 public class MailMessage {
 
   /** The to. */
-<span class="fc" id="L25">  private final List&lt;String&gt; to = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L26">  private final List&lt;String&gt; to = new ArrayList&lt;&gt;();</span>
 
   /** The cc. */
-<span class="fc" id="L28">  private final List&lt;String&gt; cc = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L29">  private final List&lt;String&gt; cc = new ArrayList&lt;&gt;();</span>
 
   /** The bcc. */
-<span class="fc" id="L31">  private final List&lt;String&gt; bcc = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L32">  private final List&lt;String&gt; bcc = new ArrayList&lt;&gt;();</span>
 
   /** The attachments. */
-<span class="fc" id="L34">  private final List&lt;DataSource&gt; attachments = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L35">  private final List&lt;DataSource&gt; attachments = new ArrayList&lt;&gt;();</span>
 
   /** The subject. */
-<span class="fc" id="L37">  private String subject = &quot;&quot;;</span>
+<span class="fc" id="L38">  private String subject = &quot;&quot;;</span>
 
   /** The body. */
-<span class="fc" id="L40">  private String body = &quot;&quot;;</span>
+<span class="fc" id="L41">  private String body = &quot;&quot;;</span>
 
   /** The body html. */
   private boolean bodyHtml;
@@ -49,11 +50,11 @@ public class MailMessage {
    * @param subject the subject
    * @param body the body
    */
-<span class="fc" id="L52">  public MailMessage(String to, String subject, String body) {</span>
-<span class="fc" id="L53">    addRecipientTo(to);</span>
-<span class="fc" id="L54">    setSubject(subject);</span>
-<span class="fc" id="L55">    setBody(body);</span>
-<span class="fc" id="L56">  }</span>
+<span class="fc" id="L53">  public MailMessage(String to, String subject, String body) {</span>
+<span class="fc" id="L54">    addRecipientTo(to);</span>
+<span class="fc" id="L55">    setSubject(subject);</span>
+<span class="fc" id="L56">    setBody(body);</span>
+<span class="fc" id="L57">  }</span>
 
   /**
    * Gets the to array.
@@ -61,7 +62,7 @@ public class MailMessage {
    * @return the to array
    */
   public String[] getToArray() {
-<span class="nc" id="L64">    return to.toArray(new String[to.size()]);</span>
+<span class="nc" id="L65">    return to.toArray(new String[to.size()]);</span>
   }
 
   /**
@@ -70,7 +71,7 @@ public class MailMessage {
    * @return the cc array
    */
   public String[] getCcArray() {
-<span class="nc" id="L73">    return cc.toArray(new String[cc.size()]);</span>
+<span class="nc" id="L74">    return cc.toArray(new String[cc.size()]);</span>
   }
 
   /**
@@ -79,7 +80,7 @@ public class MailMessage {
    * @return the bcc array
    */
   public String[] getBccArray() {
-<span class="nc" id="L82">    return bcc.toArray(new String[bcc.size()]);</span>
+<span class="nc" id="L83">    return bcc.toArray(new String[bcc.size()]);</span>
   }
 
   /**
@@ -88,7 +89,7 @@ public class MailMessage {
    * @return the attachments array
    */
   public DataSource[] getAttachmentsArray() {
-<span class="nc" id="L91">    return attachments.toArray(new DataSource[attachments.size()]);</span>
+<span class="nc" id="L92">    return attachments.toArray(new DataSource[attachments.size()]);</span>
   }
 
   /**
@@ -97,7 +98,7 @@ public class MailMessage {
    * @return the subject
    */
   public String getSubject() {
-<span class="nc" id="L100">    return subject;</span>
+<span class="nc" id="L101">    return subject;</span>
   }
 
   /**
@@ -106,7 +107,7 @@ public class MailMessage {
    * @return the body
    */
   public String getBody() {
-<span class="nc" id="L109">    return body;</span>
+<span class="nc" id="L110">    return body;</span>
   }
 
   /**
@@ -115,7 +116,7 @@ public class MailMessage {
    * @return true, if is body html
    */
   public boolean isBodyHtml() {
-<span class="nc" id="L118">    return bodyHtml;</span>
+<span class="nc" id="L119">    return bodyHtml;</span>
   }
 
   /**
@@ -125,10 +126,10 @@ public class MailMessage {
    * @return the mail message
    */
   public MailMessage addRecipientTo(String address) {
-<span class="pc bpc" id="L128" title="1 of 2 branches missed.">    if (address != null) {</span>
-<span class="fc" id="L129">      to.add(address);</span>
+<span class="pc bpc" id="L129" title="1 of 2 branches missed.">    if (address != null) {</span>
+<span class="fc" id="L130">      to.add(address);</span>
     }
-<span class="fc" id="L131">    return this;</span>
+<span class="fc" id="L132">    return this;</span>
   }
 
   /**
@@ -138,10 +139,10 @@ public class MailMessage {
    * @return the mail message
    */
   public MailMessage addRecipientCc(String address) {
-<span class="nc bnc" id="L141" title="All 2 branches missed.">    if (address != null) {</span>
-<span class="nc" id="L142">      cc.add(address);</span>
+<span class="nc bnc" id="L142" title="All 2 branches missed.">    if (address != null) {</span>
+<span class="nc" id="L143">      cc.add(address);</span>
     }
-<span class="nc" id="L144">    return this;</span>
+<span class="nc" id="L145">    return this;</span>
   }
 
   /**
@@ -151,10 +152,10 @@ public class MailMessage {
    * @return the mail message
    */
   public MailMessage addRecipientBcc(String address) {
-<span class="nc bnc" id="L154" title="All 2 branches missed.">    if (address != null) {</span>
-<span class="nc" id="L155">      bcc.add(address);</span>
+<span class="nc bnc" id="L155" title="All 2 branches missed.">    if (address != null) {</span>
+<span class="nc" id="L156">      bcc.add(address);</span>
     }
-<span class="nc" id="L157">    return this;</span>
+<span class="nc" id="L158">    return this;</span>
   }
 
   /**
@@ -164,8 +165,8 @@ public class MailMessage {
    * @return the mail message
    */
   public MailMessage addAttachment(File attachment) {
-<span class="nc" id="L167">    FileDataSource ds = new FileDataSource(attachment);</span>
-<span class="nc" id="L168">    return addAttachment(ds);</span>
+<span class="nc" id="L168">    FileDataSource ds = new FileDataSource(attachment);</span>
+<span class="nc" id="L169">    return addAttachment(ds);</span>
   }
 
   /**
@@ -175,10 +176,10 @@ public class MailMessage {
    * @return the mail message
    */
   public MailMessage addAttachment(DataSource attachment) {
-<span class="nc bnc" id="L178" title="All 2 branches missed.">    if (attachment != null) {</span>
-<span class="nc" id="L179">      attachments.add(attachment);</span>
+<span class="nc bnc" id="L179" title="All 2 branches missed.">    if (attachment != null) {</span>
+<span class="nc" id="L180">      attachments.add(attachment);</span>
     }
-<span class="nc" id="L181">    return this;</span>
+<span class="nc" id="L182">    return this;</span>
   }
 
   /**
@@ -187,8 +188,8 @@ public class MailMessage {
    * @return the mail message
    */
   public MailMessage clearRecipientsTo() {
-<span class="nc" id="L190">    to.clear();</span>
-<span class="nc" id="L191">    return this;</span>
+<span class="nc" id="L191">    to.clear();</span>
+<span class="nc" id="L192">    return this;</span>
   }
 
   /**
@@ -197,8 +198,8 @@ public class MailMessage {
    * @return the mail message
    */
   public MailMessage clearRecipientsCc() {
-<span class="nc" id="L200">    cc.clear();</span>
-<span class="nc" id="L201">    return this;</span>
+<span class="nc" id="L201">    cc.clear();</span>
+<span class="nc" id="L202">    return this;</span>
   }
 
   /**
@@ -207,8 +208,8 @@ public class MailMessage {
    * @return the mail message
    */
   public MailMessage clearRecipientsBcc() {
-<span class="nc" id="L210">    bcc.clear();</span>
-<span class="nc" id="L211">    return this;</span>
+<span class="nc" id="L211">    bcc.clear();</span>
+<span class="nc" id="L212">    return this;</span>
   }
 
   /**
@@ -217,8 +218,8 @@ public class MailMessage {
    * @return the mail message
    */
   public MailMessage clearAttachments() {
-<span class="nc" id="L220">    attachments.clear();</span>
-<span class="nc" id="L221">    return this;</span>
+<span class="nc" id="L221">    attachments.clear();</span>
+<span class="nc" id="L222">    return this;</span>
   }
 
   /**
@@ -228,8 +229,8 @@ public class MailMessage {
    * @return the mail message
    */
   public MailMessage setSubject(String subject) {
-<span class="fc" id="L231">    this.subject = subject;</span>
-<span class="fc" id="L232">    return this;</span>
+<span class="fc" id="L232">    this.subject = subject;</span>
+<span class="fc" id="L233">    return this;</span>
   }
 
   /**
@@ -239,8 +240,8 @@ public class MailMessage {
    * @return the mail message
    */
   public MailMessage setBody(String body) {
-<span class="fc" id="L242">    this.body = body;</span>
-<span class="fc" id="L243">    return this;</span>
+<span class="fc" id="L243">    this.body = body;</span>
+<span class="fc" id="L244">    return this;</span>
   }
 
   /**
@@ -250,8 +251,8 @@ public class MailMessage {
    * @return the mail message
    */
   public MailMessage setBodyHtml(boolean bodyHtml) {
-<span class="nc" id="L253">    this.bodyHtml = bodyHtml;</span>
-<span class="nc" id="L254">    return this;</span>
+<span class="nc" id="L254">    this.bodyHtml = bodyHtml;</span>
+<span class="nc" id="L255">    return this;</span>
   }
 
   /**
@@ -260,7 +261,7 @@ public class MailMessage {
    * @return the to
    */
   protected List&lt;String&gt; getTo() {
-<span class="nc" id="L263">    return to;</span>
+<span class="nc" id="L264">    return to;</span>
   }
 
   /**
@@ -269,7 +270,7 @@ public class MailMessage {
    * @return the cc
    */
   protected List&lt;String&gt; getCc() {
-<span class="nc" id="L272">    return cc;</span>
+<span class="nc" id="L273">    return cc;</span>
   }
 
   /**
@@ -278,7 +279,7 @@ public class MailMessage {
    * @return the bcc
    */
   protected List&lt;String&gt; getBcc() {
-<span class="nc" id="L281">    return bcc;</span>
+<span class="nc" id="L282">    return bcc;</span>
   }
 
   /**
@@ -287,8 +288,8 @@ public class MailMessage {
    * @return the attachments
    */
   protected List&lt;DataSource&gt; getAttachments() {
-<span class="nc" id="L290">    return attachments;</span>
+<span class="nc" id="L291">    return attachments;</span>
   }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

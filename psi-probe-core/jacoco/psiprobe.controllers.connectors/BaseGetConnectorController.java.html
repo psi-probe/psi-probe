@@ -11,11 +11,14 @@
 package psiprobe.controllers.connectors;
 
 import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
+
 import psiprobe.beans.ContainerListenerBean;
 import psiprobe.controllers.AbstractTomcatContainerController;
 import psiprobe.model.Connector;
@@ -23,7 +26,7 @@ import psiprobe.model.Connector;
 /**
  * The Class BaseGetConnectorController.
  */
-<span class="fc" id="L26">public class BaseGetConnectorController extends AbstractTomcatContainerController {</span>
+<span class="fc" id="L29">public class BaseGetConnectorController extends AbstractTomcatContainerController {</span>
 
   /** The container listener bean. */
   @Inject
@@ -35,7 +38,7 @@ import psiprobe.model.Connector;
    * @return the container listener bean
    */
   public ContainerListenerBean getContainerListenerBean() {
-<span class="fc" id="L38">    return containerListenerBean;</span>
+<span class="fc" id="L41">    return containerListenerBean;</span>
   }
 
   /**
@@ -44,27 +47,27 @@ import psiprobe.model.Connector;
    * @param containerListenerBean the new container listener bean
    */
   public void setContainerListenerBean(ContainerListenerBean containerListenerBean) {
-<span class="fc" id="L47">    this.containerListenerBean = containerListenerBean;</span>
-<span class="fc" id="L48">  }</span>
+<span class="fc" id="L50">    this.containerListenerBean = containerListenerBean;</span>
+<span class="fc" id="L51">  }</span>
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
-<span class="nc" id="L53">    String connectorName = ServletRequestUtils.getStringParameter(request, &quot;cn&quot;, null);</span>
-<span class="nc" id="L54">    Connector connector = null;</span>
+<span class="nc" id="L56">    String connectorName = ServletRequestUtils.getStringParameter(request, &quot;cn&quot;, null);</span>
+<span class="nc" id="L57">    Connector connector = null;</span>
 
-<span class="nc bnc" id="L56" title="All 2 branches missed.">    if (connectorName != null) {</span>
-<span class="nc" id="L57">      List&lt;Connector&gt; connectors = containerListenerBean.getConnectors(false);</span>
-<span class="nc bnc" id="L58" title="All 2 branches missed.">      for (Connector conn : connectors) {</span>
-<span class="nc bnc" id="L59" title="All 2 branches missed.">        if (connectorName.equals(conn.getProtocolHandler())) {</span>
-<span class="nc" id="L60">          connector = conn;</span>
-<span class="nc" id="L61">          break;</span>
+<span class="nc bnc" id="L59" title="All 2 branches missed.">    if (connectorName != null) {</span>
+<span class="nc" id="L60">      List&lt;Connector&gt; connectors = containerListenerBean.getConnectors(false);</span>
+<span class="nc bnc" id="L61" title="All 2 branches missed.">      for (Connector conn : connectors) {</span>
+<span class="nc bnc" id="L62" title="All 2 branches missed.">        if (connectorName.equals(conn.getProtocolHandler())) {</span>
+<span class="nc" id="L63">          connector = conn;</span>
+<span class="nc" id="L64">          break;</span>
         }
-<span class="nc" id="L63">      }</span>
+<span class="nc" id="L66">      }</span>
     }
 
-<span class="nc" id="L66">    return new ModelAndView(getViewName(), &quot;connector&quot;, connector);</span>
+<span class="nc" id="L69">    return new ModelAndView(getViewName(), &quot;connector&quot;, connector);</span>
   }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

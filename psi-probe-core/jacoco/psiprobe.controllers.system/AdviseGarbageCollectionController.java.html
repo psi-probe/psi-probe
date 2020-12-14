@@ -12,6 +12,7 @@ package psiprobe.controllers.system;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,11 +27,11 @@ import org.springframework.web.servlet.view.RedirectView;
  * Advises Java to run GC asap.
  */
 @Controller
-<span class="fc" id="L29">public class AdviseGarbageCollectionController extends ParameterizableViewController {</span>
+<span class="fc" id="L30">public class AdviseGarbageCollectionController extends ParameterizableViewController {</span>
 
   /** The Constant logger. */
-<span class="fc" id="L32">  private static final Logger logger =</span>
-<span class="fc" id="L33">      LoggerFactory.getLogger(AdviseGarbageCollectionController.class);</span>
+<span class="fc" id="L33">  private static final Logger logger =</span>
+<span class="fc" id="L34">      LoggerFactory.getLogger(AdviseGarbageCollectionController.class);</span>
 
   /** The replace pattern. */
   private String replacePattern;
@@ -41,7 +42,7 @@ import org.springframework.web.servlet.view.RedirectView;
    * @return the replace pattern
    */
   public String getReplacePattern() {
-<span class="fc" id="L44">    return replacePattern;</span>
+<span class="fc" id="L45">    return replacePattern;</span>
   }
 
   /**
@@ -51,45 +52,45 @@ import org.springframework.web.servlet.view.RedirectView;
    */
   @Value(&quot;^http(s)?://[a-zA-Z\\-\\.0-9]+(:[0-9]+)?&quot;)
   public void setReplacePattern(String replacePattern) {
-<span class="fc" id="L54">    this.replacePattern = replacePattern;</span>
-<span class="fc" id="L55">  }</span>
+<span class="fc" id="L55">    this.replacePattern = replacePattern;</span>
+<span class="fc" id="L56">  }</span>
 
   @RequestMapping(path = &quot;/adm/advisegc.htm&quot;)
   @Override
   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
       throws Exception {
-<span class="nc" id="L61">    return super.handleRequest(request, response);</span>
+<span class="nc" id="L62">    return super.handleRequest(request, response);</span>
   }
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 
-<span class="nc" id="L68">    boolean finalization = ServletRequestUtils.getBooleanParameter(request, &quot;fin&quot;, false);</span>
+<span class="nc" id="L69">    boolean finalization = ServletRequestUtils.getBooleanParameter(request, &quot;fin&quot;, false);</span>
 
-<span class="nc" id="L70">    String referer = request.getHeader(&quot;Referer&quot;);</span>
+<span class="nc" id="L71">    String referer = request.getHeader(&quot;Referer&quot;);</span>
     String redirectUrl;
-<span class="nc bnc" id="L72" title="All 2 branches missed.">    if (referer != null) {</span>
-<span class="nc" id="L73">      redirectUrl = referer.replaceAll(replacePattern, &quot;&quot;);</span>
+<span class="nc bnc" id="L73" title="All 2 branches missed.">    if (referer != null) {</span>
+<span class="nc" id="L74">      redirectUrl = referer.replaceAll(replacePattern, &quot;&quot;);</span>
     } else {
-<span class="nc" id="L75">      redirectUrl = request.getContextPath() + getViewName();</span>
+<span class="nc" id="L76">      redirectUrl = request.getContextPath() + getViewName();</span>
     }
-<span class="nc bnc" id="L77" title="All 2 branches missed.">    if (finalization) {</span>
-<span class="nc" id="L78">      Runtime.getRuntime().runFinalization();</span>
-<span class="nc" id="L79">      logger.debug(&quot;Advised finalization&quot;);</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">    if (finalization) {</span>
+<span class="nc" id="L79">      Runtime.getRuntime().runFinalization();</span>
+<span class="nc" id="L80">      logger.debug(&quot;Advised finalization&quot;);</span>
     } else {
-<span class="nc" id="L81">      Runtime.getRuntime().gc();</span>
-<span class="nc" id="L82">      logger.debug(&quot;Advised Garbage Collection&quot;);</span>
+<span class="nc" id="L82">      Runtime.getRuntime().gc();</span>
+<span class="nc" id="L83">      logger.debug(&quot;Advised Garbage Collection&quot;);</span>
     }
-<span class="nc" id="L84">    logger.debug(&quot;Redirected to {}&quot;, redirectUrl);</span>
-<span class="nc" id="L85">    return new ModelAndView(new RedirectView(redirectUrl));</span>
+<span class="nc" id="L85">    logger.debug(&quot;Redirected to {}&quot;, redirectUrl);</span>
+<span class="nc" id="L86">    return new ModelAndView(new RedirectView(redirectUrl));</span>
   }
 
   @Value(&quot;/sysinfo.htm&quot;)
   @Override
   public void setViewName(String viewName) {
-<span class="fc" id="L91">    super.setViewName(viewName);</span>
-<span class="fc" id="L92">  }</span>
+<span class="fc" id="L92">    super.setViewName(viewName);</span>
+<span class="fc" id="L93">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

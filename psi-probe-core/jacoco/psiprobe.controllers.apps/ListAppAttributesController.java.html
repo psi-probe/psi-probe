@@ -11,13 +11,16 @@
 package psiprobe.controllers.apps;
 
 import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.catalina.Context;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
 import psiprobe.controllers.AbstractContextHandlerController;
 import psiprobe.model.Attribute;
 import psiprobe.tools.ApplicationUtils;
@@ -27,33 +30,33 @@ import psiprobe.tools.SecurityUtils;
  * Retrieves a list of servlet context attributes for a web application.
  */
 @Controller
-<span class="fc" id="L30">public class ListAppAttributesController extends AbstractContextHandlerController {</span>
+<span class="fc" id="L33">public class ListAppAttributesController extends AbstractContextHandlerController {</span>
 
   @RequestMapping(path = &quot;/appattributes.htm&quot;)
   @Override
   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
       throws Exception {
-<span class="nc" id="L36">    return super.handleRequest(request, response);</span>
+<span class="nc" id="L39">    return super.handleRequest(request, response);</span>
   }
 
   @Override
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-<span class="nc" id="L43">    List&lt;Attribute&gt; appAttrs = ApplicationUtils.getApplicationAttributes(context);</span>
-<span class="nc" id="L44">    ModelAndView mv = new ModelAndView(getViewName(), &quot;appAttributes&quot;, appAttrs);</span>
+<span class="nc" id="L46">    List&lt;Attribute&gt; appAttrs = ApplicationUtils.getApplicationAttributes(context);</span>
+<span class="nc" id="L47">    ModelAndView mv = new ModelAndView(getViewName(), &quot;appAttributes&quot;, appAttrs);</span>
 
-<span class="nc bnc" id="L46" title="All 2 branches missed.">    if (SecurityUtils.hasAttributeValueRole(getServletContext(), request)) {</span>
-<span class="nc" id="L47">      mv.addObject(&quot;displayValues&quot;, Boolean.TRUE);</span>
+<span class="nc bnc" id="L49" title="All 2 branches missed.">    if (SecurityUtils.hasAttributeValueRole(getServletContext(), request)) {</span>
+<span class="nc" id="L50">      mv.addObject(&quot;displayValues&quot;, Boolean.TRUE);</span>
     }
-<span class="nc" id="L49">    return mv;</span>
+<span class="nc" id="L52">    return mv;</span>
   }
 
   @Value(&quot;appattributes&quot;)
   @Override
   public void setViewName(String viewName) {
-<span class="fc" id="L55">    super.setViewName(viewName);</span>
-<span class="fc" id="L56">  }</span>
+<span class="fc" id="L58">    super.setViewName(viewName);</span>
+<span class="fc" id="L59">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

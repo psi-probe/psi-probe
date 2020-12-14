@@ -17,10 +17,12 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
+
 import org.apache.catalina.Context;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,6 +31,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
 import psiprobe.controllers.AbstractContextHandlerController;
 
 /**
@@ -36,72 +39,72 @@ import psiprobe.controllers.AbstractContextHandlerController;
  * information about the database.
  */
 @Controller
-<span class="fc" id="L39">public class ConnectionTestController extends AbstractContextHandlerController {</span>
+<span class="fc" id="L42">public class ConnectionTestController extends AbstractContextHandlerController {</span>
 
   /** The Constant logger. */
-<span class="fc" id="L42">  private static final Logger logger = LoggerFactory.getLogger(ConnectionTestController.class);</span>
+<span class="fc" id="L45">  private static final Logger logger = LoggerFactory.getLogger(ConnectionTestController.class);</span>
 
   @RequestMapping(path = &quot;/sql/connection.ajax&quot;)
   @Override
   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
       throws Exception {
-<span class="nc" id="L48">    return super.handleRequest(request, response);</span>
+<span class="nc" id="L51">    return super.handleRequest(request, response);</span>
   }
 
   @Override
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-<span class="nc" id="L55">    String resourceName = ServletRequestUtils.getStringParameter(request, &quot;resource&quot;);</span>
-<span class="nc" id="L56">    DataSource dataSource = null;</span>
+<span class="nc" id="L58">    String resourceName = ServletRequestUtils.getStringParameter(request, &quot;resource&quot;);</span>
+<span class="nc" id="L59">    DataSource dataSource = null;</span>
 
     try {
-<span class="nc" id="L59">      dataSource = getContainerWrapper().getResourceResolver().lookupDataSource(context,</span>
-<span class="nc" id="L60">          resourceName, getContainerWrapper());</span>
-<span class="nc" id="L61">    } catch (NamingException e) {</span>
-<span class="nc" id="L62">      request.setAttribute(&quot;errorMessage&quot;, getMessageSourceAccessor().getMessage(</span>
+<span class="nc" id="L62">      dataSource = getContainerWrapper().getResourceResolver().lookupDataSource(context,</span>
+<span class="nc" id="L63">          resourceName, getContainerWrapper());</span>
+<span class="nc" id="L64">    } catch (NamingException e) {</span>
+<span class="nc" id="L65">      request.setAttribute(&quot;errorMessage&quot;, getMessageSourceAccessor().getMessage(</span>
           &quot;probe.src.dataSourceTest.resource.lookup.failure&quot;, new Object[] {resourceName}));
-<span class="nc" id="L64">      logger.trace(&quot;&quot;, e);</span>
-<span class="nc" id="L65">    }</span>
+<span class="nc" id="L67">      logger.trace(&quot;&quot;, e);</span>
+<span class="nc" id="L68">    }</span>
 
-<span class="nc bnc" id="L67" title="All 2 branches missed.">    if (dataSource == null) {</span>
-<span class="nc" id="L68">      request.setAttribute(&quot;errorMessage&quot;, getMessageSourceAccessor().getMessage(</span>
+<span class="nc bnc" id="L70" title="All 2 branches missed.">    if (dataSource == null) {</span>
+<span class="nc" id="L71">      request.setAttribute(&quot;errorMessage&quot;, getMessageSourceAccessor().getMessage(</span>
           &quot;probe.src.dataSourceTest.resource.lookup.failure&quot;, new Object[] {resourceName}));
     } else {
       try {
         // TODO: use Spring's jdbc template?
-<span class="nc" id="L73">        try (Connection conn = dataSource.getConnection()) {</span>
-<span class="nc" id="L74">          DatabaseMetaData md = conn.getMetaData();</span>
+<span class="nc" id="L76">        try (Connection conn = dataSource.getConnection()) {</span>
+<span class="nc" id="L77">          DatabaseMetaData md = conn.getMetaData();</span>
 
-<span class="nc" id="L76">          List&lt;Map&lt;String, String&gt;&gt; dbMetaData = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L79">          List&lt;Map&lt;String, String&gt;&gt; dbMetaData = new ArrayList&lt;&gt;();</span>
 
-<span class="nc" id="L78">          addDbMetaDataEntry(dbMetaData, &quot;probe.jsp.dataSourceTest.dbMetaData.dbProdName&quot;,</span>
-<span class="nc" id="L79">              md.getDatabaseProductName());</span>
-<span class="nc" id="L80">          addDbMetaDataEntry(dbMetaData, &quot;probe.jsp.dataSourceTest.dbMetaData.dbProdVersion&quot;,</span>
-<span class="nc" id="L81">              md.getDatabaseProductVersion());</span>
-<span class="nc" id="L82">          addDbMetaDataEntry(dbMetaData, &quot;probe.jsp.dataSourceTest.dbMetaData.jdbcDriverName&quot;,</span>
-<span class="nc" id="L83">              md.getDriverName());</span>
-<span class="nc" id="L84">          addDbMetaDataEntry(dbMetaData, &quot;probe.jsp.dataSourceTest.dbMetaData.jdbcDriverVersion&quot;,</span>
-<span class="nc" id="L85">              md.getDriverVersion());</span>
-<span class="nc" id="L86">          addDbMetaDataEntry(dbMetaData, &quot;probe.jsp.dataSourceTest.dbMetaData.jdbcVersion&quot;,</span>
-<span class="nc" id="L87">              String.valueOf(md.getJDBCMajorVersion()));</span>
+<span class="nc" id="L81">          addDbMetaDataEntry(dbMetaData, &quot;probe.jsp.dataSourceTest.dbMetaData.dbProdName&quot;,</span>
+<span class="nc" id="L82">              md.getDatabaseProductName());</span>
+<span class="nc" id="L83">          addDbMetaDataEntry(dbMetaData, &quot;probe.jsp.dataSourceTest.dbMetaData.dbProdVersion&quot;,</span>
+<span class="nc" id="L84">              md.getDatabaseProductVersion());</span>
+<span class="nc" id="L85">          addDbMetaDataEntry(dbMetaData, &quot;probe.jsp.dataSourceTest.dbMetaData.jdbcDriverName&quot;,</span>
+<span class="nc" id="L86">              md.getDriverName());</span>
+<span class="nc" id="L87">          addDbMetaDataEntry(dbMetaData, &quot;probe.jsp.dataSourceTest.dbMetaData.jdbcDriverVersion&quot;,</span>
+<span class="nc" id="L88">              md.getDriverVersion());</span>
+<span class="nc" id="L89">          addDbMetaDataEntry(dbMetaData, &quot;probe.jsp.dataSourceTest.dbMetaData.jdbcVersion&quot;,</span>
+<span class="nc" id="L90">              String.valueOf(md.getJDBCMajorVersion()));</span>
 
-<span class="nc" id="L89">          return new ModelAndView(getViewName(), &quot;dbMetaData&quot;, dbMetaData);</span>
+<span class="nc" id="L92">          return new ModelAndView(getViewName(), &quot;dbMetaData&quot;, dbMetaData);</span>
         }
-<span class="nc" id="L91">      } catch (SQLException e) {</span>
-<span class="nc" id="L92">        String message = getMessageSourceAccessor().getMessage(</span>
-<span class="nc" id="L93">            &quot;probe.src.dataSourceTest.connection.failure&quot;, new Object[] {e.getMessage()});</span>
-<span class="nc" id="L94">        logger.error(message, e);</span>
-<span class="nc" id="L95">        request.setAttribute(&quot;errorMessage&quot;, message);</span>
+<span class="nc" id="L94">      } catch (SQLException e) {</span>
+<span class="nc" id="L95">        String message = getMessageSourceAccessor().getMessage(</span>
+<span class="nc" id="L96">            &quot;probe.src.dataSourceTest.connection.failure&quot;, new Object[] {e.getMessage()});</span>
+<span class="nc" id="L97">        logger.error(message, e);</span>
+<span class="nc" id="L98">        request.setAttribute(&quot;errorMessage&quot;, message);</span>
       }
     }
 
-<span class="nc" id="L99">    return new ModelAndView(getViewName());</span>
+<span class="nc" id="L102">    return new ModelAndView(getViewName());</span>
   }
 
   @Override
   protected boolean isContextOptional() {
-<span class="nc" id="L104">    return true;</span>
+<span class="nc" id="L107">    return true;</span>
   }
 
   /**
@@ -112,17 +115,17 @@ import psiprobe.controllers.AbstractContextHandlerController;
    * @param value the value
    */
   private void addDbMetaDataEntry(List&lt;Map&lt;String, String&gt;&gt; list, String name, String value) {
-<span class="nc" id="L115">    Map&lt;String, String&gt; entry = new LinkedHashMap&lt;&gt;();</span>
-<span class="nc" id="L116">    entry.put(&quot;propertyName&quot;, getMessageSourceAccessor().getMessage(name));</span>
-<span class="nc" id="L117">    entry.put(&quot;propertyValue&quot;, value);</span>
-<span class="nc" id="L118">    list.add(entry);</span>
-<span class="nc" id="L119">  }</span>
+<span class="nc" id="L118">    Map&lt;String, String&gt; entry = new LinkedHashMap&lt;&gt;();</span>
+<span class="nc" id="L119">    entry.put(&quot;propertyName&quot;, getMessageSourceAccessor().getMessage(name));</span>
+<span class="nc" id="L120">    entry.put(&quot;propertyValue&quot;, value);</span>
+<span class="nc" id="L121">    list.add(entry);</span>
+<span class="nc" id="L122">  }</span>
 
   @Value(&quot;ajax/sql/connection&quot;)
   @Override
   public void setViewName(String viewName) {
-<span class="fc" id="L124">    super.setViewName(viewName);</span>
-<span class="fc" id="L125">  }</span>
+<span class="fc" id="L127">    super.setViewName(viewName);</span>
+<span class="fc" id="L128">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

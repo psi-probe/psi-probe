@@ -11,12 +11,13 @@
 package psiprobe.tools.logging.log4j;
 
 import java.io.File;
+
 import psiprobe.tools.logging.AbstractLogDestination;
 
 /**
  * The Class Log4JAppenderAccessor.
  */
-<span class="fc" id="L19">public class Log4JAppenderAccessor extends AbstractLogDestination {</span>
+<span class="fc" id="L20">public class Log4JAppenderAccessor extends AbstractLogDestination {</span>
 
   /** The logger accessor. */
   private Log4JLoggerAccessor loggerAccessor;
@@ -27,7 +28,7 @@ import psiprobe.tools.logging.AbstractLogDestination;
    * @return the logger accessor
    */
   public Log4JLoggerAccessor getLoggerAccessor() {
-<span class="fc" id="L30">    return loggerAccessor;</span>
+<span class="fc" id="L31">    return loggerAccessor;</span>
   }
 
   /**
@@ -36,58 +37,58 @@ import psiprobe.tools.logging.AbstractLogDestination;
    * @param loggerAccessor the new logger accessor
    */
   public void setLoggerAccessor(Log4JLoggerAccessor loggerAccessor) {
-<span class="fc" id="L39">    this.loggerAccessor = loggerAccessor;</span>
-<span class="fc" id="L40">  }</span>
+<span class="fc" id="L40">    this.loggerAccessor = loggerAccessor;</span>
+<span class="fc" id="L41">  }</span>
 
   @Override
   public boolean isContext() {
-<span class="nc" id="L44">    return getLoggerAccessor().isContext();</span>
+<span class="nc" id="L45">    return getLoggerAccessor().isContext();</span>
   }
 
   @Override
   public boolean isRoot() {
-<span class="nc" id="L49">    return getLoggerAccessor().isRoot();</span>
+<span class="nc" id="L50">    return getLoggerAccessor().isRoot();</span>
   }
 
   @Override
   public String getName() {
-<span class="nc" id="L54">    return getLoggerAccessor().getName();</span>
+<span class="nc" id="L55">    return getLoggerAccessor().getName();</span>
   }
 
   @Override
   public String getLogType() {
-<span class="nc" id="L59">    return &quot;log4j&quot;;</span>
+<span class="nc" id="L60">    return &quot;log4j&quot;;</span>
   }
 
   @Override
   public String getIndex() {
-<span class="nc" id="L64">    return (String) getProperty(getTarget(), &quot;name&quot;, null);</span>
+<span class="nc" id="L65">    return (String) getProperty(getTarget(), &quot;name&quot;, null);</span>
   }
 
   @Override
   public String getConversionPattern() {
-<span class="nc" id="L69">    Object layout = getProperty(getTarget(), &quot;layout&quot;, null);</span>
-<span class="nc bnc" id="L70" title="All 4 branches missed.">    if (layout != null &amp;&amp; &quot;org.apache.log4j.PatternLayout&quot;.equals(layout.getClass().getName())) {</span>
-<span class="nc" id="L71">      return (String) getProperty(layout, &quot;conversionPattern&quot;, null);</span>
+<span class="nc" id="L70">    Object layout = getProperty(getTarget(), &quot;layout&quot;, null);</span>
+<span class="nc bnc" id="L71" title="All 4 branches missed.">    if (layout != null &amp;&amp; &quot;org.apache.log4j.PatternLayout&quot;.equals(layout.getClass().getName())) {</span>
+<span class="nc" id="L72">      return (String) getProperty(layout, &quot;conversionPattern&quot;, null);</span>
     }
-<span class="nc" id="L73">    return null;</span>
+<span class="nc" id="L74">    return null;</span>
   }
 
   @Override
   public File getFile() {
-<span class="nc" id="L78">    String fileName = (String) getProperty(getTarget(), &quot;file&quot;, null);</span>
-<span class="nc bnc" id="L79" title="All 2 branches missed.">    return fileName != null ? new File(fileName) : getStdoutFile();</span>
+<span class="nc" id="L79">    String fileName = (String) getProperty(getTarget(), &quot;file&quot;, null);</span>
+<span class="nc bnc" id="L80" title="All 2 branches missed.">    return fileName != null ? new File(fileName) : getStdoutFile();</span>
   }
 
   @Override
   public String getLevel() {
-<span class="nc" id="L84">    return getLoggerAccessor().getLevel();</span>
+<span class="nc" id="L85">    return getLoggerAccessor().getLevel();</span>
   }
 
   @Override
   public String[] getValidLevels() {
-<span class="nc" id="L89">    return new String[] {&quot;OFF&quot;, &quot;FATAL&quot;, &quot;ERROR&quot;, &quot;WARN&quot;, &quot;INFO&quot;, &quot;DEBUG&quot;, &quot;TRACE&quot;, &quot;ALL&quot;};</span>
+<span class="nc" id="L90">    return new String[] {&quot;OFF&quot;, &quot;FATAL&quot;, &quot;ERROR&quot;, &quot;WARN&quot;, &quot;INFO&quot;, &quot;DEBUG&quot;, &quot;TRACE&quot;, &quot;ALL&quot;};</span>
   }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

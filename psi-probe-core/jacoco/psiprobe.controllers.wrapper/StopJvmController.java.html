@@ -12,6 +12,7 @@ package psiprobe.controllers.wrapper;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,19 +20,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.tanukisoftware.wrapper.WrapperManager;
+
 import psiprobe.PostParameterizableViewController;
 
 /**
  * The Class StopJvmController.
  */
 @Controller
-<span class="fc" id="L28">public class StopJvmController extends PostParameterizableViewController {</span>
+<span class="fc" id="L30">public class StopJvmController extends PostParameterizableViewController {</span>
 
   /** The Constant logger. */
-<span class="fc" id="L31">  private static final Logger logger = LoggerFactory.getLogger(StopJvmController.class);</span>
+<span class="fc" id="L33">  private static final Logger logger = LoggerFactory.getLogger(StopJvmController.class);</span>
 
   /** The stop exit code. */
-<span class="fc" id="L34">  private int stopExitCode = 1;</span>
+<span class="fc" id="L36">  private int stopExitCode = 1;</span>
 
   /**
    * Gets the stop exit code.
@@ -39,7 +41,7 @@ import psiprobe.PostParameterizableViewController;
    * @return the stop exit code
    */
   public int getStopExitCode() {
-<span class="fc" id="L42">    return stopExitCode;</span>
+<span class="fc" id="L44">    return stopExitCode;</span>
   }
 
   /**
@@ -48,38 +50,38 @@ import psiprobe.PostParameterizableViewController;
    * @param stopExitCode the new stop exit code
    */
   public void setStopExitCode(int stopExitCode) {
-<span class="fc" id="L51">    this.stopExitCode = stopExitCode;</span>
-<span class="fc" id="L52">  }</span>
+<span class="fc" id="L53">    this.stopExitCode = stopExitCode;</span>
+<span class="fc" id="L54">  }</span>
 
   @RequestMapping(path = &quot;/adm/stopvm.ajax&quot;)
   @Override
   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
       throws Exception {
-<span class="nc" id="L58">    return super.handleRequest(request, response);</span>
+<span class="nc" id="L60">    return super.handleRequest(request, response);</span>
   }
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 
-<span class="nc" id="L65">    boolean done = false;</span>
+<span class="nc" id="L67">    boolean done = false;</span>
     try {
-<span class="nc" id="L67">      Class.forName(&quot;org.tanukisoftware.wrapper.WrapperManager&quot;);</span>
-<span class="nc" id="L68">      logger.info(&quot;JVM is STOPPED by {}&quot;, request.getRemoteAddr());</span>
-<span class="nc" id="L69">      WrapperManager.stop(stopExitCode);</span>
-<span class="nc" id="L70">      done = true;</span>
-<span class="nc" id="L71">    } catch (ClassNotFoundException e) {</span>
-<span class="nc" id="L72">      logger.info(&quot;WrapperManager not found. Do you have wrapper.jar in the classpath?&quot;);</span>
-<span class="nc" id="L73">      logger.trace(&quot;&quot;, e);</span>
-<span class="nc" id="L74">    }</span>
-<span class="nc" id="L75">    return new ModelAndView(getViewName(), &quot;done&quot;, done);</span>
+<span class="nc" id="L69">      Class.forName(&quot;org.tanukisoftware.wrapper.WrapperManager&quot;);</span>
+<span class="nc" id="L70">      logger.info(&quot;JVM is STOPPED by {}&quot;, request.getRemoteAddr());</span>
+<span class="nc" id="L71">      WrapperManager.stop(stopExitCode);</span>
+<span class="nc" id="L72">      done = true;</span>
+<span class="nc" id="L73">    } catch (ClassNotFoundException e) {</span>
+<span class="nc" id="L74">      logger.info(&quot;WrapperManager not found. Do you have wrapper.jar in the classpath?&quot;);</span>
+<span class="nc" id="L75">      logger.trace(&quot;&quot;, e);</span>
+<span class="nc" id="L76">    }</span>
+<span class="nc" id="L77">    return new ModelAndView(getViewName(), &quot;done&quot;, done);</span>
   }
 
   @Value(&quot;ajax/jvm_stopped&quot;)
   @Override
   public void setViewName(String viewName) {
-<span class="fc" id="L81">    super.setViewName(viewName);</span>
-<span class="fc" id="L82">  }</span>
+<span class="fc" id="L83">    super.setViewName(viewName);</span>
+<span class="fc" id="L84">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

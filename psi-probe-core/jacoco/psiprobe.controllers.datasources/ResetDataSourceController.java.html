@@ -13,6 +13,7 @@ package psiprobe.controllers.datasources;
 import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.catalina.Context;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,16 +23,17 @@ import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
+
 import psiprobe.controllers.AbstractContextHandlerController;
 
 /**
  * Resets datasource if the datasource supports it.
  */
 @Controller
-<span class="fc" id="L31">public class ResetDataSourceController extends AbstractContextHandlerController {</span>
+<span class="fc" id="L33">public class ResetDataSourceController extends AbstractContextHandlerController {</span>
 
   /** The Constant logger. */
-<span class="fc" id="L34">  private static final Logger logger = LoggerFactory.getLogger(ResetDataSourceController.class);</span>
+<span class="fc" id="L36">  private static final Logger logger = LoggerFactory.getLogger(ResetDataSourceController.class);</span>
 
   /** The replace pattern. */
   private String replacePattern;
@@ -42,7 +44,7 @@ import psiprobe.controllers.AbstractContextHandlerController;
    * @return the replace pattern
    */
   public String getReplacePattern() {
-<span class="fc" id="L45">    return replacePattern;</span>
+<span class="fc" id="L47">    return replacePattern;</span>
   }
 
   /**
@@ -52,59 +54,59 @@ import psiprobe.controllers.AbstractContextHandlerController;
    */
   @Value(&quot;^http(s)?://[a-zA-Z\\-\\.0-9]+(:[0-9]+)?&quot;)
   public void setReplacePattern(String replacePattern) {
-<span class="fc" id="L55">    this.replacePattern = replacePattern;</span>
-<span class="fc" id="L56">  }</span>
+<span class="fc" id="L57">    this.replacePattern = replacePattern;</span>
+<span class="fc" id="L58">  }</span>
 
   @RequestMapping(path = &quot;/app/resetds.htm&quot;)
   @Override
   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
       throws Exception {
-<span class="nc" id="L62">    return super.handleRequest(request, response);</span>
+<span class="nc" id="L64">    return super.handleRequest(request, response);</span>
   }
 
   @Override
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-<span class="nc" id="L69">    String resourceName = ServletRequestUtils.getStringParameter(request, &quot;resource&quot;, null);</span>
-<span class="nc" id="L70">    String referer = request.getHeader(&quot;Referer&quot;);</span>
+<span class="nc" id="L71">    String resourceName = ServletRequestUtils.getStringParameter(request, &quot;resource&quot;, null);</span>
+<span class="nc" id="L72">    String referer = request.getHeader(&quot;Referer&quot;);</span>
     String redirectUrl;
-<span class="nc bnc" id="L72" title="All 2 branches missed.">    if (referer != null) {</span>
-<span class="nc" id="L73">      redirectUrl = referer.replaceAll(replacePattern, &quot;&quot;);</span>
+<span class="nc bnc" id="L74" title="All 2 branches missed.">    if (referer != null) {</span>
+<span class="nc" id="L75">      redirectUrl = referer.replaceAll(replacePattern, &quot;&quot;);</span>
     } else {
-<span class="nc" id="L75">      redirectUrl = request.getContextPath() + getViewName();</span>
+<span class="nc" id="L77">      redirectUrl = request.getContextPath() + getViewName();</span>
     }
 
-<span class="nc bnc" id="L78" title="All 4 branches missed.">    if (resourceName != null &amp;&amp; resourceName.length() &gt; 0) {</span>
-<span class="nc" id="L79">      boolean reset = false;</span>
+<span class="nc bnc" id="L80" title="All 4 branches missed.">    if (resourceName != null &amp;&amp; resourceName.length() &gt; 0) {</span>
+<span class="nc" id="L81">      boolean reset = false;</span>
       try {
-<span class="nc" id="L81">        reset = getContainerWrapper().getResourceResolver().resetResource(context, resourceName,</span>
-<span class="nc" id="L82">            getContainerWrapper());</span>
-<span class="nc" id="L83">      } catch (NamingException e) {</span>
-<span class="nc" id="L84">        request.setAttribute(&quot;errorMessage&quot;, getMessageSourceAccessor()</span>
-<span class="nc" id="L85">            .getMessage(&quot;probe.src.reset.datasource.notfound&quot;, new Object[] {resourceName}));</span>
-<span class="nc" id="L86">        logger.trace(&quot;&quot;, e);</span>
-<span class="nc" id="L87">      }</span>
-<span class="nc bnc" id="L88" title="All 2 branches missed.">      if (!reset) {</span>
-<span class="nc" id="L89">        request.setAttribute(&quot;errorMessage&quot;,</span>
-<span class="nc" id="L90">            getMessageSourceAccessor().getMessage(&quot;probe.src.reset.datasource.c3p0&quot;));</span>
+<span class="nc" id="L83">        reset = getContainerWrapper().getResourceResolver().resetResource(context, resourceName,</span>
+<span class="nc" id="L84">            getContainerWrapper());</span>
+<span class="nc" id="L85">      } catch (NamingException e) {</span>
+<span class="nc" id="L86">        request.setAttribute(&quot;errorMessage&quot;, getMessageSourceAccessor()</span>
+<span class="nc" id="L87">            .getMessage(&quot;probe.src.reset.datasource.notfound&quot;, new Object[] {resourceName}));</span>
+<span class="nc" id="L88">        logger.trace(&quot;&quot;, e);</span>
+<span class="nc" id="L89">      }</span>
+<span class="nc bnc" id="L90" title="All 2 branches missed.">      if (!reset) {</span>
+<span class="nc" id="L91">        request.setAttribute(&quot;errorMessage&quot;,</span>
+<span class="nc" id="L92">            getMessageSourceAccessor().getMessage(&quot;probe.src.reset.datasource.c3p0&quot;));</span>
       }
 
     }
-<span class="nc" id="L94">    logger.debug(&quot;Redirected to {}&quot;, redirectUrl);</span>
-<span class="nc" id="L95">    return new ModelAndView(new RedirectView(redirectUrl));</span>
+<span class="nc" id="L96">    logger.debug(&quot;Redirected to {}&quot;, redirectUrl);</span>
+<span class="nc" id="L97">    return new ModelAndView(new RedirectView(redirectUrl));</span>
   }
 
   @Override
   protected boolean isContextOptional() {
-<span class="nc bnc" id="L100" title="All 2 branches missed.">    return !getContainerWrapper().getResourceResolver().supportsPrivateResources();</span>
+<span class="nc bnc" id="L102" title="All 2 branches missed.">    return !getContainerWrapper().getResourceResolver().supportsPrivateResources();</span>
   }
 
   @Value(&quot;/resources.htm&quot;)
   @Override
   public void setViewName(String viewName) {
-<span class="fc" id="L106">    super.setViewName(viewName);</span>
-<span class="fc" id="L107">  }</span>
+<span class="fc" id="L108">    super.setViewName(viewName);</span>
+<span class="fc" id="L109">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

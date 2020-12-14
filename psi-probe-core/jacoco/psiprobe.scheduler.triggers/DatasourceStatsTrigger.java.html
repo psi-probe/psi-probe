@@ -13,12 +13,13 @@ package psiprobe.scheduler.triggers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.quartz.CronTriggerFactoryBean;
+
 import psiprobe.tools.TimeExpression;
 
 /**
  * The Class DatasourceStatsTrigger.
  */
-<span class="fc" id="L21">public class DatasourceStatsTrigger extends CronTriggerFactoryBean {</span>
+<span class="fc" id="L22">public class DatasourceStatsTrigger extends CronTriggerFactoryBean {</span>
 
   /**
    * Sets the cron expression.
@@ -30,8 +31,8 @@ import psiprobe.tools.TimeExpression;
   public void setCronExpression(
       @Value(&quot;${psiprobe.beans.stats.collectors.datasource.period}&quot;) String periodExpression,
       @Value(&quot;${psiprobe.beans.stats.collectors.datasource.phase}&quot;) String phaseExpression) {
-<span class="fc" id="L33">    super.setCronExpression(TimeExpression.cronExpression(periodExpression, phaseExpression));</span>
-<span class="fc" id="L34">  }</span>
+<span class="fc" id="L34">    super.setCronExpression(TimeExpression.cronExpression(periodExpression, phaseExpression));</span>
+<span class="fc" id="L35">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

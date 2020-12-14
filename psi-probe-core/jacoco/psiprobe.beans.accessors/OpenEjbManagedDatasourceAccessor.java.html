@@ -13,45 +13,46 @@ package psiprobe.beans.accessors;
 import org.apache.openejb.resource.jdbc.managed.local.ManagedDataSource;
 import org.apache.tomcat.jdbc.pool.DataSourceProxy;
 import org.apache.tomcat.jdbc.pool.PoolConfiguration;
+
 import psiprobe.model.DataSourceInfo;
 
 /**
  * Datasource accessor OpenEJB / TomEE.
  */
-<span class="fc" id="L21">public class OpenEjbManagedDatasourceAccessor implements DatasourceAccessor {</span>
+<span class="fc" id="L22">public class OpenEjbManagedDatasourceAccessor implements DatasourceAccessor {</span>
 
   @Override
   public DataSourceInfo getInfo(Object resource) throws Exception {
-<span class="fc" id="L25">    DataSourceInfo dataSourceInfo = null;</span>
-<span class="pc bpc" id="L26" title="1 of 2 branches missed.">    if (canMap(resource)) {</span>
-<span class="nc" id="L27">      PoolConfiguration conf = (PoolConfiguration) unwrap(resource);</span>
-<span class="nc" id="L28">      DataSourceProxy proxy = (DataSourceProxy) conf;</span>
+<span class="fc" id="L26">    DataSourceInfo dataSourceInfo = null;</span>
+<span class="pc bpc" id="L27" title="1 of 2 branches missed.">    if (canMap(resource)) {</span>
+<span class="nc" id="L28">      PoolConfiguration conf = (PoolConfiguration) unwrap(resource);</span>
+<span class="nc" id="L29">      DataSourceProxy proxy = (DataSourceProxy) conf;</span>
 
-<span class="nc" id="L30">      dataSourceInfo = new DataSourceInfo();</span>
-<span class="nc" id="L31">      dataSourceInfo.setBusyConnections(proxy.getNumActive());</span>
-<span class="nc" id="L32">      dataSourceInfo.setEstablishedConnections(proxy.getNumIdle() + proxy.getNumActive());</span>
-<span class="nc" id="L33">      dataSourceInfo.setMaxConnections(conf.getMaxActive());</span>
-<span class="nc" id="L34">      dataSourceInfo.setJdbcUrl(conf.getUrl());</span>
-<span class="nc" id="L35">      dataSourceInfo.setUsername(conf.getUsername());</span>
-<span class="nc" id="L36">      dataSourceInfo.setResettable(false);</span>
-<span class="nc" id="L37">      dataSourceInfo.setType(&quot;tomee-jdbc&quot;);</span>
+<span class="nc" id="L31">      dataSourceInfo = new DataSourceInfo();</span>
+<span class="nc" id="L32">      dataSourceInfo.setBusyConnections(proxy.getNumActive());</span>
+<span class="nc" id="L33">      dataSourceInfo.setEstablishedConnections(proxy.getNumIdle() + proxy.getNumActive());</span>
+<span class="nc" id="L34">      dataSourceInfo.setMaxConnections(conf.getMaxActive());</span>
+<span class="nc" id="L35">      dataSourceInfo.setJdbcUrl(conf.getUrl());</span>
+<span class="nc" id="L36">      dataSourceInfo.setUsername(conf.getUsername());</span>
+<span class="nc" id="L37">      dataSourceInfo.setResettable(false);</span>
+<span class="nc" id="L38">      dataSourceInfo.setType(&quot;tomee-jdbc&quot;);</span>
     }
-<span class="fc" id="L39">    return dataSourceInfo;</span>
+<span class="fc" id="L40">    return dataSourceInfo;</span>
   }
 
   @Override
   public boolean reset(Object resource) throws Exception {
-<span class="nc" id="L44">    return false;</span>
+<span class="nc" id="L45">    return false;</span>
   }
 
   @Override
   public boolean canMap(Object resource) {
-<span class="fc" id="L49">    if (&quot;org.apache.openejb.resource.jdbc.managed.local.ManagedDataSource&quot;</span>
-<span class="fc bfc" id="L50" title="All 2 branches covered.">        .equals(resource.getClass().getName())) {</span>
-<span class="fc" id="L51">      Object wrapped = unwrap(resource);</span>
-<span class="pc bpc" id="L52" title="3 of 4 branches missed.">      return wrapped instanceof DataSourceProxy &amp;&amp; wrapped instanceof PoolConfiguration;</span>
+<span class="fc" id="L50">    if (&quot;org.apache.openejb.resource.jdbc.managed.local.ManagedDataSource&quot;</span>
+<span class="fc bfc" id="L51" title="All 2 branches covered.">        .equals(resource.getClass().getName())) {</span>
+<span class="fc" id="L52">      Object wrapped = unwrap(resource);</span>
+<span class="pc bpc" id="L53" title="3 of 4 branches missed.">      return wrapped instanceof DataSourceProxy &amp;&amp; wrapped instanceof PoolConfiguration;</span>
     }
-<span class="fc" id="L54">    return false;</span>
+<span class="fc" id="L55">    return false;</span>
   }
 
   /**
@@ -61,8 +62,8 @@ import psiprobe.model.DataSourceInfo;
    * @return the object
    */
   private Object unwrap(Object resource) {
-<span class="fc" id="L64">    return ((ManagedDataSource) resource).getDelegate();</span>
+<span class="fc" id="L65">    return ((ManagedDataSource) resource).getDelegate();</span>
   }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

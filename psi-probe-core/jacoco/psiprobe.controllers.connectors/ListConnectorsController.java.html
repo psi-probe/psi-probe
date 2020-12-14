@@ -11,13 +11,16 @@
 package psiprobe.controllers.connectors;
 
 import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
 import psiprobe.beans.ContainerListenerBean;
 import psiprobe.controllers.AbstractTomcatContainerController;
 import psiprobe.model.Connector;
@@ -28,7 +31,7 @@ import psiprobe.tools.TimeExpression;
  * The Class ListConnectorsController.
  */
 @Controller
-<span class="fc" id="L31">public class ListConnectorsController extends AbstractTomcatContainerController {</span>
+<span class="fc" id="L34">public class ListConnectorsController extends AbstractTomcatContainerController {</span>
 
   /** The container listener bean. */
   @Inject
@@ -46,7 +49,7 @@ import psiprobe.tools.TimeExpression;
    * @return the container listener bean
    */
   public ContainerListenerBean getContainerListenerBean() {
-<span class="fc" id="L49">    return containerListenerBean;</span>
+<span class="fc" id="L52">    return containerListenerBean;</span>
   }
 
   /**
@@ -55,8 +58,8 @@ import psiprobe.tools.TimeExpression;
    * @param containerListenerBean the new container listener bean
    */
   public void setContainerListenerBean(ContainerListenerBean containerListenerBean) {
-<span class="fc" id="L58">    this.containerListenerBean = containerListenerBean;</span>
-<span class="fc" id="L59">  }</span>
+<span class="fc" id="L61">    this.containerListenerBean = containerListenerBean;</span>
+<span class="fc" id="L62">  }</span>
 
   /**
    * Gets the collection period.
@@ -64,7 +67,7 @@ import psiprobe.tools.TimeExpression;
    * @return the collection period
    */
   public long getCollectionPeriod() {
-<span class="fc" id="L67">    return collectionPeriod;</span>
+<span class="fc" id="L70">    return collectionPeriod;</span>
   }
 
   /**
@@ -73,8 +76,8 @@ import psiprobe.tools.TimeExpression;
    * @param collectionPeriod the new collection period
    */
   public void setCollectionPeriod(long collectionPeriod) {
-<span class="fc" id="L76">    this.collectionPeriod = collectionPeriod;</span>
-<span class="fc" id="L77">  }</span>
+<span class="fc" id="L79">    this.collectionPeriod = collectionPeriod;</span>
+<span class="fc" id="L80">  }</span>
 
   /**
    * Sets the collection period using expression.
@@ -83,8 +86,8 @@ import psiprobe.tools.TimeExpression;
    */
   @Value(&quot;${psiprobe.beans.stats.collectors.connector.period}&quot;)
   public void setCollectionPeriod(String collectionPeriod) {
-<span class="fc" id="L86">    this.collectionPeriod = TimeExpression.inSeconds(collectionPeriod);</span>
-<span class="fc" id="L87">  }</span>
+<span class="fc" id="L89">    this.collectionPeriod = TimeExpression.inSeconds(collectionPeriod);</span>
+<span class="fc" id="L90">  }</span>
 
   /**
    * Checks if is include request processors.
@@ -92,7 +95,7 @@ import psiprobe.tools.TimeExpression;
    * @return true, if is include request processors
    */
   public boolean isIncludeRequestProcessors() {
-<span class="fc" id="L95">    return includeRequestProcessors;</span>
+<span class="fc" id="L98">    return includeRequestProcessors;</span>
   }
 
   /**
@@ -102,41 +105,41 @@ import psiprobe.tools.TimeExpression;
    */
   @Value(&quot;true&quot;)
   public void setIncludeRequestProcessors(boolean includeRequestProcessors) {
-<span class="fc" id="L105">    this.includeRequestProcessors = includeRequestProcessors;</span>
-<span class="fc" id="L106">  }</span>
+<span class="fc" id="L108">    this.includeRequestProcessors = includeRequestProcessors;</span>
+<span class="fc" id="L109">  }</span>
 
   @RequestMapping(path = &quot;/connectors.htm&quot;)
   @Override
   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
       throws Exception {
-<span class="nc" id="L112">    return super.handleRequest(request, response);</span>
+<span class="nc" id="L115">    return super.handleRequest(request, response);</span>
   }
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 
-<span class="nc" id="L119">    boolean workerThreadNameSupported = false;</span>
-<span class="nc" id="L120">    List&lt;Connector&gt; connectors = containerListenerBean.getConnectors(includeRequestProcessors);</span>
+<span class="nc" id="L122">    boolean workerThreadNameSupported = false;</span>
+<span class="nc" id="L123">    List&lt;Connector&gt; connectors = containerListenerBean.getConnectors(includeRequestProcessors);</span>
 
-<span class="nc bnc" id="L122" title="All 2 branches missed.">    if (!connectors.isEmpty()) {</span>
-<span class="nc" id="L123">      List&lt;RequestProcessor&gt; reqProcs = connectors.get(0).getRequestProcessors();</span>
-<span class="nc bnc" id="L124" title="All 2 branches missed.">      if (!reqProcs.isEmpty()) {</span>
-<span class="nc" id="L125">        RequestProcessor reqProc = reqProcs.get(0);</span>
-<span class="nc" id="L126">        workerThreadNameSupported = reqProc.isWorkerThreadNameSupported();</span>
+<span class="nc bnc" id="L125" title="All 2 branches missed.">    if (!connectors.isEmpty()) {</span>
+<span class="nc" id="L126">      List&lt;RequestProcessor&gt; reqProcs = connectors.get(0).getRequestProcessors();</span>
+<span class="nc bnc" id="L127" title="All 2 branches missed.">      if (!reqProcs.isEmpty()) {</span>
+<span class="nc" id="L128">        RequestProcessor reqProc = reqProcs.get(0);</span>
+<span class="nc" id="L129">        workerThreadNameSupported = reqProc.isWorkerThreadNameSupported();</span>
       }
     }
 
-<span class="nc" id="L130">    return new ModelAndView(getViewName()).addObject(&quot;connectors&quot;, connectors)</span>
-<span class="nc" id="L131">        .addObject(&quot;workerThreadNameSupported&quot;, workerThreadNameSupported)</span>
-<span class="nc" id="L132">        .addObject(&quot;collectionPeriod&quot;, getCollectionPeriod());</span>
+<span class="nc" id="L133">    return new ModelAndView(getViewName()).addObject(&quot;connectors&quot;, connectors)</span>
+<span class="nc" id="L134">        .addObject(&quot;workerThreadNameSupported&quot;, workerThreadNameSupported)</span>
+<span class="nc" id="L135">        .addObject(&quot;collectionPeriod&quot;, getCollectionPeriod());</span>
   }
 
   @Value(&quot;connectors&quot;)
   @Override
   public void setViewName(String viewName) {
-<span class="fc" id="L138">    super.setViewName(viewName);</span>
-<span class="fc" id="L139">  }</span>
+<span class="fc" id="L141">    super.setViewName(viewName);</span>
+<span class="fc" id="L142">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

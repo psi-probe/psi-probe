@@ -18,11 +18,14 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.catalina.Context;
 import org.springframework.web.servlet.ModelAndView;
+
 import psiprobe.beans.ContainerListenerBean;
 import psiprobe.controllers.AbstractTomcatContainerController;
 import psiprobe.model.ApplicationResource;
@@ -32,7 +35,7 @@ import psiprobe.model.TomcatTestReport;
 /**
  * &quot;Quick check&quot; base controller.
  */
-<span class="fc" id="L35">public class BaseTomcatAvailabilityController extends AbstractTomcatContainerController {</span>
+<span class="fc" id="L38">public class BaseTomcatAvailabilityController extends AbstractTomcatContainerController {</span>
 
   /** The container listener bean. */
   @Inject
@@ -44,7 +47,7 @@ import psiprobe.model.TomcatTestReport;
    * @return the container listener bean
    */
   public ContainerListenerBean getContainerListenerBean() {
-<span class="fc" id="L47">    return containerListenerBean;</span>
+<span class="fc" id="L50">    return containerListenerBean;</span>
   }
 
   /**
@@ -53,104 +56,104 @@ import psiprobe.model.TomcatTestReport;
    * @param containerListenerBean the new container listener bean
    */
   public void setContainerListenerBean(ContainerListenerBean containerListenerBean) {
-<span class="fc" id="L56">    this.containerListenerBean = containerListenerBean;</span>
-<span class="fc" id="L57">  }</span>
+<span class="fc" id="L59">    this.containerListenerBean = containerListenerBean;</span>
+<span class="fc" id="L60">  }</span>
 
   @Override
   public ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 
-<span class="nc" id="L63">    final long start = System.currentTimeMillis();</span>
-<span class="nc" id="L64">    TomcatTestReport tomcatTestReport = new TomcatTestReport();</span>
+<span class="nc" id="L66">    final long start = System.currentTimeMillis();</span>
+<span class="nc" id="L67">    TomcatTestReport tomcatTestReport = new TomcatTestReport();</span>
 
     // check datasource status
-<span class="nc" id="L67">    tomcatTestReport.setDatasourceUsageScore(0);</span>
+<span class="nc" id="L70">    tomcatTestReport.setDatasourceUsageScore(0);</span>
 
-<span class="nc" id="L69">    boolean allContextsAvailable = true;</span>
-<span class="nc bnc" id="L70" title="All 2 branches missed.">    if (getContainerWrapper().getResourceResolver().supportsPrivateResources()) {</span>
-<span class="nc bnc" id="L71" title="All 2 branches missed.">      for (Context appContext : getContainerWrapper().getTomcatContainer().findContexts()) {</span>
-<span class="nc bnc" id="L72" title="All 2 branches missed.">        allContextsAvailable = allContextsAvailable</span>
-<span class="nc bnc" id="L73" title="All 2 branches missed.">            &amp;&amp; getContainerWrapper().getTomcatContainer().getAvailable(appContext);</span>
+<span class="nc" id="L72">    boolean allContextsAvailable = true;</span>
+<span class="nc bnc" id="L73" title="All 2 branches missed.">    if (getContainerWrapper().getResourceResolver().supportsPrivateResources()) {</span>
+<span class="nc bnc" id="L74" title="All 2 branches missed.">      for (Context appContext : getContainerWrapper().getTomcatContainer().findContexts()) {</span>
+<span class="nc bnc" id="L75" title="All 2 branches missed.">        allContextsAvailable = allContextsAvailable</span>
+<span class="nc bnc" id="L76" title="All 2 branches missed.">            &amp;&amp; getContainerWrapper().getTomcatContainer().getAvailable(appContext);</span>
 
-<span class="nc" id="L75">        List&lt;ApplicationResource&gt; applicationResources = getContainerWrapper().getResourceResolver()</span>
-<span class="nc" id="L76">            .getApplicationResources(appContext, getContainerWrapper());</span>
+<span class="nc" id="L78">        List&lt;ApplicationResource&gt; applicationResources = getContainerWrapper().getResourceResolver()</span>
+<span class="nc" id="L79">            .getApplicationResources(appContext, getContainerWrapper());</span>
 
-<span class="nc bnc" id="L78" title="All 2 branches missed.">        for (ApplicationResource appResource : applicationResources) {</span>
-<span class="nc" id="L79">          DataSourceInfo dsi = appResource.getDataSourceInfo();</span>
-<span class="nc bnc" id="L80" title="All 4 branches missed.">          if (dsi != null &amp;&amp; dsi.getBusyScore() &gt; tomcatTestReport.getDatasourceUsageScore()) {</span>
-<span class="nc" id="L81">            tomcatTestReport.setContextName(appContext.getName());</span>
-<span class="nc" id="L82">            tomcatTestReport.setDatasourceUsageScore(dsi.getBusyScore());</span>
-<span class="nc" id="L83">            tomcatTestReport.setDataSourceName(appResource.getName());</span>
+<span class="nc bnc" id="L81" title="All 2 branches missed.">        for (ApplicationResource appResource : applicationResources) {</span>
+<span class="nc" id="L82">          DataSourceInfo dsi = appResource.getDataSourceInfo();</span>
+<span class="nc bnc" id="L83" title="All 4 branches missed.">          if (dsi != null &amp;&amp; dsi.getBusyScore() &gt; tomcatTestReport.getDatasourceUsageScore()) {</span>
+<span class="nc" id="L84">            tomcatTestReport.setContextName(appContext.getName());</span>
+<span class="nc" id="L85">            tomcatTestReport.setDatasourceUsageScore(dsi.getBusyScore());</span>
+<span class="nc" id="L86">            tomcatTestReport.setDataSourceName(appResource.getName());</span>
           }
-<span class="nc" id="L85">        }</span>
-<span class="nc" id="L86">      }</span>
+<span class="nc" id="L88">        }</span>
+<span class="nc" id="L89">      }</span>
 
-<span class="nc" id="L88">      tomcatTestReport.setWebappAvailabilityTest(</span>
-<span class="nc bnc" id="L89" title="All 2 branches missed.">          allContextsAvailable ? TomcatTestReport.TEST_PASSED : TomcatTestReport.TEST_FAILED);</span>
+<span class="nc" id="L91">      tomcatTestReport.setWebappAvailabilityTest(</span>
+<span class="nc bnc" id="L92" title="All 2 branches missed.">          allContextsAvailable ? TomcatTestReport.TEST_PASSED : TomcatTestReport.TEST_FAILED);</span>
 
     } else {
-<span class="nc" id="L92">      List&lt;ApplicationResource&gt; resources =</span>
-<span class="nc" id="L93">          getContainerWrapper().getResourceResolver().getApplicationResources();</span>
-<span class="nc bnc" id="L94" title="All 2 branches missed.">      for (ApplicationResource resource : resources) {</span>
-<span class="nc" id="L95">        DataSourceInfo dsi = resource.getDataSourceInfo();</span>
-<span class="nc bnc" id="L96" title="All 4 branches missed.">        if (dsi != null &amp;&amp; dsi.getBusyScore() &gt; tomcatTestReport.getDatasourceUsageScore()) {</span>
-<span class="nc" id="L97">          tomcatTestReport.setDatasourceUsageScore(dsi.getBusyScore());</span>
-<span class="nc" id="L98">          tomcatTestReport.setDataSourceName(resource.getName());</span>
+<span class="nc" id="L95">      List&lt;ApplicationResource&gt; resources =</span>
+<span class="nc" id="L96">          getContainerWrapper().getResourceResolver().getApplicationResources();</span>
+<span class="nc bnc" id="L97" title="All 2 branches missed.">      for (ApplicationResource resource : resources) {</span>
+<span class="nc" id="L98">        DataSourceInfo dsi = resource.getDataSourceInfo();</span>
+<span class="nc bnc" id="L99" title="All 4 branches missed.">        if (dsi != null &amp;&amp; dsi.getBusyScore() &gt; tomcatTestReport.getDatasourceUsageScore()) {</span>
+<span class="nc" id="L100">          tomcatTestReport.setDatasourceUsageScore(dsi.getBusyScore());</span>
+<span class="nc" id="L101">          tomcatTestReport.setDataSourceName(resource.getName());</span>
         }
-<span class="nc" id="L100">      }</span>
+<span class="nc" id="L103">      }</span>
     }
-<span class="nc" id="L102">    tomcatTestReport.setDatasourceTest(TomcatTestReport.TEST_PASSED);</span>
+<span class="nc" id="L105">    tomcatTestReport.setDatasourceTest(TomcatTestReport.TEST_PASSED);</span>
 
     // try to allocate some memory
-<span class="nc" id="L105">    String word = &quot;hello&quot;;</span>
-<span class="nc" id="L106">    int count = TomcatTestReport.DEFAULT_MEMORY_SIZE / word.length();</span>
+<span class="nc" id="L108">    String word = &quot;hello&quot;;</span>
+<span class="nc" id="L109">    int count = TomcatTestReport.DEFAULT_MEMORY_SIZE / word.length();</span>
 
     try {
-<span class="nc" id="L109">      ByteArrayOutputStream bos = new ByteArrayOutputStream();</span>
-<span class="nc bnc" id="L110" title="All 2 branches missed.">      for (; count &gt; 0; count--) {</span>
-<span class="nc" id="L111">        bos.write(word.getBytes(StandardCharsets.UTF_8));</span>
+<span class="nc" id="L112">      ByteArrayOutputStream bos = new ByteArrayOutputStream();</span>
+<span class="nc bnc" id="L113" title="All 2 branches missed.">      for (; count &gt; 0; count--) {</span>
+<span class="nc" id="L114">        bos.write(word.getBytes(StandardCharsets.UTF_8));</span>
       }
-<span class="nc" id="L113">      tomcatTestReport.setMemoryTest(TomcatTestReport.TEST_PASSED);</span>
-<span class="nc" id="L114">    } catch (IOException e) {</span>
-<span class="nc" id="L115">      tomcatTestReport.setMemoryTest(TomcatTestReport.TEST_FAILED);</span>
-<span class="nc" id="L116">      logger.trace(&quot;&quot;, e);</span>
-<span class="nc" id="L117">    }</span>
+<span class="nc" id="L116">      tomcatTestReport.setMemoryTest(TomcatTestReport.TEST_PASSED);</span>
+<span class="nc" id="L117">    } catch (IOException e) {</span>
+<span class="nc" id="L118">      tomcatTestReport.setMemoryTest(TomcatTestReport.TEST_FAILED);</span>
+<span class="nc" id="L119">      logger.trace(&quot;&quot;, e);</span>
+<span class="nc" id="L120">    }</span>
 
     // try to open some files
-<span class="nc" id="L120">    File tmpDir = new File(System.getProperty(&quot;java.io.tmpdir&quot;));</span>
-<span class="nc" id="L121">    int fileCount = tomcatTestReport.getDefaultFileCount();</span>
-<span class="nc" id="L122">    List&lt;File&gt; files = new ArrayList&lt;&gt;();</span>
-<span class="nc" id="L123">    List&lt;OutputStream&gt; fileStreams = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L123">    File tmpDir = new File(System.getProperty(&quot;java.io.tmpdir&quot;));</span>
+<span class="nc" id="L124">    int fileCount = tomcatTestReport.getDefaultFileCount();</span>
+<span class="nc" id="L125">    List&lt;File&gt; files = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L126">    List&lt;OutputStream&gt; fileStreams = new ArrayList&lt;&gt;();</span>
 
     try {
-<span class="nc bnc" id="L126" title="All 2 branches missed.">      for (; fileCount &gt; 0; fileCount--) {</span>
-<span class="nc" id="L127">        File file = new File(tmpDir, &quot;tctest_&quot; + fileCount);</span>
-<span class="nc" id="L128">        try (OutputStream fos = Files.newOutputStream(file.toPath())) {</span>
-<span class="nc" id="L129">          files.add(file);</span>
-<span class="nc" id="L130">          fileStreams.add(fos);</span>
-<span class="nc" id="L131">          fos.write(&quot;this is a test&quot;.getBytes(StandardCharsets.UTF_8));</span>
+<span class="nc bnc" id="L129" title="All 2 branches missed.">      for (; fileCount &gt; 0; fileCount--) {</span>
+<span class="nc" id="L130">        File file = new File(tmpDir, &quot;tctest_&quot; + fileCount);</span>
+<span class="nc" id="L131">        try (OutputStream fos = Files.newOutputStream(file.toPath())) {</span>
+<span class="nc" id="L132">          files.add(file);</span>
+<span class="nc" id="L133">          fileStreams.add(fos);</span>
+<span class="nc" id="L134">          fos.write(&quot;this is a test&quot;.getBytes(StandardCharsets.UTF_8));</span>
         }
       }
-<span class="nc" id="L134">      tomcatTestReport.setFileTest(TomcatTestReport.TEST_PASSED);</span>
-<span class="nc" id="L135">    } catch (IOException e) {</span>
-<span class="nc" id="L136">      tomcatTestReport.setFileTest(TomcatTestReport.TEST_FAILED);</span>
-<span class="nc" id="L137">      logger.trace(&quot;&quot;, e);</span>
+<span class="nc" id="L137">      tomcatTestReport.setFileTest(TomcatTestReport.TEST_PASSED);</span>
+<span class="nc" id="L138">    } catch (IOException e) {</span>
+<span class="nc" id="L139">      tomcatTestReport.setFileTest(TomcatTestReport.TEST_FAILED);</span>
+<span class="nc" id="L140">      logger.trace(&quot;&quot;, e);</span>
     } finally {
-<span class="nc bnc" id="L139" title="All 2 branches missed.">      for (OutputStream fileStream : fileStreams) {</span>
+<span class="nc bnc" id="L142" title="All 2 branches missed.">      for (OutputStream fileStream : fileStreams) {</span>
         try {
-<span class="nc" id="L141">          fileStream.close();</span>
-<span class="nc" id="L142">        } catch (IOException e) {</span>
-<span class="nc" id="L143">          logger.trace(&quot;&quot;, e);</span>
-<span class="nc" id="L144">        }</span>
-<span class="nc" id="L145">      }</span>
-<span class="nc bnc" id="L146" title="All 2 branches missed.">      for (File file : files) {</span>
-<span class="nc" id="L147">        Files.delete(file.toPath());</span>
+<span class="nc" id="L144">          fileStream.close();</span>
+<span class="nc" id="L145">        } catch (IOException e) {</span>
+<span class="nc" id="L146">          logger.trace(&quot;&quot;, e);</span>
+<span class="nc" id="L147">        }</span>
 <span class="nc" id="L148">      }</span>
+<span class="nc bnc" id="L149" title="All 2 branches missed.">      for (File file : files) {</span>
+<span class="nc" id="L150">        Files.delete(file.toPath());</span>
+<span class="nc" id="L151">      }</span>
     }
 
-<span class="nc" id="L151">    tomcatTestReport.setTestDuration(System.currentTimeMillis() - start);</span>
+<span class="nc" id="L154">    tomcatTestReport.setTestDuration(System.currentTimeMillis() - start);</span>
 
-<span class="nc" id="L153">    long maxServiceTime = 0;</span>
+<span class="nc" id="L156">    long maxServiceTime = 0;</span>
 
     // TODO JWL 12/11/2016 - Why is this commented out? If not needed, delete it.
     // check the maximum execution time
@@ -167,10 +170,10 @@ import psiprobe.model.TomcatTestReport;
     // }
     // }
 
-<span class="nc" id="L170">    tomcatTestReport.setMaxServiceTime(maxServiceTime);</span>
+<span class="nc" id="L173">    tomcatTestReport.setMaxServiceTime(maxServiceTime);</span>
 
-<span class="nc" id="L172">    return new ModelAndView(getViewName(), &quot;testReport&quot;, tomcatTestReport);</span>
+<span class="nc" id="L175">    return new ModelAndView(getViewName(), &quot;testReport&quot;, tomcatTestReport);</span>
   }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

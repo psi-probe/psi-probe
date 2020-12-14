@@ -11,7 +11,9 @@
 package psiprobe.beans.stats.collectors;
 
 import javax.inject.Inject;
+
 import org.springframework.beans.factory.annotation.Value;
+
 import psiprobe.beans.ContainerListenerBean;
 import psiprobe.model.Connector;
 import psiprobe.tools.TimeExpression;
@@ -19,7 +21,7 @@ import psiprobe.tools.TimeExpression;
 /**
  * The Class ConnectorStatsCollectorBean.
  */
-<span class="fc" id="L22">public class ConnectorStatsCollectorBean extends AbstractStatsCollectorBean {</span>
+<span class="fc" id="L24">public class ConnectorStatsCollectorBean extends AbstractStatsCollectorBean {</span>
 
   /** The listener bean. */
   @Inject
@@ -31,7 +33,7 @@ import psiprobe.tools.TimeExpression;
    * @return the listener bean
    */
   public ContainerListenerBean getListenerBean() {
-<span class="fc" id="L34">    return listenerBean;</span>
+<span class="fc" id="L36">    return listenerBean;</span>
   }
 
   /**
@@ -40,20 +42,20 @@ import psiprobe.tools.TimeExpression;
    * @param listenerBean the new listener bean
    */
   public void setListenerBean(ContainerListenerBean listenerBean) {
-<span class="fc" id="L43">    this.listenerBean = listenerBean;</span>
-<span class="fc" id="L44">  }</span>
+<span class="fc" id="L45">    this.listenerBean = listenerBean;</span>
+<span class="fc" id="L46">  }</span>
 
   @Override
   public void collect() throws Exception {
-<span class="nc bnc" id="L48" title="All 2 branches missed.">    for (Connector connector : listenerBean.getConnectors(false)) {</span>
-<span class="nc" id="L49">      String statName = &quot;stat.connector.&quot; + connector.getProtocolHandler();</span>
-<span class="nc" id="L50">      buildDeltaStats(statName + &quot;.requests&quot;, connector.getRequestCount());</span>
-<span class="nc" id="L51">      buildDeltaStats(statName + &quot;.errors&quot;, connector.getErrorCount());</span>
-<span class="nc" id="L52">      buildDeltaStats(statName + &quot;.sent&quot;, connector.getBytesSent());</span>
-<span class="nc" id="L53">      buildDeltaStats(statName + &quot;.received&quot;, connector.getBytesReceived());</span>
-<span class="nc" id="L54">      buildDeltaStats(statName + &quot;.proc_time&quot;, connector.getProcessingTime());</span>
-<span class="nc" id="L55">    }</span>
-<span class="nc" id="L56">  }</span>
+<span class="nc bnc" id="L50" title="All 2 branches missed.">    for (Connector connector : listenerBean.getConnectors(false)) {</span>
+<span class="nc" id="L51">      String statName = &quot;stat.connector.&quot; + connector.getProtocolHandler();</span>
+<span class="nc" id="L52">      buildDeltaStats(statName + &quot;.requests&quot;, connector.getRequestCount());</span>
+<span class="nc" id="L53">      buildDeltaStats(statName + &quot;.errors&quot;, connector.getErrorCount());</span>
+<span class="nc" id="L54">      buildDeltaStats(statName + &quot;.sent&quot;, connector.getBytesSent());</span>
+<span class="nc" id="L55">      buildDeltaStats(statName + &quot;.received&quot;, connector.getBytesReceived());</span>
+<span class="nc" id="L56">      buildDeltaStats(statName + &quot;.proc_time&quot;, connector.getProcessingTime());</span>
+<span class="nc" id="L57">    }</span>
+<span class="nc" id="L58">  }</span>
 
   /**
    * Reset.
@@ -61,10 +63,10 @@ import psiprobe.tools.TimeExpression;
    * @throws Exception the exception
    */
   public void reset() throws Exception {
-<span class="nc bnc" id="L64" title="All 2 branches missed.">    for (Connector connector : listenerBean.getConnectors(false)) {</span>
-<span class="nc" id="L65">      reset(connector.getProtocolHandler());</span>
-<span class="nc" id="L66">    }</span>
-<span class="nc" id="L67">  }</span>
+<span class="nc bnc" id="L66" title="All 2 branches missed.">    for (Connector connector : listenerBean.getConnectors(false)) {</span>
+<span class="nc" id="L67">      reset(connector.getProtocolHandler());</span>
+<span class="nc" id="L68">    }</span>
+<span class="nc" id="L69">  }</span>
 
   /**
    * Reset.
@@ -72,13 +74,13 @@ import psiprobe.tools.TimeExpression;
    * @param connectorName the connector name
    */
   public void reset(String connectorName) {
-<span class="nc" id="L75">    String statName = &quot;stat.connector.&quot; + connectorName;</span>
-<span class="nc" id="L76">    resetStats(statName + &quot;.requests&quot;);</span>
-<span class="nc" id="L77">    resetStats(statName + &quot;.errors&quot;);</span>
-<span class="nc" id="L78">    resetStats(statName + &quot;.sent&quot;);</span>
-<span class="nc" id="L79">    resetStats(statName + &quot;.received&quot;);</span>
-<span class="nc" id="L80">    resetStats(statName + &quot;.proc_time&quot;);</span>
-<span class="nc" id="L81">  }</span>
+<span class="nc" id="L77">    String statName = &quot;stat.connector.&quot; + connectorName;</span>
+<span class="nc" id="L78">    resetStats(statName + &quot;.requests&quot;);</span>
+<span class="nc" id="L79">    resetStats(statName + &quot;.errors&quot;);</span>
+<span class="nc" id="L80">    resetStats(statName + &quot;.sent&quot;);</span>
+<span class="nc" id="L81">    resetStats(statName + &quot;.received&quot;);</span>
+<span class="nc" id="L82">    resetStats(statName + &quot;.proc_time&quot;);</span>
+<span class="nc" id="L83">  }</span>
 
   /**
    * Sets the max series expression.
@@ -89,8 +91,8 @@ import psiprobe.tools.TimeExpression;
   public void setMaxSeries(
       @Value(&quot;${psiprobe.beans.stats.collectors.connector.period}&quot;) long period,
       @Value(&quot;${psiprobe.beans.stats.collectors.connector.span}&quot;) long span) {
-<span class="nc" id="L92">    super.setMaxSeries((int) TimeExpression.dataPoints(period, span));</span>
-<span class="nc" id="L93">  }</span>
+<span class="nc" id="L94">    super.setMaxSeries((int) TimeExpression.dataPoints(period, span));</span>
+<span class="nc" id="L95">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

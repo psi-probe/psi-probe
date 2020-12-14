@@ -11,7 +11,9 @@
 package psiprobe.controllers.apps;
 
 import javax.inject.Inject;
+
 import org.springframework.stereotype.Controller;
+
 import psiprobe.beans.stats.collectors.AppStatsCollectorBean;
 
 /**
@@ -19,7 +21,7 @@ import psiprobe.beans.stats.collectors.AppStatsCollectorBean;
  */
 // TODO 12/11/2016 JWL - This controller was not even setup...review it's need
 @Controller
-<span class="fc" id="L22">public class ResetAppStatsController extends AbstractNoSelfContextHandlerController {</span>
+<span class="fc" id="L24">public class ResetAppStatsController extends AbstractNoSelfContextHandlerController {</span>
 
   /** The stats collector. */
   @Inject
@@ -31,7 +33,7 @@ import psiprobe.beans.stats.collectors.AppStatsCollectorBean;
    * @return the stats collector
    */
   public AppStatsCollectorBean getStatsCollector() {
-<span class="fc" id="L34">    return statsCollector;</span>
+<span class="fc" id="L36">    return statsCollector;</span>
   }
 
   /**
@@ -40,13 +42,13 @@ import psiprobe.beans.stats.collectors.AppStatsCollectorBean;
    * @param statsCollector the new stats collector
    */
   public void setStatsCollector(AppStatsCollectorBean statsCollector) {
-<span class="fc" id="L43">    this.statsCollector = statsCollector;</span>
-<span class="fc" id="L44">  }</span>
+<span class="fc" id="L45">    this.statsCollector = statsCollector;</span>
+<span class="fc" id="L46">  }</span>
 
   @Override
   protected void executeAction(String contextName) throws Exception {
-<span class="nc" id="L48">    statsCollector.reset(contextName);</span>
-<span class="nc" id="L49">  }</span>
+<span class="nc" id="L50">    statsCollector.reset(contextName);</span>
+<span class="nc" id="L51">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

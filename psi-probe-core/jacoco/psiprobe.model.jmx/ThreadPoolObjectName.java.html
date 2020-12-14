@@ -12,13 +12,14 @@ package psiprobe.model.jmx;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.management.ObjectName;
 
 /**
  * This bean represens a hierarchy of Tomcat's ObjectNames necessary to display real-time connection
  * information on &quot;status&quot; tab.
  */
-<span class="fc" id="L21">public class ThreadPoolObjectName {</span>
+<span class="fc" id="L22">public class ThreadPoolObjectName {</span>
 
   /** The thread pool name. */
   private ObjectName threadPoolName;
@@ -27,7 +28,7 @@ import javax.management.ObjectName;
   private ObjectName globalRequestProcessorName;
 
   /** The request processor names. */
-<span class="fc" id="L30">  private List&lt;ObjectName&gt; requestProcessorNames = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L31">  private List&lt;ObjectName&gt; requestProcessorNames = new ArrayList&lt;&gt;();</span>
 
   /**
    * Gets the thread pool name.
@@ -35,7 +36,7 @@ import javax.management.ObjectName;
    * @return the thread pool name
    */
   public ObjectName getThreadPoolName() {
-<span class="fc" id="L38">    return threadPoolName;</span>
+<span class="fc" id="L39">    return threadPoolName;</span>
   }
 
   /**
@@ -44,7 +45,7 @@ import javax.management.ObjectName;
    * @return the global request processor name
    */
   public ObjectName getGlobalRequestProcessorName() {
-<span class="fc" id="L47">    return globalRequestProcessorName;</span>
+<span class="fc" id="L48">    return globalRequestProcessorName;</span>
   }
 
   /**
@@ -53,7 +54,7 @@ import javax.management.ObjectName;
    * @return the request processor names
    */
   public List&lt;ObjectName&gt; getRequestProcessorNames() {
-<span class="fc" id="L56">    return requestProcessorNames;</span>
+<span class="fc" id="L57">    return requestProcessorNames;</span>
   }
 
   /**
@@ -62,8 +63,8 @@ import javax.management.ObjectName;
    * @param threadPoolName the new thread pool name
    */
   public void setThreadPoolName(ObjectName threadPoolName) {
-<span class="fc" id="L65">    this.threadPoolName = threadPoolName;</span>
-<span class="fc" id="L66">  }</span>
+<span class="fc" id="L66">    this.threadPoolName = threadPoolName;</span>
+<span class="fc" id="L67">  }</span>
 
   /**
    * Sets the global request processor name.
@@ -71,8 +72,8 @@ import javax.management.ObjectName;
    * @param globalRequestProcessorName the new global request processor name
    */
   public void setGlobalRequestProcessorName(ObjectName globalRequestProcessorName) {
-<span class="fc" id="L74">    this.globalRequestProcessorName = globalRequestProcessorName;</span>
-<span class="fc" id="L75">  }</span>
+<span class="fc" id="L75">    this.globalRequestProcessorName = globalRequestProcessorName;</span>
+<span class="fc" id="L76">  }</span>
 
   /**
    * Sets the request processor names.
@@ -80,8 +81,8 @@ import javax.management.ObjectName;
    * @param requestProcessorNames the new request processor names
    */
   public void setRequestProcessorNames(List&lt;ObjectName&gt; requestProcessorNames) {
-<span class="fc" id="L83">    this.requestProcessorNames = requestProcessorNames;</span>
-<span class="fc" id="L84">  }</span>
+<span class="fc" id="L84">    this.requestProcessorNames = requestProcessorNames;</span>
+<span class="fc" id="L85">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

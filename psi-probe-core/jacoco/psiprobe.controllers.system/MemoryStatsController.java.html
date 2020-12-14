@@ -12,17 +12,19 @@ package psiprobe.controllers.system;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
 import psiprobe.tools.TimeExpression;
 
 /**
  * The Class MemoryStatsController.
  */
 @Controller
-<span class="fc" id="L25">public class MemoryStatsController extends BaseMemoryStatsController {</span>
+<span class="fc" id="L27">public class MemoryStatsController extends BaseMemoryStatsController {</span>
 
   /**
    * Sets the collection period.
@@ -31,21 +33,21 @@ import psiprobe.tools.TimeExpression;
    */
   @Value(&quot;${psiprobe.beans.stats.collectors.memory.period}&quot;)
   public void setCollectionPeriod(String collectionPeriod) {
-<span class="fc" id="L34">    super.setCollectionPeriod(TimeExpression.inSeconds(collectionPeriod));</span>
-<span class="fc" id="L35">  }</span>
+<span class="fc" id="L36">    super.setCollectionPeriod(TimeExpression.inSeconds(collectionPeriod));</span>
+<span class="fc" id="L37">  }</span>
 
   @RequestMapping(path = &quot;/memory.htm&quot;)
   @Override
   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
       throws Exception {
-<span class="nc" id="L41">    return super.handleRequest(request, response);</span>
+<span class="nc" id="L43">    return super.handleRequest(request, response);</span>
   }
 
   @Value(&quot;memory&quot;)
   @Override
   public void setViewName(String viewName) {
-<span class="fc" id="L47">    super.setViewName(viewName);</span>
-<span class="fc" id="L48">  }</span>
+<span class="fc" id="L49">    super.setViewName(viewName);</span>
+<span class="fc" id="L50">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

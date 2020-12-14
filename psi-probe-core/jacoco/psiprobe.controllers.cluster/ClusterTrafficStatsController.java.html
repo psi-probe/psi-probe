@@ -12,6 +12,7 @@ package psiprobe.controllers.cluster;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,26 +22,26 @@ import org.springframework.web.servlet.ModelAndView;
  * The Class ClusterTrafficStatsController.
  */
 @Controller
-<span class="fc" id="L24">public class ClusterTrafficStatsController extends BaseClusterStatsController {</span>
+<span class="fc" id="L25">public class ClusterTrafficStatsController extends BaseClusterStatsController {</span>
 
   @Value(&quot;false&quot;)
   @Override
   public void setLoadMembers(boolean loadMembers) {
-<span class="fc" id="L29">    super.setLoadMembers(loadMembers);</span>
-<span class="fc" id="L30">  }</span>
+<span class="fc" id="L30">    super.setLoadMembers(loadMembers);</span>
+<span class="fc" id="L31">  }</span>
 
   @RequestMapping(path = &quot;/cluster/traffic.ajax&quot;)
   @Override
   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
       throws Exception {
-<span class="nc" id="L36">    return super.handleRequest(request, response);</span>
+<span class="nc" id="L37">    return super.handleRequest(request, response);</span>
   }
 
   @Value(&quot;ajax/cluster/traffic&quot;)
   @Override
   public void setViewName(String viewName) {
-<span class="fc" id="L42">    super.setViewName(viewName);</span>
-<span class="fc" id="L43">  }</span>
+<span class="fc" id="L43">    super.setViewName(viewName);</span>
+<span class="fc" id="L44">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

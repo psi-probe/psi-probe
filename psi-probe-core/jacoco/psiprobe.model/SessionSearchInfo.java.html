@@ -15,19 +15,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
  * Data model class used by session search feature of application session screen.
  */
-<span class="fc" id="L24">public class SessionSearchInfo implements Serializable {</span>
+<span class="fc" id="L25">public class SessionSearchInfo implements Serializable {</span>
 
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = 1L;
 
   /** The Constant logger. */
-<span class="fc" id="L30">  private static final Logger logger = LoggerFactory.getLogger(SessionSearchInfo.class);</span>
+<span class="fc" id="L31">  private static final Logger logger = LoggerFactory.getLogger(SessionSearchInfo.class);</span>
 
   /** The Constant SESS_ATTR_NAME. */
   public static final String SESS_ATTR_NAME = &quot;sessionSearchInfo&quot;;
@@ -42,7 +43,7 @@ import org.slf4j.LoggerFactory;
   public static final String ACTION_CLEAR = &quot;clear&quot;;
 
   /** The search action. */
-<span class="fc" id="L45">  private String searchAction = ACTION_NONE;</span>
+<span class="fc" id="L46">  private String searchAction = ACTION_NONE;</span>
 
   /** The apply. */
   private boolean apply;
@@ -63,10 +64,10 @@ import org.slf4j.LoggerFactory;
   private String attrName;
 
   /** The attr name patterns. */
-<span class="fc" id="L66">  private final List&lt;Pattern&gt; attrNamePatterns = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L67">  private final List&lt;Pattern&gt; attrNamePatterns = new ArrayList&lt;&gt;();</span>
 
   /** The attr name msgs. */
-<span class="fc" id="L69">  private final List&lt;String&gt; attrNameMsgs = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L70">  private final List&lt;String&gt; attrNameMsgs = new ArrayList&lt;&gt;();</span>
 
   /** The age from. */
   private String ageFrom;
@@ -99,7 +100,7 @@ import org.slf4j.LoggerFactory;
   private String infoMessage;
 
   /** The error messages. */
-<span class="fc" id="L102">  private final List&lt;String&gt; errorMessages = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L103">  private final List&lt;String&gt; errorMessages = new ArrayList&lt;&gt;();</span>
 
   /**
    * Checks if is empty.
@@ -107,7 +108,7 @@ import org.slf4j.LoggerFactory;
    * @return true, if is empty
    */
   public boolean isEmpty() {
-<span class="nc bnc" id="L110" title="All 14 branches missed.">    return sessionId == null &amp;&amp; attrName == null &amp;&amp; ageFrom == null &amp;&amp; ageTo == null</span>
+<span class="nc bnc" id="L111" title="All 14 branches missed.">    return sessionId == null &amp;&amp; attrName == null &amp;&amp; ageFrom == null &amp;&amp; ageTo == null</span>
         &amp;&amp; idleTimeFrom == null &amp;&amp; idleTimeTo == null &amp;&amp; lastIp == null;
   }
 
@@ -117,7 +118,7 @@ import org.slf4j.LoggerFactory;
    * @return true, if is session id valid
    */
   public boolean isSessionIdValid() {
-<span class="nc bnc" id="L120" title="All 4 branches missed.">    return sessionId == null || sessionIdPattern != null;</span>
+<span class="nc bnc" id="L121" title="All 4 branches missed.">    return sessionId == null || sessionIdPattern != null;</span>
   }
 
   /**
@@ -126,7 +127,7 @@ import org.slf4j.LoggerFactory;
    * @return true, if is attr name valid
    */
   public boolean isAttrNameValid() {
-<span class="nc bnc" id="L129" title="All 4 branches missed.">    return attrName == null || !attrNamePatterns.isEmpty();</span>
+<span class="nc bnc" id="L130" title="All 4 branches missed.">    return attrName == null || !attrNamePatterns.isEmpty();</span>
   }
 
   /**
@@ -135,7 +136,7 @@ import org.slf4j.LoggerFactory;
    * @return true, if is age from valid
    */
   public boolean isAgeFromValid() {
-<span class="nc bnc" id="L138" title="All 4 branches missed.">    return ageFrom == null || ageFromSec != null;</span>
+<span class="nc bnc" id="L139" title="All 4 branches missed.">    return ageFrom == null || ageFromSec != null;</span>
   }
 
   /**
@@ -144,7 +145,7 @@ import org.slf4j.LoggerFactory;
    * @return true, if is age to valid
    */
   public boolean isAgeToValid() {
-<span class="nc bnc" id="L147" title="All 4 branches missed.">    return ageTo == null || ageToSec != null;</span>
+<span class="nc bnc" id="L148" title="All 4 branches missed.">    return ageTo == null || ageToSec != null;</span>
   }
 
   /**
@@ -153,7 +154,7 @@ import org.slf4j.LoggerFactory;
    * @return true, if is idle time from valid
    */
   public boolean isIdleTimeFromValid() {
-<span class="nc bnc" id="L156" title="All 4 branches missed.">    return idleTimeFrom == null || idleTimeFromSec != null;</span>
+<span class="nc bnc" id="L157" title="All 4 branches missed.">    return idleTimeFrom == null || idleTimeFromSec != null;</span>
   }
 
   /**
@@ -162,7 +163,7 @@ import org.slf4j.LoggerFactory;
    * @return true, if is idle time to valid
    */
   public boolean isIdleTimeToValid() {
-<span class="nc bnc" id="L165" title="All 4 branches missed.">    return idleTimeTo == null || idleTimeToSec != null;</span>
+<span class="nc bnc" id="L166" title="All 4 branches missed.">    return idleTimeTo == null || idleTimeToSec != null;</span>
   }
 
   /**
@@ -171,8 +172,8 @@ import org.slf4j.LoggerFactory;
    * @return true, if is valid
    */
   public boolean isValid() {
-<span class="nc bnc" id="L174" title="All 8 branches missed.">    return isSessionIdValid() &amp;&amp; isAttrNameValid() &amp;&amp; isAgeFromValid() &amp;&amp; isAgeToValid()</span>
-<span class="nc bnc" id="L175" title="All 4 branches missed.">        &amp;&amp; isIdleTimeFromValid() &amp;&amp; isIdleTimeToValid();</span>
+<span class="nc bnc" id="L175" title="All 8 branches missed.">    return isSessionIdValid() &amp;&amp; isAttrNameValid() &amp;&amp; isAgeFromValid() &amp;&amp; isAgeToValid()</span>
+<span class="nc bnc" id="L176" title="All 4 branches missed.">        &amp;&amp; isIdleTimeFromValid() &amp;&amp; isIdleTimeToValid();</span>
   }
 
   /**
@@ -181,7 +182,7 @@ import org.slf4j.LoggerFactory;
    * @return true, if is use search
    */
   public boolean isUseSearch() {
-<span class="nc bnc" id="L184" title="All 6 branches missed.">    return isApply() &amp;&amp; !isEmpty() &amp;&amp; isValid();</span>
+<span class="nc bnc" id="L185" title="All 6 branches missed.">    return isApply() &amp;&amp; !isEmpty() &amp;&amp; isValid();</span>
   }
 
   /**
@@ -190,7 +191,7 @@ import org.slf4j.LoggerFactory;
    * @return true, if is use session id
    */
   public boolean isUseSessionId() {
-<span class="nc bnc" id="L193" title="All 2 branches missed.">    return sessionIdPattern != null;</span>
+<span class="nc bnc" id="L194" title="All 2 branches missed.">    return sessionIdPattern != null;</span>
   }
 
   /**
@@ -199,7 +200,7 @@ import org.slf4j.LoggerFactory;
    * @return true, if is use attr name
    */
   public boolean isUseAttrName() {
-<span class="nc bnc" id="L202" title="All 2 branches missed.">    return !attrNamePatterns.isEmpty();</span>
+<span class="nc bnc" id="L203" title="All 2 branches missed.">    return !attrNamePatterns.isEmpty();</span>
   }
 
   /**
@@ -208,7 +209,7 @@ import org.slf4j.LoggerFactory;
    * @return true, if is use attr
    */
   public boolean isUseAttr() {
-<span class="nc bnc" id="L211" title="All 4 branches missed.">    return isUseSearch() &amp;&amp; isUseAttrName();</span>
+<span class="nc bnc" id="L212" title="All 4 branches missed.">    return isUseSearch() &amp;&amp; isUseAttrName();</span>
   }
 
   /**
@@ -217,7 +218,7 @@ import org.slf4j.LoggerFactory;
    * @return true, if is use age from
    */
   public boolean isUseAgeFrom() {
-<span class="nc bnc" id="L220" title="All 2 branches missed.">    return ageFromSec != null;</span>
+<span class="nc bnc" id="L221" title="All 2 branches missed.">    return ageFromSec != null;</span>
   }
 
   /**
@@ -226,7 +227,7 @@ import org.slf4j.LoggerFactory;
    * @return true, if is use age to
    */
   public boolean isUseAgeTo() {
-<span class="nc bnc" id="L229" title="All 2 branches missed.">    return ageToSec != null;</span>
+<span class="nc bnc" id="L230" title="All 2 branches missed.">    return ageToSec != null;</span>
   }
 
   /**
@@ -235,7 +236,7 @@ import org.slf4j.LoggerFactory;
    * @return true, if is use idle time from
    */
   public boolean isUseIdleTimeFrom() {
-<span class="nc bnc" id="L238" title="All 2 branches missed.">    return idleTimeFromSec != null;</span>
+<span class="nc bnc" id="L239" title="All 2 branches missed.">    return idleTimeFromSec != null;</span>
   }
 
   /**
@@ -244,7 +245,7 @@ import org.slf4j.LoggerFactory;
    * @return true, if is use idle time to
    */
   public boolean isUseIdleTimeTo() {
-<span class="nc bnc" id="L247" title="All 2 branches missed.">    return idleTimeToSec != null;</span>
+<span class="nc bnc" id="L248" title="All 2 branches missed.">    return idleTimeToSec != null;</span>
   }
 
   /**
@@ -253,7 +254,7 @@ import org.slf4j.LoggerFactory;
    * @return true, if is use last ip
    */
   public boolean isUseLastIp() {
-<span class="nc bnc" id="L256" title="All 2 branches missed.">    return lastIp != null;</span>
+<span class="nc bnc" id="L257" title="All 2 branches missed.">    return lastIp != null;</span>
   }
 
   /**
@@ -262,7 +263,7 @@ import org.slf4j.LoggerFactory;
    * @return the search action
    */
   public String getSearchAction() {
-<span class="fc" id="L265">    return searchAction;</span>
+<span class="fc" id="L266">    return searchAction;</span>
   }
 
   /**
@@ -271,15 +272,15 @@ import org.slf4j.LoggerFactory;
    * @param searchAction the new search action
    */
   public void setSearchAction(String searchAction) {
-<span class="fc" id="L274">    this.searchAction = searchAction;</span>
-<span class="pc bpc" id="L275" title="1 of 2 branches missed.">    if (searchAction == null) {</span>
-<span class="nc" id="L276">      apply = false;</span>
-<span class="nc" id="L277">      clear = false;</span>
+<span class="fc" id="L275">    this.searchAction = searchAction;</span>
+<span class="pc bpc" id="L276" title="1 of 2 branches missed.">    if (searchAction == null) {</span>
+<span class="nc" id="L277">      apply = false;</span>
+<span class="nc" id="L278">      clear = false;</span>
     } else {
-<span class="fc" id="L279">      apply = ACTION_APPLY.equals(searchAction);</span>
-<span class="fc" id="L280">      clear = ACTION_CLEAR.equals(searchAction);</span>
+<span class="fc" id="L280">      apply = ACTION_APPLY.equals(searchAction);</span>
+<span class="fc" id="L281">      clear = ACTION_CLEAR.equals(searchAction);</span>
     }
-<span class="fc" id="L282">  }</span>
+<span class="fc" id="L283">  }</span>
 
   /**
    * Checks if is apply.
@@ -287,7 +288,7 @@ import org.slf4j.LoggerFactory;
    * @return true, if is apply
    */
   public boolean isApply() {
-<span class="nc" id="L290">    return apply;</span>
+<span class="nc" id="L291">    return apply;</span>
   }
 
   /**
@@ -296,7 +297,7 @@ import org.slf4j.LoggerFactory;
    * @return true, if is clear
    */
   public boolean isClear() {
-<span class="nc" id="L299">    return clear;</span>
+<span class="nc" id="L300">    return clear;</span>
   }
 
   /**
@@ -305,7 +306,7 @@ import org.slf4j.LoggerFactory;
    * @return the session id
    */
   public String getSessionId() {
-<span class="fc" id="L308">    return sessionId;</span>
+<span class="fc" id="L309">    return sessionId;</span>
   }
 
   /**
@@ -314,19 +315,19 @@ import org.slf4j.LoggerFactory;
    * @param sessionId the new session id
    */
   public void setSessionId(String sessionId) {
-<span class="fc" id="L317">    this.sessionId = sessionId;</span>
-<span class="fc" id="L318">    sessionIdPattern = null;</span>
-<span class="fc" id="L319">    sessionIdMsg = null;</span>
+<span class="fc" id="L318">    this.sessionId = sessionId;</span>
+<span class="fc" id="L319">    sessionIdPattern = null;</span>
+<span class="fc" id="L320">    sessionIdMsg = null;</span>
 
-<span class="pc bpc" id="L321" title="1 of 2 branches missed.">    if (sessionId != null) {</span>
+<span class="pc bpc" id="L322" title="1 of 2 branches missed.">    if (sessionId != null) {</span>
       try {
-<span class="fc" id="L323">        sessionIdPattern = Pattern.compile(sessionId);</span>
-<span class="nc" id="L324">      } catch (PatternSyntaxException e) {</span>
-<span class="nc" id="L325">        logger.trace(&quot;&quot;, e);</span>
-<span class="nc" id="L326">        sessionIdMsg = e.getDescription();</span>
-<span class="fc" id="L327">      }</span>
+<span class="fc" id="L324">        sessionIdPattern = Pattern.compile(sessionId);</span>
+<span class="nc" id="L325">      } catch (PatternSyntaxException e) {</span>
+<span class="nc" id="L326">        logger.trace(&quot;&quot;, e);</span>
+<span class="nc" id="L327">        sessionIdMsg = e.getDescription();</span>
+<span class="fc" id="L328">      }</span>
     }
-<span class="fc" id="L329">  }</span>
+<span class="fc" id="L330">  }</span>
 
   /**
    * Gets the session id pattern.
@@ -334,7 +335,7 @@ import org.slf4j.LoggerFactory;
    * @return the session id pattern
    */
   public Pattern getSessionIdPattern() {
-<span class="nc" id="L337">    return sessionIdPattern;</span>
+<span class="nc" id="L338">    return sessionIdPattern;</span>
   }
 
   /**
@@ -343,7 +344,7 @@ import org.slf4j.LoggerFactory;
    * @return the session id msg
    */
   public String getSessionIdMsg() {
-<span class="nc" id="L346">    return sessionIdMsg;</span>
+<span class="nc" id="L347">    return sessionIdMsg;</span>
   }
 
   /**
@@ -352,7 +353,7 @@ import org.slf4j.LoggerFactory;
    * @return the attr name
    */
   public String getAttrName() {
-<span class="fc" id="L355">    return attrName;</span>
+<span class="fc" id="L356">    return attrName;</span>
   }
 
   /**
@@ -361,26 +362,26 @@ import org.slf4j.LoggerFactory;
    * @param attrName the new attr name
    */
   public void setAttrName(String attrName) {
-<span class="fc" id="L364">    this.attrName = attrName;</span>
-<span class="fc" id="L365">    attrNamePatterns.clear();</span>
-<span class="fc" id="L366">    attrNameMsgs.clear();</span>
+<span class="fc" id="L365">    this.attrName = attrName;</span>
+<span class="fc" id="L366">    attrNamePatterns.clear();</span>
+<span class="fc" id="L367">    attrNameMsgs.clear();</span>
 
-<span class="pc bpc" id="L368" title="1 of 2 branches missed.">    if (attrName != null) {</span>
-<span class="fc" id="L369">      String[] attrNames = attrName.split(&quot;,&quot;);</span>
-<span class="pc bpc" id="L370" title="3 of 4 branches missed.">      if (attrNames.length == 0 &amp;&amp; !attrName.isEmpty()) {</span>
-<span class="nc" id="L371">        attrNameMsgs.add(&quot;&quot;);</span>
+<span class="pc bpc" id="L369" title="1 of 2 branches missed.">    if (attrName != null) {</span>
+<span class="fc" id="L370">      String[] attrNames = attrName.split(&quot;,&quot;);</span>
+<span class="pc bpc" id="L371" title="3 of 4 branches missed.">      if (attrNames.length == 0 &amp;&amp; !attrName.isEmpty()) {</span>
+<span class="nc" id="L372">        attrNameMsgs.add(&quot;&quot;);</span>
       } else {
-<span class="fc bfc" id="L373" title="All 2 branches covered.">        for (String regex : attrNames) {</span>
+<span class="fc bfc" id="L374" title="All 2 branches covered.">        for (String regex : attrNames) {</span>
           try {
-<span class="fc" id="L375">            attrNamePatterns.add(Pattern.compile(regex));</span>
-<span class="nc" id="L376">          } catch (PatternSyntaxException e) {</span>
-<span class="nc" id="L377">            logger.trace(&quot;&quot;, e);</span>
-<span class="nc" id="L378">            attrNameMsgs.add(e.getDescription());</span>
-<span class="fc" id="L379">          }</span>
+<span class="fc" id="L376">            attrNamePatterns.add(Pattern.compile(regex));</span>
+<span class="nc" id="L377">          } catch (PatternSyntaxException e) {</span>
+<span class="nc" id="L378">            logger.trace(&quot;&quot;, e);</span>
+<span class="nc" id="L379">            attrNameMsgs.add(e.getDescription());</span>
+<span class="fc" id="L380">          }</span>
         }
       }
     }
-<span class="fc" id="L383">  }</span>
+<span class="fc" id="L384">  }</span>
 
   /**
    * Gets the attr name patterns.
@@ -388,7 +389,7 @@ import org.slf4j.LoggerFactory;
    * @return the attr name patterns
    */
   public List&lt;Pattern&gt; getAttrNamePatterns() {
-<span class="nc" id="L391">    return attrNamePatterns;</span>
+<span class="nc" id="L392">    return attrNamePatterns;</span>
   }
 
   /**
@@ -397,7 +398,7 @@ import org.slf4j.LoggerFactory;
    * @return the attr name msgs
    */
   public List&lt;String&gt; getAttrNameMsgs() {
-<span class="nc" id="L400">    return attrNameMsgs;</span>
+<span class="nc" id="L401">    return attrNameMsgs;</span>
   }
 
   /**
@@ -406,7 +407,7 @@ import org.slf4j.LoggerFactory;
    * @return the age from
    */
   public String getAgeFrom() {
-<span class="fc" id="L409">    return ageFrom;</span>
+<span class="fc" id="L410">    return ageFrom;</span>
   }
 
   /**
@@ -415,17 +416,17 @@ import org.slf4j.LoggerFactory;
    * @param ageFrom the new age from
    */
   public void setAgeFrom(String ageFrom) {
-<span class="fc" id="L418">    this.ageFrom = ageFrom;</span>
-<span class="fc" id="L419">    ageFromSec = null;</span>
+<span class="fc" id="L419">    this.ageFrom = ageFrom;</span>
+<span class="fc" id="L420">    ageFromSec = null;</span>
 
-<span class="pc bpc" id="L421" title="1 of 2 branches missed.">    if (ageFrom != null) {</span>
+<span class="pc bpc" id="L422" title="1 of 2 branches missed.">    if (ageFrom != null) {</span>
       try {
-<span class="nc" id="L423">        ageFromSec = Integer.valueOf(ageFrom);</span>
-<span class="fc" id="L424">      } catch (NumberFormatException e) {</span>
-<span class="fc" id="L425">        logger.trace(&quot;&quot;, e);</span>
-<span class="nc" id="L426">      }</span>
+<span class="nc" id="L424">        ageFromSec = Integer.valueOf(ageFrom);</span>
+<span class="fc" id="L425">      } catch (NumberFormatException e) {</span>
+<span class="fc" id="L426">        logger.trace(&quot;&quot;, e);</span>
+<span class="nc" id="L427">      }</span>
     }
-<span class="fc" id="L428">  }</span>
+<span class="fc" id="L429">  }</span>
 
   /**
    * Gets the age from sec.
@@ -433,7 +434,7 @@ import org.slf4j.LoggerFactory;
    * @return the age from sec
    */
   public Integer getAgeFromSec() {
-<span class="nc" id="L436">    return ageFromSec;</span>
+<span class="nc" id="L437">    return ageFromSec;</span>
   }
 
   /**
@@ -442,7 +443,7 @@ import org.slf4j.LoggerFactory;
    * @return the age to
    */
   public String getAgeTo() {
-<span class="fc" id="L445">    return ageTo;</span>
+<span class="fc" id="L446">    return ageTo;</span>
   }
 
   /**
@@ -451,17 +452,17 @@ import org.slf4j.LoggerFactory;
    * @param ageTo the new age to
    */
   public void setAgeTo(String ageTo) {
-<span class="fc" id="L454">    this.ageTo = ageTo;</span>
-<span class="fc" id="L455">    ageToSec = null;</span>
+<span class="fc" id="L455">    this.ageTo = ageTo;</span>
+<span class="fc" id="L456">    ageToSec = null;</span>
 
-<span class="pc bpc" id="L457" title="1 of 2 branches missed.">    if (ageTo != null) {</span>
+<span class="pc bpc" id="L458" title="1 of 2 branches missed.">    if (ageTo != null) {</span>
       try {
-<span class="nc" id="L459">        ageToSec = Integer.valueOf(ageTo);</span>
-<span class="fc" id="L460">      } catch (NumberFormatException e) {</span>
-<span class="fc" id="L461">        logger.trace(&quot;&quot;, e);</span>
-<span class="nc" id="L462">      }</span>
+<span class="nc" id="L460">        ageToSec = Integer.valueOf(ageTo);</span>
+<span class="fc" id="L461">      } catch (NumberFormatException e) {</span>
+<span class="fc" id="L462">        logger.trace(&quot;&quot;, e);</span>
+<span class="nc" id="L463">      }</span>
     }
-<span class="fc" id="L464">  }</span>
+<span class="fc" id="L465">  }</span>
 
   /**
    * Gets the age to sec.
@@ -469,7 +470,7 @@ import org.slf4j.LoggerFactory;
    * @return the age to sec
    */
   public Integer getAgeToSec() {
-<span class="nc" id="L472">    return ageToSec;</span>
+<span class="nc" id="L473">    return ageToSec;</span>
   }
 
   /**
@@ -478,7 +479,7 @@ import org.slf4j.LoggerFactory;
    * @return the idle time from
    */
   public String getIdleTimeFrom() {
-<span class="fc" id="L481">    return idleTimeFrom;</span>
+<span class="fc" id="L482">    return idleTimeFrom;</span>
   }
 
   /**
@@ -487,17 +488,17 @@ import org.slf4j.LoggerFactory;
    * @param idleTimeFrom the new idle time from
    */
   public void setIdleTimeFrom(String idleTimeFrom) {
-<span class="fc" id="L490">    this.idleTimeFrom = idleTimeFrom;</span>
-<span class="fc" id="L491">    idleTimeFromSec = null;</span>
+<span class="fc" id="L491">    this.idleTimeFrom = idleTimeFrom;</span>
+<span class="fc" id="L492">    idleTimeFromSec = null;</span>
 
-<span class="pc bpc" id="L493" title="1 of 2 branches missed.">    if (idleTimeFrom != null) {</span>
+<span class="pc bpc" id="L494" title="1 of 2 branches missed.">    if (idleTimeFrom != null) {</span>
       try {
-<span class="nc" id="L495">        idleTimeFromSec = Integer.valueOf(idleTimeFrom);</span>
-<span class="fc" id="L496">      } catch (NumberFormatException e) {</span>
-<span class="fc" id="L497">        logger.trace(&quot;&quot;, e);</span>
-<span class="nc" id="L498">      }</span>
+<span class="nc" id="L496">        idleTimeFromSec = Integer.valueOf(idleTimeFrom);</span>
+<span class="fc" id="L497">      } catch (NumberFormatException e) {</span>
+<span class="fc" id="L498">        logger.trace(&quot;&quot;, e);</span>
+<span class="nc" id="L499">      }</span>
     }
-<span class="fc" id="L500">  }</span>
+<span class="fc" id="L501">  }</span>
 
   /**
    * Gets the idle time from sec.
@@ -505,7 +506,7 @@ import org.slf4j.LoggerFactory;
    * @return the idle time from sec
    */
   public Integer getIdleTimeFromSec() {
-<span class="nc" id="L508">    return idleTimeFromSec;</span>
+<span class="nc" id="L509">    return idleTimeFromSec;</span>
   }
 
   /**
@@ -514,7 +515,7 @@ import org.slf4j.LoggerFactory;
    * @return the idle time to
    */
   public String getIdleTimeTo() {
-<span class="fc" id="L517">    return idleTimeTo;</span>
+<span class="fc" id="L518">    return idleTimeTo;</span>
   }
 
   /**
@@ -523,17 +524,17 @@ import org.slf4j.LoggerFactory;
    * @param idleTimeTo the new idle time to
    */
   public void setIdleTimeTo(String idleTimeTo) {
-<span class="fc" id="L526">    this.idleTimeTo = idleTimeTo;</span>
-<span class="fc" id="L527">    idleTimeToSec = null;</span>
+<span class="fc" id="L527">    this.idleTimeTo = idleTimeTo;</span>
+<span class="fc" id="L528">    idleTimeToSec = null;</span>
 
-<span class="pc bpc" id="L529" title="1 of 2 branches missed.">    if (idleTimeTo != null) {</span>
+<span class="pc bpc" id="L530" title="1 of 2 branches missed.">    if (idleTimeTo != null) {</span>
       try {
-<span class="nc" id="L531">        idleTimeToSec = Integer.valueOf(idleTimeTo);</span>
-<span class="fc" id="L532">      } catch (NumberFormatException e) {</span>
-<span class="fc" id="L533">        logger.trace(&quot;&quot;, e);</span>
-<span class="nc" id="L534">      }</span>
+<span class="nc" id="L532">        idleTimeToSec = Integer.valueOf(idleTimeTo);</span>
+<span class="fc" id="L533">      } catch (NumberFormatException e) {</span>
+<span class="fc" id="L534">        logger.trace(&quot;&quot;, e);</span>
+<span class="nc" id="L535">      }</span>
     }
-<span class="fc" id="L536">  }</span>
+<span class="fc" id="L537">  }</span>
 
   /**
    * Gets the idle time to sec.
@@ -541,7 +542,7 @@ import org.slf4j.LoggerFactory;
    * @return the idle time to sec
    */
   public Integer getIdleTimeToSec() {
-<span class="nc" id="L544">    return idleTimeToSec;</span>
+<span class="nc" id="L545">    return idleTimeToSec;</span>
   }
 
   /**
@@ -550,7 +551,7 @@ import org.slf4j.LoggerFactory;
    * @return the last ip
    */
   public String getLastIp() {
-<span class="fc" id="L553">    return lastIp;</span>
+<span class="fc" id="L554">    return lastIp;</span>
   }
 
   /**
@@ -559,8 +560,8 @@ import org.slf4j.LoggerFactory;
    * @param lastIp the new last ip
    */
   public void setLastIp(String lastIp) {
-<span class="fc" id="L562">    this.lastIp = lastIp;</span>
-<span class="fc" id="L563">  }</span>
+<span class="fc" id="L563">    this.lastIp = lastIp;</span>
+<span class="fc" id="L564">  }</span>
 
   /**
    * Gets the info message.
@@ -568,7 +569,7 @@ import org.slf4j.LoggerFactory;
    * @return the info message
    */
   public String getInfoMessage() {
-<span class="fc" id="L571">    return infoMessage;</span>
+<span class="fc" id="L572">    return infoMessage;</span>
   }
 
   /**
@@ -577,8 +578,8 @@ import org.slf4j.LoggerFactory;
    * @param infoMessage the new info message
    */
   public void setInfoMessage(String infoMessage) {
-<span class="fc" id="L580">    this.infoMessage = infoMessage;</span>
-<span class="fc" id="L581">  }</span>
+<span class="fc" id="L581">    this.infoMessage = infoMessage;</span>
+<span class="fc" id="L582">  }</span>
 
   /**
    * Gets the error messages.
@@ -586,7 +587,7 @@ import org.slf4j.LoggerFactory;
    * @return the error messages
    */
   public List&lt;String&gt; getErrorMessages() {
-<span class="nc" id="L589">    return errorMessages;</span>
+<span class="nc" id="L590">    return errorMessages;</span>
   }
 
   /**
@@ -595,8 +596,8 @@ import org.slf4j.LoggerFactory;
    * @param msg the msg
    */
   public void addErrorMessage(String msg) {
-<span class="nc" id="L598">    errorMessages.add(msg);</span>
-<span class="nc" id="L599">  }</span>
+<span class="nc" id="L599">    errorMessages.add(msg);</span>
+<span class="nc" id="L600">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

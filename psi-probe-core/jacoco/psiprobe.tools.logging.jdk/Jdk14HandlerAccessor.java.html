@@ -11,12 +11,13 @@
 package psiprobe.tools.logging.jdk;
 
 import org.apache.commons.lang3.reflect.MethodUtils;
+
 import psiprobe.tools.logging.AbstractLogDestination;
 
 /**
  * The Class Jdk14HandlerAccessor.
  */
-<span class="fc" id="L19">public class Jdk14HandlerAccessor extends AbstractLogDestination {</span>
+<span class="fc" id="L20">public class Jdk14HandlerAccessor extends AbstractLogDestination {</span>
 
   /** The logger accessor. */
   private Jdk14LoggerAccessor loggerAccessor;
@@ -30,7 +31,7 @@ import psiprobe.tools.logging.AbstractLogDestination;
    * @return the logger accessor
    */
   public Jdk14LoggerAccessor getLoggerAccessor() {
-<span class="fc" id="L33">    return loggerAccessor;</span>
+<span class="fc" id="L34">    return loggerAccessor;</span>
   }
 
   /**
@@ -39,27 +40,27 @@ import psiprobe.tools.logging.AbstractLogDestination;
    * @param loggerAccessor the new logger accessor
    */
   public void setLoggerAccessor(Jdk14LoggerAccessor loggerAccessor) {
-<span class="fc" id="L42">    this.loggerAccessor = loggerAccessor;</span>
-<span class="fc" id="L43">  }</span>
+<span class="fc" id="L43">    this.loggerAccessor = loggerAccessor;</span>
+<span class="fc" id="L44">  }</span>
 
   @Override
   public boolean isContext() {
-<span class="nc" id="L47">    return getLoggerAccessor().isContext();</span>
+<span class="nc" id="L48">    return getLoggerAccessor().isContext();</span>
   }
 
   @Override
   public boolean isRoot() {
-<span class="nc" id="L52">    return getLoggerAccessor().isRoot();</span>
+<span class="nc" id="L53">    return getLoggerAccessor().isRoot();</span>
   }
 
   @Override
   public String getName() {
-<span class="nc" id="L57">    return getLoggerAccessor().getName();</span>
+<span class="nc" id="L58">    return getLoggerAccessor().getName();</span>
   }
 
   @Override
   public String getIndex() {
-<span class="fc" id="L62">    return index;</span>
+<span class="fc" id="L63">    return index;</span>
   }
 
   /**
@@ -68,17 +69,17 @@ import psiprobe.tools.logging.AbstractLogDestination;
    * @param index the new index
    */
   public void setIndex(String index) {
-<span class="fc" id="L71">    this.index = index;</span>
-<span class="fc" id="L72">  }</span>
+<span class="fc" id="L72">    this.index = index;</span>
+<span class="fc" id="L73">  }</span>
 
   @Override
   public String getLogType() {
-<span class="nc" id="L76">    return &quot;jdk&quot;;</span>
+<span class="nc" id="L77">    return &quot;jdk&quot;;</span>
   }
 
   @Override
   public String getLevel() {
-<span class="nc" id="L81">    return getLoggerAccessor().getLevel();</span>
+<span class="nc" id="L82">    return getLoggerAccessor().getLevel();</span>
   }
 
   /**
@@ -88,19 +89,19 @@ import psiprobe.tools.logging.AbstractLogDestination;
    */
   public void setLevel(String newLevelStr) {
     try {
-<span class="nc" id="L91">      Object level = MethodUtils.invokeMethod(getTarget(), &quot;getLevel&quot;);</span>
-<span class="nc" id="L92">      Object newLevel = MethodUtils.invokeMethod(level, &quot;parse&quot;, newLevelStr);</span>
-<span class="nc" id="L93">      MethodUtils.invokeMethod(getTarget(), &quot;setLevel&quot;, newLevel);</span>
-<span class="nc" id="L94">    } catch (Exception e) {</span>
-<span class="nc" id="L95">      logger.error(&quot;{}#setLevel('{}') failed&quot;, getTarget().getClass().getName(), newLevelStr, e);</span>
-<span class="nc" id="L96">    }</span>
-<span class="nc" id="L97">  }</span>
+<span class="nc" id="L92">      Object level = MethodUtils.invokeMethod(getTarget(), &quot;getLevel&quot;);</span>
+<span class="nc" id="L93">      Object newLevel = MethodUtils.invokeMethod(level, &quot;parse&quot;, newLevelStr);</span>
+<span class="nc" id="L94">      MethodUtils.invokeMethod(getTarget(), &quot;setLevel&quot;, newLevel);</span>
+<span class="nc" id="L95">    } catch (Exception e) {</span>
+<span class="nc" id="L96">      logger.error(&quot;{}#setLevel('{}') failed&quot;, getTarget().getClass().getName(), newLevelStr, e);</span>
+<span class="nc" id="L97">    }</span>
+<span class="nc" id="L98">  }</span>
 
   @Override
   public String[] getValidLevels() {
-<span class="nc" id="L101">    return new String[] {&quot;OFF&quot;, &quot;SEVERE&quot;, &quot;WARNING&quot;, &quot;INFO&quot;, &quot;CONFIG&quot;, &quot;FINE&quot;, &quot;FINER&quot;, &quot;FINEST&quot;,</span>
+<span class="nc" id="L102">    return new String[] {&quot;OFF&quot;, &quot;SEVERE&quot;, &quot;WARNING&quot;, &quot;INFO&quot;, &quot;CONFIG&quot;, &quot;FINE&quot;, &quot;FINER&quot;, &quot;FINEST&quot;,</span>
         &quot;ALL&quot;};
   }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

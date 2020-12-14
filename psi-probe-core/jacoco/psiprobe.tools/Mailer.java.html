@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
+
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.mail.Message;
@@ -27,6 +28,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -40,7 +42,7 @@ public class Mailer {
   public static final String PROPERTY_KEY_SMTP = &quot;mail.smtp.host&quot;;
 
   /** The Constant logger. */
-<span class="fc" id="L43">  private static final Logger logger = LoggerFactory.getLogger(Mailer.class);</span>
+<span class="fc" id="L45">  private static final Logger logger = LoggerFactory.getLogger(Mailer.class);</span>
 
   /** The from. */
   private String from;
@@ -58,8 +60,8 @@ public class Mailer {
    * Instantiates a new mailer.
    */
   public Mailer() {
-<span class="fc" id="L61">    this(null);</span>
-<span class="fc" id="L62">  }</span>
+<span class="fc" id="L63">    this(null);</span>
+<span class="fc" id="L64">  }</span>
 
   /**
    * Instantiates a new mailer.
@@ -67,8 +69,8 @@ public class Mailer {
    * @param from the from
    */
   public Mailer(String from) {
-<span class="fc" id="L70">    this(from, null);</span>
-<span class="fc" id="L71">  }</span>
+<span class="fc" id="L72">    this(from, null);</span>
+<span class="fc" id="L73">  }</span>
 
   /**
    * Instantiates a new mailer.
@@ -76,10 +78,10 @@ public class Mailer {
    * @param from the from
    * @param smtp the smtp
    */
-<span class="fc" id="L79">  public Mailer(String from, String smtp) {</span>
-<span class="fc" id="L80">    this.smtp = smtp;</span>
-<span class="fc" id="L81">    this.from = from;</span>
-<span class="fc" id="L82">  }</span>
+<span class="fc" id="L81">  public Mailer(String from, String smtp) {</span>
+<span class="fc" id="L82">    this.smtp = smtp;</span>
+<span class="fc" id="L83">    this.from = from;</span>
+<span class="fc" id="L84">  }</span>
 
   /**
    * Gets the from.
@@ -87,7 +89,7 @@ public class Mailer {
    * @return the from
    */
   public String getFrom() {
-<span class="fc" id="L90">    return from;</span>
+<span class="fc" id="L92">    return from;</span>
   }
 
   /**
@@ -96,10 +98,10 @@ public class Mailer {
    * @return the smtp
    */
   public String getSmtp() {
-<span class="pc bpc" id="L99" title="1 of 2 branches missed.">    if (smtp == null) {</span>
-<span class="nc" id="L100">      return System.getProperty(PROPERTY_KEY_SMTP);</span>
+<span class="pc bpc" id="L101" title="1 of 2 branches missed.">    if (smtp == null) {</span>
+<span class="nc" id="L102">      return System.getProperty(PROPERTY_KEY_SMTP);</span>
     }
-<span class="fc" id="L102">    return smtp;</span>
+<span class="fc" id="L104">    return smtp;</span>
   }
 
   /**
@@ -108,8 +110,8 @@ public class Mailer {
    * @param from the new from
    */
   public void setFrom(String from) {
-<span class="fc" id="L111">    this.from = from;</span>
-<span class="fc" id="L112">  }</span>
+<span class="fc" id="L113">    this.from = from;</span>
+<span class="fc" id="L114">  }</span>
 
   /**
    * Sets the smtp.
@@ -117,8 +119,8 @@ public class Mailer {
    * @param smtp the new smtp
    */
   public void setSmtp(String smtp) {
-<span class="fc" id="L120">    this.smtp = smtp;</span>
-<span class="fc" id="L121">  }</span>
+<span class="fc" id="L122">    this.smtp = smtp;</span>
+<span class="fc" id="L123">  }</span>
 
   /**
    * Gets the default to.
@@ -126,7 +128,7 @@ public class Mailer {
    * @return the default to
    */
   public String getDefaultTo() {
-<span class="fc" id="L129">    return defaultTo;</span>
+<span class="fc" id="L131">    return defaultTo;</span>
   }
 
   /**
@@ -136,8 +138,8 @@ public class Mailer {
    */
   @Value(&quot;${psiprobe.tools.mail.to}&quot;)
   public void setDefaultTo(String defaultTo) {
-<span class="fc" id="L139">    this.defaultTo = defaultTo;</span>
-<span class="fc" id="L140">  }</span>
+<span class="fc" id="L141">    this.defaultTo = defaultTo;</span>
+<span class="fc" id="L142">  }</span>
 
   /**
    * Gets the subject prefix.
@@ -145,7 +147,7 @@ public class Mailer {
    * @return the subject prefix
    */
   public String getSubjectPrefix() {
-<span class="fc" id="L148">    return subjectPrefix;</span>
+<span class="fc" id="L150">    return subjectPrefix;</span>
   }
 
   /**
@@ -155,8 +157,8 @@ public class Mailer {
    */
   @Value(&quot;${psiprobe.tools.mail.subjectPrefix}&quot;)
   public void setSubjectPrefix(String subjectPrefix) {
-<span class="fc" id="L158">    this.subjectPrefix = subjectPrefix;</span>
-<span class="fc" id="L159">  }</span>
+<span class="fc" id="L160">    this.subjectPrefix = subjectPrefix;</span>
+<span class="fc" id="L161">  }</span>
 
   /**
    * Send.
@@ -165,22 +167,22 @@ public class Mailer {
    * @throws MessagingException the messaging exception
    */
   public void send(MailMessage mailMessage) throws MessagingException {
-<span class="nc" id="L168">    Properties props = (Properties) System.getProperties().clone();</span>
-<span class="nc bnc" id="L169" title="All 2 branches missed.">    if (smtp != null) {</span>
-<span class="nc" id="L170">      props.put(PROPERTY_KEY_SMTP, smtp);</span>
+<span class="nc" id="L170">    Properties props = (Properties) System.getProperties().clone();</span>
+<span class="nc bnc" id="L171" title="All 2 branches missed.">    if (smtp != null) {</span>
+<span class="nc" id="L172">      props.put(PROPERTY_KEY_SMTP, smtp);</span>
     }
 
-<span class="nc" id="L173">    try (PrintStream debugOut =</span>
-<span class="nc" id="L174">        LogOutputStream.createPrintStream(logger, LogOutputStream.LEVEL_DEBUG)) {</span>
-<span class="nc" id="L175">      Session session = Session.getDefaultInstance(props);</span>
-<span class="nc" id="L176">      session.setDebug(true);</span>
-<span class="nc" id="L177">      session.setDebugOut(debugOut);</span>
+<span class="nc" id="L175">    try (PrintStream debugOut =</span>
+<span class="nc" id="L176">        LogOutputStream.createPrintStream(logger, LogOutputStream.LEVEL_DEBUG)) {</span>
+<span class="nc" id="L177">      Session session = Session.getDefaultInstance(props);</span>
+<span class="nc" id="L178">      session.setDebug(true);</span>
+<span class="nc" id="L179">      session.setDebugOut(debugOut);</span>
 
-<span class="nc" id="L179">      MimeMessage message = createMimeMessage(session, mailMessage);</span>
-<span class="nc" id="L180">      logger.debug(&quot;Sending message&quot;);</span>
-<span class="nc" id="L181">      Transport.send(message);</span>
+<span class="nc" id="L181">      MimeMessage message = createMimeMessage(session, mailMessage);</span>
+<span class="nc" id="L182">      logger.debug(&quot;Sending message&quot;);</span>
+<span class="nc" id="L183">      Transport.send(message);</span>
     }
-<span class="nc" id="L183">  }</span>
+<span class="nc" id="L185">  }</span>
 
   /**
    * Creates the mime message.
@@ -193,47 +195,47 @@ public class Mailer {
   private MimeMessage createMimeMessage(Session session, MailMessage mailMessage)
       throws MessagingException {
 
-<span class="nc" id="L196">    String subject = mailMessage.getSubject();</span>
-<span class="nc bnc" id="L197" title="All 4 branches missed.">    if (subjectPrefix != null &amp;&amp; !subjectPrefix.isEmpty()) {</span>
-<span class="nc" id="L198">      subject = subjectPrefix + &quot; &quot; + subject;</span>
+<span class="nc" id="L198">    String subject = mailMessage.getSubject();</span>
+<span class="nc bnc" id="L199" title="All 4 branches missed.">    if (subjectPrefix != null &amp;&amp; !subjectPrefix.isEmpty()) {</span>
+<span class="nc" id="L200">      subject = subjectPrefix + &quot; &quot; + subject;</span>
     }
 
-<span class="nc" id="L201">    MimeMultipart content = new MimeMultipart(&quot;related&quot;);</span>
+<span class="nc" id="L203">    MimeMultipart content = new MimeMultipart(&quot;related&quot;);</span>
 
     // Create attachments
-<span class="nc" id="L204">    DataSource[] attachments = mailMessage.getAttachmentsArray();</span>
-<span class="nc bnc" id="L205" title="All 2 branches missed.">    for (DataSource attachment : attachments) {</span>
-<span class="nc" id="L206">      MimeBodyPart attachmentPart = createAttachmentPart(attachment);</span>
-<span class="nc" id="L207">      content.addBodyPart(attachmentPart);</span>
+<span class="nc" id="L206">    DataSource[] attachments = mailMessage.getAttachmentsArray();</span>
+<span class="nc bnc" id="L207" title="All 2 branches missed.">    for (DataSource attachment : attachments) {</span>
+<span class="nc" id="L208">      MimeBodyPart attachmentPart = createAttachmentPart(attachment);</span>
+<span class="nc" id="L209">      content.addBodyPart(attachmentPart);</span>
     }
 
     // Create message body
-<span class="nc" id="L211">    MimeBodyPart bodyPart = createMessageBodyPart(mailMessage.getBody(), mailMessage.isBodyHtml());</span>
-<span class="nc" id="L212">    content.addBodyPart(bodyPart);</span>
+<span class="nc" id="L213">    MimeBodyPart bodyPart = createMessageBodyPart(mailMessage.getBody(), mailMessage.isBodyHtml());</span>
+<span class="nc" id="L214">    content.addBodyPart(bodyPart);</span>
 
-<span class="nc" id="L214">    MimeMessage message = new MimeMessage(session);</span>
-<span class="nc bnc" id="L215" title="All 2 branches missed.">    if (from == null) {</span>
+<span class="nc" id="L216">    MimeMessage message = new MimeMessage(session);</span>
+<span class="nc bnc" id="L217" title="All 2 branches missed.">    if (from == null) {</span>
       // Uses mail.from property
-<span class="nc" id="L217">      message.setFrom();</span>
+<span class="nc" id="L219">      message.setFrom();</span>
     } else {
-<span class="nc" id="L219">      message.setFrom(new InternetAddress(from));</span>
+<span class="nc" id="L221">      message.setFrom(new InternetAddress(from));</span>
     }
 
-<span class="nc" id="L222">    InternetAddress[] to = createAddresses(mailMessage.getToArray());</span>
-<span class="nc bnc" id="L223" title="All 2 branches missed.">    if (to.length == 0) {</span>
-<span class="nc" id="L224">      to = InternetAddress.parse(defaultTo);</span>
+<span class="nc" id="L224">    InternetAddress[] to = createAddresses(mailMessage.getToArray());</span>
+<span class="nc bnc" id="L225" title="All 2 branches missed.">    if (to.length == 0) {</span>
+<span class="nc" id="L226">      to = InternetAddress.parse(defaultTo);</span>
     }
-<span class="nc" id="L226">    message.setRecipients(Message.RecipientType.TO, to);</span>
+<span class="nc" id="L228">    message.setRecipients(Message.RecipientType.TO, to);</span>
 
-<span class="nc" id="L228">    InternetAddress[] cc = createAddresses(mailMessage.getCcArray());</span>
-<span class="nc" id="L229">    message.setRecipients(Message.RecipientType.CC, cc);</span>
+<span class="nc" id="L230">    InternetAddress[] cc = createAddresses(mailMessage.getCcArray());</span>
+<span class="nc" id="L231">    message.setRecipients(Message.RecipientType.CC, cc);</span>
 
-<span class="nc" id="L231">    InternetAddress[] bcc = createAddresses(mailMessage.getBccArray());</span>
-<span class="nc" id="L232">    message.setRecipients(Message.RecipientType.BCC, bcc);</span>
+<span class="nc" id="L233">    InternetAddress[] bcc = createAddresses(mailMessage.getBccArray());</span>
+<span class="nc" id="L234">    message.setRecipients(Message.RecipientType.BCC, bcc);</span>
 
-<span class="nc" id="L234">    message.setSubject(subject);</span>
-<span class="nc" id="L235">    message.setContent(content);</span>
-<span class="nc" id="L236">    return message;</span>
+<span class="nc" id="L236">    message.setSubject(subject);</span>
+<span class="nc" id="L237">    message.setContent(content);</span>
+<span class="nc" id="L238">    return message;</span>
   }
 
   /**
@@ -244,12 +246,12 @@ public class Mailer {
    * @throws AddressException the address exception
    */
   private static InternetAddress[] createAddresses(String[] addresses) throws AddressException {
-<span class="nc" id="L247">    List&lt;InternetAddress&gt; result = new ArrayList&lt;&gt;(addresses.length);</span>
-<span class="nc bnc" id="L248" title="All 2 branches missed.">    for (String address : addresses) {</span>
-<span class="nc" id="L249">      InternetAddress[] parsedAddresses = InternetAddress.parse(address);</span>
-<span class="nc" id="L250">      result.addAll(Arrays.asList(parsedAddresses));</span>
+<span class="nc" id="L249">    List&lt;InternetAddress&gt; result = new ArrayList&lt;&gt;(addresses.length);</span>
+<span class="nc bnc" id="L250" title="All 2 branches missed.">    for (String address : addresses) {</span>
+<span class="nc" id="L251">      InternetAddress[] parsedAddresses = InternetAddress.parse(address);</span>
+<span class="nc" id="L252">      result.addAll(Arrays.asList(parsedAddresses));</span>
     }
-<span class="nc" id="L252">    return result.toArray(new InternetAddress[result.size()]);</span>
+<span class="nc" id="L254">    return result.toArray(new InternetAddress[result.size()]);</span>
   }
 
   /**
@@ -262,11 +264,11 @@ public class Mailer {
   private static MimeBodyPart createAttachmentPart(DataSource attachment)
       throws MessagingException {
 
-<span class="nc" id="L265">    MimeBodyPart attachmentPart = new MimeBodyPart();</span>
-<span class="nc" id="L266">    attachmentPart.setDataHandler(new DataHandler(attachment));</span>
-<span class="nc" id="L267">    attachmentPart.setDisposition(Part.ATTACHMENT);</span>
-<span class="nc" id="L268">    attachmentPart.setFileName(attachment.getName());</span>
-<span class="nc" id="L269">    return attachmentPart;</span>
+<span class="nc" id="L267">    MimeBodyPart attachmentPart = new MimeBodyPart();</span>
+<span class="nc" id="L268">    attachmentPart.setDataHandler(new DataHandler(attachment));</span>
+<span class="nc" id="L269">    attachmentPart.setDisposition(Part.ATTACHMENT);</span>
+<span class="nc" id="L270">    attachmentPart.setFileName(attachment.getName());</span>
+<span class="nc" id="L271">    return attachmentPart;</span>
   }
 
   /**
@@ -279,11 +281,11 @@ public class Mailer {
    */
   private static MimeBodyPart createMessageBodyPart(String body, boolean html)
       throws MessagingException {
-<span class="nc" id="L282">    MimeBodyPart bodyPart = new MimeBodyPart();</span>
-<span class="nc" id="L283">    bodyPart.setText(body);</span>
-<span class="nc bnc" id="L284" title="All 2 branches missed.">    bodyPart.setHeader(&quot;content-type&quot;, html ? &quot;text/html&quot; : &quot;text/plain&quot;);</span>
-<span class="nc" id="L285">    return bodyPart;</span>
+<span class="nc" id="L284">    MimeBodyPart bodyPart = new MimeBodyPart();</span>
+<span class="nc" id="L285">    bodyPart.setText(body);</span>
+<span class="nc bnc" id="L286" title="All 2 branches missed.">    bodyPart.setHeader(&quot;content-type&quot;, html ? &quot;text/html&quot; : &quot;text/plain&quot;);</span>
+<span class="nc" id="L287">    return bodyPart;</span>
   }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

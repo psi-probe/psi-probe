@@ -11,37 +11,40 @@
 package psiprobe.beans.stats.providers;
 
 import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
+
 import org.jfree.data.xy.DefaultTableXYDataset;
 import org.jfree.data.xy.XYDataItem;
 import org.springframework.web.bind.ServletRequestUtils;
+
 import psiprobe.model.stats.StatsCollection;
 
 /**
  * The Class ConnectorSeriesProvider.
  */
-<span class="fc" id="L23">public class ConnectorSeriesProvider extends AbstractSeriesProvider {</span>
+<span class="fc" id="L26">public class ConnectorSeriesProvider extends AbstractSeriesProvider {</span>
 
   @Override
   public void populate(DefaultTableXYDataset dataset, StatsCollection statsCollection,
       HttpServletRequest request) {
 
     // get Connector name from the request
-<span class="nc" id="L30">    String connectorName = ServletRequestUtils.getStringParameter(request, &quot;cn&quot;, null);</span>
+<span class="nc" id="L33">    String connectorName = ServletRequestUtils.getStringParameter(request, &quot;cn&quot;, null);</span>
 
     // type of statistic to be displayed
-<span class="nc" id="L33">    String statType = ServletRequestUtils.getStringParameter(request, &quot;st&quot;, null);</span>
+<span class="nc" id="L36">    String statType = ServletRequestUtils.getStringParameter(request, &quot;st&quot;, null);</span>
 
     // Series legend
-<span class="nc" id="L36">    String series1Legend = ServletRequestUtils.getStringParameter(request, &quot;sl&quot;, &quot;&quot;);</span>
+<span class="nc" id="L39">    String series1Legend = ServletRequestUtils.getStringParameter(request, &quot;sl&quot;, &quot;&quot;);</span>
 
-<span class="nc bnc" id="L38" title="All 4 branches missed.">    if (connectorName != null &amp;&amp; statType != null) {</span>
-<span class="nc" id="L39">      List&lt;XYDataItem&gt; stats =</span>
-<span class="nc" id="L40">          statsCollection.getStats(&quot;stat.connector.&quot; + connectorName + &quot;.&quot; + statType);</span>
-<span class="nc bnc" id="L41" title="All 2 branches missed.">      if (stats != null) {</span>
-<span class="nc" id="L42">        dataset.addSeries(toSeries(series1Legend, stats));</span>
+<span class="nc bnc" id="L41" title="All 4 branches missed.">    if (connectorName != null &amp;&amp; statType != null) {</span>
+<span class="nc" id="L42">      List&lt;XYDataItem&gt; stats =</span>
+<span class="nc" id="L43">          statsCollection.getStats(&quot;stat.connector.&quot; + connectorName + &quot;.&quot; + statType);</span>
+<span class="nc bnc" id="L44" title="All 2 branches missed.">      if (stats != null) {</span>
+<span class="nc" id="L45">        dataset.addSeries(toSeries(series1Legend, stats));</span>
       }
     }
-<span class="nc" id="L45">  }</span>
+<span class="nc" id="L48">  }</span>
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

@@ -13,16 +13,19 @@ package psiprobe.controllers.threads;
 import java.lang.management.ManagementFactory;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.management.MBeanServer;
 import javax.management.ObjectName;
 import javax.management.openmbean.CompositeData;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
+
 import psiprobe.model.SunThread;
 import psiprobe.model.ThreadStackElement;
 import psiprobe.tools.JmxTools;
@@ -31,66 +34,66 @@ import psiprobe.tools.JmxTools;
  * The Class ListSunThreadsController.
  */
 @Controller
-<span class="fc" id="L34">public class ListSunThreadsController extends ParameterizableViewController {</span>
+<span class="fc" id="L37">public class ListSunThreadsController extends ParameterizableViewController {</span>
 
   @RequestMapping(path = &quot;/th_impl2.htm&quot;)
   @Override
   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
       throws Exception {
-<span class="nc" id="L40">    return super.handleRequest(request, response);</span>
+<span class="nc" id="L43">    return super.handleRequest(request, response);</span>
   }
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 
-<span class="nc" id="L47">    List&lt;SunThread&gt; threads = null;</span>
-<span class="nc" id="L48">    int executionStackDepth = 1;</span>
+<span class="nc" id="L50">    List&lt;SunThread&gt; threads = null;</span>
+<span class="nc" id="L51">    int executionStackDepth = 1;</span>
 
-<span class="nc" id="L50">    MBeanServer mbeanServer = ManagementFactory.getPlatformMBeanServer();</span>
-<span class="nc" id="L51">    ObjectName threadingOName = new ObjectName(&quot;java.lang:type=Threading&quot;);</span>
+<span class="nc" id="L53">    MBeanServer mbeanServer = ManagementFactory.getPlatformMBeanServer();</span>
+<span class="nc" id="L54">    ObjectName threadingOName = new ObjectName(&quot;java.lang:type=Threading&quot;);</span>
 
-<span class="nc" id="L53">    long[] deadlockedIds =</span>
-<span class="nc" id="L54">        (long[]) mbeanServer.invoke(threadingOName, &quot;findMonitorDeadlockedThreads&quot;, null, null);</span>
-<span class="nc" id="L55">    long[] allIds = (long[]) mbeanServer.getAttribute(threadingOName, &quot;AllThreadIds&quot;);</span>
+<span class="nc" id="L56">    long[] deadlockedIds =</span>
+<span class="nc" id="L57">        (long[]) mbeanServer.invoke(threadingOName, &quot;findMonitorDeadlockedThreads&quot;, null, null);</span>
+<span class="nc" id="L58">    long[] allIds = (long[]) mbeanServer.getAttribute(threadingOName, &quot;AllThreadIds&quot;);</span>
 
-<span class="nc bnc" id="L57" title="All 2 branches missed.">    if (allIds != null) {</span>
-<span class="nc" id="L58">      threads = new ArrayList&lt;&gt;(allIds.length);</span>
+<span class="nc bnc" id="L60" title="All 2 branches missed.">    if (allIds != null) {</span>
+<span class="nc" id="L61">      threads = new ArrayList&lt;&gt;(allIds.length);</span>
 
-<span class="nc bnc" id="L60" title="All 2 branches missed.">      for (long id : allIds) {</span>
-<span class="nc" id="L61">        CompositeData cd = (CompositeData) mbeanServer.invoke(threadingOName, &quot;getThreadInfo&quot;,</span>
-<span class="nc" id="L62">            new Object[] {id, executionStackDepth}, new String[] {&quot;long&quot;, &quot;int&quot;});</span>
+<span class="nc bnc" id="L63" title="All 2 branches missed.">      for (long id : allIds) {</span>
+<span class="nc" id="L64">        CompositeData cd = (CompositeData) mbeanServer.invoke(threadingOName, &quot;getThreadInfo&quot;,</span>
+<span class="nc" id="L65">            new Object[] {id, executionStackDepth}, new String[] {&quot;long&quot;, &quot;int&quot;});</span>
 
-<span class="nc bnc" id="L64" title="All 2 branches missed.">        if (cd != null) {</span>
-<span class="nc" id="L65">          SunThread st = new SunThread();</span>
-<span class="nc" id="L66">          st.setId(JmxTools.getLongAttr(cd, &quot;threadId&quot;));</span>
-<span class="nc" id="L67">          st.setName(JmxTools.getStringAttr(cd, &quot;threadName&quot;));</span>
-<span class="nc" id="L68">          st.setState(JmxTools.getStringAttr(cd, &quot;threadState&quot;));</span>
-<span class="nc" id="L69">          st.setSuspended(JmxTools.getBooleanAttr(cd, &quot;suspended&quot;));</span>
-<span class="nc" id="L70">          st.setInNative(JmxTools.getBooleanAttr(cd, &quot;inNative&quot;));</span>
-<span class="nc" id="L71">          st.setLockName(JmxTools.getStringAttr(cd, &quot;lockName&quot;));</span>
-<span class="nc" id="L72">          st.setLockOwnerName(JmxTools.getStringAttr(cd, &quot;lockOwnerName&quot;));</span>
-<span class="nc" id="L73">          st.setWaitedCount(JmxTools.getLongAttr(cd, &quot;waitedCount&quot;));</span>
-<span class="nc" id="L74">          st.setBlockedCount(JmxTools.getLongAttr(cd, &quot;blockedCount&quot;));</span>
-<span class="nc" id="L75">          st.setDeadlocked(contains(deadlockedIds, st.getId()));</span>
+<span class="nc bnc" id="L67" title="All 2 branches missed.">        if (cd != null) {</span>
+<span class="nc" id="L68">          SunThread st = new SunThread();</span>
+<span class="nc" id="L69">          st.setId(JmxTools.getLongAttr(cd, &quot;threadId&quot;));</span>
+<span class="nc" id="L70">          st.setName(JmxTools.getStringAttr(cd, &quot;threadName&quot;));</span>
+<span class="nc" id="L71">          st.setState(JmxTools.getStringAttr(cd, &quot;threadState&quot;));</span>
+<span class="nc" id="L72">          st.setSuspended(JmxTools.getBooleanAttr(cd, &quot;suspended&quot;));</span>
+<span class="nc" id="L73">          st.setInNative(JmxTools.getBooleanAttr(cd, &quot;inNative&quot;));</span>
+<span class="nc" id="L74">          st.setLockName(JmxTools.getStringAttr(cd, &quot;lockName&quot;));</span>
+<span class="nc" id="L75">          st.setLockOwnerName(JmxTools.getStringAttr(cd, &quot;lockOwnerName&quot;));</span>
+<span class="nc" id="L76">          st.setWaitedCount(JmxTools.getLongAttr(cd, &quot;waitedCount&quot;));</span>
+<span class="nc" id="L77">          st.setBlockedCount(JmxTools.getLongAttr(cd, &quot;blockedCount&quot;));</span>
+<span class="nc" id="L78">          st.setDeadlocked(contains(deadlockedIds, st.getId()));</span>
 
-<span class="nc" id="L77">          CompositeData[] stack = (CompositeData[]) cd.get(&quot;stackTrace&quot;);</span>
-<span class="nc bnc" id="L78" title="All 2 branches missed.">          if (stack.length &gt; 0) {</span>
-<span class="nc" id="L79">            CompositeData cd2 = stack[0];</span>
-<span class="nc" id="L80">            ThreadStackElement tse = new ThreadStackElement();</span>
-<span class="nc" id="L81">            tse.setClassName(JmxTools.getStringAttr(cd2, &quot;className&quot;));</span>
-<span class="nc" id="L82">            tse.setFileName(JmxTools.getStringAttr(cd2, &quot;fileName&quot;));</span>
-<span class="nc" id="L83">            tse.setMethodName(JmxTools.getStringAttr(cd2, &quot;methodName&quot;));</span>
-<span class="nc" id="L84">            tse.setLineNumber(JmxTools.getIntAttr(cd2, &quot;lineNumber&quot;, -1));</span>
-<span class="nc" id="L85">            tse.setNativeMethod(JmxTools.getBooleanAttr(cd2, &quot;nativeMethod&quot;));</span>
-<span class="nc" id="L86">            st.setExecutionPoint(tse);</span>
+<span class="nc" id="L80">          CompositeData[] stack = (CompositeData[]) cd.get(&quot;stackTrace&quot;);</span>
+<span class="nc bnc" id="L81" title="All 2 branches missed.">          if (stack.length &gt; 0) {</span>
+<span class="nc" id="L82">            CompositeData cd2 = stack[0];</span>
+<span class="nc" id="L83">            ThreadStackElement tse = new ThreadStackElement();</span>
+<span class="nc" id="L84">            tse.setClassName(JmxTools.getStringAttr(cd2, &quot;className&quot;));</span>
+<span class="nc" id="L85">            tse.setFileName(JmxTools.getStringAttr(cd2, &quot;fileName&quot;));</span>
+<span class="nc" id="L86">            tse.setMethodName(JmxTools.getStringAttr(cd2, &quot;methodName&quot;));</span>
+<span class="nc" id="L87">            tse.setLineNumber(JmxTools.getIntAttr(cd2, &quot;lineNumber&quot;, -1));</span>
+<span class="nc" id="L88">            tse.setNativeMethod(JmxTools.getBooleanAttr(cd2, &quot;nativeMethod&quot;));</span>
+<span class="nc" id="L89">            st.setExecutionPoint(tse);</span>
           }
 
-<span class="nc" id="L89">          threads.add(st);</span>
+<span class="nc" id="L92">          threads.add(st);</span>
         }
       }
     }
-<span class="nc" id="L93">    return new ModelAndView(getViewName(), &quot;threads&quot;, threads);</span>
+<span class="nc" id="L96">    return new ModelAndView(getViewName(), &quot;threads&quot;, threads);</span>
   }
 
   /**
@@ -101,21 +104,21 @@ import psiprobe.tools.JmxTools;
    * @return true, if successful
    */
   private static boolean contains(long[] haystack, long needle) {
-<span class="nc bnc" id="L104" title="All 2 branches missed.">    if (haystack != null) {</span>
-<span class="nc bnc" id="L105" title="All 2 branches missed.">      for (long hay : haystack) {</span>
-<span class="nc bnc" id="L106" title="All 2 branches missed.">        if (hay == needle) {</span>
-<span class="nc" id="L107">          return true;</span>
+<span class="nc bnc" id="L107" title="All 2 branches missed.">    if (haystack != null) {</span>
+<span class="nc bnc" id="L108" title="All 2 branches missed.">      for (long hay : haystack) {</span>
+<span class="nc bnc" id="L109" title="All 2 branches missed.">        if (hay == needle) {</span>
+<span class="nc" id="L110">          return true;</span>
         }
       }
     }
-<span class="nc" id="L111">    return false;</span>
+<span class="nc" id="L114">    return false;</span>
   }
 
   @Value(&quot;threads_sun&quot;)
   @Override
   public void setViewName(String viewName) {
-<span class="fc" id="L117">    super.setViewName(viewName);</span>
-<span class="fc" id="L118">  }</span>
+<span class="fc" id="L120">    super.setViewName(viewName);</span>
+<span class="fc" id="L121">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

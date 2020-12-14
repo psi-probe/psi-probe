@@ -407,7 +407,7 @@
 <a class="jxr_linenumber" name="L399" href="#L399">399</a>         JspRuntimeContext jrctx = <strong class="jxr_keyword">new</strong> JspRuntimeContext(sctx, opt);
 <a class="jxr_linenumber" name="L400" href="#L400">400</a>         <strong class="jxr_keyword">try</strong> {
 <a class="jxr_linenumber" name="L401" href="#L401">401</a>           <strong class="jxr_keyword">if</strong> (summary.getItems() == <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L402" href="#L402">402</a>             summary.setItems(<strong class="jxr_keyword">new</strong> HashMap&lt;String, Item&gt;());
+<a class="jxr_linenumber" name="L402" href="#L402">402</a>             summary.setItems(<strong class="jxr_keyword">new</strong> HashMap&lt;&gt;());
 <a class="jxr_linenumber" name="L403" href="#L403">403</a>           }
 <a class="jxr_linenumber" name="L404" href="#L404">404</a> 
 <a class="jxr_linenumber" name="L405" href="#L405">405</a>           <em class="jxr_comment">/*</em>
@@ -614,7 +614,7 @@
 <a class="jxr_linenumber" name="L606" href="#L606">606</a>   <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">void</strong> checkChanges(String name) <strong class="jxr_keyword">throws</strong> Exception {
 <a class="jxr_linenumber" name="L607" href="#L607">607</a>     Boolean result = (Boolean) mbeanServer.invoke(deployerOName, <span class="jxr_string">"isServiced"</span>, <strong class="jxr_keyword">new</strong> String[] {name},
 <a class="jxr_linenumber" name="L608" href="#L608">608</a>         <strong class="jxr_keyword">new</strong> String[] {String.<strong class="jxr_keyword">class</strong>.getName()});
-<a class="jxr_linenumber" name="L609" href="#L609">609</a>     <strong class="jxr_keyword">if</strong> (!result) {
+<a class="jxr_linenumber" name="L609" href="#L609">609</a>     <strong class="jxr_keyword">if</strong> (!result.booleanValue()) {
 <a class="jxr_linenumber" name="L610" href="#L610">610</a>       mbeanServer.invoke(deployerOName, <span class="jxr_string">"addServiced"</span>, <strong class="jxr_keyword">new</strong> String[] {name},
 <a class="jxr_linenumber" name="L611" href="#L611">611</a>           <strong class="jxr_keyword">new</strong> String[] {String.<strong class="jxr_keyword">class</strong>.getName()});
 <a class="jxr_linenumber" name="L612" href="#L612">612</a>       <strong class="jxr_keyword">try</strong> {

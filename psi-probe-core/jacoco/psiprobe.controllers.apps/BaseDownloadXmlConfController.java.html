@@ -11,13 +11,16 @@
 package psiprobe.controllers.apps;
 
 import java.io.File;
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.catalina.Context;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.ModelAndView;
+
 import psiprobe.Utils;
 import psiprobe.controllers.AbstractContextHandlerController;
 
@@ -25,10 +28,10 @@ import psiprobe.controllers.AbstractContextHandlerController;
  * Downloads a deployment descriptor (web.xml) or a context descriptor (context.xml) of a web
  * application.
  */
-<span class="fc" id="L28">public class BaseDownloadXmlConfController extends AbstractContextHandlerController {</span>
+<span class="fc" id="L31">public class BaseDownloadXmlConfController extends AbstractContextHandlerController {</span>
 
   /** The Constant logger. */
-<span class="fc" id="L31">  private static final Logger logger = LoggerFactory.getLogger(BaseDownloadXmlConfController.class);</span>
+<span class="fc" id="L34">  private static final Logger logger = LoggerFactory.getLogger(BaseDownloadXmlConfController.class);</span>
 
   /** The Constant TARGET_WEB_XML. */
   private static final String TARGET_WEB_XML = &quot;web.xml&quot;;
@@ -45,7 +48,7 @@ import psiprobe.controllers.AbstractContextHandlerController;
    * @return the download target
    */
   public String getDownloadTarget() {
-<span class="fc" id="L48">    return downloadTarget;</span>
+<span class="fc" id="L51">    return downloadTarget;</span>
   }
 
   /**
@@ -54,41 +57,41 @@ import psiprobe.controllers.AbstractContextHandlerController;
    * @param downloadTarget the new download target
    */
   public void setDownloadTarget(String downloadTarget) {
-<span class="fc" id="L57">    this.downloadTarget = downloadTarget;</span>
-<span class="fc" id="L58">  }</span>
+<span class="fc" id="L60">    this.downloadTarget = downloadTarget;</span>
+<span class="fc" id="L61">  }</span>
 
   @Override
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-<span class="nc bnc" id="L64" title="All 2 branches missed.">    if (downloadTarget == null) {</span>
-<span class="nc" id="L65">      throw new RuntimeException(&quot;Download target is not set for &quot; + getClass().getName());</span>
+<span class="nc bnc" id="L67" title="All 2 branches missed.">    if (downloadTarget == null) {</span>
+<span class="nc" id="L68">      throw new RuntimeException(&quot;Download target is not set for &quot; + getClass().getName());</span>
     }
 
     String xmlPath;
 
-<span class="nc bnc" id="L70" title="All 2 branches missed.">    if (TARGET_WEB_XML.equals(downloadTarget)) {</span>
-<span class="nc" id="L71">      ServletContext sctx = context.getServletContext();</span>
-<span class="nc" id="L72">      xmlPath = sctx.getRealPath(&quot;/WEB-INF/web.xml&quot;);</span>
-<span class="nc bnc" id="L73" title="All 2 branches missed.">    } else if (TARGET_CONTEXT_XML.equals(downloadTarget)) {</span>
-<span class="nc" id="L74">      xmlPath = this.getContainerWrapper().getTomcatContainer().getConfigFile(context).getPath();</span>
+<span class="nc bnc" id="L73" title="All 2 branches missed.">    if (TARGET_WEB_XML.equals(downloadTarget)) {</span>
+<span class="nc" id="L74">      ServletContext sctx = context.getServletContext();</span>
+<span class="nc" id="L75">      xmlPath = sctx.getRealPath(&quot;/WEB-INF/web.xml&quot;);</span>
+<span class="nc bnc" id="L76" title="All 2 branches missed.">    } else if (TARGET_CONTEXT_XML.equals(downloadTarget)) {</span>
+<span class="nc" id="L77">      xmlPath = this.getContainerWrapper().getTomcatContainer().getConfigFile(context).getPath();</span>
     } else {
-<span class="nc" id="L76">      throw new RuntimeException(&quot;Unknown download target &quot; + getDownloadTarget());</span>
+<span class="nc" id="L79">      throw new RuntimeException(&quot;Unknown download target &quot; + getDownloadTarget());</span>
     }
 
-<span class="nc bnc" id="L79" title="All 2 branches missed.">    if (xmlPath != null) {</span>
-<span class="nc" id="L80">      File xmlFile = new File(xmlPath);</span>
-<span class="nc bnc" id="L81" title="All 2 branches missed.">      if (xmlFile.exists()) {</span>
-<span class="nc" id="L82">        Utils.sendFile(request, response, xmlFile);</span>
+<span class="nc bnc" id="L82" title="All 2 branches missed.">    if (xmlPath != null) {</span>
+<span class="nc" id="L83">      File xmlFile = new File(xmlPath);</span>
+<span class="nc bnc" id="L84" title="All 2 branches missed.">      if (xmlFile.exists()) {</span>
+<span class="nc" id="L85">        Utils.sendFile(request, response, xmlFile);</span>
       } else {
-<span class="nc" id="L84">        logger.debug(&quot;File {} of {} application does not exists.&quot;, xmlPath, contextName);</span>
+<span class="nc" id="L87">        logger.debug(&quot;File {} of {} application does not exists.&quot;, xmlPath, contextName);</span>
       }
-<span class="nc" id="L86">    } else {</span>
-<span class="nc" id="L87">      logger.debug(&quot;Cannot determine path to {} file of {} application.&quot;, getDownloadTarget(),</span>
+<span class="nc" id="L89">    } else {</span>
+<span class="nc" id="L90">      logger.debug(&quot;Cannot determine path to {} file of {} application.&quot;, getDownloadTarget(),</span>
           contextName);
     }
-<span class="nc" id="L90">    return null;</span>
+<span class="nc" id="L93">    return null;</span>
   }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

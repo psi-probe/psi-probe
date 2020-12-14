@@ -12,6 +12,7 @@ package psiprobe.controllers.apps;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,32 +22,32 @@ import org.springframework.web.servlet.ModelAndView;
  * The Class ViewWebXmlConfController.
  */
 @Controller
-<span class="fc" id="L24">public class ViewWebXmlConfController extends BaseViewXmlConfController {</span>
+<span class="fc" id="L25">public class ViewWebXmlConfController extends BaseViewXmlConfController {</span>
 
   @RequestMapping(path = &quot;/app/viewwebxml.htm&quot;)
   @Override
   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
       throws Exception {
-<span class="nc" id="L30">    return super.handleRequest(request, response);</span>
+<span class="nc" id="L31">    return super.handleRequest(request, response);</span>
   }
 
   @Value(&quot;view_xml_conf&quot;)
   @Override
   public void setViewName(String viewName) {
-<span class="fc" id="L36">    super.setViewName(viewName);</span>
-<span class="fc" id="L37">  }</span>
+<span class="fc" id="L37">    super.setViewName(viewName);</span>
+<span class="fc" id="L38">  }</span>
 
   @Value(&quot;web.xml&quot;)
   @Override
   public void setDisplayTarget(String displayTarget) {
-<span class="fc" id="L42">    super.setDisplayTarget(displayTarget);</span>
-<span class="fc" id="L43">  }</span>
+<span class="fc" id="L43">    super.setDisplayTarget(displayTarget);</span>
+<span class="fc" id="L44">  }</span>
 
   @Value(&quot;/app/downloadwebxml.htm&quot;)
   @Override
   public void setDownloadUrl(String downloadUrl) {
-<span class="fc" id="L48">    super.setDownloadUrl(downloadUrl);</span>
-<span class="fc" id="L49">  }</span>
+<span class="fc" id="L49">    super.setDownloadUrl(downloadUrl);</span>
+<span class="fc" id="L50">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

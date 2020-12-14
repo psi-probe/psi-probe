@@ -12,37 +12,39 @@ package psiprobe.controllers.logs;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
 import psiprobe.tools.logging.LogDestination;
 
 /**
  * The Class FollowedFileInfoController.
  */
 @Controller
-<span class="fc" id="L25">public class FollowedFileInfoController extends AbstractLogHandlerController {</span>
+<span class="fc" id="L27">public class FollowedFileInfoController extends AbstractLogHandlerController {</span>
 
   @RequestMapping(path = &quot;/ff_info.ajax&quot;)
   @Override
   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
       throws Exception {
-<span class="nc" id="L31">    return super.handleRequest(request, response);</span>
+<span class="nc" id="L33">    return super.handleRequest(request, response);</span>
   }
 
   @Override
   protected ModelAndView handleLogFile(HttpServletRequest request, HttpServletResponse response,
       LogDestination logDest) throws Exception {
-<span class="nc" id="L37">    return new ModelAndView(getViewName()).addObject(&quot;log&quot;, logDest);</span>
+<span class="nc" id="L39">    return new ModelAndView(getViewName()).addObject(&quot;log&quot;, logDest);</span>
   }
 
 
   @Value(&quot;ajax/followed_file_info&quot;)
   @Override
   public void setViewName(String viewName) {
-<span class="fc" id="L44">    super.setViewName(viewName);</span>
-<span class="fc" id="L45">  }</span>
+<span class="fc" id="L46">    super.setViewName(viewName);</span>
+<span class="fc" id="L47">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

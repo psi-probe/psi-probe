@@ -13,6 +13,7 @@ package psiprobe.controllers.connectors;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestUtils;
@@ -20,13 +21,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
 import org.springframework.web.servlet.view.RedirectView;
+
 import psiprobe.beans.stats.collectors.ConnectorStatsCollectorBean;
 
 /**
  * The Class ResetConnectorStatsController.
  */
 @Controller
-<span class="fc" id="L29">public class ResetConnectorStatsController extends ParameterizableViewController {</span>
+<span class="fc" id="L31">public class ResetConnectorStatsController extends ParameterizableViewController {</span>
 
   /** The collector bean. */
   @Inject
@@ -38,7 +40,7 @@ import psiprobe.beans.stats.collectors.ConnectorStatsCollectorBean;
    * @return the collector bean
    */
   public ConnectorStatsCollectorBean getCollectorBean() {
-<span class="fc" id="L41">    return collectorBean;</span>
+<span class="fc" id="L43">    return collectorBean;</span>
   }
 
   /**
@@ -47,30 +49,30 @@ import psiprobe.beans.stats.collectors.ConnectorStatsCollectorBean;
    * @param collectorBean the new collector bean
    */
   public void setCollectorBean(ConnectorStatsCollectorBean collectorBean) {
-<span class="fc" id="L50">    this.collectorBean = collectorBean;</span>
-<span class="fc" id="L51">  }</span>
+<span class="fc" id="L52">    this.collectorBean = collectorBean;</span>
+<span class="fc" id="L53">  }</span>
 
   @RequestMapping(path = &quot;/app/connectorReset.htm&quot;)
   @Override
   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
       throws Exception {
-<span class="nc" id="L57">    return super.handleRequest(request, response);</span>
+<span class="nc" id="L59">    return super.handleRequest(request, response);</span>
   }
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 
-<span class="nc" id="L64">    String connectorName = ServletRequestUtils.getRequiredStringParameter(request, &quot;cn&quot;);</span>
-<span class="nc" id="L65">    collectorBean.reset(connectorName);</span>
-<span class="nc" id="L66">    return new ModelAndView(new RedirectView(request.getContextPath() + getViewName()));</span>
+<span class="nc" id="L66">    String connectorName = ServletRequestUtils.getRequiredStringParameter(request, &quot;cn&quot;);</span>
+<span class="nc" id="L67">    collectorBean.reset(connectorName);</span>
+<span class="nc" id="L68">    return new ModelAndView(new RedirectView(request.getContextPath() + getViewName()));</span>
   }
 
   @Value(&quot;/connectors.htm&quot;)
   @Override
   public void setViewName(String viewName) {
-<span class="fc" id="L72">    super.setViewName(viewName);</span>
-<span class="fc" id="L73">  }</span>
+<span class="fc" id="L74">    super.setViewName(viewName);</span>
+<span class="fc" id="L75">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

@@ -11,12 +11,13 @@
 package psiprobe.tools.logging.log4j2;
 
 import java.util.Map;
+
 import psiprobe.tools.logging.DefaultAccessor;
 
 /**
  * The Class Log4J2LoggerContextAccessor.
  */
-<span class="nc" id="L19">public class Log4J2LoggerContextAccessor extends DefaultAccessor {</span>
+<span class="nc" id="L20">public class Log4J2LoggerContextAccessor extends DefaultAccessor {</span>
 
   /**
    * Gets the loggers.
@@ -24,23 +25,23 @@ import psiprobe.tools.logging.DefaultAccessor;
    * @return the loggers
    */
   public Map&lt;String, Object&gt; getLoggers() {
-<span class="nc" id="L27">    Map&lt;String, Object&gt; loggers = null;</span>
-<span class="nc" id="L28">    Object configuration = null;</span>
+<span class="nc" id="L28">    Map&lt;String, Object&gt; loggers = null;</span>
+<span class="nc" id="L29">    Object configuration = null;</span>
     try {
-<span class="nc" id="L30">      configuration = invokeMethod(getTarget(), &quot;getConfiguration&quot;, null, null);</span>
-<span class="nc" id="L31">    } catch (Exception e) {</span>
-<span class="nc" id="L32">      logger.error(&quot;exception invoking getConfiguration&quot;, e);</span>
-<span class="nc" id="L33">      throw e;</span>
-<span class="nc" id="L34">    }</span>
-<span class="nc bnc" id="L35" title="All 2 branches missed.">    if (configuration != null) {</span>
+<span class="nc" id="L31">      configuration = invokeMethod(getTarget(), &quot;getConfiguration&quot;, null, null);</span>
+<span class="nc" id="L32">    } catch (Exception e) {</span>
+<span class="nc" id="L33">      logger.error(&quot;exception invoking getConfiguration&quot;, e);</span>
+<span class="nc" id="L34">      throw e;</span>
+<span class="nc" id="L35">    }</span>
+<span class="nc bnc" id="L36" title="All 2 branches missed.">    if (configuration != null) {</span>
       try {
-<span class="nc" id="L37">        loggers = (Map&lt;String, Object&gt;) invokeMethod(configuration, &quot;getLoggers&quot;, null, null);</span>
-<span class="nc" id="L38">      } catch (Exception e) {</span>
-<span class="nc" id="L39">        logger.error(&quot;exception invoking getLoggers&quot;, e);</span>
-<span class="nc" id="L40">        throw e;</span>
-<span class="nc" id="L41">      }</span>
+<span class="nc" id="L38">        loggers = (Map&lt;String, Object&gt;) invokeMethod(configuration, &quot;getLoggers&quot;, null, null);</span>
+<span class="nc" id="L39">      } catch (Exception e) {</span>
+<span class="nc" id="L40">        logger.error(&quot;exception invoking getLoggers&quot;, e);</span>
+<span class="nc" id="L41">        throw e;</span>
+<span class="nc" id="L42">      }</span>
     }
-<span class="nc" id="L43">    return loggers;</span>
+<span class="nc" id="L44">    return loggers;</span>
   }
 
   /**
@@ -48,11 +49,11 @@ import psiprobe.tools.logging.DefaultAccessor;
    */
   public void updateLoggers() {
     try {
-<span class="nc" id="L51">      invokeMethod(getTarget(), &quot;updateLoggers&quot;, null, null);</span>
-<span class="nc" id="L52">    } catch (Exception e) {</span>
-<span class="nc" id="L53">      logger.error(&quot;exception invoking updateLoggers&quot;, e);</span>
-<span class="nc" id="L54">      throw e;</span>
-<span class="nc" id="L55">    }</span>
-<span class="nc" id="L56">  }</span>
+<span class="nc" id="L52">      invokeMethod(getTarget(), &quot;updateLoggers&quot;, null, null);</span>
+<span class="nc" id="L53">    } catch (Exception e) {</span>
+<span class="nc" id="L54">      logger.error(&quot;exception invoking updateLoggers&quot;, e);</span>
+<span class="nc" id="L55">      throw e;</span>
+<span class="nc" id="L56">    }</span>
+<span class="nc" id="L57">  }</span>
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

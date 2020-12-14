@@ -12,6 +12,7 @@ package psiprobe.tools;
 
 import java.io.IOException;
 import java.net.Socket;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,7 +22,7 @@ import org.slf4j.LoggerFactory;
 public final class AsyncSocketFactory {
 
   /** The Constant logger. */
-<span class="nc" id="L24">  private static final Logger logger = LoggerFactory.getLogger(AsyncSocketFactory.class);</span>
+<span class="nc" id="L25">  private static final Logger logger = LoggerFactory.getLogger(AsyncSocketFactory.class);</span>
 
   /**
    * Prevent Instantiation.
@@ -40,47 +41,47 @@ public final class AsyncSocketFactory {
    * @throws IOException Signals that an I/O exception has occurred.
    */
   public static Socket createSocket(String server, int port, long timeout) throws IOException {
-<span class="nc" id="L43">    SocketWrapper socketWrapper = new SocketWrapper();</span>
-<span class="nc" id="L44">    socketWrapper.server = server;</span>
-<span class="nc" id="L45">    socketWrapper.port = port;</span>
+<span class="nc" id="L44">    SocketWrapper socketWrapper = new SocketWrapper();</span>
+<span class="nc" id="L45">    socketWrapper.server = server;</span>
+<span class="nc" id="L46">    socketWrapper.port = port;</span>
 
-<span class="nc" id="L47">    Object sync = new Object();</span>
-<span class="nc" id="L48">    Thread socketThread = new Thread(new SocketRunnable(socketWrapper, sync));</span>
-<span class="nc" id="L49">    socketThread.setDaemon(true);</span>
-<span class="nc" id="L50">    Thread timeoutThread = new Thread(new TimeoutRunnable(sync, timeout * 1000));</span>
-<span class="nc" id="L51">    timeoutThread.setDaemon(true);</span>
+<span class="nc" id="L48">    Object sync = new Object();</span>
+<span class="nc" id="L49">    Thread socketThread = new Thread(new SocketRunnable(socketWrapper, sync));</span>
+<span class="nc" id="L50">    socketThread.setDaemon(true);</span>
+<span class="nc" id="L51">    Thread timeoutThread = new Thread(new TimeoutRunnable(sync, timeout * 1000));</span>
+<span class="nc" id="L52">    timeoutThread.setDaemon(true);</span>
 
-<span class="nc" id="L53">    timeoutThread.start();</span>
-<span class="nc" id="L54">    socketThread.start();</span>
+<span class="nc" id="L54">    timeoutThread.start();</span>
+<span class="nc" id="L55">    socketThread.start();</span>
 
-<span class="nc" id="L56">    synchronized (sync) {</span>
-<span class="nc bnc" id="L57" title="All 2 branches missed.">      if (socketWrapper.socket == null) {</span>
+<span class="nc" id="L57">    synchronized (sync) {</span>
+<span class="nc bnc" id="L58" title="All 2 branches missed.">      if (socketWrapper.socket == null) {</span>
         try {
-<span class="nc" id="L59">          sync.wait(timeout * 1000);</span>
-<span class="nc" id="L60">        } catch (InterruptedException e) {</span>
-<span class="nc" id="L61">          logger.trace(&quot;&quot;, e);</span>
-<span class="nc" id="L62">        }</span>
+<span class="nc" id="L60">          sync.wait(timeout * 1000);</span>
+<span class="nc" id="L61">        } catch (InterruptedException e) {</span>
+<span class="nc" id="L62">          logger.trace(&quot;&quot;, e);</span>
+<span class="nc" id="L63">        }</span>
       }
-<span class="nc" id="L64">    }</span>
+<span class="nc" id="L65">    }</span>
 
-<span class="nc" id="L66">    timeoutThread.interrupt();</span>
-<span class="nc" id="L67">    socketThread.interrupt();</span>
+<span class="nc" id="L67">    timeoutThread.interrupt();</span>
+<span class="nc" id="L68">    socketThread.interrupt();</span>
 
-<span class="nc" id="L69">    socketWrapper.valid = false;</span>
+<span class="nc" id="L70">    socketWrapper.valid = false;</span>
 
-<span class="nc bnc" id="L71" title="All 4 branches missed.">    if (socketWrapper.getSocket() == null &amp;&amp; socketWrapper.exception != null) {</span>
-<span class="nc" id="L72">      throw socketWrapper.exception;</span>
-<span class="nc bnc" id="L73" title="All 2 branches missed.">    } else if (socketWrapper.getSocket() == null) {</span>
-<span class="nc" id="L74">      throw new TimeoutException();</span>
+<span class="nc bnc" id="L72" title="All 4 branches missed.">    if (socketWrapper.getSocket() == null &amp;&amp; socketWrapper.exception != null) {</span>
+<span class="nc" id="L73">      throw socketWrapper.exception;</span>
+<span class="nc bnc" id="L74" title="All 2 branches missed.">    } else if (socketWrapper.getSocket() == null) {</span>
+<span class="nc" id="L75">      throw new TimeoutException();</span>
     }
 
-<span class="nc" id="L77">    return socketWrapper.getSocket();</span>
+<span class="nc" id="L78">    return socketWrapper.getSocket();</span>
   }
 
   /**
    * The Class SocketWrapper.
    */
-<span class="nc" id="L83">  static class SocketWrapper {</span>
+<span class="nc" id="L84">  static class SocketWrapper {</span>
 
     /** The socket. */
     Socket socket;
@@ -95,7 +96,7 @@ public final class AsyncSocketFactory {
     IOException exception;
 
     /** The valid. */
-<span class="nc" id="L98">    boolean valid = true;</span>
+<span class="nc" id="L99">    boolean valid = true;</span>
 
     /**
      * Gets the socket.
@@ -103,7 +104,7 @@ public final class AsyncSocketFactory {
      * @return the socket
      */
     public Socket getSocket() {
-<span class="nc" id="L106">      return socket;</span>
+<span class="nc" id="L107">      return socket;</span>
     }
 
     /**
@@ -112,8 +113,8 @@ public final class AsyncSocketFactory {
      * @param socket the new socket
      */
     public void setSocket(Socket socket) {
-<span class="nc" id="L115">      this.socket = socket;</span>
-<span class="nc" id="L116">    }</span>
+<span class="nc" id="L116">      this.socket = socket;</span>
+<span class="nc" id="L117">    }</span>
 
     /**
      * Gets the server.
@@ -121,7 +122,7 @@ public final class AsyncSocketFactory {
      * @return the server
      */
     public String getServer() {
-<span class="nc" id="L124">      return server;</span>
+<span class="nc" id="L125">      return server;</span>
     }
 
     /**
@@ -130,7 +131,7 @@ public final class AsyncSocketFactory {
      * @return the port
      */
     public int getPort() {
-<span class="nc" id="L133">      return port;</span>
+<span class="nc" id="L134">      return port;</span>
     }
 
     /**
@@ -139,8 +140,8 @@ public final class AsyncSocketFactory {
      * @param exception the new exception
      */
     public void setException(IOException exception) {
-<span class="nc" id="L142">      this.exception = exception;</span>
-<span class="nc" id="L143">    }</span>
+<span class="nc" id="L143">      this.exception = exception;</span>
+<span class="nc" id="L144">    }</span>
 
     /**
      * Checks if is valid.
@@ -148,7 +149,7 @@ public final class AsyncSocketFactory {
      * @return true, if is valid
      */
     public boolean isValid() {
-<span class="nc" id="L151">      return valid;</span>
+<span class="nc" id="L152">      return valid;</span>
     }
 
   }
@@ -170,27 +171,27 @@ public final class AsyncSocketFactory {
      * @param socketWrapper the socket wrapper
      * @param sync the sync
      */
-<span class="nc" id="L173">    public SocketRunnable(SocketWrapper socketWrapper, Object sync) {</span>
-<span class="nc" id="L174">      this.socketWrapper = socketWrapper;</span>
-<span class="nc" id="L175">      this.sync = sync;</span>
-<span class="nc" id="L176">    }</span>
+<span class="nc" id="L174">    public SocketRunnable(SocketWrapper socketWrapper, Object sync) {</span>
+<span class="nc" id="L175">      this.socketWrapper = socketWrapper;</span>
+<span class="nc" id="L176">      this.sync = sync;</span>
+<span class="nc" id="L177">    }</span>
 
     @Override
     public void run() {
-<span class="nc" id="L180">      try (Socket socket = new Socket(socketWrapper.getServer(), socketWrapper.getPort())) {</span>
-<span class="nc" id="L181">        socketWrapper.setSocket(socket);</span>
-<span class="nc bnc" id="L182" title="All 2 branches missed.">        if (!socketWrapper.isValid()) {</span>
-<span class="nc" id="L183">          socketWrapper.getSocket().close();</span>
-<span class="nc" id="L184">          socketWrapper.setSocket(null);</span>
+<span class="nc" id="L181">      try (Socket socket = new Socket(socketWrapper.getServer(), socketWrapper.getPort())) {</span>
+<span class="nc" id="L182">        socketWrapper.setSocket(socket);</span>
+<span class="nc bnc" id="L183" title="All 2 branches missed.">        if (!socketWrapper.isValid()) {</span>
+<span class="nc" id="L184">          socketWrapper.getSocket().close();</span>
+<span class="nc" id="L185">          socketWrapper.setSocket(null);</span>
         }
-<span class="nc" id="L186">      } catch (IOException e) {</span>
-<span class="nc" id="L187">        logger.trace(&quot;&quot;, e);</span>
-<span class="nc" id="L188">        socketWrapper.setException(e);</span>
-<span class="nc" id="L189">      }</span>
-<span class="nc" id="L190">      synchronized (sync) {</span>
-<span class="nc" id="L191">        sync.notify();</span>
-<span class="nc" id="L192">      }</span>
-<span class="nc" id="L193">    }</span>
+<span class="nc" id="L187">      } catch (IOException e) {</span>
+<span class="nc" id="L188">        logger.trace(&quot;&quot;, e);</span>
+<span class="nc" id="L189">        socketWrapper.setException(e);</span>
+<span class="nc" id="L190">      }</span>
+<span class="nc" id="L191">      synchronized (sync) {</span>
+<span class="nc" id="L192">        sync.notify();</span>
+<span class="nc" id="L193">      }</span>
+<span class="nc" id="L194">    }</span>
 
   }
 
@@ -211,24 +212,24 @@ public final class AsyncSocketFactory {
      * @param sync the sync
      * @param timeout the timeout
      */
-<span class="nc" id="L214">    public TimeoutRunnable(Object sync, long timeout) {</span>
-<span class="nc" id="L215">      this.sync = sync;</span>
-<span class="nc" id="L216">      this.timeout = timeout;</span>
-<span class="nc" id="L217">    }</span>
+<span class="nc" id="L215">    public TimeoutRunnable(Object sync, long timeout) {</span>
+<span class="nc" id="L216">      this.sync = sync;</span>
+<span class="nc" id="L217">      this.timeout = timeout;</span>
+<span class="nc" id="L218">    }</span>
 
     @Override
     public void run() {
       try {
-<span class="nc" id="L222">        Thread.sleep(timeout);</span>
-<span class="nc" id="L223">        synchronized (sync) {</span>
-<span class="nc" id="L224">          sync.notify();</span>
-<span class="nc" id="L225">        }</span>
-<span class="nc" id="L226">      } catch (InterruptedException e) {</span>
-<span class="nc" id="L227">        logger.trace(&quot;&quot;, e);</span>
-<span class="nc" id="L228">      }</span>
-<span class="nc" id="L229">    }</span>
+<span class="nc" id="L223">        Thread.sleep(timeout);</span>
+<span class="nc" id="L224">        synchronized (sync) {</span>
+<span class="nc" id="L225">          sync.notify();</span>
+<span class="nc" id="L226">        }</span>
+<span class="nc" id="L227">      } catch (InterruptedException e) {</span>
+<span class="nc" id="L228">        logger.trace(&quot;&quot;, e);</span>
+<span class="nc" id="L229">      }</span>
+<span class="nc" id="L230">    }</span>
 
   }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

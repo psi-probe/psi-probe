@@ -12,13 +12,16 @@ package psiprobe.controllers.servlets;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.catalina.Context;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
 import psiprobe.controllers.AbstractContextHandlerController;
 import psiprobe.model.ServletMapping;
 import psiprobe.tools.ApplicationUtils;
@@ -28,13 +31,13 @@ import psiprobe.tools.ApplicationUtils;
  * an application name is not passed in a query string.
  */
 @Controller
-<span class="fc" id="L31">public class ListServletMapsController extends AbstractContextHandlerController {</span>
+<span class="fc" id="L34">public class ListServletMapsController extends AbstractContextHandlerController {</span>
 
   @RequestMapping(path = &quot;/servletmaps.htm&quot;)
   @Override
   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
       throws Exception {
-<span class="nc" id="L37">    return super.handleRequest(request, response);</span>
+<span class="nc" id="L40">    return super.handleRequest(request, response);</span>
   }
 
   @Override
@@ -42,31 +45,31 @@ import psiprobe.tools.ApplicationUtils;
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 
     List&lt;Context&gt; ctxs;
-<span class="nc bnc" id="L45" title="All 2 branches missed.">    if (context == null) {</span>
-<span class="nc" id="L46">      ctxs = getContainerWrapper().getTomcatContainer().findContexts();</span>
+<span class="nc bnc" id="L48" title="All 2 branches missed.">    if (context == null) {</span>
+<span class="nc" id="L49">      ctxs = getContainerWrapper().getTomcatContainer().findContexts();</span>
     } else {
-<span class="nc" id="L48">      ctxs = new ArrayList&lt;&gt;();</span>
-<span class="nc" id="L49">      ctxs.add(context);</span>
+<span class="nc" id="L51">      ctxs = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L52">      ctxs.add(context);</span>
     }
 
-<span class="nc" id="L52">    List&lt;ServletMapping&gt; servletMaps = new ArrayList&lt;&gt;();</span>
-<span class="nc bnc" id="L53" title="All 2 branches missed.">    for (Context ctx : ctxs) {</span>
-<span class="nc" id="L54">      servletMaps.addAll(ApplicationUtils.getApplicationServletMaps(ctx));</span>
-<span class="nc" id="L55">    }</span>
+<span class="nc" id="L55">    List&lt;ServletMapping&gt; servletMaps = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L56" title="All 2 branches missed.">    for (Context ctx : ctxs) {</span>
+<span class="nc" id="L57">      servletMaps.addAll(ApplicationUtils.getApplicationServletMaps(ctx));</span>
+<span class="nc" id="L58">    }</span>
 
-<span class="nc" id="L57">    return new ModelAndView(getViewName(), &quot;servletMaps&quot;, servletMaps);</span>
+<span class="nc" id="L60">    return new ModelAndView(getViewName(), &quot;servletMaps&quot;, servletMaps);</span>
   }
 
   @Override
   protected boolean isContextOptional() {
-<span class="nc" id="L62">    return true;</span>
+<span class="nc" id="L65">    return true;</span>
   }
 
   @Value(&quot;servletmaps&quot;)
   @Override
   public void setViewName(String viewName) {
-<span class="fc" id="L68">    super.setViewName(viewName);</span>
-<span class="fc" id="L69">  }</span>
+<span class="fc" id="L71">    super.setViewName(viewName);</span>
+<span class="fc" id="L72">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

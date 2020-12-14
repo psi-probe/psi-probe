@@ -11,18 +11,20 @@
 package psiprobe.controllers;
 
 import javax.inject.Inject;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.mvc.AbstractController;
+
 import psiprobe.beans.ContainerWrapperBean;
 
 /**
  * Base class for controllers requiring access to ContainerWrapperBean.
  */
-<span class="fc" id="L22">public abstract class AbstractTomcatContainerController extends AbstractController {</span>
+<span class="fc" id="L24">public abstract class AbstractTomcatContainerController extends AbstractController {</span>
 
   /** The logger. */
-<span class="fc" id="L25">  protected final Logger logger = LoggerFactory.getLogger(getClass());</span>
+<span class="fc" id="L27">  protected final Logger logger = LoggerFactory.getLogger(getClass());</span>
 
   /** The container wrapper. */
   @Inject
@@ -37,7 +39,7 @@ import psiprobe.beans.ContainerWrapperBean;
    * @return the container wrapper
    */
   public ContainerWrapperBean getContainerWrapper() {
-<span class="fc" id="L40">    return containerWrapper;</span>
+<span class="fc" id="L42">    return containerWrapper;</span>
   }
 
   /**
@@ -46,8 +48,8 @@ import psiprobe.beans.ContainerWrapperBean;
    * @param containerWrapper the new container wrapper
    */
   public void setContainerWrapper(ContainerWrapperBean containerWrapper) {
-<span class="fc" id="L49">    this.containerWrapper = containerWrapper;</span>
-<span class="fc" id="L50">  }</span>
+<span class="fc" id="L51">    this.containerWrapper = containerWrapper;</span>
+<span class="fc" id="L52">  }</span>
 
   /**
    * Gets the view name.
@@ -55,7 +57,7 @@ import psiprobe.beans.ContainerWrapperBean;
    * @return the view name
    */
   public String getViewName() {
-<span class="fc" id="L58">    return viewName;</span>
+<span class="fc" id="L60">    return viewName;</span>
   }
 
   /**
@@ -64,7 +66,7 @@ import psiprobe.beans.ContainerWrapperBean;
    * @param viewName the new view name
    */
   public void setViewName(String viewName) {
-<span class="fc" id="L67">    this.viewName = viewName;</span>
-<span class="fc" id="L68">  }</span>
+<span class="fc" id="L69">    this.viewName = viewName;</span>
+<span class="fc" id="L70">  }</span>
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

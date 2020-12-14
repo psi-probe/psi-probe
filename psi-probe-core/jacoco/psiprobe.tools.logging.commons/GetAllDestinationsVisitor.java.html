@@ -12,6 +12,7 @@ package psiprobe.tools.logging.commons;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import psiprobe.tools.logging.LogDestination;
 import psiprobe.tools.logging.jdk.Jdk14LoggerAccessor;
 import psiprobe.tools.logging.log4j.Log4JLoggerAccessor;
@@ -19,10 +20,10 @@ import psiprobe.tools.logging.log4j.Log4JLoggerAccessor;
 /**
  * The Class GetAllDestinationsVisitor.
  */
-<span class="nc" id="L22">public class GetAllDestinationsVisitor extends AbstractLoggerAccessorVisitor {</span>
+<span class="nc" id="L23">public class GetAllDestinationsVisitor extends AbstractLoggerAccessorVisitor {</span>
 
   /** The destinations. */
-<span class="nc" id="L25">  private final List&lt;LogDestination&gt; destinations = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L26">  private final List&lt;LogDestination&gt; destinations = new ArrayList&lt;&gt;();</span>
 
   /**
    * Gets the destinations.
@@ -30,18 +31,18 @@ import psiprobe.tools.logging.log4j.Log4JLoggerAccessor;
    * @return the destinations
    */
   public List&lt;LogDestination&gt; getDestinations() {
-<span class="nc" id="L33">    return destinations;</span>
+<span class="nc" id="L34">    return destinations;</span>
   }
 
   @Override
   public void visit(Log4JLoggerAccessor accessor) {
-<span class="nc" id="L38">    destinations.addAll(accessor.getAppenders());</span>
-<span class="nc" id="L39">  }</span>
+<span class="nc" id="L39">    destinations.addAll(accessor.getAppenders());</span>
+<span class="nc" id="L40">  }</span>
 
   @Override
   public void visit(Jdk14LoggerAccessor accessor) {
-<span class="nc" id="L43">    destinations.addAll(accessor.getHandlers());</span>
-<span class="nc" id="L44">  }</span>
+<span class="nc" id="L44">    destinations.addAll(accessor.getHandlers());</span>
+<span class="nc" id="L45">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

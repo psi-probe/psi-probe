@@ -11,9 +11,10 @@
 package psiprobe.tools.logging.jdk;
 
 import java.io.File;
+
 import psiprobe.tools.Instruments;
 
-<span class="fc" id="L16">public class Jdk14FileHandlerAccessor extends Jdk14HandlerAccessor {</span>
+<span class="fc" id="L17">public class Jdk14FileHandlerAccessor extends Jdk14HandlerAccessor {</span>
 
   private static final int LATEST_FILE_INDEX = 0;
 
@@ -22,12 +23,12 @@ import psiprobe.tools.Instruments;
    */
   @Override
   public File getFile() {
-<span class="fc" id="L25">    File[] files = (File[]) Instruments.getField(getTarget(), &quot;files&quot;);</span>
-<span class="pc bpc" id="L26" title="2 of 4 branches missed.">    if (files == null || files.length == 0) {</span>
-<span class="nc" id="L27">      throw new IllegalStateException(&quot;File handler does not manage any files&quot;);</span>
+<span class="fc" id="L26">    File[] files = (File[]) Instruments.getField(getTarget(), &quot;files&quot;);</span>
+<span class="pc bpc" id="L27" title="2 of 4 branches missed.">    if (files == null || files.length == 0) {</span>
+<span class="nc" id="L28">      throw new IllegalStateException(&quot;File handler does not manage any files&quot;);</span>
     }
-<span class="fc" id="L29">    return files[LATEST_FILE_INDEX];</span>
+<span class="fc" id="L30">    return files[LATEST_FILE_INDEX];</span>
   }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

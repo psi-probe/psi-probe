@@ -13,21 +13,23 @@ package psiprobe.controllers.logs;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.ParameterizableViewController;
+
 import psiprobe.beans.LogResolverBean;
 import psiprobe.tools.logging.LogDestination;
 
 /**
  * The Class AbstractLogHandlerController.
  */
-<span class="fc" id="L27">public abstract class AbstractLogHandlerController extends ParameterizableViewController {</span>
+<span class="fc" id="L29">public abstract class AbstractLogHandlerController extends ParameterizableViewController {</span>
 
   /** The Constant logger. */
-<span class="fc" id="L30">  private static final Logger logger = LoggerFactory.getLogger(AbstractLogHandlerController.class);</span>
+<span class="fc" id="L32">  private static final Logger logger = LoggerFactory.getLogger(AbstractLogHandlerController.class);</span>
 
   /** The log resolver. */
   @Inject
@@ -39,7 +41,7 @@ import psiprobe.tools.logging.LogDestination;
    * @return the log resolver
    */
   public LogResolverBean getLogResolver() {
-<span class="fc" id="L42">    return logResolver;</span>
+<span class="fc" id="L44">    return logResolver;</span>
   }
 
   /**
@@ -48,41 +50,41 @@ import psiprobe.tools.logging.LogDestination;
    * @param logResolver the new log resolver
    */
   public void setLogResolver(LogResolverBean logResolver) {
-<span class="fc" id="L51">    this.logResolver = logResolver;</span>
-<span class="fc" id="L52">  }</span>
+<span class="fc" id="L53">    this.logResolver = logResolver;</span>
+<span class="fc" id="L54">  }</span>
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 
 
-<span class="nc" id="L59">    String logType = ServletRequestUtils.getStringParameter(request, &quot;logType&quot;);</span>
-<span class="nc" id="L60">    String webapp = ServletRequestUtils.getStringParameter(request, &quot;webapp&quot;);</span>
-<span class="nc" id="L61">    boolean context = ServletRequestUtils.getBooleanParameter(request, &quot;context&quot;, false);</span>
-<span class="nc" id="L62">    boolean root = ServletRequestUtils.getBooleanParameter(request, &quot;root&quot;, false);</span>
-<span class="nc" id="L63">    String logName = ServletRequestUtils.getStringParameter(request, &quot;logName&quot;);</span>
-<span class="nc" id="L64">    String logIndex = ServletRequestUtils.getStringParameter(request, &quot;logIndex&quot;);</span>
+<span class="nc" id="L61">    String logType = ServletRequestUtils.getStringParameter(request, &quot;logType&quot;);</span>
+<span class="nc" id="L62">    String webapp = ServletRequestUtils.getStringParameter(request, &quot;webapp&quot;);</span>
+<span class="nc" id="L63">    boolean context = ServletRequestUtils.getBooleanParameter(request, &quot;context&quot;, false);</span>
+<span class="nc" id="L64">    boolean root = ServletRequestUtils.getBooleanParameter(request, &quot;root&quot;, false);</span>
+<span class="nc" id="L65">    String logName = ServletRequestUtils.getStringParameter(request, &quot;logName&quot;);</span>
+<span class="nc" id="L66">    String logIndex = ServletRequestUtils.getStringParameter(request, &quot;logIndex&quot;);</span>
 
-<span class="nc" id="L66">    LogDestination dest =</span>
-<span class="nc" id="L67">        logResolver.getLogDestination(logType, webapp, context, root, logName, logIndex);</span>
+<span class="nc" id="L68">    LogDestination dest =</span>
+<span class="nc" id="L69">        logResolver.getLogDestination(logType, webapp, context, root, logName, logIndex);</span>
 
-<span class="nc" id="L69">    ModelAndView modelAndView = null;</span>
-<span class="nc" id="L70">    boolean logFound = false;</span>
-<span class="nc bnc" id="L71" title="All 2 branches missed.">    if (dest != null) {</span>
-<span class="nc bnc" id="L72" title="All 4 branches missed.">      if (dest.getFile() != null &amp;&amp; dest.getFile().exists()) {</span>
-<span class="nc" id="L73">        modelAndView = handleLogFile(request, response, dest);</span>
-<span class="nc" id="L74">        logFound = true;</span>
+<span class="nc" id="L71">    ModelAndView modelAndView = null;</span>
+<span class="nc" id="L72">    boolean logFound = false;</span>
+<span class="nc bnc" id="L73" title="All 2 branches missed.">    if (dest != null) {</span>
+<span class="nc bnc" id="L74" title="All 4 branches missed.">      if (dest.getFile() != null &amp;&amp; dest.getFile().exists()) {</span>
+<span class="nc" id="L75">        modelAndView = handleLogFile(request, response, dest);</span>
+<span class="nc" id="L76">        logFound = true;</span>
       } else {
-<span class="nc" id="L76">        logger.error(&quot;{}: file not found&quot;, dest.getFile());</span>
+<span class="nc" id="L78">        logger.error(&quot;{}: file not found&quot;, dest.getFile());</span>
       }
     } else {
-<span class="nc bnc" id="L79" title="All 2 branches missed.">      logger.error(&quot;{}{} log{} not found&quot;, logType, root ? &quot; root&quot; : &quot;&quot;,</span>
-<span class="nc bnc" id="L80" title="All 2 branches missed.">          root ? &quot;&quot; : &quot; '&quot; + logName + &quot;'&quot;);</span>
+<span class="nc bnc" id="L81" title="All 2 branches missed.">      logger.error(&quot;{}{} log{} not found&quot;, logType, root ? &quot; root&quot; : &quot;&quot;,</span>
+<span class="nc bnc" id="L82" title="All 2 branches missed.">          root ? &quot;&quot; : &quot; '&quot; + logName + &quot;'&quot;);</span>
     }
-<span class="nc bnc" id="L82" title="All 2 branches missed.">    if (!logFound) {</span>
-<span class="nc" id="L83">      response.sendError(404);</span>
+<span class="nc bnc" id="L84" title="All 2 branches missed.">    if (!logFound) {</span>
+<span class="nc" id="L85">      response.sendError(404);</span>
     }
-<span class="nc" id="L85">    return modelAndView;</span>
+<span class="nc" id="L87">    return modelAndView;</span>
   }
 
   /**
@@ -98,4 +100,4 @@ import psiprobe.tools.logging.LogDestination;
       HttpServletResponse response, LogDestination logDest) throws Exception;
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

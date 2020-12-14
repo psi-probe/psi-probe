@@ -12,12 +12,14 @@ package psiprobe.controllers.sessions;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.apache.catalina.Context;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
 import psiprobe.controllers.AbstractContextHandlerController;
 import psiprobe.model.ApplicationSession;
 import psiprobe.tools.ApplicationUtils;
@@ -27,39 +29,39 @@ import psiprobe.tools.SecurityUtils;
  * Retrieves the list of attributes for given session.
  */
 @Controller
-<span class="fc" id="L30">public class ListSessionAttributesController extends AbstractContextHandlerController {</span>
+<span class="fc" id="L32">public class ListSessionAttributesController extends AbstractContextHandlerController {</span>
 
   @RequestMapping(path = &quot;/attributes.htm&quot;)
   @Override
   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
       throws Exception {
-<span class="nc" id="L36">    return super.handleRequest(request, response);</span>
+<span class="nc" id="L38">    return super.handleRequest(request, response);</span>
   }
 
   @Override
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-<span class="nc" id="L43">    boolean privileged = SecurityUtils.hasAttributeValueRole(getServletContext(), request);</span>
-<span class="nc bnc" id="L44" title="All 2 branches missed.">    boolean calcSize =</span>
-<span class="nc bnc" id="L45" title="All 2 branches missed.">        privileged &amp;&amp; ServletRequestUtils.getBooleanParameter(request, &quot;size&quot;, false);</span>
-<span class="nc" id="L46">    String sid = ServletRequestUtils.getStringParameter(request, &quot;sid&quot;);</span>
+<span class="nc" id="L45">    boolean privileged = SecurityUtils.hasAttributeValueRole(getServletContext(), request);</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">    boolean calcSize =</span>
+<span class="nc bnc" id="L47" title="All 2 branches missed.">        privileged &amp;&amp; ServletRequestUtils.getBooleanParameter(request, &quot;size&quot;, false);</span>
+<span class="nc" id="L48">    String sid = ServletRequestUtils.getStringParameter(request, &quot;sid&quot;);</span>
 
-<span class="nc" id="L48">    ApplicationSession appSession = ApplicationUtils</span>
-<span class="nc" id="L49">        .getApplicationSession(context.getManager().findSession(sid), calcSize, true);</span>
+<span class="nc" id="L50">    ApplicationSession appSession = ApplicationUtils</span>
+<span class="nc" id="L51">        .getApplicationSession(context.getManager().findSession(sid), calcSize, true);</span>
 
-<span class="nc bnc" id="L51" title="All 2 branches missed.">    if (appSession != null) {</span>
-<span class="nc" id="L52">      appSession.setAllowedToViewValues(privileged);</span>
-<span class="nc" id="L53">      return new ModelAndView(getViewName(), &quot;session&quot;, appSession);</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">    if (appSession != null) {</span>
+<span class="nc" id="L54">      appSession.setAllowedToViewValues(privileged);</span>
+<span class="nc" id="L55">      return new ModelAndView(getViewName(), &quot;session&quot;, appSession);</span>
     }
-<span class="nc" id="L55">    return new ModelAndView(getViewName());</span>
+<span class="nc" id="L57">    return new ModelAndView(getViewName());</span>
   }
 
   @Value(&quot;attributes&quot;)
   @Override
   public void setViewName(String viewName) {
-<span class="fc" id="L61">    super.setViewName(viewName);</span>
-<span class="fc" id="L62">  }</span>
+<span class="fc" id="L63">    super.setViewName(viewName);</span>
+<span class="fc" id="L64">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

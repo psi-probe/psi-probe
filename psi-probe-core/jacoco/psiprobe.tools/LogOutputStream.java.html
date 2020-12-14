@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,7 +24,7 @@ import org.slf4j.LoggerFactory;
 public class LogOutputStream extends OutputStream {
 
   /** The Constant INTERNAL_LOGGER. */
-<span class="fc" id="L26">  private static final Logger INTERNAL_LOGGER = LoggerFactory.getLogger(LogOutputStream.class);</span>
+<span class="fc" id="L27">  private static final Logger INTERNAL_LOGGER = LoggerFactory.getLogger(LogOutputStream.class);</span>
 
   /** The Constant LEVEL_OFF. */
   public static final int LEVEL_OFF = 0;
@@ -53,7 +54,7 @@ public class LogOutputStream extends OutputStream {
   private final int level;
 
   /** The buf. */
-<span class="fc" id="L56">  private final StringBuilder buf = new StringBuilder();</span>
+<span class="fc" id="L57">  private final StringBuilder buf = new StringBuilder();</span>
 
   /**
    * Creates a new instance of {@code LogOutputStream} which will write to a given {@code Log} at
@@ -62,13 +63,13 @@ public class LogOutputStream extends OutputStream {
    * @param log the {@code Log} to which to write
    * @param level the level at which to write
    */
-<span class="fc" id="L65">  private LogOutputStream(Logger log, int level) {</span>
-<span class="pc bpc" id="L66" title="1 of 2 branches missed.">    if (log == null) {</span>
-<span class="nc" id="L67">      throw new IllegalArgumentException(&quot;Log cannot be null&quot;);</span>
+<span class="fc" id="L66">  private LogOutputStream(Logger log, int level) {</span>
+<span class="pc bpc" id="L67" title="1 of 2 branches missed.">    if (log == null) {</span>
+<span class="nc" id="L68">      throw new IllegalArgumentException(&quot;Log cannot be null&quot;);</span>
     }
-<span class="fc" id="L69">    this.logger = log;</span>
-<span class="fc" id="L70">    this.level = level;</span>
-<span class="fc" id="L71">  }</span>
+<span class="fc" id="L70">    this.logger = log;</span>
+<span class="fc" id="L71">    this.level = level;</span>
+<span class="fc" id="L72">  }</span>
 
   /**
    * Creates a {@code PrintStream} with autoFlush enabled which will write to the given {@code Log}
@@ -79,12 +80,12 @@ public class LogOutputStream extends OutputStream {
    * @return a {@code PrintStream} that writes to the given log
    */
   public static PrintStream createPrintStream(Logger log, int level) {
-<span class="fc" id="L82">    try (LogOutputStream logStream = new LogOutputStream(log, level)) {</span>
-<span class="fc" id="L83">      return new PrintStream(logStream, true, StandardCharsets.UTF_8.name());</span>
-<span class="nc" id="L84">    } catch (IOException e) {</span>
-<span class="nc" id="L85">      INTERNAL_LOGGER.error(&quot;&quot;, e);</span>
+<span class="fc" id="L83">    try (LogOutputStream logStream = new LogOutputStream(log, level)) {</span>
+<span class="fc" id="L84">      return new PrintStream(logStream, true, StandardCharsets.UTF_8.name());</span>
+<span class="nc" id="L85">    } catch (IOException e) {</span>
+<span class="nc" id="L86">      INTERNAL_LOGGER.error(&quot;&quot;, e);</span>
     }
-<span class="nc" id="L87">    return null;</span>
+<span class="nc" id="L88">    return null;</span>
   }
 
   /**
@@ -92,12 +93,12 @@ public class LogOutputStream extends OutputStream {
    */
   @Override
   public void flush() {
-<span class="nc bnc" id="L95" title="All 2 branches missed.">    if (shouldWrite()) {</span>
-<span class="nc" id="L96">      String message = buf.toString();</span>
-<span class="nc" id="L97">      log(message);</span>
+<span class="nc bnc" id="L96" title="All 2 branches missed.">    if (shouldWrite()) {</span>
+<span class="nc" id="L97">      String message = buf.toString();</span>
+<span class="nc" id="L98">      log(message);</span>
     }
-<span class="nc" id="L99">    buf.setLength(0);</span>
-<span class="nc" id="L100">  }</span>
+<span class="nc" id="L100">    buf.setLength(0);</span>
+<span class="nc" id="L101">  }</span>
 
   /**
    * Writes the specified {@code byte} to this stream.
@@ -106,11 +107,11 @@ public class LogOutputStream extends OutputStream {
    */
   @Override
   public void write(int out) {
-<span class="pc bpc" id="L109" title="1 of 2 branches missed.">    if (shouldWrite()) {</span>
-<span class="nc" id="L110">      char chr = (char) out;</span>
-<span class="nc" id="L111">      buf.append(chr);</span>
+<span class="pc bpc" id="L110" title="1 of 2 branches missed.">    if (shouldWrite()) {</span>
+<span class="nc" id="L111">      char chr = (char) out;</span>
+<span class="nc" id="L112">      buf.append(chr);</span>
     }
-<span class="fc" id="L113">  }</span>
+<span class="fc" id="L114">  }</span>
 
   /**
    * Returns the {@code Log} to which this stream writes.
@@ -118,7 +119,7 @@ public class LogOutputStream extends OutputStream {
    * @return the {@code Log} to which this stream writes
    */
   public Logger getLog() {
-<span class="nc" id="L121">    return logger;</span>
+<span class="nc" id="L122">    return logger;</span>
   }
 
   /**
@@ -127,7 +128,7 @@ public class LogOutputStream extends OutputStream {
    * @return the level at which this stream writes to the {@code Log}
    */
   public int getLevel() {
-<span class="nc" id="L130">    return level;</span>
+<span class="nc" id="L131">    return level;</span>
   }
 
   /**
@@ -137,19 +138,19 @@ public class LogOutputStream extends OutputStream {
    *         level assigned to this stream
    */
   private boolean shouldWrite() {
-<span class="pc bpc" id="L140" title="5 of 6 branches missed.">    switch (level) {</span>
+<span class="pc bpc" id="L141" title="5 of 6 branches missed.">    switch (level) {</span>
       case LEVEL_TRACE:
-<span class="nc" id="L142">        return logger.isTraceEnabled();</span>
+<span class="nc" id="L143">        return logger.isTraceEnabled();</span>
       case LEVEL_DEBUG:
-<span class="nc" id="L144">        return logger.isDebugEnabled();</span>
+<span class="nc" id="L145">        return logger.isDebugEnabled();</span>
       case LEVEL_INFO:
-<span class="nc" id="L146">        return logger.isInfoEnabled();</span>
+<span class="nc" id="L147">        return logger.isInfoEnabled();</span>
       case LEVEL_WARN:
-<span class="nc" id="L148">        return logger.isWarnEnabled();</span>
+<span class="nc" id="L149">        return logger.isWarnEnabled();</span>
       case LEVEL_ERROR:
-<span class="fc" id="L150">        return logger.isErrorEnabled();</span>
+<span class="fc" id="L151">        return logger.isErrorEnabled();</span>
       default:
-<span class="nc" id="L152">        return false;</span>
+<span class="nc" id="L153">        return false;</span>
     }
   }
 
@@ -159,30 +160,30 @@ public class LogOutputStream extends OutputStream {
    * @param message the message to be written
    */
   private void log(String message) {
-<span class="nc bnc" id="L162" title="All 4 branches missed.">    if (message == null || &quot;&quot;.equals(message)) {</span>
-<span class="nc" id="L163">      return;</span>
+<span class="nc bnc" id="L163" title="All 4 branches missed.">    if (message == null || &quot;&quot;.equals(message)) {</span>
+<span class="nc" id="L164">      return;</span>
     }
-<span class="nc bnc" id="L165" title="All 6 branches missed.">    switch (level) {</span>
+<span class="nc bnc" id="L166" title="All 6 branches missed.">    switch (level) {</span>
       case LEVEL_TRACE:
-<span class="nc" id="L167">        logger.trace(message);</span>
-<span class="nc" id="L168">        break;</span>
+<span class="nc" id="L168">        logger.trace(message);</span>
+<span class="nc" id="L169">        break;</span>
       case LEVEL_DEBUG:
-<span class="nc" id="L170">        logger.debug(message);</span>
-<span class="nc" id="L171">        break;</span>
+<span class="nc" id="L171">        logger.debug(message);</span>
+<span class="nc" id="L172">        break;</span>
       case LEVEL_INFO:
-<span class="nc" id="L173">        logger.info(message);</span>
-<span class="nc" id="L174">        break;</span>
+<span class="nc" id="L174">        logger.info(message);</span>
+<span class="nc" id="L175">        break;</span>
       case LEVEL_WARN:
-<span class="nc" id="L176">        logger.warn(message);</span>
-<span class="nc" id="L177">        break;</span>
+<span class="nc" id="L177">        logger.warn(message);</span>
+<span class="nc" id="L178">        break;</span>
       case LEVEL_ERROR:
-<span class="nc" id="L179">        logger.error(message);</span>
-<span class="nc" id="L180">        break;</span>
+<span class="nc" id="L180">        logger.error(message);</span>
+<span class="nc" id="L181">        break;</span>
       default:
         // Don't log anything
         break;
     }
-<span class="nc" id="L185">  }</span>
+<span class="nc" id="L186">  }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

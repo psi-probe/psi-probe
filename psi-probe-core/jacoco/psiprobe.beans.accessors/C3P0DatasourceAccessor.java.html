@@ -11,44 +11,45 @@
 package psiprobe.beans.accessors;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
+
 import psiprobe.model.DataSourceInfo;
 
 /**
  * Abstraction layer for c3p0. Maps c3p0 datasource properties on our generic DataSourceInfo bean.
  */
-<span class="fc" id="L19">public class C3P0DatasourceAccessor implements DatasourceAccessor {</span>
+<span class="fc" id="L20">public class C3P0DatasourceAccessor implements DatasourceAccessor {</span>
 
   @Override
   public DataSourceInfo getInfo(Object resource) throws Exception {
-<span class="fc" id="L23">    DataSourceInfo dataSourceInfo = null;</span>
-<span class="pc bpc" id="L24" title="1 of 2 branches missed.">    if (canMap(resource)) {</span>
-<span class="fc" id="L25">      ComboPooledDataSource source = (ComboPooledDataSource) resource;</span>
+<span class="fc" id="L24">    DataSourceInfo dataSourceInfo = null;</span>
+<span class="pc bpc" id="L25" title="1 of 2 branches missed.">    if (canMap(resource)) {</span>
+<span class="fc" id="L26">      ComboPooledDataSource source = (ComboPooledDataSource) resource;</span>
 
-<span class="fc" id="L27">      dataSourceInfo = new DataSourceInfo();</span>
-<span class="fc" id="L28">      dataSourceInfo.setBusyConnections(source.getNumBusyConnections());</span>
-<span class="fc" id="L29">      dataSourceInfo.setEstablishedConnections(source.getNumConnections());</span>
-<span class="fc" id="L30">      dataSourceInfo.setMaxConnections(source.getMaxPoolSize());</span>
-<span class="fc" id="L31">      dataSourceInfo.setJdbcUrl(source.getJdbcUrl());</span>
-<span class="fc" id="L32">      dataSourceInfo.setUsername(source.getUser());</span>
-<span class="fc" id="L33">      dataSourceInfo.setResettable(true);</span>
-<span class="fc" id="L34">      dataSourceInfo.setType(&quot;c3p0&quot;);</span>
+<span class="fc" id="L28">      dataSourceInfo = new DataSourceInfo();</span>
+<span class="fc" id="L29">      dataSourceInfo.setBusyConnections(source.getNumBusyConnections());</span>
+<span class="fc" id="L30">      dataSourceInfo.setEstablishedConnections(source.getNumConnections());</span>
+<span class="fc" id="L31">      dataSourceInfo.setMaxConnections(source.getMaxPoolSize());</span>
+<span class="fc" id="L32">      dataSourceInfo.setJdbcUrl(source.getJdbcUrl());</span>
+<span class="fc" id="L33">      dataSourceInfo.setUsername(source.getUser());</span>
+<span class="fc" id="L34">      dataSourceInfo.setResettable(true);</span>
+<span class="fc" id="L35">      dataSourceInfo.setType(&quot;c3p0&quot;);</span>
     }
-<span class="fc" id="L36">    return dataSourceInfo;</span>
+<span class="fc" id="L37">    return dataSourceInfo;</span>
   }
 
   @Override
   public boolean reset(Object resource) throws Exception {
-<span class="nc bnc" id="L41" title="All 2 branches missed.">    if (canMap(resource)) {</span>
-<span class="nc" id="L42">      ((ComboPooledDataSource) resource).hardReset();</span>
-<span class="nc" id="L43">      return true;</span>
+<span class="nc bnc" id="L42" title="All 2 branches missed.">    if (canMap(resource)) {</span>
+<span class="nc" id="L43">      ((ComboPooledDataSource) resource).hardReset();</span>
+<span class="nc" id="L44">      return true;</span>
     }
-<span class="nc" id="L45">    return false;</span>
+<span class="nc" id="L46">    return false;</span>
   }
 
   @Override
   public boolean canMap(Object resource) {
-<span class="pc bpc" id="L50" title="1 of 4 branches missed.">    return &quot;com.mchange.v2.c3p0.ComboPooledDataSource&quot;.equals(resource.getClass().getName())</span>
+<span class="pc bpc" id="L51" title="1 of 4 branches missed.">    return &quot;com.mchange.v2.c3p0.ComboPooledDataSource&quot;.equals(resource.getClass().getName())</span>
         &amp;&amp; resource instanceof ComboPooledDataSource;
   }
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>
