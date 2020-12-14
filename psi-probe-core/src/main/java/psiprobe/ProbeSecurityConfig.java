@@ -288,9 +288,9 @@ public class ProbeSecurityConfig extends WebSecurityConfigurerAdapter {
    */
   @Bean(name = "xstream")
   public XStream getXstream() {
-      XStream xstream = new XStream();
-      XStream.setupDefaultSecurity(xstream);
-      return xstream;
+    XStream xstream = new XStream();
+    XStream.setupDefaultSecurity(xstream);
+    return xstream;
   }
 
 }

@@ -12,10 +12,12 @@ package psiprobe.beans.accessors;
 
 import com.jolbox.bonecp.BoneCPDataSource;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
+
+import mockit.Mocked;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import mockit.Mocked;
 
 /**
  * The Class BoneCpDatasourceAccessorTest.
