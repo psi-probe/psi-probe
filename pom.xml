@@ -961,6 +961,7 @@
                                 <X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
                             </manifestEntries>
                         </archive>
+                        <show>private</show>
                     </configuration>
                 </plugin>
                 <plugin>
