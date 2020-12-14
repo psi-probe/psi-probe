@@ -11,40 +11,41 @@
 package psiprobe.beans.accessors;
 
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
+
 import psiprobe.model.DataSourceInfo;
 
 /**
  * The Class Tomcat85DbcpDatasourceAccessor.
  */
-<span class="fc" id="L19">public class Tomcat85DbcpDatasourceAccessor implements DatasourceAccessor {</span>
+<span class="fc" id="L20">public class Tomcat85DbcpDatasourceAccessor implements DatasourceAccessor {</span>
 
   @Override
   public DataSourceInfo getInfo(Object resource) throws Exception {
-<span class="fc" id="L23">    DataSourceInfo dataSourceInfo = null;</span>
-<span class="fc bfc" id="L24" title="All 2 branches covered.">    if (canMap(resource)) {</span>
-<span class="fc" id="L25">      BasicDataSource source = (BasicDataSource) resource;</span>
-<span class="fc" id="L26">      dataSourceInfo = new DataSourceInfo();</span>
-<span class="fc" id="L27">      dataSourceInfo.setBusyConnections(source.getNumActive());</span>
-<span class="fc" id="L28">      dataSourceInfo.setEstablishedConnections(source.getNumIdle() + source.getNumActive());</span>
-<span class="fc" id="L29">      dataSourceInfo.setMaxConnections(source.getMaxTotal());</span>
-<span class="fc" id="L30">      dataSourceInfo.setJdbcUrl(source.getUrl());</span>
-<span class="fc" id="L31">      dataSourceInfo.setUsername(source.getUsername());</span>
-<span class="fc" id="L32">      dataSourceInfo.setResettable(false);</span>
-<span class="fc" id="L33">      dataSourceInfo.setType(&quot;tomcat-dbcp2&quot;);</span>
+<span class="fc" id="L24">    DataSourceInfo dataSourceInfo = null;</span>
+<span class="fc bfc" id="L25" title="All 2 branches covered.">    if (canMap(resource)) {</span>
+<span class="fc" id="L26">      BasicDataSource source = (BasicDataSource) resource;</span>
+<span class="fc" id="L27">      dataSourceInfo = new DataSourceInfo();</span>
+<span class="fc" id="L28">      dataSourceInfo.setBusyConnections(source.getNumActive());</span>
+<span class="fc" id="L29">      dataSourceInfo.setEstablishedConnections(source.getNumIdle() + source.getNumActive());</span>
+<span class="fc" id="L30">      dataSourceInfo.setMaxConnections(source.getMaxTotal());</span>
+<span class="fc" id="L31">      dataSourceInfo.setJdbcUrl(source.getUrl());</span>
+<span class="fc" id="L32">      dataSourceInfo.setUsername(source.getUsername());</span>
+<span class="fc" id="L33">      dataSourceInfo.setResettable(false);</span>
+<span class="fc" id="L34">      dataSourceInfo.setType(&quot;tomcat-dbcp2&quot;);</span>
     }
-<span class="fc" id="L35">    return dataSourceInfo;</span>
+<span class="fc" id="L36">    return dataSourceInfo;</span>
   }
 
   @Override
   public boolean reset(Object resource) throws Exception {
-<span class="fc" id="L40">    return false;</span>
+<span class="fc" id="L41">    return false;</span>
   }
 
   @Override
   public boolean canMap(Object resource) {
-<span class="pc bpc" id="L45" title="1 of 4 branches missed.">    return &quot;org.apache.tomcat.dbcp.dbcp2.BasicDataSource&quot;.equals(resource.getClass().getName())</span>
+<span class="pc bpc" id="L46" title="1 of 4 branches missed.">    return &quot;org.apache.tomcat.dbcp.dbcp2.BasicDataSource&quot;.equals(resource.getClass().getName())</span>
         &amp;&amp; resource instanceof BasicDataSource;
   }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>
