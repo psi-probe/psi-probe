@@ -13,7 +13,9 @@ package psiprobe.tools.logging.slf4jlogback;
 import ch.qos.logback.core.OutputStreamAppender;
 import ch.qos.logback.core.encoder.Encoder;
 import ch.qos.logback.core.encoder.LayoutWrappingEncoder;
+
 import java.io.File;
+
 import psiprobe.tools.logging.AbstractLogDestination;
 
 /**

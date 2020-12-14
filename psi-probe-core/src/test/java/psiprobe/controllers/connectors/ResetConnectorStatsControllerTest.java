@@ -11,6 +11,7 @@
 package psiprobe.controllers.connectors;
 
 import com.codebox.bean.JavaBeanTester;
+
 import org.junit.jupiter.api.Test;
 
 /**

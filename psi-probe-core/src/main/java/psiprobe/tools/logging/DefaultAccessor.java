@@ -11,11 +11,13 @@
 package psiprobe.tools.logging;
 
 import java.lang.reflect.InvocationTargetException;
+
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang3.reflect.FieldUtils;
 import org.apache.commons.lang3.reflect.MethodUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import psiprobe.model.Application;
 
 /**

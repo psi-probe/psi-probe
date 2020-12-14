@@ -11,6 +11,7 @@
 package psiprobe.tools.logging.log4j2;
 
 import java.io.File;
+
 import psiprobe.tools.logging.AbstractLogDestination;
 
 /**

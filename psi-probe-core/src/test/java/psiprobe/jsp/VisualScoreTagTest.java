@@ -11,6 +11,7 @@
 package psiprobe.jsp;
 
 import com.codebox.bean.JavaBeanTester;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;

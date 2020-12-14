@@ -11,7 +11,9 @@
 package psiprobe.beans.stats.collectors;
 
 import javax.inject.Inject;
+
 import org.springframework.beans.factory.annotation.Value;
+
 import psiprobe.TomcatContainer;
 import psiprobe.beans.ClusterWrapperBean;
 import psiprobe.beans.ContainerWrapperBean;

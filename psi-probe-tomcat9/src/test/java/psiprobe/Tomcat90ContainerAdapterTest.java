@@ -14,8 +14,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.io.IOException;
 import java.util.ArrayList;
+
+import mockit.Expectations;
+import mockit.Mocked;
+
 import org.apache.catalina.Context;
 import org.apache.catalina.Valve;
 import org.apache.jasper.JspCompilationContext;
@@ -24,8 +29,7 @@ import org.apache.tomcat.util.descriptor.web.FilterDef;
 import org.apache.tomcat.util.descriptor.web.FilterMap;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import mockit.Expectations;
-import mockit.Mocked;
+
 import psiprobe.model.ApplicationResource;
 
 /**

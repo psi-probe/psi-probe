@@ -12,10 +12,13 @@ package psiprobe.beans.accessors;
 
 import com.zaxxer.hikari.HikariDataSource;
 import com.zaxxer.hikari.HikariPoolMXBean;
+
 import java.lang.management.ManagementFactory;
+
 import javax.management.JMX;
 import javax.management.MBeanServer;
 import javax.management.ObjectName;
+
 import psiprobe.model.DataSourceInfo;
 
 /**

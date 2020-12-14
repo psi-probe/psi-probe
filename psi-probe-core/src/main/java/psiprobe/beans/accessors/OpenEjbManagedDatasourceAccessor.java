@@ -13,6 +13,7 @@ package psiprobe.beans.accessors;
 import org.apache.openejb.resource.jdbc.managed.local.ManagedDataSource;
 import org.apache.tomcat.jdbc.pool.DataSourceProxy;
 import org.apache.tomcat.jdbc.pool.PoolConfiguration;
+
 import psiprobe.model.DataSourceInfo;
 
 /**

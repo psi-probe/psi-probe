@@ -11,10 +11,13 @@
 package psiprobe.tools.logging.log4j2;
 
 import java.lang.reflect.Method;
+
 import javax.servlet.ServletContext;
+
 import org.apache.commons.lang3.reflect.MethodUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import psiprobe.tools.logging.DefaultAccessor;
 
 /**

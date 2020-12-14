@@ -11,6 +11,7 @@
 package psiprobe.tools.logging.jdk;
 
 import com.codebox.bean.JavaBeanTester;
+
 import org.junit.jupiter.api.Test;
 
 /**

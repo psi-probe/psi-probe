@@ -11,7 +11,9 @@
 package psiprobe.beans.stats.providers;
 
 import javax.servlet.http.HttpServletRequest;
+
 import org.jfree.data.xy.DefaultTableXYDataset;
+
 import psiprobe.model.stats.StatsCollection;
 
 /**

@@ -11,7 +11,9 @@
 package psiprobe.beans.stats.collectors;
 
 import javax.inject.Inject;
+
 import org.springframework.beans.factory.annotation.Value;
+
 import psiprobe.beans.RuntimeInfoAccessorBean;
 import psiprobe.model.jmx.RuntimeInformation;
 import psiprobe.tools.TimeExpression;

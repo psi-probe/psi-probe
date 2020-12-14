@@ -11,7 +11,9 @@
 package psiprobe.controllers.apps;
 
 import javax.inject.Inject;
+
 import org.springframework.stereotype.Controller;
+
 import psiprobe.beans.stats.collectors.AppStatsCollectorBean;
 
 /**

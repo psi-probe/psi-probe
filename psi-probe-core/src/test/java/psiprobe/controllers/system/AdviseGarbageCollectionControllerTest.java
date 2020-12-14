@@ -11,6 +11,7 @@
 package psiprobe.controllers.system;
 
 import com.codebox.bean.JavaBeanTester;
+
 import org.junit.jupiter.api.Test;
 
 /**
