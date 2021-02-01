@@ -240,7 +240,7 @@
         <!-- Plugin Dependency Versions -->
         <build-tools.version>1.2.5</build-tools.version>
         <bugpattern.version>1.5.0</bugpattern.version>
-        <checkstyle.version>8.39</checkstyle.version>
+        <checkstyle.version>8.40</checkstyle.version>
         <doxia.version>1.9.1</doxia.version>
         <ecj.version>3.24.0</ecj.version>
         <sb-contrib.version>7.4.7</sb-contrib.version>
