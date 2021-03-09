@@ -212,7 +212,7 @@
         <formatter.plugin>2.14.0</formatter.plugin>
         <git-commit.plugin>4.0.3</git-commit.plugin>
         <gpg.plugin>1.6</gpg.plugin>
-        <impsort.plugin>1.5.0</impsort.plugin>
+        <impsort.plugin>1.6.0</impsort.plugin>
         <install.plugin>3.0.0-M1</install.plugin>
         <jacoco.plugin>0.8.6</jacoco.plugin>
         <jar.plugin>3.2.0</jar.plugin>
