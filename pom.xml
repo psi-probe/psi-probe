@@ -210,7 +210,7 @@
         <dependency-check.plugin>6.1.2</dependency-check.plugin>
         <deploy.plugin>3.0.0-M1</deploy.plugin>
         <formatter.plugin>2.14.0</formatter.plugin>
-        <git-commit.plugin>4.0.3</git-commit.plugin>
+        <git-commit.plugin>4.0.4</git-commit.plugin>
         <gpg.plugin>1.6</gpg.plugin>
         <impsort.plugin>1.6.0</impsort.plugin>
         <install.plugin>3.0.0-M1</install.plugin>
