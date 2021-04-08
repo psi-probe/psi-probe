@@ -209,7 +209,7 @@
         <dependency.plugin>3.1.2</dependency.plugin>
         <dependency-check.plugin>6.1.5</dependency-check.plugin>
         <deploy.plugin>3.0.0-M1</deploy.plugin>
-        <formatter.plugin>2.14.0</formatter.plugin>
+        <formatter.plugin>2.15.0</formatter.plugin>
         <git-commit.plugin>4.0.4</git-commit.plugin>
         <gpg.plugin>1.6</gpg.plugin>
         <impsort.plugin>1.6.0</impsort.plugin>
