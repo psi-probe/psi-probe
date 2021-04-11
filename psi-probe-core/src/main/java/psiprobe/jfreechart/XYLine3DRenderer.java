@@ -1,4 +1,4 @@
-/**
+/*
  * Licensed under the GPL License. You may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -50,7 +50,6 @@
  * 15-Sep-2019 : Copied from original Jfreechart as code obsoleted and necessary for visuals in Psi Probe without extra rework (JWL);
  *
  */
-
 package psiprobe.jfreechart;
 
 import java.awt.Color;

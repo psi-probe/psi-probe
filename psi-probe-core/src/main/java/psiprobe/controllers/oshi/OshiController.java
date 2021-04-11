@@ -1,4 +1,4 @@
-/**
+/*
  * Licensed under the GPL License. You may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -9,7 +9,7 @@
  * PURPOSE.
  */
 
-/**
+/*
  * MIT License
  *
  * Copyright (c) 2010 - 2020 The OSHI Project Contributors: https://github.com/oshi/oshi/graphs/contributors
