@@ -30,7 +30,7 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.DEPLOY_KEY }}
       - name: Build site
-        run: ./mvnw site site:stage -DskipTests -B --file Source/JNA/pom.xml
+        run: ./mvnw site site:stage -DskipTests -B -Dlicense.skip=true
         env:
           CI_DEPLOY_USERNAME: ${{ secrets.CI_DEPLOY_USERNAME }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
