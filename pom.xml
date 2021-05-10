@@ -211,7 +211,7 @@
         <deploy.plugin>3.0.0-M1</deploy.plugin>
         <formatter.plugin>2.15.0</formatter.plugin>
         <git-commit.plugin>4.0.4</git-commit.plugin>
-        <gpg.plugin>1.6</gpg.plugin>
+        <gpg.plugin>3.0.1</gpg.plugin>
         <impsort.plugin>1.6.0</impsort.plugin>
         <install.plugin>3.0.0-M1</install.plugin>
         <jacoco.plugin>0.8.7</jacoco.plugin>
