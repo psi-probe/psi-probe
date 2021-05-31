@@ -17,7 +17,16 @@ updates:
     interval: daily
   open-pull-requests-limit: 10
   ignore:
+  - dependency-name: com.sun.mail:jakarta.mail
+    versions:
+    - ">= 2.0.0"
+  - dependency-name: jakarta.el:jakarta.el-api
+    versions:
+    - ">= 4.0.0"
   - dependency-name: jakarta.inject:jakarta.inject-api
+    versions:
+    - ">= 2.0.0"
+  - dependency-name: jakarta.transaction:jakarta.transaction-api
     versions:
     - ">= 2.0.0"
   - dependency-name: net.trajano.wagon:wagon-git
@@ -39,3 +48,9 @@ updates:
   - dependency-name: org.apache.tomcat:tomcat-jasper
     versions:
     - ">= 10.0.0"
+  - dependency-name: org.eclipse.jetty:jetty-jspc-maven-plugin
+    version:
+    - ">= 10.0.0"
+  - dependency-name: org.glassfish.web:jakarta.servlet.jsp.jstl
+    version:
+    - ">= 2.0.0"
