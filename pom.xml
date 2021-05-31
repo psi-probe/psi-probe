@@ -218,7 +218,7 @@
         <jar.plugin>3.2.0</jar.plugin>
         <javadoc.plugin>3.3.0</javadoc.plugin>
         <jdeps.plugin>3.1.2</jdeps.plugin>
-        <jspc.plugin>9.4.41.v20210516</jspc.plugin>
+        <jspc.plugin>11.0.3</jspc.plugin>
         <jxr.plugin>3.1.1</jxr.plugin>
         <l10n.plugin>1.8</l10n.plugin>
         <license.plugin>4.1</license.plugin>
