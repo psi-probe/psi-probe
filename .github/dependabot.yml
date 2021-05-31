@@ -19,29 +19,23 @@ updates:
   ignore:
   - dependency-name: jakarta.inject:jakarta.inject-api
     versions:
-    - "< 2.0.1"
-    - ">= 2.0.0.a"
+    - ">= 2.0.0"
   - dependency-name: net.trajano.wagon:wagon-git
     versions:
     - "< 2.0.5"
     - ">= 2.0.4.a"
   - dependency-name: org.apache.tomcat:tomcat-catalina
     versions:
-    - "< 9.0.37"
-    - ">= 9.0.13.a"
+    - ">= 10.0.0"
   - dependency-name: org.apache.tomcat:tomcat-coyote
     versions:
-    - "< 9.0.37"
-    - ">= 9.0.13.a"
+    - ">= 10.0.0"
   - dependency-name: org.apache.tomcat:tomcat-dbcp
     versions:
-    - "< 9.0.37"
-    - ">= 9.0.13.a"
+    - ">= 10.0.0"
   - dependency-name: org.apache.tomcat:tomcat-dbcp
     versions:
-    - "< 9.0.37"
-    - ">= 9.0.14.a"
+    - ">= 10.0.0"
   - dependency-name: org.apache.tomcat:tomcat-jasper
     versions:
-    - "< 9.0.37"
-    - ">= 9.0.13.a"
+    - ">= 10.0.0"
