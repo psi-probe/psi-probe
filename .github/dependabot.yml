@@ -61,8 +61,8 @@ updates:
     versions:
     - ">= 10.0.0"
   - dependency-name: org.eclipse.jetty:jetty-jspc-maven-plugin
-    version:
+    versions:
     - ">= 10.0.0"
   - dependency-name: org.glassfish.web:jakarta.servlet.jsp.jstl
-    version:
+    versions:
     - ">= 2.0.0"
