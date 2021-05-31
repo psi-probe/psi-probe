@@ -1466,9 +1466,6 @@
             <properties>
                 <maven.compiler.release>${java.release.version}</maven.compiler.release>
                 <maven.compiler.testRelease>${java.test.release.version}</maven.compiler.testRelease>
-
-                <!-- Downgrade until jmockit fixes bug with jacoco 0.8.4+ support -->
-                <jacoco.plugin>0.8.3</jacoco.plugin>
             </properties>
             <build>
                 <pluginManagement>
