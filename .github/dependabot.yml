@@ -17,6 +17,9 @@ updates:
     interval: daily
   open-pull-requests-limit: 10
   ignore:
+  - dependency-name: com.sun.mail:jakarta.mail
+    versions:
+    - ">= 2.0.0"
   - dependency-name: jakarta.el:jakarta.el-api
     versions:
     - ">= 4.0.0"
