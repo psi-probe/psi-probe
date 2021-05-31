@@ -250,6 +250,9 @@
 
         <!-- Plugin Extensions -->
         <wagon-ssh.version>3.4.3</wagon-ssh.version>
+
+        <!-- Verification Checks -->
+        <error-prone.failOnViolations>-XepAllErrorsAsWarnings</error-prone.failOnViolations>
     </properties>
 
     <dependencyManagement>
@@ -866,6 +869,19 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>${compiler.plugin}</version>
                     <configuration>
+                        <annotationProcessorPaths>
+                            <path>
+                                <groupId>com.google.errorprone</groupId>
+                                <artifactId>error_prone_core</artifactId>
+                                <version>${error-prone.version}</version>
+                            </path>
+                        </annotationProcessorPaths>
+
+                        <compilerArgs>
+                            <arg>-XDcompilePolicy=simple</arg>
+                            <arg>-Xplugin:ErrorProne ${error-prone.failOnViolations}</arg>
+                        </compilerArgs>
+
                         <showDeprecation>true</showDeprecation>
                         <showWarnings>true</showWarnings>
 
@@ -1420,37 +1436,6 @@
         </profile>
 
         <profile>
-            <id>error-prone</id>
-            <activation>
-                <jdk>[1.8,12)</jdk>
-            </activation>
-            <build>
-                <pluginManagement>
-                    <plugins>
-                        <plugin>
-                            <groupId>org.apache.maven.plugins</groupId>
-                            <artifactId>maven-compiler-plugin</artifactId>
-                            <configuration>
-                                <annotationProcessorPaths>
-                                    <path>
-                                        <groupId>com.google.errorprone</groupId>
-                                        <artifactId>error_prone_core</artifactId>
-                                        <version>${error-prone.version}</version>
-                                    </path>
-                                </annotationProcessorPaths>
-
-                                <compilerArgs>
-                                    <arg>-XDcompilePolicy=simple</arg>
-                                    <arg>-Xplugin:ErrorProne -Xep:Finally:OFF</arg>
-                                </compilerArgs>
-                            </configuration>
-                        </plugin>
-                    </plugins>
-                </pluginManagement>
-            </build>
-        </profile>
-
-        <profile>
             <id>jdk8</id>
             <activation>
                 <jdk>1.8</jdk>
@@ -1542,6 +1527,39 @@
                                         <X-Compile-Release-JDK>${maven.compiler.release}</X-Compile-Release-JDK>
                                     </manifestEntries>
                                 </archive>
+                            </configuration>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+            </build>
+        </profile>
+
+        <profile>
+            <id>jdk16on</id>
+            <activation>
+                <jdk>[16,)</jdk>
+            </activation>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-compiler-plugin</artifactId>
+                            <configuration>
+                                <fork>true</fork>
+                                <compilerArgs combine.children="append">
+                                    <!-- Error Prone Needs -->
+                                    <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED</arg>
+                                    <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED</arg>
+                                    <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.main=ALL-UNNAMED</arg>
+                                    <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.model=ALL-UNNAMED</arg>
+                                    <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED</arg>
+                                    <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED</arg>
+                                    <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED</arg>
+                                    <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED</arg>
+                                    <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED</arg>
+                                    <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED</arg>
+                                </compilerArgs>
                             </configuration>
                         </plugin>
                     </plugins>
