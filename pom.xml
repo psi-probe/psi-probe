@@ -226,7 +226,7 @@
         <modernizer.plugin>2.2.0</modernizer.plugin>
         <pmd.plugin>3.14.0</pmd.plugin>
         <project-info.plugin>3.1.2</project-info.plugin>
-        <release.plugin>2.5.3</release.plugin>
+        <release.plugin>3.0.0-M4</release.plugin>
         <resources.plugin>3.2.0</resources.plugin>
         <site.plugin>3.9.1</site.plugin>
         <sonar.plugin>3.9.0.2155</sonar.plugin>
@@ -1373,6 +1373,14 @@
                                 </goals>
                             </execution>
                         </executions>
+                    </plugin>
+                    <!-- Skip license plugin during release as maven release is now shallow cloned -->
+                    <plugin>
+                        <groupId>com.mycila</groupId>
+                        <artifactId>license-maven-plugin</artifactId>
+                        <configuration>
+                            <skip>true</skip>
+                        </configuration>
                     </plugin>
                 </plugins>
             </build>
