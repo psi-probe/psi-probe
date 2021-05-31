@@ -54,9 +54,6 @@ updates:
   - dependency-name: org.apache.tomcat:tomcat-dbcp
     versions:
     - ">= 10.0.0"
-  - dependency-name: org.apache.tomcat:tomcat-dbcp
-    versions:
-    - ">= 10.0.0"
   - dependency-name: org.apache.tomcat:tomcat-jasper
     versions:
     - ">= 10.0.0"
