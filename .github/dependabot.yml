@@ -35,6 +35,9 @@ updates:
   - dependency-name: jakarta.servlet:jakarta.servlet-api
     versions:
     - ">= 5.0.0"
+  - dependency-name: jakarta.servlet.jsp:jakarta.servlet.jsp-api
+    versions:
+    - ">= 3.0.0"
   - dependency-name: jakarta.transaction:jakarta.transaction-api
     versions:
     - ">= 2.0.0"
