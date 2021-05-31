@@ -17,7 +17,13 @@ updates:
     interval: daily
   open-pull-requests-limit: 10
   ignore:
+  - dependency-name: com.sun.activation:jakarta.activation
+    versions:
+    - ">= 2.0.0"
   - dependency-name: com.sun.mail:jakarta.mail
+    versions:
+    - ">= 2.0.0"
+  - dependency-name: jakarta.activation:jakarta.activation-api
     versions:
     - ">= 2.0.0"
   - dependency-name: jakarta.el:jakarta.el-api
@@ -26,6 +32,12 @@ updates:
   - dependency-name: jakarta.inject:jakarta.inject-api
     versions:
     - ">= 2.0.0"
+  - dependency-name: jakarta.servlet:jakarta.servlet-api
+    versions:
+    - ">= 5.0.0"
+  - dependency-name: jakarta.servlet.jsp:jakarta.servlet.jsp-api
+    versions:
+    - ">= 3.0.0"
   - dependency-name: jakarta.transaction:jakarta.transaction-api
     versions:
     - ">= 2.0.0"
