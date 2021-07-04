@@ -39,7 +39,7 @@
         <!-- TODO: Downcast jmockit to 1.47 as tests break with 1.48+ -->
         <jmockit-legacy.version>1.47</jmockit-legacy.version>
 
-        <tomcat.version>7.0.109</tomcat.version>
+        <tomcat.version>9.0.50</tomcat.version>
     </properties>
 
     <dependencies>
