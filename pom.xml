@@ -228,7 +228,7 @@
         <release.plugin>3.0.0-M4</release.plugin>
         <resources.plugin>3.2.0</resources.plugin>
         <site.plugin>3.9.1</site.plugin>
-        <sonar.plugin>3.9.0.2155</sonar.plugin>
+        <sonar.plugin>3.9.1.2184</sonar.plugin>
         <source.plugin>3.2.1</source.plugin>
         <spotbugs.plugin>4.4.2.2</spotbugs.plugin>
         <surefire.plugin>3.0.0-M5</surefire.plugin>
