@@ -38,9 +38,9 @@ class Tomcat10AgentValveTest {
   @Mocked
   Response response;
 
-  /** The valve base. */
+  /** The valve mock. */
   @Mocked
-  ValveBase valveBase;
+  Valve valveMock;
 
   /**
    * Invoke.
@@ -50,12 +50,7 @@ class Tomcat10AgentValveTest {
    */
   @Test
   void invoke() throws IOException, ServletException {
-    Assertions.assertNotNull(new Expectations() {
-      {
-        valve.getNext();
-        result = valveBase;
-      }
-    });
+    valve.setNext(valveMock);
     valve.invoke(request, response);
   }
 
