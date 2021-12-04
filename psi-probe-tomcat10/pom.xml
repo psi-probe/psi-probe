@@ -36,17 +36,13 @@
   </scm>
 
     <properties>
-        <!-- TODO: Downcast jmockit to 1.47 as tests break with 1.48+ -->
-        <jmockit-legacy.version>1.47</jmockit-legacy.version>
-
         <tomcat.version>10.0.13</tomcat.version>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>org.jmockit</groupId>
+            <groupId>com.github.hazendaz.jmockit</groupId>
             <artifactId>jmockit</artifactId>
-            <version>${jmockit-legacy.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>

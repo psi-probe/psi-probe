@@ -14,14 +14,12 @@ import java.io.IOException;
 
 import javax.servlet.ServletException;
 
-import mockit.Expectations;
 import mockit.Mocked;
 import mockit.Tested;
 
+import org.apache.catalina.Valve;
 import org.apache.catalina.connector.Request;
 import org.apache.catalina.connector.Response;
-import org.apache.catalina.valves.ValveBase;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -41,9 +39,9 @@ class Tomcat90AgentValveTest {
   @Mocked
   Response response;
 
-  /** The valve base. */
+  /** The valve mock. */
   @Mocked
-  ValveBase valveBase;
+  Valve valveMock;
 
   /**
    * Invoke.
@@ -53,12 +51,7 @@ class Tomcat90AgentValveTest {
    */
   @Test
   void invoke() throws IOException, ServletException {
-    Assertions.assertNotNull(new Expectations() {
-      {
-        valve.getNext();
-        result = valveBase;
-      }
-    });
+    valve.setNext(valveMock);
     valve.invoke(request, response);
   }
 
