@@ -28,7 +28,7 @@ public class LogbackLoggerAccessor extends DefaultAccessor {
 
   /**
    * Returns all appenders of this logger.
-   * 
+   *
    * @return a list of {@link LogbackAppenderAccessor}s
    */
   @SuppressWarnings("unchecked")
@@ -57,7 +57,7 @@ public class LogbackLoggerAccessor extends DefaultAccessor {
 
   /**
    * Returns the appender of this logger with the given name.
-   * 
+   *
    * @param name the name of the appender to return
    * @return the appender with the given name, or null if no such appender exists for this logger
    */
@@ -108,7 +108,7 @@ public class LogbackLoggerAccessor extends DefaultAccessor {
 
   /**
    * Gets the log level of this logger.
-   * 
+   *
    * @return the level of this logger
    */
   public String getLevel() {
@@ -123,7 +123,7 @@ public class LogbackLoggerAccessor extends DefaultAccessor {
 
   /**
    * Sets the log level of this logger.
-   * 
+   *
    * @param newLevelStr the name of the new level
    */
   public void setLevel(String newLevelStr) {

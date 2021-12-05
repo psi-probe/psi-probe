@@ -47,7 +47,8 @@
  * -------
  * 05-Nov-2002 : Version 1 (DG);
  * 14-Nov-2002 : Modified to have independent x and y offsets (DG);
- * 15-Sep-2019 : Copied from original Jfreechart as code obsoleted and necessary for visuals in Psi Probe without extra rework (JWL);
+ * 15-Sep-2019 : Copied from original Jfreechart as code obsoleted and necessary for visuals in Psi Probe
+ *               without extra rework (JWL);
  *
  */
 package psiprobe.jfreechart;

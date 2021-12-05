@@ -194,7 +194,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
 
   /**
    * Returns series if stat name starts with the prefix.
-   * 
+   *
    * @param statNamePrefix they key under which the stats are stored
    * @return a Map of matching stats. Map keys are stat names and map values are corresponding
    *         series.

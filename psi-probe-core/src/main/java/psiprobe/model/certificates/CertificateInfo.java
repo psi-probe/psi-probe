@@ -13,6 +13,9 @@ package psiprobe.model.certificates;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * Certificate Information Class.
+ */
 public class CertificateInfo implements Serializable {
 
   /** The Constant serialVersionUID. */

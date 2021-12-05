@@ -9,6 +9,6 @@
  * PURPOSE.
  */
 /**
- * Quick Check Package (ie Tomcat Availability Controllers)
+ * Quick Check Package (ie Tomcat Availability Controllers).
  */
 package psiprobe.controllers.quickcheck;

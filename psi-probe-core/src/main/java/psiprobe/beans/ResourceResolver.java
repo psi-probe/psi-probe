@@ -102,7 +102,7 @@ public interface ResourceResolver {
   /**
    * Method that gets {@link MBeanServer} instance that is "default" for the current environment. It
    * is preferably to use this method to locate the "default" {@link MBeanServer} implementation.
-   * 
+   *
    * @return "default" {@link MBeanServer} instance for the current environment
    */
   MBeanServer getMBeanServer();

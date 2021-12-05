@@ -92,7 +92,7 @@ public interface TomcatContainer {
 
   /**
    * Undeploys a context.
-   * 
+   *
    * @param name the context path
    * @throws Exception if undeployment fails spectacularly
    */
@@ -146,7 +146,7 @@ public interface TomcatContainer {
 
   /**
    * Deploys a context, assuming an context descriptor file exists on the server already.
-   * 
+   *
    * @param contextName the context path, which should match the filename
    * @return {@code true} if deployment was successful
    * @throws Exception if deployment fails spectacularly

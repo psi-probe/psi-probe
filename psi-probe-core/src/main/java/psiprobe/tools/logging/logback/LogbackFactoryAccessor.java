@@ -61,7 +61,7 @@ public class LogbackFactoryAccessor extends DefaultAccessor {
 
   /**
    * Returns the Logback root logger.
-   * 
+   *
    * @return the root logger
    */
   public LogbackLoggerAccessor getRootLogger() {
@@ -98,7 +98,7 @@ public class LogbackFactoryAccessor extends DefaultAccessor {
 
   /**
    * Returns a list of wrappers for all Logback appenders that have an associated logger.
-   * 
+   *
    * @return a list of {@link LogbackAppenderAccessor}s representing all appenders that are in use
    */
   @SuppressWarnings("unchecked")

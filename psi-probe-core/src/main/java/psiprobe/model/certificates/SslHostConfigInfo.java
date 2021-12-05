@@ -13,6 +13,9 @@ package psiprobe.model.certificates;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * SSL Host Configuration Information Class.
+ */
 public class SslHostConfigInfo implements Serializable {
 
   /** The Constant serialVersionUID. */

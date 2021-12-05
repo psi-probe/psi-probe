@@ -50,7 +50,7 @@ public class SslHostConfigHelper {
 
   /**
    * To SslHostConfig info.
-   * 
+   *
    * @param sslHostConfig the SslHostConfig
    * @return the SslHostConfig info
    * @throws IllegalAccessException the illegal access exception
@@ -73,7 +73,7 @@ public class SslHostConfigHelper {
 
   /**
    * To certificate info.
-   * 
+   *
    * @param sslHostConfigCertificate the SslHostConfigCertificate
    * @return the certificate info
    * @throws IllegalAccessException the illegal access exception

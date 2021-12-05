@@ -47,7 +47,8 @@
  * -------
  * 14-Jan-2005 : Added standard header (DG);
  * 01-May-2007 : Fixed equals() and serialization bugs (DG);
- * 15-Sep-2019 : Copied from original Jfreechart as code obsoleted and necessary for visuals in Psi Probe without extra rework (JWL);
+ * 15-Sep-2019 : Copied from original Jfreechart as code obsoleted and necessary for visuals
+ *               in Psi Probe without extra rework (JWL);
  *
  */
 package psiprobe.jfreechart;

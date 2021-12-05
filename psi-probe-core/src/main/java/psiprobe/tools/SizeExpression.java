@@ -102,7 +102,7 @@ public final class SizeExpression {
    * <li>"2kb" returns {@code 2048}</li>
    * <li>"3.5mb" returns {@code 3670016}</li>
    * </ul>
-   * 
+   *
    * @param expression the expression to parse
    * @return the parsed value
    * @throws NumberFormatException if the given expression cannot be parsed
@@ -130,7 +130,7 @@ public final class SizeExpression {
 
   /**
    * Formats the value as an expression.
-   * 
+   *
    * @param value the numerical value to be formatted
    * @param decimalPlaces the number of decimal places in the mantissa
    * @param base2 whether to use the base-2 (1024) multiplier and format with "B" units. If false,
@@ -172,7 +172,7 @@ public final class SizeExpression {
 
   /**
    * Rounds a decimal value to the given decimal place.
-   * 
+   *
    * @param value the value to round
    * @param decimalPlaces the number of decimal places to preserve.
    * @return the rounded value
@@ -183,7 +183,7 @@ public final class SizeExpression {
 
   /**
    * Returns the base-2 or base-10 multiplier for a given prefix.
-   * 
+   *
    * @param unitPrefix the character representing the prefix. Can be K, M, G, T, or P.
    * @param base2 whether to use the base-2 (1024) multiplier. If false, uses the base-10 (1000)
    *        multiplier.

@@ -62,7 +62,7 @@ public class TomcatSlf4jLogbackAppenderAccessor extends AbstractLogDestination {
   /**
    * Returns the log type, to distinguish tomcatSlf4jLogback appenders from other types like log4j
    * appenders or jdk handlers.
-   * 
+   *
    * @return the log type
    */
   @Override
@@ -83,12 +83,11 @@ public class TomcatSlf4jLogbackAppenderAccessor extends AbstractLogDestination {
   /**
    * Returns the file that this appender writes to by accessing the {@code file} bean property of
    * the appender.
-   * 
+   *
    * <p>
    * If no such property exists, we assume the appender to write to stdout or stderr so the output
    * will be contained in catalina.out.
-   * </p>
-   * 
+   
    * @return the file this appender writes to
    */
   @Override
@@ -115,7 +114,7 @@ public class TomcatSlf4jLogbackAppenderAccessor extends AbstractLogDestination {
 
   /**
    * Gets the level of the associated logger.
-   * 
+   *
    * @return the logger's level
    */
   @Override
@@ -125,11 +124,10 @@ public class TomcatSlf4jLogbackAppenderAccessor extends AbstractLogDestination {
 
   /**
    * Returns the valid log level names.
-   * 
+   *
    * <p>
    * Note that Logback has no FATAL level.
-   * </p>
-   * 
+   *
    * @return the valid log level names
    */
   @Override

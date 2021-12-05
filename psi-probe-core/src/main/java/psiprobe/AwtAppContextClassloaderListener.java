@@ -20,7 +20,8 @@ import org.slf4j.LoggerFactory;
 
 /**
  * Prevents a classloader leak.
- * 
+ *
+ * <p>
  * As suggested by: <a href="https://cdivilly.wordpress.com/2012/04/23/permgen-memory-leak/">Colm
  * Divilly</a>
  */
@@ -34,7 +35,7 @@ public class AwtAppContextClassloaderListener implements ServletContextListener 
   /**
    * Forces the {@code sun.awt.AppContext} singleton to be created and initialized when the context
    * is initialized.
-   * 
+   *
    * @param sce the event containing the context being initialized
    */
   @Override

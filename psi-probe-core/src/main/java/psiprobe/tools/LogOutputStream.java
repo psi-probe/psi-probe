@@ -59,7 +59,7 @@ public class LogOutputStream extends OutputStream {
   /**
    * Creates a new instance of {@code LogOutputStream} which will write to a given {@code Log} at
    * the given level.
-   * 
+   *
    * @param log the {@code Log} to which to write
    * @param level the level at which to write
    */
@@ -74,7 +74,7 @@ public class LogOutputStream extends OutputStream {
   /**
    * Creates a {@code PrintStream} with autoFlush enabled which will write to the given {@code Log}
    * at the given level.
-   * 
+   *
    * @param log the {@code Log} to which to write
    * @param level the level at which to write
    * @return a {@code PrintStream} that writes to the given log
@@ -156,7 +156,7 @@ public class LogOutputStream extends OutputStream {
 
   /**
    * Writes the given message to this stream's {@code Log} at this stream's level.
-   * 
+   *
    * @param message the message to be written
    */
   private void log(String message) {

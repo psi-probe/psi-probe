@@ -63,7 +63,7 @@ public class TomcatSlf4jLogbackFactoryAccessor extends DefaultAccessor {
 
   /**
    * Returns the TomcatSlf4jLogback root logger.
-   * 
+   *
    * @return the root logger
    */
   public TomcatSlf4jLogbackLoggerAccessor getRootLogger() {
@@ -102,7 +102,7 @@ public class TomcatSlf4jLogbackFactoryAccessor extends DefaultAccessor {
 
   /**
    * Returns a list of wrappers for all TomcatSlf4jLogback appenders that have an associated logger.
-   * 
+   *
    * @return a list of {@link TomcatSlf4jLogbackAppenderAccessor}s representing all appenders that
    *         are in use
    */

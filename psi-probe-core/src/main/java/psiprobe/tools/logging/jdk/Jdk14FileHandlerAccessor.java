@@ -14,6 +14,9 @@ import java.io.File;
 
 import psiprobe.tools.Instruments;
 
+/**
+ * JDK 1.4 Logging File Handler Accessor Class.
+ */
 public class Jdk14FileHandlerAccessor extends Jdk14HandlerAccessor {
 
   private static final int LATEST_FILE_INDEX = 0;

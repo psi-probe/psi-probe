@@ -56,7 +56,7 @@ public class ProbeServlet extends DispatcherServlet implements ContainerServlet 
 
   /**
    * Associates the {@link Wrapper} with the {@link ContainerWrapperBean}.
-   * 
+   *
    * @param config this servlet's configuration and initialization parameters
    * @throws ServletException if the wrapper is null or another servlet-interrupting error occurs
    */
@@ -72,7 +72,7 @@ public class ProbeServlet extends DispatcherServlet implements ContainerServlet 
 
   /**
    * Dispatch.
-   * 
+   *
    * @param httpServletRequest the request
    * @param httpServletResponse the response
    * @throws Exception if setting UTF-8 encoding fails or if the super implementation throws an

@@ -96,7 +96,7 @@ public class ContainerListenerBean implements NotificationListener {
 
   /**
    * Finds ThreadPoolObjectName by its string name.
-   * 
+   *
    * @param name - pool name
    * @return null if the input name is null or ThreadPoolObjectName is not found
    */
