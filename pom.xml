@@ -175,7 +175,7 @@
         <jstl.version>1.2.6</jstl.version>
         <junit.version>5.8.2</junit.version>
         <lang3.version>3.12.0</lang3.version>
-        <logback.version>1.2.7</logback.version>
+        <logback.version>1.2.8</logback.version>
         <mail.version>1.6.7</mail.version>
         <oshi.version>5.8.5</oshi.version>
         <openejb.version>4.7.5</openejb.version>
