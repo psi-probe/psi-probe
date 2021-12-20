@@ -206,7 +206,7 @@
         <compiler.plugin>3.8.1</compiler.plugin>
         <coveralls.plugin>4.3.0</coveralls.plugin>
         <dependency.plugin>3.2.0</dependency.plugin>
-        <dependency-check.plugin>6.5.0</dependency-check.plugin>
+        <dependency-check.plugin>6.5.1</dependency-check.plugin>
         <deploy.plugin>3.0.0-M1</deploy.plugin>
         <formatter.plugin>2.17.1</formatter.plugin>
         <git-commit.plugin>4.9.10</git-commit.plugin>
