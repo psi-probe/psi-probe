@@ -248,7 +248,7 @@
         <wagon-git.version note="Do not use 2.0.4 as it does not work with ssh">2.0.3</wagon-git.version>
 
         <!-- Plugin Extensions -->
-        <wagon-ssh.version>3.5.0</wagon-ssh.version>
+        <wagon-ssh.version>3.5.1</wagon-ssh.version>
 
         <!-- Verification Checks -->
         <error-prone.failOnViolations>-XepAllErrorsAsWarnings</error-prone.failOnViolations>
