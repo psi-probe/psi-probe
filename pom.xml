@@ -177,7 +177,7 @@
         <lang3.version>3.12.0</lang3.version>
         <logback.version>1.2.9</logback.version>
         <mail.version>1.6.7</mail.version>
-        <oshi.version>5.8.6</oshi.version>
+        <oshi.version>6.0.0</oshi.version>
         <openejb.version>4.7.5</openejb.version>
         <persistence.version>2.2.3</persistence.version>
         <pool.version>1.6</pool.version>
