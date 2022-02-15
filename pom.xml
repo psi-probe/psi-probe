@@ -203,7 +203,7 @@
         <checkstyle.plugin>3.1.2</checkstyle.plugin>
         <changelog.plugin>2.3</changelog.plugin>
         <clean.plugin>3.1.0</clean.plugin>
-        <compiler.plugin>3.9.0</compiler.plugin>
+        <compiler.plugin>3.10.0</compiler.plugin>
         <coveralls.plugin>4.3.0</coveralls.plugin>
         <dependency.plugin>3.2.0</dependency.plugin>
         <dependency-check.plugin>6.5.3</dependency-check.plugin>
