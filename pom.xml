@@ -799,6 +799,11 @@
                             <artifactId>wagon-scm</artifactId>
                             <version>${wagon.version}</version>
                         </dependency>
+                        <dependency>
+                            <groupId>org.apache.maven.scm</groupId>
+                            <artifactId>maven-scm-provider-gitexe</artifactId>
+                            <version>${scm.version}</version>
+                        </dependency>
                     </dependencies>
                 </plugin>
                 <plugin>
