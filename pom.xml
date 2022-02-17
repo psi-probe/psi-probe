@@ -246,7 +246,8 @@
         <findsecbugs.version>1.11.0</findsecbugs.version>
         <javac.version>9+181-r4173-1</javac.version>
 
-        <!-- Plugin Extensions -->
+        <!-- Site Plugins-->
+        <scm.version>1.12.2</scm.version>
         <wagon.version>3.5.1</wagon.version>
 
         <!-- Verification Checks -->
