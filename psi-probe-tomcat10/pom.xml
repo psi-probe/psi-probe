@@ -32,8 +32,8 @@
         <connection>scm:git:ssh://git@github.com/psi-probe/psi-probe.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/psi-probe/psi-probe.git</developerConnection>
         <url>https://github.com/psi-probe/psi-probe/</url>
-      <tag>HEAD</tag>
-  </scm>
+        <tag>HEAD</tag>
+    </scm>
 
     <properties>
         <tomcat.version>10.0.16</tomcat.version>

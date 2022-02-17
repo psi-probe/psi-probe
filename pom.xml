@@ -86,7 +86,7 @@
         <connection>scm:git:ssh://git@github.com/psi-probe/psi-probe.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/psi-probe/psi-probe.git</developerConnection>
         <url>https://github.com/psi-probe/psi-probe/</url>
-        <tag>psi-probe-3.5.5</tag>
+        <tag>HEAD</tag>
     </scm>
     <issueManagement>
         <system>GitHub Issues</system>
@@ -98,9 +98,9 @@
     </ciManagement>
     <distributionManagement>
         <site>
-            <id>gh-pages</id>
+            <id>gh-pages-scm</id>
             <name>Psi-Probe GitHub Pages</name>
-            <url>github:https://psi-probe.github.io/psi-probe/</url>
+            <url>scm:git:ssh://git@github.com/psi-probe/psi-probe.git</url>
         </site>
         <snapshotRepository>
             <id>ossrh</id>
@@ -127,7 +127,7 @@
 
         <!-- Checkstyle / Copyright -->
         <checkstyle.configLocation>checkstyle.xml</checkstyle.configLocation>
-        <copyright>2020</copyright>
+        <copyright>2022</copyright>
 
         <!-- Github Settings -->
         <github.global.server>github</github.global.server>
@@ -155,7 +155,7 @@
         <dbcp2.version>2.9.0</dbcp2.version>
         <displaytag.version>2.4.3</displaytag.version>
         <el-api.version>3.0.3</el-api.version>
-        <error-prone.version>2.11.0</error-prone.version>
+        <error-prone.version>2.10.0</error-prone.version>
         <geoip2.version>2.16.1</geoip2.version>
         <guava.version>31.0.1-jre</guava.version>
         <hateoas.version>1.4.1</hateoas.version>
@@ -245,10 +245,9 @@
         <sb-contrib.version>7.4.7</sb-contrib.version>
         <findsecbugs.version>1.11.0</findsecbugs.version>
         <javac.version>9+181-r4173-1</javac.version>
-        <wagon-git.version note="Do not use 2.0.4 as it does not work with ssh">2.0.3</wagon-git.version>
 
         <!-- Plugin Extensions -->
-        <wagon-ssh.version>3.5.1</wagon-ssh.version>
+        <wagon.version>3.5.1</wagon.version>
 
         <!-- Verification Checks -->
         <error-prone.failOnViolations>-XepAllErrorsAsWarnings</error-prone.failOnViolations>
@@ -379,7 +378,8 @@
                 <artifactId>tomcat-jdbc</artifactId>
                 <version>${tomcat.version}</version>
             </dependency>
-            <dependency> <!-- TODO: Override for commons-dbcp -->
+            <!-- TODO: Override for commons-dbcp -->
+            <dependency>
                 <groupId>commons-pool</groupId>
                 <artifactId>commons-pool</artifactId>
                 <version>${pool.version}</version>
@@ -795,14 +795,9 @@
                             <version>${doxia.version}</version>
                         </dependency>
                         <dependency>
-                            <groupId>net.trajano.wagon</groupId>
-                            <artifactId>wagon-git</artifactId>
-                            <version>${wagon-git.version}</version>
-                        </dependency>
-                        <dependency>
                             <groupId>org.apache.maven.wagon</groupId>
-                            <artifactId>wagon-ssh</artifactId>
-                            <version>${wagon-ssh.version}</version>
+                            <artifactId>wagon-scm</artifactId>
+                            <version>${wagon.version}</version>
                         </dependency>
                     </dependencies>
                 </plugin>
@@ -1237,14 +1232,6 @@
                 </executions>
             </plugin>
         </plugins>
-
-        <extensions>
-            <extension>
-                <groupId>org.apache.maven.wagon</groupId>
-                <artifactId>wagon-ssh</artifactId>
-                <version>${wagon-ssh.version}</version>
-            </extension>
-        </extensions>
     </build>
 
     <reporting>
