@@ -227,7 +227,7 @@
         <project-info.plugin>3.2.1</project-info.plugin>
         <release.plugin>3.0.0-M5</release.plugin>
         <resources.plugin>3.2.0</resources.plugin>
-        <site.plugin>3.10.0</site.plugin>
+        <site.plugin>3.11.0</site.plugin>
         <sonar.plugin>3.9.1.2184</sonar.plugin>
         <source.plugin>3.2.1</source.plugin>
         <spotbugs.plugin>4.5.3.0</spotbugs.plugin>
