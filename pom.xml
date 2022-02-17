@@ -98,9 +98,9 @@
     </ciManagement>
     <distributionManagement>
         <site>
-            <id>gh-pages</id>
+            <id>gh-pages-scm</id>
             <name>Psi-Probe GitHub Pages</name>
-            <url>github:https://psi-probe.github.io/psi-probe/</url>
+            <url>scm:git:ssh://git@github.com/psi-probe/psi-probe.git</url>
         </site>
         <snapshotRepository>
             <id>ossrh</id>
@@ -245,10 +245,9 @@
         <sb-contrib.version>7.4.7</sb-contrib.version>
         <findsecbugs.version>1.11.0</findsecbugs.version>
         <javac.version>9+181-r4173-1</javac.version>
-        <wagon-git.version note="Do not use 2.0.4 as it does not work with ssh">2.0.3</wagon-git.version>
 
         <!-- Plugin Extensions -->
-        <wagon-ssh.version>3.5.1</wagon-ssh.version>
+        <wagon.version>3.5.1</wagon.version>
 
         <!-- Verification Checks -->
         <error-prone.failOnViolations>-XepAllErrorsAsWarnings</error-prone.failOnViolations>
@@ -795,14 +794,9 @@
                             <version>${doxia.version}</version>
                         </dependency>
                         <dependency>
-                            <groupId>net.trajano.wagon</groupId>
-                            <artifactId>wagon-git</artifactId>
-                            <version>${wagon-git.version}</version>
-                        </dependency>
-                        <dependency>
                             <groupId>org.apache.maven.wagon</groupId>
-                            <artifactId>wagon-ssh</artifactId>
-                            <version>${wagon-ssh.version}</version>
+                            <artifactId>wagon-scm</artifactId>
+                            <version>${wagon.version}</version>
                         </dependency>
                     </dependencies>
                 </plugin>
@@ -1237,14 +1231,6 @@
                 </executions>
             </plugin>
         </plugins>
-
-        <extensions>
-            <extension>
-                <groupId>org.apache.maven.wagon</groupId>
-                <artifactId>wagon-ssh</artifactId>
-                <version>${wagon-ssh.version}</version>
-            </extension>
-        </extensions>
     </build>
 
     <reporting>
