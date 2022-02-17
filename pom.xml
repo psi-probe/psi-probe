@@ -127,7 +127,7 @@
 
         <!-- Checkstyle / Copyright -->
         <checkstyle.configLocation>checkstyle.xml</checkstyle.configLocation>
-        <copyright>2020</copyright>
+        <copyright>2022</copyright>
 
         <!-- Github Settings -->
         <github.global.server>github</github.global.server>
@@ -378,7 +378,8 @@
                 <artifactId>tomcat-jdbc</artifactId>
                 <version>${tomcat.version}</version>
             </dependency>
-            <dependency> <!-- TODO: Override for commons-dbcp -->
+            <!-- TODO: Override for commons-dbcp -->
+            <dependency>
                 <groupId>commons-pool</groupId>
                 <artifactId>commons-pool</artifactId>
                 <version>${pool.version}</version>
