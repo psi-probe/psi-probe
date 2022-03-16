@@ -233,7 +233,7 @@
         <spotbugs.plugin>4.5.3.0</spotbugs.plugin>
         <surefire.plugin>3.0.0-M5</surefire.plugin>
         <tidy.plugin>1.1.0</tidy.plugin>
-        <versions.plugin>2.9.0</versions.plugin>
+        <versions.plugin>2.10.0</versions.plugin>
         <war.plugin>3.3.2</war.plugin>
 
         <!-- Plugin Dependency Versions -->
