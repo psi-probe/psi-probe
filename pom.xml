@@ -208,6 +208,7 @@
         <dependency.plugin>3.3.0</dependency.plugin>
         <dependency-check.plugin>7.0.0</dependency-check.plugin>
         <deploy.plugin>3.0.0-M2</deploy.plugin>
+        <enforcer.plugin>3.0.0</enforcer.plugin>
         <formatter.plugin>2.18.0</formatter.plugin>
         <git-commit.plugin>4.9.10</git-commit.plugin>
         <gpg.plugin>3.0.1</gpg.plugin>
@@ -1095,6 +1096,21 @@
                     <version>${build-helper.plugin}</version>
                 </plugin>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-enforcer-plugin</artifactId>
+                    <version>${enforcer.plugin}</version>
+                    <configuration>
+                        <rules>
+                            <requireJavaVersion>
+                                <version>11,17,18,19</version>
+                            </requireJavaVersion>
+                            <requireMavenVersion>
+                                <version>[${maven.min-version},)</version>
+                            </requireMavenVersion>
+                        </rules>
+                    </configuration>
+                </plugin>
+                <plugin>
                     <groupId>com.mycila</groupId>
                     <artifactId>license-maven-plugin</artifactId>
                     <version>${license.plugin}</version>
@@ -1187,6 +1203,32 @@
                         <configuration>
                             <rootLocationProperty>main.basedir</rootLocationProperty>
                         </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>enforce-maven</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>enforce-clean</id>
+                        <phase>pre-clean</phase>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>enforce-site</id>
+                        <phase>pre-site</phase>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>
