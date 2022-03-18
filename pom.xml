@@ -249,7 +249,7 @@
         <javac.version>9+181-r4173-1</javac.version>
 
         <!-- Site Plugins-->
-        <scm.version>1.12.2</scm.version>
+        <scm.version>2.0.0-M1</scm.version>
         <wagon.version>3.5.1</wagon.version>
 
         <!-- Verification Checks -->
