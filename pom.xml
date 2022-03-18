@@ -172,7 +172,6 @@
         <jmockit.version>1.49.2</jmockit.version>
         <jna.version>5.10.0</jna.version>
         <jsp-api.version>2.3.6</jsp-api.version>
-        <jsr305.version>3.0.2</jsr305.version>
         <jstl-api.version>1.2.7</jstl-api.version>
         <jstl.version>1.2.6</jstl.version>
         <junit.version>5.8.2</junit.version>
@@ -188,6 +187,7 @@
         <servlet-api.version>4.0.4</servlet-api.version>
         <sitemesh.version>2.4.2</sitemesh.version>
         <slf4j.version>1.7.36</slf4j.version>
+        <spotbugs.version>4.6.0</spotbugs.version>
         <spring.version>5.3.16</spring.version>
         <spring-security.version>5.6.2</spring-security.version>
         <text.version>1.9</text.version>
@@ -261,9 +261,9 @@
         <dependencies>
             <!-- Sonar Needs Following for Scans -->
             <dependency>
-                <groupId>com.google.code.findbugs</groupId>
-                <artifactId>jsr305</artifactId>
-                <version>${jsr305.version}</version>
+                <groupId>com.github.spotbugs</groupId>
+                <artifactId>spotbugs-annotations</artifactId>
+                <version>${spotbugs.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.google.errorprone</groupId>
@@ -667,9 +667,9 @@
 
     <dependencies>
         <!-- Sonar Needs Following for Scans -->
-        <dependency>
-            <groupId>com.google.code.findbugs</groupId>
-            <artifactId>jsr305</artifactId>
+         <dependency>
+            <groupId>com.github.spotbugs</groupId>
+            <artifactId>spotbugs-annotations</artifactId>
             <scope>provided</scope>
         </dependency>
         <dependency>
