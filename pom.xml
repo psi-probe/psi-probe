@@ -1465,9 +1465,9 @@
         </profile>
 
         <profile>
-            <id>jdk9on</id>
+            <id>jdk11on</id>
             <activation>
-                <jdk>[9,)</jdk>
+                <jdk>[11,)</jdk>
             </activation>
             <properties>
                 <maven.compiler.release>${java.release.version}</maven.compiler.release>
