@@ -232,10 +232,10 @@
         <resources.plugin>3.2.0</resources.plugin>
         <site.plugin>3.11.0</site.plugin>
         <sonar.plugin>3.9.1.2184</sonar.plugin>
+        <sortpom.plugin>3.0.1</sortpom.plugin>
         <source.plugin>3.2.1</source.plugin>
         <spotbugs.plugin>4.5.3.0</spotbugs.plugin>
         <surefire.plugin>3.0.0-M5</surefire.plugin>
-        <tidy.plugin>1.1.0</tidy.plugin>
         <versions.plugin>2.10.0</versions.plugin>
         <war.plugin>3.3.2</war.plugin>
 
@@ -1247,9 +1247,9 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>tidy-maven-plugin</artifactId>
-                <version>${tidy.plugin}</version>
+                <groupId>com.github.ekryd.sortpom</groupId>
+                <artifactId>sortpom-maven-plugin</artifactId>
+                <version>${sortpom.plugin}</version>
             </plugin>
             <!-- Checkstyle dependencies required here or they won't be used (per maven) -->
             <plugin>
@@ -1583,13 +1583,13 @@
             <build>
                 <plugins>
                     <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>tidy-maven-plugin</artifactId>
+                        <groupId>com.github.ekryd.sortpom</groupId>
+                        <artifactId>sortpom-maven-plugin</artifactId>
                         <executions>
                             <execution>
                                 <phase>verify</phase>
                                 <goals>
-                                    <goal>pom</goal>
+                                    <goal>sort</goal>
                                 </goals>
                             </execution>
                         </executions>
