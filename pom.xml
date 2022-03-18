@@ -93,8 +93,8 @@
         <url>https://github.com/psi-probe/psi-probe/issues/</url>
     </issueManagement>
     <ciManagement>
-        <system>Travis</system>
-        <url>https://travis-ci.org/psi-probe/psi-probe/</url>
+        <system>GitHub Actions</system>
+        <url>https://github.com/psi-probe/psi-probe/actions/</url>
     </ciManagement>
     <distributionManagement>
         <site>
@@ -172,7 +172,6 @@
         <jmockit.version>1.49.2</jmockit.version>
         <jna.version>5.10.0</jna.version>
         <jsp-api.version>2.3.6</jsp-api.version>
-        <jsr305.version>3.0.2</jsr305.version>
         <jstl-api.version>1.2.7</jstl-api.version>
         <jstl.version>1.2.6</jstl.version>
         <junit.version>5.8.2</junit.version>
@@ -188,7 +187,8 @@
         <servlet-api.version>4.0.4</servlet-api.version>
         <sitemesh.version>2.4.2</sitemesh.version>
         <slf4j.version>1.7.36</slf4j.version>
-        <spring.version>5.3.16</spring.version>
+        <spotbugs.version>4.6.0</spotbugs.version>
+        <spring.version>5.3.17</spring.version>
         <spring-security.version>5.6.2</spring-security.version>
         <text.version>1.9</text.version>
         <transaction-api.version>1.3.3</transaction-api.version>
@@ -206,13 +206,13 @@
         <changelog.plugin>2.3</changelog.plugin>
         <clean.plugin>3.1.0</clean.plugin>
         <compiler.plugin>3.10.1</compiler.plugin>
-        <coveralls.plugin>4.3.0</coveralls.plugin>
+        <coveralls.plugin>4.4.1</coveralls.plugin>
         <dependency.plugin>3.3.0</dependency.plugin>
         <dependency-check.plugin>7.0.0</dependency-check.plugin>
         <deploy.plugin>3.0.0-M2</deploy.plugin>
         <enforcer.plugin>3.0.0</enforcer.plugin>
         <formatter.plugin>2.18.0</formatter.plugin>
-        <git-commit.plugin>4.9.10</git-commit.plugin>
+        <git-commit.plugin>5.0.0</git-commit.plugin>
         <gpg.plugin>3.0.1</gpg.plugin>
         <impsort.plugin>1.6.2</impsort.plugin>
         <install.plugin>3.0.0-M1</install.plugin>
@@ -220,10 +220,10 @@
         <jar.plugin>3.2.2</jar.plugin>
         <javadoc.plugin>3.3.2</javadoc.plugin>
         <jdeps.plugin>3.1.2</jdeps.plugin>
-        <jspc.plugin>9.4.45.v20220203</jspc.plugin>
+        <jspc.plugin>10.0.8</jspc.plugin>
         <jxr.plugin>3.1.1</jxr.plugin>
         <l10n.plugin>1.8</l10n.plugin>
-        <license.plugin>4.1</license.plugin>
+        <license.plugin>4.2.rc2</license.plugin>
         <lifecycle-mapping.plugin>1.0.0</lifecycle-mapping.plugin>
         <modernizer.plugin>2.4.0</modernizer.plugin>
         <pmd.plugin>3.16.0</pmd.plugin>
@@ -232,10 +232,10 @@
         <resources.plugin>3.2.0</resources.plugin>
         <site.plugin>3.11.0</site.plugin>
         <sonar.plugin>3.9.1.2184</sonar.plugin>
+        <sortpom.plugin>3.0.1</sortpom.plugin>
         <source.plugin>3.2.1</source.plugin>
         <spotbugs.plugin>4.5.3.0</spotbugs.plugin>
         <surefire.plugin>3.0.0-M5</surefire.plugin>
-        <tidy.plugin>1.1.0</tidy.plugin>
         <versions.plugin>2.10.0</versions.plugin>
         <war.plugin>3.3.2</war.plugin>
 
@@ -243,14 +243,13 @@
         <build-tools.version>1.2.6</build-tools.version>
         <bugpattern.version>1.5.0</bugpattern.version>
         <checkstyle.version>10.0</checkstyle.version>
-        <doxia.version>1.11.1</doxia.version>
         <ecj.version>3.29.0</ecj.version>
         <sb-contrib.version>7.4.7</sb-contrib.version>
         <findsecbugs.version>1.11.0</findsecbugs.version>
         <javac.version>9+181-r4173-1</javac.version>
 
         <!-- Site Plugins-->
-        <scm.version>1.12.2</scm.version>
+        <scm.version>2.0.0-M1</scm.version>
         <wagon.version>3.5.1</wagon.version>
 
         <!-- Verification Checks -->
@@ -261,9 +260,9 @@
         <dependencies>
             <!-- Sonar Needs Following for Scans -->
             <dependency>
-                <groupId>com.google.code.findbugs</groupId>
-                <artifactId>jsr305</artifactId>
-                <version>${jsr305.version}</version>
+                <groupId>com.github.spotbugs</groupId>
+                <artifactId>spotbugs-annotations</artifactId>
+                <version>${spotbugs.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.google.errorprone</groupId>
@@ -427,7 +426,8 @@
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
             </dependency>
-            <dependency> <!-- Override while guava is behind -->
+            <!-- Override while guava is behind -->
+            <dependency>
                 <groupId>org.checkerframework</groupId>
                 <artifactId>checker-qual</artifactId>
                 <version>${checker.version}</version>
@@ -668,8 +668,8 @@
     <dependencies>
         <!-- Sonar Needs Following for Scans -->
         <dependency>
-            <groupId>com.google.code.findbugs</groupId>
-            <artifactId>jsr305</artifactId>
+            <groupId>com.github.spotbugs</groupId>
+            <artifactId>spotbugs-annotations</artifactId>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -794,11 +794,6 @@
                     </configuration>
                     <dependencies>
                         <dependency>
-                            <groupId>org.apache.maven.doxia</groupId>
-                            <artifactId>doxia-module-markdown</artifactId>
-                            <version>${doxia.version}</version>
-                        </dependency>
-                        <dependency>
                             <groupId>org.apache.maven.wagon</groupId>
                             <artifactId>wagon-scm</artifactId>
                             <version>${wagon.version}</version>
@@ -816,8 +811,8 @@
                     <version>${dependency-check.plugin}</version>
                 </plugin>
                 <plugin>
-                    <groupId>pl.project13.maven</groupId>
-                    <artifactId>git-commit-id-plugin</artifactId>
+                    <groupId>io.github.git-commit-id</groupId>
+                    <artifactId>git-commit-id-maven-plugin</artifactId>
                     <version>${git-commit.plugin}</version>
                     <configuration>
                         <failOnNoGitDirectory>false</failOnNoGitDirectory>
@@ -1073,7 +1068,7 @@
                     </dependencies>
                 </plugin>
                 <plugin>
-                    <groupId>org.eluder.coveralls</groupId>
+                    <groupId>io.jsonwebtoken.coveralls</groupId>
                     <artifactId>coveralls-maven-plugin</artifactId>
                     <version>${coveralls.plugin}</version>
                 </plugin>
@@ -1158,6 +1153,11 @@
                         <javaVersion>${maven.compiler.target}</javaVersion>
                     </configuration>
                 </plugin>
+                <plugin>
+                    <groupId>com.github.ekryd.sortpom</groupId>
+                    <artifactId>sortpom-maven-plugin</artifactId>
+                    <version>${sortpom.plugin}</version>
+                </plugin>
             </plugins>
         </pluginManagement>
 
@@ -1181,8 +1181,8 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>pl.project13.maven</groupId>
-                <artifactId>git-commit-id-plugin</artifactId>
+                <groupId>io.github.git-commit-id</groupId>
+                <artifactId>git-commit-id-maven-plugin</artifactId>
                 <executions>
                     <execution>
                         <id>git-commit-id</id>
@@ -1245,11 +1245,6 @@
                         <phase>compile</phase>
                     </execution>
                 </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>tidy-maven-plugin</artifactId>
-                <version>${tidy.plugin}</version>
             </plugin>
             <!-- Checkstyle dependencies required here or they won't be used (per maven) -->
             <plugin>
@@ -1583,13 +1578,13 @@
             <build>
                 <plugins>
                     <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>tidy-maven-plugin</artifactId>
+                        <groupId>com.github.ekryd.sortpom</groupId>
+                        <artifactId>sortpom-maven-plugin</artifactId>
                         <executions>
                             <execution>
                                 <phase>verify</phase>
                                 <goals>
-                                    <goal>pom</goal>
+                                    <goal>sort</goal>
                                 </goals>
                             </execution>
                         </executions>
