@@ -1153,6 +1153,11 @@
                         <javaVersion>${maven.compiler.target}</javaVersion>
                     </configuration>
                 </plugin>
+                <plugin>
+                    <groupId>com.github.ekryd.sortpom</groupId>
+                    <artifactId>sortpom-maven-plugin</artifactId>
+                    <version>${sortpom.plugin}</version>
+                </plugin>
             </plugins>
         </pluginManagement>
 
@@ -1240,11 +1245,6 @@
                         <phase>compile</phase>
                     </execution>
                 </executions>
-            </plugin>
-            <plugin>
-                <groupId>com.github.ekryd.sortpom</groupId>
-                <artifactId>sortpom-maven-plugin</artifactId>
-                <version>${sortpom.plugin}</version>
             </plugin>
             <!-- Checkstyle dependencies required here or they won't be used (per maven) -->
             <plugin>
