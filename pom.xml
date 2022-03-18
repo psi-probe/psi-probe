@@ -149,6 +149,7 @@
         <activation.version>1.2.2</activation.version>
         <assertj.version>3.22.0</assertj.version>
         <beanutils.version>1.9.4</beanutils.version>
+        <bind-api.version>2.3.3</bind-api.version>
         <bonecp.version>0.8.0.RELEASE</bonecp.version>
         <c3p0.version>0.9.5.5</c3p0.version>
         <checker.version>3.21.3</checker.version>
@@ -1071,6 +1072,13 @@
                     <groupId>io.jsonwebtoken.coveralls</groupId>
                     <artifactId>coveralls-maven-plugin</artifactId>
                     <version>${coveralls.plugin}</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>jakarta.xml.bind</groupId>
+                            <artifactId>jakarta.xml.bind-api</artifactId>
+                            <version>${bind-api.version}</version>
+                        </dependency>
+                    </dependencies>
                 </plugin>
                 <plugin>
                     <groupId>net.revelc.code.formatter</groupId>
@@ -1465,9 +1473,9 @@
         </profile>
 
         <profile>
-            <id>jdk9on</id>
+            <id>jdk11on</id>
             <activation>
-                <jdk>[9,)</jdk>
+                <jdk>[11,)</jdk>
             </activation>
             <properties>
                 <maven.compiler.release>${java.release.version}</maven.compiler.release>
