@@ -212,7 +212,7 @@
         <deploy.plugin>3.0.0-M2</deploy.plugin>
         <enforcer.plugin>3.0.0</enforcer.plugin>
         <formatter.plugin>2.18.0</formatter.plugin>
-        <git-commit.plugin>4.9.10</git-commit.plugin>
+        <git-commit.plugin>5.0.0</git-commit.plugin>
         <gpg.plugin>3.0.1</gpg.plugin>
         <impsort.plugin>1.6.2</impsort.plugin>
         <install.plugin>3.0.0-M1</install.plugin>
@@ -816,8 +816,8 @@
                     <version>${dependency-check.plugin}</version>
                 </plugin>
                 <plugin>
-                    <groupId>pl.project13.maven</groupId>
-                    <artifactId>git-commit-id-plugin</artifactId>
+                    <groupId>io.github.git-commit-id</groupId>
+                    <artifactId>git-commit-id-maven-plugin</artifactId>
                     <version>${git-commit.plugin}</version>
                     <configuration>
                         <failOnNoGitDirectory>false</failOnNoGitDirectory>
