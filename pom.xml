@@ -93,8 +93,8 @@
         <url>https://github.com/psi-probe/psi-probe/issues/</url>
     </issueManagement>
     <ciManagement>
-        <system>Travis</system>
-        <url>https://travis-ci.org/psi-probe/psi-probe/</url>
+        <system>GitHub Actions</system>
+        <url>https://github.com/psi-probe/psi-probe/actions/</url>
     </ciManagement>
     <distributionManagement>
         <site>
