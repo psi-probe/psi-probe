@@ -245,6 +245,7 @@
         <bugpattern.version>1.5.0</bugpattern.version>
         <checkstyle.version>10.0</checkstyle.version>
         <ecj.version>3.29.0</ecj.version>
+        <extra-enforcer-rules.version>1.5.1</extra-enforcer-rules.version>
         <sb-contrib.version>7.4.7</sb-contrib.version>
         <findsecbugs.version>1.11.0</findsecbugs.version>
         <javac.version>9+181-r4173-1</javac.version>
@@ -1106,6 +1107,9 @@
                     <version>${enforcer.plugin}</version>
                     <configuration>
                         <rules>
+                            <enforceBytecodeVersion>
+                                <maxJdkVersion>${java.version}</maxJdkVersion>
+                            </enforceBytecodeVersion>
                             <requireJavaVersion>
                                 <version>11,17,18,19</version>
                             </requireJavaVersion>
@@ -1114,6 +1118,13 @@
                             </requireMavenVersion>
                         </rules>
                     </configuration>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.codehaus.mojo</groupId>
+                            <artifactId>extra-enforcer-rules</artifactId>
+                            <version>${extra-enforcer-rules.version}</version>
+                        </dependency>
+                    </dependencies>
                 </plugin>
                 <plugin>
                     <groupId>com.mycila</groupId>
