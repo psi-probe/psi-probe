@@ -667,7 +667,7 @@
 
     <dependencies>
         <!-- Sonar Needs Following for Scans -->
-         <dependency>
+        <dependency>
             <groupId>com.github.spotbugs</groupId>
             <artifactId>spotbugs-annotations</artifactId>
             <scope>provided</scope>
