@@ -243,7 +243,6 @@
         <build-tools.version>1.2.6</build-tools.version>
         <bugpattern.version>1.5.0</bugpattern.version>
         <checkstyle.version>10.0</checkstyle.version>
-        <doxia.version>1.11.1</doxia.version>
         <ecj.version>3.29.0</ecj.version>
         <sb-contrib.version>7.4.7</sb-contrib.version>
         <findsecbugs.version>1.11.0</findsecbugs.version>
@@ -793,11 +792,6 @@
                         </archive>
                     </configuration>
                     <dependencies>
-                        <dependency>
-                            <groupId>org.apache.maven.doxia</groupId>
-                            <artifactId>doxia-module-markdown</artifactId>
-                            <version>${doxia.version}</version>
-                        </dependency>
                         <dependency>
                             <groupId>org.apache.maven.wagon</groupId>
                             <artifactId>wagon-scm</artifactId>
