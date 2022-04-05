@@ -236,7 +236,7 @@
         <sortpom.plugin>3.0.1</sortpom.plugin>
         <source.plugin>3.2.1</source.plugin>
         <spotbugs.plugin>4.6.0.0</spotbugs.plugin>
-        <surefire.plugin>3.0.0-M5</surefire.plugin>
+        <surefire.plugin>3.0.0-M6</surefire.plugin>
         <versions.plugin>2.10.0</versions.plugin>
         <war.plugin>3.3.2</war.plugin>
 
