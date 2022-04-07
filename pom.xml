@@ -247,7 +247,7 @@
         <ecj.version>3.29.0</ecj.version>
         <extra-enforcer-rules.version>1.5.1</extra-enforcer-rules.version>
         <sb-contrib.version>7.4.7</sb-contrib.version>
-        <findsecbugs.version>1.11.0</findsecbugs.version>
+        <findsecbugs.version>1.12.0</findsecbugs.version>
         <javac.version>9+181-r4173-1</javac.version>
 
         <!-- Site Plugins-->
