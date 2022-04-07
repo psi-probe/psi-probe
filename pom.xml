@@ -217,7 +217,7 @@
         <gpg.plugin>3.0.1</gpg.plugin>
         <impsort.plugin>1.6.2</impsort.plugin>
         <install.plugin>3.0.0-M1</install.plugin>
-        <jacoco.plugin>0.8.7</jacoco.plugin>
+        <jacoco.plugin>0.8.8</jacoco.plugin>
         <jar.plugin>3.2.2</jar.plugin>
         <javadoc.plugin>3.3.2</javadoc.plugin>
         <jdeps.plugin>3.1.2</jdeps.plugin>
