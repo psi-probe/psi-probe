@@ -125,10 +125,10 @@
         <maven.compiler.testSource>${java.test.version}</maven.compiler.testSource>
         <maven.compiler.testTarget>${java.test.version}</maven.compiler.testTarget>
 
+        <!-- Maven minimum version -->
         <maven.min-version>3.8.5</maven.min-version>
 
-        <!-- Checkstyle / Copyright -->
-        <checkstyle.configLocation>checkstyle.xml</checkstyle.configLocation>
+        <!-- Copyright -->
         <copyright>2022</copyright>
 
         <!-- Github Settings -->
@@ -141,6 +141,9 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.build.resourceEncoding>UTF-8</project.build.resourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <!-- Checkstyle -->
+        <checkstyle.configLocation>checkstyle.xml</checkstyle.configLocation>
 
         <!-- Surefire Settings -->
         <argLine>-javaagent:${settings.localRepository}/com/github/hazendaz/jmockit/jmockit/${jmockit.version}/jmockit-${jmockit.version}.jar</argLine>
