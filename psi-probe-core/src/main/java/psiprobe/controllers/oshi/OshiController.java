@@ -38,6 +38,7 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -52,6 +53,7 @@ import org.springframework.web.servlet.ModelAndView;
 import oshi.PlatformEnum;
 import oshi.SystemInfo;
 import oshi.hardware.CentralProcessor;
+import oshi.hardware.CentralProcessor.PhysicalProcessor;
 import oshi.hardware.CentralProcessor.TickType;
 import oshi.hardware.ComputerSystem;
 import oshi.hardware.Display;
@@ -60,6 +62,7 @@ import oshi.hardware.GraphicsCard;
 import oshi.hardware.HWDiskStore;
 import oshi.hardware.HWPartition;
 import oshi.hardware.HardwareAbstractionLayer;
+import oshi.hardware.LogicalVolumeGroup;
 import oshi.hardware.NetworkIF;
 import oshi.hardware.PhysicalMemory;
 import oshi.hardware.PowerSource;
@@ -75,7 +78,8 @@ import oshi.software.os.OSProcess;
 import oshi.software.os.OSService;
 import oshi.software.os.OSSession;
 import oshi.software.os.OperatingSystem;
-import oshi.software.os.OperatingSystem.ProcessSort;
+import oshi.software.os.OperatingSystem.ProcessFiltering;
+import oshi.software.os.OperatingSystem.ProcessSorting;
 import oshi.util.FormatUtil;
 import oshi.util.Util;
 
@@ -136,15 +140,23 @@ public class OshiController extends AbstractTomcatContainerController {
   }
 
   /**
-   * Process initialization using Oshi System Info Test (code copied from Oshi SystemInfoTest.main).
+   * Process initialization using Oshi System Info Test.
    * <p>
-   * Logging switched from 'info' to 'debug' for psi probe usage.
+   * Code copied and adjusted for Psi Probem from Oshi SystemInfoTest.main at revision
+   *    https://github.com/oshi/oshi/blob/cf45b1f528f99ca353655dea5f154940c76c0bdb/oshi-core/src/test/java/oshi/SystemInfoTest.java
+   * <p>
+   * Psi Probe differences
+   * - Noted directly in area of change as possible
+   * - Logging switched from 'info' to 'debug'
+   * - Javadocs throughout
+   * - Formatting differences (2 vs 4 spaces)
    */
   private void initialize() {
     logger.debug("Initializing System...");
     SystemInfo si = new SystemInfo();
 
-    if (PlatformEnum.UNKNOWN.equals(SystemInfo.getCurrentPlatformEnum())) {
+    // Psi Probe adjusted oshi initial test to confirm platform supported before attempting to run
+    if (PlatformEnum.UNKNOWN.equals(SystemInfo.getCurrentPlatform())) {
       logger.error("Oshi not supported on current platform");
       oshi.add("Oshi not supported on current platform");
       oshi.add("");
@@ -183,6 +195,9 @@ public class OshiController extends AbstractTomcatContainerController {
     logger.debug("Checking Disks...");
     printDisks(hal.getDiskStores());
 
+    logger.debug("Checking Logical Volume Groups ...");
+    printLVgroups(hal.getLogicalVolumeGroups());
+
     logger.debug("Checking File System...");
     printFileSystem(os.getFileSystem());
 
@@ -207,11 +222,13 @@ public class OshiController extends AbstractTomcatContainerController {
     logger.debug("Checking Graphics Cards...");
     printGraphicsCards(hal.getGraphicsCards());
 
+    // Psi Probe addition to note finished
     oshi.add("Finished Operating System and Hardware Info Dump");
 
     StringBuilder output = new StringBuilder();
     for (int i = 0; i < oshi.size(); i++) {
       output.append(oshi.get(i));
+      // Psi Probe fix as output check 'endsWith' was wrong
       if (oshi.get(i) != null && !oshi.get(i).equals("\n")) {
         output.append('\n');
       }
@@ -254,6 +271,11 @@ public class OshiController extends AbstractTomcatContainerController {
    */
   private static void printProcessor(CentralProcessor processor) {
     oshi.add(processor.toString());
+    oshi.add(" Cores:");
+    for (PhysicalProcessor p : processor.getPhysicalProcessors()) {
+      oshi.add("  " + (processor.getPhysicalPackageCount() > 1 ? p.getPhysicalPackageNumber() + "," : "")
+          + p.getPhysicalProcessorNumber() + ": efficiency=" + p.getEfficiency() + ", id=" + p.getIdString());
+    }
   }
 
   /**
@@ -353,7 +375,7 @@ public class OshiController extends AbstractTomcatContainerController {
         + Long.toBinaryString(myProc.getAffinityMask()));
     oshi.add("Processes: " + os.getProcessCount() + ", Threads: " + os.getThreadCount());
     // Sort by highest CPU
-    List<OSProcess> procs = os.getProcesses(5, ProcessSort.CPU);
+    List<OSProcess> procs = os.getProcesses(ProcessFiltering.ALL_PROCESSES, ProcessSorting.CPU_DESC, 5);
     oshi.add("   PID  %CPU %MEM       VSZ       RSS Name");
     for (int i = 0; i < procs.size() && i < 5; i++) {
       OSProcess p = procs.get(i);
@@ -362,6 +384,15 @@ public class OshiController extends AbstractTomcatContainerController {
           100d * p.getResidentSetSize() / memory.getTotal(),
           FormatUtil.formatBytes(p.getVirtualSize()),
           FormatUtil.formatBytes(p.getResidentSetSize()), p.getName()));
+    }
+    OSProcess p = os.getProcess(os.getProcessId());
+    oshi.add("Current process arguments: ");
+    for (String s : p.getArguments()) {
+      oshi.add("  " + s);
+    }
+    oshi.add("Current process environment: ");
+    for (Entry<String, String> e : p.getEnvironmentVariables().entrySet()) {
+      oshi.add("  " + e.getKey() + "=" + e.getValue());
     }
   }
 
@@ -429,6 +460,20 @@ public class OshiController extends AbstractTomcatContainerController {
       }
     }
 
+  }
+
+  /**
+   * Prints the logical volume groups.
+   *
+   * @param list the logical volume groups
+   */
+  private static void printLVgroups(List<LogicalVolumeGroup> list) {
+    if (!list.isEmpty()) {
+      oshi.add("Logical Volume Groups:");
+      for (LogicalVolumeGroup lvg : list) {
+        oshi.add(" " + lvg.toString());
+      }
+    }
   }
 
   /**
@@ -533,7 +578,7 @@ public class OshiController extends AbstractTomcatContainerController {
   private static void printSoundCards(List<SoundCard> list) {
     oshi.add("Sound Cards:");
     for (SoundCard card : list) {
-      oshi.add(" " + card);
+      oshi.add(" " + String.valueOf(card));
     }
   }
 
@@ -548,7 +593,7 @@ public class OshiController extends AbstractTomcatContainerController {
       oshi.add(" None detected.");
     } else {
       for (GraphicsCard card : list) {
-        oshi.add(" " + card);
+        oshi.add(" " + String.valueOf(card));
       }
     }
   }
