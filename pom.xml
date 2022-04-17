@@ -134,6 +134,9 @@
         <!-- Github Settings -->
         <github.global.server>github</github.global.server>
 
+        <!-- Maven date configuration -->
+        <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
+
         <!-- Probe version settings -->
         <probe.version>${project.version} (built at ${maven.build.timestamp})</probe.version>
 
