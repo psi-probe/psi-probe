@@ -158,7 +158,7 @@
         <dbcp2.version>2.9.0</dbcp2.version>
         <displaytag.version>2.4.3</displaytag.version>
         <el-api.version>3.0.3</el-api.version>
-        <error-prone.version>2.12.1</error-prone.version>
+        <error-prone.version>2.13.0</error-prone.version>
         <geoip2.version>2.16.1</geoip2.version>
         <guava.version>31.1-jre</guava.version>
         <hateoas.version>1.4.1</hateoas.version>
