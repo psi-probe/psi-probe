@@ -241,6 +241,7 @@
         <project-info.plugin>3.2.2</project-info.plugin>
         <release.plugin>3.0.0-M5</release.plugin>
         <resources.plugin>3.2.0</resources.plugin>
+        <scm-publish.plugin>3.1.0</scm-publish.plugin>
         <site.plugin>3.11.0</site.plugin>
         <sonar.plugin>3.9.1.2184</sonar.plugin>
         <sortpom.plugin>3.0.1</sortpom.plugin>
@@ -259,10 +260,6 @@
         <sb-contrib.version>7.4.7</sb-contrib.version>
         <findsecbugs.version>1.12.0</findsecbugs.version>
         <javac.version>9+181-r4173-1</javac.version>
-
-        <!-- Site Plugins-->
-        <scm.version>2.0.0-M1</scm.version>
-        <wagon.version>3.5.1</wagon.version>
 
         <!-- Verification Checks -->
         <error-prone.failOnViolations>-XepAllErrorsAsWarnings</error-prone.failOnViolations>
@@ -717,7 +714,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Java 9 needs -->
+        <!-- Jakarta EE Activation Apis -->
         <dependency>
             <groupId>jakarta.activation</groupId>
             <artifactId>jakarta.activation-api</artifactId>
@@ -784,6 +781,19 @@
 
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-scm-publish-plugin</artifactId>
+                    <version>${scm-publish.plugin}</version>
+                    <configuration>
+                        <checkoutDirectory>${user.home}/maven-sites/${project.name}</checkoutDirectory>
+                        <!-- no need for site:stage, use target/site or target/checkout/target/site on release -->
+                        <content>${project.reporting.outputDirectory}</content>
+                        <scmBranch>gh-pages</scmBranch>
+                        <tryUpdate>true</tryUpdate>
+                    </configuration>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-site-plugin</artifactId>
                     <version>${site.plugin}</version>
                     <configuration>
@@ -803,19 +813,9 @@
                                 <X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
                             </manifestEntries>
                         </archive>
+                        <!-- don't deploy site with maven-site-plugin (instead use scm publish during release) -->
+                        <skipDeploy>true</skipDeploy>
                     </configuration>
-                    <dependencies>
-                        <dependency>
-                            <groupId>org.apache.maven.wagon</groupId>
-                            <artifactId>wagon-scm</artifactId>
-                            <version>${wagon.version}</version>
-                        </dependency>
-                        <dependency>
-                            <groupId>org.apache.maven.scm</groupId>
-                            <artifactId>maven-scm-provider-gitexe</artifactId>
-                            <version>${scm.version}</version>
-                        </dependency>
-                    </dependencies>
                 </plugin>
                 <plugin>
                     <groupId>org.owasp</groupId>
@@ -1455,6 +1455,20 @@
                         <configuration>
                             <skip>true</skip>
                         </configuration>
+                    </plugin>
+                    <!-- deploy site with maven-scm-publish-plugin -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-scm-publish-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>scm-publish</id>
+                                <goals>
+                                    <goal>publish-scm</goal>
+                                </goals>
+                                <phase>site-deploy</phase>
+                            </execution>
+                        </executions>
                     </plugin>
                 </plugins>
             </build>
