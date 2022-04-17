@@ -168,7 +168,7 @@
         <displaytag.version>2.4.3</displaytag.version>
         <el-api.version>3.0.3</el-api.version>
         <error-prone.version>2.13.1</error-prone.version>
-        <geoip2.version>2.16.1</geoip2.version>
+        <geoip2.version>3.0.1</geoip2.version>
         <guava.version>31.1-jre</guava.version>
         <hateoas.version>1.4.1</hateoas.version>
         <hikaricp.version>4.0.3</hikaricp.version>
