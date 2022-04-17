@@ -1581,9 +1581,9 @@
         </profile>
 
         <profile>
-            <id>jdk16on</id>
+            <id>jdk17on</id>
             <activation>
-                <jdk>[16,)</jdk>
+                <jdk>[17,)</jdk>
             </activation>
             <properties>
                 <argLine>-javaagent:${settings.localRepository}/com/github/hazendaz/jmockit/jmockit/${jmockit.version}/jmockit-${jmockit.version}.jar --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.logging/java.util.logging=ALL-UNNAMED</argLine>
