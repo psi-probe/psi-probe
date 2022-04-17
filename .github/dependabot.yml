@@ -44,10 +44,6 @@ updates:
   - dependency-name: jakarta.transaction:jakarta.transaction-api
     versions:
     - ">= 2.0.0"
-  - dependency-name: net.trajano.wagon:wagon-git
-    versions:
-    - "< 2.0.5"
-    - ">= 2.0.4.a"
   - dependency-name: org.apache.tomcat:tomcat-catalina
     versions:
     - ">= 10.0.0"
