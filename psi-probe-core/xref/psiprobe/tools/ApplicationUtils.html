@@ -6,16 +6,16 @@
 </head>
 <body>
 <div id="overview"><a href="../../../apidocs/psiprobe/tools/ApplicationUtils.html">View Javadoc</a></div><pre>
-<a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_javadoccomment"> * Licensed under the GPL License. You may not use this file except in compliance with the License.</em>
-<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_javadoccomment"> * You may obtain a copy of the License at</em>
-<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_javadoccomment"> *</em>
-<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_javadoccomment"> *   <a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.html" target="alexandria_uri">https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</a></em>
-<a class="jxr_linenumber" name="L6" href="#L6">6</a>   <em class="jxr_javadoccomment"> *</em>
-<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <em class="jxr_javadoccomment"> * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,</em>
-<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <em class="jxr_javadoccomment"> * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR</em>
-<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <em class="jxr_javadoccomment"> * PURPOSE.</em>
-<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <em class="jxr_javadoccomment"> */</em>
+<a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Licensed under the GPL License. You may not use this file except in compliance with the License.</em>
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> * You may obtain a copy of the License at</em>
+<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_comment"> *</em>
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_comment"> *   <a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.html" target="alexandria_uri">https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</a></em>
+<a class="jxr_linenumber" name="L6" href="#L6">6</a>   <em class="jxr_comment"> *</em>
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <em class="jxr_comment"> * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,</em>
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <em class="jxr_comment"> * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR</em>
+<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <em class="jxr_comment"> * PURPOSE.</em>
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <em class="jxr_comment"> */</em>
 <a class="jxr_linenumber" name="L11" href="#L11">11</a>  <strong class="jxr_keyword">package</strong> psiprobe.tools;
 <a class="jxr_linenumber" name="L12" href="#L12">12</a>  
 <a class="jxr_linenumber" name="L13" href="#L13">13</a>  <strong class="jxr_keyword">import</strong> java.io.Serializable;
@@ -101,7 +101,7 @@
 <a class="jxr_linenumber" name="L93" href="#L93">93</a>      <em class="jxr_comment">// ContainerWrapperBean containerWrapper</em>
 <a class="jxr_linenumber" name="L94" href="#L94">94</a>      logger.debug(<span class="jxr_string">"Querying webapp: {}"</span>, context.getName());
 <a class="jxr_linenumber" name="L95" href="#L95">95</a>  
-<a class="jxr_linenumber" name="L96" href="#L96">96</a>      <a name="Application" href="../../psiprobe/model/Applicatio<a name="Application" href="../../psiprobe/model/Application.html#Application">Application</a>ication">Application</a> app = <strong class="jxr_keyword">new</strong> <a name="Application" href="../../psiprobe/model/Application.html#Application">Application</a>();
+<a class="jxr_linenumber" name="L96" href="#L96">96</a>      <a name="Application" href="../../psiprobe/model/Application.html#Application">Application</a> app = <strong class="jxr_keyword">new</strong> <a name="Application" href="../../psiprobe/model/Application.html#Application">Application</a>();
 <a class="jxr_linenumber" name="L97" href="#L97">97</a>      app.setName(context.getName().length() &gt; 0 ? context.getName() : <span class="jxr_string">"/"</span>);
 <a class="jxr_linenumber" name="L98" href="#L98">98</a>      app.setDocBase(context.getDocBase());
 <a class="jxr_linenumber" name="L99" href="#L99">99</a>      app.setDisplayName(context.getDisplayName());
@@ -277,7 +277,7 @@
 <a class="jxr_linenumber" name="L269" href="#L269">269</a>           }
 <a class="jxr_linenumber" name="L270" href="#L270">270</a> 
 <a class="jxr_linenumber" name="L271" href="#L271">271</a>           <strong class="jxr_keyword">if</strong> (addAttributes) {
-<a class="jxr_linenumber" name="L272" href="#L272">272</a>             <a name="Attribute" href="../../psiprobe/model/Attribute.htm<a name="Attribute" href="../../psiprobe/model/Attribute.html#Attribute">Attribute</a>te">Attribute</a> saBean = <strong class="jxr_keyword">new</strong> <a name="Attribute" href="../../psiprobe/model/Attribute.html#Attribute">Attribute</a>();
+<a class="jxr_linenumber" name="L272" href="#L272">272</a>             <a name="Attribute" href="../../psiprobe/model/Attribute.html#Attribute">Attribute</a> saBean = <strong class="jxr_keyword">new</strong> <a name="Attribute" href="../../psiprobe/model/Attribute.html#Attribute">Attribute</a>();
 <a class="jxr_linenumber" name="L273" href="#L273">273</a>             saBean.setName(name);
 <a class="jxr_linenumber" name="L274" href="#L274">274</a>             saBean.setType(ClassUtils.getQualifiedName(obj.getClass()));
 <a class="jxr_linenumber" name="L275" href="#L275">275</a>             saBean.setValue(obj);
@@ -321,7 +321,7 @@
 <a class="jxr_linenumber" name="L313" href="#L313">313</a>     <strong class="jxr_keyword">for</strong> (String attrName : Collections.list(servletCtx.getAttributeNames())) {
 <a class="jxr_linenumber" name="L314" href="#L314">314</a>       Object attrValue = servletCtx.getAttribute(attrName);
 <a class="jxr_linenumber" name="L315" href="#L315">315</a> 
-<a class="jxr_linenumber" name="L316" href="#L316">316</a>       <a name="Attribute" href="../../psiprobe/model/Attribute.h<a name="Attribute" href="../../psiprobe/model/Attribute.html#Attribute">Attribute</a>bute">Attribute</a> attr = <strong class="jxr_keyword">new</strong> <a name="Attribute" href="../../psiprobe/model/Attribute.html#Attribute">Attribute</a>();
+<a class="jxr_linenumber" name="L316" href="#L316">316</a>       <a name="Attribute" href="../../psiprobe/model/Attribute.html#Attribute">Attribute</a> attr = <strong class="jxr_keyword">new</strong> <a name="Attribute" href="../../psiprobe/model/Attribute.html#Attribute">Attribute</a>();
 <a class="jxr_linenumber" name="L317" href="#L317">317</a>       attr.setName(attrName);
 <a class="jxr_linenumber" name="L318" href="#L318">318</a>       attr.setValue(attrValue);
 <a class="jxr_linenumber" name="L319" href="#L319">319</a>       attr.setType(ClassUtils.getQualifiedName(attrValue.getClass()));
@@ -368,7 +368,7 @@
 <a class="jxr_linenumber" name="L360" href="#L360">360</a> <em class="jxr_javadoccomment">   * @return the servlet info</em>
 <a class="jxr_linenumber" name="L361" href="#L361">361</a> <em class="jxr_javadoccomment">   */</em>
 <a class="jxr_linenumber" name="L362" href="#L362">362</a>   <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <a name="ServletInfo" href="../../psiprobe/model/ServletInfo.html#ServletInfo">ServletInfo</a> getServletInfo(Wrapper wrapper, String contextName) {
-<a class="jxr_linenumber" name="L363" href="#L363">363</a>     <a name="ServletInfo" href="../../psiprobe/model/ServletIn<a name="ServletInfo" href="../../psiprobe/model/ServletInfo.html#ServletInfo">ServletInfo</a>vletInfo">ServletInfo</a> si = <strong class="jxr_keyword">new</strong> <a name="ServletInfo" href="../../psiprobe/model/ServletInfo.html#ServletInfo">ServletInfo</a>();
+<a class="jxr_linenumber" name="L363" href="#L363">363</a>     <a name="ServletInfo" href="../../psiprobe/model/ServletInfo.html#ServletInfo">ServletInfo</a> si = <strong class="jxr_keyword">new</strong> <a name="ServletInfo" href="../../psiprobe/model/ServletInfo.html#ServletInfo">ServletInfo</a>();
 <a class="jxr_linenumber" name="L364" href="#L364">364</a>     si.setApplicationName(contextName.length() &gt; 0 ? contextName : <span class="jxr_string">"/"</span>);
 <a class="jxr_linenumber" name="L365" href="#L365">365</a>     si.setServletName(wrapper.getName());
 <a class="jxr_linenumber" name="L366" href="#L366">366</a>     si.setServletClass(wrapper.getServletClass());
@@ -437,7 +437,7 @@
 <a class="jxr_linenumber" name="L429" href="#L429">429</a>       <strong class="jxr_keyword">if</strong> (servletMapping != <strong class="jxr_keyword">null</strong>) {
 <a class="jxr_linenumber" name="L430" href="#L430">430</a>         String sn = context.findServletMapping(servletMapping);
 <a class="jxr_linenumber" name="L431" href="#L431">431</a>         <strong class="jxr_keyword">if</strong> (sn != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L432" href="#L432">432</a>           <a name="ServletMapping" href="../../psiprobe/model/ServletMa<a name="ServletMapping" href="../../psiprobe/model/ServletMapping.html#ServletMapping">ServletMapping</a>vletMapping">ServletMapping</a> sm = <strong class="jxr_keyword">new</strong> <a name="ServletMapping" href="../../psiprobe/model/ServletMapping.html#ServletMapping">ServletMapping</a>();
+<a class="jxr_linenumber" name="L432" href="#L432">432</a>           <a name="ServletMapping" href="../../psiprobe/model/ServletMapping.html#ServletMapping">ServletMapping</a> sm = <strong class="jxr_keyword">new</strong> <a name="ServletMapping" href="../../psiprobe/model/ServletMapping.html#ServletMapping">ServletMapping</a>();
 <a class="jxr_linenumber" name="L433" href="#L433">433</a>           sm.setApplicationName(context.getName().length() &gt; 0 ? context.getName() : <span class="jxr_string">"/"</span>);
 <a class="jxr_linenumber" name="L434" href="#L434">434</a>           sm.setUrl(servletMapping);
 <a class="jxr_linenumber" name="L435" href="#L435">435</a>           sm.setServletName(sn);
@@ -469,6 +469,6 @@
 <a class="jxr_linenumber" name="L461" href="#L461">461</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2009&#x2013;2021 <a href="https://github.com/psi-probe/">psi-probe</a>. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2009&#x2013;2022 <a href="https://github.com/psi-probe/">psi-probe</a>. All rights reserved.</div>
 </body>
 </html>

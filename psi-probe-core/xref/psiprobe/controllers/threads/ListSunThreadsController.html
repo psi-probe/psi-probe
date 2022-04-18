@@ -6,16 +6,16 @@
 </head>
 <body>
 <div id="overview"><a href="../../../../apidocs/psiprobe/controllers/threads/ListSunThreadsController.html">View Javadoc</a></div><pre>
-<a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_javadoccomment"> * Licensed under the GPL License. You may not use this file except in compliance with the License.</em>
-<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_javadoccomment"> * You may obtain a copy of the License at</em>
-<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_javadoccomment"> *</em>
-<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_javadoccomment"> *   <a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.html" target="alexandria_uri">https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</a></em>
-<a class="jxr_linenumber" name="L6" href="#L6">6</a>   <em class="jxr_javadoccomment"> *</em>
-<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <em class="jxr_javadoccomment"> * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,</em>
-<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <em class="jxr_javadoccomment"> * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR</em>
-<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <em class="jxr_javadoccomment"> * PURPOSE.</em>
-<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <em class="jxr_javadoccomment"> */</em>
+<a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Licensed under the GPL License. You may not use this file except in compliance with the License.</em>
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> * You may obtain a copy of the License at</em>
+<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_comment"> *</em>
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_comment"> *   <a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.html" target="alexandria_uri">https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</a></em>
+<a class="jxr_linenumber" name="L6" href="#L6">6</a>   <em class="jxr_comment"> *</em>
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <em class="jxr_comment"> * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,</em>
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <em class="jxr_comment"> * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR</em>
+<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <em class="jxr_comment"> * PURPOSE.</em>
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <em class="jxr_comment"> */</em>
 <a class="jxr_linenumber" name="L11" href="#L11">11</a>  <strong class="jxr_keyword">package</strong> psiprobe.controllers.threads;
 <a class="jxr_linenumber" name="L12" href="#L12">12</a>  
 <a class="jxr_linenumber" name="L13" href="#L13">13</a>  <strong class="jxr_keyword">import</strong> java.lang.management.ManagementFactory;
@@ -73,7 +73,7 @@
 <a class="jxr_linenumber" name="L65" href="#L65">65</a>              <strong class="jxr_keyword">new</strong> Object[] {id, executionStackDepth}, <strong class="jxr_keyword">new</strong> String[] {<span class="jxr_string">"long"</span>, <span class="jxr_string">"int"</span>});
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>  
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>          <strong class="jxr_keyword">if</strong> (cd != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L68" href="#L68">68</a>            <a name="SunThread" href="../../../psiprobe/model/SunThr<a name="SunThread" href="../../../psiprobe/model/SunThread.html#SunThread">SunThread</a>SunThread">SunThread</a> st = <strong class="jxr_keyword">new</strong> <a name="SunThread" href="../../../psiprobe/model/SunThread.html#SunThread">SunThread</a>();
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>            <a name="SunThread" href="../../../psiprobe/model/SunThread.html#SunThread">SunThread</a> st = <strong class="jxr_keyword">new</strong> <a name="SunThread" href="../../../psiprobe/model/SunThread.html#SunThread">SunThread</a>();
 <a class="jxr_linenumber" name="L69" href="#L69">69</a>            st.setId(JmxTools.getLongAttr(cd, <span class="jxr_string">"threadId"</span>));
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>            st.setName(JmxTools.getStringAttr(cd, <span class="jxr_string">"threadName"</span>));
 <a class="jxr_linenumber" name="L71" href="#L71">71</a>            st.setState(JmxTools.getStringAttr(cd, <span class="jxr_string">"threadState"</span>));
@@ -88,7 +88,7 @@
 <a class="jxr_linenumber" name="L80" href="#L80">80</a>            CompositeData[] stack = (CompositeData[]) cd.get(<span class="jxr_string">"stackTrace"</span>);
 <a class="jxr_linenumber" name="L81" href="#L81">81</a>            <strong class="jxr_keyword">if</strong> (stack.length &gt; 0) {
 <a class="jxr_linenumber" name="L82" href="#L82">82</a>              CompositeData cd2 = stack[0];
-<a class="jxr_linenumber" name="L83" href="#L83">83</a>              <a name="ThreadStackElement" href="../../../psiprobe/model/ThreadS<a name="ThreadStackElement" href="../../../psiprobe/model/ThreadStackElement.html#ThreadStackElement">ThreadStackElement</a>hreadStackElement">ThreadStackElement</a> tse = <strong class="jxr_keyword">new</strong> <a name="ThreadStackElement" href="../../../psiprobe/model/ThreadStackElement.html#ThreadStackElement">ThreadStackElement</a>();
+<a class="jxr_linenumber" name="L83" href="#L83">83</a>              <a name="ThreadStackElement" href="../../../psiprobe/model/ThreadStackElement.html#ThreadStackElement">ThreadStackElement</a> tse = <strong class="jxr_keyword">new</strong> <a name="ThreadStackElement" href="../../../psiprobe/model/ThreadStackElement.html#ThreadStackElement">ThreadStackElement</a>();
 <a class="jxr_linenumber" name="L84" href="#L84">84</a>              tse.setClassName(JmxTools.getStringAttr(cd2, <span class="jxr_string">"className"</span>));
 <a class="jxr_linenumber" name="L85" href="#L85">85</a>              tse.setFileName(JmxTools.getStringAttr(cd2, <span class="jxr_string">"fileName"</span>));
 <a class="jxr_linenumber" name="L86" href="#L86">86</a>              tse.setMethodName(JmxTools.getStringAttr(cd2, <span class="jxr_string">"methodName"</span>));
@@ -131,6 +131,6 @@
 <a class="jxr_linenumber" name="L123" href="#L123">123</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2009&#x2013;2021 <a href="https://github.com/psi-probe/">psi-probe</a>. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2009&#x2013;2022 <a href="https://github.com/psi-probe/">psi-probe</a>. All rights reserved.</div>
 </body>
 </html>

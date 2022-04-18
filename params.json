@@ -1,7 +1,0 @@
-{
-  "name": "PSI Probe",
-  "tagline": "Advanced manager and monitor for Apache Tomcat, forked from Lambda Probe",
-  "body": "![Psi Probe](https://github.com/psi-probe/psi-probe/blob/master/src/site/resources/images/psi-probe-banner.jpg)\r\n\r\nPSI Probe is a community-driven fork of Lambda Probe distributed under the same open-source license (GPLv2). It is intended to replace and extend Tomcat Manager, making it easier to manage and monitor an instance of Apache Tomcat.\r\n\r\nUnlike many other server monitoring tools, PSI Probe does not require any changes to your existing apps. It provides all of its features through a web-accessible interface that becomes available simply by deploying it to your server.  These features include:\r\n\r\n* Requests: Monitor traffic in real-time, even on a per-application basis.\r\n* Sessions: Browse/search attributes, view last IP, expire, estimate size.\r\n* JSP: Browse, view source, compile.\r\n* Data Sources: View pool usage, execute queries.\r\n* Logs: View contents, download, change levels at runtime.\r\n* Threads: View execution stack, kill.\r\n* Connectors: Status, usage charts.\r\n* Cluster: Status, usage charts.\r\n* JVM: Memory usage charts, advise GC\r\n* Java Service Wrapper: Restart JVM.\r\n* System: CPU usage, memory usage, swap file usage.",
-  "google": "UA-22567843-2",
-  "note": "Don't delete this file! It's used internally to help with page regeneration."
-}

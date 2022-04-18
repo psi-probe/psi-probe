@@ -6,16 +6,16 @@
 </head>
 <body>
 <div id="overview"><a href="../../../../../apidocs/psiprobe/tools/logging/commons/CommonsLoggerAccessor.html">View Javadoc</a></div><pre>
-<a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_javadoccomment"> * Licensed under the GPL License. You may not use this file except in compliance with the License.</em>
-<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_javadoccomment"> * You may obtain a copy of the License at</em>
-<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_javadoccomment"> *</em>
-<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_javadoccomment"> *   <a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.html" target="alexandria_uri">https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</a></em>
-<a class="jxr_linenumber" name="L6" href="#L6">6</a>   <em class="jxr_javadoccomment"> *</em>
-<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <em class="jxr_javadoccomment"> * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,</em>
-<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <em class="jxr_javadoccomment"> * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR</em>
-<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <em class="jxr_javadoccomment"> * PURPOSE.</em>
-<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <em class="jxr_javadoccomment"> */</em>
+<a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Licensed under the GPL License. You may not use this file except in compliance with the License.</em>
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> * You may obtain a copy of the License at</em>
+<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_comment"> *</em>
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_comment"> *   <a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.html" target="alexandria_uri">https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</a></em>
+<a class="jxr_linenumber" name="L6" href="#L6">6</a>   <em class="jxr_comment"> *</em>
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <em class="jxr_comment"> * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,</em>
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <em class="jxr_comment"> * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR</em>
+<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <em class="jxr_comment"> * PURPOSE.</em>
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <em class="jxr_comment"> */</em>
 <a class="jxr_linenumber" name="L11" href="#L11">11</a>  <strong class="jxr_keyword">package</strong> psiprobe.tools.logging.commons;
 <a class="jxr_linenumber" name="L12" href="#L12">12</a>  
 <a class="jxr_linenumber" name="L13" href="#L13">13</a>  <strong class="jxr_keyword">import</strong> java.util.List;
@@ -34,7 +34,7 @@
 <a class="jxr_linenumber" name="L26" href="#L26">26</a>  <em class="jxr_javadoccomment">   * @return the destinations</em>
 <a class="jxr_linenumber" name="L27" href="#L27">27</a>  <em class="jxr_javadoccomment">   */</em>
 <a class="jxr_linenumber" name="L28" href="#L28">28</a>    <strong class="jxr_keyword">public</strong> List&lt;LogDestination&gt; getDestinations() {
-<a class="jxr_linenumber" name="L29" href="#L29">29</a>      <a name="GetAllDestinationsVisitor" href="../../../../psiprobe/tools/logging/<a name="GetAllDestinationsVisitor" href="../../../../psiprobe/tools/logging/commons/GetAllDestinationsVisitor.html#GetAllDestinationsVisitor">GetAllDestinationsVisitor</a>sVisitor.html#GetAllDestinationsVisitor">GetAllDestinationsVisitor</a> visitor = <strong class="jxr_keyword">new</strong> <a name="GetAllDestinationsVisitor" href="../../../../psiprobe/tools/logging/commons/GetAllDestinationsVisitor.html#GetAllDestinationsVisitor">GetAllDestinationsVisitor</a>();
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>      <a name="GetAllDestinationsVisitor" href="../../../../psiprobe/tools/logging/commons/GetAllDestinationsVisitor.html#GetAllDestinationsVisitor">GetAllDestinationsVisitor</a> visitor = <strong class="jxr_keyword">new</strong> <a name="GetAllDestinationsVisitor" href="../../../../psiprobe/tools/logging/commons/GetAllDestinationsVisitor.html#GetAllDestinationsVisitor">GetAllDestinationsVisitor</a>();
 <a class="jxr_linenumber" name="L30" href="#L30">30</a>      visitor.setTarget(getTarget());
 <a class="jxr_linenumber" name="L31" href="#L31">31</a>      visitor.setApplication(getApplication());
 <a class="jxr_linenumber" name="L32" href="#L32">32</a>      visitor.visit();
@@ -48,7 +48,7 @@
 <a class="jxr_linenumber" name="L40" href="#L40">40</a>  <em class="jxr_javadoccomment">   * @return the destination</em>
 <a class="jxr_linenumber" name="L41" href="#L41">41</a>  <em class="jxr_javadoccomment">   */</em>
 <a class="jxr_linenumber" name="L42" href="#L42">42</a>    <strong class="jxr_keyword">public</strong> <a name="LogDestination" href="../../../../psiprobe/tools/logging/LogDestination.html#LogDestination">LogDestination</a> getDestination(String logIndex) {
-<a class="jxr_linenumber" name="L43" href="#L43">43</a>      <a name="GetSingleDestinationVisitor" href="../../../../psiprobe/tools/logging/<a name="GetSingleDestinationVisitor" href="../../../../psiprobe/tools/logging/commons/GetSingleDestinationVisitor.html#GetSingleDestinationVisitor">GetSingleDestinationVisitor</a>nVisitor.html#GetSingleDestinationVisitor">GetSingleDestinationVisitor</a> visitor = <strong class="jxr_keyword">new</strong> <a name="GetSingleDestinationVisitor" href="../../../../psiprobe/tools/logging/commons/GetSingleDestinationVisitor.html#GetSingleDestinationVisitor">GetSingleDestinationVisitor</a>(logIndex);
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>      <a name="GetSingleDestinationVisitor" href="../../../../psiprobe/tools/logging/commons/GetSingleDestinationVisitor.html#GetSingleDestinationVisitor">GetSingleDestinationVisitor</a> visitor = <strong class="jxr_keyword">new</strong> <a name="GetSingleDestinationVisitor" href="../../../../psiprobe/tools/logging/commons/GetSingleDestinationVisitor.html#GetSingleDestinationVisitor">GetSingleDestinationVisitor</a>(logIndex);
 <a class="jxr_linenumber" name="L44" href="#L44">44</a>      visitor.setTarget(getTarget());
 <a class="jxr_linenumber" name="L45" href="#L45">45</a>      visitor.setApplication(getApplication());
 <a class="jxr_linenumber" name="L46" href="#L46">46</a>      visitor.visit();
@@ -58,6 +58,6 @@
 <a class="jxr_linenumber" name="L50" href="#L50">50</a>  }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2009&#x2013;2021 <a href="https://github.com/psi-probe/">psi-probe</a>. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2009&#x2013;2022 <a href="https://github.com/psi-probe/">psi-probe</a>. All rights reserved.</div>
 </body>
 </html>

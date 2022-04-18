@@ -6,16 +6,16 @@
 </head>
 <body>
 <div id="overview"><a href="../../../../../apidocs/psiprobe/beans/stats/listeners/MemoryPoolMailingListener.html">View Javadoc</a></div><pre>
-<a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_javadoccomment"> * Licensed under the GPL License. You may not use this file except in compliance with the License.</em>
-<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_javadoccomment"> * You may obtain a copy of the License at</em>
-<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_javadoccomment"> *</em>
-<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_javadoccomment"> *   <a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.html" target="alexandria_uri">https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</a></em>
-<a class="jxr_linenumber" name="L6" href="#L6">6</a>   <em class="jxr_javadoccomment"> *</em>
-<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <em class="jxr_javadoccomment"> * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,</em>
-<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <em class="jxr_javadoccomment"> * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR</em>
-<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <em class="jxr_javadoccomment"> * PURPOSE.</em>
-<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <em class="jxr_javadoccomment"> */</em>
+<a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Licensed under the GPL License. You may not use this file except in compliance with the License.</em>
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> * You may obtain a copy of the License at</em>
+<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_comment"> *</em>
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_comment"> *   <a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.html" target="alexandria_uri">https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</a></em>
+<a class="jxr_linenumber" name="L6" href="#L6">6</a>   <em class="jxr_comment"> *</em>
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <em class="jxr_comment"> * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,</em>
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <em class="jxr_comment"> * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR</em>
+<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <em class="jxr_comment"> * PURPOSE.</em>
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <em class="jxr_comment"> */</em>
 <a class="jxr_linenumber" name="L11" href="#L11">11</a>  <strong class="jxr_keyword">package</strong> psiprobe.beans.stats.listeners;
 <a class="jxr_linenumber" name="L12" href="#L12">12</a>  
 <a class="jxr_linenumber" name="L13" href="#L13">13</a>  <strong class="jxr_keyword">import</strong> javax.inject.Inject;
@@ -143,7 +143,7 @@
 <a class="jxr_linenumber" name="L135" href="#L135">135</a>         <strong class="jxr_keyword">new</strong> Object[] {subjectInfix, name, value, threshold});
 <a class="jxr_linenumber" name="L136" href="#L136">136</a>     String body = getMessageSourceAccessor().getMessage(BASE_PROPERTY + message + <span class="jxr_string">".body"</span>,
 <a class="jxr_linenumber" name="L137" href="#L137">137</a>         <strong class="jxr_keyword">new</strong> Object[] {bodyPrefix, name, value, threshold});
-<a class="jxr_linenumber" name="L138" href="#L138">138</a>     <a name="MailMessage" href="../../../../psiprobe/tools/MailM<a name="MailMessage" href="../../../../psiprobe/tools/MailMessage.html#MailMessage">MailMessage</a>#MailMessage">MailMessage</a> mail = <strong class="jxr_keyword">new</strong> <a name="MailMessage" href="../../../../psiprobe/tools/MailMessage.html#MailMessage">MailMessage</a>(<strong class="jxr_keyword">null</strong>, subject, body);
+<a class="jxr_linenumber" name="L138" href="#L138">138</a>     <a name="MailMessage" href="../../../../psiprobe/tools/MailMessage.html#MailMessage">MailMessage</a> mail = <strong class="jxr_keyword">new</strong> <a name="MailMessage" href="../../../../psiprobe/tools/MailMessage.html#MailMessage">MailMessage</a>(<strong class="jxr_keyword">null</strong>, subject, body);
 <a class="jxr_linenumber" name="L139" href="#L139">139</a>     <strong class="jxr_keyword">try</strong> {
 <a class="jxr_linenumber" name="L140" href="#L140">140</a>       getMailer().send(mail);
 <a class="jxr_linenumber" name="L141" href="#L141">141</a>     } <strong class="jxr_keyword">catch</strong> (MessagingException ex) {
@@ -184,6 +184,6 @@
 <a class="jxr_linenumber" name="L176" href="#L176">176</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2009&#x2013;2021 <a href="https://github.com/psi-probe/">psi-probe</a>. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2009&#x2013;2022 <a href="https://github.com/psi-probe/">psi-probe</a>. All rights reserved.</div>
 </body>
 </html>

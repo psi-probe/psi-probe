@@ -1,4 +1,0 @@
-GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-psi-probe-tomcat9,psiprobe,Tomcat90AgentValve,0,31,1,1,0,9,1,2,0,2
-psi-probe-tomcat9,psiprobe,Tomcat90ContainerAdapter,141,312,20,26,35,66,18,22,0,15
-psi-probe-tomcat9,psiprobe.beans.accessors,Tomcat9DbcpDatasourceAccessor,0,62,1,5,0,15,1,6,0,4

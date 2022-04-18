@@ -6,16 +6,16 @@
 </head>
 <body>
 <div id="overview"><a href="../../../apidocs/psiprobe/beans/LogResolverBean.html">View Javadoc</a></div><pre>
-<a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_javadoccomment"> * Licensed under the GPL License. You may not use this file except in compliance with the License.</em>
-<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_javadoccomment"> * You may obtain a copy of the License at</em>
-<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_javadoccomment"> *</em>
-<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_javadoccomment"> *   <a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.html" target="alexandria_uri">https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</a></em>
-<a class="jxr_linenumber" name="L6" href="#L6">6</a>   <em class="jxr_javadoccomment"> *</em>
-<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <em class="jxr_javadoccomment"> * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,</em>
-<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <em class="jxr_javadoccomment"> * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR</em>
-<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <em class="jxr_javadoccomment"> * PURPOSE.</em>
-<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <em class="jxr_javadoccomment"> */</em>
+<a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Licensed under the GPL License. You may not use this file except in compliance with the License.</em>
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> * You may obtain a copy of the License at</em>
+<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_comment"> *</em>
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_comment"> *   <a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.html" target="alexandria_uri">https://www.gnu.org/licenses/old-licenses/gpl-2.0.html</a></em>
+<a class="jxr_linenumber" name="L6" href="#L6">6</a>   <em class="jxr_comment"> *</em>
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <em class="jxr_comment"> * THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,</em>
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <em class="jxr_comment"> * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR</em>
+<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <em class="jxr_comment"> * PURPOSE.</em>
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <em class="jxr_comment"> */</em>
 <a class="jxr_linenumber" name="L11" href="#L11">11</a>  <strong class="jxr_keyword">package</strong> psiprobe.beans;
 <a class="jxr_linenumber" name="L12" href="#L12">12</a>  
 <a class="jxr_linenumber" name="L13" href="#L13">13</a>  <strong class="jxr_keyword">import</strong> java.io.File;
@@ -298,12 +298,12 @@
 <a class="jxr_linenumber" name="L290" href="#L290">290</a>     Object contextLogger = ctx.getLogger();
 <a class="jxr_linenumber" name="L291" href="#L291">291</a>     <strong class="jxr_keyword">if</strong> (contextLogger != <strong class="jxr_keyword">null</strong>) {
 <a class="jxr_linenumber" name="L292" href="#L292">292</a>       <strong class="jxr_keyword">if</strong> (contextLogger.getClass().getName().startsWith(<span class="jxr_string">"org.apache.commons.logging"</span>)) {
-<a class="jxr_linenumber" name="L293" href="#L293">293</a>         <a name="CommonsLoggerAccessor" href="../../psiprobe/tools/logging/commons/Common<a name="CommonsLoggerAccessor" href="../../psiprobe/tools/logging/commons/CommonsLoggerAccessor.html#CommonsLoggerAccessor">CommonsLoggerAccessor</a>CommonsLoggerAccessor">CommonsLoggerAccessor</a> commonsAccessor = <strong class="jxr_keyword">new</strong> <a name="CommonsLoggerAccessor" href="../../psiprobe/tools/logging/commons/CommonsLoggerAccessor.html#CommonsLoggerAccessor">CommonsLoggerAccessor</a>();
+<a class="jxr_linenumber" name="L293" href="#L293">293</a>         <a name="CommonsLoggerAccessor" href="../../psiprobe/tools/logging/commons/CommonsLoggerAccessor.html#CommonsLoggerAccessor">CommonsLoggerAccessor</a> commonsAccessor = <strong class="jxr_keyword">new</strong> <a name="CommonsLoggerAccessor" href="../../psiprobe/tools/logging/commons/CommonsLoggerAccessor.html#CommonsLoggerAccessor">CommonsLoggerAccessor</a>();
 <a class="jxr_linenumber" name="L294" href="#L294">294</a>         commonsAccessor.setTarget(contextLogger);
 <a class="jxr_linenumber" name="L295" href="#L295">295</a>         commonsAccessor.setApplication(application);
 <a class="jxr_linenumber" name="L296" href="#L296">296</a>         allAppenders.addAll(commonsAccessor.getDestinations());
 <a class="jxr_linenumber" name="L297" href="#L297">297</a>       } <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (contextLogger.getClass().getName().startsWith(<span class="jxr_string">"org.apache.catalina.logger"</span>)) {
-<a class="jxr_linenumber" name="L298" href="#L298">298</a>         <a name="CatalinaLoggerAccessor" href="../../psiprobe/tools/logging/catalina/Catali<a name="CatalinaLoggerAccessor" href="../../psiprobe/tools/logging/catalina/CatalinaLoggerAccessor.html#CatalinaLoggerAccessor">CatalinaLoggerAccessor</a>CatalinaLoggerAccessor">CatalinaLoggerAccessor</a> catalinaAccessor = <strong class="jxr_keyword">new</strong> <a name="CatalinaLoggerAccessor" href="../../psiprobe/tools/logging/catalina/CatalinaLoggerAccessor.html#CatalinaLoggerAccessor">CatalinaLoggerAccessor</a>();
+<a class="jxr_linenumber" name="L298" href="#L298">298</a>         <a name="CatalinaLoggerAccessor" href="../../psiprobe/tools/logging/catalina/CatalinaLoggerAccessor.html#CatalinaLoggerAccessor">CatalinaLoggerAccessor</a> catalinaAccessor = <strong class="jxr_keyword">new</strong> <a name="CatalinaLoggerAccessor" href="../../psiprobe/tools/logging/catalina/CatalinaLoggerAccessor.html#CatalinaLoggerAccessor">CatalinaLoggerAccessor</a>();
 <a class="jxr_linenumber" name="L299" href="#L299">299</a>         catalinaAccessor.setApplication(application);
 <a class="jxr_linenumber" name="L300" href="#L300">300</a>         catalinaAccessor.setTarget(contextLogger);
 <a class="jxr_linenumber" name="L301" href="#L301">301</a>         allAppenders.add(catalinaAccessor);
@@ -323,7 +323,7 @@
 <a class="jxr_linenumber" name="L315" href="#L315">315</a>         <strong class="jxr_keyword">for</strong> (Object loggerContext : loggerContexts) {
 <a class="jxr_linenumber" name="L316" href="#L316">316</a>           Map&lt;String, Object&gt; loggerConfigs = getLoggerConfigs(loggerContext);
 <a class="jxr_linenumber" name="L317" href="#L317">317</a>           <strong class="jxr_keyword">for</strong> (Object loggerConfig : loggerConfigs.values()) {
-<a class="jxr_linenumber" name="L318" href="#L318">318</a>             <a name="Log4J2LoggerConfigAccessor" href="../../psiprobe/tools/logging/log4j2/Log4J2Log<a name="Log4J2LoggerConfigAccessor" href="../../psiprobe/tools/logging/log4j2/Log4J2LoggerConfigAccessor.html#Log4J2LoggerConfigAccessor">Log4J2LoggerConfigAccessor</a>4J2LoggerConfigAccessor">Log4J2LoggerConfigAccessor</a> logConfigAccessor = <strong class="jxr_keyword">new</strong> <a name="Log4J2LoggerConfigAccessor" href="../../psiprobe/tools/logging/log4j2/Log4J2LoggerConfigAccessor.html#Log4J2LoggerConfigAccessor">Log4J2LoggerConfigAccessor</a>();
+<a class="jxr_linenumber" name="L318" href="#L318">318</a>             <a name="Log4J2LoggerConfigAccessor" href="../../psiprobe/tools/logging/log4j2/Log4J2LoggerConfigAccessor.html#Log4J2LoggerConfigAccessor">Log4J2LoggerConfigAccessor</a> logConfigAccessor = <strong class="jxr_keyword">new</strong> <a name="Log4J2LoggerConfigAccessor" href="../../psiprobe/tools/logging/log4j2/Log4J2LoggerConfigAccessor.html#Log4J2LoggerConfigAccessor">Log4J2LoggerConfigAccessor</a>();
 <a class="jxr_linenumber" name="L319" href="#L319">319</a>             logConfigAccessor.setTarget(loggerConfig);
 <a class="jxr_linenumber" name="L320" href="#L320">320</a>             logConfigAccessor.setApplication(application);
 <a class="jxr_linenumber" name="L321" href="#L321">321</a>             logConfigAccessor.setContext(<strong class="jxr_keyword">true</strong>);
@@ -333,7 +333,7 @@
 <a class="jxr_linenumber" name="L325" href="#L325">325</a>             @SuppressWarnings(<span class="jxr_string">"unchecked"</span>)
 <a class="jxr_linenumber" name="L326" href="#L326">326</a>             Map&lt;String, Object&gt; appenders = (Map&lt;String, Object&gt;) getAppenders.invoke(loggerConfig);
 <a class="jxr_linenumber" name="L327" href="#L327">327</a>             <strong class="jxr_keyword">for</strong> (Object appender : appenders.values()) {
-<a class="jxr_linenumber" name="L328" href="#L328">328</a>               <a name="Log4J2AppenderAccessor" href="../../psiprobe/tools/logging/log4j2/Log4J2Ap<a name="Log4J2AppenderAccessor" href="../../psiprobe/tools/logging/log4j2/Log4J2AppenderAccessor.html#Log4J2AppenderAccessor">Log4J2AppenderAccessor</a>g4J2AppenderAccessor">Log4J2AppenderAccessor</a> appenderAccessor = <strong class="jxr_keyword">new</strong> <a name="Log4J2AppenderAccessor" href="../../psiprobe/tools/logging/log4j2/Log4J2AppenderAccessor.html#Log4J2AppenderAccessor">Log4J2AppenderAccessor</a>();
+<a class="jxr_linenumber" name="L328" href="#L328">328</a>               <a name="Log4J2AppenderAccessor" href="../../psiprobe/tools/logging/log4j2/Log4J2AppenderAccessor.html#Log4J2AppenderAccessor">Log4J2AppenderAccessor</a> appenderAccessor = <strong class="jxr_keyword">new</strong> <a name="Log4J2AppenderAccessor" href="../../psiprobe/tools/logging/log4j2/Log4J2AppenderAccessor.html#Log4J2AppenderAccessor">Log4J2AppenderAccessor</a>();
 <a class="jxr_linenumber" name="L329" href="#L329">329</a>               appenderAccessor.setTarget(appender);
 <a class="jxr_linenumber" name="L330" href="#L330">330</a>               appenderAccessor.setLoggerAccessor(logConfigAccessor);
 <a class="jxr_linenumber" name="L331" href="#L331">331</a>               appenderAccessor.setApplication(application);
@@ -378,7 +378,7 @@
 <a class="jxr_linenumber" name="L370" href="#L370">370</a> 
 <a class="jxr_linenumber" name="L371" href="#L371">371</a>     <em class="jxr_comment">// check for JDK loggers</em>
 <a class="jxr_linenumber" name="L372" href="#L372">372</a>     <strong class="jxr_keyword">try</strong> {
-<a class="jxr_linenumber" name="L373" href="#L373">373</a>       <a name="Jdk14ManagerAccessor" href="../../psiprobe/tools/logging/jdk/Jdk14Man<a name="Jdk14ManagerAccessor" href="../../psiprobe/tools/logging/jdk/Jdk14ManagerAccessor.html#Jdk14ManagerAccessor">Jdk14ManagerAccessor</a>k14ManagerAccessor">Jdk14ManagerAccessor</a> jdk14accessor = <strong class="jxr_keyword">new</strong> <a name="Jdk14ManagerAccessor" href="../../psiprobe/tools/logging/jdk/Jdk14ManagerAccessor.html#Jdk14ManagerAccessor">Jdk14ManagerAccessor</a>(cl);
+<a class="jxr_linenumber" name="L373" href="#L373">373</a>       <a name="Jdk14ManagerAccessor" href="../../psiprobe/tools/logging/jdk/Jdk14ManagerAccessor.html#Jdk14ManagerAccessor">Jdk14ManagerAccessor</a> jdk14accessor = <strong class="jxr_keyword">new</strong> <a name="Jdk14ManagerAccessor" href="../../psiprobe/tools/logging/jdk/Jdk14ManagerAccessor.html#Jdk14ManagerAccessor">Jdk14ManagerAccessor</a>(cl);
 <a class="jxr_linenumber" name="L374" href="#L374">374</a>       jdk14accessor.setApplication(application);
 <a class="jxr_linenumber" name="L375" href="#L375">375</a>       appenders.addAll(jdk14accessor.getHandlers());
 <a class="jxr_linenumber" name="L376" href="#L376">376</a>     } <strong class="jxr_keyword">catch</strong> (Exception e) {
@@ -387,7 +387,7 @@
 <a class="jxr_linenumber" name="L379" href="#L379">379</a> 
 <a class="jxr_linenumber" name="L380" href="#L380">380</a>     <em class="jxr_comment">// check for Log4J loggers</em>
 <a class="jxr_linenumber" name="L381" href="#L381">381</a>     <strong class="jxr_keyword">try</strong> {
-<a class="jxr_linenumber" name="L382" href="#L382">382</a>       <a name="Log4JManagerAccessor" href="../../psiprobe/tools/logging/log4j/Log4JM<a name="Log4JManagerAccessor" href="../../psiprobe/tools/logging/log4j/Log4JManagerAccessor.html#Log4JManagerAccessor">Log4JManagerAccessor</a>Log4JManagerAccessor">Log4JManagerAccessor</a> log4JAccessor = <strong class="jxr_keyword">new</strong> <a name="Log4JManagerAccessor" href="../../psiprobe/tools/logging/log4j/Log4JManagerAccessor.html#Log4JManagerAccessor">Log4JManagerAccessor</a>(cl);
+<a class="jxr_linenumber" name="L382" href="#L382">382</a>       <a name="Log4JManagerAccessor" href="../../psiprobe/tools/logging/log4j/Log4JManagerAccessor.html#Log4JManagerAccessor">Log4JManagerAccessor</a> log4JAccessor = <strong class="jxr_keyword">new</strong> <a name="Log4JManagerAccessor" href="../../psiprobe/tools/logging/log4j/Log4JManagerAccessor.html#Log4JManagerAccessor">Log4JManagerAccessor</a>(cl);
 <a class="jxr_linenumber" name="L383" href="#L383">383</a>       log4JAccessor.setApplication(application);
 <a class="jxr_linenumber" name="L384" href="#L384">384</a>       appenders.addAll(log4JAccessor.getAppenders());
 <a class="jxr_linenumber" name="L385" href="#L385">385</a>     } <strong class="jxr_keyword">catch</strong> (Exception e) {
@@ -396,7 +396,7 @@
 <a class="jxr_linenumber" name="L388" href="#L388">388</a> 
 <a class="jxr_linenumber" name="L389" href="#L389">389</a>     <em class="jxr_comment">// check for Logback loggers</em>
 <a class="jxr_linenumber" name="L390" href="#L390">390</a>     <strong class="jxr_keyword">try</strong> {
-<a class="jxr_linenumber" name="L391" href="#L391">391</a>       <a name="LogbackFactoryAccessor" href="../../psiprobe/tools/logging/logback/Logbac<a name="LogbackFactoryAccessor" href="../../psiprobe/tools/logging/logback/LogbackFactoryAccessor.html#LogbackFactoryAccessor">LogbackFactoryAccessor</a>LogbackFactoryAccessor">LogbackFactoryAccessor</a> logbackAccessor = <strong class="jxr_keyword">new</strong> <a name="LogbackFactoryAccessor" href="../../psiprobe/tools/logging/logback/LogbackFactoryAccessor.html#LogbackFactoryAccessor">LogbackFactoryAccessor</a>(cl);
+<a class="jxr_linenumber" name="L391" href="#L391">391</a>       <a name="LogbackFactoryAccessor" href="../../psiprobe/tools/logging/logback/LogbackFactoryAccessor.html#LogbackFactoryAccessor">LogbackFactoryAccessor</a> logbackAccessor = <strong class="jxr_keyword">new</strong> <a name="LogbackFactoryAccessor" href="../../psiprobe/tools/logging/logback/LogbackFactoryAccessor.html#LogbackFactoryAccessor">LogbackFactoryAccessor</a>(cl);
 <a class="jxr_linenumber" name="L392" href="#L392">392</a>       logbackAccessor.setApplication(application);
 <a class="jxr_linenumber" name="L393" href="#L393">393</a>       appenders.addAll(logbackAccessor.getAppenders());
 <a class="jxr_linenumber" name="L394" href="#L394">394</a>     } <strong class="jxr_keyword">catch</strong> (Exception e) {
@@ -455,7 +455,7 @@
 <a class="jxr_linenumber" name="L447" href="#L447">447</a>   <strong class="jxr_keyword">private</strong> <a name="FileLogAccessor" href="../../psiprobe/tools/logging/FileLogAccessor.html#FileLogAccessor">FileLogAccessor</a> resolveStdoutLogDestination(String fileName) {
 <a class="jxr_linenumber" name="L448" href="#L448">448</a>     File stdout = <strong class="jxr_keyword">new</strong> File(System.getProperty(<span class="jxr_string">"catalina.base"</span>), <span class="jxr_string">"logs/"</span> + fileName);
 <a class="jxr_linenumber" name="L449" href="#L449">449</a>     <strong class="jxr_keyword">if</strong> (stdout.exists()) {
-<a class="jxr_linenumber" name="L450" href="#L450">450</a>       <a name="FileLogAccessor" href="../../psiprobe/tools/logging/Fi<a name="FileLogAccessor" href="../../psiprobe/tools/logging/FileLogAccessor.html#FileLogAccessor">FileLogAccessor</a>tml#FileLogAccessor">FileLogAccessor</a> fla = <strong class="jxr_keyword">new</strong> <a name="FileLogAccessor" href="../../psiprobe/tools/logging/FileLogAccessor.html#FileLogAccessor">FileLogAccessor</a>();
+<a class="jxr_linenumber" name="L450" href="#L450">450</a>       <a name="FileLogAccessor" href="../../psiprobe/tools/logging/FileLogAccessor.html#FileLogAccessor">FileLogAccessor</a> fla = <strong class="jxr_keyword">new</strong> <a name="FileLogAccessor" href="../../psiprobe/tools/logging/FileLogAccessor.html#FileLogAccessor">FileLogAccessor</a>();
 <a class="jxr_linenumber" name="L451" href="#L451">451</a>       fla.setName(fileName);
 <a class="jxr_linenumber" name="L452" href="#L452">452</a>       fla.setFile(stdout);
 <a class="jxr_linenumber" name="L453" href="#L453">453</a>       <strong class="jxr_keyword">return</strong> fla;
@@ -473,7 +473,7 @@
 <a class="jxr_linenumber" name="L465" href="#L465">465</a>   <strong class="jxr_keyword">private</strong> <a name="LogDestination" href="../../psiprobe/tools/logging/LogDestination.html#LogDestination">LogDestination</a> getCatalinaLogDestination(Context ctx, <a name="Application" href="../../psiprobe/model/Application.html#Application">Application</a> application) {
 <a class="jxr_linenumber" name="L466" href="#L466">466</a>     Object log = ctx.getLogger();
 <a class="jxr_linenumber" name="L467" href="#L467">467</a>     <strong class="jxr_keyword">if</strong> (log != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L468" href="#L468">468</a>       <a name="CatalinaLoggerAccessor" href="../../psiprobe/tools/logging/catalina/C<a name="CatalinaLoggerAccessor" href="../../psiprobe/tools/logging/catalina/CatalinaLoggerAccessor.html#CatalinaLoggerAccessor">CatalinaLoggerAccessor</a>html#CatalinaLoggerAccessor">CatalinaLoggerAccessor</a> logAccessor = <strong class="jxr_keyword">new</strong> <a name="CatalinaLoggerAccessor" href="../../psiprobe/tools/logging/catalina/CatalinaLoggerAccessor.html#CatalinaLoggerAccessor">CatalinaLoggerAccessor</a>();
+<a class="jxr_linenumber" name="L468" href="#L468">468</a>       <a name="CatalinaLoggerAccessor" href="../../psiprobe/tools/logging/catalina/CatalinaLoggerAccessor.html#CatalinaLoggerAccessor">CatalinaLoggerAccessor</a> logAccessor = <strong class="jxr_keyword">new</strong> <a name="CatalinaLoggerAccessor" href="../../psiprobe/tools/logging/catalina/CatalinaLoggerAccessor.html#CatalinaLoggerAccessor">CatalinaLoggerAccessor</a>();
 <a class="jxr_linenumber" name="L469" href="#L469">469</a>       logAccessor.setTarget(log);
 <a class="jxr_linenumber" name="L470" href="#L470">470</a>       logAccessor.setApplication(application);
 <a class="jxr_linenumber" name="L471" href="#L471">471</a>       <strong class="jxr_keyword">if</strong> (logAccessor.getFile().exists()) {
@@ -494,7 +494,7 @@
 <a class="jxr_linenumber" name="L486" href="#L486">486</a>   <strong class="jxr_keyword">private</strong> <a name="LogDestination" href="../../psiprobe/tools/logging/LogDestination.html#LogDestination">LogDestination</a> getCommonsLogDestination(Context ctx, <a name="Application" href="../../psiprobe/model/Application.html#Application">Application</a> application,
 <a class="jxr_linenumber" name="L487" href="#L487">487</a>       String logIndex) {
 <a class="jxr_linenumber" name="L488" href="#L488">488</a>     Object contextLogger = ctx.getLogger();
-<a class="jxr_linenumber" name="L489" href="#L489">489</a>     <a name="CommonsLoggerAccessor" href="../../psiprobe/tools/logging/commons/Common<a name="CommonsLoggerAccessor" href="../../psiprobe/tools/logging/commons/CommonsLoggerAccessor.html#CommonsLoggerAccessor">CommonsLoggerAccessor</a>CommonsLoggerAccessor">CommonsLoggerAccessor</a> commonsAccessor = <strong class="jxr_keyword">new</strong> <a name="CommonsLoggerAccessor" href="../../psiprobe/tools/logging/commons/CommonsLoggerAccessor.html#CommonsLoggerAccessor">CommonsLoggerAccessor</a>();
+<a class="jxr_linenumber" name="L489" href="#L489">489</a>     <a name="CommonsLoggerAccessor" href="../../psiprobe/tools/logging/commons/CommonsLoggerAccessor.html#CommonsLoggerAccessor">CommonsLoggerAccessor</a> commonsAccessor = <strong class="jxr_keyword">new</strong> <a name="CommonsLoggerAccessor" href="../../psiprobe/tools/logging/commons/CommonsLoggerAccessor.html#CommonsLoggerAccessor">CommonsLoggerAccessor</a>();
 <a class="jxr_linenumber" name="L490" href="#L490">490</a>     commonsAccessor.setTarget(contextLogger);
 <a class="jxr_linenumber" name="L491" href="#L491">491</a>     commonsAccessor.setApplication(application);
 <a class="jxr_linenumber" name="L492" href="#L492">492</a>     <strong class="jxr_keyword">return</strong> commonsAccessor.getDestination(logIndex);
@@ -514,7 +514,7 @@
 <a class="jxr_linenumber" name="L506" href="#L506">506</a>       <strong class="jxr_keyword">boolean</strong> root, String logName, String handlerIndex) {
 <a class="jxr_linenumber" name="L507" href="#L507">507</a> 
 <a class="jxr_linenumber" name="L508" href="#L508">508</a>     <strong class="jxr_keyword">try</strong> {
-<a class="jxr_linenumber" name="L509" href="#L509">509</a>       <a name="Jdk14ManagerAccessor" href="../../psiprobe/tools/logging/jdk/Jd<a name="Jdk14ManagerAccessor" href="../../psiprobe/tools/logging/jdk/Jdk14ManagerAccessor.html#Jdk14ManagerAccessor">Jdk14ManagerAccessor</a>tml#Jdk14ManagerAccessor">Jdk14ManagerAccessor</a> manager = <strong class="jxr_keyword">new</strong> <a name="Jdk14ManagerAccessor" href="../../psiprobe/tools/logging/jdk/Jdk14ManagerAccessor.html#Jdk14ManagerAccessor">Jdk14ManagerAccessor</a>(cl);
+<a class="jxr_linenumber" name="L509" href="#L509">509</a>       <a name="Jdk14ManagerAccessor" href="../../psiprobe/tools/logging/jdk/Jdk14ManagerAccessor.html#Jdk14ManagerAccessor">Jdk14ManagerAccessor</a> manager = <strong class="jxr_keyword">new</strong> <a name="Jdk14ManagerAccessor" href="../../psiprobe/tools/logging/jdk/Jdk14ManagerAccessor.html#Jdk14ManagerAccessor">Jdk14ManagerAccessor</a>(cl);
 <a class="jxr_linenumber" name="L510" href="#L510">510</a>       manager.setApplication(application);
 <a class="jxr_linenumber" name="L511" href="#L511">511</a>       <a name="Jdk14LoggerAccessor" href="../../psiprobe/tools/logging/jdk/Jdk14LoggerAccessor.html#Jdk14LoggerAccessor">Jdk14LoggerAccessor</a> log = root ? manager.getRootLogger() : manager.getLogger(logName);
 <a class="jxr_linenumber" name="L512" href="#L512">512</a>       <strong class="jxr_keyword">if</strong> (log != <strong class="jxr_keyword">null</strong>) {
@@ -540,7 +540,7 @@
 <a class="jxr_linenumber" name="L532" href="#L532">532</a>       <strong class="jxr_keyword">boolean</strong> root, String logName, String appenderName) {
 <a class="jxr_linenumber" name="L533" href="#L533">533</a> 
 <a class="jxr_linenumber" name="L534" href="#L534">534</a>     <strong class="jxr_keyword">try</strong> {
-<a class="jxr_linenumber" name="L535" href="#L535">535</a>       <a name="Log4JManagerAccessor" href="../../psiprobe/tools/logging/log4j/<a name="Log4JManagerAccessor" href="../../psiprobe/tools/logging/log4j/Log4JManagerAccessor.html#Log4JManagerAccessor">Log4JManagerAccessor</a>.html#Log4JManagerAccessor">Log4JManagerAccessor</a> manager = <strong class="jxr_keyword">new</strong> <a name="Log4JManagerAccessor" href="../../psiprobe/tools/logging/log4j/Log4JManagerAccessor.html#Log4JManagerAccessor">Log4JManagerAccessor</a>(cl);
+<a class="jxr_linenumber" name="L535" href="#L535">535</a>       <a name="Log4JManagerAccessor" href="../../psiprobe/tools/logging/log4j/Log4JManagerAccessor.html#Log4JManagerAccessor">Log4JManagerAccessor</a> manager = <strong class="jxr_keyword">new</strong> <a name="Log4JManagerAccessor" href="../../psiprobe/tools/logging/log4j/Log4JManagerAccessor.html#Log4JManagerAccessor">Log4JManagerAccessor</a>(cl);
 <a class="jxr_linenumber" name="L536" href="#L536">536</a>       manager.setApplication(application);
 <a class="jxr_linenumber" name="L537" href="#L537">537</a>       <a name="Log4JLoggerAccessor" href="../../psiprobe/tools/logging/log4j/Log4JLoggerAccessor.html#Log4JLoggerAccessor">Log4JLoggerAccessor</a> log = root ? manager.getRootLogger() : manager.getLogger(logName);
 <a class="jxr_linenumber" name="L538" href="#L538">538</a>       <strong class="jxr_keyword">if</strong> (log != <strong class="jxr_keyword">null</strong>) {
@@ -583,7 +583,7 @@
 <a class="jxr_linenumber" name="L575" href="#L575">575</a>         }
 <a class="jxr_linenumber" name="L576" href="#L576">576</a>       }
 <a class="jxr_linenumber" name="L577" href="#L577">577</a>       <strong class="jxr_keyword">if</strong> (loggerConfig != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L578" href="#L578">578</a>         <a name="Log4J2LoggerConfigAccessor" href="../../psiprobe/tools/logging/log4j2/<a name="Log4J2LoggerConfigAccessor" href="../../psiprobe/tools/logging/log4j2/Log4J2LoggerConfigAccessor.html#Log4J2LoggerConfigAccessor">Log4J2LoggerConfigAccessor</a>.html#Log4J2LoggerConfigAccessor">Log4J2LoggerConfigAccessor</a> accessor = <strong class="jxr_keyword">new</strong> <a name="Log4J2LoggerConfigAccessor" href="../../psiprobe/tools/logging/log4j2/Log4J2LoggerConfigAccessor.html#Log4J2LoggerConfigAccessor">Log4J2LoggerConfigAccessor</a>();
+<a class="jxr_linenumber" name="L578" href="#L578">578</a>         <a name="Log4J2LoggerConfigAccessor" href="../../psiprobe/tools/logging/log4j2/Log4J2LoggerConfigAccessor.html#Log4J2LoggerConfigAccessor">Log4J2LoggerConfigAccessor</a> accessor = <strong class="jxr_keyword">new</strong> <a name="Log4J2LoggerConfigAccessor" href="../../psiprobe/tools/logging/log4j2/Log4J2LoggerConfigAccessor.html#Log4J2LoggerConfigAccessor">Log4J2LoggerConfigAccessor</a>();
 <a class="jxr_linenumber" name="L579" href="#L579">579</a>         accessor.setTarget(loggerConfig);
 <a class="jxr_linenumber" name="L580" href="#L580">580</a>         accessor.setApplication(application);
 <a class="jxr_linenumber" name="L581" href="#L581">581</a>         accessor.setContext(<strong class="jxr_keyword">true</strong>);
@@ -632,7 +632,7 @@
 <a class="jxr_linenumber" name="L624" href="#L624">624</a>       <strong class="jxr_keyword">boolean</strong> root, String logName, String appenderName) {
 <a class="jxr_linenumber" name="L625" href="#L625">625</a> 
 <a class="jxr_linenumber" name="L626" href="#L626">626</a>     <strong class="jxr_keyword">try</strong> {
-<a class="jxr_linenumber" name="L627" href="#L627">627</a>       <a name="LogbackFactoryAccessor" href="../../psiprobe/tools/logging/logbac<a name="LogbackFactoryAccessor" href="../../psiprobe/tools/logging/logback/LogbackFactoryAccessor.html#LogbackFactoryAccessor">LogbackFactoryAccessor</a>or.html#LogbackFactoryAccessor">LogbackFactoryAccessor</a> manager = <strong class="jxr_keyword">new</strong> <a name="LogbackFactoryAccessor" href="../../psiprobe/tools/logging/logback/LogbackFactoryAccessor.html#LogbackFactoryAccessor">LogbackFactoryAccessor</a>(cl);
+<a class="jxr_linenumber" name="L627" href="#L627">627</a>       <a name="LogbackFactoryAccessor" href="../../psiprobe/tools/logging/logback/LogbackFactoryAccessor.html#LogbackFactoryAccessor">LogbackFactoryAccessor</a> manager = <strong class="jxr_keyword">new</strong> <a name="LogbackFactoryAccessor" href="../../psiprobe/tools/logging/logback/LogbackFactoryAccessor.html#LogbackFactoryAccessor">LogbackFactoryAccessor</a>(cl);
 <a class="jxr_linenumber" name="L628" href="#L628">628</a>       manager.setApplication(application);
 <a class="jxr_linenumber" name="L629" href="#L629">629</a>       <a name="LogbackLoggerAccessor" href="../../psiprobe/tools/logging/logback/LogbackLoggerAccessor.html#LogbackLoggerAccessor">LogbackLoggerAccessor</a> log = root ? manager.getRootLogger() : manager.getLogger(logName);
 <a class="jxr_linenumber" name="L630" href="#L630">630</a>       <strong class="jxr_keyword">if</strong> (log != <strong class="jxr_keyword">null</strong>) {
@@ -658,7 +658,7 @@
 <a class="jxr_linenumber" name="L650" href="#L650">650</a>       <strong class="jxr_keyword">boolean</strong> root, String logName, String appenderName) {
 <a class="jxr_linenumber" name="L651" href="#L651">651</a> 
 <a class="jxr_linenumber" name="L652" href="#L652">652</a>     <strong class="jxr_keyword">try</strong> {
-<a class="jxr_linenumber" name="L653" href="#L653">653</a>       <a name="TomcatSlf4jLogbackFactoryAccessor" href="../../psiprobe/tools/logging/slf4jl<a name="TomcatSlf4jLogbackFactoryAccessor" href="../../psiprobe/tools/logging/slf4jlogback/TomcatSlf4jLogbackFactoryAccessor.html#TomcatSlf4jLogbackFactoryAccessor">TomcatSlf4jLogbackFactoryAccessor</a>ccessor.html#TomcatSlf4jLogbackFactoryAccessor">TomcatSlf4jLogbackFactoryAccessor</a> manager = <strong class="jxr_keyword">new</strong> <a name="TomcatSlf4jLogbackFactoryAccessor" href="../../psiprobe/tools/logging/slf4jlogback/TomcatSlf4jLogbackFactoryAccessor.html#TomcatSlf4jLogbackFactoryAccessor">TomcatSlf4jLogbackFactoryAccessor</a>(cl);
+<a class="jxr_linenumber" name="L653" href="#L653">653</a>       <a name="TomcatSlf4jLogbackFactoryAccessor" href="../../psiprobe/tools/logging/slf4jlogback/TomcatSlf4jLogbackFactoryAccessor.html#TomcatSlf4jLogbackFactoryAccessor">TomcatSlf4jLogbackFactoryAccessor</a> manager = <strong class="jxr_keyword">new</strong> <a name="TomcatSlf4jLogbackFactoryAccessor" href="../../psiprobe/tools/logging/slf4jlogback/TomcatSlf4jLogbackFactoryAccessor.html#TomcatSlf4jLogbackFactoryAccessor">TomcatSlf4jLogbackFactoryAccessor</a>(cl);
 <a class="jxr_linenumber" name="L654" href="#L654">654</a>       manager.setApplication(application);
 <a class="jxr_linenumber" name="L655" href="#L655">655</a>       <a name="TomcatSlf4jLogbackLoggerAccessor" href="../../psiprobe/tools/logging/slf4jlogback/TomcatSlf4jLogbackLoggerAccessor.html#TomcatSlf4jLogbackLoggerAccessor">TomcatSlf4jLogbackLoggerAccessor</a> log =
 <a class="jxr_linenumber" name="L656" href="#L656">656</a>           root ? manager.getRootLogger() : manager.getLogger(logName);
@@ -684,7 +684,7 @@
 <a class="jxr_linenumber" name="L676" href="#L676">676</a>     <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">char</strong> DELIM = '!';
 <a class="jxr_linenumber" name="L677" href="#L677">677</a> 
 <a class="jxr_linenumber" name="L678" href="#L678">678</a>     @Override
-<a class="jxr_linenumber" name="L679" href="#L679">679</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> compare(<a name="LogDestina<a name="LogDestination" href="../../psiprobe/tools/logging/LogDestination.html#LogDestination">LogDestination</a>/../psiprobe/tools/logging/LogDestination.html#LogDestination">LogDestination</a> o1, <a name="LogDestination" href="../../psiprobe/tools/logging/LogDestination.html#LogDestination">LogDestination</a> o2) {
+<a class="jxr_linenumber" name="L679" href="#L679">679</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> compare(<a name="LogDestination" href="../../psiprobe/tools/logging/LogDestination.html#LogDestination">LogDestination</a> o1, <a name="LogDestination" href="../../psiprobe/tools/logging/LogDestination.html#LogDestination">LogDestination</a> o2) {
 <a class="jxr_linenumber" name="L680" href="#L680">680</a>       String name1 = convertToString(o1);
 <a class="jxr_linenumber" name="L681" href="#L681">681</a>       String name2 = convertToString(o2);
 <a class="jxr_linenumber" name="L682" href="#L682">682</a>       <strong class="jxr_keyword">return</strong> name1.compareTo(name2);
@@ -768,6 +768,6 @@
 <a class="jxr_linenumber" name="L760" href="#L760">760</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2009&#x2013;2021 <a href="https://github.com/psi-probe/">psi-probe</a>. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2009&#x2013;2022 <a href="https://github.com/psi-probe/">psi-probe</a>. All rights reserved.</div>
 </body>
 </html>
