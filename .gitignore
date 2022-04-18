@@ -18,3 +18,4 @@ psi-probe.ipr
 .mvn/wrapper/maven-wrapper.jar
 *.releaseBackup
 release.properties
+.github/keys/
