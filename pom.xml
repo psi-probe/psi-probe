@@ -806,9 +806,6 @@
                                 <Build-Time>${maven.build.timestamp}</Build-Time>
                                 <Copyright>${copyright}</Copyright>
                                 <Git-Revision>${git.commit.id}</Git-Revision>
-                                <Os-Name>${os.name}</Os-Name>
-                                <Os-Arch>${os.arch}</Os-Arch>
-                                <Os-Version>${os.version}</Os-Version>
                                 <X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK>
                                 <X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
                             </manifestEntries>
@@ -946,17 +943,12 @@
                     <configuration>
                         <archive>
                             <manifest>
-                                <addBuildEnvironmentEntries>true</addBuildEnvironmentEntries>
                                 <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                                 <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
                             </manifest>
                             <manifestEntries>
-                                <Build-Time>${maven.build.timestamp}</Build-Time>
                                 <Copyright>${copyright}</Copyright>
                                 <Git-Revision>${git.commit.id}</Git-Revision>
-                                <Os-Name>${os.name}</Os-Name>
-                                <Os-Arch>${os.arch}</Os-Arch>
-                                <Os-Version>${os.version}</Os-Version>
                                 <X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK>
                                 <X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
                             </manifestEntries>
@@ -975,12 +967,8 @@
                                 <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
                             </manifest>
                             <manifestEntries>
-                                <Build-Time>${maven.build.timestamp}</Build-Time>
                                 <Copyright>${copyright}</Copyright>
                                 <Git-Revision>${git.commit.id}</Git-Revision>
-                                <Os-Name>${os.name}</Os-Name>
-                                <Os-Arch>${os.arch}</Os-Arch>
-                                <Os-Version>${os.version}</Os-Version>
                                 <X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK>
                                 <X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
                             </manifestEntries>
@@ -995,17 +983,12 @@
                     <configuration>
                         <archive>
                             <manifest>
-                                <addBuildEnvironmentEntries>true</addBuildEnvironmentEntries>
                                 <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                                 <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
                             </manifest>
                             <manifestEntries>
-                                <Build-Time>${maven.build.timestamp}</Build-Time>
                                 <Copyright>${copyright}</Copyright>
                                 <Git-Revision>${git.commit.id}</Git-Revision>
-                                <Os-Name>${os.name}</Os-Name>
-                                <Os-Arch>${os.arch}</Os-Arch>
-                                <Os-Version>${os.version}</Os-Version>
                                 <X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK>
                                 <X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
                             </manifestEntries>
@@ -1019,18 +1002,13 @@
                     <configuration>
                         <archive>
                             <manifestEntries>
-                                <Build-Time>${maven.build.timestamp}</Build-Time>
                                 <Copyright>${copyright}</Copyright>
                                 <Git-Revision>${git.commit.id}</Git-Revision>
-                                <Os-Name>${os.name}</Os-Name>
-                                <Os-Arch>${os.arch}</Os-Arch>
-                                <Os-Version>${os.version}</Os-Version>
                                 <X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK>
                                 <X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
                             </manifestEntries>
                             <manifest>
                                 <addClasspath>true</addClasspath>
-                                <addBuildEnvironmentEntries>true</addBuildEnvironmentEntries>
                                 <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                                 <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
                                 <classpathPrefix>lib/</classpathPrefix>
