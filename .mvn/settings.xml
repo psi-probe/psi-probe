@@ -11,6 +11,13 @@
       <id>gh-pages</id>
     </server>
     <server>
+      <id>gh-pages-scm</id>
+      <configuration>
+        <scmVersionType>branch</scmVersionType>
+        <scmVersion>gh-pages</scmVersion>
+      </configuration>
+    </server>
+    <server>
       <id>github</id>
       <username>${env.CI_DEPLOY_USERNAME}</username>
       <password>${env.GITHUB_TOKEN}</password>
