@@ -62,7 +62,7 @@ class Tomcat10ContainerAdapterTest {
   @Test
   void canBoundToTomcat9() {
     final Tomcat10ContainerAdapter adapter = new Tomcat10ContainerAdapter();
-    assertTrue(adapter.canBoundTo("Apache Tomcat/9.0"));
+    assertTrue(adapter.canBoundTo("Apache Tomcat/10.0"));
   }
 
   /**
@@ -71,7 +71,7 @@ class Tomcat10ContainerAdapterTest {
   @Test
   void canBoundToTomEE9() {
     final Tomcat10ContainerAdapter adapter = new Tomcat10ContainerAdapter();
-    assertTrue(adapter.canBoundTo("Apache Tomcat (TomEE)/9.0"));
+    assertTrue(adapter.canBoundTo("Apache Tomcat (TomEE)/10.0"));
   }
 
   /**
@@ -80,7 +80,7 @@ class Tomcat10ContainerAdapterTest {
   @Test
   void canBoundToPivotal9() {
     final Tomcat10ContainerAdapter adapter = new Tomcat10ContainerAdapter();
-    assertTrue(adapter.canBoundTo("Pivotal tc..../9.0"));
+    assertTrue(adapter.canBoundTo("Pivotal tc..../10.0"));
   }
 
   /**
