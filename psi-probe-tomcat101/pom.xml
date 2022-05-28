@@ -17,15 +17,15 @@
     <parent>
         <groupId>com.github.psi-probe</groupId>
         <artifactId>psi-probe</artifactId>
-        <version>3.5.9-SNAPSHOT</version>
+        <version>3.5.6-SNAPSHOT</version>
     </parent>
 
-    <artifactId>psi-probe-tomcat85</artifactId>
+    <artifactId>psi-probe-tomcat101</artifactId>
     <packaging>jar</packaging>
 
-    <name>psi-probe-tomcat85</name>
+    <name>psi-probe-tomcat101</name>
     <description>
-        PSI Probe Tomcat 8.5.x Adapter - Implementation of features specific to Apache Tomcat 8.5.x
+        PSI Probe Tomcat 10.1.x Adapter - Implementation of features specific to Apache Tomcat 10.1.x
     </description>
 
     <scm>
@@ -36,14 +36,13 @@
     </scm>
 
     <properties>
-        <tomcat.version>8.5.79</tomcat.version>
+        <tomcat.version>10.1.0-M15</tomcat.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>com.github.hazendaz.jmockit</groupId>
             <artifactId>jmockit</artifactId>
-            <version>${jmockit.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
