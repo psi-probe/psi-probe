@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Licensed under the GPL License. You may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+      https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+
+    THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+    WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+    PURPOSE.
+
+-->
+<project xmlns="https://maven.apache.org/POM/4.0.0" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.github.psi-probe</groupId>
+        <artifactId>psi-probe</artifactId>
+        <version>3.5.6-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>psi-probe-tomcat101</artifactId>
+    <packaging>jar</packaging>
+
+    <name>psi-probe-tomcat101</name>
+    <description>
+        PSI Probe Tomcat 10.1.x Adapter - Implementation of features specific to Apache Tomcat 10.1.x
+    </description>
+
+    <scm>
+        <connection>scm:git:ssh://git@github.com/psi-probe/psi-probe.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/psi-probe/psi-probe.git</developerConnection>
+        <url>https://github.com/psi-probe/psi-probe/</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <properties>
+        <tomcat.version>10.1.0-M15</tomcat.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.github.hazendaz.jmockit</groupId>
+            <artifactId>jmockit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>psi-probe-core</artifactId>
+            <version>${project.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-catalina</artifactId>
+            <version>${tomcat.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-jasper</artifactId>
+            <version>${tomcat.version}</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.eclipse.jdt</groupId>
+                    <artifactId>ecj</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-dbcp</artifactId>
+            <version>${tomcat.version}</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+</project>
