@@ -157,7 +157,7 @@
 
         <!-- Dependency Versions -->
         <activation.version>1.2.2</activation.version>
-        <assertj.version>3.22.0</assertj.version>
+        <assertj.version>3.23.1</assertj.version>
         <beanutils.version>1.9.4</beanutils.version>
         <bind-api.version>2.3.3</bind-api.version>
         <bonecp.version>0.8.0.RELEASE</bonecp.version>
