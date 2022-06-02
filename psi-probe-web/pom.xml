@@ -17,7 +17,7 @@
     <parent>
         <groupId>com.github.psi-probe</groupId>
         <artifactId>psi-probe</artifactId>
-        <version>3.5.9-SNAPSHOT</version>
+        <version>3.5.9</version>
     </parent>
 
     <artifactId>psi-probe-web</artifactId>
@@ -33,7 +33,7 @@
         <connection>scm:git:ssh://git@github.com/psi-probe/psi-probe.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/psi-probe/psi-probe.git</developerConnection>
         <url>https://github.com/psi-probe/psi-probe/</url>
-        <tag>HEAD</tag>
+        <tag>psi-probe-3.5.9</tag>
     </scm>
 
     <properties>
