@@ -66,13 +66,6 @@ You can rename 'psi-probe-web.war' to the traditional 'probe.war' or other name 
 
 Generally supported versions for third party tomcat providers align with their support but earlier versions may still work.  Currently all tomcat in the series is supported but will soon begin to drop support for earlier versions due to vulnerability related issues.  It is advisable in every case to use only supported tomcat releases per specific vendor.
 
-* Tomcat 7.0 Series (end of life)
-
-    - Tomcat 7.0.0 to 7.0.109 (end of life)
-    - TomEE 1.7.5 (Based on Tomcat 7.0.81) (end of life)
-    - NonStop(tm) Servlets For JavaServer Pages(tm) v7.0 (Based on Tomcat 7.0.10) (end of life)
-    - Pivotal tc 3.2.4 through 3.2.33 release (Based on Tomcat 7.0.72 through 7.0.109) (end of life)
-
 * Tomcat 8.5 Series
 
     - Tomcat 8.5.0 to 8.5.78
