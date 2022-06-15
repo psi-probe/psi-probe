@@ -255,7 +255,7 @@
         <build-tools.version>1.2.7</build-tools.version>
         <bugpattern.version>1.5.0</bugpattern.version>
         <checkstyle.version>10.3</checkstyle.version>
-        <ecj.version>3.29.0</ecj.version>
+        <ecj.version>3.30.0</ecj.version>
         <extra-enforcer-rules.version>1.5.1</extra-enforcer-rules.version>
         <sb-contrib.version>7.4.7</sb-contrib.version>
         <findsecbugs.version>1.12.0</findsecbugs.version>
