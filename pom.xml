@@ -236,7 +236,7 @@
         <jdeps.plugin>3.1.2</jdeps.plugin>
         <jspc.plugin>10.0.11</jspc.plugin>
         <jxr.plugin>3.2.0</jxr.plugin>
-        <l10n.plugin>1.8</l10n.plugin>
+        <l10n.plugin>1.0.0</l10n.plugin>
         <license.plugin>4.2.rc3</license.plugin>
         <lifecycle-mapping.plugin>1.0.0</lifecycle-mapping.plugin>
         <modernizer.plugin>2.4.0</modernizer.plugin>
@@ -926,7 +926,7 @@
                     </configuration>
                 </plugin>
                 <plugin>
-                    <groupId>com.googlecode.l10n-maven-plugin</groupId>
+                    <groupId>org.codehaus.mojo</groupId>
                     <artifactId>l10n-maven-plugin</artifactId>
                     <version>${l10n.plugin}</version>
                 </plugin>
