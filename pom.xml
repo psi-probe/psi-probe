@@ -243,7 +243,7 @@
         <pmd.plugin>3.17.0</pmd.plugin>
         <project-info.plugin>3.4.0</project-info.plugin>
         <release.plugin>3.0.0-M6</release.plugin>
-        <resources.plugin>3.2.0</resources.plugin>
+        <resources.plugin>3.3.0</resources.plugin>
         <scm-publish.plugin>3.1.0</scm-publish.plugin>
         <site.plugin>3.12.0</site.plugin>
         <sonar.plugin>3.9.1.2184</sonar.plugin>
