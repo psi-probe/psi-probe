@@ -158,7 +158,7 @@
         <argLine>-javaagent:${settings.localRepository}/com/github/hazendaz/jmockit/jmockit/${jmockit.version}/jmockit-${jmockit.version}.jar</argLine>
 
         <!-- Dependency Versions -->
-        <activation.version>1.2.2</activation.version>
+        <activation.version>2.1.0</activation.version>
         <assertj.version>3.23.1</assertj.version>
         <beanutils.version>1.9.4</beanutils.version>
         <bind-api.version>2.3.3</bind-api.version>
