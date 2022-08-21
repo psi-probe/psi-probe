@@ -235,7 +235,7 @@
         <javadoc.plugin>3.4.1</javadoc.plugin>
         <jdeps.plugin>3.1.2</jdeps.plugin>
         <jspc.plugin>10.0.11</jspc.plugin>
-        <jxr.plugin>3.2.0</jxr.plugin>
+        <jxr.plugin>3.3.0</jxr.plugin>
         <l10n.plugin>1.0.0</l10n.plugin>
         <license.plugin>4.2.rc3</license.plugin>
         <lifecycle-mapping.plugin>1.0.0</lifecycle-mapping.plugin>
