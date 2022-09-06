@@ -251,7 +251,7 @@
         <source.plugin>3.2.1</source.plugin>
         <spotbugs.plugin>4.7.1.1</spotbugs.plugin>
         <surefire.plugin>3.0.0-M7</surefire.plugin>
-        <versions.plugin>2.11.0</versions.plugin>
+        <versions.plugin>2.12.0</versions.plugin>
         <war.plugin>3.3.2</war.plugin>
 
         <!-- Plugin Dependency Versions -->
