@@ -200,7 +200,7 @@
         <quartz.version>2.3.2</quartz.version>
         <servlet-api.version>4.0.4</servlet-api.version>
         <sitemesh.version>2.4.2</sitemesh.version>
-        <slf4j.version>2.0.2</slf4j.version>
+        <slf4j.version>2.0.3</slf4j.version>
         <spotbugs.version>4.7.2</spotbugs.version>
         <spring.version>5.3.23</spring.version>
         <spring-security.version>5.7.3</spring-security.version>
