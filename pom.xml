@@ -249,7 +249,7 @@
         <sonar.plugin>3.9.1.2184</sonar.plugin>
         <sortpom.plugin>3.2.0</sortpom.plugin>
         <source.plugin>3.2.1</source.plugin>
-        <spotbugs.plugin>4.7.2.2</spotbugs.plugin>
+        <spotbugs.plugin>4.7.3.0</spotbugs.plugin>
         <surefire.plugin>3.0.0-M7</surefire.plugin>
         <versions.plugin>2.13.0</versions.plugin>
         <war.plugin>3.3.2</war.plugin>
