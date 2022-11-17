@@ -196,7 +196,7 @@
         <openejb.version>4.7.5</openejb.version>
         <persistence.version>2.2.3</persistence.version>
         <pool.version>1.6</pool.version>
-        <probe-ojdbc.version>3.1.6</probe-ojdbc.version>
+        <probe-ojdbc.version>3.1.7</probe-ojdbc.version>
         <quartz.version>2.3.2</quartz.version>
         <servlet-api.version>4.0.4</servlet-api.version>
         <sitemesh.version>2.4.2</sitemesh.version>
