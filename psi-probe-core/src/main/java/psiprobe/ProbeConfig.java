@@ -215,6 +215,8 @@ public class ProbeConfig implements WebMvcConfigurer {
     List<String> list = new ArrayList<>();
     list.add("psiprobe.Tomcat90ContainerAdapter");
     list.add("psiprobe.Tomcat85ContainerAdapter");
+    list.add("psiprobe.Tomcat10ContainerAdapter");
+    list.add("psiprobe.Tomcat101ContainerAdapter");
     return list;
   }
 
