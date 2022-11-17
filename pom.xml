@@ -229,7 +229,7 @@
         <git-commit.plugin>5.0.0</git-commit.plugin>
         <gpg.plugin>3.0.1</gpg.plugin>
         <impsort.plugin>1.7.0</impsort.plugin>
-        <install.plugin>3.0.1</install.plugin>
+        <install.plugin>3.1.0</install.plugin>
         <jacoco.plugin>0.8.8</jacoco.plugin>
         <jar.plugin>3.3.0</jar.plugin>
         <javadoc.plugin>3.4.1</javadoc.plugin>
