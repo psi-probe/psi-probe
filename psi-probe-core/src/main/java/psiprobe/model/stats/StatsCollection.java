@@ -301,7 +301,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
           }
         }
         logger.debug("stats data read in {}ms", System.currentTimeMillis() - start);
-      } catch (Exception e) {
+      } catch (Throwable e) {
         logger.error("Could not read stats data from '{}'", file.getAbsolutePath(), e);
       }
     }
