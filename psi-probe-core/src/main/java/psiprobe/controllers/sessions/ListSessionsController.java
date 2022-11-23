@@ -210,9 +210,7 @@ public class ListSessionsController extends AbstractContextHandlerController {
 
       if (sessionMatches && searchInfo.isUseAttrName()) {
         boolean attrMatches = false;
-        List<Pattern> namePatterns = new ArrayList<>();
-        namePatterns.addAll(searchInfo.getAttrNamePatterns());
-
+        List<Pattern> namePatterns = new ArrayList<>(searchInfo.getAttrNamePatterns());
         for (Attribute attr : appSession.getAttributes()) {
           String attrName = attr.getName();
 

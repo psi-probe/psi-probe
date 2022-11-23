@@ -202,8 +202,7 @@ public class ContainerWrapperBean {
    * @throws Exception the exception
    */
   public List<ApplicationResource> getDataSources() throws Exception {
-    List<ApplicationResource> resources = new ArrayList<>();
-    resources.addAll(getPrivateDataSources());
+    List<ApplicationResource> resources = new ArrayList<>(getPrivateDataSources());
     resources.addAll(getGlobalDataSources());
     return resources;
   }
