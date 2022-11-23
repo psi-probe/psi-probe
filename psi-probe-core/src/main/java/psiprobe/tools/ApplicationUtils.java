@@ -197,7 +197,7 @@ public final class ApplicationUtils {
 
     logger.debug("Calculating datasource usage score");
 
-    int[] scores = new int[] {0, 0};
+    int[] scores = {0, 0};
     List<ApplicationResource> appResources;
     try {
       appResources = resolver.getApplicationResources(context, containerWrapper);
