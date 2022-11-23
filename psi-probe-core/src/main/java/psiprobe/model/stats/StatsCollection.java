@@ -280,7 +280,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
       long start = System.currentTimeMillis();
       try {
         try (InputStream fis = Files.newInputStream(file.toPath())) {
-          stats = (Map<String, List<XYDataItem>>) (xstream.fromXML(fis));
+          stats = (Map<String, List<XYDataItem>>) xstream.fromXML(fis);
 
           if (stats != null) {
             // adjust stats data so that charts look realistic.

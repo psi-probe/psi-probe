@@ -106,7 +106,6 @@ public class TomcatSlf4jLogbackAppenderAccessor extends AbstractLogDestination {
         if (base.getCharset() != null) {
           return base.getCharset().name();
         }
-        return null;
       }
     }
     return null;

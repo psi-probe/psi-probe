@@ -142,7 +142,7 @@ public class VisualScoreTag extends BodyTagSupport {
 
         format = BLUE_LEFT_BORDER;
       }
-      buf.append(MessageFormat.format(body, new Object[] {format}));
+      buf.append(MessageFormat.format(body, format));
     }
 
     // Full red blocks
@@ -189,7 +189,7 @@ public class VisualScoreTag extends BodyTagSupport {
           + blueWhole == fullBlocks) {
         format = BLUE_RIGHT_BORDER;
       }
-      buf.append(MessageFormat.format(body, new Object[] {format}));
+      buf.append(MessageFormat.format(body, format));
     }
 
     return buf.toString();
