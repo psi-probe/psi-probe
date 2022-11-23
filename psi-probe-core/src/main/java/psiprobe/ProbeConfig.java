@@ -146,7 +146,6 @@ public class ProbeConfig implements WebMvcConfigurer {
   public List<String> getDefaultRes() {
     logger.debug("Instantiated datasourceMappers");
     List<String> list = new ArrayList<>();
-    list.add("psiprobe.beans.accessors.BoneCpDatasourceAccessor");
     list.add("psiprobe.beans.accessors.C3P0DatasourceAccessor");
     list.add("psiprobe.beans.accessors.DbcpDatasourceAccessor");
     list.add("psiprobe.beans.accessors.Dbcp2DatasourceAccessor");
