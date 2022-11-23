@@ -106,7 +106,6 @@ public class LogbackAppenderAccessor extends AbstractLogDestination {
         if (base.getCharset() != null) {
           return base.getCharset().name();
         }
-        return null;
       }
     }
     return null;
