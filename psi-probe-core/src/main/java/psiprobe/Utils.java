@@ -85,7 +85,7 @@ public final class Utils {
   /**
    * Reads strings from the intput stream using the given charset. This method closes the input
    * stream after it has been consumed.
-   * 
+   *
    * <p>
    * This method uses the system's default charset if the given one is unsupported.
    * </p>
@@ -100,7 +100,7 @@ public final class Utils {
     //
     // use system's default encoding if the passed encoding is unsupported
     //
-    Charset charset = Charset.forName(System.getProperty("file.encoding"));
+    Charset charset = Charset.forName(Charset.defaultCharset().displayName());
     if (Charset.isSupported(charsetName)) {
       charset = Charset.forName(charsetName);
     }

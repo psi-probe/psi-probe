@@ -21,7 +21,7 @@ import psiprobe.tools.logging.DefaultAccessor;
 
 /**
  * Wraps a TomcatSlf4jLogback logger factory from a given web application class loader.
- * 
+ *
  * <p>
  * All TomcatSlf4jLogback classes are loaded via the given class loader and not via psi-probe's own
  * class loader. For this reasons, all methods on TomcatSlf4jLogback objects are invoked via

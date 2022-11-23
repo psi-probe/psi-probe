@@ -18,7 +18,7 @@ import java.util.Comparator;
 /**
  * <code>UniqueList</code> is a successor of <code>java.util.Vector</code> to provide a collection
  * that contains no duplicate elements, more formally such that e1.compareTo(e2) == 0.
- * 
+ *
  * <p>
  * The collection is kept ordered whenever elements added or removed and besides uniqueness it is to
  * provide fast element search based again on e1.compareTo(e2) values.

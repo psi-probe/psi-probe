@@ -72,7 +72,7 @@ public class TomcatSlf4jLogbackAppenderAccessor extends AbstractLogDestination {
 
   /**
    * Returns the name of this appender.
-   * 
+   *
    * @return the name of this appender.
    */
   @Override
@@ -87,7 +87,7 @@ public class TomcatSlf4jLogbackAppenderAccessor extends AbstractLogDestination {
    * <p>
    * If no such property exists, we assume the appender to write to stdout or stderr so the output
    * will be contained in catalina.out.
-   
+   *
    * @return the file this appender writes to
    */
   @Override

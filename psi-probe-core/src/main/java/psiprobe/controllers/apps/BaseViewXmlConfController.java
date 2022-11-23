@@ -12,6 +12,7 @@ package psiprobe.controllers.apps;
 
 import java.io.File;
 import java.io.InputStream;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 
 import javax.servlet.ServletContext;
@@ -121,7 +122,7 @@ public class BaseViewXmlConfController extends AbstractContextHandlerController 
       mv.addObject("fileName", xmlFile.getName());
       if (xmlFile.exists()) {
         try (InputStream fis = Files.newInputStream(xmlFile.toPath())) {
-          String encoding = System.getProperty("file.encoding");
+          String encoding = Charset.defaultCharset().displayName();
           mv.addObject("content", Utils.highlightStream(TARGET_WEB_XML, fis, "xml",
               encoding == null ? "ISO-8859-1" : encoding));
         }

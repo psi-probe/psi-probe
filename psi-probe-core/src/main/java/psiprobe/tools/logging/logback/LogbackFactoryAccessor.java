@@ -21,7 +21,7 @@ import psiprobe.tools.logging.DefaultAccessor;
 
 /**
  * Wraps a Logback logger factory from a given web application class loader.
- * 
+ *
  * <p>
  * All Logback classes are loaded via the given class loader and not via psi-probe's own class
  * loader. For this reasons, all methods on Logback objects are invoked via reflection.
