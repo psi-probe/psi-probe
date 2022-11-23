@@ -114,7 +114,7 @@
 
     <properties>
         <!-- Java Settings -->
-        <java.version>1.8</java.version>
+        <java.version>8</java.version>
         <java.release.version>8</java.release.version>
         <java.test.version>${java.version}</java.test.version>
         <java.test.release.version>${java.release.version}</java.test.release.version>
