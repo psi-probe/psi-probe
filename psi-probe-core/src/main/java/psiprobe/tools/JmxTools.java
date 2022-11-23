@@ -94,7 +94,7 @@ public final class JmxTools {
 
     try {
       Object obj = mbeanServer.getAttribute(objName, attrName);
-      return obj == null ? defaultValue : ((Long) obj);
+      return obj == null ? defaultValue : (Long) obj;
     } catch (Exception e) {
       logger.trace("", e);
       return defaultValue;
