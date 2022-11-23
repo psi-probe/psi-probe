@@ -150,7 +150,8 @@ public class Tokenizer {
     if (pushCount > 0) {
       pushCount--;
       return token;
-    } else if (upcomingToken.type != Tokenizer.TT_ERROR) {
+    }
+    if (upcomingToken.type != Tokenizer.TT_ERROR) {
       token.assign(upcomingToken);
       upcomingToken.type = Tokenizer.TT_ERROR;
       return token;

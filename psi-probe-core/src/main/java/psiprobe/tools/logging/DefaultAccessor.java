@@ -92,10 +92,9 @@ public class DefaultAccessor {
     try {
       if (forced) {
         return FieldUtils.readField(obj, name, forced);
-      } else {
-        return PropertyUtils.isReadable(obj, name) ? PropertyUtils.getProperty(obj, name)
-            : defaultValue;
       }
+      return PropertyUtils.isReadable(obj, name) ? PropertyUtils.getProperty(obj, name)
+          : defaultValue;
     } catch (IllegalArgumentException | IllegalAccessException | InvocationTargetException
         | NoSuchMethodException e) {
       logger.error("", e);

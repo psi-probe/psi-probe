@@ -119,11 +119,11 @@ public final class TimeExpression {
   private static String cronSubexpression(long period, long phase) {
     if (period == 0) {
       return Long.toString(phase);
-    } else if (period == 1 && phase == 0) {
-      return "*";
-    } else {
-      return phase + "/" + period;
     }
+    if (period == 1 && phase == 0) {
+      return "*";
+    }
+    return phase + "/" + period;
   }
 
   /**

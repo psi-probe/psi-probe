@@ -89,11 +89,11 @@ public class DurationTag extends TagSupport {
   private static String long3Str(long value) {
     if (value < 10) {
       return "00" + value;
-    } else if (value < 100) {
-      return "0" + value;
-    } else {
-      return Long.toString(value);
     }
+    if (value < 100) {
+      return "0" + value;
+    }
+    return Long.toString(value);
   }
 
 }

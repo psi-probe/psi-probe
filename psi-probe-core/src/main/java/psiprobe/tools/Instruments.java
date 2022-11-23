@@ -217,25 +217,32 @@ public class Instruments {
   private static <T> long sizeOfPrimitive(Class<T> type) {
     if (type == Boolean.TYPE) {
       return SIZE_BOOLEAN;
-    } else if (type == Byte.TYPE) {
-      return SIZE_BYTE;
-    } else if (type == Character.TYPE) {
-      return SIZE_CHAR;
-    } else if (type == Short.TYPE) {
-      return SIZE_SHORT;
-    } else if (type == Integer.TYPE) {
-      return SIZE_INT;
-    } else if (type == Long.TYPE) {
-      return SIZE_LONG;
-    } else if (type == Float.TYPE) {
-      return SIZE_FLOAT;
-    } else if (type == Double.TYPE) {
-      return SIZE_DOUBLE;
-    } else if (type == Void.TYPE) {
-      return SIZE_VOID;
-    } else {
-      return SIZE_REFERENCE;
     }
+    if (type == Byte.TYPE) {
+      return SIZE_BYTE;
+    }
+    if (type == Character.TYPE) {
+      return SIZE_CHAR;
+    }
+    if (type == Short.TYPE) {
+      return SIZE_SHORT;
+    }
+    if (type == Integer.TYPE) {
+      return SIZE_INT;
+    }
+    if (type == Long.TYPE) {
+      return SIZE_LONG;
+    }
+    if (type == Float.TYPE) {
+      return SIZE_FLOAT;
+    }
+    if (type == Double.TYPE) {
+      return SIZE_DOUBLE;
+    }
+    if (type == Void.TYPE) {
+      return SIZE_VOID;
+    }
+    return SIZE_REFERENCE;
   }
 
   /**
