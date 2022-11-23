@@ -14,7 +14,7 @@ package psiprobe.tools;
  * Wraps an object that may have overridden the {@link Object#equals(Object) equals()} and
  * {@link Object#hashCode() hashCode()} methods so it reverts to the default behavior for
  * {@link Object} instead.
- * 
+ *
  * <p>
  * This allows us to (1) use {@link java.util.Collection#contains(Object)} to filter out unique
  * instances when calculating object sizes and (2) call {@link Object#hashCode() hashCode()} without

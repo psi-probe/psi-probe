@@ -85,7 +85,7 @@ public final class Utils {
   /**
    * Reads strings from the intput stream using the given charset. This method closes the input
    * stream after it has been consumed.
-   * 
+   *
    * <p>
    * This method uses the system's default charset if the given one is unsupported.
    * </p>

@@ -14,7 +14,7 @@ package psiprobe.tools;
  * Simple update-commit lock. This implementation assumes that unlimited number of updates can
  * happen concurrently. However if commit is in progress any update must wait for it to end.
  * Likewise commits must wait for any updates to finish before acquiring the lock.
- * 
+ *
  * <p>
  * Commits themselves are not synchronized. It is allowed for two commits to run concurrently.
  * </p>

@@ -52,20 +52,20 @@ public final class SizeExpression {
 
   /**
    * Parses the given expression into a numerical value.
-   * 
+   *
    * <p>
    * An expression has three parts:
    * </p>
    * <table>
    * <caption>Size Summary Table</caption>
-   * 
+   *
    * <thead>
    * <tr>
    * <th>Name</th>
    * <th>Description</th>
    * </tr>
    * </thead>
-   * 
+   *
    * <tbody>
    * <tr>
    * <td>Base Number</td>
@@ -83,16 +83,16 @@ public final class SizeExpression {
    * Otherwise, it uses base-10 (1000).</td>
    * </tr>
    * </tbody>
-   * 
+   *
    * <tfoot>
    * <tr>
    * <td colspan="2"><em>Note: Whitespace may or may not exist between the Base Number and
    * Prefix.</em></td>
    * </tr>
    * </tfoot>
-   * 
+   *
    * </table>
-   * 
+   *
    * <p>
    * Examples:
    * </p>
