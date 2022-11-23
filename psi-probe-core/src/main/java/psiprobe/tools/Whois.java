@@ -65,7 +65,7 @@ public final class Whois {
   public static Response lookup(String server, int port, String query, long timeout)
       throws IOException {
 
-    return lookup(server, port, query, timeout, System.getProperty("line.separator"));
+    return lookup(server, port, query, timeout, System.lineSeparator());
   }
 
   /**
