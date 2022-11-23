@@ -100,7 +100,7 @@ public final class Utils {
     //
     // use system's default encoding if the passed encoding is unsupported
     //
-    Charset charset = Charset.forName(System.getProperty("file.encoding"));
+    Charset charset = Charset.forName(Charset.defaultCharset().displayName());
     if (Charset.isSupported(charsetName)) {
       charset = Charset.forName(charsetName);
     }
