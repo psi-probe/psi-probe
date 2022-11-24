@@ -1084,7 +1084,7 @@
                                 <maxJdkVersion>${java.version}</maxJdkVersion>
                             </enforceBytecodeVersion>
                             <requireJavaVersion>
-                                <version>11,17,18,19</version>
+                                <version>11,17,18,19,20</version>
                             </requireJavaVersion>
                             <requireMavenVersion>
                                 <version>[${maven.min-version},)</version>
