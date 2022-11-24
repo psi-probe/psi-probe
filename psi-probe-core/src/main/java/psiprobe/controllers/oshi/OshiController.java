@@ -230,10 +230,10 @@ public class OshiController extends AbstractTomcatContainerController {
     oshi.add("Finished Operating System and Hardware Info Dump");
 
     StringBuilder output = new StringBuilder();
-    for (int i = 0; i < oshi.size(); i++) {
-      output.append(oshi.get(i));
+    for (String element : oshi) {
+      output.append(element);
       // Psi Probe fix as output check 'endsWith' was wrong
-      if (oshi.get(i) != null && !oshi.get(i).equals("\n")) {
+      if (!"\n".equals(element) {
         output.append('\n');
       }
     }
