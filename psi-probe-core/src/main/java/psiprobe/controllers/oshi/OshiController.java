@@ -233,7 +233,7 @@ public class OshiController extends AbstractTomcatContainerController {
     for (String element : oshi) {
       output.append(element);
       // Psi Probe fix as output check 'endsWith' was wrong
-      if (!"\n".equals(element) {
+      if (!"\n".equals(element)) {
         output.append('\n');
       }
     }
