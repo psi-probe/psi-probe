@@ -38,7 +38,7 @@ class WhoisTests {
     int c = 0;
     int d = 1;
     String dotted = a + "." + b + "." + c + "." + d;
-    byte[] bytes = new byte[] {(byte) a, (byte) b, (byte) c, (byte) d};
+    byte[] bytes = {(byte) a, (byte) b, (byte) c, (byte) d};
 
     Response response = Whois.lookup("whois.arin.net", 43, "n " + dotted, 5);
     Assertions.assertEquals("SPECIAL-IPV4-LOOPBACK-IANA-RESERVED",
@@ -61,7 +61,7 @@ class WhoisTests {
     int c = 45;
     int d = 100;
     String dotted = a + "." + b + "." + c + "." + d;
-    byte[] bytes = new byte[] {(byte) a, (byte) b, (byte) c, (byte) d};
+    byte[] bytes = {(byte) a, (byte) b, (byte) c, (byte) d};
 
     Response response = Whois.lookup("whois.arin.net", 43, "n " + dotted, 5);
     Assertions.assertEquals("GOOGLE", response.getData().get("NetName"));
