@@ -10,10 +10,10 @@
  */
 package psiprobe;
 
+import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.security.NoTypePermission;
 import com.thoughtworks.xstream.security.NullPermission;
 import com.thoughtworks.xstream.security.PrimitiveTypePermission;
-import com.thoughtworks.xstream.XStream;
 
 import java.util.ArrayList;
 import java.util.Collection;
