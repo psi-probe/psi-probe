@@ -58,7 +58,7 @@ public class Instruments {
   public static final long SIZE_REFERENCE;
 
   /** The Constant ACCESSOR. */
-  private static final Accessor ACCESSOR = AccessorFactory.getInstance();
+  private static final Accessor ACCESSOR = new SimpleAccessor();
 
   /** The Constant IGNORE_NIO. */
   private static final boolean IGNORE_NIO;
