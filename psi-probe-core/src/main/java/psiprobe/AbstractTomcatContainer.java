@@ -298,9 +298,8 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     }
     if (contextName.startsWith("/")) {
       return contextName.substring(1);
-    } else {
-      return contextName;
     }
+    return contextName;
   }
 
   @Override
