@@ -367,7 +367,7 @@ public class ContainerListenerBean implements NotificationListener {
                   // Show flag for non-localhost using geo lite
                   try (DatabaseReader reader = new DatabaseReader.Builder(new File(
                       getClass().getClassLoader().getResource("GeoLite2-Country.mmdb").toURI()))
-                          .withCache(new CHMCache()).build()) {
+                      .withCache(new CHMCache()).build()) {
                     CountryResponse response =
                         reader.country(InetAddress.getByName(rp.getRemoteAddr()));
                     Country country = response.getCountry();

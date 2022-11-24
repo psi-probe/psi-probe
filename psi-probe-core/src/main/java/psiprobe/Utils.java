@@ -272,9 +272,9 @@ public final class Utils {
                   encoding = directiveTokenizer.nextToken().getInnerText();
                   break;
                 }
-              } else if (("contentType".equals(directiveToken.getText())
+              } else if ("contentType".equals(directiveToken.getText())
                   && directiveTokenizer.hasMore()
-                  && "=".equals(directiveTokenizer.nextToken().getText()))
+                  && "=".equals(directiveTokenizer.nextToken().getText())
                   && directiveTokenizer.hasMore()) {
                 contentType = directiveTokenizer.nextToken().getInnerText();
               }

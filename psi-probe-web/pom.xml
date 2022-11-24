@@ -37,6 +37,9 @@
     </scm>
 
     <properties>
+        <!-- jspc still requires 1.8 -->
+        <java.version>1.8</java.version>
+
         <probe.log.path>${catalina.base}/logs</probe.log.path>
     </properties>
 
