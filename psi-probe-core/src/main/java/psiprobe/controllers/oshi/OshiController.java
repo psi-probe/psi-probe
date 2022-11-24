@@ -277,8 +277,10 @@ public class OshiController extends AbstractTomcatContainerController {
     oshi.add(processor.toString());
     oshi.add(" Cores:");
     for (PhysicalProcessor p : processor.getPhysicalProcessors()) {
-      oshi.add("  " + (processor.getPhysicalPackageCount() > 1 ? p.getPhysicalPackageNumber() + "," : "")
-          + p.getPhysicalProcessorNumber() + ": efficiency=" + p.getEfficiency() + ", id=" + p.getIdString());
+      oshi.add(
+          "  " + (processor.getPhysicalPackageCount() > 1 ? p.getPhysicalPackageNumber() + "," : "")
+              + p.getPhysicalProcessorNumber() + ": efficiency=" + p.getEfficiency() + ", id="
+              + p.getIdString());
     }
   }
 
@@ -379,7 +381,8 @@ public class OshiController extends AbstractTomcatContainerController {
         + Long.toBinaryString(myProc.getAffinityMask()));
     oshi.add("Processes: " + os.getProcessCount() + ", Threads: " + os.getThreadCount());
     // Sort by highest CPU
-    List<OSProcess> procs = os.getProcesses(ProcessFiltering.ALL_PROCESSES, ProcessSorting.CPU_DESC, 5);
+    List<OSProcess> procs =
+        os.getProcesses(ProcessFiltering.ALL_PROCESSES, ProcessSorting.CPU_DESC, 5);
     oshi.add("   PID  %CPU %MEM       VSZ       RSS Name");
     for (int i = 0; i < procs.size() && i < 5; i++) {
       OSProcess p = procs.get(i);
