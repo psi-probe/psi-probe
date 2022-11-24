@@ -143,13 +143,17 @@ public class OshiController extends AbstractTomcatContainerController {
    * Process initialization using Oshi System Info Test.
    * <p>
    * Code copied and adjusted for Psi Probem from Oshi SystemInfoTest.main at revision
+   * <pre>
    *    https://github.com/oshi/oshi/blob/cf45b1f528f99ca353655dea5f154940c76c0bdb/oshi-core/src/test/java/oshi/SystemInfoTest.java
+   * </pre>
    * <p>
+   * <pre>
    * Psi Probe differences
    * - Noted directly in area of change as possible
    * - Logging switched from 'info' to 'debug'
    * - Javadocs throughout
    * - Formatting differences (2 vs 4 spaces)
+   * </pre>
    */
   private void initialize() {
     logger.debug("Initializing System...");
@@ -226,10 +230,10 @@ public class OshiController extends AbstractTomcatContainerController {
     oshi.add("Finished Operating System and Hardware Info Dump");
 
     StringBuilder output = new StringBuilder();
-    for (int i = 0; i < oshi.size(); i++) {
-      output.append(oshi.get(i));
+    for (String element : oshi) {
+      output.append(element);
       // Psi Probe fix as output check 'endsWith' was wrong
-      if (oshi.get(i) != null && !oshi.get(i).equals("\n")) {
+      if (!"\n".equals(element)) {
         output.append('\n');
       }
     }
@@ -273,8 +277,10 @@ public class OshiController extends AbstractTomcatContainerController {
     oshi.add(processor.toString());
     oshi.add(" Cores:");
     for (PhysicalProcessor p : processor.getPhysicalProcessors()) {
-      oshi.add("  " + (processor.getPhysicalPackageCount() > 1 ? p.getPhysicalPackageNumber() + "," : "")
-          + p.getPhysicalProcessorNumber() + ": efficiency=" + p.getEfficiency() + ", id=" + p.getIdString());
+      oshi.add(
+          "  " + (processor.getPhysicalPackageCount() > 1 ? p.getPhysicalPackageNumber() + "," : "")
+              + p.getPhysicalProcessorNumber() + ": efficiency=" + p.getEfficiency() + ", id="
+              + p.getIdString());
     }
   }
 
@@ -375,7 +381,8 @@ public class OshiController extends AbstractTomcatContainerController {
         + Long.toBinaryString(myProc.getAffinityMask()));
     oshi.add("Processes: " + os.getProcessCount() + ", Threads: " + os.getThreadCount());
     // Sort by highest CPU
-    List<OSProcess> procs = os.getProcesses(ProcessFiltering.ALL_PROCESSES, ProcessSorting.CPU_DESC, 5);
+    List<OSProcess> procs =
+        os.getProcesses(ProcessFiltering.ALL_PROCESSES, ProcessSorting.CPU_DESC, 5);
     oshi.add("   PID  %CPU %MEM       VSZ       RSS Name");
     for (int i = 0; i < procs.size() && i < 5; i++) {
       OSProcess p = procs.get(i);

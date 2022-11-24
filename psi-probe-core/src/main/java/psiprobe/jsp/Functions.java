@@ -29,7 +29,7 @@ public final class Functions {
    * @return the string
    */
   public static String safeCookieName(String cookieName) {
-    return cookieName.replaceAll("\"", "");
+    return cookieName.replace("\"", "");
   }
 
 }

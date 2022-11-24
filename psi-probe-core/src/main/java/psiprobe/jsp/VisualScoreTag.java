@@ -129,7 +129,7 @@ public class VisualScoreTag extends BodyTagSupport {
         redPart > 0 ? Math.min((int) Math.floor(value2 / unitSize), partialBlocks - redPart) : 0;
     int blueWhole = (int) Math.max(0, Math.ceil(value2 / blockWidth) - (redPart > 0 ? 1 : 0));
     int bluePart2 =
-        (int) Math.floor((value2 - (blueWhole * blockWidth) - (bluePart1 * unitSize)) / unitSize);
+        (int) Math.floor((value2 - blueWhole * blockWidth - bluePart1 * unitSize) / unitSize);
 
     StringBuilder buf = new StringBuilder();
 

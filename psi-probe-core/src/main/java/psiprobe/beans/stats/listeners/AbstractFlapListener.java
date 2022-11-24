@@ -175,7 +175,7 @@ public abstract class AbstractFlapListener extends AbstractThresholdListener {
     for (int i = list.size() - 1; i >= 0; i--) {
       boolean thisFlap = list.get(i);
       if (flapping != thisFlap) {
-        float weight = lowWeight + (weightRange * i / (flapInterval - 1));
+        float weight = lowWeight + weightRange * i / (flapInterval - 1);
         result += weight;
       }
     }

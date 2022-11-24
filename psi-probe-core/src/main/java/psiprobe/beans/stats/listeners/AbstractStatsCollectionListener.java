@@ -93,19 +93,18 @@ public abstract class AbstractStatsCollectionListener implements StatsCollection
    * @return the property key
    */
   private String getPropertyKey(String category, String name, String attribute) {
-    String result = getClass().getPackage().getName();
+    StringBuilder result = new StringBuilder().append(getClass().getPackage().getName());
     if (category != null) {
-      result += '.' + category;
+      result.append('.').append(category);
     }
     if (name != null) {
-      result += '.' + name;
+      result.append('.').append(name);
     }
-    if (attribute != null) {
-      result += '.' + attribute;
-    } else {
+    if (attribute == null) {
       throw new IllegalArgumentException("key cannot be null");
     }
-    return result;
+    result.append('.').append(attribute);
+    return result.toString();
   }
 
   /**
