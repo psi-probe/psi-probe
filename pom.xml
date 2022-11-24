@@ -861,6 +861,7 @@
                             <arg>-Xplugin:ErrorProne ${error-prone.failOnViolations}</arg>
                         </compilerArgs>
 
+                        <parameters>true</parameters>
                         <showDeprecation>true</showDeprecation>
                         <showWarnings>true</showWarnings>
 
