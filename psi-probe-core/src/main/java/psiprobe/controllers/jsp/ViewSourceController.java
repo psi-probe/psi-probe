@@ -65,11 +65,11 @@ public class ViewSourceController extends AbstractContextHandlerController {
 
       if (item != null) {
         // replace "\" with "/"
-        jspName = jspName.replaceAll("\\\\", "/");
+        jspName = jspName.replace('\\', '/');
 
         // remove cheeky "../" from the path to avoid exploits
         while (jspName.contains("../")) {
-          jspName = jspName.replaceAll("\\.\\./", "");
+          jspName = jspName.replace("../", "");
         }
 
         if (getContainerWrapper().getTomcatContainer().resourceExists(jspName, context)) {

@@ -52,7 +52,7 @@ public class MemoryPool {
    */
   public void setName(String name) {
     this.name = name;
-    this.id = name != null ? name.replaceAll(" ", "_").toLowerCase() : null;
+    this.id = name != null ? name.replace(' ', '_').toLowerCase() : null;
   }
 
   /**
