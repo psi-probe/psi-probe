@@ -24,7 +24,6 @@ public class PostParameterizableViewController extends ParameterizableViewContro
    * functionality.
    */
   public PostParameterizableViewController() {
-    super();
     setSupportedMethods(HttpMethod.GET.name(), HttpMethod.POST.name(), HttpMethod.HEAD.name());
   }
 
