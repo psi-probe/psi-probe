@@ -187,8 +187,7 @@ public class ResourceResolverBean implements ResourceResolver {
       containerWrapper.getTomcatContainer().bindToContext(context);
     }
     try {
-      javax.naming.Context ctx =
-          (context != null) ? new InitialContext() : getGlobalNamingContext();
+      javax.naming.Context ctx = context != null ? new InitialContext() : getGlobalNamingContext();
       String jndiName = resolveJndiName(resourceName, context == null);
       Object obj = ctx.lookup(jndiName);
       try {
@@ -220,8 +219,7 @@ public class ResourceResolverBean implements ResourceResolver {
       containerWrapper.getTomcatContainer().bindToContext(context);
     }
     try {
-      javax.naming.Context ctx =
-          (context != null) ? new InitialContext() : getGlobalNamingContext();
+      javax.naming.Context ctx = context != null ? new InitialContext() : getGlobalNamingContext();
       String jndiName = resolveJndiName(resourceName, context == null);
       Object obj = ctx.lookup(jndiName);
 
