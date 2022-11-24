@@ -76,12 +76,10 @@ public abstract class AbstractThresholdListener extends AbstractStatsCollectionL
       } else {
         crossedAboveThreshold(sce);
       }
+    } else if (isPreviousValueAboveThreshold(sce)) {
+      crossedBelowThreshold(sce);
     } else {
-      if (isPreviousValueAboveThreshold(sce)) {
-        crossedBelowThreshold(sce);
-      } else {
-        remainedBelowThreshold(sce);
-      }
+      remainedBelowThreshold(sce);
     }
     setPreviousValue(name, value);
   }

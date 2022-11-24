@@ -42,40 +42,39 @@ public class UrlParser {
    * @throws MalformedURLException the malformed URL exception
    */
   public UrlParser(String url) throws MalformedURLException {
-    if (url != null && url.length() > 0) {
-      int ppos = url.indexOf("://");
+    if (url == null || url.length() <= 0) {
+      throw new MalformedURLException("Empty URL");
+    }
+    int ppos = url.indexOf("://");
 
-      // get protocol first
-      if (ppos >= 0) {
-        protocol = url.substring(0, ppos);
-        url = url.substring(ppos + 3);
-      }
+    // get protocol first
+    if (ppos >= 0) {
+      protocol = url.substring(0, ppos);
+      url = url.substring(ppos + 3);
+    }
 
-      String hostport;
+    String hostport;
 
-      ppos = url.indexOf('/');
-      if (ppos >= 0) {
-        hostport = url.substring(0, ppos);
-        path = url.substring(ppos + 1);
-      } else {
-        hostport = url;
-      }
+    ppos = url.indexOf('/');
+    if (ppos >= 0) {
+      hostport = url.substring(0, ppos);
+      path = url.substring(ppos + 1);
+    } else {
+      hostport = url;
+    }
 
-      ppos = hostport.indexOf(':');
-      if (ppos >= 0) {
-        host = hostport.substring(0, ppos);
-        String portString = hostport.substring(ppos + 1);
-        try {
-          this.port = Integer.parseInt(portString);
-        } catch (NumberFormatException e) {
-          logger.trace("", e);
-          throw new MalformedURLException("Invalid port " + portString);
-        }
-      } else {
-        host = hostport;
+    ppos = hostport.indexOf(':');
+    if (ppos >= 0) {
+      host = hostport.substring(0, ppos);
+      String portString = hostport.substring(ppos + 1);
+      try {
+        this.port = Integer.parseInt(portString);
+      } catch (NumberFormatException e) {
+        logger.trace("", e);
+        throw new MalformedURLException("Invalid port " + portString);
       }
     } else {
-      throw new MalformedURLException("Empty URL");
+      host = hostport;
     }
   }
 

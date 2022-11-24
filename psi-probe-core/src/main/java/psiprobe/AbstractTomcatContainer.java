@@ -292,9 +292,11 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
   public String formatContextFilename(String contextName) {
     if (contextName == null) {
       return null;
-    } else if ("".equals(contextName)) {
+    }
+    if ("".equals(contextName)) {
       return "ROOT";
-    } else if (contextName.startsWith("/")) {
+    }
+    if (contextName.startsWith("/")) {
       return contextName.substring(1);
     } else {
       return contextName;
@@ -555,14 +557,12 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
                 compiler.compile();
                 item.setState(Item.STATE_READY);
                 item.setException(null);
-              } else {
-                if (!compiler.isOutDated()) {
-                  item.setState(Item.STATE_READY);
-                  item.setException(null);
-                } else if (item.getState() != Item.STATE_FAILED) {
-                  item.setState(Item.STATE_OOD);
-                  item.setException(null);
-                }
+              } else if (!compiler.isOutDated()) {
+                item.setState(Item.STATE_READY);
+                item.setException(null);
+              } else if (item.getState() != Item.STATE_FAILED) {
+                item.setState(Item.STATE_OOD);
+                item.setException(null);
               }
               logger.info("Compiled '{}': OK", name);
             } catch (Exception e) {

@@ -267,19 +267,16 @@ public final class Utils {
               Token directiveToken = directiveTokenizer.nextToken();
               if ("pageEncoding".equals(directiveToken.getText())) {
                 if (directiveTokenizer.hasMore()
-                    && "=".equals(directiveTokenizer.nextToken().getText())) {
-                  if (directiveTokenizer.hasMore()) {
-                    encoding = directiveTokenizer.nextToken().getInnerText();
-                    break;
-                  }
+                    && "=".equals(directiveTokenizer.nextToken().getText())
+                    && directiveTokenizer.hasMore()) {
+                  encoding = directiveTokenizer.nextToken().getInnerText();
+                  break;
                 }
-              } else if ("contentType".equals(directiveToken.getText())) {
-                if (directiveTokenizer.hasMore()
-                    && "=".equals(directiveTokenizer.nextToken().getText())) {
-                  if (directiveTokenizer.hasMore()) {
-                    contentType = directiveTokenizer.nextToken().getInnerText();
-                  }
-                }
+              } else if (("contentType".equals(directiveToken.getText())
+                  && directiveTokenizer.hasMore()
+                  && "=".equals(directiveTokenizer.nextToken().getText()))
+                  && directiveTokenizer.hasMore()) {
+                contentType = directiveTokenizer.nextToken().getInnerText();
               }
             }
           }
@@ -372,13 +369,12 @@ public final class Utils {
           nomore = true;
         }
 
-        if (len > 0) {
-          out.write(buffer, 0, (int) len);
-          totalRead += len;
-          if (nomore) {
-            break;
-          }
-        } else {
+        if (len <= 0) {
+          break;
+        }
+        out.write(buffer, 0, (int) len);
+        totalRead += len;
+        if (nomore) {
           break;
         }
       }
