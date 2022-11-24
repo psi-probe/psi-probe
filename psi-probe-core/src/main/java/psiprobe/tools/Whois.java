@@ -189,6 +189,8 @@ public final class Whois {
       return port;
     }
 
+    private Response() {}
+
   }
 
 }

@@ -88,7 +88,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     URL,
 
     /** The servlet name. */
-    SERVLET_NAME;
+    SERVLET_NAME
   }
 
   @Override

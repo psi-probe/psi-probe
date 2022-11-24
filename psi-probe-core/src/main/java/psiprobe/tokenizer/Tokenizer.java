@@ -411,10 +411,10 @@ public class Tokenizer {
     int type = Tokenizer.TT_ERROR;
 
     /** The line. */
-    int line = 0;
+    int line;
 
     /** The col. */
-    int col = 0;
+    int col;
 
     /**
      * Instantiates a new tokenizer token.

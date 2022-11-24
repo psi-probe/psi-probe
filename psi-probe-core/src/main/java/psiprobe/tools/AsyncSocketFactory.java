@@ -153,6 +153,8 @@ public final class AsyncSocketFactory {
       return valid;
     }
 
+    private SocketWrapper() {}
+
   }
 
   /**
@@ -172,7 +174,7 @@ public final class AsyncSocketFactory {
      * @param socketWrapper the socket wrapper
      * @param sync the sync
      */
-    public SocketRunnable(SocketWrapper socketWrapper, Object sync) {
+    private SocketRunnable(SocketWrapper socketWrapper, Object sync) {
       this.socketWrapper = socketWrapper;
       this.sync = sync;
     }
@@ -213,7 +215,7 @@ public final class AsyncSocketFactory {
      * @param sync the sync
      * @param timeout the timeout
      */
-    public TimeoutRunnable(Object sync, long timeout) {
+    private TimeoutRunnable(Object sync, long timeout) {
       this.sync = sync;
       this.timeout = timeout;
     }
