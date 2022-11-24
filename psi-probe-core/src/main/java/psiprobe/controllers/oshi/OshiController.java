@@ -143,13 +143,17 @@ public class OshiController extends AbstractTomcatContainerController {
    * Process initialization using Oshi System Info Test.
    * <p>
    * Code copied and adjusted for Psi Probem from Oshi SystemInfoTest.main at revision
+   * <pre>
    *    https://github.com/oshi/oshi/blob/cf45b1f528f99ca353655dea5f154940c76c0bdb/oshi-core/src/test/java/oshi/SystemInfoTest.java
+   * </pre>
    * <p>
+   * <pre>
    * Psi Probe differences
    * - Noted directly in area of change as possible
    * - Logging switched from 'info' to 'debug'
    * - Javadocs throughout
    * - Formatting differences (2 vs 4 spaces)
+   * </pre>
    */
   private void initialize() {
     logger.debug("Initializing System...");
