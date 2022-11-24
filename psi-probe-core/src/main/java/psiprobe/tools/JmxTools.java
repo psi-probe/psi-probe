@@ -110,7 +110,7 @@ public final class JmxTools {
    */
   public static long getLongAttr(CompositeData cds, String name) {
     Object obj = cds.get(name);
-    if (obj != null && obj instanceof Long) {
+    if (obj instanceof Long) {
       return (Long) obj;
     }
     return 0;
@@ -157,7 +157,7 @@ public final class JmxTools {
   public static int getIntAttr(CompositeData cds, String name, int defaultValue) {
     Object obj = cds.get(name);
 
-    if (obj != null && obj instanceof Integer) {
+    if (obj instanceof Integer) {
       return (Integer) obj;
     }
     return defaultValue;
@@ -200,7 +200,7 @@ public final class JmxTools {
    */
   public static boolean getBooleanAttr(CompositeData cds, String name) {
     Object obj = cds.get(name);
-    return obj != null && obj instanceof Boolean && ((Boolean) obj);
+    return obj instanceof Boolean && (Boolean) obj;
   }
 
   /**
