@@ -15,9 +15,6 @@ import java.util.Objects;
 /**
  * The Class TokenizerSymbol.
  */
-// Keep 'supressWarnings' due to error-prone violation that is covered, see
-// https://errorprone.info/bugpattern/ComparableType
-@SuppressWarnings("ComparableType")
 public class TokenizerSymbol implements Comparable<Object> {
 
   /** The name. */

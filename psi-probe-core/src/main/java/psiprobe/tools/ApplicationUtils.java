@@ -378,6 +378,7 @@ public final class ApplicationUtils {
       si.setMinTime(sw.getMinTime() == Long.MAX_VALUE ? 0 : sw.getMinTime());
       si.setProcessingTime(sw.getProcessingTime());
       si.setRequestCount(sw.getRequestCount());
+      // XXX: Deprecated and will be removed in tomcat 10.1
       // Tomcat 7.0.72+, 8.0.37+, 8.5.5+, and 9.0.0.M10 modified from boolean to Boolean.
       // Since SingleThreadModel deprecated in servlet 2.4 with no direct replacement,
       // we will continue to handle as boolean. Previously calling this would have

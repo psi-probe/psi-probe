@@ -11,6 +11,7 @@
 package psiprobe.model.certificates;
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.Date;
 
 /**
@@ -31,10 +32,10 @@ public class Cert implements Serializable {
   private String issuerDistinguishedName;
 
   /** The not before. */
-  private Date notBefore;
+  private Instant notBefore;
 
   /** The not after. */
-  private Date notAfter;
+  private Instant notAfter;
 
   /**
    * Gets the subject distinguished name.
@@ -60,7 +61,7 @@ public class Cert implements Serializable {
    * @return the not before
    */
   public Date getNotBefore() {
-    return notBefore == null ? null : new Date(notBefore.getTime());
+    return notBefore == null ? null : Date.from(notBefore);
   }
 
   /**
@@ -68,8 +69,8 @@ public class Cert implements Serializable {
    *
    * @param notBefore the new not before
    */
-  public void setNotBefore(Date notBefore) {
-    this.notBefore = notBefore == null ? null : new Date(notBefore.getTime());
+  public void setNotBefore(Instant notBefore) {
+    this.notBefore = notBefore;
   }
 
   /**
@@ -78,7 +79,7 @@ public class Cert implements Serializable {
    * @return the not after
    */
   public Date getNotAfter() {
-    return notAfter == null ? null : new Date(notAfter.getTime());
+    return notAfter == null ? null : Date.from(notAfter);
   }
 
   /**
@@ -86,8 +87,8 @@ public class Cert implements Serializable {
    *
    * @param notAfter the new not after
    */
-  public void setNotAfter(Date notAfter) {
-    this.notAfter = notAfter == null ? null : new Date(notAfter.getTime());
+  public void setNotAfter(Instant notAfter) {
+    this.notAfter = notAfter;
   }
 
   /**
