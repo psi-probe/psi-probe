@@ -71,7 +71,8 @@ public final class AsyncSocketFactory {
 
     if (socketWrapper.getSocket() == null && socketWrapper.exception != null) {
       throw socketWrapper.exception;
-    } else if (socketWrapper.getSocket() == null) {
+    }
+    if (socketWrapper.getSocket() == null) {
       throw new TimeoutException();
     }
 
