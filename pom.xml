@@ -1585,6 +1585,7 @@
                 </pluginManagement>
             </build>
         </profile>
+
         <profile>
             <id>rewrite-checkstyle</id>
             <build>
