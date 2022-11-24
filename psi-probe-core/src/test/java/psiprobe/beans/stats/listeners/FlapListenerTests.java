@@ -25,16 +25,16 @@ class FlapListenerTests {
   private final int defaultInterval = 10;
 
   /** The default start threshold. */
-  private final float defaultStartThreshold = 0.29f;
+  private final float defaultStartThreshold = 0.29F;
 
   /** The default stop threshold. */
-  private final float defaultStopThreshold = 0.49f;
+  private final float defaultStopThreshold = 0.49F;
 
   /** The default low weight. */
-  private final float defaultLowWeight = 1.0f;
+  private final float defaultLowWeight = 1.0F;
 
   /** The default high weight. */
-  private final float defaultHighWeight = 1.0f;
+  private final float defaultHighWeight = 1.0F;
 
   /** The listener. */
   private MockFlapListener listener = new MockFlapListener(defaultThreshold, defaultInterval,

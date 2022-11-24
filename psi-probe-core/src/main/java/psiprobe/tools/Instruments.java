@@ -80,7 +80,7 @@ public class Instruments {
   private final List<Object> nextQueue = new LinkedList<>();
 
   /** The class loader. */
-  private ClassLoader classLoader = null;
+  private ClassLoader classLoader;
 
   /**
    * Size of.

@@ -21,7 +21,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 /**
  * The Class SecurityUtils.
  */
-public class SecurityUtils {
+public final class SecurityUtils {
 
   /**
    * Prevent Instantiation of security utils.

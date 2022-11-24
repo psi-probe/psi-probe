@@ -93,7 +93,7 @@ class InstrumentsTests {
    */
   @Test
   void testFloat() {
-    float f = 0.0f;
+    float f = 0.0F;
     long floatSize = Instruments.sizeOf(Float.valueOf(f)) - Instruments.SIZE_OBJECT;
     Assertions.assertEquals(Instruments.SIZE_FLOAT, floatSize);
   }

@@ -21,7 +21,7 @@ import org.slf4j.LoggerFactory;
 /**
  * An {@code OutputStream} which writes to a commons-logging {@code Log} at a particular level.
  */
-public class LogOutputStream extends OutputStream {
+public final class LogOutputStream extends OutputStream {
 
   /** The Constant INTERNAL_LOGGER. */
   private static final Logger INTERNAL_LOGGER = LoggerFactory.getLogger(LogOutputStream.class);

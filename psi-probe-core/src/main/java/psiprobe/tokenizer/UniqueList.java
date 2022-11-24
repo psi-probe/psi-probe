@@ -44,7 +44,7 @@ public class UniqueList<T extends Comparable<? super T>> extends ArrayList<T> {
    * @return true, if successful
    */
   protected synchronized boolean add(T obj, Comparator<? super T> comp) {
-    if (size() == 0) {
+    if (isEmpty()) {
       return super.add(obj);
     }
     int index;
