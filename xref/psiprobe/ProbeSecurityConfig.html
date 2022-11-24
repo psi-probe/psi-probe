@@ -18,10 +18,10 @@
 <a class="jxr_linenumber" name="L10" href="#L10">10</a>  <em class="jxr_comment"> */</em>
 <a class="jxr_linenumber" name="L11" href="#L11">11</a>  <strong class="jxr_keyword">package</strong> psiprobe;
 <a class="jxr_linenumber" name="L12" href="#L12">12</a>  
-<a class="jxr_linenumber" name="L13" href="#L13">13</a>  <strong class="jxr_keyword">import</strong> com.thoughtworks.xstream.security.NoTypePermission;
-<a class="jxr_linenumber" name="L14" href="#L14">14</a>  <strong class="jxr_keyword">import</strong> com.thoughtworks.xstream.security.NullPermission;
-<a class="jxr_linenumber" name="L15" href="#L15">15</a>  <strong class="jxr_keyword">import</strong> com.thoughtworks.xstream.security.PrimitiveTypePermission;
-<a class="jxr_linenumber" name="L16" href="#L16">16</a>  <strong class="jxr_keyword">import</strong> com.thoughtworks.xstream.XStream;
+<a class="jxr_linenumber" name="L13" href="#L13">13</a>  <strong class="jxr_keyword">import</strong> com.thoughtworks.xstream.XStream;
+<a class="jxr_linenumber" name="L14" href="#L14">14</a>  <strong class="jxr_keyword">import</strong> com.thoughtworks.xstream.security.NoTypePermission;
+<a class="jxr_linenumber" name="L15" href="#L15">15</a>  <strong class="jxr_keyword">import</strong> com.thoughtworks.xstream.security.NullPermission;
+<a class="jxr_linenumber" name="L16" href="#L16">16</a>  <strong class="jxr_keyword">import</strong> com.thoughtworks.xstream.security.PrimitiveTypePermission;
 <a class="jxr_linenumber" name="L17" href="#L17">17</a>  
 <a class="jxr_linenumber" name="L18" href="#L18">18</a>  <strong class="jxr_keyword">import</strong> java.util.ArrayList;
 <a class="jxr_linenumber" name="L19" href="#L19">19</a>  <strong class="jxr_keyword">import</strong> java.util.Collection;
@@ -310,16 +310,12 @@
 <a class="jxr_linenumber" name="L302" href="#L302">302</a>     xstream.allowTypeHierarchy(Collection.<strong class="jxr_keyword">class</strong>);
 <a class="jxr_linenumber" name="L303" href="#L303">303</a>     xstream.allowTypeHierarchy(String.<strong class="jxr_keyword">class</strong>);
 <a class="jxr_linenumber" name="L304" href="#L304">304</a>     xstream.allowTypeHierarchy(TreeMap.<strong class="jxr_keyword">class</strong>);
-<a class="jxr_linenumber" name="L305" href="#L305">305</a>     xstream.allowTypesByWildcard(<strong class="jxr_keyword">new</strong> String[] {
-<a class="jxr_linenumber" name="L306" href="#L306">306</a>         <span class="jxr_string">"org.jfree.data.xy.**"</span>,
-<a class="jxr_linenumber" name="L307" href="#L307">307</a>         <span class="jxr_string">"psiprobe.controllers.**"</span>,
-<a class="jxr_linenumber" name="L308" href="#L308">308</a>         <span class="jxr_string">"psiprobe.model.**"</span>,
-<a class="jxr_linenumber" name="L309" href="#L309">309</a>         <span class="jxr_string">"psiprobe.model.stats.**"</span>
-<a class="jxr_linenumber" name="L310" href="#L310">310</a>     });
-<a class="jxr_linenumber" name="L311" href="#L311">311</a>     <strong class="jxr_keyword">return</strong> xstream;
-<a class="jxr_linenumber" name="L312" href="#L312">312</a>   }
-<a class="jxr_linenumber" name="L313" href="#L313">313</a> 
-<a class="jxr_linenumber" name="L314" href="#L314">314</a> }
+<a class="jxr_linenumber" name="L305" href="#L305">305</a>     xstream.allowTypesByWildcard(<strong class="jxr_keyword">new</strong> String[] {<span class="jxr_string">"org.jfree.data.xy.**"</span>, <span class="jxr_string">"psiprobe.controllers.**"</span>,
+<a class="jxr_linenumber" name="L306" href="#L306">306</a>         <span class="jxr_string">"psiprobe.model.**"</span>, <span class="jxr_string">"psiprobe.model.stats.**"</span>});
+<a class="jxr_linenumber" name="L307" href="#L307">307</a>     <strong class="jxr_keyword">return</strong> xstream;
+<a class="jxr_linenumber" name="L308" href="#L308">308</a>   }
+<a class="jxr_linenumber" name="L309" href="#L309">309</a> 
+<a class="jxr_linenumber" name="L310" href="#L310">310</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2009&#x2013;2022 <a href="https://github.com/psi-probe/">psi-probe</a>. All rights reserved.</div>

@@ -102,7 +102,7 @@
 <a class="jxr_linenumber" name="L94" href="#L94">94</a>  
 <a class="jxr_linenumber" name="L95" href="#L95">95</a>      <strong class="jxr_keyword">try</strong> {
 <a class="jxr_linenumber" name="L96" href="#L96">96</a>        Object obj = mbeanServer.getAttribute(objName, attrName);
-<a class="jxr_linenumber" name="L97" href="#L97">97</a>        <strong class="jxr_keyword">return</strong> obj == <strong class="jxr_keyword">null</strong> ? defaultValue : ((Long) obj);
+<a class="jxr_linenumber" name="L97" href="#L97">97</a>        <strong class="jxr_keyword">return</strong> obj == <strong class="jxr_keyword">null</strong> ? defaultValue : (Long) obj;
 <a class="jxr_linenumber" name="L98" href="#L98">98</a>      } <strong class="jxr_keyword">catch</strong> (Exception e) {
 <a class="jxr_linenumber" name="L99" href="#L99">99</a>        logger.trace(<span class="jxr_string">""</span>, e);
 <a class="jxr_linenumber" name="L100" href="#L100">100</a>       <strong class="jxr_keyword">return</strong> defaultValue;
@@ -118,7 +118,7 @@
 <a class="jxr_linenumber" name="L110" href="#L110">110</a> <em class="jxr_javadoccomment">   */</em>
 <a class="jxr_linenumber" name="L111" href="#L111">111</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">long</strong> getLongAttr(CompositeData cds, String name) {
 <a class="jxr_linenumber" name="L112" href="#L112">112</a>     Object obj = cds.get(name);
-<a class="jxr_linenumber" name="L113" href="#L113">113</a>     <strong class="jxr_keyword">if</strong> (obj != <strong class="jxr_keyword">null</strong> &amp;&amp; obj instanceof Long) {
+<a class="jxr_linenumber" name="L113" href="#L113">113</a>     <strong class="jxr_keyword">if</strong> (obj instanceof Long) {
 <a class="jxr_linenumber" name="L114" href="#L114">114</a>       <strong class="jxr_keyword">return</strong> (Long) obj;
 <a class="jxr_linenumber" name="L115" href="#L115">115</a>     }
 <a class="jxr_linenumber" name="L116" href="#L116">116</a>     <strong class="jxr_keyword">return</strong> 0;
@@ -165,7 +165,7 @@
 <a class="jxr_linenumber" name="L157" href="#L157">157</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">int</strong> getIntAttr(CompositeData cds, String name, <strong class="jxr_keyword">int</strong> defaultValue) {
 <a class="jxr_linenumber" name="L158" href="#L158">158</a>     Object obj = cds.get(name);
 <a class="jxr_linenumber" name="L159" href="#L159">159</a> 
-<a class="jxr_linenumber" name="L160" href="#L160">160</a>     <strong class="jxr_keyword">if</strong> (obj != <strong class="jxr_keyword">null</strong> &amp;&amp; obj instanceof Integer) {
+<a class="jxr_linenumber" name="L160" href="#L160">160</a>     <strong class="jxr_keyword">if</strong> (obj instanceof Integer) {
 <a class="jxr_linenumber" name="L161" href="#L161">161</a>       <strong class="jxr_keyword">return</strong> (Integer) obj;
 <a class="jxr_linenumber" name="L162" href="#L162">162</a>     }
 <a class="jxr_linenumber" name="L163" href="#L163">163</a>     <strong class="jxr_keyword">return</strong> defaultValue;
@@ -208,7 +208,7 @@
 <a class="jxr_linenumber" name="L200" href="#L200">200</a> <em class="jxr_javadoccomment">   */</em>
 <a class="jxr_linenumber" name="L201" href="#L201">201</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">boolean</strong> getBooleanAttr(CompositeData cds, String name) {
 <a class="jxr_linenumber" name="L202" href="#L202">202</a>     Object obj = cds.get(name);
-<a class="jxr_linenumber" name="L203" href="#L203">203</a>     <strong class="jxr_keyword">return</strong> obj != <strong class="jxr_keyword">null</strong> &amp;&amp; obj instanceof Boolean &amp;&amp; ((Boolean) obj);
+<a class="jxr_linenumber" name="L203" href="#L203">203</a>     <strong class="jxr_keyword">return</strong> obj instanceof Boolean &amp;&amp; (Boolean) obj;
 <a class="jxr_linenumber" name="L204" href="#L204">204</a>   }
 <a class="jxr_linenumber" name="L205" href="#L205">205</a> 
 <a class="jxr_linenumber" name="L206" href="#L206">206</a>   <em class="jxr_javadoccomment">/**</em>

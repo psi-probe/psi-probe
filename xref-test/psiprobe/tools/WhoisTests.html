@@ -46,7 +46,7 @@
 <a class="jxr_linenumber" name="L38" href="#L38">38</a>      <strong class="jxr_keyword">int</strong> c = 0;
 <a class="jxr_linenumber" name="L39" href="#L39">39</a>      <strong class="jxr_keyword">int</strong> d = 1;
 <a class="jxr_linenumber" name="L40" href="#L40">40</a>      String dotted = a + <span class="jxr_string">"."</span> + b + <span class="jxr_string">"."</span> + c + <span class="jxr_string">"."</span> + d;
-<a class="jxr_linenumber" name="L41" href="#L41">41</a>      byte[] bytes = <strong class="jxr_keyword">new</strong> byte[] {(byte) a, (byte) b, (byte) c, (byte) d};
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>      byte[] bytes = {(byte) a, (byte) b, (byte) c, (byte) d};
 <a class="jxr_linenumber" name="L42" href="#L42">42</a>  
 <a class="jxr_linenumber" name="L43" href="#L43">43</a>      Response response = Whois.lookup(<span class="jxr_string">"whois.arin.net"</span>, 43, <span class="jxr_string">"n "</span> + dotted, 5);
 <a class="jxr_linenumber" name="L44" href="#L44">44</a>      Assertions.assertEquals(<span class="jxr_string">"SPECIAL-IPV4-LOOPBACK-IANA-RESERVED"</span>,
@@ -69,7 +69,7 @@
 <a class="jxr_linenumber" name="L61" href="#L61">61</a>      <strong class="jxr_keyword">int</strong> c = 45;
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>      <strong class="jxr_keyword">int</strong> d = 100;
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>      String dotted = a + <span class="jxr_string">"."</span> + b + <span class="jxr_string">"."</span> + c + <span class="jxr_string">"."</span> + d;
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>      byte[] bytes = <strong class="jxr_keyword">new</strong> byte[] {(byte) a, (byte) b, (byte) c, (byte) d};
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>      byte[] bytes = {(byte) a, (byte) b, (byte) c, (byte) d};
 <a class="jxr_linenumber" name="L65" href="#L65">65</a>  
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>      Response response = Whois.lookup(<span class="jxr_string">"whois.arin.net"</span>, 43, <span class="jxr_string">"n "</span> + dotted, 5);
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>      Assertions.assertEquals(<span class="jxr_string">"GOOGLE"</span>, response.getData().get(<span class="jxr_string">"NetName"</span>));

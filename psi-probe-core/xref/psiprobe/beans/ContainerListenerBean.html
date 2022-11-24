@@ -375,7 +375,7 @@
 <a class="jxr_linenumber" name="L367" href="#L367">367</a>                   <em class="jxr_comment">// Show flag for non-localhost using geo lite</em>
 <a class="jxr_linenumber" name="L368" href="#L368">368</a>                   <strong class="jxr_keyword">try</strong> (DatabaseReader reader = <strong class="jxr_keyword">new</strong> DatabaseReader.Builder(<strong class="jxr_keyword">new</strong> File(
 <a class="jxr_linenumber" name="L369" href="#L369">369</a>                       getClass().getClassLoader().getResource(<span class="jxr_string">"GeoLite2-Country.mmdb"</span>).toURI()))
-<a class="jxr_linenumber" name="L370" href="#L370">370</a>                           .withCache(<strong class="jxr_keyword">new</strong> CHMCache()).build()) {
+<a class="jxr_linenumber" name="L370" href="#L370">370</a>                       .withCache(<strong class="jxr_keyword">new</strong> CHMCache()).build()) {
 <a class="jxr_linenumber" name="L371" href="#L371">371</a>                     CountryResponse response =
 <a class="jxr_linenumber" name="L372" href="#L372">372</a>                         reader.country(InetAddress.getByName(rp.getRemoteAddr()));
 <a class="jxr_linenumber" name="L373" href="#L373">373</a>                     Country country = response.getCountry();

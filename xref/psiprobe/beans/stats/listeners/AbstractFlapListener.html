@@ -183,7 +183,7 @@
 <a class="jxr_linenumber" name="L175" href="#L175">175</a>     <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">int</strong> i = list.size() - 1; i &gt;= 0; i--) {
 <a class="jxr_linenumber" name="L176" href="#L176">176</a>       <strong class="jxr_keyword">boolean</strong> thisFlap = list.get(i);
 <a class="jxr_linenumber" name="L177" href="#L177">177</a>       <strong class="jxr_keyword">if</strong> (flapping != thisFlap) {
-<a class="jxr_linenumber" name="L178" href="#L178">178</a>         <strong class="jxr_keyword">float</strong> weight = lowWeight + (weightRange * i / (flapInterval - 1));
+<a class="jxr_linenumber" name="L178" href="#L178">178</a>         <strong class="jxr_keyword">float</strong> weight = lowWeight + weightRange * i / (flapInterval - 1);
 <a class="jxr_linenumber" name="L179" href="#L179">179</a>         result += weight;
 <a class="jxr_linenumber" name="L180" href="#L180">180</a>       }
 <a class="jxr_linenumber" name="L181" href="#L181">181</a>     }

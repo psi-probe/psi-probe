@@ -137,7 +137,7 @@
 <a class="jxr_linenumber" name="L129" href="#L129">129</a>         redPart &gt; 0 ? Math.min((<strong class="jxr_keyword">int</strong>) Math.floor(value2 / unitSize), partialBlocks - redPart) : 0;
 <a class="jxr_linenumber" name="L130" href="#L130">130</a>     <strong class="jxr_keyword">int</strong> blueWhole = (<strong class="jxr_keyword">int</strong>) Math.max(0, Math.ceil(value2 / blockWidth) - (redPart &gt; 0 ? 1 : 0));
 <a class="jxr_linenumber" name="L131" href="#L131">131</a>     <strong class="jxr_keyword">int</strong> bluePart2 =
-<a class="jxr_linenumber" name="L132" href="#L132">132</a>         (<strong class="jxr_keyword">int</strong>) Math.floor((value2 - (blueWhole * blockWidth) - (bluePart1 * unitSize)) / unitSize);
+<a class="jxr_linenumber" name="L132" href="#L132">132</a>         (<strong class="jxr_keyword">int</strong>) Math.floor((value2 - blueWhole * blockWidth - bluePart1 * unitSize) / unitSize);
 <a class="jxr_linenumber" name="L133" href="#L133">133</a> 
 <a class="jxr_linenumber" name="L134" href="#L134">134</a>     StringBuilder buf = <strong class="jxr_keyword">new</strong> StringBuilder();
 <a class="jxr_linenumber" name="L135" href="#L135">135</a> 
@@ -150,7 +150,7 @@
 <a class="jxr_linenumber" name="L142" href="#L142">142</a> 
 <a class="jxr_linenumber" name="L143" href="#L143">143</a>         format = BLUE_LEFT_BORDER;
 <a class="jxr_linenumber" name="L144" href="#L144">144</a>       }
-<a class="jxr_linenumber" name="L145" href="#L145">145</a>       buf.append(MessageFormat.format(body, <strong class="jxr_keyword">new</strong> Object[] {format}));
+<a class="jxr_linenumber" name="L145" href="#L145">145</a>       buf.append(MessageFormat.format(body, format));
 <a class="jxr_linenumber" name="L146" href="#L146">146</a>     }
 <a class="jxr_linenumber" name="L147" href="#L147">147</a> 
 <a class="jxr_linenumber" name="L148" href="#L148">148</a>     <em class="jxr_comment">// Full red blocks</em>
@@ -197,7 +197,7 @@
 <a class="jxr_linenumber" name="L189" href="#L189">189</a>           + blueWhole == fullBlocks) {
 <a class="jxr_linenumber" name="L190" href="#L190">190</a>         format = BLUE_RIGHT_BORDER;
 <a class="jxr_linenumber" name="L191" href="#L191">191</a>       }
-<a class="jxr_linenumber" name="L192" href="#L192">192</a>       buf.append(MessageFormat.format(body, <strong class="jxr_keyword">new</strong> Object[] {format}));
+<a class="jxr_linenumber" name="L192" href="#L192">192</a>       buf.append(MessageFormat.format(body, format));
 <a class="jxr_linenumber" name="L193" href="#L193">193</a>     }
 <a class="jxr_linenumber" name="L194" href="#L194">194</a> 
 <a class="jxr_linenumber" name="L195" href="#L195">195</a>     <strong class="jxr_keyword">return</strong> buf.toString();

@@ -54,34 +54,32 @@
 <a class="jxr_linenumber" name="L46" href="#L46">46</a>      <strong class="jxr_keyword">for</strong> (String sidWebApp : ServletRequestUtils.getStringParameters(request, <span class="jxr_string">"sid_webapp"</span>)) {
 <a class="jxr_linenumber" name="L47" href="#L47">47</a>        <strong class="jxr_keyword">if</strong> (sidWebApp != <strong class="jxr_keyword">null</strong>) {
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>          String[] ss = sidWebApp.split(<span class="jxr_string">";"</span>);
-<a class="jxr_linenumber" name="L49" href="#L49">49</a>          <strong class="jxr_keyword">if</strong> (ss.length == 2) {
-<a class="jxr_linenumber" name="L50" href="#L50">50</a>            String sessionId = ss[0];
-<a class="jxr_linenumber" name="L51" href="#L51">51</a>            String appName = ss[1];
-<a class="jxr_linenumber" name="L52" href="#L52">52</a>            Context context = getContainerWrapper().getTomcatContainer().findContext(appName);
-<a class="jxr_linenumber" name="L53" href="#L53">53</a>            <strong class="jxr_keyword">if</strong> (context != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L54" href="#L54">54</a>              Manager manager = context.getManager();
-<a class="jxr_linenumber" name="L55" href="#L55">55</a>              Session session = manager.findSession(sessionId);
-<a class="jxr_linenumber" name="L56" href="#L56">56</a>              <strong class="jxr_keyword">if</strong> (session != <strong class="jxr_keyword">null</strong> &amp;&amp; session.isValid()) {
-<a class="jxr_linenumber" name="L57" href="#L57">57</a>                session.expire();
-<a class="jxr_linenumber" name="L58" href="#L58">58</a>              }
-<a class="jxr_linenumber" name="L59" href="#L59">59</a>            } <strong class="jxr_keyword">else</strong> {
-<a class="jxr_linenumber" name="L60" href="#L60">60</a>              <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> ModelAndView(<span class="jxr_string">"errors/paramerror"</span>);
-<a class="jxr_linenumber" name="L61" href="#L61">61</a>            }
-<a class="jxr_linenumber" name="L62" href="#L62">62</a>          } <strong class="jxr_keyword">else</strong> {
-<a class="jxr_linenumber" name="L63" href="#L63">63</a>            <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> ModelAndView(<span class="jxr_string">"errors/paramerror"</span>);
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>          }
-<a class="jxr_linenumber" name="L65" href="#L65">65</a>        }
-<a class="jxr_linenumber" name="L66" href="#L66">66</a>      }
-<a class="jxr_linenumber" name="L67" href="#L67">67</a>      <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> ModelAndView(<strong class="jxr_keyword">new</strong> InternalResourceView(getViewName()));
-<a class="jxr_linenumber" name="L68" href="#L68">68</a>    }
-<a class="jxr_linenumber" name="L69" href="#L69">69</a>  
-<a class="jxr_linenumber" name="L70" href="#L70">70</a>    @Value(<span class="jxr_string">"/sessions.htm"</span>)
-<a class="jxr_linenumber" name="L71" href="#L71">71</a>    @Override
-<a class="jxr_linenumber" name="L72" href="#L72">72</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setViewName(String viewName) {
-<a class="jxr_linenumber" name="L73" href="#L73">73</a>      <strong class="jxr_keyword">super</strong>.setViewName(viewName);
-<a class="jxr_linenumber" name="L74" href="#L74">74</a>    }
-<a class="jxr_linenumber" name="L75" href="#L75">75</a>  
-<a class="jxr_linenumber" name="L76" href="#L76">76</a>  }
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>          <strong class="jxr_keyword">if</strong> (ss.length != 2) {
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>            <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> ModelAndView(<span class="jxr_string">"errors/paramerror"</span>);
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>          }
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>          String sessionId = ss[0];
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>          String appName = ss[1];
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>          Context context = getContainerWrapper().getTomcatContainer().findContext(appName);
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>          <strong class="jxr_keyword">if</strong> (context == <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>            <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> ModelAndView(<span class="jxr_string">"errors/paramerror"</span>);
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>          }
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>          Manager manager = context.getManager();
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>          Session session = manager.findSession(sessionId);
+<a class="jxr_linenumber" name="L60" href="#L60">60</a>          <strong class="jxr_keyword">if</strong> (session != <strong class="jxr_keyword">null</strong> &amp;&amp; session.isValid()) {
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>            session.expire();
+<a class="jxr_linenumber" name="L62" href="#L62">62</a>          }
+<a class="jxr_linenumber" name="L63" href="#L63">63</a>        }
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>      }
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>      <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> ModelAndView(<strong class="jxr_keyword">new</strong> InternalResourceView(getViewName()));
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>    }
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>  
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>    @Value(<span class="jxr_string">"/sessions.htm"</span>)
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>    @Override
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setViewName(String viewName) {
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>      <strong class="jxr_keyword">super</strong>.setViewName(viewName);
+<a class="jxr_linenumber" name="L72" href="#L72">72</a>    }
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>  
+<a class="jxr_linenumber" name="L74" href="#L74">74</a>  }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2009&#x2013;2022 <a href="https://github.com/psi-probe/">psi-probe</a>. All rights reserved.</div>
