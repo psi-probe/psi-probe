@@ -46,21 +46,19 @@ public class ExpireSessionsController extends AbstractTomcatContainerController 
     for (String sidWebApp : ServletRequestUtils.getStringParameters(request, "sid_webapp")) {
       if (sidWebApp != null) {
         String[] ss = sidWebApp.split(";");
-        if (ss.length == 2) {
-          String sessionId = ss[0];
-          String appName = ss[1];
-          Context context = getContainerWrapper().getTomcatContainer().findContext(appName);
-          if (context != null) {
-            Manager manager = context.getManager();
-            Session session = manager.findSession(sessionId);
-            if (session != null && session.isValid()) {
-              session.expire();
-            }
-          } else {
-            return new ModelAndView("errors/paramerror");
-          }
-        } else {
+        if (ss.length != 2) {
           return new ModelAndView("errors/paramerror");
+        }
+        String sessionId = ss[0];
+        String appName = ss[1];
+        Context context = getContainerWrapper().getTomcatContainer().findContext(appName);
+        if (context == null) {
+          return new ModelAndView("errors/paramerror");
+        }
+        Manager manager = context.getManager();
+        Session session = manager.findSession(sessionId);
+        if (session != null && session.isValid()) {
+          session.expire();
         }
       }
     }

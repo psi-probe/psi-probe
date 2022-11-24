@@ -155,52 +155,51 @@ public class Tokenizer {
       token.assign(upcomingToken);
       upcomingToken.type = Tokenizer.TT_ERROR;
       return token;
-    } else {
-      token.init();
-      char[] chr = new char[1];
-      while (hasMore()) {
-        read(chr, 1);
+    }
 
-        int symbolIndex = lookupSymbol(chr[0]);
+    token.init();
+    char[] chr = new char[1];
+    while (hasMore()) {
+      read(chr, 1);
 
-        if (symbolIndex != -1) {
-          // we have found a symbol
-          TokenizerToken workToken =
-              token.type == Tokenizer.TT_TOKEN && token.text.length() > 0 ? upcomingToken : token;
-          TokenizerSymbol symbol = symbols.get(symbolIndex);
-          boolean hideSymbol = symbol.hidden;
+      int symbolIndex = lookupSymbol(chr[0]);
+
+      if (symbolIndex != -1) {
+        // we have found a symbol
+        TokenizerToken workToken =
+            token.type == Tokenizer.TT_TOKEN && token.text.length() > 0 ? upcomingToken : token;
+        TokenizerSymbol symbol = symbols.get(symbolIndex);
+        boolean hideSymbol = symbol.hidden;
+
+        if (!hideSymbol) {
+          workToken.init();
+          workToken.text.append(symbol.startText);
+          workToken.type = Tokenizer.TT_SYMBOL;
+          workToken.name = symbol.name;
+        }
+
+        if (symbol.tailText != null) {
+          // the symbol is a block, look for the tailText
+          while (hasMore() && !compare(symbol.tailText.toCharArray(), 0)) {
+            read(chr, 1);
+            if (!hideSymbol) {
+              workToken.text.append(chr);
+              workToken.innerText.append(chr);
+            }
+          }
 
           if (!hideSymbol) {
-            workToken.init();
-            workToken.text.append(symbol.startText);
-            workToken.type = Tokenizer.TT_SYMBOL;
-            workToken.name = symbol.name;
+            workToken.text.append(symbol.tailText);
           }
-
-          if (symbol.tailText != null) {
-            // the symbol is a block
-            // look for the tailText
-            while (hasMore() && !compare(symbol.tailText.toCharArray(), 0)) {
-              read(chr, 1);
-              if (!hideSymbol) {
-                workToken.text.append(chr);
-                workToken.innerText.append(chr);
-              }
-            }
-
-            if (!hideSymbol) {
-              workToken.text.append(symbol.tailText);
-            }
-            workToken.type = Tokenizer.TT_BLOCK;
-          }
-
-          if (token.text.length() > 0) {
-            break;
-          }
-        } else {
-          token.text.append(chr);
-          token.type = Tokenizer.TT_TOKEN;
+          workToken.type = Tokenizer.TT_BLOCK;
         }
+
+        if (token.text.length() > 0) {
+          break;
+        }
+      } else {
+        token.text.append(chr);
+        token.type = Tokenizer.TT_TOKEN;
       }
     }
     return token;
@@ -270,15 +269,14 @@ public class Tokenizer {
       }
       while (index < symbols.size()) {
         TokenizerSymbol symbol = symbols.get(index);
-        if (symbol.compareTo(chrObj) == 0) {
-          if (compare(symbol.startText.toCharArray(), 1)) {
-            result = index;
-            break;
-          }
-          index++;
-        } else {
+        if (symbol.compareTo(chrObj) != 0) {
           break;
         }
+        if (compare(symbol.startText.toCharArray(), 1)) {
+          result = index;
+          break;
+        }
+        index++;
       }
     }
     return result;

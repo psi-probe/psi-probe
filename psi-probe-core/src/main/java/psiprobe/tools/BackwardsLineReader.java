@@ -66,23 +66,7 @@ public class BackwardsLineReader {
     boolean empty = false;
     while (true) {
       byte chr = (byte) bis.read();
-      if (chr != -1) {
-        if (chr == '\n') {
-          skipLineFeed = false;
-          // quit this loop
-          break;
-        }
-        if (chr == '\r') {
-          if (skipLineFeed) {
-            // quit this loop. if the carriage return only was read
-            break;
-          }
-          // go to next loop, if both the carriage return and
-          // the line feed were read
-          continue;
-        }
-        baos.write(chr);
-      } else {
+      if (chr == -1) {
         // quit this loop, if the first of the backwards stream is
         // reached
         if (baos.toByteArray().length == 0) {
@@ -90,6 +74,21 @@ public class BackwardsLineReader {
         }
         break;
       }
+      if (chr == '\n') {
+        skipLineFeed = false;
+        // quit this loop
+        break;
+      }
+      if (chr == '\r') {
+        if (skipLineFeed) {
+          // quit this loop. if the carriage return only was read
+          break;
+        }
+        // go to next loop, if both the carriage return and
+        // the line feed were read
+        continue;
+      }
+      baos.write(chr);
     }
     if (!empty) {
       byte[] byteArray = baos.toByteArray();
