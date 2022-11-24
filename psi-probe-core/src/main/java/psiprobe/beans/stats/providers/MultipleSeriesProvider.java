@@ -12,6 +12,7 @@ package psiprobe.beans.stats.providers;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
@@ -128,7 +129,7 @@ public class MultipleSeriesProvider extends AbstractSeriesProvider {
     }
 
     // sorting the remaining series by name
-    Collections.sort(seriesList, (s1, s2) -> s1.key.compareTo(s2.key));
+    Collections.sort(seriesList, Comparator.comparing(s1 -> s1.key));
 
     for (Series ser : seriesList) {
       synchronized (ser.stats) {

@@ -12,7 +12,6 @@ package psiprobe.controllers.datasources;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -58,16 +57,13 @@ public class ListAllJdbcResourceGroupsController extends AbstractTomcatContainer
     filterValidDataSources(globalResources, dataSources);
 
     // sort datasources by JDBC URL
-    Collections.sort(dataSources, new Comparator<DataSourceInfo>() {
-      @Override
-      public int compare(DataSourceInfo ds1, DataSourceInfo ds2) {
-        String jdbcUrl1 = ds1.getJdbcUrl();
-        String jdbcUrl2 = ds2.getJdbcUrl();
+    Collections.sort(dataSources, (ds1, ds2) -> {
+      String jdbcUrl1 = ds1.getJdbcUrl();
+      String jdbcUrl2 = ds2.getJdbcUrl();
 
-        // here we rely on the the filter not to add any datasources with a null jdbcUrl to the list
+      // here we rely on the the filter not to add any datasources with a null jdbcUrl to the list
 
-        return jdbcUrl1.compareToIgnoreCase(jdbcUrl2);
-      }
+      return jdbcUrl1.compareToIgnoreCase(jdbcUrl2);
     });
 
     // group datasources by JDBC URL and calculate aggregated totals
