@@ -15,7 +15,7 @@ import com.codebox.bean.JavaBeanTester;
 import org.junit.jupiter.api.Test;
 
 /**
- * The Class LogbackAppenderAccessorTest.
+ * The Class Logback13AppenderAccessorTest.
  */
 class Logback13AppenderAccessorTest {
 

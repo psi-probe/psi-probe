@@ -46,9 +46,6 @@ public class Logback13LoggerAccessor extends DefaultAccessor {
           wrapAndAddAppender(appender, appenders);
         }
       }
-    } catch (NoClassDefFoundError e) {
-      logger.error("{}#getAppenders() failed", getTarget().getClass().getName(), e);
-      logger.error("To see this logger, upgrade slf4j to 1.7.21+");
     } catch (Exception e) {
       logger.error("{}#getAppenders() failed", getTarget().getClass().getName(), e);
     }

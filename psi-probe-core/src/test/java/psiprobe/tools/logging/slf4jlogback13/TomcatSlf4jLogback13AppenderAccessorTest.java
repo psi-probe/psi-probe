@@ -15,7 +15,7 @@ import com.codebox.bean.JavaBeanTester;
 import org.junit.jupiter.api.Test;
 
 /**
- * The Class TomcatSlf4jLogbackAppenderAccessorTest.
+ * The Class TomcatSlf4jLogback13AppenderAccessorTest.
  */
 class TomcatSlf4jLogback13AppenderAccessorTest {
 
