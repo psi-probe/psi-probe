@@ -50,8 +50,12 @@ import psiprobe.tools.logging.log4j2.Log4J2LoggerContextAccessor;
 import psiprobe.tools.logging.log4j2.Log4J2WebLoggerContextUtilsAccessor;
 import psiprobe.tools.logging.logback.LogbackFactoryAccessor;
 import psiprobe.tools.logging.logback.LogbackLoggerAccessor;
+import psiprobe.tools.logging.logback13.Logback13FactoryAccessor;
+import psiprobe.tools.logging.logback13.Logback13LoggerAccessor;
 import psiprobe.tools.logging.slf4jlogback.TomcatSlf4jLogbackFactoryAccessor;
 import psiprobe.tools.logging.slf4jlogback.TomcatSlf4jLogbackLoggerAccessor;
+import psiprobe.tools.logging.slf4jlogback13.TomcatSlf4jLogback13FactoryAccessor;
+import psiprobe.tools.logging.slf4jlogback13.TomcatSlf4jLogback13LoggerAccessor;
 
 /**
  * The Class LogResolverBean.
@@ -240,8 +244,8 @@ public class LogResolverBean {
     } else if (ctx != null && "catalina".equals(logType)) {
       result = getCatalinaLogDestination(ctx, application);
     } else if (logIndex != null && ("jdk".equals(logType) || "log4j".equals(logType)
-        || "log4j2".equals(logType) || "logback".equals(logType))
-        || "tomcatSlf4jLogback".equals(logType)) {
+        || "log4j2".equals(logType) || "logback".equals(logType) || "logback13".equals(logType)
+        || "tomcatSlf4jLogback".equals(logType) || "tomcatSlf4jLogback13".equals(logType))) {
       if (context && ctx != null && !"log4j2".equals(logType)) {
         result = getCommonsLogDestination(ctx, application, logIndex);
       } else if (ctx != null && "log4j2".equals(logType)) {
@@ -263,8 +267,13 @@ public class LogResolverBean {
               result = getLog4JLogDestination(cl, application, root, logName, logIndex);
             } else if ("logback".equals(logType)) {
               result = getLogbackLogDestination(cl, application, root, logName, logIndex);
+            } else if ("logback13".equals(logType)) {
+              result = getLogback13LogDestination(cl, application, root, logName, logIndex);
             } else if ("tomcatSlf4jLogback".equals(logType)) {
               result = getLogbackTomcatJuliLogDestination(cl, application, root, logName, logIndex);
+            } else if ("tomcatSlf4jLogback13".equals(logType)) {
+              result =
+                  getLogback13TomcatJuliLogDestination(cl, application, root, logName, logIndex);
             }
           }
         } finally {
@@ -394,6 +403,15 @@ public class LogResolverBean {
       logger.debug("Could not resolve logback loggers for '{}'", applicationName, e);
     }
 
+    // check for Logback 1.3 loggers
+    try {
+      Logback13FactoryAccessor logback13Accessor = new Logback13FactoryAccessor(cl);
+      logback13Accessor.setApplication(application);
+      appenders.addAll(logback13Accessor.getAppenders());
+    } catch (Exception e) {
+      logger.debug("Could not resolve logback 1.3 loggers for '{}'", applicationName, e);
+    }
+
     // check for tomcat-slf4j-logback loggers
     try {
       TomcatSlf4jLogbackFactoryAccessor tomcatSlf4jLogbackAccessor =
@@ -402,6 +420,17 @@ public class LogResolverBean {
       appenders.addAll(tomcatSlf4jLogbackAccessor.getAppenders());
     } catch (Exception e) {
       logger.debug("Could not resolve tomcat-slf4j-logback loggers for '{}'", applicationName, e);
+    }
+
+    // check for tomcat-slf4j-logback 1.3 loggers
+    try {
+      TomcatSlf4jLogback13FactoryAccessor tomcatSlf4jLogback13Accessor =
+          new TomcatSlf4jLogback13FactoryAccessor(cl);
+      tomcatSlf4jLogback13Accessor.setApplication(application);
+      appenders.addAll(tomcatSlf4jLogback13Accessor.getAppenders());
+    } catch (Exception e) {
+      logger.debug("Could not resolve tomcat-slf4j-logback 1.3 loggers for '{}'", applicationName,
+          e);
     }
   }
 
@@ -589,6 +618,14 @@ public class LogResolverBean {
     return result;
   }
 
+  /**
+   * Gets the logger configs.
+   *
+   * @param loggerContext the logger context
+   * @return the logger configs
+   * @throws IllegalAccessException the illegal access exception
+   * @throws InvocationTargetException the invocation target exception
+   */
   private Map<String, Object> getLoggerConfigs(Object loggerContext)
       throws IllegalAccessException, InvocationTargetException {
     Method getConfiguration =
@@ -599,6 +636,19 @@ public class LogResolverBean {
     return (Map<String, Object>) getLoggerConfigs.invoke(configuration);
   }
 
+  /**
+   * Gets the logger contexts.
+   *
+   * @param cl the cl
+   * @return the logger contexts
+   * @throws ClassNotFoundException the class not found exception
+   * @throws InstantiationException the instantiation exception
+   * @throws IllegalAccessException the illegal access exception
+   * @throws InvocationTargetException the invocation target exception
+   * @throws IllegalArgumentException the illegal argument exception
+   * @throws NoSuchMethodException the no such method exception
+   * @throws SecurityException the security exception
+   */
   private List<Object> getLoggerContexts(ClassLoader cl) throws ClassNotFoundException,
       InstantiationException, IllegalAccessException, InvocationTargetException,
       IllegalArgumentException, NoSuchMethodException, SecurityException {
@@ -636,6 +686,32 @@ public class LogResolverBean {
   }
 
   /**
+   * Gets the logback log destination.
+   *
+   * @param cl the cl
+   * @param application the application
+   * @param root the root
+   * @param logName the log name
+   * @param appenderName the appender name
+   * @return the logback log destination
+   */
+  private LogDestination getLogback13LogDestination(ClassLoader cl, Application application,
+      boolean root, String logName, String appenderName) {
+
+    try {
+      Logback13FactoryAccessor manager = new Logback13FactoryAccessor(cl);
+      manager.setApplication(application);
+      Logback13LoggerAccessor log = root ? manager.getRootLogger() : manager.getLogger(logName);
+      if (log != null) {
+        return log.getAppender(appenderName);
+      }
+    } catch (Exception e) {
+      logger.debug("getLogback13LogDestination failed", e);
+    }
+    return null;
+  }
+
+  /**
    * Gets the logback tomcat juli log destination.
    *
    * @param cl the cl
@@ -658,6 +734,33 @@ public class LogResolverBean {
       }
     } catch (Exception e) {
       logger.debug("getTomcatSlf4jLogbackLogDestination failed", e);
+    }
+    return null;
+  }
+
+  /**
+   * Gets the logback tomcat juli log destination.
+   *
+   * @param cl the cl
+   * @param application the application
+   * @param root the root
+   * @param logName the log name
+   * @param appenderName the appender name
+   * @return the logback tomcat juli log destination
+   */
+  private LogDestination getLogback13TomcatJuliLogDestination(ClassLoader cl,
+      Application application, boolean root, String logName, String appenderName) {
+
+    try {
+      TomcatSlf4jLogback13FactoryAccessor manager = new TomcatSlf4jLogback13FactoryAccessor(cl);
+      manager.setApplication(application);
+      TomcatSlf4jLogback13LoggerAccessor log =
+          root ? manager.getRootLogger() : manager.getLogger(logName);
+      if (log != null) {
+        return log.getAppender(appenderName);
+      }
+    } catch (Exception e) {
+      logger.debug("getTomcatSlf4jLogback13LogDestination failed", e);
     }
     return null;
   }
