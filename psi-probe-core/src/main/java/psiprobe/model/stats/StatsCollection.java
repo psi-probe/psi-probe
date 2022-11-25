@@ -301,6 +301,12 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
           }
         }
         logger.debug("stats data read in {}ms", System.currentTimeMillis() - start);
+      } catch (ExceptionInInitializerError e) {
+          if (e.getMessage().contains("does not \"opens java.util\" to unnamed module")) {
+              logger.error("Stats desialization disabled, use '--add-opens java.base/java.util=ALL-UNNAMED' to start Tomcat to enable again");
+          } else {
+              logger.error("Could not read stats data from '{}' during initialization", file.getAbsolutePath(), e);
+          }
       } catch (Exception e) {
         logger.error("Could not read stats data from '{}'", file.getAbsolutePath(), e);
       }
