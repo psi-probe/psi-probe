@@ -386,87 +386,88 @@
 <a class="jxr_linenumber" name="L378" href="#L378">378</a>       si.setMinTime(sw.getMinTime() == Long.MAX_VALUE ? 0 : sw.getMinTime());
 <a class="jxr_linenumber" name="L379" href="#L379">379</a>       si.setProcessingTime(sw.getProcessingTime());
 <a class="jxr_linenumber" name="L380" href="#L380">380</a>       si.setRequestCount(sw.getRequestCount());
-<a class="jxr_linenumber" name="L381" href="#L381">381</a>       <em class="jxr_comment">// Tomcat 7.0.72+, 8.0.37+, 8.5.5+, and 9.0.0.M10 modified from boolean to Boolean.</em>
-<a class="jxr_linenumber" name="L382" href="#L382">382</a>       <em class="jxr_comment">// Since SingleThreadModel deprecated in servlet 2.4 with no direct replacement,</em>
-<a class="jxr_linenumber" name="L383" href="#L383">383</a>       <em class="jxr_comment">// we will continue to handle as boolean. Previously calling this would have</em>
-<a class="jxr_linenumber" name="L384" href="#L384">384</a>       <em class="jxr_comment">// resulted in class being loaded if not already. This is why Null is returned</em>
-<a class="jxr_linenumber" name="L385" href="#L385">385</a>       <em class="jxr_comment">// now.</em>
-<a class="jxr_linenumber" name="L386" href="#L386">386</a>       <strong class="jxr_keyword">try</strong> {
-<a class="jxr_linenumber" name="L387" href="#L387">387</a>         Object singleThreaded = MethodUtils.invokeMethod(sw, <span class="jxr_string">"isSingleThreadModel"</span>);
-<a class="jxr_linenumber" name="L388" href="#L388">388</a>         <strong class="jxr_keyword">if</strong> (singleThreaded == <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L389" href="#L389">389</a>           si.setSingleThreaded(false);
-<a class="jxr_linenumber" name="L390" href="#L390">390</a>         } <strong class="jxr_keyword">else</strong> {
-<a class="jxr_linenumber" name="L391" href="#L391">391</a>           si.setSingleThreaded(Boolean.parseBoolean(String.valueOf(singleThreaded)));
-<a class="jxr_linenumber" name="L392" href="#L392">392</a>         }
-<a class="jxr_linenumber" name="L393" href="#L393">393</a>       } <strong class="jxr_keyword">catch</strong> (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-<a class="jxr_linenumber" name="L394" href="#L394">394</a>         logger.error(<span class="jxr_string">"Cannot determine single threading"</span>);
-<a class="jxr_linenumber" name="L395" href="#L395">395</a>         logger.trace(<span class="jxr_string">""</span>, e);
-<a class="jxr_linenumber" name="L396" href="#L396">396</a>       }
-<a class="jxr_linenumber" name="L397" href="#L397">397</a>     }
-<a class="jxr_linenumber" name="L398" href="#L398">398</a>     <strong class="jxr_keyword">return</strong> si;
-<a class="jxr_linenumber" name="L399" href="#L399">399</a>   }
-<a class="jxr_linenumber" name="L400" href="#L400">400</a> 
-<a class="jxr_linenumber" name="L401" href="#L401">401</a>   <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L402" href="#L402">402</a> <em class="jxr_javadoccomment">   * Gets the application servlets.</em>
-<a class="jxr_linenumber" name="L403" href="#L403">403</a> <em class="jxr_javadoccomment">   *</em>
-<a class="jxr_linenumber" name="L404" href="#L404">404</a> <em class="jxr_javadoccomment">   * @param context the context</em>
-<a class="jxr_linenumber" name="L405" href="#L405">405</a> <em class="jxr_javadoccomment">   * @return the application servlets</em>
-<a class="jxr_linenumber" name="L406" href="#L406">406</a> <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L407" href="#L407">407</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> List&lt;ServletInfo&gt; getApplicationServlets(Context context) {
-<a class="jxr_linenumber" name="L408" href="#L408">408</a>     Container[] cns = context.findChildren();
-<a class="jxr_linenumber" name="L409" href="#L409">409</a>     List&lt;ServletInfo&gt; servlets = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;(cns.length);
-<a class="jxr_linenumber" name="L410" href="#L410">410</a>     <strong class="jxr_keyword">for</strong> (Container container : cns) {
-<a class="jxr_linenumber" name="L411" href="#L411">411</a>       <strong class="jxr_keyword">if</strong> (container instanceof Wrapper) {
-<a class="jxr_linenumber" name="L412" href="#L412">412</a>         Wrapper wrapper = (Wrapper) container;
-<a class="jxr_linenumber" name="L413" href="#L413">413</a>         servlets.add(getServletInfo(wrapper, context.getName()));
-<a class="jxr_linenumber" name="L414" href="#L414">414</a>       }
-<a class="jxr_linenumber" name="L415" href="#L415">415</a>     }
-<a class="jxr_linenumber" name="L416" href="#L416">416</a>     <strong class="jxr_keyword">return</strong> servlets;
-<a class="jxr_linenumber" name="L417" href="#L417">417</a>   }
-<a class="jxr_linenumber" name="L418" href="#L418">418</a> 
-<a class="jxr_linenumber" name="L419" href="#L419">419</a>   <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L420" href="#L420">420</a> <em class="jxr_javadoccomment">   * Gets the application servlet maps.</em>
-<a class="jxr_linenumber" name="L421" href="#L421">421</a> <em class="jxr_javadoccomment">   *</em>
-<a class="jxr_linenumber" name="L422" href="#L422">422</a> <em class="jxr_javadoccomment">   * @param context the context</em>
-<a class="jxr_linenumber" name="L423" href="#L423">423</a> <em class="jxr_javadoccomment">   * @return the application servlet maps</em>
-<a class="jxr_linenumber" name="L424" href="#L424">424</a> <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L425" href="#L425">425</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> List&lt;ServletMapping&gt; getApplicationServletMaps(Context context) {
-<a class="jxr_linenumber" name="L426" href="#L426">426</a>     String[] sms = context.findServletMappings();
-<a class="jxr_linenumber" name="L427" href="#L427">427</a>     List&lt;ServletMapping&gt; servletMaps = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;(sms.length);
-<a class="jxr_linenumber" name="L428" href="#L428">428</a>     <strong class="jxr_keyword">for</strong> (String servletMapping : sms) {
-<a class="jxr_linenumber" name="L429" href="#L429">429</a>       <strong class="jxr_keyword">if</strong> (servletMapping != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L430" href="#L430">430</a>         String sn = context.findServletMapping(servletMapping);
-<a class="jxr_linenumber" name="L431" href="#L431">431</a>         <strong class="jxr_keyword">if</strong> (sn != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L432" href="#L432">432</a>           <a name="ServletMapping" href="../../psiprobe/model/ServletMapping.html#ServletMapping">ServletMapping</a> sm = <strong class="jxr_keyword">new</strong> <a name="ServletMapping" href="../../psiprobe/model/ServletMapping.html#ServletMapping">ServletMapping</a>();
-<a class="jxr_linenumber" name="L433" href="#L433">433</a>           sm.setApplicationName(context.getName().length() &gt; 0 ? context.getName() : <span class="jxr_string">"/"</span>);
-<a class="jxr_linenumber" name="L434" href="#L434">434</a>           sm.setUrl(servletMapping);
-<a class="jxr_linenumber" name="L435" href="#L435">435</a>           sm.setServletName(sn);
-<a class="jxr_linenumber" name="L436" href="#L436">436</a>           Container container = context.findChild(sn);
-<a class="jxr_linenumber" name="L437" href="#L437">437</a>           <strong class="jxr_keyword">if</strong> (container instanceof Wrapper) {
-<a class="jxr_linenumber" name="L438" href="#L438">438</a>             Wrapper wrapper = (Wrapper) container;
-<a class="jxr_linenumber" name="L439" href="#L439">439</a>             sm.setServletClass(wrapper.getServletClass());
-<a class="jxr_linenumber" name="L440" href="#L440">440</a>             sm.setAvailable(!wrapper.isUnavailable());
-<a class="jxr_linenumber" name="L441" href="#L441">441</a>           }
-<a class="jxr_linenumber" name="L442" href="#L442">442</a>           servletMaps.add(sm);
-<a class="jxr_linenumber" name="L443" href="#L443">443</a>         }
-<a class="jxr_linenumber" name="L444" href="#L444">444</a>       }
-<a class="jxr_linenumber" name="L445" href="#L445">445</a>     }
-<a class="jxr_linenumber" name="L446" href="#L446">446</a>     <strong class="jxr_keyword">return</strong> servletMaps;
-<a class="jxr_linenumber" name="L447" href="#L447">447</a>   }
-<a class="jxr_linenumber" name="L448" href="#L448">448</a> 
-<a class="jxr_linenumber" name="L449" href="#L449">449</a>   <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L450" href="#L450">450</a> <em class="jxr_javadoccomment">   * Gets the application filters.</em>
-<a class="jxr_linenumber" name="L451" href="#L451">451</a> <em class="jxr_javadoccomment">   *</em>
-<a class="jxr_linenumber" name="L452" href="#L452">452</a> <em class="jxr_javadoccomment">   * @param context the context</em>
-<a class="jxr_linenumber" name="L453" href="#L453">453</a> <em class="jxr_javadoccomment">   * @param containerWrapper the container wrapper</em>
-<a class="jxr_linenumber" name="L454" href="#L454">454</a> <em class="jxr_javadoccomment">   * @return the application filters</em>
-<a class="jxr_linenumber" name="L455" href="#L455">455</a> <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L456" href="#L456">456</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> List&lt;FilterInfo&gt; getApplicationFilters(Context context,
-<a class="jxr_linenumber" name="L457" href="#L457">457</a>       <a name="ContainerWrapperBean" href="../../psiprobe/beans/ContainerWrapperBean.html#ContainerWrapperBean">ContainerWrapperBean</a> containerWrapper) {
-<a class="jxr_linenumber" name="L458" href="#L458">458</a>     <strong class="jxr_keyword">return</strong> containerWrapper.getTomcatContainer().getApplicationFilters(context);
-<a class="jxr_linenumber" name="L459" href="#L459">459</a>   }
-<a class="jxr_linenumber" name="L460" href="#L460">460</a> 
-<a class="jxr_linenumber" name="L461" href="#L461">461</a> }
+<a class="jxr_linenumber" name="L381" href="#L381">381</a>       <em class="jxr_comment">// XXX: Deprecated and will be removed in tomcat 10.1</em>
+<a class="jxr_linenumber" name="L382" href="#L382">382</a>       <em class="jxr_comment">// Tomcat 7.0.72+, 8.0.37+, 8.5.5+, and 9.0.0.M10 modified from boolean to Boolean.</em>
+<a class="jxr_linenumber" name="L383" href="#L383">383</a>       <em class="jxr_comment">// Since SingleThreadModel deprecated in servlet 2.4 with no direct replacement,</em>
+<a class="jxr_linenumber" name="L384" href="#L384">384</a>       <em class="jxr_comment">// we will continue to handle as boolean. Previously calling this would have</em>
+<a class="jxr_linenumber" name="L385" href="#L385">385</a>       <em class="jxr_comment">// resulted in class being loaded if not already. This is why Null is returned</em>
+<a class="jxr_linenumber" name="L386" href="#L386">386</a>       <em class="jxr_comment">// now.</em>
+<a class="jxr_linenumber" name="L387" href="#L387">387</a>       <strong class="jxr_keyword">try</strong> {
+<a class="jxr_linenumber" name="L388" href="#L388">388</a>         Object singleThreaded = MethodUtils.invokeMethod(sw, <span class="jxr_string">"isSingleThreadModel"</span>);
+<a class="jxr_linenumber" name="L389" href="#L389">389</a>         <strong class="jxr_keyword">if</strong> (singleThreaded == <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L390" href="#L390">390</a>           si.setSingleThreaded(false);
+<a class="jxr_linenumber" name="L391" href="#L391">391</a>         } <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="L392" href="#L392">392</a>           si.setSingleThreaded(Boolean.parseBoolean(String.valueOf(singleThreaded)));
+<a class="jxr_linenumber" name="L393" href="#L393">393</a>         }
+<a class="jxr_linenumber" name="L394" href="#L394">394</a>       } <strong class="jxr_keyword">catch</strong> (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+<a class="jxr_linenumber" name="L395" href="#L395">395</a>         logger.error(<span class="jxr_string">"Cannot determine single threading"</span>);
+<a class="jxr_linenumber" name="L396" href="#L396">396</a>         logger.trace(<span class="jxr_string">""</span>, e);
+<a class="jxr_linenumber" name="L397" href="#L397">397</a>       }
+<a class="jxr_linenumber" name="L398" href="#L398">398</a>     }
+<a class="jxr_linenumber" name="L399" href="#L399">399</a>     <strong class="jxr_keyword">return</strong> si;
+<a class="jxr_linenumber" name="L400" href="#L400">400</a>   }
+<a class="jxr_linenumber" name="L401" href="#L401">401</a> 
+<a class="jxr_linenumber" name="L402" href="#L402">402</a>   <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L403" href="#L403">403</a> <em class="jxr_javadoccomment">   * Gets the application servlets.</em>
+<a class="jxr_linenumber" name="L404" href="#L404">404</a> <em class="jxr_javadoccomment">   *</em>
+<a class="jxr_linenumber" name="L405" href="#L405">405</a> <em class="jxr_javadoccomment">   * @param context the context</em>
+<a class="jxr_linenumber" name="L406" href="#L406">406</a> <em class="jxr_javadoccomment">   * @return the application servlets</em>
+<a class="jxr_linenumber" name="L407" href="#L407">407</a> <em class="jxr_javadoccomment">   */</em>
+<a class="jxr_linenumber" name="L408" href="#L408">408</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> List&lt;ServletInfo&gt; getApplicationServlets(Context context) {
+<a class="jxr_linenumber" name="L409" href="#L409">409</a>     Container[] cns = context.findChildren();
+<a class="jxr_linenumber" name="L410" href="#L410">410</a>     List&lt;ServletInfo&gt; servlets = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;(cns.length);
+<a class="jxr_linenumber" name="L411" href="#L411">411</a>     <strong class="jxr_keyword">for</strong> (Container container : cns) {
+<a class="jxr_linenumber" name="L412" href="#L412">412</a>       <strong class="jxr_keyword">if</strong> (container instanceof Wrapper) {
+<a class="jxr_linenumber" name="L413" href="#L413">413</a>         Wrapper wrapper = (Wrapper) container;
+<a class="jxr_linenumber" name="L414" href="#L414">414</a>         servlets.add(getServletInfo(wrapper, context.getName()));
+<a class="jxr_linenumber" name="L415" href="#L415">415</a>       }
+<a class="jxr_linenumber" name="L416" href="#L416">416</a>     }
+<a class="jxr_linenumber" name="L417" href="#L417">417</a>     <strong class="jxr_keyword">return</strong> servlets;
+<a class="jxr_linenumber" name="L418" href="#L418">418</a>   }
+<a class="jxr_linenumber" name="L419" href="#L419">419</a> 
+<a class="jxr_linenumber" name="L420" href="#L420">420</a>   <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L421" href="#L421">421</a> <em class="jxr_javadoccomment">   * Gets the application servlet maps.</em>
+<a class="jxr_linenumber" name="L422" href="#L422">422</a> <em class="jxr_javadoccomment">   *</em>
+<a class="jxr_linenumber" name="L423" href="#L423">423</a> <em class="jxr_javadoccomment">   * @param context the context</em>
+<a class="jxr_linenumber" name="L424" href="#L424">424</a> <em class="jxr_javadoccomment">   * @return the application servlet maps</em>
+<a class="jxr_linenumber" name="L425" href="#L425">425</a> <em class="jxr_javadoccomment">   */</em>
+<a class="jxr_linenumber" name="L426" href="#L426">426</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> List&lt;ServletMapping&gt; getApplicationServletMaps(Context context) {
+<a class="jxr_linenumber" name="L427" href="#L427">427</a>     String[] sms = context.findServletMappings();
+<a class="jxr_linenumber" name="L428" href="#L428">428</a>     List&lt;ServletMapping&gt; servletMaps = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;(sms.length);
+<a class="jxr_linenumber" name="L429" href="#L429">429</a>     <strong class="jxr_keyword">for</strong> (String servletMapping : sms) {
+<a class="jxr_linenumber" name="L430" href="#L430">430</a>       <strong class="jxr_keyword">if</strong> (servletMapping != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L431" href="#L431">431</a>         String sn = context.findServletMapping(servletMapping);
+<a class="jxr_linenumber" name="L432" href="#L432">432</a>         <strong class="jxr_keyword">if</strong> (sn != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L433" href="#L433">433</a>           <a name="ServletMapping" href="../../psiprobe/model/ServletMapping.html#ServletMapping">ServletMapping</a> sm = <strong class="jxr_keyword">new</strong> <a name="ServletMapping" href="../../psiprobe/model/ServletMapping.html#ServletMapping">ServletMapping</a>();
+<a class="jxr_linenumber" name="L434" href="#L434">434</a>           sm.setApplicationName(context.getName().length() &gt; 0 ? context.getName() : <span class="jxr_string">"/"</span>);
+<a class="jxr_linenumber" name="L435" href="#L435">435</a>           sm.setUrl(servletMapping);
+<a class="jxr_linenumber" name="L436" href="#L436">436</a>           sm.setServletName(sn);
+<a class="jxr_linenumber" name="L437" href="#L437">437</a>           Container container = context.findChild(sn);
+<a class="jxr_linenumber" name="L438" href="#L438">438</a>           <strong class="jxr_keyword">if</strong> (container instanceof Wrapper) {
+<a class="jxr_linenumber" name="L439" href="#L439">439</a>             Wrapper wrapper = (Wrapper) container;
+<a class="jxr_linenumber" name="L440" href="#L440">440</a>             sm.setServletClass(wrapper.getServletClass());
+<a class="jxr_linenumber" name="L441" href="#L441">441</a>             sm.setAvailable(!wrapper.isUnavailable());
+<a class="jxr_linenumber" name="L442" href="#L442">442</a>           }
+<a class="jxr_linenumber" name="L443" href="#L443">443</a>           servletMaps.add(sm);
+<a class="jxr_linenumber" name="L444" href="#L444">444</a>         }
+<a class="jxr_linenumber" name="L445" href="#L445">445</a>       }
+<a class="jxr_linenumber" name="L446" href="#L446">446</a>     }
+<a class="jxr_linenumber" name="L447" href="#L447">447</a>     <strong class="jxr_keyword">return</strong> servletMaps;
+<a class="jxr_linenumber" name="L448" href="#L448">448</a>   }
+<a class="jxr_linenumber" name="L449" href="#L449">449</a> 
+<a class="jxr_linenumber" name="L450" href="#L450">450</a>   <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L451" href="#L451">451</a> <em class="jxr_javadoccomment">   * Gets the application filters.</em>
+<a class="jxr_linenumber" name="L452" href="#L452">452</a> <em class="jxr_javadoccomment">   *</em>
+<a class="jxr_linenumber" name="L453" href="#L453">453</a> <em class="jxr_javadoccomment">   * @param context the context</em>
+<a class="jxr_linenumber" name="L454" href="#L454">454</a> <em class="jxr_javadoccomment">   * @param containerWrapper the container wrapper</em>
+<a class="jxr_linenumber" name="L455" href="#L455">455</a> <em class="jxr_javadoccomment">   * @return the application filters</em>
+<a class="jxr_linenumber" name="L456" href="#L456">456</a> <em class="jxr_javadoccomment">   */</em>
+<a class="jxr_linenumber" name="L457" href="#L457">457</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> List&lt;FilterInfo&gt; getApplicationFilters(Context context,
+<a class="jxr_linenumber" name="L458" href="#L458">458</a>       <a name="ContainerWrapperBean" href="../../psiprobe/beans/ContainerWrapperBean.html#ContainerWrapperBean">ContainerWrapperBean</a> containerWrapper) {
+<a class="jxr_linenumber" name="L459" href="#L459">459</a>     <strong class="jxr_keyword">return</strong> containerWrapper.getTomcatContainer().getApplicationFilters(context);
+<a class="jxr_linenumber" name="L460" href="#L460">460</a>   }
+<a class="jxr_linenumber" name="L461" href="#L461">461</a> 
+<a class="jxr_linenumber" name="L462" href="#L462">462</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2009&#x2013;2022 <a href="https://github.com/psi-probe/">psi-probe</a>. All rights reserved.</div>
