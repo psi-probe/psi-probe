@@ -70,7 +70,8 @@ public class ChangeLogLevelController extends AbstractLogHandlerController {
         TomcatSlf4jLogbackAppenderAccessor accessor = (TomcatSlf4jLogbackAppenderAccessor) logDest;
         accessor.getLoggerAccessor().setLevel(level);
       } else if (logDest instanceof TomcatSlf4jLogback13AppenderAccessor) {
-        TomcatSlf4jLogback13AppenderAccessor accessor = (TomcatSlf4jLogback13AppenderAccessor) logDest;
+        TomcatSlf4jLogback13AppenderAccessor accessor =
+            (TomcatSlf4jLogback13AppenderAccessor) logDest;
         accessor.getLoggerAccessor().setLevel(level);
       }
     }

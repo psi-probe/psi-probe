@@ -47,7 +47,8 @@ public class LogbackLoggerAccessor extends DefaultAccessor {
         }
       }
     } catch (NoClassDefFoundError e) {
-      logger.error("{}#getAppenders() failed, To see this logger, upgrade slf4j to 1.7.21+", getTarget().getClass().getName(), e);
+      logger.error("{}#getAppenders() failed, To see this logger, upgrade slf4j to 1.7.21+",
+          getTarget().getClass().getName(), e);
     } catch (Exception e) {
       logger.error("{}#getAppenders() failed", getTarget().getClass().getName(), e);
     }
