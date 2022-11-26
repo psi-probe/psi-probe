@@ -55,8 +55,8 @@
 <a class="jxr_linenumber" name="L47" href="#L47">47</a>          }
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>        }
 <a class="jxr_linenumber" name="L49" href="#L49">49</a>      } <strong class="jxr_keyword">catch</strong> (NoClassDefFoundError e) {
-<a class="jxr_linenumber" name="L50" href="#L50">50</a>        logger.error(<span class="jxr_string">"{}#getAppenders() failed"</span>, getTarget().getClass().getName(), e);
-<a class="jxr_linenumber" name="L51" href="#L51">51</a>        logger.error(<span class="jxr_string">"To see this logger, upgrade slf4j to 1.7.21+"</span>);
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>        logger.error(<span class="jxr_string">"{}#getAppenders() failed, To see this logger, upgrade slf4j to 1.7.21+"</span>,
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>            getTarget().getClass().getName(), e);
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>      } <strong class="jxr_keyword">catch</strong> (Exception e) {
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>        logger.error(<span class="jxr_string">"{}#getAppenders() failed"</span>, getTarget().getClass().getName(), e);
 <a class="jxr_linenumber" name="L54" href="#L54">54</a>      }
