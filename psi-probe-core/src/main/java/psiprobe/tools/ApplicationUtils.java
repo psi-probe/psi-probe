@@ -66,6 +66,7 @@ public final class ApplicationUtils {
    *
    * @param context the context
    * @param containerWrapper the container wrapper
+   *
    * @return the application
    */
   public static Application getApplication(Context context, ContainerWrapperBean containerWrapper) {
@@ -85,6 +86,7 @@ public final class ApplicationUtils {
    * @param resourceResolver the resolver to use for resources associated with the given context
    * @param calcSize flag which controls whether to calculate session size
    * @param containerWrapper the wrapper for the context's root containing server
+   *
    * @return Application object
    */
   public static Application getApplication(Context context, ResourceResolver resourceResolver,
@@ -190,6 +192,7 @@ public final class ApplicationUtils {
    * @param context the context
    * @param resolver the resolver
    * @param containerWrapper the container wrapper
+   *
    * @return the application data source usage scores
    */
   public static int[] getApplicationDataSourceUsageScores(Context context,
@@ -219,6 +222,7 @@ public final class ApplicationUtils {
    * @param session the session
    * @param calcSize the calc size
    * @param addAttributes the add attributes
+   *
    * @return the application session
    */
   public static ApplicationSession getApplicationSession(Session session, boolean calcSize,
@@ -305,6 +309,7 @@ public final class ApplicationUtils {
    * Gets the application attributes.
    *
    * @param context the context
+   *
    * @return the application attributes
    */
   public static List<Attribute> getApplicationAttributes(Context context) {
@@ -327,6 +332,7 @@ public final class ApplicationUtils {
    *
    * @param context the context
    * @param containerWrapper the container wrapper
+   *
    * @return the application init params
    */
   public static List<ApplicationParam> getApplicationInitParams(Context context,
@@ -340,6 +346,7 @@ public final class ApplicationUtils {
    *
    * @param context the context
    * @param servletName the servlet name
+   *
    * @return the application servlet
    */
   public static ServletInfo getApplicationServlet(Context context, String servletName) {
@@ -357,6 +364,7 @@ public final class ApplicationUtils {
    *
    * @param wrapper the wrapper
    * @param contextName the context name
+   *
    * @return the servlet info
    */
   private static ServletInfo getServletInfo(Wrapper wrapper, String contextName) {
@@ -403,6 +411,7 @@ public final class ApplicationUtils {
    * Gets the application servlets.
    *
    * @param context the context
+   *
    * @return the application servlets
    */
   public static List<ServletInfo> getApplicationServlets(Context context) {
@@ -421,6 +430,7 @@ public final class ApplicationUtils {
    * Gets the application servlet maps.
    *
    * @param context the context
+   *
    * @return the application servlet maps
    */
   public static List<ServletMapping> getApplicationServletMaps(Context context) {
@@ -452,6 +462,7 @@ public final class ApplicationUtils {
    *
    * @param context the context
    * @param containerWrapper the container wrapper
+   *
    * @return the application filters
    */
   public static List<FilterInfo> getApplicationFilters(Context context,

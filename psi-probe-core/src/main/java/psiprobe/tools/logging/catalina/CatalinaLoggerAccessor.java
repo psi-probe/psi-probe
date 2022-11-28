@@ -57,6 +57,7 @@ public class CatalinaLoggerAccessor extends AbstractLogDestination {
    * Not null.
    *
    * @param strings the strings
+   *
    * @return true, if successful
    */
   private boolean notNull(String... strings) {

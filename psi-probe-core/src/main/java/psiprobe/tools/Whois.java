@@ -45,7 +45,9 @@ public final class Whois {
    * @param server the server
    * @param port the port
    * @param query the query
+   *
    * @return the response
+   *
    * @throws IOException Signals that an I/O exception has occurred.
    */
   public static Response lookup(String server, int port, String query) throws IOException {
@@ -59,7 +61,9 @@ public final class Whois {
    * @param port the port
    * @param query the query
    * @param timeout the timeout
+   *
    * @return the response
+   *
    * @throws IOException Signals that an I/O exception has occurred.
    */
   public static Response lookup(String server, int port, String query, long timeout)
@@ -76,7 +80,9 @@ public final class Whois {
    * @param query the query
    * @param timeout the timeout
    * @param lineSeparator the line separator
+   *
    * @return the response
+   *
    * @throws IOException Signals that an I/O exception has occurred.
    */
   public static Response lookup(String server, int port, String query, long timeout,
@@ -189,6 +195,9 @@ public final class Whois {
       return port;
     }
 
+    /**
+     * Instantiates a new response.
+     */
     private Response() {}
 
   }

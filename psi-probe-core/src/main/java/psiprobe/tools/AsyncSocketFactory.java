@@ -37,7 +37,9 @@ public final class AsyncSocketFactory {
    * @param server the server
    * @param port the port
    * @param timeout the timeout
+   *
    * @return the socket
+   *
    * @throws IOException Signals that an I/O exception has occurred.
    */
   public static Socket createSocket(String server, int port, long timeout) throws IOException {
@@ -153,6 +155,9 @@ public final class AsyncSocketFactory {
       return valid;
     }
 
+    /**
+     * Instantiates a new socket wrapper.
+     */
     private SocketWrapper() {}
 
   }

@@ -59,6 +59,7 @@ public class LogbackLoggerAccessor extends DefaultAccessor {
    * Returns the appender of this logger with the given name.
    *
    * @param name the name of the appender to return
+   *
    * @return the appender with the given name, or null if no such appender exists for this logger
    */
   public LogbackAppenderAccessor getAppender(String name) {
@@ -140,7 +141,9 @@ public class LogbackLoggerAccessor extends DefaultAccessor {
    * Gets the sifted appenders.
    *
    * @param appender the appender
+   *
    * @return the sifted appenders
+   *
    * @throws Exception the exception
    */
   @SuppressWarnings("unchecked")
@@ -178,6 +181,7 @@ public class LogbackLoggerAccessor extends DefaultAccessor {
    * Wrap appender.
    *
    * @param appender the appender
+   *
    * @return the logback appender accessor
    */
   private LogbackAppenderAccessor wrapAppender(Object appender) {

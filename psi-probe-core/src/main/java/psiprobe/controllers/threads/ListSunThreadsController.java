@@ -101,6 +101,7 @@ public class ListSunThreadsController extends ParameterizableViewController {
    *
    * @param haystack the haystack
    * @param needle the needle
+   *
    * @return true, if successful
    */
   private static boolean contains(long[] haystack, long needle) {

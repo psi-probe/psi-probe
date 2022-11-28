@@ -164,6 +164,7 @@ public class Mailer {
    * Send.
    *
    * @param mailMessage the mail message
+   *
    * @throws MessagingException the messaging exception
    */
   public void send(MailMessage mailMessage) throws MessagingException {
@@ -189,7 +190,9 @@ public class Mailer {
    *
    * @param session the session
    * @param mailMessage the mail message
+   *
    * @return the mime message
+   *
    * @throws MessagingException the messaging exception
    */
   private MimeMessage createMimeMessage(Session session, MailMessage mailMessage)
@@ -242,7 +245,9 @@ public class Mailer {
    * Creates the addresses.
    *
    * @param addresses the addresses
+   *
    * @return the Internet address[]
+   *
    * @throws AddressException the address exception
    */
   private static InternetAddress[] createAddresses(String[] addresses) throws AddressException {
@@ -258,7 +263,9 @@ public class Mailer {
    * Creates the attachment part.
    *
    * @param attachment the attachment
+   *
    * @return the mime body part
+   *
    * @throws MessagingException the messaging exception
    */
   private static MimeBodyPart createAttachmentPart(DataSource attachment)
@@ -276,7 +283,9 @@ public class Mailer {
    *
    * @param body the body
    * @param html the html
+   *
    * @return the mime body part
+   *
    * @throws MessagingException the messaging exception
    */
   private static MimeBodyPart createMessageBodyPart(String body, boolean html)

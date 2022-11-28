@@ -73,6 +73,7 @@ public class TokenizerSymbol implements Comparable<Object> {
    * Compare to.
    *
    * @param chr the chr
+   *
    * @return the int
    */
   public int compareTo(Character chr) {
@@ -83,6 +84,7 @@ public class TokenizerSymbol implements Comparable<Object> {
    * Compare to.
    *
    * @param symbol the symbol
+   *
    * @return the int
    */
   public int compareTo(TokenizerSymbol symbol) {

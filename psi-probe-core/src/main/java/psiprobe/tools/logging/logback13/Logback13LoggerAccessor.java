@@ -29,7 +29,7 @@ public class Logback13LoggerAccessor extends DefaultAccessor {
   /**
    * Returns all appenders of this logger.
    *
-   * @return a list of {@link LogbackAppenderAccessor}s
+   * @return a list of {@link Logback13AppenderAccessor}s
    */
   @SuppressWarnings("unchecked")
   public List<Logback13AppenderAccessor> getAppenders() {
@@ -56,6 +56,7 @@ public class Logback13LoggerAccessor extends DefaultAccessor {
    * Returns the appender of this logger with the given name.
    *
    * @param name the name of the appender to return
+   *
    * @return the appender with the given name, or null if no such appender exists for this logger
    */
   public Logback13AppenderAccessor getAppender(String name) {
@@ -137,7 +138,9 @@ public class Logback13LoggerAccessor extends DefaultAccessor {
    * Gets the sifted appenders.
    *
    * @param appender the appender
+   *
    * @return the sifted appenders
+   *
    * @throws Exception the exception
    */
   @SuppressWarnings("unchecked")
@@ -173,6 +176,7 @@ public class Logback13LoggerAccessor extends DefaultAccessor {
    * Wrap appender.
    *
    * @param appender the appender
+   *
    * @return the logback appender accessor
    */
   private Logback13AppenderAccessor wrapAppender(Object appender) {

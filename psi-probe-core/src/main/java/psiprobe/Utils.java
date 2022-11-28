@@ -73,7 +73,9 @@ public final class Utils {
    *
    * @param file to be read
    * @param charsetName the charset name
+   *
    * @return String representation of the file contents
+   *
    * @throws IOException Signals that an I/O exception has occurred.
    */
   public static String readFile(File file, String charsetName) throws IOException {
@@ -92,7 +94,9 @@ public final class Utils {
    *
    * @param is the stream from which to read
    * @param charsetName the charset to use when reading the stream
+   *
    * @return the contents of the given input stream
+   *
    * @throws IOException if reading from the stream fails spectacularly
    */
   public static String readStream(InputStream is, String charsetName) throws IOException {
@@ -143,6 +147,7 @@ public final class Utils {
    *
    * @param num the num
    * @param defaultValue the default value
+   *
    * @return the int
    */
   public static int toInt(String num, int defaultValue) {
@@ -161,6 +166,7 @@ public final class Utils {
    *
    * @param num the num
    * @param defaultValue the default value
+   *
    * @return the int
    */
   public static int toIntHex(String num, int defaultValue) {
@@ -182,6 +188,7 @@ public final class Utils {
    *
    * @param num the num
    * @param defaultValue the default value
+   *
    * @return the long
    */
   public static long toLong(String num, long defaultValue) {
@@ -200,6 +207,7 @@ public final class Utils {
    *
    * @param num the num
    * @param defaultValue the default value
+   *
    * @return the long
    */
   public static long toLong(Long num, long defaultValue) {
@@ -211,6 +219,7 @@ public final class Utils {
    *
    * @param num the num
    * @param defaultValue the default value
+   *
    * @return the float
    */
   public static float toFloat(String num, float defaultValue) {
@@ -228,7 +237,9 @@ public final class Utils {
    * Gets the jsp encoding.
    *
    * @param is the is
+   *
    * @return the jsp encoding
+   *
    * @throws IOException Signals that an I/O exception has occurred.
    */
   public static String getJspEncoding(InputStream is) throws IOException {
@@ -253,7 +264,6 @@ public final class Utils {
     StringTokenizer contentTypeTokenizer = new StringTokenizer();
     contentTypeTokenizer.addSymbol(" ", true);
     contentTypeTokenizer.addSymbol(";", true);
-
 
     try (Reader reader = new InputStreamReader(is, StandardCharsets.ISO_8859_1)) {
       jspTokenizer.setReader(reader);
@@ -304,6 +314,7 @@ public final class Utils {
    * @param request the request
    * @param response the response
    * @param file the file
+   *
    * @throws IOException Signals that an I/O exception has occurred.
    */
   public static void sendFile(HttpServletRequest request, HttpServletResponse response, File file)
@@ -385,6 +396,7 @@ public final class Utils {
    * Gets the thread by name.
    *
    * @param name the name
+   *
    * @return the thread by name
    */
   public static Thread getThreadByName(String name) {
@@ -414,7 +426,9 @@ public final class Utils {
    * @param input the input
    * @param rendererName the renderer name
    * @param encoding the encoding
+   *
    * @return the string
+   *
    * @throws IOException Signals that an I/O exception has occurred.
    */
   public static String highlightStream(String name, InputStream input, String rendererName,
@@ -463,6 +477,7 @@ public final class Utils {
    *
    * @param response the response
    * @param file the file
+   *
    * @throws IOException Signals that an I/O exception has occurred.
    */
   public static void sendCompressedFile(HttpServletResponse response, File file)
@@ -495,6 +510,7 @@ public final class Utils {
    * @param str the str
    * @param len the len
    * @param fill the fill
+   *
    * @return the string
    */
   protected static String leftPad(String str, int len, String fill) {
@@ -509,6 +525,7 @@ public final class Utils {
    *
    * @param baseName the base name
    * @param locale the locale
+   *
    * @return the names for locale
    */
   public static List<String> getNamesForLocale(String baseName, Locale locale) {

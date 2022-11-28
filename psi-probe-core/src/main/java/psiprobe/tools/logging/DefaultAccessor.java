@@ -86,6 +86,7 @@ public class DefaultAccessor {
    * @param name the name
    * @param defaultValue the default value
    * @param forced whether or not to force access to the field
+   *
    * @return the property
    */
   protected Object getProperty(Object obj, String name, Object defaultValue, boolean forced) {
@@ -109,6 +110,7 @@ public class DefaultAccessor {
    * @param obj the obj
    * @param name the name
    * @param defaultValue the default value
+   *
    * @return the property
    */
   protected Object getProperty(Object obj, String name, Object defaultValue) {
@@ -122,6 +124,7 @@ public class DefaultAccessor {
    * @param name the name
    * @param param the param
    * @param defaultValue the default value
+   *
    * @return the object
    */
   protected Object invokeMethod(Object object, String name, Object param, Object defaultValue) {

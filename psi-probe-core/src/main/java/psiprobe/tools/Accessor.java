@@ -22,6 +22,7 @@ public interface Accessor {
    *
    * @param obj the obj
    * @param field the field
+   *
    * @return the object
    */
   Object get(Object obj, Field field);

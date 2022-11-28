@@ -114,6 +114,7 @@ public class LogResolverBean {
    * Gets the log destinations.
    *
    * @param all the all
+   *
    * @return the log destinations
    */
   public List<LogDestination> getLogDestinations(boolean all) {
@@ -143,6 +144,7 @@ public class LogResolverBean {
    * Gets the log sources.
    *
    * @param logFile the log file
+   *
    * @return the log sources
    */
   public List<LogDestination> getLogSources(File logFile) {
@@ -224,6 +226,7 @@ public class LogResolverBean {
    * @param root the root
    * @param logName the log name
    * @param logIndex the log index
+   *
    * @return the log destination
    */
   public LogDestination getLogDestination(String logType, String webapp, boolean context,
@@ -452,6 +455,7 @@ public class LogResolverBean {
    * Gets the stdout log destination.
    *
    * @param logName the log name
+   *
    * @return the stdout log destination
    */
   private LogDestination getStdoutLogDestination(String logName) {
@@ -470,6 +474,7 @@ public class LogResolverBean {
    * Resolve stdout log destination.
    *
    * @param fileName the file name
+   *
    * @return the file log accessor
    */
   private FileLogAccessor resolveStdoutLogDestination(String fileName) {
@@ -488,6 +493,7 @@ public class LogResolverBean {
    *
    * @param ctx the ctx
    * @param application the application
+   *
    * @return the catalina log destination
    */
   private LogDestination getCatalinaLogDestination(Context ctx, Application application) {
@@ -509,6 +515,7 @@ public class LogResolverBean {
    * @param ctx the ctx
    * @param application the application
    * @param logIndex the log index
+   *
    * @return the commons log destination
    */
   private LogDestination getCommonsLogDestination(Context ctx, Application application,
@@ -528,6 +535,7 @@ public class LogResolverBean {
    * @param root the root
    * @param logName the log name
    * @param handlerIndex the handler index
+   *
    * @return the jdk14 log destination
    */
   private LogDestination getJdk14LogDestination(ClassLoader cl, Application application,
@@ -554,6 +562,7 @@ public class LogResolverBean {
    * @param root the root
    * @param logName the log name
    * @param appenderName the appender name
+   *
    * @return the log4j log destination
    */
   private LogDestination getLog4JLogDestination(ClassLoader cl, Application application,
@@ -580,6 +589,7 @@ public class LogResolverBean {
    * @param root the root
    * @param logName the log name
    * @param appenderName the appender name
+   *
    * @return the log4j2 log destination
    */
   private LogDestination getLog4J2LogDestination(Context ctx, Application application, boolean root,
@@ -622,7 +632,9 @@ public class LogResolverBean {
    * Gets the logger configs.
    *
    * @param loggerContext the logger context
+   *
    * @return the logger configs
+   *
    * @throws IllegalAccessException the illegal access exception
    * @throws InvocationTargetException the invocation target exception
    */
@@ -640,7 +652,9 @@ public class LogResolverBean {
    * Gets the logger contexts.
    *
    * @param cl the cl
+   *
    * @return the logger contexts
+   *
    * @throws ClassNotFoundException the class not found exception
    * @throws InstantiationException the instantiation exception
    * @throws IllegalAccessException the illegal access exception
@@ -667,6 +681,7 @@ public class LogResolverBean {
    * @param root the root
    * @param logName the log name
    * @param appenderName the appender name
+   *
    * @return the logback log destination
    */
   private LogDestination getLogbackLogDestination(ClassLoader cl, Application application,
@@ -693,6 +708,7 @@ public class LogResolverBean {
    * @param root the root
    * @param logName the log name
    * @param appenderName the appender name
+   *
    * @return the logback log destination
    */
   private LogDestination getLogback13LogDestination(ClassLoader cl, Application application,
@@ -719,6 +735,7 @@ public class LogResolverBean {
    * @param root the root
    * @param logName the log name
    * @param appenderName the appender name
+   *
    * @return the logback tomcat juli log destination
    */
   private LogDestination getLogbackTomcatJuliLogDestination(ClassLoader cl, Application application,
@@ -746,6 +763,7 @@ public class LogResolverBean {
    * @param root the root
    * @param logName the log name
    * @param appenderName the appender name
+   *
    * @return the logback tomcat juli log destination
    */
   private LogDestination getLogback13TomcatJuliLogDestination(ClassLoader cl,
@@ -788,6 +806,7 @@ public class LogResolverBean {
      * Convert to string.
      *
      * @param d1 the d1
+     *
      * @return the string
      */
     protected abstract String convertToString(LogDestination d1);

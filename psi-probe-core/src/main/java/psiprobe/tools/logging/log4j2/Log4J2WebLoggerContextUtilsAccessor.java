@@ -33,6 +33,7 @@ public class Log4J2WebLoggerContextUtilsAccessor extends DefaultAccessor {
    * Instantiates a new log4 j 2 web logger context utils accessor.
    *
    * @param cl the cl
+   *
    * @throws ClassNotFoundException the class not found exception
    */
   public Log4J2WebLoggerContextUtilsAccessor(ClassLoader cl) throws ClassNotFoundException {
@@ -46,6 +47,7 @@ public class Log4J2WebLoggerContextUtilsAccessor extends DefaultAccessor {
    * Gets the logger context configured for the given ServletContext.
    *
    * @param ctx the servlet context
+   *
    * @return the root logger
    */
   public Log4J2LoggerContextAccessor getWebLoggerContext(ServletContext ctx) {

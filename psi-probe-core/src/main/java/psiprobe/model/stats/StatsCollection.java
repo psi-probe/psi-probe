@@ -113,6 +113,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
    * Checks if is collected.
    *
    * @param statsName the stats name
+   *
    * @return true, if is collected
    */
   public synchronized boolean isCollected(String statsName) {
@@ -142,6 +143,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
    *
    * @param name the name
    * @param maxElements the max elements
+   *
    * @return the list
    */
   public synchronized List<XYDataItem> newStats(String name, int maxElements) {
@@ -166,6 +168,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
    * Gets the stats.
    *
    * @param name the name
+   *
    * @return the stats
    */
   public synchronized List<XYDataItem> getStats(String name) {
@@ -176,6 +179,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
    * Gets the last value for stat.
    *
    * @param statName the stat name
+   *
    * @return the last value for stat
    */
   public long getLastValueForStat(String statName) {
@@ -196,6 +200,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
    * Returns series if stat name starts with the prefix.
    *
    * @param statNamePrefix they key under which the stats are stored
+   *
    * @return a Map of matching stats. Map keys are stat names and map values are corresponding
    *         series.
    */
@@ -271,6 +276,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
    * Deserialize.
    *
    * @param file the file
+   *
    * @return the map
    */
   @SuppressWarnings("unchecked")

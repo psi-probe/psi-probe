@@ -33,6 +33,7 @@ public class DataSourceInfoGroup extends DataSourceInfo {
    * Instantiates a new data source info group.
    *
    * @param dataSourceInfo the data source info
+   *
    * @return the data source info group
    */
   public DataSourceInfoGroup builder(DataSourceInfo dataSourceInfo) {

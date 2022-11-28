@@ -140,7 +140,6 @@ public class RenderChartController extends AbstractController {
     // Chart type
     String chartType = ServletRequestUtils.getStringParameter(request, "ct", "area");
 
-
     DefaultTableXYDataset ds = new DefaultTableXYDataset();
 
     if (provider != null) {

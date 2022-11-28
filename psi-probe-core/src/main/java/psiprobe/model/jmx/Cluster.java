@@ -198,7 +198,6 @@ public class Cluster {
     this.mcastClusterDomain = mcastClusterDomain;
   }
 
-
   /**
    * Gets the members.
    *

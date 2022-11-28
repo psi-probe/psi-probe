@@ -26,6 +26,7 @@ public final class Functions {
    * Safe cookie name.
    *
    * @param cookieName the cookie name
+   *
    * @return the string
    */
   public static String safeCookieName(String cookieName) {

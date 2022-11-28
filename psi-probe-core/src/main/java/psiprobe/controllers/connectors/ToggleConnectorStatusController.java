@@ -41,6 +41,7 @@ public class ToggleConnectorStatusController extends ParameterizableViewControll
   @Inject
   private ConnectorStatsCollectorBean collectorBean;
 
+  /** The container listener. */
   @Inject
   private ContainerListenerBean containerListener;
 

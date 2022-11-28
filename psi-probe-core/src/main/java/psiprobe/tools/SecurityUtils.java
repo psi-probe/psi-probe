@@ -35,6 +35,7 @@ public final class SecurityUtils {
    *
    * @param servletContext the servlet context
    * @param request the request
+   *
    * @return true, if successful
    */
   public static boolean hasAttributeValueRole(ServletContext servletContext,
@@ -53,6 +54,7 @@ public final class SecurityUtils {
    * User has role.
    *
    * @param privilegedRole the privileged role
+   *
    * @return true, if successful
    */
   private static boolean userHasRole(String privilegedRole) {
@@ -73,6 +75,7 @@ public final class SecurityUtils {
    * Gets the privileged roles.
    *
    * @param servletContext the servlet context
+   *
    * @return the privileged roles
    */
   private static String getPrivilegedRoles(ServletContext servletContext) {

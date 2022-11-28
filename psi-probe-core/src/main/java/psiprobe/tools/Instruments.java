@@ -86,6 +86,7 @@ public class Instruments {
    * Size of.
    *
    * @param obj the obj
+   *
    * @return the long
    */
   public static long sizeOf(Object obj) {
@@ -97,6 +98,7 @@ public class Instruments {
    *
    * @param obj the obj
    * @param cl the cl
+   *
    * @return the long
    */
   public static long sizeOf(Object obj, ClassLoader cl) {
@@ -110,6 +112,7 @@ public class Instruments {
    *
    * @param obj the obj
    * @param objects the objects
+   *
    * @return the long
    */
   public static long sizeOf(Object obj, Set<Object> objects) {
@@ -122,6 +125,7 @@ public class Instruments {
    * Internal size of.
    *
    * @param root the root
+   *
    * @return the long
    */
   private long internalSizeOf(Object root) {
@@ -161,6 +165,7 @@ public class Instruments {
    * Size of object.
    *
    * @param obj the obj
+   *
    * @return the long
    */
   private long sizeOfObject(Object obj) {
@@ -192,6 +197,7 @@ public class Instruments {
    * Size of array.
    *
    * @param obj the obj
+   *
    * @return the long
    */
   private long sizeOfArray(Object obj) {
@@ -212,6 +218,7 @@ public class Instruments {
    *
    * @param <T> the generic type
    * @param type the type
+   *
    * @return the long
    */
   private static <T> long sizeOfPrimitive(Class<T> type) {
@@ -259,6 +266,7 @@ public class Instruments {
    *
    * @param obj the obj
    * @param name the name
+   *
    * @return the field
    */
   public static Object getField(Object obj, String name) {
@@ -277,6 +285,7 @@ public class Instruments {
    * @param <T> the generic type
    * @param clazz the clazz
    * @param name the name
+   *
    * @return the field
    */
   public static <T> Field findField(Class<T> clazz, String name) {

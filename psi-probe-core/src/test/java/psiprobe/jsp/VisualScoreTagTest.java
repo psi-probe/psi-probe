@@ -108,6 +108,7 @@ class VisualScoreTagTest {
    * @param value2 the value2
    * @param fullBlocks the full blocks
    * @param partialBlocks the partial blocks
+   *
    * @return the string[]
    */
   private static String[] callCalculateSuffix(int value, int value2, int fullBlocks,

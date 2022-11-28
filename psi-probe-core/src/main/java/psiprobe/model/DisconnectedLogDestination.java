@@ -72,6 +72,7 @@ public class DisconnectedLogDestination implements LogDestination, Serializable 
    * Loads and returns disconnected log destination.
    *
    * @param destination the destination
+   *
    * @return the disconnected log destination
    */
   public DisconnectedLogDestination builder(LogDestination destination) {

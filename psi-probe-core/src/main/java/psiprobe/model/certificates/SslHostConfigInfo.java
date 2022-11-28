@@ -21,6 +21,7 @@ public class SslHostConfigInfo implements Serializable {
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = 8264467511525154728L;
 
+  /** The host name. */
   private String hostName;
 
   /** The trust store certs. */

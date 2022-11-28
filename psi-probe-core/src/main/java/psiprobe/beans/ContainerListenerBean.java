@@ -98,6 +98,7 @@ public class ContainerListenerBean implements NotificationListener {
    * Finds ThreadPoolObjectName by its string name.
    *
    * @param name - pool name
+   *
    * @return null if the input name is null or ThreadPoolObjectName is not found
    */
   private ThreadPoolObjectName findPool(String name) {
@@ -200,6 +201,7 @@ public class ContainerListenerBean implements NotificationListener {
    * Gets the thread pools.
    *
    * @return the thread pools
+   *
    * @throws Exception the exception
    */
   public synchronized List<ThreadPool> getThreadPools() throws Exception {
@@ -260,6 +262,7 @@ public class ContainerListenerBean implements NotificationListener {
    *
    * @param operation the operation
    * @param port the port
+   *
    * @throws Exception the exception
    */
   public synchronized void toggleConnectorStatus(String operation, String port) throws Exception {
@@ -282,7 +285,9 @@ public class ContainerListenerBean implements NotificationListener {
    * Gets the connectors.
    *
    * @param includeRequestProcessors the include request processors
+   *
    * @return the connectors
+   *
    * @throws Exception the exception
    */
   public synchronized List<Connector> getConnectors(boolean includeRequestProcessors)

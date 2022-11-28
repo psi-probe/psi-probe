@@ -53,6 +53,7 @@ public class Log4JLoggerAccessor extends DefaultAccessor {
    * Gets the appender.
    *
    * @param name the name
+   *
    * @return the appender
    */
   public Log4JAppenderAccessor getAppender(String name) {
@@ -135,6 +136,7 @@ public class Log4JLoggerAccessor extends DefaultAccessor {
    * Wrap appender.
    *
    * @param appender the appender
+   *
    * @return the log4 j appender accessor
    */
   private Log4JAppenderAccessor wrapAppender(Object appender) {

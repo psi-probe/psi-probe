@@ -64,6 +64,7 @@ public class ListThreadsController extends AbstractTomcatContainerController {
    * Enumerate threads.
    *
    * @param classLoaderMap the class loader map
+   *
    * @return the list
    */
   private List<ThreadModel> enumerateThreads(final Map<String, String> classLoaderMap) {
@@ -111,6 +112,7 @@ public class ListThreadsController extends AbstractTomcatContainerController {
    * To uid.
    *
    * @param obj the obj
+   *
    * @return the string
    */
   private static String toUid(Object obj) {

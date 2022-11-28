@@ -30,6 +30,7 @@ public abstract class AbstractSeriesProvider implements SeriesProvider {
    *
    * @param legend the legend
    * @param stats the stats
+   *
    * @return the XY series
    */
   protected XYSeries toSeries(String legend, List<XYDataItem> stats) {

@@ -59,6 +59,7 @@ public class OpenEjbManagedDatasourceAccessor implements DatasourceAccessor {
    * Unwrap.
    *
    * @param resource the resource
+   *
    * @return the object
    */
   private Object unwrap(Object resource) {

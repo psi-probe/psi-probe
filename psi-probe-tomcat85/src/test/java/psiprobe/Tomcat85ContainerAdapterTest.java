@@ -202,7 +202,6 @@ class Tomcat85ContainerAdapterTest {
     assertTrue(adapter.resourceExists("name", context));
   }
 
-
   /**
    * Resource stream.
    *

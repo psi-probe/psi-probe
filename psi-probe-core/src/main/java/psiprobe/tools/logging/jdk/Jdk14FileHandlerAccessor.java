@@ -19,6 +19,7 @@ import psiprobe.tools.Instruments;
  */
 public class Jdk14FileHandlerAccessor extends Jdk14HandlerAccessor {
 
+  /** The Constant LATEST_FILE_INDEX. */
   private static final int LATEST_FILE_INDEX = 0;
 
   /**

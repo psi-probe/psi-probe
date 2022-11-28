@@ -277,7 +277,9 @@ public class ResourceResolverBean implements ResourceResolver {
    *
    * @param name the JNDI name of the resource
    * @param global whether to use the global prefix
+   *
    * @return the JNDI resource name with the prefix appended
+   *
    * @see #DEFAULT_GLOBAL_RESOURCE_PREFIX
    * @see #DEFAULT_RESOURCE_PREFIX
    */
@@ -291,6 +293,7 @@ public class ResourceResolverBean implements ResourceResolver {
    * @param server the server
    * @param objectName the object name
    * @param attributeName the attribute name
+   *
    * @return the string attribute
    */
   private String getStringAttribute(MBeanServer server, ObjectName objectName,

@@ -27,6 +27,7 @@ public class IpInfo {
    * Instantiates a new ip info.
    *
    * @param request the request
+   *
    * @return the ip info
    */
   public IpInfo builder(HttpServletRequest request) {
@@ -82,6 +83,7 @@ public class IpInfo {
    * Gets the client address.
    *
    * @param request the request
+   *
    * @return the client address
    */
   public static String getClientAddress(HttpServletRequest request) {

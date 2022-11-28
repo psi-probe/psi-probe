@@ -99,6 +99,7 @@ public class Tokenizer {
    * Load cache.
    *
    * @param count the count
+   *
    * @throws IOException Signals that an I/O exception has occurred.
    */
   private void loadCache(int count) throws IOException {
@@ -131,6 +132,7 @@ public class Tokenizer {
    * Gets the token.
    *
    * @return the token
+   *
    * @throws IOException Signals that an I/O exception has occurred.
    */
   public Token getToken() throws IOException {
@@ -144,6 +146,7 @@ public class Tokenizer {
    * Next token.
    *
    * @return the token
+   *
    * @throws IOException Signals that an I/O exception has occurred.
    */
   public Token nextToken() throws IOException {
@@ -231,7 +234,9 @@ public class Tokenizer {
    *
    * @param chars the chars
    * @param offs the offs
+   *
    * @return true, if successful
+   *
    * @throws IOException Signals that an I/O exception has occurred.
    */
   private boolean compare(char[] chars, int offs) throws IOException {
@@ -252,7 +257,9 @@ public class Tokenizer {
    * Lookup symbol.
    *
    * @param chr the chr
+   *
    * @return the int
+   *
    * @throws IOException Signals that an I/O exception has occurred.
    */
   private int lookupSymbol(char chr) throws IOException {
@@ -287,6 +294,7 @@ public class Tokenizer {
    *
    * @param chrs the chrs
    * @param count the count
+   *
    * @throws IOException Signals that an I/O exception has occurred.
    */
   private void read(char[] chrs, int count) throws IOException {
@@ -302,6 +310,7 @@ public class Tokenizer {
    * Checks for more.
    *
    * @return true, if successful
+   *
    * @throws IOException Signals that an I/O exception has occurred.
    */
   public boolean hasMore() throws IOException {
@@ -352,7 +361,9 @@ public class Tokenizer {
    * Gets the next string.
    *
    * @param defaultValue the default value
+   *
    * @return the next string
+   *
    * @throws IOException Signals that an I/O exception has occurred.
    */
   public String getNextString(String defaultValue) throws IOException {
@@ -364,7 +375,9 @@ public class Tokenizer {
    *
    * @param trueValue the true value
    * @param defaultValue the default value
+   *
    * @return the next boolean
+   *
    * @throws IOException Signals that an I/O exception has occurred.
    */
   public boolean getNextBoolean(String trueValue, boolean defaultValue) throws IOException {
@@ -375,7 +388,9 @@ public class Tokenizer {
    * Gets the next long.
    *
    * @param defaultValue the default value
+   *
    * @return the next long
+   *
    * @throws IOException Signals that an I/O exception has occurred.
    */
   public long getNextLong(long defaultValue) throws IOException {

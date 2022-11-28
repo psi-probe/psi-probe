@@ -66,6 +66,7 @@ public class Tomcat85ContainerAdapter extends AbstractTomcatContainer {
    * @param fmap the fmap
    * @param dm the dm
    * @param filterClass the filter class
+   *
    * @return the filter mappings
    */
   protected List<FilterMapping> getFilterMappings(FilterMap fmap, String dm, String filterClass) {
@@ -183,6 +184,7 @@ public class Tomcat85ContainerAdapter extends AbstractTomcatContainer {
    * Gets the filter info.
    *
    * @param fd the fd
+   *
    * @return the filter info
    */
   private static FilterInfo getFilterInfo(FilterDef fd) {

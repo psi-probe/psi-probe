@@ -41,7 +41,9 @@ public final class JmxTools {
    * @param mbeanServer the mbean server
    * @param objName the obj name
    * @param attrName the attr name
+   *
    * @return the attribute
+   *
    * @throws Exception the exception
    */
   public static Object getAttribute(MBeanServer mbeanServer, ObjectName objName, String attrName)
@@ -64,7 +66,9 @@ public final class JmxTools {
    * @param method the method
    * @param o the o
    * @param s the s
+   *
    * @return the object
+   *
    * @throws Exception the exception
    */
   public static Object invoke(MBeanServer mbeanServer, ObjectName objName, String method,
@@ -87,6 +91,7 @@ public final class JmxTools {
    * @param objName the obj name
    * @param attrName the attr name
    * @param defaultValue the default value
+   *
    * @return the long attr
    */
   public static long getLongAttr(MBeanServer mbeanServer, ObjectName objName, String attrName,
@@ -106,6 +111,7 @@ public final class JmxTools {
    *
    * @param cds the cds
    * @param name the name
+   *
    * @return the long attr
    */
   public static long getLongAttr(CompositeData cds, String name) {
@@ -122,7 +128,9 @@ public final class JmxTools {
    * @param mbeanServer the mbean server
    * @param objName the obj name
    * @param attrName the attr name
+   *
    * @return the long attr
+   *
    * @throws Exception the exception
    */
   public static long getLongAttr(MBeanServer mbeanServer, ObjectName objName, String attrName)
@@ -137,7 +145,9 @@ public final class JmxTools {
    * @param mbeanServer the mbean server
    * @param objName the obj name
    * @param attrName the attr name
+   *
    * @return the int attr
+   *
    * @throws Exception the exception
    */
   public static int getIntAttr(MBeanServer mbeanServer, ObjectName objName, String attrName)
@@ -152,6 +162,7 @@ public final class JmxTools {
    * @param cds the cds
    * @param name the name
    * @param defaultValue the default value
+   *
    * @return the int attr
    */
   public static int getIntAttr(CompositeData cds, String name, int defaultValue) {
@@ -169,7 +180,9 @@ public final class JmxTools {
    * @param mbeanServer the mbean server
    * @param objName the obj name
    * @param attrName the attr name
+   *
    * @return the string attr
+   *
    * @throws Exception the exception
    */
   public static String getStringAttr(MBeanServer mbeanServer, ObjectName objName, String attrName)
@@ -184,6 +197,7 @@ public final class JmxTools {
    *
    * @param cds the cds
    * @param name the name
+   *
    * @return the string attr
    */
   public static String getStringAttr(CompositeData cds, String name) {
@@ -196,6 +210,7 @@ public final class JmxTools {
    *
    * @param cds the cds
    * @param name the name
+   *
    * @return the boolean attr
    */
   public static boolean getBooleanAttr(CompositeData cds, String name) {
@@ -209,7 +224,9 @@ public final class JmxTools {
    * @param server the server
    * @param mbean the mbean
    * @param attrName the attr name
+   *
    * @return true, if successful
+   *
    * @throws Exception the exception
    */
   public static boolean hasAttribute(MBeanServer server, ObjectName mbean, String attrName)

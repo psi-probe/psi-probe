@@ -57,7 +57,6 @@ public abstract class AbstractLogHandlerController extends ParameterizableViewCo
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 
-
     String logType = ServletRequestUtils.getStringParameter(request, "logType");
     String webapp = ServletRequestUtils.getStringParameter(request, "webapp");
     boolean context = ServletRequestUtils.getBooleanParameter(request, "context", false);
@@ -93,7 +92,9 @@ public abstract class AbstractLogHandlerController extends ParameterizableViewCo
    * @param request the request
    * @param response the response
    * @param logDest the log dest
+   *
    * @return the model and view
+   *
    * @throws Exception the exception
    */
   protected abstract ModelAndView handleLogFile(HttpServletRequest request,

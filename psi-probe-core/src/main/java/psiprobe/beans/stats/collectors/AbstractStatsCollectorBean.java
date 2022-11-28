@@ -110,7 +110,9 @@ public abstract class AbstractStatsCollectorBean {
    *
    * @param name the name
    * @param value the value
+   *
    * @return the long
+   *
    * @throws InterruptedException the interrupted exception
    */
   protected long buildDeltaStats(String name, long value) throws InterruptedException {
@@ -123,7 +125,9 @@ public abstract class AbstractStatsCollectorBean {
    * @param name the name
    * @param value the value
    * @param time the time
+   *
    * @return the long
+   *
    * @throws InterruptedException the interrupted exception
    */
   protected long buildDeltaStats(String name, long value, long time) throws InterruptedException {
@@ -143,6 +147,7 @@ public abstract class AbstractStatsCollectorBean {
    *
    * @param name the name
    * @param value the value
+   *
    * @throws InterruptedException the interrupted exception
    */
   protected void buildAbsoluteStats(String name, long value) throws InterruptedException {
@@ -155,6 +160,7 @@ public abstract class AbstractStatsCollectorBean {
    * @param name the name
    * @param value the value
    * @param time the time
+   *
    * @throws InterruptedException the interrupted exception
    */
   protected void buildAbsoluteStats(String name, long value, long time)
@@ -221,6 +227,7 @@ public abstract class AbstractStatsCollectorBean {
    * @param name the name of the value, which allows the collector to be used for multiple values
    * @param value time spent on the task in milliseconds (A or B in the example above)
    * @param time system time in milliseconds (T1 or T2 in the example above)
+   *
    * @throws InterruptedException if a lock could not be obtained
    */
   protected void buildTimePercentageStats(String name, long value, long time)

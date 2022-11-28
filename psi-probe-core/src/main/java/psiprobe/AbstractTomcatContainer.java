@@ -231,6 +231,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
    * Removes the internal.
    *
    * @param name the name
+   *
    * @throws Exception the exception
    */
   private void removeInternal(String name) throws Exception {
@@ -246,6 +247,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
    * Install context internal.
    *
    * @param name the name
+   *
    * @throws Exception the exception
    */
   private void installContextInternal(String name) throws Exception {
@@ -489,6 +491,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
    *
    * @param context the context
    * @param bind the bind
+   *
    * @throws NamingException the naming exception
    */
   private void changeContextBinding(Context context, boolean bind) throws NamingException {
@@ -590,6 +593,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
    * Find context internal.
    *
    * @param name the context name
+   *
    * @return the context
    */
   protected Context findContextInternal(String name) {
@@ -600,6 +604,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
    * Check changes.
    *
    * @param name the name
+   *
    * @throws Exception the exception
    */
   protected void checkChanges(String name) throws Exception {
@@ -622,6 +627,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
    * Returns the security token required to bind to a naming context.
    *
    * @param context the catalina context
+   *
    * @return the security token for use with <code>ContextBindings</code>
    */
   protected abstract Object getNamingToken(Context context);
@@ -634,6 +640,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
    * @param sctx the sctx
    * @param jrctx the jrctx
    * @param classLoader the class loader
+   *
    * @return the jsp compilation context
    */
   protected abstract JspCompilationContext createJspCompilationContext(String name, Options opt,

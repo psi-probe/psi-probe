@@ -29,6 +29,7 @@ public class Log4JManagerAccessor extends DefaultAccessor {
    * Instantiates a new log4 j manager accessor.
    *
    * @param cl the cl
+   *
    * @throws ClassNotFoundException the class not found exception
    */
   public Log4JManagerAccessor(ClassLoader cl) throws ClassNotFoundException {
@@ -69,6 +70,7 @@ public class Log4JManagerAccessor extends DefaultAccessor {
    * Gets the logger.
    *
    * @param name the name
+   *
    * @return the logger
    */
   public Log4JLoggerAccessor getLogger(String name) {

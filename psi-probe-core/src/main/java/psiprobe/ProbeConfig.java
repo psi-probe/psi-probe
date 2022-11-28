@@ -188,6 +188,7 @@ public class ProbeConfig implements WebMvcConfigurer {
    *
    * @param jbossResourceResolverBean the jboss resource resolver bean
    * @param resourceResolverBean the resource resolver bean
+   *
    * @return the resource resolvers
    */
   @Bean(name = "resourceResolvers")
@@ -433,6 +434,7 @@ public class ProbeConfig implements WebMvcConfigurer {
    * Gets the bean name url handler mapping.
    *
    * @param interceptor the interceptor
+   *
    * @return the bean name url handler mapping
    */
   @Bean(name = "handlerMapping")
@@ -966,6 +968,7 @@ public class ProbeConfig implements WebMvcConfigurer {
    * @param memoryStatsTrigger the memory stats trigger
    * @param runtimeStatsTrigger the runtime stats trigger
    * @param statsSerializerTrigger the stats serializer trigger
+   *
    * @return the scheduler factory bean
    */
   @Bean(name = "scheduler")

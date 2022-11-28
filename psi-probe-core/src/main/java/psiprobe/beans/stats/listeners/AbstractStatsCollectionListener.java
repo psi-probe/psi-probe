@@ -50,6 +50,7 @@ public abstract class AbstractStatsCollectionListener implements StatsCollection
    *
    * @param name the name
    * @param attribute the attribute
+   *
    * @return the property value
    */
   protected String getPropertyValue(String name, String attribute) {
@@ -67,6 +68,7 @@ public abstract class AbstractStatsCollectionListener implements StatsCollection
    * Gets the property value.
    *
    * @param key the key
+   *
    * @return the property value
    */
   protected String getPropertyValue(String key) {
@@ -78,6 +80,7 @@ public abstract class AbstractStatsCollectionListener implements StatsCollection
    *
    * @param name the name
    * @param attribute the attribute
+   *
    * @return the property key
    */
   protected String getPropertyKey(String name, String attribute) {
@@ -90,6 +93,7 @@ public abstract class AbstractStatsCollectionListener implements StatsCollection
    * @param category the category
    * @param name the name
    * @param attribute the attribute
+   *
    * @return the property key
    */
   private String getPropertyKey(String category, String name, String attribute) {

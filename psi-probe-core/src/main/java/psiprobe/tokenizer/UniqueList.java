@@ -41,6 +41,7 @@ public class UniqueList<T extends Comparable<? super T>> extends ArrayList<T> {
    *
    * @param obj the obj
    * @param comp the comp
+   *
    * @return true, if successful
    */
   protected synchronized boolean add(T obj, Comparator<? super T> comp) {

@@ -38,6 +38,7 @@ public class JvmMemoryInfoAccessorBean {
    * Gets the pools.
    *
    * @return the pools
+   *
    * @throws Exception the exception
    */
   public List<MemoryPool> getPools() throws Exception {

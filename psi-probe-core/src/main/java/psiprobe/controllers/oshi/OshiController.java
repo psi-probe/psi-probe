@@ -145,9 +145,8 @@ public class OshiController extends AbstractTomcatContainerController {
    * Code copied and adjusted for Psi Probem from Oshi SystemInfoTest.main at revision
    *
    * <pre>
-   *    https://github.com/oshi/oshi/blob/cf45b1f528f99ca353655dea5f154940c76c0bdb/oshi-core/src/test/java/oshi/SystemInfoTest.java
+   * https://github.com/oshi/oshi/blob/cf45b1f528f99ca353655dea5f154940c76c0bdb/oshi-core/src/test/java/oshi/SystemInfoTest.java
    * </pre>
-   * <p>
    *
    * <pre>
    * Psi Probe differences

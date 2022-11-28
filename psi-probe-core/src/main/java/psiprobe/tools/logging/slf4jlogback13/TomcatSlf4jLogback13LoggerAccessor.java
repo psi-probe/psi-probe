@@ -29,7 +29,7 @@ public class TomcatSlf4jLogback13LoggerAccessor extends DefaultAccessor {
   /**
    * Returns all appenders of this logger.
    *
-   * @return a list of {@link TomcatSlf4jLogbackAppenderAccessor}s
+   * @return a list of {@link TomcatSlf4jLogback13AppenderAccessor}s
    */
   @SuppressWarnings("unchecked")
   public List<TomcatSlf4jLogback13AppenderAccessor> getAppenders() {
@@ -60,6 +60,7 @@ public class TomcatSlf4jLogback13LoggerAccessor extends DefaultAccessor {
    * Returns the appender of this logger with the given name.
    *
    * @param name the name of the appender to return
+   *
    * @return the appender with the given name, or null if no such appender exists for this logger
    */
   public TomcatSlf4jLogback13AppenderAccessor getAppender(String name) {
@@ -141,7 +142,9 @@ public class TomcatSlf4jLogback13LoggerAccessor extends DefaultAccessor {
    * Gets the sifted appenders.
    *
    * @param appender the appender
+   *
    * @return the sifted appenders
+   *
    * @throws Exception the exception
    */
   @SuppressWarnings("unchecked")
@@ -183,6 +186,7 @@ public class TomcatSlf4jLogback13LoggerAccessor extends DefaultAccessor {
    * Wrap appender.
    *
    * @param appender the appender
+   *
    * @return the tomcat slf4j logback appender accessor
    */
   private TomcatSlf4jLogback13AppenderAccessor wrapAppender(Object appender) {

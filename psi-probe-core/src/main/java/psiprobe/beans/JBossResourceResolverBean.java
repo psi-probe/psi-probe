@@ -139,7 +139,9 @@ public class JBossResourceResolverBean implements ResourceResolver {
    * Gets the application resources.
    *
    * @param context the context
+   *
    * @return the application resources
+   *
    * @throws NamingException the naming exception
    */
   public List<ApplicationResource> getApplicationResources(Context context) throws NamingException {

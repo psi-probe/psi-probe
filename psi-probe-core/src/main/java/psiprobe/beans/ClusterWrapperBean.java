@@ -35,7 +35,9 @@ public class ClusterWrapperBean {
    * @param serverName the server name
    * @param hostName the host name
    * @param loadMembers the load members
+   *
    * @return the cluster
+   *
    * @throws Exception the exception
    */
   public Cluster getCluster(String serverName, String hostName, boolean loadMembers)

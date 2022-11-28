@@ -31,6 +31,7 @@ public class Jdk14ManagerAccessor extends DefaultAccessor {
    * Instantiates a new jdk14 manager accessor.
    *
    * @param cl the cl
+   *
    * @throws ClassNotFoundException the class not found exception
    * @throws IllegalAccessException the illegal access exception
    * @throws InvocationTargetException the invocation target exception
@@ -60,6 +61,7 @@ public class Jdk14ManagerAccessor extends DefaultAccessor {
    * Gets the logger.
    *
    * @param name the name
+   *
    * @return the logger
    */
   public Jdk14LoggerAccessor getLogger(String name) {

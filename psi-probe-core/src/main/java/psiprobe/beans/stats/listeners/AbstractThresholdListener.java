@@ -94,6 +94,7 @@ public abstract class AbstractThresholdListener extends AbstractStatsCollectionL
    * Checks if is previous value above threshold.
    *
    * @param sce the sce
+   *
    * @return true, if is previous value above threshold
    */
   protected boolean isPreviousValueAboveThreshold(StatsCollectionEvent sce) {
@@ -107,6 +108,7 @@ public abstract class AbstractThresholdListener extends AbstractStatsCollectionL
    * Checks if is value above threshold.
    *
    * @param sce the sce
+   *
    * @return true, if is value above threshold
    */
   protected boolean isValueAboveThreshold(StatsCollectionEvent sce) {
@@ -120,6 +122,7 @@ public abstract class AbstractThresholdListener extends AbstractStatsCollectionL
    * Gets the threshold.
    *
    * @param name the name
+   *
    * @return the threshold
    */
   protected long getThreshold(String name) {
@@ -146,6 +149,7 @@ public abstract class AbstractThresholdListener extends AbstractStatsCollectionL
    * Gets the previous value.
    *
    * @param name the name
+   *
    * @return the previous value
    */
   protected long getPreviousValue(String name) {
@@ -168,6 +172,7 @@ public abstract class AbstractThresholdListener extends AbstractStatsCollectionL
    * Checks if is series disabled.
    *
    * @param name the name
+   *
    * @return true, if is series disabled
    */
   protected boolean isSeriesDisabled(String name) {

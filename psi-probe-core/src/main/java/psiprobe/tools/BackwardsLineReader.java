@@ -59,6 +59,7 @@ public class BackwardsLineReader {
    * Read line.
    *
    * @return the string
+   *
    * @throws IOException Signals that an I/O exception has occurred.
    */
   public String readLine() throws IOException {

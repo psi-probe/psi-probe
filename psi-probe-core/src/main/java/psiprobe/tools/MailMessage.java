@@ -123,6 +123,7 @@ public class MailMessage {
    * Adds the recipient to.
    *
    * @param address the address
+   *
    * @return the mail message
    */
   public MailMessage addRecipientTo(String address) {
@@ -136,6 +137,7 @@ public class MailMessage {
    * Adds the recipient cc.
    *
    * @param address the address
+   *
    * @return the mail message
    */
   public MailMessage addRecipientCc(String address) {
@@ -149,6 +151,7 @@ public class MailMessage {
    * Adds the recipient bcc.
    *
    * @param address the address
+   *
    * @return the mail message
    */
   public MailMessage addRecipientBcc(String address) {
@@ -162,6 +165,7 @@ public class MailMessage {
    * Adds the attachment.
    *
    * @param attachment the attachment
+   *
    * @return the mail message
    */
   public MailMessage addAttachment(File attachment) {
@@ -173,6 +177,7 @@ public class MailMessage {
    * Adds the attachment.
    *
    * @param attachment the attachment
+   *
    * @return the mail message
    */
   public MailMessage addAttachment(DataSource attachment) {
@@ -226,6 +231,7 @@ public class MailMessage {
    * Sets the subject.
    *
    * @param subject the subject
+   *
    * @return the mail message
    */
   public MailMessage setSubject(String subject) {
@@ -237,6 +243,7 @@ public class MailMessage {
    * Sets the body.
    *
    * @param body the body
+   *
    * @return the mail message
    */
   public MailMessage setBody(String body) {
@@ -248,6 +255,7 @@ public class MailMessage {
    * Sets the body html.
    *
    * @param bodyHtml the body html
+   *
    * @return the mail message
    */
   public MailMessage setBodyHtml(boolean bodyHtml) {

@@ -59,10 +59,20 @@ public class OldConnectorInfo extends ConnectorInfo {
     setSslHostConfigInfos(sslHostConfigInfos);
   }
 
+  /**
+   * Gets the internal ssl host config info.
+   *
+   * @return the internal ssl host config info
+   */
   private SslHostConfigInfo getInternalSslHostConfigInfo() {
     return getSslHostConfigInfos().get(0);
   }
 
+  /**
+   * Gets the internal certificate info.
+   *
+   * @return the internal certificate info
+   */
   private CertificateInfo getInternalCertificateInfo() {
     return getInternalSslHostConfigInfo().getCertificateInfos().get(0);
   }

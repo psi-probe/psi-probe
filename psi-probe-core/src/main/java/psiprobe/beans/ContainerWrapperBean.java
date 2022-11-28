@@ -199,6 +199,7 @@ public class ContainerWrapperBean {
    * Gets the data sources.
    *
    * @return the data sources
+   *
    * @throws Exception the exception
    */
   public List<ApplicationResource> getDataSources() throws Exception {
@@ -211,6 +212,7 @@ public class ContainerWrapperBean {
    * Gets the private data sources.
    *
    * @return the private data sources
+   *
    * @throws Exception the exception
    */
   public List<ApplicationResource> getPrivateDataSources() throws Exception {
@@ -230,6 +232,7 @@ public class ContainerWrapperBean {
    * Gets the global data sources.
    *
    * @return the global data sources
+   *
    * @throws Exception the exception
    */
   public List<ApplicationResource> getGlobalDataSources() throws Exception {

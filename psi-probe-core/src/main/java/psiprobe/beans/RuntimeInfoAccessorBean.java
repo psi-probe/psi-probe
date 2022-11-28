@@ -33,6 +33,7 @@ public class RuntimeInfoAccessorBean {
    * Gets the runtime information.
    *
    * @return the runtime information
+   *
    * @throws Exception the exception
    */
   public RuntimeInformation getRuntimeInformation() throws Exception {

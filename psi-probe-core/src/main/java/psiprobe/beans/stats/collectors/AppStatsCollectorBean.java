@@ -155,6 +155,7 @@ public class AppStatsCollectorBean extends AbstractStatsCollectorBean
    * Exclude from total.
    *
    * @param ctx the ctx
+   *
    * @return true, if successful
    */
   private boolean excludeFromTotal(Context ctx) {

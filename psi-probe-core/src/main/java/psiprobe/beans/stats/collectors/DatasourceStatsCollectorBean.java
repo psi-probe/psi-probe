@@ -96,6 +96,7 @@ public class DatasourceStatsCollectorBean extends AbstractStatsCollectorBean {
    * Reset.
    *
    * @param name the name
+   *
    * @throws Exception the exception
    */
   public void reset(String name) throws Exception {

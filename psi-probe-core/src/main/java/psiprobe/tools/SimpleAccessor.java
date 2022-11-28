@@ -41,7 +41,9 @@ public class SimpleAccessor implements Accessor {
    *
    * @param obj the obj
    * @param field the field
+   *
    * @return the 0
+   *
    * @throws IllegalAccessException the illegal access exception
    */
   private Object get0(Object obj, Field field) throws IllegalAccessException {
@@ -56,6 +58,7 @@ public class SimpleAccessor implements Accessor {
    * Pre.
    *
    * @param field the field
+   *
    * @return true, if successful
    */
   private boolean pre(Field field) {

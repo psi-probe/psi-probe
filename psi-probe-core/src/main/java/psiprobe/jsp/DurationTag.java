@@ -56,6 +56,7 @@ public class DurationTag extends TagSupport {
    * Duration.
    *
    * @param value the value
+   *
    * @return the string
    */
   public static String duration(long value) {
@@ -74,6 +75,7 @@ public class DurationTag extends TagSupport {
    * Long2 str.
    *
    * @param value the value
+   *
    * @return the string
    */
   private static String long2Str(long value) {
@@ -84,6 +86,7 @@ public class DurationTag extends TagSupport {
    * Long3 str.
    *
    * @param value the value
+   *
    * @return the string
    */
   private static String long3Str(long value) {

@@ -37,6 +37,7 @@ public class CommonsLoggerAccessor extends DefaultAccessor {
    * Gets the destination.
    *
    * @param logIndex the log index
+   *
    * @return the destination
    */
   public LogDestination getDestination(String logIndex) {

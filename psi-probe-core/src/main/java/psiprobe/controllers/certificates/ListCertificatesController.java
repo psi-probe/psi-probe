@@ -111,7 +111,9 @@ public class ListCertificatesController extends AbstractTomcatContainerControlle
    * @param storeType the store type
    * @param storeFile the store file
    * @param storePassword the store password
+   *
    * @return the certificates
+   *
    * @throws Exception the exception
    */
   public List<Cert> getCertificates(String storeType, String storeFile, String storePassword)
@@ -162,7 +164,9 @@ public class ListCertificatesController extends AbstractTomcatContainerControlle
    * Gets the connector infos.
    *
    * @param connectors the connectors
+   *
    * @return the connector infos
+   *
    * @throws IllegalAccessException the illegal access exception
    * @throws InvocationTargetException the invocation target exception
    */
@@ -193,7 +197,9 @@ public class ListCertificatesController extends AbstractTomcatContainerControlle
    *
    * @param path the path of a store file (absolute or relative to CATALINA.BASE), or URI to store
    *        file (absolute or relative to CATALINA.BASE).
+   *
    * @return the input stream of the path file
+   *
    * @throws IOException if path can not be resolved
    */
   private InputStream getStoreInputStream(String path) throws IOException {
@@ -220,7 +226,9 @@ public class ListCertificatesController extends AbstractTomcatContainerControlle
    * To connector info.
    *
    * @param protocol the protocol
+   *
    * @return the connector info
+   *
    * @throws IllegalAccessException the illegal access exception
    * @throws InvocationTargetException the invocation target exception
    */

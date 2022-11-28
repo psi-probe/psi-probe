@@ -142,6 +142,7 @@ public abstract class AbstractFlapListener extends AbstractThresholdListener {
    *
    * @param name the name
    * @param crossedThreshold the crossed threshold
+   *
    * @return true, if successful
    */
   protected boolean checkFlappingStateChanged(String name, boolean crossedThreshold) {
@@ -163,6 +164,7 @@ public abstract class AbstractFlapListener extends AbstractThresholdListener {
    *
    * @param name the name
    * @param flapping the flapping
+   *
    * @return the float
    */
   protected float calculateStateTransitionPercentage(String name, boolean flapping) {
@@ -202,6 +204,7 @@ public abstract class AbstractFlapListener extends AbstractThresholdListener {
    * Gets the flapping state.
    *
    * @param name the name
+   *
    * @return the flapping state
    */
   protected boolean getFlappingState(String name) {
@@ -227,6 +230,7 @@ public abstract class AbstractFlapListener extends AbstractThresholdListener {
    * Gets the flaps.
    *
    * @param name the name
+   *
    * @return the flaps
    */
   protected LinkedList<Boolean> getFlaps(String name) {
@@ -242,6 +246,7 @@ public abstract class AbstractFlapListener extends AbstractThresholdListener {
    * Gets the flap interval.
    *
    * @param name the name
+   *
    * @return the flap interval
    */
   protected int getFlapInterval(String name) {
@@ -253,6 +258,7 @@ public abstract class AbstractFlapListener extends AbstractThresholdListener {
    * Gets the flap start threshold.
    *
    * @param name the name
+   *
    * @return the flap start threshold
    */
   protected float getFlapStartThreshold(String name) {
@@ -264,6 +270,7 @@ public abstract class AbstractFlapListener extends AbstractThresholdListener {
    * Gets the flap stop threshold.
    *
    * @param name the name
+   *
    * @return the flap stop threshold
    */
   protected float getFlapStopThreshold(String name) {
@@ -275,6 +282,7 @@ public abstract class AbstractFlapListener extends AbstractThresholdListener {
    * Gets the flap low weight.
    *
    * @param name the name
+   *
    * @return the flap low weight
    */
   protected float getFlapLowWeight(String name) {
@@ -286,6 +294,7 @@ public abstract class AbstractFlapListener extends AbstractThresholdListener {
    * Gets the flap high weight.
    *
    * @param name the name
+   *
    * @return the flap high weight
    */
   protected float getFlapHighWeight(String name) {

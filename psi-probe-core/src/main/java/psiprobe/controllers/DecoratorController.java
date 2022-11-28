@@ -111,6 +111,7 @@ public class DecoratorController extends PostParameterizableViewController {
    * Gets the message file names for locale.
    *
    * @param locale the locale
+   *
    * @return the message file names for locale
    */
   private List<String> getMessageFileNamesForLocale(Locale locale) {

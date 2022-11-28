@@ -37,6 +37,7 @@ public class TomcatSlf4jLogbackFactoryAccessor extends DefaultAccessor {
    * Attempts to initialize a TomcatSlf4jLogback logger factory via the given class loader.
    *
    * @param cl the ClassLoader to use when fetching the factory
+   *
    * @throws ClassNotFoundException the class not found exception
    * @throws IllegalAccessException the illegal access exception
    * @throws InvocationTargetException the invocation target exception
@@ -78,6 +79,7 @@ public class TomcatSlf4jLogbackFactoryAccessor extends DefaultAccessor {
    * Returns the TomcatSlf4jLogback logger with a given name.
    *
    * @param name the name
+   *
    * @return the Logger with the given name
    */
   public TomcatSlf4jLogbackLoggerAccessor getLogger(String name) {

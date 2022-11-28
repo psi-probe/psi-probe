@@ -37,6 +37,7 @@ public class TomcatSlf4jLogback13FactoryAccessor extends DefaultAccessor {
    * Attempts to initialize a TomcatSlf4jLogback logger factory via the given class loader.
    *
    * @param cl the ClassLoader to use when fetching the factory
+   *
    * @throws ClassNotFoundException the class not found exception
    * @throws IllegalAccessException the illegal access exception
    * @throws InvocationTargetException the invocation target exception
@@ -92,6 +93,7 @@ public class TomcatSlf4jLogback13FactoryAccessor extends DefaultAccessor {
    * Returns the TomcatSlf4jLogback logger with a given name.
    *
    * @param name the name
+   *
    * @return the Logger with the given name
    */
   public TomcatSlf4jLogback13LoggerAccessor getLogger(String name) {
@@ -117,7 +119,7 @@ public class TomcatSlf4jLogback13FactoryAccessor extends DefaultAccessor {
   /**
    * Returns a list of wrappers for all TomcatSlf4jLogback appenders that have an associated logger.
    *
-   * @return a list of {@link TomcatSlf4jLogbackAppenderAccessor}s representing all appenders that
+   * @return a list of {@link TomcatSlf4jLogback13AppenderAccessor}s representing all appenders that
    *         are in use
    */
   @SuppressWarnings("unchecked")
@@ -141,6 +143,20 @@ public class TomcatSlf4jLogback13FactoryAccessor extends DefaultAccessor {
     return appenders;
   }
 
+  /**
+   * Find service providers.
+   *
+   * @param cl the cl
+   *
+   * @return the list
+   *
+   * @throws NoSuchMethodException the no such method exception
+   * @throws SecurityException the security exception
+   * @throws ClassNotFoundException the class not found exception
+   * @throws IllegalAccessException the illegal access exception
+   * @throws IllegalArgumentException the illegal argument exception
+   * @throws InvocationTargetException the invocation target exception
+   */
   private static List<?> findServiceProviders(final ClassLoader cl)
       throws NoSuchMethodException, SecurityException, ClassNotFoundException,
       IllegalAccessException, IllegalArgumentException, InvocationTargetException {

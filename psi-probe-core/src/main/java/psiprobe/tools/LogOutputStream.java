@@ -77,6 +77,7 @@ public final class LogOutputStream extends OutputStream {
    *
    * @param log the {@code Log} to which to write
    * @param level the level at which to write
+   *
    * @return a {@code PrintStream} that writes to the given log
    */
   public static PrintStream createPrintStream(Logger log, int level) {

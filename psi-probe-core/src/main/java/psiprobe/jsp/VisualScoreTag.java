@@ -104,6 +104,7 @@ public class VisualScoreTag extends BodyTagSupport {
    * Calculate suffix.
    *
    * @param body the body
+   *
    * @return the string buffer
    */
   String calculateSuffix(String body) {

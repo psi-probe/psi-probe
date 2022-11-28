@@ -39,6 +39,7 @@ public class UrlParser {
    * Instantiates a new url parser.
    *
    * @param url the url
+   *
    * @throws MalformedURLException the malformed URL exception
    */
   public UrlParser(String url) throws MalformedURLException {

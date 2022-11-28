@@ -182,6 +182,7 @@ public class ListSessionsController extends AbstractContextHandlerController {
    *
    * @param appSession the app session
    * @param searchInfo the search info
+   *
    * @return true, if successful
    */
   private boolean matchSession(ApplicationSession appSession, SessionSearchInfo searchInfo) {

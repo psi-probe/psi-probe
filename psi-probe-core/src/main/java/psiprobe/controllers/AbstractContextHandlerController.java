@@ -60,7 +60,9 @@ public abstract class AbstractContextHandlerController extends AbstractTomcatCon
    * @param context the context
    * @param request the request
    * @param response the response
+   *
    * @return the model and view
+   *
    * @throws Exception the exception
    */
   protected abstract ModelAndView handleContext(String contextName, Context context,

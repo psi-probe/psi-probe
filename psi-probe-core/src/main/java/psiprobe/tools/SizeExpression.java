@@ -104,7 +104,9 @@ public final class SizeExpression {
    * </ul>
    *
    * @param expression the expression to parse
+   *
    * @return the parsed value
+   *
    * @throws NumberFormatException if the given expression cannot be parsed
    */
   public static long parse(String expression) {
@@ -135,6 +137,7 @@ public final class SizeExpression {
    * @param decimalPlaces the number of decimal places in the mantissa
    * @param base2 whether to use the base-2 (1024) multiplier and format with "B" units. If false,
    *        uses the base-10 (1000) multiplier and no units.
+   *
    * @return a formatted string expression of the value
    */
   public static String format(long value, int decimalPlaces, boolean base2) {
@@ -175,6 +178,7 @@ public final class SizeExpression {
    *
    * @param value the value to round
    * @param decimalPlaces the number of decimal places to preserve.
+   *
    * @return the rounded value
    */
   private static double round(double value, int decimalPlaces) {
@@ -187,6 +191,7 @@ public final class SizeExpression {
    * @param unitPrefix the character representing the prefix. Can be K, M, G, T, or P.
    * @param base2 whether to use the base-2 (1024) multiplier. If false, uses the base-10 (1000)
    *        multiplier.
+   *
    * @return the multiplier for the given prefix
    */
   private static double multiplier(char unitPrefix, boolean base2) {

@@ -39,7 +39,6 @@ public class FollowedFileInfoController extends AbstractLogHandlerController {
     return new ModelAndView(getViewName()).addObject("log", logDest);
   }
 
-
   @Value("ajax/followed_file_info")
   @Override
   public void setViewName(String viewName) {

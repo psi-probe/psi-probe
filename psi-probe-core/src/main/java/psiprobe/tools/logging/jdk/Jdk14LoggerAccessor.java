@@ -98,6 +98,7 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
    * Gets the handler.
    *
    * @param logIndex the log index
+   *
    * @return the handler
    */
   public Jdk14HandlerAccessor getHandler(String logIndex) {
@@ -115,6 +116,7 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
    * Gets the handler.
    *
    * @param index the index
+   *
    * @return the handler
    */
   public Jdk14HandlerAccessor getHandler(int index) {
@@ -171,7 +173,9 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
    * Gets the level internal.
    *
    * @param target the target
+   *
    * @return the level internal
+   *
    * @throws Exception the exception
    */
   private Object getLevelInternal(Object target) throws Exception {
@@ -183,6 +187,7 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
    *
    * @param handler the handler
    * @param index the index
+   *
    * @return the jdk14 handler accessor
    */
   private Jdk14HandlerAccessor wrapHandler(Object handler, int index) {
