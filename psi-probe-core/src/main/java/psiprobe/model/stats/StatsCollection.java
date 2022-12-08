@@ -308,7 +308,8 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
         }
         logger.debug("stats data read in {}ms", System.currentTimeMillis() - start);
       } catch (ExceptionInInitializerError e) {
-        if (e.getCause()!=null && e.getCause().getMessage()!=null && e.getCause().getMessage().contains("does not \"opens java.util\" to unnamed module")) {
+        if (e.getCause() != null && e.getCause().getMessage() != null && e.getCause().getMessage()
+            .contains("does not \"opens java.util\" to unnamed module")) {
           logger.error(
               "Stats deserialization disabled, use '--add-opens java.base/java.util=ALL-UNNAMED' to start Tomcat to enable again");
         } else {
