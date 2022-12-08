@@ -24,15 +24,13 @@
     <packaging>jar</packaging>
 
     <name>psi-probe-core</name>
-    <description>
-        PSI Probe Core - Core logic, data models, and controllers
-    </description>
+    <description>PSI Probe Core - Core logic, data models, and controllers</description>
 
     <scm>
         <connection>scm:git:ssh://git@github.com/psi-probe/psi-probe.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/psi-probe/psi-probe.git</developerConnection>
-        <url>https://github.com/psi-probe/psi-probe/</url>
         <tag>HEAD</tag>
+        <url>https://github.com/psi-probe/psi-probe/</url>
     </scm>
 
     <dependencies>
@@ -112,7 +110,6 @@
             <artifactId>vibur-dbcp</artifactId>
             <scope>provided</scope>
         </dependency>
-
 
         <dependency>
             <groupId>com.google.guava</groupId>
@@ -196,10 +193,10 @@
             <artifactId>quartz</artifactId>
             <scope>compile</scope>
             <exclusions>
-                 <exclusion>
-                      <groupId>com.zaxxer</groupId>
-                      <artifactId>HikariCP-java7</artifactId>
-                 </exclusion>
+                <exclusion>
+                    <groupId>com.zaxxer</groupId>
+                    <artifactId>HikariCP-java7</artifactId>
+                </exclusion>
             </exclusions>
         </dependency>
         <dependency>
@@ -267,11 +264,11 @@
                 <directory>${project.basedir}/src/main/resources</directory>
             </resource>
             <resource>
+                <filtering>true</filtering>
                 <directory>${project.basedir}/src/main/resources</directory>
                 <includes>
-                   <include>version.properties</include>
+                    <include>version.properties</include>
                 </includes>
-                <filtering>true</filtering>
             </resource>
         </resources>
     </build>

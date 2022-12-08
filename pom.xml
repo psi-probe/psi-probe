@@ -20,9 +20,7 @@
     <packaging>pom</packaging>
 
     <name>psi-probe</name>
-    <description>
-        Psi Probe - Advanced manager and monitor for Tomcat, forked from Lambda Probe
-    </description>
+    <description>Psi Probe - Advanced manager and monitor for Tomcat, forked from Lambda Probe</description>
     <url>https://github.com/psi-probe/psi-probe/</url>
     <inceptionYear>2009</inceptionYear>
     <organization>
@@ -85,8 +83,8 @@
     <scm>
         <connection>scm:git:ssh://git@github.com/psi-probe/psi-probe.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/psi-probe/psi-probe.git</developerConnection>
-        <url>https://github.com/psi-probe/psi-probe/</url>
         <tag>HEAD</tag>
+        <url>https://github.com/psi-probe/psi-probe/</url>
     </scm>
     <issueManagement>
         <system>GitHub Issues</system>
@@ -97,19 +95,19 @@
         <url>https://github.com/psi-probe/psi-probe/actions/</url>
     </ciManagement>
     <distributionManagement>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
         <site>
             <id>gh-pages-scm</id>
             <name>Psi-Probe GitHub Pages</name>
             <url>scm:git:ssh://git@github.com/psi-probe/psi-probe.git</url>
         </site>
-        <snapshotRepository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-        <repository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
     </distributionManagement>
 
     <properties>
@@ -1017,13 +1015,6 @@
                         <sourceVersion>${maven.compiler.source}</sourceVersion>
                         <targetVersion>${maven.compiler.target}</targetVersion>
                     </configuration>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>jspc</goal>
-                            </goals>
-                        </execution>
-                    </executions>
                     <dependencies>
                         <dependency>
                             <groupId>org.apache.tomcat</groupId>
@@ -1042,6 +1033,13 @@
                             <version>${ecj.version}</version>
                         </dependency>
                     </dependencies>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>jspc</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                 </plugin>
                 <plugin>
                     <groupId>io.jsonwebtoken.coveralls</groupId>
@@ -1223,17 +1221,17 @@
                     </execution>
                     <execution>
                         <id>enforce-clean</id>
-                        <phase>pre-clean</phase>
                         <goals>
                             <goal>enforce</goal>
                         </goals>
+                        <phase>pre-clean</phase>
                     </execution>
                     <execution>
                         <id>enforce-site</id>
-                        <phase>pre-site</phase>
                         <goals>
                             <goal>enforce</goal>
                         </goals>
+                        <phase>pre-site</phase>
                     </execution>
                 </executions>
             </plugin>
@@ -1272,10 +1270,10 @@
                 <executions>
                     <execution>
                         <id>modernizer</id>
-                        <phase>verify</phase>
                         <goals>
                             <goal>modernizer</goal>
                         </goals>
+                        <phase>verify</phase>
                     </execution>
                 </executions>
             </plugin>
@@ -1309,10 +1307,10 @@
                 <artifactId>sortpom-maven-plugin</artifactId>
                 <executions>
                     <execution>
-                        <phase>verify</phase>
                         <goals>
                             <goal>sort</goal>
                         </goals>
+                        <phase>verify</phase>
                     </execution>
                 </executions>
             </plugin>
@@ -1414,10 +1412,10 @@
                         <executions>
                             <execution>
                                 <id>sign-artifacts</id>
-                                <phase>verify</phase>
                                 <goals>
                                     <goal>sign</goal>
                                 </goals>
+                                <phase>verify</phase>
                             </execution>
                         </executions>
                     </plugin>
@@ -1550,7 +1548,7 @@
                                                 </goals>
                                             </pluginExecutionFilter>
                                             <action>
-                                                <ignore />
+                                                <ignore/>
                                             </action>
                                         </pluginExecution>
                                     </pluginExecutions>

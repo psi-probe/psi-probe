@@ -24,15 +24,13 @@
     <packaging>jar</packaging>
 
     <name>psi-probe-tomcat9</name>
-    <description>
-        PSI Probe Tomcat 9.0.x Adapter - Implementation of features specific to Apache Tomcat 9.0.x
-    </description>
+    <description>PSI Probe Tomcat 9.0.x Adapter - Implementation of features specific to Apache Tomcat 9.0.x</description>
 
     <scm>
         <connection>scm:git:ssh://git@github.com/psi-probe/psi-probe.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/psi-probe/psi-probe.git</developerConnection>
-        <url>https://github.com/psi-probe/psi-probe/</url>
         <tag>HEAD</tag>
+        <url>https://github.com/psi-probe/psi-probe/</url>
     </scm>
 
     <properties>

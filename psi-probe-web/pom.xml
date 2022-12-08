@@ -24,16 +24,14 @@
     <packaging>war</packaging>
 
     <name>psi-probe-web</name>
-    <description>
-        PSI Probe Web Application - Web view, message resources, and configuration
-    </description>
+    <description>PSI Probe Web Application - Web view, message resources, and configuration</description>
     <url>https://github.com/psi-probe/psi-probe/</url>
 
     <scm>
         <connection>scm:git:ssh://git@github.com/psi-probe/psi-probe.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/psi-probe/psi-probe.git</developerConnection>
-        <url>https://github.com/psi-probe/psi-probe/</url>
         <tag>HEAD</tag>
+        <url>https://github.com/psi-probe/psi-probe/</url>
     </scm>
 
     <properties>

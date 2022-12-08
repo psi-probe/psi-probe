@@ -24,15 +24,13 @@
     <packaging>jar</packaging>
 
     <name>psi-probe-rest</name>
-    <description>
-        PSI Probe Rest - RESTful service endpoints.
-    </description>
+    <description>PSI Probe Rest - RESTful service endpoints.</description>
 
     <scm>
         <connection>scm:git:ssh://git@github.com/psi-probe/psi-probe.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/psi-probe/psi-probe.git</developerConnection>
-        <url>https://github.com/psi-probe/psi-probe/</url>
         <tag>HEAD</tag>
+        <url>https://github.com/psi-probe/psi-probe/</url>
     </scm>
 
     <dependencies>
