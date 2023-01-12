@@ -235,7 +235,7 @@
         <license.plugin>4.2.rc3</license.plugin>
         <lifecycle-mapping.plugin>1.0.0</lifecycle-mapping.plugin>
         <modernizer.plugin>2.5.0</modernizer.plugin>
-        <pmd.plugin>3.19.0</pmd.plugin>
+        <pmd.plugin>3.20.0</pmd.plugin>
         <project-info.plugin>3.4.1</project-info.plugin>
         <release.plugin>3.0.0-M7</release.plugin>
         <resources.plugin>3.3.0</resources.plugin>
