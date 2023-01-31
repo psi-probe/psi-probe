@@ -174,7 +174,7 @@
         <inject.version>1.0.5</inject.version>
         <io.version>2.11.0</io.version>
         <j2objc.version>2.8</j2objc.version>
-        <jackson.version>2.14.1</jackson.version>
+        <jackson.version>2.14.2</jackson.version>
         <jackson-databind.version>2.14.2</jackson-databind.version>
         <javabean-tester.version>2.5.0</javabean-tester.version>
         <jfreechart.version>1.5.4</jfreechart.version>
@@ -243,7 +243,7 @@
         <scm-publish.plugin>3.1.0</scm-publish.plugin>
         <site.plugin>3.12.1</site.plugin>
         <sonar.plugin>3.9.1.2184</sonar.plugin>
-        <sortpom.plugin>3.2.0</sortpom.plugin>
+        <sortpom.plugin>3.2.1</sortpom.plugin>
         <source.plugin>3.2.1</source.plugin>
         <spotbugs.plugin>4.7.3.0</spotbugs.plugin>
         <surefire.plugin>3.0.0-M8</surefire.plugin>
