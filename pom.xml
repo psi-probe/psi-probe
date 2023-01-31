@@ -243,7 +243,7 @@
         <scm-publish.plugin>3.1.0</scm-publish.plugin>
         <site.plugin>3.12.1</site.plugin>
         <sonar.plugin>3.9.1.2184</sonar.plugin>
-        <sortpom.plugin>3.2.0</sortpom.plugin>
+        <sortpom.plugin>3.2.1</sortpom.plugin>
         <source.plugin>3.2.1</source.plugin>
         <spotbugs.plugin>4.7.3.0</spotbugs.plugin>
         <surefire.plugin>3.0.0-M8</surefire.plugin>
