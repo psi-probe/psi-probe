@@ -220,7 +220,7 @@
         <dependency-check.plugin>8.0.2</dependency-check.plugin>
         <deploy.plugin>3.0.0</deploy.plugin>
         <enforcer.plugin>3.2.1</enforcer.plugin>
-        <formatter.plugin>2.21.0</formatter.plugin>
+        <formatter.plugin>2.22.0</formatter.plugin>
         <git-commit.plugin>5.0.0</git-commit.plugin>
         <gpg.plugin>3.0.1</gpg.plugin>
         <impsort.plugin>1.8.0</impsort.plugin>
