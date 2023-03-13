@@ -130,7 +130,7 @@
         <maven.min-version>3.8.6</maven.min-version>
 
         <!-- Copyright -->
-        <copyright>2022</copyright>
+        <copyright>2023</copyright>
 
         <!-- Github Settings -->
         <github.global.server>github</github.global.server>
