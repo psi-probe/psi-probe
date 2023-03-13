@@ -72,68 +72,70 @@
 <a class="jxr_linenumber" name="L64" href="#L64">64</a>  <em class="jxr_javadoccomment">   * Enumerate threads.</em>
 <a class="jxr_linenumber" name="L65" href="#L65">65</a>  <em class="jxr_javadoccomment">   *</em>
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>  <em class="jxr_javadoccomment">   * @param classLoaderMap the class loader map</em>
-<a class="jxr_linenumber" name="L67" href="#L67">67</a>  <em class="jxr_javadoccomment">   * @return the list</em>
-<a class="jxr_linenumber" name="L68" href="#L68">68</a>  <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L69" href="#L69">69</a>    <strong class="jxr_keyword">private</strong> List&lt;ThreadModel&gt; enumerateThreads(<strong class="jxr_keyword">final</strong> Map&lt;String, String&gt; classLoaderMap) {
-<a class="jxr_linenumber" name="L70" href="#L70">70</a>  
-<a class="jxr_linenumber" name="L71" href="#L71">71</a>      <em class="jxr_comment">// get top ThreadGroup</em>
-<a class="jxr_linenumber" name="L72" href="#L72">72</a>      ThreadGroup masterGroup = Thread.currentThread().getThreadGroup();
-<a class="jxr_linenumber" name="L73" href="#L73">73</a>      <strong class="jxr_keyword">while</strong> (masterGroup.getParent() != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L74" href="#L74">74</a>        masterGroup = masterGroup.getParent();
-<a class="jxr_linenumber" name="L75" href="#L75">75</a>      }
-<a class="jxr_linenumber" name="L76" href="#L76">76</a>  
-<a class="jxr_linenumber" name="L77" href="#L77">77</a>      <em class="jxr_comment">// enumerate all Threads starting from top</em>
-<a class="jxr_linenumber" name="L78" href="#L78">78</a>      List&lt;ThreadModel&gt; threadList = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;();
-<a class="jxr_linenumber" name="L79" href="#L79">79</a>  
-<a class="jxr_linenumber" name="L80" href="#L80">80</a>      Thread[] threads = <strong class="jxr_keyword">new</strong> Thread[masterGroup.activeCount()];
-<a class="jxr_linenumber" name="L81" href="#L81">81</a>      <strong class="jxr_keyword">int</strong> numThreads = masterGroup.enumerate(threads);
-<a class="jxr_linenumber" name="L82" href="#L82">82</a>  
-<a class="jxr_linenumber" name="L83" href="#L83">83</a>      <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">int</strong> i = 0; i &lt; numThreads; i++) {
-<a class="jxr_linenumber" name="L84" href="#L84">84</a>        <a name="ThreadModel" href="../../../psiprobe/model/java/ThreadModel.html#ThreadModel">ThreadModel</a> threadModel = <strong class="jxr_keyword">new</strong> <a name="ThreadModel" href="../../../psiprobe/model/java/ThreadModel.html#ThreadModel">ThreadModel</a>();
-<a class="jxr_linenumber" name="L85" href="#L85">85</a>        threadModel.setThreadClass(threads[i].getClass().getName());
-<a class="jxr_linenumber" name="L86" href="#L86">86</a>        threadModel.setName(threads[i].getName());
-<a class="jxr_linenumber" name="L87" href="#L87">87</a>        threadModel.setPriority(threads[i].getPriority());
-<a class="jxr_linenumber" name="L88" href="#L88">88</a>        threadModel.setDaemon(threads[i].isDaemon());
-<a class="jxr_linenumber" name="L89" href="#L89">89</a>        threadModel.setInterrupted(threads[i].isInterrupted());
-<a class="jxr_linenumber" name="L90" href="#L90">90</a>        <strong class="jxr_keyword">if</strong> (threads[i].getThreadGroup() != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L91" href="#L91">91</a>          threadModel.setGroupName(threads[i].getThreadGroup().getName());
-<a class="jxr_linenumber" name="L92" href="#L92">92</a>        }
-<a class="jxr_linenumber" name="L93" href="#L93">93</a>        Object target = Instruments.getField(threads[i], <span class="jxr_string">"target"</span>);
-<a class="jxr_linenumber" name="L94" href="#L94">94</a>        <strong class="jxr_keyword">if</strong> (target != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L95" href="#L95">95</a>          threadModel.setRunnableClassName(target.getClass().getName());
-<a class="jxr_linenumber" name="L96" href="#L96">96</a>        }
-<a class="jxr_linenumber" name="L97" href="#L97">97</a>  
-<a class="jxr_linenumber" name="L98" href="#L98">98</a>        ClassLoader cl = threads[i].getContextClassLoader();
-<a class="jxr_linenumber" name="L99" href="#L99">99</a>        <strong class="jxr_keyword">if</strong> (cl != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L100" href="#L100">100</a>         <strong class="jxr_keyword">if</strong> (classLoaderMap != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L101" href="#L101">101</a>           threadModel.setAppName(classLoaderMap.get(toUid(cl)));
-<a class="jxr_linenumber" name="L102" href="#L102">102</a>         }
-<a class="jxr_linenumber" name="L103" href="#L103">103</a>         threadModel.setClassLoader(toUid(cl));
-<a class="jxr_linenumber" name="L104" href="#L104">104</a>       }
-<a class="jxr_linenumber" name="L105" href="#L105">105</a>       threadList.add(threadModel);
-<a class="jxr_linenumber" name="L106" href="#L106">106</a>     }
-<a class="jxr_linenumber" name="L107" href="#L107">107</a>     <strong class="jxr_keyword">return</strong> threadList;
-<a class="jxr_linenumber" name="L108" href="#L108">108</a>   }
-<a class="jxr_linenumber" name="L109" href="#L109">109</a> 
-<a class="jxr_linenumber" name="L110" href="#L110">110</a>   <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L111" href="#L111">111</a> <em class="jxr_javadoccomment">   * To uid.</em>
-<a class="jxr_linenumber" name="L112" href="#L112">112</a> <em class="jxr_javadoccomment">   *</em>
-<a class="jxr_linenumber" name="L113" href="#L113">113</a> <em class="jxr_javadoccomment">   * @param obj the obj</em>
-<a class="jxr_linenumber" name="L114" href="#L114">114</a> <em class="jxr_javadoccomment">   * @return the string</em>
-<a class="jxr_linenumber" name="L115" href="#L115">115</a> <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L116" href="#L116">116</a>   <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> String toUid(Object obj) {
-<a class="jxr_linenumber" name="L117" href="#L117">117</a>     <strong class="jxr_keyword">return</strong> obj.getClass().getName() + <span class="jxr_string">"@"</span> + obj.hashCode();
-<a class="jxr_linenumber" name="L118" href="#L118">118</a>   }
-<a class="jxr_linenumber" name="L119" href="#L119">119</a> 
-<a class="jxr_linenumber" name="L120" href="#L120">120</a>   @Value(<span class="jxr_string">"threads"</span>)
-<a class="jxr_linenumber" name="L121" href="#L121">121</a>   @Override
-<a class="jxr_linenumber" name="L122" href="#L122">122</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setViewName(String viewName) {
-<a class="jxr_linenumber" name="L123" href="#L123">123</a>     <strong class="jxr_keyword">super</strong>.setViewName(viewName);
-<a class="jxr_linenumber" name="L124" href="#L124">124</a>   }
-<a class="jxr_linenumber" name="L125" href="#L125">125</a> 
-<a class="jxr_linenumber" name="L126" href="#L126">126</a> }
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>  <em class="jxr_javadoccomment">   *</em>
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>  <em class="jxr_javadoccomment">   * @return the list</em>
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>  <em class="jxr_javadoccomment">   */</em>
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>    <strong class="jxr_keyword">private</strong> List&lt;ThreadModel&gt; enumerateThreads(<strong class="jxr_keyword">final</strong> Map&lt;String, String&gt; classLoaderMap) {
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>  
+<a class="jxr_linenumber" name="L72" href="#L72">72</a>      <em class="jxr_comment">// get top ThreadGroup</em>
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>      ThreadGroup masterGroup = Thread.currentThread().getThreadGroup();
+<a class="jxr_linenumber" name="L74" href="#L74">74</a>      <strong class="jxr_keyword">while</strong> (masterGroup.getParent() != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L75" href="#L75">75</a>        masterGroup = masterGroup.getParent();
+<a class="jxr_linenumber" name="L76" href="#L76">76</a>      }
+<a class="jxr_linenumber" name="L77" href="#L77">77</a>  
+<a class="jxr_linenumber" name="L78" href="#L78">78</a>      <em class="jxr_comment">// enumerate all Threads starting from top</em>
+<a class="jxr_linenumber" name="L79" href="#L79">79</a>      List&lt;ThreadModel&gt; threadList = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;();
+<a class="jxr_linenumber" name="L80" href="#L80">80</a>  
+<a class="jxr_linenumber" name="L81" href="#L81">81</a>      Thread[] threads = <strong class="jxr_keyword">new</strong> Thread[masterGroup.activeCount()];
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>      <strong class="jxr_keyword">int</strong> numThreads = masterGroup.enumerate(threads);
+<a class="jxr_linenumber" name="L83" href="#L83">83</a>  
+<a class="jxr_linenumber" name="L84" href="#L84">84</a>      <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">int</strong> i = 0; i &lt; numThreads; i++) {
+<a class="jxr_linenumber" name="L85" href="#L85">85</a>        <a name="ThreadModel" href="../../../psiprobe/model/java/ThreadModel.html#ThreadModel">ThreadModel</a> threadModel = <strong class="jxr_keyword">new</strong> <a name="ThreadModel" href="../../../psiprobe/model/java/ThreadModel.html#ThreadModel">ThreadModel</a>();
+<a class="jxr_linenumber" name="L86" href="#L86">86</a>        threadModel.setThreadClass(threads[i].getClass().getName());
+<a class="jxr_linenumber" name="L87" href="#L87">87</a>        threadModel.setName(threads[i].getName());
+<a class="jxr_linenumber" name="L88" href="#L88">88</a>        threadModel.setPriority(threads[i].getPriority());
+<a class="jxr_linenumber" name="L89" href="#L89">89</a>        threadModel.setDaemon(threads[i].isDaemon());
+<a class="jxr_linenumber" name="L90" href="#L90">90</a>        threadModel.setInterrupted(threads[i].isInterrupted());
+<a class="jxr_linenumber" name="L91" href="#L91">91</a>        <strong class="jxr_keyword">if</strong> (threads[i].getThreadGroup() != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L92" href="#L92">92</a>          threadModel.setGroupName(threads[i].getThreadGroup().getName());
+<a class="jxr_linenumber" name="L93" href="#L93">93</a>        }
+<a class="jxr_linenumber" name="L94" href="#L94">94</a>        Object target = Instruments.getField(threads[i], <span class="jxr_string">"target"</span>);
+<a class="jxr_linenumber" name="L95" href="#L95">95</a>        <strong class="jxr_keyword">if</strong> (target != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L96" href="#L96">96</a>          threadModel.setRunnableClassName(target.getClass().getName());
+<a class="jxr_linenumber" name="L97" href="#L97">97</a>        }
+<a class="jxr_linenumber" name="L98" href="#L98">98</a>  
+<a class="jxr_linenumber" name="L99" href="#L99">99</a>        ClassLoader cl = threads[i].getContextClassLoader();
+<a class="jxr_linenumber" name="L100" href="#L100">100</a>       <strong class="jxr_keyword">if</strong> (cl != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L101" href="#L101">101</a>         <strong class="jxr_keyword">if</strong> (classLoaderMap != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L102" href="#L102">102</a>           threadModel.setAppName(classLoaderMap.get(toUid(cl)));
+<a class="jxr_linenumber" name="L103" href="#L103">103</a>         }
+<a class="jxr_linenumber" name="L104" href="#L104">104</a>         threadModel.setClassLoader(toUid(cl));
+<a class="jxr_linenumber" name="L105" href="#L105">105</a>       }
+<a class="jxr_linenumber" name="L106" href="#L106">106</a>       threadList.add(threadModel);
+<a class="jxr_linenumber" name="L107" href="#L107">107</a>     }
+<a class="jxr_linenumber" name="L108" href="#L108">108</a>     <strong class="jxr_keyword">return</strong> threadList;
+<a class="jxr_linenumber" name="L109" href="#L109">109</a>   }
+<a class="jxr_linenumber" name="L110" href="#L110">110</a> 
+<a class="jxr_linenumber" name="L111" href="#L111">111</a>   <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L112" href="#L112">112</a> <em class="jxr_javadoccomment">   * To uid.</em>
+<a class="jxr_linenumber" name="L113" href="#L113">113</a> <em class="jxr_javadoccomment">   *</em>
+<a class="jxr_linenumber" name="L114" href="#L114">114</a> <em class="jxr_javadoccomment">   * @param obj the obj</em>
+<a class="jxr_linenumber" name="L115" href="#L115">115</a> <em class="jxr_javadoccomment">   *</em>
+<a class="jxr_linenumber" name="L116" href="#L116">116</a> <em class="jxr_javadoccomment">   * @return the string</em>
+<a class="jxr_linenumber" name="L117" href="#L117">117</a> <em class="jxr_javadoccomment">   */</em>
+<a class="jxr_linenumber" name="L118" href="#L118">118</a>   <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> String toUid(Object obj) {
+<a class="jxr_linenumber" name="L119" href="#L119">119</a>     <strong class="jxr_keyword">return</strong> obj.getClass().getName() + <span class="jxr_string">"@"</span> + obj.hashCode();
+<a class="jxr_linenumber" name="L120" href="#L120">120</a>   }
+<a class="jxr_linenumber" name="L121" href="#L121">121</a> 
+<a class="jxr_linenumber" name="L122" href="#L122">122</a>   @Value(<span class="jxr_string">"threads"</span>)
+<a class="jxr_linenumber" name="L123" href="#L123">123</a>   @Override
+<a class="jxr_linenumber" name="L124" href="#L124">124</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setViewName(String viewName) {
+<a class="jxr_linenumber" name="L125" href="#L125">125</a>     <strong class="jxr_keyword">super</strong>.setViewName(viewName);
+<a class="jxr_linenumber" name="L126" href="#L126">126</a>   }
+<a class="jxr_linenumber" name="L127" href="#L127">127</a> 
+<a class="jxr_linenumber" name="L128" href="#L128">128</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2009&#x2013;2022 <a href="https://github.com/psi-probe/">psi-probe</a>. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2009&#x2013;2023 <a href="https://github.com/psi-probe/">psi-probe</a>. All rights reserved.</div>
 </body>
 </html>

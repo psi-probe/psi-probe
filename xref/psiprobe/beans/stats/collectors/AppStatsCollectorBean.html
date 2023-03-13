@@ -163,60 +163,61 @@
 <a class="jxr_linenumber" name="L155" href="#L155">155</a> <em class="jxr_javadoccomment">   * Exclude from total.</em>
 <a class="jxr_linenumber" name="L156" href="#L156">156</a> <em class="jxr_javadoccomment">   *</em>
 <a class="jxr_linenumber" name="L157" href="#L157">157</a> <em class="jxr_javadoccomment">   * @param ctx the ctx</em>
-<a class="jxr_linenumber" name="L158" href="#L158">158</a> <em class="jxr_javadoccomment">   * @return true, if successful</em>
-<a class="jxr_linenumber" name="L159" href="#L159">159</a> <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L160" href="#L160">160</a>   <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">boolean</strong> excludeFromTotal(Context ctx) {
-<a class="jxr_linenumber" name="L161" href="#L161">161</a>     <strong class="jxr_keyword">return</strong> isSelfIgnored() &amp;&amp; getServletContext().equals(ctx.getServletContext());
-<a class="jxr_linenumber" name="L162" href="#L162">162</a>   }
-<a class="jxr_linenumber" name="L163" href="#L163">163</a> 
-<a class="jxr_linenumber" name="L164" href="#L164">164</a>   <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L165" href="#L165">165</a> <em class="jxr_javadoccomment">   * Reset.</em>
-<a class="jxr_linenumber" name="L166" href="#L166">166</a> <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L167" href="#L167">167</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> reset() {
-<a class="jxr_linenumber" name="L168" href="#L168">168</a>     <strong class="jxr_keyword">if</strong> (containerWrapper == <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L169" href="#L169">169</a>       logger.error(<span class="jxr_string">"Cannot reset application stats. Container wrapper is not set."</span>);
-<a class="jxr_linenumber" name="L170" href="#L170">170</a>     } <strong class="jxr_keyword">else</strong> {
-<a class="jxr_linenumber" name="L171" href="#L171">171</a>       <a name="TomcatContainer" href="../../../../psiprobe/TomcatContainer.html#TomcatContainer">TomcatContainer</a> tomcatContainer = getContainerWrapper().getTomcatContainer();
-<a class="jxr_linenumber" name="L172" href="#L172">172</a>       <strong class="jxr_keyword">if</strong> (tomcatContainer != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L173" href="#L173">173</a>         <strong class="jxr_keyword">for</strong> (Context ctx : tomcatContainer.findContexts()) {
-<a class="jxr_linenumber" name="L174" href="#L174">174</a>           <strong class="jxr_keyword">if</strong> (ctx != <strong class="jxr_keyword">null</strong> &amp;&amp; ctx.getName() != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L175" href="#L175">175</a>             String appName = <span class="jxr_string">""</span>.equals(ctx.getName()) ? <span class="jxr_string">"/"</span> : ctx.getName();
-<a class="jxr_linenumber" name="L176" href="#L176">176</a>             reset(appName);
-<a class="jxr_linenumber" name="L177" href="#L177">177</a>           }
-<a class="jxr_linenumber" name="L178" href="#L178">178</a>         }
-<a class="jxr_linenumber" name="L179" href="#L179">179</a>       }
-<a class="jxr_linenumber" name="L180" href="#L180">180</a>     }
-<a class="jxr_linenumber" name="L181" href="#L181">181</a>     resetStats(<span class="jxr_string">"total.requests"</span>);
-<a class="jxr_linenumber" name="L182" href="#L182">182</a>     resetStats(<span class="jxr_string">"total.errors"</span>);
-<a class="jxr_linenumber" name="L183" href="#L183">183</a>     resetStats(<span class="jxr_string">"total.avg_proc_time"</span>);
-<a class="jxr_linenumber" name="L184" href="#L184">184</a>   }
-<a class="jxr_linenumber" name="L185" href="#L185">185</a> 
-<a class="jxr_linenumber" name="L186" href="#L186">186</a>   <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L187" href="#L187">187</a> <em class="jxr_javadoccomment">   * Reset.</em>
-<a class="jxr_linenumber" name="L188" href="#L188">188</a> <em class="jxr_javadoccomment">   *</em>
-<a class="jxr_linenumber" name="L189" href="#L189">189</a> <em class="jxr_javadoccomment">   * @param appName the app name</em>
-<a class="jxr_linenumber" name="L190" href="#L190">190</a> <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L191" href="#L191">191</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> reset(String appName) {
-<a class="jxr_linenumber" name="L192" href="#L192">192</a>     resetStats(<span class="jxr_string">"app.requests."</span> + appName);
-<a class="jxr_linenumber" name="L193" href="#L193">193</a>     resetStats(<span class="jxr_string">"app.proc_time."</span> + appName);
-<a class="jxr_linenumber" name="L194" href="#L194">194</a>     resetStats(<span class="jxr_string">"app.errors."</span> + appName);
-<a class="jxr_linenumber" name="L195" href="#L195">195</a>     resetStats(<span class="jxr_string">"app.avg_proc_time."</span> + appName);
-<a class="jxr_linenumber" name="L196" href="#L196">196</a>   }
-<a class="jxr_linenumber" name="L197" href="#L197">197</a> 
-<a class="jxr_linenumber" name="L198" href="#L198">198</a>   <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L199" href="#L199">199</a> <em class="jxr_javadoccomment">   * Sets the max series expression.</em>
-<a class="jxr_linenumber" name="L200" href="#L200">200</a> <em class="jxr_javadoccomment">   *</em>
-<a class="jxr_linenumber" name="L201" href="#L201">201</a> <em class="jxr_javadoccomment">   * @param period the period</em>
-<a class="jxr_linenumber" name="L202" href="#L202">202</a> <em class="jxr_javadoccomment">   * @param span the span</em>
-<a class="jxr_linenumber" name="L203" href="#L203">203</a> <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L204" href="#L204">204</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setMaxSeries(@Value(<span class="jxr_string">"${psiprobe.beans.stats.collectors.app.period}"</span>) <strong class="jxr_keyword">long</strong> period,
-<a class="jxr_linenumber" name="L205" href="#L205">205</a>       @Value(<span class="jxr_string">"${psiprobe.beans.stats.collectors.app.span}"</span>) <strong class="jxr_keyword">long</strong> span) {
-<a class="jxr_linenumber" name="L206" href="#L206">206</a>     <strong class="jxr_keyword">super</strong>.setMaxSeries((<strong class="jxr_keyword">int</strong>) TimeExpression.dataPoints(period, span));
-<a class="jxr_linenumber" name="L207" href="#L207">207</a>   }
-<a class="jxr_linenumber" name="L208" href="#L208">208</a> 
-<a class="jxr_linenumber" name="L209" href="#L209">209</a> }
+<a class="jxr_linenumber" name="L158" href="#L158">158</a> <em class="jxr_javadoccomment">   *</em>
+<a class="jxr_linenumber" name="L159" href="#L159">159</a> <em class="jxr_javadoccomment">   * @return true, if successful</em>
+<a class="jxr_linenumber" name="L160" href="#L160">160</a> <em class="jxr_javadoccomment">   */</em>
+<a class="jxr_linenumber" name="L161" href="#L161">161</a>   <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">boolean</strong> excludeFromTotal(Context ctx) {
+<a class="jxr_linenumber" name="L162" href="#L162">162</a>     <strong class="jxr_keyword">return</strong> isSelfIgnored() &amp;&amp; getServletContext().equals(ctx.getServletContext());
+<a class="jxr_linenumber" name="L163" href="#L163">163</a>   }
+<a class="jxr_linenumber" name="L164" href="#L164">164</a> 
+<a class="jxr_linenumber" name="L165" href="#L165">165</a>   <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L166" href="#L166">166</a> <em class="jxr_javadoccomment">   * Reset.</em>
+<a class="jxr_linenumber" name="L167" href="#L167">167</a> <em class="jxr_javadoccomment">   */</em>
+<a class="jxr_linenumber" name="L168" href="#L168">168</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> reset() {
+<a class="jxr_linenumber" name="L169" href="#L169">169</a>     <strong class="jxr_keyword">if</strong> (containerWrapper == <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L170" href="#L170">170</a>       logger.error(<span class="jxr_string">"Cannot reset application stats. Container wrapper is not set."</span>);
+<a class="jxr_linenumber" name="L171" href="#L171">171</a>     } <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="L172" href="#L172">172</a>       <a name="TomcatContainer" href="../../../../psiprobe/TomcatContainer.html#TomcatContainer">TomcatContainer</a> tomcatContainer = getContainerWrapper().getTomcatContainer();
+<a class="jxr_linenumber" name="L173" href="#L173">173</a>       <strong class="jxr_keyword">if</strong> (tomcatContainer != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L174" href="#L174">174</a>         <strong class="jxr_keyword">for</strong> (Context ctx : tomcatContainer.findContexts()) {
+<a class="jxr_linenumber" name="L175" href="#L175">175</a>           <strong class="jxr_keyword">if</strong> (ctx != <strong class="jxr_keyword">null</strong> &amp;&amp; ctx.getName() != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L176" href="#L176">176</a>             String appName = <span class="jxr_string">""</span>.equals(ctx.getName()) ? <span class="jxr_string">"/"</span> : ctx.getName();
+<a class="jxr_linenumber" name="L177" href="#L177">177</a>             reset(appName);
+<a class="jxr_linenumber" name="L178" href="#L178">178</a>           }
+<a class="jxr_linenumber" name="L179" href="#L179">179</a>         }
+<a class="jxr_linenumber" name="L180" href="#L180">180</a>       }
+<a class="jxr_linenumber" name="L181" href="#L181">181</a>     }
+<a class="jxr_linenumber" name="L182" href="#L182">182</a>     resetStats(<span class="jxr_string">"total.requests"</span>);
+<a class="jxr_linenumber" name="L183" href="#L183">183</a>     resetStats(<span class="jxr_string">"total.errors"</span>);
+<a class="jxr_linenumber" name="L184" href="#L184">184</a>     resetStats(<span class="jxr_string">"total.avg_proc_time"</span>);
+<a class="jxr_linenumber" name="L185" href="#L185">185</a>   }
+<a class="jxr_linenumber" name="L186" href="#L186">186</a> 
+<a class="jxr_linenumber" name="L187" href="#L187">187</a>   <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L188" href="#L188">188</a> <em class="jxr_javadoccomment">   * Reset.</em>
+<a class="jxr_linenumber" name="L189" href="#L189">189</a> <em class="jxr_javadoccomment">   *</em>
+<a class="jxr_linenumber" name="L190" href="#L190">190</a> <em class="jxr_javadoccomment">   * @param appName the app name</em>
+<a class="jxr_linenumber" name="L191" href="#L191">191</a> <em class="jxr_javadoccomment">   */</em>
+<a class="jxr_linenumber" name="L192" href="#L192">192</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> reset(String appName) {
+<a class="jxr_linenumber" name="L193" href="#L193">193</a>     resetStats(<span class="jxr_string">"app.requests."</span> + appName);
+<a class="jxr_linenumber" name="L194" href="#L194">194</a>     resetStats(<span class="jxr_string">"app.proc_time."</span> + appName);
+<a class="jxr_linenumber" name="L195" href="#L195">195</a>     resetStats(<span class="jxr_string">"app.errors."</span> + appName);
+<a class="jxr_linenumber" name="L196" href="#L196">196</a>     resetStats(<span class="jxr_string">"app.avg_proc_time."</span> + appName);
+<a class="jxr_linenumber" name="L197" href="#L197">197</a>   }
+<a class="jxr_linenumber" name="L198" href="#L198">198</a> 
+<a class="jxr_linenumber" name="L199" href="#L199">199</a>   <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L200" href="#L200">200</a> <em class="jxr_javadoccomment">   * Sets the max series expression.</em>
+<a class="jxr_linenumber" name="L201" href="#L201">201</a> <em class="jxr_javadoccomment">   *</em>
+<a class="jxr_linenumber" name="L202" href="#L202">202</a> <em class="jxr_javadoccomment">   * @param period the period</em>
+<a class="jxr_linenumber" name="L203" href="#L203">203</a> <em class="jxr_javadoccomment">   * @param span the span</em>
+<a class="jxr_linenumber" name="L204" href="#L204">204</a> <em class="jxr_javadoccomment">   */</em>
+<a class="jxr_linenumber" name="L205" href="#L205">205</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setMaxSeries(@Value(<span class="jxr_string">"${psiprobe.beans.stats.collectors.app.period}"</span>) <strong class="jxr_keyword">long</strong> period,
+<a class="jxr_linenumber" name="L206" href="#L206">206</a>       @Value(<span class="jxr_string">"${psiprobe.beans.stats.collectors.app.span}"</span>) <strong class="jxr_keyword">long</strong> span) {
+<a class="jxr_linenumber" name="L207" href="#L207">207</a>     <strong class="jxr_keyword">super</strong>.setMaxSeries((<strong class="jxr_keyword">int</strong>) TimeExpression.dataPoints(period, span));
+<a class="jxr_linenumber" name="L208" href="#L208">208</a>   }
+<a class="jxr_linenumber" name="L209" href="#L209">209</a> 
+<a class="jxr_linenumber" name="L210" href="#L210">210</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2009&#x2013;2022 <a href="https://github.com/psi-probe/">psi-probe</a>. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2009&#x2013;2023 <a href="https://github.com/psi-probe/">psi-probe</a>. All rights reserved.</div>
 </body>
 </html>

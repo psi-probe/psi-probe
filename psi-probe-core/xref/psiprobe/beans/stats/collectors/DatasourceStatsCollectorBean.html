@@ -104,28 +104,29 @@
 <a class="jxr_linenumber" name="L96" href="#L96">96</a>  <em class="jxr_javadoccomment">   * Reset.</em>
 <a class="jxr_linenumber" name="L97" href="#L97">97</a>  <em class="jxr_javadoccomment">   *</em>
 <a class="jxr_linenumber" name="L98" href="#L98">98</a>  <em class="jxr_javadoccomment">   * @param name the name</em>
-<a class="jxr_linenumber" name="L99" href="#L99">99</a>  <em class="jxr_javadoccomment">   * @throws Exception the exception</em>
-<a class="jxr_linenumber" name="L100" href="#L100">100</a> <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L101" href="#L101">101</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> reset(String name) <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L102" href="#L102">102</a>     resetStats(PREFIX_ESTABLISHED + name);
-<a class="jxr_linenumber" name="L103" href="#L103">103</a>     resetStats(PREFIX_BUSY + name);
-<a class="jxr_linenumber" name="L104" href="#L104">104</a>   }
-<a class="jxr_linenumber" name="L105" href="#L105">105</a> 
-<a class="jxr_linenumber" name="L106" href="#L106">106</a>   <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L107" href="#L107">107</a> <em class="jxr_javadoccomment">   * Sets the max series expression.</em>
-<a class="jxr_linenumber" name="L108" href="#L108">108</a> <em class="jxr_javadoccomment">   *</em>
-<a class="jxr_linenumber" name="L109" href="#L109">109</a> <em class="jxr_javadoccomment">   * @param period the period</em>
-<a class="jxr_linenumber" name="L110" href="#L110">110</a> <em class="jxr_javadoccomment">   * @param span the span</em>
-<a class="jxr_linenumber" name="L111" href="#L111">111</a> <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L112" href="#L112">112</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setMaxSeries(
-<a class="jxr_linenumber" name="L113" href="#L113">113</a>       @Value(<span class="jxr_string">"${psiprobe.beans.stats.collectors.datasource.period}"</span>) <strong class="jxr_keyword">long</strong> period,
-<a class="jxr_linenumber" name="L114" href="#L114">114</a>       @Value(<span class="jxr_string">"${psiprobe.beans.stats.collectors.datasource.span}"</span>) <strong class="jxr_keyword">long</strong> span) {
-<a class="jxr_linenumber" name="L115" href="#L115">115</a>     <strong class="jxr_keyword">super</strong>.setMaxSeries((<strong class="jxr_keyword">int</strong>) TimeExpression.dataPoints(period, span));
-<a class="jxr_linenumber" name="L116" href="#L116">116</a>   }
-<a class="jxr_linenumber" name="L117" href="#L117">117</a> 
-<a class="jxr_linenumber" name="L118" href="#L118">118</a> }
+<a class="jxr_linenumber" name="L99" href="#L99">99</a>  <em class="jxr_javadoccomment">   *</em>
+<a class="jxr_linenumber" name="L100" href="#L100">100</a> <em class="jxr_javadoccomment">   * @throws Exception the exception</em>
+<a class="jxr_linenumber" name="L101" href="#L101">101</a> <em class="jxr_javadoccomment">   */</em>
+<a class="jxr_linenumber" name="L102" href="#L102">102</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> reset(String name) <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L103" href="#L103">103</a>     resetStats(PREFIX_ESTABLISHED + name);
+<a class="jxr_linenumber" name="L104" href="#L104">104</a>     resetStats(PREFIX_BUSY + name);
+<a class="jxr_linenumber" name="L105" href="#L105">105</a>   }
+<a class="jxr_linenumber" name="L106" href="#L106">106</a> 
+<a class="jxr_linenumber" name="L107" href="#L107">107</a>   <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L108" href="#L108">108</a> <em class="jxr_javadoccomment">   * Sets the max series expression.</em>
+<a class="jxr_linenumber" name="L109" href="#L109">109</a> <em class="jxr_javadoccomment">   *</em>
+<a class="jxr_linenumber" name="L110" href="#L110">110</a> <em class="jxr_javadoccomment">   * @param period the period</em>
+<a class="jxr_linenumber" name="L111" href="#L111">111</a> <em class="jxr_javadoccomment">   * @param span the span</em>
+<a class="jxr_linenumber" name="L112" href="#L112">112</a> <em class="jxr_javadoccomment">   */</em>
+<a class="jxr_linenumber" name="L113" href="#L113">113</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setMaxSeries(
+<a class="jxr_linenumber" name="L114" href="#L114">114</a>       @Value(<span class="jxr_string">"${psiprobe.beans.stats.collectors.datasource.period}"</span>) <strong class="jxr_keyword">long</strong> period,
+<a class="jxr_linenumber" name="L115" href="#L115">115</a>       @Value(<span class="jxr_string">"${psiprobe.beans.stats.collectors.datasource.span}"</span>) <strong class="jxr_keyword">long</strong> span) {
+<a class="jxr_linenumber" name="L116" href="#L116">116</a>     <strong class="jxr_keyword">super</strong>.setMaxSeries((<strong class="jxr_keyword">int</strong>) TimeExpression.dataPoints(period, span));
+<a class="jxr_linenumber" name="L117" href="#L117">117</a>   }
+<a class="jxr_linenumber" name="L118" href="#L118">118</a> 
+<a class="jxr_linenumber" name="L119" href="#L119">119</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2009&#x2013;2022 <a href="https://github.com/psi-probe/">psi-probe</a>. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2009&#x2013;2023 <a href="https://github.com/psi-probe/">psi-probe</a>. All rights reserved.</div>
 </body>
 </html>

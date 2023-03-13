@@ -148,74 +148,73 @@
 <a class="jxr_linenumber" name="L140" href="#L140">140</a>     <em class="jxr_comment">// Chart type</em>
 <a class="jxr_linenumber" name="L141" href="#L141">141</a>     String chartType = ServletRequestUtils.getStringParameter(request, <span class="jxr_string">"ct"</span>, <span class="jxr_string">"area"</span>);
 <a class="jxr_linenumber" name="L142" href="#L142">142</a> 
-<a class="jxr_linenumber" name="L143" href="#L143">143</a> 
-<a class="jxr_linenumber" name="L144" href="#L144">144</a>     DefaultTableXYDataset ds = <strong class="jxr_keyword">new</strong> DefaultTableXYDataset();
-<a class="jxr_linenumber" name="L145" href="#L145">145</a> 
-<a class="jxr_linenumber" name="L146" href="#L146">146</a>     <strong class="jxr_keyword">if</strong> (provider != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L147" href="#L147">147</a>       Object series = getApplicationContext().getBean(provider);
-<a class="jxr_linenumber" name="L148" href="#L148">148</a>       <strong class="jxr_keyword">if</strong> (series instanceof <a name="SeriesProvider" href="../../psiprobe/beans/stats/providers/SeriesProvider.html#SeriesProvider">SeriesProvider</a>) {
-<a class="jxr_linenumber" name="L149" href="#L149">149</a>         ((<a name="SeriesProvider" href="../../psiprobe/beans/stats/providers/SeriesProvider.html#SeriesProvider">SeriesProvider</a>) series).populate(ds, statsCollection, request);
-<a class="jxr_linenumber" name="L150" href="#L150">150</a>       } <strong class="jxr_keyword">else</strong> {
-<a class="jxr_linenumber" name="L151" href="#L151">151</a>         logger.error(<span class="jxr_string">"SeriesProvider '{}' does not implement '{}'"</span>, provider, SeriesProvider.<strong class="jxr_keyword">class</strong>);
-<a class="jxr_linenumber" name="L152" href="#L152">152</a>       }
-<a class="jxr_linenumber" name="L153" href="#L153">153</a>     }
-<a class="jxr_linenumber" name="L154" href="#L154">154</a> 
-<a class="jxr_linenumber" name="L155" href="#L155">155</a>     <em class="jxr_comment">// Build series data from the give statistic</em>
-<a class="jxr_linenumber" name="L156" href="#L156">156</a>     JFreeChart chart = <strong class="jxr_keyword">null</strong>;
-<a class="jxr_linenumber" name="L157" href="#L157">157</a>     <strong class="jxr_keyword">if</strong> (<span class="jxr_string">"area"</span>.equals(chartType)) {
-<a class="jxr_linenumber" name="L158" href="#L158">158</a>       chart = ChartFactory.createXYAreaChart(<span class="jxr_string">""</span>, labelX, labelY, ds, PlotOrientation.VERTICAL,
-<a class="jxr_linenumber" name="L159" href="#L159">159</a>           showLegend, false, false);
-<a class="jxr_linenumber" name="L160" href="#L160">160</a> 
-<a class="jxr_linenumber" name="L161" href="#L161">161</a>       ((XYAreaRenderer) chart.getXYPlot().getRenderer()).setOutline(<strong class="jxr_keyword">true</strong>);
-<a class="jxr_linenumber" name="L162" href="#L162">162</a> 
-<a class="jxr_linenumber" name="L163" href="#L163">163</a>     } <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (<span class="jxr_string">"stacked"</span>.equals(chartType)) {
-<a class="jxr_linenumber" name="L164" href="#L164">164</a>       chart = ChartFactory.createStackedXYAreaChart(<span class="jxr_string">""</span>, labelX, labelY, ds,
-<a class="jxr_linenumber" name="L165" href="#L165">165</a>           PlotOrientation.VERTICAL, showLegend, false, false);
-<a class="jxr_linenumber" name="L166" href="#L166">166</a> 
-<a class="jxr_linenumber" name="L167" href="#L167">167</a>     } <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (<span class="jxr_string">"line"</span>.equals(chartType)) {
-<a class="jxr_linenumber" name="L168" href="#L168">168</a>       chart = ChartFactory.createXYLineChart(<span class="jxr_string">""</span>, labelX, labelY, ds, PlotOrientation.VERTICAL,
-<a class="jxr_linenumber" name="L169" href="#L169">169</a>           showLegend, false, false);
-<a class="jxr_linenumber" name="L170" href="#L170">170</a> 
-<a class="jxr_linenumber" name="L171" href="#L171">171</a>       <strong class="jxr_keyword">final</strong> <a name="XYLine3DRenderer" href="../../psiprobe/jfreechart/XYLine3DRenderer.html#XYLine3DRenderer">XYLine3DRenderer</a> renderer = <strong class="jxr_keyword">new</strong> <a name="XYLine3DRenderer" href="../../psiprobe/jfreechart/XYLine3DRenderer.html#XYLine3DRenderer">XYLine3DRenderer</a>();
-<a class="jxr_linenumber" name="L172" href="#L172">172</a>       renderer.setDrawOutlines(<strong class="jxr_keyword">true</strong>);
-<a class="jxr_linenumber" name="L173" href="#L173">173</a>       <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">int</strong> i = 0; i &lt; seriesMaxCount; i++) {
-<a class="jxr_linenumber" name="L174" href="#L174">174</a>         renderer.setSeriesLinesVisible(i, <strong class="jxr_keyword">true</strong>);
-<a class="jxr_linenumber" name="L175" href="#L175">175</a>         renderer.setSeriesShapesVisible(i, <strong class="jxr_keyword">true</strong>);
-<a class="jxr_linenumber" name="L176" href="#L176">176</a>         renderer.setSeriesStroke(i, <strong class="jxr_keyword">new</strong> BasicStroke(2));
-<a class="jxr_linenumber" name="L177" href="#L177">177</a>       }
-<a class="jxr_linenumber" name="L178" href="#L178">178</a>       renderer.setXOffset(1);
-<a class="jxr_linenumber" name="L179" href="#L179">179</a>       renderer.setYOffset(1);
-<a class="jxr_linenumber" name="L180" href="#L180">180</a>       chart.getXYPlot().setRenderer(renderer);
-<a class="jxr_linenumber" name="L181" href="#L181">181</a>     }
-<a class="jxr_linenumber" name="L182" href="#L182">182</a> 
-<a class="jxr_linenumber" name="L183" href="#L183">183</a>     <strong class="jxr_keyword">if</strong> (chart != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L184" href="#L184">184</a>       chart.setAntiAlias(<strong class="jxr_keyword">true</strong>);
-<a class="jxr_linenumber" name="L185" href="#L185">185</a>       chart.setBackgroundPaint(<strong class="jxr_keyword">new</strong> Color(backgroundColor));
-<a class="jxr_linenumber" name="L186" href="#L186">186</a>       <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">int</strong> i = 0; i &lt; seriesMaxCount; i++) {
-<a class="jxr_linenumber" name="L187" href="#L187">187</a>         <strong class="jxr_keyword">if</strong> (seriesColor[i] &gt;= 0) {
-<a class="jxr_linenumber" name="L188" href="#L188">188</a>           chart.getXYPlot().getRenderer().setSeriesPaint(i, <strong class="jxr_keyword">new</strong> Color(seriesColor[i]));
-<a class="jxr_linenumber" name="L189" href="#L189">189</a>         }
-<a class="jxr_linenumber" name="L190" href="#L190">190</a>         <strong class="jxr_keyword">if</strong> (seriesOutlineColor[i] &gt;= 0) {
-<a class="jxr_linenumber" name="L191" href="#L191">191</a>           chart.getXYPlot().getRenderer().setSeriesOutlinePaint(i,
-<a class="jxr_linenumber" name="L192" href="#L192">192</a>               <strong class="jxr_keyword">new</strong> Color(seriesOutlineColor[i]));
-<a class="jxr_linenumber" name="L193" href="#L193">193</a>         }
-<a class="jxr_linenumber" name="L194" href="#L194">194</a>       }
-<a class="jxr_linenumber" name="L195" href="#L195">195</a>       chart.getXYPlot().setDomainGridlinePaint(<strong class="jxr_keyword">new</strong> Color(gridColor));
-<a class="jxr_linenumber" name="L196" href="#L196">196</a>       chart.getXYPlot().setRangeGridlinePaint(<strong class="jxr_keyword">new</strong> Color(gridColor));
-<a class="jxr_linenumber" name="L197" href="#L197">197</a>       chart.getXYPlot().setDomainAxis(0, <strong class="jxr_keyword">new</strong> DateAxis());
-<a class="jxr_linenumber" name="L198" href="#L198">198</a>       chart.getXYPlot().setDomainAxis(1, <strong class="jxr_keyword">new</strong> DateAxis());
-<a class="jxr_linenumber" name="L199" href="#L199">199</a>       chart.getXYPlot().setInsets(<strong class="jxr_keyword">new</strong> RectangleInsets(-15, 0, 0, 10));
-<a class="jxr_linenumber" name="L200" href="#L200">200</a> 
-<a class="jxr_linenumber" name="L201" href="#L201">201</a>       response.setHeader(<span class="jxr_string">"Content-type"</span>, <span class="jxr_string">"image/png"</span>);
-<a class="jxr_linenumber" name="L202" href="#L202">202</a>       response.getOutputStream()
-<a class="jxr_linenumber" name="L203" href="#L203">203</a>           .write(ChartUtils.encodeAsPNG(chart.createBufferedImage(width, height)));
-<a class="jxr_linenumber" name="L204" href="#L204">204</a>     }
-<a class="jxr_linenumber" name="L205" href="#L205">205</a> 
-<a class="jxr_linenumber" name="L206" href="#L206">206</a>     <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong>;
-<a class="jxr_linenumber" name="L207" href="#L207">207</a>   }
-<a class="jxr_linenumber" name="L208" href="#L208">208</a> }
+<a class="jxr_linenumber" name="L143" href="#L143">143</a>     DefaultTableXYDataset ds = <strong class="jxr_keyword">new</strong> DefaultTableXYDataset();
+<a class="jxr_linenumber" name="L144" href="#L144">144</a> 
+<a class="jxr_linenumber" name="L145" href="#L145">145</a>     <strong class="jxr_keyword">if</strong> (provider != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L146" href="#L146">146</a>       Object series = getApplicationContext().getBean(provider);
+<a class="jxr_linenumber" name="L147" href="#L147">147</a>       <strong class="jxr_keyword">if</strong> (series instanceof <a name="SeriesProvider" href="../../psiprobe/beans/stats/providers/SeriesProvider.html#SeriesProvider">SeriesProvider</a>) {
+<a class="jxr_linenumber" name="L148" href="#L148">148</a>         ((<a name="SeriesProvider" href="../../psiprobe/beans/stats/providers/SeriesProvider.html#SeriesProvider">SeriesProvider</a>) series).populate(ds, statsCollection, request);
+<a class="jxr_linenumber" name="L149" href="#L149">149</a>       } <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="L150" href="#L150">150</a>         logger.error(<span class="jxr_string">"SeriesProvider '{}' does not implement '{}'"</span>, provider, SeriesProvider.<strong class="jxr_keyword">class</strong>);
+<a class="jxr_linenumber" name="L151" href="#L151">151</a>       }
+<a class="jxr_linenumber" name="L152" href="#L152">152</a>     }
+<a class="jxr_linenumber" name="L153" href="#L153">153</a> 
+<a class="jxr_linenumber" name="L154" href="#L154">154</a>     <em class="jxr_comment">// Build series data from the give statistic</em>
+<a class="jxr_linenumber" name="L155" href="#L155">155</a>     JFreeChart chart = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="L156" href="#L156">156</a>     <strong class="jxr_keyword">if</strong> (<span class="jxr_string">"area"</span>.equals(chartType)) {
+<a class="jxr_linenumber" name="L157" href="#L157">157</a>       chart = ChartFactory.createXYAreaChart(<span class="jxr_string">""</span>, labelX, labelY, ds, PlotOrientation.VERTICAL,
+<a class="jxr_linenumber" name="L158" href="#L158">158</a>           showLegend, false, false);
+<a class="jxr_linenumber" name="L159" href="#L159">159</a> 
+<a class="jxr_linenumber" name="L160" href="#L160">160</a>       ((XYAreaRenderer) chart.getXYPlot().getRenderer()).setOutline(<strong class="jxr_keyword">true</strong>);
+<a class="jxr_linenumber" name="L161" href="#L161">161</a> 
+<a class="jxr_linenumber" name="L162" href="#L162">162</a>     } <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (<span class="jxr_string">"stacked"</span>.equals(chartType)) {
+<a class="jxr_linenumber" name="L163" href="#L163">163</a>       chart = ChartFactory.createStackedXYAreaChart(<span class="jxr_string">""</span>, labelX, labelY, ds,
+<a class="jxr_linenumber" name="L164" href="#L164">164</a>           PlotOrientation.VERTICAL, showLegend, false, false);
+<a class="jxr_linenumber" name="L165" href="#L165">165</a> 
+<a class="jxr_linenumber" name="L166" href="#L166">166</a>     } <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (<span class="jxr_string">"line"</span>.equals(chartType)) {
+<a class="jxr_linenumber" name="L167" href="#L167">167</a>       chart = ChartFactory.createXYLineChart(<span class="jxr_string">""</span>, labelX, labelY, ds, PlotOrientation.VERTICAL,
+<a class="jxr_linenumber" name="L168" href="#L168">168</a>           showLegend, false, false);
+<a class="jxr_linenumber" name="L169" href="#L169">169</a> 
+<a class="jxr_linenumber" name="L170" href="#L170">170</a>       <strong class="jxr_keyword">final</strong> <a name="XYLine3DRenderer" href="../../psiprobe/jfreechart/XYLine3DRenderer.html#XYLine3DRenderer">XYLine3DRenderer</a> renderer = <strong class="jxr_keyword">new</strong> <a name="XYLine3DRenderer" href="../../psiprobe/jfreechart/XYLine3DRenderer.html#XYLine3DRenderer">XYLine3DRenderer</a>();
+<a class="jxr_linenumber" name="L171" href="#L171">171</a>       renderer.setDrawOutlines(<strong class="jxr_keyword">true</strong>);
+<a class="jxr_linenumber" name="L172" href="#L172">172</a>       <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">int</strong> i = 0; i &lt; seriesMaxCount; i++) {
+<a class="jxr_linenumber" name="L173" href="#L173">173</a>         renderer.setSeriesLinesVisible(i, <strong class="jxr_keyword">true</strong>);
+<a class="jxr_linenumber" name="L174" href="#L174">174</a>         renderer.setSeriesShapesVisible(i, <strong class="jxr_keyword">true</strong>);
+<a class="jxr_linenumber" name="L175" href="#L175">175</a>         renderer.setSeriesStroke(i, <strong class="jxr_keyword">new</strong> BasicStroke(2));
+<a class="jxr_linenumber" name="L176" href="#L176">176</a>       }
+<a class="jxr_linenumber" name="L177" href="#L177">177</a>       renderer.setXOffset(1);
+<a class="jxr_linenumber" name="L178" href="#L178">178</a>       renderer.setYOffset(1);
+<a class="jxr_linenumber" name="L179" href="#L179">179</a>       chart.getXYPlot().setRenderer(renderer);
+<a class="jxr_linenumber" name="L180" href="#L180">180</a>     }
+<a class="jxr_linenumber" name="L181" href="#L181">181</a> 
+<a class="jxr_linenumber" name="L182" href="#L182">182</a>     <strong class="jxr_keyword">if</strong> (chart != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L183" href="#L183">183</a>       chart.setAntiAlias(<strong class="jxr_keyword">true</strong>);
+<a class="jxr_linenumber" name="L184" href="#L184">184</a>       chart.setBackgroundPaint(<strong class="jxr_keyword">new</strong> Color(backgroundColor));
+<a class="jxr_linenumber" name="L185" href="#L185">185</a>       <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">int</strong> i = 0; i &lt; seriesMaxCount; i++) {
+<a class="jxr_linenumber" name="L186" href="#L186">186</a>         <strong class="jxr_keyword">if</strong> (seriesColor[i] &gt;= 0) {
+<a class="jxr_linenumber" name="L187" href="#L187">187</a>           chart.getXYPlot().getRenderer().setSeriesPaint(i, <strong class="jxr_keyword">new</strong> Color(seriesColor[i]));
+<a class="jxr_linenumber" name="L188" href="#L188">188</a>         }
+<a class="jxr_linenumber" name="L189" href="#L189">189</a>         <strong class="jxr_keyword">if</strong> (seriesOutlineColor[i] &gt;= 0) {
+<a class="jxr_linenumber" name="L190" href="#L190">190</a>           chart.getXYPlot().getRenderer().setSeriesOutlinePaint(i,
+<a class="jxr_linenumber" name="L191" href="#L191">191</a>               <strong class="jxr_keyword">new</strong> Color(seriesOutlineColor[i]));
+<a class="jxr_linenumber" name="L192" href="#L192">192</a>         }
+<a class="jxr_linenumber" name="L193" href="#L193">193</a>       }
+<a class="jxr_linenumber" name="L194" href="#L194">194</a>       chart.getXYPlot().setDomainGridlinePaint(<strong class="jxr_keyword">new</strong> Color(gridColor));
+<a class="jxr_linenumber" name="L195" href="#L195">195</a>       chart.getXYPlot().setRangeGridlinePaint(<strong class="jxr_keyword">new</strong> Color(gridColor));
+<a class="jxr_linenumber" name="L196" href="#L196">196</a>       chart.getXYPlot().setDomainAxis(0, <strong class="jxr_keyword">new</strong> DateAxis());
+<a class="jxr_linenumber" name="L197" href="#L197">197</a>       chart.getXYPlot().setDomainAxis(1, <strong class="jxr_keyword">new</strong> DateAxis());
+<a class="jxr_linenumber" name="L198" href="#L198">198</a>       chart.getXYPlot().setInsets(<strong class="jxr_keyword">new</strong> RectangleInsets(-15, 0, 0, 10));
+<a class="jxr_linenumber" name="L199" href="#L199">199</a> 
+<a class="jxr_linenumber" name="L200" href="#L200">200</a>       response.setHeader(<span class="jxr_string">"Content-type"</span>, <span class="jxr_string">"image/png"</span>);
+<a class="jxr_linenumber" name="L201" href="#L201">201</a>       response.getOutputStream()
+<a class="jxr_linenumber" name="L202" href="#L202">202</a>           .write(ChartUtils.encodeAsPNG(chart.createBufferedImage(width, height)));
+<a class="jxr_linenumber" name="L203" href="#L203">203</a>     }
+<a class="jxr_linenumber" name="L204" href="#L204">204</a> 
+<a class="jxr_linenumber" name="L205" href="#L205">205</a>     <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="L206" href="#L206">206</a>   }
+<a class="jxr_linenumber" name="L207" href="#L207">207</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2009&#x2013;2022 <a href="https://github.com/psi-probe/">psi-probe</a>. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2009&#x2013;2023 <a href="https://github.com/psi-probe/">psi-probe</a>. All rights reserved.</div>
 </body>
 </html>

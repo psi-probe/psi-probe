@@ -45,19 +45,20 @@
 <a class="jxr_linenumber" name="L37" href="#L37">37</a>  <em class="jxr_javadoccomment">   * Gets the destination.</em>
 <a class="jxr_linenumber" name="L38" href="#L38">38</a>  <em class="jxr_javadoccomment">   *</em>
 <a class="jxr_linenumber" name="L39" href="#L39">39</a>  <em class="jxr_javadoccomment">   * @param logIndex the log index</em>
-<a class="jxr_linenumber" name="L40" href="#L40">40</a>  <em class="jxr_javadoccomment">   * @return the destination</em>
-<a class="jxr_linenumber" name="L41" href="#L41">41</a>  <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L42" href="#L42">42</a>    <strong class="jxr_keyword">public</strong> <a name="LogDestination" href="../../../../psiprobe/tools/logging/LogDestination.html#LogDestination">LogDestination</a> getDestination(String logIndex) {
-<a class="jxr_linenumber" name="L43" href="#L43">43</a>      <a name="GetSingleDestinationVisitor" href="../../../../psiprobe/tools/logging/commons/GetSingleDestinationVisitor.html#GetSingleDestinationVisitor">GetSingleDestinationVisitor</a> visitor = <strong class="jxr_keyword">new</strong> <a name="GetSingleDestinationVisitor" href="../../../../psiprobe/tools/logging/commons/GetSingleDestinationVisitor.html#GetSingleDestinationVisitor">GetSingleDestinationVisitor</a>(logIndex);
-<a class="jxr_linenumber" name="L44" href="#L44">44</a>      visitor.setTarget(getTarget());
-<a class="jxr_linenumber" name="L45" href="#L45">45</a>      visitor.setApplication(getApplication());
-<a class="jxr_linenumber" name="L46" href="#L46">46</a>      visitor.visit();
-<a class="jxr_linenumber" name="L47" href="#L47">47</a>      <strong class="jxr_keyword">return</strong> visitor.getDestination();
-<a class="jxr_linenumber" name="L48" href="#L48">48</a>    }
-<a class="jxr_linenumber" name="L49" href="#L49">49</a>  
-<a class="jxr_linenumber" name="L50" href="#L50">50</a>  }
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>  <em class="jxr_javadoccomment">   *</em>
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>  <em class="jxr_javadoccomment">   * @return the destination</em>
+<a class="jxr_linenumber" name="L42" href="#L42">42</a>  <em class="jxr_javadoccomment">   */</em>
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>    <strong class="jxr_keyword">public</strong> <a name="LogDestination" href="../../../../psiprobe/tools/logging/LogDestination.html#LogDestination">LogDestination</a> getDestination(String logIndex) {
+<a class="jxr_linenumber" name="L44" href="#L44">44</a>      <a name="GetSingleDestinationVisitor" href="../../../../psiprobe/tools/logging/commons/GetSingleDestinationVisitor.html#GetSingleDestinationVisitor">GetSingleDestinationVisitor</a> visitor = <strong class="jxr_keyword">new</strong> <a name="GetSingleDestinationVisitor" href="../../../../psiprobe/tools/logging/commons/GetSingleDestinationVisitor.html#GetSingleDestinationVisitor">GetSingleDestinationVisitor</a>(logIndex);
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>      visitor.setTarget(getTarget());
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>      visitor.setApplication(getApplication());
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>      visitor.visit();
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>      <strong class="jxr_keyword">return</strong> visitor.getDestination();
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>    }
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>  
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>  }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2009&#x2013;2022 <a href="https://github.com/psi-probe/">psi-probe</a>. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2009&#x2013;2023 <a href="https://github.com/psi-probe/">psi-probe</a>. All rights reserved.</div>
 </body>
 </html>
