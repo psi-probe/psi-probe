@@ -40,13 +40,13 @@ import psiprobe.model.FilterInfo;
 import psiprobe.model.FilterMapping;
 
 /**
- * The Class Tomcat101ContainerAdapter.
+ * The Class Tomcat11ContainerAdapter.
  */
-public class Tomcat101ContainerAdapter extends AbstractTomcatContainer {
+public class Tomcat11ContainerAdapter extends AbstractTomcatContainer {
 
   @Override
   protected Valve createValve() {
-    return new Tomcat101AgentValve();
+    return new Tomcat11AgentValve();
   }
 
   @Override
@@ -54,10 +54,10 @@ public class Tomcat101ContainerAdapter extends AbstractTomcatContainer {
     if (binding == null) {
       return false;
     }
-    return binding.startsWith("Apache Tomcat/10.1");
+    return binding.startsWith("Apache Tomcat/11.0");
 // Do not exist yet
-//        || binding.startsWith("Apache Tomcat (TomEE)/10.1")
-//        || binding.startsWith("Pivotal tc") && binding.contains("/10.1");
+//        || binding.startsWith("Apache Tomcat (TomEE)/11.0")
+//        || binding.startsWith("Pivotal tc") && binding.contains("/11.0");
   }
 
   /**

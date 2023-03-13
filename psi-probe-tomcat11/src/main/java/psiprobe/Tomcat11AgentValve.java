@@ -19,14 +19,14 @@ import psiprobe.model.ApplicationSession;
 import psiprobe.model.IpInfo;
 
 /**
- * Valve which inserts the client's IP address into the session for Tomcat 101.0.
+ * Valve which inserts the client's IP address into the session for Tomcat 11.0.
  */
-public class Tomcat101AgentValve extends ValveBase {
+public class Tomcat11AgentValve extends ValveBase {
 
   /**
-   * Instantiates a new tomcat101 agent valve.
+   * Instantiates a new tomcat11 agent valve.
    */
-  public Tomcat101AgentValve() {
+  public Tomcat11AgentValve() {
     super(true);
   }
 

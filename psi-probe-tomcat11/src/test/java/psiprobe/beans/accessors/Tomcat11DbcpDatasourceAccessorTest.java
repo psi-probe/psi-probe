@@ -17,31 +17,31 @@ import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 import org.junit.jupiter.api.Test;
 
 /**
- * The Class Tomcat101DbcpDatasourceAccessorTest.
+ * The Class Tomcat11DbcpDatasourceAccessorTest.
  */
-class Tomcat101DbcpDatasourceAccessorTest {
+class Tomcat11DbcpDatasourceAccessorTest {
 
   /**
-   * Tomcat 101 dbcp datasource accessor.
+   * Tomcat 11 dbcp datasource accessor.
    *
    * @throws Exception the exception
    */
   @Test
-  void Tomcat101DbcpDatasourceAccessor() throws Exception {
-    Tomcat101DbcpDatasourceAccessor accessor = new Tomcat101DbcpDatasourceAccessor();
+  void Tomcat11DbcpDatasourceAccessor() throws Exception {
+    Tomcat11DbcpDatasourceAccessor accessor = new Tomcat11DbcpDatasourceAccessor();
     try (BasicDataSource source = new BasicDataSource()) {
       assertEquals("tomcat-dbcp2", accessor.getInfo(source).getType());
     }
   }
 
   /**
-   * Tomcat 101 dbcp datasource accessor invalid.
+   * Tomcat 11 dbcp datasource accessor invalid.
    *
    * @throws Exception the exception
    */
   @Test
-  void Tomcat101DbcpDatasourceAccessorInvalid() throws Exception {
-    Tomcat101DbcpDatasourceAccessor accessor = new Tomcat101DbcpDatasourceAccessor();
+  void Tomcat11DbcpDatasourceAccessorInvalid() throws Exception {
+    Tomcat11DbcpDatasourceAccessor accessor = new Tomcat11DbcpDatasourceAccessor();
     assertNull(accessor.getInfo(new Object()));
   }
 
@@ -52,7 +52,7 @@ class Tomcat101DbcpDatasourceAccessorTest {
    */
   @Test
   void reset() throws Exception {
-    Tomcat101DbcpDatasourceAccessor accessor = new Tomcat101DbcpDatasourceAccessor();
+    Tomcat11DbcpDatasourceAccessor accessor = new Tomcat11DbcpDatasourceAccessor();
     assertFalse(accessor.reset(new Object()));
   }
 

@@ -14,9 +14,9 @@ import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 import psiprobe.model.DataSourceInfo;
 
 /**
- * The Class Tomcat10DbcpDatasourceAccessor.
+ * The Class Tomcat11DbcpDatasourceAccessor.
  */
-public class Tomcat10DbcpDatasourceAccessor implements DatasourceAccessor {
+public class Tomcat11DbcpDatasourceAccessor implements DatasourceAccessor {
 
   @Override
   public DataSourceInfo getInfo(Object resource) throws Exception {

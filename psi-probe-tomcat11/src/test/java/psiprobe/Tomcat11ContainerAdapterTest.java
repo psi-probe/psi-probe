@@ -29,9 +29,9 @@ import mockit.Mocked;
 import psiprobe.model.ApplicationResource;
 
 /**
- * The Class Tomcat101ContainerAdapterTest.
+ * The Class Tomcat11ContainerAdapterTest.
  */
-class Tomcat101ContainerAdapterTest {
+class Tomcat11ContainerAdapterTest {
 
   /** The context. */
   @Mocked
@@ -42,7 +42,7 @@ class Tomcat101ContainerAdapterTest {
    */
   @Test
   void createValve() {
-    final Tomcat101ContainerAdapter adapter = new Tomcat101ContainerAdapter();
+    final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
     Valve valve = adapter.createValve();
     assertEquals("Tomcat10AgentValve[Container is null]", valve.toString());
   }
@@ -52,34 +52,34 @@ class Tomcat101ContainerAdapterTest {
    */
   @Test
   void canBoundToNull() {
-    final Tomcat101ContainerAdapter adapter = new Tomcat101ContainerAdapter();
+    final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
     assertFalse(adapter.canBoundTo(null));
   }
 
   /**
-   * Can bound to tomcat101.
+   * Can bound to tomcat11.
    */
   @Test
-  void canBoundToTomcat101() {
-    final Tomcat101ContainerAdapter adapter = new Tomcat101ContainerAdapter();
+  void canBoundToTomcat11() {
+    final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
     assertTrue(adapter.canBoundTo("Apache Tomcat/10.1"));
   }
 
   /**
-   * Can bound to tomEE101.
+   * Can bound to tomEE11.
    */
   @Test
-  void canBoundToTomEE101() {
-    final Tomcat101ContainerAdapter adapter = new Tomcat101ContainerAdapter();
+  void canBoundToTomEE11() {
+    final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
     assertTrue(adapter.canBoundTo("Apache Tomcat (TomEE)/10.1"));
   }
 
   /**
-   * Can bound to pivotal101.
+   * Can bound to pivotal11.
    */
   @Test
-  void canBoundToPivotal101() {
-    final Tomcat101ContainerAdapter adapter = new Tomcat101ContainerAdapter();
+  void canBoundToPivotal11() {
+    final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
     assertTrue(adapter.canBoundTo("Pivotal tc..../10.1"));
   }
 
@@ -88,7 +88,7 @@ class Tomcat101ContainerAdapterTest {
    */
   @Test
   void canBoundToOther() {
-    final Tomcat101ContainerAdapter adapter = new Tomcat101ContainerAdapter();
+    final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
     assertFalse(adapter.canBoundTo("Other"));
   }
 
@@ -97,7 +97,7 @@ class Tomcat101ContainerAdapterTest {
    */
   @Test
   void filterMappings() {
-    final Tomcat101ContainerAdapter adapter = new Tomcat101ContainerAdapter();
+    final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
     FilterMap map = new FilterMap();
     map.addServletName("psi-probe");
     map.addURLPattern("/psi-probe");
@@ -109,7 +109,7 @@ class Tomcat101ContainerAdapterTest {
    */
   @Test
   void createJspCompilationContext() {
-    final Tomcat101ContainerAdapter adapter = new Tomcat101ContainerAdapter();
+    final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
     JspCompilationContext context = adapter.createJspCompilationContext("name", null, null, null,
         ClassLoader.getSystemClassLoader());
     assertEquals("org.apache.jsp.name", context.getFQCN());
@@ -120,7 +120,7 @@ class Tomcat101ContainerAdapterTest {
    */
   @Test
   void addContextResourceLink() {
-    final Tomcat101ContainerAdapter adapter = new Tomcat101ContainerAdapter();
+    final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
     adapter.addContextResourceLink(context, new ArrayList<ApplicationResource>(), false);
   }
 
@@ -129,7 +129,7 @@ class Tomcat101ContainerAdapterTest {
    */
   @Test
   void addContextResource() {
-    final Tomcat101ContainerAdapter adapter = new Tomcat101ContainerAdapter();
+    final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
     adapter.addContextResource(context, new ArrayList<ApplicationResource>(), false);
   }
 
@@ -145,7 +145,7 @@ class Tomcat101ContainerAdapterTest {
       }
     });
 
-    final Tomcat101ContainerAdapter adapter = new Tomcat101ContainerAdapter();
+    final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
     assertEquals(0, adapter.getApplicationFilterMaps(context).size());
   }
 
@@ -161,7 +161,7 @@ class Tomcat101ContainerAdapterTest {
       }
     });
 
-    final Tomcat101ContainerAdapter adapter = new Tomcat101ContainerAdapter();
+    final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
     assertEquals(1, adapter.getApplicationFilters(context).size());
   }
 
@@ -176,7 +176,7 @@ class Tomcat101ContainerAdapterTest {
         result = new ApplicationParameter();
       }
     });
-    final Tomcat101ContainerAdapter adapter = new Tomcat101ContainerAdapter();
+    final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
     assertEquals(0, adapter.getApplicationInitParams(context).size());
   }
 
@@ -185,7 +185,7 @@ class Tomcat101ContainerAdapterTest {
    */
   @Test
   void resourceExists() {
-    final Tomcat101ContainerAdapter adapter = new Tomcat101ContainerAdapter();
+    final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
     assertTrue(adapter.resourceExists("name", context));
   }
 
@@ -197,7 +197,7 @@ class Tomcat101ContainerAdapterTest {
    */
   @Test
   void resourceStream() throws IOException {
-    final Tomcat101ContainerAdapter adapter = new Tomcat101ContainerAdapter();
+    final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
     adapter.getResourceStream("name", context);
   }
 
@@ -206,7 +206,7 @@ class Tomcat101ContainerAdapterTest {
    */
   @Test
   void resourceAttributes() {
-    final Tomcat101ContainerAdapter adapter = new Tomcat101ContainerAdapter();
+    final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
     adapter.getResourceAttributes("name", context);
   }
 
@@ -215,7 +215,7 @@ class Tomcat101ContainerAdapterTest {
    */
   @Test
   void getNamingToken() {
-    final Tomcat101ContainerAdapter adapter = new Tomcat101ContainerAdapter();
+    final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
     assertNull(adapter.getNamingToken(context));
   }
 

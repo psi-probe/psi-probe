@@ -17,15 +17,15 @@
     <parent>
         <groupId>com.github.psi-probe</groupId>
         <artifactId>psi-probe</artifactId>
-        <version>3.6.0</version>
+        <version>3.7.2-SNAPSHOT</version>
     </parent>
 
-    <artifactId>psi-probe-tomcat101</artifactId>
+    <artifactId>psi-probe-tomcat11</artifactId>
     <packaging>jar</packaging>
 
-    <name>psi-probe-tomcat101</name>
+    <name>psi-probe-tomcat11</name>
     <description>
-        PSI Probe Tomcat 10.1.x Adapter - Implementation of features specific to Apache Tomcat 10.1.x
+        PSI Probe Tomcat 11.0.x Adapter - Implementation of features specific to Apache Tomcat 11.0.x
     </description>
 
     <scm>
@@ -36,7 +36,7 @@
     </scm>
 
     <properties>
-        <tomcat.version>10.1.7</tomcat.version>
+        <tomcat.version>11.0.0-M4</tomcat.version>
     </properties>
 
     <dependencies>

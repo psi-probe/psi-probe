@@ -22,13 +22,13 @@ import mockit.Mocked;
 import mockit.Tested;
 
 /**
- * The Class Tomcat101AgentValveTest.
+ * The Class Tomcat11AgentValveTest.
  */
-class Tomcat101AgentValveTest {
+class Tomcat11AgentValveTest {
 
   /** The valve. */
   @Tested
-  Tomcat101AgentValve valve;
+  Tomcat11AgentValve valve;
 
   /** The request. */
   @Mocked
