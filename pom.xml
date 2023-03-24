@@ -232,7 +232,7 @@
         <jspc.plugin>10.0.14</jspc.plugin>
         <jxr.plugin>3.3.0</jxr.plugin>
         <l10n.plugin>1.0.0</l10n.plugin>
-        <license.plugin>4.2.rc3</license.plugin>
+        <license.plugin>4.2</license.plugin>
         <lifecycle-mapping.plugin>1.0.0</lifecycle-mapping.plugin>
         <modernizer.plugin>2.5.0</modernizer.plugin>
         <pmd.plugin>3.20.0</pmd.plugin>
