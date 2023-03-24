@@ -234,7 +234,7 @@
         <l10n.plugin>1.0.0</l10n.plugin>
         <license.plugin>4.2.rc3</license.plugin>
         <lifecycle-mapping.plugin>1.0.0</lifecycle-mapping.plugin>
-        <modernizer.plugin>2.5.0</modernizer.plugin>
+        <modernizer.plugin>2.6.0</modernizer.plugin>
         <pmd.plugin>3.20.0</pmd.plugin>
         <project-info.plugin>3.4.2</project-info.plugin>
         <release.plugin>3.0.0</release.plugin>
