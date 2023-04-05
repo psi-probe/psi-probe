@@ -156,6 +156,7 @@
 
         <!-- Dependency Versions -->
         <activation.version>2.1.2</activation.version>
+        <angus-activation.version>2.0.1</angus-activation.version>
         <assertj.version>3.25.3</assertj.version>
         <beanutils.version>1.9.4</beanutils.version>
         <byte-buddy.version>1.14.12</byte-buddy.version>
@@ -331,9 +332,9 @@
                 <version>${activation.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.sun.activation</groupId>
-                <artifactId>jakarta.activation</artifactId>
-                <version>${activation.version}</version>
+                <groupId>org.eclipse.angus</groupId>
+                <artifactId>angus-activation</artifactId>
+                <version>${angus-activation.version}</version>
             </dependency>
             <dependency>
                 <groupId>jakarta.inject</groupId>
@@ -715,8 +716,8 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>com.sun.activation</groupId>
-            <artifactId>jakarta.activation</artifactId>
+            <groupId>org.eclipse.angus</groupId>
+            <artifactId>angus-activation</artifactId>
             <scope>compile</scope>
         </dependency>
     </dependencies>
