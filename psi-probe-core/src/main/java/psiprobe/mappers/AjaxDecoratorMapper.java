@@ -43,7 +43,7 @@ public class AjaxDecoratorMapper extends AbstractDecoratorMapper {
   public Decorator getDecorator(HttpServletRequest request, Page page) {
 
     boolean callMapperChain;
-    String originalUri = (String) request.getAttribute("javax.servlet.error.request_uri");
+    String originalUri = (String) request.getAttribute("jakarta.servlet.error.request_uri");
     if (originalUri != null) {
       //
       // cut off the query string

@@ -73,7 +73,7 @@ class AjaxDecoratorMapperTest {
 
     new Expectations() {
       {
-        request.getAttribute("javax.servlet.error.request_uri");
+        request.getAttribute("jakarta.servlet.error.request_uri");
         result = "https://localhost:8443/probe";
 
         request.getServletPath();
