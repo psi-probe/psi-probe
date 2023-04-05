@@ -103,7 +103,7 @@ public class Error403Controller extends AbstractController {
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 
-    String originalUri = (String) request.getAttribute("javax.servlet.error.request_uri");
+    String originalUri = (String) request.getAttribute("jakarta.servlet.error.request_uri");
     if (originalUri != null && originalUri.endsWith(ajaxExtension)) {
       return new ModelAndView(ajaxViewName);
     }
