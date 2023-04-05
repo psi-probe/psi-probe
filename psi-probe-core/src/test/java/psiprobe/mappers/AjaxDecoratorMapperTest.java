@@ -14,9 +14,9 @@ import com.opensymphony.module.sitemesh.Config;
 import com.opensymphony.module.sitemesh.DecoratorMapper;
 import com.opensymphony.module.sitemesh.Page;
 
-import java.util.Properties;
+import jakarta.servlet.http.HttpServletRequest;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.Properties;
 
 import mockit.Expectations;
 import mockit.Mocked;

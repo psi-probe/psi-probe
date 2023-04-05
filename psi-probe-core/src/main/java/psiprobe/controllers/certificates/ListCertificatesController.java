@@ -10,6 +10,9 @@
  */
 package psiprobe.controllers.certificates;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,8 +29,6 @@ import java.util.Collections;
 import java.util.List;
 
 import javax.management.ObjectName;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.apache.catalina.connector.Connector;
 import org.apache.coyote.ProtocolHandler;

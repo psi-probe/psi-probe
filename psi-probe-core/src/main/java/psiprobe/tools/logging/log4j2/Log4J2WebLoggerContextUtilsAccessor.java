@@ -10,9 +10,9 @@
  */
 package psiprobe.tools.logging.log4j2;
 
-import java.lang.reflect.Method;
+import jakarta.servlet.ServletContext;
 
-import javax.servlet.ServletContext;
+import java.lang.reflect.Method;
 
 import org.apache.commons.lang3.reflect.MethodUtils;
 import org.slf4j.Logger;

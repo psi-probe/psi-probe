@@ -16,6 +16,8 @@ import com.maxmind.geoip2.exception.AddressNotFoundException;
 import com.maxmind.geoip2.model.CountryResponse;
 import com.maxmind.geoip2.record.Country;
 
+import jakarta.inject.Inject;
+
 import java.io.File;
 import java.net.InetAddress;
 import java.util.ArrayList;
@@ -25,7 +27,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
-import javax.inject.Inject;
 import javax.management.InstanceNotFoundException;
 import javax.management.MBeanServer;
 import javax.management.MBeanServerNotification;

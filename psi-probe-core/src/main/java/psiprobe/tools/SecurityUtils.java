@@ -10,9 +10,9 @@
  */
 package psiprobe.tools;
 
-import java.util.Collection;
+import jakarta.servlet.ServletContext;
 
-import javax.servlet.ServletContext;
+import java.util.Collection;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;

@@ -10,7 +10,7 @@
  */
 package psiprobe.model;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 /**
  * The Class IpInfo.

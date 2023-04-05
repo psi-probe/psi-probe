@@ -10,6 +10,9 @@
  */
 package psiprobe.beans;
 
+import jakarta.inject.Inject;
+import jakarta.servlet.ServletContext;
+
 import java.io.File;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
@@ -20,9 +23,6 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-
-import javax.inject.Inject;
-import javax.servlet.ServletContext;
 
 import org.apache.catalina.Context;
 import org.apache.catalina.Loader;

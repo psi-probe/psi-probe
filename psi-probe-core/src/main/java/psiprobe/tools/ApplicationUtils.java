@@ -10,6 +10,9 @@
  */
 package psiprobe.tools;
 
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -22,8 +25,6 @@ import java.util.Locale;
 import java.util.Set;
 
 import javax.naming.NamingException;
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpSession;
 
 import org.apache.catalina.Container;
 import org.apache.catalina.Context;

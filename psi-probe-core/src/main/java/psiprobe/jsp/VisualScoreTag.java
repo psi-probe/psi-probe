@@ -10,12 +10,12 @@
  */
 package psiprobe.jsp;
 
+import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.tagext.BodyContent;
+import jakarta.servlet.jsp.tagext.BodyTagSupport;
+
 import java.io.IOException;
 import java.text.MessageFormat;
-
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.tagext.BodyContent;
-import javax.servlet.jsp.tagext.BodyTagSupport;
 
 /**
  * The Class VisualScoreTag.

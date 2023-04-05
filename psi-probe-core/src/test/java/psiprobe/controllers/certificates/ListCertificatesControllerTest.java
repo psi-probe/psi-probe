@@ -14,10 +14,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import com.codebox.bean.JavaBeanTester;
 
+import jakarta.inject.Inject;
+
 import java.io.File;
 import java.util.List;
-
-import javax.inject.Inject;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

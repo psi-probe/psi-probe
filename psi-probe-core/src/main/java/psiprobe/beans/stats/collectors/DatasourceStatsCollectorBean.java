@@ -10,7 +10,8 @@
  */
 package psiprobe.beans.stats.collectors;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
+
 import javax.naming.NamingException;
 
 import org.slf4j.Logger;

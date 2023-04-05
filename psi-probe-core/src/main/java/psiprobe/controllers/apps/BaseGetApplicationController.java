@@ -10,9 +10,9 @@
  */
 package psiprobe.controllers.apps;
 
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.inject.Inject;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import org.apache.catalina.Context;
 import org.springframework.web.bind.ServletRequestUtils;
