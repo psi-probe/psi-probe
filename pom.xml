@@ -74,7 +74,6 @@
     <modules>
         <module>psi-probe-core</module>
         <module>psi-probe-rest</module>
-        <module>psi-probe-tomcat9</module>
         <!-- <module>psi-probe-tomcat10</module> -->
         <!-- <module>psi-probe-tomcat11</module> -->
         <module>psi-probe-web</module>
