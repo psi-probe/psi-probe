@@ -1045,8 +1045,8 @@
                     <version>${versions.plugin}</version>
                 </plugin>
                 <plugin>
-                    <groupId>org.eclipse.jetty.ee8</groupId>
-                    <artifactId>jetty-ee8-jspc-maven-plugin</artifactId>
+                    <groupId>org.eclipse.jetty.ee10</groupId>
+                    <artifactId>jetty-ee10-jspc-maven-plugin</artifactId>
                     <version>${jspc.plugin}</version>
                     <configuration>
                         <mergeFragment>false</mergeFragment>

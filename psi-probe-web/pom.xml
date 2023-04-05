@@ -94,8 +94,8 @@
         <finalName>probe</finalName>
         <plugins>
             <plugin>
-                <groupId>org.eclipse.jetty.ee8</groupId>
-                <artifactId>jetty-ee8-jspc-maven-plugin</artifactId>
+                <groupId>org.eclipse.jetty.ee10</groupId>
+                <artifactId>jetty-ee10-jspc-maven-plugin</artifactId>
                 <executions>
                     <execution>
                         <goals>
