@@ -211,7 +211,7 @@
         <antrun.plugin>3.1.0</antrun.plugin>
         <assembly.plugin>3.5.0</assembly.plugin>
         <build-helper.plugin>3.3.0</build-helper.plugin>
-        <checkstyle.plugin>3.2.1</checkstyle.plugin>
+        <checkstyle.plugin>3.2.2</checkstyle.plugin>
         <changelog.plugin>2.3</changelog.plugin>
         <clean.plugin>3.2.0</clean.plugin>
         <compiler.plugin>3.11.0</compiler.plugin>
