@@ -17,7 +17,7 @@
     <parent>
         <groupId>com.github.psi-probe</groupId>
         <artifactId>psi-probe</artifactId>
-        <version>3.7.3-SNAPSHOT</version>
+        <version>3.7.4-SNAPSHOT</version>
     </parent>
 
     <artifactId>psi-probe-web</artifactId>
