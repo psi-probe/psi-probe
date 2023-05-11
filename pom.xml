@@ -16,7 +16,7 @@
 
     <groupId>com.github.psi-probe</groupId>
     <artifactId>psi-probe</artifactId>
-    <version>3.7.3-SNAPSHOT</version>
+    <version>3.7.3</version>
     <packaging>pom</packaging>
 
     <name>psi-probe</name>
@@ -83,7 +83,7 @@
     <scm>
         <connection>scm:git:ssh://git@github.com/psi-probe/psi-probe.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/psi-probe/psi-probe.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>psi-probe-3.7.3</tag>
         <url>https://github.com/psi-probe/psi-probe/</url>
     </scm>
     <issueManagement>
@@ -147,7 +147,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <!-- Reproducible Builds -->
-        <project.build.outputTimestamp>1678742387</project.build.outputTimestamp>
+        <project.build.outputTimestamp>1683768701</project.build.outputTimestamp>
 
         <!-- Checkstyle -->
         <checkstyle.configLocation>checkstyle.xml</checkstyle.configLocation>
