@@ -147,7 +147,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
    * @return the list
    */
   public synchronized List<XYDataItem> newStats(String name, int maxElements) {
-    List<XYDataItem> stats = Collections.synchronizedList(new ArrayList<XYDataItem>(maxElements));
+    List<XYDataItem> stats = Collections.synchronizedList(new ArrayList<>(maxElements));
     statsData.put(name, stats);
     return stats;
   }

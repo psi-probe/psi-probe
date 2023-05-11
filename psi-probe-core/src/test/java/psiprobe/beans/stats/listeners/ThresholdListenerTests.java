@@ -22,13 +22,13 @@ class ThresholdListenerTests {
   private final long defaultThreshold = 10;
 
   /** The listener. */
-  private MockThresholdListener listener = new MockThresholdListener(defaultThreshold);
+  private final MockThresholdListener listener = new MockThresholdListener(defaultThreshold);
 
   /** The below threshold. */
-  private StatsCollectionEvent belowThreshold = new StatsCollectionEvent("test", 0, 0);
+  private final StatsCollectionEvent belowThreshold = new StatsCollectionEvent("test", 0, 0);
 
   /** The above threshold. */
-  private StatsCollectionEvent aboveThreshold = new StatsCollectionEvent("test", 0, 20);
+  private final StatsCollectionEvent aboveThreshold = new StatsCollectionEvent("test", 0, 20);
 
   /**
    * Test first below threshold.

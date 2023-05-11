@@ -37,14 +37,14 @@ class FlapListenerTests {
   private final float defaultHighWeight = 1.0F;
 
   /** The listener. */
-  private MockFlapListener listener = new MockFlapListener(defaultThreshold, defaultInterval,
+  private final MockFlapListener listener = new MockFlapListener(defaultThreshold, defaultInterval,
       defaultStartThreshold, defaultStopThreshold, defaultLowWeight, defaultHighWeight);
 
   /** The below threshold. */
-  private StatsCollectionEvent belowThreshold = new StatsCollectionEvent("test", 0, 0);
+  private final StatsCollectionEvent belowThreshold = new StatsCollectionEvent("test", 0, 0);
 
   /** The above threshold. */
-  private StatsCollectionEvent aboveThreshold = new StatsCollectionEvent("test", 0, 20);
+  private final StatsCollectionEvent aboveThreshold = new StatsCollectionEvent("test", 0, 20);
 
   /**
    * Fill.
