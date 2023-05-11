@@ -1103,19 +1103,16 @@
                     <artifactId>license-maven-plugin</artifactId>
                     <version>${license.plugin}</version>
                     <configuration>
-                        <header>${main.basedir}/LICENSE_HEADER</header>
-                        <excludes>
-                            <exclude>**/*.jks</exclude>
-                            <exclude>.gitattributes</exclude>
-                            <exclude>LICENSE</exclude>
-                            <exclude>LICENSE_HEADER</exclude>
-                            <exclude>NOTICE</exclude>
-                            <exclude>mvnw.cmd</exclude>
-                            <exclude>mvnw</exclude>
-                            <exclude>**/*GeoLite2-Country.mmdb</exclude>
-                            <exclude>**/*maven-wrapper.properties</exclude>
-                            <exclude>**/*MavenWrapperDownloader.java</exclude>
-                        </excludes>
+                        <licenseSets>
+                            <licenseSet>
+                                <header>${main.basedir}/LICENSE_HEADER</header>
+                                <excludes>
+                                    <!-- Default excludes located at https://github.com/mathieucarbou/license-maven-plugin/blob/master/license-maven-plugin/src/main/java/com/mycila/maven/plugin/license/Default.java -->
+                                    <exclude>NOTICE</exclude>
+                                    <exclude>**/*GeoLite2-Country.mmdb</exclude>
+                                </excludes>
+                            </licenseSet>
+                        </licenseSets>
                     </configuration>
                     <dependencies>
                         <dependency>
@@ -1548,7 +1545,7 @@
                                                 </goals>
                                             </pluginExecutionFilter>
                                             <action>
-                                                <ignore />
+                                                <ignore/>
                                             </action>
                                         </pluginExecution>
                                     </pluginExecutions>
