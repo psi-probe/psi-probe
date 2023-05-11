@@ -54,7 +54,7 @@ public class ContainerListenerBean implements NotificationListener {
   private static final Logger logger = LoggerFactory.getLogger(ContainerListenerBean.class);
 
   /** The allowed operation. */
-  private Set<String> allowedOperation =
+  private final Set<String> allowedOperation =
       new HashSet<>(Arrays.asList("start", "stop", "pause", "resume"));
 
   /** The pool names. */
