@@ -84,7 +84,7 @@ public final class AsyncSocketFactory {
   /**
    * The Class SocketWrapper.
    */
-  static class SocketWrapper {
+  static final class SocketWrapper {
 
     /** The socket. */
     Socket socket;
@@ -165,7 +165,7 @@ public final class AsyncSocketFactory {
   /**
    * The Class SocketRunnable.
    */
-  static class SocketRunnable implements Runnable {
+  static final class SocketRunnable implements Runnable {
 
     /** The socket wrapper. */
     private final SocketWrapper socketWrapper;
@@ -206,7 +206,7 @@ public final class AsyncSocketFactory {
   /**
    * The Class TimeoutRunnable.
    */
-  static class TimeoutRunnable implements Runnable {
+  static final class TimeoutRunnable implements Runnable {
 
     /** The sync. */
     private final Object sync;

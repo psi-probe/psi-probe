@@ -145,7 +145,7 @@ public final class Whois {
   /**
    * The Class Response.
    */
-  public static class Response {
+  public static final class Response {
 
     /** The summary. */
     String summary;
