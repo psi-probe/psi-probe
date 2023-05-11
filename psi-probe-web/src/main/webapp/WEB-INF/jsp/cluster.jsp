@@ -30,7 +30,11 @@
 	<c:set var="chartWidth" value="400"/>
 	<c:set var="chartHeight" value="250"/>
 
+<<<<<<< HEAD:psi-probe-web/src/main/webapp/WEB-INF/jsp/cluster.jsp
 	<c:url value="/chart.png" var="trafficimg" scope="page">
+=======
+	<c:url value="/chart.png" var="receivedimg" scope="page">
+>>>>>>> origin/2.1:web/src/main/webapp/WEB-INF/jsp/cluster.jsp
 		<c:param name="xz" value="${chartWidth}"/>
 		<c:param name="yz" value="${chartHeight}"/>
 		<c:param name="s1l" value="sent"/>
@@ -43,7 +47,11 @@
 		<c:param name="p" value="cl_traffic"/>
 	</c:url>
 
+<<<<<<< HEAD:psi-probe-web/src/main/webapp/WEB-INF/jsp/cluster.jsp
 	<c:url value="/chart.png" var="requestsimg" scope="page">
+=======
+	<c:url value="/chart.png" var="sentimg" scope="page">
+>>>>>>> origin/2.1:web/src/main/webapp/WEB-INF/jsp/cluster.jsp
 		<c:param name="xz" value="${chartWidth}"/>
 		<c:param name="yz" value="${chartHeight}"/>
 		<c:param name="s1l" value="sent"/>
@@ -103,7 +111,11 @@
 							<dl>
 								<dt><spring:message code="probe.jsp.cluster.chart.traffic" arguments="${probe:max(collectionPeriod, 5)}"/></dt>
 								<dd>
+<<<<<<< HEAD:psi-probe-web/src/main/webapp/WEB-INF/jsp/cluster.jsp
 									<img id="cl_traffic" border="0" src="${trafficimg}" width="${chartWidth}" height="${chartHeight}" alt="Bytes received"/>
+=======
+									<img id="cl_traffic" border="0" src="${receivedimg}" width="${chartWidth}" height="${chartHeight}" alt="Bytes received"/>
+>>>>>>> origin/2.1:web/src/main/webapp/WEB-INF/jsp/cluster.jsp
 								</dd>
 								<dd id="dd_traffic"><div class="ajax_activity"></div></dd>
 							</dl>
@@ -113,7 +125,11 @@
 							<dl>
 								<dt><spring:message code="probe.jsp.cluster.chart.requests" arguments="${probe:max(collectionPeriod, 5)}"/></dt>
 								<dd>
+<<<<<<< HEAD:psi-probe-web/src/main/webapp/WEB-INF/jsp/cluster.jsp
 									<img id="cl_requests" border="0" src="${requestsimg}" width="${chartWidth}" height="${chartHeight}" alt="Bytes sent"/>
+=======
+									<img id="cl_requests" border="0" src="${sentimg}" width="${chartWidth}" height="${chartHeight}" alt="Bytes sent"/>
+>>>>>>> origin/2.1:web/src/main/webapp/WEB-INF/jsp/cluster.jsp
 								</dd>
 								<dd id="dd_requests"><div class="ajax_activity"></div></dd>
 							</dl>

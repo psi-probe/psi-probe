@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.googlecode.psiprobe</groupId>
+		<artifactId>psi-probe</artifactId>
+		<version>2.1.2</version>
+	</parent>
+	<groupId>com.googlecode.psiprobe</groupId>
+	<artifactId>tomcat50adaptor</artifactId>
+	<packaging>jar</packaging>
+	<name>PSI Probe Tomcat 5.0.x Adaptor</name>
+	<dependencies>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>core</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>tomcat</groupId>
+			<artifactId>naming-factory</artifactId>
+			<version>5.0.28</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>tomcat</groupId>
+			<artifactId>naming-resources</artifactId>
+			<version>5.0.28</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>tomcat</groupId>
+			<artifactId>catalina</artifactId>
+			<version>5.0.28</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+</project>

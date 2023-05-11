@@ -160,7 +160,11 @@
 
 			<c:url value="/chart.png" var="usage_img" scope="page">
 				<c:param name="p" value="datasource_usage"/>
+<<<<<<< HEAD:psi-probe-web/src/main/webapp/WEB-INF/jsp/datasourcetest.jsp
 				<c:param name="sp" value="${param.webapp == null ? '' : param.webapp}/${param.resource}"/>
+=======
+				<c:param name="sp" value="${param.resource}"/>
+>>>>>>> origin/2.1:web/src/main/webapp/WEB-INF/jsp/datasourcetest.jsp
 				<c:param name="xz" value="${chartWidth}"/>
 				<c:param name="yz" value="${chartHeight}"/>
 				<c:param name="l" value="false"/>
@@ -169,7 +173,11 @@
 				<dl>
 					<dt><spring:message code="probe.jsp.dataSourceTest.chart.usage.title"/></dt>
 					<dd class="image">
+<<<<<<< HEAD:psi-probe-web/src/main/webapp/WEB-INF/jsp/datasourcetest.jsp
 						<img id='<c:out value="usage-${param.resource}" />' border="0" src="${usage_img}" width="${chartWidth}" height="${chartHeight}" alt="Datasource usage"/>
+=======
+						<img id="usage-${param.resource}" border="0" src="${usage_img}" width="${chartWidth}" height="${chartHeight}" alt="Datasource usage"/>
+>>>>>>> origin/2.1:web/src/main/webapp/WEB-INF/jsp/datasourcetest.jsp
 					</dd>
 				</dl>
 			</div>

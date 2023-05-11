@@ -175,8 +175,13 @@
 							<c:param name="sp" value="${param.webapp}"/>
 							<c:param name="xz" value="${chartWidth}"/>
 							<c:param name="yz" value="${chartHeight}"/>
+<<<<<<< HEAD:psi-probe-web/src/main/webapp/WEB-INF/jsp/appsummary.jsp
 							<c:param name="s1c" value="#FFCD9B"/>
 							<c:param name="s1o" value="#D26900"/>
+=======
+							<c:param name="s1c" value="#95FE8B"/>
+							<c:param name="s1o" value="#009406"/>
+>>>>>>> origin/2.1:web/src/main/webapp/WEB-INF/jsp/appsummary.jsp
 							<c:param name="l" value="false"/>
 						</c:url>
 
@@ -185,8 +190,13 @@
 							<c:param name="sp" value="${param.webapp}"/>
 							<c:param name="xz" value="${fullChartWidth}"/>
 							<c:param name="yz" value="${fullChartHeight}"/>
+<<<<<<< HEAD:psi-probe-web/src/main/webapp/WEB-INF/jsp/appsummary.jsp
 							<c:param name="s1c" value="#FFCD9B"/>
 							<c:param name="s1o" value="#D26900"/>
+=======
+							<c:param name="s1c" value="#95FE8B"/>
+							<c:param name="s1o" value="#009406"/>
+>>>>>>> origin/2.1:web/src/main/webapp/WEB-INF/jsp/appsummary.jsp
 							<c:param name="s1l">
 								<spring:message code="probe.jsp.app.summary.charts.avgProcTime.legend"/>
 							</c:param>
@@ -198,9 +208,12 @@
 									<dt><spring:message code="probe.jsp.app.summary.charts.requests.title"/></dt>
 									<dd class="image">
 										<img id="req_chart" border="0" src="${req_url}" width="${chartWidth}" height="${chartHeight}" alt="+"/>
+<<<<<<< HEAD:psi-probe-web/src/main/webapp/WEB-INF/jsp/appsummary.jsp
 									</dd>
 									<dd id="dd-req">
 										<div class="ajax_activity"></div>
+=======
+>>>>>>> origin/2.1:web/src/main/webapp/WEB-INF/jsp/appsummary.jsp
 									</dd>
 								</dl>
 							</div>
@@ -210,9 +223,12 @@
 									<dt><spring:message code="probe.jsp.app.summary.charts.avgProcTime.title"/></dt>
 									<dd class="image">
 										<img id="avg_proc_time_chart" border="0" src="${avg_proc_time_url}" width="${chartWidth}" height="${chartHeight}" alt="+"/>
+<<<<<<< HEAD:psi-probe-web/src/main/webapp/WEB-INF/jsp/appsummary.jsp
 									</dd>
 									<dd id="dd-proc_time">
 										<div class="ajax_activity"></div>
+=======
+>>>>>>> origin/2.1:web/src/main/webapp/WEB-INF/jsp/appsummary.jsp
 									</dd>
 								</dl>
 							</div>

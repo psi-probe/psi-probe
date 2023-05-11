@@ -23,6 +23,9 @@
 		<script type="text/javascript" src="<c:url value='/js/func.js'/>"></script>
 	</head>
 
+	<c:set var="fullChartWidth" value="800"/>
+	<c:set var="fullChartHeight" value="350"/>
+	
 	<c:url value="/chart.png" var="imgurl" scope="request">
 		<c:param name="l" value="true"/>
 		<c:param name="p" value="${param.p}"/>
@@ -74,7 +77,11 @@
 			</div>
 
 			<div>
+<<<<<<< HEAD:psi-probe-web/src/main/webapp/WEB-INF/jsp/zoomreq.jsp
 				<img id="img" class="scale-image" src="${imgurl}&xz=${fullChartWidth}&yz=${fullChartHeight}" alt=""/>
+=======
+				<img id="img" class="scale-image" src="${imgurl}&xz=${fullChartWidth}&yz=${fullChartHeight}" width="${fullChartWidth}" height="${fullChartHeight}" alt=""/>
+>>>>>>> origin/2.1:web/src/main/webapp/WEB-INF/jsp/zoomreq.jsp
 			</div>
 
 			<script type="text/javascript">
@@ -99,7 +106,11 @@
 				// it is rebuilt from vector format
 				var v;
 				slider.options.onSlide = function(value) {
+<<<<<<< HEAD:psi-probe-web/src/main/webapp/WEB-INF/jsp/zoomreq.jsp
 					v= scaleImage(value, fullChartWidth, fullChartWidth * 2, fullChartHeight, fullChartHeight * 2);
+=======
+					scaleImage(value, ${fullChartWidth}, ${fullChartWidth * 2}, ${fullChartHeight}, ${fullChartHeight * 2});
+>>>>>>> origin/2.1:web/src/main/webapp/WEB-INF/jsp/zoomreq.jsp
 				}
 
 				// this is where the slider is released and the image is reloaded
@@ -111,9 +122,13 @@
 
 					// chop off "px" and round up float values
 					var width = Math.round(Element.getStyle('img', 'width').replace('px', ''));
+<<<<<<< HEAD:psi-probe-web/src/main/webapp/WEB-INF/jsp/zoomreq.jsp
 
 					var height = Math.round(width / (fullChartWidth / fullChartHeight));
 
+=======
+					var height = Math.round(width / ${fullChartWidth / fullChartHeight});
+>>>>>>> origin/2.1:web/src/main/webapp/WEB-INF/jsp/zoomreq.jsp
 					// reload the images
 					document.images.img.src = '<c:out value="${imgurl}" escapeXml="false"/>&xz=' + width + '&yz=' + height;
 					// reset the image auto-updater
