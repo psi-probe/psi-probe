@@ -1567,6 +1567,7 @@
                         <configuration>
                             <activeRecipes>
                                 <recipe>org.openrewrite.java.cleanup.Cleanup</recipe>
+                                <recipe>org.openrewrite.java.RemoveUnusedImports</recipe>
                             </activeRecipes>
                         </configuration>
                         <executions>
@@ -1591,6 +1592,7 @@
                         <configuration>
                             <activeRecipes>
                                 <recipe>org.openrewrite.java.cleanup.CommonStaticAnalysis</recipe>
+                                <recipe>org.openrewrite.java.RemoveUnusedImports</recipe>
                             </activeRecipes>
                         </configuration>
                         <executions>
@@ -1615,6 +1617,7 @@
                         <configuration>
                             <activeRecipes>
                                 <recipe>org.openrewrite.java.migrate.Java8toJava11</recipe>
+                                <recipe>org.openrewrite.java.RemoveUnusedImports</recipe>
                             </activeRecipes>
                         </configuration>
                         <dependencies>
@@ -1646,6 +1649,7 @@
                         <configuration>
                             <activeRecipes>
                                 <recipe>org.openrewrite.java.logging.slf4j.ParameterizedLogging</recipe>
+                                <recipe>org.openrewrite.java.RemoveUnusedImports</recipe>
                             </activeRecipes>
                         </configuration>
                         <dependencies>
