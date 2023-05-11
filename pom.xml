@@ -127,7 +127,7 @@
         <maven.compiler.testRelease>${java.test.release.version}</maven.compiler.testRelease>
 
         <!-- Maven minimum version -->
-        <maven.min-version>3.9.0</maven.min-version>
+        <maven.min-version>3.9.1</maven.min-version>
 
         <!-- Copyright -->
         <copyright>2023</copyright>
@@ -1083,7 +1083,7 @@
                                 <maxJdkVersion>${java.version}</maxJdkVersion>
                             </enforceBytecodeVersion>
                             <requireJavaVersion>
-                                <version>11,17,18,19,20</version>
+                                <version>[11,12),[17,18),[20,21),[21,22)</version>
                             </requireJavaVersion>
                             <requireMavenVersion>
                                 <version>[${maven.min-version},)</version>
@@ -1103,19 +1103,16 @@
                     <artifactId>license-maven-plugin</artifactId>
                     <version>${license.plugin}</version>
                     <configuration>
-                        <header>${main.basedir}/LICENSE_HEADER</header>
-                        <excludes>
-                            <exclude>**/*.jks</exclude>
-                            <exclude>.gitattributes</exclude>
-                            <exclude>LICENSE</exclude>
-                            <exclude>LICENSE_HEADER</exclude>
-                            <exclude>NOTICE</exclude>
-                            <exclude>mvnw.cmd</exclude>
-                            <exclude>mvnw</exclude>
-                            <exclude>**/*GeoLite2-Country.mmdb</exclude>
-                            <exclude>**/*maven-wrapper.properties</exclude>
-                            <exclude>**/*MavenWrapperDownloader.java</exclude>
-                        </excludes>
+                        <licenseSets>
+                            <licenseSet>
+                                <header>${main.basedir}/LICENSE_HEADER</header>
+                                <excludes>
+                                    <!-- Default excludes located at https://github.com/mathieucarbou/license-maven-plugin/blob/master/license-maven-plugin/src/main/java/com/mycila/maven/plugin/license/Default.java -->
+                                    <exclude>NOTICE</exclude>
+                                    <exclude>**/*GeoLite2-Country.mmdb</exclude>
+                                </excludes>
+                            </licenseSet>
+                        </licenseSets>
                     </configuration>
                     <dependencies>
                         <dependency>
@@ -1548,7 +1545,7 @@
                                                 </goals>
                                             </pluginExecutionFilter>
                                             <action>
-                                                <ignore />
+                                                <ignore/>
                                             </action>
                                         </pluginExecution>
                                     </pluginExecutions>
@@ -1570,6 +1567,7 @@
                         <configuration>
                             <activeRecipes>
                                 <recipe>org.openrewrite.java.cleanup.Cleanup</recipe>
+                                <recipe>org.openrewrite.java.RemoveUnusedImports</recipe>
                             </activeRecipes>
                         </configuration>
                         <executions>
@@ -1594,6 +1592,7 @@
                         <configuration>
                             <activeRecipes>
                                 <recipe>org.openrewrite.java.cleanup.CommonStaticAnalysis</recipe>
+                                <recipe>org.openrewrite.java.RemoveUnusedImports</recipe>
                             </activeRecipes>
                         </configuration>
                         <executions>
@@ -1618,6 +1617,7 @@
                         <configuration>
                             <activeRecipes>
                                 <recipe>org.openrewrite.java.migrate.Java8toJava11</recipe>
+                                <recipe>org.openrewrite.java.RemoveUnusedImports</recipe>
                             </activeRecipes>
                         </configuration>
                         <dependencies>
@@ -1649,6 +1649,7 @@
                         <configuration>
                             <activeRecipes>
                                 <recipe>org.openrewrite.java.logging.slf4j.ParameterizedLogging</recipe>
+                                <recipe>org.openrewrite.java.RemoveUnusedImports</recipe>
                             </activeRecipes>
                         </configuration>
                         <dependencies>
