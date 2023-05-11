@@ -155,7 +155,7 @@
 <a class="jxr_linenumber" name="L147" href="#L147">147</a> <em class="jxr_javadoccomment">   * @return the list</em>
 <a class="jxr_linenumber" name="L148" href="#L148">148</a> <em class="jxr_javadoccomment">   */</em>
 <a class="jxr_linenumber" name="L149" href="#L149">149</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">synchronized</strong> List&lt;XYDataItem&gt; newStats(String name, <strong class="jxr_keyword">int</strong> maxElements) {
-<a class="jxr_linenumber" name="L150" href="#L150">150</a>     List&lt;XYDataItem&gt; stats = Collections.synchronizedList(<strong class="jxr_keyword">new</strong> ArrayList&lt;XYDataItem&gt;(maxElements));
+<a class="jxr_linenumber" name="L150" href="#L150">150</a>     List&lt;XYDataItem&gt; stats = Collections.synchronizedList(<strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;(maxElements));
 <a class="jxr_linenumber" name="L151" href="#L151">151</a>     statsData.put(name, stats);
 <a class="jxr_linenumber" name="L152" href="#L152">152</a>     <strong class="jxr_keyword">return</strong> stats;
 <a class="jxr_linenumber" name="L153" href="#L153">153</a>   }
