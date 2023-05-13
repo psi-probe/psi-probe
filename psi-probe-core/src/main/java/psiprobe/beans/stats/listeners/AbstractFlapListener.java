@@ -12,6 +12,7 @@ package psiprobe.beans.stats.listeners;
 
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 
 import psiprobe.Utils;
 
@@ -42,10 +43,10 @@ public abstract class AbstractFlapListener extends AbstractThresholdListener {
   private float defaultFlapHighWeight;
 
   /** The flaps. */
-  private final HashMap<String, LinkedList<Boolean>> flaps = new HashMap<>();
+  private final Map<String, LinkedList<Boolean>> flaps = new HashMap<>();
 
   /** The flapping states. */
-  private final HashMap<String, Boolean> flappingStates = new HashMap<>();
+  private final Map<String, Boolean> flappingStates = new HashMap<>();
 
   /**
    * Flapping started.
