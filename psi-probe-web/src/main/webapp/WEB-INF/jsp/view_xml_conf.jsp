@@ -17,7 +17,8 @@
 <%-- Displays deployment descriptor (web.xml) or a context descriptor (context.xml) of a web application
  displayTarget model object denotes type of a file to be to be displayed --%>
 
-<html>
+<!DOCTYPE html>
+<html lang="en">
 	<head>
 		<title><spring:message htmlEscape="true" code="probe.jsp.title.app.viewXMLConf" arguments="${param.webapp},${fileDesc}"/></title>
 		<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='syntax.css'/>"/>

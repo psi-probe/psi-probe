@@ -17,7 +17,8 @@
 <%@ page import="org.apache.commons.text.StringEscapeUtils" %>
 
 <%-- Cluster statistic view. Displays cluster members and sender and receiver traffic stats. --%>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 	<head>
 		<title><spring:message code="probe.jsp.title.cluster"/></title>
 		<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>

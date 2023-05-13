@@ -16,7 +16,8 @@
 
 <%-- Displays results of "quick check" controller. --%>
 
-<html>
+<!DOCTYPE html>
+<html lang="en">
 	<head><title><spring:message code="probe.jsp.title.quickcheck"/></title></head>
 
 	<body>

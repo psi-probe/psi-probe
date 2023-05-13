@@ -15,7 +15,8 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 
-<html>
+<!DOCTYPE html>
+<html lang="en">
 	<head>
 		<title><spring:message code="probe.jsp.title.wrapper"/></title>
 		<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>

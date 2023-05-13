@@ -18,7 +18,8 @@
 
 <%-- Displays a list of web application filters --%>
 
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 	<head>
 		<title>

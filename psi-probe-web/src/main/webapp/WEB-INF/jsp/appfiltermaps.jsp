@@ -17,7 +17,8 @@
 
 <%-- Displays a list of web application filter mappings --%>
 
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 	<head>
 		<title>

@@ -17,7 +17,8 @@
 
 <%-- Displays current thread pool information. --%>
 
-<html>
+<!DOCTYPE html>
+<html lang="en">
 	<head>
 		<title><spring:message code="probe.jsp.title.threadpools"/></title>
 	</head>

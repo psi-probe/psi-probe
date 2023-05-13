@@ -15,7 +15,8 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="https://github.com/psi-probe/psi-probe/jsp/tags" prefix="probe" %>
 
-<html>
+<!DOCTYPE html>
+<html lang="en">
 	<head>
 		<title><c:out value="${param.cn}" /></title>
 		<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>
