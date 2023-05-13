@@ -18,7 +18,7 @@
 <%-- Displays a list of web application filter mappings --%>
 
 <!DOCTYPE html>
-<html lang="${lang}" xml:lang="${lang}>
+<html lang="${lang}">
 
 	<head>
 		<title>

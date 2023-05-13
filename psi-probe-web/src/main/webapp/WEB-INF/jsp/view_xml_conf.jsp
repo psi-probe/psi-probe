@@ -18,7 +18,7 @@
  displayTarget model object denotes type of a file to be to be displayed --%>
 
 <!DOCTYPE html>
-<html lang="${lang}" xml:lang="${lang}>
+<html lang="${lang}">
 	<head>
 		<title><spring:message htmlEscape="true" code="probe.jsp.title.app.viewXMLConf" arguments="${param.webapp},${fileDesc}"/></title>
 		<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='syntax.css'/>"/>

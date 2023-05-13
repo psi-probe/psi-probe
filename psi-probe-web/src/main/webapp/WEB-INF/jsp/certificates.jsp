@@ -15,7 +15,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 <!DOCTYPE html>
-<html lang="${lang}" xml:lang="${lang}>
+<html lang="${lang}">
 
 	<head>
 		<title><spring:message code="probe.jsp.title.certificates"/></title>

@@ -20,7 +20,7 @@
 <%-- Simple tabular list of log files and their attributes. The page is further linked to
  log file viewer and file download controller. --%>
 <!DOCTYPE html>
-<html lang="${lang}" xml:lang="${lang}>
+<html lang="${lang}">
 	<head>
 		<title>
 			<spring:message code="probe.jsp.title.logs"/>

@@ -16,7 +16,7 @@
 <%-- "403 - Forbidden" error handler. --%>
 
 <!DOCTYPE html>
-<html lang="${lang}" xml:lang="${lang}>
+<html lang="${lang}">
 
 	<head><title><spring:message code="probe.jsp.noaccess.title"/></title></head>
 

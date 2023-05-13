@@ -16,7 +16,7 @@
 <%@ taglib uri="https://github.com/psi-probe/psi-probe/jsp/tags" prefix="probe" %>
 
 <!DOCTYPE html>
-<html lang="${lang}" xml:lang="${lang}>
+<html lang="${lang}">
 	<head>
 		<title>
 			<spring:message code="probe.jsp.title.allappstats"/>

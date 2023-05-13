@@ -16,7 +16,7 @@
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 
 <!DOCTYPE html>
-<html lang="${lang}" xml:lang="${lang}>
+<html lang="${lang}">
 	<head>
 		<title><spring:message code="probe.jsp.sysinfo.truststore.title"/></title>
 	</head>

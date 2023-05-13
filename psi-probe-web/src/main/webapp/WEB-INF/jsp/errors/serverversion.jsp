@@ -17,7 +17,7 @@
  version of Tomcat --%>
 
 <!DOCTYPE html>
-<html lang="${lang}" xml:lang="${lang}>
+<html lang="${lang}">
 	<head><title>Error</title></head>
 
 	<body>

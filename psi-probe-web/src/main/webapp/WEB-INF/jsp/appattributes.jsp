@@ -18,7 +18,7 @@
 <%-- Displays a list of servlet context attributes for a given application --%>
 
 <!DOCTYPE html>
-<html lang="${lang}" xml:lang="${lang}>
+<html lang="${lang}">
 
 	<head>
 		<title>

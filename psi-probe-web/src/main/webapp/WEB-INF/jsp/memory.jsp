@@ -17,7 +17,7 @@
 <%@ page import="org.apache.commons.text.StringEscapeUtils" %>
 
 <!DOCTYPE html>
-<html lang="${lang}" xml:lang="${lang}>
+<html lang="${lang}">
 	<head>
 		<title><spring:message code="probe.jsp.title.memory"/></title>
 		<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>
