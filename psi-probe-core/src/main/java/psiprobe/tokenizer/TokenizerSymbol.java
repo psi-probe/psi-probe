@@ -104,11 +104,9 @@ public class TokenizerSymbol implements Comparable<Object> {
     }
     final TokenizerSymbol other = (TokenizerSymbol) obj;
     return Objects.equals(this.name, other.name) && Objects.equals(this.startText, other.startText)
-        && Objects.equals(this.tailText, other.tailText)
-        && Objects.equals(this.hidden, other.hidden)
-        && Objects.equals(this.decodePaired, other.decodePaired)
-        && Objects.equals(this.enabled, other.enabled)
-        && Objects.equals(this.canBeNested, other.canBeNested);
+        && Objects.equals(this.tailText, other.tailText) && this.hidden == other.hidden
+        && this.decodePaired == other.decodePaired && this.enabled == other.enabled
+        && this.canBeNested == other.canBeNested;
   }
 
 }
