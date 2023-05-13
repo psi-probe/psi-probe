@@ -71,10 +71,10 @@ public final class AsyncSocketFactory {
 
     socketWrapper.valid = false;
 
-    if (socketWrapper.getSocket() == null && socketWrapper.exception != null) {
+    if (socketWrapper.socket == null && socketWrapper.exception != null) {
       throw socketWrapper.exception;
     }
-    if (socketWrapper.getSocket() == null) {
+    if (socketWrapper.socket == null) {
       throw new TimeoutException();
     }
 
