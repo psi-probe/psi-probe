@@ -367,7 +367,7 @@ public class SessionSearchInfo implements Serializable {
     attrNameMsgs.clear();
 
     if (attrName != null) {
-      String[] attrNames = attrName.split(",");
+      String[] attrNames = attrName.split(",", -1);
       if (attrNames.length == 0 && !attrName.isEmpty()) {
         attrNameMsgs.add("");
       } else {

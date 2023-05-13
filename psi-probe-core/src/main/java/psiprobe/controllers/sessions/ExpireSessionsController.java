@@ -45,7 +45,7 @@ public class ExpireSessionsController extends AbstractTomcatContainerController 
 
     for (String sidWebApp : ServletRequestUtils.getStringParameters(request, "sid_webapp")) {
       if (sidWebApp != null) {
-        String[] ss = sidWebApp.split(";");
+        String[] ss = sidWebApp.split(";", -1);
         if (ss.length != 2) {
           return new ModelAndView("errors/paramerror");
         }

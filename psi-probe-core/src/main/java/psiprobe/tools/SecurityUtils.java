@@ -41,7 +41,7 @@ public final class SecurityUtils {
   public static boolean hasAttributeValueRole(ServletContext servletContext,
       HttpServletRequest request) {
 
-    String[] privilegedRoles = getPrivilegedRoles(servletContext).split(",");
+    String[] privilegedRoles = getPrivilegedRoles(servletContext).split(",", -1);
     for (String privilegedRole : privilegedRoles) {
       if (userHasRole(privilegedRole)) {
         return true;
