@@ -20,7 +20,7 @@
  the environment Tomcat is running in. --%>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="${lang}">
 	<head>
 		<title><spring:message code="probe.jsp.title.sysinfo"/></title>
 	</head>

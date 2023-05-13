@@ -15,7 +15,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="${lang}">
 	<head>
 		<title><spring:message code="probe.jsp.title.deployment"/></title>
 		<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='deploy.css'/>"/>

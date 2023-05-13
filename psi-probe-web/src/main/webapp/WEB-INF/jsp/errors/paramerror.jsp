@@ -14,7 +14,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="${lang}">
 	<head><title>Error</title></head>
 
 	<body>

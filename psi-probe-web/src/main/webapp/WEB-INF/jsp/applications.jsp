@@ -20,7 +20,7 @@
  by the name "apps" is created by the controller. --%>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="${lang}">
 
 	<head>
 		<title><spring:message code="probe.jsp.title.applications"/></title>

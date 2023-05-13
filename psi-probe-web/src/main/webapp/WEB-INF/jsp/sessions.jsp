@@ -21,7 +21,7 @@
  creates "session" command in the request. --%>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="${lang}">
 	<head>
 		<c:choose>
 			<c:when test="${empty param.webapp}">

@@ -15,7 +15,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="${lang}">
 	<head><title>Not supported</title></head>
 
 	<c:set var="navTabLogs" value="active" scope="request"/>

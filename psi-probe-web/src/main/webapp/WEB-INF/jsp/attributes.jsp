@@ -18,7 +18,7 @@
 
 <%-- Session attributes view, nothing spectacular. --%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="${lang}">
 
 	<head>
 		<title>

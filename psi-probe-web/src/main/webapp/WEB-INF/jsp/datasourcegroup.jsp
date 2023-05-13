@@ -19,7 +19,7 @@
 <!-- Displays a list of datasources grouped by JDBC URL with aggregated totals. -->
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="${lang}">
 	<head>
 		<title><spring:message code="probe.jsp.title.dataSourceGroups"/></title>
 	</head>

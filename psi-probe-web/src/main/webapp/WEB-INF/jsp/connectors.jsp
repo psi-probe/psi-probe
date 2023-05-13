@@ -18,7 +18,7 @@
 <%@ taglib uri="https://github.com/psi-probe/psi-probe/jsp/tags" prefix="probe" %>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="${lang}">
 
 	<head>
 		<title><spring:message code="probe.jsp.title.connectors"/></title>

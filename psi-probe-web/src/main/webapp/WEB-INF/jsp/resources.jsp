@@ -17,7 +17,7 @@
 <%@ taglib uri="https://github.com/psi-probe/psi-probe/jsp/tags" prefix="probe" %>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="${lang}">
 
 	<head>
 		<title><spring:message htmlEscape="true" code="probe.jsp.title.resources" arguments="${param.webapp}"/></title>

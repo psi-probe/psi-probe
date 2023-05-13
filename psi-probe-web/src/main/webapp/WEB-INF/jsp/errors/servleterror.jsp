@@ -20,7 +20,7 @@
  any kind of reliability. Spring or sitemesh could have caused the exception we are handling here. --%>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="${lang}">
 
 	<head>
 		<title>Probe - Error</title>

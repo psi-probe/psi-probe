@@ -20,7 +20,7 @@
  rather does DOM tricks to modify content appearance. --%>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="${lang}">
 	<head>
 		<title><spring:message code="probe.jsp.title.follow"/></title>
 		<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>
