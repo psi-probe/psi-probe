@@ -16,7 +16,7 @@
 <%@ taglib uri="https://github.com/psi-probe/psi-probe/jsp/tags" prefix="probe" %>
 
 <!DOCTYPE html>
-<html lang="${lang}">
+<html lang="${lang}" xml:lang="${lang}>
 	<head>
 		<title><spring:message htmlEscape="true" code="probe.jsp.title.viewsource" arguments="${param.source}"/></title>
 		<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='syntax.css'/>"/>

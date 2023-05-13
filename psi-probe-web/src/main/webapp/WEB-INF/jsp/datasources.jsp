@@ -15,7 +15,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 <!DOCTYPE html>
-<html lang="${lang}">
+<html lang="${lang}" xml:lang="${lang}>
 	<head>
 		<title><spring:message code="probe.jsp.title.datasources"/></title>
 		<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>

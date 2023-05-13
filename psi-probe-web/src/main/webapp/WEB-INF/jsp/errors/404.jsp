@@ -16,7 +16,7 @@
 <%-- "404 - Not Found" error handler. --%>
 
 <!DOCTYPE html>
-<html lang="${lang}">
+<html lang="${lang}" xml:lang="${lang}>
 
 	<head><title><spring:message code="probe.jsp.notfound.title"/></title></head>
 

@@ -19,7 +19,7 @@
 <%-- Displays a list of web application filters --%>
 
 <!DOCTYPE html>
-<html lang="${lang}">
+<html lang="${lang}" xml:lang="${lang}>
 
 	<head>
 		<title>
