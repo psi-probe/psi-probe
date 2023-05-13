@@ -10,6 +10,8 @@
  */
 package psiprobe.model.jmx;
 
+import java.util.Locale;
+
 /**
  * The Class MemoryPool.
  */
@@ -52,7 +54,7 @@ public class MemoryPool {
    */
   public void setName(String name) {
     this.name = name;
-    this.id = name != null ? name.replace(' ', '_').toLowerCase() : null;
+    this.id = name != null ? name.replace(' ', '_').toLowerCase(Locale.ENGLISH) : null;
   }
 
   /**
