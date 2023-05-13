@@ -216,6 +216,7 @@ public class ProbeConfig implements WebMvcConfigurer {
     list.add("psiprobe.Tomcat85ContainerAdapter");
     // TODO JWL 11/17/2022 Would require move to jakarta.
     // list.add("psiprobe.Tomcat10ContainerAdapter");
+    // list.add("psiprobe.Tomcat11ContainerAdapter");
     return list;
   }
 
