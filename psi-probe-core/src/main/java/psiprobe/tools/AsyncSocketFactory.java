@@ -58,10 +58,15 @@ public final class AsyncSocketFactory {
 
     synchronized (sync) {
       if (socketWrapper.socket == null) {
-        try {
-          sync.wait(timeout * 1000);
-        } catch (InterruptedException e) {
-          logger.trace("", e);
+        boolean inProgress = true;
+        while (inProgress) {
+          try {
+            sync.wait(timeout * 1000);
+          } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            logger.trace("", e);
+          }
+          inProgress = false;
         }
       }
     }
