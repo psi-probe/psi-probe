@@ -11,7 +11,6 @@
 package psiprobe;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -65,8 +64,6 @@ class UtilsTest {
   /**
    * To float test.
    */
-  // TODO Breaks with junit 5.1.1
-  @Disabled
   @Test
   void toFloatTest() {
     Assertions.assertEquals(5.0f, Utils.toFloat("garbage", 5.0f), 0.0);
