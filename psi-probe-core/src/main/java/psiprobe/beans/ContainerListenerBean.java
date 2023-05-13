@@ -120,8 +120,11 @@ public class ContainerListenerBean implements NotificationListener {
    */
   @Override
   public synchronized void handleNotification(Notification notification, Object object) {
-    if (notification instanceof MBeanServerNotification
-        && MBeanServerNotification.REGISTRATION_NOTIFICATION.equals(notification.getType())
+    if (!(notification instanceof MBeanServerNotification)) {
+      return;
+    }
+
+    if (MBeanServerNotification.REGISTRATION_NOTIFICATION.equals(notification.getType())
         || MBeanServerNotification.UNREGISTRATION_NOTIFICATION.equals(notification.getType())) {
 
       ObjectName objectName = ((MBeanServerNotification) notification).getMBeanName();
