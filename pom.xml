@@ -194,7 +194,7 @@
         <probe-ojdbc.version>3.1.8</probe-ojdbc.version>
         <quartz.version>2.3.2</quartz.version>
         <servlet-api.version>4.0.4</servlet-api.version>
-        <sitemesh.version>2.5.0</sitemesh.version>
+        <sitemesh.version>2.5.1</sitemesh.version>
         <slf4j.version>2.0.7</slf4j.version>
         <spotbugs.version>4.7.3</spotbugs.version>
         <spring.version>5.3.27</spring.version>
