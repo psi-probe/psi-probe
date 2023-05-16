@@ -221,7 +221,7 @@
         <deploy.plugin>3.1.1</deploy.plugin>
         <enforcer.plugin>3.3.0</enforcer.plugin>
         <formatter.plugin>2.22.0</formatter.plugin>
-        <git-commit.plugin>5.0.0</git-commit.plugin>
+        <git-commit.plugin>6.0.0</git-commit.plugin>
         <gpg.plugin>3.1.0</gpg.plugin>
         <impsort.plugin>1.9.0</impsort.plugin>
         <install.plugin>3.1.1</install.plugin>
