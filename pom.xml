@@ -174,7 +174,7 @@
         <inject.version>1.0.5</inject.version>
         <io.version>2.12.0</io.version>
         <j2objc.version>2.8</j2objc.version>
-        <jackson.version>2.15.0</jackson.version>
+        <jackson.version>2.15.1</jackson.version>
         <jackson-databind.version>2.15.0</jackson-databind.version>
         <javabean-tester.version>2.5.2</javabean-tester.version>
         <jfreechart.version>1.5.4</jfreechart.version>
