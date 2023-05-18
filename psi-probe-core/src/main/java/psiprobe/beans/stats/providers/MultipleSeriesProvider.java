@@ -178,7 +178,7 @@ public class MultipleSeriesProvider extends AbstractSeriesProvider {
           XYDataItem xy = it.next();
           sum += xy.getY().longValue();
 
-          if (useMovingAvg && count % getMovingAvgFrame() == 0 || !it.hasNext()) {
+          if ((useMovingAvg && count % getMovingAvgFrame() == 0) || !it.hasNext()) {
             double thisAvg = (double) sum / count;
             if (thisAvg > avg) {
               avg = thisAvg;
