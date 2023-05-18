@@ -384,7 +384,7 @@ public final class Utils {
           break;
         }
         out.write(buffer, 0, (int) len);
-        totalRead += len;
+        totalRead = totalRead + (int) len;
         if (nomore) {
           break;
         }
