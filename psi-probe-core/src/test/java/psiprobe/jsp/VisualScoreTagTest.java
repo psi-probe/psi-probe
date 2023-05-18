@@ -74,7 +74,7 @@ class VisualScoreTagTest {
         String[] split = callCalculateSuffix(value, value2, fullBlocks, partialBlocks);
         for (String suffix : split) {
           logger.trace(suffix);
-          String[] values = suffix.split("\\+");
+          String[] values = suffix.split("\\+", -1);
           if (values.length > 1) {
             value = Integer.parseInt(values[0]);
             value2 = Integer.parseInt(values[1]);
@@ -129,7 +129,7 @@ class VisualScoreTagTest {
 
     String buf = visualScoreTag.calculateSuffix(body);
 
-    return buf.split(" ");
+    return buf.split(" ", -1);
   }
 
 }

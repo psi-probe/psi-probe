@@ -384,7 +384,7 @@ public final class Utils {
           break;
         }
         out.write(buffer, 0, (int) len);
-        totalRead += len;
+        totalRead = totalRead + (int) len;
         if (nomore) {
           break;
         }
@@ -513,7 +513,7 @@ public final class Utils {
    *
    * @return the string
    */
-  protected static String leftPad(String str, int len, String fill) {
+  static String leftPad(final String str, final int len, final String fill) {
     if (str != null && str.length() < len) {
       return Strings.padStart(str, len, fill.charAt(0));
     }

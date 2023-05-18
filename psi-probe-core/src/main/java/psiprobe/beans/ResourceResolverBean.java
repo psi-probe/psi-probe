@@ -158,8 +158,8 @@ public class ResourceResolverBean implements ResourceResolver {
         resource.setLookedUp(true);
         for (String accessorString : datasourceMappers) {
           logger.debug("Looking up datasource adapter: {}", accessorString);
-          DatasourceAccessor accessor = (DatasourceAccessor) Class.forName(accessorString)
-              .getDeclaredConstructor().newInstance();
+          DatasourceAccessor accessor = Class.forName(accessorString)
+              .asSubclass(DatasourceAccessor.class).getDeclaredConstructor().newInstance();
           dataSourceInfo = accessor.getInfo(obj);
           if (dataSourceInfo != null) {
             break;
@@ -193,8 +193,8 @@ public class ResourceResolverBean implements ResourceResolver {
       try {
         for (String accessorString : datasourceMappers) {
           logger.debug("Resetting datasource adapter: {}", accessorString);
-          DatasourceAccessor accessor = (DatasourceAccessor) Class.forName(accessorString)
-              .getDeclaredConstructor().newInstance();
+          DatasourceAccessor accessor = Class.forName(accessorString)
+              .asSubclass(DatasourceAccessor.class).getDeclaredConstructor().newInstance();
           if (accessor.reset(obj)) {
             return true;
           }

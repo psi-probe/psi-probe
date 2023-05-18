@@ -120,8 +120,11 @@ public class ContainerListenerBean implements NotificationListener {
    */
   @Override
   public synchronized void handleNotification(Notification notification, Object object) {
-    if (notification instanceof MBeanServerNotification
-        && MBeanServerNotification.REGISTRATION_NOTIFICATION.equals(notification.getType())
+    if (!(notification instanceof MBeanServerNotification)) {
+      return;
+    }
+
+    if (MBeanServerNotification.REGISTRATION_NOTIFICATION.equals(notification.getType())
         || MBeanServerNotification.UNREGISTRATION_NOTIFICATION.equals(notification.getType())) {
 
       ObjectName objectName = ((MBeanServerNotification) notification).getMBeanName();
@@ -317,7 +320,7 @@ public class ContainerListenerBean implements NotificationListener {
           name = name.substring(1, name.length() - 1);
         }
 
-        String[] arr = name.split("-");
+        String[] arr = name.split("-", -1);
         String port = "-1";
         if (arr.length == 3) {
           port = arr[2];

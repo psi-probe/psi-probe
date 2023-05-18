@@ -90,7 +90,7 @@ public class IpInfo {
     String addr = request.getRemoteAddr();
     String fwdHeader = request.getHeader("X-Forwarded-For");
     if (fwdHeader != null) {
-      addr = fwdHeader.split(",")[0];
+      addr = fwdHeader.split(",", -1)[0];
     }
     return addr;
   }
