@@ -513,7 +513,7 @@ public final class Utils {
    *
    * @return the string
    */
-  protected static String leftPad(final String str, final int len, final String fill) {
+  static String leftPad(final String str, final int len, final String fill) {
     if (str != null && str.length() < len) {
       return Strings.padStart(str, len, fill.charAt(0));
     }
