@@ -13,7 +13,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" session="false" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
-<html>
+<!DOCTYPE html>
+<html lang="${lang}">
 	<head><title>Error</title></head>
 
 	<body>

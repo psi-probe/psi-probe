@@ -16,7 +16,8 @@
 
 <%-- Displays a list of servlets of a particular web application or all web applications --%>
 
-<html>
+<!DOCTYPE html>
+<html lang="${lang}">
 
 	<head>
 		<title>

@@ -16,7 +16,8 @@
 <%@ taglib uri="https://github.com/psi-probe/psi-probe/jsp/tags" prefix="probe" %>
 <%@ page import="org.apache.commons.text.StringEscapeUtils" %>
 
-<html>
+<!DOCTYPE html>
+<html lang="${lang}">
 	<head>
 		<title><spring:message code="probe.jsp.title.memory"/></title>
 		<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>

@@ -19,7 +19,8 @@
 <%-- Servlet exception handler page. Unfortunately we cannot use here any fancy libraries if we want
  any kind of reliability. Spring or sitemesh could have caused the exception we are handling here. --%>
 
-<html>
+<!DOCTYPE html>
+<html lang="${lang}">
 
 	<head>
 		<title>Probe - Error</title>

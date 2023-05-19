@@ -428,6 +428,8 @@ public class ProbeConfig implements WebMvcConfigurer {
     logger.debug("Instantiated cookieLocaleResolver");
     CookieLocaleResolver resolver = new CookieLocaleResolver();
     resolver.setDefaultLocale(Locale.ENGLISH);
+    resolver.setCookieSecure(true);
+    resolver.setCookieHttpOnly(true);
     return resolver;
   }
 

@@ -17,7 +17,8 @@
 <%@ taglib uri="https://github.com/psi-probe/psi-probe/jsp/tags" prefix="probe" %>
 
 <%-- Session attributes view, nothing spectacular. --%>
-<html>
+<!DOCTYPE html>
+<html lang="${lang}">
 
 	<head>
 		<title>

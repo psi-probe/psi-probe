@@ -17,7 +17,8 @@
 
 <%-- Displays a list of initialization parameters of a given application --%>
 
-<html>
+<!DOCTYPE html>
+<html lang="${lang}">
 
 	<head>
 		<title>

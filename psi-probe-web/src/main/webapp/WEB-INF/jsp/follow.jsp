@@ -19,7 +19,8 @@
 <%-- Log file view. The view is a simple markup that gets updated via AJAX calls. Top menu does not go to the server but
  rather does DOM tricks to modify content appearance. --%>
 
-<html>
+<!DOCTYPE html>
+<html lang="${lang}">
 	<head>
 		<title><spring:message code="probe.jsp.title.follow"/></title>
 		<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>

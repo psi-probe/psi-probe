@@ -19,7 +19,8 @@
 <%-- Probe "home" page. Displays list of web applications. It is assumed that command
  by the name "apps" is created by the controller. --%>
 
-<html>
+<!DOCTYPE html>
+<html lang="${lang}">
 
 	<head>
 		<title><spring:message code="probe.jsp.title.applications"/></title>

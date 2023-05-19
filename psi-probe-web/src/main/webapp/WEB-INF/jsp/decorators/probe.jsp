@@ -20,10 +20,8 @@
 
 <%-- Main site decorator. Face of the Probe. --%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-		"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" lang="${lang}" xml:lang="${lang}">
+<!DOCTYPE html>
+<html lang="${lang}">
 	<head>
 		<title>Probe - <decorator:title default="Tomcat management"/></title>
 		<link type="image/gif" rel="shortcut icon" href="<c:url value='/css/favicon.gif'/>"/>

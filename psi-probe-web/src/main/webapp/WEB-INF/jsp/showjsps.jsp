@@ -16,7 +16,8 @@
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@ taglib uri="https://github.com/psi-probe/psi-probe/jsp/tags" prefix="probe" %>
 
-<html>
+<!DOCTYPE html>
+<html lang="${lang}">
 	<head>
 		<title><spring:message htmlEscape="true" code="probe.jsp.title.jsps" arguments="${param.webapp}"/></title>
 		<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>

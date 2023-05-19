@@ -20,7 +20,8 @@
 <%-- List of sessions view for a particular web application. It is assumed that the controller
  creates "session" command in the request. --%>
 
-<html>
+<!DOCTYPE html>
+<html lang="${lang}">
 	<head>
 		<c:choose>
 			<c:when test="${empty param.webapp}">

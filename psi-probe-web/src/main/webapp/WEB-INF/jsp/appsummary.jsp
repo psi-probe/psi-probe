@@ -17,7 +17,8 @@
 
 <%-- Displays a web application information summary and application statistics charts --%>
 
-<html>
+<!DOCTYPE html>
+<html lang="${lang}">
 	<head>
 		<title>
 			<spring:message htmlEscape="true" code="probe.jsp.title.app.summary" arguments="${param.webapp}"/>

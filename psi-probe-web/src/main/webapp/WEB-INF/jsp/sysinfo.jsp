@@ -19,7 +19,8 @@
 <%-- Displays various system information including System.properties. This page helps to evaluate
  the environment Tomcat is running in. --%>
 
-<html>
+<!DOCTYPE html>
+<html lang="${lang}">
 	<head>
 		<title><spring:message code="probe.jsp.title.sysinfo"/></title>
 	</head>

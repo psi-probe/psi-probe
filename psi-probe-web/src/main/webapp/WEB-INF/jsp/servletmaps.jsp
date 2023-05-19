@@ -17,7 +17,8 @@
 
 <%-- Displays a list of servlet mappings of a particular web application or all web applications --%>
 
-<html>
+<!DOCTYPE html>
+<html lang="${lang}">
 
 	<head>
 		<title>

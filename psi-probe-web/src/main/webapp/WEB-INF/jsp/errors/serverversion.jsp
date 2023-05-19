@@ -16,7 +16,8 @@
 <%-- An error page to be displayed if some Probe's feature is not implemented for a particular
  version of Tomcat --%>
 
-<html>
+<!DOCTYPE html>
+<html lang="${lang}">
 	<head><title>Error</title></head>
 
 	<body>
