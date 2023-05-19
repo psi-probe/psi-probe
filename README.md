@@ -4,7 +4,7 @@
 [![Coverity Scan Build Status](https://scan.coverity.com/projects/28366/badge.svg)](https://scan.coverity.com/projects/28366)
 [![Coverage Status](https://coveralls.io/repos/github/psi-probe/psi-probe/badge.svg?branch=master)](https://coveralls.io/github/psi-probe/psi-probe?branch=master)
 [![Maven central](https://maven-badges.herokuapp.com/maven-central/com.github.psi-probe/psi-probe-web/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.psi-probe/psi-probe-web)
-[![releases](https://github-release-version.herokuapp.com/github/psi-probe/psi-probe/release.svg?style=flat)](https://github.com/psi-probe/psi-probe/releases/download/psi-probe-3.7.1/probe.war)
+[![releases](https://github-release-version.herokuapp.com/github/psi-probe/psi-probe/release.svg?style=flat)](https://github.com/psi-probe/psi-probe/releases/download/psi-probe-3.7.3/probe.war)
 [![GPLv2 License](https://img.shields.io/badge/license-GPLv2-green.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
 [![Project Stats](https://www.openhub.net/p/psi-probe/widgets/project_thin_badge.gif)](https://www.openhub.net/p/psi-probe)
 [![Github All Releases](https://img.shields.io/github/downloads/psi-probe/psi-probe/total.svg)]()
@@ -22,7 +22,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for info on working on PSI Probe and send
 
 ## Latest Release via Github Releases ##
 
-Please download latest probe.war from [here](https://github.com/psi-probe/psi-probe/releases/download/psi-probe-3.7.1/probe.war)
+Please download latest probe.war from [here](https://github.com/psi-probe/psi-probe/releases/download/psi-probe-3.7.3/probe.war)
 
 ## Latest Release via Maven Central ##
 
