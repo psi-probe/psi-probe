@@ -200,7 +200,7 @@
             </exclusions>
         </dependency>
         <dependency>
-            <groupId>opensymphony</groupId>
+            <groupId>com.github.hazendaz</groupId>
             <artifactId>sitemesh</artifactId>
             <scope>compile</scope>
         </dependency>
