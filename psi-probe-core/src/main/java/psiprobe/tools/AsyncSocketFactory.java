@@ -203,7 +203,7 @@ public final class AsyncSocketFactory {
         socketWrapper.setException(e);
       }
       synchronized (sync) {
-        sync.notify();
+        sync.notifyAll();
       }
     }
 
@@ -236,7 +236,7 @@ public final class AsyncSocketFactory {
       try {
         Thread.sleep(timeout);
         synchronized (sync) {
-          sync.notify();
+          sync.notifyAll();
         }
       } catch (InterruptedException e) {
         // Restore interrupted state...
