@@ -155,7 +155,7 @@ public class DisconnectedLogDestination implements LogDestination, Serializable 
 
   @Override
   public String[] getValidLevels() {
-    return validLevels == null ? null : validLevels.clone();
+    return validLevels == null ? new String[0] : validLevels.clone();
   }
 
   @Override

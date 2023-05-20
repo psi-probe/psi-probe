@@ -48,9 +48,7 @@ public class ChangeLogLevelController extends AbstractLogHandlerController {
       LogDestination logDest) throws Exception {
 
     String level = ServletRequestUtils.getRequiredStringParameter(request, "level");
-    if (logDest.getValidLevels() != null
-        && Arrays.asList(logDest.getValidLevels()).contains(level)) {
-
+    if (Arrays.asList(logDest.getValidLevels()).contains(level)) {
       if (logDest instanceof Log4JAppenderAccessor) {
         Log4JAppenderAccessor accessor = (Log4JAppenderAccessor) logDest;
         accessor.getLoggerAccessor().setLevel(level);
