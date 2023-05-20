@@ -23,6 +23,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import javax.management.MBeanServer;
@@ -432,10 +433,9 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
       // delete "missing" items by keeping "not missing" ones
       //
       Map<String, Item> hashMap = new HashMap<>();
-      for (String key : summary.getItems().keySet()) {
-        Item item = summary.getItems().get(key);
-        if (!item.isMissing()) {
-          hashMap.put(key, item);
+      for (Entry<String, Item> entry : summary.getItems().entrySet()) {
+        if (!entry.getValue().isMissing()) {
+          hashMap.put(entry.getKey(), entry.getValue());
         }
       }
 
