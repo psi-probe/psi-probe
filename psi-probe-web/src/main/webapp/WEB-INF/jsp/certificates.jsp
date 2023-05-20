@@ -34,14 +34,14 @@
 				<div class="connectorCertificates">
 					
 					<c:forEach items="${connector.sslHostConfigInfos}" var="sslHostConfigInfo">
-						<c:if test="${sslHostConfigInfo.trustStoreCerts != null}">
+						<c:if test="${!sslHostConfigInfo.trustStoreCerts.isEmpty()}">
 							<c:set var="certs" value="${sslHostConfigInfo.trustStoreCerts}" scope="request" />
 							<h4><spring:message code="probe.jsp.certificates.trustStore"/></h4>
 							<c:import url="certificates_table.jsp" />
 						</c:if>
 						
 						<c:forEach items="${sslHostConfigInfo.certificateInfos}" var="certificateInfo">
-							<c:if test="${certificateInfo.keyStoreCerts != null}">
+							<c:if test="${!certificateInfo.keyStoreCerts.isEmpty()}">
 								<c:set var="certs" value="${certificateInfo.keyStoreCerts}" scope="request" />
 								<h4><spring:message code="probe.jsp.certificates.keyStore"/></h4>
 								<c:import url="certificates_table.jsp" />
