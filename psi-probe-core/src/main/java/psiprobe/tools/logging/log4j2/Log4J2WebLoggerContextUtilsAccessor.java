@@ -53,24 +53,19 @@ public class Log4J2WebLoggerContextUtilsAccessor extends DefaultAccessor {
   public Log4J2LoggerContextAccessor getWebLoggerContext(ServletContext ctx) {
     logger.debug("getWebLoggerContext(): IN: ctx={}", ctx);
     Log4J2LoggerContextAccessor result = null;
+    Class<?> clazz = (Class<?>) getTarget();
+    Method getWebLoggerContext;
     try {
-      Class<?> clazz = (Class<?>) getTarget();
-      Method getWebLoggerContext;
-      try {
-        getWebLoggerContext =
-            MethodUtils.getAccessibleMethod(clazz, "getWebLoggerContext", ServletContext.class);
-      } catch (Exception e) {
-        logger.error("exception getting accessible method getWebLoggerContext", e);
-        throw e;
-      }
+      getWebLoggerContext =
+          MethodUtils.getAccessibleMethod(clazz, "getWebLoggerContext", ServletContext.class);
+    } catch (Exception e) {
+      logger.error("exception getting accessible method getWebLoggerContext", e);
+      throw e;
+    }
 
-      Object loggerContext;
-      try {
-        loggerContext = getWebLoggerContext.invoke(null, ctx);
-      } catch (Exception e) {
-        logger.error("exception in getWebLoggerContext", e);
-        throw e;
-      }
+    Object loggerContext;
+    try {
+      loggerContext = getWebLoggerContext.invoke(null, ctx);
       if (loggerContext == null) {
         throw new NullPointerException(getTarget().getClass().getName()
             + "#getWebLoggerContext(Ljavax/servlet/ServletContext) returned null");
@@ -79,9 +74,11 @@ public class Log4J2WebLoggerContextUtilsAccessor extends DefaultAccessor {
       result.setTarget(loggerContext);
       result.setApplication(getApplication());
     } catch (Exception e) {
+      logger.error("exception in getWebLoggerContext", e);
       logger.error("{}#getWebLoggerContext(Ljavax/servlet/ServletContext) failed",
           getTarget().getClass().getName(), e);
     }
+
     logger.debug("getWebLoggerContext(): OUT: result={}", result);
     return result;
   }
