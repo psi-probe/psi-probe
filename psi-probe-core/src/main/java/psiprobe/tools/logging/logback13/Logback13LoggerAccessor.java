@@ -148,11 +148,7 @@ public class Logback13LoggerAccessor extends DefaultAccessor {
     if ("ch.qos.logback.classic.sift.SiftingAppender".equals(appender.getClass().getName())) {
       Object tracker = MethodUtils.invokeMethod(appender, "getAppenderTracker");
       if (tracker != null) {
-        try {
-          return (List<Object>) MethodUtils.invokeMethod(tracker, "allComponents");
-        } catch (final NoSuchMethodException e) {
-          logger.error("", e);
-        }
+        return (List<Object>) MethodUtils.invokeMethod(tracker, "allComponents");
       }
       return new ArrayList<>();
     }
