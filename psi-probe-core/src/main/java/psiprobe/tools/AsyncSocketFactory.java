@@ -63,6 +63,7 @@ public final class AsyncSocketFactory {
           try {
             sync.wait(timeout * 1000);
           } catch (InterruptedException e) {
+            // Restore interrupted state...
             Thread.currentThread().interrupt();
             logger.trace("", e);
           }
@@ -238,6 +239,8 @@ public final class AsyncSocketFactory {
           sync.notify();
         }
       } catch (InterruptedException e) {
+        // Restore interrupted state...
+        Thread.currentThread().interrupt();
         logger.trace("", e);
       }
     }
