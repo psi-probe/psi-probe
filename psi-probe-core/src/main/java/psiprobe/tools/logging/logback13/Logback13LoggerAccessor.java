@@ -38,7 +38,7 @@ public class Logback13LoggerAccessor extends DefaultAccessor {
       for (Object appender : Collections.list(Iterators.asEnumeration(
           (Iterator<Object>) MethodUtils.invokeMethod(getTarget(), "iteratorForAppenders")))) {
         List<Object> siftedAppenders = getSiftedAppenders(appender);
-        if (siftedAppenders != null) {
+        if (!siftedAppenders.isEmpty()) {
           for (Object siftedAppender : siftedAppenders) {
             wrapAndAddAppender(siftedAppender, appenders);
           }
@@ -150,9 +150,8 @@ public class Logback13LoggerAccessor extends DefaultAccessor {
       if (tracker != null) {
         return (List<Object>) MethodUtils.invokeMethod(tracker, "allComponents");
       }
-      return new ArrayList<>();
     }
-    return null;
+    return Collections.emptyList();
   }
 
   /**
