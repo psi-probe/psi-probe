@@ -15,7 +15,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Properties;
 
 import org.slf4j.Logger;
@@ -207,16 +206,17 @@ public class ProbeConfig implements WebMvcConfigurer {
    *
    * @return the adapter classes
    */
-  // TODO We should make this configurable
   @Bean(name = "adapterClasses")
   public List<String> getAdapterClasses() {
     logger.debug("Instantiated adapterClasses");
     List<String> list = new ArrayList<>();
-    list.add("psiprobe.Tomcat90ContainerAdapter");
-    list.add("psiprobe.Tomcat85ContainerAdapter");
-    // TODO JWL 11/17/2022 Would require move to jakarta.
-    // list.add("psiprobe.Tomcat10ContainerAdapter");
-    // list.add("psiprobe.Tomcat11ContainerAdapter");
+    try {
+      for (Object adapter : adapters().getObject().values()) {
+        list.add((String) adapter);
+      }
+    } catch (Exception e) {
+      logger.error("", e);
+    }
     return list;
   }
 
@@ -230,8 +230,8 @@ public class ProbeConfig implements WebMvcConfigurer {
     logger.debug("Instantiated stdoutFiles");
     List<String> list = new ArrayList<>();
     try {
-      for (Entry<Object, Object> entry : stdout().getObject().entrySet()) {
-        list.add((String) entry.getValue());
+      for (Object stdout : stdout().getObject().values()) {
+        list.add((String) stdout);
       }
     } catch (Exception e) {
       logger.error("", e);
@@ -240,15 +240,28 @@ public class ProbeConfig implements WebMvcConfigurer {
   }
 
   /**
-   * Version.
+   * Standard Out Properties.
    *
-   * @return the properties factory bean
+   * @return the properties factory bean for standard out
    */
   @Bean(name = "stdout")
   public FactoryBean<Properties> stdout() {
     logger.debug("Instantiated stdout");
     PropertiesFactoryBean bean = new PropertiesFactoryBean();
     bean.setLocation(new ClassPathResource("stdout.properties"));
+    return bean;
+  }
+
+  /**
+   * Adapters Properties.
+   *
+   * @return the properties factory bean for adaptors
+   */
+  @Bean(name = "adapters")
+  public FactoryBean<Properties> adapters() {
+    logger.debug("Instantiated adapters");
+    PropertiesFactoryBean bean = new PropertiesFactoryBean();
+    bean.setLocation(new ClassPathResource("adapters.properties"));
     return bean;
   }
 
