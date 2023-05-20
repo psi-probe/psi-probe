@@ -381,28 +381,14 @@ public final class ApplicationUtils {
       si.setAllocationCount(sw.getCountAllocated());
       si.setErrorCount(sw.getErrorCount());
       si.setLoadTime(sw.getLoadTime());
+      // XXX: Remove with tomcat 10.1
       si.setMaxInstances(sw.getMaxInstances());
       si.setMaxTime(sw.getMaxTime());
       si.setMinTime(sw.getMinTime() == Long.MAX_VALUE ? 0 : sw.getMinTime());
       si.setProcessingTime(sw.getProcessingTime());
       si.setRequestCount(sw.getRequestCount());
-      // XXX: Deprecated and will be removed in tomcat 10.1
-      // Tomcat 7.0.72+, 8.0.37+, 8.5.5+, and 9.0.0.M10 modified from boolean to Boolean.
-      // Since SingleThreadModel deprecated in servlet 2.4 with no direct replacement,
-      // we will continue to handle as boolean. Previously calling this would have
-      // resulted in class being loaded if not already. This is why Null is returned
-      // now.
-      try {
-        Object singleThreaded = MethodUtils.invokeMethod(sw, "isSingleThreadModel");
-        if (singleThreaded == null) {
-          si.setSingleThreaded(false);
-        } else {
-          si.setSingleThreaded(Boolean.parseBoolean(String.valueOf(singleThreaded)));
-        }
-      } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-        logger.error("Cannot determine single threading");
-        logger.trace("", e);
-      }
+      // XXX: Remove with tomcat 10.1
+      si.setSingleThreaded(Boolean.TRUE.equals(sw.isSingleThreadModel()));
     }
     return si;
   }
