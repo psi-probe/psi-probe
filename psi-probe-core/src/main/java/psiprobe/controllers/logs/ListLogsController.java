@@ -89,7 +89,7 @@ public class ListLogsController extends ParameterizableViewController {
 
     boolean showAll = ServletRequestUtils.getBooleanParameter(request, "apps", false);
     List<LogDestination> uniqueList = logResolver.getLogDestinations(showAll);
-    if (uniqueList != null) {
+    if (!uniqueList.isEmpty()) {
       return new ModelAndView(getViewName()).addObject("logs", uniqueList);
     }
     return new ModelAndView(errorView);
