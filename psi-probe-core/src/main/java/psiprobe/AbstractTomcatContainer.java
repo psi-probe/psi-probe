@@ -523,7 +523,8 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
 
     if (paths != null) {
       for (String name : paths) {
-        boolean isJsp = name.endsWith(".jsp") || name.endsWith(".jspx") || opt.getJspConfig().isJspPage(name);
+        boolean isJsp =
+            name.endsWith(".jsp") || name.endsWith(".jspx") || opt.getJspConfig().isJspPage(name);
 
         if (isJsp) {
           JspCompilationContext jcctx =
