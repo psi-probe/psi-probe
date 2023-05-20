@@ -100,13 +100,12 @@ public final class Utils {
    * @throws IOException if reading from the stream fails spectacularly
    */
   public static String readStream(InputStream is, String charsetName) throws IOException {
-
-    //
-    // use system's default encoding if the passed encoding is unsupported
-    //
-    Charset charset = Charset.forName(Charset.defaultCharset().displayName());
+    Charset charset;
     if (Charset.isSupported(charsetName)) {
       charset = Charset.forName(charsetName);
+    } else {
+      // use system's default encoding if the passed encoding is unsupported
+      charset = Charset.defaultCharset();
     }
 
     StringBuilder out = new StringBuilder();
