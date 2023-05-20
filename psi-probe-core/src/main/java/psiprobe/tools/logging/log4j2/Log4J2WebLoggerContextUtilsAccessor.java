@@ -72,10 +72,6 @@ public class Log4J2WebLoggerContextUtilsAccessor extends DefaultAccessor {
       return result;
     }
 
-    if (loggerContext == null) {
-      throw new NullPointerException(getTarget().getClass().getName()
-          + "#getWebLoggerContext(Ljavax/servlet/ServletContext) returned null");
-    }
     result = new Log4J2LoggerContextAccessor();
     result.setTarget(loggerContext);
     result.setApplication(getApplication());
