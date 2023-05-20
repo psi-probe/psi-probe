@@ -207,16 +207,17 @@ public class ProbeConfig implements WebMvcConfigurer {
    *
    * @return the adapter classes
    */
-  // TODO We should make this configurable
   @Bean(name = "adapterClasses")
   public List<String> getAdapterClasses() {
     logger.debug("Instantiated adapterClasses");
     List<String> list = new ArrayList<>();
-    list.add("psiprobe.Tomcat90ContainerAdapter");
-    list.add("psiprobe.Tomcat85ContainerAdapter");
-    // TODO JWL 11/17/2022 Would require move to jakarta.
-    // list.add("psiprobe.Tomcat10ContainerAdapter");
-    // list.add("psiprobe.Tomcat11ContainerAdapter");
+    try {
+      for (Entry<Object, Object> entry : stdout().getObject().entrySet()) {
+        list.add((String) entry.getValue());
+      }
+    } catch (Exception e) {
+      logger.error("", e);
+    }
     return list;
   }
 
@@ -249,6 +250,19 @@ public class ProbeConfig implements WebMvcConfigurer {
     logger.debug("Instantiated stdout");
     PropertiesFactoryBean bean = new PropertiesFactoryBean();
     bean.setLocation(new ClassPathResource("stdout.properties"));
+    return bean;
+  }
+
+  /**
+   * Adapters Properties.
+   *
+   * @return the properties factory bean for adaptors
+   */
+  @Bean(name = "adapters")
+  public FactoryBean<Properties> adapters() {
+    logger.debug("Instantiated adapters");
+    PropertiesFactoryBean bean = new PropertiesFactoryBean();
+    bean.setLocation(new ClassPathResource("adapters.properties"));
     return bean;
   }
 
