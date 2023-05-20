@@ -241,9 +241,9 @@ public class ProbeConfig implements WebMvcConfigurer {
   }
 
   /**
-   * Version.
+   * Standard Out Properties.
    *
-   * @return the properties factory bean
+   * @return the properties factory bean for standard out
    */
   @Bean(name = "stdout")
   public FactoryBean<Properties> stdout() {
