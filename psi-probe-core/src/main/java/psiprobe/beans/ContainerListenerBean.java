@@ -29,6 +29,7 @@ import javax.inject.Inject;
 import javax.management.InstanceNotFoundException;
 import javax.management.MBeanServer;
 import javax.management.MBeanServerNotification;
+import javax.management.MalformedObjectNameException;
 import javax.management.Notification;
 import javax.management.NotificationListener;
 import javax.management.ObjectInstance;
@@ -145,10 +146,10 @@ public class ContainerListenerBean implements NotificationListener {
    * Load ObjectNames for the relevant MBeans so they can be queried at a later stage without
    * searching MBean server over and over again.
    *
-   * @throws Exception - this method does not handle any of the exceptions that may be thrown when
-   *         querying MBean server.
+   * @throws MalformedObjectNameException the malformed object name exception
+   * @throws InstanceNotFoundException the instance not found exception
    */
-  private synchronized void initialize() throws Exception {
+  private synchronized void initialize() throws MalformedObjectNameException, InstanceNotFoundException  {
 
     MBeanServer server = getContainerWrapper().getResourceResolver().getMBeanServer();
     String serverName = getContainerWrapper().getTomcatContainer().getName();
