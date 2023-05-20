@@ -51,6 +51,7 @@
 			<web-resource-name>All areas</web-resource-name>
 			<url-pattern>/*</url-pattern>
 		</web-resource-collection>
+		<!-- Since tomcat 8.5, should be able to remove 'auth-constraint' -->
 		<auth-constraint>
 			<role-name>probeuser</role-name>
 			<role-name>poweruser</role-name>
