@@ -15,9 +15,6 @@ import java.io.IOException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import psiprobe.tools.SizeExpression;
 
 /**
@@ -28,9 +25,6 @@ public class VolumeTag extends TagSupport {
 
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = 1L;
-
-  /** The Constant logger. */
-  private static final Logger logger = LoggerFactory.getLogger(VolumeTag.class);
 
   /** The value. */
   private long value;
@@ -72,8 +66,7 @@ public class VolumeTag extends TagSupport {
     try {
       pageContext.getOut().write("<span title=\"" + title + "\">" + newValue + "</span>");
     } catch (IOException e) {
-      logger.debug("Exception writing value to JspWriter", e);
-      throw new JspException(e);
+      throw new JspException("Exception writing value to JspWriter", e);
     }
 
     return EVAL_BODY_INCLUDE;

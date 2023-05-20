@@ -15,9 +15,6 @@ import java.io.IOException;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * Silly JSP tag to display duration in milliseconds as hours:minutes:seconds.milliseconds
  */
@@ -25,9 +22,6 @@ public class DurationTag extends TagSupport {
 
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = 1L;
-
-  /** The Constant logger. */
-  private static final Logger logger = LoggerFactory.getLogger(DurationTag.class);
 
   /** The value. */
   private long value;
@@ -46,8 +40,7 @@ public class DurationTag extends TagSupport {
     try {
       pageContext.getOut().write(duration(value));
     } catch (IOException e) {
-      logger.debug("Exception writing duration to JspWriter", e);
-      throw new JspException(e);
+      throw new JspException("Exception writing duration to JspWriter", e);
     }
     return EVAL_BODY_INCLUDE;
   }

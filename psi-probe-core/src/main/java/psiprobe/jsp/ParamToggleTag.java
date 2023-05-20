@@ -18,8 +18,6 @@ import java.util.Collections;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.ServletRequestUtils;
 
 /**
@@ -29,9 +27,6 @@ public class ParamToggleTag extends TagSupport {
 
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = 1L;
-
-  /** The Constant logger. */
-  private static final Logger logger = LoggerFactory.getLogger(ParamToggleTag.class);
 
   /** The param. */
   private String param = "size";
@@ -57,8 +52,7 @@ public class ParamToggleTag extends TagSupport {
     try {
       pageContext.getOut().print(query);
     } catch (IOException e) {
-      logger.debug("Exception printing query string to JspWriter", e);
-      throw new JspException(e);
+      throw new JspException("Exception printing query string to JspWriter", e);
     }
     return EVAL_BODY_INCLUDE;
   }
