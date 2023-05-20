@@ -149,7 +149,8 @@ public class ContainerListenerBean implements NotificationListener {
    * @throws MalformedObjectNameException the malformed object name exception
    * @throws InstanceNotFoundException the instance not found exception
    */
-  private synchronized void initialize() throws MalformedObjectNameException, InstanceNotFoundException  {
+  private synchronized void initialize()
+      throws MalformedObjectNameException, InstanceNotFoundException {
 
     MBeanServer server = getContainerWrapper().getResourceResolver().getMBeanServer();
     String serverName = getContainerWrapper().getTomcatContainer().getName();
