@@ -15,7 +15,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Properties;
 
 import org.slf4j.Logger;
@@ -212,8 +211,8 @@ public class ProbeConfig implements WebMvcConfigurer {
     logger.debug("Instantiated adapterClasses");
     List<String> list = new ArrayList<>();
     try {
-      for (Entry<Object, Object> entry : stdout().getObject().entrySet()) {
-        list.add((String) entry.getValue());
+      for (Object adapter : adapters().getObject().values()) {
+        list.add((String) adapter);
       }
     } catch (Exception e) {
       logger.error("", e);
@@ -231,8 +230,8 @@ public class ProbeConfig implements WebMvcConfigurer {
     logger.debug("Instantiated stdoutFiles");
     List<String> list = new ArrayList<>();
     try {
-      for (Entry<Object, Object> entry : stdout().getObject().entrySet()) {
-        list.add((String) entry.getValue());
+      for (Object stdout : stdout().getObject().values()) {
+        list.add((String) stdout);
       }
     } catch (Exception e) {
       logger.error("", e);
