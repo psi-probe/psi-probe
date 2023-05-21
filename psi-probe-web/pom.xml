@@ -49,11 +49,6 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>psi-probe-ojdbc</artifactId>
-            <version>${probe-ojdbc.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
             <artifactId>psi-probe-tomcat85</artifactId>
             <version>${project.version}</version>
         </dependency>
