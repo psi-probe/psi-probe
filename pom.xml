@@ -192,7 +192,7 @@
         <oshi.version>6.4.2</oshi.version>
         <openejb.version>8.0.15</openejb.version>
         <persistence.version>2.2.3</persistence.version>
-        <probe-ojdbc.version>3.1.8</probe-ojdbc.version>
+        <probe-ojdbc.version>3.1.9</probe-ojdbc.version>
         <quartz.version>2.3.2</quartz.version>
         <servlet-api.version>4.0.4</servlet-api.version>
         <sitemesh.version>2.5.1</sitemesh.version>
