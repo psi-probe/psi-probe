@@ -139,7 +139,7 @@
 <tr class="b">
 <td align="left">ch.qos.logback</td>
 <td><a class="externalLink" href="http://logback.qos.ch/logback-classic">logback-classic</a></td>
-<td>1.3.5</td>
+<td>1.3.7</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.eclipse.org/legal/epl-v10.html">Eclipse Public License - v 1.0</a><a class="externalLink" href="http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html">GNU Lesser General Public License</a></td></tr>
 <tr class="a">
@@ -303,13 +303,7 @@
 <td><a class="externalLink" href="https://spring.io/projects/spring-security">spring-security-web</a></td>
 <td>5.8.3</td>
 <td>jar</td>
-<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a></td></tr>
-<tr class="b">
-<td align="left">xpp3</td>
-<td><a class="externalLink" href="http://www.extreme.indiana.edu/xgws/xsoap/xpp/mxp1/">xpp3_min</a></td>
-<td>1.1.4c</td>
-<td>jar</td>
-<td><a class="externalLink" href="http://www.extreme.indiana.edu/viewcvs/~checkout~/XPP3/java/LICENSE.txt">Indiana University Extreme! Lab Software License, vesion 1.1.1</a><a class="externalLink" href="http://creativecommons.org/licenses/publicdomain">Public Domain</a></td></tr></table></section><a name="Project_Dependencies_test"></a><section>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a></td></tr></table></section><a name="Project_Dependencies_test"></a><section>
 <h3><a name="test"></a>test</h3>
 <p>The following is a list of test dependencies for this project. These dependencies are only required to compile and run unit tests for the application:</p>
 <table border="0" class="table table-striped">
@@ -401,35 +395,35 @@
 <td>jar</td>
 <td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
 <tr class="a">
-<td align="left">org.apache.openejb</td>
-<td><a class="externalLink" href="http://tomee.apache.org/container/openejb-core">openejb-core</a></td>
-<td>4.7.5</td>
-<td>jar</td>
-<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
-<tr class="b">
 <td align="left">org.apache.tomcat</td>
 <td><a class="externalLink" href="https://tomcat.apache.org/">tomcat-catalina</a></td>
 <td>9.0.75</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
-<tr class="a">
+<tr class="b">
 <td align="left">org.apache.tomcat</td>
 <td><a class="externalLink" href="https://tomcat.apache.org/">tomcat-coyote</a></td>
 <td>9.0.75</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
-<tr class="b">
+<tr class="a">
 <td align="left">org.apache.tomcat</td>
 <td><a class="externalLink" href="https://tomcat.apache.org/">tomcat-jasper</a></td>
 <td>9.0.75</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
-<tr class="a">
+<tr class="b">
 <td align="left">org.apache.tomcat</td>
 <td><a class="externalLink" href="https://tomcat.apache.org/">tomcat-jdbc</a></td>
 <td>9.0.75</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
+<tr class="a">
+<td align="left">org.apache.tomee</td>
+<td><a class="externalLink" href="https://tomee.apache.org/container/openejb-core">openejb-core</a></td>
+<td>8.0.15</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></td></tr>
 <tr class="b">
 <td align="left">org.vibur</td>
 <td><a class="externalLink" href="http://www.vibur.org">vibur-dbcp</a></td>
@@ -456,7 +450,7 @@
 <tr class="b">
 <td align="left">ch.qos.logback</td>
 <td><a class="externalLink" href="http://logback.qos.ch/logback-core">logback-core</a></td>
-<td>1.3.5</td>
+<td>1.3.7</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.eclipse.org/legal/epl-v10.html">Eclipse Public License - v 1.0</a><a class="externalLink" href="http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html">GNU Lesser General Public License</a></td></tr>
 <tr class="a">
@@ -661,92 +655,338 @@
 <th>GroupId</th>
 <th>ArtifactId</th>
 <th>Version</th>
+<th>Classifier</th>
 <th>Type</th>
 <th>Licenses</th></tr>
 <tr class="b">
 <td align="left">com.mchange</td>
 <td><a class="externalLink" href="https://github.com/swaldman/mchange-commons-java">mchange-commons-java</a></td>
-<td>0.2.19</td>
+<td>0.2.20</td>
+<td>-</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.gnu.org/licenses/lgpl-2.1.html">GNU Lesser General Public License, Version 2.1</a><a class="externalLink" href="http://www.eclipse.org/org/documents/epl-v10.html">Eclipse Public License, Version 1.0</a></td></tr>
 <tr class="a">
-<td align="left">org.apache.commons</td>
-<td><a class="externalLink" href="https://commons.apache.org/proper/commons-pool/">commons-pool2</a></td>
-<td>2.10.0</td>
+<td align="left">com.sun.istack</td>
+<td><a class="externalLink" href="https://projects.eclipse.org/projects/ee4j/istack-commons/istack-commons-runtime">istack-commons-runtime</a></td>
+<td>3.0.11</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.eclipse.org/org/documents/edl-v10.php">Eclipse Distribution License - v 1.0</a></td></tr>
+<tr class="b">
+<td align="left">commons-cli</td>
+<td><a class="externalLink" href="https://commons.apache.org/proper/commons-cli/">commons-cli</a></td>
+<td>1.5.0</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
+<tr class="a">
+<td align="left">jakarta.xml.bind</td>
+<td><a class="externalLink" href="https://github.com/eclipse-ee4j/jaxb-api/jakarta.xml.bind-api">jakarta.xml.bind-api</a></td>
+<td>2.3.3</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.eclipse.org/org/documents/edl-v10.php">Eclipse Distribution License - v 1.0</a></td></tr>
+<tr class="b">
+<td align="left">net.sourceforge.serp</td>
+<td><a class="externalLink" href="http://serp.sourceforge.net">serp</a></td>
+<td>1.15.1</td>
+<td>-</td>
+<td>jar</td>
+<td><a href="LICENSE.txt">BSD</a></td></tr>
+<tr class="a">
+<td align="left">org.apache.bval</td>
+<td><a class="externalLink" href="http://bval.apache.org/bval-jsr/">bval-jsr</a></td>
+<td>2.0.5</td>
+<td>-</td>
 <td>jar</td>
 <td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
 <tr class="b">
+<td align="left">org.apache.commons</td>
+<td><a class="externalLink" href="https://commons.apache.org/proper/commons-pool/">commons-pool2</a></td>
+<td>2.10.0</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
+<tr class="a">
+<td align="left">org.apache.openjpa</td>
+<td><a class="externalLink" href="http://openjpa.apache.org/openjpa">openjpa</a></td>
+<td>3.2.2</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
+<tr class="b">
+<td align="left">org.apache.openwebbeans</td>
+<td>openwebbeans-ee</td>
+<td>2.0.27</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
+<tr class="a">
+<td align="left">org.apache.openwebbeans</td>
+<td>openwebbeans-ee-common</td>
+<td>2.0.27</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
+<tr class="b">
+<td align="left">org.apache.openwebbeans</td>
+<td>openwebbeans-ejb</td>
+<td>2.0.27</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
+<tr class="a">
+<td align="left">org.apache.openwebbeans</td>
+<td>openwebbeans-el22</td>
+<td>2.0.27</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
+<tr class="b">
+<td align="left">org.apache.openwebbeans</td>
+<td>openwebbeans-impl</td>
+<td>2.0.27</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
+<tr class="a">
+<td align="left">org.apache.openwebbeans</td>
+<td>openwebbeans-spi</td>
+<td>2.0.27</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
+<tr class="b">
+<td align="left">org.apache.openwebbeans</td>
+<td>openwebbeans-web</td>
+<td>2.0.27</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
+<tr class="a">
 <td align="left">org.apache.tomcat</td>
 <td><a class="externalLink" href="https://tomcat.apache.org/">tomcat-annotations-api</a></td>
 <td>9.0.75</td>
+<td>-</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
-<tr class="a">
+<tr class="b">
 <td align="left">org.apache.tomcat</td>
 <td><a class="externalLink" href="https://tomcat.apache.org/">tomcat-api</a></td>
 <td>9.0.75</td>
+<td>-</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
-<tr class="b">
+<tr class="a">
 <td align="left">org.apache.tomcat</td>
 <td><a class="externalLink" href="https://tomcat.apache.org/">tomcat-el-api</a></td>
 <td>9.0.75</td>
+<td>-</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
-<tr class="a">
+<tr class="b">
 <td align="left">org.apache.tomcat</td>
 <td><a class="externalLink" href="https://tomcat.apache.org/">tomcat-jasper-el</a></td>
 <td>9.0.75</td>
+<td>-</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
-<tr class="b">
+<tr class="a">
 <td align="left">org.apache.tomcat</td>
 <td><a class="externalLink" href="https://tomcat.apache.org/">tomcat-jaspic-api</a></td>
 <td>9.0.75</td>
+<td>-</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
-<tr class="a">
+<tr class="b">
 <td align="left">org.apache.tomcat</td>
 <td><a class="externalLink" href="https://tomcat.apache.org/">tomcat-jni</a></td>
 <td>9.0.75</td>
-<td>jar</td>
-<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
-<tr class="b">
-<td align="left">org.apache.tomcat</td>
-<td><a class="externalLink" href="https://tomcat.apache.org/">tomcat-jsp-api</a></td>
-<td>9.0.75</td>
+<td>-</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
 <tr class="a">
 <td align="left">org.apache.tomcat</td>
-<td><a class="externalLink" href="https://tomcat.apache.org/">tomcat-juli</a></td>
+<td><a class="externalLink" href="https://tomcat.apache.org/">tomcat-jsp-api</a></td>
 <td>9.0.75</td>
+<td>-</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
 <tr class="b">
 <td align="left">org.apache.tomcat</td>
+<td><a class="externalLink" href="https://tomcat.apache.org/">tomcat-juli</a></td>
+<td>9.0.75</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
+<tr class="a">
+<td align="left">org.apache.tomcat</td>
 <td><a class="externalLink" href="https://tomcat.apache.org/">tomcat-servlet-api</a></td>
 <td>9.0.75</td>
+<td>-</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt and
         http://www.opensource.org/licenses/cddl1.txt">Apache License, Version 2.0 and
         Common Development And Distribution License (CDDL) Version 1.0</a></td></tr>
-<tr class="a">
+<tr class="b">
 <td align="left">org.apache.tomcat</td>
 <td><a class="externalLink" href="https://tomcat.apache.org/">tomcat-util</a></td>
 <td>9.0.75</td>
-<td>jar</td>
-<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
-<tr class="b">
-<td align="left">org.apache.tomcat</td>
-<td><a class="externalLink" href="https://tomcat.apache.org/">tomcat-util-scan</a></td>
-<td>9.0.75</td>
+<td>-</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
 <tr class="a">
+<td align="left">org.apache.tomcat</td>
+<td><a class="externalLink" href="https://tomcat.apache.org/">tomcat-util-scan</a></td>
+<td>9.0.75</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
+<tr class="b">
+<td align="left">org.apache.tomee</td>
+<td><a class="externalLink" href="https://tomee.apache.org/container/mbean-annotation-api">mbean-annotation-api</a></td>
+<td>8.0.15</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></td></tr>
+<tr class="a">
+<td align="left">org.apache.tomee</td>
+<td><a class="externalLink" href="https://tomee.apache.org/container/openejb-api">openejb-api</a></td>
+<td>8.0.15</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></td></tr>
+<tr class="b">
+<td align="left">org.apache.tomee</td>
+<td><a class="externalLink" href="https://tomee.apache.org/container/openejb-javaagent">openejb-javaagent</a></td>
+<td>8.0.15</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></td></tr>
+<tr class="a">
+<td align="left">org.apache.tomee</td>
+<td><a class="externalLink" href="https://tomee.apache.org/container/openejb-jee">openejb-jee</a></td>
+<td>8.0.15</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></td></tr>
+<tr class="b">
+<td align="left">org.apache.tomee</td>
+<td><a class="externalLink" href="https://tomee.apache.org/container/openejb-jee-accessors">openejb-jee-accessors</a></td>
+<td>8.0.15</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></td></tr>
+<tr class="a">
+<td align="left">org.apache.tomee</td>
+<td><a class="externalLink" href="https://tomee.apache.org/container/openejb-jpa-integration">openejb-jpa-integration</a></td>
+<td>8.0.15</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></td></tr>
+<tr class="b">
+<td align="left">org.apache.tomee</td>
+<td><a class="externalLink" href="https://tomee.apache.org/container/openejb-loader">openejb-loader</a></td>
+<td>8.0.15</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></td></tr>
+<tr class="a">
+<td align="left">org.apache.tomee.bom</td>
+<td><a class="externalLink" href="https://tomee.apache.org/boms/jaxb-runtime">jaxb-runtime</a></td>
+<td>8.0.15</td>
+<td>-</td>
+<td>pom</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></td></tr>
+<tr class="b">
+<td align="left">org.apache.xbean</td>
+<td><a class="externalLink" href="http://geronimo.apache.org/maven/xbean/4.22/xbean-asm9-shaded">xbean-asm9-shaded</a></td>
+<td>4.22</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://asm.ow2.org/license.html">null</a><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">null</a></td></tr>
+<tr class="a">
+<td align="left">org.apache.xbean</td>
+<td><a class="externalLink" href="http://geronimo.apache.org/maven/xbean/4.22/xbean-bundleutils">xbean-bundleutils</a></td>
+<td>4.22</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
+<tr class="b">
+<td align="left">org.apache.xbean</td>
+<td><a class="externalLink" href="http://geronimo.apache.org/maven/xbean/4.22/xbean-finder-shaded">xbean-finder-shaded</a></td>
+<td>4.22</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
+<tr class="a">
+<td align="left">org.apache.xbean</td>
+<td><a class="externalLink" href="http://geronimo.apache.org/maven/xbean/4.22/xbean-naming">xbean-naming</a></td>
+<td>4.22</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
+<tr class="b">
+<td align="left">org.apache.xbean</td>
+<td><a class="externalLink" href="http://geronimo.apache.org/maven/xbean/4.22/xbean-reflect">xbean-reflect</a></td>
+<td>4.22</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
+<tr class="a">
+<td align="left">org.apache.yoko</td>
+<td><a class="externalLink" href="http://geronimo.apache.org/maven/yoko/1.4/yoko-spec-corba">yoko-spec-corba</a></td>
+<td>1.4</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
+<tr class="b">
+<td align="left">org.codehaus.swizzle</td>
+<td><a class="externalLink" href="http://swizzle.codehaus.org/swizzle-stream">swizzle-stream</a></td>
+<td>1.6.2</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
+<tr class="a">
+<td align="left">org.glassfish.jaxb</td>
+<td><a class="externalLink" href="https://eclipse-ee4j.github.io/jaxb-ri/jaxb-runtime-parent/jaxb-runtime">jaxb-runtime</a></td>
+<td>2.3.3</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.eclipse.org/org/documents/edl-v10.php">Eclipse Distribution License - v 1.0</a></td></tr>
+<tr class="b">
+<td align="left">org.glassfish.jaxb</td>
+<td><a class="externalLink" href="https://eclipse-ee4j.github.io/jaxb-ri/jaxb-txw-parent/txw2">txw2</a></td>
+<td>2.3.3</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.eclipse.org/org/documents/edl-v10.php">Eclipse Distribution License - v 1.0</a></td></tr>
+<tr class="a">
+<td align="left">org.hsqldb</td>
+<td><a class="externalLink" href="http://hsqldb.org">hsqldb</a></td>
+<td>2.7.1</td>
+<td>jdk8</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://hsqldb.org/web/hsqlLicense.html">HSQLDB License, a BSD open source license</a></td></tr>
+<tr class="b">
+<td align="left">org.metatype.sxc</td>
+<td><a class="externalLink" href="http://nexus.sonatype.org/oss-repository-hosting.html/sxc/sxc-jaxb-core">sxc-jaxb-core</a></td>
+<td>0.8</td>
+<td>-</td>
+<td>jar</td>
+<td>-</td></tr>
+<tr class="a">
+<td align="left">org.metatype.sxc</td>
+<td><a class="externalLink" href="http://nexus.sonatype.org/oss-repository-hosting.html/sxc/sxc-runtime">sxc-runtime</a></td>
+<td>0.8</td>
+<td>-</td>
+<td>jar</td>
+<td>-</td></tr>
+<tr class="b">
 <td align="left">org.vibur</td>
 <td><a class="externalLink" href="http://www.vibur.org/vibur-object-pool/">vibur-object-pool</a></td>
 <td>25.0</td>
+<td>-</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr></table></section></section><a name="Project_Dependency_Graph"></a><section>
 <h2><a name="Project_Dependency_Graph"></a>Project Dependency Graph</h2>
@@ -961,7 +1201,7 @@
 <p><b>URL: </b><a class="externalLink" href="https://github.com/swaldman/c3p0">https://github.com/swaldman/c3p0</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.gnu.org/licenses/lgpl-2.1.html">GNU Lesser General Public License, Version 2.1</a>, <a class="externalLink" href="http://www.eclipse.org/org/documents/epl-v10.php">Eclipse Public License, Version 1.0</a></p></td></tr></table></div>
 <ul>
-<li>com.mchange:mchange-commons-java:jar:0.2.19 (provided) <img id="_img41" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep40', '_img41' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep40" style="display:none">
+<li>com.mchange:mchange-commons-java:jar:0.2.20 (provided) <img id="_img41" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep40', '_img41' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep40" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>mchange-commons-java</th></tr>
@@ -1118,17 +1358,321 @@ writes to specify Java code for type-checking by the Checker Framework.</p>
 <p><b>Description: </b>There is currently no description associated with this project.</p>
 <p><b>URL: </b><a class="externalLink" href="http://wrapper.tanukisoftware.org/">http://wrapper.tanukisoftware.org/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://wrapper.tanukisoftware.org/doc/english/license.html">Tanuki Software license</a></p></td></tr></table></div></li>
-<li>org.apache.openejb:openejb-core:jar:4.7.5 (provided) <img id="_img69" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep68', '_img69' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep68" style="display:none">
+<li>org.apache.tomee:openejb-core:jar:8.0.15 (provided) <img id="_img69" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep68', '_img69' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep68" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
-<th>OpenEJB :: Container :: Core</th></tr>
+<th>TomEE :: Container :: Core</th></tr>
 <tr class="b">
 <td>
-<p><b>Description: </b>Apache OpenEJB is an open source, modular, configurable and extendable EJB Container System and EJB
-    Server.</p>
-<p><b>URL: </b><a class="externalLink" href="http://tomee.apache.org/container/openejb-core">http://tomee.apache.org/container/openejb-core</a></p>
+<p><b>Description: </b>Apache OpenEJB is an open source, modular, configurable and extensible EJB Container System and EJB Server.</p>
+<p><b>URL: </b><a class="externalLink" href="https://tomee.apache.org/container/openejb-core">https://tomee.apache.org/container/openejb-core</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></p></td></tr></table></div>
+<ul>
+<li>org.apache.tomee:mbean-annotation-api:jar:8.0.15 (provided) <img id="_img71" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep70', '_img71' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep70" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>TomEE :: Container :: MBean Annotation API</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Apache OpenEJB is an open source, modular, configurable and extensible EJB Container System and EJB Server.</p>
+<p><b>URL: </b><a class="externalLink" href="https://tomee.apache.org/container/mbean-annotation-api">https://tomee.apache.org/container/mbean-annotation-api</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></p></td></tr></table></div></li>
+<li>org.apache.tomee:openejb-jpa-integration:jar:8.0.15 (provided) <img id="_img73" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep72', '_img73' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep72" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>TomEE :: Container :: JPA Integration</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Apache OpenEJB is an open source, modular, configurable and extensible EJB Container System and EJB Server.</p>
+<p><b>URL: </b><a class="externalLink" href="https://tomee.apache.org/container/openejb-jpa-integration">https://tomee.apache.org/container/openejb-jpa-integration</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></p></td></tr></table></div></li>
+<li>org.apache.tomee:openejb-api:jar:8.0.15 (provided) <img id="_img75" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep74', '_img75' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep74" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>TomEE :: Container :: API</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Apache OpenEJB is an open source, modular, configurable and extensible EJB Container System and EJB Server.</p>
+<p><b>URL: </b><a class="externalLink" href="https://tomee.apache.org/container/openejb-api">https://tomee.apache.org/container/openejb-api</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></p></td></tr></table></div></li>
+<li>org.apache.tomee:openejb-loader:jar:8.0.15 (provided) <img id="_img77" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep76', '_img77' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep76" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>TomEE :: Container :: Loader</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Apache OpenEJB is an open source, modular, configurable and extensible EJB Container System and EJB Server.</p>
+<p><b>URL: </b><a class="externalLink" href="https://tomee.apache.org/container/openejb-loader">https://tomee.apache.org/container/openejb-loader</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></p></td></tr></table></div></li>
+<li>org.apache.tomee:openejb-javaagent:jar:8.0.15 (provided) <img id="_img79" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep78', '_img79' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep78" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>TomEE :: Container :: Java Agent</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Apache OpenEJB is an open source, modular, configurable and extensible EJB Container System and EJB Server.</p>
+<p><b>URL: </b><a class="externalLink" href="https://tomee.apache.org/container/openejb-javaagent">https://tomee.apache.org/container/openejb-javaagent</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></p></td></tr></table></div></li>
+<li>org.apache.tomee:openejb-jee:jar:8.0.15 (provided) <img id="_img81" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep80', '_img81' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep80" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>TomEE :: Container :: Java EE</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Apache OpenEJB is an open source, modular, configurable and extensible EJB Container System and EJB Server.</p>
+<p><b>URL: </b><a class="externalLink" href="https://tomee.apache.org/container/openejb-jee">https://tomee.apache.org/container/openejb-jee</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></p></td></tr></table></div>
+<ul>
+<li>org.apache.tomee.bom:jaxb-runtime:pom:8.0.15 (provided) <img id="_img83" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep82', '_img83' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep82" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>TomEE :: BOMs :: JAXB Runtime</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Apache OpenEJB is an open source, modular, configurable and extensible EJB Container System and EJB Server.</p>
+<p><b>URL: </b><a class="externalLink" href="https://tomee.apache.org/boms/jaxb-runtime">https://tomee.apache.org/boms/jaxb-runtime</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></p></td></tr></table></div>
+<ul>
+<li>jakarta.xml.bind:jakarta.xml.bind-api:jar:2.3.3 (provided) <img id="_img85" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep84', '_img85' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep84" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Jakarta XML Binding API</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Jakarta XML Binding API</p>
+<p><b>URL: </b><a class="externalLink" href="https://github.com/eclipse-ee4j/jaxb-api/jakarta.xml.bind-api">https://github.com/eclipse-ee4j/jaxb-api/jakarta.xml.bind-api</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.eclipse.org/org/documents/edl-v10.php">Eclipse Distribution License - v 1.0</a></p></td></tr></table></div></li>
+<li>org.glassfish.jaxb:jaxb-runtime:jar:2.3.3 (provided) <img id="_img87" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep86', '_img87' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep86" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>JAXB Runtime</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>JAXB (JSR 222) Reference Implementation</p>
+<p><b>URL: </b><a class="externalLink" href="https://eclipse-ee4j.github.io/jaxb-ri/jaxb-runtime-parent/jaxb-runtime">https://eclipse-ee4j.github.io/jaxb-ri/jaxb-runtime-parent/jaxb-runtime</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.eclipse.org/org/documents/edl-v10.php">Eclipse Distribution License - v 1.0</a></p></td></tr></table></div>
+<ul>
+<li>org.glassfish.jaxb:txw2:jar:2.3.3 (provided) <img id="_img89" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep88', '_img89' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep88" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>TXW2 Runtime</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>TXW is a library that allows you to write XML documents.</p>
+<p><b>URL: </b><a class="externalLink" href="https://eclipse-ee4j.github.io/jaxb-ri/jaxb-txw-parent/txw2">https://eclipse-ee4j.github.io/jaxb-ri/jaxb-txw-parent/txw2</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.eclipse.org/org/documents/edl-v10.php">Eclipse Distribution License - v 1.0</a></p></td></tr></table></div></li>
+<li>com.sun.istack:istack-commons-runtime:jar:3.0.11 (provided) <img id="_img91" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep90', '_img91' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep90" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>istack common utility code runtime</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>istack common utility code</p>
+<p><b>URL: </b><a class="externalLink" href="https://projects.eclipse.org/projects/ee4j/istack-commons/istack-commons-runtime">https://projects.eclipse.org/projects/ee4j/istack-commons/istack-commons-runtime</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.eclipse.org/org/documents/edl-v10.php">Eclipse Distribution License - v 1.0</a></p></td></tr></table></div></li></ul></li></ul></li></ul></li>
+<li>org.apache.tomee:openejb-jee-accessors:jar:8.0.15 (provided) <img id="_img93" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep92', '_img93' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep92" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>TomEE :: Container :: Java EE Accessors</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Apache OpenEJB is an open source, modular, configurable and extensible EJB Container System and EJB Server.</p>
+<p><b>URL: </b><a class="externalLink" href="https://tomee.apache.org/container/openejb-jee-accessors">https://tomee.apache.org/container/openejb-jee-accessors</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></p></td></tr></table></div>
+<ul>
+<li>org.metatype.sxc:sxc-jaxb-core:jar:0.8 (provided) <img id="_img95" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep94', '_img95' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep94" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>SXC JAXB :: Core</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Sonatype helps open source projects to set up Maven repositories on https://oss.sonatype.org/</p>
+<p><b>URL: </b><a class="externalLink" href="http://nexus.sonatype.org/oss-repository-hosting.html/sxc/sxc-jaxb-core">http://nexus.sonatype.org/oss-repository-hosting.html/sxc/sxc-jaxb-core</a></p>
+<p><b>Project Licenses: </b>No licenses are defined for this project.</p></td></tr></table></div>
+<ul>
+<li>org.metatype.sxc:sxc-runtime:jar:0.8 (provided) <img id="_img97" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep96', '_img97' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep96" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>SXC Runtime</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Sonatype helps open source projects to set up Maven repositories on https://oss.sonatype.org/</p>
+<p><b>URL: </b><a class="externalLink" href="http://nexus.sonatype.org/oss-repository-hosting.html/sxc/sxc-runtime">http://nexus.sonatype.org/oss-repository-hosting.html/sxc/sxc-runtime</a></p>
+<p><b>Project Licenses: </b>No licenses are defined for this project.</p></td></tr></table></div></li></ul></li></ul></li>
+<li>commons-cli:commons-cli:jar:1.5.0 (provided) <img id="_img99" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep98', '_img99' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep98" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Apache Commons CLI</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Apache Commons CLI provides a simple API for presenting, processing and validating a Command Line Interface.</p>
+<p><b>URL: </b><a class="externalLink" href="https://commons.apache.org/proper/commons-cli/">https://commons.apache.org/proper/commons-cli/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></li>
-<li>com.thoughtworks.xstream:xstream:jar:1.4.20 (compile) <img id="_img71" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep70', '_img71' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep70" style="display:none">
+<li>org.apache.xbean:xbean-asm9-shaded:jar:4.22 (provided) <img id="_img101" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep100', '_img101' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep100" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Apache XBean :: ASM shaded (repackaged)</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Repackaged and shaded asm jars</p>
+<p><b>URL: </b><a class="externalLink" href="http://geronimo.apache.org/maven/xbean/4.22/xbean-asm9-shaded">http://geronimo.apache.org/maven/xbean/4.22/xbean-asm9-shaded</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://asm.ow2.org/license.html">Unnamed</a>, <a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Unnamed</a></p></td></tr></table></div></li>
+<li>org.apache.xbean:xbean-finder-shaded:jar:4.22 (provided) <img id="_img103" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep102', '_img103' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep102" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Apache XBean :: Finder shaded (repackaged)</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>XBean is a plugin based server architecture.</p>
+<p><b>URL: </b><a class="externalLink" href="http://geronimo.apache.org/maven/xbean/4.22/xbean-finder-shaded">http://geronimo.apache.org/maven/xbean/4.22/xbean-finder-shaded</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
+<li>org.apache.xbean:xbean-reflect:jar:4.22 (provided) <img id="_img105" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep104', '_img105' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep104" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Apache XBean :: Reflect</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>xbean-reflect provides very flexible ways to create objects and graphs of objects for DI frameworks</p>
+<p><b>URL: </b><a class="externalLink" href="http://geronimo.apache.org/maven/xbean/4.22/xbean-reflect">http://geronimo.apache.org/maven/xbean/4.22/xbean-reflect</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
+<li>org.apache.xbean:xbean-naming:jar:4.22 (provided) <img id="_img107" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep106', '_img107' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep106" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Apache XBean :: Naming</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>xbean-naming implements a flexible non-persistent jndi provider</p>
+<p><b>URL: </b><a class="externalLink" href="http://geronimo.apache.org/maven/xbean/4.22/xbean-naming">http://geronimo.apache.org/maven/xbean/4.22/xbean-naming</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
+<li>org.apache.xbean:xbean-bundleutils:jar:4.22 (provided) <img id="_img109" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep108', '_img109' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep108" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Apache XBean :: OSGI Bundle Utilities</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>XBean is a plugin based server architecture.</p>
+<p><b>URL: </b><a class="externalLink" href="http://geronimo.apache.org/maven/xbean/4.22/xbean-bundleutils">http://geronimo.apache.org/maven/xbean/4.22/xbean-bundleutils</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
+<li>org.hsqldb:hsqldb:jar:jdk8:2.7.1 (provided) <img id="_img111" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep110', '_img111' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep110" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>HyperSQL Database</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>HSQLDB - Lightweight 100% Java SQL Database Engine</p>
+<p><b>URL: </b><a class="externalLink" href="http://hsqldb.org">http://hsqldb.org</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://hsqldb.org/web/hsqlLicense.html">HSQLDB License, a BSD open source license</a></p></td></tr></table></div></li>
+<li>org.codehaus.swizzle:swizzle-stream:jar:1.6.2 (provided) <img id="_img113" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep112', '_img113' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep112" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Swizzle :: Stream</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Parent POM to share settings between swizzle modules</p>
+<p><b>URL: </b><a class="externalLink" href="http://swizzle.codehaus.org/swizzle-stream">http://swizzle.codehaus.org/swizzle-stream</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
+<li>org.apache.openwebbeans:openwebbeans-impl:jar:2.0.27 (provided) <img id="_img115" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep114', '_img115' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep114" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>OpenWebBeans Core</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Apache OpenWebBeans Implementation core module</p>
+<p><b>URL: </b>openwebbeans.apache.org/openwebbeans-impl</p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></li>
+<li>org.apache.openwebbeans:openwebbeans-spi:jar:2.0.27 (provided) <img id="_img117" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep116', '_img117' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep116" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>SPI definition</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Apache OpenWebBeans Service Provider Interfaces</p>
+<p><b>URL: </b>openwebbeans.apache.org/openwebbeans-spi</p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></li>
+<li>org.apache.openwebbeans:openwebbeans-ejb:jar:2.0.27 (provided) <img id="_img119" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep118', '_img119' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep118" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>EJB plugin</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Apache OpenWebBeans Java EE EJB plugin</p>
+<p><b>URL: </b>openwebbeans.apache.org/openwebbeans-ejb</p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></li>
+<li>org.apache.openwebbeans:openwebbeans-ee:jar:2.0.27 (provided) <img id="_img121" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep120', '_img121' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep120" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Java EE plugin</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Apache OpenWebBeans Java EE Utility</p>
+<p><b>URL: </b>openwebbeans.apache.org/openwebbeans-ee</p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></li>
+<li>org.apache.openwebbeans:openwebbeans-ee-common:jar:2.0.27 (provided) <img id="_img123" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep122', '_img123' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep122" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>EE Common plugin</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Apache OpenWebBeans Java EE Common</p>
+<p><b>URL: </b>openwebbeans.apache.org/openwebbeans-ee-common</p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></li>
+<li>org.apache.openwebbeans:openwebbeans-web:jar:2.0.27 (provided) <img id="_img125" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep124', '_img125' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep124" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Web plugin</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Apache OpenWebBeans Java EE Web and Serlvet plugin</p>
+<p><b>URL: </b>openwebbeans.apache.org/openwebbeans-web</p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div>
+<ul>
+<li>org.apache.openwebbeans:openwebbeans-el22:jar:2.0.27 (provided) <img id="_img127" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep126', '_img127' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep126" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>EL 2.2 plugin</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Apache OpenWebBeans EL 2.2 integration</p>
+<p><b>URL: </b>openwebbeans.apache.org/openwebbeans-el22</p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></li></ul></li>
+<li>org.apache.openjpa:openjpa:jar:3.2.2 (provided) <img id="_img129" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep128', '_img129' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep128" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>OpenJPA Aggregate Jar</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Apache OpenJPA implementation of JSR-338 JPA 2.2</p>
+<p><b>URL: </b><a class="externalLink" href="http://openjpa.apache.org/openjpa">http://openjpa.apache.org/openjpa</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div>
+<ul>
+<li>net.sourceforge.serp:serp:jar:1.15.1 (provided) <img id="_img131" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep130', '_img131' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep130" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Serp</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Serp is an open source framework for manipulating Java bytecode.</p>
+<p><b>URL: </b><a class="externalLink" href="http://serp.sourceforge.net">http://serp.sourceforge.net</a></p>
+<p><b>Project Licenses: </b><a href="LICENSE.txt">BSD</a></p></td></tr></table></div></li></ul></li>
+<li>org.apache.bval:bval-jsr:jar:2.0.5 (provided) <img id="_img133" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep132', '_img133' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep132" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Apache BVal :: bval-jsr</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Implementation specific classes for JSR 380 Bean Validation 2.0</p>
+<p><b>URL: </b><a class="externalLink" href="http://bval.apache.org/bval-jsr/">http://bval.apache.org/bval-jsr/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></li>
+<li>org.apache.yoko:yoko-spec-corba:jar:1.4 (provided) <img id="_img135" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep134', '_img135' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep134" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Apache Yoko CORBA Spec</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Apache Yoko CORBA Server</p>
+<p><b>URL: </b><a class="externalLink" href="http://geronimo.apache.org/maven/yoko/1.4/yoko-spec-corba">http://geronimo.apache.org/maven/yoko/1.4/yoko-spec-corba</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li></ul></li>
+<li>com.thoughtworks.xstream:xstream:jar:1.4.20 (compile) <img id="_img137" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep136', '_img137' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep136" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>XStream Core</th></tr>
@@ -1138,7 +1682,7 @@ writes to specify Java code for type-checking by the Checker Framework.</p>
 <p><b>URL: </b><a class="externalLink" href="http://x-stream.github.io/xstream">http://x-stream.github.io/xstream</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://x-stream.github.io/license.html">BSD-3-Clause</a></p></td></tr></table></div>
 <ul>
-<li>io.github.x-stream:mxparser:jar:1.2.2 (compile) <img id="_img73" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep72', '_img73' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep72" style="display:none">
+<li>io.github.x-stream:mxparser:jar:1.2.2 (compile) <img id="_img139" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep138', '_img139' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep138" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>MXParser</th></tr>
@@ -1148,7 +1692,7 @@ writes to specify Java code for type-checking by the Checker Framework.</p>
 <p><b>URL: </b><a class="externalLink" href="http://x-stream.github.io/mxparser">http://x-stream.github.io/mxparser</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://raw.githubusercontent.com/x-stream/mxparser/master/LICENSE.txt">Indiana University Extreme! Lab Software License</a></p></td></tr></table></div>
 <ul>
-<li>xmlpull:xmlpull:jar:1.1.3.1 (compile) <img id="_img75" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep74', '_img75' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep74" style="display:none">
+<li>xmlpull:xmlpull:jar:1.1.3.1 (compile) <img id="_img141" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep140', '_img141' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep140" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>XML Pull Parsing API</th></tr>
@@ -1157,7 +1701,7 @@ writes to specify Java code for type-checking by the Checker Framework.</p>
 <p><b>Description: </b>There is currently no description associated with this project.</p>
 <p><b>URL: </b><a class="externalLink" href="http://www.xmlpull.org">http://www.xmlpull.org</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.xmlpull.org/v1/download/unpacked/LICENSE.txt">Public Domain</a></p></td></tr></table></div></li></ul></li></ul></li>
-<li>org.codelibs:jhighlight:jar:1.1.0 (compile) <img id="_img77" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep76', '_img77' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep76" style="display:none">
+<li>org.codelibs:jhighlight:jar:1.1.0 (compile) <img id="_img143" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep142', '_img143' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep142" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>JHighlight</th></tr>
@@ -1172,7 +1716,7 @@ writes to specify Java code for type-checking by the Checker Framework.</p>
     between your RIFE markup and the actual marked up source.</p>
 <p><b>URL: </b><a class="externalLink" href="https://github.com/codelibs/jhighlight">https://github.com/codelibs/jhighlight</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.opensource.org/licenses/cddl1.php">CDDL, v1.0</a>, <a class="externalLink" href="http://www.opensource.org/licenses/lgpl-license.php">LGPL, v2.1 or later</a></p></td></tr></table></div></li>
-<li>commons-beanutils:commons-beanutils:jar:1.9.4 (compile) <img id="_img79" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep78', '_img79' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep78" style="display:none">
+<li>commons-beanutils:commons-beanutils:jar:1.9.4 (compile) <img id="_img145" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep144', '_img145' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep144" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>Apache Commons BeanUtils</th></tr>
@@ -1181,7 +1725,7 @@ writes to specify Java code for type-checking by the Checker Framework.</p>
 <p><b>Description: </b>Apache Commons BeanUtils provides an easy-to-use but flexible wrapper around reflection and introspection.</p>
 <p><b>URL: </b><a class="externalLink" href="https://commons.apache.org/proper/commons-beanutils/">https://commons.apache.org/proper/commons-beanutils/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></li>
-<li>commons-collections:commons-collections:jar:3.2.2 (compile) <img id="_img81" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep80', '_img81' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep80" style="display:none">
+<li>commons-collections:commons-collections:jar:3.2.2 (compile) <img id="_img147" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep146', '_img147' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep146" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>Apache Commons Collections</th></tr>
@@ -1190,7 +1734,7 @@ writes to specify Java code for type-checking by the Checker Framework.</p>
 <p><b>Description: </b>Types that extend and augment the Java Collections Framework.</p>
 <p><b>URL: </b><a class="externalLink" href="http://commons.apache.org/collections/">http://commons.apache.org/collections/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></li>
-<li>commons-io:commons-io:jar:2.12.0 (compile) <img id="_img83" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep82', '_img83' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep82" style="display:none">
+<li>commons-io:commons-io:jar:2.12.0 (compile) <img id="_img149" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep148', '_img149' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep148" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>Apache Commons IO</th></tr>
@@ -1200,7 +1744,7 @@ writes to specify Java code for type-checking by the Checker Framework.</p>
 file comparators, endian transformation classes, and much more.</p>
 <p><b>URL: </b><a class="externalLink" href="https://commons.apache.org/proper/commons-io/">https://commons.apache.org/proper/commons-io/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></p></td></tr></table></div></li>
-<li>org.apache.commons:commons-lang3:jar:3.12.0 (compile) <img id="_img85" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep84', '_img85' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep84" style="display:none">
+<li>org.apache.commons:commons-lang3:jar:3.12.0 (compile) <img id="_img151" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep150', '_img151' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep150" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>Apache Commons Lang</th></tr>
@@ -1211,7 +1755,7 @@ file comparators, endian transformation classes, and much more.</p>
   standard as to justify existence in java.lang.</p>
 <p><b>URL: </b><a class="externalLink" href="https://commons.apache.org/proper/commons-lang/">https://commons.apache.org/proper/commons-lang/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></li>
-<li>org.apache.commons:commons-text:jar:1.10.0 (compile) <img id="_img87" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep86', '_img87' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep86" style="display:none">
+<li>org.apache.commons:commons-text:jar:1.10.0 (compile) <img id="_img153" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep152', '_img153' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep152" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>Apache Commons Text</th></tr>
@@ -1220,7 +1764,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>Description: </b>Apache Commons Text is a library focused on algorithms working on strings.</p>
 <p><b>URL: </b><a class="externalLink" href="https://commons.apache.org/proper/commons-text">https://commons.apache.org/proper/commons-text</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></li>
-<li>com.maxmind.geoip2:geoip2:jar:2.16.1 (compile) <img id="_img89" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep88', '_img89' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep88" style="display:none">
+<li>com.maxmind.geoip2:geoip2:jar:2.16.1 (compile) <img id="_img155" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep154', '_img155' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep154" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>MaxMind GeoIP2 API</th></tr>
@@ -1230,7 +1774,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>URL: </b><a class="externalLink" href="https://dev.maxmind.com/geoip?lang=en">https://dev.maxmind.com/geoip?lang=en</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache License, Version 2.0</a></p></td></tr></table></div>
 <ul>
-<li>com.maxmind.db:maxmind-db:jar:2.0.0 (compile) <img id="_img91" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep90', '_img91' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep90" style="display:none">
+<li>com.maxmind.db:maxmind-db:jar:2.0.0 (compile) <img id="_img157" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep156', '_img157' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep156" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>MaxMind DB Reader</th></tr>
@@ -1239,7 +1783,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>Description: </b>Reader for MaxMind DB</p>
 <p><b>URL: </b><a class="externalLink" href="http://dev.maxmind.com/">http://dev.maxmind.com/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache License 2.0</a></p></td></tr></table></div></li>
-<li>commons-codec:commons-codec:jar:1.15 (compile) <img id="_img93" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep92', '_img93' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep92" style="display:none">
+<li>commons-codec:commons-codec:jar:1.15 (compile) <img id="_img159" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep158', '_img159' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep158" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>Apache Commons Codec</th></tr>
@@ -1251,7 +1795,7 @@ file comparators, endian transformation classes, and much more.</p>
      collection of phonetic encoding utilities.</p>
 <p><b>URL: </b><a class="externalLink" href="https://commons.apache.org/proper/commons-codec/">https://commons.apache.org/proper/commons-codec/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></li>
-<li>com.fasterxml.jackson.core:jackson-databind:jar:2.15.1 (compile) <img id="_img95" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep94', '_img95' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep94" style="display:none">
+<li>com.fasterxml.jackson.core:jackson-databind:jar:2.15.1 (compile) <img id="_img161" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep160', '_img161' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep160" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>jackson-databind</th></tr>
@@ -1260,7 +1804,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>Description: </b>General data-binding functionality for Jackson: works on core streaming API</p>
 <p><b>URL: </b><a class="externalLink" href="https://github.com/FasterXML/jackson">https://github.com/FasterXML/jackson</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
-<li>com.fasterxml.jackson.core:jackson-core:jar:2.15.1 (compile) <img id="_img97" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep96', '_img97' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep96" style="display:none">
+<li>com.fasterxml.jackson.core:jackson-core:jar:2.15.1 (compile) <img id="_img163" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep162', '_img163' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep162" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>Jackson-core</th></tr>
@@ -1269,7 +1813,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>Description: </b>Core Jackson processing abstractions (aka Streaming API), implementation for JSON</p>
 <p><b>URL: </b><a class="externalLink" href="https://github.com/FasterXML/jackson-core">https://github.com/FasterXML/jackson-core</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
-<li>com.fasterxml.jackson.core:jackson-annotations:jar:2.15.1 (compile) <img id="_img99" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep98', '_img99' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep98" style="display:none">
+<li>com.fasterxml.jackson.core:jackson-annotations:jar:2.15.1 (compile) <img id="_img165" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep164', '_img165' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep164" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>Jackson-annotations</th></tr>
@@ -1278,7 +1822,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>Description: </b>Core annotations used for value types, used by Jackson data binding package.</p>
 <p><b>URL: </b><a class="externalLink" href="https://github.com/FasterXML/jackson">https://github.com/FasterXML/jackson</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li></ul></li>
-<li>jakarta.transaction:jakarta.transaction-api:jar:1.3.3 (compile) <img id="_img101" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep100', '_img101' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep100" style="display:none">
+<li>jakarta.transaction:jakarta.transaction-api:jar:1.3.3 (compile) <img id="_img167" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep166', '_img167' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep166" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>javax.transaction API</th></tr>
@@ -1287,7 +1831,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>Description: </b>Jakarta Transactions</p>
 <p><b>URL: </b><a class="externalLink" href="https://projects.eclipse.org/projects/ee4j.jta">https://projects.eclipse.org/projects/ee4j.jta</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.eclipse.org/legal/epl-2.0">EPL 2.0</a>, <a class="externalLink" href="https://www.gnu.org/software/classpath/license.html">GPL2 w/ CPE</a></p></td></tr></table></div></li>
-<li>org.jfree:jfreechart:jar:1.5.4 (compile) <img id="_img103" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep102', '_img103' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep102" style="display:none">
+<li>org.jfree:jfreechart:jar:1.5.4 (compile) <img id="_img169" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep168', '_img169' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep168" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>JFreeChart</th></tr>
@@ -1299,7 +1843,7 @@ file comparators, endian transformation classes, and much more.</p>
         and more.</p>
 <p><b>URL: </b><a class="externalLink" href="http://www.jfree.org/jfreechart/">http://www.jfree.org/jfreechart/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.gnu.org/licenses/lgpl.txt">GNU Lesser General Public Licence</a></p></td></tr></table></div></li>
-<li>ch.qos.logback:logback-classic:jar:1.3.5 (compile) <img id="_img105" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep104', '_img105' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep104" style="display:none">
+<li>ch.qos.logback:logback-classic:jar:1.3.7 (compile) <img id="_img171" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep170', '_img171' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep170" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>Logback Classic Module</th></tr>
@@ -1309,7 +1853,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>URL: </b><a class="externalLink" href="http://logback.qos.ch/logback-classic">http://logback.qos.ch/logback-classic</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.eclipse.org/legal/epl-v10.html">Eclipse Public License - v 1.0</a>, <a class="externalLink" href="http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html">GNU Lesser General Public License</a></p></td></tr></table></div>
 <ul>
-<li>ch.qos.logback:logback-core:jar:1.3.5 (compile) <img id="_img107" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep106', '_img107' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep106" style="display:none">
+<li>ch.qos.logback:logback-core:jar:1.3.7 (compile) <img id="_img173" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep172', '_img173' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep172" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>Logback Core Module</th></tr>
@@ -1318,7 +1862,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>Description: </b>logback-core module</p>
 <p><b>URL: </b><a class="externalLink" href="http://logback.qos.ch/logback-core">http://logback.qos.ch/logback-core</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.eclipse.org/legal/epl-v10.html">Eclipse Public License - v 1.0</a>, <a class="externalLink" href="http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html">GNU Lesser General Public License</a></p></td></tr></table></div></li></ul></li>
-<li>com.github.oshi:oshi-core:jar:6.4.2 (compile) <img id="_img109" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep108', '_img109' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep108" style="display:none">
+<li>com.github.oshi:oshi-core:jar:6.4.2 (compile) <img id="_img175" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep174', '_img175' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep174" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>oshi-core</th></tr>
@@ -1329,7 +1873,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>URL: </b><a class="externalLink" href="https://github.com/oshi/oshi/oshi-core">https://github.com/oshi/oshi/oshi-core</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://opensource.org/licenses/MIT">SPDX-License-Identifier: MIT</a></p></td></tr></table></div>
 <ul>
-<li>net.java.dev.jna:jna:jar:5.13.0 (compile) <img id="_img111" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep110', '_img111' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep110" style="display:none">
+<li>net.java.dev.jna:jna:jar:5.13.0 (compile) <img id="_img177" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep176', '_img177' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep176" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>Java Native Access</th></tr>
@@ -1338,7 +1882,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>Description: </b>Java Native Access</p>
 <p><b>URL: </b><a class="externalLink" href="https://github.com/java-native-access/jna">https://github.com/java-native-access/jna</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.gnu.org/licenses/old-licenses/lgpl-2.1">LGPL-2.1-or-later</a>, <a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></p></td></tr></table></div></li>
-<li>net.java.dev.jna:jna-platform:jar:5.13.0 (compile) <img id="_img113" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep112', '_img113' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep112" style="display:none">
+<li>net.java.dev.jna:jna-platform:jar:5.13.0 (compile) <img id="_img179" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep178', '_img179' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep178" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>Java Native Access Platform</th></tr>
@@ -1347,7 +1891,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>Description: </b>Java Native Access Platform</p>
 <p><b>URL: </b><a class="externalLink" href="https://github.com/java-native-access/jna">https://github.com/java-native-access/jna</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.gnu.org/licenses/old-licenses/lgpl-2.1">LGPL-2.1-or-later</a>, <a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></p></td></tr></table></div></li></ul></li>
-<li>org.quartz-scheduler:quartz:jar:2.3.2 (compile) <img id="_img115" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep114', '_img115' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep114" style="display:none">
+<li>org.quartz-scheduler:quartz:jar:2.3.2 (compile) <img id="_img181" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep180', '_img181' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep180" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>quartz</th></tr>
@@ -1356,7 +1900,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>Description: </b>Enterprise Job Scheduler</p>
 <p><b>URL: </b><a class="externalLink" href="http://www.quartz-scheduler.org/quartz">http://www.quartz-scheduler.org/quartz</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
-<li>com.github.hazendaz:sitemesh:jar:2.5.1 (compile) <img id="_img117" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep116', '_img117' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep116" style="display:none">
+<li>com.github.hazendaz:sitemesh:jar:2.5.1 (compile) <img id="_img183" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep182', '_img183' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep182" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>sitemesh</th></tr>
@@ -1366,7 +1910,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>URL: </b><a class="externalLink" href="https://github.com/hazendaz/sitemesh2">https://github.com/hazendaz/sitemesh2</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div>
 <ul>
-<li>org.slf4j:jcl-over-slf4j:jar:2.0.7 (compile) <img id="_img119" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep118', '_img119' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep118" style="display:none">
+<li>org.slf4j:jcl-over-slf4j:jar:2.0.7 (compile) <img id="_img185" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep184', '_img185' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep184" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>JCL 1.2 implemented over SLF4J</th></tr>
@@ -1375,16 +1919,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>Description: </b>JCL 1.2 implemented over SLF4J</p>
 <p><b>URL: </b><a class="externalLink" href="http://www.slf4j.org">http://www.slf4j.org</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></li></ul></li>
-<li>xpp3:xpp3_min:jar:1.1.4c (compile) <img id="_img121" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep120', '_img121' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep120" style="display:none">
-<table border="0" class="table table-striped">
-<tr class="a">
-<th>MXP1: Xml Pull Parser 3rd Edition (XPP3)</th></tr>
-<tr class="b">
-<td>
-<p><b>Description: </b>MXP1 is a stable XmlPull parsing engine that is based on ideas from XPP and in particular XPP2 but completely revised and rewritten to take the best advantage of latest JIT JVMs such as Hotspot in JDK 1.4+.</p>
-<p><b>URL: </b><a class="externalLink" href="http://www.extreme.indiana.edu/xgws/xsoap/xpp/mxp1/">http://www.extreme.indiana.edu/xgws/xsoap/xpp/mxp1/</a></p>
-<p><b>Project Licenses: </b><a class="externalLink" href="http://www.extreme.indiana.edu/viewcvs/~checkout~/XPP3/java/LICENSE.txt">Indiana University Extreme! Lab Software License, vesion 1.1.1</a>, <a class="externalLink" href="http://creativecommons.org/licenses/publicdomain">Public Domain</a></p></td></tr></table></div></li>
-<li>org.springframework:spring-beans:jar:5.3.27 (compile) <img id="_img123" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep122', '_img123' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep122" style="display:none">
+<li>org.springframework:spring-beans:jar:5.3.27 (compile) <img id="_img187" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep186', '_img187' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep186" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>Spring Beans</th></tr>
@@ -1394,7 +1929,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>URL: </b><a class="externalLink" href="https://github.com/spring-projects/spring-framework">https://github.com/spring-projects/spring-framework</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a></p></td></tr></table></div>
 <ul>
-<li>org.springframework:spring-core:jar:5.3.27 (compile) <img id="_img125" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep124', '_img125' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep124" style="display:none">
+<li>org.springframework:spring-core:jar:5.3.27 (compile) <img id="_img189" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep188', '_img189' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep188" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>Spring Core</th></tr>
@@ -1404,7 +1939,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>URL: </b><a class="externalLink" href="https://github.com/spring-projects/spring-framework">https://github.com/spring-projects/spring-framework</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a></p></td></tr></table></div>
 <ul>
-<li>org.springframework:spring-jcl:jar:5.3.27 (compile) <img id="_img127" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep126', '_img127' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep126" style="display:none">
+<li>org.springframework:spring-jcl:jar:5.3.27 (compile) <img id="_img191" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep190', '_img191' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep190" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>Spring Commons Logging Bridge</th></tr>
@@ -1413,7 +1948,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>Description: </b>Spring Commons Logging Bridge</p>
 <p><b>URL: </b><a class="externalLink" href="https://github.com/spring-projects/spring-framework">https://github.com/spring-projects/spring-framework</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a></p></td></tr></table></div></li></ul></li></ul></li>
-<li>org.springframework:spring-webmvc:jar:5.3.27 (compile) <img id="_img129" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep128', '_img129' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep128" style="display:none">
+<li>org.springframework:spring-webmvc:jar:5.3.27 (compile) <img id="_img193" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep192', '_img193' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep192" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>Spring Web MVC</th></tr>
@@ -1423,7 +1958,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>URL: </b><a class="externalLink" href="https://github.com/spring-projects/spring-framework">https://github.com/spring-projects/spring-framework</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a></p></td></tr></table></div>
 <ul>
-<li>org.springframework:spring-aop:jar:5.3.27 (compile) <img id="_img131" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep130', '_img131' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep130" style="display:none">
+<li>org.springframework:spring-aop:jar:5.3.27 (compile) <img id="_img195" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep194', '_img195' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep194" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>Spring AOP</th></tr>
@@ -1432,7 +1967,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>Description: </b>Spring AOP</p>
 <p><b>URL: </b><a class="externalLink" href="https://github.com/spring-projects/spring-framework">https://github.com/spring-projects/spring-framework</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a></p></td></tr></table></div></li>
-<li>org.springframework:spring-expression:jar:5.3.27 (compile) <img id="_img133" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep132', '_img133' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep132" style="display:none">
+<li>org.springframework:spring-expression:jar:5.3.27 (compile) <img id="_img197" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep196', '_img197' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep196" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>Spring Expression Language (SpEL)</th></tr>
@@ -1441,7 +1976,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>Description: </b>Spring Expression Language (SpEL)</p>
 <p><b>URL: </b><a class="externalLink" href="https://github.com/spring-projects/spring-framework">https://github.com/spring-projects/spring-framework</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a></p></td></tr></table></div></li>
-<li>org.springframework:spring-web:jar:5.3.27 (compile) <img id="_img135" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep134', '_img135' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep134" style="display:none">
+<li>org.springframework:spring-web:jar:5.3.27 (compile) <img id="_img199" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep198', '_img199' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep198" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>Spring Web</th></tr>
@@ -1450,7 +1985,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>Description: </b>Spring Web</p>
 <p><b>URL: </b><a class="externalLink" href="https://github.com/spring-projects/spring-framework">https://github.com/spring-projects/spring-framework</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a></p></td></tr></table></div></li></ul></li>
-<li>org.springframework:spring-tx:jar:5.3.27 (compile) <img id="_img137" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep136', '_img137' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep136" style="display:none">
+<li>org.springframework:spring-tx:jar:5.3.27 (compile) <img id="_img201" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep200', '_img201' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep200" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>Spring Transaction</th></tr>
@@ -1459,7 +1994,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>Description: </b>Spring Transaction</p>
 <p><b>URL: </b><a class="externalLink" href="https://github.com/spring-projects/spring-framework">https://github.com/spring-projects/spring-framework</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a></p></td></tr></table></div></li>
-<li>org.springframework:spring-context:jar:5.3.27 (compile) <img id="_img139" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep138', '_img139' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep138" style="display:none">
+<li>org.springframework:spring-context:jar:5.3.27 (compile) <img id="_img203" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep202', '_img203' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep202" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>Spring Context</th></tr>
@@ -1468,7 +2003,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>Description: </b>Spring Context</p>
 <p><b>URL: </b><a class="externalLink" href="https://github.com/spring-projects/spring-framework">https://github.com/spring-projects/spring-framework</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a></p></td></tr></table></div></li>
-<li>org.springframework:spring-context-support:jar:5.3.27 (compile) <img id="_img141" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep140', '_img141' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep140" style="display:none">
+<li>org.springframework:spring-context-support:jar:5.3.27 (compile) <img id="_img205" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep204', '_img205' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep204" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>Spring Context Support</th></tr>
@@ -1477,7 +2012,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>Description: </b>Spring Context Support</p>
 <p><b>URL: </b><a class="externalLink" href="https://github.com/spring-projects/spring-framework">https://github.com/spring-projects/spring-framework</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a></p></td></tr></table></div></li>
-<li>org.springframework:spring-test:jar:5.3.27 (test) <img id="_img143" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep142', '_img143' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep142" style="display:none">
+<li>org.springframework:spring-test:jar:5.3.27 (test) <img id="_img207" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep206', '_img207' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep206" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>Spring TestContext Framework</th></tr>
@@ -1486,7 +2021,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>Description: </b>Spring TestContext Framework</p>
 <p><b>URL: </b><a class="externalLink" href="https://github.com/spring-projects/spring-framework">https://github.com/spring-projects/spring-framework</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a></p></td></tr></table></div></li>
-<li>org.springframework.security:spring-security-config:jar:5.8.3 (compile) <img id="_img145" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep144', '_img145' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep144" style="display:none">
+<li>org.springframework.security:spring-security-config:jar:5.8.3 (compile) <img id="_img209" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep208', '_img209' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep208" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>spring-security-config</th></tr>
@@ -1495,7 +2030,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>Description: </b>Spring Security</p>
 <p><b>URL: </b><a class="externalLink" href="https://spring.io/projects/spring-security">https://spring.io/projects/spring-security</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a></p></td></tr></table></div></li>
-<li>org.springframework.security:spring-security-core:jar:5.8.3 (compile) <img id="_img147" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep146', '_img147' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep146" style="display:none">
+<li>org.springframework.security:spring-security-core:jar:5.8.3 (compile) <img id="_img211" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep210', '_img211' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep210" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>spring-security-core</th></tr>
@@ -1505,7 +2040,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>URL: </b><a class="externalLink" href="https://spring.io/projects/spring-security">https://spring.io/projects/spring-security</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a></p></td></tr></table></div>
 <ul>
-<li>org.springframework.security:spring-security-crypto:jar:5.8.3 (compile) <img id="_img149" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep148', '_img149' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep148" style="display:none">
+<li>org.springframework.security:spring-security-crypto:jar:5.8.3 (compile) <img id="_img213" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep212', '_img213' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep212" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>spring-security-crypto</th></tr>
@@ -1514,7 +2049,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>Description: </b>Spring Security</p>
 <p><b>URL: </b><a class="externalLink" href="https://spring.io/projects/spring-security">https://spring.io/projects/spring-security</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a></p></td></tr></table></div></li></ul></li>
-<li>org.springframework.security:spring-security-web:jar:5.8.3 (compile) <img id="_img151" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep150', '_img151' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep150" style="display:none">
+<li>org.springframework.security:spring-security-web:jar:5.8.3 (compile) <img id="_img215" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep214', '_img215' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep214" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>spring-security-web</th></tr>
@@ -1523,7 +2058,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>Description: </b>Spring Security</p>
 <p><b>URL: </b><a class="externalLink" href="https://spring.io/projects/spring-security">https://spring.io/projects/spring-security</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a></p></td></tr></table></div></li>
-<li>com.github.spotbugs:spotbugs-annotations:jar:4.7.3 (provided) <img id="_img153" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep152', '_img153' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep152" style="display:none">
+<li>com.github.spotbugs:spotbugs-annotations:jar:4.7.3 (provided) <img id="_img217" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep216', '_img217' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep216" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>SpotBugs Annotations</th></tr>
@@ -1532,7 +2067,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>Description: </b>Annotations the SpotBugs tool supports</p>
 <p><b>URL: </b><a class="externalLink" href="https://spotbugs.github.io/">https://spotbugs.github.io/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.gnu.org/licenses/old-licenses/lgpl-2.1.en.html">GNU LESSER GENERAL PUBLIC LICENSE, Version 2.1</a></p></td></tr></table></div></li>
-<li>com.google.errorprone:error_prone_annotations:jar:2.19.1 (provided) <img id="_img155" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep154', '_img155' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep154" style="display:none">
+<li>com.google.errorprone:error_prone_annotations:jar:2.19.1 (provided) <img id="_img219" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep218', '_img219' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep218" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>error-prone annotations</th></tr>
@@ -1541,7 +2076,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>Description: </b>Error Prone is a static analysis tool for Java that catches common programming mistakes at compile-time.</p>
 <p><b>URL: </b><a class="externalLink" href="https://errorprone.info/error_prone_annotations">https://errorprone.info/error_prone_annotations</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache 2.0</a></p></td></tr></table></div></li>
-<li>com.google.j2objc:j2objc-annotations:jar:2.8 (provided) <img id="_img157" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep156', '_img157' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep156" style="display:none">
+<li>com.google.j2objc:j2objc-annotations:jar:2.8 (provided) <img id="_img221" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep220', '_img221' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep220" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>J2ObjC Annotations</th></tr>
@@ -1551,7 +2086,7 @@ file comparators, endian transformation classes, and much more.</p>
     translator to modify the result of translation.</p>
 <p><b>URL: </b><a class="externalLink" href="https://github.com/google/j2objc/">https://github.com/google/j2objc/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></li>
-<li>org.assertj:assertj-core:jar:3.24.2 (test) <img id="_img159" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep158', '_img159' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep158" style="display:none">
+<li>org.assertj:assertj-core:jar:3.24.2 (test) <img id="_img223" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep222', '_img223' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep222" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>AssertJ Core</th></tr>
@@ -1561,7 +2096,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>URL: </b><a class="externalLink" href="https://assertj.github.io/doc/#assertj-core">https://assertj.github.io/doc/#assertj-core</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div>
 <ul>
-<li>net.bytebuddy:byte-buddy:jar:1.12.21 (test) <img id="_img161" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep160', '_img161' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep160" style="display:none">
+<li>net.bytebuddy:byte-buddy:jar:1.12.21 (test) <img id="_img225" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep224', '_img225' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep224" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>Byte Buddy (without dependencies)</th></tr>
@@ -1571,7 +2106,7 @@ file comparators, endian transformation classes, and much more.</p>
         This artifact is a build of Byte Buddy with all ASM dependencies repackaged into its own name space.</p>
 <p><b>URL: </b><a class="externalLink" href="https://bytebuddy.net/byte-buddy">https://bytebuddy.net/byte-buddy</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></li></ul></li>
-<li>com.github.hazendaz.jmockit:jmockit:jar:1.50.0 (test) <img id="_img163" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep162', '_img163' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep162" style="display:none">
+<li>com.github.hazendaz.jmockit:jmockit:jar:1.50.0 (test) <img id="_img227" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep226', '_img227' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep226" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>jmockit</th></tr>
@@ -1584,7 +2119,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>URL: </b><a class="externalLink" href="http://jmockit.github.io">http://jmockit.github.io</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.opensource.org/licenses/mit-license.php">The MIT License</a></p></td></tr></table></div>
 <ul>
-<li>org.objenesis:objenesis:jar:3.3 (test) <img id="_img165" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep164', '_img165' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep164" style="display:none">
+<li>org.objenesis:objenesis:jar:3.3 (test) <img id="_img229" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep228', '_img229' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep228" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>Objenesis</th></tr>
@@ -1593,7 +2128,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>Description: </b>A library for instantiating Java objects</p>
 <p><b>URL: </b><a class="externalLink" href="http://objenesis.org/objenesis">http://objenesis.org/objenesis</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></li></ul></li>
-<li>org.junit.jupiter:junit-jupiter-engine:jar:5.9.3 (test) <img id="_img167" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep166', '_img167' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep166" style="display:none">
+<li>org.junit.jupiter:junit-jupiter-engine:jar:5.9.3 (test) <img id="_img231" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep230', '_img231' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep230" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>JUnit Jupiter Engine</th></tr>
@@ -1603,7 +2138,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>URL: </b><a class="externalLink" href="https://junit.org/junit5/">https://junit.org/junit5/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.eclipse.org/legal/epl-v20.html">Eclipse Public License v2.0</a></p></td></tr></table></div>
 <ul>
-<li>org.junit.platform:junit-platform-engine:jar:1.9.3 (test) <img id="_img169" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep168', '_img169' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep168" style="display:none">
+<li>org.junit.platform:junit-platform-engine:jar:1.9.3 (test) <img id="_img233" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep232', '_img233' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep232" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>JUnit Platform Engine API</th></tr>
@@ -1613,7 +2148,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>URL: </b><a class="externalLink" href="https://junit.org/junit5/">https://junit.org/junit5/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.eclipse.org/legal/epl-v20.html">Eclipse Public License v2.0</a></p></td></tr></table></div>
 <ul>
-<li>org.opentest4j:opentest4j:jar:1.2.0 (test) <img id="_img171" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep170', '_img171' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep170" style="display:none">
+<li>org.opentest4j:opentest4j:jar:1.2.0 (test) <img id="_img235" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep234', '_img235' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep234" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>org.opentest4j:opentest4j</th></tr>
@@ -1622,7 +2157,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>Description: </b>Open Test Alliance for the JVM</p>
 <p><b>URL: </b><a class="externalLink" href="https://github.com/ota4j-team/opentest4j">https://github.com/ota4j-team/opentest4j</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache License, Version 2.0</a></p></td></tr></table></div></li>
-<li>org.junit.platform:junit-platform-commons:jar:1.9.3 (test) <img id="_img173" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep172', '_img173' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep172" style="display:none">
+<li>org.junit.platform:junit-platform-commons:jar:1.9.3 (test) <img id="_img237" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep236', '_img237' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep236" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>JUnit Platform Commons</th></tr>
@@ -1631,7 +2166,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>Description: </b>Module &quot;junit-platform-commons&quot; of JUnit 5.</p>
 <p><b>URL: </b><a class="externalLink" href="https://junit.org/junit5/">https://junit.org/junit5/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.eclipse.org/legal/epl-v20.html">Eclipse Public License v2.0</a></p></td></tr></table></div></li></ul></li>
-<li>org.junit.jupiter:junit-jupiter-api:jar:5.9.3 (test) <img id="_img175" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep174', '_img175' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep174" style="display:none">
+<li>org.junit.jupiter:junit-jupiter-api:jar:5.9.3 (test) <img id="_img239" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep238', '_img239' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep238" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>JUnit Jupiter API</th></tr>
@@ -1640,7 +2175,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>Description: </b>Module &quot;junit-jupiter-api&quot; of JUnit 5.</p>
 <p><b>URL: </b><a class="externalLink" href="https://junit.org/junit5/">https://junit.org/junit5/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.eclipse.org/legal/epl-v20.html">Eclipse Public License v2.0</a></p></td></tr></table></div></li>
-<li>org.apiguardian:apiguardian-api:jar:1.1.2 (test) <img id="_img177" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep176', '_img177' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep176" style="display:none">
+<li>org.apiguardian:apiguardian-api:jar:1.1.2 (test) <img id="_img241" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep240', '_img241' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep240" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>org.apiguardian:apiguardian-api</th></tr>
@@ -1649,7 +2184,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>Description: </b>@API Guardian</p>
 <p><b>URL: </b><a class="externalLink" href="https://github.com/apiguardian-team/apiguardian">https://github.com/apiguardian-team/apiguardian</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache License, Version 2.0</a></p></td></tr></table></div></li></ul></li>
-<li>com.github.hazendaz:javabean-tester:jar:2.5.3 (test) <img id="_img179" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep178', '_img179' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep178" style="display:none">
+<li>com.github.hazendaz:javabean-tester:jar:2.5.3 (test) <img id="_img243" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep242', '_img243' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep242" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>javabean-tester</th></tr>
@@ -1659,7 +2194,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>URL: </b><a class="externalLink" href="https://github.com/hazendaz/javabean-tester">https://github.com/hazendaz/javabean-tester</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div>
 <ul>
-<li>cglib:cglib-nodep:jar:3.3.0 (test) <img id="_img181" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep180', '_img181' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep180" style="display:none">
+<li>cglib:cglib-nodep:jar:3.3.0 (test) <img id="_img245" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep244', '_img245' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep244" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>cglib-nodep</th></tr>
@@ -1668,7 +2203,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>Description: </b>cglib is a powerful, high performance and quality Code Generation Library, It is used to extend JAVA classes and implements interfaces at runtime.</p>
 <p><b>URL: </b><a class="externalLink" href="https://github.com/cglib/cglib/cglib-nodep">https://github.com/cglib/cglib/cglib-nodep</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">ASF 2.0</a></p></td></tr></table></div></li>
-<li>org.javassist:javassist:jar:3.29.2-GA (test) <img id="_img183" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep182', '_img183' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep182" style="display:none">
+<li>org.javassist:javassist:jar:3.29.2-GA (test) <img id="_img247" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep246', '_img247' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep246" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>Javassist</th></tr>
@@ -1678,7 +2213,7 @@ file comparators, endian transformation classes, and much more.</p>
     simple.  It is a class library for editing bytecodes in Java.</p>
 <p><b>URL: </b><a class="externalLink" href="http://www.javassist.org/">http://www.javassist.org/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.mozilla.org/MPL/MPL-1.1.html">MPL 1.1</a>, <a class="externalLink" href="http://www.gnu.org/licenses/lgpl-2.1.html">LGPL 2.1</a>, <a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a></p></td></tr></table></div></li>
-<li>nl.jqno.equalsverifier:equalsverifier:jar:3.14.1 (test) <img id="_img185" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep184', '_img185' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep184" style="display:none">
+<li>nl.jqno.equalsverifier:equalsverifier:jar:3.14.1 (test) <img id="_img249" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep248', '_img249' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep248" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>EqualsVerifier | release normal jar</th></tr>
@@ -1687,7 +2222,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>Description: </b>EqualsVerifier can be used in JUnit unit tests to verify whether the contract for the equals and hashCode methods is met.</p>
 <p><b>URL: </b><a class="externalLink" href="https://www.jqno.nl/equalsverifier">https://www.jqno.nl/equalsverifier</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></li></ul></li>
-<li>jakarta.activation:jakarta.activation-api:jar:1.2.2 (compile) <img id="_img187" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep186', '_img187' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep186" style="display:none">
+<li>jakarta.activation:jakarta.activation-api:jar:1.2.2 (compile) <img id="_img251" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep250', '_img251' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep250" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>Jakarta Activation API jar</th></tr>
@@ -1696,7 +2231,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>Description: </b>Jakarta Activation API jar</p>
 <p><b>URL: </b><a class="externalLink" href="https://github.com/eclipse-ee4j/jaf/jakarta.activation-api">https://github.com/eclipse-ee4j/jaf/jakarta.activation-api</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.eclipse.org/org/documents/edl-v10.php">EDL 1.0</a></p></td></tr></table></div></li>
-<li>com.sun.activation:jakarta.activation:jar:1.2.2 (compile) <img id="_img189" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep188', '_img189' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep188" style="display:none">
+<li>com.sun.activation:jakarta.activation:jar:1.2.2 (compile) <img id="_img253" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep252', '_img253' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep252" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>Jakarta Activation</th></tr>
@@ -1706,6 +2241,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>URL: </b><a class="externalLink" href="https://github.com/eclipse-ee4j/jaf/jakarta.activation">https://github.com/eclipse-ee4j/jaf/jakarta.activation</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.eclipse.org/org/documents/edl-v10.php">EDL 1.0</a></p></td></tr></table></div></li></ul></li></ul></section></section><a name="Licenses"></a><section>
 <h2><a name="Licenses"></a>Licenses</h2>
+<p><b>Unnamed: </b>Apache XBean :: ASM shaded (repackaged)</p>
 <p><b>CDDL, v1.0: </b>JHighlight</p>
 <p><b>Apache 2.0: </b>error-prone annotations</p>
 <p><b>The Apache License, Version 2.0: </b>org.apiguardian:apiguardian-api, org.opentest4j:opentest4j</p>
@@ -1717,27 +2253,30 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>GNU General Public License, version 2: </b>psi-probe-core, psi-probe-ojdbc</p>
 <p><b>Tanuki Software license: </b>Java Service Wrapper</p>
 <p><b>Eclipse Public License, Version 1.0: </b>c3p0, mchange-commons-java</p>
+<p><b>BSD: </b>Serp</p>
+<p><b>Unknown: </b>SXC JAXB :: Core, SXC Runtime</p>
 <p><b>Apache License 2.0: </b>Javassist, MaxMind DB Reader</p>
 <p><b>LGPL-2.1-or-later: </b>Java Native Access, Java Native Access Platform</p>
 <p><b>The MIT License: </b>Checker Qual, jmockit</p>
-<p><b>Apache License, Version 2.0: </b>Apache Commons BeanUtils, Apache Commons Codec, Apache Commons Collections, Apache Commons DBCP, Apache Commons Lang, Apache Commons Pool, Apache Commons Text, AssertJ Core, Byte Buddy (without dependencies), EqualsVerifier | release normal jar, Guava: Google Core Libraries for Java, J2ObjC Annotations, JCL 1.2 implemented over SLF4J, MaxMind GeoIP2 API, Objenesis, OpenEJB :: Container :: Core, Spring AOP, Spring Beans, Spring Commons Logging Bridge, Spring Context, Spring Context Support, Spring Core, Spring Expression Language (SpEL), Spring TestContext Framework, Spring Transaction, Spring Web, Spring Web MVC, spring-security-config, spring-security-core, spring-security-crypto, spring-security-web, tomcat-annotations-api, tomcat-api, tomcat-catalina, tomcat-coyote, tomcat-el-api, tomcat-jasper, tomcat-jasper-el, tomcat-jaspic-api, tomcat-jdbc, tomcat-jni, tomcat-jsp-api, tomcat-juli, tomcat-util, tomcat-util-scan</p>
-<p><b>Apache-2.0: </b>Apache Commons IO, Java Native Access, Java Native Access Platform</p>
+<p><b>Apache License, Version 2.0: </b>Apache BVal :: bval-jsr, Apache Commons BeanUtils, Apache Commons CLI, Apache Commons Codec, Apache Commons Collections, Apache Commons DBCP, Apache Commons Lang, Apache Commons Pool, Apache Commons Text, AssertJ Core, Byte Buddy (without dependencies), EE Common plugin, EJB plugin, EL 2.2 plugin, EqualsVerifier | release normal jar, Guava: Google Core Libraries for Java, J2ObjC Annotations, JCL 1.2 implemented over SLF4J, Java EE plugin, MaxMind GeoIP2 API, Objenesis, OpenJPA Aggregate Jar, OpenWebBeans Core, SPI definition, Spring AOP, Spring Beans, Spring Commons Logging Bridge, Spring Context, Spring Context Support, Spring Core, Spring Expression Language (SpEL), Spring TestContext Framework, Spring Transaction, Spring Web, Spring Web MVC, Web plugin, spring-security-config, spring-security-core, spring-security-crypto, spring-security-web, tomcat-annotations-api, tomcat-api, tomcat-catalina, tomcat-coyote, tomcat-el-api, tomcat-jasper, tomcat-jasper-el, tomcat-jaspic-api, tomcat-jdbc, tomcat-jni, tomcat-jsp-api, tomcat-juli, tomcat-util, tomcat-util-scan</p>
+<p><b>Apache-2.0: </b>Apache Commons IO, Java Native Access, Java Native Access Platform, TomEE :: BOMs :: JAXB Runtime, TomEE :: Container :: API, TomEE :: Container :: Core, TomEE :: Container :: JPA Integration, TomEE :: Container :: Java Agent, TomEE :: Container :: Java EE, TomEE :: Container :: Java EE Accessors, TomEE :: Container :: Loader, TomEE :: Container :: MBean Annotation API</p>
 <p><b>EPL 2.0: </b>Jakarta Mail API, Jakarta Servlet, javax.transaction API</p>
 <p><b>MPL 1.1: </b>Javassist</p>
 <p><b>Apache License, Version 2.0 and
         Common Development And Distribution License (CDDL) Version 1.0: </b>tomcat-servlet-api</p>
 <p><b>GNU Lesser General Public License, Version 2.1: </b>c3p0, mchange-commons-java</p>
+<p><b>HSQLDB License, a BSD open source license: </b>HyperSQL Database</p>
 <p><b>BSD-3-Clause: </b>XStream Core</p>
-<p><b>Indiana University Extreme! Lab Software License, vesion 1.1.1: </b>MXP1: Xml Pull Parser 3rd Edition (XPP3)</p>
 <p><b>ASF 2.0: </b>cglib-nodep</p>
-<p><b>Public Domain: </b>MXP1: Xml Pull Parser 3rd Edition (XPP3), XML Pull Parsing API</p>
+<p><b>Public Domain: </b>XML Pull Parsing API</p>
 <p><b>Indiana University Extreme! Lab Software License: </b>MXParser</p>
 <p><b>GNU Lesser General Public License: </b>Logback Classic Module, Logback Core Module</p>
 <p><b>GNU LESSER GENERAL PUBLIC LICENSE, Version 2.1: </b>SpotBugs Annotations</p>
 <p><b>EDL 1.0: </b>Jakarta Activation, Jakarta Activation API jar, Jakarta Mail API</p>
+<p><b>Eclipse Distribution License - v 1.0: </b>JAXB Runtime, Jakarta XML Binding API, TXW2 Runtime, istack common utility code runtime</p>
 <p><b>LGPL 2.1: </b>Javassist</p>
 <p><b>GNU Lesser General Public Licence: </b>JFreeChart</p>
-<p><b>The Apache Software License, Version 2.0: </b>FindBugs-jsr305, Guava InternalFutureFailureAccess and InternalFutures, Guava ListenableFuture only, HikariCP, Jackson-annotations, Jackson-core, Jakarta Dependency Injection, Vibur Database Connections Pool, Vibur Object Pool, jackson-databind, javabean-tester, quartz, sitemesh</p>
+<p><b>The Apache Software License, Version 2.0: </b>Apache XBean :: Finder shaded (repackaged), Apache XBean :: Naming, Apache XBean :: OSGI Bundle Utilities, Apache XBean :: Reflect, Apache Yoko CORBA Spec, FindBugs-jsr305, Guava InternalFutureFailureAccess and InternalFutures, Guava ListenableFuture only, HikariCP, Jackson-annotations, Jackson-core, Jakarta Dependency Injection, Swizzle :: Stream, Vibur Database Connections Pool, Vibur Object Pool, jackson-databind, javabean-tester, quartz, sitemesh</p>
 <p><b>Eclipse Public License - v 1.0: </b>Logback Classic Module, Logback Core Module</p></section>
         </main>
       </div>
