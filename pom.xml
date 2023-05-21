@@ -246,6 +246,7 @@
         <sortpom.plugin>3.2.1</sortpom.plugin>
         <source.plugin>3.2.1</source.plugin>
         <spotbugs.plugin>4.7.3.4</spotbugs.plugin>
+        <spotless.plugin>2.36.0</spotless.plugin>
         <surefire.plugin>3.1.0</surefire.plugin>
         <versions.plugin>2.15.0</versions.plugin>
         <war.plugin>3.3.2</war.plugin>
@@ -1063,6 +1064,45 @@
                     </configuration>
                 </plugin>
                 <plugin>
+                    <groupId>com.diffplug.spotless</groupId>
+                    <artifactId>spotless-maven-plugin</artifactId>
+                    <version>${spotless.plugin}</version>
+                    <configuration>
+                        <formats>
+                            <format>
+                                <includes>
+                                    <include>**/*.sh</include>
+                                    <include>**/*.yml</include>
+                                    <include>**/*.yaml</include>
+                                </includes>
+                                <excludes>
+                                    <exclude>**/target/**</exclude>
+                                </excludes>
+                                <trimTrailingWhitespace/>
+                                <endWithNewline/>
+                                <indent>
+                                    <spaces>true</spaces>
+                                    <spacesPerTab>2</spacesPerTab>
+                                </indent>
+                            </format>
+                            <format>
+                                <includes>
+                                    <include>**/*.xml</include>
+                                </includes>
+                                <excludes>
+                                    <exclude>**/target/**</exclude>
+                                </excludes>
+                                <trimTrailingWhitespace/>
+                                <endWithNewline/>
+                                <indent>
+                                    <spaces>true</spaces>
+                                    <spacesPerTab>4</spacesPerTab>
+                                </indent>
+                            </format>
+                        </formats>
+                    </configuration>
+                </plugin>
+                <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>build-helper-maven-plugin</artifactId>
                     <version>${build-helper.plugin}</version>
@@ -1290,6 +1330,18 @@
                         <goals>
                             <goal>sort</goal>
                         </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.diffplug.spotless</groupId>
+                <artifactId>spotless-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>apply</goal>
+                        </goals>
+                        <phase>process-sources</phase>
                     </execution>
                 </executions>
             </plugin>
