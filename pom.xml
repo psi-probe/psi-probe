@@ -415,20 +415,20 @@
                         <artifactId>geronimo-transaction</artifactId>
                     </exclusion>
                     <exclusion>
+                        <groupId>org.apache.openejb.shade</groupId>
+                        <artifactId>quartz-openejb-shade</artifactId>
+                    </exclusion>
+                    <exclusion>
                         <groupId>org.apache.tomee</groupId>
                         <artifactId>javaee-api</artifactId>
                     </exclusion>
                     <exclusion>
-                        <groupId>org.objectweb.howl</groupId>
-                        <artifactId>howl</artifactId>
+                        <groupId>org.hsqldb</groupId>
+                        <artifactId>hsqldb</artifactId>
                     </exclusion>
                     <exclusion>
                         <groupId>org.objectweb.howl</groupId>
                         <artifactId>howl</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.apache.openejb.shade</groupId>
-                        <artifactId>quartz-openejb-shade</artifactId>
                     </exclusion>
                     <exclusion>
                         <groupId>org.slf4j</groupId>
