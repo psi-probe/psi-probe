@@ -48,9 +48,9 @@ You can rename 'psi-probe-web.war' to the traditional 'probe.war' or other name 
 
     This will create directory called `psi-probe`. Subsequent steps will refer to this as "your PSI Probe base directory."
 
-2.  Minimum JDK version required to build and run is JDK8.
+2.  Minimum JDK version required to build is JDK 11 and run is JDK 8.
 
-3.  **Download and install Maven 3.**
+3.  **Download and install Maven 3.9.2 or better
 
     You may download it from the [Apache Maven website](https://maven.apache.org/download.cgi).
 
