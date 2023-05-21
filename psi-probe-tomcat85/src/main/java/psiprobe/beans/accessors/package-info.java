@@ -9,6 +9,6 @@
  * PURPOSE.
  */
 /**
- * Psi-Probe Beans Package.
+ * Psi-Probe Beans Accessors Package.
  */
 package psiprobe.beans.accessors;
