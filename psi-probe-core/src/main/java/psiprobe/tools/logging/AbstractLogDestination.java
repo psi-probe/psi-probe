@@ -72,7 +72,7 @@ public abstract class AbstractLogDestination extends DefaultAccessor implements 
 
   @Override
   public String[] getValidLevels() {
-    return null;
+    return new String[0];
   }
 
   @Override

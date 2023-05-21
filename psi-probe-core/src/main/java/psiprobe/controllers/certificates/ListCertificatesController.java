@@ -138,7 +138,7 @@ public class ListCertificatesController extends AbstractTomcatContainerControlle
       keyStore.load(storeInput, password);
     } catch (IOException e) {
       logger.error("Error loading store file {}", storeFile, e);
-      return null;
+      return Collections.emptyList();
     }
 
     List<Cert> certs = new ArrayList<>();

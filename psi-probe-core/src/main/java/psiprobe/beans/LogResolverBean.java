@@ -120,8 +120,8 @@ public class LogResolverBean {
   public List<LogDestination> getLogDestinations(boolean all) {
     List<LogDestination> allAppenders = getAllLogDestinations();
 
-    if (allAppenders == null) {
-      return null;
+    if (allAppenders.isEmpty()) {
+      return Collections.emptyList();
     }
 
     //
@@ -167,7 +167,7 @@ public class LogResolverBean {
     List<LogDestination> sources = new LinkedList<>();
 
     List<LogDestination> allAppenders = getAllLogDestinations();
-    if (allAppenders != null) {
+    if (!allAppenders.isEmpty()) {
       AbstractLogComparator cmp = new LogSourceComparator();
 
       Collections.sort(allAppenders, cmp);
@@ -187,7 +187,7 @@ public class LogResolverBean {
    */
   private List<LogDestination> getAllLogDestinations() {
     if (!Instruments.isInitialized()) {
-      return null;
+      return Collections.emptyList();
     }
 
     List<LogDestination> allAppenders = new ArrayList<>();
