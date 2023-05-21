@@ -15,80 +15,80 @@
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee https://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
     version="3.1">
 
-	<display-name>PSI Probe for Apache Tomcat v${project.version}</display-name>
+    <display-name>PSI Probe for Apache Tomcat v${project.version}</display-name>
 
-	<session-config>
-		<session-timeout>15</session-timeout>
-	</session-config>
+    <session-config>
+        <session-timeout>15</session-timeout>
+    </session-config>
 
-	<!-- no access error -->
-	<error-page>
-		<error-code>403</error-code>
-		<location>/403.htm</location>
-	</error-page>
+    <!-- no access error -->
+    <error-page>
+        <error-code>403</error-code>
+        <location>/403.htm</location>
+    </error-page>
 
-	<!-- page not found error -->
-	<error-page>
-		<error-code>404</error-code>
-		<location>/404.htm</location>
-	</error-page>
+    <!-- page not found error -->
+    <error-page>
+        <error-code>404</error-code>
+        <location>/404.htm</location>
+    </error-page>
 
-	<!-- 500 error -->
-	<error-page>
-		<error-code>500</error-code>
-		<location>/WEB-INF/jsp/errors/servleterror.jsp</location>
-	</error-page>
+    <!-- 500 error -->
+    <error-page>
+        <error-code>500</error-code>
+        <location>/WEB-INF/jsp/errors/servleterror.jsp</location>
+    </error-page>
 
-	<!--exception page -->
-	<error-page>
-		<exception-type>java.lang.Throwable</exception-type>
-		<location>/WEB-INF/jsp/errors/servleterror.jsp</location>
-	</error-page>
+    <!--exception page -->
+    <error-page>
+        <exception-type>java.lang.Throwable</exception-type>
+        <location>/WEB-INF/jsp/errors/servleterror.jsp</location>
+    </error-page>
 
-	<security-constraint>
-		<display-name>No anonymous access</display-name>
-		<web-resource-collection>
-			<web-resource-name>All areas</web-resource-name>
-			<url-pattern>/*</url-pattern>
-		</web-resource-collection>
-		<!-- Since tomcat 8.5, should be able to remove 'auth-constraint' -->
-		<auth-constraint>
-			<role-name>probeuser</role-name>
-			<role-name>poweruser</role-name>
-			<role-name>manager</role-name>
-			<role-name>manager-gui</role-name>
-			<role-name>poweruserplus</role-name>
-		</auth-constraint>
-		<user-data-constraint>
-			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
-		</user-data-constraint>
-	</security-constraint>
+    <security-constraint>
+        <display-name>No anonymous access</display-name>
+        <web-resource-collection>
+            <web-resource-name>All areas</web-resource-name>
+            <url-pattern>/*</url-pattern>
+        </web-resource-collection>
+        <!-- Since tomcat 8.5, should be able to remove 'auth-constraint' -->
+        <auth-constraint>
+            <role-name>probeuser</role-name>
+            <role-name>poweruser</role-name>
+            <role-name>manager</role-name>
+            <role-name>manager-gui</role-name>
+            <role-name>poweruserplus</role-name>
+        </auth-constraint>
+        <user-data-constraint>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
 
-	<!-- Defines the Login Configuration for this Application -->
-	<login-config>
-		<auth-method>BASIC</auth-method>
-		<realm-name>PSI Probe</realm-name>
-	</login-config>
+    <!-- Defines the Login Configuration for this Application -->
+    <login-config>
+        <auth-method>BASIC</auth-method>
+        <realm-name>PSI Probe</realm-name>
+    </login-config>
 
-	<!--Security roles referenced by this web application -->
-	<security-role>
-		<role-name>manager-gui</role-name>
-	</security-role>
+    <!--Security roles referenced by this web application -->
+    <security-role>
+        <role-name>manager-gui</role-name>
+    </security-role>
 
-	<security-role>
-		<role-name>manager</role-name>
-	</security-role>
+    <security-role>
+        <role-name>manager</role-name>
+    </security-role>
 
-	<security-role>
-		<role-name>poweruser</role-name>
-	</security-role>
+    <security-role>
+        <role-name>poweruser</role-name>
+    </security-role>
 
-	<security-role>
-		<role-name>poweruserplus</role-name>
-	</security-role>
+    <security-role>
+        <role-name>poweruserplus</role-name>
+    </security-role>
 
-	<security-role>
-		<role-name>probeuser</role-name>
-	</security-role>
+    <security-role>
+        <role-name>probeuser</role-name>
+    </security-role>
 
 </web-app>
