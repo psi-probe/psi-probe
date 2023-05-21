@@ -21,7 +21,7 @@ import psiprobe.model.DataSourceInfo;
 public class TomEeJdbcPoolDatasourceAccessor implements DatasourceAccessor {
 
   @Override
-  public DataSourceInfo getInfo(Object resource) throws Exception {
+  public DataSourceInfo getInfo(Object resource) {
     DataSourceInfo dataSourceInfo = null;
     if (canMap(resource)) {
       DataSource source = (DataSource) resource;
@@ -38,7 +38,7 @@ public class TomEeJdbcPoolDatasourceAccessor implements DatasourceAccessor {
   }
 
   @Override
-  public boolean reset(Object resource) throws Exception {
+  public boolean reset(Object resource) {
     return false;
   }
 

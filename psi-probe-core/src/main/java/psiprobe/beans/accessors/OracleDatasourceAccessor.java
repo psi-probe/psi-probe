@@ -10,6 +10,7 @@
  */
 package psiprobe.beans.accessors;
 
+import java.sql.SQLException;
 import java.util.Properties;
 
 import psiprobe.UtilsBase;
@@ -36,7 +37,7 @@ import oracle.jdbc.pool.OracleDataSource;
 public class OracleDatasourceAccessor implements DatasourceAccessor {
 
   @Override
-  public DataSourceInfo getInfo(Object resource) throws Exception {
+  public DataSourceInfo getInfo(Object resource) throws SQLException {
     DataSourceInfo dataSourceInfo = null;
 
     if (canMap(resource)) {
@@ -71,7 +72,7 @@ public class OracleDatasourceAccessor implements DatasourceAccessor {
   }
 
   @Override
-  public boolean reset(Object resource) throws Exception {
+  public boolean reset(Object resource) throws SQLException {
     if (canMap(resource)) {
       ((OracleDataSource) resource).close();
       return true;

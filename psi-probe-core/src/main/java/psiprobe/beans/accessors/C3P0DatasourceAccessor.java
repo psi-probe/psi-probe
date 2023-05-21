@@ -12,6 +12,8 @@ package psiprobe.beans.accessors;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
+import java.sql.SQLException;
+
 import psiprobe.model.DataSourceInfo;
 
 /**
@@ -20,7 +22,7 @@ import psiprobe.model.DataSourceInfo;
 public class C3P0DatasourceAccessor implements DatasourceAccessor {
 
   @Override
-  public DataSourceInfo getInfo(Object resource) throws Exception {
+  public DataSourceInfo getInfo(Object resource) throws SQLException {
     DataSourceInfo dataSourceInfo = null;
     if (canMap(resource)) {
       ComboPooledDataSource source = (ComboPooledDataSource) resource;
@@ -38,7 +40,7 @@ public class C3P0DatasourceAccessor implements DatasourceAccessor {
   }
 
   @Override
-  public boolean reset(Object resource) throws Exception {
+  public boolean reset(Object resource) {
     if (canMap(resource)) {
       ((ComboPooledDataSource) resource).hardReset();
       return true;

@@ -11,9 +11,11 @@
 package psiprobe.beans.accessors;
 
 import java.lang.management.ManagementFactory;
+import java.sql.SQLException;
 
 import javax.management.JMX;
 import javax.management.MBeanServer;
+import javax.management.MalformedObjectNameException;
 import javax.management.ObjectName;
 
 import org.vibur.dbcp.ViburDBCPDataSource;
@@ -27,13 +29,18 @@ import psiprobe.model.DataSourceInfo;
 public class ViburCpDatasourceAccessor implements DatasourceAccessor {
 
   @Override
-  public DataSourceInfo getInfo(final Object resource) throws Exception {
+  public DataSourceInfo getInfo(final Object resource) throws SQLException {
     DataSourceInfo dataSourceInfo = null;
     if (canMap(resource)) {
       ViburDBCPDataSource source = (ViburDBCPDataSource) resource;
 
       MBeanServer mbeanServer = ManagementFactory.getPlatformMBeanServer();
-      ObjectName poolName = new ObjectName(source.getJmxName());
+      ObjectName poolName;
+      try {
+        poolName = new ObjectName(source.getJmxName());
+      } catch (MalformedObjectNameException e) {
+        throw new SQLException("MalformedObjectNameException for Vibur", e);
+      }
       ViburMonitoringMBean poolProxy =
           JMX.newMXBeanProxy(mbeanServer, poolName, ViburMonitoringMBean.class);
 
@@ -51,7 +58,7 @@ public class ViburCpDatasourceAccessor implements DatasourceAccessor {
   }
 
   @Override
-  public boolean reset(final Object resource) throws Exception {
+  public boolean reset(final Object resource) {
     return false;
   }
 
