@@ -393,6 +393,22 @@
                         <groupId>commons-logging</groupId>
                         <artifactId>commons-logging</artifactId>
                     </exclusion>
+                    <exclusion>
+                        <groupId>org.apache.geronimo.components</groupId>
+                        <artifactId>geronimo-connector</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.apache.geronimo.specs</groupId>
+                        <artifactId>geronimo-j2ee-connector_1.6_spec</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.apache.geronimo.javamail</groupId>
+                        <artifactId>geronimo-javamail_1.6_mail</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.apache.geronimo.components</groupId>
+                        <artifactId>geronimo-transaction</artifactId>
+                    </exclusion>
                 </exclusions>
             </dependency>
             <dependency>
