@@ -426,6 +426,14 @@
                         <groupId>org.objectweb.howl</groupId>
                         <artifactId>howl</artifactId>
                     </exclusion>
+                    <exclusion>
+                        <groupId>org.apache.openejb.shade</groupId>
+                        <artifactId>quartz-openejb-shade</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-jdk14</artifactId>
+                    </exclusion>
                 </exclusions>
             </dependency>
             <dependency>
