@@ -388,6 +388,12 @@
                 <groupId>org.apache.tomee</groupId>
                 <artifactId>openejb-core</artifactId>
                 <version>${openejb.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>commons-logging</groupId>
+                        <artifactId>commons-logging</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>com.zaxxer</groupId>
