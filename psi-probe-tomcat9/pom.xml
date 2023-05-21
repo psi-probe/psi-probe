@@ -41,7 +41,6 @@
         <dependency>
             <groupId>com.github.hazendaz.jmockit</groupId>
             <artifactId>jmockit</artifactId>
-            <version>${jmockit.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
