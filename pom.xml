@@ -423,8 +423,8 @@
                         <artifactId>howl</artifactId>
                     </exclusion>
                     <exclusion>
-                        <groupId>org.objectweb.howl</groupId>
-                        <artifactId>howl</artifactId>
+                        <groupId>org.hsqldb</groupId>
+                        <artifactId>hsqldb</artifactId>
                     </exclusion>
                     <exclusion>
                         <groupId>org.apache.openejb.shade</groupId>
