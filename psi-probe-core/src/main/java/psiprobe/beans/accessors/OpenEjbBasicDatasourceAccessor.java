@@ -10,7 +10,7 @@
  */
 package psiprobe.beans.accessors;
 
-import org.apache.commons.dbcp2.BasicDataSource;
+import org.apache.openejb.resource.jdbc.dbcp.BasicDataSource;
 
 import psiprobe.model.DataSourceInfo;
 

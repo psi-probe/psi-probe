@@ -122,7 +122,7 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.apache.openejb</groupId>
+            <groupId>org.apache.tomee</groupId>
             <artifactId>openejb-core</artifactId>
             <scope>provided</scope>
         </dependency>
