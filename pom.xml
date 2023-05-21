@@ -204,7 +204,7 @@
         <text.version>1.10.0</text.version>
         <transaction-api.version>1.3.3</transaction-api.version>
         <tomcat.version>9.0.75</tomcat.version>
-        <ucp.version>19.18.0.0</ucp.version>
+        <ucp.version>23.2.0.0</ucp.version>
         <wrapper.version>3.2.3</wrapper.version>
         <xstream.version>1.4.20</xstream.version>
         <vibur-dbcp.version>25.0</vibur-dbcp.version>
