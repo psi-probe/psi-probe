@@ -10,11 +10,10 @@
  */
 package psiprobe;
 
-import java.io.IOException;
-
 import jakarta.servlet.ServletException;
 
-import mockit.Expectations;
+import java.io.IOException;
+
 import mockit.Mocked;
 import mockit.Tested;
 
