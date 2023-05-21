@@ -409,6 +409,10 @@
                         <groupId>org.apache.geronimo.components</groupId>
                         <artifactId>geronimo-transaction</artifactId>
                     </exclusion>
+                    <exclusion>
+                        <groupId>org.apache.tomee</groupId>
+                        <artifactId>javaee-api</artifactId>
+                    </exclusion>
                 </exclusions>
             </dependency>
             <dependency>
