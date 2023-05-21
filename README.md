@@ -64,29 +64,29 @@ You can rename 'psi-probe-web.war' to the traditional 'probe.war' or other name 
 
 ## Supported Tomcat Versions
 
-Generally supported versions for third party tomcat providers align with their support but earlier versions may still work.  Currently all tomcat in the series is supported but will soon begin to drop support for earlier versions due to vulnerability related issues.  It is advisable in every case to use only supported tomcat releases per specific vendor.
+Generally supported versions for third party tomcat providers align with their support but earlier versions may still work.  It is advisable in every case to use only supported tomcat releases per specific vendor.  Our support will only be against non CVE releases.
 
 * Tomcat 8.5 Series
 
-    - Tomcat 8.5.0 to 8.5.88
-    - TomEE 7.0.9 / 7.1.4 (Based on Tomcat 8.5.57)
-    - NonStop(tm) Servlets For JavaServer Pages(tm) v8.5 (Based on Tomcat 8.5.14)
-    - Pivotal tc 3.2.4 through 4.1.15 release (Based on Tomcat 8.5.9 through 8.5.78)
+    - Tomcat 8.5.86 to 8.5.89 (Stated end of life will be 3/31/2024, considering using tomcat 9 or better)
+    - TomEE 7.0/7.1 Discontinued, suggest to use TomEE 8.0 or better
+    - NonStop(tm) Servlets For JavaServer Pages(tm) v8.5 (Based on Tomcat 8.5.78)
+    - Pivotal tc 4.1.21 release (Based on Tomcat 8.5.87)
 
 * Tomcat 9.0 Series
 
-    - Tomcat 9.0.0 to 9.0.75
-    - TomEE 8.0.0 to 8.0.11 (Based on Tomcat 9.0.62)
-    - Pivotal tc 4.0.0 through 4.1.15 release (Based on Tomcat 9.0.0 to 9.0.62)
+    - Tomcat 9.0.72 to 9.0.75
+    - TomEE 8.0.15 (Based on Tomcat 9.0.74)
+    - Pivotal tc 4.1.21 release (Based on Tomcat 9.0.73)
 
-* Tomcat 10.1 Series (pending)
+* Tomcat 10.0 | 10.1 Series (pending)
 
-    - Tomcat 10.0.0 to 10.1.8
-    - TomEE 9.0.0-M7 (Based on Tomcat 10.0.4)
+    - Tomcat 10.1.6 to 10.1.9
+    - TomEE 9.0.0 (Based on Tomcat 10.0.27)
 
 * Tomcat 11.0 Series (pending)
 
-    - Tomcat 11.0.0.M1 to 11.0.0.M6
+    - Tomcat 11.0.0.M3 to 11.0.0.M6
 
 ## User Groups
 
