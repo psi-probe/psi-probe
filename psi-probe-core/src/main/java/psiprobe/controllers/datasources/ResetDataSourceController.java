@@ -89,7 +89,7 @@ public class ResetDataSourceController extends AbstractContextHandlerController 
       }
       if (!reset) {
         request.setAttribute("errorMessage",
-            getMessageSourceAccessor().getMessage("probe.src.reset.datasource.c3p0"));
+            getMessageSourceAccessor().getMessage("probe.src.reset.datasource"));
       }
 
     }
