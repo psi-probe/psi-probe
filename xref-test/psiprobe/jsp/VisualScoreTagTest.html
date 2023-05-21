@@ -82,7 +82,7 @@
 <a class="jxr_linenumber" name="L74" href="#L74">74</a>          String[] split = callCalculateSuffix(value, value2, fullBlocks, partialBlocks);
 <a class="jxr_linenumber" name="L75" href="#L75">75</a>          <strong class="jxr_keyword">for</strong> (String suffix : split) {
 <a class="jxr_linenumber" name="L76" href="#L76">76</a>            logger.trace(suffix);
-<a class="jxr_linenumber" name="L77" href="#L77">77</a>            String[] values = suffix.split(<span class="jxr_string">"&#92;&#92;+"</span>);
+<a class="jxr_linenumber" name="L77" href="#L77">77</a>            String[] values = suffix.split(<span class="jxr_string">"&#92;&#92;+"</span>, -1);
 <a class="jxr_linenumber" name="L78" href="#L78">78</a>            <strong class="jxr_keyword">if</strong> (values.length &gt; 1) {
 <a class="jxr_linenumber" name="L79" href="#L79">79</a>              value = Integer.parseInt(values[0]);
 <a class="jxr_linenumber" name="L80" href="#L80">80</a>              value2 = Integer.parseInt(values[1]);
@@ -137,7 +137,7 @@
 <a class="jxr_linenumber" name="L129" href="#L129">129</a> 
 <a class="jxr_linenumber" name="L130" href="#L130">130</a>     String buf = visualScoreTag.calculateSuffix(body);
 <a class="jxr_linenumber" name="L131" href="#L131">131</a> 
-<a class="jxr_linenumber" name="L132" href="#L132">132</a>     <strong class="jxr_keyword">return</strong> buf.split(<span class="jxr_string">" "</span>);
+<a class="jxr_linenumber" name="L132" href="#L132">132</a>     <strong class="jxr_keyword">return</strong> buf.split(<span class="jxr_string">" "</span>, -1);
 <a class="jxr_linenumber" name="L133" href="#L133">133</a>   }
 <a class="jxr_linenumber" name="L134" href="#L134">134</a> 
 <a class="jxr_linenumber" name="L135" href="#L135">135</a> }

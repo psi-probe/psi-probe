@@ -186,7 +186,7 @@
 <a class="jxr_linenumber" name="L178" href="#L178">178</a>           XYDataItem xy = it.next();
 <a class="jxr_linenumber" name="L179" href="#L179">179</a>           sum += xy.getY().longValue();
 <a class="jxr_linenumber" name="L180" href="#L180">180</a> 
-<a class="jxr_linenumber" name="L181" href="#L181">181</a>           <strong class="jxr_keyword">if</strong> (useMovingAvg &amp;&amp; count % getMovingAvgFrame() == 0 || !it.hasNext()) {
+<a class="jxr_linenumber" name="L181" href="#L181">181</a>           <strong class="jxr_keyword">if</strong> ((useMovingAvg &amp;&amp; count % getMovingAvgFrame() == 0) || !it.hasNext()) {
 <a class="jxr_linenumber" name="L182" href="#L182">182</a>             <strong class="jxr_keyword">double</strong> thisAvg = (<strong class="jxr_keyword">double</strong>) sum / count;
 <a class="jxr_linenumber" name="L183" href="#L183">183</a>             <strong class="jxr_keyword">if</strong> (thisAvg &gt; avg) {
 <a class="jxr_linenumber" name="L184" href="#L184">184</a>               avg = thisAvg;

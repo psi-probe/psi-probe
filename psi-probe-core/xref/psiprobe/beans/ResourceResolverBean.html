@@ -166,8 +166,8 @@
 <a class="jxr_linenumber" name="L158" href="#L158">158</a>         resource.setLookedUp(<strong class="jxr_keyword">true</strong>);
 <a class="jxr_linenumber" name="L159" href="#L159">159</a>         <strong class="jxr_keyword">for</strong> (String accessorString : datasourceMappers) {
 <a class="jxr_linenumber" name="L160" href="#L160">160</a>           logger.debug(<span class="jxr_string">"Looking up datasource adapter: {}"</span>, accessorString);
-<a class="jxr_linenumber" name="L161" href="#L161">161</a>           DatasourceAccessor accessor = (DatasourceAccessor) Class.forName(accessorString)
-<a class="jxr_linenumber" name="L162" href="#L162">162</a>               .getDeclaredConstructor().newInstance();
+<a class="jxr_linenumber" name="L161" href="#L161">161</a>           DatasourceAccessor accessor = Class.forName(accessorString)
+<a class="jxr_linenumber" name="L162" href="#L162">162</a>               .asSubclass(DatasourceAccessor.<strong class="jxr_keyword">class</strong>).getDeclaredConstructor().newInstance();
 <a class="jxr_linenumber" name="L163" href="#L163">163</a>           dataSourceInfo = accessor.getInfo(obj);
 <a class="jxr_linenumber" name="L164" href="#L164">164</a>           <strong class="jxr_keyword">if</strong> (dataSourceInfo != <strong class="jxr_keyword">null</strong>) {
 <a class="jxr_linenumber" name="L165" href="#L165">165</a>             <strong class="jxr_keyword">break</strong>;
@@ -201,8 +201,8 @@
 <a class="jxr_linenumber" name="L193" href="#L193">193</a>       <strong class="jxr_keyword">try</strong> {
 <a class="jxr_linenumber" name="L194" href="#L194">194</a>         <strong class="jxr_keyword">for</strong> (String accessorString : datasourceMappers) {
 <a class="jxr_linenumber" name="L195" href="#L195">195</a>           logger.debug(<span class="jxr_string">"Resetting datasource adapter: {}"</span>, accessorString);
-<a class="jxr_linenumber" name="L196" href="#L196">196</a>           DatasourceAccessor accessor = (DatasourceAccessor) Class.forName(accessorString)
-<a class="jxr_linenumber" name="L197" href="#L197">197</a>               .getDeclaredConstructor().newInstance();
+<a class="jxr_linenumber" name="L196" href="#L196">196</a>           DatasourceAccessor accessor = Class.forName(accessorString)
+<a class="jxr_linenumber" name="L197" href="#L197">197</a>               .asSubclass(DatasourceAccessor.<strong class="jxr_keyword">class</strong>).getDeclaredConstructor().newInstance();
 <a class="jxr_linenumber" name="L198" href="#L198">198</a>           <strong class="jxr_keyword">if</strong> (accessor.reset(obj)) {
 <a class="jxr_linenumber" name="L199" href="#L199">199</a>             <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">true</strong>;
 <a class="jxr_linenumber" name="L200" href="#L200">200</a>           }
