@@ -413,6 +413,14 @@
                         <groupId>org.apache.tomee</groupId>
                         <artifactId>javaee-api</artifactId>
                     </exclusion>
+                    <exclusion>
+                        <groupId>org.objectweb.howl</groupId>
+                        <artifactId>howl</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.objectweb.howl</groupId>
+                        <artifactId>howl</artifactId>
+                    </exclusion>
                 </exclusions>
             </dependency>
             <dependency>
