@@ -188,6 +188,7 @@
         <lang3.version>3.12.0</lang3.version>
         <logback.version>1.3.7</logback.version>
         <mail.version>1.6.7</mail.version>
+        <mchange.version>0.2.20</mchange.version>
         <oshi.version>6.4.2</oshi.version>
         <openejb.version>8.0.15</openejb.version>
         <persistence.version>2.2.3</persistence.version>
@@ -367,6 +368,11 @@
                 <groupId>com.mchange</groupId>
                 <artifactId>c3p0</artifactId>
                 <version>${c3p0.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.mchange</groupId>
+                <artifactId>mchange-commons-java</artifactId>
+                <version>${mchange.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.commons</groupId>
