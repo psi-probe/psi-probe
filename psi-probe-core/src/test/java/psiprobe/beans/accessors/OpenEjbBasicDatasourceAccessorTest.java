@@ -15,8 +15,7 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 import mockit.Mocked;
 import mockit.Tested;
 
-import org.apache.openejb.resource.jdbc.dbcp.BasicDataSource;
-import org.apache.openejb.resource.jdbc.managed.local.ManagedDataSource;
+import org.apache.commons.dbcp2.BasicDataSource;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
