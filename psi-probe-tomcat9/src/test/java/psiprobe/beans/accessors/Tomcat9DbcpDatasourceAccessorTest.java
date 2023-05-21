@@ -14,6 +14,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+import java.sql.SQLException;
+
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 import org.junit.jupiter.api.Test;
 
@@ -25,10 +27,10 @@ class Tomcat9DbcpDatasourceAccessorTest {
   /**
    * Tomcat 9 dbcp datasource accessor.
    *
-   * @throws Exception the exception
+   * @throws SQLException the sql exception
    */
   @Test
-  void Tomcat9DbcpDatasourceAccessor() throws Exception {
+  void Tomcat9DbcpDatasourceAccessor() throws SQLException {
     Tomcat9DbcpDatasourceAccessor accessor = new Tomcat9DbcpDatasourceAccessor();
     try (BasicDataSource source = new BasicDataSource()) {
       assertEquals("tomcat-dbcp2", accessor.getInfo(source).getType());
@@ -38,21 +40,19 @@ class Tomcat9DbcpDatasourceAccessorTest {
   /**
    * Tomcat 9 dbcp datasource accessor invalid.
    *
-   * @throws Exception the exception
+   * @throws SQLException the sql exception
    */
   @Test
-  void Tomcat9DbcpDatasourceAccessorInvalid() throws Exception {
+  void Tomcat9DbcpDatasourceAccessorInvalid() throws SQLException {
     Tomcat9DbcpDatasourceAccessor accessor = new Tomcat9DbcpDatasourceAccessor();
     assertNull(accessor.getInfo(new Object()));
   }
 
   /**
    * Reset.
-   *
-   * @throws Exception the exception
    */
   @Test
-  void reset() throws Exception {
+  void reset() {
     Tomcat9DbcpDatasourceAccessor accessor = new Tomcat9DbcpDatasourceAccessor();
     assertFalse(accessor.reset(new Object()));
   }
