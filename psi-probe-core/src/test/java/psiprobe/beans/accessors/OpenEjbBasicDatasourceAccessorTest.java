@@ -15,6 +15,7 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 import mockit.Mocked;
 import mockit.Tested;
 
+import org.apache.openejb.resource.jdbc.dbcp.BasicDataSource;
 import org.apache.openejb.resource.jdbc.managed.local.ManagedDataSource;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -32,7 +33,7 @@ class OpenEjbBasicDatasourceAccessorTest {
 
   /** The source. */
   @Mocked
-  ManagedDataSource source;
+  BasicDataSource source;
 
   /** The bad source. */
   ComboPooledDataSource badSource;
