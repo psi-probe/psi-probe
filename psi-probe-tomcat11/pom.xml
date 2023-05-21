@@ -17,22 +17,20 @@
     <parent>
         <groupId>com.github.psi-probe</groupId>
         <artifactId>psi-probe</artifactId>
-        <version>3.7.2-SNAPSHOT</version>
+        <version>3.7.4-SNAPSHOT</version>
     </parent>
 
     <artifactId>psi-probe-tomcat11</artifactId>
     <packaging>jar</packaging>
 
     <name>psi-probe-tomcat11</name>
-    <description>
-        PSI Probe Tomcat 11.0.x Adapter - Implementation of features specific to Apache Tomcat 11.0.x
-    </description>
+    <description>PSI Probe Tomcat 11.0.x Adapter - Implementation of features specific to Apache Tomcat 11.0.x</description>
 
     <scm>
         <connection>scm:git:ssh://git@github.com/psi-probe/psi-probe.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/psi-probe/psi-probe.git</developerConnection>
-        <url>https://github.com/psi-probe/psi-probe/</url>
         <tag>HEAD</tag>
+        <url>https://github.com/psi-probe/psi-probe/</url>
     </scm>
 
     <properties>
@@ -43,6 +41,7 @@
         <dependency>
             <groupId>com.github.hazendaz.jmockit</groupId>
             <artifactId>jmockit</artifactId>
+            <version>${jmockit.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
