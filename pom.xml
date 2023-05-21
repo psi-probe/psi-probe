@@ -200,7 +200,7 @@
         <spring-security.version>6.2.2</spring-security.version>
         <text.version>1.11.0</text.version>
         <tomcat.version>10.1.19</tomcat.version>
-        <tomee.version>8.0.16</tomee.version>
+        <tomee.version>9.1.2</tomee.version>
         <transaction-api.version>2.0.1</transaction-api.version>
         <ucp.version>21.13.0.0</ucp.version>
         <wrapper.version>3.2.3</wrapper.version>
@@ -430,7 +430,7 @@
                     </exclusion>
                     <exclusion>
                         <groupId>org.apache.tomee</groupId>
-                        <artifactId>javaee-api</artifactId>
+                        <artifactId>jakartaee-api</artifactId>
                     </exclusion>
                 </exclusions>
             </dependency>
