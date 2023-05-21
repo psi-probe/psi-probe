@@ -17,9 +17,6 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyContent;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * The Class VisualScoreTag.
  */
@@ -28,8 +25,6 @@ public class VisualScoreTag extends BodyTagSupport {
   /** The Constant serialVersionUID. */
   private static final long serialVersionUID = -5653846466205838602L;
 
-  /** The Constant logger. */
-  private static final Logger logger = LoggerFactory.getLogger(VisualScoreTag.class);
 
   /** The Constant WHITE_LEFT_BORDER. */
   private static final String WHITE_LEFT_BORDER = "a0";
@@ -93,8 +88,7 @@ public class VisualScoreTag extends BodyTagSupport {
 
       bc.getEnclosingWriter().print(buf);
     } catch (IOException e) {
-      logger.trace("", e);
-      throw new JspException("Error:IOException while writing to client" + e.getMessage());
+      throw new JspException("Exception while writing to client", e);
     }
 
     return SKIP_BODY;
