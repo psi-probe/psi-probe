@@ -20,7 +20,7 @@ import psiprobe.model.DataSourceInfo;
 public class Tomcat11DbcpDatasourceAccessor implements DatasourceAccessor {
 
   @Override
-  public DataSourceInfo getInfo(Object resource) throws Exception {
+  public DataSourceInfo getInfo(Object resource) {
     DataSourceInfo dataSourceInfo = null;
     if (canMap(resource)) {
       BasicDataSource source = (BasicDataSource) resource;
@@ -37,7 +37,7 @@ public class Tomcat11DbcpDatasourceAccessor implements DatasourceAccessor {
   }
 
   @Override
-  public boolean reset(Object resource) throws Exception {
+  public boolean reset(Object resource) {
     return false;
   }
 

@@ -10,6 +10,8 @@
  */
 package psiprobe.beans.accessors;
 
+import java.sql.SQLException;
+
 import psiprobe.model.DataSourceInfo;
 
 /**
@@ -23,18 +25,18 @@ public interface DatasourceAccessor {
    *
    * @param resource the resource
    * @return the info
-   * @throws Exception the exception
+   * @throws SQLException the sql exception
    */
-  DataSourceInfo getInfo(Object resource) throws Exception;
+  DataSourceInfo getInfo(Object resource) throws SQLException;
 
   /**
    * Reset.
    *
    * @param resource the resource
    * @return true, if successful
-   * @throws Exception the exception
+   * @throws SQLException the sql exception
    */
-  boolean reset(Object resource) throws Exception;
+  boolean reset(Object resource) throws SQLException;
 
   /**
    * Can map.

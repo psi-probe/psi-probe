@@ -14,9 +14,11 @@ import com.zaxxer.hikari.HikariDataSource;
 import com.zaxxer.hikari.HikariPoolMXBean;
 
 import java.lang.management.ManagementFactory;
+import java.sql.SQLException;
 
 import javax.management.JMX;
 import javax.management.MBeanServer;
+import javax.management.MalformedObjectNameException;
 import javax.management.ObjectName;
 
 import psiprobe.model.DataSourceInfo;
@@ -27,14 +29,18 @@ import psiprobe.model.DataSourceInfo;
 public class HikariCpDatasourceAccessor implements DatasourceAccessor {
 
   @Override
-  public DataSourceInfo getInfo(final Object resource) throws Exception {
+  public DataSourceInfo getInfo(final Object resource) throws SQLException {
     DataSourceInfo dataSourceInfo = null;
     if (canMap(resource)) {
       HikariDataSource source = (HikariDataSource) resource;
 
       MBeanServer mbeanServer = ManagementFactory.getPlatformMBeanServer();
-      ObjectName poolName =
-          new ObjectName("com.zaxxer.hikari:type=Pool (" + source.getPoolName() + ")");
+      ObjectName poolName;
+      try {
+        poolName = new ObjectName("com.zaxxer.hikari:type=Pool (" + source.getPoolName() + ")");
+      } catch (MalformedObjectNameException e) {
+        throw new SQLException("MalformedObjectNameException for Hikari", e);
+      }
       HikariPoolMXBean poolProxy =
           JMX.newMXBeanProxy(mbeanServer, poolName, HikariPoolMXBean.class);
 
@@ -51,7 +57,7 @@ public class HikariCpDatasourceAccessor implements DatasourceAccessor {
   }
 
   @Override
-  public boolean reset(final Object resource) throws Exception {
+  public boolean reset(final Object resource) {
     return false;
   }
 
