@@ -218,7 +218,7 @@
         <clean.plugin>3.2.0</clean.plugin>
         <compiler.plugin>3.11.0</compiler.plugin>
         <coveralls.plugin>4.4.1</coveralls.plugin>
-        <dependency.plugin>3.5.0</dependency.plugin>
+        <dependency.plugin>3.6.0</dependency.plugin>
         <dependency-check.plugin>8.2.1</dependency-check.plugin>
         <deploy.plugin>3.1.1</deploy.plugin>
         <enforcer.plugin>3.3.0</enforcer.plugin>
