@@ -52,17 +52,6 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>psi-probe-tomcat85</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>psi-probe-tomcat9</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <!-- For jakarta
-        <dependency>
-            <groupId>${project.groupId}</groupId>
             <artifactId>psi-probe-tomcat10</artifactId>
             <version>${project.version}</version>
         </dependency>
@@ -71,7 +60,6 @@
             <artifactId>psi-probe-tomcat11</artifactId>
             <version>${project.version}</version>
         </dependency>
-        -->
         <dependency>
             <groupId>jakarta.servlet</groupId>
             <artifactId>jakarta.servlet-api</artifactId>
