@@ -24,17 +24,17 @@
 
 	<head>
 		<title><spring:message code="probe.jsp.title.applications"/></title>
-		<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/func.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/behaviour.js'/>"></script>
+		<script src="<c:url value='/js/prototype.js'/>"></script>
+		<script src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
+		<script src="<c:url value='/js/func.js'/>"></script>
+		<script src="<c:url value='/js/behaviour.js'/>"></script>
 	</head>
 
 	<body>
 
 	<c:set var="navTabApps" value="active" scope="request"/>
 
-	<script type="text/javascript">
+	<script>
 		function handleContextReload(idx, context) {
 			var img = $('ri_'+idx);
 			var status = $('rs_'+idx);
@@ -260,7 +260,7 @@
 
 		</display:table>
 
-		<script type="text/javascript">
+		<script>
 			setupHelpToggle('<c:url value="/help/applications.ajax"/>');
 		</script>
 	</div>

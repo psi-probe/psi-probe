@@ -21,10 +21,10 @@
 		<title>
 			<spring:message code="probe.jsp.title.allappstats"/>
 		</title>
-		<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/func.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/behaviour.js'/>"></script>
+		<script src="<c:url value='/js/prototype.js'/>"></script>
+		<script src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
+		<script src="<c:url value='/js/func.js'/>"></script>
+		<script src="<c:url value='/js/behaviour.js'/>"></script>
 	</head>
 
 	<c:set var="navTabApps" value="active" scope="request"/>
@@ -190,7 +190,7 @@
 			</div>
 		</div>
 
-		<script type="text/javascript">
+		<script>
 			var imageUpdaters = new Array();
 			var fullImageUpdater;
 

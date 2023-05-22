@@ -22,12 +22,12 @@
 		<title><spring:message htmlEscape="true" code="probe.jsp.title.testDataSource" arguments="${param.webapp},${param.resource}"/></title>
 		<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='datasourcetest.css'/>"/>
 		<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='scroller.css'/>"/>
-		<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/behaviour.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/func.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/areascroller.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/datasourcetest.js'/>"></script>
+		<script src="<c:url value='/js/prototype.js'/>"></script>
+		<script src="<c:url value='/js/behaviour.js'/>"></script>
+		<script src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
+		<script src="<c:url value='/js/func.js'/>"></script>
+		<script src="<c:url value='/js/areascroller.js'/>"></script>
+		<script src="<c:url value='/js/datasourcetest.js'/>"></script>
 	</head>
 
 	<%-- Provides GUI for datasource connectivity testing. Allows a user to enter an SQL query and
@@ -176,7 +176,7 @@
 			</div>
 		</div>
 
-		<script type="text/javascript">
+		<script>
 			new Ajax.ImgUpdater('<c:out value="usage-${param.resource}" />', '${probe:max(collectionPeriod, 5)}');
 			setupAjaxActions(
 				'<c:url value="/sql/connection.ajax"/>',

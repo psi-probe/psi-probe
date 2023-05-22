@@ -23,10 +23,10 @@
 <html lang="${lang}">
 	<head>
 		<title><spring:message code="probe.jsp.title.follow"/></title>
-		<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/func.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/behaviour.js'/>"></script>
+		<script src="<c:url value='/js/prototype.js'/>"></script>
+		<script src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
+		<script src="<c:url value='/js/func.js'/>"></script>
+		<script src="<c:url value='/js/behaviour.js'/>"></script>
 	</head>
 
 	<c:set var="navTabLogs" value="active" scope="request"/>
@@ -181,7 +181,7 @@
 							</c:if>
 						</c:url>
 
-						<script type="text/javascript">
+						<script>
 							Event.observe(window, 'load', function() {
 								$('log_${logsource_rowNum}').observe('change', function(event) {
 									this.disable();
@@ -212,7 +212,7 @@
 			</c:otherwise>
 		</c:choose>
 
-		<script type="text/javascript">
+		<script>
 
 			var file_content_div = 'file_content';
 			var topPosition = -1;
@@ -393,7 +393,7 @@
 		</script>
 
 		<c:if test="${cookie['file_content_font_size'] != null}">
-			<script type="text/javascript">
+			<script>
 				Event.observe(window, 'load', function() {
 					setFontSize($(file_content_div), `<c:out value='${cookie["file_content_font_size"].value}' />`, false);
 				});

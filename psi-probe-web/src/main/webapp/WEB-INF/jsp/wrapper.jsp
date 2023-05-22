@@ -19,9 +19,9 @@
 <html lang="${lang}">
 	<head>
 		<title><spring:message code="probe.jsp.title.wrapper"/></title>
-		<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/behaviour.js'/>"></script>
+		<script src="<c:url value='/js/prototype.js'/>"></script>
+		<script src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
+		<script src="<c:url value='/js/behaviour.js'/>"></script>
 	</head>
 
 	<c:set var="navTabSystem" value="active" scope="request"/>
@@ -82,7 +82,7 @@
 				</display:table>
 			</div>
 
-			<script type="text/javascript">
+			<script>
 
 				function execute(url) {
 					new Ajax.Updater('msg', url);

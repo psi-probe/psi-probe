@@ -22,11 +22,11 @@
 
 	<head>
 		<title><spring:message code="probe.jsp.title.connectors"/></title>
-		<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/Tooltip.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/behaviour.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/func.js'/>"></script>
+		<script src="<c:url value='/js/prototype.js'/>"></script>
+		<script src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
+		<script src="<c:url value='/js/Tooltip.js'/>"></script>
+		<script src="<c:url value='/js/behaviour.js'/>"></script>
+		<script src="<c:url value='/js/func.js'/>"></script>
 	</head>
 
 	<c:set var="chartWidth" value="280"/>
@@ -223,7 +223,7 @@
 						</dl>
 					</div>
 
-					<script type="text/javascript">
+					<script>
 						new Ajax.ImgUpdater('req-${probe:escapeJS(protocolHandler)}', '${probe:max(collectionPeriod, 5)}');
 						new Ajax.ImgUpdater('proc_time-${probe:escapeJS(protocolHandler)}', '${probe:max(collectionPeriod, 5)}');
 						new Ajax.ImgUpdater('traf-${probe:escapeJS(protocolHandler)}', '${probe:max(collectionPeriod, 5)}');
@@ -255,7 +255,7 @@
 											<a id="ip_${probe:escapeHtml(connector.protocolHandler)}_${rp_rowNum}" href="#">${rp.remoteAddr}</a>
 
 											<c:if test="${rp.remoteAddr != ''}">
-												<script type="text/javascript">
+												<script>
 													addAjaxTooltip('ip_${probe:escapeJS(connector.protocolHandler)}_${rp_rowNum}',
 													'ttdiv', '<c:url value="/whois.ajax?ip=${rp.remoteAddr}"/>');
 												</script>
@@ -313,7 +313,7 @@
 														<a id="thr${rp_rowNum}">
 															${rp.workerThreadName}
 														</a>
-														<script type="text/javascript">
+														<script>
 															addAjaxTooltip('thr${rp_rowNum}', 'ttdiv', '<c:url value="/app/threadstack.ajax"/>?name=${rp.workerThreadName}');
 														</script>
 													</c:when>
@@ -371,7 +371,7 @@
 			</c:forEach>
 		</div>
 
-		<script type="text/javascript">
+		<script>
 			var rules = {
 				'#ttdiv_close': function(e) {
 					e.onclick = function(e) {

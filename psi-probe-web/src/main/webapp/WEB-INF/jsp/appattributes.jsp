@@ -25,10 +25,10 @@
 			<spring:message htmlEscape="true" code="probe.jsp.title.app.attributes" arguments="${param.webapp}"/>
 		</title>
 		<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='scroller.css'/>"/>
-		<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/behaviour.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/areascroller.js'/>"></script>
+		<script src="<c:url value='/js/prototype.js'/>"></script>
+		<script src="<c:url value='/js/behaviour.js'/>"></script>
+		<script src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
+		<script src="<c:url value='/js/areascroller.js'/>"></script>
 	</head>
 
 	<%-- Make Tab #1 visually "active". --%>
@@ -97,7 +97,7 @@
 							<td id="right_scroller" class="scroller">&#160;</td>
 						</tr>
 					</table>
-					<script type="text/javascript">
+					<script>
 						setupScrollers('appAttrTblContainer');
 					</script>
 				</c:otherwise>
