@@ -12,6 +12,7 @@
 
 -->
 <Context path="/probe" privileged="true">
+  <CookieProcessor sameSiteCookies="strict" />
   <Loader delegate="false" />
   <JarScanner>
      <JarScanFilter defaultPluggabilityScan="false"
