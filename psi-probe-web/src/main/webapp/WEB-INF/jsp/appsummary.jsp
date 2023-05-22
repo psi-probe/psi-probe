@@ -39,10 +39,10 @@
 				</div>
 			</c:when>
 			<c:otherwise>
-				<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>
-				<script type="text/javascript" src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
-				<script type="text/javascript" src="<c:url value='/js/func.js'/>"></script>
-				<script type="text/javascript" src="<c:url value='/js/behaviour.js'/>"></script>
+				<script src="<c:url value='/js/prototype.js'/>"></script>
+				<script src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
+				<script src="<c:url value='/js/func.js'/>"></script>
+				<script src="<c:url value='/js/behaviour.js'/>"></script>
 
 				<c:set var="confirmMessage">
 					<spring:message htmlEscape="true" code="probe.jsp.app.summary.undeploy.confirm" arguments="${param.webapp}"/>
@@ -118,7 +118,7 @@
 				</div>
 
 				<%-- periodical refreshing of runtime info --%>
-				<script type="text/javascript">
+				<script>
 
 					function updateAppInfo() {
 						new Ajax.Updater('runtimeAppInfo',
@@ -230,7 +230,7 @@
 					</div>
 
 					<%-- chart related functionality --%>
-					<script type="text/javascript">
+					<script>
 						var imageUpdaters = new Array();
 						var fullImageUpdater;
 

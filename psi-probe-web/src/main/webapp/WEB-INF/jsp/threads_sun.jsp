@@ -19,11 +19,11 @@
 <html lang="${lang}">
 	<head>
 		<title><spring:message code="probe.jsp.title.threads"/></title>
-		<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/Tooltip.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/behaviour.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/func.js'/>"></script>
+		<script src="<c:url value='/js/prototype.js'/>"></script>
+		<script src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
+		<script src="<c:url value='/js/Tooltip.js'/>"></script>
+		<script src="<c:url value='/js/behaviour.js'/>"></script>
+		<script src="<c:url value='/js/func.js'/>"></script>
 	</head>
 
 	<c:set var="navTabThreads" value="active" scope="request"/>
@@ -103,7 +103,7 @@
 									</c:choose>
 									)
 								</a>
-								<script type="text/javascript">
+								<script>
 									addAjaxTooltip('tt${th.id}', 'ttdiv', '<c:url value="/app/threadstack.ajax"/>?id=${th.id}');
 								</script>
 							</c:when>
@@ -123,7 +123,7 @@
 			</div>
 		</div>
 
-		<script type="text/javascript">
+		<script>
 			setupHelpToggle('<c:url value="/help/threads2.ajax"/>');
 			var rules = {
 				'#ttdiv_close': function(e) {

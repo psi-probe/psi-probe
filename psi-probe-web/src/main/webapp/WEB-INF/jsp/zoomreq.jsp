@@ -19,9 +19,9 @@
 <html lang="${lang}">
 	<head>
 		<title><c:out value="${param.cn}" /></title>
-		<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/func.js'/>"></script>
+		<script src="<c:url value='/js/prototype.js'/>"></script>
+		<script src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
+		<script src="<c:url value='/js/func.js'/>"></script>
 	</head>
 
 	<c:url value="/chart.png" var="imgurl" scope="request">
@@ -78,7 +78,7 @@
 				<img id="img" class="scale-image" src="${imgurl}&xz=${fullChartWidth}&yz=${fullChartHeight}" alt=""/>
 			</div>
 
-			<script type="text/javascript">
+			<script>
 				window.onload = onloadImg();
 				var fullChartWidth;
 				var fullChartHeight;

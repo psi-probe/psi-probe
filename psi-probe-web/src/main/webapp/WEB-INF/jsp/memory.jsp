@@ -20,9 +20,9 @@
 <html lang="${lang}">
 	<head>
 		<title><spring:message code="probe.jsp.title.memory"/></title>
-		<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/func.js'/>"></script>
+		<script src="<c:url value='/js/prototype.js'/>"></script>
+		<script src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
+		<script src="<c:url value='/js/func.js'/>"></script>
 	</head>
 
 	<c:set var="navTabSystem" value="active" scope="request"/>
@@ -111,7 +111,7 @@
 							</dl>
 						</div>
 
-						<script type="text/javascript">
+						<script>
 							new Ajax.ImgUpdater('img_${pool.id}', '${probe:max(collectionPeriod, 5)}');
 						</script>
 
@@ -123,7 +123,7 @@
 				</div>
 			</div>
 
-			<script type="text/javascript">
+			<script>
 
 				var fullImageUpdater;
 

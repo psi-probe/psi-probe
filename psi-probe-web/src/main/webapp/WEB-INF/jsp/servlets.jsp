@@ -31,7 +31,7 @@
 			</c:choose>
 		</title>
 		<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='servlets.css'/>"/>
-		<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>
+		<script src="<c:url value='/js/prototype.js'/>"></script>
 	</head>
 
 	<%-- Make Tab #1 visually "active". --%>
@@ -68,7 +68,7 @@
 			<c:import url="/servlets.ajax"/>
 		</div>
 
-		<script type="text/javascript">
+		<script>
 			new Ajax.PeriodicalUpdater('servletListContainer',
 			'<c:url value="/servlets.ajax"/>?<c:out value="${pageContext.request.queryString}"/>',
 			{method:'get', frequency: 5});

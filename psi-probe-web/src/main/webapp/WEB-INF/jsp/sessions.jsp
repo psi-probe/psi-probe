@@ -31,11 +31,11 @@
 				<title><spring:message htmlEscape="true" code="probe.jsp.title.sessions" arguments="${param.webapp}"/></title>
 			</c:otherwise>
 		</c:choose>
-		<script type="text/javascript" src="<c:url value='/js/prototype.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/Tooltip.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/func.js'/>"></script>
-		<script type="text/javascript" src="<c:url value='/js/behaviour.js'/>"></script>
+		<script src="<c:url value='/js/prototype.js'/>"></script>
+		<script src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
+		<script src="<c:url value='/js/Tooltip.js'/>"></script>
+		<script src="<c:url value='/js/func.js'/>"></script>
+		<script src="<c:url value='/js/behaviour.js'/>"></script>
 	</head>
 
 	<body>
@@ -221,7 +221,7 @@
 								<c:choose>
 									<c:when test="${! empty session.lastAccessedIp}">
 										<a id='ip_${session_rowNum}' href="#">${session.lastAccessedIp}</a>
-										<script type="text/javascript">
+										<script>
 											addAjaxTooltip('ip_${session_rowNum}', 'ttdiv', '<c:url value="/whois.ajax?ip=${session.lastAccessedIp}"/>');
 										</script>
 
@@ -328,7 +328,7 @@
 			</c:if>
 		</c:url>
 
-		<script type="text/javascript">
+		<script>
 			var rules = {
 				'#ttdiv_close': function(e) {
 					e.onclick = function(e) {
