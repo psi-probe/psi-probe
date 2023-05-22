@@ -10,6 +10,8 @@
  */
 package psiprobe;
 
+import jakarta.servlet.ServletContext;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -17,8 +19,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import jakarta.servlet.ServletContext;
 
 import org.apache.catalina.Context;
 import org.apache.catalina.Valve;
