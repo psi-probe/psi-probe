@@ -16,19 +16,19 @@
 
 <!DOCTYPE html>
 <html lang="${lang}">
-	<head><title>Not supported</title></head>
+    <head><title>Not supported</title></head>
 
-	<c:set var="navTabLogs" value="active" scope="request"/>
+    <c:set var="navTabLogs" value="active" scope="request"/>
 
-	<body>
-		<div class="errorMessage">
-			<p>
-				<%
-					pageContext.setAttribute("vmName", System.getProperty("java.runtime.name") + " " + System.getProperty("java.runtime.version") + " " +
-							System.getProperty("java.vm.name"));
-				%>
-				<spring:message code="probe.jsp.logs_notSupported.message" arguments="${vmName}"/>
-			</p>
-		</div>
-	</body>
+    <body>
+        <div class="errorMessage">
+            <p>
+                <%
+                    pageContext.setAttribute("vmName", System.getProperty("java.runtime.name") + " " + System.getProperty("java.runtime.version") + " " +
+                            System.getProperty("java.vm.name"));
+                %>
+                <spring:message code="probe.jsp.logs_notSupported.message" arguments="${vmName}"/>
+            </p>
+        </div>
+    </body>
 </html>

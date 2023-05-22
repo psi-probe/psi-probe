@@ -14,8 +14,8 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 <p>
-	<em><spring:message code="probe.jsp.threads.col.inNative"/></em> <spring:message code="probe.jsp.threads.help.inNative"/>,
-	<em><spring:message code="probe.jsp.threads.col.suspended"/></em> <spring:message code="probe.jsp.threads.help.suspended"/>,
-	<em><spring:message code="probe.jsp.threads.col.waitedCount"/></em> <spring:message code="probe.jsp.threads.help.waitedCount"/>,
-	<em><spring:message code="probe.jsp.threads.col.blockedCount"/></em> <spring:message code="probe.jsp.threads.help.blockedCount"/>
+    <em><spring:message code="probe.jsp.threads.col.inNative"/></em> <spring:message code="probe.jsp.threads.help.inNative"/>,
+    <em><spring:message code="probe.jsp.threads.col.suspended"/></em> <spring:message code="probe.jsp.threads.help.suspended"/>,
+    <em><spring:message code="probe.jsp.threads.col.waitedCount"/></em> <spring:message code="probe.jsp.threads.help.waitedCount"/>,
+    <em><spring:message code="probe.jsp.threads.col.blockedCount"/></em> <spring:message code="probe.jsp.threads.help.blockedCount"/>
 </p>

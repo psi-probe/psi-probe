@@ -17,116 +17,116 @@
 
 <!DOCTYPE html>
 <html lang="${lang}">
-	<head>
-		<title><c:out value="${param.cn}" /></title>
-		<script src="<c:url value='/js/prototype.js'/>"></script>
-		<script src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
-		<script src="<c:url value='/js/func.js'/>"></script>
-	</head>
+    <head>
+        <title><c:out value="${param.cn}" /></title>
+        <script src="<c:url value='/js/prototype.js'/>"></script>
+        <script src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
+        <script src="<c:url value='/js/func.js'/>"></script>
+    </head>
 
-	<c:url value="/chart.png" var="imgurl" scope="request">
-		<c:param name="l" value="true"/>
-		<c:param name="p" value="${param.p}"/>
-		<c:param name="sp" value="${param.sp}"/>
-		<c:choose>
-			<c:when test="${param.p == 'traffic'}">
-				<c:param name="s1c" value="#95FE8B"/>
-				<c:param name="s1o" value="#009406"/>
-				<c:param name="s2c" value="#FDFB8B"/>
-				<c:param name="s2o" value="#D9CB00"/>
-				<c:param name="s1l" value="sent"/>
-				<c:param name="s2l" value="received"/>
-			</c:when>
-			<c:when test="${param.p == 'connector_proc_time'}">
-				<c:param name="s1c" value="#FFCD9B"/>
-				<c:param name="s1o" value="#D26900"/>
-				<c:param name="s1l" value="processing time"/>
-			</c:when>
-			<c:otherwise>
-				<c:param name="s1l" value="requests"/>
-				<c:param name="s2l" value="errors"/>
-			</c:otherwise>
-		</c:choose>
-	</c:url>
+    <c:url value="/chart.png" var="imgurl" scope="request">
+        <c:param name="l" value="true"/>
+        <c:param name="p" value="${param.p}"/>
+        <c:param name="sp" value="${param.sp}"/>
+        <c:choose>
+            <c:when test="${param.p == 'traffic'}">
+                <c:param name="s1c" value="#95FE8B"/>
+                <c:param name="s1o" value="#009406"/>
+                <c:param name="s2c" value="#FDFB8B"/>
+                <c:param name="s2o" value="#D9CB00"/>
+                <c:param name="s1l" value="sent"/>
+                <c:param name="s2l" value="received"/>
+            </c:when>
+            <c:when test="${param.p == 'connector_proc_time'}">
+                <c:param name="s1c" value="#FFCD9B"/>
+                <c:param name="s1o" value="#D26900"/>
+                <c:param name="s1l" value="processing time"/>
+            </c:when>
+            <c:otherwise>
+                <c:param name="s1l" value="requests"/>
+                <c:param name="s2l" value="errors"/>
+            </c:otherwise>
+        </c:choose>
+    </c:url>
 
-	<c:set var="navTabConnectors" value="active" scope="request"/>
+    <c:set var="navTabConnectors" value="active" scope="request"/>
 
-	<body>
+    <body>
 
-		<ul class="options">
-			<li id="back">
-				<a href="<c:url value='/connectors.htm'/>">
-					<spring:message code="probe.jsp.zoomedchart.back"/>
-				</a>
-			</li>
-		</ul>
+        <ul class="options">
+            <li id="back">
+                <a href="<c:url value='/connectors.htm'/>">
+                    <spring:message code="probe.jsp.zoomedchart.back"/>
+                </a>
+            </li>
+        </ul>
 
-		<div class="blockContainer">
-			<div class="shadow">
-				<div class="info">
-					<p><spring:message code="probe.jsp.zoomedchart.information" arguments="${probe:max(collectionPeriod, 5)}" /></p>
-				</div>
-			</div>
+        <div class="blockContainer">
+            <div class="shadow">
+                <div class="info">
+                    <p><spring:message code="probe.jsp.zoomedchart.information" arguments="${probe:max(collectionPeriod, 5)}" /></p>
+                </div>
+            </div>
 
-			<div id="sliderContainer">
-				<div id="track">
-					<div id="handle"><img src="${pageContext.request.contextPath}<spring:theme code='slider.gif'/>" alt=""/></div>
-				</div>
-			</div>
+            <div id="sliderContainer">
+                <div id="track">
+                    <div id="handle"><img src="${pageContext.request.contextPath}<spring:theme code='slider.gif'/>" alt=""/></div>
+                </div>
+            </div>
 
-			<div>
-				<img id="img" class="scale-image" src="${imgurl}&xz=${fullChartWidth}&yz=${fullChartHeight}" alt=""/>
-			</div>
+            <div>
+                <img id="img" class="scale-image" src="${imgurl}&xz=${fullChartWidth}&yz=${fullChartHeight}" alt=""/>
+            </div>
 
-			<script>
-				window.onload = onloadImg();
-				var fullChartWidth;
-				var fullChartHeight;
-				function onloadImg(){
-					fullChartWidth = getWindowWidth() / 2;
-					fullChartHeight = getWindowHeight() / 2;
-					const scaleImage = document.getElementById("img");
-					scaleImage.src = "${imgurl}&xz="+ fullChartWidth + "&yz=" + fullChartHeight;
-					scaleImage.style.width = fullChartWidth + "px";
-					scaleImage.style.height = fullChartHeight + "px";
-				}
+            <script>
+                window.onload = onloadImg();
+                var fullChartWidth;
+                var fullChartHeight;
+                function onloadImg(){
+                    fullChartWidth = getWindowWidth() / 2;
+                    fullChartHeight = getWindowHeight() / 2;
+                    const scaleImage = document.getElementById("img");
+                    scaleImage.src = "${imgurl}&xz="+ fullChartWidth + "&yz=" + fullChartHeight;
+                    scaleImage.style.width = fullChartWidth + "px";
+                    scaleImage.style.height = fullChartHeight + "px";
+                }
 
 
-				// "animate" our slider
-				var slider = new Control.Slider('handle', 'track', {axis:'horizontal', alignX: -5, increment: 2, sliderValue: 0});
+                // "animate" our slider
+                var slider = new Control.Slider('handle', 'track', {axis:'horizontal', alignX: -5, increment: 2, sliderValue: 0});
 
-				// resize the image as the slider moves. The image quality would deteriorate, but it
-				// would not be final anyway. Once slider is released the image is re-requested from the server, where
-				// it is rebuilt from vector format
-				var v;
-				slider.options.onSlide = function(value) {
-					v= scaleImage(value, fullChartWidth, fullChartWidth * 2, fullChartHeight, fullChartHeight * 2);
-				}
+                // resize the image as the slider moves. The image quality would deteriorate, but it
+                // would not be final anyway. Once slider is released the image is re-requested from the server, where
+                // it is rebuilt from vector format
+                var v;
+                slider.options.onSlide = function(value) {
+                    v= scaleImage(value, fullChartWidth, fullChartWidth * 2, fullChartHeight, fullChartHeight * 2);
+                }
 
-				// this is where the slider is released and the image is reloaded
-				// we use current style settings to work our the required image dimensions
-				slider.options.onChange = function(value) {
-					if(value !== v) {
-						scaleImage(value, fullChartWidth, fullChartWidth * 2, fullChartHeight, fullChartHeight * 2)
-					}
+                // this is where the slider is released and the image is reloaded
+                // we use current style settings to work our the required image dimensions
+                slider.options.onChange = function(value) {
+                    if(value !== v) {
+                        scaleImage(value, fullChartWidth, fullChartWidth * 2, fullChartHeight, fullChartHeight * 2)
+                    }
 
-					// chop off "px" and round up float values
-					var width = Math.round(Element.getStyle('img', 'width').replace('px', ''));
+                    // chop off "px" and round up float values
+                    var width = Math.round(Element.getStyle('img', 'width').replace('px', ''));
 
-					var height = Math.round(width / (fullChartWidth / fullChartHeight));
+                    var height = Math.round(width / (fullChartWidth / fullChartHeight));
 
-					// reload the images
-					document.images.img.src = '<c:out value="${imgurl}" escapeXml="false"/>&xz=' + width + '&yz=' + height;
-					// reset the image auto-updater
-					// to make sure the auto-updater knows the changed image dimensions
-					if (updater) updater.stop();
-					updater = new Ajax.ImgUpdater('img', '${probe:max(collectionPeriod, 5)}');
-				}
+                    // reload the images
+                    document.images.img.src = '<c:out value="${imgurl}" escapeXml="false"/>&xz=' + width + '&yz=' + height;
+                    // reset the image auto-updater
+                    // to make sure the auto-updater knows the changed image dimensions
+                    if (updater) updater.stop();
+                    updater = new Ajax.ImgUpdater('img', '${probe:max(collectionPeriod, 5)}');
+                }
 
-				// start image auto-updater
-				updater = new Ajax.ImgUpdater('img', '${probe:max(collectionPeriod, 5)}');
+                // start image auto-updater
+                updater = new Ajax.ImgUpdater('img', '${probe:max(collectionPeriod, 5)}');
 
-			</script>
-		</div>
-	</body>
+            </script>
+        </div>
+    </body>
 </html>

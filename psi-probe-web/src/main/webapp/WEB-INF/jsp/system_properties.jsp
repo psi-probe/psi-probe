@@ -17,22 +17,22 @@
 
 <!DOCTYPE html>
 <html lang="${lang}">
-	<head>
-		<title><spring:message code="probe.jsp.sysinfo.sysproperties.title"/></title>
-	</head>
+    <head>
+        <title><spring:message code="probe.jsp.sysinfo.sysproperties.title"/></title>
+    </head>
 
-	<c:set var="navTabSystem" value="active" scope="request"/>
-	<c:set var="systemTabSysProps" value="active" scope="request"/>
-	<c:set var="use_decorator" value="system" scope="request"/>
+    <c:set var="navTabSystem" value="active" scope="request"/>
+    <c:set var="systemTabSysProps" value="active" scope="request"/>
+    <c:set var="use_decorator" value="system" scope="request"/>
 
-	<body>
+    <body>
 
-		<div id="systemProperties">
-			<display:table name="systemInformation.systemPropertySet" class="genericTbl" cellspacing="0"
-					requestURI="" defaultsort="1" defaultorder="ascending">
-				<display:column property="key" titleKey="probe.jsp.sysinfo.col.name" sortable="true" class="leftmost"/>
-				<display:column property="value" titleKey="probe.jsp.sysinfo.col.value" sortable="true"/>
-			</display:table>
-		</div>
-	</body>
+        <div id="systemProperties">
+            <display:table name="systemInformation.systemPropertySet" class="genericTbl" cellspacing="0"
+                    requestURI="" defaultsort="1" defaultorder="ascending">
+                <display:column property="key" titleKey="probe.jsp.sysinfo.col.name" sortable="true" class="leftmost"/>
+                <display:column property="value" titleKey="probe.jsp.sysinfo.col.value" sortable="true"/>
+            </display:table>
+        </div>
+    </body>
 </html>

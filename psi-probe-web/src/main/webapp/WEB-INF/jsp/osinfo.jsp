@@ -17,243 +17,243 @@
 
 <!DOCTYPE html>
 <html lang="${lang}">
-	<head>
-		<title><spring:message code="probe.jsp.sysinfo.os.title"/></title>
-		<script src="<c:url value='/js/prototype.js'/>"></script>
-		<script src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
-		<script src="<c:url value='/js/func.js'/>"></script>
-		<script src="<c:url value='/js/behaviour.js'/>"></script>
-	</head>
+    <head>
+        <title><spring:message code="probe.jsp.sysinfo.os.title"/></title>
+        <script src="<c:url value='/js/prototype.js'/>"></script>
+        <script src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
+        <script src="<c:url value='/js/func.js'/>"></script>
+        <script src="<c:url value='/js/behaviour.js'/>"></script>
+    </head>
 
-	<c:set var="navTabSystem" value="active" scope="request"/>
-	<c:set var="systemTabOsInfo" value="active" scope="request"/>
-	<c:set var="use_decorator" value="system" scope="request"/>
+    <c:set var="navTabSystem" value="active" scope="request"/>
+    <c:set var="systemTabOsInfo" value="active" scope="request"/>
+    <c:set var="use_decorator" value="system" scope="request"/>
 
-	<c:set var="chartWidth" value="260"/>
-	<c:set var="chartHeight" value="140"/>
-	<c:set var="fullChartWidth" value="650"/>
-	<c:set var="fullChartHeight" value="320"/>
+    <c:set var="chartWidth" value="260"/>
+    <c:set var="chartHeight" value="140"/>
+    <c:set var="fullChartWidth" value="650"/>
+    <c:set var="fullChartHeight" value="320"/>
 
-	<body>
-		<c:choose>
-			<c:when test="${empty runtime}">
-				<div class="errorMessage">
-					<p>
-						<spring:message code="probe.jsp.memory.notAvailable"/>
-					</p>
-				</div>
-			</c:when>
-			<c:otherwise>
+    <body>
+        <c:choose>
+            <c:when test="${empty runtime}">
+                <div class="errorMessage">
+                    <p>
+                        <spring:message code="probe.jsp.memory.notAvailable"/>
+                    </p>
+                </div>
+            </c:when>
+            <c:otherwise>
 
-				<spring:message code="probe.jsp.os.chart.memory.legend.total" var="mem_total_legend"/>
-				<spring:message code="probe.jsp.os.chart.memory.legend.jvm" var="jvm_legend"/>
+                <spring:message code="probe.jsp.os.chart.memory.legend.total" var="mem_total_legend"/>
+                <spring:message code="probe.jsp.os.chart.memory.legend.jvm" var="jvm_legend"/>
 
 
-				<c:url value="/chart.png" var="os_memory_url">
-					<c:param name="p" value="os_memory"/>
-					<c:param name="xz" value="${chartWidth}"/>
-					<c:param name="yz" value="${chartHeight}"/>
-					<c:param name="l" value="false"/>
-				</c:url>
+                <c:url value="/chart.png" var="os_memory_url">
+                    <c:param name="p" value="os_memory"/>
+                    <c:param name="xz" value="${chartWidth}"/>
+                    <c:param name="yz" value="${chartHeight}"/>
+                    <c:param name="l" value="false"/>
+                </c:url>
 
-				<c:url value="/chart.png" var="os_memory_url_full">
-					<c:param name="p" value="os_memory"/>
-					<c:param name="xz" value="${fullChartWidth}"/>
-					<c:param name="yz" value="${fullChartHeight}"/>
-					<c:param name="s1l" value="${mem_total_legend}"/>
-					<c:param name="s2l" value="${jvm_legend}"/>
-				</c:url>
+                <c:url value="/chart.png" var="os_memory_url_full">
+                    <c:param name="p" value="os_memory"/>
+                    <c:param name="xz" value="${fullChartWidth}"/>
+                    <c:param name="yz" value="${fullChartHeight}"/>
+                    <c:param name="s1l" value="${mem_total_legend}"/>
+                    <c:param name="s2l" value="${jvm_legend}"/>
+                </c:url>
 
-				<spring:message code="probe.jsp.os.chart.swap.legend" var="swap_legend"/>
+                <spring:message code="probe.jsp.os.chart.swap.legend" var="swap_legend"/>
 
-				<c:url value="/chart.png" var="swap_usage_url">
-					<c:param name="p" value="swap_usage"/>
-					<c:param name="xz" value="${chartWidth}"/>
-					<c:param name="yz" value="${chartHeight}"/>
-					<c:param name="s1c" value="#FFCD9B"/>
-					<c:param name="s1o" value="#D26900"/>
-					<c:param name="l" value="false"/>
-				</c:url>
+                <c:url value="/chart.png" var="swap_usage_url">
+                    <c:param name="p" value="swap_usage"/>
+                    <c:param name="xz" value="${chartWidth}"/>
+                    <c:param name="yz" value="${chartHeight}"/>
+                    <c:param name="s1c" value="#FFCD9B"/>
+                    <c:param name="s1o" value="#D26900"/>
+                    <c:param name="l" value="false"/>
+                </c:url>
 
-				<c:url value="/chart.png" var="swap_usage_url_full">
-					<c:param name="p" value="swap_usage"/>
-					<c:param name="xz" value="${fullChartWidth}"/>
-					<c:param name="yz" value="${fullChartHeight}"/>
-					<c:param name="s1c" value="#FFCD9B"/>
-					<c:param name="s1o" value="#D26900"/>
-					<c:param name="s1l" value="${swap_legend}"/>
-				</c:url>
+                <c:url value="/chart.png" var="swap_usage_url_full">
+                    <c:param name="p" value="swap_usage"/>
+                    <c:param name="xz" value="${fullChartWidth}"/>
+                    <c:param name="yz" value="${fullChartHeight}"/>
+                    <c:param name="s1c" value="#FFCD9B"/>
+                    <c:param name="s1o" value="#D26900"/>
+                    <c:param name="s1l" value="${swap_legend}"/>
+                </c:url>
 
-				<spring:message code="probe.jsp.os.chart.cpu.legend" var="cpu_legend"/>
+                <spring:message code="probe.jsp.os.chart.cpu.legend" var="cpu_legend"/>
 
-				<c:url value="/chart.png" var="cpu_usage_url">
-					<c:param name="p" value="cpu_usage"/>
-					<c:param name="xz" value="${chartWidth}"/>
-					<c:param name="yz" value="${chartHeight}"/>
-					<c:param name="s1c" value="#FFCCCC"/>
-					<c:param name="s1o" value="#FF8484"/>
-					<c:param name="l" value="false"/>
-				</c:url>
+                <c:url value="/chart.png" var="cpu_usage_url">
+                    <c:param name="p" value="cpu_usage"/>
+                    <c:param name="xz" value="${chartWidth}"/>
+                    <c:param name="yz" value="${chartHeight}"/>
+                    <c:param name="s1c" value="#FFCCCC"/>
+                    <c:param name="s1o" value="#FF8484"/>
+                    <c:param name="l" value="false"/>
+                </c:url>
 
-				<c:url value="/chart.png" var="cpu_usage_url_full">
-					<c:param name="p" value="cpu_usage"/>
-					<c:param name="xz" value="${fullChartWidth}"/>
-					<c:param name="yz" value="${fullChartHeight}"/>
-					<c:param name="s1c" value="#FFCCCC"/>
-					<c:param name="s1o" value="#FF8484"/>
-					<c:param name="s1l" value="${cpu_legend}"/>
-				</c:url>
+                <c:url value="/chart.png" var="cpu_usage_url_full">
+                    <c:param name="p" value="cpu_usage"/>
+                    <c:param name="xz" value="${fullChartWidth}"/>
+                    <c:param name="yz" value="${fullChartHeight}"/>
+                    <c:param name="s1c" value="#FFCCCC"/>
+                    <c:param name="s1o" value="#FF8484"/>
+                    <c:param name="s1l" value="${cpu_legend}"/>
+                </c:url>
 
-				<spring:message code="probe.jsp.os.chart.fd.legend.open" var="fd_open_legend"/>
-				<spring:message code="probe.jsp.os.chart.fd.legend.max" var="fd_max_legend"/>
+                <spring:message code="probe.jsp.os.chart.fd.legend.open" var="fd_open_legend"/>
+                <spring:message code="probe.jsp.os.chart.fd.legend.max" var="fd_max_legend"/>
 
-				<c:url value="/chart.png" var="fd_usage_url">
-					<c:param name="p" value="fd_usage"/>
-					<c:param name="xz" value="${chartWidth}"/>
-					<c:param name="yz" value="${chartHeight}"/>
-					<c:param name="s1c" value="#FF009B"/>
-					<c:param name="s1o" value="#D26900"/>
-					<c:param name="s2c" value="#00CD00"/>
-					<c:param name="s2o" value="#006900"/>
-					<c:param name="l" value="false"/>
-				</c:url>
+                <c:url value="/chart.png" var="fd_usage_url">
+                    <c:param name="p" value="fd_usage"/>
+                    <c:param name="xz" value="${chartWidth}"/>
+                    <c:param name="yz" value="${chartHeight}"/>
+                    <c:param name="s1c" value="#FF009B"/>
+                    <c:param name="s1o" value="#D26900"/>
+                    <c:param name="s2c" value="#00CD00"/>
+                    <c:param name="s2o" value="#006900"/>
+                    <c:param name="l" value="false"/>
+                </c:url>
 
-				<c:url value="/chart.png" var="fd_usage_url_full">
-					<c:param name="p" value="fd_usage"/>
-					<c:param name="xz" value="${fullChartWidth}"/>
-					<c:param name="yz" value="${fullChartHeight}"/>
-					<c:param name="s1c" value="#FF009B"/>
-					<c:param name="s1o" value="#D26900"/>
-					<c:param name="s2c" value="#00CD00"/>
-					<c:param name="s2o" value="#006900"/>
-					<c:param name="s1l" value="${fd_open_legend}"/>
-					<c:param name="s2l" value="${fd_max_legend}"/>
-				</c:url>
+                <c:url value="/chart.png" var="fd_usage_url_full">
+                    <c:param name="p" value="fd_usage"/>
+                    <c:param name="xz" value="${fullChartWidth}"/>
+                    <c:param name="yz" value="${fullChartHeight}"/>
+                    <c:param name="s1c" value="#FF009B"/>
+                    <c:param name="s1o" value="#D26900"/>
+                    <c:param name="s2c" value="#00CD00"/>
+                    <c:param name="s2o" value="#006900"/>
+                    <c:param name="s1l" value="${fd_open_legend}"/>
+                    <c:param name="s2l" value="${fd_max_legend}"/>
+                </c:url>
 
-				<div>
-					<h3><spring:message code="probe.jsp.os.h3.information"/></h3>
+                <div>
+                    <h3><spring:message code="probe.jsp.os.h3.information"/></h3>
 
-					<div id="osinfo">
-						<div class="ajax_activity"></div>
-					</div>
+                    <div id="osinfo">
+                        <div class="ajax_activity"></div>
+                    </div>
 
-					<div id="chart_group" style="width: 99%;">
-						<h3><spring:message code="probe.jsp.os.h3.charts"/></h3>
+                    <div id="chart_group" style="width: 99%;">
+                        <h3><spring:message code="probe.jsp.os.h3.charts"/></h3>
 
-						<div class="chartContainer">
-							<dl>
-								<dt><spring:message code="probe.jsp.os.chart.cpu"/></dt>
-								<dd class="image">
-									<img id="cpu_chart" border="0" src="<c:out value='${cpu_usage_url}' escapeXml='false'/>"
-											width="${chartWidth}"
-											height="${chartHeight}"
-											alt="<spring:message code='probe.jsp.os.chart.cpu.alt'/>"/>
-								</dd>
-							</dl>
-						</div>
+                        <div class="chartContainer">
+                            <dl>
+                                <dt><spring:message code="probe.jsp.os.chart.cpu"/></dt>
+                                <dd class="image">
+                                    <img id="cpu_chart" border="0" src="<c:out value='${cpu_usage_url}' escapeXml='false'/>"
+                                            width="${chartWidth}"
+                                            height="${chartHeight}"
+                                            alt="<spring:message code='probe.jsp.os.chart.cpu.alt'/>"/>
+                                </dd>
+                            </dl>
+                        </div>
 
-						<div class="chartContainer">
-							<dl>
-								<dt><spring:message code="probe.jsp.os.chart.memory"/></dt>
-								<dd class="image">
-									<img id="mem_chart" border="0" src="<c:out value='${os_memory_url}' escapeXml='false'/>"
-											width="${chartWidth}"
-											height="${chartHeight}"
-											alt="<spring:message code='probe.jsp.os.chart.memory.alt'/>"/>
-								</dd>
-							</dl>
-						</div>
+                        <div class="chartContainer">
+                            <dl>
+                                <dt><spring:message code="probe.jsp.os.chart.memory"/></dt>
+                                <dd class="image">
+                                    <img id="mem_chart" border="0" src="<c:out value='${os_memory_url}' escapeXml='false'/>"
+                                            width="${chartWidth}"
+                                            height="${chartHeight}"
+                                            alt="<spring:message code='probe.jsp.os.chart.memory.alt'/>"/>
+                                </dd>
+                            </dl>
+                        </div>
 
-						<div class="chartContainer">
-							<dl>
-								<dt><spring:message code="probe.jsp.os.chart.swap"/></dt>
-								<dd class="image">
-									<img id="swap_chart" border="0" src="<c:out value='${swap_usage_url}' escapeXml='false'/>"
-											width="${chartWidth}"
-											height="${chartHeight}"
-											alt="<spring:message code='probe.jsp.os.chart.swap.alt'/>"/>
-								</dd>
-							</dl>
-						</div>
+                        <div class="chartContainer">
+                            <dl>
+                                <dt><spring:message code="probe.jsp.os.chart.swap"/></dt>
+                                <dd class="image">
+                                    <img id="swap_chart" border="0" src="<c:out value='${swap_usage_url}' escapeXml='false'/>"
+                                            width="${chartWidth}"
+                                            height="${chartHeight}"
+                                            alt="<spring:message code='probe.jsp.os.chart.swap.alt'/>"/>
+                                </dd>
+                            </dl>
+                        </div>
 
-						<div class="chartContainer">
-							<dl>
-								<dt><spring:message code="probe.jsp.os.chart.fd"/></dt>
-								<dd class="image">
-									<img id="fd_chart" border="0" src="<c:out value='${fd_usage_url}' escapeXml='false'/>"
-											width="${chartWidth}"
-											height="${chartHeight}"
-											alt="<spring:message code='probe.jsp.os.chart.fd.alt'/>"/>
-								</dd>
-							</dl>
-						</div>
-					</div>
+                        <div class="chartContainer">
+                            <dl>
+                                <dt><spring:message code="probe.jsp.os.chart.fd"/></dt>
+                                <dd class="image">
+                                    <img id="fd_chart" border="0" src="<c:out value='${fd_usage_url}' escapeXml='false'/>"
+                                            width="${chartWidth}"
+                                            height="${chartHeight}"
+                                            alt="<spring:message code='probe.jsp.os.chart.fd.alt'/>"/>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
 
-					<div id="full_chart" style="display: none;">
-						<img id="fullImg" class="clickable" src="" width="${fullChartWidth}" height="${fullChartHeight}" alt=""/>
-					</div>
-				</div>
+                    <div id="full_chart" style="display: none;">
+                        <img id="fullImg" class="clickable" src="" width="${fullChartWidth}" height="${fullChartHeight}" alt=""/>
+                    </div>
+                </div>
 
-				<script>
-					var fullImageUpdater;
+                <script>
+                    var fullImageUpdater;
 
-					function zoomIn(url) {
-						if (fullImageUpdater) {
-							fullImageUpdater.stop();
-						}
-						var img = document.getElementById('fullImg');
-						Effect.DropOut('chart_group');
-						Effect.Appear('full_chart');
-						fullImageUpdater = new Ajax.ImgUpdater('fullImg', '${probe:max(collectionPeriod, 5)}', url);
-					}
+                    function zoomIn(url) {
+                        if (fullImageUpdater) {
+                            fullImageUpdater.stop();
+                        }
+                        var img = document.getElementById('fullImg');
+                        Effect.DropOut('chart_group');
+                        Effect.Appear('full_chart');
+                        fullImageUpdater = new Ajax.ImgUpdater('fullImg', '${probe:max(collectionPeriod, 5)}', url);
+                    }
 
-					function zoomOut() {
-						Effect.DropOut('full_chart');
-						Effect.Appear('chart_group');
-						if (fullImageUpdater) {
-							fullImageUpdater.stop();
-							fullImageUpdater = null;
-						}
-					}
+                    function zoomOut() {
+                        Effect.DropOut('full_chart');
+                        Effect.Appear('chart_group');
+                        if (fullImageUpdater) {
+                            fullImageUpdater.stop();
+                            fullImageUpdater = null;
+                        }
+                    }
 
-					var rules = {
-						'#mem_chart': function(element) {
-							element.onclick = function() {
-								zoomIn('<c:out value="${os_memory_url_full}" escapeXml="false"/>');
-							}
-						},
-						'#swap_chart': function(element) {
-							element.onclick = function() {
-								zoomIn('<c:out value="${swap_usage_url_full}" escapeXml="false"/>');
-							}
-						},
-						'#cpu_chart': function(element) {
-							element.onclick = function() {
-								zoomIn('<c:out value="${cpu_usage_url_full}" escapeXml="false"/>');
-							}
-						},
-						'#fd_chart': function(element) {
-							element.onclick = function() {
-								zoomIn('<c:out value="${fd_usage_url_full}" escapeXml="false"/>');
-							}
-						},
-						'#full_chart': function(element) {
-							element.onclick = function() {
-								zoomOut();
-							}
-						}
-					}
+                    var rules = {
+                        '#mem_chart': function(element) {
+                            element.onclick = function() {
+                                zoomIn('<c:out value="${os_memory_url_full}" escapeXml="false"/>');
+                            }
+                        },
+                        '#swap_chart': function(element) {
+                            element.onclick = function() {
+                                zoomIn('<c:out value="${swap_usage_url_full}" escapeXml="false"/>');
+                            }
+                        },
+                        '#cpu_chart': function(element) {
+                            element.onclick = function() {
+                                zoomIn('<c:out value="${cpu_usage_url_full}" escapeXml="false"/>');
+                            }
+                        },
+                        '#fd_chart': function(element) {
+                            element.onclick = function() {
+                                zoomIn('<c:out value="${fd_usage_url_full}" escapeXml="false"/>');
+                            }
+                        },
+                        '#full_chart': function(element) {
+                            element.onclick = function() {
+                                zoomOut();
+                            }
+                        }
+                    }
 
-					Behaviour.register(rules);
+                    Behaviour.register(rules);
 
-					new Ajax.ImgUpdater('cpu_chart', '${probe:max(collectionPeriod, 5)}');
-					new Ajax.ImgUpdater('mem_chart', '${probe:max(collectionPeriod, 5)}');
-					new Ajax.ImgUpdater('swap_chart', '${probe:max(collectionPeriod, 5)}');
-					new Ajax.ImgUpdater('fd_chart', '${probe:max(collectionPeriod, 5)}');
-					new Ajax.PeriodicalUpdater('osinfo', '<c:url value="/adm/osinfo.ajax"/>', {frequency: 5});
+                    new Ajax.ImgUpdater('cpu_chart', '${probe:max(collectionPeriod, 5)}');
+                    new Ajax.ImgUpdater('mem_chart', '${probe:max(collectionPeriod, 5)}');
+                    new Ajax.ImgUpdater('swap_chart', '${probe:max(collectionPeriod, 5)}');
+                    new Ajax.ImgUpdater('fd_chart', '${probe:max(collectionPeriod, 5)}');
+                    new Ajax.PeriodicalUpdater('osinfo', '<c:url value="/adm/osinfo.ajax"/>', {frequency: 5});
 
-				</script>
-			</c:otherwise>
-		</c:choose>
-	</body>
+                </script>
+            </c:otherwise>
+        </c:choose>
+    </body>
 </html>

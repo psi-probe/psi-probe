@@ -16,70 +16,70 @@
 
 <!DOCTYPE html>
 <html lang="${lang}">
-	<head>
-		<title><spring:message code="probe.jsp.title.servlet_source"/></title>
-		<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='java_syntax.css'/>"/>
-		<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='scroller.css'/>"/>
-		<script src="<c:url value='/js/prototype.js'/>"></script>
-		<script src="<c:url value='/js/behaviour.js'/>"></script>
-		<script src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
-		<script src="<c:url value='/js/areascroller.js'/>"></script>
-	</head>
+    <head>
+        <title><spring:message code="probe.jsp.title.servlet_source"/></title>
+        <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='java_syntax.css'/>"/>
+        <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='scroller.css'/>"/>
+        <script src="<c:url value='/js/prototype.js'/>"></script>
+        <script src="<c:url value='/js/behaviour.js'/>"></script>
+        <script src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
+        <script src="<c:url value='/js/areascroller.js'/>"></script>
+    </head>
 
-	<c:set var="navTabApps" value="active" scope="request"/>
-	<c:set var="use_decorator" value="application" scope="request"/>
-	<c:set var="appTabJSPs" value="active" scope="request"/>
+    <c:set var="navTabApps" value="active" scope="request"/>
+    <c:set var="use_decorator" value="application" scope="request"/>
+    <c:set var="appTabJSPs" value="active" scope="request"/>
 
-	<body>
+    <body>
 
-		<ul class="options">
-			<li id="back">
-				<a href="<c:url value='/app/jsp.htm'>
-						<c:param name='webapp' value='${param.webapp}'/>
-						</c:url>">
-					<spring:message code="probe.jsp.viewsource.opt.back"/>
-				</a>
-			</li>
-			<li id="viewJSP">
-				<a href="<c:url value='/app/viewsource.htm'>
-						<c:param name='webapp' value='${param.webapp}'/>
-						<c:param name='source' value='${param.source}'/>
-						</c:url>">
-					<spring:message code="probe.jsp.servlet_source.opt.jsp"/>
-				</a>
-			</li>
-			<li id="download">
-				<a href="<c:url value='/app/downloadserv.htm'>
-						<c:param name='webapp' value='${param.webapp}'/>
-						<c:param name='source' value='${param.source}'/>
-						</c:url>">
-					<spring:message code="probe.jsp.follow.menu.download"/>
-				</a>
-			</li>
+        <ul class="options">
+            <li id="back">
+                <a href="<c:url value='/app/jsp.htm'>
+                        <c:param name='webapp' value='${param.webapp}'/>
+                        </c:url>">
+                    <spring:message code="probe.jsp.viewsource.opt.back"/>
+                </a>
+            </li>
+            <li id="viewJSP">
+                <a href="<c:url value='/app/viewsource.htm'>
+                        <c:param name='webapp' value='${param.webapp}'/>
+                        <c:param name='source' value='${param.source}'/>
+                        </c:url>">
+                    <spring:message code="probe.jsp.servlet_source.opt.jsp"/>
+                </a>
+            </li>
+            <li id="download">
+                <a href="<c:url value='/app/downloadserv.htm'>
+                        <c:param name='webapp' value='${param.webapp}'/>
+                        <c:param name='source' value='${param.source}'/>
+                        </c:url>">
+                    <spring:message code="probe.jsp.follow.menu.download"/>
+                </a>
+            </li>
 
-		</ul>
-		<div class="embeddedBlockContainer">
-			<h3><spring:message code="probe.jsp.servlet_source.h3.source"/></h3>
+        </ul>
+        <div class="embeddedBlockContainer">
+            <h3><spring:message code="probe.jsp.servlet_source.h3.source"/></h3>
 
-			<table id="resultsTable" style="border-spacing:0;border-collapse:separate;">
-				<tr>
-					<td id="left_scroller" class="scroller">&#160;</td>
-					<td id="separator" width="1%" style="display: none;">&#160;</td>
-					<td>
-						<div class="scrollable_content" id="srccontent">
-							<code>
-								<c:out value="${content}" escapeXml="false"/>
-							</code>
-						</div>
-					</td>
-					<td id="right_scroller" class="scroller">&#160;</td>
-				</tr>
-			</table>
-		</div>
+            <table id="resultsTable" style="border-spacing:0;border-collapse:separate;">
+                <tr>
+                    <td id="left_scroller" class="scroller">&#160;</td>
+                    <td id="separator" width="1%" style="display: none;">&#160;</td>
+                    <td>
+                        <div class="scrollable_content" id="srccontent">
+                            <code>
+                                <c:out value="${content}" escapeXml="false"/>
+                            </code>
+                        </div>
+                    </td>
+                    <td id="right_scroller" class="scroller">&#160;</td>
+                </tr>
+            </table>
+        </div>
 
-		<script>
-			setupScrollers('srccontent');
-		</script>
+        <script>
+            setupScrollers('srccontent');
+        </script>
 
-	</body>
+    </body>
 </html>

@@ -18,130 +18,130 @@
 
 <!DOCTYPE html>
 <html lang="${lang}">
-	<head><title><spring:message code="probe.jsp.title.quickcheck"/></title></head>
+    <head><title><spring:message code="probe.jsp.title.quickcheck"/></title></head>
 
-	<body>
+    <body>
 
-		<c:set var="navTabQuickCheck" value="active" scope="request"/>
+        <c:set var="navTabQuickCheck" value="active" scope="request"/>
 
-		<table>
-			<tr>
-				<td>Datasource test</td>
-				<td>
-					<c:choose>
-						<c:when test="${testReport.datasourceTest == 0}">
-							<span class="ck_unk">
-								UNKNOWN
-							</span>
-						</c:when>
-						<c:when test="${testReport.datasourceTest == 1 && testReport.datasourceUsageScore < 100 }">
-							<span class="ck_pass">
-								PASSED
-							</span>
-						</c:when>
-						<c:otherwise>
-							<span class="ck_fail">
-								FAILED
-							</span>
-						</c:otherwise>
-					</c:choose>
-				</td>
-				<td>
-					<span class="checkdetails">
-						(Max usage ${testReport.datasourceUsageScore}%)
-					</span>
-				</td>
-			</tr>
+        <table>
+            <tr>
+                <td>Datasource test</td>
+                <td>
+                    <c:choose>
+                        <c:when test="${testReport.datasourceTest == 0}">
+                            <span class="ck_unk">
+                                UNKNOWN
+                            </span>
+                        </c:when>
+                        <c:when test="${testReport.datasourceTest == 1 && testReport.datasourceUsageScore < 100 }">
+                            <span class="ck_pass">
+                                PASSED
+                            </span>
+                        </c:when>
+                        <c:otherwise>
+                            <span class="ck_fail">
+                                FAILED
+                            </span>
+                        </c:otherwise>
+                    </c:choose>
+                </td>
+                <td>
+                    <span class="checkdetails">
+                        (Max usage ${testReport.datasourceUsageScore}%)
+                    </span>
+                </td>
+            </tr>
 
-			<tr>
-				<td>Memory test</td>
-				<td>
-					<span class="checkres">
-						<c:choose>
-							<c:when test="${testReport.memoryTest == 0}">
-								<span class="ck_unk">
-									UNKNOWN
-								</span>
-							</c:when>
-							<c:when test="${testReport.memoryTest == 1}">
-								<span class="ck_pass">
-									PASSED
-								</span>
-							</c:when>
-							<c:when test="${testReport.memoryTest == 2}">
-								<span class="ck_fail">
-									FAILED
-								</span>
-							</c:when>
-						</c:choose>
-					</span>
-				</td>
-				<td>
-					&#160;
-				</td>
-			</tr>
-			<tr>
-				<td>
-					File creation test:
-				</td>
-				<td>
-					<span class="checkres">
-						<c:choose>
-							<c:when test="${testReport.fileTest == 0}">
-								<span class="ck_unk">
-									UNKNOWN
-								</span>
-							</c:when>
-							<c:when test="${testReport.fileTest == 1}">
-								<span class="ck_pass">
-									PASSED
-								</span>
-							</c:when>
-							<c:when test="${testReport.fileTest == 2}">
-								<span class="ck_fail">
-									FAILED
-								</span>
-							</c:when>
-						</c:choose>
-					</span>
-				</td>
-				<td>
-					&#160;
-				</td>
-			</tr>
-			<tr>
-				<td>
-					Application test:
-				</td>
-				<td>
-					<span class="checkres">
-						<c:choose>
-							<c:when test="${testReport.webappAvailabilityTest == 0}">
-								<span class="ck_unk">
-									UNKNOWN
-								</span>
-							</c:when>
-							<c:when test="${testReport.webappAvailabilityTest == 1}">
-								<span class="ck_pass">
-									PASSED
-								</span>
-							</c:when>
-							<c:when test="${testReport.webappAvailabilityTest == 2}">
-								<span class="ck_fail">
-									FAILED
-								</span>
-							</c:when>
-						</c:choose>
-					</span>
-				</td>
-				<td>
-					&#160;
-				</td>
-			</tr>
-		</table>
-		<p>
-			Test duration: <c:out value="${testReport.testDuration}"/>ms.
-			<a href="quickcheck.xml.htm">XML version</a>
-		</p>
-	</body>
+            <tr>
+                <td>Memory test</td>
+                <td>
+                    <span class="checkres">
+                        <c:choose>
+                            <c:when test="${testReport.memoryTest == 0}">
+                                <span class="ck_unk">
+                                    UNKNOWN
+                                </span>
+                            </c:when>
+                            <c:when test="${testReport.memoryTest == 1}">
+                                <span class="ck_pass">
+                                    PASSED
+                                </span>
+                            </c:when>
+                            <c:when test="${testReport.memoryTest == 2}">
+                                <span class="ck_fail">
+                                    FAILED
+                                </span>
+                            </c:when>
+                        </c:choose>
+                    </span>
+                </td>
+                <td>
+                    &#160;
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    File creation test:
+                </td>
+                <td>
+                    <span class="checkres">
+                        <c:choose>
+                            <c:when test="${testReport.fileTest == 0}">
+                                <span class="ck_unk">
+                                    UNKNOWN
+                                </span>
+                            </c:when>
+                            <c:when test="${testReport.fileTest == 1}">
+                                <span class="ck_pass">
+                                    PASSED
+                                </span>
+                            </c:when>
+                            <c:when test="${testReport.fileTest == 2}">
+                                <span class="ck_fail">
+                                    FAILED
+                                </span>
+                            </c:when>
+                        </c:choose>
+                    </span>
+                </td>
+                <td>
+                    &#160;
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Application test:
+                </td>
+                <td>
+                    <span class="checkres">
+                        <c:choose>
+                            <c:when test="${testReport.webappAvailabilityTest == 0}">
+                                <span class="ck_unk">
+                                    UNKNOWN
+                                </span>
+                            </c:when>
+                            <c:when test="${testReport.webappAvailabilityTest == 1}">
+                                <span class="ck_pass">
+                                    PASSED
+                                </span>
+                            </c:when>
+                            <c:when test="${testReport.webappAvailabilityTest == 2}">
+                                <span class="ck_fail">
+                                    FAILED
+                                </span>
+                            </c:when>
+                        </c:choose>
+                    </span>
+                </td>
+                <td>
+                    &#160;
+                </td>
+            </tr>
+        </table>
+        <p>
+            Test duration: <c:out value="${testReport.testDuration}"/>ms.
+            <a href="quickcheck.xml.htm">XML version</a>
+        </p>
+    </body>
 </html>

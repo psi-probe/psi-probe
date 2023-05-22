@@ -15,33 +15,33 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 <div>
-	<div id="tooltip_title">
-		${threadName}
-	</div>
-	<c:choose>
-		<c:when test="${! empty stack}">
+    <div id="tooltip_title">
+        ${threadName}
+    </div>
+    <c:choose>
+        <c:when test="${! empty stack}">
 
-			<c:forEach items="${stack}" var="element">
-				<div>
-					${element.className}.${element.methodName}
-					(
-					<c:choose>
-						<c:when test="${!element.nativeMethod && element.lineNumber > 0}">
-							${element.fileName}:${element.lineNumber}
-						</c:when>
-						<c:when test="${element.nativeMethod}">
-							<spring:message code="probe.jsp.threadstack.native"/>
-						</c:when>
-						<c:otherwise>
-							<spring:message code="probe.jsp.threadstack.unknown"/>
-						</c:otherwise>
-					</c:choose>
-					)
-				</div>
-			</c:forEach>
-		</c:when>
-		<c:otherwise>
-			<spring:message code="probe.jsp.threadstack.unavailable"/>
-		</c:otherwise>
-	</c:choose>
+            <c:forEach items="${stack}" var="element">
+                <div>
+                    ${element.className}.${element.methodName}
+                    (
+                    <c:choose>
+                        <c:when test="${!element.nativeMethod && element.lineNumber > 0}">
+                            ${element.fileName}:${element.lineNumber}
+                        </c:when>
+                        <c:when test="${element.nativeMethod}">
+                            <spring:message code="probe.jsp.threadstack.native"/>
+                        </c:when>
+                        <c:otherwise>
+                            <spring:message code="probe.jsp.threadstack.unknown"/>
+                        </c:otherwise>
+                    </c:choose>
+                    )
+                </div>
+            </c:forEach>
+        </c:when>
+        <c:otherwise>
+            <spring:message code="probe.jsp.threadstack.unavailable"/>
+        </c:otherwise>
+    </c:choose>
 </div>

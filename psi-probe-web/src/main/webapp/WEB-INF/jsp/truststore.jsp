@@ -17,33 +17,33 @@
 
 <!DOCTYPE html>
 <html lang="${lang}">
-	<head>
-		<title><spring:message code="probe.jsp.sysinfo.truststore.title"/></title>
-	</head>
+    <head>
+        <title><spring:message code="probe.jsp.sysinfo.truststore.title"/></title>
+    </head>
 
-	<c:set var="navTabSystem" value="active" scope="request"/>
-	<c:set var="systemTabTrustStore" value="active" scope="request"/>
-	<c:set var="use_decorator" value="system" scope="request"/>
+    <c:set var="navTabSystem" value="active" scope="request"/>
+    <c:set var="systemTabTrustStore" value="active" scope="request"/>
+    <c:set var="use_decorator" value="system" scope="request"/>
 
-	<body>
-		<c:choose>
-			<c:when test="${ empty certificates}">
-				<div class="errorMessage">
-					<p>
-						<spring:message code="probe.jsp.sysinfo.truststore.notAvailable"/>
-					</p>
-				</div>
-			</c:when>
-			<c:otherwise>
-				<div id="systemProperties">
-					<display:table name="certificates" class="genericTbl" cellspacing="0"
-							requestURI="" defaultsort="2" defaultorder="ascending">
-						<display:column property="alias" titleKey="probe.jsp.sysinfo.truststore.alias" sortable="true" class="leftmost"/>
-						<display:column property="cn" titleKey="probe.jsp.sysinfo.truststore.cn" sortable="true" class="leftmost"/>
-						<display:column property="expirationDate" titleKey="probe.jsp.sysinfo.truststore.expirationDate" sortable="true"/>
-					</display:table>
-				</div>
-			</c:otherwise>
-		</c:choose>
-	</body>
+    <body>
+        <c:choose>
+            <c:when test="${ empty certificates}">
+                <div class="errorMessage">
+                    <p>
+                        <spring:message code="probe.jsp.sysinfo.truststore.notAvailable"/>
+                    </p>
+                </div>
+            </c:when>
+            <c:otherwise>
+                <div id="systemProperties">
+                    <display:table name="certificates" class="genericTbl" cellspacing="0"
+                            requestURI="" defaultsort="2" defaultorder="ascending">
+                        <display:column property="alias" titleKey="probe.jsp.sysinfo.truststore.alias" sortable="true" class="leftmost"/>
+                        <display:column property="cn" titleKey="probe.jsp.sysinfo.truststore.cn" sortable="true" class="leftmost"/>
+                        <display:column property="expirationDate" titleKey="probe.jsp.sysinfo.truststore.expirationDate" sortable="true"/>
+                    </display:table>
+                </div>
+            </c:otherwise>
+        </c:choose>
+    </body>
 </html>

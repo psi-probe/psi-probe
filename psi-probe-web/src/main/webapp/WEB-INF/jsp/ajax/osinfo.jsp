@@ -15,24 +15,24 @@
 <%@ taglib uri="https://github.com/psi-probe/psi-probe/jsp/tags" prefix="probe" %>
 
 <div class="shadow" style="clear: none;">
-	<div class="info">
-		<p>
-			<spring:message code="probe.jsp.os.card.name"/>
-			<span class="value">${runtime.osName}</span>
-			<spring:message code="probe.jsp.os.card.version"/>
-			<span class="value">${runtime.osVersion}</span>
-			<spring:message code="probe.jsp.os.card.processors"/>
-			<span class="value">${runtime.availableProcessors}</span>
-			<spring:message code="probe.jsp.os.card.totalMemory"/>
-			<span class="value"><probe:volume value="${runtime.totalPhysicalMemorySize}" fractions="2"/></span>
-			<spring:message code="probe.jsp.os.card.freeMemory"/>
-			<span class="value"><probe:volume value="${runtime.freePhysicalMemorySize}" fractions="2"/></span>
-			<spring:message code="probe.jsp.os.card.committedVirtualMemory"/>
-			<span class="value"><probe:volume value="${runtime.committedVirtualMemorySize}" fractions="2"/></span>
-			<spring:message code="probe.jsp.os.card.totalSwap"/>
-			<span class="value"><probe:volume value="${runtime.totalSwapSpaceSize}" fractions="2"/></span>
-			<spring:message code="probe.jsp.os.card.freeSwap"/>
-			<span class="value"><probe:volume value="${runtime.freeSwapSpaceSize}" fractions="2"/></span>
-		</p>
-	</div>
+    <div class="info">
+        <p>
+            <spring:message code="probe.jsp.os.card.name"/>
+            <span class="value">${runtime.osName}</span>
+            <spring:message code="probe.jsp.os.card.version"/>
+            <span class="value">${runtime.osVersion}</span>
+            <spring:message code="probe.jsp.os.card.processors"/>
+            <span class="value">${runtime.availableProcessors}</span>
+            <spring:message code="probe.jsp.os.card.totalMemory"/>
+            <span class="value"><probe:volume value="${runtime.totalPhysicalMemorySize}" fractions="2"/></span>
+            <spring:message code="probe.jsp.os.card.freeMemory"/>
+            <span class="value"><probe:volume value="${runtime.freePhysicalMemorySize}" fractions="2"/></span>
+            <spring:message code="probe.jsp.os.card.committedVirtualMemory"/>
+            <span class="value"><probe:volume value="${runtime.committedVirtualMemorySize}" fractions="2"/></span>
+            <spring:message code="probe.jsp.os.card.totalSwap"/>
+            <span class="value"><probe:volume value="${runtime.totalSwapSpaceSize}" fractions="2"/></span>
+            <spring:message code="probe.jsp.os.card.freeSwap"/>
+            <span class="value"><probe:volume value="${runtime.freeSwapSpaceSize}" fractions="2"/></span>
+        </p>
+    </div>
 </div>
