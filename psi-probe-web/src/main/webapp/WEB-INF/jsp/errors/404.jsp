@@ -18,13 +18,13 @@
 <!DOCTYPE html>
 <html lang="${lang}">
 
-	<head><title><spring:message code="probe.jsp.notfound.title"/></title></head>
+    <head><title><spring:message code="probe.jsp.notfound.title"/></title></head>
 
-	<body>
-		<div class="errorMessage">
-			<p>
-				<spring:message code="probe.jsp.notfound"/>
-			</p>
-		</div>
-	</body>
+    <body>
+        <div class="errorMessage">
+            <p>
+                <spring:message code="probe.jsp.notfound"/>
+            </p>
+        </div>
+    </body>
 </html>

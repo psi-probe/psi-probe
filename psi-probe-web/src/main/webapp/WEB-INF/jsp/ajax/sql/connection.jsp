@@ -18,20 +18,20 @@
 
 <div id="sqlResultsContainer">
 
-	<c:if test="${! empty errorMessage}">
-		<div class="errorMessage">
-			<p>${errorMessage}</p>
-		</div>
-	</c:if>
+    <c:if test="${! empty errorMessage}">
+        <div class="errorMessage">
+            <p>${errorMessage}</p>
+        </div>
+    </c:if>
 
-	<c:if test="${! empty dbMetaData}">
-		<div id="dbMetaData" class="sqlResultsContainer">
-			<display:table name="dbMetaData" uid="row" class="genericTbl"
-					style="padding:0;border-spacing:0;border-collapse:separate;" requestURI="">
-				<display:column class="leftmost" titleKey="probe.jsp.dataSourceTest.dbMetaData.col.propName" property="propertyName"/>
-				<display:column titleKey="probe.jsp.dataSourceTest.dbMetaData.col.propValue" property="propertyValue"/>
-			</display:table>
-		</div>
-	</c:if>
+    <c:if test="${! empty dbMetaData}">
+        <div id="dbMetaData" class="sqlResultsContainer">
+            <display:table name="dbMetaData" uid="row" class="genericTbl"
+                    style="padding:0;border-spacing:0;border-collapse:separate;" requestURI="">
+                <display:column class="leftmost" titleKey="probe.jsp.dataSourceTest.dbMetaData.col.propName" property="propertyName"/>
+                <display:column titleKey="probe.jsp.dataSourceTest.dbMetaData.col.propValue" property="propertyValue"/>
+            </display:table>
+        </div>
+    </c:if>
 
 </div>

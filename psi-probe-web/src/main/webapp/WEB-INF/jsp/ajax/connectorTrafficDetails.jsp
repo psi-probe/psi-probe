@@ -16,7 +16,7 @@
 <%@ taglib uri="https://github.com/psi-probe/psi-probe/jsp/tags" prefix="probe" %>
 
 <c:if test="${! empty connector}">
-	<span class="name"><spring:message code="probe.jsp.connectors.processor.sent"/></span>&#160;<probe:volume value="${connector.bytesSent}"/>
-	&#160;
-	<span class="name"><spring:message code="probe.jsp.connectors.processor.received"/></span>&#160;<probe:volume value="${connector.bytesReceived}"/>
+    <span class="name"><spring:message code="probe.jsp.connectors.processor.sent"/></span>&#160;<probe:volume value="${connector.bytesSent}"/>
+    &#160;
+    <span class="name"><spring:message code="probe.jsp.connectors.processor.received"/></span>&#160;<probe:volume value="${connector.bytesReceived}"/>
 </c:if>

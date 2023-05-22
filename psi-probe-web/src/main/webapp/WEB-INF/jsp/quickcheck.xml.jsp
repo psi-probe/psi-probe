@@ -16,16 +16,16 @@
 <%-- "Quick check" results in machine-readable XML format. --%>
 
 <report>
-	<c:choose>
-		<c:when test="${testReport.datasourceTest == 1 &&
-						testReport.datasourceUsageScore < 100 &&
-						testReport.memoryTest == 1 &&
-						testReport.fileTest == 1 &&
-						(testReport.webappAvailabilityTest == 1 || (! empty param.webapp && !param.webapp))}">
-			<status>OK</status>
-		</c:when>
-		<c:otherwise>
-			<status>FAULTY</status>
-		</c:otherwise>
-	</c:choose>
+    <c:choose>
+        <c:when test="${testReport.datasourceTest == 1 &&
+                        testReport.datasourceUsageScore < 100 &&
+                        testReport.memoryTest == 1 &&
+                        testReport.fileTest == 1 &&
+                        (testReport.webappAvailabilityTest == 1 || (! empty param.webapp && !param.webapp))}">
+            <status>OK</status>
+        </c:when>
+        <c:otherwise>
+            <status>FAULTY</status>
+        </c:otherwise>
+    </c:choose>
 </report>

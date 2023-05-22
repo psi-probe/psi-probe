@@ -1135,6 +1135,7 @@
                             </format>
                             <format>
                                 <includes>
+                                    <include>**/*.jsp</include>
                                     <include>**/*.xml</include>
                                 </includes>
                                 <excludes>

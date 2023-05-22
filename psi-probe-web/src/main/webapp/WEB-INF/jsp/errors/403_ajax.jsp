@@ -16,7 +16,7 @@
 <%-- "403 - Forbidden" error handler. --%>
 
 <div class="errorMessage">
-	<p>
-		<spring:message code="probe.jsp.noaccess.ajax"/>
-	</p>
+    <p>
+        <spring:message code="probe.jsp.noaccess.ajax"/>
+    </p>
 </div>

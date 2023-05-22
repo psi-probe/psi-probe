@@ -18,138 +18,138 @@
 
 <!DOCTYPE html>
 <html lang="${lang}">
-	<head>
-		<title><spring:message code="probe.jsp.title.memory"/></title>
-		<script src="<c:url value='/js/prototype.js'/>"></script>
-		<script src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
-		<script src="<c:url value='/js/func.js'/>"></script>
-	</head>
+    <head>
+        <title><spring:message code="probe.jsp.title.memory"/></title>
+        <script src="<c:url value='/js/prototype.js'/>"></script>
+        <script src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
+        <script src="<c:url value='/js/func.js'/>"></script>
+    </head>
 
-	<c:set var="navTabSystem" value="active" scope="request"/>
-	<c:set var="systemTabMemory" value="active" scope="request"/>
-	<c:set var="use_decorator" value="system" scope="request"/>
+    <c:set var="navTabSystem" value="active" scope="request"/>
+    <c:set var="systemTabMemory" value="active" scope="request"/>
+    <c:set var="use_decorator" value="system" scope="request"/>
 
-	<c:set var="chartWidth" value="228"/>
-	<c:set var="chartHeight" value="120"/>
-	<c:set var="fullChartWidth" value="750"/>
-	<c:set var="fullChartHeight" value="350"/>
+    <c:set var="chartWidth" value="228"/>
+    <c:set var="chartHeight" value="120"/>
+    <c:set var="fullChartWidth" value="750"/>
+    <c:set var="fullChartHeight" value="350"/>
 
-	<body>
+    <body>
 
-	<c:choose>
-		<c:when test="${empty pools}">
-			<div class="errorMessage">
-				<p>
-					<spring:message code="probe.jsp.memory.notAvailable"/>
-				</p>
-			</div>
-		</c:when>
-		<c:otherwise>
-			<c:url value="/chart.png" var="fullChartBase">
-				<c:param name="p" value="memory_usage"/>
-				<c:param name="xz" value="${fullChartWidth}"/>
-				<c:param name="yz" value="${fullChartHeight}"/>
-			</c:url>
+    <c:choose>
+        <c:when test="${empty pools}">
+            <div class="errorMessage">
+                <p>
+                    <spring:message code="probe.jsp.memory.notAvailable"/>
+                </p>
+            </div>
+        </c:when>
+        <c:otherwise>
+            <c:url value="/chart.png" var="fullChartBase">
+                <c:param name="p" value="memory_usage"/>
+                <c:param name="xz" value="${fullChartWidth}"/>
+                <c:param name="yz" value="${fullChartHeight}"/>
+            </c:url>
 
-			<div class="memory">
+            <div class="memory">
 
-				<ul class="options">
-					<li id="adviseFin">
-						<a href="<c:url value='/adm/advisegc.htm?fin=true'/>">
-							<spring:message code="probe.jsp.memory.advise.finalization"/>
-						</a>
-					</li>
-					<li id="adviseGC">
-						<a href="<c:url value='/adm/advisegc.htm'/>">
-							<spring:message code="probe.jsp.memory.advise.gc"/>
-						</a>
-					</li>
-				</ul>
+                <ul class="options">
+                    <li id="adviseFin">
+                        <a href="<c:url value='/adm/advisegc.htm?fin=true'/>">
+                            <spring:message code="probe.jsp.memory.advise.finalization"/>
+                        </a>
+                    </li>
+                    <li id="adviseGC">
+                        <a href="<c:url value='/adm/advisegc.htm'/>">
+                            <spring:message code="probe.jsp.memory.advise.gc"/>
+                        </a>
+                    </li>
+                </ul>
 
-				<h3><spring:message code="probe.jsp.memory.h3.table"/></h3>
+                <h3><spring:message code="probe.jsp.memory.h3.table"/></h3>
 
-				<div id="memoryPools">
-					<div class="ajax_activity"></div>
-				</div>
+                <div id="memoryPools">
+                    <div class="ajax_activity"></div>
+                </div>
 
-				<h3><spring:message code="probe.jsp.memory.h3.charts"/></h3>
+                <h3><spring:message code="probe.jsp.memory.h3.charts"/></h3>
 
-				<div id="memChartGroup">
+                <div id="memChartGroup">
 
-					<c:forEach items="${pools}" var="pool" varStatus="status">
+                    <c:forEach items="${pools}" var="pool" varStatus="status">
 
-						<c:url value="/chart.png" var="chartUrl" scope="page">
-							<c:param name="p" value="memory_usage"/>
-							<c:param name="sp" value="${pool.name}"/>
-							<c:param name="xz" value="${chartWidth}"/>
-							<c:param name="yz" value="${chartHeight}"/>
-							<c:param name="l" value="false"/>
-						</c:url>
+                        <c:url value="/chart.png" var="chartUrl" scope="page">
+                            <c:param name="p" value="memory_usage"/>
+                            <c:param name="sp" value="${pool.name}"/>
+                            <c:param name="xz" value="${chartWidth}"/>
+                            <c:param name="yz" value="${chartHeight}"/>
+                            <c:param name="l" value="false"/>
+                        </c:url>
 
-						<c:set var="cookie_name" value="mem_${pool.id}" scope="page"/>
+                        <c:set var="cookie_name" value="mem_${pool.id}" scope="page"/>
 
-						<c:choose>
-							<c:when test="${cookie[probe:safeCookieName(cookie_name)].value == 'off'}">
-								<c:set var="style" value="display:none"/>
-							</c:when>
-							<c:otherwise>
-								<c:set var="style" value=""/>
-							</c:otherwise>
-						</c:choose>
+                        <c:choose>
+                            <c:when test="${cookie[probe:safeCookieName(cookie_name)].value == 'off'}">
+                                <c:set var="style" value="display:none"/>
+                            </c:when>
+                            <c:otherwise>
+                                <c:set var="style" value=""/>
+                            </c:otherwise>
+                        </c:choose>
 
-						<div class="memoryChart" id="${pool.id}" style="${style}">
-							<dl>
-								<dt>
-									${pool.name}
-									<c:url var="toggleUrl" value="/remember.ajax?cn=mem_${pool.id}"/>
-									<img onclick="togglePanel('${pool.id}', '${toggleUrl}')"
-											src="${pageContext.request.contextPath}<spring:theme code='bullet_arrow_down.png'/>" alt="+"/>
-								</dt>
-								<dd class="image"><img id="img_${pool.id}"
-													src="<c:out value='${chartUrl}' escapeXml='false'/>" width="${chartWidth}" height="${chartHeight}" alt="+"
-													onclick="zoomIn('${pool.name}')"/></dd>
-							</dl>
-						</div>
+                        <div class="memoryChart" id="${pool.id}" style="${style}">
+                            <dl>
+                                <dt>
+                                    ${pool.name}
+                                    <c:url var="toggleUrl" value="/remember.ajax?cn=mem_${pool.id}"/>
+                                    <img onclick="togglePanel('${pool.id}', '${toggleUrl}')"
+                                            src="${pageContext.request.contextPath}<spring:theme code='bullet_arrow_down.png'/>" alt="+"/>
+                                </dt>
+                                <dd class="image"><img id="img_${pool.id}"
+                                                    src="<c:out value='${chartUrl}' escapeXml='false'/>" width="${chartWidth}" height="${chartHeight}" alt="+"
+                                                    onclick="zoomIn('${pool.name}')"/></dd>
+                            </dl>
+                        </div>
 
-						<script>
-							new Ajax.ImgUpdater('img_${pool.id}', '${probe:max(collectionPeriod, 5)}');
-						</script>
+                        <script>
+                            new Ajax.ImgUpdater('img_${pool.id}', '${probe:max(collectionPeriod, 5)}');
+                        </script>
 
-					</c:forEach>
-				</div>
+                    </c:forEach>
+                </div>
 
-				<div id="fullMemoryChart" style="display: none;">
-					<img id="fullImg" class="clickable" src="${fullChartBase}&sp=Total" width="${fullChartWidth}" height="${fullChartHeight}" alt="-" onclick="zoomOut();"/>
-				</div>
-			</div>
+                <div id="fullMemoryChart" style="display: none;">
+                    <img id="fullImg" class="clickable" src="${fullChartBase}&sp=Total" width="${fullChartWidth}" height="${fullChartHeight}" alt="-" onclick="zoomOut();"/>
+                </div>
+            </div>
 
-			<script>
+            <script>
 
-				var fullImageUpdater;
+                var fullImageUpdater;
 
-				function zoomIn(newPool) {
-					if (fullImageUpdater) {
-						fullImageUpdater.stop();
-					}
-					Effect.DropOut('memChartGroup');
-					Effect.Appear('fullMemoryChart');
-					fullImageUpdater = new Ajax.ImgUpdater('fullImg', '${probe:max(collectionPeriod, 5)}', '<c:out value="${fullChartBase}" escapeXml="false"/>&sp=' + newPool + "&s1l=" + newPool);
-				}
+                function zoomIn(newPool) {
+                    if (fullImageUpdater) {
+                        fullImageUpdater.stop();
+                    }
+                    Effect.DropOut('memChartGroup');
+                    Effect.Appear('fullMemoryChart');
+                    fullImageUpdater = new Ajax.ImgUpdater('fullImg', '${probe:max(collectionPeriod, 5)}', '<c:out value="${fullChartBase}" escapeXml="false"/>&sp=' + newPool + "&s1l=" + newPool);
+                }
 
-				function zoomOut() {
-					Effect.DropOut('fullMemoryChart');
-					Effect.Appear('memChartGroup');
-					if (fullImageUpdater) {
-						fullImageUpdater.stop();
-						fullImageUpdater=null;
-					}
-				}
+                function zoomOut() {
+                    Effect.DropOut('fullMemoryChart');
+                    Effect.Appear('memChartGroup');
+                    if (fullImageUpdater) {
+                        fullImageUpdater.stop();
+                        fullImageUpdater=null;
+                    }
+                }
 
-				new Ajax.PeriodicalUpdater('memoryPools', '<c:url value="/memory.ajax"/>?<%=StringEscapeUtils.escapeHtml4(request.getQueryString())%>', {method:'get', frequency: 5});
+                new Ajax.PeriodicalUpdater('memoryPools', '<c:url value="/memory.ajax"/>?<%=StringEscapeUtils.escapeHtml4(request.getQueryString())%>', {method:'get', frequency: 5});
 
-			</script>
-		</c:otherwise>
-	</c:choose>
+            </script>
+        </c:otherwise>
+    </c:choose>
 
 </body>
 </html>

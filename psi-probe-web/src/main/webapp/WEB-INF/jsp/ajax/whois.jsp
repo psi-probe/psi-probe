@@ -15,22 +15,22 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 <div id="tooltip_title">
-	<c:out value="${param.ip}" /> (${domainName})
+    <c:out value="${param.ip}" /> (${domainName})
 </div>
 <div>
-	[${whoisServer}]
+    [${whoisServer}]
 </div>
 <c:choose>
-	<c:when test="${! empty result}">
-		<code>
-			<c:forEach items="${result}" var="line">
-				<div>
-					${line}&#160;
-				</div>
-			</c:forEach>
-		</code>
-	</c:when>
-	<c:when test="${timeout}">
-		<spring:message code="probe.jsp.whois.timeout"/>
-	</c:when>
+    <c:when test="${! empty result}">
+        <code>
+            <c:forEach items="${result}" var="line">
+                <div>
+                    ${line}&#160;
+                </div>
+            </c:forEach>
+        </code>
+    </c:when>
+    <c:when test="${timeout}">
+        <spring:message code="probe.jsp.whois.timeout"/>
+    </c:when>
 </c:choose>

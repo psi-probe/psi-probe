@@ -14,7 +14,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 <p>
-	<em><spring:message code="probe.jsp.threads.col.priority"/></em> <spring:message code="probe.jsp.threads.help.priority"/>,
-	<em><spring:message code="probe.jsp.threads.col.daemon"/></em> <spring:message code="probe.jsp.threads.help.daemon"/>,
-	<em><spring:message code="probe.jsp.threads.col.interrupted"/></em> <spring:message code="probe.jsp.threads.help.interrupted"/>
+    <em><spring:message code="probe.jsp.threads.col.priority"/></em> <spring:message code="probe.jsp.threads.help.priority"/>,
+    <em><spring:message code="probe.jsp.threads.col.daemon"/></em> <spring:message code="probe.jsp.threads.help.daemon"/>,
+    <em><spring:message code="probe.jsp.threads.col.interrupted"/></em> <spring:message code="probe.jsp.threads.help.interrupted"/>
 </p>

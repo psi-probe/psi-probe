@@ -20,66 +20,66 @@
 
 <!DOCTYPE html>
 <html lang="${lang}">
-	<head>
-		<title><spring:message code="probe.jsp.title.dataSourceGroups"/></title>
-	</head>
+    <head>
+        <title><spring:message code="probe.jsp.title.dataSourceGroups"/></title>
+    </head>
 
-	<body>
+    <body>
 
-		<c:set var="navTabDatasources" value="active" scope="request"/>
+        <c:set var="navTabDatasources" value="active" scope="request"/>
 
-		<ul class="options">
-			<li id="back">
-				<a href="<c:url value='/datasources.htm'/>">
-					<spring:message code="probe.jsp.dataSourceGroups.menu.back"/>
-				</a>
-			</li>
-		</ul>
+        <ul class="options">
+            <li id="back">
+                <a href="<c:url value='/datasources.htm'/>">
+                    <spring:message code="probe.jsp.dataSourceGroups.menu.back"/>
+                </a>
+            </li>
+        </ul>
 
-		<c:choose>
-			<c:when test="${! empty dataSourceGroups}">
-				<div class="blockContainer">
-					<div class="shadow">
-						<div class="info">
-							<p><spring:message code="probe.jsp.dataSourceGroups.information"/></p>
-						</div>
-					</div>
+        <c:choose>
+            <c:when test="${! empty dataSourceGroups}">
+                <div class="blockContainer">
+                    <div class="shadow">
+                        <div class="info">
+                            <p><spring:message code="probe.jsp.dataSourceGroups.information"/></p>
+                        </div>
+                    </div>
 
-					<display:table class="genericTbl" style="border-spacing:0;border-collapse:separate;" name="dataSourceGroups" uid="dataSourceGroup" requestURI="">
-						<display:column property="jdbcUrl" class="leftmost" sortable="true" maxLength="50" nulls="true"
-								titleKey="probe.jsp.dataSourceGroups.list.col.url"/>
+                    <display:table class="genericTbl" style="border-spacing:0;border-collapse:separate;" name="dataSourceGroups" uid="dataSourceGroup" requestURI="">
+                        <display:column property="jdbcUrl" class="leftmost" sortable="true" maxLength="50" nulls="true"
+                                titleKey="probe.jsp.dataSourceGroups.list.col.url"/>
 
-						<display:column sortable="true" sortProperty="busyScore"
-								titleKey="probe.jsp.dataSourceGroups.list.col.usage" class="score_wrapper">
-							<div class="score_wrapper">
-								<probe:score value="${dataSourceGroup.busyScore}" value2="${dataSourceGroup.establishedScore - dataSourceGroup.busyScore}" fullBlocks="10" partialBlocks="5" showEmptyBlocks="true" showA="true" showB="true">
-									<img src="<c:url value='/css/classic/gifs/rb_{0}.gif'/>" alt="+"
-											title="<spring:message code='probe.jsp.applications.jdbcUsage.title' arguments='${dataSourceGroup.busyScore},${dataSourceGroup.establishedScore}'/>"/>
-								</probe:score>
-							</div>
-						</display:column>
+                        <display:column sortable="true" sortProperty="busyScore"
+                                titleKey="probe.jsp.dataSourceGroups.list.col.usage" class="score_wrapper">
+                            <div class="score_wrapper">
+                                <probe:score value="${dataSourceGroup.busyScore}" value2="${dataSourceGroup.establishedScore - dataSourceGroup.busyScore}" fullBlocks="10" partialBlocks="5" showEmptyBlocks="true" showA="true" showB="true">
+                                    <img src="<c:url value='/css/classic/gifs/rb_{0}.gif'/>" alt="+"
+                                            title="<spring:message code='probe.jsp.applications.jdbcUsage.title' arguments='${dataSourceGroup.busyScore},${dataSourceGroup.establishedScore}'/>"/>
+                                </probe:score>
+                            </div>
+                        </display:column>
 
-						<display:column property="maxConnections" sortable="true"
-								titleKey="probe.jsp.dataSourceGroups.list.col.max"/>
+                        <display:column property="maxConnections" sortable="true"
+                                titleKey="probe.jsp.dataSourceGroups.list.col.max"/>
 
-						<display:column property="establishedConnections" sortable="true"
-								titleKey="probe.jsp.dataSourceGroups.list.col.established"/>
+                        <display:column property="establishedConnections" sortable="true"
+                                titleKey="probe.jsp.dataSourceGroups.list.col.established"/>
 
-						<display:column property="busyConnections" sortable="true"
-								titleKey="probe.jsp.dataSourceGroups.list.col.busy"/>
+                        <display:column property="busyConnections" sortable="true"
+                                titleKey="probe.jsp.dataSourceGroups.list.col.busy"/>
 
-						<display:column property="dataSourceCount" sortable="true"
-								titleKey="probe.jsp.dataSourceGroups.list.col.resourceCount"/>
-					</display:table>
-				</div>
-			</c:when>
-			<c:otherwise>
-				<div class="errorMessage">
-					<p>
-						<spring:message code="probe.jsp.dataSourceGroups.empty"/>
-					</p>
-				</div>
-			</c:otherwise>
-		</c:choose>
-	</body>
+                        <display:column property="dataSourceCount" sortable="true"
+                                titleKey="probe.jsp.dataSourceGroups.list.col.resourceCount"/>
+                    </display:table>
+                </div>
+            </c:when>
+            <c:otherwise>
+                <div class="errorMessage">
+                    <p>
+                        <spring:message code="probe.jsp.dataSourceGroups.empty"/>
+                    </p>
+                </div>
+            </c:otherwise>
+        </c:choose>
+    </body>
 </html>

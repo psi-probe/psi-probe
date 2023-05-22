@@ -14,7 +14,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 <p>
-	<em><spring:message code="probe.jsp.datasources.list.col.max"/></em> <spring:message code="probe.jsp.datasources.help.max"/>,
-	<em><spring:message code="probe.jsp.datasources.list.col.established"/></em> <spring:message code="probe.jsp.datasources.help.established"/>,
-	<em><spring:message code="probe.jsp.datasources.list.col.busy"/></em> <spring:message code="probe.jsp.datasources.help.busy"/>
+    <em><spring:message code="probe.jsp.datasources.list.col.max"/></em> <spring:message code="probe.jsp.datasources.help.max"/>,
+    <em><spring:message code="probe.jsp.datasources.list.col.established"/></em> <spring:message code="probe.jsp.datasources.help.established"/>,
+    <em><spring:message code="probe.jsp.datasources.list.col.busy"/></em> <spring:message code="probe.jsp.datasources.help.busy"/>
 </p>

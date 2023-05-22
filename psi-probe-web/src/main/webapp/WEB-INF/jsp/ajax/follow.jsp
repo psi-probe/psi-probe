@@ -15,5 +15,5 @@
 
 <%-- An AJAX HTML bit, representing log file content. --%>
 <c:forEach items="${lines}" var="line">
-	<div class="line"><c:out value="${line}" escapeXml="true" /></div>
+    <div class="line"><c:out value="${line}" escapeXml="true" /></div>
 </c:forEach>

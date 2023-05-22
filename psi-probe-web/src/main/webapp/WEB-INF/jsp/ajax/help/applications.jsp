@@ -14,10 +14,10 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 <p>
-	<em><spring:message code="probe.jsp.applications.col.sessionCount"/></em> <spring:message code="probe.jsp.applications.help.sessionCount"/>,
-	<em><spring:message code="probe.jsp.applications.col.sessionAttributeCount"/></em> <spring:message code="probe.jsp.applications.help.sessionAttributeCount"/>,
-	<em><spring:message code="probe.jsp.applications.col.contextAttributeCount"/></em> <spring:message code="probe.jsp.applications.help.contextAttributeCount"/>,
-	<em><spring:message code="probe.jsp.applications.col.distributable"/></em> <spring:message code="probe.jsp.applications.help.distributable"/>,
-	<em><spring:message code="probe.jsp.applications.col.serializable"/></em> <spring:message code="probe.jsp.applications.help.serializable"/>,
-	<em><spring:message code="probe.jsp.applications.col.requestCount"/></em> <spring:message code="probe.jsp.applications.help.requestCount"/>
+    <em><spring:message code="probe.jsp.applications.col.sessionCount"/></em> <spring:message code="probe.jsp.applications.help.sessionCount"/>,
+    <em><spring:message code="probe.jsp.applications.col.sessionAttributeCount"/></em> <spring:message code="probe.jsp.applications.help.sessionAttributeCount"/>,
+    <em><spring:message code="probe.jsp.applications.col.contextAttributeCount"/></em> <spring:message code="probe.jsp.applications.help.contextAttributeCount"/>,
+    <em><spring:message code="probe.jsp.applications.col.distributable"/></em> <spring:message code="probe.jsp.applications.help.distributable"/>,
+    <em><spring:message code="probe.jsp.applications.col.serializable"/></em> <spring:message code="probe.jsp.applications.help.serializable"/>,
+    <em><spring:message code="probe.jsp.applications.col.requestCount"/></em> <spring:message code="probe.jsp.applications.help.requestCount"/>
 </p>

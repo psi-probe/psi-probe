@@ -18,13 +18,13 @@
 
 <!DOCTYPE html>
 <html lang="${lang}">
-	<head><title>Error</title></head>
+    <head><title>Error</title></head>
 
-	<body>
-		<div class="errorMessage">
-			<p>
-				<spring:message code="probe.jsp.wrongsvrversion" arguments="${serverVersion}"/>
-			</p>
-		</div>
-	</body>
+    <body>
+        <div class="errorMessage">
+            <p>
+                <spring:message code="probe.jsp.wrongsvrversion" arguments="${serverVersion}"/>
+            </p>
+        </div>
+    </body>
 </html>

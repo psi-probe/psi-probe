@@ -20,71 +20,71 @@
 <!DOCTYPE html>
 <html lang="${lang}">
 
-	<head>
-		<title>
-			<spring:message htmlEscape="true" code="probe.jsp.title.app.initParams" arguments="${param.webapp}"/>
-		</title>
-	</head>
+    <head>
+        <title>
+            <spring:message htmlEscape="true" code="probe.jsp.title.app.initParams" arguments="${param.webapp}"/>
+        </title>
+    </head>
 
-	<%-- Make Tab #1 visually "active". --%>
-	<c:set var="navTabApps" value="active" scope="request"/>
-	<c:set var="use_decorator" value="application" scope="request"/>
-	<c:set var="appTabInitParams" value="active" scope="request"/>
+    <%-- Make Tab #1 visually "active". --%>
+    <c:set var="navTabApps" value="active" scope="request"/>
+    <c:set var="use_decorator" value="application" scope="request"/>
+    <c:set var="appTabInitParams" value="active" scope="request"/>
 
-	<body>
+    <body>
 
-		<div class="embeddedBlockContainer">
-			<c:choose>
-				<c:when test="${! empty appInitParams}">
+        <div class="embeddedBlockContainer">
+            <c:choose>
+                <c:when test="${! empty appInitParams}">
 
-					<h3><spring:message code="probe.jsp.app.initParams.h3.params"/></h3>
+                    <h3><spring:message code="probe.jsp.app.initParams.h3.params"/></h3>
 
-					<display:table htmlId="initParamTbl" name="appInitParams" uid="prm"
-							class="genericTbl" style="padding:0;border-spacing:0;border-collapse:separate;"
-							requestURI="" defaultsort="2">
-						<display:column class="leftMostIcon" title="&#160;" style="width:1px;">
-							<c:choose>
-								<c:when test="${prm.fromDeplDescr}">
-									<img src="${pageContext.request.contextPath}<spring:theme code='deployment_descriptor.img'/>" alt="">
-								</c:when>
-								<c:otherwise>
-									<img src="${pageContext.request.contextPath}<spring:theme code='context.img'/>" alt="">
-								</c:otherwise>
-							</c:choose>
-						</display:column>
-						<display:column property="name" sortable="true"
-								titleKey="probe.jsp.app.initParams.col.name" maxLength="40"/>
-						<display:column sortable="true" titleKey="probe.jsp.app.initParams.col.value">
-							<c:choose>
-								<c:when test="${allowedToViewValues}">
-									<c:out value="${prm.value}" escapeXml="true"/>&#160;
-								</c:when>
-								<c:otherwise>
-									**************
-								</c:otherwise>
-							</c:choose>
-						</display:column>
-						<display:column sortable="true"
-								titleKey="probe.jsp.app.initParams.col.source">
-							<c:choose>
-								<c:when test="${prm.fromDeplDescr}">
-									<spring:message code="probe.jsp.app.initParams.source.deplDescr"/>
-								</c:when>
-								<c:otherwise>
-									<spring:message code="probe.jsp.app.initParams.source.context"/>
-								</c:otherwise>
-							</c:choose>
-						</display:column>
-					</display:table>
-				</c:when>
-				<c:otherwise>
-					<div class="infoMessage">
-						<p>
-							<spring:message code="probe.jsp.app.initParams.empty"/>
-						</p>
-					</div>
-				</c:otherwise>
-			</c:choose>
-		</div>
-	</body>
+                    <display:table htmlId="initParamTbl" name="appInitParams" uid="prm"
+                            class="genericTbl" style="padding:0;border-spacing:0;border-collapse:separate;"
+                            requestURI="" defaultsort="2">
+                        <display:column class="leftMostIcon" title="&#160;" style="width:1px;">
+                            <c:choose>
+                                <c:when test="${prm.fromDeplDescr}">
+                                    <img src="${pageContext.request.contextPath}<spring:theme code='deployment_descriptor.img'/>" alt="">
+                                </c:when>
+                                <c:otherwise>
+                                    <img src="${pageContext.request.contextPath}<spring:theme code='context.img'/>" alt="">
+                                </c:otherwise>
+                            </c:choose>
+                        </display:column>
+                        <display:column property="name" sortable="true"
+                                titleKey="probe.jsp.app.initParams.col.name" maxLength="40"/>
+                        <display:column sortable="true" titleKey="probe.jsp.app.initParams.col.value">
+                            <c:choose>
+                                <c:when test="${allowedToViewValues}">
+                                    <c:out value="${prm.value}" escapeXml="true"/>&#160;
+                                </c:when>
+                                <c:otherwise>
+                                    **************
+                                </c:otherwise>
+                            </c:choose>
+                        </display:column>
+                        <display:column sortable="true"
+                                titleKey="probe.jsp.app.initParams.col.source">
+                            <c:choose>
+                                <c:when test="${prm.fromDeplDescr}">
+                                    <spring:message code="probe.jsp.app.initParams.source.deplDescr"/>
+                                </c:when>
+                                <c:otherwise>
+                                    <spring:message code="probe.jsp.app.initParams.source.context"/>
+                                </c:otherwise>
+                            </c:choose>
+                        </display:column>
+                    </display:table>
+                </c:when>
+                <c:otherwise>
+                    <div class="infoMessage">
+                        <p>
+                            <spring:message code="probe.jsp.app.initParams.empty"/>
+                        </p>
+                    </div>
+                </c:otherwise>
+            </c:choose>
+        </div>
+    </body>
 </html>

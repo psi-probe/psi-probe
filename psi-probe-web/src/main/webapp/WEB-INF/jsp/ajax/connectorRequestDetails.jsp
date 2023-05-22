@@ -15,7 +15,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 <c:if test="${! empty connector}">
-	<span class="name"><spring:message code="probe.jsp.connectors.processor.requestCount"/></span>&#160;${connector.requestCount}
-	&#160;
-	<span class="name"><spring:message code="probe.jsp.connectors.processor.errorCount"/></span>&#160;${connector.errorCount}
+    <span class="name"><spring:message code="probe.jsp.connectors.processor.requestCount"/></span>&#160;${connector.requestCount}
+    &#160;
+    <span class="name"><spring:message code="probe.jsp.connectors.processor.errorCount"/></span>&#160;${connector.errorCount}
 </c:if>
