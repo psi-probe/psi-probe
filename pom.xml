@@ -248,7 +248,7 @@
         <sortpom.plugin>3.2.1</sortpom.plugin>
         <source.plugin>3.3.0</source.plugin>
         <spotbugs.plugin>4.7.3.4</spotbugs.plugin>
-        <spotless.plugin>2.36.0</spotless.plugin>
+        <spotless.plugin>2.37.0</spotless.plugin>
         <surefire.plugin>3.1.0</surefire.plugin>
         <versions.plugin>2.15.0</versions.plugin>
         <war.plugin>3.3.2</war.plugin>
