@@ -74,7 +74,7 @@
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>        <strong class="jxr_keyword">for</strong> (<a name="ApplicationResource" href="../../../../psiprobe/model/ApplicationResource.html#ApplicationResource">ApplicationResource</a> ds : getContainerWrapper().getDataSources()) {
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>          String appName = ds.getApplicationName();
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>          String name = (appName == <strong class="jxr_keyword">null</strong> ? <span class="jxr_string">""</span> : appName) + '/' + ds.getName();
-<a class="jxr_linenumber" name="L69" href="#L69">69</a>          DataSourceInfo dsi = ds.getDataSourceInfo();
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>          <a name="DataSourceInfo" href="../../../../psiprobe/model/DataSourceInfo.html#DataSourceInfo">DataSourceInfo</a> dsi = ds.getDataSourceInfo();
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>          <strong class="jxr_keyword">int</strong> numEstablished = dsi.getEstablishedConnections();
 <a class="jxr_linenumber" name="L71" href="#L71">71</a>          <strong class="jxr_keyword">int</strong> numBusy = dsi.getBusyConnections();
 <a class="jxr_linenumber" name="L72" href="#L72">72</a>          logger.trace(<span class="jxr_string">"Collecting stats for datasource: {}"</span>, name);

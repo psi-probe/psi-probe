@@ -22,54 +22,60 @@
 <a class="jxr_linenumber" name="L14" href="#L14">14</a>  <strong class="jxr_keyword">import</strong> com.zaxxer.hikari.HikariPoolMXBean;
 <a class="jxr_linenumber" name="L15" href="#L15">15</a>  
 <a class="jxr_linenumber" name="L16" href="#L16">16</a>  <strong class="jxr_keyword">import</strong> java.lang.management.ManagementFactory;
-<a class="jxr_linenumber" name="L17" href="#L17">17</a>  
-<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <strong class="jxr_keyword">import</strong> javax.management.JMX;
-<a class="jxr_linenumber" name="L19" href="#L19">19</a>  <strong class="jxr_keyword">import</strong> javax.management.MBeanServer;
-<a class="jxr_linenumber" name="L20" href="#L20">20</a>  <strong class="jxr_keyword">import</strong> javax.management.ObjectName;
-<a class="jxr_linenumber" name="L21" href="#L21">21</a>  
-<a class="jxr_linenumber" name="L22" href="#L22">22</a>  <strong class="jxr_keyword">import</strong> psiprobe.model.DataSourceInfo;
+<a class="jxr_linenumber" name="L17" href="#L17">17</a>  <strong class="jxr_keyword">import</strong> java.sql.SQLException;
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>  
+<a class="jxr_linenumber" name="L19" href="#L19">19</a>  <strong class="jxr_keyword">import</strong> javax.management.JMX;
+<a class="jxr_linenumber" name="L20" href="#L20">20</a>  <strong class="jxr_keyword">import</strong> javax.management.MBeanServer;
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">import</strong> javax.management.MalformedObjectNameException;
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>  <strong class="jxr_keyword">import</strong> javax.management.ObjectName;
 <a class="jxr_linenumber" name="L23" href="#L23">23</a>  
-<a class="jxr_linenumber" name="L24" href="#L24">24</a>  <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L25" href="#L25">25</a>  <em class="jxr_javadoccomment"> * The Class HikariCpDatasourceAccessor.</em>
-<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <em class="jxr_javadoccomment"> */</em>
-<a class="jxr_linenumber" name="L27" href="#L27">27</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a name="HikariCpDatasourceAccessor" href="../../../psiprobe/beans/accessors/HikariCpDatasourceAccessor.html#HikariCpDatasourceAccessor">HikariCpDatasourceAccessor</a> <strong class="jxr_keyword">implements</strong> DatasourceAccessor {
-<a class="jxr_linenumber" name="L28" href="#L28">28</a>  
-<a class="jxr_linenumber" name="L29" href="#L29">29</a>    @Override
-<a class="jxr_linenumber" name="L30" href="#L30">30</a>    <strong class="jxr_keyword">public</strong> DataSourceInfo getInfo(<strong class="jxr_keyword">final</strong> Object resource) <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L31" href="#L31">31</a>      DataSourceInfo dataSourceInfo = <strong class="jxr_keyword">null</strong>;
-<a class="jxr_linenumber" name="L32" href="#L32">32</a>      <strong class="jxr_keyword">if</strong> (canMap(resource)) {
-<a class="jxr_linenumber" name="L33" href="#L33">33</a>        HikariDataSource source = (HikariDataSource) resource;
-<a class="jxr_linenumber" name="L34" href="#L34">34</a>  
-<a class="jxr_linenumber" name="L35" href="#L35">35</a>        MBeanServer mbeanServer = ManagementFactory.getPlatformMBeanServer();
-<a class="jxr_linenumber" name="L36" href="#L36">36</a>        ObjectName poolName =
-<a class="jxr_linenumber" name="L37" href="#L37">37</a>            <strong class="jxr_keyword">new</strong> ObjectName(<span class="jxr_string">"com.zaxxer.hikari:type=Pool ("</span> + source.getPoolName() + <span class="jxr_string">")"</span>);
-<a class="jxr_linenumber" name="L38" href="#L38">38</a>        HikariPoolMXBean poolProxy =
-<a class="jxr_linenumber" name="L39" href="#L39">39</a>            JMX.newMXBeanProxy(mbeanServer, poolName, HikariPoolMXBean.<strong class="jxr_keyword">class</strong>);
-<a class="jxr_linenumber" name="L40" href="#L40">40</a>  
-<a class="jxr_linenumber" name="L41" href="#L41">41</a>        dataSourceInfo = <strong class="jxr_keyword">new</strong> DataSourceInfo();
-<a class="jxr_linenumber" name="L42" href="#L42">42</a>        dataSourceInfo.setBusyConnections(poolProxy.getActiveConnections());
-<a class="jxr_linenumber" name="L43" href="#L43">43</a>        dataSourceInfo.setEstablishedConnections(poolProxy.getTotalConnections());
-<a class="jxr_linenumber" name="L44" href="#L44">44</a>        dataSourceInfo.setMaxConnections(source.getMaximumPoolSize());
-<a class="jxr_linenumber" name="L45" href="#L45">45</a>        dataSourceInfo.setJdbcUrl(source.getJdbcUrl());
-<a class="jxr_linenumber" name="L46" href="#L46">46</a>        dataSourceInfo.setUsername(source.getUsername());
-<a class="jxr_linenumber" name="L47" href="#L47">47</a>        dataSourceInfo.setResettable(false);
-<a class="jxr_linenumber" name="L48" href="#L48">48</a>        dataSourceInfo.setType(<span class="jxr_string">"hikari"</span>);
-<a class="jxr_linenumber" name="L49" href="#L49">49</a>      }
-<a class="jxr_linenumber" name="L50" href="#L50">50</a>      <strong class="jxr_keyword">return</strong> dataSourceInfo;
-<a class="jxr_linenumber" name="L51" href="#L51">51</a>    }
-<a class="jxr_linenumber" name="L52" href="#L52">52</a>  
-<a class="jxr_linenumber" name="L53" href="#L53">53</a>    @Override
-<a class="jxr_linenumber" name="L54" href="#L54">54</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> reset(<strong class="jxr_keyword">final</strong> Object resource) <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L55" href="#L55">55</a>      <strong class="jxr_keyword">return</strong> false;
-<a class="jxr_linenumber" name="L56" href="#L56">56</a>    }
-<a class="jxr_linenumber" name="L57" href="#L57">57</a>  
-<a class="jxr_linenumber" name="L58" href="#L58">58</a>    @Override
-<a class="jxr_linenumber" name="L59" href="#L59">59</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> canMap(<strong class="jxr_keyword">final</strong> Object resource) {
-<a class="jxr_linenumber" name="L60" href="#L60">60</a>      <strong class="jxr_keyword">return</strong> <span class="jxr_string">"com.zaxxer.hikari.HikariDataSource"</span>.equals(resource.getClass().getName())
-<a class="jxr_linenumber" name="L61" href="#L61">61</a>          &amp;&amp; resource instanceof HikariDataSource;
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>  <strong class="jxr_keyword">import</strong> psiprobe.model.DataSourceInfo;
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>  
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>  <em class="jxr_javadoccomment"> * The Class HikariCpDatasourceAccessor.</em>
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>  <em class="jxr_javadoccomment"> */</em>
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a name="HikariCpDatasourceAccessor" href="../../../psiprobe/beans/accessors/HikariCpDatasourceAccessor.html#HikariCpDatasourceAccessor">HikariCpDatasourceAccessor</a> <strong class="jxr_keyword">implements</strong> <a name="DatasourceAccessor" href="../../../psiprobe/beans/accessors/DatasourceAccessor.html#DatasourceAccessor">DatasourceAccessor</a> {
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>  
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>    @Override
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>    <strong class="jxr_keyword">public</strong> <a name="DataSourceInfo" href="../../../psiprobe/model/DataSourceInfo.html#DataSourceInfo">DataSourceInfo</a> getInfo(<strong class="jxr_keyword">final</strong> Object resource) <strong class="jxr_keyword">throws</strong> SQLException {
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>      <a name="DataSourceInfo" href="../../../psiprobe/model/DataSourceInfo.html#DataSourceInfo">DataSourceInfo</a> dataSourceInfo = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>      <strong class="jxr_keyword">if</strong> (canMap(resource)) {
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>        HikariDataSource source = (HikariDataSource) resource;
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>  
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>        MBeanServer mbeanServer = ManagementFactory.getPlatformMBeanServer();
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>        ObjectName poolName;
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>        <strong class="jxr_keyword">try</strong> {
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>          poolName = <strong class="jxr_keyword">new</strong> ObjectName(<span class="jxr_string">"com.zaxxer.hikari:type=Pool ("</span> + source.getPoolName() + <span class="jxr_string">")"</span>);
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>        } <strong class="jxr_keyword">catch</strong> (MalformedObjectNameException e) {
+<a class="jxr_linenumber" name="L42" href="#L42">42</a>          <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> SQLException(<span class="jxr_string">"MalformedObjectNameException for Hikari"</span>, e);
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>        }
+<a class="jxr_linenumber" name="L44" href="#L44">44</a>        HikariPoolMXBean poolProxy =
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>            JMX.newMXBeanProxy(mbeanServer, poolName, HikariPoolMXBean.<strong class="jxr_keyword">class</strong>);
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>  
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>        dataSourceInfo = <strong class="jxr_keyword">new</strong> <a name="DataSourceInfo" href="../../../psiprobe/model/DataSourceInfo.html#DataSourceInfo">DataSourceInfo</a>();
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>        dataSourceInfo.setBusyConnections(poolProxy.getActiveConnections());
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>        dataSourceInfo.setEstablishedConnections(poolProxy.getTotalConnections());
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>        dataSourceInfo.setMaxConnections(source.getMaximumPoolSize());
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>        dataSourceInfo.setJdbcUrl(source.getJdbcUrl());
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>        dataSourceInfo.setUsername(source.getUsername());
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>        dataSourceInfo.setResettable(false);
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>        dataSourceInfo.setType(<span class="jxr_string">"hikari"</span>);
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>      }
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>      <strong class="jxr_keyword">return</strong> dataSourceInfo;
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>    }
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>  
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>    @Override
+<a class="jxr_linenumber" name="L60" href="#L60">60</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> reset(<strong class="jxr_keyword">final</strong> Object resource) {
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>      <strong class="jxr_keyword">return</strong> false;
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>    }
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>  
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>  }
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>    @Override
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> canMap(<strong class="jxr_keyword">final</strong> Object resource) {
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>      <strong class="jxr_keyword">return</strong> <span class="jxr_string">"com.zaxxer.hikari.HikariDataSource"</span>.equals(resource.getClass().getName())
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>          &amp;&amp; resource instanceof HikariDataSource;
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>    }
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>  
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>  }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2009&#x2013;2023 <a href="https://github.com/psi-probe/">psi-probe</a>. All rights reserved.</div>
