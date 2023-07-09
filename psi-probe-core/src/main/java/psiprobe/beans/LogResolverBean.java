@@ -242,13 +242,21 @@ public class LogResolverBean {
       }
     }
 
+    // Supported loggers
+    List<String> loggers = new ArrayList<>();
+    loggers.add("jdk");
+    loggers.add("log4j");
+    loggers.add("log4j2");
+    loggers.add("logback");
+    loggers.add("logback13");
+    loggers.add("tomcatSlf4jLogback");
+    loggers.add("tomcatSlf4jLogback13");
+
     if (logName != null && "stdout".equals(logType)) {
       result = getStdoutLogDestination(logName);
     } else if (ctx != null && "catalina".equals(logType)) {
       result = getCatalinaLogDestination(ctx, application);
-    } else if (logIndex != null && ("jdk".equals(logType) || "log4j".equals(logType)
-        || "log4j2".equals(logType) || "logback".equals(logType) || "logback13".equals(logType)
-        || "tomcatSlf4jLogback".equals(logType) || "tomcatSlf4jLogback13".equals(logType))) {
+    } else if (logIndex != null && loggers.contains(logType)) {
       if (context && ctx != null && !"log4j2".equals(logType)) {
         result = getCommonsLogDestination(ctx, application, logIndex);
       } else if (ctx != null && "log4j2".equals(logType)) {
@@ -263,7 +271,7 @@ public class LogResolverBean {
           cl = Thread.currentThread().getContextClassLoader().getParent();
         }
         try {
-          if ((root || logName != null) && logIndex != null) {
+          if ((root || logName != null)) {
             if ("jdk".equals(logType)) {
               result = getJdk14LogDestination(cl, application, root, logName, logIndex);
             } else if ("log4j".equals(logType)) {

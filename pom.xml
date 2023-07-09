@@ -1197,13 +1197,6 @@
                             </licenseSet>
                         </licenseSets>
                     </configuration>
-                    <dependencies>
-                        <dependency>
-                            <groupId>com.mycila</groupId>
-                            <artifactId>license-maven-plugin-git</artifactId>
-                            <version>${license.plugin}</version>
-                        </dependency>
-                    </dependencies>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
