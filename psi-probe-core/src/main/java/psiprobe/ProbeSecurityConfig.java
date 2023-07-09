@@ -128,7 +128,7 @@ public class ProbeSecurityConfig {
    *
    * @return the pre authenticated granted authorities user details service
    */
-  @Bean(name = "preAuthenticatedUserDetailsService")
+  @Bean(name = "preAuthenticatedGrantedAuthoritiesUserDetailsService")
   public PreAuthenticatedGrantedAuthoritiesUserDetailsService getPreAuthenticatedGrantedAuthoritiesUserDetailsService() {
     return new PreAuthenticatedGrantedAuthoritiesUserDetailsService();
   }
@@ -152,7 +152,7 @@ public class ProbeSecurityConfig {
    *
    * @return the http 403 forbidden entry point
    */
-  @Bean(name = "preAuthenticatedProcessingFilterEntryPoint")
+  @Bean(name = "http403ForbiddenEntryPoint")
   public Http403ForbiddenEntryPoint getHttp403ForbiddenEntryPoint() {
     return new Http403ForbiddenEntryPoint();
   }
@@ -182,7 +182,7 @@ public class ProbeSecurityConfig {
    *
    * @return the j 2 ee based pre authenticated web authentication details source
    */
-  @Bean(name = "authenticationDetailsSource")
+  @Bean(name = "j2eeBasedPreAuthenticatedWebAuthenticationDetailsSource")
   public J2eeBasedPreAuthenticatedWebAuthenticationDetailsSource getJ2eeBasedPreAuthenticatedWebAuthenticationDetailsSource() {
     J2eeBasedPreAuthenticatedWebAuthenticationDetailsSource source =
         new J2eeBasedPreAuthenticatedWebAuthenticationDetailsSource();
@@ -196,7 +196,7 @@ public class ProbeSecurityConfig {
    *
    * @return the simple attributes 2 granted authorities mapper
    */
-  @Bean(name = "j2eeUserRoles2GrantedAuthoritiesMapper")
+  @Bean(name = "simpleAttributes2GrantedAuthoritiesMapper")
   public SimpleAttributes2GrantedAuthoritiesMapper getSimpleAttributes2GrantedAuthoritiesMapper() {
     SimpleAttributes2GrantedAuthoritiesMapper mapper =
         new SimpleAttributes2GrantedAuthoritiesMapper();
@@ -209,7 +209,7 @@ public class ProbeSecurityConfig {
    *
    * @return the web xml mappable attributes retriever
    */
-  @Bean(name = "j2eeMappableRolesRetriever")
+  @Bean(name = "webXmlMappableAttributesRetriever")
   public WebXmlMappableAttributesRetriever getWebXmlMappableAttributesRetriever() {
     return new WebXmlMappableAttributesRetriever();
   }
@@ -219,7 +219,7 @@ public class ProbeSecurityConfig {
    *
    * @return the exception translation filter
    */
-  @Bean(name = "etf")
+  @Bean(name = "exceptionTranslationFilter")
   public ExceptionTranslationFilter getExceptionTranslationFilter() {
     return new ExceptionTranslationFilter(getHttp403ForbiddenEntryPoint());
   }
@@ -229,7 +229,7 @@ public class ProbeSecurityConfig {
    *
    * @return the affirmative based
    */
-  @Bean(name = "httpRequestAccessDecisionManager")
+  @Bean(name = "affirmativeBased")
   public AffirmativeBased getAffirmativeBased() {
     List<AccessDecisionVoter<? extends Object>> decisionVoters = new ArrayList<>();
     decisionVoters.add(getRoleVoter());
@@ -244,7 +244,7 @@ public class ProbeSecurityConfig {
    *
    * @return the filter security interceptor
    */
-  @Bean(name = "fsi")
+  @Bean(name = "filterSecurityInterceptor")
   public FilterSecurityInterceptor getFilterSecurityInterceptor() {
     FilterSecurityInterceptor interceptor = new FilterSecurityInterceptor();
     interceptor.setAuthenticationManager(getProviderManager());
