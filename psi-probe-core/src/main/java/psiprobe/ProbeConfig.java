@@ -11,6 +11,7 @@
 package psiprobe;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -184,7 +185,11 @@ public class ProbeConfig implements WebMvcConfigurer {
     logger.debug("Instantiated adapterClasses");
     List<String> list = new ArrayList<>();
     try {
-      for (Object adapter : adapters().getObject().values()) {
+      Properties properties = adapters().getObject();
+      if (properties == null) {
+        return Collections.emptyList();
+      }
+      for (Object adapter : properties.values()) {
         list.add((String) adapter);
       }
     } catch (Exception e) {
@@ -203,7 +208,11 @@ public class ProbeConfig implements WebMvcConfigurer {
     logger.debug("Instantiated stdoutFiles");
     List<String> list = new ArrayList<>();
     try {
-      for (Object stdout : stdout().getObject().values()) {
+      Properties properties = stdout().getObject();
+      if (properties == null) {
+        return Collections.emptyList();
+      }
+      for (Object stdout : properties.values()) {
         list.add((String) stdout);
       }
     } catch (Exception e) {
