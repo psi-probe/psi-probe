@@ -41,9 +41,6 @@ public class ProbeInitializer implements WebApplicationInitializer {
         new AnnotationConfigWebApplicationContext()) {
       rootContext.register(ProbeConfig.class);
 
-      // Set Role that can view session attribute values
-      servletContext.setInitParameter("attribute.value.roles", "ROLE_MANAGER,ROLE_MANAGER-GUI");
-
       // Set context loader listener
       servletContext.addListener(new ContextLoaderListener(rootContext));
     }
@@ -51,11 +48,18 @@ public class ProbeInitializer implements WebApplicationInitializer {
     // Set probe servlet
     ServletRegistration.Dynamic probe = servletContext.addServlet("probe", ProbeServlet.class);
 
+    // Set Role that can view session attribute values
+    servletContext.setInitParameter("attribute.value.roles", "ROLE_MANAGER,ROLE_MANAGER-GUI");
+
+    // Set Initial Parameters
     Map<String, String> initParameters = new HashMap<>();
     initParameters.put("contextConfigLocation", "");
     probe.setInitParameters(initParameters);
 
+    // Set load on startup
     probe.setLoadOnStartup(0);
+
+    // Add Mapping
     probe.addMapping("*.htm");
     probe.addMapping("*.ajax");
     probe.addMapping("/logs/*");
