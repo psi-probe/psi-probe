@@ -133,7 +133,7 @@
 <th>Missing Classes</th></tr>
 <tr class="b">
 <td>364</td>
-<td>710</td>
+<td>706</td>
 <td>0</td>
 <td>2</td></tr></table></section><section>
 <h2><a name="Files"></a>Files</h2>
@@ -146,7 +146,7 @@
 <td>18</td></tr>
 <tr class="a">
 <td><a href="#psiprobe.ProbeConfig">psiprobe.ProbeConfig</a></td>
-<td>4</td></tr>
+<td>2</td></tr>
 <tr class="b">
 <td><a href="#psiprobe.ProbeConfigScheduler">psiprobe.ProbeConfigScheduler</a></td>
 <td>7</td></tr>
@@ -170,7 +170,7 @@
 <td>2</td></tr>
 <tr class="a">
 <td><a href="#psiprobe.beans.LogResolverBean">psiprobe.beans.LogResolverBean</a></td>
-<td>7</td></tr>
+<td>6</td></tr>
 <tr class="b">
 <td><a href="#psiprobe.beans.ResourceResolverBean">psiprobe.beans.ResourceResolverBean</a></td>
 <td>8</td></tr>
@@ -560,7 +560,7 @@
 <td>5</td></tr>
 <tr class="a">
 <td><a href="#psiprobe.controllers.threads.KillThreadController">psiprobe.controllers.threads.KillThreadController</a></td>
-<td>3</td></tr>
+<td>2</td></tr>
 <tr class="b">
 <td><a href="#psiprobe.controllers.threads.ListSunThreadsController">psiprobe.controllers.threads.ListSunThreadsController</a></td>
 <td>4</td></tr>
@@ -904,28 +904,16 @@
 <th>Line</th>
 <th>Priority</th></tr>
 <tr class="b">
-<td>Possible null pointer dereference in psiprobe.ProbeConfig.getAdapterClasses() due to return value of called method</td>
-<td>STYLE</td>
-<td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE">NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE</a></td>
-<td><a href="./xref/psiprobe/ProbeConfig.html#L187">187</a></td>
-<td>Medium</td></tr>
-<tr class="a">
-<td>Possible null pointer dereference in psiprobe.ProbeConfig.getStdoutFiles() due to return value of called method</td>
-<td>STYLE</td>
-<td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE">NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE</a></td>
-<td><a href="./xref/psiprobe/ProbeConfig.html#L206">206</a></td>
-<td>Medium</td></tr>
-<tr class="b">
 <td>To make log readable, log format () should contain non-sign character.</td>
 <td>BAD_PRACTICE</td>
 <td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#SLF4J_SIGN_ONLY_FORMAT">SLF4J_SIGN_ONLY_FORMAT</a></td>
-<td><a href="./xref/psiprobe/ProbeConfig.html#L191">191</a></td>
+<td><a href="./xref/psiprobe/ProbeConfig.html#L196">196</a></td>
 <td>Medium</td></tr>
 <tr class="a">
 <td>To make log readable, log format () should contain non-sign character.</td>
 <td>BAD_PRACTICE</td>
 <td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#SLF4J_SIGN_ONLY_FORMAT">SLF4J_SIGN_ONLY_FORMAT</a></td>
-<td><a href="./xref/psiprobe/ProbeConfig.html#L210">210</a></td>
+<td><a href="./xref/psiprobe/ProbeConfig.html#L219">219</a></td>
 <td>Medium</td></tr></table></section><a name="psiprobe.ProbeConfigScheduler"></a><section>
 <h3><a name="psiprobe.ProbeConfigScheduler"></a>psiprobe.ProbeConfigScheduler</h3>
 <table border="0" class="table table-striped">
@@ -1217,19 +1205,13 @@
 <td>This API (java/io/File.&lt;init&gt;(Ljava/lang/String;Ljava/lang/String;)V) reads a file whose location might be specified by user input</td>
 <td>SECURITY</td>
 <td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#PATH_TRAVERSAL_IN">PATH_TRAVERSAL_IN</a></td>
-<td><a href="./xref/psiprobe/beans/LogResolverBean.html#L481">481</a></td>
+<td><a href="./xref/psiprobe/beans/LogResolverBean.html#L489">489</a></td>
 <td>Medium</td></tr>
 <tr class="a">
-<td>Redundant nullcheck of logIndex, which is known to be non-null in psiprobe.beans.LogResolverBean.getLogDestination(String, String, boolean, boolean, String, String)</td>
-<td>STYLE</td>
-<td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE">RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE</a></td>
-<td><a href="./xref/psiprobe/beans/LogResolverBean.html#L266">266</a></td>
-<td>Medium</td></tr>
-<tr class="b">
 <td>To make log readable, log format () should contain non-sign character.</td>
 <td>BAD_PRACTICE</td>
 <td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#SLF4J_SIGN_ONLY_FORMAT">SLF4J_SIGN_ONLY_FORMAT</a></td>
-<td><a href="./xref/psiprobe/beans/LogResolverBean.html#L360">360</a></td>
+<td><a href="./xref/psiprobe/beans/LogResolverBean.html#L368">368</a></td>
 <td>Medium</td></tr></table></section><a name="psiprobe.beans.ResourceResolverBean"></a><section>
 <h3><a name="psiprobe.beans.ResourceResolverBean"></a>psiprobe.beans.ResourceResolverBean</h3>
 <table border="0" class="table table-striped">
@@ -4780,18 +4762,12 @@
 <th>Line</th>
 <th>Priority</th></tr>
 <tr class="b">
-<td>Null passed for non-null parameter of org.springframework.web.bind.ServletRequestUtils.getStringParameter(ServletRequest, String, String) in psiprobe.controllers.threads.KillThreadController.handleRequestInternal(HttpServletRequest, HttpServletResponse)</td>
-<td>CORRECTNESS</td>
-<td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#NP_NONNULL_PARAM_VIOLATION">NP_NONNULL_PARAM_VIOLATION</a></td>
-<td><a href="./xref/psiprobe/controllers/threads/KillThreadController.html#L65">65</a></td>
-<td>High</td></tr>
-<tr class="a">
 <td>Unrestricted Spring's RequestMapping makes the method vulnerable to CSRF attacks</td>
 <td>SECURITY</td>
 <td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#SPRING_CSRF_UNRESTRICTED_REQUEST_MAPPING">SPRING_CSRF_UNRESTRICTED_REQUEST_MAPPING</a></td>
 <td><a href="./xref/psiprobe/controllers/threads/KillThreadController.html#L58">58</a></td>
 <td>High</td></tr>
-<tr class="b">
+<tr class="a">
 <td>Method psiprobe.controllers.threads.KillThreadController.setReplacePattern(String) of Singleton class writes to a field in an unsynchronized manner</td>
 <td>CORRECTNESS</td>
 <td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#USFW_UNSYNCHRONIZED_SINGLETON_FIELD_WRITES">USFW_UNSYNCHRONIZED_SINGLETON_FIELD_WRITES</a></td>

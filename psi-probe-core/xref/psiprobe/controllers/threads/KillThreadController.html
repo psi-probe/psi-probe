@@ -70,7 +70,7 @@
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>    <strong class="jxr_keyword">protected</strong> ModelAndView handleRequestInternal(HttpServletRequest request,
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>        HttpServletResponse response) <strong class="jxr_keyword">throws</strong> Exception {
 <a class="jxr_linenumber" name="L64" href="#L64">64</a>  
-<a class="jxr_linenumber" name="L65" href="#L65">65</a>      String threadName = ServletRequestUtils.getStringParameter(request, <span class="jxr_string">"thread"</span>, <strong class="jxr_keyword">null</strong>);
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>      String threadName = ServletRequestUtils.getStringParameter(request, <span class="jxr_string">"thread"</span>);
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>  
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>      Thread thread = <strong class="jxr_keyword">null</strong>;
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>      <strong class="jxr_keyword">if</strong> (threadName != <strong class="jxr_keyword">null</strong>) {
