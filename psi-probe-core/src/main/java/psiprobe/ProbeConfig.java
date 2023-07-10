@@ -23,11 +23,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.PropertiesFactoryBean;
-import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.servlet.HandlerMapping;
@@ -378,10 +378,10 @@ public class ProbeConfig implements WebMvcConfigurer {
    *
    * @return the property placeholder configurer
    */
-  @Bean(name = "propertyPlaceholderConfigurer")
-  public static PropertyPlaceholderConfigurer getPropertyPlaceholderConfigurer() {
-    logger.debug("Instantiated propertyPlaceholderConfigurer");
-    PropertyPlaceholderConfigurer configurer = new PropertyPlaceholderConfigurer();
+  @Bean(name = "propertySourcesPlaceholderConfigurer")
+  public static PropertySourcesPlaceholderConfigurer getPropertySourcesPlaceholderConfigurer() {
+    logger.debug("Instantiated propertySourcesPlaceholderConfigurer");
+    PropertySourcesPlaceholderConfigurer configurer = new PropertySourcesPlaceholderConfigurer();
     configurer.setLocation(new ClassPathResource("stats.properties"));
     configurer.setNullValue("NULL");
 
@@ -389,9 +389,6 @@ public class ProbeConfig implements WebMvcConfigurer {
     properties.put("psiprobe.tools.mail.to", "NULL");
     properties.put("psiprobe.tools.mail.subjectPrefix", "[PSI Probe]");
     configurer.setProperties(properties);
-
-    configurer.setSystemPropertiesModeName("SYSTEM_PROPERTIES_MODE_OVERRIDE");
-
     return configurer;
   }
 

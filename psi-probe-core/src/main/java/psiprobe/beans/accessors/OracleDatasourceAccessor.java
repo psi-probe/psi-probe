@@ -33,7 +33,11 @@ import oracle.jdbc.pool.OracleDataSource;
  * tedious job of verifying whether the datasource has a record in the cache manager or not. The
  * pool information is subsequently retrieved from the relevant cache manager entry.
  * </p>
+ *
+ * @deprecated As of 21c, this is deleted by oracle, therefore please transition to ucp which we
+ *             support now.
  */
+@Deprecated
 public class OracleDatasourceAccessor implements DatasourceAccessor {
 
   @Override
