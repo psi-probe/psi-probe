@@ -18,13 +18,13 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class UtilsTest.
  */
-public class UtilsBaseTest {
+class UtilsBaseTest {
 
   /**
    * Calc pool usage score test.
    */
   @Test
-  public void calcPoolUsageScoreTest() {
+  void calcPoolUsageScoreTest() {
     Assertions.assertEquals(100, UtilsBase.calcPoolUsageScore(5, 5));
     Assertions.assertEquals(0, UtilsBase.calcPoolUsageScore(0, 5));
   }
@@ -33,7 +33,7 @@ public class UtilsBaseTest {
    * To int test.
    */
   @Test
-  public void toIntTest() {
+  void toIntTest() {
     Assertions.assertEquals(5, UtilsBase.toInt("garbage", 5));
     Assertions.assertEquals(3, UtilsBase.toInt("3", 5));
     Assertions.assertEquals(5, UtilsBase.toInt("3 3", 5));
@@ -44,7 +44,7 @@ public class UtilsBaseTest {
    * JavabeanTester Private Constructor.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(UtilsBase.class).testPrivateConstructor();
   }
 

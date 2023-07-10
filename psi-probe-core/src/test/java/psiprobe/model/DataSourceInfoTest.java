@@ -18,13 +18,13 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class DataSourceInfoTest.
  */
-public class DataSourceInfoTest {
+class DataSourceInfoTest {
 
   /**
    * Javabean tester.
    */
   @Test
-  public void javabeanTester() {
+  void javabeanTester() {
     JavaBeanTester.builder(DataSourceInfo.class).loadData().test();
   }
 
@@ -32,7 +32,7 @@ public class DataSourceInfoTest {
    * Test get busy score.
    */
   @Test
-  public void busyScore() {
+  void busyScore() {
     final DataSourceInfo dataSourceInfo = new DataSourceInfo();
     dataSourceInfo.setBusyConnections(1);
     dataSourceInfo.setMaxConnections(5);
@@ -43,7 +43,7 @@ public class DataSourceInfoTest {
    * Test get established score.
    */
   @Test
-  public void establishedScore() {
+  void establishedScore() {
     final DataSourceInfo dataSourceInfo = new DataSourceInfo();
     dataSourceInfo.setEstablishedConnections(1);
     dataSourceInfo.setMaxConnections(5);

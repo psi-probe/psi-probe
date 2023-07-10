@@ -22,7 +22,7 @@ import oracle.ucp.jdbc.PoolXADataSourceImpl;
 /**
  * The Class OracleUcpDatasourceAccessorTest.
  */
-public class OracleUcpDatasourceAccessorTest {
+class OracleUcpDatasourceAccessorTest {
 
   /** The accessor. */
   OracleUcpDatasourceAccessor accessor;
@@ -39,7 +39,7 @@ public class OracleUcpDatasourceAccessorTest {
    * Before.
    */
   @BeforeEach
-  public void before() {
+  void before() {
     accessor = new OracleUcpDatasourceAccessor();
     source = new PoolDataSourceImpl();
     xaSource = new PoolXADataSourceImpl();
@@ -50,7 +50,7 @@ public class OracleUcpDatasourceAccessorTest {
    * Can map test.
    */
   @Test
-  public void canMapTest() {
+  void canMapTest() {
     Assertions.assertTrue(accessor.canMap(source));
   }
 
@@ -58,7 +58,7 @@ public class OracleUcpDatasourceAccessorTest {
    * Can map XA test.
    */
   @Test
-  public void canMapXATest() {
+  void canMapXATest() {
     Assertions.assertTrue(accessor.canMap(xaSource));
   }
 
@@ -66,7 +66,7 @@ public class OracleUcpDatasourceAccessorTest {
    * Cannot map test.
    */
   @Test
-  public void cannotMapTest() {
+  void cannotMapTest() {
     Assertions.assertFalse(accessor.canMap(badSource));
   }
 
@@ -76,7 +76,7 @@ public class OracleUcpDatasourceAccessorTest {
    * @throws Exception the exception
    */
   @Test
-  public void getInfoTest() throws Exception {
+  void getInfoTest() throws Exception {
     accessor.getInfo(source);
   }
 
