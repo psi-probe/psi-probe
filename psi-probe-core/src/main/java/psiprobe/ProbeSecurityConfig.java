@@ -30,9 +30,9 @@ import org.springframework.security.access.vote.AffirmativeBased;
 import org.springframework.security.access.vote.RoleVoter;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.ProviderManager;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.authority.mapping.SimpleAttributes2GrantedAuthoritiesMapper;
+import org.springframework.security.web.DefaultSecurityFilterChain;
 import org.springframework.security.web.FilterChainProxy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.ExceptionTranslationFilter;
@@ -46,8 +46,7 @@ import org.springframework.security.web.authentication.preauth.PreAuthenticatedG
 import org.springframework.security.web.authentication.preauth.j2ee.J2eeBasedPreAuthenticatedWebAuthenticationDetailsSource;
 import org.springframework.security.web.authentication.preauth.j2ee.J2eePreAuthenticatedProcessingFilter;
 import org.springframework.security.web.authentication.preauth.j2ee.WebXmlMappableAttributesRetriever;
-import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
-import org.springframework.security.web.context.SecurityContextHolderFilter;
+import org.springframework.security.web.context.SecurityContextPersistenceFilter;
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -61,31 +60,16 @@ import org.springframework.security.web.util.matcher.RequestMatcher;
 public class ProbeSecurityConfig {
 
   /**
-   * Gets the security filter chain.
-   *
-   * @param http the http
-   * @return the security filter chain
-   * @throws Exception the exception
-   */
-  @Bean(name = "securityFilterChain")
-  public SecurityFilterChain getSecurityFilterChain(HttpSecurity http) throws Exception {
-    http.authorizeHttpRequests().requestMatchers("/**").permitAll().and()
-        .addFilter(getSecurityContextHolderFilter())
-        .addFilter(getJ2eePreAuthenticatedProcessingFilter()).addFilter(getLogoutFilter())
-        .addFilter(getExceptionTranslationFilter()).addFilter(getFilterSecurityInterceptor());
-    return http.build();
-  }
-
-  /**
    * Gets the filter chain proxy.
    *
-   * @param http the http
    * @return the filter chain proxy
-   * @throws Exception the exception
    */
   @Bean(name = "filterChainProxy")
-  public FilterChainProxy getFilterChainProxy(HttpSecurity http) throws Exception {
-    return new FilterChainProxy(getSecurityFilterChain(http));
+  public FilterChainProxy getFilterChainProxy() {
+    SecurityFilterChain chain = new DefaultSecurityFilterChain(new AntPathRequestMatcher("/**"),
+        getSecurityContextPersistenceFilter(), getJ2eePreAuthenticatedProcessingFilter(),
+        getLogoutFilter(), getExceptionTranslationFilter(), getFilterSecurityInterceptor());
+    return new FilterChainProxy(chain);
   }
 
   /**
@@ -101,13 +85,13 @@ public class ProbeSecurityConfig {
   }
 
   /**
-   * Gets the security context holder filter.
+   * Gets the security context persistence filter.
    *
-   * @return the security context holder filter
+   * @return the security context persistence filter
    */
-  @Bean(name = "securityContextHolderFilter")
-  public SecurityContextHolderFilter getSecurityContextHolderFilter() {
-    return new SecurityContextHolderFilter(new HttpSessionSecurityContextRepository());
+  @Bean(name = "sif")
+  public SecurityContextPersistenceFilter getSecurityContextPersistenceFilter() {
+    return new SecurityContextPersistenceFilter();
   }
 
   /**
