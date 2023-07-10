@@ -46,7 +46,8 @@ import org.springframework.security.web.authentication.preauth.PreAuthenticatedG
 import org.springframework.security.web.authentication.preauth.j2ee.J2eeBasedPreAuthenticatedWebAuthenticationDetailsSource;
 import org.springframework.security.web.authentication.preauth.j2ee.J2eePreAuthenticatedProcessingFilter;
 import org.springframework.security.web.authentication.preauth.j2ee.WebXmlMappableAttributesRetriever;
-import org.springframework.security.web.context.SecurityContextPersistenceFilter;
+import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
+import org.springframework.security.web.context.SecurityContextHolderFilter;
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -67,7 +68,7 @@ public class ProbeSecurityConfig {
   @Bean(name = "filterChainProxy")
   public FilterChainProxy getFilterChainProxy() {
     SecurityFilterChain chain = new DefaultSecurityFilterChain(new AntPathRequestMatcher("/**"),
-        getSecurityContextPersistenceFilter(), getJ2eePreAuthenticatedProcessingFilter(),
+        getSecurityContextHolderFilter(), getJ2eePreAuthenticatedProcessingFilter(),
         getLogoutFilter(), getExceptionTranslationFilter(), getFilterSecurityInterceptor());
     return new FilterChainProxy(chain);
   }
@@ -85,13 +86,13 @@ public class ProbeSecurityConfig {
   }
 
   /**
-   * Gets the security context persistence filter.
+   * Gets the security context holder filter.
    *
-   * @return the security context persistence filter
+   * @return the security context holder filter
    */
-  @Bean(name = "sif")
-  public SecurityContextPersistenceFilter getSecurityContextPersistenceFilter() {
-    return new SecurityContextPersistenceFilter();
+  @Bean(name = "securityContextHolderFilter")
+  public SecurityContextHolderFilter getSecurityContextHolderFilter() {
+    return new SecurityContextHolderFilter(new HttpSessionSecurityContextRepository());
   }
 
   /**
