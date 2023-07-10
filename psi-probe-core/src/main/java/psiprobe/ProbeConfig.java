@@ -379,8 +379,8 @@ public class ProbeConfig implements WebMvcConfigurer {
    * @return the property placeholder configurer
    */
   @Bean(name = "propertySourcesPlaceholderConfigurer")
-  public static PropertySourcesPlaceholderConfigurer getPropertyPlaceholderConfigurer() {
-    logger.debug("Instantiated propertyPlaceholderConfigurer");
+  public static PropertySourcesPlaceholderConfigurer getPropertySourcesPlaceholderConfigurer() {
+    logger.debug("Instantiated propertySourcesPlaceholderConfigurer");
     PropertySourcesPlaceholderConfigurer configurer = new PropertySourcesPlaceholderConfigurer();
     configurer.setLocation(new ClassPathResource("stats.properties"));
     configurer.setNullValue("NULL");
