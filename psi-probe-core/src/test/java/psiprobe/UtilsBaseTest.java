@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The Class UtilsTest.
  */
-public class UtilsBaseTest {
+class UtilsBaseTest {
 
   /**
    * Calc pool usage score test.

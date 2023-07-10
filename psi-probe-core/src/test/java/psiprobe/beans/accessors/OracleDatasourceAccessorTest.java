@@ -27,7 +27,7 @@ import oracle.jdbc.pool.OracleDataSource;
 /**
  * The Class OracleDatasourceAccessorTest.
  */
-public class OracleDatasourceAccessorTest {
+class OracleDatasourceAccessorTest {
 
   /** The accessor. */
   OracleDatasourceAccessor accessor;

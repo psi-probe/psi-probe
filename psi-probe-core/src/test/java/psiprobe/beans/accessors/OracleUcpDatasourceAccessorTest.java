@@ -22,7 +22,7 @@ import oracle.ucp.jdbc.PoolXADataSourceImpl;
 /**
  * The Class OracleUcpDatasourceAccessorTest.
  */
-public class OracleUcpDatasourceAccessorTest {
+class OracleUcpDatasourceAccessorTest {
 
   /** The accessor. */
   OracleUcpDatasourceAccessor accessor;
