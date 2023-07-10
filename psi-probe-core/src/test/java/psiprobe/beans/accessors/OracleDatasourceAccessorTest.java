@@ -45,7 +45,7 @@ public class OracleDatasourceAccessorTest {
    * @throws SQLException the SQL exception
    */
   @BeforeEach
-  public void before() throws SQLException {
+  void before() throws SQLException {
     accessor = new OracleDatasourceAccessor();
     badSource = new ComboPooledDataSource();
   }
@@ -54,7 +54,7 @@ public class OracleDatasourceAccessorTest {
    * Can map test.
    */
   @Test
-  public void canMapTest() {
+  void canMapTest() {
     Assertions.assertTrue(accessor.canMap(source));
   }
 
@@ -62,7 +62,7 @@ public class OracleDatasourceAccessorTest {
    * Cannot map test.
    */
   @Test
-  public void cannotMapTest() {
+  void cannotMapTest() {
     Assertions.assertFalse(accessor.canMap(badSource));
   }
 
@@ -72,7 +72,7 @@ public class OracleDatasourceAccessorTest {
    * @throws Exception the exception
    */
   @Test
-  public void getInfoTest() throws Exception {
+  void getInfoTest() throws Exception {
     new Expectations() {
       {
         source.getConnectionCacheProperties();
