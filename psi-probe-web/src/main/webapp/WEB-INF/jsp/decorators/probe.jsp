@@ -41,8 +41,8 @@
                                                                         alt="PSI Probe Logo"/></a></li>
                 <li id="runtime">
                     <spring:message code="probe.jsp.version" arguments="${version},<b>${hostname}</b>"/>,
-                    <span class="uptime"><spring:message code="probe.jsp.uptime"
-                                                        arguments="${uptime_days},${uptime_hours},${uptime_mins}"/></span></li>
+                    <span id="uptime"></span>
+                </li>
                 <li id="title"><decorator:title default="Probe"/></li>
             </ul>
         </div>
@@ -198,5 +198,8 @@
             </p>
         </div>
 
+        <script>
+            new Ajax.PeriodicalUpdater('uptime', '<c:url value="/uptime.ajax"/>', {method:'get',frequency: 60});
+        </script>
     </body>
 </html>

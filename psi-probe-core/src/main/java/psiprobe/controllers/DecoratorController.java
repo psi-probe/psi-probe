@@ -10,7 +10,6 @@
  */
 package psiprobe.controllers;
 
-import java.lang.management.ManagementFactory;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.List;
@@ -77,19 +76,6 @@ public class DecoratorController extends PostParameterizableViewController {
     Properties version = (Properties) getApplicationContext().getBean("version");
     request.setAttribute("version", version.getProperty("probe.version"));
 
-    long uptimeStartValue = ManagementFactory.getRuntimeMXBean().getStartTime();
-    long uptime = System.currentTimeMillis() - uptimeStartValue;
-    long uptimeDays = uptime / (1000 * 60 * 60 * 24);
-
-    uptime = uptime % (1000 * 60 * 60 * 24);
-    long uptimeHours = uptime / (1000 * 60 * 60);
-
-    uptime = uptime % (1000 * 60 * 60);
-    long uptimeMins = uptime / (1000 * 60);
-
-    request.setAttribute("uptime_days", uptimeDays);
-    request.setAttribute("uptime_hours", uptimeHours);
-    request.setAttribute("uptime_mins", uptimeMins);
     //
     // Work out the language of the interface by matching resource files that we have
     // to the request locale.
