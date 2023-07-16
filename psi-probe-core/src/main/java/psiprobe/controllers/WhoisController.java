@@ -122,7 +122,7 @@ public class WhoisController extends ParameterizableViewController {
 
     boolean timeout = false;
 
-    String ipAddress = ServletRequestUtils.getStringParameter(request, "ip", null);
+    String ipAddress = ServletRequestUtils.getStringParameter(request, "ip");
 
     Whois.Response wh = null;
     try {
