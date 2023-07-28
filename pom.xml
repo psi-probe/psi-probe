@@ -245,7 +245,7 @@
         <scm-publish.plugin>3.2.1</scm-publish.plugin>
         <site.plugin>3.12.1</site.plugin>
         <sonar.plugin>3.9.1.2184</sonar.plugin>
-        <sortpom.plugin>3.2.1</sortpom.plugin>
+        <sortpom.plugin>3.3.0</sortpom.plugin>
         <source.plugin>3.3.0</source.plugin>
         <spotbugs.plugin>4.7.3.5</spotbugs.plugin>
         <spotless.plugin>2.38.0</spotless.plugin>
