@@ -190,7 +190,7 @@
         <logback.version>1.3.7</logback.version>
         <mail.version>1.6.7</mail.version>
         <mchange.version>0.2.20</mchange.version>
-        <ojdbc.version>19.19.0.0</ojdbc.version>
+        <ojdbc.version>19.20.0.0</ojdbc.version>
         <oshi.version>6.4.4</oshi.version>
         <openejb.version>8.0.15</openejb.version>
         <persistence.version>2.2.3</persistence.version>
