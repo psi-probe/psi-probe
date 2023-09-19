@@ -250,7 +250,7 @@
         <spotbugs.plugin>4.7.3.5</spotbugs.plugin>
         <spotless.plugin>2.39.0</spotless.plugin>
         <surefire.plugin>3.1.2</surefire.plugin>
-        <versions.plugin>2.16.0</versions.plugin>
+        <versions.plugin>2.16.1</versions.plugin>
         <war.plugin>3.4.0</war.plugin>
 
         <!-- Plugin Dependency Versions -->
