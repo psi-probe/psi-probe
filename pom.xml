@@ -191,7 +191,7 @@
         <mail.version>1.6.7</mail.version>
         <mchange.version>0.2.20</mchange.version>
         <ojdbc.version>19.20.0.0</ojdbc.version>
-        <oshi.version>6.4.5</oshi.version>
+        <oshi.version>6.4.6</oshi.version>
         <openejb.version>8.0.15</openejb.version>
         <persistence.version>2.2.3</persistence.version>
         <quartz.version>2.4.0-rc2</quartz.version>
