@@ -374,9 +374,9 @@ public class ProbeConfig implements WebMvcConfigurer {
   }
 
   /**
-   * Gets the property placeholder configurer.
+   * Gets the property sources placeholder configurer.
    *
-   * @return the property placeholder configurer
+   * @return the property sources placeholder configurer
    */
   @Bean(name = "propertySourcesPlaceholderConfigurer")
   public static PropertySourcesPlaceholderConfigurer getPropertySourcesPlaceholderConfigurer() {
