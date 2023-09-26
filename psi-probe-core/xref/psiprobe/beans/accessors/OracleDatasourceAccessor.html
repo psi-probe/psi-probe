@@ -41,59 +41,63 @@
 <a class="jxr_linenumber" name="L33" href="#L33">33</a>  <em class="jxr_javadoccomment"> * tedious job of verifying whether the datasource has a record in the cache manager or not. The</em>
 <a class="jxr_linenumber" name="L34" href="#L34">34</a>  <em class="jxr_javadoccomment"> * pool information is subsequently retrieved from the relevant cache manager entry.</em>
 <a class="jxr_linenumber" name="L35" href="#L35">35</a>  <em class="jxr_javadoccomment"> * &lt;/p&gt;</em>
-<a class="jxr_linenumber" name="L36" href="#L36">36</a>  <em class="jxr_javadoccomment"> */</em>
-<a class="jxr_linenumber" name="L37" href="#L37">37</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a name="OracleDatasourceAccessor" href="../../../psiprobe/beans/accessors/OracleDatasourceAccessor.html#OracleDatasourceAccessor">OracleDatasourceAccessor</a> <strong class="jxr_keyword">implements</strong> <a name="DatasourceAccessor" href="../../../psiprobe/beans/accessors/DatasourceAccessor.html#DatasourceAccessor">DatasourceAccessor</a> {
-<a class="jxr_linenumber" name="L38" href="#L38">38</a>  
-<a class="jxr_linenumber" name="L39" href="#L39">39</a>    @Override
-<a class="jxr_linenumber" name="L40" href="#L40">40</a>    <strong class="jxr_keyword">public</strong> <a name="DataSourceInfo" href="../../../psiprobe/model/DataSourceInfo.html#DataSourceInfo">DataSourceInfo</a> getInfo(Object resource) <strong class="jxr_keyword">throws</strong> SQLException {
-<a class="jxr_linenumber" name="L41" href="#L41">41</a>      <a name="DataSourceInfo" href="../../../psiprobe/model/DataSourceInfo.html#DataSourceInfo">DataSourceInfo</a> dataSourceInfo = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>  <em class="jxr_javadoccomment"> *</em>
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>  <em class="jxr_javadoccomment"> * @deprecated As of 21c, this is deleted by oracle, therefore please transition to ucp which we</em>
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>  <em class="jxr_javadoccomment"> *             support now.</em>
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>  <em class="jxr_javadoccomment"> */</em>
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>  @Deprecated
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a name="OracleDatasourceAccessor" href="../../../psiprobe/beans/accessors/OracleDatasourceAccessor.html#OracleDatasourceAccessor">OracleDatasourceAccessor</a> <strong class="jxr_keyword">implements</strong> <a name="DatasourceAccessor" href="../../../psiprobe/beans/accessors/DatasourceAccessor.html#DatasourceAccessor">DatasourceAccessor</a> {
 <a class="jxr_linenumber" name="L42" href="#L42">42</a>  
-<a class="jxr_linenumber" name="L43" href="#L43">43</a>      <strong class="jxr_keyword">if</strong> (canMap(resource)) {
-<a class="jxr_linenumber" name="L44" href="#L44">44</a>        OracleDataSource source = (OracleDataSource) resource;
-<a class="jxr_linenumber" name="L45" href="#L45">45</a>        OracleConnectionCacheManager occm =
-<a class="jxr_linenumber" name="L46" href="#L46">46</a>            OracleConnectionCacheManager.getConnectionCacheManagerInstance();
-<a class="jxr_linenumber" name="L47" href="#L47">47</a>        Properties cacheProperties = source.getConnectionCacheProperties();
-<a class="jxr_linenumber" name="L48" href="#L48">48</a>        String cacheName = source.getConnectionCacheName();
-<a class="jxr_linenumber" name="L49" href="#L49">49</a>        cacheName = cacheName != <strong class="jxr_keyword">null</strong> &amp;&amp; occm.existsCache(cacheName) ? cacheName : <strong class="jxr_keyword">null</strong>;
-<a class="jxr_linenumber" name="L50" href="#L50">50</a>  
-<a class="jxr_linenumber" name="L51" href="#L51">51</a>        <strong class="jxr_keyword">if</strong> (cacheProperties != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L52" href="#L52">52</a>  
-<a class="jxr_linenumber" name="L53" href="#L53">53</a>          dataSourceInfo = <strong class="jxr_keyword">new</strong> <a name="DataSourceInfo" href="../../../psiprobe/model/DataSourceInfo.html#DataSourceInfo">DataSourceInfo</a>();
-<a class="jxr_linenumber" name="L54" href="#L54">54</a>          <strong class="jxr_keyword">if</strong> (cacheName != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L55" href="#L55">55</a>            dataSourceInfo.setBusyConnections(occm.getNumberOfActiveConnections(cacheName));
-<a class="jxr_linenumber" name="L56" href="#L56">56</a>            dataSourceInfo.setEstablishedConnections(occm.getNumberOfAvailableConnections(cacheName)
-<a class="jxr_linenumber" name="L57" href="#L57">57</a>                + dataSourceInfo.getBusyConnections());
-<a class="jxr_linenumber" name="L58" href="#L58">58</a>          } <strong class="jxr_keyword">else</strong> {
-<a class="jxr_linenumber" name="L59" href="#L59">59</a>            dataSourceInfo.setBusyConnections(0);
-<a class="jxr_linenumber" name="L60" href="#L60">60</a>            dataSourceInfo.setEstablishedConnections(0);
-<a class="jxr_linenumber" name="L61" href="#L61">61</a>          }
-<a class="jxr_linenumber" name="L62" href="#L62">62</a>  
-<a class="jxr_linenumber" name="L63" href="#L63">63</a>          dataSourceInfo
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>              .setMaxConnections(UtilsBase.toInt(cacheProperties.getProperty(<span class="jxr_string">"MaxLimit"</span>), -1));
-<a class="jxr_linenumber" name="L65" href="#L65">65</a>          dataSourceInfo.setJdbcUrl(source.getURL());
-<a class="jxr_linenumber" name="L66" href="#L66">66</a>          dataSourceInfo.setUsername(source.getUser());
-<a class="jxr_linenumber" name="L67" href="#L67">67</a>          dataSourceInfo.setResettable(<strong class="jxr_keyword">true</strong>);
-<a class="jxr_linenumber" name="L68" href="#L68">68</a>          dataSourceInfo.setType(<span class="jxr_string">"oracle-jdbc"</span>);
-<a class="jxr_linenumber" name="L69" href="#L69">69</a>        }
-<a class="jxr_linenumber" name="L70" href="#L70">70</a>      }
-<a class="jxr_linenumber" name="L71" href="#L71">71</a>      <strong class="jxr_keyword">return</strong> dataSourceInfo;
-<a class="jxr_linenumber" name="L72" href="#L72">72</a>    }
-<a class="jxr_linenumber" name="L73" href="#L73">73</a>  
-<a class="jxr_linenumber" name="L74" href="#L74">74</a>    @Override
-<a class="jxr_linenumber" name="L75" href="#L75">75</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> reset(Object resource) <strong class="jxr_keyword">throws</strong> SQLException {
-<a class="jxr_linenumber" name="L76" href="#L76">76</a>      <strong class="jxr_keyword">if</strong> (canMap(resource)) {
-<a class="jxr_linenumber" name="L77" href="#L77">77</a>        ((OracleDataSource) resource).close();
-<a class="jxr_linenumber" name="L78" href="#L78">78</a>        <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">true</strong>;
-<a class="jxr_linenumber" name="L79" href="#L79">79</a>      }
-<a class="jxr_linenumber" name="L80" href="#L80">80</a>      <strong class="jxr_keyword">return</strong> false;
-<a class="jxr_linenumber" name="L81" href="#L81">81</a>    }
-<a class="jxr_linenumber" name="L82" href="#L82">82</a>  
-<a class="jxr_linenumber" name="L83" href="#L83">83</a>    @Override
-<a class="jxr_linenumber" name="L84" href="#L84">84</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> canMap(Object resource) {
-<a class="jxr_linenumber" name="L85" href="#L85">85</a>      <strong class="jxr_keyword">return</strong> <span class="jxr_string">"oracle.jdbc.pool.OracleDataSource"</span>.equals(resource.getClass().getName())
-<a class="jxr_linenumber" name="L86" href="#L86">86</a>          &amp;&amp; resource instanceof OracleDataSource;
-<a class="jxr_linenumber" name="L87" href="#L87">87</a>    }
-<a class="jxr_linenumber" name="L88" href="#L88">88</a>  }
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>    @Override
+<a class="jxr_linenumber" name="L44" href="#L44">44</a>    <strong class="jxr_keyword">public</strong> <a name="DataSourceInfo" href="../../../psiprobe/model/DataSourceInfo.html#DataSourceInfo">DataSourceInfo</a> getInfo(Object resource) <strong class="jxr_keyword">throws</strong> SQLException {
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>      <a name="DataSourceInfo" href="../../../psiprobe/model/DataSourceInfo.html#DataSourceInfo">DataSourceInfo</a> dataSourceInfo = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>  
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>      <strong class="jxr_keyword">if</strong> (canMap(resource)) {
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>        OracleDataSource source = (OracleDataSource) resource;
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>        OracleConnectionCacheManager occm =
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>            OracleConnectionCacheManager.getConnectionCacheManagerInstance();
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>        Properties cacheProperties = source.getConnectionCacheProperties();
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>        String cacheName = source.getConnectionCacheName();
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>        cacheName = cacheName != <strong class="jxr_keyword">null</strong> &amp;&amp; occm.existsCache(cacheName) ? cacheName : <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>  
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>        <strong class="jxr_keyword">if</strong> (cacheProperties != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>  
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>          dataSourceInfo = <strong class="jxr_keyword">new</strong> <a name="DataSourceInfo" href="../../../psiprobe/model/DataSourceInfo.html#DataSourceInfo">DataSourceInfo</a>();
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>          <strong class="jxr_keyword">if</strong> (cacheName != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>            dataSourceInfo.setBusyConnections(occm.getNumberOfActiveConnections(cacheName));
+<a class="jxr_linenumber" name="L60" href="#L60">60</a>            dataSourceInfo.setEstablishedConnections(occm.getNumberOfAvailableConnections(cacheName)
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>                + dataSourceInfo.getBusyConnections());
+<a class="jxr_linenumber" name="L62" href="#L62">62</a>          } <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="L63" href="#L63">63</a>            dataSourceInfo.setBusyConnections(0);
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>            dataSourceInfo.setEstablishedConnections(0);
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>          }
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>  
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>          dataSourceInfo
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>              .setMaxConnections(UtilsBase.toInt(cacheProperties.getProperty(<span class="jxr_string">"MaxLimit"</span>), -1));
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>          dataSourceInfo.setJdbcUrl(source.getURL());
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>          dataSourceInfo.setUsername(source.getUser());
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>          dataSourceInfo.setResettable(<strong class="jxr_keyword">true</strong>);
+<a class="jxr_linenumber" name="L72" href="#L72">72</a>          dataSourceInfo.setType(<span class="jxr_string">"oracle-jdbc"</span>);
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>        }
+<a class="jxr_linenumber" name="L74" href="#L74">74</a>      }
+<a class="jxr_linenumber" name="L75" href="#L75">75</a>      <strong class="jxr_keyword">return</strong> dataSourceInfo;
+<a class="jxr_linenumber" name="L76" href="#L76">76</a>    }
+<a class="jxr_linenumber" name="L77" href="#L77">77</a>  
+<a class="jxr_linenumber" name="L78" href="#L78">78</a>    @Override
+<a class="jxr_linenumber" name="L79" href="#L79">79</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> reset(Object resource) <strong class="jxr_keyword">throws</strong> SQLException {
+<a class="jxr_linenumber" name="L80" href="#L80">80</a>      <strong class="jxr_keyword">if</strong> (canMap(resource)) {
+<a class="jxr_linenumber" name="L81" href="#L81">81</a>        ((OracleDataSource) resource).close();
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>        <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">true</strong>;
+<a class="jxr_linenumber" name="L83" href="#L83">83</a>      }
+<a class="jxr_linenumber" name="L84" href="#L84">84</a>      <strong class="jxr_keyword">return</strong> false;
+<a class="jxr_linenumber" name="L85" href="#L85">85</a>    }
+<a class="jxr_linenumber" name="L86" href="#L86">86</a>  
+<a class="jxr_linenumber" name="L87" href="#L87">87</a>    @Override
+<a class="jxr_linenumber" name="L88" href="#L88">88</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> canMap(Object resource) {
+<a class="jxr_linenumber" name="L89" href="#L89">89</a>      <strong class="jxr_keyword">return</strong> <span class="jxr_string">"oracle.jdbc.pool.OracleDataSource"</span>.equals(resource.getClass().getName())
+<a class="jxr_linenumber" name="L90" href="#L90">90</a>          &amp;&amp; resource instanceof OracleDataSource;
+<a class="jxr_linenumber" name="L91" href="#L91">91</a>    }
+<a class="jxr_linenumber" name="L92" href="#L92">92</a>  }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2009&#x2013;2023 <a href="https://github.com/psi-probe/">psi-probe</a>. All rights reserved.</div>

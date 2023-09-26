@@ -35,7 +35,7 @@
 <a class="jxr_linenumber" name="L27" href="#L27">27</a>  <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L28" href="#L28">28</a>  <em class="jxr_javadoccomment"> * The Class OracleDatasourceAccessorTest.</em>
 <a class="jxr_linenumber" name="L29" href="#L29">29</a>  <em class="jxr_javadoccomment"> */</em>
-<a class="jxr_linenumber" name="L30" href="#L30">30</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a name="OracleDatasourceAccessorTest" href="../../../psiprobe/beans/accessors/OracleDatasourceAccessorTest.html#OracleDatasourceAccessorTest">OracleDatasourceAccessorTest</a> {
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>  <strong class="jxr_keyword">class</strong> <a name="OracleDatasourceAccessorTest" href="../../../psiprobe/beans/accessors/OracleDatasourceAccessorTest.html#OracleDatasourceAccessorTest">OracleDatasourceAccessorTest</a> {
 <a class="jxr_linenumber" name="L31" href="#L31">31</a>  
 <a class="jxr_linenumber" name="L32" href="#L32">32</a>    <em class="jxr_javadoccomment">/** The accessor. */</em>
 <a class="jxr_linenumber" name="L33" href="#L33">33</a>    OracleDatasourceAccessor accessor;
@@ -53,7 +53,7 @@
 <a class="jxr_linenumber" name="L45" href="#L45">45</a>  <em class="jxr_javadoccomment">   * @throws SQLException the SQL exception</em>
 <a class="jxr_linenumber" name="L46" href="#L46">46</a>  <em class="jxr_javadoccomment">   */</em>
 <a class="jxr_linenumber" name="L47" href="#L47">47</a>    @BeforeEach
-<a class="jxr_linenumber" name="L48" href="#L48">48</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> before() <strong class="jxr_keyword">throws</strong> SQLException {
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>    <strong class="jxr_keyword">void</strong> before() <strong class="jxr_keyword">throws</strong> SQLException {
 <a class="jxr_linenumber" name="L49" href="#L49">49</a>      accessor = <strong class="jxr_keyword">new</strong> OracleDatasourceAccessor();
 <a class="jxr_linenumber" name="L50" href="#L50">50</a>      badSource = <strong class="jxr_keyword">new</strong> ComboPooledDataSource();
 <a class="jxr_linenumber" name="L51" href="#L51">51</a>    }
@@ -62,7 +62,7 @@
 <a class="jxr_linenumber" name="L54" href="#L54">54</a>  <em class="jxr_javadoccomment">   * Can map test.</em>
 <a class="jxr_linenumber" name="L55" href="#L55">55</a>  <em class="jxr_javadoccomment">   */</em>
 <a class="jxr_linenumber" name="L56" href="#L56">56</a>    @Test
-<a class="jxr_linenumber" name="L57" href="#L57">57</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> canMapTest() {
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>    <strong class="jxr_keyword">void</strong> canMapTest() {
 <a class="jxr_linenumber" name="L58" href="#L58">58</a>      Assertions.assertTrue(accessor.canMap(source));
 <a class="jxr_linenumber" name="L59" href="#L59">59</a>    }
 <a class="jxr_linenumber" name="L60" href="#L60">60</a>  
@@ -70,7 +70,7 @@
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>  <em class="jxr_javadoccomment">   * Cannot map test.</em>
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>  <em class="jxr_javadoccomment">   */</em>
 <a class="jxr_linenumber" name="L64" href="#L64">64</a>    @Test
-<a class="jxr_linenumber" name="L65" href="#L65">65</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> cannotMapTest() {
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>    <strong class="jxr_keyword">void</strong> cannotMapTest() {
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>      Assertions.assertFalse(accessor.canMap(badSource));
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>    }
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>  
@@ -80,7 +80,7 @@
 <a class="jxr_linenumber" name="L72" href="#L72">72</a>  <em class="jxr_javadoccomment">   * @throws Exception the exception</em>
 <a class="jxr_linenumber" name="L73" href="#L73">73</a>  <em class="jxr_javadoccomment">   */</em>
 <a class="jxr_linenumber" name="L74" href="#L74">74</a>    @Test
-<a class="jxr_linenumber" name="L75" href="#L75">75</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> getInfoTest() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L75" href="#L75">75</a>    <strong class="jxr_keyword">void</strong> getInfoTest() <strong class="jxr_keyword">throws</strong> Exception {
 <a class="jxr_linenumber" name="L76" href="#L76">76</a>      <strong class="jxr_keyword">new</strong> Expectations() {
 <a class="jxr_linenumber" name="L77" href="#L77">77</a>        {
 <a class="jxr_linenumber" name="L78" href="#L78">78</a>          source.getConnectionCacheProperties();

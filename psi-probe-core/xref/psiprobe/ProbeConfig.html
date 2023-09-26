@@ -31,11 +31,11 @@
 <a class="jxr_linenumber" name="L23" href="#L23">23</a>  <strong class="jxr_keyword">import</strong> org.springframework.beans.factory.FactoryBean;
 <a class="jxr_linenumber" name="L24" href="#L24">24</a>  <strong class="jxr_keyword">import</strong> org.springframework.beans.factory.annotation.Autowired;
 <a class="jxr_linenumber" name="L25" href="#L25">25</a>  <strong class="jxr_keyword">import</strong> org.springframework.beans.factory.config.PropertiesFactoryBean;
-<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <strong class="jxr_keyword">import</strong> org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
-<a class="jxr_linenumber" name="L27" href="#L27">27</a>  <strong class="jxr_keyword">import</strong> org.springframework.context.MessageSource;
-<a class="jxr_linenumber" name="L28" href="#L28">28</a>  <strong class="jxr_keyword">import</strong> org.springframework.context.annotation.Bean;
-<a class="jxr_linenumber" name="L29" href="#L29">29</a>  <strong class="jxr_keyword">import</strong> org.springframework.context.annotation.ComponentScan;
-<a class="jxr_linenumber" name="L30" href="#L30">30</a>  <strong class="jxr_keyword">import</strong> org.springframework.context.annotation.Configuration;
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <strong class="jxr_keyword">import</strong> org.springframework.context.MessageSource;
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>  <strong class="jxr_keyword">import</strong> org.springframework.context.annotation.Bean;
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>  <strong class="jxr_keyword">import</strong> org.springframework.context.annotation.ComponentScan;
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>  <strong class="jxr_keyword">import</strong> org.springframework.context.annotation.Configuration;
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>  <strong class="jxr_keyword">import</strong> org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 <a class="jxr_linenumber" name="L31" href="#L31">31</a>  <strong class="jxr_keyword">import</strong> org.springframework.context.support.ReloadableResourceBundleMessageSource;
 <a class="jxr_linenumber" name="L32" href="#L32">32</a>  <strong class="jxr_keyword">import</strong> org.springframework.core.io.ClassPathResource;
 <a class="jxr_linenumber" name="L33" href="#L33">33</a>  <strong class="jxr_keyword">import</strong> org.springframework.web.servlet.HandlerMapping;
@@ -386,10 +386,10 @@
 <a class="jxr_linenumber" name="L378" href="#L378">378</a> <em class="jxr_javadoccomment">   *</em>
 <a class="jxr_linenumber" name="L379" href="#L379">379</a> <em class="jxr_javadoccomment">   * @return the property placeholder configurer</em>
 <a class="jxr_linenumber" name="L380" href="#L380">380</a> <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L381" href="#L381">381</a>   @Bean(name = <span class="jxr_string">"propertyPlaceholderConfigurer"</span>)
-<a class="jxr_linenumber" name="L382" href="#L382">382</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> PropertyPlaceholderConfigurer getPropertyPlaceholderConfigurer() {
-<a class="jxr_linenumber" name="L383" href="#L383">383</a>     logger.debug(<span class="jxr_string">"Instantiated propertyPlaceholderConfigurer"</span>);
-<a class="jxr_linenumber" name="L384" href="#L384">384</a>     PropertyPlaceholderConfigurer configurer = <strong class="jxr_keyword">new</strong> PropertyPlaceholderConfigurer();
+<a class="jxr_linenumber" name="L381" href="#L381">381</a>   @Bean(name = <span class="jxr_string">"propertySourcesPlaceholderConfigurer"</span>)
+<a class="jxr_linenumber" name="L382" href="#L382">382</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> PropertySourcesPlaceholderConfigurer getPropertySourcesPlaceholderConfigurer() {
+<a class="jxr_linenumber" name="L383" href="#L383">383</a>     logger.debug(<span class="jxr_string">"Instantiated propertySourcesPlaceholderConfigurer"</span>);
+<a class="jxr_linenumber" name="L384" href="#L384">384</a>     PropertySourcesPlaceholderConfigurer configurer = <strong class="jxr_keyword">new</strong> PropertySourcesPlaceholderConfigurer();
 <a class="jxr_linenumber" name="L385" href="#L385">385</a>     configurer.setLocation(<strong class="jxr_keyword">new</strong> ClassPathResource(<span class="jxr_string">"stats.properties"</span>));
 <a class="jxr_linenumber" name="L386" href="#L386">386</a>     configurer.setNullValue(<span class="jxr_string">"NULL"</span>);
 <a class="jxr_linenumber" name="L387" href="#L387">387</a> 
@@ -397,26 +397,23 @@
 <a class="jxr_linenumber" name="L389" href="#L389">389</a>     properties.put(<span class="jxr_string">"psiprobe.tools.mail.to"</span>, <span class="jxr_string">"NULL"</span>);
 <a class="jxr_linenumber" name="L390" href="#L390">390</a>     properties.put(<span class="jxr_string">"psiprobe.tools.mail.subjectPrefix"</span>, <span class="jxr_string">"[PSI Probe]"</span>);
 <a class="jxr_linenumber" name="L391" href="#L391">391</a>     configurer.setProperties(properties);
-<a class="jxr_linenumber" name="L392" href="#L392">392</a> 
-<a class="jxr_linenumber" name="L393" href="#L393">393</a>     configurer.setSystemPropertiesModeName(<span class="jxr_string">"SYSTEM_PROPERTIES_MODE_OVERRIDE"</span>);
+<a class="jxr_linenumber" name="L392" href="#L392">392</a>     <strong class="jxr_keyword">return</strong> configurer;
+<a class="jxr_linenumber" name="L393" href="#L393">393</a>   }
 <a class="jxr_linenumber" name="L394" href="#L394">394</a> 
-<a class="jxr_linenumber" name="L395" href="#L395">395</a>     <strong class="jxr_keyword">return</strong> configurer;
-<a class="jxr_linenumber" name="L396" href="#L396">396</a>   }
-<a class="jxr_linenumber" name="L397" href="#L397">397</a> 
-<a class="jxr_linenumber" name="L398" href="#L398">398</a>   <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L399" href="#L399">399</a> <em class="jxr_javadoccomment">   * Version.</em>
-<a class="jxr_linenumber" name="L400" href="#L400">400</a> <em class="jxr_javadoccomment">   *</em>
-<a class="jxr_linenumber" name="L401" href="#L401">401</a> <em class="jxr_javadoccomment">   * @return the properties factory bean</em>
-<a class="jxr_linenumber" name="L402" href="#L402">402</a> <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L403" href="#L403">403</a>   @Bean(name = <span class="jxr_string">"version"</span>)
-<a class="jxr_linenumber" name="L404" href="#L404">404</a>   <strong class="jxr_keyword">public</strong> PropertiesFactoryBean version() {
-<a class="jxr_linenumber" name="L405" href="#L405">405</a>     logger.debug(<span class="jxr_string">"Instantiated version"</span>);
-<a class="jxr_linenumber" name="L406" href="#L406">406</a>     PropertiesFactoryBean bean = <strong class="jxr_keyword">new</strong> PropertiesFactoryBean();
-<a class="jxr_linenumber" name="L407" href="#L407">407</a>     bean.setLocation(<strong class="jxr_keyword">new</strong> ClassPathResource(<span class="jxr_string">"version.properties"</span>));
-<a class="jxr_linenumber" name="L408" href="#L408">408</a>     <strong class="jxr_keyword">return</strong> bean;
-<a class="jxr_linenumber" name="L409" href="#L409">409</a>   }
-<a class="jxr_linenumber" name="L410" href="#L410">410</a> 
-<a class="jxr_linenumber" name="L411" href="#L411">411</a> }
+<a class="jxr_linenumber" name="L395" href="#L395">395</a>   <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L396" href="#L396">396</a> <em class="jxr_javadoccomment">   * Version.</em>
+<a class="jxr_linenumber" name="L397" href="#L397">397</a> <em class="jxr_javadoccomment">   *</em>
+<a class="jxr_linenumber" name="L398" href="#L398">398</a> <em class="jxr_javadoccomment">   * @return the properties factory bean</em>
+<a class="jxr_linenumber" name="L399" href="#L399">399</a> <em class="jxr_javadoccomment">   */</em>
+<a class="jxr_linenumber" name="L400" href="#L400">400</a>   @Bean(name = <span class="jxr_string">"version"</span>)
+<a class="jxr_linenumber" name="L401" href="#L401">401</a>   <strong class="jxr_keyword">public</strong> PropertiesFactoryBean version() {
+<a class="jxr_linenumber" name="L402" href="#L402">402</a>     logger.debug(<span class="jxr_string">"Instantiated version"</span>);
+<a class="jxr_linenumber" name="L403" href="#L403">403</a>     PropertiesFactoryBean bean = <strong class="jxr_keyword">new</strong> PropertiesFactoryBean();
+<a class="jxr_linenumber" name="L404" href="#L404">404</a>     bean.setLocation(<strong class="jxr_keyword">new</strong> ClassPathResource(<span class="jxr_string">"version.properties"</span>));
+<a class="jxr_linenumber" name="L405" href="#L405">405</a>     <strong class="jxr_keyword">return</strong> bean;
+<a class="jxr_linenumber" name="L406" href="#L406">406</a>   }
+<a class="jxr_linenumber" name="L407" href="#L407">407</a> 
+<a class="jxr_linenumber" name="L408" href="#L408">408</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2009&#x2013;2023 <a href="https://github.com/psi-probe/">psi-probe</a>. All rights reserved.</div>
