@@ -17,7 +17,7 @@
 
     <groupId>com.github.psi-probe</groupId>
     <artifactId>psi-probe</artifactId>
-    <version>3.7.4-SNAPSHOT</version>
+    <version>4.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>psi-probe</name>
@@ -148,7 +148,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <!-- Reproducible Builds -->
-        <project.build.outputTimestamp>1683768805</project.build.outputTimestamp>
+        <project.build.outputTimestamp>1698891998</project.build.outputTimestamp>
 
         <!-- Checkstyle -->
         <checkstyle.configLocation>checkstyle.xml</checkstyle.configLocation>
@@ -192,7 +192,7 @@
         <mchange.version>0.2.20</mchange.version>
         <ojdbc.version>19.21.0.0</ojdbc.version>
         <oshi.version>6.4.7</oshi.version>
-        <openejb.version>8.0.16</openejb.version>
+        <openejb.version>8.0.15</openejb.version>
         <persistence.version>2.2.3</persistence.version>
         <quartz.version>2.4.0-rc2</quartz.version>
         <servlet-api.version>4.0.4</servlet-api.version>
@@ -1112,8 +1112,8 @@
                                 <excludes>
                                     <exclude>**/target/**</exclude>
                                 </excludes>
-                                <trimTrailingWhitespace/>
-                                <endWithNewline/>
+                                <trimTrailingWhitespace />
+                                <endWithNewline />
                                 <indent>
                                     <spaces>true</spaces>
                                     <spacesPerTab>2</spacesPerTab>
@@ -1127,8 +1127,8 @@
                                 <excludes>
                                     <exclude>**/target/**</exclude>
                                 </excludes>
-                                <trimTrailingWhitespace/>
-                                <endWithNewline/>
+                                <trimTrailingWhitespace />
+                                <endWithNewline />
                                 <indent>
                                     <spaces>true</spaces>
                                     <spacesPerTab>4</spacesPerTab>
@@ -1150,6 +1150,7 @@
                         <rules>
                             <enforceBytecodeVersion>
                                 <maxJdkVersion>${java.version}</maxJdkVersion>
+                                <ignoredScopes>test</ignoredScopes>
                             </enforceBytecodeVersion>
                             <requireJavaVersion>
                                 <version>[11,12),[17,18),[20,21),[21,22)</version>
@@ -1619,7 +1620,7 @@
                                                 </goals>
                                             </pluginExecutionFilter>
                                             <action>
-                                                <ignore/>
+                                                <ignore />
                                             </action>
                                         </pluginExecution>
                                     </pluginExecutions>
