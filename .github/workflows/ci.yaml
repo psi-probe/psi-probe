@@ -1,39 +1,25 @@
-#
-# Licensed under the GPL License. You may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
-#
-# THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
-# WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
-# PURPOSE.
-#
-
----
 name: Java CI
 
-on: [push, pull_request]
+on: [workflow_dispatch, push, pull_request]
 
 jobs:
   test:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, macOS-latest, windows-latest]
-        java: [11, 17, 21]
-        distribution: ['zulu']
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        java: [11, 17, 21, 22-ea]
+        distribution: ['temurin']
       fail-fast: false
       max-parallel: 4
     name: Test JDK ${{ matrix.java }}, ${{ matrix.os }}
 
     steps:
       - uses: actions/checkout@v4
-      - name: Set up JDK
+      - name: Set up JDK ${{ matrix.java }} ${{ matrix.distribution }}
         uses: actions/setup-java@v3
         with:
           java-version: ${{ matrix.java }}
           distribution: ${{ matrix.distribution }}
       - name: Test with Maven
-        run: ./mvnw test -B -D"license.skip=true"
-
-...
+        run: ./mvnw test -B -V --no-transfer-progress -D"license.skip=true"
