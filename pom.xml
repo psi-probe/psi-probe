@@ -191,8 +191,8 @@
         <mail.version>1.6.7</mail.version>
         <mchange.version>0.2.20</mchange.version>
         <ojdbc.version>19.21.0.0</ojdbc.version>
-        <oshi.version>6.4.6</oshi.version>
-        <openejb.version>8.0.15</openejb.version>
+        <oshi.version>6.4.7</oshi.version>
+        <openejb.version>8.0.16</openejb.version>
         <persistence.version>2.2.3</persistence.version>
         <quartz.version>2.4.0-rc2</quartz.version>
         <servlet-api.version>4.0.4</servlet-api.version>
@@ -237,7 +237,7 @@
         <license.plugin>4.3</license.plugin>
         <lifecycle-mapping.plugin>1.0.0</lifecycle-mapping.plugin>
         <modernizer.plugin>2.7.0</modernizer.plugin>
-        <pmd.plugin>3.21.0</pmd.plugin>
+        <pmd.plugin>3.21.2</pmd.plugin>
         <project-info.plugin>3.4.5</project-info.plugin>
         <release.plugin>3.0.1</release.plugin>
         <resources.plugin>3.3.1</resources.plugin>
