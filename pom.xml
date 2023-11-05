@@ -1150,6 +1150,7 @@
                         <rules>
                             <enforceBytecodeVersion>
                                 <maxJdkVersion>${java.version}</maxJdkVersion>
+                                <ignoredScopes>test</ignoredScopes>
                             </enforceBytecodeVersion>
                             <requireJavaVersion>
                                 <version>[11,12),[17,18),[20,21),[21,22)</version>
