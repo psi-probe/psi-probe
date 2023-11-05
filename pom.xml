@@ -1153,7 +1153,7 @@
                                 <ignoredScopes>test</ignoredScopes>
                             </enforceBytecodeVersion>
                             <requireJavaVersion>
-                                <version>[11,12),[17,18),[20,21),[21,22)</version>
+                                <version>[11,12),[17,18),[21,22),[22,23)</version>
                             </requireJavaVersion>
                             <requireMavenVersion>
                                 <version>[${maven.min-version},)</version>
