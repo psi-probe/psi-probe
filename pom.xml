@@ -192,7 +192,7 @@
         <mchange.version>0.2.20</mchange.version>
         <ojdbc.version>19.21.0.0</ojdbc.version>
         <oshi.version>6.4.7</oshi.version>
-        <openejb.version>8.0.16</openejb.version>
+        <openejb.version>8.0.15</openejb.version>
         <persistence.version>2.2.3</persistence.version>
         <quartz.version>2.4.0-rc2</quartz.version>
         <servlet-api.version>4.0.4</servlet-api.version>
