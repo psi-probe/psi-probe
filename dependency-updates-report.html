@@ -71,6 +71,7 @@
                   <li><a href="checkstyle-aggregate.html" title="Checkstyle">Checkstyle</a></li>
                   <li><a href="cpd.html" title="CPD">CPD</a></li>
                   <li><a href="pmd.html" title="PMD">PMD</a></li>
+                  <li><a href="dependency-check-report.html" title="dependency-check:aggregate">dependency-check:aggregate</a></li>
               </ul>
             </li>
         </ul>
@@ -125,6 +126,7 @@
       <li><a href="checkstyle-aggregate.html" title="Checkstyle"><span class="none"></span>Checkstyle</a></li>
       <li><a href="cpd.html" title="CPD"><span class="none"></span>CPD</a></li>
       <li><a href="pmd.html" title="PMD"><span class="none"></span>PMD</a></li>
+      <li><a href="dependency-check-report.html" title="dependency-check:aggregate"><span class="none"></span>dependency-check:aggregate</a></li>
      </ul></li>
   </ul>
           </nav>
@@ -146,15 +148,15 @@
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td># of dependencies using the latest version available</td>
-<td>25</td></tr>
+<td>26</td></tr>
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td># of dependencies where the next version available is smaller than an incremental version update</td>
 <td>0</td></tr>
 <tr class="b">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td># of dependencies where the next version available is an incremental version update</td>
-<td>1</td></tr>
+<td>0</td></tr>
 <tr class="a">
 <td><img src="images/icon_warning_sml.gif" alt="" /></td>
 <td># of dependencies where the next version available is a minor version update</td>
@@ -286,15 +288,15 @@
 <td></td>
 <td></td></tr>
 <tr class="a">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>com.github.spotbugs</td>
 <td>spotbugs-annotations</td>
-<td>4.8.0</td>
+<td>4.8.1</td>
 <td></td>
 <td></td>
 <td>jar</td>
 <td></td>
-<td><b>4.8.1</b></td>
+<td></td>
 <td></td>
 <td></td></tr>
 <tr class="b">
@@ -1142,7 +1144,7 @@
 <table border="0" class="table table-striped">
 <tr class="a">
 <th width="30%">Status</th>
-<td align="left"><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
+<td align="left"><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
 <tr class="b">
 <th width="30%">Group Id</th>
 <td align="left">com.github.spotbugs</td></tr>
@@ -1151,7 +1153,7 @@
 <td align="left">spotbugs-annotations</td></tr>
 <tr class="b">
 <th width="30%">Current Version</th>
-<td align="left">4.8.0</td></tr>
+<td align="left">4.8.1</td></tr>
 <tr class="a">
 <th width="30%">Scope</th>
 <td align="left"></td></tr>
@@ -1160,10 +1162,7 @@
 <td align="left"></td></tr>
 <tr class="a">
 <th width="30%">Type</th>
-<td align="left">jar</td></tr>
-<tr class="b">
-<th width="30%">Newer versions</th>
-<td align="left"><b>4.8.1</b>&#160;<i>Latest Incremental</i></td></tr></table></section><section>
+<td align="left">jar</td></tr></table></section><section>
 <h3><a name="com.google.errorprone:error_prone_annotations"></a>com.google.errorprone:error_prone_annotations</h3>
 <table border="0" class="table table-striped">
 <tr class="a">
