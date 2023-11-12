@@ -1605,26 +1605,30 @@
             <build>
                 <pluginManagement>
                     <plugins>
-                        <!-- This plugin's configuration is used to store Eclipse m2e settings only. It
-                            has no influence on the Maven build itself. -->
+                        <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
                         <plugin>
                             <groupId>org.eclipse.m2e</groupId>
                             <artifactId>lifecycle-mapping</artifactId>
+                            <!-- Keep version here as fake version and maven report info has problems defining it in dependency management -->
                             <version>${lifecycle-mapping.plugin}</version>
                             <configuration>
                                 <lifecycleMappingMetadata>
                                     <pluginExecutions>
+                                        <!-- impsort m2e in plugin states to ignore, we will process -->
                                         <pluginExecution>
                                             <pluginExecutionFilter>
-                                                <groupId>com.mycila</groupId>
-                                                <artifactId>license-maven-plugin</artifactId>
-                                                <versionRange>[${license.plugin},)</versionRange>
+                                                <groupId>net.revelc.code</groupId>
+                                                <artifactId>impsort-maven-plugin</artifactId>
+                                                <versionRange>[${impsort.plugin},)</versionRange>
                                                 <goals>
-                                                    <goal>format</goal>
+                                                    <goal>sort</goal>
                                                 </goals>
                                             </pluginExecutionFilter>
                                             <action>
-                                                <ignore/>
+                                                <execute>
+                                                    <runOnConfiguration>true</runOnConfiguration>
+                                                    <runOnIncremental>true</runOnIncremental>
+                                                </execute>
                                             </action>
                                         </pluginExecution>
                                     </pluginExecutions>
