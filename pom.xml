@@ -252,6 +252,7 @@
         <surefire.plugin>3.2.2</surefire.plugin>
         <versions.plugin>2.16.1</versions.plugin>
         <war.plugin>3.4.0</war.plugin>
+        <whitespace.plugin>1.3.0</whitespace.plugin>
 
         <!-- Plugin Dependency Versions -->
         <build-tools.version>1.3.1</build-tools.version>
@@ -264,6 +265,7 @@
 
         <!-- Verification Checks -->
         <error-prone.failOnViolations>-XepAllErrorsAsWarnings</error-prone.failOnViolations>
+        <error-prone.skipGeneratedCode>-XepDisableWarningsInGeneratedCode</error-prone.skipGeneratedCode>
     </properties>
 
     <dependencyManagement>
@@ -522,12 +524,6 @@
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
                 <version>${logback.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>com.sun.mail</groupId>
-                        <artifactId>javax.mail</artifactId>
-                    </exclusion>
-                </exclusions>
             </dependency>
 
             <!-- Spring -->
@@ -823,6 +819,9 @@
                     <groupId>org.owasp</groupId>
                     <artifactId>dependency-check-maven</artifactId>
                     <version>${dependency-check.plugin}</version>
+                    <configuration>
+                        <failOnError>false</failOnError>
+                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>io.github.git-commit-id</groupId>
@@ -886,7 +885,7 @@
 
                         <compilerArgs>
                             <arg>-XDcompilePolicy=simple</arg>
-                            <arg>-Xplugin:ErrorProne ${error-prone.failOnViolations}</arg>
+                            <arg>-Xplugin:ErrorProne ${error-prone.failOnViolations} ${error-prone.skipGeneratedCode}</arg>
                         </compilerArgs>
 
                         <parameters>true</parameters>
@@ -969,7 +968,7 @@
                     <version>${javadoc.plugin}</version>
                     <configuration>
                         <additionalOptions>
-                            <option>-html5</option>
+                            <additionalOption>-html5</additionalOption>
                         </additionalOptions>
                         <archive>
                             <manifest>
@@ -984,6 +983,8 @@
                                 <X-Compile-Release-JDK>${maven.compiler.release}</X-Compile-Release-JDK>
                             </manifestEntries>
                         </archive>
+                        <legacyMode>true</legacyMode>
+                        <notimestamp>true</notimestamp>
                         <show>private</show>
                     </configuration>
                 </plugin>
@@ -1098,6 +1099,36 @@
                     </configuration>
                 </plugin>
                 <plugin>
+                    <groupId>org.openrewrite.maven</groupId>
+                    <artifactId>rewrite-maven-plugin</artifactId>
+                    <configuration>
+                        <activeRecipes>
+                            <recipe>org.openrewrite.java.RemoveUnusedImports</recipe>
+                        </activeRecipes>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>run</goal>
+                            </goals>
+                            <phase>process-sources</phase>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>com.github.ekryd.sortpom</groupId>
+                    <artifactId>sortpom-maven-plugin</artifactId>
+                    <version>${sortpom.plugin}</version>
+                    <configuration>
+                        <predefinedSortOrder>recommended_2008_06</predefinedSortOrder>
+                        <createBackupFile>false</createBackupFile>
+                        <expandEmptyElements>false</expandEmptyElements>
+                        <keepBlankLines>true</keepBlankLines>
+                        <nrOfIndentSpace>4</nrOfIndentSpace>
+                        <spaceBeforeCloseEmptyElement>true</spaceBeforeCloseEmptyElement>
+                    </configuration>
+                </plugin>
+                <plugin>
                     <groupId>com.diffplug.spotless</groupId>
                     <artifactId>spotless-maven-plugin</artifactId>
                     <version>${spotless.plugin}</version>
@@ -1112,8 +1143,8 @@
                                 <excludes>
                                     <exclude>**/target/**</exclude>
                                 </excludes>
-                                <trimTrailingWhitespace/>
-                                <endWithNewline/>
+                                <trimTrailingWhitespace />
+                                <endWithNewline />
                                 <indent>
                                     <spaces>true</spaces>
                                     <spacesPerTab>2</spacesPerTab>
@@ -1127,8 +1158,8 @@
                                 <excludes>
                                     <exclude>**/target/**</exclude>
                                 </excludes>
-                                <trimTrailingWhitespace/>
-                                <endWithNewline/>
+                                <trimTrailingWhitespace />
+                                <endWithNewline />
                                 <indent>
                                     <spaces>true</spaces>
                                     <spacesPerTab>4</spacesPerTab>
@@ -1136,6 +1167,19 @@
                             </format>
                         </formats>
                     </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>com.github.hazendaz.maven</groupId>
+                    <artifactId>whitespace-maven-plugin</artifactId>
+                    <version>${whitespace.plugin}</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>trim</goal>
+                            </goals>
+                            <phase>process-sources</phase>
+                        </execution>
+                    </executions>
                 </plugin>
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
@@ -1202,16 +1246,6 @@
                     <version>${modernizer.plugin}</version>
                     <configuration>
                         <javaVersion>${maven.compiler.target}</javaVersion>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>com.github.ekryd.sortpom</groupId>
-                    <artifactId>sortpom-maven-plugin</artifactId>
-                    <version>${sortpom.plugin}</version>
-                    <configuration>
-                        <createBackupFile>false</createBackupFile>
-                        <expandEmptyElements>false</expandEmptyElements>
-                        <nrOfIndentSpace>4</nrOfIndentSpace>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -1448,29 +1482,21 @@
                     </reportSet>
                 </reportSets>
             </plugin>
+            <plugin>
+                <groupId>org.owasp</groupId>
+                <artifactId>dependency-check-maven</artifactId>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>aggregate</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
         </plugins>
     </reporting>
 
     <profiles>
-        <profile>
-            <id>nvd-check</id>
-            <reporting>
-                <plugins>
-                    <plugin>
-                        <groupId>org.owasp</groupId>
-                        <artifactId>dependency-check-maven</artifactId>
-                        <reportSets>
-                            <reportSet>
-                                <reports>
-                                    <report>aggregate</report>
-                                </reports>
-                            </reportSet>
-                        </reportSets>
-                    </plugin>
-                </plugins>
-            </reporting>
-        </profile>
-
         <profile>
             <id>release</id>
             <properties>
@@ -1598,29 +1624,39 @@
                     <name>m2e.version</name>
                 </property>
             </activation>
+            <properties>
+                <!-- Make m2e use java at test revision level -->
+                <maven.compiler.source>${java.test.version}</maven.compiler.source>
+                <maven.compiler.target>${java.test.release.version}</maven.compiler.target>
+                <maven.compiler.release>${java.test.release.version}</maven.compiler.release>
+            </properties>
             <build>
                 <pluginManagement>
                     <plugins>
-                        <!-- This plugin's configuration is used to store Eclipse m2e settings only. It
-                            has no influence on the Maven build itself. -->
+                        <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
                         <plugin>
                             <groupId>org.eclipse.m2e</groupId>
                             <artifactId>lifecycle-mapping</artifactId>
+                            <!-- Keep version here as fake version and maven report info has problems defining it in dependency management -->
                             <version>${lifecycle-mapping.plugin}</version>
                             <configuration>
                                 <lifecycleMappingMetadata>
                                     <pluginExecutions>
+                                        <!-- impsort m2e in plugin states to ignore, we will process -->
                                         <pluginExecution>
                                             <pluginExecutionFilter>
-                                                <groupId>com.mycila</groupId>
-                                                <artifactId>license-maven-plugin</artifactId>
-                                                <versionRange>[${license.plugin},)</versionRange>
+                                                <groupId>net.revelc.code</groupId>
+                                                <artifactId>impsort-maven-plugin</artifactId>
+                                                <versionRange>[${impsort.plugin},)</versionRange>
                                                 <goals>
-                                                    <goal>format</goal>
+                                                    <goal>sort</goal>
                                                 </goals>
                                             </pluginExecutionFilter>
                                             <action>
-                                                <ignore/>
+                                                <execute>
+                                                    <runOnConfiguration>true</runOnConfiguration>
+                                                    <runOnIncremental>true</runOnIncremental>
+                                                </execute>
                                             </action>
                                         </pluginExecution>
                                     </pluginExecutions>
