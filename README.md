@@ -69,14 +69,14 @@ Generally supported versions for third party tomcat providers align with their s
 * Tomcat 8.5 Series
 
     - Tomcat 8.5.86 to 8.5.95 (Stated end of life will be 3/31/2024, considering using tomcat 9 or better)
-    - TomEE 7.0/7.1 Discontinued, suggest to use TomEE 8.0 or better
+    - TomEE 7.1 Discontinued, suggest to use TomEE 8.0 or better.  TomEE no longer supports tomcat 8.5
     - NonStop(tm) Servlets For JavaServer Pages(tm) v8.5 (Based on Tomcat 8.5.78)
     - Pivotal tc 4.1.27 release with addon only (Based on Tomcat 8.5.94)
 
 * Tomcat 9.0 Series
 
     - Tomcat 9.0.72 to 9.0.82
-    - TomEE 8.0.16 (Based on Tomcat 9.0.82)
+    - TomEE 8.0.16 (Based on Tomcat 9.0.82).  TomEE is ending support on December 31st 2023
     - Pivotal tc 4.1.27 release (Based on Tomcat 9.0.81)
     - Pivotal tc 5.0.6 release (Based on Tomcat 9.0.81)
 
