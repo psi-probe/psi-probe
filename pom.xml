@@ -1174,7 +1174,7 @@
                 <plugin>
                     <groupId>com.github.hazendaz.maven</groupId>
                     <artifactId>whitespace-maven-plugin</artifactId>
-                     <version>${whitespace.plugin}</version>
+                    <version>${whitespace.plugin}</version>
                     <executions>
                         <execution>
                             <goals>
