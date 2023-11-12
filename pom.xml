@@ -524,12 +524,6 @@
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
                 <version>${logback.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>com.sun.mail</groupId>
-                        <artifactId>javax.mail</artifactId>
-                    </exclusion>
-                </exclusions>
             </dependency>
 
             <!-- Spring -->
