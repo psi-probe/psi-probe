@@ -82,7 +82,7 @@ Generally supported versions for third party tomcat providers align with their s
 
 * Tomcat 10.1 Series (pending)
 
-    - Tomcat 10.1.6 to 10.1.5
+    - Tomcat 10.1.6 to 10.1.15
     - TomEE 9.1.1 (Based on Tomcat 10.0.27)
     - Pivotal tc 5.0.6 release (Based on Tomcat 10.1.14
 
