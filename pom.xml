@@ -1115,8 +1115,8 @@
                                 <excludes>
                                     <exclude>**/target/**</exclude>
                                 </excludes>
-                                <trimTrailingWhitespace/>
-                                <endWithNewline/>
+                                <trimTrailingWhitespace />
+                                <endWithNewline />
                                 <indent>
                                     <spaces>true</spaces>
                                     <spacesPerTab>2</spacesPerTab>
@@ -1130,8 +1130,8 @@
                                 <excludes>
                                     <exclude>**/target/**</exclude>
                                 </excludes>
-                                <trimTrailingWhitespace/>
-                                <endWithNewline/>
+                                <trimTrailingWhitespace />
+                                <endWithNewline />
                                 <indent>
                                     <spaces>true</spaces>
                                     <spacesPerTab>4</spacesPerTab>
