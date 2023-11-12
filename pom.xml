@@ -968,7 +968,7 @@
                     <version>${javadoc.plugin}</version>
                     <configuration>
                         <additionalOptions>
-                            <option>-html5</option>
+                            <additionalOption>-html5</additionalOption>
                         </additionalOptions>
                         <archive>
                             <manifest>
@@ -983,6 +983,8 @@
                                 <X-Compile-Release-JDK>${maven.compiler.release}</X-Compile-Release-JDK>
                             </manifestEntries>
                         </archive>
+                        <legacyMode>true</legacyMode>
+                        <notimestamp>true</notimestamp>
                         <show>private</show>
                     </configuration>
                 </plugin>
