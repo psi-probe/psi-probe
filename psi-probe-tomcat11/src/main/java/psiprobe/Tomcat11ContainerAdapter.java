@@ -57,7 +57,7 @@ public class Tomcat11ContainerAdapter extends AbstractTomcatContainer {
     return binding.startsWith("Apache Tomcat/11.0");
     // Do not exist yet
     // || binding.startsWith("Apache Tomcat (TomEE)/11.0")
-    // || binding.startsWith("Pivotal tc") && binding.contains("/11.0");
+    // || binding.startsWith("Vmware tc") && binding.contains("/11.0");
   }
 
   /**

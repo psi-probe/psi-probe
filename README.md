@@ -66,23 +66,27 @@ You can rename 'psi-probe-web.war' to the traditional 'probe.war' or other name 
 
 Generally supported versions for third party tomcat providers align with their support but earlier versions may still work.  It is advisable in every case to use only supported tomcat releases per specific vendor.  Our support will only be against non CVE releases.
 
-* Tomcat 8.5 Series
+* Tomcat 8.5 Series (Notice: We will drop support for tomcat 8.5 after tomcat officially archives it shortly after 3/31/2024 and we will complete a final release before that is done)
 
     - Tomcat 8.5.86 to 8.5.95 (Stated end of life will be 3/31/2024, considering using tomcat 9 or better)
-    - TomEE 7.0/7.1 Discontinued, suggest to use TomEE 8.0 or better
+    - TomEE 7.1 Discontinued, suggest to use TomEE 8.0 or better.  TomEE no longer supports tomcat 8.5
     - NonStop(tm) Servlets For JavaServer Pages(tm) v8.5 (Based on Tomcat 8.5.78)
-    - Pivotal tc 4.1.21 release (Based on Tomcat 8.5.87)
+    - Pivotal tc 4.1.27 release with addon only (Based on Tomcat 8.5.94)
 
 * Tomcat 9.0 Series
 
     - Tomcat 9.0.72 to 9.0.82
-    - TomEE 8.0.15 (Based on Tomcat 9.0.74)
-    - Pivotal tc 4.1.21 release (Based on Tomcat 9.0.73)
+    - TomEE 8.0.16 (Based on Tomcat 9.0.82).  TomEE is ending support on December 31st 2023
+    - NonStop(tm) never supported 9.0 as they changed direction but seem to have come back now for 10.x
+    - Pivotal tc 4.1.27 release (Based on Tomcat 9.0.81)
+    - Pivotal tc 5.0.6 release (Based on Tomcat 9.0.81)
 
 * Tomcat 10.1 Series (pending)
 
-    - Tomcat 10.1.6 to 10.1.5
-    - TomEE 9.0.0 (Based on Tomcat 10.0.27)
+    - Tomcat 10.1.6 to 10.1.15
+    - TomEE 9.1.1 (Based on Tomcat 10.0.27)
+    - NonStop(tm) Servlets For JavaServer Pages(tm) v10.1 (Based on Tomcat 10.1.7)
+    - Pivotal tc 5.0.6 release (Based on Tomcat 10.1.14
 
 * Tomcat 11.0 Series (pending)
 
