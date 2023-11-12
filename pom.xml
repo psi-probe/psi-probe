@@ -1102,6 +1102,19 @@
                     </configuration>
                 </plugin>
                 <plugin>
+                    <groupId>com.github.ekryd.sortpom</groupId>
+                    <artifactId>sortpom-maven-plugin</artifactId>
+                    <version>${sortpom.plugin}</version>
+                    <configuration>
+                        <predefinedSortOrder>recommended_2008_06</predefinedSortOrder>
+                        <createBackupFile>false</createBackupFile>
+                        <expandEmptyElements>false</expandEmptyElements>
+                        <keepBlankLines>true</keepBlankLines>
+                        <nrOfIndentSpace>4</nrOfIndentSpace>
+                        <spaceBeforeCloseEmptyElement>true</spaceBeforeCloseEmptyElement>
+                    </configuration>
+                </plugin>
+                <plugin>
                     <groupId>com.diffplug.spotless</groupId>
                     <artifactId>spotless-maven-plugin</artifactId>
                     <version>${spotless.plugin}</version>
@@ -1219,19 +1232,6 @@
                     <version>${modernizer.plugin}</version>
                     <configuration>
                         <javaVersion>${maven.compiler.target}</javaVersion>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>com.github.ekryd.sortpom</groupId>
-                    <artifactId>sortpom-maven-plugin</artifactId>
-                    <version>${sortpom.plugin}</version>
-                    <configuration>
-                        <predefinedSortOrder>recommended_2008_06</predefinedSortOrder>
-                        <createBackupFile>false</createBackupFile>
-                        <expandEmptyElements>false</expandEmptyElements>
-                        <keepBlankLines>true</keepBlankLines>
-                        <nrOfIndentSpace>4</nrOfIndentSpace>
-                        <spaceBeforeCloseEmptyElement>true</spaceBeforeCloseEmptyElement>
                     </configuration>
                 </plugin>
                 <plugin>
