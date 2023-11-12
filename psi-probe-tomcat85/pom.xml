@@ -21,8 +21,9 @@
         <version>4.0.1-SNAPSHOT</version>
     </parent>
 
+    <groupId>com.github.psi-probe</groupId>
     <artifactId>psi-probe-tomcat85</artifactId>
-    <packaging>jar</packaging>
+    <version>4.0.1-SNAPSHOT</version>
 
     <name>psi-probe-tomcat85</name>
     <description>PSI Probe Tomcat 8.5.x Adapter - Implementation of features specific to Apache Tomcat 8.5.x</description>
