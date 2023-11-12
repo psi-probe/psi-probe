@@ -265,6 +265,7 @@
 
         <!-- Verification Checks -->
         <error-prone.failOnViolations>-XepAllErrorsAsWarnings</error-prone.failOnViolations>
+        <error-prone.skipGeneratedCode>-XepDisableWarningsInGeneratedCode</error-prone.skipGeneratedCode>
     </properties>
 
     <dependencyManagement>
@@ -890,7 +891,7 @@
 
                         <compilerArgs>
                             <arg>-XDcompilePolicy=simple</arg>
-                            <arg>-Xplugin:ErrorProne ${error-prone.failOnViolations}</arg>
+                            <arg>-Xplugin:ErrorProne ${error-prone.failOnViolations} ${error-prone.skipGeneratedCode}</arg>
                         </compilerArgs>
 
                         <parameters>true</parameters>
