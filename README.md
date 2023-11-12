@@ -84,6 +84,7 @@ Generally supported versions for third party tomcat providers align with their s
 
     - Tomcat 10.1.6 to 10.1.15
     - TomEE 9.1.1 (Based on Tomcat 10.0.27)
+    - NonStop(tm) Servlets For JavaServer Pages(tm) v10.1 (Based on Tomcat 10.1.7)
     - Pivotal tc 5.0.6 release (Based on Tomcat 10.1.14
 
 * Tomcat 11.0 Series (pending)
