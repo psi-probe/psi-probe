@@ -252,6 +252,7 @@
         <surefire.plugin>3.2.1</surefire.plugin>
         <versions.plugin>2.16.1</versions.plugin>
         <war.plugin>3.4.0</war.plugin>
+        <whitespace.plugin>1.3.0</whitespace.plugin>
 
         <!-- Plugin Dependency Versions -->
         <build-tools.version>1.3.1</build-tools.version>
@@ -1139,6 +1140,19 @@
                             </format>
                         </formats>
                     </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>com.github.hazendaz.maven</groupId>
+                    <artifactId>whitespace-maven-plugin</artifactId>
+                     <version>${whitespace.plugin}</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>trim</goal>
+                            </goals>
+                            <phase>process-sources</phase>
+                        </execution>
+                    </executions>
                 </plugin>
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
