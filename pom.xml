@@ -543,6 +543,7 @@
                 <artifactId>spring-hateoas</artifactId>
                 <version>${hateoas.version}</version>
             </dependency>
+
             <dependency>
                 <groupId>org.springframework.security</groupId>
                 <artifactId>spring-security-bom</artifactId>
@@ -1068,6 +1069,7 @@
                 <plugin>
                     <groupId>org.openrewrite.maven</groupId>
                     <artifactId>rewrite-maven-plugin</artifactId>
+                    <version>${rewrite.plugin}</version>
                     <configuration>
                         <activeRecipes>
                             <recipe>org.openrewrite.java.RemoveUnusedImports</recipe>
@@ -1214,11 +1216,6 @@
                     <configuration>
                         <javaVersion>${maven.compiler.target}</javaVersion>
                     </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.openrewrite.maven</groupId>
-                    <artifactId>rewrite-maven-plugin</artifactId>
-                    <version>${rewrite.plugin}</version>
                 </plugin>
             </plugins>
         </pluginManagement>
