@@ -213,7 +213,6 @@
         <assembly.plugin>3.6.0</assembly.plugin>
         <build-helper.plugin>3.4.0</build-helper.plugin>
         <checkstyle.plugin>3.3.1</checkstyle.plugin>
-        <changelog.plugin>2.3</changelog.plugin>
         <clean.plugin>3.3.2</clean.plugin>
         <compiler.plugin>3.11.0</compiler.plugin>
         <coveralls.plugin>4.5.0-M2</coveralls.plugin>
@@ -807,11 +806,6 @@
                             <always>true</always>
                         </gitDescribe>
                     </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-changelog-plugin</artifactId>
-                    <version>${changelog.plugin}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
