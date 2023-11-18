@@ -88,6 +88,15 @@ class Tomcat90ContainerAdapterTest {
   }
 
   /**
+   * Can bound to vmware9.
+   */
+  @Test
+  void canBoundToVmware9() {
+    final Tomcat90ContainerAdapter adapter = new Tomcat90ContainerAdapter();
+    assertTrue(adapter.canBoundTo("Vmware tc..../9.0"));
+  }
+
+  /**
    * Can bound to other.
    */
   @Test

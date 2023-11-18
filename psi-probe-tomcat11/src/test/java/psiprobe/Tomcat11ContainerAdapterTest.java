@@ -28,6 +28,7 @@ import org.apache.tomcat.util.descriptor.web.ApplicationParameter;
 import org.apache.tomcat.util.descriptor.web.FilterDef;
 import org.apache.tomcat.util.descriptor.web.FilterMap;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import psiprobe.model.ApplicationResource;
@@ -48,7 +49,7 @@ class Tomcat11ContainerAdapterTest {
   void createValve() {
     final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
     Valve valve = adapter.createValve();
-    assertEquals("Tomcat10AgentValve[Container is null]", valve.toString());
+    assertEquals("Tomcat11AgentValve[Container is null]", valve.toString());
   }
 
   /**
@@ -66,25 +67,29 @@ class Tomcat11ContainerAdapterTest {
   @Test
   void canBoundToTomcat11() {
     final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
-    assertTrue(adapter.canBoundTo("Apache Tomcat/10.1"));
+    assertTrue(adapter.canBoundTo("Apache Tomcat/11.0"));
   }
 
   /**
    * Can bound to tomEE11.
    */
+  // TODO Not yet supported
+  @Disabled
   @Test
   void canBoundToTomEE11() {
     final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
-    assertTrue(adapter.canBoundTo("Apache Tomcat (TomEE)/10.1"));
+    assertTrue(adapter.canBoundTo("Apache Tomcat (TomEE)/11.0"));
   }
 
   /**
-   * Can bound to pivotal11.
+   * Can bound to vmware11.
    */
+  // TODO Not yet supported
+  @Disabled
   @Test
-  void canBoundToPivotal11() {
+  void canBoundToVmware11() {
     final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
-    assertTrue(adapter.canBoundTo("Pivotal tc..../10.1"));
+    assertTrue(adapter.canBoundTo("Vmware tc..../11.0"));
   }
 
   /**

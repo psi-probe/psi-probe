@@ -70,6 +70,15 @@ class Tomcat10ContainerAdapterTest {
   }
 
   /**
+   * Can bound to nsjsp10.
+   */
+  @Test
+  void canBoundToNsJsp10() {
+    final Tomcat10ContainerAdapter adapter = new Tomcat10ContainerAdapter();
+    assertTrue(adapter.canBoundTo("NonStop(tm) Servlets For JavaServer Pages(tm) v10.1"));
+  }
+
+  /**
    * Can bound to tomEE10.
    */
   @Test
@@ -79,10 +88,10 @@ class Tomcat10ContainerAdapterTest {
   }
 
   /**
-   * Can bound to pivotal10.
+   * Can bound to vmware10.
    */
   @Test
-  void canBoundToPivotal10() {
+  void canBoundToVmware10() {
     final Tomcat10ContainerAdapter adapter = new Tomcat10ContainerAdapter();
     assertTrue(adapter.canBoundTo("Vmware tc..../10.1"));
   }
