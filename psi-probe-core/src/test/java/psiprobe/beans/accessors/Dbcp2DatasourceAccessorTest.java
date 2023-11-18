@@ -10,7 +10,7 @@
  */
 package psiprobe.beans.accessors;
 
-import com.mchange.v2.c3p0.ComboPooledDataSource;
+import com.zaxxer.hikari.HikariDataSource;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.junit.jupiter.api.Assertions;
@@ -29,7 +29,7 @@ class Dbcp2DatasourceAccessorTest {
   BasicDataSource source;
 
   /** The bad source. */
-  ComboPooledDataSource badSource;
+  HikariDataSource badSource;
 
   /**
    * Before.
@@ -38,7 +38,7 @@ class Dbcp2DatasourceAccessorTest {
   void before() {
     accessor = new Dbcp2DatasourceAccessor();
     source = new BasicDataSource();
-    badSource = new ComboPooledDataSource();
+    badSource = new HikariDataSource();
   }
 
   /**
