@@ -81,7 +81,7 @@ public class TrustStoreController extends AbstractTomcatContainerController {
             X509Certificate cert = (X509Certificate) ks.getCertificate(alias);
 
             attributes.put("alias", alias);
-            attributes.put("cn", cert.getSubjectDN().toString());
+            attributes.put("cn", cert.getSubjectX500Principal().toString());
             attributes.put("expirationDate",
                 new SimpleDateFormat("yyyy-MM-dd").format(cert.getNotAfter()));
             certificateList.add(attributes);

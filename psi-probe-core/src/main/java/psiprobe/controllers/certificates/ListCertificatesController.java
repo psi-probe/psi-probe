@@ -259,10 +259,10 @@ public class ListCertificatesController extends AbstractTomcatContainerControlle
     Cert cert = new Cert();
 
     cert.setAlias(alias);
-    cert.setSubjectDistinguishedName(x509Cert.getSubjectDN().toString());
+    cert.setSubjectDistinguishedName(x509Cert.getSubjectX500Principal().toString());
     cert.setNotBefore(x509Cert.getNotBefore().toInstant());
     cert.setNotAfter(x509Cert.getNotAfter().toInstant());
-    cert.setIssuerDistinguishedName(x509Cert.getIssuerDN().toString());
+    cert.setIssuerDistinguishedName(x509Cert.getIssuerX500Principal().toString());
 
     certs.add(cert);
   }
