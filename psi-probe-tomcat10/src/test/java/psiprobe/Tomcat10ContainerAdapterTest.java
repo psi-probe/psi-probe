@@ -75,7 +75,7 @@ class Tomcat10ContainerAdapterTest {
   @Test
   void canBoundToTomEE10() {
     final Tomcat10ContainerAdapter adapter = new Tomcat10ContainerAdapter();
-    assertTrue(adapter.canBoundTo("Apache Tomcat (TomEE)/10.1"));
+    assertTrue(adapter.canBoundTo("Apache Tomcat (TomEE)/10.0"));
   }
 
   /**
@@ -84,7 +84,7 @@ class Tomcat10ContainerAdapterTest {
   @Test
   void canBoundToPivotal10() {
     final Tomcat10ContainerAdapter adapter = new Tomcat10ContainerAdapter();
-    assertTrue(adapter.canBoundTo("Pivotal tc..../10.1"));
+    assertTrue(adapter.canBoundTo("Vmware tc..../10.1"));
   }
 
   /**

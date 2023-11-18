@@ -192,7 +192,6 @@
         <ojdbc.version>19.21.0.0</ojdbc.version>
         <oshi.version>6.4.7</oshi.version>
         <openejb.version>8.0.16</openejb.version>
-        <persistence.version>2.2.3</persistence.version>
         <quartz.version>2.4.0-rc2</quartz.version>
         <servlet-api.version>4.0.4</servlet-api.version>
         <sitemesh.version>2.5.1</sitemesh.version>
@@ -364,11 +363,6 @@
                 <groupId>jakarta.transaction</groupId>
                 <artifactId>jakarta.transaction-api</artifactId>
                 <version>${transaction-api.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.eclipse.persistence</groupId>
-                <artifactId>jakarta.persistence</artifactId>
-                <version>${persistence.version}</version>
             </dependency>
 
             <!-- JDBC / Connection Pools -->
