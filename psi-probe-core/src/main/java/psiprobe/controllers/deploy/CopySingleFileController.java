@@ -26,6 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.catalina.Context;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.openejb.loader.Files;
 import org.apache.tomcat.util.http.fileupload.FileItem;
 import org.apache.tomcat.util.http.fileupload.FileItemFactory;
 import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
@@ -63,6 +64,11 @@ public class CopySingleFileController extends AbstractTomcatContainerController 
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 
+    // If not multi-part content, exit
+    if (!ServletFileUpload.isMultipartContent(request)) {
+      return new ModelAndView(new InternalResourceView(getViewName()));
+    }
+
     List<Context> apps;
     try {
       apps = getContainerWrapper().getTomcatContainer().findContexts();
@@ -83,121 +89,116 @@ public class CopySingleFileController extends AbstractTomcatContainerController 
     }
     request.setAttribute("apps", applications);
 
-    if (ServletFileUpload.isMultipartContent(request)) {
+    File tmpFile = null;
+    String contextName = null;
+    String where = null;
+    boolean reload = false;
+    boolean discard = false;
 
-      File tmpFile = null;
-      String contextName = null;
-      String where = null;
-      boolean reload = false;
-      boolean discard = false;
-
-      // parse multipart request and extract the file
-      FileItemFactory factory =
-          new DiskFileItemFactory(1048000, new File(System.getProperty("java.io.tmpdir")));
-      ServletFileUpload upload = new ServletFileUpload(factory);
-      upload.setSizeMax(-1);
-      upload.setHeaderEncoding(StandardCharsets.UTF_8.name());
-      try {
-        List<FileItem> fileItems = upload.parseRequest(new ServletRequestContext(request));
-        for (FileItem fi : fileItems) {
-          if (!fi.isFormField()) {
-            if (fi.getName() != null && fi.getName().length() > 0) {
-              tmpFile = new File(System.getProperty("java.io.tmpdir"),
-                  FilenameUtils.getName(fi.getName()));
-              fi.write(tmpFile);
-            }
-          } else if ("context".equals(fi.getFieldName())) {
-            contextName = fi.getString();
-          } else if ("where".equals(fi.getFieldName())) {
-            where = fi.getString();
-          } else if ("reload".equals(fi.getFieldName()) && "yes".equals(fi.getString())) {
-            reload = true;
-          } else if ("discard".equals(fi.getFieldName()) && "yes".equals(fi.getString())) {
-            discard = true;
+    // parse multipart request and extract the file
+    FileItemFactory factory =
+        new DiskFileItemFactory(1048000, new File(System.getProperty("java.io.tmpdir")));
+    ServletFileUpload upload = new ServletFileUpload(factory);
+    upload.setSizeMax(-1);
+    upload.setHeaderEncoding(StandardCharsets.UTF_8.name());
+    try {
+      List<FileItem> fileItems = upload.parseRequest(new ServletRequestContext(request));
+      for (FileItem fi : fileItems) {
+        if (!fi.isFormField()) {
+          if (fi.getName() != null && fi.getName().length() > 0) {
+            tmpFile = new File(System.getProperty("java.io.tmpdir"),
+                FilenameUtils.getName(fi.getName()));
+            fi.write(tmpFile);
           }
+        } else if ("context".equals(fi.getFieldName())) {
+          contextName = fi.getString();
+        } else if ("where".equals(fi.getFieldName())) {
+          where = fi.getString();
+        } else if ("reload".equals(fi.getFieldName()) && "yes".equals(fi.getString())) {
+          reload = true;
+        } else if ("discard".equals(fi.getFieldName()) && "yes".equals(fi.getString())) {
+          discard = true;
         }
-      } catch (Exception e) {
-        logger.error("Could not process file upload", e);
-        request.setAttribute("errorMessage", getMessageSourceAccessor()
-            .getMessage("probe.src.deploy.file.uploadfailure", new Object[] {e.getMessage()}));
-        if (tmpFile != null && tmpFile.exists() && !tmpFile.delete()) {
-          logger.error("Unable to delete temp upload file");
-        }
-        tmpFile = null;
       }
+    } catch (Exception e) {
+      logger.error("Could not process file upload", e);
+      request.setAttribute("errorMessage", getMessageSourceAccessor()
+          .getMessage("probe.src.deploy.file.uploadfailure", new Object[] {e.getMessage()}));
+      Files.delete(tmpFile);
+      tmpFile = null;
+    }
 
-      String errMsg = null;
+    String errMsg = null;
 
-      if (tmpFile != null) {
-        try {
-          if (!Strings.isNullOrEmpty(tmpFile.getName())) {
+    if (tmpFile == null) {
+      return new ModelAndView(new InternalResourceView(getViewName()));
+    }
 
-            contextName = getContainerWrapper().getTomcatContainer().formatContextName(contextName);
+    try {
+      if (!Strings.isNullOrEmpty(tmpFile.getName())) {
 
-            String visibleContextName = "".equals(contextName) ? "/" : contextName;
-            request.setAttribute("contextName", visibleContextName);
+        contextName = getContainerWrapper().getTomcatContainer().formatContextName(contextName);
 
-            // Check if context is already deployed
-            if (getContainerWrapper().getTomcatContainer().findContext(contextName) != null) {
+        String visibleContextName = "".equals(contextName) ? "/" : contextName;
+        request.setAttribute("contextName", visibleContextName);
 
-              File destFile = new File(getContainerWrapper().getTomcatContainer().getAppBase(),
-                  contextName + where);
+        // Check if context is already deployed
+        if (getContainerWrapper().getTomcatContainer().findContext(contextName) != null) {
 
-              // Checks if the destination path exists
-              if (destFile.exists()) {
-                if (!destFile.getAbsolutePath().contains("..")) {
-                  // Copy the file overwriting it if it already exists
-                  FileUtils.copyFileToDirectory(tmpFile, destFile);
+          File destFile = new File(getContainerWrapper().getTomcatContainer().getAppBase(),
+              contextName + where);
 
-                  request.setAttribute("successFile", Boolean.TRUE);
-                  // Logging action
-                  Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-                  // get username logger
-                  String name = auth.getName();
-                  logger.info(getMessageSourceAccessor().getMessage("probe.src.log.copyfile"), name,
-                      contextName);
-                  Context context =
-                      getContainerWrapper().getTomcatContainer().findContext(contextName);
-                  // Checks if DISCARD "work" directory is selected
-                  if (discard) {
-                    getContainerWrapper().getTomcatContainer().discardWorkDir(context);
-                    logger.info(getMessageSourceAccessor().getMessage("probe.src.log.discardwork"),
-                        name, contextName);
-                  }
-                  // Checks if RELOAD option is selected
-                  if (reload && context != null) {
-                    context.reload();
-                    request.setAttribute("reloadContext", Boolean.TRUE);
-                    logger.info(getMessageSourceAccessor().getMessage("probe.src.log.reload"), name,
-                        contextName);
-                  }
-                } else {
-                  errMsg =
-                      getMessageSourceAccessor().getMessage("probe.src.deploy.file.pathNotValid");
-                }
-              } else {
-                errMsg = getMessageSourceAccessor().getMessage("probe.src.deploy.file.notPath");
+          // Checks if the destination path exists
+          if (destFile.exists()) {
+            if (!destFile.getAbsolutePath().contains("..")) {
+              // Copy the file overwriting it if it already exists
+              FileUtils.copyFileToDirectory(tmpFile, destFile);
+
+              request.setAttribute("successFile", Boolean.TRUE);
+              // Logging action
+              Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+              // get username logger
+              String name = auth.getName();
+              logger.info(getMessageSourceAccessor().getMessage("probe.src.log.copyfile"), name,
+                  contextName);
+              Context context =
+                  getContainerWrapper().getTomcatContainer().findContext(contextName);
+              // Checks if DISCARD "work" directory is selected
+              if (discard) {
+                getContainerWrapper().getTomcatContainer().discardWorkDir(context);
+                logger.info(getMessageSourceAccessor().getMessage("probe.src.log.discardwork"),
+                    name, contextName);
+              }
+              // Checks if RELOAD option is selected
+              if (reload && context != null) {
+                context.reload();
+                request.setAttribute("reloadContext", Boolean.TRUE);
+                logger.info(getMessageSourceAccessor().getMessage("probe.src.log.reload"), name,
+                    contextName);
               }
             } else {
-              errMsg = getMessageSourceAccessor().getMessage("probe.src.deploy.file.notExists",
-                  new Object[] {visibleContextName});
+              errMsg =
+                  getMessageSourceAccessor().getMessage("probe.src.deploy.file.pathNotValid");
             }
           } else {
-            errMsg = getMessageSourceAccessor().getMessage("probe.src.deploy.file.notFile.failure");
+            errMsg = getMessageSourceAccessor().getMessage("probe.src.deploy.file.notPath");
           }
-        } catch (IOException e) {
-          errMsg = getMessageSourceAccessor().getMessage("probe.src.deploy.file.failure",
-              new Object[] {e.getMessage()});
-          logger.error("Tomcat throw an exception when trying to deploy", e);
-        } finally {
-          if (errMsg != null) {
-            request.setAttribute("errorMessage", errMsg);
-          }
-          if (!tmpFile.delete()) {
-            logger.error("Unable to delete temp upload file");
-          }
+        } else {
+          errMsg = getMessageSourceAccessor().getMessage("probe.src.deploy.file.notExists",
+              new Object[] {visibleContextName});
         }
+      } else {
+        errMsg = getMessageSourceAccessor().getMessage("probe.src.deploy.file.notFile.failure");
       }
+    } catch (IOException e) {
+      errMsg = getMessageSourceAccessor().getMessage("probe.src.deploy.file.failure",
+          new Object[] {e.getMessage()});
+      logger.error("Tomcat threw an exception when trying to deploy", e);
+    } finally {
+      if (errMsg != null) {
+        request.setAttribute("errorMessage", errMsg);
+      }
+      Files.delete(tmpFile);
     }
     return new ModelAndView(new InternalResourceView(getViewName()));
   }
