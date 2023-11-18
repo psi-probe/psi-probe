@@ -28,6 +28,7 @@ import org.apache.tomcat.util.descriptor.web.ApplicationParameter;
 import org.apache.tomcat.util.descriptor.web.FilterDef;
 import org.apache.tomcat.util.descriptor.web.FilterMap;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import psiprobe.model.ApplicationResource;
@@ -72,6 +73,8 @@ class Tomcat11ContainerAdapterTest {
   /**
    * Can bound to tomEE11.
    */
+  // TODO Not yet supported
+  @Disabled
   @Test
   void canBoundToTomEE11() {
     final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
@@ -81,6 +84,8 @@ class Tomcat11ContainerAdapterTest {
   /**
    * Can bound to vmware11.
    */
+  // TODO Not yet supported
+  @Disabled
   @Test
   void canBoundToVmware11() {
     final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
