@@ -48,7 +48,7 @@ class Tomcat11ContainerAdapterTest {
   void createValve() {
     final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
     Valve valve = adapter.createValve();
-    assertEquals("Tomcat10AgentValve[Container is null]", valve.toString());
+    assertEquals("Tomcat11AgentValve[Container is null]", valve.toString());
   }
 
   /**
@@ -66,7 +66,7 @@ class Tomcat11ContainerAdapterTest {
   @Test
   void canBoundToTomcat11() {
     final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
-    assertTrue(adapter.canBoundTo("Apache Tomcat/10.1"));
+    assertTrue(adapter.canBoundTo("Apache Tomcat/11.0"));
   }
 
   /**
@@ -75,7 +75,7 @@ class Tomcat11ContainerAdapterTest {
   @Test
   void canBoundToTomEE11() {
     final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
-    assertTrue(adapter.canBoundTo("Apache Tomcat (TomEE)/10.1"));
+    assertTrue(adapter.canBoundTo("Apache Tomcat (TomEE)/11.0"));
   }
 
   /**
