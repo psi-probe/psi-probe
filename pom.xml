@@ -415,50 +415,24 @@
             </dependency>
             <dependency>
                 <groupId>org.apache.tomee</groupId>
+                <artifactId>openejb-api</artifactId>
+                <version>${openejb.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tomee</groupId>
                 <artifactId>openejb-core</artifactId>
                 <version>${openejb.version}</version>
                 <exclusions>
                     <exclusion>
-                        <groupId>commons-logging</groupId>
-                        <artifactId>commons-logging</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.apache.geronimo.components</groupId>
-                        <artifactId>geronimo-connector</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.apache.geronimo.specs</groupId>
-                        <artifactId>geronimo-j2ee-connector_1.6_spec</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.apache.geronimo.javamail</groupId>
-                        <artifactId>geronimo-javamail_1.6_mail</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.apache.geronimo.components</groupId>
-                        <artifactId>geronimo-transaction</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.apache.openejb.shade</groupId>
-                        <artifactId>quartz-openejb-shade</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.apache.tomee</groupId>
-                        <artifactId>javaee-api</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.hsqldb</groupId>
-                        <artifactId>hsqldb</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.objectweb.howl</groupId>
-                        <artifactId>howl</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.slf4j</groupId>
-                        <artifactId>slf4j-jdk14</artifactId>
+                        <groupId>*</groupId>
+                        <artifactId>*</artifactId>
                     </exclusion>
                 </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tomee</groupId>
+                <artifactId>openejb-loader</artifactId>
+                <version>${openejb.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.vibur</groupId>
