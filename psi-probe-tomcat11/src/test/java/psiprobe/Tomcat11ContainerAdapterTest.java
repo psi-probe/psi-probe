@@ -79,12 +79,12 @@ class Tomcat11ContainerAdapterTest {
   }
 
   /**
-   * Can bound to pivotal11.
+   * Can bound to vmware11.
    */
   @Test
-  void canBoundToPivotal11() {
+  void canBoundToVmware11() {
     final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
-    assertTrue(adapter.canBoundTo("Pivotal tc..../10.1"));
+    assertTrue(adapter.canBoundTo("Vmware tc..../11.0"));
   }
 
   /**
