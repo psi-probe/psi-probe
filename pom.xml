@@ -519,8 +519,10 @@
             <!-- Logging -->
             <dependency>
                 <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-api</artifactId>
+                <artifactId>slf4j-bom</artifactId>
                 <version>${slf4j.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
             <dependency>
                 <groupId>ch.qos.logback</groupId>
