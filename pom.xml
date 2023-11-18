@@ -1537,9 +1537,9 @@
         </profile>
 
         <profile>
-            <id>jdk11</id>
+            <id>pre17</id>
             <activation>
-                <jdk>[11,)</jdk>
+                <jdk>(,17)</jdk>
             </activation>
             <properties>
                 <ecj.version>3.33.0</ecj.version>
@@ -1553,7 +1553,6 @@
             </activation>
             <properties>
                 <argLine>-javaagent:${settings.localRepository}/com/github/hazendaz/jmockit/jmockit/${jmockit.version}/jmockit-${jmockit.version}.jar --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.logging/java.util.logging=ALL-UNNAMED</argLine>
-                <ecj.version>3.35.0</ecj.version>
             </properties>
             <build>
                 <pluginManagement>
