@@ -447,6 +447,10 @@
                         <artifactId>quartz-openejb-shade</artifactId>
                     </exclusion>
                     <exclusion>
+                        <groupId>org.apache.openjpa</groupId>
+                        <artifactId>openjpa</artifactId>
+                    </exclusion>
+                    <exclusion>
                         <groupId>org.apache.tomee</groupId>
                         <artifactId>javaee-api</artifactId>
                     </exclusion>
