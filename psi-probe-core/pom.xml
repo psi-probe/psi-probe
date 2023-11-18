@@ -113,7 +113,17 @@
         </dependency>
         <dependency>
             <groupId>org.apache.tomee</groupId>
+            <artifactId>openejb-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomee</groupId>
             <artifactId>openejb-core</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomee</groupId>
+            <artifactId>openejb-loader</artifactId>
             <scope>provided</scope>
         </dependency>
         <dependency>
