@@ -10,7 +10,7 @@
  */
 package psiprobe.beans.accessors;
 
-import com.mchange.v2.c3p0.ComboPooledDataSource;
+import com.zaxxer.hikari.HikariDataSource;
 
 import mockit.Mocked;
 
@@ -32,7 +32,7 @@ class TomcatJdbcPoolDatasourceAccessorTest {
   DataSource source;
 
   /** The bad source. */
-  ComboPooledDataSource badSource;
+  HikariDataSource badSource;
 
   /**
    * Before.
@@ -40,7 +40,7 @@ class TomcatJdbcPoolDatasourceAccessorTest {
   @BeforeEach
   void before() {
     accessor = new TomcatJdbcPoolDatasourceAccessor();
-    badSource = new ComboPooledDataSource();
+    badSource = new HikariDataSource();
   }
 
   /**

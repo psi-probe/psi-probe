@@ -10,7 +10,7 @@
  */
 package psiprobe.beans.accessors;
 
-import com.mchange.v2.c3p0.ComboPooledDataSource;
+import com.zaxxer.hikari.HikariDataSource;
 
 import mockit.Expectations;
 import mockit.Mocked;
@@ -34,7 +34,7 @@ class ViburCpDatasourceAccessorTest {
   ViburDBCPDataSource source;
 
   /** The bad source. */
-  ComboPooledDataSource badSource;
+  HikariDataSource badSource;
 
   /**
    * Before.
@@ -42,7 +42,7 @@ class ViburCpDatasourceAccessorTest {
   @BeforeEach
   void before() {
     accessor = new ViburCpDatasourceAccessor();
-    badSource = new ComboPooledDataSource();
+    badSource = new HikariDataSource();
   }
 
   /**

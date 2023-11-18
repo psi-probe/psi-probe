@@ -10,7 +10,6 @@
  */
 package psiprobe.beans.accessors;
 
-import com.mchange.v2.c3p0.ComboPooledDataSource;
 import com.zaxxer.hikari.HikariDataSource;
 
 import mockit.Mocked;
@@ -19,6 +18,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.vibur.dbcp.ViburDBCPDataSource;
 
 /**
  * The Class HikariCpDatasourceAccessorTest.
@@ -33,7 +33,7 @@ class HikariCpDatasourceAccessorTest {
   HikariDataSource source;
 
   /** The bad source. */
-  ComboPooledDataSource badSource;
+  ViburDBCPDataSource badSource;
 
   /**
    * Before.
@@ -41,7 +41,7 @@ class HikariCpDatasourceAccessorTest {
   @BeforeEach
   void before() {
     accessor = new HikariCpDatasourceAccessor();
-    badSource = new ComboPooledDataSource();
+    badSource = new ViburDBCPDataSource();
   }
 
   /**
