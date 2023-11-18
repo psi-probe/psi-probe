@@ -160,7 +160,7 @@
         <activation.version>1.2.2</activation.version>
         <assertj.version>3.24.2</assertj.version>
         <beanutils.version>1.9.4</beanutils.version>
-        <bind-api.version>2.3.3</bind-api.version>
+        <byte-buddy.version>1.14.9</byte-buddy.version>
         <c3p0.version>0.9.5.5</c3p0.version>
         <checker.version>3.40.0</checker.version>
         <collections.version>3.2.2</collections.version>
@@ -176,7 +176,7 @@
         <io.version>2.15.0</io.version>
         <j2objc.version>2.8</j2objc.version>
         <jackson.version>2.16.0</jackson.version>
-        <javabean-tester.version>2.6.0</javabean-tester.version>
+        <javabean-tester.version>2.6.1</javabean-tester.version>
         <jfreechart.version>1.5.4</jfreechart.version>
         <jhighlight.version>1.1.0</jhighlight.version>
         <jmockit.version>1.51.0</jmockit.version>
@@ -213,10 +213,9 @@
         <assembly.plugin>3.6.0</assembly.plugin>
         <build-helper.plugin>3.4.0</build-helper.plugin>
         <checkstyle.plugin>3.3.1</checkstyle.plugin>
-        <changelog.plugin>2.3</changelog.plugin>
         <clean.plugin>3.3.2</clean.plugin>
         <compiler.plugin>3.11.0</compiler.plugin>
-        <coveralls.plugin>4.4.1</coveralls.plugin>
+        <coveralls.plugin>4.5.0-M2</coveralls.plugin>
         <dependency.plugin>3.6.1</dependency.plugin>
         <dependency-check.plugin>8.4.3</dependency-check.plugin>
         <deploy.plugin>3.1.1</deploy.plugin>
@@ -242,7 +241,7 @@
         <resources.plugin>3.3.1</resources.plugin>
         <rewrite.plugin>5.13.0</rewrite.plugin>
         <scm-publish.plugin>3.2.1</scm-publish.plugin>
-        <site.plugin>3.12.1</site.plugin>
+        <site.plugin>4.0.0-M11</site.plugin>
         <sonar.plugin>3.10.0.2594</sonar.plugin>
         <sortpom.plugin>3.3.0</sortpom.plugin>
         <source.plugin>3.3.0</source.plugin>
@@ -257,7 +256,7 @@
         <build-tools.version>1.3.1</build-tools.version>
         <bugpattern.version>1.5.0</bugpattern.version>
         <checkstyle.version>10.12.5</checkstyle.version>
-        <ecj.version>3.33.0</ecj.version>
+        <ecj.version>3.35.0</ecj.version>
         <extra-enforcer-rules.version>1.7.0</extra-enforcer-rules.version>
         <sb-contrib.version>7.6.0</sb-contrib.version>
         <findsecbugs.version>1.12.0</findsecbugs.version>
@@ -291,6 +290,11 @@
                 <groupId>org.assertj</groupId>
                 <artifactId>assertj-core</artifactId>
                 <version>${assertj.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.bytebuddy</groupId>
+                <artifactId>byte-buddy</artifactId>
+                <version>${byte-buddy.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.github.hazendaz.jmockit</groupId>
@@ -805,11 +809,6 @@
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-changelog-plugin</artifactId>
-                    <version>${changelog.plugin}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-project-info-reports-plugin</artifactId>
                     <version>${project-info.plugin}</version>
                 </plugin>
@@ -1040,16 +1039,9 @@
                     </executions>
                 </plugin>
                 <plugin>
-                    <groupId>io.jsonwebtoken.coveralls</groupId>
+                    <groupId>com.github.hazendaz.maven</groupId>
                     <artifactId>coveralls-maven-plugin</artifactId>
                     <version>${coveralls.plugin}</version>
-                    <dependencies>
-                        <dependency>
-                            <groupId>jakarta.xml.bind</groupId>
-                            <artifactId>jakarta.xml.bind-api</artifactId>
-                            <version>${bind-api.version}</version>
-                        </dependency>
-                    </dependencies>
                 </plugin>
                 <plugin>
                     <groupId>net.revelc.code.formatter</groupId>
@@ -1545,12 +1537,23 @@
         </profile>
 
         <profile>
+            <id>jdk11</id>
+            <activation>
+                <jdk>[11,)</jdk>
+            </activation>
+            <properties>
+                <ecj.version>3.33.0</ecj.version>
+            </properties>
+        </profile>
+
+        <profile>
             <id>jdk17on</id>
             <activation>
                 <jdk>[17,)</jdk>
             </activation>
             <properties>
                 <argLine>-javaagent:${settings.localRepository}/com/github/hazendaz/jmockit/jmockit/${jmockit.version}/jmockit-${jmockit.version}.jar --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.logging/java.util.logging=ALL-UNNAMED</argLine>
+                <ecj.version>3.35.0</ecj.version>
             </properties>
             <build>
                 <pluginManagement>
