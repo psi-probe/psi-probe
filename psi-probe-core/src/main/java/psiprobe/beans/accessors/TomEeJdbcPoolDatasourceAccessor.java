@@ -10,7 +10,7 @@
  */
 package psiprobe.beans.accessors;
 
-import org.apache.tomcat.jdbc.pool.DataSource;
+import org.apache.tomee.jdbc.TomEEDataSourceCreator;
 
 import psiprobe.model.DataSourceInfo;
 
@@ -24,7 +24,8 @@ public class TomEeJdbcPoolDatasourceAccessor implements DatasourceAccessor {
   public DataSourceInfo getInfo(Object resource) {
     DataSourceInfo dataSourceInfo = null;
     if (canMap(resource)) {
-      DataSource source = (DataSource) resource;
+      TomEEDataSourceCreator.TomEEDataSource source =
+          (TomEEDataSourceCreator.TomEEDataSource) resource;
       dataSourceInfo = new DataSourceInfo();
       dataSourceInfo.setBusyConnections(source.getNumActive());
       dataSourceInfo.setEstablishedConnections(source.getNumIdle() + source.getNumActive());
@@ -45,7 +46,8 @@ public class TomEeJdbcPoolDatasourceAccessor implements DatasourceAccessor {
   @Override
   public boolean canMap(Object resource) {
     return "org.apache.tomee.jdbc.TomEEDataSourceCreator$TomEEDataSource"
-        .equals(resource.getClass().getName()) && resource instanceof DataSource;
+        .equals(resource.getClass().getName())
+        && resource instanceof TomEEDataSourceCreator.TomEEDataSource;
   }
 
 }
