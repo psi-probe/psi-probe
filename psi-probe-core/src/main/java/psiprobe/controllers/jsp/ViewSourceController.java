@@ -53,7 +53,7 @@ public class ViewSourceController extends AbstractContextHandlerController {
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-    String jspName = ServletRequestUtils.getStringParameter(request, "source", null);
+    String jspName = ServletRequestUtils.getStringParameter(request, "source");
     boolean highlight = ServletRequestUtils.getBooleanParameter(request, "highlight", true);
     Summary summary = (Summary) (request.getSession(false) != null
         ? request.getSession(false).getAttribute(DisplayJspController.SUMMARY_ATTRIBUTE)

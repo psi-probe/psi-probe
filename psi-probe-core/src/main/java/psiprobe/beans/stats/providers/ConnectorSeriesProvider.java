@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.jfree.data.xy.DefaultTableXYDataset;
 import org.jfree.data.xy.XYDataItem;
+import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.ServletRequestUtils;
 
 import psiprobe.model.stats.StatsCollection;
@@ -29,21 +30,24 @@ public class ConnectorSeriesProvider extends AbstractSeriesProvider {
   public void populate(DefaultTableXYDataset dataset, StatsCollection statsCollection,
       HttpServletRequest request) {
 
-    // get Connector name from the request
-    String connectorName = ServletRequestUtils.getStringParameter(request, "cn", null);
+    try {
+      // get Connector name from the request
+      String connectorName = ServletRequestUtils.getStringParameter(request, "cn");
 
-    // type of statistic to be displayed
-    String statType = ServletRequestUtils.getStringParameter(request, "st", null);
+      // type of statistic to be displayed
+      String statType = ServletRequestUtils.getStringParameter(request, "st");
 
-    // Series legend
-    String series1Legend = ServletRequestUtils.getStringParameter(request, "sl", "");
-
-    if (connectorName != null && statType != null) {
-      List<XYDataItem> stats =
-          statsCollection.getStats("stat.connector." + connectorName + "." + statType);
-      if (stats != null) {
-        dataset.addSeries(toSeries(series1Legend, stats));
+      if (connectorName != null && statType != null) {
+        List<XYDataItem> stats =
+            statsCollection.getStats("stat.connector." + connectorName + "." + statType);
+        if (stats != null) {
+          // Series legend
+          String series1Legend = ServletRequestUtils.getStringParameter(request, "sl", "");
+          dataset.addSeries(toSeries(series1Legend, stats));
+        }
       }
+    } catch (ServletRequestBindingException e) {
+        logger.error("", e);
     }
   }
 }

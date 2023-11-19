@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.jfree.data.xy.DefaultTableXYDataset;
 import org.jfree.data.xy.XYDataItem;
+import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.ServletRequestUtils;
 
 import psiprobe.model.stats.StatsCollection;
@@ -52,7 +53,12 @@ public class StandardSeriesProvider extends AbstractSeriesProvider {
   public void populate(DefaultTableXYDataset dataset, StatsCollection statsCollection,
       HttpServletRequest request) {
 
-    String seriesParam = ServletRequestUtils.getStringParameter(request, "sp", null);
+    String seriesParam = null;
+    try {
+        seriesParam = ServletRequestUtils.getStringParameter(request, "sp");
+    } catch (ServletRequestBindingException e) {
+        logger.error("", e);
+    }
     for (int i = 0; i < statNames.size(); i++) {
       String statName = statNames.get(i);
       if (seriesParam != null) {

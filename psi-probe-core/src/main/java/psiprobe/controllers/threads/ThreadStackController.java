@@ -70,7 +70,7 @@ public class ThreadStackController extends ParameterizableViewController {
       HttpServletResponse response) throws Exception {
 
     long threadId = ServletRequestUtils.getLongParameter(request, "id", -1);
-    String threadName = ServletRequestUtils.getStringParameter(request, "name", null);
+    String threadName = ServletRequestUtils.getStringParameter(request, "name");
 
     List<ThreadStackElement> stack = null;
     MBeanServer mbeanServer = ManagementFactory.getPlatformMBeanServer();

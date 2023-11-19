@@ -64,7 +64,7 @@ public class RecompileJspController extends AbstractContextHandlerController {
       getContainerWrapper().getTomcatContainer().recompileJsps(context, summary, names);
       request.getSession(false).setAttribute(DisplayJspController.SUMMARY_ATTRIBUTE, summary);
     } else if (summary != null && contextName.equals(summary.getName())) {
-      String name = ServletRequestUtils.getStringParameter(request, "source", null);
+      String name = ServletRequestUtils.getStringParameter(request, "source");
       if (name != null) {
         List<String> names = new ArrayList<>();
         names.add(name);

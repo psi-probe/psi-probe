@@ -41,7 +41,7 @@ public class DownloadServletController extends AbstractContextHandlerController 
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-    String jspName = ServletRequestUtils.getStringParameter(request, "source", null);
+    String jspName = ServletRequestUtils.getStringParameter(request, "source");
 
     if (jspName != null) {
       String servletName =

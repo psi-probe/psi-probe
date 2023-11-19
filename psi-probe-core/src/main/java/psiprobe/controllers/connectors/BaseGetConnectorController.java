@@ -53,7 +53,7 @@ public class BaseGetConnectorController extends AbstractTomcatContainerControlle
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
-    String connectorName = ServletRequestUtils.getStringParameter(request, "cn", null);
+    String connectorName = ServletRequestUtils.getStringParameter(request, "cn");
     Connector connector = null;
 
     if (connectorName != null) {
