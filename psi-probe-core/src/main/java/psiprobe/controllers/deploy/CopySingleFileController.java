@@ -139,7 +139,7 @@ public class CopySingleFileController extends AbstractTomcatContainerController 
 
         contextName = getContainerWrapper().getTomcatContainer().formatContextName(contextName);
 
-        String visibleContextName = "".equals(contextName) ? "/" : contextName;
+        String visibleContextName = contextName.isEmpty() ? "/" : contextName;
         request.setAttribute("contextName", visibleContextName);
 
         // Check if context is already deployed

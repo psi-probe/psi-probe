@@ -126,7 +126,7 @@ public class UploadWarController extends AbstractTomcatContainerController {
          * pass the name of the newly deployed context to the presentation layer using this name
          * the presentation layer can render a url to view compilation details
          */
-        String visibleContextName = "".equals(contextName) ? "/" : contextName;
+        String visibleContextName = contextName.isEmpty() ? "/" : contextName;
         request.setAttribute("contextName", visibleContextName);
 
         if (update
