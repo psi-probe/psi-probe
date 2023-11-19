@@ -47,7 +47,7 @@ public class ConnectorSeriesProvider extends AbstractSeriesProvider {
         }
       }
     } catch (ServletRequestBindingException e) {
-        logger.error("", e);
+      logger.error("", e);
     }
   }
 }
