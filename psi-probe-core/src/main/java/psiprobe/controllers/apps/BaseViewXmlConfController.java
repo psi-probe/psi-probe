@@ -124,7 +124,7 @@ public class BaseViewXmlConfController extends AbstractContextHandlerController 
         try (InputStream fis = Files.newInputStream(xmlFile.toPath())) {
           String encoding = Charset.defaultCharset().displayName();
           mv.addObject("content", Utils.highlightStream(TARGET_WEB_XML, fis, "xml",
-              encoding == null ? "ISO-8859-1" : encoding));
+              encoding == null ? "UTF_8" : encoding));
         }
       } else {
         logger.debug("File {} of {} application does not exists.", xmlPath, contextName);

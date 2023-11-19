@@ -304,7 +304,7 @@ public final class Utils {
       }
     }
 
-    return encoding != null ? encoding : "ISO-8859-1";
+    return encoding != null ? encoding : "UTF_8";
   }
 
   /**
