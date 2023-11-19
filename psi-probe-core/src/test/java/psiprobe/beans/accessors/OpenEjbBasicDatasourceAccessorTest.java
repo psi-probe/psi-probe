@@ -18,7 +18,6 @@ import mockit.Tested;
 import org.apache.openejb.resource.jdbc.dbcp.BasicDataSource;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -49,7 +48,6 @@ class OpenEjbBasicDatasourceAccessorTest {
   /**
    * Can map test.
    */
-  @Disabled
   @Test
   void canMapTest() {
     Assertions.assertTrue(accessor.canMap(source));
@@ -70,7 +68,7 @@ class OpenEjbBasicDatasourceAccessorTest {
    */
   @Test
   void getInfoTest() throws Exception {
-    accessor.getInfo(source);
+    Assertions.assertNotNull(accessor.getInfo(source));
   }
 
 }
