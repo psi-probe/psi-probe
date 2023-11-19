@@ -11,15 +11,8 @@
 package psiprobe.beans.accessors;
 
 import com.zaxxer.hikari.HikariDataSource;
-import com.zaxxer.hikari.HikariPoolMXBean;
 
-import java.lang.management.ManagementFactory;
 import java.sql.SQLException;
-
-import javax.management.JMX;
-import javax.management.MBeanServer;
-import javax.management.MalformedObjectNameException;
-import javax.management.ObjectName;
 
 import psiprobe.model.DataSourceInfo;
 
@@ -34,19 +27,9 @@ public class HikariCpDatasourceAccessor implements DatasourceAccessor {
     if (canMap(resource)) {
       HikariDataSource source = (HikariDataSource) resource;
 
-      MBeanServer mbeanServer = ManagementFactory.getPlatformMBeanServer();
-      ObjectName poolName;
-      try {
-        poolName = new ObjectName("com.zaxxer.hikari:type=Pool (" + source.getPoolName() + ")");
-      } catch (MalformedObjectNameException e) {
-        throw new SQLException("MalformedObjectNameException for Hikari", e);
-      }
-      HikariPoolMXBean poolProxy =
-          JMX.newMXBeanProxy(mbeanServer, poolName, HikariPoolMXBean.class);
-
       dataSourceInfo = new DataSourceInfo();
-      dataSourceInfo.setBusyConnections(poolProxy.getActiveConnections());
-      dataSourceInfo.setEstablishedConnections(poolProxy.getTotalConnections());
+      dataSourceInfo.setBusyConnections(source.getHikariPoolMXBean().getActiveConnections());
+      dataSourceInfo.setEstablishedConnections(source.getHikariPoolMXBean().getTotalConnections());
       dataSourceInfo.setMaxConnections(source.getMaximumPoolSize());
       dataSourceInfo.setJdbcUrl(source.getJdbcUrl());
       dataSourceInfo.setUsername(source.getUsername());
