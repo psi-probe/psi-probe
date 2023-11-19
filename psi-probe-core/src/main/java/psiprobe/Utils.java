@@ -264,7 +264,7 @@ public final class Utils {
     contentTypeTokenizer.addSymbol(" ", true);
     contentTypeTokenizer.addSymbol(";", true);
 
-    try (Reader reader = new InputStreamReader(is, StandardCharsets.ISO_8859_1)) {
+    try (Reader reader = new InputStreamReader(is, StandardCharsets.UTF_8)) {
       jspTokenizer.setReader(reader);
       while (jspTokenizer.hasMore()) {
         Token token = jspTokenizer.nextToken();
@@ -304,7 +304,7 @@ public final class Utils {
       }
     }
 
-    return encoding != null ? encoding : "ISO-8859-1";
+    return encoding != null ? encoding : StandardCharsets.UTF_8.name();
   }
 
   /**
