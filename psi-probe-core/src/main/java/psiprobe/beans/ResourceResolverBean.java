@@ -189,12 +189,15 @@ public class ResourceResolverBean implements ResourceResolver {
     try {
       javax.naming.Context ctx = context != null ? new InitialContext() : getGlobalNamingContext();
       String jndiName = resolveJndiName(resourceName, context == null);
-      Object obj = ctx.lookup(jndiName);
       try {
         for (String accessorString : datasourceMappers) {
           logger.debug("Resetting datasource adapter: {}", accessorString);
           DatasourceAccessor accessor = Class.forName(accessorString)
               .asSubclass(DatasourceAccessor.class).getDeclaredConstructor().newInstance();
+          if (ctx == null) {
+            return false;
+          }
+          Object obj = ctx.lookup(jndiName);
           if (accessor.reset(obj)) {
             return true;
           }
@@ -221,6 +224,9 @@ public class ResourceResolverBean implements ResourceResolver {
     try {
       javax.naming.Context ctx = context != null ? new InitialContext() : getGlobalNamingContext();
       String jndiName = resolveJndiName(resourceName, context == null);
+      if (ctx == null) {
+        return null;
+      }
       Object obj = ctx.lookup(jndiName);
 
       if (obj instanceof DataSource) {
