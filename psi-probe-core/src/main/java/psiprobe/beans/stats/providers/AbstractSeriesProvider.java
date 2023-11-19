@@ -27,7 +27,7 @@ public abstract class AbstractSeriesProvider implements SeriesProvider {
 
   /** The lock. */
   private final Object lockObj = new Object();
-  
+
   /**
    * To series.
    *

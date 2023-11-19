@@ -55,9 +55,9 @@ public class StandardSeriesProvider extends AbstractSeriesProvider {
 
     String seriesParam = null;
     try {
-        seriesParam = ServletRequestUtils.getStringParameter(request, "sp");
+      seriesParam = ServletRequestUtils.getStringParameter(request, "sp");
     } catch (ServletRequestBindingException e) {
-        logger.error("", e);
+      logger.error("", e);
     }
     for (int i = 0; i < statNames.size(); i++) {
       String statName = statNames.get(i);
