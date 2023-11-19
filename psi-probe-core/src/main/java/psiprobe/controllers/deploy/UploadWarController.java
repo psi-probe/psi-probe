@@ -84,8 +84,8 @@ public class UploadWarController extends AbstractTomcatContainerController {
       for (FileItem fi : fileItems) {
         if (!fi.isFormField()) {
           if (fi.getName() != null && fi.getName().length() > 0) {
-            tmpWar = new File(System.getProperty("java.io.tmpdir"),
-                FilenameUtils.getName(fi.getName()));
+            tmpWar =
+                new File(System.getProperty("java.io.tmpdir"), FilenameUtils.getName(fi.getName()));
             fi.write(tmpWar);
           }
         } else if ("context".equals(fi.getFieldName())) {
@@ -123,14 +123,13 @@ public class UploadWarController extends AbstractTomcatContainerController {
         contextName = getContainerWrapper().getTomcatContainer().formatContextName(contextName);
 
         /*
-         * pass the name of the newly deployed context to the presentation layer using this name
-         * the presentation layer can render a url to view compilation details
+         * pass the name of the newly deployed context to the presentation layer using this name the
+         * presentation layer can render a url to view compilation details
          */
         String visibleContextName = contextName.isEmpty() ? "/" : contextName;
         request.setAttribute("contextName", visibleContextName);
 
-        if (update
-            && getContainerWrapper().getTomcatContainer().findContext(contextName) != null) {
+        if (update && getContainerWrapper().getTomcatContainer().findContext(contextName) != null) {
           logger.debug("updating {}: removing the old copy", contextName);
           getContainerWrapper().getTomcatContainer().remove(contextName);
         }
@@ -162,8 +161,8 @@ public class UploadWarController extends AbstractTomcatContainerController {
                 contextName);
             if (discard) {
               getContainerWrapper().getTomcatContainer().discardWorkDir(ctx);
-              logger.info(getMessageSourceAccessor().getMessage("probe.src.log.discardwork"),
-                  name, contextName);
+              logger.info(getMessageSourceAccessor().getMessage("probe.src.log.discardwork"), name,
+                  contextName);
             }
             if (compile) {
               Summary summary = new Summary();
