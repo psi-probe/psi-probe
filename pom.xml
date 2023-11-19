@@ -1619,6 +1619,7 @@
                                 <goals>
                                     <goal>run</goal>
                                 </goals>
+                                <phase>process-sources</phase>
                             </execution>
                         </executions>
                     </plugin>
@@ -1644,6 +1645,7 @@
                                 <goals>
                                     <goal>run</goal>
                                 </goals>
+                                <phase>process-sources</phase>
                             </execution>
                         </executions>
                     </plugin>
@@ -1676,6 +1678,7 @@
                                 <goals>
                                     <goal>run</goal>
                                 </goals>
+                                <phase>process-sources</phase>
                             </execution>
                         </executions>
                     </plugin>
@@ -1708,6 +1711,7 @@
                                 <goals>
                                     <goal>run</goal>
                                 </goals>
+                                <phase>process-sources</phase>
                             </execution>
                         </executions>
                     </plugin>
