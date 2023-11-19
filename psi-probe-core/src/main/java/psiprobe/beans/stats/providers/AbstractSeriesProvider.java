@@ -25,6 +25,9 @@ public abstract class AbstractSeriesProvider implements SeriesProvider {
   /** The logger. */
   protected final Logger logger = LoggerFactory.getLogger(getClass());
 
+  /** The lock. */
+  private final Object lockObj = new Object();
+  
   /**
    * To series.
    *
@@ -35,7 +38,7 @@ public abstract class AbstractSeriesProvider implements SeriesProvider {
    */
   protected XYSeries toSeries(String legend, List<XYDataItem> stats) {
     XYSeries xySeries = new XYSeries(legend, true, false);
-    synchronized (stats) {
+    synchronized (lockObj) {
       for (XYDataItem item : stats) {
         xySeries.addOrUpdate(item.getX(), item.getY());
       }
