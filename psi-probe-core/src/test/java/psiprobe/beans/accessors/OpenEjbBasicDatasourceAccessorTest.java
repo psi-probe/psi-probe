@@ -70,7 +70,7 @@ class OpenEjbBasicDatasourceAccessorTest {
    */
   @Test
   void getInfoTest() throws Exception {
-    accessor.getInfo(source);
+    Assertions.assertNotNull(accessor.getInfo(source));
   }
 
 }

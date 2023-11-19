@@ -79,7 +79,7 @@ class OracleDatasourceAccessorTest {
         result = new Properties();
       }
     };
-    accessor.getInfo(source);
+    Assertions.assertNotNull(accessor.getInfo(source));
   }
 
 }

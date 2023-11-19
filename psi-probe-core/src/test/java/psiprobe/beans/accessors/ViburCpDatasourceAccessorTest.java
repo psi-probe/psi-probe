@@ -75,7 +75,7 @@ class ViburCpDatasourceAccessorTest {
         result = "viburJmx";
       }
     };
-    accessor.getInfo(source);
+    Assertions.assertNotNull(accessor.getInfo(source));
   }
 
 }
