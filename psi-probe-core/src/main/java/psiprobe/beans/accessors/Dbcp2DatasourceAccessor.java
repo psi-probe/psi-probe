@@ -29,7 +29,7 @@ public class Dbcp2DatasourceAccessor implements DatasourceAccessor {
       dataSourceInfo.setEstablishedConnections(source.getNumIdle() + source.getNumActive());
       dataSourceInfo.setMaxConnections(source.getMaxTotal());
       dataSourceInfo.setJdbcUrl(source.getUrl());
-      dataSourceInfo.setUsername(source.getUsername());
+      dataSourceInfo.setUsername(source.getUserName());
       dataSourceInfo.setResettable(false);
       dataSourceInfo.setType("commons-dbcp2");
     }
