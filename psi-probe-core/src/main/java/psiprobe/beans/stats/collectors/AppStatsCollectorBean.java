@@ -118,7 +118,7 @@ public class AppStatsCollectorBean extends AbstractStatsCollectorBean
             Application app = new Application();
             ApplicationUtils.collectApplicationServletStats(ctx, app);
 
-            String appName = "".equals(ctx.getName()) ? "/" : ctx.getName();
+            String appName = ctx.getName().isEmpty() ? "/" : ctx.getName();
 
             long reqDelta =
                 buildDeltaStats("app.requests." + appName, app.getRequestCount(), currentTime);
@@ -173,7 +173,7 @@ public class AppStatsCollectorBean extends AbstractStatsCollectorBean
       if (tomcatContainer != null) {
         for (Context ctx : tomcatContainer.findContexts()) {
           if (ctx != null && ctx.getName() != null) {
-            String appName = "".equals(ctx.getName()) ? "/" : ctx.getName();
+            String appName = ctx.getName().isEmpty() ? "/" : ctx.getName();
             reset(appName);
           }
         }

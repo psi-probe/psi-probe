@@ -10,6 +10,8 @@
  */
 package psiprobe.tools.logging.jdk;
 
+import com.google.common.base.Strings;
+
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
@@ -73,7 +75,7 @@ public class Jdk14LoggerAccessor extends DefaultAccessor {
    * @return true, if is root
    */
   public boolean isRoot() {
-    return "".equals(getName()) || isJuliRoot();
+    return Strings.isNullOrEmpty(getName()) || isJuliRoot();
   }
 
   /**

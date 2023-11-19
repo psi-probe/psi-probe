@@ -10,6 +10,8 @@
  */
 package psiprobe.tools.logging.log4j2;
 
+import com.google.common.base.Strings;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -115,7 +117,7 @@ public class Log4J2LoggerConfigAccessor extends DefaultAccessor {
    * @return true, if is root
    */
   public boolean isRoot() {
-    return "".equals(getName());
+    return Strings.isNullOrEmpty(getName());
   }
 
   /**
