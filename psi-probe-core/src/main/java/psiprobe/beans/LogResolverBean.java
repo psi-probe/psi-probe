@@ -271,7 +271,7 @@ public class LogResolverBean {
           cl = Thread.currentThread().getContextClassLoader().getParent();
         }
         try {
-          if ((root || logName != null)) {
+          if (root || logName != null) {
             if ("jdk".equals(logType)) {
               result = getJdk14LogDestination(cl, application, root, logName, logIndex);
             } else if ("log4j".equals(logType)) {
