@@ -45,6 +45,7 @@ import org.apache.catalina.core.StandardContext;
 import org.apache.jasper.EmbeddedServletOptions;
 import org.apache.jasper.JspCompilationContext;
 import org.apache.jasper.Options;
+import org.apache.jasper.compiler.Compiler;
 import org.apache.jasper.compiler.JspRuntimeContext;
 import org.apache.naming.ContextBindings;
 import org.apache.naming.factory.ResourceLinkFactory;
@@ -360,7 +361,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
                 Item item = summary.getItems().get(name);
                 if (item != null) {
                   try {
-                    org.apache.jasper.compiler.Compiler compiler = jcctx.createCompiler();
+                    Compiler compiler = jcctx.createCompiler();
                     compiler.compile();
                     item.setState(Item.STATE_READY);
                     item.setException(null);
@@ -547,7 +548,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
 
             long time = System.currentTimeMillis();
             try {
-              org.apache.jasper.compiler.Compiler compiler = jcctx.createCompiler();
+              Compiler compiler = jcctx.createCompiler();
               if (compile) {
                 compiler.compile();
                 item.setState(Item.STATE_READY);
