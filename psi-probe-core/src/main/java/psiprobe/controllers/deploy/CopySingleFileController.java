@@ -106,8 +106,8 @@ public class CopySingleFileController extends AbstractTomcatContainerController 
       for (FileItem fi : fileItems) {
         if (!fi.isFormField()) {
           if (fi.getName() != null && fi.getName().length() > 0) {
-            tmpFile = new File(System.getProperty("java.io.tmpdir"),
-                FilenameUtils.getName(fi.getName()));
+            tmpFile =
+                new File(System.getProperty("java.io.tmpdir"), FilenameUtils.getName(fi.getName()));
             fi.write(tmpFile);
           }
         } else if ("context".equals(fi.getFieldName())) {
@@ -161,8 +161,7 @@ public class CopySingleFileController extends AbstractTomcatContainerController 
               String name = auth.getName();
               logger.info(getMessageSourceAccessor().getMessage("probe.src.log.copyfile"), name,
                   contextName);
-              Context context =
-                  getContainerWrapper().getTomcatContainer().findContext(contextName);
+              Context context = getContainerWrapper().getTomcatContainer().findContext(contextName);
               // Checks if DISCARD "work" directory is selected
               if (discard) {
                 getContainerWrapper().getTomcatContainer().discardWorkDir(context);
@@ -177,8 +176,7 @@ public class CopySingleFileController extends AbstractTomcatContainerController 
                     contextName);
               }
             } else {
-              errMsg =
-                  getMessageSourceAccessor().getMessage("probe.src.deploy.file.pathNotValid");
+              errMsg = getMessageSourceAccessor().getMessage("probe.src.deploy.file.pathNotValid");
             }
           } else {
             errMsg = getMessageSourceAccessor().getMessage("probe.src.deploy.file.notPath");
