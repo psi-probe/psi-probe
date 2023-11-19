@@ -11,8 +11,6 @@
 package psiprobe;
 
 import com.google.common.base.Strings;
-import com.uwyn.jhighlight.renderer.Renderer;
-import com.uwyn.jhighlight.renderer.XhtmlRendererFactory;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -44,6 +42,8 @@ import javax.management.ObjectName;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.codelibs.jhighlight.renderer.Renderer;
+import org.codelibs.jhighlight.renderer.XhtmlRendererFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
