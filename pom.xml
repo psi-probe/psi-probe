@@ -1644,7 +1644,7 @@
                         <artifactId>rewrite-maven-plugin</artifactId>
                         <configuration>
                             <activeRecipes>
-                                <recipe>org.openrewrite.java.migrate.Java8toJava11</recipe>
+                                <recipe>org.openrewrite.java.migrate.UpgradeToJava8</recipe>
                                 <recipe>org.openrewrite.java.RemoveUnusedImports</recipe>
                             </activeRecipes>
                         </configuration>
