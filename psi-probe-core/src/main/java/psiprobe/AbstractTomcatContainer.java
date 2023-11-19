@@ -262,7 +262,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
       return null;
     }
     Context result = findContextInternal(safeName);
-    if (result == null && "".equals(safeName)) {
+    if (result == null && safeName.isEmpty()) {
       result = findContextInternal("/");
     }
     return result;
@@ -296,7 +296,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     if (contextName == null) {
       return null;
     }
-    if ("".equals(contextName)) {
+    if (contextName.isEmpty()) {
       return "ROOT";
     }
     if (contextName.startsWith("/")) {

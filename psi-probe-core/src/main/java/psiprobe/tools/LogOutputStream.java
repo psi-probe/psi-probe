@@ -161,7 +161,7 @@ public final class LogOutputStream extends OutputStream {
    * @param message the message to be written
    */
   private void log(String message) {
-    if (message == null || "".equals(message)) {
+    if (message == null || message.isEmpty()) {
       return;
     }
     switch (level) {
