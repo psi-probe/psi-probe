@@ -304,7 +304,7 @@ public final class Utils {
       }
     }
 
-    return encoding != null ? encoding : "UTF_8";
+    return encoding != null ? encoding : StandardCharsets.UTF_8.name();
   }
 
   /**
