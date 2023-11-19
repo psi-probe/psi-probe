@@ -264,7 +264,7 @@ public final class Utils {
     contentTypeTokenizer.addSymbol(" ", true);
     contentTypeTokenizer.addSymbol(";", true);
 
-    try (Reader reader = new InputStreamReader(is, StandardCharsets.ISO_8859_1)) {
+    try (Reader reader = new InputStreamReader(is, StandardCharsets.UTF_8)) {
       jspTokenizer.setReader(reader);
       while (jspTokenizer.hasMore()) {
         Token token = jspTokenizer.nextToken();
