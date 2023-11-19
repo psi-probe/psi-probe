@@ -127,6 +127,11 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
+            <groupId>org.apache.tomee</groupId>
+            <artifactId>tomee-jdbc</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>org.vibur</groupId>
             <artifactId>vibur-dbcp</artifactId>
             <scope>provided</scope>
