@@ -65,8 +65,7 @@ class ListCertificatesControllerTest {
 
     List<Cert> certs = controller.getCertificates(storeType, storeFile.toString(), storePassword);
 
-    assertThat(certs).doesNotContainNull();
-    assertThat(certs.size()).isEqualTo(2);
+    assertThat(certs).doesNotContainNull().hasSize(2);
     assertThat(certs.get(0).getAlias()).isEqualTo("*.google.com");
     assertThat(certs.get(1).getAlias()).isEqualTo("google_g2_2017");
   }
@@ -89,8 +88,7 @@ class ListCertificatesControllerTest {
     List<Cert> certs =
         controller.getCertificates(storeType, "localhost-truststore.jks", storePassword);
 
-    assertThat(certs).doesNotContainNull();
-    assertThat(certs.size()).isEqualTo(2);
+    assertThat(certs).doesNotContainNull().hasSize(2);
     assertThat(certs.get(0).getAlias()).isEqualTo("*.google.com");
     assertThat(certs.get(1).getAlias()).isEqualTo("google_g2_2017");
   }
@@ -114,8 +112,7 @@ class ListCertificatesControllerTest {
     List<Cert> certs =
         controller.getCertificates(storeType, storeFile.toURI().toString(), storePassword);
 
-    assertThat(certs).doesNotContainNull();
-    assertThat(certs.size()).isEqualTo(2);
+    assertThat(certs).doesNotContainNull().hasSize(2);
     assertThat(certs.get(0).getAlias()).isEqualTo("*.google.com");
     assertThat(certs.get(1).getAlias()).isEqualTo("google_g2_2017");
   }
@@ -138,8 +135,7 @@ class ListCertificatesControllerTest {
     List<Cert> certs =
         controller.getCertificates(storeType, "./localhost-truststore.jks", storePassword);
 
-    assertThat(certs).doesNotContainNull();
-    assertThat(certs.size()).isEqualTo(2);
+    assertThat(certs).doesNotContainNull().hasSize(2);
     assertThat(certs.get(0).getAlias()).isEqualTo("*.google.com");
     assertThat(certs.get(1).getAlias()).isEqualTo("google_g2_2017");
   }
