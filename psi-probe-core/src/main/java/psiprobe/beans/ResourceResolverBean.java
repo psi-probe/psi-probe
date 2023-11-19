@@ -339,7 +339,7 @@ public class ResourceResolverBean implements ResourceResolver {
           logger.trace("JMX objectName {} does not contain any managedResource", name, e);
         }
 
-        // getGlobalNamingContext() was added to Server interface in Tomcat 7.0.11
+        // Get Global Naming Context
         if (server instanceof StandardServer) {
           globalContext = server.getGlobalNamingContext();
           break;
