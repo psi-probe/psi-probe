@@ -48,7 +48,7 @@ public class ViewServletSourceController extends AbstractContextHandlerControlle
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-    String jspName = ServletRequestUtils.getStringParameter(request, "source", null);
+    String jspName = ServletRequestUtils.getStringParameter(request, "source");
     ServletContext sctx = context.getServletContext();
     ServletConfig scfg = (ServletConfig) context.findChild("jsp");
     Options opt = new EmbeddedServletOptions(scfg, sctx);

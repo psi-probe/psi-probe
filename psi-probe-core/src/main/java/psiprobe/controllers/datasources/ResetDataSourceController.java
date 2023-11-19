@@ -68,7 +68,7 @@ public class ResetDataSourceController extends AbstractContextHandlerController 
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-    String resourceName = ServletRequestUtils.getStringParameter(request, "resource", null);
+    String resourceName = ServletRequestUtils.getStringParameter(request, "resource");
     String referer = request.getHeader("Referer");
     String redirectUrl;
     if (referer != null) {

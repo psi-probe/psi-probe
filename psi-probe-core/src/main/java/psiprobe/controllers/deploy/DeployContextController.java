@@ -41,7 +41,7 @@ public class DeployContextController extends AbstractTomcatContainerController {
   public ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 
-    String contextName = ServletRequestUtils.getStringParameter(request, "context", null);
+    String contextName = ServletRequestUtils.getStringParameter(request, "context");
 
     if (contextName != null) {
       try {

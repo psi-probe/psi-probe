@@ -135,7 +135,7 @@ public class RenderChartController extends AbstractController {
     boolean showLegend = ServletRequestUtils.getBooleanParameter(request, "l", true);
 
     // Series provider
-    String provider = ServletRequestUtils.getStringParameter(request, "p", null);
+    String provider = ServletRequestUtils.getStringParameter(request, "p");
 
     // Chart type
     String chartType = ServletRequestUtils.getStringParameter(request, "ct", "area");

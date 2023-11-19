@@ -47,7 +47,7 @@ public class GetClassLoaderUrlsController extends ParameterizableViewController 
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 
-    String threadName = ServletRequestUtils.getStringParameter(request, "thread", null);
+    String threadName = ServletRequestUtils.getStringParameter(request, "thread");
 
     Thread thread = Utils.getThreadByName(threadName);
 

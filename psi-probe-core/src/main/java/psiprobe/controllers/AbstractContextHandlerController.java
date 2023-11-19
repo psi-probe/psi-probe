@@ -26,7 +26,7 @@ public abstract class AbstractContextHandlerController extends AbstractTomcatCon
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 
-    String contextName = ServletRequestUtils.getStringParameter(request, "webapp", null);
+    String contextName = ServletRequestUtils.getStringParameter(request, "webapp");
     Context context = null;
     if (contextName != null) {
       contextName = getContainerWrapper().getTomcatContainer().formatContextName(contextName);

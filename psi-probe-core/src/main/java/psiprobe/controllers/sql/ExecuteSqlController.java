@@ -61,7 +61,7 @@ public class ExecuteSqlController extends AbstractContextHandlerController {
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 
     String resourceName = ServletRequestUtils.getStringParameter(request, "resource");
-    String sql = ServletRequestUtils.getStringParameter(request, "sql", null);
+    String sql = ServletRequestUtils.getStringParameter(request, "sql");
 
     if (sql == null || sql.isEmpty() || sql.trim().isEmpty()) {
       request.setAttribute("errorMessage",
