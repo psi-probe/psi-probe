@@ -15,7 +15,7 @@ import java.util.Scanner;
 /**
  * Misc. static helper methods.
  */
-public class UtilsBase {
+public final class UtilsBase {
 
   /**
    * Prevent Instantiation.
