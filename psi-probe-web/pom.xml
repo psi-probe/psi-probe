@@ -81,20 +81,6 @@
         <dependency>
             <groupId>com.github.hazendaz</groupId>
             <artifactId>displaytag</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.glassfish.web</groupId>
-                    <artifactId>javax.servlet.jsp.jstl</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>javax.servlet.jsp.jstl</groupId>
-                    <artifactId>javax.servlet.jsp.jstl-api</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>jcl-over-slf4j</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>
