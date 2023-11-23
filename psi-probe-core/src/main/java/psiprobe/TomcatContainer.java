@@ -238,20 +238,16 @@ public interface TomcatContainer {
    *
    * @param context the context
    * @param resourceList the resource list
-   * @param contextBound the context bound
    */
-  void addContextResource(Context context, List<ApplicationResource> resourceList,
-      boolean contextBound);
+  void addContextResource(Context context, List<ApplicationResource> resourceList);
 
   /**
    * Adds the context resource link.
    *
    * @param context the context
    * @param resourceList the resource list
-   * @param contextBound the context bound
    */
-  void addContextResourceLink(Context context, List<ApplicationResource> resourceList,
-      boolean contextBound);
+  void addContextResourceLink(Context context, List<ApplicationResource> resourceList);
 
   /**
    * Gets the application filters.

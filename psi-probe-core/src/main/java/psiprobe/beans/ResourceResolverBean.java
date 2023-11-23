@@ -114,11 +114,9 @@ public class ResourceResolverBean implements ResourceResolver {
       }
 
       try {
-        containerWrapper.getTomcatContainer().addContextResource(context, resourceList,
-            contextBound);
+        containerWrapper.getTomcatContainer().addContextResource(context, resourceList);
 
-        containerWrapper.getTomcatContainer().addContextResourceLink(context, resourceList,
-            contextBound);
+        containerWrapper.getTomcatContainer().addContextResourceLink(context, resourceList);
 
         for (ApplicationResource resourceList1 : resourceList) {
           lookupResource(resourceList1, contextBound, false);

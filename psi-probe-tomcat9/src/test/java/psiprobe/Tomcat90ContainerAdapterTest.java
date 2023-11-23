@@ -134,7 +134,7 @@ class Tomcat90ContainerAdapterTest {
   @Test
   void addContextResourceLink() {
     final Tomcat90ContainerAdapter adapter = new Tomcat90ContainerAdapter();
-    adapter.addContextResourceLink(context, new ArrayList<ApplicationResource>(), false);
+    adapter.addContextResourceLink(context, new ArrayList<ApplicationResource>());
   }
 
   /**
@@ -143,7 +143,7 @@ class Tomcat90ContainerAdapterTest {
   @Test
   void addContextResource() {
     final Tomcat90ContainerAdapter adapter = new Tomcat90ContainerAdapter();
-    adapter.addContextResource(context, new ArrayList<ApplicationResource>(), false);
+    adapter.addContextResource(context, new ArrayList<ApplicationResource>());
   }
 
   /**
