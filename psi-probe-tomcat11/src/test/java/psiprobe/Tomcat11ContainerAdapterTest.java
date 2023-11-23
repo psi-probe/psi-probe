@@ -75,7 +75,7 @@ class Tomcat11ContainerAdapterTest {
   }
 
   /**
-   * Can bound to tomee 11.0, nsjsp 11.0, pivotal tc 11.0.
+   * Can bound to tomee 11.0, nsjsp 11.0, vmware tc 11.0.
    */
   // TODO Not yet supported
   @Disabled
