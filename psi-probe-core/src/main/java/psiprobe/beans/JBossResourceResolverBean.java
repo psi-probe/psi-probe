@@ -145,13 +145,14 @@ public class JBossResourceResolverBean implements ResourceResolver {
    * @throws NamingException the naming exception
    */
   public List<ApplicationResource> getApplicationResources(Context context) throws NamingException {
+    // TODO 11/23/2023 Not implemented
     return new ArrayList<>();
   }
 
   @Override
   public List<ApplicationResource> getApplicationResources(Context context,
       ContainerWrapperBean containerWrapper) throws NamingException {
-
+    // TODO 11/23/2023 Not implemented
     throw new UnsupportedOperationException("Not supported yet.");
   }
 
