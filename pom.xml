@@ -494,6 +494,12 @@
                 <groupId>com.github.hazendaz</groupId>
                 <artifactId>displaytag</artifactId>
                 <version>${displaytag.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>jcl-over-slf4j</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
 
             <!-- Logging -->
@@ -571,6 +577,12 @@
                 <groupId>com.github.hazendaz</groupId>
                 <artifactId>sitemesh</artifactId>
                 <version>${sitemesh.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>jcl-over-slf4j</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>com.thoughtworks.xstream</groupId>
