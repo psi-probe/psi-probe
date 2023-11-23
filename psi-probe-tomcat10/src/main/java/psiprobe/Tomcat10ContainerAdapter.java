@@ -89,8 +89,7 @@ public class Tomcat10ContainerAdapter extends AbstractTomcatContainer {
   }
 
   @Override
-  public void addContextResourceLink(Context context, List<ApplicationResource> resourceList,
-      boolean contextBound) {
+  public void addContextResourceLink(Context context, List<ApplicationResource> resourceList) {
 
     NamingResourcesImpl namingResources = context.getNamingResources();
     for (ContextResourceLink link : namingResources.findResourceLinks()) {
@@ -109,8 +108,7 @@ public class Tomcat10ContainerAdapter extends AbstractTomcatContainer {
   }
 
   @Override
-  public void addContextResource(Context context, List<ApplicationResource> resourceList,
-      boolean contextBound) {
+  public void addContextResource(Context context, List<ApplicationResource> resourceList) {
     NamingResourcesImpl namingResources = context.getNamingResources();
     for (ContextResource contextResource : namingResources.findResources()) {
       ApplicationResource resource = new ApplicationResource();
