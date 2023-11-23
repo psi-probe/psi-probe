@@ -12,11 +12,13 @@ package psiprobe;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import mockit.Expectations;
 import mockit.Mocked;
@@ -29,6 +31,8 @@ import org.apache.tomcat.util.descriptor.web.FilterDef;
 import org.apache.tomcat.util.descriptor.web.FilterMap;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import psiprobe.model.ApplicationResource;
 
@@ -61,39 +65,14 @@ class Tomcat90ContainerAdapterTest {
   }
 
   /**
-   * Can bound to tomcat9.
+   * Can bound to tomcat 9, tomee 9, pivotal tc 9, vmware tc 9.
    */
-  @Test
-  void canBoundToTomcat9() {
+  @ParameterizedTest
+  @ValueSource(strings = {"Apache Tomcat/9.0", "Apache Tomcat (TomEE)/9.0", "Pivotal tc..../9.0",
+      "Vmware tc..../9.0"})
+  void canBoundTo(String container) {
     final Tomcat90ContainerAdapter adapter = new Tomcat90ContainerAdapter();
-    assertTrue(adapter.canBoundTo("Apache Tomcat/9.0"));
-  }
-
-  /**
-   * Can bound to tomEE9.
-   */
-  @Test
-  void canBoundToTomEE9() {
-    final Tomcat90ContainerAdapter adapter = new Tomcat90ContainerAdapter();
-    assertTrue(adapter.canBoundTo("Apache Tomcat (TomEE)/9.0"));
-  }
-
-  /**
-   * Can bound to pivotal9.
-   */
-  @Test
-  void canBoundToPivotal9() {
-    final Tomcat90ContainerAdapter adapter = new Tomcat90ContainerAdapter();
-    assertTrue(adapter.canBoundTo("Pivotal tc..../9.0"));
-  }
-
-  /**
-   * Can bound to vmware9.
-   */
-  @Test
-  void canBoundToVmware9() {
-    final Tomcat90ContainerAdapter adapter = new Tomcat90ContainerAdapter();
-    assertTrue(adapter.canBoundTo("Vmware tc..../9.0"));
+    assertTrue(adapter.canBoundTo(container));
   }
 
   /**
@@ -123,9 +102,9 @@ class Tomcat90ContainerAdapterTest {
   @Test
   void createJspCompilationContext() {
     final Tomcat90ContainerAdapter adapter = new Tomcat90ContainerAdapter();
-    JspCompilationContext context = adapter.createJspCompilationContext("name", null, null, null,
+    JspCompilationContext jspContext = adapter.createJspCompilationContext("name", null, null, null,
         ClassLoader.getSystemClassLoader());
-    assertEquals("org.apache.jsp.name", context.getFQCN());
+    assertEquals("org.apache.jsp.name", jspContext.getFQCN());
   }
 
   /**
@@ -134,7 +113,9 @@ class Tomcat90ContainerAdapterTest {
   @Test
   void addContextResourceLink() {
     final Tomcat90ContainerAdapter adapter = new Tomcat90ContainerAdapter();
-    adapter.addContextResourceLink(context, new ArrayList<ApplicationResource>());
+    final List<ApplicationResource> list = new ArrayList<ApplicationResource>();
+    adapter.addContextResourceLink(context, list);
+    assertTrue(list.isEmpty());
   }
 
   /**
@@ -143,7 +124,9 @@ class Tomcat90ContainerAdapterTest {
   @Test
   void addContextResource() {
     final Tomcat90ContainerAdapter adapter = new Tomcat90ContainerAdapter();
-    adapter.addContextResource(context, new ArrayList<ApplicationResource>());
+    final List<ApplicationResource> list = new ArrayList<ApplicationResource>();
+    adapter.addContextResource(context, list);
+    assertTrue(list.isEmpty());
   }
 
   /**
@@ -210,7 +193,7 @@ class Tomcat90ContainerAdapterTest {
   @Test
   void resourceStream() throws IOException {
     final Tomcat90ContainerAdapter adapter = new Tomcat90ContainerAdapter();
-    adapter.getResourceStream("name", context);
+    assertNotNull(adapter.getResourceStream("name", context));
   }
 
   /**
@@ -219,7 +202,7 @@ class Tomcat90ContainerAdapterTest {
   @Test
   void resourceAttributes() {
     final Tomcat90ContainerAdapter adapter = new Tomcat90ContainerAdapter();
-    adapter.getResourceAttributes("name", context);
+    assertNotNull(adapter.getResourceAttributes("name", context));
   }
 
   /**

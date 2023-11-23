@@ -12,11 +12,13 @@ package psiprobe;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import mockit.Expectations;
 import mockit.Mocked;
@@ -29,6 +31,8 @@ import org.apache.tomcat.util.descriptor.web.FilterDef;
 import org.apache.tomcat.util.descriptor.web.FilterMap;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import psiprobe.model.ApplicationResource;
 
@@ -48,7 +52,7 @@ class Tomcat10ContainerAdapterTest {
   void createValve() {
     final Tomcat10ContainerAdapter adapter = new Tomcat10ContainerAdapter();
     Valve valve = adapter.createValve();
-    assertEquals("Tomcat10AgentValve[Container is null]", valve.toString());
+    assertEquals("psiprobe.Tomcat10AgentValve[Container is null]", valve.toString());
   }
 
   /**
@@ -61,39 +65,14 @@ class Tomcat10ContainerAdapterTest {
   }
 
   /**
-   * Can bound to tomcat10.
+   * Can bound to tomcat 10.1, tomee 10.0, nsjsp 10.1, vmware tc 10.1.
    */
-  @Test
-  void canBoundToTomcat10() {
+  @ParameterizedTest
+  @ValueSource(strings = {"Apache Tomcat/10.1", "Apache Tomcat (TomEE)/10.0",
+      "NonStop(tm) Servlets For JavaServer Pages(tm) v10.1", "Vmware tc..../10.1"})
+  void canBoundTo(String container) {
     final Tomcat10ContainerAdapter adapter = new Tomcat10ContainerAdapter();
-    assertTrue(adapter.canBoundTo("Apache Tomcat/10.1"));
-  }
-
-  /**
-   * Can bound to nsjsp10.
-   */
-  @Test
-  void canBoundToNsJsp10() {
-    final Tomcat10ContainerAdapter adapter = new Tomcat10ContainerAdapter();
-    assertTrue(adapter.canBoundTo("NonStop(tm) Servlets For JavaServer Pages(tm) v10.1"));
-  }
-
-  /**
-   * Can bound to tomEE10.
-   */
-  @Test
-  void canBoundToTomEE10() {
-    final Tomcat10ContainerAdapter adapter = new Tomcat10ContainerAdapter();
-    assertTrue(adapter.canBoundTo("Apache Tomcat (TomEE)/10.0"));
-  }
-
-  /**
-   * Can bound to vmware10.
-   */
-  @Test
-  void canBoundToVmware10() {
-    final Tomcat10ContainerAdapter adapter = new Tomcat10ContainerAdapter();
-    assertTrue(adapter.canBoundTo("Vmware tc..../10.1"));
+    assertTrue(adapter.canBoundTo(container));
   }
 
   /**
@@ -123,9 +102,9 @@ class Tomcat10ContainerAdapterTest {
   @Test
   void createJspCompilationContext() {
     final Tomcat10ContainerAdapter adapter = new Tomcat10ContainerAdapter();
-    JspCompilationContext context = adapter.createJspCompilationContext("name", null, null, null,
+    JspCompilationContext jspContext = adapter.createJspCompilationContext("name", null, null, null,
         ClassLoader.getSystemClassLoader());
-    assertEquals("org.apache.jsp.name", context.getFQCN());
+    assertEquals("org.apache.jsp.name", jspContext.getFQCN());
   }
 
   /**
@@ -134,7 +113,9 @@ class Tomcat10ContainerAdapterTest {
   @Test
   void addContextResourceLink() {
     final Tomcat10ContainerAdapter adapter = new Tomcat10ContainerAdapter();
-    adapter.addContextResourceLink(context, new ArrayList<ApplicationResource>());
+    final List<ApplicationResource> list = new ArrayList<ApplicationResource>();
+    adapter.addContextResourceLink(context, list);
+    assertTrue(list.isEmpty());
   }
 
   /**
@@ -143,7 +124,9 @@ class Tomcat10ContainerAdapterTest {
   @Test
   void addContextResource() {
     final Tomcat10ContainerAdapter adapter = new Tomcat10ContainerAdapter();
-    adapter.addContextResource(context, new ArrayList<ApplicationResource>());
+    final List<ApplicationResource> list = new ArrayList<ApplicationResource>();
+    adapter.addContextResource(context, list);
+    assertTrue(list.isEmpty());
   }
 
   /**
@@ -210,7 +193,7 @@ class Tomcat10ContainerAdapterTest {
   @Test
   void resourceStream() throws IOException {
     final Tomcat10ContainerAdapter adapter = new Tomcat10ContainerAdapter();
-    adapter.getResourceStream("name", context);
+    assertNotNull(adapter.getResourceStream("name", context));
   }
 
   /**
@@ -219,7 +202,7 @@ class Tomcat10ContainerAdapterTest {
   @Test
   void resourceAttributes() {
     final Tomcat10ContainerAdapter adapter = new Tomcat10ContainerAdapter();
-    adapter.getResourceAttributes("name", context);
+    assertNotNull(adapter.getResourceAttributes("name", context));
   }
 
   /**
