@@ -241,7 +241,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
   }
 
   @Override
-  public void installWar(String name, URL url) throws Exception {
+  public void installWar(String name) throws Exception {
     checkChanges(name);
   }
 

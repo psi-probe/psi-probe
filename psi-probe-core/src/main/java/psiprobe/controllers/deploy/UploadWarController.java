@@ -12,7 +12,6 @@ package psiprobe.controllers.deploy;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
@@ -144,8 +143,7 @@ public class UploadWarController extends AbstractTomcatContainerController {
           FileUtils.moveFile(tmpWar, destWar);
 
           // let Tomcat know that the file is there
-          getContainerWrapper().getTomcatContainer().installWar(contextName,
-              new URL("jar:" + destWar.toURI().toURL() + "!/"));
+          getContainerWrapper().getTomcatContainer().installWar(contextName);
 
           Context ctx = getContainerWrapper().getTomcatContainer().findContext(contextName);
           if (ctx == null) {
