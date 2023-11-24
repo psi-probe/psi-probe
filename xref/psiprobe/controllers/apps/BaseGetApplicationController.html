@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="" lang="">
 <head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <title>BaseGetApplicationController xref</title>
 <link type="text/css" rel="stylesheet" href="../../../stylesheet.css" />
@@ -107,7 +107,7 @@
 <a class="jxr_linenumber" name="L99" href="#L99">99</a>        HttpServletRequest request, HttpServletResponse response) <strong class="jxr_keyword">throws</strong> Exception {
 <a class="jxr_linenumber" name="L100" href="#L100">100</a> 
 <a class="jxr_linenumber" name="L101" href="#L101">101</a>     <strong class="jxr_keyword">boolean</strong> calcSize = ServletRequestUtils.getBooleanParameter(request, <span class="jxr_string">"size"</span>, false)
-<a class="jxr_linenumber" name="L102" href="#L102">102</a>         &amp;&amp; SecurityUtils.hasAttributeValueRole(getServletContext(), request);
+<a class="jxr_linenumber" name="L102" href="#L102">102</a>         &amp;&amp; SecurityUtils.hasAttributeValueRole(getServletContext());
 <a class="jxr_linenumber" name="L103" href="#L103">103</a> 
 <a class="jxr_linenumber" name="L104" href="#L104">104</a>     <a name="ResourceResolver" href="../../../psiprobe/beans/ResourceResolver.html#ResourceResolver">ResourceResolver</a> resourceResolver = getContainerWrapper().getResourceResolver();
 <a class="jxr_linenumber" name="L105" href="#L105">105</a>     <a name="Application" href="../../../psiprobe/model/Application.html#Application">Application</a> app = ApplicationUtils.getApplication(context,

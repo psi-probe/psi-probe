@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="" lang="">
 <head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <title>LogResolverBean xref</title>
 <link type="text/css" rel="stylesheet" href="../../stylesheet.css" />
@@ -279,7 +279,7 @@
 <a class="jxr_linenumber" name="L271" href="#L271">271</a>           cl = Thread.currentThread().getContextClassLoader().getParent();
 <a class="jxr_linenumber" name="L272" href="#L272">272</a>         }
 <a class="jxr_linenumber" name="L273" href="#L273">273</a>         <strong class="jxr_keyword">try</strong> {
-<a class="jxr_linenumber" name="L274" href="#L274">274</a>           <strong class="jxr_keyword">if</strong> ((root || logName != <strong class="jxr_keyword">null</strong>)) {
+<a class="jxr_linenumber" name="L274" href="#L274">274</a>           <strong class="jxr_keyword">if</strong> (root || logName != <strong class="jxr_keyword">null</strong>) {
 <a class="jxr_linenumber" name="L275" href="#L275">275</a>             <strong class="jxr_keyword">if</strong> (<span class="jxr_string">"jdk"</span>.equals(logType)) {
 <a class="jxr_linenumber" name="L276" href="#L276">276</a>               result = getJdk14LogDestination(cl, application, root, logName, logIndex);
 <a class="jxr_linenumber" name="L277" href="#L277">277</a>             } <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (<span class="jxr_string">"log4j"</span>.equals(logType)) {

@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="" lang="">
 <head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <title>Dbcp2DatasourceAccessorTest xref</title>
 <link type="text/css" rel="stylesheet" href="../../../stylesheet.css" />
@@ -18,7 +18,7 @@
 <a class="jxr_linenumber" name="L10" href="#L10">10</a>  <em class="jxr_comment"> */</em>
 <a class="jxr_linenumber" name="L11" href="#L11">11</a>  <strong class="jxr_keyword">package</strong> psiprobe.beans.accessors;
 <a class="jxr_linenumber" name="L12" href="#L12">12</a>  
-<a class="jxr_linenumber" name="L13" href="#L13">13</a>  <strong class="jxr_keyword">import</strong> com.mchange.v2.c3p0.ComboPooledDataSource;
+<a class="jxr_linenumber" name="L13" href="#L13">13</a>  <strong class="jxr_keyword">import</strong> com.zaxxer.hikari.HikariDataSource;
 <a class="jxr_linenumber" name="L14" href="#L14">14</a>  
 <a class="jxr_linenumber" name="L15" href="#L15">15</a>  <strong class="jxr_keyword">import</strong> org.apache.commons.dbcp2.BasicDataSource;
 <a class="jxr_linenumber" name="L16" href="#L16">16</a>  <strong class="jxr_keyword">import</strong> org.junit.jupiter.api.Assertions;
@@ -37,7 +37,7 @@
 <a class="jxr_linenumber" name="L29" href="#L29">29</a>    BasicDataSource source;
 <a class="jxr_linenumber" name="L30" href="#L30">30</a>  
 <a class="jxr_linenumber" name="L31" href="#L31">31</a>    <em class="jxr_javadoccomment">/** The bad source. */</em>
-<a class="jxr_linenumber" name="L32" href="#L32">32</a>    ComboPooledDataSource badSource;
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>    HikariDataSource badSource;
 <a class="jxr_linenumber" name="L33" href="#L33">33</a>  
 <a class="jxr_linenumber" name="L34" href="#L34">34</a>    <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L35" href="#L35">35</a>  <em class="jxr_javadoccomment">   * Before.</em>
@@ -46,7 +46,7 @@
 <a class="jxr_linenumber" name="L38" href="#L38">38</a>    <strong class="jxr_keyword">void</strong> before() {
 <a class="jxr_linenumber" name="L39" href="#L39">39</a>      accessor = <strong class="jxr_keyword">new</strong> Dbcp2DatasourceAccessor();
 <a class="jxr_linenumber" name="L40" href="#L40">40</a>      source = <strong class="jxr_keyword">new</strong> BasicDataSource();
-<a class="jxr_linenumber" name="L41" href="#L41">41</a>      badSource = <strong class="jxr_keyword">new</strong> ComboPooledDataSource();
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>      badSource = <strong class="jxr_keyword">new</strong> HikariDataSource();
 <a class="jxr_linenumber" name="L42" href="#L42">42</a>    }
 <a class="jxr_linenumber" name="L43" href="#L43">43</a>  
 <a class="jxr_linenumber" name="L44" href="#L44">44</a>    <em class="jxr_javadoccomment">/**</em>
@@ -72,7 +72,7 @@
 <a class="jxr_linenumber" name="L64" href="#L64">64</a>  <em class="jxr_javadoccomment">   */</em>
 <a class="jxr_linenumber" name="L65" href="#L65">65</a>    @Test
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>    <strong class="jxr_keyword">void</strong> getInfoTest() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L67" href="#L67">67</a>      accessor.getInfo(source);
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>      Assertions.assertNotNull(accessor.getInfo(source));
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>    }
 <a class="jxr_linenumber" name="L69" href="#L69">69</a>  
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>  }

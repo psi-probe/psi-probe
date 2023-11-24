@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="" lang="">
 <head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <title>ResetDataSourceController xref</title>
 <link type="text/css" rel="stylesheet" href="../../../stylesheet.css" />
@@ -76,7 +76,7 @@
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>    <strong class="jxr_keyword">protected</strong> ModelAndView handleContext(String contextName, Context context,
 <a class="jxr_linenumber" name="L69" href="#L69">69</a>        HttpServletRequest request, HttpServletResponse response) <strong class="jxr_keyword">throws</strong> Exception {
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>  
-<a class="jxr_linenumber" name="L71" href="#L71">71</a>      String resourceName = ServletRequestUtils.getStringParameter(request, <span class="jxr_string">"resource"</span>, <strong class="jxr_keyword">null</strong>);
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>      String resourceName = ServletRequestUtils.getStringParameter(request, <span class="jxr_string">"resource"</span>);
 <a class="jxr_linenumber" name="L72" href="#L72">72</a>      String referer = request.getHeader(<span class="jxr_string">"Referer"</span>);
 <a class="jxr_linenumber" name="L73" href="#L73">73</a>      String redirectUrl;
 <a class="jxr_linenumber" name="L74" href="#L74">74</a>      <strong class="jxr_keyword">if</strong> (referer != <strong class="jxr_keyword">null</strong>) {

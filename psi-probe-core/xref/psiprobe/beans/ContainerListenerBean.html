@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="" lang="">
 <head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <title>ContainerListenerBean xref</title>
 <link type="text/css" rel="stylesheet" href="../../stylesheet.css" />
@@ -263,180 +263,182 @@
 <a class="jxr_linenumber" name="L255" href="#L255">255</a>           threadPools.add(threadPool);
 <a class="jxr_linenumber" name="L256" href="#L256">256</a>         }
 <a class="jxr_linenumber" name="L257" href="#L257">257</a>       } <strong class="jxr_keyword">catch</strong> (InstanceNotFoundException e) {
-<a class="jxr_linenumber" name="L258" href="#L258">258</a>         logger.error(<span class="jxr_string">"Failed to query entire thread pool {}"</span>, threadPoolObjectName);
-<a class="jxr_linenumber" name="L259" href="#L259">259</a>         logger.debug(<span class="jxr_string">""</span>, e);
-<a class="jxr_linenumber" name="L260" href="#L260">260</a>       }
-<a class="jxr_linenumber" name="L261" href="#L261">261</a>     }
-<a class="jxr_linenumber" name="L262" href="#L262">262</a>     <strong class="jxr_keyword">return</strong> threadPools;
-<a class="jxr_linenumber" name="L263" href="#L263">263</a>   }
-<a class="jxr_linenumber" name="L264" href="#L264">264</a> 
-<a class="jxr_linenumber" name="L265" href="#L265">265</a>   <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L266" href="#L266">266</a> <em class="jxr_javadoccomment">   * Toggle connector status.</em>
-<a class="jxr_linenumber" name="L267" href="#L267">267</a> <em class="jxr_javadoccomment">   *</em>
-<a class="jxr_linenumber" name="L268" href="#L268">268</a> <em class="jxr_javadoccomment">   * @param operation the operation</em>
-<a class="jxr_linenumber" name="L269" href="#L269">269</a> <em class="jxr_javadoccomment">   * @param port the port</em>
-<a class="jxr_linenumber" name="L270" href="#L270">270</a> <em class="jxr_javadoccomment">   *</em>
-<a class="jxr_linenumber" name="L271" href="#L271">271</a> <em class="jxr_javadoccomment">   * @throws Exception the exception</em>
-<a class="jxr_linenumber" name="L272" href="#L272">272</a> <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L273" href="#L273">273</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">synchronized</strong> <strong class="jxr_keyword">void</strong> toggleConnectorStatus(String operation, String port) <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L274" href="#L274">274</a> 
-<a class="jxr_linenumber" name="L275" href="#L275">275</a>     <strong class="jxr_keyword">if</strong> (!allowedOperation.contains(operation)) {
-<a class="jxr_linenumber" name="L276" href="#L276">276</a>       logger.error(<span class="jxr_string">"operation {} not supported"</span>, operation);
-<a class="jxr_linenumber" name="L277" href="#L277">277</a>       <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> IllegalArgumentException(<span class="jxr_string">"Not support operation"</span>);
-<a class="jxr_linenumber" name="L278" href="#L278">278</a>     }
-<a class="jxr_linenumber" name="L279" href="#L279">279</a> 
-<a class="jxr_linenumber" name="L280" href="#L280">280</a>     ObjectName objectName = <strong class="jxr_keyword">new</strong> ObjectName(<span class="jxr_string">"Catalina:type=Connector,port="</span> + port);
-<a class="jxr_linenumber" name="L281" href="#L281">281</a> 
-<a class="jxr_linenumber" name="L282" href="#L282">282</a>     MBeanServer server = getContainerWrapper().getResourceResolver().getMBeanServer();
-<a class="jxr_linenumber" name="L283" href="#L283">283</a> 
-<a class="jxr_linenumber" name="L284" href="#L284">284</a>     JmxTools.invoke(server, objectName, operation, <strong class="jxr_keyword">null</strong>, <strong class="jxr_keyword">null</strong>);
-<a class="jxr_linenumber" name="L285" href="#L285">285</a> 
-<a class="jxr_linenumber" name="L286" href="#L286">286</a>     logger.info(<span class="jxr_string">"operation {} on Connector {} invoked success"</span>, operation, objectName);
-<a class="jxr_linenumber" name="L287" href="#L287">287</a>   }
-<a class="jxr_linenumber" name="L288" href="#L288">288</a> 
-<a class="jxr_linenumber" name="L289" href="#L289">289</a>   <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L290" href="#L290">290</a> <em class="jxr_javadoccomment">   * Gets the connectors.</em>
-<a class="jxr_linenumber" name="L291" href="#L291">291</a> <em class="jxr_javadoccomment">   *</em>
-<a class="jxr_linenumber" name="L292" href="#L292">292</a> <em class="jxr_javadoccomment">   * @param includeRequestProcessors the include request processors</em>
-<a class="jxr_linenumber" name="L293" href="#L293">293</a> <em class="jxr_javadoccomment">   *</em>
-<a class="jxr_linenumber" name="L294" href="#L294">294</a> <em class="jxr_javadoccomment">   * @return the connectors</em>
-<a class="jxr_linenumber" name="L295" href="#L295">295</a> <em class="jxr_javadoccomment">   *</em>
-<a class="jxr_linenumber" name="L296" href="#L296">296</a> <em class="jxr_javadoccomment">   * @throws Exception the exception</em>
-<a class="jxr_linenumber" name="L297" href="#L297">297</a> <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L298" href="#L298">298</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">synchronized</strong> List&lt;Connector&gt; getConnectors(<strong class="jxr_keyword">boolean</strong> includeRequestProcessors)
-<a class="jxr_linenumber" name="L299" href="#L299">299</a>       <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L300" href="#L300">300</a> 
-<a class="jxr_linenumber" name="L301" href="#L301">301</a>     <strong class="jxr_keyword">boolean</strong> workerThreadNameSupported = <strong class="jxr_keyword">true</strong>;
-<a class="jxr_linenumber" name="L302" href="#L302">302</a> 
-<a class="jxr_linenumber" name="L303" href="#L303">303</a>     <strong class="jxr_keyword">if</strong> (!isInitialized()) {
-<a class="jxr_linenumber" name="L304" href="#L304">304</a>       initialize();
-<a class="jxr_linenumber" name="L305" href="#L305">305</a>     }
-<a class="jxr_linenumber" name="L306" href="#L306">306</a> 
-<a class="jxr_linenumber" name="L307" href="#L307">307</a>     List&lt;Connector&gt; connectors = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;(poolNames.size());
-<a class="jxr_linenumber" name="L308" href="#L308">308</a> 
-<a class="jxr_linenumber" name="L309" href="#L309">309</a>     MBeanServer server = getContainerWrapper().getResourceResolver().getMBeanServer();
-<a class="jxr_linenumber" name="L310" href="#L310">310</a> 
-<a class="jxr_linenumber" name="L311" href="#L311">311</a>     <strong class="jxr_keyword">for</strong> (<a name="ThreadPoolObjectName" href="../../psiprobe/model/jmx/ThreadPoolObjectName.html#ThreadPoolObjectName">ThreadPoolObjectName</a> threadPoolObjectName : poolNames) {
-<a class="jxr_linenumber" name="L312" href="#L312">312</a>       <strong class="jxr_keyword">try</strong> {
-<a class="jxr_linenumber" name="L313" href="#L313">313</a>         ObjectName poolName = threadPoolObjectName.getThreadPoolName();
-<a class="jxr_linenumber" name="L314" href="#L314">314</a> 
-<a class="jxr_linenumber" name="L315" href="#L315">315</a>         <a name="Connector" href="../../psiprobe/model/Connector.html#Connector">Connector</a> connector = <strong class="jxr_keyword">new</strong> <a name="Connector" href="../../psiprobe/model/Connector.html#Connector">Connector</a>();
-<a class="jxr_linenumber" name="L316" href="#L316">316</a> 
-<a class="jxr_linenumber" name="L317" href="#L317">317</a>         String name = poolName.getKeyProperty(<span class="jxr_string">"name"</span>);
-<a class="jxr_linenumber" name="L318" href="#L318">318</a> 
-<a class="jxr_linenumber" name="L319" href="#L319">319</a>         connector.setProtocolHandler(poolName.getKeyProperty(<span class="jxr_string">"name"</span>));
-<a class="jxr_linenumber" name="L320" href="#L320">320</a> 
-<a class="jxr_linenumber" name="L321" href="#L321">321</a>         <strong class="jxr_keyword">if</strong> (name.startsWith(<span class="jxr_string">"\&quot;"</span>) &amp;&amp; name.endsWith(<span class="jxr_string">"\&quot;"</span>)) {
-<a class="jxr_linenumber" name="L322" href="#L322">322</a>           name = name.substring(1, name.length() - 1);
-<a class="jxr_linenumber" name="L323" href="#L323">323</a>         }
-<a class="jxr_linenumber" name="L324" href="#L324">324</a> 
-<a class="jxr_linenumber" name="L325" href="#L325">325</a>         String[] arr = name.split(<span class="jxr_string">"-"</span>, -1);
-<a class="jxr_linenumber" name="L326" href="#L326">326</a>         String port = <span class="jxr_string">"-1"</span>;
-<a class="jxr_linenumber" name="L327" href="#L327">327</a>         <strong class="jxr_keyword">if</strong> (arr.length == 3) {
-<a class="jxr_linenumber" name="L328" href="#L328">328</a>           port = arr[2];
-<a class="jxr_linenumber" name="L329" href="#L329">329</a>         }
-<a class="jxr_linenumber" name="L330" href="#L330">330</a> 
-<a class="jxr_linenumber" name="L331" href="#L331">331</a>         <strong class="jxr_keyword">if</strong> (!<span class="jxr_string">"-1"</span>.equals(port)) {
-<a class="jxr_linenumber" name="L332" href="#L332">332</a>           String str = <span class="jxr_string">"Catalina:type=Connector,port="</span> + port;
-<a class="jxr_linenumber" name="L333" href="#L333">333</a> 
-<a class="jxr_linenumber" name="L334" href="#L334">334</a>           ObjectName objectName = <strong class="jxr_keyword">new</strong> ObjectName(str);
-<a class="jxr_linenumber" name="L335" href="#L335">335</a> 
-<a class="jxr_linenumber" name="L336" href="#L336">336</a>           <em class="jxr_comment">// add some useful information for connector list</em>
-<a class="jxr_linenumber" name="L337" href="#L337">337</a>           connector.setStatus(JmxTools.getStringAttr(server, objectName, <span class="jxr_string">"stateName"</span>));
-<a class="jxr_linenumber" name="L338" href="#L338">338</a>           connector.setProtocol(JmxTools.getStringAttr(server, objectName, <span class="jxr_string">"protocol"</span>));
-<a class="jxr_linenumber" name="L339" href="#L339">339</a>           connector.setSecure(
-<a class="jxr_linenumber" name="L340" href="#L340">340</a>               Boolean.parseBoolean(JmxTools.getStringAttr(server, objectName, <span class="jxr_string">"secure"</span>)));
-<a class="jxr_linenumber" name="L341" href="#L341">341</a>           connector.setPort(JmxTools.getIntAttr(server, objectName, <span class="jxr_string">"port"</span>));
-<a class="jxr_linenumber" name="L342" href="#L342">342</a>           connector.setLocalPort(JmxTools.getIntAttr(server, objectName, <span class="jxr_string">"localPort"</span>));
-<a class="jxr_linenumber" name="L343" href="#L343">343</a>           connector.setSchema(JmxTools.getStringAttr(server, objectName, <span class="jxr_string">"schema"</span>));
-<a class="jxr_linenumber" name="L344" href="#L344">344</a>         }
-<a class="jxr_linenumber" name="L345" href="#L345">345</a> 
-<a class="jxr_linenumber" name="L346" href="#L346">346</a>         ObjectName grpName = threadPoolObjectName.getGlobalRequestProcessorName();
-<a class="jxr_linenumber" name="L347" href="#L347">347</a> 
-<a class="jxr_linenumber" name="L348" href="#L348">348</a>         connector.setMaxTime(JmxTools.getLongAttr(server, grpName, <span class="jxr_string">"maxTime"</span>));
-<a class="jxr_linenumber" name="L349" href="#L349">349</a>         connector.setProcessingTime(JmxTools.getLongAttr(server, grpName, <span class="jxr_string">"processingTime"</span>));
-<a class="jxr_linenumber" name="L350" href="#L350">350</a>         connector.setBytesReceived(JmxTools.getLongAttr(server, grpName, <span class="jxr_string">"bytesReceived"</span>));
-<a class="jxr_linenumber" name="L351" href="#L351">351</a>         connector.setBytesSent(JmxTools.getLongAttr(server, grpName, <span class="jxr_string">"bytesSent"</span>));
-<a class="jxr_linenumber" name="L352" href="#L352">352</a>         connector.setRequestCount(JmxTools.getIntAttr(server, grpName, <span class="jxr_string">"requestCount"</span>));
-<a class="jxr_linenumber" name="L353" href="#L353">353</a>         connector.setErrorCount(JmxTools.getIntAttr(server, grpName, <span class="jxr_string">"errorCount"</span>));
-<a class="jxr_linenumber" name="L354" href="#L354">354</a> 
-<a class="jxr_linenumber" name="L355" href="#L355">355</a>         <strong class="jxr_keyword">if</strong> (includeRequestProcessors) {
-<a class="jxr_linenumber" name="L356" href="#L356">356</a>           List&lt;ObjectName&gt; wrkNames = threadPoolObjectName.getRequestProcessorNames();
-<a class="jxr_linenumber" name="L357" href="#L357">357</a>           <strong class="jxr_keyword">for</strong> (ObjectName wrkName : wrkNames) {
-<a class="jxr_linenumber" name="L358" href="#L358">358</a>             <strong class="jxr_keyword">try</strong> {
-<a class="jxr_linenumber" name="L359" href="#L359">359</a>               <a name="RequestProcessor" href="../../psiprobe/model/RequestProcessor.html#RequestProcessor">RequestProcessor</a> rp = <strong class="jxr_keyword">new</strong> <a name="RequestProcessor" href="../../psiprobe/model/RequestProcessor.html#RequestProcessor">RequestProcessor</a>();
-<a class="jxr_linenumber" name="L360" href="#L360">360</a>               rp.setName(wrkName.getKeyProperty(<span class="jxr_string">"name"</span>));
-<a class="jxr_linenumber" name="L361" href="#L361">361</a>               rp.setStage(JmxTools.getIntAttr(server, wrkName, <span class="jxr_string">"stage"</span>));
-<a class="jxr_linenumber" name="L362" href="#L362">362</a>               rp.setProcessingTime(JmxTools.getLongAttr(server, wrkName, <span class="jxr_string">"requestProcessingTime"</span>));
-<a class="jxr_linenumber" name="L363" href="#L363">363</a>               rp.setBytesSent(JmxTools.getLongAttr(server, wrkName, <span class="jxr_string">"requestBytesSent"</span>));
-<a class="jxr_linenumber" name="L364" href="#L364">364</a>               rp.setBytesReceived(JmxTools.getLongAttr(server, wrkName, <span class="jxr_string">"requestBytesReceived"</span>));
-<a class="jxr_linenumber" name="L365" href="#L365">365</a>               <strong class="jxr_keyword">try</strong> {
-<a class="jxr_linenumber" name="L366" href="#L366">366</a>                 rp.setRemoteAddr(JmxTools.getStringAttr(server, wrkName, <span class="jxr_string">"remoteAddr"</span>));
-<a class="jxr_linenumber" name="L367" href="#L367">367</a>               } <strong class="jxr_keyword">catch</strong> (RuntimeOperationsException ex) {
-<a class="jxr_linenumber" name="L368" href="#L368">368</a>                 logger.trace(<span class="jxr_string">""</span>, ex);
-<a class="jxr_linenumber" name="L369" href="#L369">369</a>               }
-<a class="jxr_linenumber" name="L370" href="#L370">370</a> 
-<a class="jxr_linenumber" name="L371" href="#L371">371</a>               <strong class="jxr_keyword">if</strong> (rp.getRemoteAddr() != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L372" href="#L372">372</a>                 <em class="jxr_comment">// Show flag as defined in jvm for localhost</em>
-<a class="jxr_linenumber" name="L373" href="#L373">373</a>                 <strong class="jxr_keyword">if</strong> (InetAddress.getByName(rp.getRemoteAddr()).isLoopbackAddress()) {
-<a class="jxr_linenumber" name="L374" href="#L374">374</a>                   rp.setRemoteAddrLocale(<strong class="jxr_keyword">new</strong> Locale(System.getProperty(<span class="jxr_string">"user.language"</span>),
-<a class="jxr_linenumber" name="L375" href="#L375">375</a>                       System.getProperty(<span class="jxr_string">"user.country"</span>)));
-<a class="jxr_linenumber" name="L376" href="#L376">376</a>                 } <strong class="jxr_keyword">else</strong> {
-<a class="jxr_linenumber" name="L377" href="#L377">377</a>                   <em class="jxr_comment">// Show flag for non-localhost using geo lite</em>
-<a class="jxr_linenumber" name="L378" href="#L378">378</a>                   <strong class="jxr_keyword">try</strong> (DatabaseReader reader = <strong class="jxr_keyword">new</strong> DatabaseReader.Builder(<strong class="jxr_keyword">new</strong> File(
-<a class="jxr_linenumber" name="L379" href="#L379">379</a>                       getClass().getClassLoader().getResource(<span class="jxr_string">"GeoLite2-Country.mmdb"</span>).toURI()))
-<a class="jxr_linenumber" name="L380" href="#L380">380</a>                       .withCache(<strong class="jxr_keyword">new</strong> CHMCache()).build()) {
-<a class="jxr_linenumber" name="L381" href="#L381">381</a>                     CountryResponse response =
-<a class="jxr_linenumber" name="L382" href="#L382">382</a>                         reader.country(InetAddress.getByName(rp.getRemoteAddr()));
-<a class="jxr_linenumber" name="L383" href="#L383">383</a>                     Country country = response.getCountry();
-<a class="jxr_linenumber" name="L384" href="#L384">384</a>                     rp.setRemoteAddrLocale(<strong class="jxr_keyword">new</strong> Locale(<span class="jxr_string">""</span>, country.getIsoCode()));
-<a class="jxr_linenumber" name="L385" href="#L385">385</a>                   } <strong class="jxr_keyword">catch</strong> (AddressNotFoundException e) {
-<a class="jxr_linenumber" name="L386" href="#L386">386</a>                     logger.debug(<span class="jxr_string">"Address Not Found: {}"</span>, e.getMessage());
-<a class="jxr_linenumber" name="L387" href="#L387">387</a>                     logger.trace(<span class="jxr_string">""</span>, e);
-<a class="jxr_linenumber" name="L388" href="#L388">388</a>                   }
-<a class="jxr_linenumber" name="L389" href="#L389">389</a>                 }
-<a class="jxr_linenumber" name="L390" href="#L390">390</a>               }
-<a class="jxr_linenumber" name="L391" href="#L391">391</a> 
-<a class="jxr_linenumber" name="L392" href="#L392">392</a>               rp.setVirtualHost(JmxTools.getStringAttr(server, wrkName, <span class="jxr_string">"virtualHost"</span>));
-<a class="jxr_linenumber" name="L393" href="#L393">393</a>               rp.setMethod(JmxTools.getStringAttr(server, wrkName, <span class="jxr_string">"method"</span>));
-<a class="jxr_linenumber" name="L394" href="#L394">394</a>               rp.setCurrentUri(JmxTools.getStringAttr(server, wrkName, <span class="jxr_string">"currentUri"</span>));
-<a class="jxr_linenumber" name="L395" href="#L395">395</a>               rp.setCurrentQueryString(
-<a class="jxr_linenumber" name="L396" href="#L396">396</a>                   JmxTools.getStringAttr(server, wrkName, <span class="jxr_string">"currentQueryString"</span>));
-<a class="jxr_linenumber" name="L397" href="#L397">397</a>               rp.setProtocol(JmxTools.getStringAttr(server, wrkName, <span class="jxr_string">"protocol"</span>));
-<a class="jxr_linenumber" name="L398" href="#L398">398</a> 
-<a class="jxr_linenumber" name="L399" href="#L399">399</a>               <em class="jxr_comment">// Relies on https://issues.apache.org/bugzilla/show_bug.cgi?id=41128</em>
-<a class="jxr_linenumber" name="L400" href="#L400">400</a>               <strong class="jxr_keyword">if</strong> (workerThreadNameSupported
-<a class="jxr_linenumber" name="L401" href="#L401">401</a>                   &amp;&amp; JmxTools.hasAttribute(server, wrkName, <span class="jxr_string">"workerThreadName"</span>)) {
-<a class="jxr_linenumber" name="L402" href="#L402">402</a> 
-<a class="jxr_linenumber" name="L403" href="#L403">403</a>                 rp.setWorkerThreadName(JmxTools.getStringAttr(server, wrkName, <span class="jxr_string">"workerThreadName"</span>));
-<a class="jxr_linenumber" name="L404" href="#L404">404</a>                 rp.setWorkerThreadNameSupported(<strong class="jxr_keyword">true</strong>);
-<a class="jxr_linenumber" name="L405" href="#L405">405</a>               } <strong class="jxr_keyword">else</strong> {
-<a class="jxr_linenumber" name="L406" href="#L406">406</a>                 <em class="jxr_comment">/*</em>
-<a class="jxr_linenumber" name="L407" href="#L407">407</a> <em class="jxr_comment">                 * attribute should consistently either exist or be missing across all the workers</em>
-<a class="jxr_linenumber" name="L408" href="#L408">408</a> <em class="jxr_comment">                 * so it does not make sense to check attribute existence if we have found once that</em>
-<a class="jxr_linenumber" name="L409" href="#L409">409</a> <em class="jxr_comment">                 * it is not supported</em>
-<a class="jxr_linenumber" name="L410" href="#L410">410</a> <em class="jxr_comment">                 */</em>
-<a class="jxr_linenumber" name="L411" href="#L411">411</a>                 rp.setWorkerThreadNameSupported(false);
-<a class="jxr_linenumber" name="L412" href="#L412">412</a>                 workerThreadNameSupported = false;
-<a class="jxr_linenumber" name="L413" href="#L413">413</a>               }
-<a class="jxr_linenumber" name="L414" href="#L414">414</a>               connector.addRequestProcessor(rp);
-<a class="jxr_linenumber" name="L415" href="#L415">415</a>             } <strong class="jxr_keyword">catch</strong> (InstanceNotFoundException e) {
-<a class="jxr_linenumber" name="L416" href="#L416">416</a>               logger.info(<span class="jxr_string">"Failed to query RequestProcessor {}"</span>, wrkName);
-<a class="jxr_linenumber" name="L417" href="#L417">417</a>               logger.debug(<span class="jxr_string">""</span>, e);
-<a class="jxr_linenumber" name="L418" href="#L418">418</a>             }
-<a class="jxr_linenumber" name="L419" href="#L419">419</a>           }
-<a class="jxr_linenumber" name="L420" href="#L420">420</a>         }
-<a class="jxr_linenumber" name="L421" href="#L421">421</a> 
-<a class="jxr_linenumber" name="L422" href="#L422">422</a>         connectors.add(connector);
-<a class="jxr_linenumber" name="L423" href="#L423">423</a>       } <strong class="jxr_keyword">catch</strong> (InstanceNotFoundException e) {
-<a class="jxr_linenumber" name="L424" href="#L424">424</a>         logger.error(<span class="jxr_string">"Failed to query entire thread pool {}"</span>, threadPoolObjectName);
-<a class="jxr_linenumber" name="L425" href="#L425">425</a>         logger.debug(<span class="jxr_string">"  Stack trace:"</span>, e);
-<a class="jxr_linenumber" name="L426" href="#L426">426</a>       }
-<a class="jxr_linenumber" name="L427" href="#L427">427</a>     }
-<a class="jxr_linenumber" name="L428" href="#L428">428</a>     <strong class="jxr_keyword">return</strong> connectors;
-<a class="jxr_linenumber" name="L429" href="#L429">429</a>   }
-<a class="jxr_linenumber" name="L430" href="#L430">430</a> 
-<a class="jxr_linenumber" name="L431" href="#L431">431</a> }
+<a class="jxr_linenumber" name="L258" href="#L258">258</a>         logger.error(<span class="jxr_string">"Failed to query entire thread pool {}"</span>,
+<a class="jxr_linenumber" name="L259" href="#L259">259</a>             threadPoolObjectName.getThreadPoolName());
+<a class="jxr_linenumber" name="L260" href="#L260">260</a>         logger.debug(<span class="jxr_string">""</span>, e);
+<a class="jxr_linenumber" name="L261" href="#L261">261</a>       }
+<a class="jxr_linenumber" name="L262" href="#L262">262</a>     }
+<a class="jxr_linenumber" name="L263" href="#L263">263</a>     <strong class="jxr_keyword">return</strong> threadPools;
+<a class="jxr_linenumber" name="L264" href="#L264">264</a>   }
+<a class="jxr_linenumber" name="L265" href="#L265">265</a> 
+<a class="jxr_linenumber" name="L266" href="#L266">266</a>   <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L267" href="#L267">267</a> <em class="jxr_javadoccomment">   * Toggle connector status.</em>
+<a class="jxr_linenumber" name="L268" href="#L268">268</a> <em class="jxr_javadoccomment">   *</em>
+<a class="jxr_linenumber" name="L269" href="#L269">269</a> <em class="jxr_javadoccomment">   * @param operation the operation</em>
+<a class="jxr_linenumber" name="L270" href="#L270">270</a> <em class="jxr_javadoccomment">   * @param port the port</em>
+<a class="jxr_linenumber" name="L271" href="#L271">271</a> <em class="jxr_javadoccomment">   *</em>
+<a class="jxr_linenumber" name="L272" href="#L272">272</a> <em class="jxr_javadoccomment">   * @throws Exception the exception</em>
+<a class="jxr_linenumber" name="L273" href="#L273">273</a> <em class="jxr_javadoccomment">   */</em>
+<a class="jxr_linenumber" name="L274" href="#L274">274</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">synchronized</strong> <strong class="jxr_keyword">void</strong> toggleConnectorStatus(String operation, String port) <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L275" href="#L275">275</a> 
+<a class="jxr_linenumber" name="L276" href="#L276">276</a>     <strong class="jxr_keyword">if</strong> (!allowedOperation.contains(operation)) {
+<a class="jxr_linenumber" name="L277" href="#L277">277</a>       logger.error(<span class="jxr_string">"operation {} not supported"</span>, operation);
+<a class="jxr_linenumber" name="L278" href="#L278">278</a>       <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> IllegalArgumentException(<span class="jxr_string">"Not support operation"</span>);
+<a class="jxr_linenumber" name="L279" href="#L279">279</a>     }
+<a class="jxr_linenumber" name="L280" href="#L280">280</a> 
+<a class="jxr_linenumber" name="L281" href="#L281">281</a>     ObjectName objectName = <strong class="jxr_keyword">new</strong> ObjectName(<span class="jxr_string">"Catalina:type=Connector,port="</span> + port);
+<a class="jxr_linenumber" name="L282" href="#L282">282</a> 
+<a class="jxr_linenumber" name="L283" href="#L283">283</a>     MBeanServer server = getContainerWrapper().getResourceResolver().getMBeanServer();
+<a class="jxr_linenumber" name="L284" href="#L284">284</a> 
+<a class="jxr_linenumber" name="L285" href="#L285">285</a>     JmxTools.invoke(server, objectName, operation, <strong class="jxr_keyword">null</strong>, <strong class="jxr_keyword">null</strong>);
+<a class="jxr_linenumber" name="L286" href="#L286">286</a> 
+<a class="jxr_linenumber" name="L287" href="#L287">287</a>     logger.info(<span class="jxr_string">"operation {} on Connector {} invoked success"</span>, operation, objectName);
+<a class="jxr_linenumber" name="L288" href="#L288">288</a>   }
+<a class="jxr_linenumber" name="L289" href="#L289">289</a> 
+<a class="jxr_linenumber" name="L290" href="#L290">290</a>   <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L291" href="#L291">291</a> <em class="jxr_javadoccomment">   * Gets the connectors.</em>
+<a class="jxr_linenumber" name="L292" href="#L292">292</a> <em class="jxr_javadoccomment">   *</em>
+<a class="jxr_linenumber" name="L293" href="#L293">293</a> <em class="jxr_javadoccomment">   * @param includeRequestProcessors the include request processors</em>
+<a class="jxr_linenumber" name="L294" href="#L294">294</a> <em class="jxr_javadoccomment">   *</em>
+<a class="jxr_linenumber" name="L295" href="#L295">295</a> <em class="jxr_javadoccomment">   * @return the connectors</em>
+<a class="jxr_linenumber" name="L296" href="#L296">296</a> <em class="jxr_javadoccomment">   *</em>
+<a class="jxr_linenumber" name="L297" href="#L297">297</a> <em class="jxr_javadoccomment">   * @throws Exception the exception</em>
+<a class="jxr_linenumber" name="L298" href="#L298">298</a> <em class="jxr_javadoccomment">   */</em>
+<a class="jxr_linenumber" name="L299" href="#L299">299</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">synchronized</strong> List&lt;Connector&gt; getConnectors(<strong class="jxr_keyword">boolean</strong> includeRequestProcessors)
+<a class="jxr_linenumber" name="L300" href="#L300">300</a>       <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L301" href="#L301">301</a> 
+<a class="jxr_linenumber" name="L302" href="#L302">302</a>     <strong class="jxr_keyword">boolean</strong> workerThreadNameSupported = <strong class="jxr_keyword">true</strong>;
+<a class="jxr_linenumber" name="L303" href="#L303">303</a> 
+<a class="jxr_linenumber" name="L304" href="#L304">304</a>     <strong class="jxr_keyword">if</strong> (!isInitialized()) {
+<a class="jxr_linenumber" name="L305" href="#L305">305</a>       initialize();
+<a class="jxr_linenumber" name="L306" href="#L306">306</a>     }
+<a class="jxr_linenumber" name="L307" href="#L307">307</a> 
+<a class="jxr_linenumber" name="L308" href="#L308">308</a>     List&lt;Connector&gt; connectors = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;(poolNames.size());
+<a class="jxr_linenumber" name="L309" href="#L309">309</a> 
+<a class="jxr_linenumber" name="L310" href="#L310">310</a>     MBeanServer server = getContainerWrapper().getResourceResolver().getMBeanServer();
+<a class="jxr_linenumber" name="L311" href="#L311">311</a> 
+<a class="jxr_linenumber" name="L312" href="#L312">312</a>     <strong class="jxr_keyword">for</strong> (<a name="ThreadPoolObjectName" href="../../psiprobe/model/jmx/ThreadPoolObjectName.html#ThreadPoolObjectName">ThreadPoolObjectName</a> threadPoolObjectName : poolNames) {
+<a class="jxr_linenumber" name="L313" href="#L313">313</a>       <strong class="jxr_keyword">try</strong> {
+<a class="jxr_linenumber" name="L314" href="#L314">314</a>         ObjectName poolName = threadPoolObjectName.getThreadPoolName();
+<a class="jxr_linenumber" name="L315" href="#L315">315</a> 
+<a class="jxr_linenumber" name="L316" href="#L316">316</a>         <a name="Connector" href="../../psiprobe/model/Connector.html#Connector">Connector</a> connector = <strong class="jxr_keyword">new</strong> <a name="Connector" href="../../psiprobe/model/Connector.html#Connector">Connector</a>();
+<a class="jxr_linenumber" name="L317" href="#L317">317</a> 
+<a class="jxr_linenumber" name="L318" href="#L318">318</a>         String name = poolName.getKeyProperty(<span class="jxr_string">"name"</span>);
+<a class="jxr_linenumber" name="L319" href="#L319">319</a> 
+<a class="jxr_linenumber" name="L320" href="#L320">320</a>         connector.setProtocolHandler(poolName.getKeyProperty(<span class="jxr_string">"name"</span>));
+<a class="jxr_linenumber" name="L321" href="#L321">321</a> 
+<a class="jxr_linenumber" name="L322" href="#L322">322</a>         <strong class="jxr_keyword">if</strong> (name.startsWith(<span class="jxr_string">"\&quot;"</span>) &amp;&amp; name.endsWith(<span class="jxr_string">"\&quot;"</span>)) {
+<a class="jxr_linenumber" name="L323" href="#L323">323</a>           name = name.substring(1, name.length() - 1);
+<a class="jxr_linenumber" name="L324" href="#L324">324</a>         }
+<a class="jxr_linenumber" name="L325" href="#L325">325</a> 
+<a class="jxr_linenumber" name="L326" href="#L326">326</a>         String[] arr = name.split(<span class="jxr_string">"-"</span>, -1);
+<a class="jxr_linenumber" name="L327" href="#L327">327</a>         String port = <span class="jxr_string">"-1"</span>;
+<a class="jxr_linenumber" name="L328" href="#L328">328</a>         <strong class="jxr_keyword">if</strong> (arr.length == 3) {
+<a class="jxr_linenumber" name="L329" href="#L329">329</a>           port = arr[2];
+<a class="jxr_linenumber" name="L330" href="#L330">330</a>         }
+<a class="jxr_linenumber" name="L331" href="#L331">331</a> 
+<a class="jxr_linenumber" name="L332" href="#L332">332</a>         <strong class="jxr_keyword">if</strong> (!<span class="jxr_string">"-1"</span>.equals(port)) {
+<a class="jxr_linenumber" name="L333" href="#L333">333</a>           String str = <span class="jxr_string">"Catalina:type=Connector,port="</span> + port;
+<a class="jxr_linenumber" name="L334" href="#L334">334</a> 
+<a class="jxr_linenumber" name="L335" href="#L335">335</a>           ObjectName objectName = <strong class="jxr_keyword">new</strong> ObjectName(str);
+<a class="jxr_linenumber" name="L336" href="#L336">336</a> 
+<a class="jxr_linenumber" name="L337" href="#L337">337</a>           <em class="jxr_comment">// add some useful information for connector list</em>
+<a class="jxr_linenumber" name="L338" href="#L338">338</a>           connector.setStatus(JmxTools.getStringAttr(server, objectName, <span class="jxr_string">"stateName"</span>));
+<a class="jxr_linenumber" name="L339" href="#L339">339</a>           connector.setProtocol(JmxTools.getStringAttr(server, objectName, <span class="jxr_string">"protocol"</span>));
+<a class="jxr_linenumber" name="L340" href="#L340">340</a>           connector.setSecure(
+<a class="jxr_linenumber" name="L341" href="#L341">341</a>               Boolean.parseBoolean(JmxTools.getStringAttr(server, objectName, <span class="jxr_string">"secure"</span>)));
+<a class="jxr_linenumber" name="L342" href="#L342">342</a>           connector.setPort(JmxTools.getIntAttr(server, objectName, <span class="jxr_string">"port"</span>));
+<a class="jxr_linenumber" name="L343" href="#L343">343</a>           connector.setLocalPort(JmxTools.getIntAttr(server, objectName, <span class="jxr_string">"localPort"</span>));
+<a class="jxr_linenumber" name="L344" href="#L344">344</a>           connector.setSchema(JmxTools.getStringAttr(server, objectName, <span class="jxr_string">"schema"</span>));
+<a class="jxr_linenumber" name="L345" href="#L345">345</a>         }
+<a class="jxr_linenumber" name="L346" href="#L346">346</a> 
+<a class="jxr_linenumber" name="L347" href="#L347">347</a>         ObjectName grpName = threadPoolObjectName.getGlobalRequestProcessorName();
+<a class="jxr_linenumber" name="L348" href="#L348">348</a> 
+<a class="jxr_linenumber" name="L349" href="#L349">349</a>         connector.setMaxTime(JmxTools.getLongAttr(server, grpName, <span class="jxr_string">"maxTime"</span>));
+<a class="jxr_linenumber" name="L350" href="#L350">350</a>         connector.setProcessingTime(JmxTools.getLongAttr(server, grpName, <span class="jxr_string">"processingTime"</span>));
+<a class="jxr_linenumber" name="L351" href="#L351">351</a>         connector.setBytesReceived(JmxTools.getLongAttr(server, grpName, <span class="jxr_string">"bytesReceived"</span>));
+<a class="jxr_linenumber" name="L352" href="#L352">352</a>         connector.setBytesSent(JmxTools.getLongAttr(server, grpName, <span class="jxr_string">"bytesSent"</span>));
+<a class="jxr_linenumber" name="L353" href="#L353">353</a>         connector.setRequestCount(JmxTools.getIntAttr(server, grpName, <span class="jxr_string">"requestCount"</span>));
+<a class="jxr_linenumber" name="L354" href="#L354">354</a>         connector.setErrorCount(JmxTools.getIntAttr(server, grpName, <span class="jxr_string">"errorCount"</span>));
+<a class="jxr_linenumber" name="L355" href="#L355">355</a> 
+<a class="jxr_linenumber" name="L356" href="#L356">356</a>         <strong class="jxr_keyword">if</strong> (includeRequestProcessors) {
+<a class="jxr_linenumber" name="L357" href="#L357">357</a>           List&lt;ObjectName&gt; wrkNames = threadPoolObjectName.getRequestProcessorNames();
+<a class="jxr_linenumber" name="L358" href="#L358">358</a>           <strong class="jxr_keyword">for</strong> (ObjectName wrkName : wrkNames) {
+<a class="jxr_linenumber" name="L359" href="#L359">359</a>             <strong class="jxr_keyword">try</strong> {
+<a class="jxr_linenumber" name="L360" href="#L360">360</a>               <a name="RequestProcessor" href="../../psiprobe/model/RequestProcessor.html#RequestProcessor">RequestProcessor</a> rp = <strong class="jxr_keyword">new</strong> <a name="RequestProcessor" href="../../psiprobe/model/RequestProcessor.html#RequestProcessor">RequestProcessor</a>();
+<a class="jxr_linenumber" name="L361" href="#L361">361</a>               rp.setName(wrkName.getKeyProperty(<span class="jxr_string">"name"</span>));
+<a class="jxr_linenumber" name="L362" href="#L362">362</a>               rp.setStage(JmxTools.getIntAttr(server, wrkName, <span class="jxr_string">"stage"</span>));
+<a class="jxr_linenumber" name="L363" href="#L363">363</a>               rp.setProcessingTime(JmxTools.getLongAttr(server, wrkName, <span class="jxr_string">"requestProcessingTime"</span>));
+<a class="jxr_linenumber" name="L364" href="#L364">364</a>               rp.setBytesSent(JmxTools.getLongAttr(server, wrkName, <span class="jxr_string">"requestBytesSent"</span>));
+<a class="jxr_linenumber" name="L365" href="#L365">365</a>               rp.setBytesReceived(JmxTools.getLongAttr(server, wrkName, <span class="jxr_string">"requestBytesReceived"</span>));
+<a class="jxr_linenumber" name="L366" href="#L366">366</a>               <strong class="jxr_keyword">try</strong> {
+<a class="jxr_linenumber" name="L367" href="#L367">367</a>                 rp.setRemoteAddr(JmxTools.getStringAttr(server, wrkName, <span class="jxr_string">"remoteAddr"</span>));
+<a class="jxr_linenumber" name="L368" href="#L368">368</a>               } <strong class="jxr_keyword">catch</strong> (RuntimeOperationsException ex) {
+<a class="jxr_linenumber" name="L369" href="#L369">369</a>                 logger.trace(<span class="jxr_string">""</span>, ex);
+<a class="jxr_linenumber" name="L370" href="#L370">370</a>               }
+<a class="jxr_linenumber" name="L371" href="#L371">371</a> 
+<a class="jxr_linenumber" name="L372" href="#L372">372</a>               <strong class="jxr_keyword">if</strong> (rp.getRemoteAddr() != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L373" href="#L373">373</a>                 <em class="jxr_comment">// Show flag as defined in jvm for localhost</em>
+<a class="jxr_linenumber" name="L374" href="#L374">374</a>                 <strong class="jxr_keyword">if</strong> (InetAddress.getByName(rp.getRemoteAddr()).isLoopbackAddress()) {
+<a class="jxr_linenumber" name="L375" href="#L375">375</a>                   rp.setRemoteAddrLocale(<strong class="jxr_keyword">new</strong> Locale(System.getProperty(<span class="jxr_string">"user.language"</span>),
+<a class="jxr_linenumber" name="L376" href="#L376">376</a>                       System.getProperty(<span class="jxr_string">"user.country"</span>)));
+<a class="jxr_linenumber" name="L377" href="#L377">377</a>                 } <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="L378" href="#L378">378</a>                   <em class="jxr_comment">// Show flag for non-localhost using geo lite</em>
+<a class="jxr_linenumber" name="L379" href="#L379">379</a>                   <strong class="jxr_keyword">try</strong> (DatabaseReader reader = <strong class="jxr_keyword">new</strong> DatabaseReader.Builder(<strong class="jxr_keyword">new</strong> File(
+<a class="jxr_linenumber" name="L380" href="#L380">380</a>                       getClass().getClassLoader().getResource(<span class="jxr_string">"GeoLite2-Country.mmdb"</span>).toURI()))
+<a class="jxr_linenumber" name="L381" href="#L381">381</a>                       .withCache(<strong class="jxr_keyword">new</strong> CHMCache()).build()) {
+<a class="jxr_linenumber" name="L382" href="#L382">382</a>                     CountryResponse response =
+<a class="jxr_linenumber" name="L383" href="#L383">383</a>                         reader.country(InetAddress.getByName(rp.getRemoteAddr()));
+<a class="jxr_linenumber" name="L384" href="#L384">384</a>                     Country country = response.getCountry();
+<a class="jxr_linenumber" name="L385" href="#L385">385</a>                     rp.setRemoteAddrLocale(<strong class="jxr_keyword">new</strong> Locale(<span class="jxr_string">""</span>, country.getIsoCode()));
+<a class="jxr_linenumber" name="L386" href="#L386">386</a>                   } <strong class="jxr_keyword">catch</strong> (AddressNotFoundException e) {
+<a class="jxr_linenumber" name="L387" href="#L387">387</a>                     logger.debug(<span class="jxr_string">"Address Not Found: {}"</span>, e.getMessage());
+<a class="jxr_linenumber" name="L388" href="#L388">388</a>                     logger.trace(<span class="jxr_string">""</span>, e);
+<a class="jxr_linenumber" name="L389" href="#L389">389</a>                   }
+<a class="jxr_linenumber" name="L390" href="#L390">390</a>                 }
+<a class="jxr_linenumber" name="L391" href="#L391">391</a>               }
+<a class="jxr_linenumber" name="L392" href="#L392">392</a> 
+<a class="jxr_linenumber" name="L393" href="#L393">393</a>               rp.setVirtualHost(JmxTools.getStringAttr(server, wrkName, <span class="jxr_string">"virtualHost"</span>));
+<a class="jxr_linenumber" name="L394" href="#L394">394</a>               rp.setMethod(JmxTools.getStringAttr(server, wrkName, <span class="jxr_string">"method"</span>));
+<a class="jxr_linenumber" name="L395" href="#L395">395</a>               rp.setCurrentUri(JmxTools.getStringAttr(server, wrkName, <span class="jxr_string">"currentUri"</span>));
+<a class="jxr_linenumber" name="L396" href="#L396">396</a>               rp.setCurrentQueryString(
+<a class="jxr_linenumber" name="L397" href="#L397">397</a>                   JmxTools.getStringAttr(server, wrkName, <span class="jxr_string">"currentQueryString"</span>));
+<a class="jxr_linenumber" name="L398" href="#L398">398</a>               rp.setProtocol(JmxTools.getStringAttr(server, wrkName, <span class="jxr_string">"protocol"</span>));
+<a class="jxr_linenumber" name="L399" href="#L399">399</a> 
+<a class="jxr_linenumber" name="L400" href="#L400">400</a>               <em class="jxr_comment">// Relies on https://issues.apache.org/bugzilla/show_bug.cgi?id=41128</em>
+<a class="jxr_linenumber" name="L401" href="#L401">401</a>               <strong class="jxr_keyword">if</strong> (workerThreadNameSupported
+<a class="jxr_linenumber" name="L402" href="#L402">402</a>                   &amp;&amp; JmxTools.hasAttribute(server, wrkName, <span class="jxr_string">"workerThreadName"</span>)) {
+<a class="jxr_linenumber" name="L403" href="#L403">403</a> 
+<a class="jxr_linenumber" name="L404" href="#L404">404</a>                 rp.setWorkerThreadName(JmxTools.getStringAttr(server, wrkName, <span class="jxr_string">"workerThreadName"</span>));
+<a class="jxr_linenumber" name="L405" href="#L405">405</a>                 rp.setWorkerThreadNameSupported(<strong class="jxr_keyword">true</strong>);
+<a class="jxr_linenumber" name="L406" href="#L406">406</a>               } <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="L407" href="#L407">407</a>                 <em class="jxr_comment">/*</em>
+<a class="jxr_linenumber" name="L408" href="#L408">408</a> <em class="jxr_comment">                 * attribute should consistently either exist or be missing across all the workers</em>
+<a class="jxr_linenumber" name="L409" href="#L409">409</a> <em class="jxr_comment">                 * so it does not make sense to check attribute existence if we have found once that</em>
+<a class="jxr_linenumber" name="L410" href="#L410">410</a> <em class="jxr_comment">                 * it is not supported</em>
+<a class="jxr_linenumber" name="L411" href="#L411">411</a> <em class="jxr_comment">                 */</em>
+<a class="jxr_linenumber" name="L412" href="#L412">412</a>                 rp.setWorkerThreadNameSupported(false);
+<a class="jxr_linenumber" name="L413" href="#L413">413</a>                 workerThreadNameSupported = false;
+<a class="jxr_linenumber" name="L414" href="#L414">414</a>               }
+<a class="jxr_linenumber" name="L415" href="#L415">415</a>               connector.addRequestProcessor(rp);
+<a class="jxr_linenumber" name="L416" href="#L416">416</a>             } <strong class="jxr_keyword">catch</strong> (InstanceNotFoundException e) {
+<a class="jxr_linenumber" name="L417" href="#L417">417</a>               logger.info(<span class="jxr_string">"Failed to query RequestProcessor {}"</span>, wrkName);
+<a class="jxr_linenumber" name="L418" href="#L418">418</a>               logger.debug(<span class="jxr_string">""</span>, e);
+<a class="jxr_linenumber" name="L419" href="#L419">419</a>             }
+<a class="jxr_linenumber" name="L420" href="#L420">420</a>           }
+<a class="jxr_linenumber" name="L421" href="#L421">421</a>         }
+<a class="jxr_linenumber" name="L422" href="#L422">422</a> 
+<a class="jxr_linenumber" name="L423" href="#L423">423</a>         connectors.add(connector);
+<a class="jxr_linenumber" name="L424" href="#L424">424</a>       } <strong class="jxr_keyword">catch</strong> (InstanceNotFoundException e) {
+<a class="jxr_linenumber" name="L425" href="#L425">425</a>         logger.error(<span class="jxr_string">"Failed to query entire thread pool {}"</span>,
+<a class="jxr_linenumber" name="L426" href="#L426">426</a>             threadPoolObjectName.getThreadPoolName());
+<a class="jxr_linenumber" name="L427" href="#L427">427</a>         logger.debug(<span class="jxr_string">"  Stack trace:"</span>, e);
+<a class="jxr_linenumber" name="L428" href="#L428">428</a>       }
+<a class="jxr_linenumber" name="L429" href="#L429">429</a>     }
+<a class="jxr_linenumber" name="L430" href="#L430">430</a>     <strong class="jxr_keyword">return</strong> connectors;
+<a class="jxr_linenumber" name="L431" href="#L431">431</a>   }
+<a class="jxr_linenumber" name="L432" href="#L432">432</a> 
+<a class="jxr_linenumber" name="L433" href="#L433">433</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2009&#x2013;2023 <a href="https://github.com/psi-probe/">psi-probe</a>. All rights reserved.</div>

@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="" lang="">
 <head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <title>LogOutputStream xref</title>
 <link type="text/css" rel="stylesheet" href="../../stylesheet.css" />
@@ -169,7 +169,7 @@
 <a class="jxr_linenumber" name="L161" href="#L161">161</a> <em class="jxr_javadoccomment">   * @param message the message to be written</em>
 <a class="jxr_linenumber" name="L162" href="#L162">162</a> <em class="jxr_javadoccomment">   */</em>
 <a class="jxr_linenumber" name="L163" href="#L163">163</a>   <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> log(String message) {
-<a class="jxr_linenumber" name="L164" href="#L164">164</a>     <strong class="jxr_keyword">if</strong> (message == <strong class="jxr_keyword">null</strong> || <span class="jxr_string">""</span>.equals(message)) {
+<a class="jxr_linenumber" name="L164" href="#L164">164</a>     <strong class="jxr_keyword">if</strong> (message == <strong class="jxr_keyword">null</strong> || message.isEmpty()) {
 <a class="jxr_linenumber" name="L165" href="#L165">165</a>       <strong class="jxr_keyword">return</strong>;
 <a class="jxr_linenumber" name="L166" href="#L166">166</a>     }
 <a class="jxr_linenumber" name="L167" href="#L167">167</a>     <strong class="jxr_keyword">switch</strong> (level) {

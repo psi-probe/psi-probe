@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="" lang="">
 <head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <title>ConnectorSeriesProvider xref</title>
 <link type="text/css" rel="stylesheet" href="../../../../stylesheet.css" />
@@ -24,37 +24,41 @@
 <a class="jxr_linenumber" name="L16" href="#L16">16</a>  
 <a class="jxr_linenumber" name="L17" href="#L17">17</a>  <strong class="jxr_keyword">import</strong> org.jfree.data.xy.DefaultTableXYDataset;
 <a class="jxr_linenumber" name="L18" href="#L18">18</a>  <strong class="jxr_keyword">import</strong> org.jfree.data.xy.XYDataItem;
-<a class="jxr_linenumber" name="L19" href="#L19">19</a>  <strong class="jxr_keyword">import</strong> org.springframework.web.bind.ServletRequestUtils;
-<a class="jxr_linenumber" name="L20" href="#L20">20</a>  
-<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">import</strong> psiprobe.model.stats.StatsCollection;
-<a class="jxr_linenumber" name="L22" href="#L22">22</a>  
-<a class="jxr_linenumber" name="L23" href="#L23">23</a>  <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L24" href="#L24">24</a>  <em class="jxr_javadoccomment"> * The Class ConnectorSeriesProvider.</em>
-<a class="jxr_linenumber" name="L25" href="#L25">25</a>  <em class="jxr_javadoccomment"> */</em>
-<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a name="ConnectorSeriesProvider" href="../../../../psiprobe/beans/stats/providers/ConnectorSeriesProvider.html#ConnectorSeriesProvider">ConnectorSeriesProvider</a> <strong class="jxr_keyword">extends</strong> <a name="AbstractSeriesProvider" href="../../../../psiprobe/beans/stats/providers/AbstractSeriesProvider.html#AbstractSeriesProvider">AbstractSeriesProvider</a> {
-<a class="jxr_linenumber" name="L27" href="#L27">27</a>  
-<a class="jxr_linenumber" name="L28" href="#L28">28</a>    @Override
-<a class="jxr_linenumber" name="L29" href="#L29">29</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> populate(DefaultTableXYDataset dataset, <a name="StatsCollection" href="../../../../psiprobe/model/stats/StatsCollection.html#StatsCollection">StatsCollection</a> statsCollection,
-<a class="jxr_linenumber" name="L30" href="#L30">30</a>        HttpServletRequest request) {
-<a class="jxr_linenumber" name="L31" href="#L31">31</a>  
-<a class="jxr_linenumber" name="L32" href="#L32">32</a>      <em class="jxr_comment">// get Connector name from the request</em>
-<a class="jxr_linenumber" name="L33" href="#L33">33</a>      String connectorName = ServletRequestUtils.getStringParameter(request, <span class="jxr_string">"cn"</span>, <strong class="jxr_keyword">null</strong>);
-<a class="jxr_linenumber" name="L34" href="#L34">34</a>  
-<a class="jxr_linenumber" name="L35" href="#L35">35</a>      <em class="jxr_comment">// type of statistic to be displayed</em>
-<a class="jxr_linenumber" name="L36" href="#L36">36</a>      String statType = ServletRequestUtils.getStringParameter(request, <span class="jxr_string">"st"</span>, <strong class="jxr_keyword">null</strong>);
-<a class="jxr_linenumber" name="L37" href="#L37">37</a>  
-<a class="jxr_linenumber" name="L38" href="#L38">38</a>      <em class="jxr_comment">// Series legend</em>
-<a class="jxr_linenumber" name="L39" href="#L39">39</a>      String series1Legend = ServletRequestUtils.getStringParameter(request, <span class="jxr_string">"sl"</span>, <span class="jxr_string">""</span>);
-<a class="jxr_linenumber" name="L40" href="#L40">40</a>  
-<a class="jxr_linenumber" name="L41" href="#L41">41</a>      <strong class="jxr_keyword">if</strong> (connectorName != <strong class="jxr_keyword">null</strong> &amp;&amp; statType != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L42" href="#L42">42</a>        List&lt;XYDataItem&gt; stats =
-<a class="jxr_linenumber" name="L43" href="#L43">43</a>            statsCollection.getStats(<span class="jxr_string">"stat.connector."</span> + connectorName + <span class="jxr_string">"."</span> + statType);
-<a class="jxr_linenumber" name="L44" href="#L44">44</a>        <strong class="jxr_keyword">if</strong> (stats != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L45" href="#L45">45</a>          dataset.addSeries(toSeries(series1Legend, stats));
-<a class="jxr_linenumber" name="L46" href="#L46">46</a>        }
-<a class="jxr_linenumber" name="L47" href="#L47">47</a>      }
-<a class="jxr_linenumber" name="L48" href="#L48">48</a>    }
-<a class="jxr_linenumber" name="L49" href="#L49">49</a>  }
+<a class="jxr_linenumber" name="L19" href="#L19">19</a>  <strong class="jxr_keyword">import</strong> org.springframework.web.bind.ServletRequestBindingException;
+<a class="jxr_linenumber" name="L20" href="#L20">20</a>  <strong class="jxr_keyword">import</strong> org.springframework.web.bind.ServletRequestUtils;
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>  
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>  <strong class="jxr_keyword">import</strong> psiprobe.model.stats.StatsCollection;
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>  
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>  <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>  <em class="jxr_javadoccomment"> * The Class ConnectorSeriesProvider.</em>
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <em class="jxr_javadoccomment"> */</em>
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a name="ConnectorSeriesProvider" href="../../../../psiprobe/beans/stats/providers/ConnectorSeriesProvider.html#ConnectorSeriesProvider">ConnectorSeriesProvider</a> <strong class="jxr_keyword">extends</strong> <a name="AbstractSeriesProvider" href="../../../../psiprobe/beans/stats/providers/AbstractSeriesProvider.html#AbstractSeriesProvider">AbstractSeriesProvider</a> {
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>  
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>    @Override
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> populate(DefaultTableXYDataset dataset, <a name="StatsCollection" href="../../../../psiprobe/model/stats/StatsCollection.html#StatsCollection">StatsCollection</a> statsCollection,
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>        HttpServletRequest request) {
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>  
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>      <strong class="jxr_keyword">try</strong> {
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>        <em class="jxr_comment">// get Connector name from the request</em>
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>        String connectorName = ServletRequestUtils.getStringParameter(request, <span class="jxr_string">"cn"</span>);
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>  
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>        <em class="jxr_comment">// type of statistic to be displayed</em>
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>        String statType = ServletRequestUtils.getStringParameter(request, <span class="jxr_string">"st"</span>);
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>  
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>        <strong class="jxr_keyword">if</strong> (connectorName != <strong class="jxr_keyword">null</strong> &amp;&amp; statType != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>          List&lt;XYDataItem&gt; stats =
+<a class="jxr_linenumber" name="L42" href="#L42">42</a>              statsCollection.getStats(<span class="jxr_string">"stat.connector."</span> + connectorName + <span class="jxr_string">"."</span> + statType);
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>          <strong class="jxr_keyword">if</strong> (stats != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L44" href="#L44">44</a>            <em class="jxr_comment">// Series legend</em>
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>            String series1Legend = ServletRequestUtils.getStringParameter(request, <span class="jxr_string">"sl"</span>, <span class="jxr_string">""</span>);
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>            dataset.addSeries(toSeries(series1Legend, stats));
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>          }
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>        }
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>      } <strong class="jxr_keyword">catch</strong> (ServletRequestBindingException e) {
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>        logger.error(<span class="jxr_string">""</span>, e);
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>      }
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>    }
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>  }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2009&#x2013;2023 <a href="https://github.com/psi-probe/">psi-probe</a>. All rights reserved.</div>

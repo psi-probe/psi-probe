@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="" lang="">
 <head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <title>ListAppInitParamsController xref</title>
 <link type="text/css" rel="stylesheet" href="../../../stylesheet.css" />
@@ -50,7 +50,7 @@
 <a class="jxr_linenumber" name="L42" href="#L42">42</a>  
 <a class="jxr_linenumber" name="L43" href="#L43">43</a>      ModelAndView mv = <strong class="jxr_keyword">new</strong> ModelAndView(getViewName(), <span class="jxr_string">"appInitParams"</span>,
 <a class="jxr_linenumber" name="L44" href="#L44">44</a>          ApplicationUtils.getApplicationInitParams(context, getContainerWrapper()));
-<a class="jxr_linenumber" name="L45" href="#L45">45</a>      <strong class="jxr_keyword">if</strong> (SecurityUtils.hasAttributeValueRole(getServletContext(), request)) {
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>      <strong class="jxr_keyword">if</strong> (SecurityUtils.hasAttributeValueRole(getServletContext())) {
 <a class="jxr_linenumber" name="L46" href="#L46">46</a>        mv.addObject(<span class="jxr_string">"allowedToViewValues"</span>, Boolean.TRUE);
 <a class="jxr_linenumber" name="L47" href="#L47">47</a>      }
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>      <strong class="jxr_keyword">return</strong> mv;

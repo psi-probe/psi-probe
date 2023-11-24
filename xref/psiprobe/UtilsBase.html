@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="" lang="">
 <head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <title>UtilsBase xref</title>
 <link type="text/css" rel="stylesheet" href="../stylesheet.css" />
@@ -23,7 +23,7 @@
 <a class="jxr_linenumber" name="L15" href="#L15">15</a>  <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L16" href="#L16">16</a>  <em class="jxr_javadoccomment"> * Misc. static helper methods.</em>
 <a class="jxr_linenumber" name="L17" href="#L17">17</a>  <em class="jxr_javadoccomment"> */</em>
-<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a name="UtilsBase" href="../psiprobe/UtilsBase.html#UtilsBase">UtilsBase</a> {
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">class</strong> <a name="UtilsBase" href="../psiprobe/UtilsBase.html#UtilsBase">UtilsBase</a> {
 <a class="jxr_linenumber" name="L19" href="#L19">19</a>  
 <a class="jxr_linenumber" name="L20" href="#L20">20</a>    <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L21" href="#L21">21</a>  <em class="jxr_javadoccomment">   * Prevent Instantiation.</em>
@@ -54,7 +54,7 @@
 <a class="jxr_linenumber" name="L46" href="#L46">46</a>      <strong class="jxr_keyword">if</strong> (num != <strong class="jxr_keyword">null</strong> &amp;&amp; !num.contains(<span class="jxr_string">" "</span>)) {
 <a class="jxr_linenumber" name="L47" href="#L47">47</a>        <strong class="jxr_keyword">try</strong> (Scanner scanner = <strong class="jxr_keyword">new</strong> Scanner(num)) {
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>          <strong class="jxr_keyword">if</strong> (scanner.hasNextInt()) {
-<a class="jxr_linenumber" name="L49" href="#L49">49</a>            <strong class="jxr_keyword">return</strong> Integer.parseInt(num);
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>            <strong class="jxr_keyword">return</strong> scanner.nextInt();
 <a class="jxr_linenumber" name="L50" href="#L50">50</a>          }
 <a class="jxr_linenumber" name="L51" href="#L51">51</a>        }
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>      }

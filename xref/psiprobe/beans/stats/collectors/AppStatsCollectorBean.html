@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="" lang="">
 <head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <title>AppStatsCollectorBean xref</title>
 <link type="text/css" rel="stylesheet" href="../../../../stylesheet.css" />
@@ -126,7 +126,7 @@
 <a class="jxr_linenumber" name="L118" href="#L118">118</a>             <a name="Application" href="../../../../psiprobe/model/Application.html#Application">Application</a> app = <strong class="jxr_keyword">new</strong> <a name="Application" href="../../../../psiprobe/model/Application.html#Application">Application</a>();
 <a class="jxr_linenumber" name="L119" href="#L119">119</a>             ApplicationUtils.collectApplicationServletStats(ctx, app);
 <a class="jxr_linenumber" name="L120" href="#L120">120</a> 
-<a class="jxr_linenumber" name="L121" href="#L121">121</a>             String appName = <span class="jxr_string">""</span>.equals(ctx.getName()) ? <span class="jxr_string">"/"</span> : ctx.getName();
+<a class="jxr_linenumber" name="L121" href="#L121">121</a>             String appName = ctx.getName().isEmpty() ? <span class="jxr_string">"/"</span> : ctx.getName();
 <a class="jxr_linenumber" name="L122" href="#L122">122</a> 
 <a class="jxr_linenumber" name="L123" href="#L123">123</a>             <strong class="jxr_keyword">long</strong> reqDelta =
 <a class="jxr_linenumber" name="L124" href="#L124">124</a>                 buildDeltaStats(<span class="jxr_string">"app.requests."</span> + appName, app.getRequestCount(), currentTime);
@@ -181,7 +181,7 @@
 <a class="jxr_linenumber" name="L173" href="#L173">173</a>       <strong class="jxr_keyword">if</strong> (tomcatContainer != <strong class="jxr_keyword">null</strong>) {
 <a class="jxr_linenumber" name="L174" href="#L174">174</a>         <strong class="jxr_keyword">for</strong> (Context ctx : tomcatContainer.findContexts()) {
 <a class="jxr_linenumber" name="L175" href="#L175">175</a>           <strong class="jxr_keyword">if</strong> (ctx != <strong class="jxr_keyword">null</strong> &amp;&amp; ctx.getName() != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L176" href="#L176">176</a>             String appName = <span class="jxr_string">""</span>.equals(ctx.getName()) ? <span class="jxr_string">"/"</span> : ctx.getName();
+<a class="jxr_linenumber" name="L176" href="#L176">176</a>             String appName = ctx.getName().isEmpty() ? <span class="jxr_string">"/"</span> : ctx.getName();
 <a class="jxr_linenumber" name="L177" href="#L177">177</a>             reset(appName);
 <a class="jxr_linenumber" name="L178" href="#L178">178</a>           }
 <a class="jxr_linenumber" name="L179" href="#L179">179</a>         }
