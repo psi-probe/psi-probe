@@ -587,7 +587,7 @@ public class SessionSearchInfo implements Serializable {
    * @return the error messages
    */
   public List<String> getErrorMessages() {
-    return errorMessages;
+    return new ArrayList<>(errorMessages);
   }
 
   /**
