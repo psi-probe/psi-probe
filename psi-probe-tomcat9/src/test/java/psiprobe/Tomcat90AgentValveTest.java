@@ -13,34 +13,45 @@ package psiprobe;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
-
-import mockit.Mocked;
-import mockit.Tested;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.catalina.Valve;
 import org.apache.catalina.connector.Request;
 import org.apache.catalina.connector.Response;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 /**
  * The Class Tomcat90AgentValveTest.
  */
+@ExtendWith(MockitoExtension.class)
 class Tomcat90AgentValveTest {
 
   /** The valve. */
-  @Tested
   Tomcat90AgentValve valve;
 
   /** The request. */
-  @Mocked
+  @Mock
   Request request;
 
   /** The response. */
-  @Mocked
+  @Mock
   Response response;
 
+  /** The http session. */
+  @Mock
+  HttpSession session;
+
+  /** The servlet request. */
+  @Mock
+  HttpServletRequest servletRequest;
+
   /** The valve mock. */
-  @Mocked
+  @Mock
   Valve valveMock;
 
   /**
@@ -51,8 +62,13 @@ class Tomcat90AgentValveTest {
    */
   @Test
   void invoke() throws IOException, ServletException {
+    Mockito.when(request.getSession(Mockito.anyBoolean())).thenReturn(session);
+    Mockito.when(request.getRequest()).thenReturn(servletRequest);
+
+    valve = new Tomcat90AgentValve();
     valve.setNext(valveMock);
     valve.invoke(request, response);
+    Mockito.verify(session, Mockito.times(2)).setAttribute(Mockito.anyString(), Mockito.any());
   }
 
 }
