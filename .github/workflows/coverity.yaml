@@ -33,6 +33,7 @@ jobs:
           tar -xf coverity_tool.tgz
           ./cov-analysis-linux64-*/bin/cov-configure --java
           ./cov-analysis-linux64-*/bin/cov-build --dir cov-int ./mvnw -B -V -DskipTests=true verify -Dlicense.skip=true --no-transfer-progress
+          cat /home/runner/work/psi-probe/psi-probe/cov-int/build-log.txt
           tar czvf psi-probe.tgz cov-int
           curl \
             --form token=$COVERITY_TOKEN \
