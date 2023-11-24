@@ -12,11 +12,13 @@ package psiprobe;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import mockit.Expectations;
 import mockit.Mocked;
@@ -29,6 +31,8 @@ import org.apache.tomcat.util.descriptor.web.FilterDef;
 import org.apache.tomcat.util.descriptor.web.FilterMap;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import psiprobe.model.ApplicationResource;
 
@@ -61,39 +65,14 @@ class Tomcat85ContainerAdapterTest {
   }
 
   /**
-   * Can bound to tomcat85.
+   * Can bound to tomcat 8.5, tomee 8.5, nsjsp 8.5, pivotal tc 8.5.
    */
-  @Test
-  void canBoundToTomcat85() {
+  @ParameterizedTest
+  @ValueSource(strings = {"Apache Tomcat/8.5", "Apache Tomcat (TomEE)/8.5",
+      "NonStop(tm) Servlets For JavaServer Pages(tm) v8.5", "Pivotal tc..../8.5"})
+  void canBoundTo(String container) {
     final Tomcat85ContainerAdapter adapter = new Tomcat85ContainerAdapter();
-    assertTrue(adapter.canBoundTo("Apache Tomcat/8.5"));
-  }
-
-  /**
-   * Can bound to tomEE85.
-   */
-  @Test
-  void canBoundToTomEE85() {
-    final Tomcat85ContainerAdapter adapter = new Tomcat85ContainerAdapter();
-    assertTrue(adapter.canBoundTo("Apache Tomcat (TomEE)/8.5"));
-  }
-
-  /**
-   * Can bound to nsjsp85.
-   */
-  @Test
-  void canBoundToNsJsp85() {
-    final Tomcat85ContainerAdapter adapter = new Tomcat85ContainerAdapter();
-    assertTrue(adapter.canBoundTo("NonStop(tm) Servlets For JavaServer Pages(tm) v8.5"));
-  }
-
-  /**
-   * Can bound to pivotal85.
-   */
-  @Test
-  void canBoundToPivotal85() {
-    final Tomcat85ContainerAdapter valve = new Tomcat85ContainerAdapter();
-    assertTrue(valve.canBoundTo("Pivotal tc..../8.5"));
+    assertTrue(adapter.canBoundTo(container));
   }
 
   /**
@@ -123,9 +102,9 @@ class Tomcat85ContainerAdapterTest {
   @Test
   void createJspCompilationContext() {
     final Tomcat85ContainerAdapter adapter = new Tomcat85ContainerAdapter();
-    JspCompilationContext context = adapter.createJspCompilationContext("name", null, null, null,
+    JspCompilationContext jspContext = adapter.createJspCompilationContext("name", null, null, null,
         ClassLoader.getSystemClassLoader());
-    assertEquals("org.apache.jsp.name", context.getFQCN());
+    assertEquals("org.apache.jsp.name", jspContext.getFQCN());
   }
 
   /**
@@ -134,7 +113,9 @@ class Tomcat85ContainerAdapterTest {
   @Test
   void addContextResourceLink() {
     final Tomcat85ContainerAdapter adapter = new Tomcat85ContainerAdapter();
-    adapter.addContextResourceLink(context, new ArrayList<ApplicationResource>());
+    final List<ApplicationResource> list = new ArrayList<ApplicationResource>();
+    adapter.addContextResourceLink(context, list);
+    assertTrue(list.isEmpty());
   }
 
   /**
@@ -143,7 +124,9 @@ class Tomcat85ContainerAdapterTest {
   @Test
   void addContextResource() {
     final Tomcat85ContainerAdapter adapter = new Tomcat85ContainerAdapter();
-    adapter.addContextResource(context, new ArrayList<ApplicationResource>());
+    final List<ApplicationResource> list = new ArrayList<ApplicationResource>();
+    adapter.addContextResource(context, list);
+    assertTrue(list.isEmpty());
   }
 
   /**
@@ -210,7 +193,7 @@ class Tomcat85ContainerAdapterTest {
   @Test
   void resourceStream() throws IOException {
     final Tomcat85ContainerAdapter adapter = new Tomcat85ContainerAdapter();
-    adapter.getResourceStream("name", context);
+    assertNotNull(adapter.getResourceStream("name", context));
   }
 
   /**
@@ -219,7 +202,7 @@ class Tomcat85ContainerAdapterTest {
   @Test
   void resourceAttributes() {
     final Tomcat85ContainerAdapter adapter = new Tomcat85ContainerAdapter();
-    adapter.getResourceAttributes("name", context);
+    assertNotNull(adapter.getResourceAttributes("name", context));
   }
 
   /**

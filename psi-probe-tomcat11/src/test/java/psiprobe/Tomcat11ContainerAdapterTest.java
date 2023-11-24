@@ -12,11 +12,13 @@ package psiprobe;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import mockit.Expectations;
 import mockit.Mocked;
@@ -30,6 +32,8 @@ import org.apache.tomcat.util.descriptor.web.FilterMap;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import psiprobe.model.ApplicationResource;
 
@@ -49,7 +53,7 @@ class Tomcat11ContainerAdapterTest {
   void createValve() {
     final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
     Valve valve = adapter.createValve();
-    assertEquals("Tomcat11AgentValve[Container is null]", valve.toString());
+    assertEquals("psiprobe.Tomcat11AgentValve[Container is null]", valve.toString());
   }
 
   /**
@@ -71,25 +75,15 @@ class Tomcat11ContainerAdapterTest {
   }
 
   /**
-   * Can bound to tomEE11.
+   * Can bound to tomee 11.0, nsjsp 11.0, vmware tc 11.0.
    */
   // TODO Not yet supported
   @Disabled
-  @Test
-  void canBoundToTomEE11() {
+  @ParameterizedTest
+  @ValueSource(strings = {"Apache Tomcat (TomEE)/11.0", "NonStop(tm) Servlets For JavaServer Pages(tm) v11.0", "Vmware tc..../11.0"})
+  void canBoundTo(String container) {
     final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
-    assertTrue(adapter.canBoundTo("Apache Tomcat (TomEE)/11.0"));
-  }
-
-  /**
-   * Can bound to vmware11.
-   */
-  // TODO Not yet supported
-  @Disabled
-  @Test
-  void canBoundToVmware11() {
-    final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
-    assertTrue(adapter.canBoundTo("Vmware tc..../11.0"));
+    assertTrue(adapter.canBoundTo(container));
   }
 
   /**
@@ -119,9 +113,9 @@ class Tomcat11ContainerAdapterTest {
   @Test
   void createJspCompilationContext() {
     final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
-    JspCompilationContext context = adapter.createJspCompilationContext("name", null, null, null,
+    JspCompilationContext jspContext = adapter.createJspCompilationContext("name", null, null, null,
         ClassLoader.getSystemClassLoader());
-    assertEquals("org.apache.jsp.name", context.getFQCN());
+    assertEquals("org.apache.jsp.name", jspContext.getFQCN());
   }
 
   /**
@@ -130,7 +124,9 @@ class Tomcat11ContainerAdapterTest {
   @Test
   void addContextResourceLink() {
     final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
-    adapter.addContextResourceLink(context, new ArrayList<ApplicationResource>());
+    final List<ApplicationResource> list = new ArrayList<ApplicationResource>();
+    adapter.addContextResourceLink(context, list);
+    assertTrue(list.isEmpty());
   }
 
   /**
@@ -139,7 +135,9 @@ class Tomcat11ContainerAdapterTest {
   @Test
   void addContextResource() {
     final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
-    adapter.addContextResource(context, new ArrayList<ApplicationResource>());
+    final List<ApplicationResource> list = new ArrayList<ApplicationResource>();
+    adapter.addContextResource(context, list);
+    assertTrue(list.isEmpty());
   }
 
   /**
@@ -198,7 +196,6 @@ class Tomcat11ContainerAdapterTest {
     assertTrue(adapter.resourceExists("name", context));
   }
 
-
   /**
    * Resource stream.
    *
@@ -207,7 +204,7 @@ class Tomcat11ContainerAdapterTest {
   @Test
   void resourceStream() throws IOException {
     final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
-    adapter.getResourceStream("name", context);
+    assertNotNull(adapter.getResourceStream("name", context));
   }
 
   /**
@@ -216,7 +213,7 @@ class Tomcat11ContainerAdapterTest {
   @Test
   void resourceAttributes() {
     final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
-    adapter.getResourceAttributes("name", context);
+    assertNotNull(adapter.getResourceAttributes("name", context));
   }
 
   /**
