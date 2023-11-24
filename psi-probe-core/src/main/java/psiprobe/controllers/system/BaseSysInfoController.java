@@ -110,7 +110,7 @@ public class BaseSysInfoController extends AbstractTomcatContainerController {
       sysProps.put(propertyName, propertyValue);
     }
 
-    if (!SecurityUtils.hasAttributeValueRole(getServletContext(), request)) {
+    if (!SecurityUtils.hasAttributeValueRole(getServletContext())) {
       for (String key : filterOutKeys) {
         sysProps.remove(key);
       }

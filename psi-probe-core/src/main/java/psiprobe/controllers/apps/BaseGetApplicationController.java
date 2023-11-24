@@ -99,7 +99,7 @@ public class BaseGetApplicationController extends AbstractContextHandlerControll
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 
     boolean calcSize = ServletRequestUtils.getBooleanParameter(request, "size", false)
-        && SecurityUtils.hasAttributeValueRole(getServletContext(), request);
+        && SecurityUtils.hasAttributeValueRole(getServletContext());
 
     ResourceResolver resourceResolver = getContainerWrapper().getResourceResolver();
     Application app = ApplicationUtils.getApplication(context,

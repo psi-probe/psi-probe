@@ -42,7 +42,7 @@ public class ListAppInitParamsController extends AbstractContextHandlerControlle
 
     ModelAndView mv = new ModelAndView(getViewName(), "appInitParams",
         ApplicationUtils.getApplicationInitParams(context, getContainerWrapper()));
-    if (SecurityUtils.hasAttributeValueRole(getServletContext(), request)) {
+    if (SecurityUtils.hasAttributeValueRole(getServletContext())) {
       mv.addObject("allowedToViewValues", Boolean.TRUE);
     }
     return mv;
