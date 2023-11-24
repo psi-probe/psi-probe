@@ -46,7 +46,7 @@ public class ListAppAttributesController extends AbstractContextHandlerControlle
     List<Attribute> appAttrs = ApplicationUtils.getApplicationAttributes(context);
     ModelAndView mv = new ModelAndView(getViewName(), "appAttributes", appAttrs);
 
-    if (SecurityUtils.hasAttributeValueRole(getServletContext(), request)) {
+    if (SecurityUtils.hasAttributeValueRole(getServletContext())) {
       mv.addObject("displayValues", Boolean.TRUE);
     }
     return mv;
