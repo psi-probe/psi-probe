@@ -13,7 +13,6 @@ package psiprobe.tools;
 import java.util.Collection;
 
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
