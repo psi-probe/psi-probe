@@ -153,7 +153,7 @@ public final class Utils {
     if (num != null && !num.contains(" ")) {
       try (Scanner scanner = new Scanner(num)) {
         if (scanner.hasNextInt()) {
-          return Integer.parseInt(num);
+          return scanner.nextInt();
         }
       }
     }
@@ -175,7 +175,7 @@ public final class Utils {
       }
       try (Scanner scanner = new Scanner(num)) {
         if (scanner.hasNextInt()) {
-          return Integer.parseInt(num, 16);
+          return scanner.nextInt(16);
         }
       }
     }
@@ -194,7 +194,7 @@ public final class Utils {
     if (num != null && !num.contains(" ")) {
       try (Scanner scanner = new Scanner(num)) {
         if (scanner.hasNextLong()) {
-          return Long.parseLong(num);
+          return scanner.nextLong();
         }
       }
     }
@@ -225,7 +225,7 @@ public final class Utils {
     if (num != null && !num.contains(" ")) {
       try (Scanner scanner = new Scanner(num)) {
         if (scanner.hasNextFloat()) {
-          return Float.parseFloat(num);
+          return scanner.nextFloat();
         }
       }
     }

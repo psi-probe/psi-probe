@@ -46,7 +46,7 @@ public final class UtilsBase {
     if (num != null && !num.contains(" ")) {
       try (Scanner scanner = new Scanner(num)) {
         if (scanner.hasNextInt()) {
-          return Integer.parseInt(num);
+          return scanner.nextInt();
         }
       }
     }
