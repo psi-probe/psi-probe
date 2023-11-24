@@ -27,7 +27,7 @@ public class TransportableModel {
    * @return the items
    */
   public Map<String, Object> getItems() {
-    return items;
+    return new HashMap<>(items);
   }
 
   /**
@@ -36,7 +36,7 @@ public class TransportableModel {
    * @param items the items
    */
   public void setItems(Map<String, Object> items) {
-    this.items = items;
+    this.items = new HashMap<>(items);
   }
 
   /**
@@ -45,7 +45,7 @@ public class TransportableModel {
    * @param map the map
    */
   public void putAll(Map<String, Object> map) {
-    items.putAll(map);
+    items.putAll(new HashMap<>(map));
   }
 
 }

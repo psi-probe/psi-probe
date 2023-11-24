@@ -11,6 +11,7 @@
 package psiprobe.model.certificates;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -264,7 +265,7 @@ public class SslHostConfigInfo implements Serializable {
    * @return the trust store certs
    */
   public List<Cert> getTrustStoreCerts() {
-    return trustStoreCerts;
+    return new ArrayList<>(trustStoreCerts);
   }
 
   /**
@@ -273,7 +274,7 @@ public class SslHostConfigInfo implements Serializable {
    * @param trustStoreCerts the new trust store certs
    */
   public void setTrustStoreCerts(List<Cert> trustStoreCerts) {
-    this.trustStoreCerts = trustStoreCerts;
+    this.trustStoreCerts = new ArrayList<>(trustStoreCerts);
   }
 
   /**
@@ -282,7 +283,7 @@ public class SslHostConfigInfo implements Serializable {
    * @return certificate infos
    */
   public List<CertificateInfo> getCertificateInfos() {
-    return certificateInfos;
+    return new ArrayList<>(certificateInfos);
   }
 
   /**
@@ -291,7 +292,7 @@ public class SslHostConfigInfo implements Serializable {
    * @param certificateInfos new certificate infos
    */
   public void setCertificateInfos(List<CertificateInfo> certificateInfos) {
-    this.certificateInfos = certificateInfos;
+    this.certificateInfos = new ArrayList<>(certificateInfos);
   }
 
 }

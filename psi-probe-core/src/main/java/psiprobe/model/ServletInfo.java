@@ -349,7 +349,7 @@ public class ServletInfo {
    * @return the mappings
    */
   public List<String> getMappings() {
-    return mappings;
+    return new ArrayList<>(mappings);
   }
 
   /**
@@ -358,7 +358,7 @@ public class ServletInfo {
    * @param mappings the new mappings
    */
   public void setMappings(List<String> mappings) {
-    this.mappings = mappings;
+    this.mappings = new ArrayList<>(mappings);
   }
 
 }

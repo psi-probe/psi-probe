@@ -204,7 +204,7 @@ public class Cluster {
    * @return the members
    */
   public List<ClusterSender> getMembers() {
-    return members;
+    return new ArrayList<>(members);
   }
 
   /**
@@ -213,7 +213,7 @@ public class Cluster {
    * @param members the new members
    */
   public void setMembers(List<ClusterSender> members) {
-    this.members = members;
+    this.members = new ArrayList<>(members);
   }
 
   /**

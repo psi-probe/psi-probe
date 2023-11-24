@@ -11,6 +11,7 @@
 package psiprobe.model.jsp;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -54,7 +55,7 @@ public class Summary implements Serializable {
    * @return the items
    */
   public Map<String, Item> getItems() {
-    return items;
+    return new HashMap<>(items);
   }
 
   /**
@@ -63,7 +64,7 @@ public class Summary implements Serializable {
    * @param items the items
    */
   public void setItems(Map<String, Item> items) {
-    this.items = items;
+    this.items = new HashMap<>(items);
   }
 
   /**
