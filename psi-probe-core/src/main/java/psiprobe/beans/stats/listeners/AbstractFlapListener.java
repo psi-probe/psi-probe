@@ -235,12 +235,7 @@ public abstract class AbstractFlapListener extends AbstractThresholdListener {
    * @return the flaps
    */
   protected LinkedList<Boolean> getFlaps(String name) {
-    LinkedList<Boolean> list = flaps.get(name);
-    if (list == null) {
-      list = new LinkedList<>();
-      flaps.put(name, list);
-    }
-    return list;
+    return flaps.computeIfAbsent(name, s -> new LinkedList<>());
   }
 
   /**
