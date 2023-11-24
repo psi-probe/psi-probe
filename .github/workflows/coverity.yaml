@@ -31,6 +31,7 @@ jobs:
         run: |
           wget -q https://scan.coverity.com/download/linux64 --post-data "token=$COVERITY_TOKEN&project=psi-probe%2Fpsi-probe" -O coverity_tool.tgz
           tar -xf coverity_tool.tgz
+          ./cov-analysis-linux64-*/bin/cov-configure --java
           ./cov-analysis-linux64-*/bin/cov-build --dir cov-int ./mvnw -B -V -DskipTests=true verify -Dlicense.skip=true --no-transfer-progress
           tar czvf psi-probe.tgz cov-int
           curl \
