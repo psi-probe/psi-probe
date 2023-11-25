@@ -347,7 +347,7 @@
 <a class="jxr_linenumber" name="L339" href="#L339">339</a>           logger.trace(<span class="jxr_string">"JMX objectName {} does not contain any managedResource"</span>, name, e);
 <a class="jxr_linenumber" name="L340" href="#L340">340</a>         }
 <a class="jxr_linenumber" name="L341" href="#L341">341</a> 
-<a class="jxr_linenumber" name="L342" href="#L342">342</a>         <em class="jxr_comment">// getGlobalNamingContext() was added to Server interface in Tomcat 7.0.11</em>
+<a class="jxr_linenumber" name="L342" href="#L342">342</a>         <em class="jxr_comment">// Get Global Naming Context</em>
 <a class="jxr_linenumber" name="L343" href="#L343">343</a>         <strong class="jxr_keyword">if</strong> (server instanceof StandardServer) {
 <a class="jxr_linenumber" name="L344" href="#L344">344</a>           globalContext = server.getGlobalNamingContext();
 <a class="jxr_linenumber" name="L345" href="#L345">345</a>           <strong class="jxr_keyword">break</strong>;
