@@ -18,32 +18,42 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Enumeration;
 import java.util.List;
 
-import mockit.Expectations;
-import mockit.Mocked;
+import jakarta.servlet.ServletContext;
 
 import org.apache.catalina.Context;
 import org.apache.catalina.Valve;
+import org.apache.catalina.WebResource;
+import org.apache.catalina.WebResourceRoot;
+import org.apache.catalina.deploy.NamingResourcesImpl;
 import org.apache.jasper.JspCompilationContext;
 import org.apache.tomcat.util.descriptor.web.ApplicationParameter;
+import org.apache.tomcat.util.descriptor.web.ContextResource;
+import org.apache.tomcat.util.descriptor.web.ContextResourceLink;
 import org.apache.tomcat.util.descriptor.web.FilterDef;
 import org.apache.tomcat.util.descriptor.web.FilterMap;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import psiprobe.model.ApplicationResource;
 
 /**
  * The Class Tomcat11ContainerAdapterTest.
  */
+@ExtendWith(MockitoExtension.class)
 class Tomcat11ContainerAdapterTest {
 
   /** The context. */
-  @Mocked
+  @Mock
   Context context;
 
   /**
@@ -53,7 +63,7 @@ class Tomcat11ContainerAdapterTest {
   void createValve() {
     final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
     Valve valve = adapter.createValve();
-    assertEquals("psiprobe.Tomcat11AgentValve[Container is null]", valve.toString());
+    assertEquals("Tomcat11AgentValve[Container is null]", valve.toString());
   }
 
   /**
@@ -123,10 +133,15 @@ class Tomcat11ContainerAdapterTest {
    */
   @Test
   void addContextResourceLink() {
+    NamingResourcesImpl namingResources = Mockito.mock(NamingResourcesImpl.class);
+    Mockito.when(context.getNamingResources()).thenReturn(namingResources);
+    Mockito.when(namingResources.findResourceLinks())
+        .thenReturn(new ContextResourceLink[] {new ContextResourceLink()});
+
     final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
     final List<ApplicationResource> list = new ArrayList<ApplicationResource>();
     adapter.addContextResourceLink(context, list);
-    assertTrue(list.isEmpty());
+    assertFalse(list.isEmpty());
   }
 
   /**
@@ -134,10 +149,15 @@ class Tomcat11ContainerAdapterTest {
    */
   @Test
   void addContextResource() {
+    NamingResourcesImpl namingResources = Mockito.mock(NamingResourcesImpl.class);
+    Mockito.when(context.getNamingResources()).thenReturn(namingResources);
+    Mockito.when(namingResources.findResources())
+        .thenReturn(new ContextResource[] {new ContextResource()});
+
     final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
     final List<ApplicationResource> list = new ArrayList<ApplicationResource>();
     adapter.addContextResource(context, list);
-    assertTrue(list.isEmpty());
+    assertFalse(list.isEmpty());
   }
 
   /**
@@ -145,12 +165,7 @@ class Tomcat11ContainerAdapterTest {
    */
   @Test
   void applicationFilterMaps() {
-    Assertions.assertNotNull(new Expectations() {
-      {
-        context.findFilterMaps();
-        result = new FilterMap();
-      }
-    });
+    Mockito.when(context.findFilterMaps()).thenReturn(new FilterMap[] {new FilterMap()});
 
     final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
     assertEquals(0, adapter.getApplicationFilterMaps(context).size());
@@ -161,12 +176,7 @@ class Tomcat11ContainerAdapterTest {
    */
   @Test
   void applicationFilters() {
-    Assertions.assertNotNull(new Expectations() {
-      {
-        context.findFilterDefs();
-        result = new FilterDef();
-      }
-    });
+    Mockito.when(context.findFilterDefs()).thenReturn(new FilterDef[] {new FilterDef()});
 
     final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
     assertEquals(1, adapter.getApplicationFilters(context).size());
@@ -177,14 +187,19 @@ class Tomcat11ContainerAdapterTest {
    */
   @Test
   void applicationInitParams() {
-    Assertions.assertNotNull(new Expectations() {
-      {
-        context.findApplicationParameters();
-        result = new ApplicationParameter();
-      }
-    });
+    Mockito.when(context.findApplicationParameters())
+        .thenReturn(new ApplicationParameter[] {new ApplicationParameter()});
+
+    ServletContext servletContext = Mockito.mock(ServletContext.class);
+    Mockito.when(context.getServletContext()).thenReturn(servletContext);
+
+    List<String> initParams = new ArrayList<>();
+    initParams.add("name");
+    Enumeration<String> initParameterNames = Collections.enumeration(initParams);
+    Mockito.when(servletContext.getInitParameterNames()).thenReturn(initParameterNames);
+
     final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
-    assertEquals(0, adapter.getApplicationInitParams(context).size());
+    assertEquals(1, adapter.getApplicationInitParams(context).size());
   }
 
   /**
@@ -192,8 +207,11 @@ class Tomcat11ContainerAdapterTest {
    */
   @Test
   void resourceExists() {
+    WebResourceRoot webResourceRoot = Mockito.mock(WebResourceRoot.class);
+    Mockito.when(context.getResources()).thenReturn(webResourceRoot);
+
     final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
-    assertTrue(adapter.resourceExists("name", context));
+    assertFalse(adapter.resourceExists("name", context));
   }
 
   /**
@@ -203,8 +221,14 @@ class Tomcat11ContainerAdapterTest {
    */
   @Test
   void resourceStream() throws IOException {
+    WebResourceRoot webResourceRoot = Mockito.mock(WebResourceRoot.class);
+    Mockito.when(context.getResources()).thenReturn(webResourceRoot);
+
+    WebResource webResource = Mockito.mock(WebResource.class);
+    Mockito.when(webResourceRoot.getResource("name")).thenReturn(webResource);
+
     final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
-    assertNotNull(adapter.getResourceStream("name", context));
+    assertNull(adapter.getResourceStream("name", context));
   }
 
   /**
@@ -212,6 +236,12 @@ class Tomcat11ContainerAdapterTest {
    */
   @Test
   void resourceAttributes() {
+    WebResourceRoot webResourceRoot = Mockito.mock(WebResourceRoot.class);
+    Mockito.when(context.getResources()).thenReturn(webResourceRoot);
+
+    WebResource webResource = Mockito.mock(WebResource.class);
+    Mockito.when(webResourceRoot.getResource("name")).thenReturn(webResource);
+
     final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
     assertNotNull(adapter.getResourceAttributes("name", context));
   }
@@ -221,8 +251,10 @@ class Tomcat11ContainerAdapterTest {
    */
   @Test
   void getNamingToken() {
+    Mockito.when(context.getNamingToken()).thenReturn(new Object());
+
     final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
-    assertNull(adapter.getNamingToken(context));
+    assertNotNull(adapter.getNamingToken(context));
   }
 
 }
