@@ -11,6 +11,7 @@
 package psiprobe.model.certificates;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -45,7 +46,7 @@ public class CertificateInfo implements Serializable {
    * @return the key store certs
    */
   public List<Cert> getKeyStoreCerts() {
-    return keyStoreCerts;
+    return new ArrayList<>(keyStoreCerts);
   }
 
   /**
@@ -54,7 +55,7 @@ public class CertificateInfo implements Serializable {
    * @param keyStoreCerts the new key store certs
    */
   public void setKeyStoreCerts(List<Cert> keyStoreCerts) {
-    this.keyStoreCerts = keyStoreCerts;
+    this.keyStoreCerts = new ArrayList<>(keyStoreCerts);
   }
 
   /**
