@@ -27,22 +27,18 @@ class SizeExpressionTests {
 
   /**
    * Sets the up.
-   *
-   * @throws Exception the exception
    */
   @BeforeEach
-  void setUp() throws Exception {
+  void setUp() {
     this.defaultLocale = Locale.getDefault();
     Locale.setDefault(Locale.US);
   }
 
   /**
    * Tear down.
-   *
-   * @throws Exception the exception
    */
   @AfterEach
-  void tearDown() throws Exception {
+  void tearDown() {
     Locale.setDefault(defaultLocale);
   }
 

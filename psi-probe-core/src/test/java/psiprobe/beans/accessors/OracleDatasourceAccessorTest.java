@@ -69,10 +69,10 @@ class OracleDatasourceAccessorTest {
   /**
    * Gets the info test.
    *
-   * @throws Exception the exception
+   * @throws SQLException the sql exception
    */
   @Test
-  void getInfoTest() throws Exception {
+  void getInfoTest() throws SQLException {
     new Expectations() {
       {
         source.getConnectionCacheProperties();

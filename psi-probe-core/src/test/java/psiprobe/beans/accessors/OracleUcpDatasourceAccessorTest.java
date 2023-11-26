@@ -12,6 +12,8 @@ package psiprobe.beans.accessors;
 
 import com.zaxxer.hikari.HikariDataSource;
 
+import java.sql.SQLException;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -73,10 +75,10 @@ class OracleUcpDatasourceAccessorTest {
   /**
    * Gets the info test.
    *
-   * @throws Exception the exception
+   * @throws SQLException the sql exception
    */
   @Test
-  void getInfoTest() throws Exception {
+  void getInfoTest() throws SQLException {
     Assertions.assertNotNull(accessor.getInfo(source));
   }
 
