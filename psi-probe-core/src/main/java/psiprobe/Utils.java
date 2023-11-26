@@ -407,11 +407,11 @@ public final class Utils {
       }
 
       Thread[] threads = new Thread[masterGroup.activeCount()];
-      int numThreads = masterGroup.enumerate(threads);
+      masterGroup.enumerate(threads);
 
-      for (int i = 0; i < numThreads; i++) {
-        if (threads[i] != null && name.equals(threads[i].getName())) {
-          return threads[i];
+      for (Thread thread : threads) {
+        if (thread != null && name.equals(thread.getName())) {
+          return thread;
         }
       }
     }
