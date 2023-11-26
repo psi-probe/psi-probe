@@ -313,7 +313,7 @@
             <c:param name="size">
                 <c:out value="${param.size}"/>
             </c:param>
-            <c:if test="${not empty param.webapp}">
+            <c:if test="${! empty param.webapp}">
                 <c:param name="webapp" value="${param.webapp}"/>
             </c:if>
         </c:url>
@@ -323,7 +323,7 @@
             <c:param name="size">
                 <c:out value="${param.size}"/>
             </c:param>
-            <c:if test="${not empty param.webapp}">
+            <c:if test="${! empty param.webapp}">
                 <c:param name="webapp" value="${param.webapp}"/>
             </c:if>
         </c:url>

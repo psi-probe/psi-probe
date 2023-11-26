@@ -46,7 +46,7 @@
         <ul class="options">
             <li id="viewServlets">
                 <c:url value="/servlets.htm" var="servlets" scope="page">
-                    <c:if test="${not empty param.webapp}">
+                    <c:if test="${! empty param.webapp}">
                         <c:param name="webapp" value="${param.webapp}"/>
                     </c:if>
                 </c:url>
@@ -54,7 +54,7 @@
                     <spring:message code="probe.jsp.servletmaps.opt.defs"/>
                 </a>
             </li>
-            <c:if test="${not empty param.webapp}">
+            <c:if test="${! empty param.webapp}">
                 <li id="viewAllServletMaps">
                     <c:url value="/servletmaps.htm" var="allservletmaps" scope="page" />
                     <a href="${allservletmaps}">
