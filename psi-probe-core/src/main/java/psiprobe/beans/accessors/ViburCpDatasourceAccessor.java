@@ -10,16 +10,9 @@
  */
 package psiprobe.beans.accessors;
 
-import java.lang.management.ManagementFactory;
 import java.sql.SQLException;
 
-import javax.management.JMX;
-import javax.management.MBeanServer;
-import javax.management.MalformedObjectNameException;
-import javax.management.ObjectName;
-
 import org.vibur.dbcp.ViburDBCPDataSource;
-import org.vibur.dbcp.ViburMonitoringMBean;
 
 import psiprobe.model.DataSourceInfo;
 
@@ -34,20 +27,10 @@ public class ViburCpDatasourceAccessor implements DatasourceAccessor {
     if (canMap(resource)) {
       ViburDBCPDataSource source = (ViburDBCPDataSource) resource;
 
-      MBeanServer mbeanServer = ManagementFactory.getPlatformMBeanServer();
-      ObjectName poolName;
-      try {
-        poolName = new ObjectName(source.getJmxName());
-      } catch (MalformedObjectNameException e) {
-        throw new SQLException("MalformedObjectNameException for Vibur", e);
-      }
-      ViburMonitoringMBean poolProxy =
-          JMX.newMXBeanProxy(mbeanServer, poolName, ViburMonitoringMBean.class);
-
       dataSourceInfo = new DataSourceInfo();
-      dataSourceInfo.setBusyConnections(poolProxy.getPoolTaken());
+      dataSourceInfo.setBusyConnections(source.getPool().taken());
       dataSourceInfo.setEstablishedConnections(
-          poolProxy.getPoolRemainingCreated() + poolProxy.getPoolTaken());
+          source.getPool().remainingCreated() + source.getPool().taken());
       dataSourceInfo.setMaxConnections(source.getPoolMaxSize());
       dataSourceInfo.setJdbcUrl(source.getJdbcUrl());
       dataSourceInfo.setUsername(source.getUsername());
