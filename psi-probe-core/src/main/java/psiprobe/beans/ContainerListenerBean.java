@@ -230,34 +230,26 @@ public class ContainerListenerBean implements NotificationListener {
     }
 
     for (ThreadPoolObjectName threadPoolObjectName : poolNames) {
-      try {
-        ObjectName poolName = threadPoolObjectName.getThreadPoolName();
+      ObjectName poolName = threadPoolObjectName.getThreadPoolName();
 
-        ThreadPool threadPool = new ThreadPool();
-        threadPool.setName(poolName.getKeyProperty("name"));
-        threadPool.setMaxThreads(JmxTools.getIntAttr(server, poolName, "maxThreads"));
+      ThreadPool threadPool = new ThreadPool();
+      threadPool.setName(poolName.getKeyProperty("name"));
+      threadPool.setMaxThreads(JmxTools.getIntAttr(server, poolName, "maxThreads"));
 
-        if (JmxTools.hasAttribute(server, poolName, "maxSpareThreads")) {
-          threadPool.setMaxSpareThreads(JmxTools.getIntAttr(server, poolName, "maxSpareThreads"));
-          threadPool.setMinSpareThreads(JmxTools.getIntAttr(server, poolName, "minSpareThreads"));
-        }
+      if (JmxTools.hasAttribute(server, poolName, "maxSpareThreads")) {
+        threadPool.setMaxSpareThreads(JmxTools.getIntAttr(server, poolName, "maxSpareThreads"));
+        threadPool.setMinSpareThreads(JmxTools.getIntAttr(server, poolName, "minSpareThreads"));
+      }
 
-        threadPool
-            .setCurrentThreadsBusy(JmxTools.getIntAttr(server, poolName, "currentThreadsBusy"));
-        threadPool
-            .setCurrentThreadCount(JmxTools.getIntAttr(server, poolName, "currentThreadCount"));
+      threadPool.setCurrentThreadsBusy(JmxTools.getIntAttr(server, poolName, "currentThreadsBusy"));
+      threadPool.setCurrentThreadCount(JmxTools.getIntAttr(server, poolName, "currentThreadCount"));
 
-        /*
-         * Tomcat will return -1 for maxThreads if the connector uses an executor for its threads.
-         * In this case, don't add its ThreadPool to the results.
-         */
-        if (threadPool.getMaxThreads() > -1) {
-          threadPools.add(threadPool);
-        }
-      } catch (InstanceNotFoundException e) {
-        logger.error("Failed to query entire thread pool {}",
-            threadPoolObjectName.getThreadPoolName());
-        logger.debug("", e);
+      /*
+       * Tomcat will return -1 for maxThreads if the connector uses an executor for its threads. In
+       * this case, don't add its ThreadPool to the results.
+       */
+      if (threadPool.getMaxThreads() > -1) {
+        threadPools.add(threadPool);
       }
     }
     return threadPools;
@@ -310,122 +302,110 @@ public class ContainerListenerBean implements NotificationListener {
     MBeanServer server = getContainerWrapper().getResourceResolver().getMBeanServer();
 
     for (ThreadPoolObjectName threadPoolObjectName : poolNames) {
-      try {
-        ObjectName poolName = threadPoolObjectName.getThreadPoolName();
+      ObjectName poolName = threadPoolObjectName.getThreadPoolName();
 
-        Connector connector = new Connector();
+      Connector connector = new Connector();
 
-        String name = poolName.getKeyProperty("name");
+      String name = poolName.getKeyProperty("name");
 
-        connector.setProtocolHandler(poolName.getKeyProperty("name"));
+      connector.setProtocolHandler(poolName.getKeyProperty("name"));
 
-        if (name.startsWith("\"") && name.endsWith("\"")) {
-          name = name.substring(1, name.length() - 1);
-        }
+      if (name.startsWith("\"") && name.endsWith("\"")) {
+        name = name.substring(1, name.length() - 1);
+      }
 
-        String[] arr = name.split("-", -1);
-        String port = "-1";
-        if (arr.length == 3) {
-          port = arr[2];
-        }
+      String[] arr = name.split("-", -1);
+      String port = "-1";
+      if (arr.length == 3) {
+        port = arr[2];
+      }
 
-        if (!"-1".equals(port)) {
-          String str = "Catalina:type=Connector,port=" + port;
+      if (!"-1".equals(port)) {
+        String str = "Catalina:type=Connector,port=" + port;
 
-          ObjectName objectName = new ObjectName(str);
+        ObjectName objectName = new ObjectName(str);
 
-          // add some useful information for connector list
-          connector.setStatus(JmxTools.getStringAttr(server, objectName, "stateName"));
-          connector.setProtocol(JmxTools.getStringAttr(server, objectName, "protocol"));
-          connector.setSecure(
-              Boolean.parseBoolean(JmxTools.getStringAttr(server, objectName, "secure")));
-          connector.setPort(JmxTools.getIntAttr(server, objectName, "port"));
-          connector.setLocalPort(JmxTools.getIntAttr(server, objectName, "localPort"));
-          connector.setSchema(JmxTools.getStringAttr(server, objectName, "schema"));
-        }
+        // add some useful information for connector list
+        connector.setStatus(JmxTools.getStringAttr(server, objectName, "stateName"));
+        connector.setProtocol(JmxTools.getStringAttr(server, objectName, "protocol"));
+        connector
+            .setSecure(Boolean.parseBoolean(JmxTools.getStringAttr(server, objectName, "secure")));
+        connector.setPort(JmxTools.getIntAttr(server, objectName, "port"));
+        connector.setLocalPort(JmxTools.getIntAttr(server, objectName, "localPort"));
+        connector.setSchema(JmxTools.getStringAttr(server, objectName, "schema"));
+      }
 
-        ObjectName grpName = threadPoolObjectName.getGlobalRequestProcessorName();
+      ObjectName grpName = threadPoolObjectName.getGlobalRequestProcessorName();
 
-        connector.setMaxTime(JmxTools.getLongAttr(server, grpName, "maxTime"));
-        connector.setProcessingTime(JmxTools.getLongAttr(server, grpName, "processingTime"));
-        connector.setBytesReceived(JmxTools.getLongAttr(server, grpName, "bytesReceived"));
-        connector.setBytesSent(JmxTools.getLongAttr(server, grpName, "bytesSent"));
-        connector.setRequestCount(JmxTools.getIntAttr(server, grpName, "requestCount"));
-        connector.setErrorCount(JmxTools.getIntAttr(server, grpName, "errorCount"));
+      connector.setMaxTime(JmxTools.getLongAttr(server, grpName, "maxTime"));
+      connector.setProcessingTime(JmxTools.getLongAttr(server, grpName, "processingTime"));
+      connector.setBytesReceived(JmxTools.getLongAttr(server, grpName, "bytesReceived"));
+      connector.setBytesSent(JmxTools.getLongAttr(server, grpName, "bytesSent"));
+      connector.setRequestCount(JmxTools.getIntAttr(server, grpName, "requestCount"));
+      connector.setErrorCount(JmxTools.getIntAttr(server, grpName, "errorCount"));
 
-        if (includeRequestProcessors) {
-          List<ObjectName> wrkNames = threadPoolObjectName.getRequestProcessorNames();
-          for (ObjectName wrkName : wrkNames) {
-            try {
-              RequestProcessor rp = new RequestProcessor();
-              rp.setName(wrkName.getKeyProperty("name"));
-              rp.setStage(JmxTools.getIntAttr(server, wrkName, "stage"));
-              rp.setProcessingTime(JmxTools.getLongAttr(server, wrkName, "requestProcessingTime"));
-              rp.setBytesSent(JmxTools.getLongAttr(server, wrkName, "requestBytesSent"));
-              rp.setBytesReceived(JmxTools.getLongAttr(server, wrkName, "requestBytesReceived"));
-              try {
-                rp.setRemoteAddr(JmxTools.getStringAttr(server, wrkName, "remoteAddr"));
-              } catch (RuntimeOperationsException ex) {
-                logger.trace("", ex);
+      if (includeRequestProcessors) {
+        List<ObjectName> wrkNames = threadPoolObjectName.getRequestProcessorNames();
+        for (ObjectName wrkName : wrkNames) {
+          RequestProcessor rp = new RequestProcessor();
+          rp.setName(wrkName.getKeyProperty("name"));
+          rp.setStage(JmxTools.getIntAttr(server, wrkName, "stage"));
+          rp.setProcessingTime(JmxTools.getLongAttr(server, wrkName, "requestProcessingTime"));
+          rp.setBytesSent(JmxTools.getLongAttr(server, wrkName, "requestBytesSent"));
+          rp.setBytesReceived(JmxTools.getLongAttr(server, wrkName, "requestBytesReceived"));
+          try {
+            rp.setRemoteAddr(JmxTools.getStringAttr(server, wrkName, "remoteAddr"));
+          } catch (RuntimeOperationsException ex) {
+            logger.trace("", ex);
+          }
+
+          if (rp.getRemoteAddr() != null) {
+            // Show flag as defined in jvm for localhost
+            if (InetAddress.getByName(rp.getRemoteAddr()).isLoopbackAddress()) {
+              rp.setRemoteAddrLocale(new Locale(System.getProperty("user.language"),
+                  System.getProperty("user.country")));
+            } else {
+              // Show flag for non-localhost using geo lite
+              try (DatabaseReader reader = new DatabaseReader.Builder(new File(
+                  getClass().getClassLoader().getResource("GeoLite2-Country.mmdb").toURI()))
+                  .withCache(new CHMCache()).build()) {
+                CountryResponse response =
+                    reader.country(InetAddress.getByName(rp.getRemoteAddr()));
+                Country country = response.getCountry();
+                rp.setRemoteAddrLocale(new Locale("", country.getIsoCode()));
+              } catch (AddressNotFoundException e) {
+                logger.debug("Address Not Found: {}", e.getMessage());
+                logger.trace("", e);
               }
-
-              if (rp.getRemoteAddr() != null) {
-                // Show flag as defined in jvm for localhost
-                if (InetAddress.getByName(rp.getRemoteAddr()).isLoopbackAddress()) {
-                  rp.setRemoteAddrLocale(new Locale(System.getProperty("user.language"),
-                      System.getProperty("user.country")));
-                } else {
-                  // Show flag for non-localhost using geo lite
-                  try (DatabaseReader reader = new DatabaseReader.Builder(new File(
-                      getClass().getClassLoader().getResource("GeoLite2-Country.mmdb").toURI()))
-                      .withCache(new CHMCache()).build()) {
-                    CountryResponse response =
-                        reader.country(InetAddress.getByName(rp.getRemoteAddr()));
-                    Country country = response.getCountry();
-                    rp.setRemoteAddrLocale(new Locale("", country.getIsoCode()));
-                  } catch (AddressNotFoundException e) {
-                    logger.debug("Address Not Found: {}", e.getMessage());
-                    logger.trace("", e);
-                  }
-                }
-              }
-
-              rp.setVirtualHost(JmxTools.getStringAttr(server, wrkName, "virtualHost"));
-              rp.setMethod(JmxTools.getStringAttr(server, wrkName, "method"));
-              rp.setCurrentUri(JmxTools.getStringAttr(server, wrkName, "currentUri"));
-              rp.setCurrentQueryString(
-                  JmxTools.getStringAttr(server, wrkName, "currentQueryString"));
-              rp.setProtocol(JmxTools.getStringAttr(server, wrkName, "protocol"));
-
-              // Relies on https://issues.apache.org/bugzilla/show_bug.cgi?id=41128
-              if (workerThreadNameSupported
-                  && JmxTools.hasAttribute(server, wrkName, "workerThreadName")) {
-
-                rp.setWorkerThreadName(JmxTools.getStringAttr(server, wrkName, "workerThreadName"));
-                rp.setWorkerThreadNameSupported(true);
-              } else {
-                /*
-                 * attribute should consistently either exist or be missing across all the workers
-                 * so it does not make sense to check attribute existence if we have found once that
-                 * it is not supported
-                 */
-                rp.setWorkerThreadNameSupported(false);
-                workerThreadNameSupported = false;
-              }
-              connector.addRequestProcessor(rp);
-            } catch (InstanceNotFoundException e) {
-              logger.info("Failed to query RequestProcessor {}", wrkName);
-              logger.debug("", e);
             }
           }
-        }
 
-        connectors.add(connector);
-      } catch (InstanceNotFoundException e) {
-        logger.error("Failed to query entire thread pool {}",
-            threadPoolObjectName.getThreadPoolName());
-        logger.debug("  Stack trace:", e);
+          rp.setVirtualHost(JmxTools.getStringAttr(server, wrkName, "virtualHost"));
+          rp.setMethod(JmxTools.getStringAttr(server, wrkName, "method"));
+          rp.setCurrentUri(JmxTools.getStringAttr(server, wrkName, "currentUri"));
+          rp.setCurrentQueryString(JmxTools.getStringAttr(server, wrkName, "currentQueryString"));
+          rp.setProtocol(JmxTools.getStringAttr(server, wrkName, "protocol"));
+
+          // Relies on https://issues.apache.org/bugzilla/show_bug.cgi?id=41128
+          if (workerThreadNameSupported
+              && JmxTools.hasAttribute(server, wrkName, "workerThreadName")) {
+
+            rp.setWorkerThreadName(JmxTools.getStringAttr(server, wrkName, "workerThreadName"));
+            rp.setWorkerThreadNameSupported(true);
+          } else {
+            /*
+             * attribute should consistently either exist or be missing across all the workers so it
+             * does not make sense to check attribute existence if we have found once that it is not
+             * supported
+             */
+            rp.setWorkerThreadNameSupported(false);
+            workerThreadNameSupported = false;
+          }
+          connector.addRequestProcessor(rp);
+        }
       }
+
+      connectors.add(connector);
     }
     return connectors;
   }

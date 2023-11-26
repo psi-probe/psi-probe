@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Set;
 
 import javax.management.MBeanServer;
+import javax.management.MalformedObjectNameException;
 import javax.management.ObjectInstance;
 import javax.management.ObjectName;
 import javax.management.openmbean.CompositeDataSupport;
@@ -39,9 +40,9 @@ public class JvmMemoryInfoAccessorBean {
    *
    * @return the pools
    *
-   * @throws Exception the exception
+   * @throws MalformedObjectNameException the malformed object name exception
    */
-  public List<MemoryPool> getPools() throws Exception {
+  public List<MemoryPool> getPools() throws MalformedObjectNameException {
 
     List<MemoryPool> memoryPools = new LinkedList<>();
     MBeanServer mbeanServer = ManagementFactory.getPlatformMBeanServer();
@@ -60,7 +61,8 @@ public class JvmMemoryInfoAccessorBean {
       memoryPool.setName(JmxTools.getStringAttr(mbeanServer, objName, "Name"));
       memoryPool.setType(JmxTools.getStringAttr(mbeanServer, objName, "Type"));
 
-      CompositeDataSupport cd = (CompositeDataSupport) mbeanServer.getAttribute(objName, "Usage");
+      CompositeDataSupport cd =
+          (CompositeDataSupport) JmxTools.getAttribute(mbeanServer, objName, "Usage");
       /*
        * It seems that "Usage" attribute of one of the pools may turn into null intermittently. We
        * better have a dip in the graph then an NPE though.

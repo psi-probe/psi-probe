@@ -11,10 +11,15 @@
 package psiprobe.tools;
 
 import javax.management.AttributeNotFoundException;
+import javax.management.InstanceNotFoundException;
+import javax.management.IntrospectionException;
 import javax.management.MBeanAttributeInfo;
+import javax.management.MBeanException;
 import javax.management.MBeanInfo;
 import javax.management.MBeanServer;
 import javax.management.ObjectName;
+import javax.management.ReflectionException;
+import javax.management.RuntimeOperationsException;
 import javax.management.openmbean.CompositeData;
 
 import org.slf4j.Logger;
@@ -36,208 +41,211 @@ public final class JmxTools {
   }
 
   /**
-   * Gets the attribute.
+   * Gets the attribute. All exceptions default to null.
    *
    * @param mbeanServer the mbean server
-   * @param objName the obj name
-   * @param attrName the attr name
+   * @param objectName the object name
+   * @param attributeName the attribute name
    *
    * @return the attribute
-   *
-   * @throws Exception the exception
    */
-  public static Object getAttribute(MBeanServer mbeanServer, ObjectName objName, String attrName)
-      throws Exception {
-
+  public static Object getAttribute(MBeanServer mbeanServer, ObjectName objectName,
+      String attributeName) {
     try {
-      return mbeanServer.getAttribute(objName, attrName);
+      return mbeanServer.getAttribute(objectName, attributeName);
     } catch (AttributeNotFoundException e) {
-      logger.error("{} does not have '{}' attribute", objName, attrName);
+      logger.error("MBean Object '{}' does not have '{}' attribute", objectName, attributeName);
       logger.trace("", e);
-      return null;
+    } catch (RuntimeOperationsException e) {
+      logger.error("MBean Object '{}' or Attribute '{}' are null", objectName, attributeName);
+      logger.trace("", e);
+    } catch (InstanceNotFoundException e) {
+      logger.error("MBean Object '{}' not registered", objectName);
+      logger.trace("", e);
+    } catch (MBeanException | ReflectionException e) {
+      logger.error("MBean Object '{}' not accessible", objectName);
+      logger.trace("", e);
     }
+    return null;
   }
 
   /**
-   * Invoke.
+   * Invoke mbean server method. All exceptions default to null.
    *
    * @param mbeanServer the mbean server
-   * @param objName the obj name
+   * @param objectName the object name
    * @param method the method
-   * @param o the o
-   * @param s the s
+   * @param parameters the parameters
+   * @param signatures the signatures
    *
    * @return the object
-   *
-   * @throws Exception the exception
    */
-  public static Object invoke(MBeanServer mbeanServer, ObjectName objName, String method,
-      Object[] o, String[] s) throws Exception {
-
+  public static Object invoke(MBeanServer mbeanServer, ObjectName objectName, String method,
+      Object[] parameters, String[] signatures) {
     try {
-      return mbeanServer.invoke(objName, method, o, s);
-
-    } catch (Exception e) {
-      logger.error("{} does not have '{}' attribute", objName, method);
+      return mbeanServer.invoke(objectName, method, parameters, signatures);
+    } catch (InstanceNotFoundException e) {
+      logger.error("MBean Object '{}' not registered", objectName);
       logger.trace("", e);
-      return null;
+    } catch (MBeanException | ReflectionException e) {
+      logger.error("MBean Object '{}' not accessible", objectName);
+      logger.trace("", e);
     }
+    return null;
   }
 
   /**
-   * Gets the long attr.
+   * Gets the long attribute. Default value used if null or any exceptions.
    *
    * @param mbeanServer the mbean server
-   * @param objName the obj name
-   * @param attrName the attr name
+   * @param objectName the object name
+   * @param attributeName the attribute name
    * @param defaultValue the default value
    *
    * @return the long attr
    */
-  public static long getLongAttr(MBeanServer mbeanServer, ObjectName objName, String attrName,
-      long defaultValue) {
-
-    try {
-      Object obj = mbeanServer.getAttribute(objName, attrName);
-      return obj == null ? defaultValue : (Long) obj;
-    } catch (Exception e) {
-      logger.trace("", e);
-      return defaultValue;
-    }
+  public static long getLongAttr(MBeanServer mbeanServer, ObjectName objectName,
+      String attributeName, long defaultValue) {
+    Object object = JmxTools.getAttribute(mbeanServer, objectName, attributeName);
+    return object == null ? defaultValue : (Long) object;
   }
 
   /**
-   * Gets the long attr.
+   * Gets the long attribute. Default value '0' if null or any exceptions.
    *
-   * @param cds the cds
+   * @param compositeData the composite data
    * @param name the name
    *
-   * @return the long attr
+   * @return the long attribute
    */
-  public static long getLongAttr(CompositeData cds, String name) {
-    Object obj = cds.get(name);
-    if (obj instanceof Long) {
-      return (Long) obj;
-    }
-    return 0;
+  public static long getLongAttr(CompositeData compositeData, String name) {
+    Object object = compositeData.get(name);
+    return object instanceof Long ? (Long) object : 0;
   }
 
   /**
-   * Gets the long attr.
+   * Gets the long attribute. Default value '0' if null or any exceptions.
    *
    * @param mbeanServer the mbean server
-   * @param objName the obj name
-   * @param attrName the attr name
+   * @param objectName the object name
+   * @param attributeName the attribute name
    *
-   * @return the long attr
-   *
-   * @throws Exception the exception
+   * @return the long attribute
    */
-  public static long getLongAttr(MBeanServer mbeanServer, ObjectName objName, String attrName)
-      throws Exception {
-
-    return (Long) mbeanServer.getAttribute(objName, attrName);
+  public static long getLongAttr(MBeanServer mbeanServer, ObjectName objectName,
+      String attributeName) {
+    Object object = JmxTools.getAttribute(mbeanServer, objectName, attributeName);
+    return object == null ? 0 : (Long) object;
   }
 
   /**
-   * Gets the int attr.
+   * Gets the int attribute. Default value '0' if null or any exceptions.
    *
    * @param mbeanServer the mbean server
-   * @param objName the obj name
-   * @param attrName the attr name
+   * @param objectName the object name
+   * @param attributeName the attribute name
    *
-   * @return the int attr
-   *
-   * @throws Exception the exception
+   * @return the int attribute
    */
-  public static int getIntAttr(MBeanServer mbeanServer, ObjectName objName, String attrName)
-      throws Exception {
-
-    return (Integer) mbeanServer.getAttribute(objName, attrName);
+  public static int getIntAttr(MBeanServer mbeanServer, ObjectName objectName,
+      String attributeName) {
+    Object object = JmxTools.getAttribute(mbeanServer, objectName, attributeName);
+    return object == null ? 0 : (Integer) object;
   }
 
   /**
-   * Gets the int attr.
+   * Gets the int attribute. Default to default value if not found.
    *
    * @param cds the cds
    * @param name the name
    * @param defaultValue the default value
    *
-   * @return the int attr
+   * @return the int attribute
    */
-  public static int getIntAttr(CompositeData cds, String name, int defaultValue) {
-    Object obj = cds.get(name);
-
-    if (obj instanceof Integer) {
-      return (Integer) obj;
-    }
-    return defaultValue;
+  public static int getIntAttr(CompositeData compositeData, String name, int defaultValue) {
+    Object object = compositeData.get(name);
+    return object instanceof Integer ? (Integer) object : defaultValue;
   }
 
   /**
-   * Gets the string attr.
+   * Gets the string attribute. All exceptions default to null.
    *
    * @param mbeanServer the mbean server
-   * @param objName the obj name
-   * @param attrName the attr name
+   * @param objectName the object name
+   * @param attributeName the attribute name
    *
-   * @return the string attr
-   *
-   * @throws Exception the exception
+   * @return the string attribute
    */
-  public static String getStringAttr(MBeanServer mbeanServer, ObjectName objName, String attrName)
-      throws Exception {
-
-    Object obj = getAttribute(mbeanServer, objName, attrName);
-    return obj == null ? null : obj.toString();
+  public static String getStringAttr(MBeanServer mbeanServer, ObjectName objectName,
+      String attributeName) {
+    Object object = JmxTools.getAttribute(mbeanServer, objectName, attributeName);
+    return object == null ? null : object.toString();
   }
 
   /**
-   * Gets the string attr.
+   * Gets the string attribute.
    *
-   * @param cds the cds
+   * @param compositeData the composite data
    * @param name the name
    *
-   * @return the string attr
+   * @return the string attribute
    */
-  public static String getStringAttr(CompositeData cds, String name) {
-    Object obj = cds.get(name);
-    return obj != null ? obj.toString() : null;
+  public static String getStringAttr(CompositeData compositeData, String name) {
+    Object object = compositeData.get(name);
+    return object == null ? null : object.toString();
   }
 
   /**
-   * Gets the boolean attr.
+   * Gets the boolean attribute. All exceptions default to false.
    *
-   * @param cds the cds
+   * @param mbeanServer the mbean server
+   * @param objectName the object name
+   * @param attributeName the attribute name
+   *
+   * @return the string attribute
+   */
+  public static boolean getBooleanAttr(MBeanServer mbeanServer, ObjectName objectName,
+      String attributeName) {
+    Object object = JmxTools.getAttribute(mbeanServer, objectName, attributeName);
+    return object instanceof Boolean && (Boolean) object;
+  }
+
+  /**
+   * Gets the boolean attribute.
+   *
+   * @param compositeData the composite data
    * @param name the name
    *
-   * @return the boolean attr
+   * @return the boolean attribute
    */
-  public static boolean getBooleanAttr(CompositeData cds, String name) {
-    Object obj = cds.get(name);
-    return obj instanceof Boolean && (Boolean) obj;
+  public static boolean getBooleanAttr(CompositeData compositeData, String name) {
+    Object object = compositeData.get(name);
+    return object instanceof Boolean && (Boolean) object;
   }
 
   /**
-   * Checks for attribute.
+   * Checks for attribute. All exceptions default to false.
    *
    * @param server the server
    * @param mbean the mbean
-   * @param attrName the attr name
+   * @param attributeName the attribute name
    *
    * @return true, if successful
-   *
-   * @throws Exception the exception
    */
-  public static boolean hasAttribute(MBeanServer server, ObjectName mbean, String attrName)
-      throws Exception {
-
-    MBeanInfo info = server.getMBeanInfo(mbean);
-    MBeanAttributeInfo[] ai = info.getAttributes();
-    for (MBeanAttributeInfo attribInfo : ai) {
-      if (attribInfo.getName().equals(attrName)) {
-        return true;
+  public static boolean hasAttribute(MBeanServer server, ObjectName mbean, String attributeName) {
+    try {
+      MBeanInfo info = server.getMBeanInfo(mbean);
+      for (MBeanAttributeInfo attributeInfo : info.getAttributes()) {
+        if (attributeInfo.getName().equals(attributeName)) {
+          return true;
+        }
       }
+    } catch (InstanceNotFoundException e) {
+      logger.error("MBean Object '{}' not registered", mbean);
+      logger.trace("", e);
+    } catch (IntrospectionException | ReflectionException e) {
+      logger.error("MBean Object '{}' not accessible", mbean);
+      logger.trace("", e);
     }
     return false;
   }

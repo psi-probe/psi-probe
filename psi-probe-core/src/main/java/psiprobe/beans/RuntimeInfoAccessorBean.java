@@ -13,6 +13,7 @@ package psiprobe.beans;
 import java.lang.management.ManagementFactory;
 
 import javax.management.MBeanServer;
+import javax.management.MalformedObjectNameException;
 import javax.management.ObjectName;
 
 import org.slf4j.Logger;
@@ -33,10 +34,8 @@ public class RuntimeInfoAccessorBean {
    * Gets the runtime information.
    *
    * @return the runtime information
-   *
-   * @throws Exception the exception
    */
-  public RuntimeInformation getRuntimeInformation() throws Exception {
+  public RuntimeInformation getRuntimeInformation() {
     MBeanServer mbeanServer = ManagementFactory.getPlatformMBeanServer();
     RuntimeInformation ri = new RuntimeInformation();
 
@@ -76,7 +75,7 @@ public class RuntimeInfoAccessorBean {
       }
 
       return ri;
-    } catch (Exception e) {
+    } catch (MalformedObjectNameException e) {
       logger.debug("OS information is unavailable");
       logger.trace("", e);
       return null;
