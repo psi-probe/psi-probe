@@ -11,6 +11,7 @@
 package psiprobe.beans.stats.collectors;
 
 import javax.inject.Inject;
+import javax.naming.NamingException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -58,7 +59,7 @@ public class DatasourceStatsCollectorBean extends AbstractStatsCollectorBean {
   }
 
   @Override
-  public void collect() throws Exception {
+  public void collect() throws NamingException, InterruptedException {
     long currentTime = System.currentTimeMillis();
     if (containerWrapper == null) {
       logger.error("Cannot collect data source stats. Container wrapper is not set.");
@@ -80,9 +81,9 @@ public class DatasourceStatsCollectorBean extends AbstractStatsCollectorBean {
   /**
    * Reset.
    *
-   * @throws Exception the exception
+   * @throws NamingException the naming exception
    */
-  public void reset() throws Exception {
+  public void reset() throws NamingException {
     if (containerWrapper == null) {
       logger.error("Cannot reset application stats. Container wrapper is not set.");
     } else {
@@ -96,10 +97,8 @@ public class DatasourceStatsCollectorBean extends AbstractStatsCollectorBean {
    * Reset.
    *
    * @param name the name
-   *
-   * @throws Exception the exception
    */
-  public void reset(String name) throws Exception {
+  public void reset(String name) {
     resetStats(PREFIX_ESTABLISHED + name);
     resetStats(PREFIX_BUSY + name);
   }
