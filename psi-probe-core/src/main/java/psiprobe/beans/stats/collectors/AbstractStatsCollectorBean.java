@@ -15,7 +15,6 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import javax.inject.Inject;
-import javax.naming.NamingException;
 
 import org.jfree.data.xy.XYDataItem;
 
@@ -102,11 +101,9 @@ public abstract class AbstractStatsCollectorBean {
   /**
    * Collect.
    *
-   * @throws NamingException the naming exception
-   * @throws InterruptedException the interrupted exception
    * @throws Exception the exception
    */
-  public abstract void collect() throws NamingException, InterruptedException, Exception;
+  public abstract void collect() throws Exception;
 
   /**
    * Builds the delta stats.
