@@ -12,12 +12,10 @@ package psiprobe.beans.accessors;
 
 import com.zaxxer.hikari.HikariDataSource;
 
-import mockit.Expectations;
 import mockit.Mocked;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.vibur.dbcp.ViburDBCPDataSource;
 
@@ -66,15 +64,8 @@ class ViburCpDatasourceAccessorTest {
    *
    * @throws Exception the exception
    */
-  @Disabled
   @Test
   void getInfoTest() throws Exception {
-    new Expectations() {
-      {
-        source.getJmxName();
-        result = "viburJmx";
-      }
-    };
     Assertions.assertNotNull(accessor.getInfo(source));
   }
 
