@@ -11,6 +11,7 @@
 package psiprobe.tools.logging.jdk;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.logging.FileHandler;
@@ -20,10 +21,19 @@ import org.junit.jupiter.api.Test;
 
 import psiprobe.model.Application;
 
+/**
+ * The Class Jdk14FileHandlerAccessorTest.
+ */
 class Jdk14FileHandlerAccessorTest {
 
+  /**
+   * Gets the file.
+   *
+   * @return the file
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
   @Test
-  void getFile() throws Exception {
+  void getFile() throws IOException {
     Jdk14FileHandlerAccessor handlerAccessor = new Jdk14FileHandlerAccessor();
     handlerAccessor.setLoggerAccessor(new Jdk14LoggerAccessor());
 
