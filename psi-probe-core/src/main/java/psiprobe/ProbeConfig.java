@@ -128,10 +128,10 @@ public class ProbeConfig implements WebMvcConfigurer {
     list.add("psiprobe.beans.accessors.OpenEjbManagedDatasourceAccessor");
     list.add("psiprobe.beans.accessors.Tomcat85DbcpDatasourceAccessor");
     list.add("psiprobe.beans.accessors.Tomcat9DbcpDatasourceAccessor");
-    /* For jakarta
-      list.add("psiprobe.beans.accessors.Tomcat10DbcpDatasourceAccessor");
-      list.add("psiprobe.beans.accessors.Tomcat11DbcpDatasourceAccessor");
-    */
+    /*
+     * For jakarta list.add("psiprobe.beans.accessors.Tomcat10DbcpDatasourceAccessor");
+     * list.add("psiprobe.beans.accessors.Tomcat11DbcpDatasourceAccessor");
+     */
     list.add("psiprobe.beans.accessors.TomcatJdbcPoolDatasourceAccessor");
     list.add("psiprobe.beans.accessors.TomEeJdbcPoolDatasourceAccessor");
     list.add("psiprobe.beans.accessors.ViburCpDatasourceAccessor");
