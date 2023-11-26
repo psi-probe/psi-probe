@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.naming.NamingException;
 
 import org.apache.catalina.Context;
 import org.apache.catalina.Wrapper;
@@ -200,9 +201,9 @@ public class ContainerWrapperBean {
    *
    * @return the data sources
    *
-   * @throws Exception the exception
+   * @throws NamingException the naming exception
    */
-  public List<ApplicationResource> getDataSources() throws Exception {
+  public List<ApplicationResource> getDataSources() throws NamingException {
     List<ApplicationResource> resources = new ArrayList<>(getPrivateDataSources());
     resources.addAll(getGlobalDataSources());
     return resources;
@@ -213,9 +214,9 @@ public class ContainerWrapperBean {
    *
    * @return the private data sources
    *
-   * @throws Exception the exception
+   * @throws NamingException the naming exception
    */
-  public List<ApplicationResource> getPrivateDataSources() throws Exception {
+  public List<ApplicationResource> getPrivateDataSources() throws NamingException {
     List<ApplicationResource> resources = new ArrayList<>();
     if (tomcatContainer != null && getResourceResolver().supportsPrivateResources()) {
       for (Context app : getTomcatContainer().findContexts()) {
@@ -233,9 +234,9 @@ public class ContainerWrapperBean {
    *
    * @return the global data sources
    *
-   * @throws Exception the exception
+   * @throws NamingException the naming exception
    */
-  public List<ApplicationResource> getGlobalDataSources() throws Exception {
+  public List<ApplicationResource> getGlobalDataSources() throws NamingException {
     List<ApplicationResource> resources = new ArrayList<>();
     if (getResourceResolver().supportsGlobalResources()) {
       List<ApplicationResource> globalResources = getResourceResolver().getApplicationResources();
