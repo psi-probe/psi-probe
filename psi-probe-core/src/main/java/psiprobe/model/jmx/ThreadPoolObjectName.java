@@ -54,7 +54,7 @@ public class ThreadPoolObjectName {
    * @return the request processor names
    */
   public List<ObjectName> getRequestProcessorNames() {
-    return new ArrayList<>(requestProcessorNames);
+    return requestProcessorNames == null ? null : new ArrayList<>(requestProcessorNames);
   }
 
   /**
@@ -81,7 +81,8 @@ public class ThreadPoolObjectName {
    * @param requestProcessorNames the new request processor names
    */
   public void setRequestProcessorNames(List<ObjectName> requestProcessorNames) {
-    this.requestProcessorNames = new ArrayList<>(requestProcessorNames);
+    this.requestProcessorNames =
+        requestProcessorNames == null ? null : new ArrayList<>(requestProcessorNames);
   }
 
 }

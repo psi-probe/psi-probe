@@ -46,7 +46,7 @@ public class CertificateInfo implements Serializable {
    * @return the key store certs
    */
   public List<Cert> getKeyStoreCerts() {
-    return new ArrayList<>(keyStoreCerts);
+    return keyStoreCerts == null ? null : new ArrayList<>(keyStoreCerts);
   }
 
   /**
@@ -55,7 +55,7 @@ public class CertificateInfo implements Serializable {
    * @param keyStoreCerts the new key store certs
    */
   public void setKeyStoreCerts(List<Cert> keyStoreCerts) {
-    this.keyStoreCerts = new ArrayList<>(keyStoreCerts);
+    this.keyStoreCerts = keyStoreCerts == null ? null : new ArrayList<>(keyStoreCerts);
   }
 
   /**
