@@ -24,8 +24,8 @@
 
     <head>
         <title>Probe - Error</title>
-        <link type="text/css" rel="stylesheet" href="<c:url value='css/classic/main.css'/>"/>
-        <link type="text/css" rel="stylesheet" href="<c:url value='css/classic/messages.css'/>"/>
+        <link type="text/css" rel="stylesheet" href="<c:url value='/css/classic/main.css'/>"/>
+        <link type="text/css" rel="stylesheet" href="<c:url value='/css/classic/messages.css'/>"/>
     </head>
 
     <body>
