@@ -140,7 +140,7 @@
         <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
 
         <!-- Probe version settings -->
-        <probe.version>${project.version} (built at ${maven.build.timestamp})</probe.version>
+        <probe.version>${project.version} (built at ${maven.build.timestamp} from commit ${git.commit.id})</probe.version>
 
         <!-- Project build settings -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
