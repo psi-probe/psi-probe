@@ -148,7 +148,7 @@
                                         <c:catch var="displayException">
                                             <c:out value="${attribute.value}" escapeXml="true"/>
                                         </c:catch>
-                                        <c:if test="${not empty displayException}">
+                                        <c:if test="${! empty displayException}">
                                             <span class="errorValue">**************</span>
                                             <c:remove var="displayException" />
                                         </c:if>

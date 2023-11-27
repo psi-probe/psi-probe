@@ -151,7 +151,7 @@
                 </display:column>
 
                 <display:column titleKey="probe.jsp.logs.col.level" sortable="false">
-                    <c:if test="${not empty logsource.validLevels && logsource.level != null}">
+                    <c:if test="${! empty logsource.validLevels && logsource.level != null}">
                         <select id="log_${logsource_rowNum}">
                             <c:forEach items="${logsource.validLevels}" var="validLogLevel">
                                 <option value="${validLogLevel}" ${validLogLevel == logsource.level ? 'selected="selected"' : ''}>${validLogLevel}</option>

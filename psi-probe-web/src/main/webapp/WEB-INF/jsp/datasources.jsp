@@ -63,7 +63,7 @@
                             <spring:message code="probe.jsp.datasources.h3.global"/>
                         </h3>
                         <c:choose>
-                            <c:when test="${not empty globalResources}">
+                            <c:when test="${! empty globalResources}">
                                 <c:set var="resources" value="${globalResources}" scope="request" />
                                 <c:set var="isGlobalResources" value="true" scope="request" />
                                 <c:import url="datasources_table.jsp" />
@@ -79,7 +79,7 @@
                             <spring:message code="probe.jsp.datasources.h3.app"/>
                         </h3>
                         <c:choose>
-                            <c:when test="${not empty privateResources}">
+                            <c:when test="${! empty privateResources}">
                                 <c:set var="resources" value="${privateResources}" scope="request" />
                                 <c:set var="isGlobalResources" value="false" scope="request" />
                                 <c:import url="datasources_table.jsp" />
