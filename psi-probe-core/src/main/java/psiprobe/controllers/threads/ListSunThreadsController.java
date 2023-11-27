@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.management.MBeanServer;
+import javax.management.MalformedObjectNameException;
 import javax.management.ObjectName;
 import javax.management.openmbean.CompositeData;
 import javax.servlet.http.HttpServletRequest;
@@ -45,7 +46,7 @@ public class ListSunThreadsController extends ParameterizableViewController {
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+      HttpServletResponse response) throws MalformedObjectNameException {
 
     List<SunThread> threads = null;
     int executionStackDepth = 1;
@@ -53,16 +54,16 @@ public class ListSunThreadsController extends ParameterizableViewController {
     MBeanServer mbeanServer = ManagementFactory.getPlatformMBeanServer();
     ObjectName threadingOName = new ObjectName("java.lang:type=Threading");
 
-    long[] deadlockedIds =
-        (long[]) mbeanServer.invoke(threadingOName, "findMonitorDeadlockedThreads", null, null);
-    long[] allIds = (long[]) mbeanServer.getAttribute(threadingOName, "AllThreadIds");
+    long[] deadlockedIds = (long[]) JmxTools.invoke(mbeanServer, threadingOName,
+        "findMonitorDeadlockedThreads", null, null);
+    long[] allIds = (long[]) JmxTools.getAttribute(mbeanServer, threadingOName, "AllThreadIds");
 
     if (allIds != null) {
       threads = new ArrayList<>(allIds.length);
 
       for (long id : allIds) {
-        CompositeData cd = (CompositeData) mbeanServer.invoke(threadingOName, "getThreadInfo",
-            new Object[] {id, executionStackDepth}, new String[] {"long", "int"});
+        CompositeData cd = (CompositeData) JmxTools.invoke(mbeanServer, threadingOName,
+            "getThreadInfo", new Object[] {id, executionStackDepth}, new String[] {"long", "int"});
 
         if (cd != null) {
           SunThread st = new SunThread();

@@ -14,6 +14,7 @@ import java.lang.management.ManagementFactory;
 import java.util.Set;
 
 import javax.management.MBeanServer;
+import javax.management.MalformedObjectNameException;
 import javax.management.ObjectInstance;
 import javax.management.ObjectName;
 
@@ -38,10 +39,10 @@ public class ClusterWrapperBean {
    *
    * @return the cluster
    *
-   * @throws Exception the exception
+   * @throws MalformedObjectNameException the malformed object name exception
    */
   public Cluster getCluster(String serverName, String hostName, boolean loadMembers)
-      throws Exception {
+      throws MalformedObjectNameException {
 
     Cluster cluster = null;
 
@@ -94,7 +95,8 @@ public class ClusterWrapperBean {
       // JmxTools.getIntAttr(mbeanServer, receiverOName, "tcpThreadCount"));
 
       cluster.setSenderAckTimeout(JmxTools.getLongAttr(mbeanServer, senderOName, "ackTimeout"));
-      cluster.setSenderAutoConnect((Boolean) mbeanServer.getAttribute(senderOName, "autoConnect"));
+      cluster
+          .setSenderAutoConnect(JmxTools.getBooleanAttr(mbeanServer, senderOName, "autoConnect"));
       cluster.setSenderFailureCounter(
           JmxTools.getLongAttr(mbeanServer, senderOName, "failureCounter"));
       cluster.setSenderNrOfRequests(JmxTools.getLongAttr(mbeanServer, senderOName, "nrOfRequests"));
@@ -104,7 +106,7 @@ public class ClusterWrapperBean {
 
       if (loadMembers) {
         ObjectName[] senders =
-            (ObjectName[]) mbeanServer.getAttribute(senderOName, "senderObjectNames");
+            (ObjectName[]) JmxTools.getAttribute(mbeanServer, senderOName, "senderObjectNames");
         for (ObjectName localSenderOName : senders) {
           ClusterSender sender;
 
@@ -131,14 +133,14 @@ public class ClusterWrapperBean {
               JmxTools.getLongAttr(mbeanServer, localSenderOName, "connectCounter"));
           sender.setDisconnectCounter(
               JmxTools.getLongAttr(mbeanServer, localSenderOName, "disconnectCounter"));
-          sender.setConnected((Boolean) mbeanServer.getAttribute(localSenderOName, "connected"));
+          sender.setConnected(JmxTools.getBooleanAttr(mbeanServer, localSenderOName, "connected"));
           sender.setKeepAliveTimeout(
               JmxTools.getLongAttr(mbeanServer, localSenderOName, "keepAliveTimeout"));
           sender
               .setNrOfRequests(JmxTools.getLongAttr(mbeanServer, localSenderOName, "nrOfRequests"));
           sender.setTotalBytes(JmxTools.getLongAttr(mbeanServer, localSenderOName, "totalBytes"));
-          sender.setResend((Boolean) mbeanServer.getAttribute(localSenderOName, "resend"));
-          sender.setSuspect((Boolean) mbeanServer.getAttribute(localSenderOName, "suspect"));
+          sender.setResend(JmxTools.getBooleanAttr(mbeanServer, localSenderOName, "resend"));
+          sender.setSuspect(JmxTools.getBooleanAttr(mbeanServer, localSenderOName, "suspect"));
 
           if (sender instanceof PooledClusterSender) {
             ((PooledClusterSender) sender).setMaxPoolSocketLimit(

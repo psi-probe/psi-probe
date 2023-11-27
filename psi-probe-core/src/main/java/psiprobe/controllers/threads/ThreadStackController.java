@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.management.MBeanServer;
+import javax.management.MalformedObjectNameException;
 import javax.management.ObjectName;
 import javax.management.openmbean.CompositeData;
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -67,7 +69,8 @@ public class ThreadStackController extends ParameterizableViewController {
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
-      HttpServletResponse response) throws Exception {
+      HttpServletResponse response)
+      throws ServletRequestBindingException, MalformedObjectNameException {
 
     long threadId = ServletRequestUtils.getLongParameter(request, "id", -1);
     String threadName = ServletRequestUtils.getStringParameter(request, "name");
@@ -78,9 +81,9 @@ public class ThreadStackController extends ParameterizableViewController {
 
     if (threadId == -1 && threadName != null) {
       // find thread by name
-      for (long id : (long[]) mbeanServer.getAttribute(threadingOName, "AllThreadIds")) {
-        CompositeData cd = (CompositeData) mbeanServer.invoke(threadingOName, "getThreadInfo",
-            new Object[] {id}, new String[] {"long"});
+      for (long id : (long[]) JmxTools.getAttribute(mbeanServer, threadingOName, "AllThreadIds")) {
+        CompositeData cd = (CompositeData) JmxTools.invoke(mbeanServer, threadingOName,
+            "getThreadInfo", new Object[] {id}, new String[] {"long"});
         String name = JmxTools.getStringAttr(cd, "threadName");
         if (threadName.equals(name)) {
           threadId = id;
@@ -91,8 +94,9 @@ public class ThreadStackController extends ParameterizableViewController {
 
     if (mbeanServer.queryMBeans(threadingOName, null) != null && threadId != -1) {
 
-      CompositeData cd = (CompositeData) mbeanServer.invoke(threadingOName, "getThreadInfo",
-          new Object[] {threadId, stackElementCount}, new String[] {"long", "int"});
+      CompositeData cd =
+          (CompositeData) JmxTools.invoke(mbeanServer, threadingOName, "getThreadInfo",
+              new Object[] {threadId, stackElementCount}, new String[] {"long", "int"});
       if (cd != null) {
         CompositeData[] elements = (CompositeData[]) cd.get("stackTrace");
         threadName = JmxTools.getStringAttr(cd, "threadName");
