@@ -19,6 +19,7 @@
 <html lang="${lang}">
     <head>
         <title><spring:message code="probe.jsp.sysinfo.sysproperties.title"/></title>
+        <script src="<c:url value='/js/prototype.js'/>"></script>
     </head>
 
     <c:set var="navTabSystem" value="active" scope="request"/>

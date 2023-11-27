@@ -21,6 +21,7 @@
 <html lang="${lang}">
     <head>
         <title><spring:message code="probe.jsp.title.threadpools"/></title>
+        <script src="<c:url value='/js/prototype.js'/>"></script>
     </head>
 
     <body>
