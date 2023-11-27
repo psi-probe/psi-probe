@@ -21,6 +21,7 @@
 
     <head>
         <title><spring:message htmlEscape="true" code="probe.jsp.title.resources" arguments="${param.webapp}"/></title>
+        <script src="<c:url value='/js/prototype.js'/>"></script>
         <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='resources.css'/>"/>
     </head>
 

@@ -16,7 +16,10 @@
 
 <!DOCTYPE html>
 <html lang="${lang}">
-    <head><title>Not supported</title></head>
+    <head>
+        <title>Not supported</title>
+        <script src="<c:url value='/js/prototype.js'/>"></script>
+    </head>
 
     <c:set var="navTabLogs" value="active" scope="request"/>
 

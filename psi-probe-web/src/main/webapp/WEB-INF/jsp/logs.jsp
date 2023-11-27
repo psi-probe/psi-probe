@@ -22,9 +22,8 @@
 <!DOCTYPE html>
 <html lang="${lang}">
     <head>
-        <title>
-            <spring:message code="probe.jsp.title.logs"/>
-        </title>
+        <title><spring:message code="probe.jsp.title.logs"/></title>
+        <script src="<c:url value='/js/prototype.js'/>"></script>
     </head>
 
     <c:set var="navTabLogs" value="active" scope="request"/>

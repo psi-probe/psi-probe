@@ -24,6 +24,7 @@
         <title>
             <spring:message code="probe.jsp.title.sessionAttibutes"/>
         </title>
+        <script src="<c:url value='/js/prototype.js'/>"></script>
     </head>
 
     <%-- Make Tab #1 visually "active". --%>

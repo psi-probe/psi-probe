@@ -25,6 +25,7 @@
         <title>
             <spring:message htmlEscape="true" code="probe.jsp.title.app.filters" arguments="${param.webapp}"/>
         </title>
+        <script src="<c:url value='/js/prototype.js'/>"></script>
     </head>
 
     <%-- Make Tab #1 visually "active". --%>

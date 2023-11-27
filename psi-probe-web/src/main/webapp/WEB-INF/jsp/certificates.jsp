@@ -19,6 +19,7 @@
 
     <head>
         <title><spring:message code="probe.jsp.title.certificates"/></title>
+        <script src="<c:url value='/js/prototype.js'/>"></script>
     </head>
 
     <c:set var="navTabCertificates" value="active" scope="request"/>
