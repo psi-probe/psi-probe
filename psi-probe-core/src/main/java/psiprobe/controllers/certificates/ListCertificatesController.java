@@ -90,7 +90,9 @@ public class ListCertificatesController extends AbstractTomcatContainerControlle
               certificateInfo.setKeyStoreCerts(certs);
             }
           }
+          sslHostConfigInfo.setCertificateInfos(certificateInfos);
         }
+        info.setSslHostConfigInfos(sslHostConfigInfos);
       }
 
       modelAndView.addObject("connectors", infos);
