@@ -570,7 +570,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
               item.setCompileTime(System.currentTimeMillis() - time);
             }
             item.setMissing(false);
-            summary.getItems().put(name, item);
+            summary.putItem(name, item);
           } finally {
             ClassUtils.overrideThreadContextClassLoader(prevCl);
           }

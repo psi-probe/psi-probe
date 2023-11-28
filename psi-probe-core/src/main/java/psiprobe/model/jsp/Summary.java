@@ -69,6 +69,19 @@ public class Summary implements Serializable {
   }
 
   /**
+   * Put the items.
+   *
+   * @param string the string
+   * @param item the item
+   */
+  public void putItem(String string, Item item) {
+    if (items == null) {
+      items = new HashMap<>();
+    }
+    items.put(string, item);
+  }
+
+  /**
    * Gets the out of date count.
    *
    * @return the out of date count
