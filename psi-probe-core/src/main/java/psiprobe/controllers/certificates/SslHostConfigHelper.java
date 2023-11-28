@@ -66,10 +66,10 @@ public class SslHostConfigHelper {
 
     Set<SSLHostConfigCertificate> certificates = sslHostConfig.getCertificates();
     List<CertificateInfo> certificateInfos = new ArrayList<>(certificates.size());
-    sslHostConfigInfo.setCertificateInfos(certificateInfos);
     for (SSLHostConfigCertificate sslHostConfigCertificate : certificates) {
       certificateInfos.add(toCertificateInfo(sslHostConfigCertificate));
     }
+    sslHostConfigInfo.setCertificateInfos(certificateInfos);
 
     return sslHostConfigInfo;
   }
