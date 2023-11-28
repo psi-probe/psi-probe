@@ -11,6 +11,7 @@
 package psiprobe.model.jmx;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.management.ObjectName;
@@ -54,7 +55,8 @@ public class ThreadPoolObjectName {
    * @return the request processor names
    */
   public List<ObjectName> getRequestProcessorNames() {
-    return requestProcessorNames == null ? null : new ArrayList<>(requestProcessorNames);
+    return requestProcessorNames == null ? Collections.emptyList()
+        : new ArrayList<>(requestProcessorNames);
   }
 
   /**
@@ -81,8 +83,8 @@ public class ThreadPoolObjectName {
    * @param requestProcessorNames the new request processor names
    */
   public void setRequestProcessorNames(List<ObjectName> requestProcessorNames) {
-    this.requestProcessorNames =
-        requestProcessorNames == null ? null : new ArrayList<>(requestProcessorNames);
+    this.requestProcessorNames = requestProcessorNames == null ? Collections.emptyList()
+        : new ArrayList<>(requestProcessorNames);
   }
 
 }

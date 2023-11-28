@@ -12,6 +12,7 @@ package psiprobe.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
@@ -587,7 +588,7 @@ public class SessionSearchInfo implements Serializable {
    * @return the error messages
    */
   public List<String> getErrorMessages() {
-    return errorMessages == null ? null : new ArrayList<>(errorMessages);
+    return errorMessages == null ? Collections.emptyList() : new ArrayList<>(errorMessages);
   }
 
   /**

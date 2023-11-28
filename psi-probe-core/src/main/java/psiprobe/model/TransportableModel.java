@@ -10,6 +10,7 @@
  */
 package psiprobe.model;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,7 +28,7 @@ public class TransportableModel {
    * @return the items
    */
   public Map<String, Object> getItems() {
-    return items == null ? null : new HashMap<>(items);
+    return items == null ? Collections.emptyMap() : new HashMap<>(items);
   }
 
   /**
@@ -36,7 +37,7 @@ public class TransportableModel {
    * @param items the items
    */
   public void setItems(Map<String, Object> items) {
-    this.items = items == null ? null : new HashMap<>(items);
+    this.items = items == null ? Collections.emptyMap() : new HashMap<>(items);
   }
 
   /**

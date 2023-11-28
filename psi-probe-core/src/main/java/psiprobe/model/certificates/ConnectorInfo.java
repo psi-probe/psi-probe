@@ -12,6 +12,7 @@ package psiprobe.model.certificates;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -55,7 +56,8 @@ public class ConnectorInfo implements Serializable {
    * @return the SslHostConfig infos
    */
   public List<SslHostConfigInfo> getSslHostConfigInfos() {
-    return sslHostConfigInfos == null ? null : new ArrayList<>(sslHostConfigInfos);
+    return sslHostConfigInfos == null ? Collections.emptyList()
+        : new ArrayList<>(sslHostConfigInfos);
   }
 
   /**
@@ -65,7 +67,7 @@ public class ConnectorInfo implements Serializable {
    */
   public void setSslHostConfigInfos(List<SslHostConfigInfo> sslHostConfigInfos) {
     this.sslHostConfigInfos =
-        sslHostConfigInfos == null ? null : new ArrayList<>(sslHostConfigInfos);
+        sslHostConfigInfos == null ? Collections.emptyList() : new ArrayList<>(sslHostConfigInfos);
   }
 
   /**

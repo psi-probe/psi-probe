@@ -11,6 +11,7 @@
 package psiprobe.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -349,7 +350,7 @@ public class ServletInfo {
    * @return the mappings
    */
   public List<String> getMappings() {
-    return mappings == null ? null : new ArrayList<>(mappings);
+    return mappings == null ? Collections.emptyList() : new ArrayList<>(mappings);
   }
 
   /**
@@ -358,7 +359,7 @@ public class ServletInfo {
    * @param mappings the new mappings
    */
   public void setMappings(List<String> mappings) {
-    this.mappings = mappings == null ? null : new ArrayList<>(mappings);
+    this.mappings = mappings == null ? Collections.emptyList() : new ArrayList<>(mappings);
   }
 
 }
