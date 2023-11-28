@@ -390,7 +390,7 @@ public class SessionSearchInfo implements Serializable {
    * @return the attr name patterns
    */
   public List<Pattern> getAttrNamePatterns() {
-    return attrNamePatterns;
+    return attrNamePatterns == null ? Collections.emptyList() : new ArrayList<>(attrNamePatterns);
   }
 
   /**
@@ -399,7 +399,7 @@ public class SessionSearchInfo implements Serializable {
    * @return the attr name msgs
    */
   public List<String> getAttrNameMsgs() {
-    return attrNameMsgs;
+    return attrNameMsgs == null ? Collections.emptyList() : new ArrayList<>(attrNameMsgs);
   }
 
   /**
