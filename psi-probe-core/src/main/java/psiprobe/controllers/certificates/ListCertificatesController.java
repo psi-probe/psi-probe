@@ -29,8 +29,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.catalina.connector.Connector;
-import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.lang3.reflect.MethodUtils;
 import org.apache.coyote.ProtocolHandler;
 import org.apache.coyote.http11.AbstractHttp11JsseProtocol;
 import org.slf4j.Logger;
@@ -44,7 +42,6 @@ import psiprobe.controllers.AbstractTomcatContainerController;
 import psiprobe.model.certificates.Cert;
 import psiprobe.model.certificates.CertificateInfo;
 import psiprobe.model.certificates.ConnectorInfo;
-import psiprobe.model.certificates.OldConnectorInfo;
 import psiprobe.model.certificates.SslHostConfigInfo;
 
 /**
@@ -237,25 +234,13 @@ public class ListCertificatesController extends AbstractTomcatContainerControlle
     ConnectorInfo info = new ConnectorInfo();
     info.setName(ObjectName.unquote(protocol.getName()));
 
-    try {
-      // Introduced in Tomcat 8.5.x+
-      Object defaultSslHostConfigName =
-          MethodUtils.invokeMethod(protocol, "getDefaultSSLHostConfigName");
-      if (defaultSslHostConfigName == null) {
-        logger.error("Cannot determine defaultSslHostConfigName");
-        return info;
-      }
-      info.setDefaultSslHostConfigName(String.valueOf(defaultSslHostConfigName));
-      new SslHostConfigHelper(protocol, info);
-    } catch (NoSuchMethodException e) {
-      logger.trace("", e);
-      // We are using Tomcat 7 or 8, fill in the old way
-      OldConnectorInfo oldConnectorInfo = new OldConnectorInfo();
-      BeanUtils.copyProperties(oldConnectorInfo, protocol);
-
-      info.setDefaultSslHostConfigName("_default_");
-      info.setSslHostConfigInfos(oldConnectorInfo.getSslHostConfigInfos());
+    String defaultSslHostConfigName = protocol.getDefaultSSLHostConfigName();
+    if (defaultSslHostConfigName == null) {
+      logger.error("Cannot determine defaultSslHostConfigName");
+      return info;
     }
+    info.setDefaultSslHostConfigName(String.valueOf(defaultSslHostConfigName));
+    new SslHostConfigHelper(protocol, info);
 
     return info;
   }
