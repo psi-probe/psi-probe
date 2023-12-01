@@ -42,11 +42,10 @@ public class SslHostConfigHelper {
       throws IllegalAccessException, InvocationTargetException {
     SSLHostConfig[] sslHostConfigs = protocol.findSslHostConfigs();
     List<SslHostConfigInfo> sslHostConfigInfos = new ArrayList<>(sslHostConfigs.length);
-    info.setSslHostConfigInfos(sslHostConfigInfos);
-
     for (SSLHostConfig sslHostConfig : sslHostConfigs) {
       sslHostConfigInfos.add(toSslHostConfigInfo(sslHostConfig));
     }
+    info.setSslHostConfigInfos(sslHostConfigInfos);
   }
 
   /**
@@ -66,10 +65,10 @@ public class SslHostConfigHelper {
 
     Set<SSLHostConfigCertificate> certificates = sslHostConfig.getCertificates();
     List<CertificateInfo> certificateInfos = new ArrayList<>(certificates.size());
-    sslHostConfigInfo.setCertificateInfos(certificateInfos);
     for (SSLHostConfigCertificate sslHostConfigCertificate : certificates) {
       certificateInfos.add(toCertificateInfo(sslHostConfigCertificate));
     }
+    sslHostConfigInfo.setCertificateInfos(certificateInfos);
 
     return sslHostConfigInfo;
   }
