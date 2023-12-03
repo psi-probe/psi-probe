@@ -1808,7 +1808,7 @@
                             <dependency>
                                 <groupId>org.openrewrite.recipe</groupId>
                                 <artifactId>rewrite-spring</artifactId>
-                                <version>5.1.3</version>
+                                <version>5.1.4</version>
                             </dependency>
                         </dependencies>
                         <executions>
