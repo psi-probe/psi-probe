@@ -415,11 +415,11 @@
 <a class="jxr_linenumber" name="L407" href="#L407">407</a>       }
 <a class="jxr_linenumber" name="L408" href="#L408">408</a> 
 <a class="jxr_linenumber" name="L409" href="#L409">409</a>       Thread[] threads = <strong class="jxr_keyword">new</strong> Thread[masterGroup.activeCount()];
-<a class="jxr_linenumber" name="L410" href="#L410">410</a>       <strong class="jxr_keyword">int</strong> numThreads = masterGroup.enumerate(threads);
+<a class="jxr_linenumber" name="L410" href="#L410">410</a>       masterGroup.enumerate(threads);
 <a class="jxr_linenumber" name="L411" href="#L411">411</a> 
-<a class="jxr_linenumber" name="L412" href="#L412">412</a>       <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">int</strong> i = 0; i &lt; numThreads; i++) {
-<a class="jxr_linenumber" name="L413" href="#L413">413</a>         <strong class="jxr_keyword">if</strong> (threads[i] != <strong class="jxr_keyword">null</strong> &amp;&amp; name.equals(threads[i].getName())) {
-<a class="jxr_linenumber" name="L414" href="#L414">414</a>           <strong class="jxr_keyword">return</strong> threads[i];
+<a class="jxr_linenumber" name="L412" href="#L412">412</a>       <strong class="jxr_keyword">for</strong> (Thread thread : threads) {
+<a class="jxr_linenumber" name="L413" href="#L413">413</a>         <strong class="jxr_keyword">if</strong> (thread != <strong class="jxr_keyword">null</strong> &amp;&amp; name.equals(thread.getName())) {
+<a class="jxr_linenumber" name="L414" href="#L414">414</a>           <strong class="jxr_keyword">return</strong> thread;
 <a class="jxr_linenumber" name="L415" href="#L415">415</a>         }
 <a class="jxr_linenumber" name="L416" href="#L416">416</a>       }
 <a class="jxr_linenumber" name="L417" href="#L417">417</a>     }

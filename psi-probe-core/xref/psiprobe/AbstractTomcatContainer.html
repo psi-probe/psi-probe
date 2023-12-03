@@ -578,7 +578,7 @@
 <a class="jxr_linenumber" name="L570" href="#L570">570</a>               item.setCompileTime(System.currentTimeMillis() - time);
 <a class="jxr_linenumber" name="L571" href="#L571">571</a>             }
 <a class="jxr_linenumber" name="L572" href="#L572">572</a>             item.setMissing(false);
-<a class="jxr_linenumber" name="L573" href="#L573">573</a>             summary.getItems().put(name, item);
+<a class="jxr_linenumber" name="L573" href="#L573">573</a>             summary.putItem(name, item);
 <a class="jxr_linenumber" name="L574" href="#L574">574</a>           } <strong class="jxr_keyword">finally</strong> {
 <a class="jxr_linenumber" name="L575" href="#L575">575</a>             ClassUtils.overrideThreadContextClassLoader(prevCl);
 <a class="jxr_linenumber" name="L576" href="#L576">576</a>           }
