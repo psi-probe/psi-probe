@@ -13,12 +13,15 @@
 -->
 <settings xmlns="http://maven.apache.org/SETTINGS/1.2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.2.0 https://maven.apache.org/xsd/settings-1.2.0.xsd">
+
   <servers>
+    <!-- Used for sonatype snapshots and releases -->
     <server>
       <id>ossrh</id>
       <username>${env.CI_DEPLOY_USERNAME}</username>
       <password>${env.CI_DEPLOY_PASSWORD}</password>
     </server>
+
     <!-- Used for gh-pages-scm publish via maven-scm-publish-plugin -->
     <server>
       <id>gh-pages-scm</id>
@@ -27,10 +30,19 @@
         <scmVersion>gh-pages</scmVersion>
       </configuration>
     </server>
+
+    <!-- Github deployments (site) -->
     <server>
       <id>github</id>
       <username>${env.CI_DEPLOY_USERNAME}</username>
       <password>${env.GITHUB_TOKEN}</password>
     </server>
+
+    <!-- NVD API Access (dependency-check-plugin) -->
+    <server>
+      <id>nvd</id>
+      <password>${env.NVD_API_KEY}</password>
+    </server>
   </servers>
+
 </settings>
