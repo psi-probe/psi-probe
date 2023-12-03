@@ -227,7 +227,7 @@
         <install.plugin>3.1.1</install.plugin>
         <jacoco.plugin>0.8.11</jacoco.plugin>
         <jar.plugin>3.3.0</jar.plugin>
-        <javadoc.plugin>3.6.2</javadoc.plugin>
+        <javadoc.plugin>3.6.3</javadoc.plugin>
         <jdeps.plugin>3.1.2</jdeps.plugin>
         <jspc.plugin>10.0.18</jspc.plugin>
         <jxr.plugin>3.3.1</jxr.plugin>
