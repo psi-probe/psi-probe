@@ -811,6 +811,7 @@
                     <version>${dependency-check.plugin}</version>
                     <configuration>
                         <failOnError>false</failOnError>
+                        <nvdApiServerId>nvd</nvdApiServerId>
                     </configuration>
                 </plugin>
                 <plugin>
