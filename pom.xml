@@ -1407,10 +1407,6 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jdeps-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-project-info-reports-plugin</artifactId>
                 <configuration>
                     <dependencyDetailsEnabled>false</dependencyDetailsEnabled>
@@ -1445,9 +1441,14 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-pmd-plugin</artifactId>
-                <configuration>
-                    <aggregate>true</aggregate>
-                </configuration>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>aggregate-cpd</report>
+                            <report>aggregate-pmd</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
             </plugin>
             <plugin>
                 <groupId>org.jacoco</groupId>
