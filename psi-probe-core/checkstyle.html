@@ -58,6 +58,8 @@
                   <li><a href="xref-test/index.html">Test Source Xref</a></li>
                   <li><a>Checkstyle</a></li>
                   <li><a href="spotbugs.html">SpotBugs</a></li>
+                  <li><a href="cpd.html">CPD</a></li>
+                  <li><a href="pmd.html">PMD</a></li>
                   <li><a href="dependency-check-report.html">dependency-check:aggregate</a></li>
               </ul>
             </li>
@@ -79,15 +81,15 @@
       <header>
         <div id="banner">
           <div class="pull-left"><div id="bannerLeft"><h1><a href=".."><img class="imageLink" src="images/psi-probe-banner.jpg" /></a></h1></div></div>
-          <div class="pull-right"><div id="bannerRight"><h1><a href="https://tomcat.apache.org/" class="externalLink"><img class="imageLink" src="https://tomcat.apache.org/images/tomcat.png" /></a></h1></div></div>
+          <div class="pull-right"><div id="bannerRight"><h1><a href="https://tomcat.apache.org/" class="externalLink"><img class="imageLink" src="https://tomcat.apache.org/res/images/tomcat.png" /></a></h1></div></div>
           <div class="clear"><hr/></div>
         </div>
 
         <div id="breadcrumbs">
           <ul class="breadcrumb">
-        <li id="publishDate">Last Published: 2023-11-02<span class="divider">|</span>
+        <li id="publishDate">Last Published: 2023-12-03<span class="divider">|</span>
 </li>
-          <li id="projectVersion">Version: 4.0.1-SNAPSHOT</li>
+          <li id="projectVersion">Version: 4.1.1-SNAPSHOT</li>
           </ul>
         </div>
       </header>
@@ -106,6 +108,8 @@
       <li><a href="xref-test/index.html">Test Source Xref</a></li>
       <li class="active"><a>Checkstyle</a></li>
       <li><a href="spotbugs.html">SpotBugs</a></li>
+      <li><a href="cpd.html">CPD</a></li>
+      <li><a href="pmd.html">PMD</a></li>
       <li><a href="dependency-check-report.html">dependency-check:aggregate</a></li>
      </ul></li>
   </ul>
@@ -133,7 +137,7 @@
 <tr class="b">
 <td style="text-align: left;">352</td>
 <td>0</td>
-<td>526</td>
+<td>525</td>
 <td>0</td></tr></table></section><section>
 <h2>Files</h2><a id="Files"></a>
 <table class="table table-striped">
@@ -1115,7 +1119,7 @@
 <tr class="b">
 <td style="text-align: left;"><a href="#psiprobe.2Ftools.2FJmxTools.java">psiprobe/tools/JmxTools.java</a></td>
 <td>0</td>
-<td>2</td>
+<td>1</td>
 <td>0</td></tr>
 <tr class="a">
 <td style="text-align: left;"><a href="#psiprobe.2Ftools.2FLogOutputStream.java">psiprobe/tools/LogOutputStream.java</a></td>
@@ -1326,21 +1330,10 @@
 <td><img src="images/icon_warning_sml.gif" />&#160;Warning</td></tr>
 <tr class="b">
 <td style="text-align: left;">javadoc</td>
-<td><a class="externalLink" href="https://checkstyle.org/config_javadoc.html#JavadocMethod">JavadocMethod</a>
-<ul>
-<li>tokens: <code>&quot;METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF&quot;</code></li>
-<li>accessModifiers: <code>&quot;public&quot;</code></li>
-<li>allowMissingReturnTag: <code>&quot;true&quot;</code></li>
-<li>allowMissingParamTags: <code>&quot;true&quot;</code></li>
-<li>allowedAnnotations: <code>&quot;Override, Test&quot;</code></li></ul></td>
-<td>1</td>
-<td><img src="images/icon_warning_sml.gif" />&#160;Warning</td></tr>
-<tr class="a">
-<td style="text-align: left;"></td>
 <td><a class="externalLink" href="https://checkstyle.org/config_javadoc.html#JavadocParagraph">JavadocParagraph</a></td>
 <td>19</td>
 <td><img src="images/icon_warning_sml.gif" />&#160;Warning</td></tr>
-<tr class="b">
+<tr class="a">
 <td style="text-align: left;">naming</td>
 <td><a class="externalLink" href="https://checkstyle.org/config_naming.html#AbbreviationAsWordInName">AbbreviationAsWordInName</a>
 <ul>
@@ -1350,21 +1343,21 @@
 <li>allowedAbbreviationLength: <code>&quot;0&quot;</code></li></ul></td>
 <td>29</td>
 <td><img src="images/icon_warning_sml.gif" />&#160;Warning</td></tr>
-<tr class="a">
+<tr class="b">
 <td style="text-align: left;"></td>
 <td><a class="externalLink" href="https://checkstyle.org/config_naming.html#MemberName">MemberName</a>
 <ul>
 <li>format: <code>&quot;^[a-z][a-z0-9][a-zA-Z0-9]*$&quot;</code></li></ul></td>
 <td>2</td>
 <td><img src="images/icon_warning_sml.gif" />&#160;Warning</td></tr>
-<tr class="b">
+<tr class="a">
 <td style="text-align: left;"></td>
 <td><a class="externalLink" href="https://checkstyle.org/config_naming.html#ParameterName">ParameterName</a>
 <ul>
 <li>format: <code>&quot;^[a-z]([a-z0-9][a-zA-Z0-9]*)?$&quot;</code></li></ul></td>
 <td>2</td>
 <td><img src="images/icon_warning_sml.gif" />&#160;Warning</td></tr>
-<tr class="a">
+<tr class="b">
 <td style="text-align: left;">sizes</td>
 <td><a class="externalLink" href="https://checkstyle.org/config_sizes.html#LineLength">LineLength</a>
 <ul>
@@ -1373,7 +1366,7 @@
 <li>ignorePattern: <code>&quot;^package.*|^import.*|a href|href|http://|https://|ftp://&quot;</code></li></ul></td>
 <td>6</td>
 <td><img src="images/icon_error_sml.gif" />&#160;Error</td></tr>
-<tr class="b">
+<tr class="a">
 <td style="text-align: left;">whitespace</td>
 <td><a class="externalLink" href="https://checkstyle.org/config_whitespace.html#WhitespaceAfter">WhitespaceAfter</a>
 <ul>
@@ -1556,13 +1549,13 @@
 <td>sizes</td>
 <td>LineLength</td>
 <td>Line is longer than 120 characters (found 121).</td>
-<td><a href="./xref/psiprobe/ProbeSecurityConfig.html#L117">117</a></td></tr>
+<td><a href="./xref/psiprobe/ProbeSecurityConfig.html#L116">116</a></td></tr>
 <tr class="a">
 <td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;Warning</td>
 <td>sizes</td>
 <td>LineLength</td>
 <td>Line is longer than 120 characters (found 127).</td>
-<td><a href="./xref/psiprobe/ProbeSecurityConfig.html#L171">171</a></td></tr></table></section><section>
+<td><a href="./xref/psiprobe/ProbeSecurityConfig.html#L170">170</a></td></tr></table></section><section>
 <h3>psiprobe/ProbeServlet.java</h3><a id="psiprobe.2FProbeServlet.java"></a>
 <table class="table table-striped">
 <tr class="a">
@@ -5628,13 +5621,7 @@
 <td>imports</td>
 <td>CustomImportOrder</td>
 <td>Extra separation in import group before 'org.slf4j.Logger'</td>
-<td><a href="./xref/psiprobe/tools/JmxTools.html#L25">25</a></td></tr>
-<tr class="a">
-<td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;Warning</td>
-<td>javadoc</td>
-<td>JavadocMethod</td>
-<td>Unused @param tag for 'cds'.</td>
-<td><a href="./xref/psiprobe/tools/JmxTools.html#L159">159</a></td></tr></table></section><section>
+<td><a href="./xref/psiprobe/tools/JmxTools.html#L25">25</a></td></tr></table></section><section>
 <h3>psiprobe/tools/LogOutputStream.java</h3><a id="psiprobe.2Ftools.2FLogOutputStream.java"></a>
 <table class="table table-striped">
 <tr class="a">

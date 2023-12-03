@@ -92,7 +92,7 @@
       <header>
         <div id="banner">
           <div class="pull-left"><div id="bannerLeft"><h1><a href="./"><img class="imageLink" src="images/psi-probe-banner.jpg" /></a></h1></div></div>
-          <div class="pull-right"><div id="bannerRight"><h1><a href="https://tomcat.apache.org/" class="externalLink"><img class="imageLink" src="https://tomcat.apache.org/images/tomcat.png" /></a></h1></div></div>
+          <div class="pull-right"><div id="bannerRight"><h1><a href="https://tomcat.apache.org/" class="externalLink"><img class="imageLink" src="https://tomcat.apache.org/res/images/tomcat.png" /></a></h1></div></div>
           <div class="clear"><hr/></div>
         </div>
 
@@ -100,7 +100,7 @@
           <ul class="breadcrumb">
         <li id="publishDate">Last Published: 2023-12-03<span class="divider">|</span>
 </li>
-          <li id="projectVersion">Version: 4.1.0</li>
+          <li id="projectVersion">Version: 4.1.1-SNAPSHOT</li>
           </ul>
         </div>
       </header>
@@ -150,11 +150,11 @@
 <th>Project</th>
 <th>Line</th></tr>
 <tr class="b">
-<td style="text-align: left;">psiprobe\Tomcat85ContainerAdapter.java</td>
+<td style="text-align: left;">psiprobe/Tomcat85ContainerAdapter.java</td>
 <td>psi-probe-tomcat85</td>
 <td><a href="./xref/psiprobe/Tomcat85ContainerAdapter.html#L60">60</a></td></tr>
 <tr class="a">
-<td style="text-align: left;">psiprobe\Tomcat90ContainerAdapter.java</td>
+<td style="text-align: left;">psiprobe/Tomcat90ContainerAdapter.java</td>
 <td>psi-probe-tomcat9</td>
 <td><a href="./xref/psiprobe/Tomcat90ContainerAdapter.html#L59">59</a></td></tr>
 <tr class="b">
@@ -384,17 +384,17 @@
 <th>Project</th>
 <th>Line</th></tr>
 <tr class="b">
-<td style="text-align: left;">psiprobe\tools\logging\logback13\Logback13LoggerAccessor.java</td>
-<td>psi-probe-core</td>
-<td><a href="./xref/psiprobe/tools/logging/logback13/Logback13LoggerAccessor.html#L67">67</a></td></tr>
-<tr class="a">
-<td style="text-align: left;">psiprobe\tools\logging\logback\LogbackLoggerAccessor.java</td>
+<td style="text-align: left;">psiprobe/tools/logging/logback/LogbackLoggerAccessor.java</td>
 <td>psi-probe-core</td>
 <td><a href="./xref/psiprobe/tools/logging/logback/LogbackLoggerAccessor.html#L70">70</a></td></tr>
+<tr class="a">
+<td style="text-align: left;">psiprobe/tools/logging/logback13/Logback13LoggerAccessor.java</td>
+<td>psi-probe-core</td>
+<td><a href="./xref/psiprobe/tools/logging/logback13/Logback13LoggerAccessor.html#L67">67</a></td></tr>
 <tr class="b">
 <td colspan="3" style="text-align: left;">
 <div class="verbatim">
-<pre>for (Logback13AppenderAccessor wrappedAppender : appenders) {
+<pre>for (LogbackAppenderAccessor wrappedAppender : appenders) {
           if (wrappedAppender.getIndex().equals(name)) {
             return wrappedAppender;
           }
@@ -490,24 +490,24 @@
    * @param appender the appender
    * @param appenders the appenders
    */
-  private void wrapAndAddAppender(Object appender, List&lt;Logback13AppenderAccessor&gt; appenders) {</pre></div></td></tr></table>
+  private void wrapAndAddAppender(Object appender, List&lt;LogbackAppenderAccessor&gt; appenders) {</pre></div></td></tr></table>
 <table class="table table-striped">
 <tr class="a">
 <th>File</th>
 <th>Project</th>
 <th>Line</th></tr>
 <tr class="b">
-<td style="text-align: left;">psiprobe\tools\logging\slf4jlogback13\TomcatSlf4jLogback13LoggerAccessor.java</td>
-<td>psi-probe-core</td>
-<td><a href="./xref/psiprobe/tools/logging/slf4jlogback13/TomcatSlf4jLogback13LoggerAccessor.html#L71">71</a></td></tr>
-<tr class="a">
-<td style="text-align: left;">psiprobe\tools\logging\slf4jlogback\TomcatSlf4jLogbackLoggerAccessor.java</td>
+<td style="text-align: left;">psiprobe/tools/logging/slf4jlogback/TomcatSlf4jLogbackLoggerAccessor.java</td>
 <td>psi-probe-core</td>
 <td><a href="./xref/psiprobe/tools/logging/slf4jlogback/TomcatSlf4jLogbackLoggerAccessor.html#L71">71</a></td></tr>
+<tr class="a">
+<td style="text-align: left;">psiprobe/tools/logging/slf4jlogback13/TomcatSlf4jLogback13LoggerAccessor.java</td>
+<td>psi-probe-core</td>
+<td><a href="./xref/psiprobe/tools/logging/slf4jlogback13/TomcatSlf4jLogback13LoggerAccessor.html#L71">71</a></td></tr>
 <tr class="b">
 <td colspan="3" style="text-align: left;">
 <div class="verbatim">
-<pre>for (TomcatSlf4jLogback13AppenderAccessor wrappedAppender : appenders) {
+<pre>for (TomcatSlf4jLogbackAppenderAccessor wrappedAppender : appenders) {
           if (wrappedAppender.getIndex().equals(name)) {
             return wrappedAppender;
           }
@@ -606,32 +606,32 @@
    * @param appenders the appenders
    */
   private void wrapAndAddAppender(Object appender,
-      List&lt;TomcatSlf4jLogback13AppenderAccessor&gt; appenders) {</pre></div></td></tr></table>
+      List&lt;TomcatSlf4jLogbackAppenderAccessor&gt; appenders) {</pre></div></td></tr></table>
 <table class="table table-striped">
 <tr class="a">
 <th>File</th>
 <th>Project</th>
 <th>Line</th></tr>
 <tr class="b">
-<td style="text-align: left;">psiprobe\tools\logging\logback13\Logback13LoggerAccessor.java</td>
-<td>psi-probe-core</td>
-<td><a href="./xref/psiprobe/tools/logging/logback13/Logback13LoggerAccessor.html#L67">67</a></td></tr>
-<tr class="a">
-<td style="text-align: left;">psiprobe\tools\logging\logback\LogbackLoggerAccessor.java</td>
+<td style="text-align: left;">psiprobe/tools/logging/logback/LogbackLoggerAccessor.java</td>
 <td>psi-probe-core</td>
 <td><a href="./xref/psiprobe/tools/logging/logback/LogbackLoggerAccessor.html#L70">70</a></td></tr>
-<tr class="b">
-<td style="text-align: left;">psiprobe\tools\logging\slf4jlogback13\TomcatSlf4jLogback13LoggerAccessor.java</td>
-<td>psi-probe-core</td>
-<td><a href="./xref/psiprobe/tools/logging/slf4jlogback13/TomcatSlf4jLogback13LoggerAccessor.html#L71">71</a></td></tr>
 <tr class="a">
-<td style="text-align: left;">psiprobe\tools\logging\slf4jlogback\TomcatSlf4jLogbackLoggerAccessor.java</td>
+<td style="text-align: left;">psiprobe/tools/logging/logback13/Logback13LoggerAccessor.java</td>
+<td>psi-probe-core</td>
+<td><a href="./xref/psiprobe/tools/logging/logback13/Logback13LoggerAccessor.html#L67">67</a></td></tr>
+<tr class="b">
+<td style="text-align: left;">psiprobe/tools/logging/slf4jlogback/TomcatSlf4jLogbackLoggerAccessor.java</td>
 <td>psi-probe-core</td>
 <td><a href="./xref/psiprobe/tools/logging/slf4jlogback/TomcatSlf4jLogbackLoggerAccessor.html#L71">71</a></td></tr>
+<tr class="a">
+<td style="text-align: left;">psiprobe/tools/logging/slf4jlogback13/TomcatSlf4jLogback13LoggerAccessor.java</td>
+<td>psi-probe-core</td>
+<td><a href="./xref/psiprobe/tools/logging/slf4jlogback13/TomcatSlf4jLogback13LoggerAccessor.html#L71">71</a></td></tr>
 <tr class="b">
 <td colspan="3" style="text-align: left;">
 <div class="verbatim">
-<pre>for (Logback13AppenderAccessor wrappedAppender : appenders) {
+<pre>for (LogbackAppenderAccessor wrappedAppender : appenders) {
           if (wrappedAppender.getIndex().equals(name)) {
             return wrappedAppender;
           }
@@ -719,21 +719,21 @@
 <th>Project</th>
 <th>Line</th></tr>
 <tr class="b">
-<td style="text-align: left;">psiprobe\tools\logging\logback13\Logback13AppenderAccessor.java</td>
-<td>psi-probe-core</td>
-<td><a href="./xref/psiprobe/tools/logging/logback13/Logback13AppenderAccessor.html#L71">71</a></td></tr>
-<tr class="a">
-<td style="text-align: left;">psiprobe\tools\logging\logback\LogbackAppenderAccessor.java</td>
+<td style="text-align: left;">psiprobe/tools/logging/logback/LogbackAppenderAccessor.java</td>
 <td>psi-probe-core</td>
 <td><a href="./xref/psiprobe/tools/logging/logback/LogbackAppenderAccessor.html#L71">71</a></td></tr>
-<tr class="b">
-<td style="text-align: left;">psiprobe\tools\logging\slf4jlogback13\TomcatSlf4jLogback13AppenderAccessor.java</td>
-<td>psi-probe-core</td>
-<td><a href="./xref/psiprobe/tools/logging/slf4jlogback13/TomcatSlf4jLogback13AppenderAccessor.html#L71">71</a></td></tr>
 <tr class="a">
-<td style="text-align: left;">psiprobe\tools\logging\slf4jlogback\TomcatSlf4jLogbackAppenderAccessor.java</td>
+<td style="text-align: left;">psiprobe/tools/logging/logback13/Logback13AppenderAccessor.java</td>
+<td>psi-probe-core</td>
+<td><a href="./xref/psiprobe/tools/logging/logback13/Logback13AppenderAccessor.html#L71">71</a></td></tr>
+<tr class="b">
+<td style="text-align: left;">psiprobe/tools/logging/slf4jlogback/TomcatSlf4jLogbackAppenderAccessor.java</td>
 <td>psi-probe-core</td>
 <td><a href="./xref/psiprobe/tools/logging/slf4jlogback/TomcatSlf4jLogbackAppenderAccessor.html#L71">71</a></td></tr>
+<tr class="a">
+<td style="text-align: left;">psiprobe/tools/logging/slf4jlogback13/TomcatSlf4jLogback13AppenderAccessor.java</td>
+<td>psi-probe-core</td>
+<td><a href="./xref/psiprobe/tools/logging/slf4jlogback13/TomcatSlf4jLogback13AppenderAccessor.html#L71">71</a></td></tr>
 <tr class="b">
 <td colspan="3" style="text-align: left;">
 <div class="verbatim">
@@ -810,25 +810,25 @@
 <th>Project</th>
 <th>Line</th></tr>
 <tr class="b">
-<td style="text-align: left;">psiprobe\tools\logging\log4j\Log4JLoggerAccessor.java</td>
+<td style="text-align: left;">psiprobe/tools/logging/log4j/Log4JLoggerAccessor.java</td>
 <td>psi-probe-core</td>
 <td><a href="./xref/psiprobe/tools/logging/log4j/Log4JLoggerAccessor.html#L93">93</a></td></tr>
 <tr class="a">
-<td style="text-align: left;">psiprobe\tools\logging\logback13\Logback13LoggerAccessor.java</td>
-<td>psi-probe-core</td>
-<td><a href="./xref/psiprobe/tools/logging/logback13/Logback13LoggerAccessor.html#L95">95</a></td></tr>
-<tr class="b">
-<td style="text-align: left;">psiprobe\tools\logging\logback\LogbackLoggerAccessor.java</td>
+<td style="text-align: left;">psiprobe/tools/logging/logback/LogbackLoggerAccessor.java</td>
 <td>psi-probe-core</td>
 <td><a href="./xref/psiprobe/tools/logging/logback/LogbackLoggerAccessor.html#L98">98</a></td></tr>
-<tr class="a">
-<td style="text-align: left;">psiprobe\tools\logging\slf4jlogback13\TomcatSlf4jLogback13LoggerAccessor.java</td>
-<td>psi-probe-core</td>
-<td><a href="./xref/psiprobe/tools/logging/slf4jlogback13/TomcatSlf4jLogback13LoggerAccessor.html#L99">99</a></td></tr>
 <tr class="b">
-<td style="text-align: left;">psiprobe\tools\logging\slf4jlogback\TomcatSlf4jLogbackLoggerAccessor.java</td>
+<td style="text-align: left;">psiprobe/tools/logging/logback13/Logback13LoggerAccessor.java</td>
+<td>psi-probe-core</td>
+<td><a href="./xref/psiprobe/tools/logging/logback13/Logback13LoggerAccessor.html#L95">95</a></td></tr>
+<tr class="a">
+<td style="text-align: left;">psiprobe/tools/logging/slf4jlogback/TomcatSlf4jLogbackLoggerAccessor.java</td>
 <td>psi-probe-core</td>
 <td><a href="./xref/psiprobe/tools/logging/slf4jlogback/TomcatSlf4jLogbackLoggerAccessor.html#L99">99</a></td></tr>
+<tr class="b">
+<td style="text-align: left;">psiprobe/tools/logging/slf4jlogback13/TomcatSlf4jLogback13LoggerAccessor.java</td>
+<td>psi-probe-core</td>
+<td><a href="./xref/psiprobe/tools/logging/slf4jlogback13/TomcatSlf4jLogback13LoggerAccessor.html#L99">99</a></td></tr>
 <tr class="a">
 <td colspan="3" style="text-align: left;">
 <div class="verbatim">
@@ -879,17 +879,17 @@
 <th>Project</th>
 <th>Line</th></tr>
 <tr class="b">
-<td style="text-align: left;">psiprobe\tools\logging\slf4jlogback13\TomcatSlf4jLogback13LoggerAccessor.java</td>
-<td>psi-probe-core</td>
-<td><a href="./xref/psiprobe/tools/logging/slf4jlogback13/TomcatSlf4jLogback13LoggerAccessor.html#L36">36</a></td></tr>
-<tr class="a">
-<td style="text-align: left;">psiprobe\tools\logging\slf4jlogback\TomcatSlf4jLogbackLoggerAccessor.java</td>
+<td style="text-align: left;">psiprobe/tools/logging/slf4jlogback/TomcatSlf4jLogbackLoggerAccessor.java</td>
 <td>psi-probe-core</td>
 <td><a href="./xref/psiprobe/tools/logging/slf4jlogback/TomcatSlf4jLogbackLoggerAccessor.html#L36">36</a></td></tr>
+<tr class="a">
+<td style="text-align: left;">psiprobe/tools/logging/slf4jlogback13/TomcatSlf4jLogback13LoggerAccessor.java</td>
+<td>psi-probe-core</td>
+<td><a href="./xref/psiprobe/tools/logging/slf4jlogback13/TomcatSlf4jLogback13LoggerAccessor.html#L36">36</a></td></tr>
 <tr class="b">
 <td colspan="3" style="text-align: left;">
 <div class="verbatim">
-<pre>List&lt;TomcatSlf4jLogback13AppenderAccessor&gt; appenders = new ArrayList&lt;&gt;();
+<pre>List&lt;TomcatSlf4jLogbackAppenderAccessor&gt; appenders = new ArrayList&lt;&gt;();
 
     try {
       for (Object appender : Collections.list(Iterators.asEnumeration(
@@ -919,18 +919,18 @@
    *
    * @return the appender with the given name, or null if no such appender exists for this logger
    */
-  public TomcatSlf4jLogback13AppenderAccessor getAppender(String name) {</pre></div></td></tr></table>
+  public TomcatSlf4jLogbackAppenderAccessor getAppender(String name) {</pre></div></td></tr></table>
 <table class="table table-striped">
 <tr class="a">
 <th>File</th>
 <th>Project</th>
 <th>Line</th></tr>
 <tr class="b">
-<td style="text-align: left;">psiprobe\beans\accessors\Tomcat85DbcpDatasourceAccessor.java</td>
+<td style="text-align: left;">psiprobe/beans/accessors/Tomcat85DbcpDatasourceAccessor.java</td>
 <td>psi-probe-tomcat85</td>
 <td><a href="./xref/psiprobe/beans/accessors/Tomcat85DbcpDatasourceAccessor.html#L20">20</a></td></tr>
 <tr class="a">
-<td style="text-align: left;">psiprobe\beans\accessors\Tomcat9DbcpDatasourceAccessor.java</td>
+<td style="text-align: left;">psiprobe/beans/accessors/Tomcat9DbcpDatasourceAccessor.java</td>
 <td>psi-probe-tomcat9</td>
 <td><a href="./xref/psiprobe/beans/accessors/Tomcat9DbcpDatasourceAccessor.html#L20">20</a></td></tr>
 <tr class="b">
@@ -973,25 +973,25 @@
 <th>Project</th>
 <th>Line</th></tr>
 <tr class="b">
-<td style="text-align: left;">psiprobe\tools\logging\log4j2\Log4J2LoggerConfigAccessor.java</td>
+<td style="text-align: left;">psiprobe/tools/logging/log4j2/Log4J2LoggerConfigAccessor.java</td>
 <td>psi-probe-core</td>
 <td><a href="./xref/psiprobe/tools/logging/log4j2/Log4J2LoggerConfigAccessor.html#L120">120</a></td></tr>
 <tr class="a">
-<td style="text-align: left;">psiprobe\tools\logging\logback13\Logback13LoggerAccessor.java</td>
-<td>psi-probe-core</td>
-<td><a href="./xref/psiprobe/tools/logging/logback13/Logback13LoggerAccessor.html#L95">95</a></td></tr>
-<tr class="b">
-<td style="text-align: left;">psiprobe\tools\logging\logback\LogbackLoggerAccessor.java</td>
+<td style="text-align: left;">psiprobe/tools/logging/logback/LogbackLoggerAccessor.java</td>
 <td>psi-probe-core</td>
 <td><a href="./xref/psiprobe/tools/logging/logback/LogbackLoggerAccessor.html#L98">98</a></td></tr>
-<tr class="a">
-<td style="text-align: left;">psiprobe\tools\logging\slf4jlogback13\TomcatSlf4jLogback13LoggerAccessor.java</td>
-<td>psi-probe-core</td>
-<td><a href="./xref/psiprobe/tools/logging/slf4jlogback13/TomcatSlf4jLogback13LoggerAccessor.html#L99">99</a></td></tr>
 <tr class="b">
-<td style="text-align: left;">psiprobe\tools\logging\slf4jlogback\TomcatSlf4jLogbackLoggerAccessor.java</td>
+<td style="text-align: left;">psiprobe/tools/logging/logback13/Logback13LoggerAccessor.java</td>
+<td>psi-probe-core</td>
+<td><a href="./xref/psiprobe/tools/logging/logback13/Logback13LoggerAccessor.html#L95">95</a></td></tr>
+<tr class="a">
+<td style="text-align: left;">psiprobe/tools/logging/slf4jlogback/TomcatSlf4jLogbackLoggerAccessor.java</td>
 <td>psi-probe-core</td>
 <td><a href="./xref/psiprobe/tools/logging/slf4jlogback/TomcatSlf4jLogbackLoggerAccessor.html#L99">99</a></td></tr>
+<tr class="b">
+<td style="text-align: left;">psiprobe/tools/logging/slf4jlogback13/TomcatSlf4jLogback13LoggerAccessor.java</td>
+<td>psi-probe-core</td>
+<td><a href="./xref/psiprobe/tools/logging/slf4jlogback13/TomcatSlf4jLogback13LoggerAccessor.html#L99">99</a></td></tr>
 <tr class="a">
 <td colspan="3" style="text-align: left;">
 <div class="verbatim">
@@ -1038,11 +1038,11 @@
 <th>Project</th>
 <th>Line</th></tr>
 <tr class="b">
-<td style="text-align: left;">psiprobe\controllers\deploy\CopySingleFileController.java</td>
+<td style="text-align: left;">psiprobe/controllers/deploy/CopySingleFileController.java</td>
 <td>psi-probe-core</td>
 <td><a href="./xref/psiprobe/controllers/deploy/CopySingleFileController.html#L72">72</a></td></tr>
 <tr class="a">
-<td style="text-align: left;">psiprobe\controllers\deploy\DeployController.java</td>
+<td style="text-align: left;">psiprobe/controllers/deploy/DeployController.java</td>
 <td>psi-probe-core</td>
 <td><a href="./xref/psiprobe/controllers/deploy/DeployController.html#L48">48</a></td></tr>
 <tr class="b">
@@ -1073,17 +1073,17 @@
 <th>Project</th>
 <th>Line</th></tr>
 <tr class="b">
-<td style="text-align: left;">psiprobe\tools\logging\log4j2\Log4J2LoggerConfigAccessor.java</td>
-<td>psi-probe-core</td>
-<td><a href="./xref/psiprobe/tools/logging/log4j2/Log4J2LoggerConfigAccessor.html#L120">120</a></td></tr>
-<tr class="a">
-<td style="text-align: left;">psiprobe\tools\logging\log4j\Log4JLoggerAccessor.java</td>
+<td style="text-align: left;">psiprobe/tools/logging/log4j/Log4JLoggerAccessor.java</td>
 <td>psi-probe-core</td>
 <td><a href="./xref/psiprobe/tools/logging/log4j/Log4JLoggerAccessor.html#L93">93</a></td></tr>
+<tr class="a">
+<td style="text-align: left;">psiprobe/tools/logging/log4j2/Log4J2LoggerConfigAccessor.java</td>
+<td>psi-probe-core</td>
+<td><a href="./xref/psiprobe/tools/logging/log4j2/Log4J2LoggerConfigAccessor.html#L120">120</a></td></tr>
 <tr class="b">
 <td colspan="3" style="text-align: left;">
 <div class="verbatim">
-<pre>return Strings.isNullOrEmpty(getName());
+<pre>return &quot;root&quot;.equals(getName()) &amp;&amp; &quot;org.apache.log4j.spi.RootLogger&quot;.equals(getTargetClass());
   }
 
   /**
@@ -1126,11 +1126,11 @@
 <th>Project</th>
 <th>Line</th></tr>
 <tr class="b">
-<td style="text-align: left;">psiprobe\beans\accessors\Dbcp2DatasourceAccessor.java</td>
+<td style="text-align: left;">psiprobe/beans/accessors/Dbcp2DatasourceAccessor.java</td>
 <td>psi-probe-core</td>
 <td><a href="./xref/psiprobe/beans/accessors/Dbcp2DatasourceAccessor.html#L20">20</a></td></tr>
 <tr class="a">
-<td style="text-align: left;">psiprobe\beans\accessors\OpenEjbBasicDatasourceAccessor.java</td>
+<td style="text-align: left;">psiprobe/beans/accessors/OpenEjbBasicDatasourceAccessor.java</td>
 <td>psi-probe-core</td>
 <td><a href="./xref/psiprobe/beans/accessors/OpenEjbBasicDatasourceAccessor.html#L20">20</a></td></tr>
 <tr class="b">
@@ -1169,11 +1169,11 @@
 <th>Project</th>
 <th>Line</th></tr>
 <tr class="b">
-<td style="text-align: left;">psiprobe\controllers\deploy\CopySingleFileController.java</td>
+<td style="text-align: left;">psiprobe/controllers/deploy/CopySingleFileController.java</td>
 <td>psi-probe-core</td>
 <td><a href="./xref/psiprobe/controllers/deploy/CopySingleFileController.html#L95">95</a></td></tr>
 <tr class="a">
-<td style="text-align: left;">psiprobe\controllers\deploy\UploadWarController.java</td>
+<td style="text-align: left;">psiprobe/controllers/deploy/UploadWarController.java</td>
 <td>psi-probe-core</td>
 <td><a href="./xref/psiprobe/controllers/deploy/UploadWarController.html#L72">72</a></td></tr>
 <tr class="b">
@@ -1199,11 +1199,11 @@
 <th>Project</th>
 <th>Line</th></tr>
 <tr class="b">
-<td style="text-align: left;">psiprobe\tools\logging\logback13\Logback13FactoryAccessor.java</td>
+<td style="text-align: left;">psiprobe/tools/logging/logback13/Logback13FactoryAccessor.java</td>
 <td>psi-probe-core</td>
 <td><a href="./xref/psiprobe/tools/logging/logback13/Logback13FactoryAccessor.html#L47">47</a></td></tr>
 <tr class="a">
-<td style="text-align: left;">psiprobe\tools\logging\slf4jlogback13\TomcatSlf4jLogback13FactoryAccessor.java</td>
+<td style="text-align: left;">psiprobe/tools/logging/slf4jlogback13/TomcatSlf4jLogback13FactoryAccessor.java</td>
 <td>psi-probe-core</td>
 <td><a href="./xref/psiprobe/tools/logging/slf4jlogback13/TomcatSlf4jLogback13FactoryAccessor.html#L48">48</a></td></tr>
 <tr class="b">
@@ -1239,17 +1239,17 @@
 <th>Project</th>
 <th>Line</th></tr>
 <tr class="b">
-<td style="text-align: left;">psiprobe\beans\accessors\TomcatJdbcPoolDatasourceAccessor.java</td>
-<td>psi-probe-core</td>
-<td><a href="./xref/psiprobe/beans/accessors/TomcatJdbcPoolDatasourceAccessor.html#L26">26</a></td></tr>
-<tr class="a">
-<td style="text-align: left;">psiprobe\beans\accessors\TomEeJdbcPoolDatasourceAccessor.java</td>
+<td style="text-align: left;">psiprobe/beans/accessors/TomEeJdbcPoolDatasourceAccessor.java</td>
 <td>psi-probe-core</td>
 <td><a href="./xref/psiprobe/beans/accessors/TomEeJdbcPoolDatasourceAccessor.html#L28">28</a></td></tr>
+<tr class="a">
+<td style="text-align: left;">psiprobe/beans/accessors/TomcatJdbcPoolDatasourceAccessor.java</td>
+<td>psi-probe-core</td>
+<td><a href="./xref/psiprobe/beans/accessors/TomcatJdbcPoolDatasourceAccessor.html#L26">26</a></td></tr>
 <tr class="b">
 <td colspan="3" style="text-align: left;">
 <div class="verbatim">
-<pre>DataSource source = (DataSource) resource;
+<pre>(TomEEDataSourceCreator.TomEEDataSource) resource;
       dataSourceInfo = new DataSourceInfo();
       dataSourceInfo.setBusyConnections(source.getNumActive());
       dataSourceInfo.setEstablishedConnections(source.getNumIdle() + source.getNumActive());
@@ -1269,24 +1269,24 @@
 
   @Override
   public boolean canMap(Object resource) {
-    return (&quot;org.apache.tomcat.jdbc.pool.DataSource&quot;.equals(resource.getClass().getName())</pre></div></td></tr></table>
+    return &quot;org.apache.tomee.jdbc.TomEEDataSourceCreator$TomEEDataSource&quot;</pre></div></td></tr></table>
 <table class="table table-striped">
 <tr class="a">
 <th>File</th>
 <th>Project</th>
 <th>Line</th></tr>
 <tr class="b">
-<td style="text-align: left;">psiprobe\tools\logging\logback\LogbackLoggerAccessor.java</td>
+<td style="text-align: left;">psiprobe/tools/logging/logback/LogbackLoggerAccessor.java</td>
 <td>psi-probe-core</td>
 <td><a href="./xref/psiprobe/tools/logging/logback/LogbackLoggerAccessor.html#L36">36</a></td></tr>
 <tr class="a">
-<td style="text-align: left;">psiprobe\tools\logging\slf4jlogback13\TomcatSlf4jLogback13LoggerAccessor.java</td>
-<td>psi-probe-core</td>
-<td><a href="./xref/psiprobe/tools/logging/slf4jlogback13/TomcatSlf4jLogback13LoggerAccessor.html#L36">36</a></td></tr>
-<tr class="b">
-<td style="text-align: left;">psiprobe\tools\logging\slf4jlogback\TomcatSlf4jLogbackLoggerAccessor.java</td>
+<td style="text-align: left;">psiprobe/tools/logging/slf4jlogback/TomcatSlf4jLogbackLoggerAccessor.java</td>
 <td>psi-probe-core</td>
 <td><a href="./xref/psiprobe/tools/logging/slf4jlogback/TomcatSlf4jLogbackLoggerAccessor.html#L36">36</a></td></tr>
+<tr class="b">
+<td style="text-align: left;">psiprobe/tools/logging/slf4jlogback13/TomcatSlf4jLogback13LoggerAccessor.java</td>
+<td>psi-probe-core</td>
+<td><a href="./xref/psiprobe/tools/logging/slf4jlogback13/TomcatSlf4jLogback13LoggerAccessor.html#L36">36</a></td></tr>
 <tr class="a">
 <td colspan="3" style="text-align: left;">
 <div class="verbatim">
