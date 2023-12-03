@@ -11,15 +11,13 @@
     PURPOSE.
 
 -->
-<project name="${project.name}" xmlns="http://maven.apache.org/DECORATION/1.8.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/DECORATION/1.8.0 https://maven.apache.org/xsd/decoration-1.8.0.xsd">
-    <bannerLeft>
-        <src>/images/psi-probe-banner.jpg</src>
-        <href>https://github.com/psi-probe/psi-probe</href>
+<site name="${project.name}" xmlns="http://maven.apache.org/SITE/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/SITE/2.0.0 https://maven.apache.org/xsd/site-2.0.0.xsd">
+    <bannerLeft href="https://github.com/psi-probe/psi-probe">
+        <image src="/images/psi-probe-banner.jpg" />
     </bannerLeft>
-    <bannerRight>
-        <src>https://tomcat.apache.org/images/tomcat.png</src>
-        <href>https://tomcat.apache.org/</href>
+    <bannerRight href="https://tomcat.apache.org/">
+        <image src"https://tomcat.apache.org/res/images/tomcat.png" />
     </bannerRight>
     <skin>
         <groupId>org.apache.maven.skins</groupId>
@@ -38,4 +36,4 @@
         </links>
         <menu ref="reports" />
     </body>
-</project>
+</site>
