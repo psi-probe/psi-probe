@@ -29,7 +29,6 @@ class Jdk14FileHandlerAccessorTest {
   /**
    * Gets the file.
    *
-   * @return the file
    * @throws IOException Signals that an I/O exception has occurred.
    */
   @Test
