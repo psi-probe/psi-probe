@@ -17,7 +17,7 @@
         <image src="/images/psi-probe-banner.jpg" />
     </bannerLeft>
     <bannerRight href="https://tomcat.apache.org/">
-        <image src"https://tomcat.apache.org/res/images/tomcat.png" />
+        <image src="https://tomcat.apache.org/res/images/tomcat.png" />
     </bannerRight>
     <skin>
         <groupId>org.apache.maven.skins</groupId>
