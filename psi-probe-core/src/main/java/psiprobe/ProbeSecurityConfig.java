@@ -89,7 +89,7 @@ public class ProbeSecurityConfig {
    *
    * @return the security context persistence filter
    */
-  @Bean(name = "sif")
+  @Bean(name = "securityContextPersistenceFilter")
   public SecurityContextPersistenceFilter getSecurityContextPersistenceFilter() {
     return new SecurityContextPersistenceFilter();
   }
