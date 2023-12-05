@@ -239,7 +239,7 @@
         <project-info.plugin>3.5.0</project-info.plugin>
         <release.plugin>3.0.1</release.plugin>
         <resources.plugin>3.3.1</resources.plugin>
-        <rewrite.plugin>5.14.1</rewrite.plugin>
+        <rewrite.plugin>5.15.1</rewrite.plugin>
         <scm-publish.plugin>3.2.1</scm-publish.plugin>
         <site.plugin>4.0.0-M12</site.plugin>
         <sonar.plugin>3.10.0.2594</sonar.plugin>
