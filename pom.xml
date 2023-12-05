@@ -162,7 +162,7 @@
         <beanutils.version>1.9.4</beanutils.version>
         <byte-buddy.version>1.14.10</byte-buddy.version>
         <c3p0.version>0.9.5.5</c3p0.version>
-        <checker.version>3.40.0</checker.version>
+        <checker.version>3.41.0</checker.version>
         <collections.version>3.2.2</collections.version>
         <dbcp2.version>2.11.0</dbcp2.version>
         <displaytag.version>2.5.3</displaytag.version>
