@@ -7,7 +7,7 @@
 [![Maven Central](https://img.shields.io/maven-central/v/com.github.psi-probe/psi-probe-web)](https://maven-badges.herokuapp.com/maven-central/com.github.psi-probe/psi-probe-web)
 [![Sonatype Nexus (Snapshots)](https://img.shields.io/nexus/s/https/oss.sonatype.org/com.github.psi-probe/psi-probe-web.svg)](https://oss.sonatype.org/content/repositories/snapshots/org/psi-probe/psi-probe-web/)
 [![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/)
-[![Releases](https://img.shields.io/github/downloads/psi-probe/psi-probe/psi-probe-4.0.0/total)](https://github.com/psi-probe/psi-probe/releases/download/psi-probe-4.0.0/probe.war)
+[![Releases](https://img.shields.io/github/downloads/psi-probe/psi-probe/psi-probe-4.1.0/total)](https://github.com/psi-probe/psi-probe/releases/download/psi-probe-4.1.0/probe.war)
 [![GPLv2 License](https://img.shields.io/badge/license-GPLv2-green.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
 [![Project Stats](https://www.openhub.net/p/psi-probe/widgets/project_thin_badge.gif)](https://www.openhub.net/p/psi-probe)
 [![Github All Releases](https://img.shields.io/github/downloads/psi-probe/psi-probe/total.svg)]()
@@ -25,7 +25,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for info on working on PSI Probe and send
 
 ## Latest Release via Github Releases ##
 
-Please download latest probe.war from [here](https://github.com/psi-probe/psi-probe/releases/download/psi-probe-3.7.3/probe.war)
+Please download latest probe.war from [here](https://github.com/psi-probe/psi-probe/releases/download/psi-probe-4.1.0/probe.war)
 
 ## Latest Release via Maven Central ##
 
@@ -53,7 +53,7 @@ You can rename 'psi-probe-web.war' to the traditional 'probe.war' or other name 
 
 2.  Minimum JDK version required to build is JDK 11 and run is JDK 8.
 
-3.  **Download and install Maven 3.9.2 or better
+3.  **Download and install Maven 3.9.6 or better
 
     You may download it from the [Apache Maven website](https://maven.apache.org/download.cgi).
 
@@ -82,14 +82,14 @@ Generally supported versions for third party tomcat providers align with their s
     - TomEE 8.0.16 (Based on Tomcat 9.0.82).  TomEE is ending support on December 31st 2023
     - NonStop(tm) never supported 9.0 as they changed direction but seem to have come back now for 10.x
     - Pivotal tc 4.1.27 release (Based on Tomcat 9.0.81)
-    - Pivotal tc 5.0.6 release (Based on Tomcat 9.0.81)
+    - Vmware tc 5.0.6 release (Based on Tomcat 9.0.81)
 
 * Tomcat 10.1 Series (pending)
 
     - Tomcat 10.1.6 to 10.1.16
     - TomEE 9.1.1 (Based on Tomcat 10.0.27)
     - NonStop(tm) Servlets For JavaServer Pages(tm) v10.1 (Based on Tomcat 10.1.7)
-    - Pivotal tc 5.0.6 release (Based on Tomcat 10.1.14
+    - Vmware tc 5.0.6 release (Based on Tomcat 10.1.14
 
 * Tomcat 11.0 Series (pending)
 
