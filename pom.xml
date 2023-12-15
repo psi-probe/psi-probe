@@ -190,7 +190,7 @@
         <mail.version>1.6.7</mail.version>
         <mchange.version>0.2.20</mchange.version>
         <mockito.version>5.8.0</mockito.version>
-        <ojdbc.version>19.21.0.0</ojdbc.version>
+        <ojdbc.version>23.3.0.23.09</ojdbc.version>
         <oshi.version>6.4.9</oshi.version>
         <quartz.version>2.4.0-rc2</quartz.version>
         <servlet-api.version>4.0.4</servlet-api.version>
