@@ -179,7 +179,7 @@
         <javabean-tester.version>2.6.1</javabean-tester.version>
         <jfreechart.version>1.5.4</jfreechart.version>
         <jhighlight.version>1.1.0</jhighlight.version>
-        <jmockit.version>1.51.0</jmockit.version>
+        <jmockit.version>1.52.0</jmockit.version>
         <jna.version>5.13.0</jna.version>
         <jsp-api.version>2.3.6</jsp-api.version>
         <jstl-api.version>1.2.7</jstl-api.version>
