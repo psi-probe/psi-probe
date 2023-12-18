@@ -60,10 +60,7 @@ public class ProbeInitializer implements WebApplicationInitializer {
     probe.setLoadOnStartup(0);
 
     // Add Mapping
-    probe.addMapping("*.htm");
-    probe.addMapping("*.ajax");
-    probe.addMapping("/logs/*");
-    probe.addMapping("/chart.png");
+    probe.addMapping("*.htm", "*.ajax", "/logs/*", "/chart.png");
 
     // Set sitemesh filter
     FilterRegistration.Dynamic sitemesh =
