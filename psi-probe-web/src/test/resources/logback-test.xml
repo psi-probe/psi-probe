@@ -11,7 +11,7 @@
     PURPOSE.
 
 -->
-<!DOCTYPE project>
+<!DOCTYPE configuration>
 <configuration scan="true" debug="true">
 
   <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
