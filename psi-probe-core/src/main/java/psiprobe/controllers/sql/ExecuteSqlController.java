@@ -139,13 +139,6 @@ public class ExecuteSqlController extends AbstractContextHandlerController {
                       value = HtmlUtils.htmlEscape(value);
                     }
 
-                    // a work around for IE browsers bug of not displaying
-                    // a border around an empty table column
-
-                    if (value.isEmpty()) {
-                      value = "&nbsp;";
-                    }
-
                     // Pad the keys of columns with existing labels so they are distinct
                     StringBuilder key = new StringBuilder(metaData.getColumnLabel(i));
                     while (record.containsKey(key.toString())) {
