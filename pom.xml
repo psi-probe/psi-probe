@@ -214,7 +214,7 @@
         <build-helper.plugin>3.5.0</build-helper.plugin>
         <checkstyle.plugin>3.3.1</checkstyle.plugin>
         <clean.plugin>3.3.2</clean.plugin>
-        <compiler.plugin>3.11.0</compiler.plugin>
+        <compiler.plugin>3.12.0</compiler.plugin>
         <coveralls.plugin>4.5.0-M2</coveralls.plugin>
         <dependency.plugin>3.6.1</dependency.plugin>
         <dependency-check.plugin>9.0.7</dependency-check.plugin>
