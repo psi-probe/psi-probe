@@ -68,35 +68,32 @@
 <a class="jxr_linenumber" name="L60" href="#L60">60</a>      probe.setLoadOnStartup(0);
 <a class="jxr_linenumber" name="L61" href="#L61">61</a>  
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>      <em class="jxr_comment">// Add Mapping</em>
-<a class="jxr_linenumber" name="L63" href="#L63">63</a>      probe.addMapping(<span class="jxr_string">"*.htm"</span>);
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>      probe.addMapping(<span class="jxr_string">"*.ajax"</span>);
-<a class="jxr_linenumber" name="L65" href="#L65">65</a>      probe.addMapping(<span class="jxr_string">"/logs/*"</span>);
-<a class="jxr_linenumber" name="L66" href="#L66">66</a>      probe.addMapping(<span class="jxr_string">"/chart.png"</span>);
-<a class="jxr_linenumber" name="L67" href="#L67">67</a>  
-<a class="jxr_linenumber" name="L68" href="#L68">68</a>      <em class="jxr_comment">// Set sitemesh filter</em>
-<a class="jxr_linenumber" name="L69" href="#L69">69</a>      FilterRegistration.Dynamic sitemesh =
-<a class="jxr_linenumber" name="L70" href="#L70">70</a>          servletContext.addFilter(<span class="jxr_string">"sitemesh"</span>, SiteMeshFilter.<strong class="jxr_keyword">class</strong>);
-<a class="jxr_linenumber" name="L71" href="#L71">71</a>      sitemesh.addMappingForUrlPatterns(
-<a class="jxr_linenumber" name="L72" href="#L72">72</a>          EnumSet.of(DispatcherType.FORWARD, DispatcherType.REQUEST, DispatcherType.ERROR), false,
-<a class="jxr_linenumber" name="L73" href="#L73">73</a>          <span class="jxr_string">"/*"</span>);
-<a class="jxr_linenumber" name="L74" href="#L74">74</a>  
-<a class="jxr_linenumber" name="L75" href="#L75">75</a>      <em class="jxr_comment">// Set security filter</em>
-<a class="jxr_linenumber" name="L76" href="#L76">76</a>      FilterRegistration.Dynamic security =
-<a class="jxr_linenumber" name="L77" href="#L77">77</a>          servletContext.addFilter(<span class="jxr_string">"filterChainProxy"</span>, DelegatingFilterProxy.<strong class="jxr_keyword">class</strong>);
-<a class="jxr_linenumber" name="L78" href="#L78">78</a>      security.addMappingForUrlPatterns(
-<a class="jxr_linenumber" name="L79" href="#L79">79</a>          EnumSet.of(DispatcherType.FORWARD, DispatcherType.REQUEST, DispatcherType.ERROR), false,
-<a class="jxr_linenumber" name="L80" href="#L80">80</a>          <span class="jxr_string">"/*"</span>);
-<a class="jxr_linenumber" name="L81" href="#L81">81</a>  
-<a class="jxr_linenumber" name="L82" href="#L82">82</a>      <em class="jxr_comment">// Set session cookie config</em>
-<a class="jxr_linenumber" name="L83" href="#L83">83</a>      servletContext.getSessionCookieConfig().setHttpOnly(<strong class="jxr_keyword">true</strong>);
-<a class="jxr_linenumber" name="L84" href="#L84">84</a>      servletContext.getSessionCookieConfig().setSecure(<strong class="jxr_keyword">true</strong>);
-<a class="jxr_linenumber" name="L85" href="#L85">85</a>  
-<a class="jxr_linenumber" name="L86" href="#L86">86</a>      <em class="jxr_comment">// Set session tracking mode</em>
-<a class="jxr_linenumber" name="L87" href="#L87">87</a>      EnumSet&lt;SessionTrackingMode&gt; trackingMode = EnumSet.of(SessionTrackingMode.COOKIE);
-<a class="jxr_linenumber" name="L88" href="#L88">88</a>      servletContext.setSessionTrackingModes(trackingMode);
-<a class="jxr_linenumber" name="L89" href="#L89">89</a>    }
-<a class="jxr_linenumber" name="L90" href="#L90">90</a>  
-<a class="jxr_linenumber" name="L91" href="#L91">91</a>  }
+<a class="jxr_linenumber" name="L63" href="#L63">63</a>      probe.addMapping(<span class="jxr_string">"*.htm"</span>, <span class="jxr_string">"*.ajax"</span>, <span class="jxr_string">"/logs/*"</span>, <span class="jxr_string">"/chart.png"</span>);
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>  
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>      <em class="jxr_comment">// Set sitemesh filter</em>
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>      FilterRegistration.Dynamic sitemesh =
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>          servletContext.addFilter(<span class="jxr_string">"sitemesh"</span>, SiteMeshFilter.<strong class="jxr_keyword">class</strong>);
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>      sitemesh.addMappingForUrlPatterns(
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>          EnumSet.of(DispatcherType.FORWARD, DispatcherType.REQUEST, DispatcherType.ERROR), false,
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>          <span class="jxr_string">"/*"</span>);
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>  
+<a class="jxr_linenumber" name="L72" href="#L72">72</a>      <em class="jxr_comment">// Set security filter</em>
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>      FilterRegistration.Dynamic security =
+<a class="jxr_linenumber" name="L74" href="#L74">74</a>          servletContext.addFilter(<span class="jxr_string">"filterChainProxy"</span>, DelegatingFilterProxy.<strong class="jxr_keyword">class</strong>);
+<a class="jxr_linenumber" name="L75" href="#L75">75</a>      security.addMappingForUrlPatterns(
+<a class="jxr_linenumber" name="L76" href="#L76">76</a>          EnumSet.of(DispatcherType.FORWARD, DispatcherType.REQUEST, DispatcherType.ERROR), false,
+<a class="jxr_linenumber" name="L77" href="#L77">77</a>          <span class="jxr_string">"/*"</span>);
+<a class="jxr_linenumber" name="L78" href="#L78">78</a>  
+<a class="jxr_linenumber" name="L79" href="#L79">79</a>      <em class="jxr_comment">// Set session cookie config</em>
+<a class="jxr_linenumber" name="L80" href="#L80">80</a>      servletContext.getSessionCookieConfig().setHttpOnly(<strong class="jxr_keyword">true</strong>);
+<a class="jxr_linenumber" name="L81" href="#L81">81</a>      servletContext.getSessionCookieConfig().setSecure(<strong class="jxr_keyword">true</strong>);
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>  
+<a class="jxr_linenumber" name="L83" href="#L83">83</a>      <em class="jxr_comment">// Set session tracking mode</em>
+<a class="jxr_linenumber" name="L84" href="#L84">84</a>      EnumSet&lt;SessionTrackingMode&gt; trackingMode = EnumSet.of(SessionTrackingMode.COOKIE);
+<a class="jxr_linenumber" name="L85" href="#L85">85</a>      servletContext.setSessionTrackingModes(trackingMode);
+<a class="jxr_linenumber" name="L86" href="#L86">86</a>    }
+<a class="jxr_linenumber" name="L87" href="#L87">87</a>  
+<a class="jxr_linenumber" name="L88" href="#L88">88</a>  }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2009&#x2013;2023 <a href="https://github.com/psi-probe/">psi-probe</a>. All rights reserved.</div>
