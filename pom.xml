@@ -230,7 +230,7 @@
         <javadoc.plugin>3.6.3</javadoc.plugin>
         <jdeps.plugin>3.1.2</jdeps.plugin>
         <jspc.plugin>10.0.19</jspc.plugin>
-        <jxr.plugin>3.3.1</jxr.plugin>
+        <jxr.plugin>3.3.2</jxr.plugin>
         <l10n.plugin>1.0.0</l10n.plugin>
         <license.plugin>4.3</license.plugin>
         <lifecycle-mapping.plugin>1.0.0</lifecycle-mapping.plugin>
