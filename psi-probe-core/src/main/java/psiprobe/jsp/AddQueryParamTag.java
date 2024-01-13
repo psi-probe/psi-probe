@@ -36,10 +36,10 @@ public class AddQueryParamTag extends TagSupport {
   @Override
   public int doStartTag() throws JspException {
     StringBuilder query = new StringBuilder();
-    query.append(param).append("=").append(value);
+    query.append(param).append('=').append(value);
     for (String name : Collections.list(pageContext.getRequest().getParameterNames())) {
       if (!param.equals(name)) {
-        query.append("&").append(StringEscapeUtils.escapeHtml4(name)).append("=")
+        query.append('&').append(StringEscapeUtils.escapeHtml4(name)).append('=')
             .append(StringEscapeUtils.escapeHtml4(
                 ServletRequestUtils.getStringParameter(pageContext.getRequest(), name, "")));
       }
