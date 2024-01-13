@@ -128,7 +128,7 @@ class Tomcat85ContainerAdapterTest {
         .thenReturn(new ContextResourceLink[] {new ContextResourceLink()});
 
     final Tomcat85ContainerAdapter adapter = new Tomcat85ContainerAdapter();
-    final List<ApplicationResource> list = new ArrayList<ApplicationResource>();
+    final List<ApplicationResource> list = new ArrayList<>();
     adapter.addContextResourceLink(context, list);
     assertFalse(list.isEmpty());
   }
@@ -144,7 +144,7 @@ class Tomcat85ContainerAdapterTest {
         .thenReturn(new ContextResource[] {new ContextResource()});
 
     final Tomcat85ContainerAdapter adapter = new Tomcat85ContainerAdapter();
-    final List<ApplicationResource> list = new ArrayList<ApplicationResource>();
+    final List<ApplicationResource> list = new ArrayList<>();
     adapter.addContextResource(context, list);
     assertFalse(list.isEmpty());
   }
