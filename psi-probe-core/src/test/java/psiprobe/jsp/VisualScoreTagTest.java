@@ -37,7 +37,7 @@ class VisualScoreTagTest {
    * Test range scan.
    */
   @Test
-  void testRangeScan() {
+  void rangeScanTest() {
     // As used in appRuntimeInfo.jsp
     doTestRangeScan(8, 5, false);
     doTestRangeScan(8, 5, true);
