@@ -241,7 +241,7 @@ public class ListCertificatesController extends AbstractTomcatContainerControlle
       logger.error("Cannot determine defaultSslHostConfigName");
       return info;
     }
-    info.setDefaultSslHostConfigName(String.valueOf(defaultSslHostConfigName));
+    info.setDefaultSslHostConfigName(defaultSslHostConfigName);
     new SslHostConfigHelper(protocol, info);
 
     return info;
