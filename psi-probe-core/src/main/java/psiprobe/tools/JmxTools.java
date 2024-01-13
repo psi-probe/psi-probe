@@ -156,7 +156,7 @@ public final class JmxTools {
   /**
    * Gets the int attribute. Default to default value if not found.
    *
-   * @param compositeData the compsite data
+   * @param compositeData the composite data
    * @param name the name
    * @param defaultValue the default value
    *
