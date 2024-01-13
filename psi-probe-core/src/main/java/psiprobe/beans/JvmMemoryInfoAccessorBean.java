@@ -44,19 +44,18 @@ public class JvmMemoryInfoAccessorBean {
    */
   public List<MemoryPool> getPools() throws MalformedObjectNameException {
 
-    List<MemoryPool> memoryPools = new LinkedList<>();
     MBeanServer mbeanServer = ManagementFactory.getPlatformMBeanServer();
-    Set<ObjectInstance> memoryOPools =
+    Set<ObjectInstance> objectInstanceMemoryPools =
         mbeanServer.queryMBeans(new ObjectName("java.lang:type=MemoryPool,*"), null);
-
     // totals
     long totalInit = 0;
     long totalMax = 0;
     long totalUsed = 0;
     long totalCommitted = 0;
 
-    for (ObjectInstance oi : memoryOPools) {
-      ObjectName objName = oi.getObjectName();
+    List<MemoryPool> memoryPools = new LinkedList<>();
+    for (ObjectInstance objectInstance : objectInstanceMemoryPools) {
+      ObjectName objName = objectInstance.getObjectName();
       MemoryPool memoryPool = new MemoryPool();
       memoryPool.setName(JmxTools.getStringAttr(mbeanServer, objName, "Name"));
       memoryPool.setType(JmxTools.getStringAttr(mbeanServer, objName, "Type"));

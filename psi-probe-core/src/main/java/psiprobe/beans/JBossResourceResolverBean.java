@@ -75,11 +75,12 @@ public class JBossResourceResolverBean implements ResourceResolver {
       try {
         Set<ObjectName> dsNames =
             server.queryNames(new ObjectName("jboss.jca:service=ManagedConnectionPool,*"), null);
-        for (ObjectName managedConnectionPoolOName : dsNames) {
+        for (ObjectName objectNameManagedConnectionPool : dsNames) {
           ApplicationResource resource = new ApplicationResource();
-          resource.setName(managedConnectionPoolOName.getKeyProperty("name"));
+          resource.setName(objectNameManagedConnectionPool.getKeyProperty("name"));
           resource.setType("jboss");
-          String criteria = (String) server.getAttribute(managedConnectionPoolOName, "Criteria");
+          String criteria =
+              (String) server.getAttribute(objectNameManagedConnectionPool, "Criteria");
           if ("ByApplication".equals(criteria)) {
             resource.setAuth("Application");
           } else if ("ByContainerAndApplication".equals(criteria)) {
@@ -89,15 +90,15 @@ public class JBossResourceResolverBean implements ResourceResolver {
           }
           DataSourceInfo dsInfo = new DataSourceInfo();
           dsInfo.setMaxConnections(
-              (Integer) server.getAttribute(managedConnectionPoolOName, "MaxSize"));
+              (Integer) server.getAttribute(objectNameManagedConnectionPool, "MaxSize"));
           dsInfo.setEstablishedConnections(
-              (Integer) server.getAttribute(managedConnectionPoolOName, "ConnectionCount"));
+              (Integer) server.getAttribute(objectNameManagedConnectionPool, "ConnectionCount"));
           dsInfo.setBusyConnections(
-              ((Long) server.getAttribute(managedConnectionPoolOName, "InUseConnectionCount"))
+              ((Long) server.getAttribute(objectNameManagedConnectionPool, "InUseConnectionCount"))
                   .intValue());
-          ObjectName connectionFactoryOName = new ObjectName(
+          ObjectName objectNameConnectionFactory = new ObjectName(
               "jboss.jca:service=ManagedConnectionFactory,name=" + resource.getName());
-          Element elm = (Element) server.getAttribute(connectionFactoryOName,
+          Element elm = (Element) server.getAttribute(objectNameConnectionFactory,
               "ManagedConnectionFactoryProperties");
 
           if (elm != null) {
@@ -160,13 +161,13 @@ public class JBossResourceResolverBean implements ResourceResolver {
   public boolean resetResource(Context context, String resourceName,
       ContainerWrapperBean containerWrapper) throws NamingException {
     try {
-      ObjectName poolOName =
+      ObjectName objectNamePool =
           new ObjectName("jboss.jca:service=ManagedConnectionPool,name=" + resourceName);
       MBeanServer server = getMBeanServer();
       if (server != null) {
         try {
-          server.invoke(poolOName, "stop", null, null);
-          server.invoke(poolOName, "start", null, null);
+          server.invoke(objectNamePool, "stop", null, null);
+          server.invoke(objectNamePool, "start", null, null);
           return true;
         } catch (Exception e) {
           logger.error("Could not reset resource '{}'", resourceName, e);

@@ -201,7 +201,7 @@ public class OshiController extends AbstractTomcatContainerController {
     printDisks(hal.getDiskStores());
 
     logger.debug("Checking Logical Volume Groups ...");
-    printLVgroups(hal.getLogicalVolumeGroups());
+    printLogicalVolumegroups(hal.getLogicalVolumeGroups());
 
     logger.debug("Checking File System...");
     printFileSystem(os.getFileSystem());
@@ -313,7 +313,6 @@ public class OshiController extends AbstractTomcatContainerController {
         + processor.getInterrupts());
 
     long[] prevTicks = processor.getSystemCpuLoadTicks();
-    long[][] prevProcTicks = processor.getProcessorCpuLoadTicks();
     oshi.add("CPU, IOWait, and IRQ ticks @ 0 sec:" + Arrays.toString(prevTicks));
     // Wait a second...
     Util.sleep(1000);
@@ -343,6 +342,7 @@ public class OshiController extends AbstractTomcatContainerController {
         + (loadAverage[2] < 0 ? " N/A" : String.format(" %.2f", loadAverage[2])));
     // per core CPU
     StringBuilder procCpu = new StringBuilder("CPU load per processor:");
+    long[][] prevProcTicks = processor.getProcessorCpuLoadTicks();
     double[] load = processor.getProcessorCpuLoadBetweenTicks(prevProcTicks);
     for (double avg : load) {
       procCpu.append(String.format(" %.1f%%", avg * 100));
@@ -475,7 +475,7 @@ public class OshiController extends AbstractTomcatContainerController {
    *
    * @param list the logical volume groups
    */
-  private static void printLVgroups(List<LogicalVolumeGroup> list) {
+  private static void printLogicalVolumegroups(List<LogicalVolumeGroup> list) {
     if (!list.isEmpty()) {
       oshi.add("Logical Volume Groups:");
       for (LogicalVolumeGroup lvg : list) {

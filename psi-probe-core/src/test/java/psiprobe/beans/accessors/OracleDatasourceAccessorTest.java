@@ -18,11 +18,11 @@ import java.util.Properties;
 import mockit.Expectations;
 import mockit.Mocked;
 
+import oracle.jdbc.pool.OracleDataSource;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import oracle.jdbc.pool.OracleDataSource;
 
 /**
  * The Class OracleDatasourceAccessorTest.

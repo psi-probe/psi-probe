@@ -77,12 +77,13 @@ public class ThreadStackController extends ParameterizableViewController {
 
     List<ThreadStackElement> stack = null;
     MBeanServer mbeanServer = ManagementFactory.getPlatformMBeanServer();
-    ObjectName threadingOName = new ObjectName("java.lang:type=Threading");
+    ObjectName objectNameThreading = new ObjectName("java.lang:type=Threading");
 
     if (threadId == -1 && threadName != null) {
       // find thread by name
-      for (long id : (long[]) JmxTools.getAttribute(mbeanServer, threadingOName, "AllThreadIds")) {
-        CompositeData cd = (CompositeData) JmxTools.invoke(mbeanServer, threadingOName,
+      for (long id : (long[]) JmxTools.getAttribute(mbeanServer, objectNameThreading,
+          "AllThreadIds")) {
+        CompositeData cd = (CompositeData) JmxTools.invoke(mbeanServer, objectNameThreading,
             "getThreadInfo", new Object[] {id}, new String[] {"long"});
         String name = JmxTools.getStringAttr(cd, "threadName");
         if (threadName.equals(name)) {
@@ -92,10 +93,10 @@ public class ThreadStackController extends ParameterizableViewController {
       }
     }
 
-    if (mbeanServer.queryMBeans(threadingOName, null) != null && threadId != -1) {
+    if (mbeanServer.queryMBeans(objectNameThreading, null) != null && threadId != -1) {
 
       CompositeData cd =
-          (CompositeData) JmxTools.invoke(mbeanServer, threadingOName, "getThreadInfo",
+          (CompositeData) JmxTools.invoke(mbeanServer, objectNameThreading, "getThreadInfo",
               new Object[] {threadId, stackElementCount}, new String[] {"long", "int"});
       if (cd != null) {
         CompositeData[] elements = (CompositeData[]) cd.get("stackTrace");

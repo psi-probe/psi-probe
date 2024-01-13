@@ -14,12 +14,12 @@ import com.zaxxer.hikari.HikariDataSource;
 
 import java.sql.SQLException;
 
+import oracle.ucp.jdbc.PoolDataSourceImpl;
+import oracle.ucp.jdbc.PoolXADataSourceImpl;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import oracle.ucp.jdbc.PoolDataSourceImpl;
-import oracle.ucp.jdbc.PoolXADataSourceImpl;
 
 /**
  * The Class OracleUcpDatasourceAccessorTest.

@@ -47,9 +47,9 @@ public class ClusterWrapperBean {
     Cluster cluster = null;
 
     MBeanServer mbeanServer = ManagementFactory.getPlatformMBeanServer();
-    ObjectName membershipOName =
+    ObjectName objectNameMembership =
         new ObjectName(serverName + ":type=ClusterMembership,host=" + hostName);
-    ObjectName receiverOName =
+    ObjectName objectNameReceiver =
         new ObjectName(serverName + ":type=ClusterReceiver,host=" + hostName);
     ObjectName senderOName = new ObjectName(serverName + ":type=ClusterSender,host=" + hostName);
 
@@ -59,7 +59,7 @@ public class ClusterWrapperBean {
      */
     Set<ObjectInstance> clusters =
         mbeanServer.queryMBeans(new ObjectName("*:type=Cluster,host=" + hostName), null);
-    Set<ObjectInstance> membership = mbeanServer.queryMBeans(membershipOName, null);
+    Set<ObjectInstance> membership = mbeanServer.queryMBeans(objectNameMembership, null);
     if (clusters != null && !clusters.isEmpty() && membership != null && !membership.isEmpty()) {
       ObjectName clusterOName = clusters.iterator().next().getObjectName();
       cluster = new Cluster();
@@ -69,30 +69,33 @@ public class ClusterWrapperBean {
       cluster.setManagerClassName(
           JmxTools.getStringAttr(mbeanServer, clusterOName, "managerClassName"));
 
-      cluster.setMcastAddress(JmxTools.getStringAttr(mbeanServer, membershipOName, "mcastAddr"));
+      cluster
+          .setMcastAddress(JmxTools.getStringAttr(mbeanServer, objectNameMembership, "mcastAddr"));
       cluster.setMcastBindAddress(
-          JmxTools.getStringAttr(mbeanServer, membershipOName, "mcastBindAddress"));
+          JmxTools.getStringAttr(mbeanServer, objectNameMembership, "mcastBindAddress"));
       cluster.setMcastClusterDomain(
-          JmxTools.getStringAttr(mbeanServer, membershipOName, "mcastClusterDomain"));
-      cluster.setMcastDropTime(JmxTools.getLongAttr(mbeanServer, membershipOName, "mcastDropTime"));
-      cluster
-          .setMcastFrequency(JmxTools.getLongAttr(mbeanServer, membershipOName, "mcastFrequency"));
-      cluster.setMcastPort(JmxTools.getIntAttr(mbeanServer, membershipOName, "mcastPort"));
-      cluster
-          .setMcastSoTimeout(JmxTools.getIntAttr(mbeanServer, membershipOName, "mcastSoTimeout"));
-      cluster.setMcastTtl(JmxTools.getIntAttr(mbeanServer, membershipOName, "mcastTTL"));
+          JmxTools.getStringAttr(mbeanServer, objectNameMembership, "mcastClusterDomain"));
+      cluster.setMcastDropTime(
+          JmxTools.getLongAttr(mbeanServer, objectNameMembership, "mcastDropTime"));
+      cluster.setMcastFrequency(
+          JmxTools.getLongAttr(mbeanServer, objectNameMembership, "mcastFrequency"));
+      cluster.setMcastPort(JmxTools.getIntAttr(mbeanServer, objectNameMembership, "mcastPort"));
+      cluster.setMcastSoTimeout(
+          JmxTools.getIntAttr(mbeanServer, objectNameMembership, "mcastSoTimeout"));
+      cluster.setMcastTtl(JmxTools.getIntAttr(mbeanServer, objectNameMembership, "mcastTTL"));
 
       cluster.setTcpListenAddress(
-          JmxTools.getStringAttr(mbeanServer, receiverOName, "tcpListenAddress"));
-      cluster.setTcpListenPort(JmxTools.getIntAttr(mbeanServer, receiverOName, "tcpListenPort"));
+          JmxTools.getStringAttr(mbeanServer, objectNameReceiver, "tcpListenAddress"));
+      cluster
+          .setTcpListenPort(JmxTools.getIntAttr(mbeanServer, objectNameReceiver, "tcpListenPort"));
       cluster.setNrOfMsgsReceived(
-          JmxTools.getLongAttr(mbeanServer, receiverOName, "nrOfMsgsReceived"));
+          JmxTools.getLongAttr(mbeanServer, objectNameReceiver, "nrOfMsgsReceived"));
       cluster.setTotalReceivedBytes(
-          JmxTools.getLongAttr(mbeanServer, receiverOName, "totalReceivedBytes"));
+          JmxTools.getLongAttr(mbeanServer, objectNameReceiver, "totalReceivedBytes"));
       // cluster.setTcpSelectorTimeout(
-      // JmxTools.getLongAttr(mbeanServer, receiverOName, "tcpSelectorTimeout"));
+      // JmxTools.getLongAttr(mbeanServer, objectNameReceiver, "tcpSelectorTimeout"));
       // cluster.setTcpThreadCount(
-      // JmxTools.getIntAttr(mbeanServer, receiverOName, "tcpThreadCount"));
+      // JmxTools.getIntAttr(mbeanServer, objectNameReceiver, "tcpThreadCount"));
 
       cluster.setSenderAckTimeout(JmxTools.getLongAttr(mbeanServer, senderOName, "ackTimeout"));
       cluster

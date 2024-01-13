@@ -47,10 +47,10 @@ class ObjectWrapper {
     }
     ObjectWrapper ow = (ObjectWrapper) o1;
     /*
-     * I know, this condition may seem strange, but if "equals" is left out, sizeOf() may run into
-     * an infinite loop on some objects
+     * I know, this condition may seem strange, but if "equals" is left in, sizeOf() may run into an
+     * infinite loop on some objects
      */
-    return ow.wrappedObject == wrappedObject;// || o.equals(ow.o);
+    return ow.wrappedObject == wrappedObject; // || o.equals(ow.o);
   }
 
   @Override

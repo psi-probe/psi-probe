@@ -78,7 +78,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
   protected Connector[] connectors;
 
   /** The deployer o name. */
-  protected ObjectName deployerOName;
+  protected ObjectName objectNameDeployer;
 
   /** The mbean server. */
   protected MBeanServer mbeanServer;
@@ -102,7 +102,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
       Service service = engine.getService();
       connectors = service.findConnectors();
       try {
-        deployerOName =
+        objectNameDeployer =
             new ObjectName(host.getParent().getName() + ":type=Deployer,host=" + host.getName());
       } catch (MalformedObjectNameException e) {
         logger.trace("", e);
@@ -602,16 +602,16 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
    * @throws Exception the exception
    */
   protected void checkChanges(String name) throws Exception {
-    Boolean result = (Boolean) mbeanServer.invoke(deployerOName, "isServiced", new String[] {name},
-        new String[] {String.class.getName()});
+    Boolean result = (Boolean) mbeanServer.invoke(objectNameDeployer, "isServiced",
+        new String[] {name}, new String[] {String.class.getName()});
     if (!result.booleanValue()) {
-      mbeanServer.invoke(deployerOName, "addServiced", new String[] {name},
+      mbeanServer.invoke(objectNameDeployer, "addServiced", new String[] {name},
           new String[] {String.class.getName()});
       try {
-        mbeanServer.invoke(deployerOName, "check", new String[] {name},
+        mbeanServer.invoke(objectNameDeployer, "check", new String[] {name},
             new String[] {String.class.getName()});
       } finally {
-        mbeanServer.invoke(deployerOName, "removeServiced", new String[] {name},
+        mbeanServer.invoke(objectNameDeployer, "removeServiced", new String[] {name},
             new String[] {String.class.getName()});
       }
     }

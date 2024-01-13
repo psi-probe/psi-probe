@@ -560,8 +560,8 @@ public final class Utils {
   public static boolean isThreadingEnabled() {
     try {
       MBeanServer mbeanServer = ManagementFactory.getPlatformMBeanServer();
-      ObjectName threadingOName = new ObjectName("java.lang:type=Threading");
-      Set<ObjectInstance> threading = mbeanServer.queryMBeans(threadingOName, null);
+      ObjectName objectNameThreading = new ObjectName("java.lang:type=Threading");
+      Set<ObjectInstance> threading = mbeanServer.queryMBeans(objectNameThreading, null);
       return threading != null && !threading.isEmpty();
     } catch (MalformedObjectNameException e) {
       logger.trace("", e);
