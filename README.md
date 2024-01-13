@@ -7,7 +7,7 @@
 [![Maven Central](https://img.shields.io/maven-central/v/com.github.psi-probe/psi-probe-web)](https://maven-badges.herokuapp.com/maven-central/com.github.psi-probe/psi-probe-web)
 [![Sonatype Nexus (Snapshots)](https://img.shields.io/nexus/s/https/oss.sonatype.org/com.github.psi-probe/psi-probe-web.svg)](https://oss.sonatype.org/content/repositories/snapshots/org/psi-probe/psi-probe-web/)
 [![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/)
-[![Releases](https://img.shields.io/github/downloads/psi-probe/psi-probe/psi-probe-4.1.0/total)](https://github.com/psi-probe/psi-probe/releases/download/psi-probe-4.1.0/probe.war)
+[![Releases](https://img.shields.io/github/downloads/psi-probe/psi-probe/psi-probe-4.1.1/total)](https://github.com/psi-probe/psi-probe/releases/download/psi-probe-4.1.1/probe.war)
 [![GPLv2 License](https://img.shields.io/badge/license-GPLv2-green.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
 [![Project Stats](https://www.openhub.net/p/psi-probe/widgets/project_thin_badge.gif)](https://www.openhub.net/p/psi-probe)
 [![Github All Releases](https://img.shields.io/github/downloads/psi-probe/psi-probe/total.svg)]()
@@ -25,7 +25,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for info on working on PSI Probe and send
 
 ## Latest Release via Github Releases ##
 
-Please download latest probe.war from [here](https://github.com/psi-probe/psi-probe/releases/download/psi-probe-4.1.0/probe.war)
+Please download latest probe.war from [here](https://github.com/psi-probe/psi-probe/releases/download/psi-probe-4.1.1/probe.war)
 
 ## Latest Release via Maven Central ##
 
