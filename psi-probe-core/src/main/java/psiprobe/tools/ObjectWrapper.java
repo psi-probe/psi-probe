@@ -50,7 +50,7 @@ class ObjectWrapper {
      * I know, this condition may seem strange, but if "equals" is left in, sizeOf() may run into an
      * infinite loop on some objects
      */
-    return ow.wrappedObject == wrappedObject;// || o.equals(ow.o);
+    return ow.wrappedObject == wrappedObject; // || o.equals(ow.o);
   }
 
   @Override
