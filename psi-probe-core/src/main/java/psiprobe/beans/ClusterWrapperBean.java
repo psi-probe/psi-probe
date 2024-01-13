@@ -51,7 +51,8 @@ public class ClusterWrapperBean {
         new ObjectName(serverName + ":type=ClusterMembership,host=" + hostName);
     ObjectName objectNameReceiver =
         new ObjectName(serverName + ":type=ClusterReceiver,host=" + hostName);
-    ObjectName objectNameSender = new ObjectName(serverName + ":type=ClusterSender,host=" + hostName);
+    ObjectName objectNameSender =
+        new ObjectName(serverName + ":type=ClusterSender,host=" + hostName);
 
     /*
      * should be just one set, this is just to find out if this instance is cluster-enabled and the
@@ -97,19 +98,22 @@ public class ClusterWrapperBean {
       // cluster.setTcpThreadCount(
       // JmxTools.getIntAttr(mbeanServer, objectNameReceiver, "tcpThreadCount"));
 
-      cluster.setSenderAckTimeout(JmxTools.getLongAttr(mbeanServer, objectNameSender, "ackTimeout"));
       cluster
-          .setSenderAutoConnect(JmxTools.getBooleanAttr(mbeanServer, objectNameSender, "autoConnect"));
+          .setSenderAckTimeout(JmxTools.getLongAttr(mbeanServer, objectNameSender, "ackTimeout"));
+      cluster.setSenderAutoConnect(
+          JmxTools.getBooleanAttr(mbeanServer, objectNameSender, "autoConnect"));
       cluster.setSenderFailureCounter(
           JmxTools.getLongAttr(mbeanServer, objectNameSender, "failureCounter"));
-      cluster.setSenderNrOfRequests(JmxTools.getLongAttr(mbeanServer, objectNameSender, "nrOfRequests"));
+      cluster.setSenderNrOfRequests(
+          JmxTools.getLongAttr(mbeanServer, objectNameSender, "nrOfRequests"));
       cluster.setSenderReplicationMode(
           JmxTools.getStringAttr(mbeanServer, objectNameSender, "replicationMode"));
-      cluster.setSenderTotalBytes(JmxTools.getLongAttr(mbeanServer, objectNameSender, "totalBytes"));
+      cluster
+          .setSenderTotalBytes(JmxTools.getLongAttr(mbeanServer, objectNameSender, "totalBytes"));
 
       if (loadMembers) {
-        ObjectName[] senders =
-            (ObjectName[]) JmxTools.getAttribute(mbeanServer, objectNameSender, "senderObjectNames");
+        ObjectName[] senders = (ObjectName[]) JmxTools.getAttribute(mbeanServer, objectNameSender,
+            "senderObjectNames");
         for (ObjectName objectNameLocalSender : senders) {
           ClusterSender sender;
 
@@ -136,12 +140,14 @@ public class ClusterWrapperBean {
               JmxTools.getLongAttr(mbeanServer, objectNameLocalSender, "connectCounter"));
           sender.setDisconnectCounter(
               JmxTools.getLongAttr(mbeanServer, objectNameLocalSender, "disconnectCounter"));
-          sender.setConnected(JmxTools.getBooleanAttr(mbeanServer, objectNameLocalSender, "connected"));
+          sender.setConnected(
+              JmxTools.getBooleanAttr(mbeanServer, objectNameLocalSender, "connected"));
           sender.setKeepAliveTimeout(
               JmxTools.getLongAttr(mbeanServer, objectNameLocalSender, "keepAliveTimeout"));
-          sender
-              .setNrOfRequests(JmxTools.getLongAttr(mbeanServer, objectNameLocalSender, "nrOfRequests"));
-          sender.setTotalBytes(JmxTools.getLongAttr(mbeanServer, objectNameLocalSender, "totalBytes"));
+          sender.setNrOfRequests(
+              JmxTools.getLongAttr(mbeanServer, objectNameLocalSender, "nrOfRequests"));
+          sender.setTotalBytes(
+              JmxTools.getLongAttr(mbeanServer, objectNameLocalSender, "totalBytes"));
           sender.setResend(JmxTools.getBooleanAttr(mbeanServer, objectNameLocalSender, "resend"));
           sender.setSuspect(JmxTools.getBooleanAttr(mbeanServer, objectNameLocalSender, "suspect"));
 
@@ -160,8 +166,8 @@ public class ClusterWrapperBean {
                 JmxTools.getIntAttr(mbeanServer, objectNameLocalSender, "socketOpenCounter"));
             syncSender.setSocketCloseCounter(
                 JmxTools.getIntAttr(mbeanServer, objectNameLocalSender, "socketCloseCounter"));
-            syncSender.setSocketOpenFailureCounter(
-                JmxTools.getIntAttr(mbeanServer, objectNameLocalSender, "socketOpenFailureCounter"));
+            syncSender.setSocketOpenFailureCounter(JmxTools.getIntAttr(mbeanServer,
+                objectNameLocalSender, "socketOpenFailureCounter"));
           }
 
           if (sender instanceof AsyncClusterSender) {

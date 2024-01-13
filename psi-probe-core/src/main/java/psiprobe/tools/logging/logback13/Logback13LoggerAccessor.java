@@ -161,7 +161,8 @@ public class Logback13LoggerAccessor extends DefaultAccessor {
    * @param appender the appender
    * @param appenders the appenders
    */
-  private void wrapAndAddAppender(Object appender, Collection<Logback13AppenderAccessor> appenders) {
+  private void wrapAndAddAppender(Object appender,
+      Collection<Logback13AppenderAccessor> appenders) {
     Logback13AppenderAccessor appenderAccessor = wrapAppender(appender);
     if (appenderAccessor != null) {
       appenders.add(appenderAccessor);
