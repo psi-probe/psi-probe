@@ -11,6 +11,7 @@
 package psiprobe.beans;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -252,8 +253,8 @@ public class ContainerWrapperBean {
    * @param resources the resources
    * @param dataSources the data sources
    */
-  protected void filterDataSources(List<ApplicationResource> resources,
-      List<ApplicationResource> dataSources) {
+  protected void filterDataSources(Iterable<ApplicationResource> resources,
+      Collection<ApplicationResource> dataSources) {
 
     for (ApplicationResource res : resources) {
       if (res.getDataSourceInfo() != null) {

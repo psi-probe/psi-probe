@@ -13,6 +13,7 @@ package psiprobe.tools.logging.slf4jlogback13;
 import com.google.common.collect.Iterators;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -167,7 +168,7 @@ public class TomcatSlf4jLogback13LoggerAccessor extends DefaultAccessor {
    * @param appenders the appenders
    */
   private void wrapAndAddAppender(Object appender,
-      List<TomcatSlf4jLogback13AppenderAccessor> appenders) {
+      Collection<TomcatSlf4jLogback13AppenderAccessor> appenders) {
 
     TomcatSlf4jLogback13AppenderAccessor appenderAccessor = wrapAppender(appender);
     if (appenderAccessor != null) {

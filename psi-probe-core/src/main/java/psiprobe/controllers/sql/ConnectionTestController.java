@@ -14,6 +14,7 @@ import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -114,7 +115,7 @@ public class ConnectionTestController extends AbstractContextHandlerController {
    * @param name the name
    * @param value the value
    */
-  private void addDbMetaDataEntry(List<Map<String, String>> list, String name, String value) {
+  private void addDbMetaDataEntry(Collection<Map<String, String>> list, String name, String value) {
     Map<String, String> entry = new LinkedHashMap<>();
     entry.put("propertyName", getMessageSourceAccessor().getMessage(name));
     entry.put("propertyValue", value);
