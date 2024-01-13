@@ -136,7 +136,7 @@ class Tomcat11ContainerAdapterTest {
     NamingResourcesImpl namingResources = Mockito.mock(NamingResourcesImpl.class);
     Mockito.when(context.getNamingResources()).thenReturn(namingResources);
     Mockito.when(namingResources.findResourceLinks())
-        .thenReturn(new ContextResourceLink[] {new ContextResourceLink()});
+        .thenReturn(new ContextResourceLink[]{new ContextResourceLink()});
 
     final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
     final List<ApplicationResource> list = new ArrayList<ApplicationResource>();
@@ -152,7 +152,7 @@ class Tomcat11ContainerAdapterTest {
     NamingResourcesImpl namingResources = Mockito.mock(NamingResourcesImpl.class);
     Mockito.when(context.getNamingResources()).thenReturn(namingResources);
     Mockito.when(namingResources.findResources())
-        .thenReturn(new ContextResource[] {new ContextResource()});
+        .thenReturn(new ContextResource[]{new ContextResource()});
 
     final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
     final List<ApplicationResource> list = new ArrayList<ApplicationResource>();
@@ -165,7 +165,7 @@ class Tomcat11ContainerAdapterTest {
    */
   @Test
   void applicationFilterMaps() {
-    Mockito.when(context.findFilterMaps()).thenReturn(new FilterMap[] {new FilterMap()});
+    Mockito.when(context.findFilterMaps()).thenReturn(new FilterMap[]{new FilterMap()});
 
     final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
     assertEquals(0, adapter.getApplicationFilterMaps(context).size());
@@ -176,7 +176,7 @@ class Tomcat11ContainerAdapterTest {
    */
   @Test
   void applicationFilters() {
-    Mockito.when(context.findFilterDefs()).thenReturn(new FilterDef[] {new FilterDef()});
+    Mockito.when(context.findFilterDefs()).thenReturn(new FilterDef[]{new FilterDef()});
 
     final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
     assertEquals(1, adapter.getApplicationFilters(context).size());
@@ -188,7 +188,7 @@ class Tomcat11ContainerAdapterTest {
   @Test
   void applicationInitParams() {
     Mockito.when(context.findApplicationParameters())
-        .thenReturn(new ApplicationParameter[] {new ApplicationParameter()});
+        .thenReturn(new ApplicationParameter[]{new ApplicationParameter()});
 
     ServletContext servletContext = Mockito.mock(ServletContext.class);
     Mockito.when(context.getServletContext()).thenReturn(servletContext);

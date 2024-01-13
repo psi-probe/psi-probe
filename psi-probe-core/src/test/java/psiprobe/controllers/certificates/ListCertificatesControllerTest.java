@@ -56,7 +56,7 @@ class ListCertificatesControllerTest {
    * @throws Exception the exception
    */
   @Test
-  void testGetCertificates() throws Exception {
+  void certificatesTest() throws Exception {
     ListCertificatesController controller = new ListCertificatesController();
 
     String storeType = "jks";
@@ -76,7 +76,7 @@ class ListCertificatesControllerTest {
    * @throws Exception the exception
    */
   @Test
-  void testGetCertificatesRelative() throws Exception {
+  void certificatesRelativeTest() throws Exception {
     ListCertificatesController controller = new ListCertificatesController();
 
     String storeType = "jks";
@@ -99,7 +99,7 @@ class ListCertificatesControllerTest {
    * @throws Exception the exception
    */
   @Test
-  void testGetCertificatesRelativeUri() throws Exception {
+  void certificatesRelativeUriTest() throws Exception {
     ListCertificatesController controller = new ListCertificatesController();
 
     String storeType = "jks";
@@ -123,7 +123,7 @@ class ListCertificatesControllerTest {
    * @throws Exception the exception
    */
   @Test
-  void testGetCertificatesAbsoluteUri() throws Exception {
+  void certificatesAbsoluteUriTest() throws Exception {
     ListCertificatesController controller = new ListCertificatesController();
 
     String storeType = "jks";
