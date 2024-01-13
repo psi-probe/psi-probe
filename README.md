@@ -71,29 +71,33 @@ Generally supported versions for third party tomcat providers align with their s
 
 * Tomcat 8.5 Series (Notice: We will drop support for tomcat 8.5 after tomcat officially archives it shortly after 3/31/2024 and we will complete a final release before that is done)
 
-    - Tomcat 8.5.86 to 8.5.96 (Stated end of life will be 3/31/2024, considering using tomcat 9 or better)
+    - Tomcat 8.5.86 to 8.5.97 (Stated end of life will be 3/31/2024, considering using tomcat 9 or better)
     - TomEE 7.1 Discontinued, suggest to use TomEE 8.0 or better.  TomEE no longer supports tomcat 8.5
     - NonStop(tm) Servlets For JavaServer Pages(tm) v8.5 (Based on Tomcat 8.5.78)
-    - Pivotal tc 4.1.27 release with addon only (Based on Tomcat 8.5.94)
+    - Pivotal tc 4.1.29 release with addon only (Based on Tomcat 8.5.97)
 
 * Tomcat 9.0 Series
 
-    - Tomcat 9.0.72 to 9.0.83
+    - Tomcat 9.0.72 to 9.0.85
     - TomEE 8.0.16 (Based on Tomcat 9.0.82).  TomEE is ending support on December 31st 2023
-    - NonStop(tm) never supported 9.0 as they changed direction but seem to have come back now for 10.x
-    - Pivotal tc 4.1.27 release (Based on Tomcat 9.0.81)
-    - Vmware tc 5.0.6 release (Based on Tomcat 9.0.81)
+    - NonStop(tm) never supported 9.0 as they changed direction but seem to have come back now for 10.1
+    - Pivotal tc 4.1.29 release (Based on Tomcat 9.0.84)
+    - Vmware tc 5.0.8 release (Based on Tomcat 9.0.84)
 
-* Tomcat 10.1 Series (pending)
+* Tomcat 10.0 Series (discontinued by tomcat / not released by psi probe yet)
 
-    - Tomcat 10.1.6 to 10.1.16
-    - TomEE 9.1.1 (Based on Tomcat 10.0.27)
+    - TomEE 9.1.2 (Based on Tomcat 10.0.27)
+
+* Tomcat 10.1 Series (not released by psi probe yet - issues with hop from tomcat 10.0.27 to 10.1.x)
+
+    - Tomcat 10.1.6 to 10.1.18
+    - TomEE - no support yet for 10.1
     - NonStop(tm) Servlets For JavaServer Pages(tm) v10.1 (Based on Tomcat 10.1.7)
-    - Vmware tc 5.0.6 release (Based on Tomcat 10.1.14
+    - Vmware tc 5.0.8 release (Based on Tomcat 10.1.17)
 
 * Tomcat 11.0 Series (pending)
 
-    - Tomcat 11.0.0.M3 to 11.0.0.M14
+    - Tomcat 11.0.0.M3 to 11.0.0.M16
 
 ## User Groups
 
