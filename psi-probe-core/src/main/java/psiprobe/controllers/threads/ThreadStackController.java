@@ -75,7 +75,6 @@ public class ThreadStackController extends ParameterizableViewController {
     long threadId = ServletRequestUtils.getLongParameter(request, "id", -1);
     String threadName = ServletRequestUtils.getStringParameter(request, "name");
 
-    List<ThreadStackElement> stack = null;
     MBeanServer mbeanServer = ManagementFactory.getPlatformMBeanServer();
     ObjectName objectNameThreading = new ObjectName("java.lang:type=Threading");
 
@@ -93,6 +92,7 @@ public class ThreadStackController extends ParameterizableViewController {
       }
     }
 
+    List<ThreadStackElement> stack = null;
     if (mbeanServer.queryMBeans(objectNameThreading, null) != null && threadId != -1) {
 
       CompositeData cd =
