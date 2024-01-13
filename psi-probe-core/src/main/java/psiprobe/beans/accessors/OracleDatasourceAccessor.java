@@ -13,11 +13,11 @@ package psiprobe.beans.accessors;
 import java.sql.SQLException;
 import java.util.Properties;
 
-import psiprobe.UtilsBase;
-import psiprobe.model.DataSourceInfo;
-
 import oracle.jdbc.pool.OracleConnectionCacheManager;
 import oracle.jdbc.pool.OracleDataSource;
+
+import psiprobe.UtilsBase;
+import psiprobe.model.DataSourceInfo;
 
 /**
  * Accesses oracle.jdbc.pool.OracleDataSource.
