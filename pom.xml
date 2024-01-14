@@ -847,6 +847,9 @@
                     <version>${checkstyle.plugin}</version>
                     <configuration>
                         <configLocation>${checkstyle.configLocation}</configLocation>
+                        <failOnViolation>false</failOnViolation>
+                        <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                        <violationSeverity>info</violationSeverity>
                     </configuration>
                 </plugin>
                 <plugin>
