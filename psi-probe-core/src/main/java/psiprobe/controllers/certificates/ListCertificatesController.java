@@ -21,6 +21,7 @@ import java.security.KeyStore;
 import java.security.cert.Certificate;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -169,7 +170,7 @@ public class ListCertificatesController extends AbstractTomcatContainerControlle
    * @throws IllegalAccessException the illegal access exception
    * @throws InvocationTargetException the invocation target exception
    */
-  private List<ConnectorInfo> getConnectorInfos(List<Connector> connectors)
+  private List<ConnectorInfo> getConnectorInfos(Collection<Connector> connectors)
       throws IllegalAccessException, InvocationTargetException {
     List<ConnectorInfo> infos = new ArrayList<>();
     for (Connector connector : connectors) {
@@ -209,7 +210,6 @@ public class ListCertificatesController extends AbstractTomcatContainerControlle
 
     File catalinaBaseFolder = new File(System.getProperty("catalina.base"));
     file = new File(catalinaBaseFolder, path);
-
     if (file.exists()) {
       return Files.newInputStream(file.toPath());
     }
@@ -254,7 +254,7 @@ public class ListCertificatesController extends AbstractTomcatContainerControlle
    * @param alias the alias
    * @param x509Cert the x509 cert
    */
-  private void addToStore(List<Cert> certs, String alias, X509Certificate x509Cert) {
+  private void addToStore(Collection<Cert> certs, String alias, X509Certificate x509Cert) {
     Cert cert = new Cert();
 
     cert.setAlias(alias);

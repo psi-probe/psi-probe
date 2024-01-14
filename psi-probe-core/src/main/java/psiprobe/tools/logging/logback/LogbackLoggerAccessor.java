@@ -13,6 +13,7 @@ package psiprobe.tools.logging.logback;
 import com.google.common.collect.Iterators;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -163,7 +164,7 @@ public class LogbackLoggerAccessor extends DefaultAccessor {
    * @param appender the appender
    * @param appenders the appenders
    */
-  private void wrapAndAddAppender(Object appender, List<LogbackAppenderAccessor> appenders) {
+  private void wrapAndAddAppender(Object appender, Collection<LogbackAppenderAccessor> appenders) {
     LogbackAppenderAccessor appenderAccessor = wrapAppender(appender);
     if (appenderAccessor != null) {
       appenders.add(appenderAccessor);

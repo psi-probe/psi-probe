@@ -400,7 +400,7 @@ public class OshiController extends AbstractTomcatContainerController {
     }
     oshi.add("Current process environment: ");
     for (Entry<String, String> e : p.getEnvironmentVariables().entrySet()) {
-      oshi.add("  " + e.getKey() + "=" + e.getValue());
+      oshi.add("  " + e.getKey() + '=' + e.getValue());
     }
   }
 

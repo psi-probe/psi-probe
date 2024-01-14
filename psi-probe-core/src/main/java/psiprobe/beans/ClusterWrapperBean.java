@@ -51,7 +51,8 @@ public class ClusterWrapperBean {
         new ObjectName(serverName + ":type=ClusterMembership,host=" + hostName);
     ObjectName objectNameReceiver =
         new ObjectName(serverName + ":type=ClusterReceiver,host=" + hostName);
-    ObjectName senderOName = new ObjectName(serverName + ":type=ClusterSender,host=" + hostName);
+    ObjectName objectNameSender =
+        new ObjectName(serverName + ":type=ClusterSender,host=" + hostName);
 
     /*
      * should be just one set, this is just to find out if this instance is cluster-enabled and the
@@ -61,13 +62,13 @@ public class ClusterWrapperBean {
         mbeanServer.queryMBeans(new ObjectName("*:type=Cluster,host=" + hostName), null);
     Set<ObjectInstance> membership = mbeanServer.queryMBeans(objectNameMembership, null);
     if (clusters != null && !clusters.isEmpty() && membership != null && !membership.isEmpty()) {
-      ObjectName clusterOName = clusters.iterator().next().getObjectName();
+      ObjectName objectNameCluster = clusters.iterator().next().getObjectName();
       cluster = new Cluster();
 
-      cluster.setName(JmxTools.getStringAttr(mbeanServer, clusterOName, "clusterName"));
-      cluster.setInfo(JmxTools.getStringAttr(mbeanServer, clusterOName, "info"));
+      cluster.setName(JmxTools.getStringAttr(mbeanServer, objectNameCluster, "clusterName"));
+      cluster.setInfo(JmxTools.getStringAttr(mbeanServer, objectNameCluster, "info"));
       cluster.setManagerClassName(
-          JmxTools.getStringAttr(mbeanServer, clusterOName, "managerClassName"));
+          JmxTools.getStringAttr(mbeanServer, objectNameCluster, "managerClassName"));
 
       cluster
           .setMcastAddress(JmxTools.getStringAttr(mbeanServer, objectNameMembership, "mcastAddr"));
@@ -97,20 +98,23 @@ public class ClusterWrapperBean {
       // cluster.setTcpThreadCount(
       // JmxTools.getIntAttr(mbeanServer, objectNameReceiver, "tcpThreadCount"));
 
-      cluster.setSenderAckTimeout(JmxTools.getLongAttr(mbeanServer, senderOName, "ackTimeout"));
       cluster
-          .setSenderAutoConnect(JmxTools.getBooleanAttr(mbeanServer, senderOName, "autoConnect"));
+          .setSenderAckTimeout(JmxTools.getLongAttr(mbeanServer, objectNameSender, "ackTimeout"));
+      cluster.setSenderAutoConnect(
+          JmxTools.getBooleanAttr(mbeanServer, objectNameSender, "autoConnect"));
       cluster.setSenderFailureCounter(
-          JmxTools.getLongAttr(mbeanServer, senderOName, "failureCounter"));
-      cluster.setSenderNrOfRequests(JmxTools.getLongAttr(mbeanServer, senderOName, "nrOfRequests"));
+          JmxTools.getLongAttr(mbeanServer, objectNameSender, "failureCounter"));
+      cluster.setSenderNrOfRequests(
+          JmxTools.getLongAttr(mbeanServer, objectNameSender, "nrOfRequests"));
       cluster.setSenderReplicationMode(
-          JmxTools.getStringAttr(mbeanServer, senderOName, "replicationMode"));
-      cluster.setSenderTotalBytes(JmxTools.getLongAttr(mbeanServer, senderOName, "totalBytes"));
+          JmxTools.getStringAttr(mbeanServer, objectNameSender, "replicationMode"));
+      cluster
+          .setSenderTotalBytes(JmxTools.getLongAttr(mbeanServer, objectNameSender, "totalBytes"));
 
       if (loadMembers) {
-        ObjectName[] senders =
-            (ObjectName[]) JmxTools.getAttribute(mbeanServer, senderOName, "senderObjectNames");
-        for (ObjectName localSenderOName : senders) {
+        ObjectName[] senders = (ObjectName[]) JmxTools.getAttribute(mbeanServer, objectNameSender,
+            "senderObjectNames");
+        for (ObjectName objectNameLocalSender : senders) {
           ClusterSender sender;
 
           if ("pooled".equals(cluster.getSenderReplicationMode())) {
@@ -124,56 +128,58 @@ public class ClusterWrapperBean {
             sender = new ClusterSender();
           }
 
-          sender.setAddress(JmxTools.getStringAttr(mbeanServer, localSenderOName, "address"));
-          sender.setPort(JmxTools.getIntAttr(mbeanServer, localSenderOName, "port"));
+          sender.setAddress(JmxTools.getStringAttr(mbeanServer, objectNameLocalSender, "address"));
+          sender.setPort(JmxTools.getIntAttr(mbeanServer, objectNameLocalSender, "port"));
 
           sender.setAvgMessageSize(
-              JmxTools.getLongAttr(mbeanServer, localSenderOName, "avgMessageSize", -1));
+              JmxTools.getLongAttr(mbeanServer, objectNameLocalSender, "avgMessageSize", -1));
           sender.setAvgProcessingTime(
-              JmxTools.getLongAttr(mbeanServer, localSenderOName, "avgProcessingTime", -1));
+              JmxTools.getLongAttr(mbeanServer, objectNameLocalSender, "avgProcessingTime", -1));
 
           sender.setConnectCounter(
-              JmxTools.getLongAttr(mbeanServer, localSenderOName, "connectCounter"));
+              JmxTools.getLongAttr(mbeanServer, objectNameLocalSender, "connectCounter"));
           sender.setDisconnectCounter(
-              JmxTools.getLongAttr(mbeanServer, localSenderOName, "disconnectCounter"));
-          sender.setConnected(JmxTools.getBooleanAttr(mbeanServer, localSenderOName, "connected"));
+              JmxTools.getLongAttr(mbeanServer, objectNameLocalSender, "disconnectCounter"));
+          sender.setConnected(
+              JmxTools.getBooleanAttr(mbeanServer, objectNameLocalSender, "connected"));
           sender.setKeepAliveTimeout(
-              JmxTools.getLongAttr(mbeanServer, localSenderOName, "keepAliveTimeout"));
-          sender
-              .setNrOfRequests(JmxTools.getLongAttr(mbeanServer, localSenderOName, "nrOfRequests"));
-          sender.setTotalBytes(JmxTools.getLongAttr(mbeanServer, localSenderOName, "totalBytes"));
-          sender.setResend(JmxTools.getBooleanAttr(mbeanServer, localSenderOName, "resend"));
-          sender.setSuspect(JmxTools.getBooleanAttr(mbeanServer, localSenderOName, "suspect"));
+              JmxTools.getLongAttr(mbeanServer, objectNameLocalSender, "keepAliveTimeout"));
+          sender.setNrOfRequests(
+              JmxTools.getLongAttr(mbeanServer, objectNameLocalSender, "nrOfRequests"));
+          sender.setTotalBytes(
+              JmxTools.getLongAttr(mbeanServer, objectNameLocalSender, "totalBytes"));
+          sender.setResend(JmxTools.getBooleanAttr(mbeanServer, objectNameLocalSender, "resend"));
+          sender.setSuspect(JmxTools.getBooleanAttr(mbeanServer, objectNameLocalSender, "suspect"));
 
           if (sender instanceof PooledClusterSender) {
             ((PooledClusterSender) sender).setMaxPoolSocketLimit(
-                JmxTools.getIntAttr(mbeanServer, localSenderOName, "maxPoolSocketLimit"));
+                JmxTools.getIntAttr(mbeanServer, objectNameLocalSender, "maxPoolSocketLimit"));
           }
 
           if (sender instanceof SyncClusterSender) {
             SyncClusterSender syncSender = (SyncClusterSender) sender;
             syncSender.setDataFailureCounter(
-                JmxTools.getLongAttr(mbeanServer, localSenderOName, "dataFailureCounter"));
+                JmxTools.getLongAttr(mbeanServer, objectNameLocalSender, "dataFailureCounter"));
             syncSender.setDataResendCounter(
-                JmxTools.getLongAttr(mbeanServer, localSenderOName, "dataResendCounter"));
+                JmxTools.getLongAttr(mbeanServer, objectNameLocalSender, "dataResendCounter"));
             syncSender.setSocketOpenCounter(
-                JmxTools.getIntAttr(mbeanServer, localSenderOName, "socketOpenCounter"));
+                JmxTools.getIntAttr(mbeanServer, objectNameLocalSender, "socketOpenCounter"));
             syncSender.setSocketCloseCounter(
-                JmxTools.getIntAttr(mbeanServer, localSenderOName, "socketCloseCounter"));
-            syncSender.setSocketOpenFailureCounter(
-                JmxTools.getIntAttr(mbeanServer, localSenderOName, "socketOpenFailureCounter"));
+                JmxTools.getIntAttr(mbeanServer, objectNameLocalSender, "socketCloseCounter"));
+            syncSender.setSocketOpenFailureCounter(JmxTools.getIntAttr(mbeanServer,
+                objectNameLocalSender, "socketOpenFailureCounter"));
           }
 
           if (sender instanceof AsyncClusterSender) {
             AsyncClusterSender asyncSender = (AsyncClusterSender) sender;
             asyncSender.setInQueueCounter(
-                JmxTools.getLongAttr(mbeanServer, localSenderOName, "inQueueCounter"));
+                JmxTools.getLongAttr(mbeanServer, objectNameLocalSender, "inQueueCounter"));
             asyncSender.setOutQueueCounter(
-                JmxTools.getLongAttr(mbeanServer, localSenderOName, "outQueueCounter"));
+                JmxTools.getLongAttr(mbeanServer, objectNameLocalSender, "outQueueCounter"));
             asyncSender
-                .setQueueSize(JmxTools.getIntAttr(mbeanServer, localSenderOName, "queueSize"));
+                .setQueueSize(JmxTools.getIntAttr(mbeanServer, objectNameLocalSender, "queueSize"));
             asyncSender.setQueuedNrOfBytes(
-                JmxTools.getLongAttr(mbeanServer, localSenderOName, "queuedNrOfBytes"));
+                JmxTools.getLongAttr(mbeanServer, objectNameLocalSender, "queuedNrOfBytes"));
           }
           cluster.getMembers().add(sender);
         }

@@ -50,7 +50,7 @@ public class OpenEjbManagedDatasourceAccessor implements DatasourceAccessor {
     if ("org.apache.openejb.resource.jdbc.managed.local.ManagedDataSource"
         .equals(resource.getClass().getName())) {
       Object wrapped = unwrap(resource);
-      return wrapped instanceof DataSourceProxy && wrapped instanceof PoolConfiguration;
+      return wrapped instanceof PoolConfiguration;
     }
     return false;
   }

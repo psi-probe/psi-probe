@@ -19,6 +19,7 @@ import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -658,7 +659,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
    * @param filterMapType the filter map type
    */
   protected void addFilterMapping(String filterName, String dispatcherMap, String filterClass,
-      String[] types, List<FilterMapping> results, FilterMapType filterMapType) {
+      String[] types, Collection<FilterMapping> results, FilterMapType filterMapType) {
     for (String type : types) {
       FilterMapping fm = new FilterMapping();
       if (filterMapType == FilterMapType.URL) {
