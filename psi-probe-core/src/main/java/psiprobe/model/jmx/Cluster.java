@@ -11,6 +11,7 @@
 package psiprobe.model.jmx;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -213,7 +214,7 @@ public class Cluster {
    *
    * @param members the new members
    */
-  public void setMembers(List<ClusterSender> members) {
+  public void setMembers(Collection<ClusterSender> members) {
     this.members = members == null ? Collections.emptyList() : new ArrayList<>(members);
   }
 
