@@ -1460,6 +1460,7 @@
                 <reportSets>
                     <reportSet>
                         <reports>
+                            <report>checkstyle</report>
                             <report>checkstyle-aggregate</report>
                         </reports>
                     </reportSet>
