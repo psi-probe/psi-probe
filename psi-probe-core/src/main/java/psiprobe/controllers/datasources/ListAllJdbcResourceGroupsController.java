@@ -11,6 +11,7 @@
 package psiprobe.controllers.datasources;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -86,8 +87,8 @@ public class ListAllJdbcResourceGroupsController extends AbstractTomcatContainer
    * @param resources the resources
    * @param dataSources the data sources
    */
-  protected void filterValidDataSources(List<ApplicationResource> resources,
-      List<DataSourceInfo> dataSources) {
+  protected void filterValidDataSources(Collection<ApplicationResource> resources,
+      Collection<DataSourceInfo> dataSources) {
 
     for (ApplicationResource res : resources) {
       if (res.isLookedUp() && res.getDataSourceInfo() != null
