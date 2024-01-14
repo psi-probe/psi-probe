@@ -901,6 +901,9 @@
                     <artifactId>spotbugs-maven-plugin</artifactId>
                     <version>${spotbugs.plugin}</version>
                     <configuration>
+                        <effort>Max</effort>
+                        <includeTests>true</includeTests>
+                        <failOnError>false</failOnError>
                         <plugins>
                             <plugin>
                                 <groupId>com.mebigfatguy.sb-contrib</groupId>
@@ -919,6 +922,13 @@
                             </plugin>
                         </plugins>
                     </configuration>
+                    <dependencies>
+                        <dependency>
+                            <groupId>com.github.spotbugs</groupId>
+                            <artifactId>spotbugs</artifactId>
+                            <version>${spotbugs.version}</version>
+                        </dependency>
+                    </dependencies>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -1364,6 +1374,17 @@
                         <goals>
                             <goal>check</goal>
                             <goal>cpd-check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.github.spotbugs</groupId>
+                <artifactId>spotbugs-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>check</goal>
                         </goals>
                     </execution>
                 </executions>
