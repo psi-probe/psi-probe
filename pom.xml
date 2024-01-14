@@ -927,6 +927,7 @@
                     <configuration>
                         <analysisCache>true</analysisCache>
                         <failOnViolation>false</failOnViolation>
+                        <printFailingErrors>true</printFailingErrors>
                     </configuration>
                 </plugin>
                 <plugin>
