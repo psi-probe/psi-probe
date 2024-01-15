@@ -58,7 +58,7 @@
 <a class="jxr_linenumber" name="L50" href="#L50">50</a>        cookieName = Functions.safeCookieName(cookieName);
 <a class="jxr_linenumber" name="L51" href="#L51">51</a>        <em class="jxr_comment">// expire the cookies at the current date + 10years (roughly, nevermind leap years)</em>
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>        response.addHeader(<span class="jxr_string">"Set-Cookie"</span>,
-<a class="jxr_linenumber" name="L53" href="#L53">53</a>            cookieName + <span class="jxr_string">"="</span> + state + <span class="jxr_string">"; Expires="</span>
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>            cookieName + '=' + state + <span class="jxr_string">"; Expires="</span>
 <a class="jxr_linenumber" name="L54" href="#L54">54</a>                + sdf.format(<strong class="jxr_keyword">new</strong> Date(System.currentTimeMillis() + 315360000000L))
 <a class="jxr_linenumber" name="L55" href="#L55">55</a>                + <span class="jxr_string">"; Secure=true; HttpOnly=true"</span>);
 <a class="jxr_linenumber" name="L56" href="#L56">56</a>      }
@@ -67,6 +67,6 @@
 <a class="jxr_linenumber" name="L59" href="#L59">59</a>  }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2009&#x2013;2023 <a href="https://github.com/psi-probe/">psi-probe</a>. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2009&#x2013;2024 <a href="https://github.com/psi-probe/">psi-probe</a>. All rights reserved.</div>
 </body>
 </html>

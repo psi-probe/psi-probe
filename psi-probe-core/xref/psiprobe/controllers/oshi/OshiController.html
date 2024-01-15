@@ -209,7 +209,7 @@
 <a class="jxr_linenumber" name="L201" href="#L201">201</a>     printDisks(hal.getDiskStores());
 <a class="jxr_linenumber" name="L202" href="#L202">202</a> 
 <a class="jxr_linenumber" name="L203" href="#L203">203</a>     logger.debug(<span class="jxr_string">"Checking Logical Volume Groups ..."</span>);
-<a class="jxr_linenumber" name="L204" href="#L204">204</a>     printLVgroups(hal.getLogicalVolumeGroups());
+<a class="jxr_linenumber" name="L204" href="#L204">204</a>     printLogicalVolumegroups(hal.getLogicalVolumeGroups());
 <a class="jxr_linenumber" name="L205" href="#L205">205</a> 
 <a class="jxr_linenumber" name="L206" href="#L206">206</a>     logger.debug(<span class="jxr_string">"Checking File System..."</span>);
 <a class="jxr_linenumber" name="L207" href="#L207">207</a>     printFileSystem(os.getFileSystem());
@@ -321,36 +321,36 @@
 <a class="jxr_linenumber" name="L313" href="#L313">313</a>         + processor.getInterrupts());
 <a class="jxr_linenumber" name="L314" href="#L314">314</a> 
 <a class="jxr_linenumber" name="L315" href="#L315">315</a>     <strong class="jxr_keyword">long</strong>[] prevTicks = processor.getSystemCpuLoadTicks();
-<a class="jxr_linenumber" name="L316" href="#L316">316</a>     <strong class="jxr_keyword">long</strong>[][] prevProcTicks = processor.getProcessorCpuLoadTicks();
-<a class="jxr_linenumber" name="L317" href="#L317">317</a>     oshi.add(<span class="jxr_string">"CPU, IOWait, and IRQ ticks @ 0 sec:"</span> + Arrays.toString(prevTicks));
-<a class="jxr_linenumber" name="L318" href="#L318">318</a>     <em class="jxr_comment">// Wait a second...</em>
-<a class="jxr_linenumber" name="L319" href="#L319">319</a>     Util.sleep(1000);
-<a class="jxr_linenumber" name="L320" href="#L320">320</a>     <strong class="jxr_keyword">long</strong>[] ticks = processor.getSystemCpuLoadTicks();
-<a class="jxr_linenumber" name="L321" href="#L321">321</a>     oshi.add(<span class="jxr_string">"CPU, IOWait, and IRQ ticks @ 1 sec:"</span> + Arrays.toString(ticks));
-<a class="jxr_linenumber" name="L322" href="#L322">322</a>     <strong class="jxr_keyword">long</strong> user = ticks[TickType.USER.getIndex()] - prevTicks[TickType.USER.getIndex()];
-<a class="jxr_linenumber" name="L323" href="#L323">323</a>     <strong class="jxr_keyword">long</strong> nice = ticks[TickType.NICE.getIndex()] - prevTicks[TickType.NICE.getIndex()];
-<a class="jxr_linenumber" name="L324" href="#L324">324</a>     <strong class="jxr_keyword">long</strong> sys = ticks[TickType.SYSTEM.getIndex()] - prevTicks[TickType.SYSTEM.getIndex()];
-<a class="jxr_linenumber" name="L325" href="#L325">325</a>     <strong class="jxr_keyword">long</strong> idle = ticks[TickType.IDLE.getIndex()] - prevTicks[TickType.IDLE.getIndex()];
-<a class="jxr_linenumber" name="L326" href="#L326">326</a>     <strong class="jxr_keyword">long</strong> iowait = ticks[TickType.IOWAIT.getIndex()] - prevTicks[TickType.IOWAIT.getIndex()];
-<a class="jxr_linenumber" name="L327" href="#L327">327</a>     <strong class="jxr_keyword">long</strong> irq = ticks[TickType.IRQ.getIndex()] - prevTicks[TickType.IRQ.getIndex()];
-<a class="jxr_linenumber" name="L328" href="#L328">328</a>     <strong class="jxr_keyword">long</strong> softirq = ticks[TickType.SOFTIRQ.getIndex()] - prevTicks[TickType.SOFTIRQ.getIndex()];
-<a class="jxr_linenumber" name="L329" href="#L329">329</a>     <strong class="jxr_keyword">long</strong> steal = ticks[TickType.STEAL.getIndex()] - prevTicks[TickType.STEAL.getIndex()];
-<a class="jxr_linenumber" name="L330" href="#L330">330</a>     <strong class="jxr_keyword">long</strong> totalCpu = user + nice + sys + idle + iowait + irq + softirq + steal;
-<a class="jxr_linenumber" name="L331" href="#L331">331</a> 
-<a class="jxr_linenumber" name="L332" href="#L332">332</a>     oshi.add(String.format(
-<a class="jxr_linenumber" name="L333" href="#L333">333</a>         <span class="jxr_string">"User: %.1f%% Nice: %.1f%% System: %.1f%% Idle: %.1f%% IOwait: %.1f%% IRQ: %.1f%% SoftIRQ: %.1f%% Steal: %.1f%%"</span>,
-<a class="jxr_linenumber" name="L334" href="#L334">334</a>         100d * user / totalCpu, 100d * nice / totalCpu, 100d * sys / totalCpu,
-<a class="jxr_linenumber" name="L335" href="#L335">335</a>         100d * idle / totalCpu, 100d * iowait / totalCpu, 100d * irq / totalCpu,
-<a class="jxr_linenumber" name="L336" href="#L336">336</a>         100d * softirq / totalCpu, 100d * steal / totalCpu));
-<a class="jxr_linenumber" name="L337" href="#L337">337</a>     oshi.add(
-<a class="jxr_linenumber" name="L338" href="#L338">338</a>         String.format(<span class="jxr_string">"CPU load: %.1f%%"</span>, processor.getSystemCpuLoadBetweenTicks(prevTicks) * 100));
-<a class="jxr_linenumber" name="L339" href="#L339">339</a>     <strong class="jxr_keyword">double</strong>[] loadAverage = processor.getSystemLoadAverage(3);
-<a class="jxr_linenumber" name="L340" href="#L340">340</a>     oshi.add(<span class="jxr_string">"CPU load averages:"</span>
-<a class="jxr_linenumber" name="L341" href="#L341">341</a>         + (loadAverage[0] &lt; 0 ? <span class="jxr_string">" N/A"</span> : String.format(<span class="jxr_string">" %.2f"</span>, loadAverage[0]))
-<a class="jxr_linenumber" name="L342" href="#L342">342</a>         + (loadAverage[1] &lt; 0 ? <span class="jxr_string">" N/A"</span> : String.format(<span class="jxr_string">" %.2f"</span>, loadAverage[1]))
-<a class="jxr_linenumber" name="L343" href="#L343">343</a>         + (loadAverage[2] &lt; 0 ? <span class="jxr_string">" N/A"</span> : String.format(<span class="jxr_string">" %.2f"</span>, loadAverage[2])));
-<a class="jxr_linenumber" name="L344" href="#L344">344</a>     <em class="jxr_comment">// per core CPU</em>
-<a class="jxr_linenumber" name="L345" href="#L345">345</a>     StringBuilder procCpu = <strong class="jxr_keyword">new</strong> StringBuilder(<span class="jxr_string">"CPU load per processor:"</span>);
+<a class="jxr_linenumber" name="L316" href="#L316">316</a>     oshi.add(<span class="jxr_string">"CPU, IOWait, and IRQ ticks @ 0 sec:"</span> + Arrays.toString(prevTicks));
+<a class="jxr_linenumber" name="L317" href="#L317">317</a>     <em class="jxr_comment">// Wait a second...</em>
+<a class="jxr_linenumber" name="L318" href="#L318">318</a>     Util.sleep(1000);
+<a class="jxr_linenumber" name="L319" href="#L319">319</a>     <strong class="jxr_keyword">long</strong>[] ticks = processor.getSystemCpuLoadTicks();
+<a class="jxr_linenumber" name="L320" href="#L320">320</a>     oshi.add(<span class="jxr_string">"CPU, IOWait, and IRQ ticks @ 1 sec:"</span> + Arrays.toString(ticks));
+<a class="jxr_linenumber" name="L321" href="#L321">321</a>     <strong class="jxr_keyword">long</strong> user = ticks[TickType.USER.getIndex()] - prevTicks[TickType.USER.getIndex()];
+<a class="jxr_linenumber" name="L322" href="#L322">322</a>     <strong class="jxr_keyword">long</strong> nice = ticks[TickType.NICE.getIndex()] - prevTicks[TickType.NICE.getIndex()];
+<a class="jxr_linenumber" name="L323" href="#L323">323</a>     <strong class="jxr_keyword">long</strong> sys = ticks[TickType.SYSTEM.getIndex()] - prevTicks[TickType.SYSTEM.getIndex()];
+<a class="jxr_linenumber" name="L324" href="#L324">324</a>     <strong class="jxr_keyword">long</strong> idle = ticks[TickType.IDLE.getIndex()] - prevTicks[TickType.IDLE.getIndex()];
+<a class="jxr_linenumber" name="L325" href="#L325">325</a>     <strong class="jxr_keyword">long</strong> iowait = ticks[TickType.IOWAIT.getIndex()] - prevTicks[TickType.IOWAIT.getIndex()];
+<a class="jxr_linenumber" name="L326" href="#L326">326</a>     <strong class="jxr_keyword">long</strong> irq = ticks[TickType.IRQ.getIndex()] - prevTicks[TickType.IRQ.getIndex()];
+<a class="jxr_linenumber" name="L327" href="#L327">327</a>     <strong class="jxr_keyword">long</strong> softirq = ticks[TickType.SOFTIRQ.getIndex()] - prevTicks[TickType.SOFTIRQ.getIndex()];
+<a class="jxr_linenumber" name="L328" href="#L328">328</a>     <strong class="jxr_keyword">long</strong> steal = ticks[TickType.STEAL.getIndex()] - prevTicks[TickType.STEAL.getIndex()];
+<a class="jxr_linenumber" name="L329" href="#L329">329</a>     <strong class="jxr_keyword">long</strong> totalCpu = user + nice + sys + idle + iowait + irq + softirq + steal;
+<a class="jxr_linenumber" name="L330" href="#L330">330</a> 
+<a class="jxr_linenumber" name="L331" href="#L331">331</a>     oshi.add(String.format(
+<a class="jxr_linenumber" name="L332" href="#L332">332</a>         <span class="jxr_string">"User: %.1f%% Nice: %.1f%% System: %.1f%% Idle: %.1f%% IOwait: %.1f%% IRQ: %.1f%% SoftIRQ: %.1f%% Steal: %.1f%%"</span>,
+<a class="jxr_linenumber" name="L333" href="#L333">333</a>         100d * user / totalCpu, 100d * nice / totalCpu, 100d * sys / totalCpu,
+<a class="jxr_linenumber" name="L334" href="#L334">334</a>         100d * idle / totalCpu, 100d * iowait / totalCpu, 100d * irq / totalCpu,
+<a class="jxr_linenumber" name="L335" href="#L335">335</a>         100d * softirq / totalCpu, 100d * steal / totalCpu));
+<a class="jxr_linenumber" name="L336" href="#L336">336</a>     oshi.add(
+<a class="jxr_linenumber" name="L337" href="#L337">337</a>         String.format(<span class="jxr_string">"CPU load: %.1f%%"</span>, processor.getSystemCpuLoadBetweenTicks(prevTicks) * 100));
+<a class="jxr_linenumber" name="L338" href="#L338">338</a>     <strong class="jxr_keyword">double</strong>[] loadAverage = processor.getSystemLoadAverage(3);
+<a class="jxr_linenumber" name="L339" href="#L339">339</a>     oshi.add(<span class="jxr_string">"CPU load averages:"</span>
+<a class="jxr_linenumber" name="L340" href="#L340">340</a>         + (loadAverage[0] &lt; 0 ? <span class="jxr_string">" N/A"</span> : String.format(<span class="jxr_string">" %.2f"</span>, loadAverage[0]))
+<a class="jxr_linenumber" name="L341" href="#L341">341</a>         + (loadAverage[1] &lt; 0 ? <span class="jxr_string">" N/A"</span> : String.format(<span class="jxr_string">" %.2f"</span>, loadAverage[1]))
+<a class="jxr_linenumber" name="L342" href="#L342">342</a>         + (loadAverage[2] &lt; 0 ? <span class="jxr_string">" N/A"</span> : String.format(<span class="jxr_string">" %.2f"</span>, loadAverage[2])));
+<a class="jxr_linenumber" name="L343" href="#L343">343</a>     <em class="jxr_comment">// per core CPU</em>
+<a class="jxr_linenumber" name="L344" href="#L344">344</a>     StringBuilder procCpu = <strong class="jxr_keyword">new</strong> StringBuilder(<span class="jxr_string">"CPU load per processor:"</span>);
+<a class="jxr_linenumber" name="L345" href="#L345">345</a>     <strong class="jxr_keyword">long</strong>[][] prevProcTicks = processor.getProcessorCpuLoadTicks();
 <a class="jxr_linenumber" name="L346" href="#L346">346</a>     <strong class="jxr_keyword">double</strong>[] load = processor.getProcessorCpuLoadBetweenTicks(prevProcTicks);
 <a class="jxr_linenumber" name="L347" href="#L347">347</a>     <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">double</strong> avg : load) {
 <a class="jxr_linenumber" name="L348" href="#L348">348</a>       procCpu.append(String.format(<span class="jxr_string">" %.1f%%"</span>, avg * 100));
@@ -408,7 +408,7 @@
 <a class="jxr_linenumber" name="L400" href="#L400">400</a>     }
 <a class="jxr_linenumber" name="L401" href="#L401">401</a>     oshi.add(<span class="jxr_string">"Current process environment: "</span>);
 <a class="jxr_linenumber" name="L402" href="#L402">402</a>     <strong class="jxr_keyword">for</strong> (Entry&lt;String, String&gt; e : p.getEnvironmentVariables().entrySet()) {
-<a class="jxr_linenumber" name="L403" href="#L403">403</a>       oshi.add(<span class="jxr_string">"  "</span> + e.getKey() + <span class="jxr_string">"="</span> + e.getValue());
+<a class="jxr_linenumber" name="L403" href="#L403">403</a>       oshi.add(<span class="jxr_string">"  "</span> + e.getKey() + '=' + e.getValue());
 <a class="jxr_linenumber" name="L404" href="#L404">404</a>     }
 <a class="jxr_linenumber" name="L405" href="#L405">405</a>   }
 <a class="jxr_linenumber" name="L406" href="#L406">406</a> 
@@ -483,7 +483,7 @@
 <a class="jxr_linenumber" name="L475" href="#L475">475</a> <em class="jxr_javadoccomment">   *</em>
 <a class="jxr_linenumber" name="L476" href="#L476">476</a> <em class="jxr_javadoccomment">   * @param list the logical volume groups</em>
 <a class="jxr_linenumber" name="L477" href="#L477">477</a> <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L478" href="#L478">478</a>   <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">void</strong> printLVgroups(List&lt;LogicalVolumeGroup&gt; list) {
+<a class="jxr_linenumber" name="L478" href="#L478">478</a>   <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">void</strong> printLogicalVolumegroups(List&lt;LogicalVolumeGroup&gt; list) {
 <a class="jxr_linenumber" name="L479" href="#L479">479</a>     <strong class="jxr_keyword">if</strong> (!list.isEmpty()) {
 <a class="jxr_linenumber" name="L480" href="#L480">480</a>       oshi.add(<span class="jxr_string">"Logical Volume Groups:"</span>);
 <a class="jxr_linenumber" name="L481" href="#L481">481</a>       <strong class="jxr_keyword">for</strong> (LogicalVolumeGroup lvg : list) {
@@ -617,6 +617,6 @@
 <a class="jxr_linenumber" name="L609" href="#L609">609</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2009&#x2013;2023 <a href="https://github.com/psi-probe/">psi-probe</a>. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2009&#x2013;2024 <a href="https://github.com/psi-probe/">psi-probe</a>. All rights reserved.</div>
 </body>
 </html>

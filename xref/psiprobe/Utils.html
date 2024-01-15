@@ -568,8 +568,8 @@
 <a class="jxr_linenumber" name="L560" href="#L560">560</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">boolean</strong> isThreadingEnabled() {
 <a class="jxr_linenumber" name="L561" href="#L561">561</a>     <strong class="jxr_keyword">try</strong> {
 <a class="jxr_linenumber" name="L562" href="#L562">562</a>       MBeanServer mbeanServer = ManagementFactory.getPlatformMBeanServer();
-<a class="jxr_linenumber" name="L563" href="#L563">563</a>       ObjectName threadingOName = <strong class="jxr_keyword">new</strong> ObjectName(<span class="jxr_string">"java.lang:type=Threading"</span>);
-<a class="jxr_linenumber" name="L564" href="#L564">564</a>       Set&lt;ObjectInstance&gt; threading = mbeanServer.queryMBeans(threadingOName, <strong class="jxr_keyword">null</strong>);
+<a class="jxr_linenumber" name="L563" href="#L563">563</a>       ObjectName objectNameThreading = <strong class="jxr_keyword">new</strong> ObjectName(<span class="jxr_string">"java.lang:type=Threading"</span>);
+<a class="jxr_linenumber" name="L564" href="#L564">564</a>       Set&lt;ObjectInstance&gt; threading = mbeanServer.queryMBeans(objectNameThreading, <strong class="jxr_keyword">null</strong>);
 <a class="jxr_linenumber" name="L565" href="#L565">565</a>       <strong class="jxr_keyword">return</strong> threading != <strong class="jxr_keyword">null</strong> &amp;&amp; !threading.isEmpty();
 <a class="jxr_linenumber" name="L566" href="#L566">566</a>     } <strong class="jxr_keyword">catch</strong> (MalformedObjectNameException e) {
 <a class="jxr_linenumber" name="L567" href="#L567">567</a>       logger.trace(<span class="jxr_string">""</span>, e);
@@ -579,6 +579,6 @@
 <a class="jxr_linenumber" name="L571" href="#L571">571</a> }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2009&#x2013;2023 <a href="https://github.com/psi-probe/">psi-probe</a>. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2009&#x2013;2024 <a href="https://github.com/psi-probe/">psi-probe</a>. All rights reserved.</div>
 </body>
 </html>
