@@ -27,6 +27,7 @@
 
     <name>psi-probe-core</name>
     <description>PSI Probe Core - Core logic, data models, and controllers</description>
+    <url>https://github.com/psi-probe/psi-probe/</url>
 
     <scm>
         <connection>scm:git:ssh://git@github.com/psi-probe/psi-probe.git</connection>
