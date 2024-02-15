@@ -124,8 +124,10 @@ public class CopySingleFileController extends AbstractTomcatContainerController 
       logger.error("Could not process file upload", e);
       request.setAttribute("errorMessage", getMessageSourceAccessor()
           .getMessage("probe.src.deploy.file.uploadfailure", new Object[] {e.getMessage()}));
-      Files.delete(tmpFile.toPath());
-      tmpFile = null;
+      if (tmpFile != null) {
+        Files.delete(tmpFile.toPath());
+        tmpFile = null;
+      }
     }
 
     String errMsg = null;

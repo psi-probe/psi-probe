@@ -101,8 +101,10 @@ public class UploadWarController extends AbstractTomcatContainerController {
       logger.error("Could not process file upload", e);
       request.setAttribute("errorMessage", getMessageSourceAccessor()
           .getMessage("probe.src.deploy.war.uploadfailure", new Object[] {e.getMessage()}));
-      Files.delete(tmpWar.toPath());
-      tmpWar = null;
+      if (tmpWar != null) {
+        Files.delete(tmpWar.toPath());
+        tmpWar = null;
+      }
     }
 
     String errMsg = null;
