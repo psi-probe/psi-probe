@@ -13,6 +13,7 @@ package psiprobe.controllers.deploy;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +22,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.catalina.Context;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
-import org.apache.openejb.loader.Files;
 import org.apache.tomcat.util.http.fileupload.FileItem;
 import org.apache.tomcat.util.http.fileupload.FileItemFactory;
 import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
@@ -101,7 +101,7 @@ public class UploadWarController extends AbstractTomcatContainerController {
       logger.error("Could not process file upload", e);
       request.setAttribute("errorMessage", getMessageSourceAccessor()
           .getMessage("probe.src.deploy.war.uploadfailure", new Object[] {e.getMessage()}));
-      Files.delete(tmpWar);
+      Files.delete(tmpWar.toPath());
       tmpWar = null;
     }
 
@@ -186,7 +186,7 @@ public class UploadWarController extends AbstractTomcatContainerController {
       if (errMsg != null) {
         request.setAttribute("errorMessage", errMsg);
       }
-      Files.delete(tmpWar);
+      Files.delete(tmpWar.toPath());
     }
     return new ModelAndView(new InternalResourceView(getViewName()));
   }
