@@ -15,6 +15,7 @@ import com.google.common.base.Strings;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,7 +27,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.catalina.Context;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
-import org.apache.openejb.loader.Files;
 import org.apache.tomcat.util.http.fileupload.FileItem;
 import org.apache.tomcat.util.http.fileupload.FileItemFactory;
 import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
@@ -124,8 +124,10 @@ public class CopySingleFileController extends AbstractTomcatContainerController 
       logger.error("Could not process file upload", e);
       request.setAttribute("errorMessage", getMessageSourceAccessor()
           .getMessage("probe.src.deploy.file.uploadfailure", new Object[] {e.getMessage()}));
-      Files.delete(tmpFile);
-      tmpFile = null;
+      if (tmpFile != null) {
+        Files.delete(tmpFile.toPath());
+        tmpFile = null;
+      }
     }
 
     String errMsg = null;
@@ -196,7 +198,7 @@ public class CopySingleFileController extends AbstractTomcatContainerController 
       if (errMsg != null) {
         request.setAttribute("errorMessage", errMsg);
       }
-      Files.delete(tmpFile);
+      Files.delete(tmpFile.toPath());
     }
     return new ModelAndView(new InternalResourceView(getViewName()));
   }

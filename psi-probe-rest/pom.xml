@@ -27,6 +27,7 @@
 
     <name>psi-probe-rest</name>
     <description>PSI Probe Rest - RESTful service endpoints.</description>
+    <url>https://github.com/psi-probe/psi-probe/</url>
 
     <scm>
         <connection>scm:git:ssh://git@github.com/psi-probe/psi-probe.git</connection>
