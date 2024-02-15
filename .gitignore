@@ -1,3 +1,6 @@
+# Checkstyle
+.checkstyle
+
 # Eclipse
 .settings
 .classpath
@@ -7,15 +10,19 @@
 # Intellij
 .idea
 *.iml
+*.iws
+*.ipr
 
 # Maven
-target/
-
-# Project
-*.log
-psi-probe.iws
-psi-probe.ipr
 .mvn/wrapper/maven-wrapper.jar
 *.releaseBackup
 release.properties
+target/
+
+# PMD
+.pmd
+.pmdruleset.xml
+
+# Project
 .github/keys/
+*.log
