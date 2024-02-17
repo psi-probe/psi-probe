@@ -189,7 +189,6 @@
         <mail.version>2.0.2</mail.version>
         <mchange.version>0.2.20</mchange.version>
         <mockito.version>5.10.0</mockito.version>
-        <ojdbc.version>19.22.0.0</ojdbc.version>
         <oshi.version>6.4.12</oshi.version>
         <quartz.version>2.4.0-rc2</quartz.version>
         <servlet-api.version>6.0.0</servlet-api.version>
@@ -387,11 +386,6 @@
                 <groupId>com.mchange</groupId>
                 <artifactId>mchange-commons-java</artifactId>
                 <version>${mchange.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.oracle.database.jdbc</groupId>
-                <artifactId>ojdbc8</artifactId>
-                <version>${ojdbc.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.oracle.database.jdbc</groupId>
