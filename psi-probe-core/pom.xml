@@ -18,12 +18,12 @@
     <parent>
         <groupId>com.github.psi-probe</groupId>
         <artifactId>psi-probe</artifactId>
-        <version>4.1.2-SNAPSHOT</version>
+        <version>4.1.3-SNAPSHOT</version>
     </parent>
 
     <groupId>com.github.psi-probe</groupId>
     <artifactId>psi-probe-core</artifactId>
-    <version>4.1.2-SNAPSHOT</version>
+    <version>4.1.3-SNAPSHOT</version>
 
     <name>psi-probe-core</name>
     <description>PSI Probe Core - Core logic, data models, and controllers</description>
