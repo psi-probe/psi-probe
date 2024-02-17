@@ -23,18 +23,18 @@
 <a class="jxr_linenumber" name="L15" href="#L15">15</a>  <strong class="jxr_keyword">import</strong> java.io.File;
 <a class="jxr_linenumber" name="L16" href="#L16">16</a>  <strong class="jxr_keyword">import</strong> java.io.IOException;
 <a class="jxr_linenumber" name="L17" href="#L17">17</a>  <strong class="jxr_keyword">import</strong> java.nio.charset.StandardCharsets;
-<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <strong class="jxr_keyword">import</strong> java.util.ArrayList;
-<a class="jxr_linenumber" name="L19" href="#L19">19</a>  <strong class="jxr_keyword">import</strong> java.util.HashMap;
-<a class="jxr_linenumber" name="L20" href="#L20">20</a>  <strong class="jxr_keyword">import</strong> java.util.List;
-<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">import</strong> java.util.Map;
-<a class="jxr_linenumber" name="L22" href="#L22">22</a>  
-<a class="jxr_linenumber" name="L23" href="#L23">23</a>  <strong class="jxr_keyword">import</strong> javax.servlet.http.HttpServletRequest;
-<a class="jxr_linenumber" name="L24" href="#L24">24</a>  <strong class="jxr_keyword">import</strong> javax.servlet.http.HttpServletResponse;
-<a class="jxr_linenumber" name="L25" href="#L25">25</a>  
-<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <strong class="jxr_keyword">import</strong> org.apache.catalina.Context;
-<a class="jxr_linenumber" name="L27" href="#L27">27</a>  <strong class="jxr_keyword">import</strong> org.apache.commons.io.FileUtils;
-<a class="jxr_linenumber" name="L28" href="#L28">28</a>  <strong class="jxr_keyword">import</strong> org.apache.commons.io.FilenameUtils;
-<a class="jxr_linenumber" name="L29" href="#L29">29</a>  <strong class="jxr_keyword">import</strong> org.apache.openejb.loader.Files;
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <strong class="jxr_keyword">import</strong> java.nio.file.Files;
+<a class="jxr_linenumber" name="L19" href="#L19">19</a>  <strong class="jxr_keyword">import</strong> java.util.ArrayList;
+<a class="jxr_linenumber" name="L20" href="#L20">20</a>  <strong class="jxr_keyword">import</strong> java.util.HashMap;
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">import</strong> java.util.List;
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>  <strong class="jxr_keyword">import</strong> java.util.Map;
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>  
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>  <strong class="jxr_keyword">import</strong> javax.servlet.http.HttpServletRequest;
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>  <strong class="jxr_keyword">import</strong> javax.servlet.http.HttpServletResponse;
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>  
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>  <strong class="jxr_keyword">import</strong> org.apache.catalina.Context;
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>  <strong class="jxr_keyword">import</strong> org.apache.commons.io.FileUtils;
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>  <strong class="jxr_keyword">import</strong> org.apache.commons.io.FilenameUtils;
 <a class="jxr_linenumber" name="L30" href="#L30">30</a>  <strong class="jxr_keyword">import</strong> org.apache.tomcat.util.http.fileupload.FileItem;
 <a class="jxr_linenumber" name="L31" href="#L31">31</a>  <strong class="jxr_keyword">import</strong> org.apache.tomcat.util.http.fileupload.FileItemFactory;
 <a class="jxr_linenumber" name="L32" href="#L32">32</a>  <strong class="jxr_keyword">import</strong> org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
@@ -132,90 +132,92 @@
 <a class="jxr_linenumber" name="L124" href="#L124">124</a>       logger.error(<span class="jxr_string">"Could not process file upload"</span>, e);
 <a class="jxr_linenumber" name="L125" href="#L125">125</a>       request.setAttribute(<span class="jxr_string">"errorMessage"</span>, getMessageSourceAccessor()
 <a class="jxr_linenumber" name="L126" href="#L126">126</a>           .getMessage(<span class="jxr_string">"probe.src.deploy.file.uploadfailure"</span>, <strong class="jxr_keyword">new</strong> Object[] {e.getMessage()}));
-<a class="jxr_linenumber" name="L127" href="#L127">127</a>       Files.delete(tmpFile);
-<a class="jxr_linenumber" name="L128" href="#L128">128</a>       tmpFile = <strong class="jxr_keyword">null</strong>;
-<a class="jxr_linenumber" name="L129" href="#L129">129</a>     }
-<a class="jxr_linenumber" name="L130" href="#L130">130</a> 
-<a class="jxr_linenumber" name="L131" href="#L131">131</a>     String errMsg = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="L127" href="#L127">127</a>       <strong class="jxr_keyword">if</strong> (tmpFile != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L128" href="#L128">128</a>         Files.delete(tmpFile.toPath());
+<a class="jxr_linenumber" name="L129" href="#L129">129</a>         tmpFile = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="L130" href="#L130">130</a>       }
+<a class="jxr_linenumber" name="L131" href="#L131">131</a>     }
 <a class="jxr_linenumber" name="L132" href="#L132">132</a> 
-<a class="jxr_linenumber" name="L133" href="#L133">133</a>     <strong class="jxr_keyword">if</strong> (tmpFile == <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L134" href="#L134">134</a>       <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> ModelAndView(<strong class="jxr_keyword">new</strong> InternalResourceView(getViewName()));
-<a class="jxr_linenumber" name="L135" href="#L135">135</a>     }
-<a class="jxr_linenumber" name="L136" href="#L136">136</a> 
-<a class="jxr_linenumber" name="L137" href="#L137">137</a>     <strong class="jxr_keyword">try</strong> {
-<a class="jxr_linenumber" name="L138" href="#L138">138</a>       <strong class="jxr_keyword">if</strong> (!Strings.isNullOrEmpty(tmpFile.getName())) {
-<a class="jxr_linenumber" name="L139" href="#L139">139</a> 
-<a class="jxr_linenumber" name="L140" href="#L140">140</a>         contextName = getContainerWrapper().getTomcatContainer().formatContextName(contextName);
+<a class="jxr_linenumber" name="L133" href="#L133">133</a>     String errMsg = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="L134" href="#L134">134</a> 
+<a class="jxr_linenumber" name="L135" href="#L135">135</a>     <strong class="jxr_keyword">if</strong> (tmpFile == <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L136" href="#L136">136</a>       <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> ModelAndView(<strong class="jxr_keyword">new</strong> InternalResourceView(getViewName()));
+<a class="jxr_linenumber" name="L137" href="#L137">137</a>     }
+<a class="jxr_linenumber" name="L138" href="#L138">138</a> 
+<a class="jxr_linenumber" name="L139" href="#L139">139</a>     <strong class="jxr_keyword">try</strong> {
+<a class="jxr_linenumber" name="L140" href="#L140">140</a>       <strong class="jxr_keyword">if</strong> (!Strings.isNullOrEmpty(tmpFile.getName())) {
 <a class="jxr_linenumber" name="L141" href="#L141">141</a> 
-<a class="jxr_linenumber" name="L142" href="#L142">142</a>         String visibleContextName = contextName.isEmpty() ? <span class="jxr_string">"/"</span> : contextName;
-<a class="jxr_linenumber" name="L143" href="#L143">143</a>         request.setAttribute(<span class="jxr_string">"contextName"</span>, visibleContextName);
-<a class="jxr_linenumber" name="L144" href="#L144">144</a> 
-<a class="jxr_linenumber" name="L145" href="#L145">145</a>         <em class="jxr_comment">// Check if context is already deployed</em>
-<a class="jxr_linenumber" name="L146" href="#L146">146</a>         <strong class="jxr_keyword">if</strong> (getContainerWrapper().getTomcatContainer().findContext(contextName) != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L147" href="#L147">147</a> 
-<a class="jxr_linenumber" name="L148" href="#L148">148</a>           File destFile = <strong class="jxr_keyword">new</strong> File(getContainerWrapper().getTomcatContainer().getAppBase(),
-<a class="jxr_linenumber" name="L149" href="#L149">149</a>               contextName + where);
-<a class="jxr_linenumber" name="L150" href="#L150">150</a> 
-<a class="jxr_linenumber" name="L151" href="#L151">151</a>           <em class="jxr_comment">// Checks if the destination path exists</em>
-<a class="jxr_linenumber" name="L152" href="#L152">152</a>           <strong class="jxr_keyword">if</strong> (destFile.exists()) {
-<a class="jxr_linenumber" name="L153" href="#L153">153</a>             <strong class="jxr_keyword">if</strong> (!destFile.getAbsolutePath().contains(<span class="jxr_string">".."</span>)) {
-<a class="jxr_linenumber" name="L154" href="#L154">154</a>               <em class="jxr_comment">// Copy the file overwriting it if it already exists</em>
-<a class="jxr_linenumber" name="L155" href="#L155">155</a>               FileUtils.copyFileToDirectory(tmpFile, destFile);
-<a class="jxr_linenumber" name="L156" href="#L156">156</a> 
-<a class="jxr_linenumber" name="L157" href="#L157">157</a>               request.setAttribute(<span class="jxr_string">"successFile"</span>, Boolean.TRUE);
-<a class="jxr_linenumber" name="L158" href="#L158">158</a>               <em class="jxr_comment">// Logging action</em>
-<a class="jxr_linenumber" name="L159" href="#L159">159</a>               Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-<a class="jxr_linenumber" name="L160" href="#L160">160</a>               <em class="jxr_comment">// get username logger</em>
-<a class="jxr_linenumber" name="L161" href="#L161">161</a>               String name = auth.getName();
-<a class="jxr_linenumber" name="L162" href="#L162">162</a>               logger.info(getMessageSourceAccessor().getMessage(<span class="jxr_string">"probe.src.log.copyfile"</span>), name,
-<a class="jxr_linenumber" name="L163" href="#L163">163</a>                   contextName);
-<a class="jxr_linenumber" name="L164" href="#L164">164</a>               Context context = getContainerWrapper().getTomcatContainer().findContext(contextName);
-<a class="jxr_linenumber" name="L165" href="#L165">165</a>               <em class="jxr_comment">// Checks if DISCARD "work" directory is selected</em>
-<a class="jxr_linenumber" name="L166" href="#L166">166</a>               <strong class="jxr_keyword">if</strong> (discard) {
-<a class="jxr_linenumber" name="L167" href="#L167">167</a>                 getContainerWrapper().getTomcatContainer().discardWorkDir(context);
-<a class="jxr_linenumber" name="L168" href="#L168">168</a>                 logger.info(getMessageSourceAccessor().getMessage(<span class="jxr_string">"probe.src.log.discardwork"</span>),
-<a class="jxr_linenumber" name="L169" href="#L169">169</a>                     name, contextName);
-<a class="jxr_linenumber" name="L170" href="#L170">170</a>               }
-<a class="jxr_linenumber" name="L171" href="#L171">171</a>               <em class="jxr_comment">// Checks if RELOAD option is selected</em>
-<a class="jxr_linenumber" name="L172" href="#L172">172</a>               <strong class="jxr_keyword">if</strong> (reload &amp;&amp; context != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L173" href="#L173">173</a>                 context.reload();
-<a class="jxr_linenumber" name="L174" href="#L174">174</a>                 request.setAttribute(<span class="jxr_string">"reloadContext"</span>, Boolean.TRUE);
-<a class="jxr_linenumber" name="L175" href="#L175">175</a>                 logger.info(getMessageSourceAccessor().getMessage(<span class="jxr_string">"probe.src.log.reload"</span>), name,
-<a class="jxr_linenumber" name="L176" href="#L176">176</a>                     contextName);
-<a class="jxr_linenumber" name="L177" href="#L177">177</a>               }
-<a class="jxr_linenumber" name="L178" href="#L178">178</a>             } <strong class="jxr_keyword">else</strong> {
-<a class="jxr_linenumber" name="L179" href="#L179">179</a>               errMsg = getMessageSourceAccessor().getMessage(<span class="jxr_string">"probe.src.deploy.file.pathNotValid"</span>);
-<a class="jxr_linenumber" name="L180" href="#L180">180</a>             }
-<a class="jxr_linenumber" name="L181" href="#L181">181</a>           } <strong class="jxr_keyword">else</strong> {
-<a class="jxr_linenumber" name="L182" href="#L182">182</a>             errMsg = getMessageSourceAccessor().getMessage(<span class="jxr_string">"probe.src.deploy.file.notPath"</span>);
-<a class="jxr_linenumber" name="L183" href="#L183">183</a>           }
-<a class="jxr_linenumber" name="L184" href="#L184">184</a>         } <strong class="jxr_keyword">else</strong> {
-<a class="jxr_linenumber" name="L185" href="#L185">185</a>           errMsg = getMessageSourceAccessor().getMessage(<span class="jxr_string">"probe.src.deploy.file.notExists"</span>,
-<a class="jxr_linenumber" name="L186" href="#L186">186</a>               <strong class="jxr_keyword">new</strong> Object[] {visibleContextName});
-<a class="jxr_linenumber" name="L187" href="#L187">187</a>         }
-<a class="jxr_linenumber" name="L188" href="#L188">188</a>       } <strong class="jxr_keyword">else</strong> {
-<a class="jxr_linenumber" name="L189" href="#L189">189</a>         errMsg = getMessageSourceAccessor().getMessage(<span class="jxr_string">"probe.src.deploy.file.notFile.failure"</span>);
-<a class="jxr_linenumber" name="L190" href="#L190">190</a>       }
-<a class="jxr_linenumber" name="L191" href="#L191">191</a>     } <strong class="jxr_keyword">catch</strong> (IOException e) {
-<a class="jxr_linenumber" name="L192" href="#L192">192</a>       errMsg = getMessageSourceAccessor().getMessage(<span class="jxr_string">"probe.src.deploy.file.failure"</span>,
-<a class="jxr_linenumber" name="L193" href="#L193">193</a>           <strong class="jxr_keyword">new</strong> Object[] {e.getMessage()});
-<a class="jxr_linenumber" name="L194" href="#L194">194</a>       logger.error(<span class="jxr_string">"Tomcat threw an exception when trying to deploy"</span>, e);
-<a class="jxr_linenumber" name="L195" href="#L195">195</a>     } <strong class="jxr_keyword">finally</strong> {
-<a class="jxr_linenumber" name="L196" href="#L196">196</a>       <strong class="jxr_keyword">if</strong> (errMsg != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L197" href="#L197">197</a>         request.setAttribute(<span class="jxr_string">"errorMessage"</span>, errMsg);
-<a class="jxr_linenumber" name="L198" href="#L198">198</a>       }
-<a class="jxr_linenumber" name="L199" href="#L199">199</a>       Files.delete(tmpFile);
-<a class="jxr_linenumber" name="L200" href="#L200">200</a>     }
-<a class="jxr_linenumber" name="L201" href="#L201">201</a>     <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> ModelAndView(<strong class="jxr_keyword">new</strong> InternalResourceView(getViewName()));
-<a class="jxr_linenumber" name="L202" href="#L202">202</a>   }
-<a class="jxr_linenumber" name="L203" href="#L203">203</a> 
-<a class="jxr_linenumber" name="L204" href="#L204">204</a>   @Value(<span class="jxr_string">"/adm/deploy.htm"</span>)
-<a class="jxr_linenumber" name="L205" href="#L205">205</a>   @Override
-<a class="jxr_linenumber" name="L206" href="#L206">206</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setViewName(String viewName) {
-<a class="jxr_linenumber" name="L207" href="#L207">207</a>     <strong class="jxr_keyword">super</strong>.setViewName(viewName);
-<a class="jxr_linenumber" name="L208" href="#L208">208</a>   }
-<a class="jxr_linenumber" name="L209" href="#L209">209</a> 
-<a class="jxr_linenumber" name="L210" href="#L210">210</a> }
+<a class="jxr_linenumber" name="L142" href="#L142">142</a>         contextName = getContainerWrapper().getTomcatContainer().formatContextName(contextName);
+<a class="jxr_linenumber" name="L143" href="#L143">143</a> 
+<a class="jxr_linenumber" name="L144" href="#L144">144</a>         String visibleContextName = contextName.isEmpty() ? <span class="jxr_string">"/"</span> : contextName;
+<a class="jxr_linenumber" name="L145" href="#L145">145</a>         request.setAttribute(<span class="jxr_string">"contextName"</span>, visibleContextName);
+<a class="jxr_linenumber" name="L146" href="#L146">146</a> 
+<a class="jxr_linenumber" name="L147" href="#L147">147</a>         <em class="jxr_comment">// Check if context is already deployed</em>
+<a class="jxr_linenumber" name="L148" href="#L148">148</a>         <strong class="jxr_keyword">if</strong> (getContainerWrapper().getTomcatContainer().findContext(contextName) != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L149" href="#L149">149</a> 
+<a class="jxr_linenumber" name="L150" href="#L150">150</a>           File destFile = <strong class="jxr_keyword">new</strong> File(getContainerWrapper().getTomcatContainer().getAppBase(),
+<a class="jxr_linenumber" name="L151" href="#L151">151</a>               contextName + where);
+<a class="jxr_linenumber" name="L152" href="#L152">152</a> 
+<a class="jxr_linenumber" name="L153" href="#L153">153</a>           <em class="jxr_comment">// Checks if the destination path exists</em>
+<a class="jxr_linenumber" name="L154" href="#L154">154</a>           <strong class="jxr_keyword">if</strong> (destFile.exists()) {
+<a class="jxr_linenumber" name="L155" href="#L155">155</a>             <strong class="jxr_keyword">if</strong> (!destFile.getAbsolutePath().contains(<span class="jxr_string">".."</span>)) {
+<a class="jxr_linenumber" name="L156" href="#L156">156</a>               <em class="jxr_comment">// Copy the file overwriting it if it already exists</em>
+<a class="jxr_linenumber" name="L157" href="#L157">157</a>               FileUtils.copyFileToDirectory(tmpFile, destFile);
+<a class="jxr_linenumber" name="L158" href="#L158">158</a> 
+<a class="jxr_linenumber" name="L159" href="#L159">159</a>               request.setAttribute(<span class="jxr_string">"successFile"</span>, Boolean.TRUE);
+<a class="jxr_linenumber" name="L160" href="#L160">160</a>               <em class="jxr_comment">// Logging action</em>
+<a class="jxr_linenumber" name="L161" href="#L161">161</a>               Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+<a class="jxr_linenumber" name="L162" href="#L162">162</a>               <em class="jxr_comment">// get username logger</em>
+<a class="jxr_linenumber" name="L163" href="#L163">163</a>               String name = auth.getName();
+<a class="jxr_linenumber" name="L164" href="#L164">164</a>               logger.info(getMessageSourceAccessor().getMessage(<span class="jxr_string">"probe.src.log.copyfile"</span>), name,
+<a class="jxr_linenumber" name="L165" href="#L165">165</a>                   contextName);
+<a class="jxr_linenumber" name="L166" href="#L166">166</a>               Context context = getContainerWrapper().getTomcatContainer().findContext(contextName);
+<a class="jxr_linenumber" name="L167" href="#L167">167</a>               <em class="jxr_comment">// Checks if DISCARD "work" directory is selected</em>
+<a class="jxr_linenumber" name="L168" href="#L168">168</a>               <strong class="jxr_keyword">if</strong> (discard) {
+<a class="jxr_linenumber" name="L169" href="#L169">169</a>                 getContainerWrapper().getTomcatContainer().discardWorkDir(context);
+<a class="jxr_linenumber" name="L170" href="#L170">170</a>                 logger.info(getMessageSourceAccessor().getMessage(<span class="jxr_string">"probe.src.log.discardwork"</span>),
+<a class="jxr_linenumber" name="L171" href="#L171">171</a>                     name, contextName);
+<a class="jxr_linenumber" name="L172" href="#L172">172</a>               }
+<a class="jxr_linenumber" name="L173" href="#L173">173</a>               <em class="jxr_comment">// Checks if RELOAD option is selected</em>
+<a class="jxr_linenumber" name="L174" href="#L174">174</a>               <strong class="jxr_keyword">if</strong> (reload &amp;&amp; context != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L175" href="#L175">175</a>                 context.reload();
+<a class="jxr_linenumber" name="L176" href="#L176">176</a>                 request.setAttribute(<span class="jxr_string">"reloadContext"</span>, Boolean.TRUE);
+<a class="jxr_linenumber" name="L177" href="#L177">177</a>                 logger.info(getMessageSourceAccessor().getMessage(<span class="jxr_string">"probe.src.log.reload"</span>), name,
+<a class="jxr_linenumber" name="L178" href="#L178">178</a>                     contextName);
+<a class="jxr_linenumber" name="L179" href="#L179">179</a>               }
+<a class="jxr_linenumber" name="L180" href="#L180">180</a>             } <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="L181" href="#L181">181</a>               errMsg = getMessageSourceAccessor().getMessage(<span class="jxr_string">"probe.src.deploy.file.pathNotValid"</span>);
+<a class="jxr_linenumber" name="L182" href="#L182">182</a>             }
+<a class="jxr_linenumber" name="L183" href="#L183">183</a>           } <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="L184" href="#L184">184</a>             errMsg = getMessageSourceAccessor().getMessage(<span class="jxr_string">"probe.src.deploy.file.notPath"</span>);
+<a class="jxr_linenumber" name="L185" href="#L185">185</a>           }
+<a class="jxr_linenumber" name="L186" href="#L186">186</a>         } <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="L187" href="#L187">187</a>           errMsg = getMessageSourceAccessor().getMessage(<span class="jxr_string">"probe.src.deploy.file.notExists"</span>,
+<a class="jxr_linenumber" name="L188" href="#L188">188</a>               <strong class="jxr_keyword">new</strong> Object[] {visibleContextName});
+<a class="jxr_linenumber" name="L189" href="#L189">189</a>         }
+<a class="jxr_linenumber" name="L190" href="#L190">190</a>       } <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="L191" href="#L191">191</a>         errMsg = getMessageSourceAccessor().getMessage(<span class="jxr_string">"probe.src.deploy.file.notFile.failure"</span>);
+<a class="jxr_linenumber" name="L192" href="#L192">192</a>       }
+<a class="jxr_linenumber" name="L193" href="#L193">193</a>     } <strong class="jxr_keyword">catch</strong> (IOException e) {
+<a class="jxr_linenumber" name="L194" href="#L194">194</a>       errMsg = getMessageSourceAccessor().getMessage(<span class="jxr_string">"probe.src.deploy.file.failure"</span>,
+<a class="jxr_linenumber" name="L195" href="#L195">195</a>           <strong class="jxr_keyword">new</strong> Object[] {e.getMessage()});
+<a class="jxr_linenumber" name="L196" href="#L196">196</a>       logger.error(<span class="jxr_string">"Tomcat threw an exception when trying to deploy"</span>, e);
+<a class="jxr_linenumber" name="L197" href="#L197">197</a>     } <strong class="jxr_keyword">finally</strong> {
+<a class="jxr_linenumber" name="L198" href="#L198">198</a>       <strong class="jxr_keyword">if</strong> (errMsg != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L199" href="#L199">199</a>         request.setAttribute(<span class="jxr_string">"errorMessage"</span>, errMsg);
+<a class="jxr_linenumber" name="L200" href="#L200">200</a>       }
+<a class="jxr_linenumber" name="L201" href="#L201">201</a>       Files.delete(tmpFile.toPath());
+<a class="jxr_linenumber" name="L202" href="#L202">202</a>     }
+<a class="jxr_linenumber" name="L203" href="#L203">203</a>     <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> ModelAndView(<strong class="jxr_keyword">new</strong> InternalResourceView(getViewName()));
+<a class="jxr_linenumber" name="L204" href="#L204">204</a>   }
+<a class="jxr_linenumber" name="L205" href="#L205">205</a> 
+<a class="jxr_linenumber" name="L206" href="#L206">206</a>   @Value(<span class="jxr_string">"/adm/deploy.htm"</span>)
+<a class="jxr_linenumber" name="L207" href="#L207">207</a>   @Override
+<a class="jxr_linenumber" name="L208" href="#L208">208</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setViewName(String viewName) {
+<a class="jxr_linenumber" name="L209" href="#L209">209</a>     <strong class="jxr_keyword">super</strong>.setViewName(viewName);
+<a class="jxr_linenumber" name="L210" href="#L210">210</a>   }
+<a class="jxr_linenumber" name="L211" href="#L211">211</a> 
+<a class="jxr_linenumber" name="L212" href="#L212">212</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2009&#x2013;2024 <a href="https://github.com/psi-probe/">psi-probe</a>. All rights reserved.</div>

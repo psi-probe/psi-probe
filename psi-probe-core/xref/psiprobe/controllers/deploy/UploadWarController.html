@@ -21,15 +21,15 @@
 <a class="jxr_linenumber" name="L13" href="#L13">13</a>  <strong class="jxr_keyword">import</strong> java.io.File;
 <a class="jxr_linenumber" name="L14" href="#L14">14</a>  <strong class="jxr_keyword">import</strong> java.io.IOException;
 <a class="jxr_linenumber" name="L15" href="#L15">15</a>  <strong class="jxr_keyword">import</strong> java.nio.charset.StandardCharsets;
-<a class="jxr_linenumber" name="L16" href="#L16">16</a>  <strong class="jxr_keyword">import</strong> java.util.List;
-<a class="jxr_linenumber" name="L17" href="#L17">17</a>  
-<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <strong class="jxr_keyword">import</strong> javax.servlet.http.HttpServletRequest;
-<a class="jxr_linenumber" name="L19" href="#L19">19</a>  <strong class="jxr_keyword">import</strong> javax.servlet.http.HttpServletResponse;
-<a class="jxr_linenumber" name="L20" href="#L20">20</a>  
-<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">import</strong> org.apache.catalina.Context;
-<a class="jxr_linenumber" name="L22" href="#L22">22</a>  <strong class="jxr_keyword">import</strong> org.apache.commons.io.FileUtils;
-<a class="jxr_linenumber" name="L23" href="#L23">23</a>  <strong class="jxr_keyword">import</strong> org.apache.commons.io.FilenameUtils;
-<a class="jxr_linenumber" name="L24" href="#L24">24</a>  <strong class="jxr_keyword">import</strong> org.apache.openejb.loader.Files;
+<a class="jxr_linenumber" name="L16" href="#L16">16</a>  <strong class="jxr_keyword">import</strong> java.nio.file.Files;
+<a class="jxr_linenumber" name="L17" href="#L17">17</a>  <strong class="jxr_keyword">import</strong> java.util.List;
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>  
+<a class="jxr_linenumber" name="L19" href="#L19">19</a>  <strong class="jxr_keyword">import</strong> javax.servlet.http.HttpServletRequest;
+<a class="jxr_linenumber" name="L20" href="#L20">20</a>  <strong class="jxr_keyword">import</strong> javax.servlet.http.HttpServletResponse;
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>  
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>  <strong class="jxr_keyword">import</strong> org.apache.catalina.Context;
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>  <strong class="jxr_keyword">import</strong> org.apache.commons.io.FileUtils;
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>  <strong class="jxr_keyword">import</strong> org.apache.commons.io.FilenameUtils;
 <a class="jxr_linenumber" name="L25" href="#L25">25</a>  <strong class="jxr_keyword">import</strong> org.apache.tomcat.util.http.fileupload.FileItem;
 <a class="jxr_linenumber" name="L26" href="#L26">26</a>  <strong class="jxr_keyword">import</strong> org.apache.tomcat.util.http.fileupload.FileItemFactory;
 <a class="jxr_linenumber" name="L27" href="#L27">27</a>  <strong class="jxr_keyword">import</strong> org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
@@ -109,103 +109,105 @@
 <a class="jxr_linenumber" name="L101" href="#L101">101</a>       logger.error(<span class="jxr_string">"Could not process file upload"</span>, e);
 <a class="jxr_linenumber" name="L102" href="#L102">102</a>       request.setAttribute(<span class="jxr_string">"errorMessage"</span>, getMessageSourceAccessor()
 <a class="jxr_linenumber" name="L103" href="#L103">103</a>           .getMessage(<span class="jxr_string">"probe.src.deploy.war.uploadfailure"</span>, <strong class="jxr_keyword">new</strong> Object[] {e.getMessage()}));
-<a class="jxr_linenumber" name="L104" href="#L104">104</a>       Files.delete(tmpWar);
-<a class="jxr_linenumber" name="L105" href="#L105">105</a>       tmpWar = <strong class="jxr_keyword">null</strong>;
-<a class="jxr_linenumber" name="L106" href="#L106">106</a>     }
-<a class="jxr_linenumber" name="L107" href="#L107">107</a> 
-<a class="jxr_linenumber" name="L108" href="#L108">108</a>     String errMsg = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="L104" href="#L104">104</a>       <strong class="jxr_keyword">if</strong> (tmpWar != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L105" href="#L105">105</a>         Files.delete(tmpWar.toPath());
+<a class="jxr_linenumber" name="L106" href="#L106">106</a>         tmpWar = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="L107" href="#L107">107</a>       }
+<a class="jxr_linenumber" name="L108" href="#L108">108</a>     }
 <a class="jxr_linenumber" name="L109" href="#L109">109</a> 
-<a class="jxr_linenumber" name="L110" href="#L110">110</a>     <strong class="jxr_keyword">if</strong> (tmpWar == <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L111" href="#L111">111</a>       <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> ModelAndView(<strong class="jxr_keyword">new</strong> InternalResourceView(getViewName()));
-<a class="jxr_linenumber" name="L112" href="#L112">112</a>     }
-<a class="jxr_linenumber" name="L113" href="#L113">113</a> 
-<a class="jxr_linenumber" name="L114" href="#L114">114</a>     <strong class="jxr_keyword">try</strong> {
-<a class="jxr_linenumber" name="L115" href="#L115">115</a>       <strong class="jxr_keyword">if</strong> (tmpWar.getName().endsWith(<span class="jxr_string">".war"</span>)) {
-<a class="jxr_linenumber" name="L116" href="#L116">116</a> 
-<a class="jxr_linenumber" name="L117" href="#L117">117</a>         <strong class="jxr_keyword">if</strong> (contextName == <strong class="jxr_keyword">null</strong> || contextName.length() == 0) {
-<a class="jxr_linenumber" name="L118" href="#L118">118</a>           String warFileName = tmpWar.getName().replaceAll(<span class="jxr_string">"&#92;&#92;.war$"</span>, <span class="jxr_string">""</span>);
-<a class="jxr_linenumber" name="L119" href="#L119">119</a>           contextName = <span class="jxr_string">"/"</span> + warFileName;
-<a class="jxr_linenumber" name="L120" href="#L120">120</a>         }
-<a class="jxr_linenumber" name="L121" href="#L121">121</a> 
-<a class="jxr_linenumber" name="L122" href="#L122">122</a>         contextName = getContainerWrapper().getTomcatContainer().formatContextName(contextName);
+<a class="jxr_linenumber" name="L110" href="#L110">110</a>     String errMsg = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="L111" href="#L111">111</a> 
+<a class="jxr_linenumber" name="L112" href="#L112">112</a>     <strong class="jxr_keyword">if</strong> (tmpWar == <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L113" href="#L113">113</a>       <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> ModelAndView(<strong class="jxr_keyword">new</strong> InternalResourceView(getViewName()));
+<a class="jxr_linenumber" name="L114" href="#L114">114</a>     }
+<a class="jxr_linenumber" name="L115" href="#L115">115</a> 
+<a class="jxr_linenumber" name="L116" href="#L116">116</a>     <strong class="jxr_keyword">try</strong> {
+<a class="jxr_linenumber" name="L117" href="#L117">117</a>       <strong class="jxr_keyword">if</strong> (tmpWar.getName().endsWith(<span class="jxr_string">".war"</span>)) {
+<a class="jxr_linenumber" name="L118" href="#L118">118</a> 
+<a class="jxr_linenumber" name="L119" href="#L119">119</a>         <strong class="jxr_keyword">if</strong> (contextName == <strong class="jxr_keyword">null</strong> || contextName.length() == 0) {
+<a class="jxr_linenumber" name="L120" href="#L120">120</a>           String warFileName = tmpWar.getName().replaceAll(<span class="jxr_string">"&#92;&#92;.war$"</span>, <span class="jxr_string">""</span>);
+<a class="jxr_linenumber" name="L121" href="#L121">121</a>           contextName = <span class="jxr_string">"/"</span> + warFileName;
+<a class="jxr_linenumber" name="L122" href="#L122">122</a>         }
 <a class="jxr_linenumber" name="L123" href="#L123">123</a> 
-<a class="jxr_linenumber" name="L124" href="#L124">124</a>         <em class="jxr_comment">/*</em>
-<a class="jxr_linenumber" name="L125" href="#L125">125</a> <em class="jxr_comment">         * pass the name of the newly deployed context to the presentation layer using this name the</em>
-<a class="jxr_linenumber" name="L126" href="#L126">126</a> <em class="jxr_comment">         * presentation layer can render a url to view compilation details</em>
-<a class="jxr_linenumber" name="L127" href="#L127">127</a> <em class="jxr_comment">         */</em>
-<a class="jxr_linenumber" name="L128" href="#L128">128</a>         String visibleContextName = contextName.isEmpty() ? <span class="jxr_string">"/"</span> : contextName;
-<a class="jxr_linenumber" name="L129" href="#L129">129</a>         request.setAttribute(<span class="jxr_string">"contextName"</span>, visibleContextName);
-<a class="jxr_linenumber" name="L130" href="#L130">130</a> 
-<a class="jxr_linenumber" name="L131" href="#L131">131</a>         <strong class="jxr_keyword">if</strong> (update &amp;&amp; getContainerWrapper().getTomcatContainer().findContext(contextName) != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L132" href="#L132">132</a>           logger.debug(<span class="jxr_string">"updating {}: removing the old copy"</span>, contextName);
-<a class="jxr_linenumber" name="L133" href="#L133">133</a>           getContainerWrapper().getTomcatContainer().remove(contextName);
-<a class="jxr_linenumber" name="L134" href="#L134">134</a>         }
-<a class="jxr_linenumber" name="L135" href="#L135">135</a> 
-<a class="jxr_linenumber" name="L136" href="#L136">136</a>         <strong class="jxr_keyword">if</strong> (getContainerWrapper().getTomcatContainer().findContext(contextName) == <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L137" href="#L137">137</a>           <em class="jxr_comment">// move the .war to tomcat application base dir</em>
-<a class="jxr_linenumber" name="L138" href="#L138">138</a>           String destWarFilename =
-<a class="jxr_linenumber" name="L139" href="#L139">139</a>               getContainerWrapper().getTomcatContainer().formatContextFilename(contextName);
-<a class="jxr_linenumber" name="L140" href="#L140">140</a>           File destWar = <strong class="jxr_keyword">new</strong> File(getContainerWrapper().getTomcatContainer().getAppBase(),
-<a class="jxr_linenumber" name="L141" href="#L141">141</a>               destWarFilename + <span class="jxr_string">".war"</span>);
-<a class="jxr_linenumber" name="L142" href="#L142">142</a> 
-<a class="jxr_linenumber" name="L143" href="#L143">143</a>           FileUtils.moveFile(tmpWar, destWar);
+<a class="jxr_linenumber" name="L124" href="#L124">124</a>         contextName = getContainerWrapper().getTomcatContainer().formatContextName(contextName);
+<a class="jxr_linenumber" name="L125" href="#L125">125</a> 
+<a class="jxr_linenumber" name="L126" href="#L126">126</a>         <em class="jxr_comment">/*</em>
+<a class="jxr_linenumber" name="L127" href="#L127">127</a> <em class="jxr_comment">         * pass the name of the newly deployed context to the presentation layer using this name the</em>
+<a class="jxr_linenumber" name="L128" href="#L128">128</a> <em class="jxr_comment">         * presentation layer can render a url to view compilation details</em>
+<a class="jxr_linenumber" name="L129" href="#L129">129</a> <em class="jxr_comment">         */</em>
+<a class="jxr_linenumber" name="L130" href="#L130">130</a>         String visibleContextName = contextName.isEmpty() ? <span class="jxr_string">"/"</span> : contextName;
+<a class="jxr_linenumber" name="L131" href="#L131">131</a>         request.setAttribute(<span class="jxr_string">"contextName"</span>, visibleContextName);
+<a class="jxr_linenumber" name="L132" href="#L132">132</a> 
+<a class="jxr_linenumber" name="L133" href="#L133">133</a>         <strong class="jxr_keyword">if</strong> (update &amp;&amp; getContainerWrapper().getTomcatContainer().findContext(contextName) != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L134" href="#L134">134</a>           logger.debug(<span class="jxr_string">"updating {}: removing the old copy"</span>, contextName);
+<a class="jxr_linenumber" name="L135" href="#L135">135</a>           getContainerWrapper().getTomcatContainer().remove(contextName);
+<a class="jxr_linenumber" name="L136" href="#L136">136</a>         }
+<a class="jxr_linenumber" name="L137" href="#L137">137</a> 
+<a class="jxr_linenumber" name="L138" href="#L138">138</a>         <strong class="jxr_keyword">if</strong> (getContainerWrapper().getTomcatContainer().findContext(contextName) == <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L139" href="#L139">139</a>           <em class="jxr_comment">// move the .war to tomcat application base dir</em>
+<a class="jxr_linenumber" name="L140" href="#L140">140</a>           String destWarFilename =
+<a class="jxr_linenumber" name="L141" href="#L141">141</a>               getContainerWrapper().getTomcatContainer().formatContextFilename(contextName);
+<a class="jxr_linenumber" name="L142" href="#L142">142</a>           File destWar = <strong class="jxr_keyword">new</strong> File(getContainerWrapper().getTomcatContainer().getAppBase(),
+<a class="jxr_linenumber" name="L143" href="#L143">143</a>               destWarFilename + <span class="jxr_string">".war"</span>);
 <a class="jxr_linenumber" name="L144" href="#L144">144</a> 
-<a class="jxr_linenumber" name="L145" href="#L145">145</a>           <em class="jxr_comment">// let Tomcat know that the file is there</em>
-<a class="jxr_linenumber" name="L146" href="#L146">146</a>           getContainerWrapper().getTomcatContainer().installWar(contextName);
-<a class="jxr_linenumber" name="L147" href="#L147">147</a> 
-<a class="jxr_linenumber" name="L148" href="#L148">148</a>           Context ctx = getContainerWrapper().getTomcatContainer().findContext(contextName);
-<a class="jxr_linenumber" name="L149" href="#L149">149</a>           <strong class="jxr_keyword">if</strong> (ctx == <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L150" href="#L150">150</a>             errMsg = getMessageSourceAccessor().getMessage(<span class="jxr_string">"probe.src.deploy.war.notinstalled"</span>,
-<a class="jxr_linenumber" name="L151" href="#L151">151</a>                 <strong class="jxr_keyword">new</strong> Object[] {visibleContextName});
-<a class="jxr_linenumber" name="L152" href="#L152">152</a>           } <strong class="jxr_keyword">else</strong> {
-<a class="jxr_linenumber" name="L153" href="#L153">153</a>             request.setAttribute(<span class="jxr_string">"success"</span>, Boolean.TRUE);
-<a class="jxr_linenumber" name="L154" href="#L154">154</a>             <em class="jxr_comment">// Logging action</em>
-<a class="jxr_linenumber" name="L155" href="#L155">155</a>             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-<a class="jxr_linenumber" name="L156" href="#L156">156</a>             <em class="jxr_comment">// get username logger</em>
-<a class="jxr_linenumber" name="L157" href="#L157">157</a>             String name = auth.getName();
-<a class="jxr_linenumber" name="L158" href="#L158">158</a>             logger.info(getMessageSourceAccessor().getMessage(<span class="jxr_string">"probe.src.log.deploywar"</span>), name,
-<a class="jxr_linenumber" name="L159" href="#L159">159</a>                 contextName);
-<a class="jxr_linenumber" name="L160" href="#L160">160</a>             <strong class="jxr_keyword">if</strong> (discard) {
-<a class="jxr_linenumber" name="L161" href="#L161">161</a>               getContainerWrapper().getTomcatContainer().discardWorkDir(ctx);
-<a class="jxr_linenumber" name="L162" href="#L162">162</a>               logger.info(getMessageSourceAccessor().getMessage(<span class="jxr_string">"probe.src.log.discardwork"</span>), name,
-<a class="jxr_linenumber" name="L163" href="#L163">163</a>                   contextName);
-<a class="jxr_linenumber" name="L164" href="#L164">164</a>             }
-<a class="jxr_linenumber" name="L165" href="#L165">165</a>             <strong class="jxr_keyword">if</strong> (compile) {
-<a class="jxr_linenumber" name="L166" href="#L166">166</a>               <a name="Summary" href="../../../psiprobe/model/jsp/Summary.html#Summary">Summary</a> summary = <strong class="jxr_keyword">new</strong> <a name="Summary" href="../../../psiprobe/model/jsp/Summary.html#Summary">Summary</a>();
-<a class="jxr_linenumber" name="L167" href="#L167">167</a>               summary.setName(ctx.getName());
-<a class="jxr_linenumber" name="L168" href="#L168">168</a>               getContainerWrapper().getTomcatContainer().listContextJsps(ctx, summary, <strong class="jxr_keyword">true</strong>);
-<a class="jxr_linenumber" name="L169" href="#L169">169</a>               request.getSession(false).setAttribute(DisplayJspController.SUMMARY_ATTRIBUTE,
-<a class="jxr_linenumber" name="L170" href="#L170">170</a>                   summary);
-<a class="jxr_linenumber" name="L171" href="#L171">171</a>               request.setAttribute(<span class="jxr_string">"compileSuccess"</span>, Boolean.TRUE);
-<a class="jxr_linenumber" name="L172" href="#L172">172</a>             }
-<a class="jxr_linenumber" name="L173" href="#L173">173</a>           }
-<a class="jxr_linenumber" name="L174" href="#L174">174</a>         } <strong class="jxr_keyword">else</strong> {
-<a class="jxr_linenumber" name="L175" href="#L175">175</a>           errMsg = getMessageSourceAccessor().getMessage(<span class="jxr_string">"probe.src.deploy.war.alreadyExists"</span>,
-<a class="jxr_linenumber" name="L176" href="#L176">176</a>               <strong class="jxr_keyword">new</strong> Object[] {visibleContextName});
-<a class="jxr_linenumber" name="L177" href="#L177">177</a>         }
-<a class="jxr_linenumber" name="L178" href="#L178">178</a>       } <strong class="jxr_keyword">else</strong> {
-<a class="jxr_linenumber" name="L179" href="#L179">179</a>         errMsg = getMessageSourceAccessor().getMessage(<span class="jxr_string">"probe.src.deploy.war.notWar.failure"</span>);
-<a class="jxr_linenumber" name="L180" href="#L180">180</a>       }
-<a class="jxr_linenumber" name="L181" href="#L181">181</a>     } <strong class="jxr_keyword">catch</strong> (IOException e) {
-<a class="jxr_linenumber" name="L182" href="#L182">182</a>       errMsg = getMessageSourceAccessor().getMessage(<span class="jxr_string">"probe.src.deploy.war.failure"</span>,
-<a class="jxr_linenumber" name="L183" href="#L183">183</a>           <strong class="jxr_keyword">new</strong> Object[] {e.getMessage()});
-<a class="jxr_linenumber" name="L184" href="#L184">184</a>       logger.error(<span class="jxr_string">"Tomcat threw an exception when trying to deploy"</span>, e);
-<a class="jxr_linenumber" name="L185" href="#L185">185</a>     } <strong class="jxr_keyword">finally</strong> {
-<a class="jxr_linenumber" name="L186" href="#L186">186</a>       <strong class="jxr_keyword">if</strong> (errMsg != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L187" href="#L187">187</a>         request.setAttribute(<span class="jxr_string">"errorMessage"</span>, errMsg);
-<a class="jxr_linenumber" name="L188" href="#L188">188</a>       }
-<a class="jxr_linenumber" name="L189" href="#L189">189</a>       Files.delete(tmpWar);
-<a class="jxr_linenumber" name="L190" href="#L190">190</a>     }
-<a class="jxr_linenumber" name="L191" href="#L191">191</a>     <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> ModelAndView(<strong class="jxr_keyword">new</strong> InternalResourceView(getViewName()));
-<a class="jxr_linenumber" name="L192" href="#L192">192</a>   }
-<a class="jxr_linenumber" name="L193" href="#L193">193</a> 
-<a class="jxr_linenumber" name="L194" href="#L194">194</a>   @Value(<span class="jxr_string">"/adm/deploy.htm"</span>)
-<a class="jxr_linenumber" name="L195" href="#L195">195</a>   @Override
-<a class="jxr_linenumber" name="L196" href="#L196">196</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setViewName(String viewName) {
-<a class="jxr_linenumber" name="L197" href="#L197">197</a>     <strong class="jxr_keyword">super</strong>.setViewName(viewName);
-<a class="jxr_linenumber" name="L198" href="#L198">198</a>   }
-<a class="jxr_linenumber" name="L199" href="#L199">199</a> 
-<a class="jxr_linenumber" name="L200" href="#L200">200</a> }
+<a class="jxr_linenumber" name="L145" href="#L145">145</a>           FileUtils.moveFile(tmpWar, destWar);
+<a class="jxr_linenumber" name="L146" href="#L146">146</a> 
+<a class="jxr_linenumber" name="L147" href="#L147">147</a>           <em class="jxr_comment">// let Tomcat know that the file is there</em>
+<a class="jxr_linenumber" name="L148" href="#L148">148</a>           getContainerWrapper().getTomcatContainer().installWar(contextName);
+<a class="jxr_linenumber" name="L149" href="#L149">149</a> 
+<a class="jxr_linenumber" name="L150" href="#L150">150</a>           Context ctx = getContainerWrapper().getTomcatContainer().findContext(contextName);
+<a class="jxr_linenumber" name="L151" href="#L151">151</a>           <strong class="jxr_keyword">if</strong> (ctx == <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L152" href="#L152">152</a>             errMsg = getMessageSourceAccessor().getMessage(<span class="jxr_string">"probe.src.deploy.war.notinstalled"</span>,
+<a class="jxr_linenumber" name="L153" href="#L153">153</a>                 <strong class="jxr_keyword">new</strong> Object[] {visibleContextName});
+<a class="jxr_linenumber" name="L154" href="#L154">154</a>           } <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="L155" href="#L155">155</a>             request.setAttribute(<span class="jxr_string">"success"</span>, Boolean.TRUE);
+<a class="jxr_linenumber" name="L156" href="#L156">156</a>             <em class="jxr_comment">// Logging action</em>
+<a class="jxr_linenumber" name="L157" href="#L157">157</a>             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+<a class="jxr_linenumber" name="L158" href="#L158">158</a>             <em class="jxr_comment">// get username logger</em>
+<a class="jxr_linenumber" name="L159" href="#L159">159</a>             String name = auth.getName();
+<a class="jxr_linenumber" name="L160" href="#L160">160</a>             logger.info(getMessageSourceAccessor().getMessage(<span class="jxr_string">"probe.src.log.deploywar"</span>), name,
+<a class="jxr_linenumber" name="L161" href="#L161">161</a>                 contextName);
+<a class="jxr_linenumber" name="L162" href="#L162">162</a>             <strong class="jxr_keyword">if</strong> (discard) {
+<a class="jxr_linenumber" name="L163" href="#L163">163</a>               getContainerWrapper().getTomcatContainer().discardWorkDir(ctx);
+<a class="jxr_linenumber" name="L164" href="#L164">164</a>               logger.info(getMessageSourceAccessor().getMessage(<span class="jxr_string">"probe.src.log.discardwork"</span>), name,
+<a class="jxr_linenumber" name="L165" href="#L165">165</a>                   contextName);
+<a class="jxr_linenumber" name="L166" href="#L166">166</a>             }
+<a class="jxr_linenumber" name="L167" href="#L167">167</a>             <strong class="jxr_keyword">if</strong> (compile) {
+<a class="jxr_linenumber" name="L168" href="#L168">168</a>               <a name="Summary" href="../../../psiprobe/model/jsp/Summary.html#Summary">Summary</a> summary = <strong class="jxr_keyword">new</strong> <a name="Summary" href="../../../psiprobe/model/jsp/Summary.html#Summary">Summary</a>();
+<a class="jxr_linenumber" name="L169" href="#L169">169</a>               summary.setName(ctx.getName());
+<a class="jxr_linenumber" name="L170" href="#L170">170</a>               getContainerWrapper().getTomcatContainer().listContextJsps(ctx, summary, <strong class="jxr_keyword">true</strong>);
+<a class="jxr_linenumber" name="L171" href="#L171">171</a>               request.getSession(false).setAttribute(DisplayJspController.SUMMARY_ATTRIBUTE,
+<a class="jxr_linenumber" name="L172" href="#L172">172</a>                   summary);
+<a class="jxr_linenumber" name="L173" href="#L173">173</a>               request.setAttribute(<span class="jxr_string">"compileSuccess"</span>, Boolean.TRUE);
+<a class="jxr_linenumber" name="L174" href="#L174">174</a>             }
+<a class="jxr_linenumber" name="L175" href="#L175">175</a>           }
+<a class="jxr_linenumber" name="L176" href="#L176">176</a>         } <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="L177" href="#L177">177</a>           errMsg = getMessageSourceAccessor().getMessage(<span class="jxr_string">"probe.src.deploy.war.alreadyExists"</span>,
+<a class="jxr_linenumber" name="L178" href="#L178">178</a>               <strong class="jxr_keyword">new</strong> Object[] {visibleContextName});
+<a class="jxr_linenumber" name="L179" href="#L179">179</a>         }
+<a class="jxr_linenumber" name="L180" href="#L180">180</a>       } <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="L181" href="#L181">181</a>         errMsg = getMessageSourceAccessor().getMessage(<span class="jxr_string">"probe.src.deploy.war.notWar.failure"</span>);
+<a class="jxr_linenumber" name="L182" href="#L182">182</a>       }
+<a class="jxr_linenumber" name="L183" href="#L183">183</a>     } <strong class="jxr_keyword">catch</strong> (IOException e) {
+<a class="jxr_linenumber" name="L184" href="#L184">184</a>       errMsg = getMessageSourceAccessor().getMessage(<span class="jxr_string">"probe.src.deploy.war.failure"</span>,
+<a class="jxr_linenumber" name="L185" href="#L185">185</a>           <strong class="jxr_keyword">new</strong> Object[] {e.getMessage()});
+<a class="jxr_linenumber" name="L186" href="#L186">186</a>       logger.error(<span class="jxr_string">"Tomcat threw an exception when trying to deploy"</span>, e);
+<a class="jxr_linenumber" name="L187" href="#L187">187</a>     } <strong class="jxr_keyword">finally</strong> {
+<a class="jxr_linenumber" name="L188" href="#L188">188</a>       <strong class="jxr_keyword">if</strong> (errMsg != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L189" href="#L189">189</a>         request.setAttribute(<span class="jxr_string">"errorMessage"</span>, errMsg);
+<a class="jxr_linenumber" name="L190" href="#L190">190</a>       }
+<a class="jxr_linenumber" name="L191" href="#L191">191</a>       Files.delete(tmpWar.toPath());
+<a class="jxr_linenumber" name="L192" href="#L192">192</a>     }
+<a class="jxr_linenumber" name="L193" href="#L193">193</a>     <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> ModelAndView(<strong class="jxr_keyword">new</strong> InternalResourceView(getViewName()));
+<a class="jxr_linenumber" name="L194" href="#L194">194</a>   }
+<a class="jxr_linenumber" name="L195" href="#L195">195</a> 
+<a class="jxr_linenumber" name="L196" href="#L196">196</a>   @Value(<span class="jxr_string">"/adm/deploy.htm"</span>)
+<a class="jxr_linenumber" name="L197" href="#L197">197</a>   @Override
+<a class="jxr_linenumber" name="L198" href="#L198">198</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setViewName(String viewName) {
+<a class="jxr_linenumber" name="L199" href="#L199">199</a>     <strong class="jxr_keyword">super</strong>.setViewName(viewName);
+<a class="jxr_linenumber" name="L200" href="#L200">200</a>   }
+<a class="jxr_linenumber" name="L201" href="#L201">201</a> 
+<a class="jxr_linenumber" name="L202" href="#L202">202</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2009&#x2013;2024 <a href="https://github.com/psi-probe/">psi-probe</a>. All rights reserved.</div>
