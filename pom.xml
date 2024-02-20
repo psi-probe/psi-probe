@@ -161,7 +161,7 @@
         <assertj.version>3.25.3</assertj.version>
         <beanutils.version>1.9.4</beanutils.version>
         <byte-buddy.version>1.14.12</byte-buddy.version>
-        <c3p0.version>0.10.0-pre2</c3p0.version>
+        <c3p0.version>0.10.0-pre3</c3p0.version>
         <checker.version>3.42.0</checker.version>
         <collections.version>3.2.2</collections.version>
         <dbcp2.version>2.11.0</dbcp2.version>
