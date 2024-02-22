@@ -198,6 +198,7 @@ public class CopySingleFileController extends AbstractTomcatContainerController 
       if (errMsg != null) {
         request.setAttribute("errorMessage", errMsg);
       }
+      // File is copied so it will exist
       Files.delete(tmpFile.toPath());
     }
     return new ModelAndView(new InternalResourceView(getViewName()));
