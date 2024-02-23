@@ -592,7 +592,7 @@ Object.extend(String.prototype, (function() {
     }
 
     while (source.length > 0) {
-      match = source.match(pattern)
+      match = source.match(pattern);
       if (match && match[0].length > 0) {
         result += source.slice(0, match.index);
         result += String.interpret(replacement(match));
@@ -2364,7 +2364,7 @@ Ajax.PeriodicalUpdater = Class.create(Ajax.Base, {
       if (nextSibling)
         iterator = function(node) { parent.insertBefore(node, nextSibling) };
       else
-        iterator = function(node) { parent.appendChild(node); }
+        iterator = function(node) { parent.appendChild(node); };
 
       fragments.each(iterator);
     } else {
@@ -6755,7 +6755,7 @@ Form.EventObserver = Class.create(Abstract.EventObserver, {
       _isButton = function(event, code) {
         return isIELegacyEvent(event) ? _isButtonForLegacyEvents(event, code) :
          _isButtonForDOMEvents(event, code);
-      }
+      };
     }
   } else if (Prototype.Browser.WebKit) {
     _isButton = _isButtonForWebKit;
