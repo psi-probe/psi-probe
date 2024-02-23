@@ -18,12 +18,12 @@
     <parent>
         <groupId>com.github.psi-probe</groupId>
         <artifactId>psi-probe</artifactId>
-        <version>4.1.3-SNAPSHOT</version>
+        <version>4.1.4-SNAPSHOT</version>
     </parent>
 
     <groupId>com.github.psi-probe</groupId>
     <artifactId>psi-probe-rest</artifactId>
-    <version>4.1.3-SNAPSHOT</version>
+    <version>4.1.4-SNAPSHOT</version>
 
     <name>psi-probe-rest</name>
     <description>PSI Probe Rest - RESTful service endpoints.</description>

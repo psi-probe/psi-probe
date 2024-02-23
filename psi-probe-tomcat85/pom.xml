@@ -18,12 +18,12 @@
     <parent>
         <groupId>com.github.psi-probe</groupId>
         <artifactId>psi-probe</artifactId>
-        <version>4.1.3-SNAPSHOT</version>
+        <version>4.1.4-SNAPSHOT</version>
     </parent>
 
     <groupId>com.github.psi-probe</groupId>
     <artifactId>psi-probe-tomcat85</artifactId>
-    <version>4.1.3-SNAPSHOT</version>
+    <version>4.1.4-SNAPSHOT</version>
 
     <name>psi-probe-tomcat85</name>
     <description>PSI Probe Tomcat 8.5.x Adapter - Implementation of features specific to Apache Tomcat 8.5.x</description>
