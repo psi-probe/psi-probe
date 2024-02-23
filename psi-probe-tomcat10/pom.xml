@@ -35,13 +35,6 @@
         <tag>HEAD</tag>
         <url>https://github.com/psi-probe/psi-probe/</url>
     </scm>
-    <distributionManagement>
-        <site>
-            <id>gh-pages-scm</id>
-            <name>Psi-Probe GitHub Pages</name>
-            <url>scm:git:ssh://git@github.com/psi-probe/psi-probe.git</url>
-        </site>
-    </distributionManagement>
 
     <properties>
         <tomcat.version>10.1.19</tomcat.version>
