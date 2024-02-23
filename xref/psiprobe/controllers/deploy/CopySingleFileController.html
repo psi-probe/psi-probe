@@ -206,18 +206,19 @@
 <a class="jxr_linenumber" name="L198" href="#L198">198</a>       <strong class="jxr_keyword">if</strong> (errMsg != <strong class="jxr_keyword">null</strong>) {
 <a class="jxr_linenumber" name="L199" href="#L199">199</a>         request.setAttribute(<span class="jxr_string">"errorMessage"</span>, errMsg);
 <a class="jxr_linenumber" name="L200" href="#L200">200</a>       }
-<a class="jxr_linenumber" name="L201" href="#L201">201</a>       Files.delete(tmpFile.toPath());
-<a class="jxr_linenumber" name="L202" href="#L202">202</a>     }
-<a class="jxr_linenumber" name="L203" href="#L203">203</a>     <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> ModelAndView(<strong class="jxr_keyword">new</strong> InternalResourceView(getViewName()));
-<a class="jxr_linenumber" name="L204" href="#L204">204</a>   }
-<a class="jxr_linenumber" name="L205" href="#L205">205</a> 
-<a class="jxr_linenumber" name="L206" href="#L206">206</a>   @Value(<span class="jxr_string">"/adm/deploy.htm"</span>)
-<a class="jxr_linenumber" name="L207" href="#L207">207</a>   @Override
-<a class="jxr_linenumber" name="L208" href="#L208">208</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setViewName(String viewName) {
-<a class="jxr_linenumber" name="L209" href="#L209">209</a>     <strong class="jxr_keyword">super</strong>.setViewName(viewName);
-<a class="jxr_linenumber" name="L210" href="#L210">210</a>   }
-<a class="jxr_linenumber" name="L211" href="#L211">211</a> 
-<a class="jxr_linenumber" name="L212" href="#L212">212</a> }
+<a class="jxr_linenumber" name="L201" href="#L201">201</a>       <em class="jxr_comment">// File is copied so it will exist</em>
+<a class="jxr_linenumber" name="L202" href="#L202">202</a>       Files.delete(tmpFile.toPath());
+<a class="jxr_linenumber" name="L203" href="#L203">203</a>     }
+<a class="jxr_linenumber" name="L204" href="#L204">204</a>     <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> ModelAndView(<strong class="jxr_keyword">new</strong> InternalResourceView(getViewName()));
+<a class="jxr_linenumber" name="L205" href="#L205">205</a>   }
+<a class="jxr_linenumber" name="L206" href="#L206">206</a> 
+<a class="jxr_linenumber" name="L207" href="#L207">207</a>   @Value(<span class="jxr_string">"/adm/deploy.htm"</span>)
+<a class="jxr_linenumber" name="L208" href="#L208">208</a>   @Override
+<a class="jxr_linenumber" name="L209" href="#L209">209</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setViewName(String viewName) {
+<a class="jxr_linenumber" name="L210" href="#L210">210</a>     <strong class="jxr_keyword">super</strong>.setViewName(viewName);
+<a class="jxr_linenumber" name="L211" href="#L211">211</a>   }
+<a class="jxr_linenumber" name="L212" href="#L212">212</a> 
+<a class="jxr_linenumber" name="L213" href="#L213">213</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2009&#x2013;2024 <a href="https://github.com/psi-probe/">psi-probe</a>. All rights reserved.</div>
