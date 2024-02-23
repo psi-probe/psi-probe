@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AbstractFlapListener.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">psi-probe-core</a> &gt; <a href="index.source.html" class="el_package">psiprobe.beans.stats.listeners</a> &gt; <span class="el_source">AbstractFlapListener.java</span></div><h1>AbstractFlapListener.java</h1><pre class="source lang-java linenums">/*
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ *
+ * THIS PACKAGE IS PROVIDED &quot;AS IS&quot; AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+ * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE.
+ */
+package psiprobe.beans.stats.listeners;
+
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+
+import psiprobe.Utils;
+
+/**
+ * The listener interface for receiving flap events. The class that is interested in processing a
+ * flap event implements this interface, and the object created with that class is registered with a
+ * component using the component's {@code addFlapListener} method. When the flap event occurs, that
+ * object's appropriate method is invoked.
+ *
+ * @see &lt;a href=&quot;https://assets.nagios.com/downloads/nagioscore/docs/nagioscore/3/en/flapping.html&quot;&gt;
+ *      Detection and Handling of State Flapping (nagios)&lt;/a&gt;
+ */
+<span class="fc" id="L28">public abstract class AbstractFlapListener extends AbstractThresholdListener {</span>
+
+  /** The default flap interval. */
+  private int defaultFlapInterval;
+
+  /** The default flap start threshold. */
+  private float defaultFlapStartThreshold;
+
+  /** The default flap stop threshold. */
+  private float defaultFlapStopThreshold;
+
+  /** The default flap low weight. */
+  private float defaultFlapLowWeight;
+
+  /** The default flap high weight. */
+  private float defaultFlapHighWeight;
+
+  /** The flaps. */
+<span class="fc" id="L46">  private final Map&lt;String, LinkedList&lt;Boolean&gt;&gt; flaps = new HashMap&lt;&gt;();</span>
+
+  /** The flapping states. */
+<span class="fc" id="L49">  private final Map&lt;String, Boolean&gt; flappingStates = new HashMap&lt;&gt;();</span>
+
+  /**
+   * Flapping started.
+   *
+   * @param sce the sce
+   */
+  protected abstract void flappingStarted(StatsCollectionEvent sce);
+
+  /**
+   * Above threshold flapping stopped.
+   *
+   * @param sce the sce
+   */
+  protected abstract void aboveThresholdFlappingStopped(StatsCollectionEvent sce);
+
+  /**
+   * Below threshold flapping stopped.
+   *
+   * @param sce the sce
+   */
+  protected abstract void belowThresholdFlappingStopped(StatsCollectionEvent sce);
+
+  /**
+   * Above threshold not flapping.
+   *
+   * @param sce the sce
+   */
+  protected abstract void aboveThresholdNotFlapping(StatsCollectionEvent sce);
+
+  /**
+   * Below threshold not flapping.
+   *
+   * @param sce the sce
+   */
+  protected abstract void belowThresholdNotFlapping(StatsCollectionEvent sce);
+
+  @Override
+  protected void crossedAboveThreshold(StatsCollectionEvent sce) {
+<span class="fc" id="L88">    statsCollected(sce, true, true);</span>
+<span class="fc" id="L89">  }</span>
+
+  @Override
+  protected void crossedBelowThreshold(StatsCollectionEvent sce) {
+<span class="fc" id="L93">    statsCollected(sce, true, false);</span>
+<span class="fc" id="L94">  }</span>
+
+  @Override
+  protected void remainedAboveThreshold(StatsCollectionEvent sce) {
+<span class="fc" id="L98">    statsCollected(sce, false, true);</span>
+<span class="fc" id="L99">  }</span>
+
+  @Override
+  protected void remainedBelowThreshold(StatsCollectionEvent sce) {
+<span class="fc" id="L103">    statsCollected(sce, false, false);</span>
+<span class="fc" id="L104">  }</span>
+
+  @Override
+  public void reset() {
+<span class="fc" id="L108">    flaps.clear();</span>
+<span class="fc" id="L109">    flappingStates.clear();</span>
+<span class="fc" id="L110">    super.reset();</span>
+<span class="fc" id="L111">  }</span>
+
+  /**
+   * Stats collected.
+   *
+   * @param sce the sce
+   * @param crossedThreshold the crossed threshold
+   * @param above the above
+   */
+  protected void statsCollected(StatsCollectionEvent sce, boolean crossedThreshold, boolean above) {
+<span class="fc" id="L121">    String name = sce.getName();</span>
+<span class="fc" id="L122">    boolean flappingStateChanged = checkFlappingStateChanged(name, crossedThreshold);</span>
+<span class="fc" id="L123">    boolean flappingState = getFlappingState(name);</span>
+<span class="fc bfc" id="L124" title="All 2 branches covered.">    if (flappingStateChanged) {</span>
+<span class="fc bfc" id="L125" title="All 2 branches covered.">      if (flappingState) {</span>
+<span class="fc" id="L126">        flappingStarted(sce);</span>
+<span class="fc bfc" id="L127" title="All 2 branches covered.">      } else if (above) {</span>
+<span class="fc" id="L128">        aboveThresholdFlappingStopped(sce);</span>
+      } else {
+<span class="fc" id="L130">        belowThresholdFlappingStopped(sce);</span>
+      }
+<span class="fc bfc" id="L132" title="All 2 branches covered.">    } else if (crossedThreshold) {</span>
+<span class="fc bfc" id="L133" title="All 2 branches covered.">      if (above) {</span>
+<span class="fc" id="L134">        aboveThresholdNotFlapping(sce);</span>
+      } else {
+<span class="fc" id="L136">        belowThresholdNotFlapping(sce);</span>
+      }
+    }
+<span class="fc" id="L139">  }</span>
+
+  /**
+   * Check flapping state changed.
+   *
+   * @param name the name
+   * @param crossedThreshold the crossed threshold
+   *
+   * @return true, if successful
+   */
+  protected boolean checkFlappingStateChanged(String name, boolean crossedThreshold) {
+<span class="fc" id="L150">    addFlap(name, crossedThreshold);</span>
+<span class="fc" id="L151">    boolean oldFlappingState = getFlappingState(name);</span>
+<span class="fc" id="L152">    float transitionPercent = calculateStateTransitionPercentage(name, oldFlappingState);</span>
+    boolean newFlappingState;
+<span class="fc bfc" id="L154" title="All 2 branches covered.">    if (oldFlappingState) {</span>
+<span class="pc bpc" id="L155" title="1 of 2 branches missed.">      newFlappingState = transitionPercent &lt;= getFlapStopThreshold(name);</span>
+    } else {
+<span class="fc bfc" id="L157" title="All 2 branches covered.">      newFlappingState = transitionPercent &gt; getFlapStartThreshold(name);</span>
+    }
+<span class="fc" id="L159">    setFlappingState(name, newFlappingState);</span>
+<span class="fc bfc" id="L160" title="All 2 branches covered.">    return oldFlappingState != newFlappingState;</span>
+  }
+
+  /**
+   * Calculate state transition percentage.
+   *
+   * @param name the name
+   * @param flapping the flapping
+   *
+   * @return the float
+   */
+  protected float calculateStateTransitionPercentage(String name, boolean flapping) {
+<span class="fc" id="L172">    int flapInterval = getFlapInterval(name);</span>
+<span class="fc" id="L173">    LinkedList&lt;Boolean&gt; list = getFlaps(name);</span>
+<span class="fc" id="L174">    float lowWeight = getFlapLowWeight(name);</span>
+<span class="fc" id="L175">    float highWeight = getFlapHighWeight(name);</span>
+<span class="fc" id="L176">    float weightRange = highWeight - lowWeight;</span>
+<span class="fc" id="L177">    float result = 0;</span>
+<span class="fc bfc" id="L178" title="All 2 branches covered.">    for (int i = list.size() - 1; i &gt;= 0; i--) {</span>
+<span class="fc" id="L179">      boolean thisFlap = list.get(i);</span>
+<span class="fc bfc" id="L180" title="All 2 branches covered.">      if (flapping != thisFlap) {</span>
+<span class="fc" id="L181">        float weight = lowWeight + weightRange * i / (flapInterval - 1);</span>
+<span class="fc" id="L182">        result += weight;</span>
+      }
+    }
+<span class="fc" id="L185">    return result / flapInterval;</span>
+  }
+
+  /**
+   * Adds the flap.
+   *
+   * @param name the name
+   * @param flap the flap
+   */
+  protected void addFlap(String name, boolean flap) {
+<span class="fc" id="L195">    int flapInterval = getFlapInterval(name);</span>
+<span class="fc" id="L196">    LinkedList&lt;Boolean&gt; list = getFlaps(name);</span>
+<span class="fc" id="L197">    Boolean value = flap;</span>
+<span class="fc" id="L198">    list.addLast(value);</span>
+<span class="fc bfc" id="L199" title="All 2 branches covered.">    while (list.size() &gt; flapInterval) {</span>
+<span class="fc" id="L200">      list.removeFirst();</span>
+    }
+<span class="fc" id="L202">  }</span>
+
+  /**
+   * Gets the flapping state.
+   *
+   * @param name the name
+   *
+   * @return the flapping state
+   */
+  protected boolean getFlappingState(String name) {
+<span class="fc" id="L212">    Boolean flapping = flappingStates.get(name);</span>
+<span class="fc bfc" id="L213" title="All 2 branches covered.">    if (flapping == null) {</span>
+<span class="fc" id="L214">      flapping = Boolean.FALSE;</span>
+<span class="fc" id="L215">      setFlappingState(name, false);</span>
+    }
+<span class="fc" id="L217">    return flapping;</span>
+  }
+
+  /**
+   * Sets the flapping state.
+   *
+   * @param name the name
+   * @param flapping the flapping
+   */
+  protected void setFlappingState(String name, boolean flapping) {
+<span class="fc" id="L227">    flappingStates.put(name, flapping);</span>
+<span class="fc" id="L228">  }</span>
+
+  /**
+   * Gets the flaps.
+   *
+   * @param name the name
+   *
+   * @return the flaps
+   */
+  protected LinkedList&lt;Boolean&gt; getFlaps(String name) {
+<span class="fc" id="L238">    return flaps.computeIfAbsent(name, s -&gt; new LinkedList&lt;&gt;());</span>
+  }
+
+  /**
+   * Gets the flap interval.
+   *
+   * @param name the name
+   *
+   * @return the flap interval
+   */
+  protected int getFlapInterval(String name) {
+<span class="fc" id="L249">    String interval = getPropertyValue(name, &quot;flapInterval&quot;);</span>
+<span class="fc" id="L250">    return Utils.toInt(interval, getDefaultFlapInterval());</span>
+  }
+
+  /**
+   * Gets the flap start threshold.
+   *
+   * @param name the name
+   *
+   * @return the flap start threshold
+   */
+  protected float getFlapStartThreshold(String name) {
+<span class="fc" id="L261">    String startThreshold = getPropertyValue(name, &quot;flapStartThreshold&quot;);</span>
+<span class="fc" id="L262">    return Utils.toFloat(startThreshold, getDefaultFlapStartThreshold());</span>
+  }
+
+  /**
+   * Gets the flap stop threshold.
+   *
+   * @param name the name
+   *
+   * @return the flap stop threshold
+   */
+  protected float getFlapStopThreshold(String name) {
+<span class="fc" id="L273">    String stopThreshold = getPropertyValue(name, &quot;flapStopThreshold&quot;);</span>
+<span class="fc" id="L274">    return Utils.toFloat(stopThreshold, getDefaultFlapStopThreshold());</span>
+  }
+
+  /**
+   * Gets the flap low weight.
+   *
+   * @param name the name
+   *
+   * @return the flap low weight
+   */
+  protected float getFlapLowWeight(String name) {
+<span class="fc" id="L285">    String lowWeight = getPropertyValue(name, &quot;flapLowWeight&quot;);</span>
+<span class="fc" id="L286">    return Utils.toFloat(lowWeight, getDefaultFlapLowWeight());</span>
+  }
+
+  /**
+   * Gets the flap high weight.
+   *
+   * @param name the name
+   *
+   * @return the flap high weight
+   */
+  protected float getFlapHighWeight(String name) {
+<span class="fc" id="L297">    String highWeight = getPropertyValue(name, &quot;flapHighWeight&quot;);</span>
+<span class="fc" id="L298">    return Utils.toFloat(highWeight, getDefaultFlapHighWeight());</span>
+  }
+
+  /**
+   * Gets the default flap interval.
+   *
+   * @return the default flap interval
+   */
+  public int getDefaultFlapInterval() {
+<span class="fc" id="L307">    return defaultFlapInterval;</span>
+  }
+
+  /**
+   * Sets the default flap interval.
+   *
+   * @param defaultFlapInterval the new default flap interval
+   */
+  public void setDefaultFlapInterval(int defaultFlapInterval) {
+<span class="fc" id="L316">    this.defaultFlapInterval = defaultFlapInterval;</span>
+<span class="fc" id="L317">  }</span>
+
+  /**
+   * Gets the default flap start threshold.
+   *
+   * @return the default flap start threshold
+   */
+  public float getDefaultFlapStartThreshold() {
+<span class="fc" id="L325">    return defaultFlapStartThreshold;</span>
+  }
+
+  /**
+   * Sets the default flap start threshold.
+   *
+   * @param defaultFlapStartThreshold the new default flap start threshold
+   */
+  public void setDefaultFlapStartThreshold(float defaultFlapStartThreshold) {
+<span class="fc" id="L334">    this.defaultFlapStartThreshold = defaultFlapStartThreshold;</span>
+<span class="fc" id="L335">  }</span>
+
+  /**
+   * Gets the default flap stop threshold.
+   *
+   * @return the default flap stop threshold
+   */
+  public float getDefaultFlapStopThreshold() {
+<span class="fc" id="L343">    return defaultFlapStopThreshold;</span>
+  }
+
+  /**
+   * Sets the default flap stop threshold.
+   *
+   * @param defaultFlapStopThreshold the new default flap stop threshold
+   */
+  public void setDefaultFlapStopThreshold(float defaultFlapStopThreshold) {
+<span class="fc" id="L352">    this.defaultFlapStopThreshold = defaultFlapStopThreshold;</span>
+<span class="fc" id="L353">  }</span>
+
+  /**
+   * Gets the default flap low weight.
+   *
+   * @return the default flap low weight
+   */
+  public float getDefaultFlapLowWeight() {
+<span class="fc" id="L361">    return defaultFlapLowWeight;</span>
+  }
+
+  /**
+   * Sets the default flap low weight.
+   *
+   * @param defaultFlapLowWeight the new default flap low weight
+   */
+  public void setDefaultFlapLowWeight(float defaultFlapLowWeight) {
+<span class="fc" id="L370">    this.defaultFlapLowWeight = defaultFlapLowWeight;</span>
+<span class="fc" id="L371">  }</span>
+
+  /**
+   * Gets the default flap high weight.
+   *
+   * @return the default flap high weight
+   */
+  public float getDefaultFlapHighWeight() {
+<span class="fc" id="L379">    return defaultFlapHighWeight;</span>
+  }
+
+  /**
+   * Sets the default flap high weight.
+   *
+   * @param defaultFlapHighWeight the new default flap high weight
+   */
+  public void setDefaultFlapHighWeight(float defaultFlapHighWeight) {
+<span class="fc" id="L388">    this.defaultFlapHighWeight = defaultFlapHighWeight;</span>
+<span class="fc" id="L389">  }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Utils.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">psi-probe-core</a> &gt; <a href="index.source.html" class="el_package">psiprobe</a> &gt; <span class="el_source">Utils.java</span></div><h1>Utils.java</h1><pre class="source lang-java linenums">/*
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ *
+ * THIS PACKAGE IS PROVIDED &quot;AS IS&quot; AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+ * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE.
+ */
+package psiprobe;
+
+import com.google.common.base.Strings;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.RandomAccessFile;
+import java.io.Reader;
+import java.lang.management.ManagementFactory;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Scanner;
+import java.util.Set;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
+
+import javax.management.MBeanServer;
+import javax.management.MalformedObjectNameException;
+import javax.management.ObjectInstance;
+import javax.management.ObjectName;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.codelibs.jhighlight.renderer.Renderer;
+import org.codelibs.jhighlight.renderer.XhtmlRendererFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import psiprobe.tokenizer.StringTokenizer;
+import psiprobe.tokenizer.Token;
+import psiprobe.tokenizer.Tokenizer;
+import psiprobe.tokenizer.TokenizerSymbol;
+
+/**
+ * Misc. static helper methods.
+ */
+public final class Utils {
+
+  /** The Constant logger. */
+<span class="fc" id="L61">  private static final Logger logger = LoggerFactory.getLogger(Utils.class);</span>
+
+  /**
+   * Prevent Instantiation.
+   */
+  private Utils() {
+    // Prevent Instantiation
+  }
+
+  /**
+   * Reads a file on disk. The method uses default file encoding (see: file.encoding system
+   * property)
+   *
+   * @param file to be read
+   * @param charsetName the charset name
+   *
+   * @return String representation of the file contents
+   *
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
+  public static String readFile(File file, String charsetName) throws IOException {
+<span class="nc" id="L82">    try (InputStream fis = Files.newInputStream(file.toPath())) {</span>
+<span class="nc" id="L83">      return readStream(fis, charsetName);</span>
+    }
+  }
+
+  /**
+   * Reads strings from the intput stream using the given charset. This method closes the input
+   * stream after it has been consumed.
+   *
+   * &lt;p&gt;
+   * This method uses the system's default charset if the given one is unsupported.
+   * &lt;/p&gt;
+   *
+   * @param is the stream from which to read
+   * @param charsetName the charset to use when reading the stream
+   *
+   * @return the contents of the given input stream
+   *
+   * @throws IOException if reading from the stream fails spectacularly
+   */
+  public static String readStream(InputStream is, String charsetName) throws IOException {
+    Charset charset;
+<span class="nc bnc" id="L104" title="All 2 branches missed.">    if (Charset.isSupported(charsetName)) {</span>
+<span class="nc" id="L105">      charset = Charset.forName(charsetName);</span>
+    } else {
+      // use system's default encoding if the passed encoding is unsupported
+<span class="nc" id="L108">      charset = Charset.defaultCharset();</span>
+    }
+
+<span class="nc" id="L111">    StringBuilder out = new StringBuilder();</span>
+<span class="nc" id="L112">    try (BufferedReader reader = new BufferedReader(new InputStreamReader(is, charset), 4096)) {</span>
+      String line;
+<span class="nc bnc" id="L114" title="All 2 branches missed.">      while ((line = reader.readLine()) != null) {</span>
+<span class="nc" id="L115">        out.append(line).append('\n');</span>
+      }
+    }
+
+<span class="nc" id="L119">    return out.toString();</span>
+  }
+
+  /**
+   * Delete.
+   *
+   * @param file the file
+   */
+  public static void delete(File file) {
+<span class="nc bnc" id="L128" title="All 4 branches missed.">    if (file != null &amp;&amp; file.exists()) {</span>
+<span class="nc bnc" id="L129" title="All 2 branches missed.">      if (file.isDirectory()) {</span>
+<span class="nc bnc" id="L130" title="All 2 branches missed.">        for (File child : file.listFiles()) {</span>
+<span class="nc" id="L131">          delete(child);</span>
+        }
+      }
+      try {
+<span class="nc" id="L135">        Files.delete(file.toPath());</span>
+<span class="nc" id="L136">      } catch (IOException e) {</span>
+<span class="nc" id="L137">        logger.debug(&quot;Cannot delete '{}'&quot;, file.getAbsolutePath(), e);</span>
+<span class="nc" id="L138">      }</span>
+    } else {
+<span class="nc" id="L140">      logger.debug(&quot;'{}' does not exist&quot;, file);</span>
+    }
+<span class="nc" id="L142">  }</span>
+
+  /**
+   * To int.
+   *
+   * @param num the num
+   * @param defaultValue the default value
+   *
+   * @return the int
+   */
+  public static int toInt(String num, int defaultValue) {
+<span class="fc bfc" id="L153" title="All 4 branches covered.">    if (num != null &amp;&amp; !num.contains(&quot; &quot;)) {</span>
+<span class="fc" id="L154">      try (Scanner scanner = new Scanner(num)) {</span>
+<span class="fc bfc" id="L155" title="All 2 branches covered.">        if (scanner.hasNextInt()) {</span>
+<span class="fc" id="L156">          return scanner.nextInt();</span>
+        }
+<span class="fc" id="L158">      }</span>
+    }
+<span class="fc" id="L160">    return defaultValue;</span>
+  }
+
+  /**
+   * To int hex.
+   *
+   * @param num the num
+   * @param defaultValue the default value
+   *
+   * @return the int
+   */
+  public static int toIntHex(String num, int defaultValue) {
+<span class="fc bfc" id="L172" title="All 4 branches covered.">    if (num != null &amp;&amp; !num.contains(&quot; &quot;)) {</span>
+<span class="fc bfc" id="L173" title="All 2 branches covered.">      if (num.startsWith(&quot;#&quot;)) {</span>
+<span class="fc" id="L174">        num = num.substring(1);</span>
+      }
+<span class="fc" id="L176">      try (Scanner scanner = new Scanner(num)) {</span>
+<span class="fc bfc" id="L177" title="All 2 branches covered.">        if (scanner.hasNextInt()) {</span>
+<span class="fc" id="L178">          return scanner.nextInt(16);</span>
+        }
+<span class="fc" id="L180">      }</span>
+    }
+<span class="fc" id="L182">    return defaultValue;</span>
+  }
+
+  /**
+   * To long.
+   *
+   * @param num the num
+   * @param defaultValue the default value
+   *
+   * @return the long
+   */
+  public static long toLong(String num, long defaultValue) {
+<span class="fc bfc" id="L194" title="All 4 branches covered.">    if (num != null &amp;&amp; !num.contains(&quot; &quot;)) {</span>
+<span class="fc" id="L195">      try (Scanner scanner = new Scanner(num)) {</span>
+<span class="fc bfc" id="L196" title="All 2 branches covered.">        if (scanner.hasNextLong()) {</span>
+<span class="fc" id="L197">          return scanner.nextLong();</span>
+        }
+<span class="fc" id="L199">      }</span>
+    }
+<span class="fc" id="L201">    return defaultValue;</span>
+  }
+
+  /**
+   * To long.
+   *
+   * @param num the num
+   * @param defaultValue the default value
+   *
+   * @return the long
+   */
+  public static long toLong(Long num, long defaultValue) {
+<span class="fc bfc" id="L213" title="All 2 branches covered.">    return num == null ? defaultValue : num;</span>
+  }
+
+  /**
+   * To float.
+   *
+   * @param num the num
+   * @param defaultValue the default value
+   *
+   * @return the float
+   */
+  public static float toFloat(String num, float defaultValue) {
+<span class="fc bfc" id="L225" title="All 4 branches covered.">    if (num != null &amp;&amp; !num.contains(&quot; &quot;)) {</span>
+<span class="fc" id="L226">      try (Scanner scanner = new Scanner(num)) {</span>
+<span class="fc bfc" id="L227" title="All 2 branches covered.">        if (scanner.hasNextFloat()) {</span>
+<span class="fc" id="L228">          return scanner.nextFloat();</span>
+        }
+<span class="fc" id="L230">      }</span>
+    }
+<span class="fc" id="L232">    return defaultValue;</span>
+  }
+
+  /**
+   * Gets the jsp encoding.
+   *
+   * @param is the is
+   *
+   * @return the jsp encoding
+   *
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
+  public static String getJspEncoding(InputStream is) throws IOException {
+
+<span class="nc" id="L246">    String encoding = null;</span>
+<span class="nc" id="L247">    String contentType = null;</span>
+
+<span class="nc" id="L249">    Tokenizer jspTokenizer = new Tokenizer();</span>
+<span class="nc" id="L250">    jspTokenizer.addSymbol(&quot;\n&quot;, true);</span>
+<span class="nc" id="L251">    jspTokenizer.addSymbol(&quot; &quot;, true);</span>
+<span class="nc" id="L252">    jspTokenizer.addSymbol(&quot;\t&quot;, true);</span>
+<span class="nc" id="L253">    jspTokenizer.addSymbol(new TokenizerSymbol(&quot;dir&quot;, &quot;&lt;%@&quot;, &quot;%&gt;&quot;, false, false, true, false));</span>
+
+<span class="nc" id="L255">    StringTokenizer directiveTokenizer = new StringTokenizer();</span>
+<span class="nc" id="L256">    directiveTokenizer.addSymbol(&quot;\n&quot;, true);</span>
+<span class="nc" id="L257">    directiveTokenizer.addSymbol(&quot; &quot;, true);</span>
+<span class="nc" id="L258">    directiveTokenizer.addSymbol(&quot;\t&quot;, true);</span>
+<span class="nc" id="L259">    directiveTokenizer.addSymbol(&quot;=&quot;);</span>
+<span class="nc" id="L260">    directiveTokenizer.addSymbol(&quot;\&quot;&quot;, &quot;\&quot;&quot;, false);</span>
+<span class="nc" id="L261">    directiveTokenizer.addSymbol(&quot;'&quot;, &quot;'&quot;, false);</span>
+
+<span class="nc" id="L263">    StringTokenizer contentTypeTokenizer = new StringTokenizer();</span>
+<span class="nc" id="L264">    contentTypeTokenizer.addSymbol(&quot; &quot;, true);</span>
+<span class="nc" id="L265">    contentTypeTokenizer.addSymbol(&quot;;&quot;, true);</span>
+
+<span class="nc" id="L267">    try (Reader reader = new InputStreamReader(is, StandardCharsets.UTF_8)) {</span>
+<span class="nc" id="L268">      jspTokenizer.setReader(reader);</span>
+<span class="nc bnc" id="L269" title="All 2 branches missed.">      while (jspTokenizer.hasMore()) {</span>
+<span class="nc" id="L270">        Token token = jspTokenizer.nextToken();</span>
+<span class="nc bnc" id="L271" title="All 2 branches missed.">        if (&quot;dir&quot;.equals(token.getName())) {</span>
+<span class="nc" id="L272">          directiveTokenizer.setString(token.getInnerText());</span>
+<span class="nc bnc" id="L273" title="All 2 branches missed.">          if (directiveTokenizer.hasMore()</span>
+<span class="nc bnc" id="L274" title="All 2 branches missed.">              &amp;&amp; &quot;page&quot;.equals(directiveTokenizer.nextToken().getText())) {</span>
+<span class="nc bnc" id="L275" title="All 2 branches missed.">            while (directiveTokenizer.hasMore()) {</span>
+<span class="nc" id="L276">              Token directiveToken = directiveTokenizer.nextToken();</span>
+<span class="nc bnc" id="L277" title="All 2 branches missed.">              if (&quot;pageEncoding&quot;.equals(directiveToken.getText())) {</span>
+<span class="nc bnc" id="L278" title="All 2 branches missed.">                if (directiveTokenizer.hasMore()</span>
+<span class="nc bnc" id="L279" title="All 2 branches missed.">                    &amp;&amp; &quot;=&quot;.equals(directiveTokenizer.nextToken().getText())</span>
+<span class="nc bnc" id="L280" title="All 2 branches missed.">                    &amp;&amp; directiveTokenizer.hasMore()) {</span>
+<span class="nc" id="L281">                  encoding = directiveTokenizer.nextToken().getInnerText();</span>
+<span class="nc" id="L282">                  break;</span>
+                }
+<span class="nc bnc" id="L284" title="All 2 branches missed.">              } else if (&quot;contentType&quot;.equals(directiveToken.getText())</span>
+<span class="nc bnc" id="L285" title="All 2 branches missed.">                  &amp;&amp; directiveTokenizer.hasMore()</span>
+<span class="nc bnc" id="L286" title="All 2 branches missed.">                  &amp;&amp; &quot;=&quot;.equals(directiveTokenizer.nextToken().getText())</span>
+<span class="nc bnc" id="L287" title="All 2 branches missed.">                  &amp;&amp; directiveTokenizer.hasMore()) {</span>
+<span class="nc" id="L288">                contentType = directiveTokenizer.nextToken().getInnerText();</span>
+              }
+<span class="nc" id="L290">            }</span>
+          }
+        }
+<span class="nc" id="L293">      }</span>
+    }
+
+<span class="nc bnc" id="L296" title="All 4 branches missed.">    if (encoding == null &amp;&amp; contentType != null) {</span>
+<span class="nc" id="L297">      contentTypeTokenizer.setString(contentType);</span>
+<span class="nc bnc" id="L298" title="All 2 branches missed.">      while (contentTypeTokenizer.hasMore()) {</span>
+<span class="nc" id="L299">        String token = contentTypeTokenizer.nextToken().getText();</span>
+<span class="nc bnc" id="L300" title="All 2 branches missed.">        if (token.startsWith(&quot;charset=&quot;)) {</span>
+<span class="nc" id="L301">          encoding = token.substring(&quot;charset=&quot;.length());</span>
+<span class="nc" id="L302">          break;</span>
+        }
+<span class="nc" id="L304">      }</span>
+    }
+
+<span class="nc bnc" id="L307" title="All 2 branches missed.">    return encoding != null ? encoding : StandardCharsets.UTF_8.name();</span>
+  }
+
+  /**
+   * Send file.
+   *
+   * @param request the request
+   * @param response the response
+   * @param file the file
+   *
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
+  public static void sendFile(HttpServletRequest request, HttpServletResponse response, File file)
+      throws IOException {
+
+<span class="nc" id="L322">    try (OutputStream out = response.getOutputStream();</span>
+<span class="nc" id="L323">        RandomAccessFile raf = new RandomAccessFile(file, &quot;r&quot;)) {</span>
+<span class="nc" id="L324">      long fileSize = raf.length();</span>
+<span class="nc" id="L325">      long rangeStart = 0;</span>
+<span class="nc" id="L326">      long rangeFinish = fileSize - 1;</span>
+
+      // accept attempts to resume download (if any)
+<span class="nc" id="L329">      String range = request.getHeader(&quot;Range&quot;);</span>
+<span class="nc bnc" id="L330" title="All 4 branches missed.">      if (range != null &amp;&amp; range.startsWith(&quot;bytes=&quot;)) {</span>
+<span class="nc" id="L331">        String pureRange = range.replace(&quot;bytes=&quot;, &quot;&quot;);</span>
+<span class="nc" id="L332">        int rangeSep = pureRange.indexOf('-');</span>
+
+        try {
+<span class="nc" id="L335">          rangeStart = Long.parseLong(pureRange.substring(0, rangeSep));</span>
+<span class="nc bnc" id="L336" title="All 4 branches missed.">          if (rangeStart &gt; fileSize || rangeStart &lt; 0) {</span>
+<span class="nc" id="L337">            rangeStart = 0;</span>
+          }
+<span class="nc" id="L339">        } catch (NumberFormatException e) {</span>
+          // keep rangeStart unchanged
+<span class="nc" id="L341">          logger.trace(&quot;&quot;, e);</span>
+<span class="nc" id="L342">        }</span>
+
+<span class="nc bnc" id="L344" title="All 2 branches missed.">        if (rangeSep &lt; pureRange.length() - 1) {</span>
+          try {
+<span class="nc" id="L346">            rangeFinish = Long.parseLong(pureRange.substring(rangeSep + 1));</span>
+<span class="nc bnc" id="L347" title="All 4 branches missed.">            if (rangeFinish &lt; 0 || rangeFinish &gt;= fileSize) {</span>
+<span class="nc" id="L348">              rangeFinish = fileSize - 1;</span>
+            }
+<span class="nc" id="L350">          } catch (NumberFormatException e) {</span>
+<span class="nc" id="L351">            logger.trace(&quot;&quot;, e);</span>
+<span class="nc" id="L352">          }</span>
+        }
+      }
+
+      // set some headers
+<span class="nc" id="L357">      response.setContentType(&quot;application/x-download&quot;);</span>
+<span class="nc" id="L358">      response.setHeader(&quot;Content-Disposition&quot;, &quot;attachment; filename=&quot; + file.getName());</span>
+<span class="nc" id="L359">      response.setHeader(&quot;Accept-Ranges&quot;, &quot;bytes&quot;);</span>
+<span class="nc" id="L360">      response.setHeader(&quot;Content-Length&quot;, Long.toString(rangeFinish - rangeStart + 1));</span>
+<span class="nc" id="L361">      response.setHeader(&quot;Content-Range&quot;,</span>
+          &quot;bytes &quot; + rangeStart + &quot;-&quot; + rangeFinish + &quot;/&quot; + fileSize);
+
+      // seek to the requested offset
+<span class="nc" id="L365">      raf.seek(rangeStart);</span>
+
+      // send the file
+<span class="nc" id="L368">      byte[] buffer = new byte[4096];</span>
+
+      long len;
+<span class="nc" id="L371">      int totalRead = 0;</span>
+<span class="nc" id="L372">      boolean nomore = false;</span>
+      while (true) {
+<span class="nc" id="L374">        len = raf.read(buffer);</span>
+<span class="nc bnc" id="L375" title="All 4 branches missed.">        if (len &gt; 0 &amp;&amp; totalRead + len &gt; rangeFinish - rangeStart + 1) {</span>
+          // read more then required?
+          // adjust the length
+<span class="nc" id="L378">          len = rangeFinish - rangeStart + 1 - totalRead;</span>
+<span class="nc" id="L379">          nomore = true;</span>
+        }
+
+<span class="nc bnc" id="L382" title="All 2 branches missed.">        if (len &lt;= 0) {</span>
+<span class="nc" id="L383">          break;</span>
+        }
+<span class="nc" id="L385">        out.write(buffer, 0, (int) len);</span>
+<span class="nc" id="L386">        totalRead = totalRead + (int) len;</span>
+<span class="nc bnc" id="L387" title="All 2 branches missed.">        if (nomore) {</span>
+<span class="nc" id="L388">          break;</span>
+        }
+      }
+    }
+<span class="nc" id="L392">  }</span>
+
+  /**
+   * Gets the thread by name.
+   *
+   * @param name the name
+   *
+   * @return the thread by name
+   */
+  public static Thread getThreadByName(String name) {
+<span class="nc bnc" id="L402" title="All 2 branches missed.">    if (name != null) {</span>
+      // get top ThreadGroup
+<span class="nc" id="L404">      ThreadGroup masterGroup = Thread.currentThread().getThreadGroup();</span>
+<span class="nc bnc" id="L405" title="All 2 branches missed.">      while (masterGroup.getParent() != null) {</span>
+<span class="nc" id="L406">        masterGroup = masterGroup.getParent();</span>
+      }
+
+<span class="nc" id="L409">      Thread[] threads = new Thread[masterGroup.activeCount()];</span>
+<span class="nc" id="L410">      masterGroup.enumerate(threads);</span>
+
+<span class="nc bnc" id="L412" title="All 2 branches missed.">      for (Thread thread : threads) {</span>
+<span class="nc bnc" id="L413" title="All 4 branches missed.">        if (thread != null &amp;&amp; name.equals(thread.getName())) {</span>
+<span class="nc" id="L414">          return thread;</span>
+        }
+      }
+    }
+<span class="nc" id="L418">    return null;</span>
+  }
+
+  /**
+   * Highlight stream.
+   *
+   * @param name the name
+   * @param input the input
+   * @param rendererName the renderer name
+   * @param encoding the encoding
+   *
+   * @return the string
+   *
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
+  public static String highlightStream(String name, InputStream input, String rendererName,
+      String encoding) throws IOException {
+
+<span class="nc" id="L436">    Renderer jspRenderer = XhtmlRendererFactory.getRenderer(rendererName);</span>
+<span class="nc bnc" id="L437" title="All 2 branches missed.">    if (jspRenderer == null) {</span>
+<span class="nc" id="L438">      return null;</span>
+    }
+
+<span class="nc" id="L441">    ByteArrayOutputStream bos = new ByteArrayOutputStream();</span>
+<span class="nc" id="L442">    jspRenderer.highlight(name, input, bos, encoding, true);</span>
+
+<span class="nc" id="L444">    ByteArrayInputStream bis = new ByteArrayInputStream(bos.toByteArray());</span>
+
+<span class="nc" id="L446">    Tokenizer tokenizer = new Tokenizer(new InputStreamReader(bis, Charset.forName(encoding)));</span>
+<span class="nc" id="L447">    tokenizer.addSymbol(new TokenizerSymbol(&quot;EOL&quot;, &quot;\n&quot;, null, false, false, true, false));</span>
+<span class="nc" id="L448">    tokenizer.addSymbol(new TokenizerSymbol(&quot;EOL&quot;, &quot;\r\n&quot;, null, false, false, true, false));</span>
+
+    //
+    // JHighlight adds HTML comment as the first line, so if
+    // we number the lines we could end up with a line number and no line
+    // to avoid that we just ignore the first line all together.
+    //
+<span class="nc" id="L455">    StringBuilder buffer = new StringBuilder();</span>
+<span class="nc" id="L456">    long counter = 0;</span>
+<span class="nc bnc" id="L457" title="All 2 branches missed.">    while (tokenizer.hasMore()) {</span>
+<span class="nc" id="L458">      Token tk = tokenizer.nextToken();</span>
+<span class="nc bnc" id="L459" title="All 2 branches missed.">      if (&quot;EOL&quot;.equals(tk.getName())) {</span>
+<span class="nc" id="L460">        counter++;</span>
+<span class="nc" id="L461">        buffer.append(tk.getText());</span>
+<span class="nc bnc" id="L462" title="All 2 branches missed.">      } else if (counter &gt; 0) {</span>
+<span class="nc" id="L463">        buffer.append(&quot;&lt;span class=\&quot;codeline\&quot;&gt;&quot;);</span>
+<span class="nc" id="L464">        buffer.append(&quot;&lt;span class=\&quot;linenum\&quot;&gt;&quot;);</span>
+<span class="nc" id="L465">        buffer.append(leftPad(Long.toString(counter), 6, &quot; &quot;).replace(&quot; &quot;, &quot;&amp;nbsp;&quot;));</span>
+<span class="nc" id="L466">        buffer.append(&quot;&lt;/span&gt;&quot;);</span>
+<span class="nc" id="L467">        buffer.append(tk.getText());</span>
+<span class="nc" id="L468">        buffer.append(&quot;&lt;/span&gt;&quot;);</span>
+      }
+<span class="nc" id="L470">    }</span>
+<span class="nc" id="L471">    return buffer.toString();</span>
+  }
+
+  /**
+   * Send compressed file.
+   *
+   * @param response the response
+   * @param file the file
+   *
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
+  public static void sendCompressedFile(HttpServletResponse response, File file)
+      throws IOException {
+<span class="nc" id="L484">    try (ZipOutputStream zip = new ZipOutputStream(response.getOutputStream());</span>
+<span class="nc" id="L485">        InputStream fileInput = new BufferedInputStream(Files.newInputStream(file.toPath()))) {</span>
+
+<span class="nc" id="L487">      String fileName = file.getName();</span>
+
+      // set some headers
+<span class="nc" id="L490">      response.setContentType(&quot;application/zip&quot;);</span>
+<span class="nc" id="L491">      response.setHeader(&quot;Content-Disposition&quot;, &quot;attachment; filename=&quot; + fileName + &quot;.zip&quot;);</span>
+
+<span class="nc" id="L493">      zip.putNextEntry(new ZipEntry(fileName));</span>
+
+      // send the file
+<span class="nc" id="L496">      byte[] buffer = new byte[4096];</span>
+      long len;
+
+<span class="nc bnc" id="L499" title="All 2 branches missed.">      while ((len = fileInput.read(buffer)) &gt; 0) {</span>
+<span class="nc" id="L500">        zip.write(buffer, 0, (int) len);</span>
+      }
+<span class="nc" id="L502">      zip.closeEntry();</span>
+    }
+<span class="nc" id="L504">  }</span>
+
+  /**
+   * Left pad.
+   *
+   * @param str the str
+   * @param len the len
+   * @param fill the fill
+   *
+   * @return the string
+   */
+  static String leftPad(final String str, final int len, final String fill) {
+<span class="fc bfc" id="L516" title="All 4 branches covered.">    if (str != null &amp;&amp; str.length() &lt; len) {</span>
+<span class="fc" id="L517">      return Strings.padStart(str, len, fill.charAt(0));</span>
+    }
+<span class="fc bfc" id="L519" title="All 2 branches covered.">    return str == null ? &quot;&quot; : str;</span>
+  }
+
+  /**
+   * Gets the names for locale.
+   *
+   * @param baseName the base name
+   * @param locale the locale
+   *
+   * @return the names for locale
+   */
+  public static List&lt;String&gt; getNamesForLocale(String baseName, Locale locale) {
+<span class="nc" id="L531">    List&lt;String&gt; result = new ArrayList&lt;&gt;(3);</span>
+<span class="nc" id="L532">    String language = locale.getLanguage();</span>
+<span class="nc" id="L533">    String country = locale.getCountry();</span>
+<span class="nc" id="L534">    String variant = locale.getVariant();</span>
+<span class="nc" id="L535">    StringBuilder temp = new StringBuilder(baseName);</span>
+
+<span class="nc bnc" id="L537" title="All 2 branches missed.">    if (language.length() &gt; 0) {</span>
+<span class="nc" id="L538">      temp.append('_').append(language);</span>
+<span class="nc" id="L539">      result.add(0, temp.toString());</span>
+    }
+
+<span class="nc bnc" id="L542" title="All 2 branches missed.">    if (country.length() &gt; 0) {</span>
+<span class="nc" id="L543">      temp.append('_').append(country);</span>
+<span class="nc" id="L544">      result.add(0, temp.toString());</span>
+    }
+
+<span class="nc bnc" id="L547" title="All 2 branches missed.">    if (variant.length() &gt; 0) {</span>
+<span class="nc" id="L548">      temp.append('_').append(variant);</span>
+<span class="nc" id="L549">      result.add(0, temp.toString());</span>
+    }
+
+<span class="nc" id="L552">    return result;</span>
+  }
+
+  /**
+   * Checks if is threading enabled.
+   *
+   * @return true, if is threading enabled
+   */
+  public static boolean isThreadingEnabled() {
+    try {
+<span class="nc" id="L562">      MBeanServer mbeanServer = ManagementFactory.getPlatformMBeanServer();</span>
+<span class="nc" id="L563">      ObjectName objectNameThreading = new ObjectName(&quot;java.lang:type=Threading&quot;);</span>
+<span class="nc" id="L564">      Set&lt;ObjectInstance&gt; threading = mbeanServer.queryMBeans(objectNameThreading, null);</span>
+<span class="nc bnc" id="L565" title="All 4 branches missed.">      return threading != null &amp;&amp; !threading.isEmpty();</span>
+<span class="nc" id="L566">    } catch (MalformedObjectNameException e) {</span>
+<span class="nc" id="L567">      logger.trace(&quot;&quot;, e);</span>
+<span class="nc" id="L568">      return false;</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

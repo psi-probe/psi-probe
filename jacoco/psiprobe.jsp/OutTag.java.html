@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>OutTag.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">psi-probe-core</a> &gt; <a href="index.source.html" class="el_package">psiprobe.jsp</a> &gt; <span class="el_source">OutTag.java</span></div><h1>OutTag.java</h1><pre class="source lang-java linenums">/*
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ *
+ * THIS PACKAGE IS PROVIDED &quot;AS IS&quot; AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+ * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE.
+ */
+package psiprobe.jsp;
+
+import java.io.IOException;
+
+import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.JspWriter;
+import javax.servlet.jsp.tagext.BodyTagSupport;
+
+import org.apache.commons.text.StringEscapeUtils;
+
+/**
+ * The Class OutTag.
+ */
+<span class="fc" id="L24">public class OutTag extends BodyTagSupport {</span>
+
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
+
+  /** The max length. */
+<span class="fc" id="L30">  private int maxLength = -1;</span>
+
+  /** The ellipsis right. */
+<span class="fc" id="L33">  private boolean ellipsisRight = true;</span>
+
+  /** The value. */
+  private transient Object value;
+
+  /**
+   * Gets the value.
+   *
+   * @return the value
+   */
+  public Object getValue() {
+<span class="fc" id="L44">    return value;</span>
+  }
+
+  /**
+   * Sets the value.
+   *
+   * @param value the new value
+   */
+  public void setValue(Object value) {
+<span class="fc" id="L53">    this.value = value;</span>
+<span class="fc" id="L54">  }</span>
+
+  /**
+   * Gets the max length.
+   *
+   * @return the max length
+   */
+  public int getMaxLength() {
+<span class="fc" id="L62">    return maxLength;</span>
+  }
+
+  /**
+   * Sets the max length.
+   *
+   * @param maxLength the new max length
+   */
+  public void setMaxLength(int maxLength) {
+<span class="fc" id="L71">    this.maxLength = maxLength;</span>
+<span class="fc" id="L72">  }</span>
+
+  /**
+   * Checks if is ellipsis right.
+   *
+   * @return true, if is ellipsis right
+   */
+  public boolean isEllipsisRight() {
+<span class="fc" id="L80">    return ellipsisRight;</span>
+  }
+
+  /**
+   * Sets the ellipsis right.
+   *
+   * @param ellipsisRight the new ellipsis right
+   */
+  public void setEllipsisRight(boolean ellipsisRight) {
+<span class="fc" id="L89">    this.ellipsisRight = ellipsisRight;</span>
+<span class="fc" id="L90">  }</span>
+
+  @Override
+  public int doStartTag() throws JspException {
+<span class="nc bnc" id="L94" title="All 2 branches missed.">    if (value != null) {</span>
+<span class="nc" id="L95">      print(value.toString(), pageContext.getOut());</span>
+<span class="nc" id="L96">      return SKIP_BODY;</span>
+    }
+<span class="nc" id="L98">    return super.doStartTag();</span>
+  }
+
+  @Override
+  public int doAfterBody() throws JspException {
+<span class="nc" id="L103">    print(getBodyContent().getString().trim(), getBodyContent().getEnclosingWriter());</span>
+<span class="nc" id="L104">    return SKIP_BODY;</span>
+  }
+
+  /**
+   * Prints the.
+   *
+   * @param displayValue the display value
+   * @param out the out
+   *
+   * @throws JspException the jsp exception
+   */
+  private void print(String displayValue, JspWriter out) throws JspException {
+    try {
+<span class="nc bnc" id="L117" title="All 4 branches missed.">      if (maxLength != -1 &amp;&amp; displayValue.length() &gt; maxLength) {</span>
+        String newValue;
+<span class="nc bnc" id="L119" title="All 2 branches missed.">        if (ellipsisRight) {</span>
+<span class="nc" id="L120">          newValue = displayValue.substring(0, maxLength - 3) + &quot;...&quot;;</span>
+        } else {
+<span class="nc" id="L122">          newValue = &quot;...&quot; + displayValue.substring(displayValue.length() - maxLength + 3);</span>
+        }
+<span class="nc" id="L124">        String title = StringEscapeUtils.escapeHtml4(displayValue);</span>
+<span class="nc" id="L125">        out.print(&quot;&lt;span title=\&quot;&quot; + title + &quot;\&quot;&gt;&quot; + newValue + &quot;&lt;/span&gt;&quot;);</span>
+<span class="nc" id="L126">      } else {</span>
+<span class="nc" id="L127">        out.print(displayValue);</span>
+      }
+<span class="nc" id="L129">    } catch (IOException e) {</span>
+<span class="nc" id="L130">      throw new JspException(e);</span>
+<span class="nc" id="L131">    }</span>
+<span class="nc" id="L132">  }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

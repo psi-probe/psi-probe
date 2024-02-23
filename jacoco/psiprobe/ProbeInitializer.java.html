@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProbeInitializer.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">psi-probe-core</a> &gt; <a href="index.source.html" class="el_package">psiprobe</a> &gt; <span class="el_source">ProbeInitializer.java</span></div><h1>ProbeInitializer.java</h1><pre class="source lang-java linenums">/*
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ *
+ * THIS PACKAGE IS PROVIDED &quot;AS IS&quot; AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+ * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE.
+ */
+package psiprobe;
+
+import com.opensymphony.sitemesh.webapp.SiteMeshFilter;
+
+import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.DispatcherType;
+import javax.servlet.FilterRegistration;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRegistration;
+import javax.servlet.SessionTrackingMode;
+
+import org.springframework.web.WebApplicationInitializer;
+import org.springframework.web.context.ContextLoaderListener;
+import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
+import org.springframework.web.filter.DelegatingFilterProxy;
+
+/**
+ * The class ProbeInitializer.
+ */
+<span class="fc" id="L34">public class ProbeInitializer implements WebApplicationInitializer {</span>
+
+  @Override
+  public void onStartup(ServletContext servletContext) throws ServletException {
+
+    // Set spring config location
+<span class="nc" id="L40">    try (AnnotationConfigWebApplicationContext rootContext =</span>
+        new AnnotationConfigWebApplicationContext()) {
+<span class="nc" id="L42">      rootContext.register(ProbeConfig.class);</span>
+
+      // Set context loader listener
+<span class="nc" id="L45">      servletContext.addListener(new ContextLoaderListener(rootContext));</span>
+    }
+
+    // Set probe servlet
+<span class="nc" id="L49">    ServletRegistration.Dynamic probe = servletContext.addServlet(&quot;probe&quot;, ProbeServlet.class);</span>
+
+    // Set Role that can view session attribute values
+<span class="nc" id="L52">    servletContext.setInitParameter(&quot;attribute.value.roles&quot;, &quot;ROLE_MANAGER,ROLE_MANAGER-GUI&quot;);</span>
+
+    // Set Initial Parameters
+<span class="nc" id="L55">    Map&lt;String, String&gt; initParameters = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L56">    initParameters.put(&quot;contextConfigLocation&quot;, &quot;&quot;);</span>
+<span class="nc" id="L57">    probe.setInitParameters(initParameters);</span>
+
+    // Set load on startup
+<span class="nc" id="L60">    probe.setLoadOnStartup(0);</span>
+
+    // Add Mapping
+<span class="nc" id="L63">    probe.addMapping(&quot;*.htm&quot;, &quot;*.ajax&quot;, &quot;/logs/*&quot;, &quot;/chart.png&quot;);</span>
+
+    // Set sitemesh filter
+<span class="nc" id="L66">    FilterRegistration.Dynamic sitemesh =</span>
+<span class="nc" id="L67">        servletContext.addFilter(&quot;sitemesh&quot;, SiteMeshFilter.class);</span>
+<span class="nc" id="L68">    sitemesh.addMappingForUrlPatterns(</span>
+<span class="nc" id="L69">        EnumSet.of(DispatcherType.FORWARD, DispatcherType.REQUEST, DispatcherType.ERROR), false,</span>
+        &quot;/*&quot;);
+
+    // Set security filter
+<span class="nc" id="L73">    FilterRegistration.Dynamic security =</span>
+<span class="nc" id="L74">        servletContext.addFilter(&quot;filterChainProxy&quot;, DelegatingFilterProxy.class);</span>
+<span class="nc" id="L75">    security.addMappingForUrlPatterns(</span>
+<span class="nc" id="L76">        EnumSet.of(DispatcherType.FORWARD, DispatcherType.REQUEST, DispatcherType.ERROR), false,</span>
+        &quot;/*&quot;);
+
+    // Set session cookie config
+<span class="nc" id="L80">    servletContext.getSessionCookieConfig().setHttpOnly(true);</span>
+<span class="nc" id="L81">    servletContext.getSessionCookieConfig().setSecure(true);</span>
+
+    // Set session tracking mode
+<span class="nc" id="L84">    EnumSet&lt;SessionTrackingMode&gt; trackingMode = EnumSet.of(SessionTrackingMode.COOKIE);</span>
+<span class="nc" id="L85">    servletContext.setSessionTrackingModes(trackingMode);</span>
+<span class="nc" id="L86">  }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

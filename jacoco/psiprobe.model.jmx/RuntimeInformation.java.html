@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RuntimeInformation.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">psi-probe-core</a> &gt; <a href="index.source.html" class="el_package">psiprobe.model.jmx</a> &gt; <span class="el_source">RuntimeInformation.java</span></div><h1>RuntimeInformation.java</h1><pre class="source lang-java linenums">/*
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ *
+ * THIS PACKAGE IS PROVIDED &quot;AS IS&quot; AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+ * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE.
+ */
+package psiprobe.model.jmx;
+
+/**
+ * The Class RuntimeInformation.
+ */
+<span class="fc" id="L16">public class RuntimeInformation {</span>
+
+  /** The vm vendor. */
+  private String vmVendor;
+
+  /** The committed virtual memory size. */
+  private long committedVirtualMemorySize;
+
+  /** The free physical memory size. */
+  private long freePhysicalMemorySize;
+
+  /** The free swap space size. */
+  private long freeSwapSpaceSize;
+
+  /** The process cpu time. */
+  private long processCpuTime;
+
+  /** The available processors. */
+<span class="fc" id="L34">  private int availableProcessors = 1;</span>
+
+  /** The total physical memory size. */
+  private long totalPhysicalMemorySize;
+
+  /** The total swap space size. */
+  private long totalSwapSpaceSize;
+
+  /** The os name. */
+  private String osName;
+
+  /** The os version. */
+  private String osVersion;
+
+  /** The start time. */
+  private long startTime;
+
+  /** The uptime. */
+  private long uptime;
+
+  /** The open file descriptor count. */
+  private long openFileDescriptorCount;
+
+  /** The max file descriptor count. */
+  private long maxFileDescriptorCount;
+
+  /**
+   * Gets the committed virtual memory size.
+   *
+   * @return the committed virtual memory size
+   */
+  public long getCommittedVirtualMemorySize() {
+<span class="fc" id="L66">    return committedVirtualMemorySize;</span>
+  }
+
+  /**
+   * Sets the committed virtual memory size.
+   *
+   * @param committedVirtualMemorySize the new committed virtual memory size
+   */
+  public void setCommittedVirtualMemorySize(long committedVirtualMemorySize) {
+<span class="fc" id="L75">    this.committedVirtualMemorySize = committedVirtualMemorySize;</span>
+<span class="fc" id="L76">  }</span>
+
+  /**
+   * Gets the free physical memory size.
+   *
+   * @return the free physical memory size
+   */
+  public long getFreePhysicalMemorySize() {
+<span class="fc" id="L84">    return freePhysicalMemorySize;</span>
+  }
+
+  /**
+   * Sets the free physical memory size.
+   *
+   * @param freePhysicalMemorySize the new free physical memory size
+   */
+  public void setFreePhysicalMemorySize(long freePhysicalMemorySize) {
+<span class="fc" id="L93">    this.freePhysicalMemorySize = freePhysicalMemorySize;</span>
+<span class="fc" id="L94">  }</span>
+
+  /**
+   * Gets the free swap space size.
+   *
+   * @return the free swap space size
+   */
+  public long getFreeSwapSpaceSize() {
+<span class="fc" id="L102">    return freeSwapSpaceSize;</span>
+  }
+
+  /**
+   * Sets the free swap space size.
+   *
+   * @param freeSwapSpaceSize the new free swap space size
+   */
+  public void setFreeSwapSpaceSize(long freeSwapSpaceSize) {
+<span class="fc" id="L111">    this.freeSwapSpaceSize = freeSwapSpaceSize;</span>
+<span class="fc" id="L112">  }</span>
+
+  /**
+   * Gets the process cpu time.
+   *
+   * @return the process cpu time
+   */
+  public long getProcessCpuTime() {
+<span class="fc" id="L120">    return processCpuTime;</span>
+  }
+
+  /**
+   * Sets the process cpu time.
+   *
+   * @param processCpuTime the new process cpu time
+   */
+  public void setProcessCpuTime(long processCpuTime) {
+<span class="fc" id="L129">    this.processCpuTime = processCpuTime;</span>
+<span class="fc" id="L130">  }</span>
+
+  /**
+   * Gets the available processors.
+   *
+   * @return the available processors
+   */
+  public int getAvailableProcessors() {
+<span class="fc" id="L138">    return availableProcessors;</span>
+  }
+
+  /**
+   * Sets the available processors.
+   *
+   * @param availableProcessors the new available processors
+   */
+  public void setAvailableProcessors(int availableProcessors) {
+<span class="fc" id="L147">    this.availableProcessors = availableProcessors;</span>
+<span class="fc" id="L148">  }</span>
+
+  /**
+   * Gets the total physical memory size.
+   *
+   * @return the total physical memory size
+   */
+  public long getTotalPhysicalMemorySize() {
+<span class="fc" id="L156">    return totalPhysicalMemorySize;</span>
+  }
+
+  /**
+   * Sets the total physical memory size.
+   *
+   * @param totalPhysicalMemorySize the new total physical memory size
+   */
+  public void setTotalPhysicalMemorySize(long totalPhysicalMemorySize) {
+<span class="fc" id="L165">    this.totalPhysicalMemorySize = totalPhysicalMemorySize;</span>
+<span class="fc" id="L166">  }</span>
+
+  /**
+   * Gets the total swap space size.
+   *
+   * @return the total swap space size
+   */
+  public long getTotalSwapSpaceSize() {
+<span class="fc" id="L174">    return totalSwapSpaceSize;</span>
+  }
+
+  /**
+   * Sets the total swap space size.
+   *
+   * @param totalSwapSpaceSize the new total swap space size
+   */
+  public void setTotalSwapSpaceSize(long totalSwapSpaceSize) {
+<span class="fc" id="L183">    this.totalSwapSpaceSize = totalSwapSpaceSize;</span>
+<span class="fc" id="L184">  }</span>
+
+  /**
+   * Gets the os name.
+   *
+   * @return the os name
+   */
+  public String getOsName() {
+<span class="fc" id="L192">    return osName;</span>
+  }
+
+  /**
+   * Sets the os name.
+   *
+   * @param osName the new os name
+   */
+  public void setOsName(String osName) {
+<span class="fc" id="L201">    this.osName = osName;</span>
+<span class="fc" id="L202">  }</span>
+
+  /**
+   * Gets the os version.
+   *
+   * @return the os version
+   */
+  public String getOsVersion() {
+<span class="fc" id="L210">    return osVersion;</span>
+  }
+
+  /**
+   * Sets the os version.
+   *
+   * @param osVersion the new os version
+   */
+  public void setOsVersion(String osVersion) {
+<span class="fc" id="L219">    this.osVersion = osVersion;</span>
+<span class="fc" id="L220">  }</span>
+
+  /**
+   * Gets the start time.
+   *
+   * @return the start time
+   */
+  public long getStartTime() {
+<span class="fc" id="L228">    return startTime;</span>
+  }
+
+  /**
+   * Sets the start time.
+   *
+   * @param startTime the new start time
+   */
+  public void setStartTime(long startTime) {
+<span class="fc" id="L237">    this.startTime = startTime;</span>
+<span class="fc" id="L238">  }</span>
+
+  /**
+   * Gets the uptime.
+   *
+   * @return the uptime
+   */
+  public long getUptime() {
+<span class="fc" id="L246">    return uptime;</span>
+  }
+
+  /**
+   * Sets the uptime.
+   *
+   * @param uptime the new uptime
+   */
+  public void setUptime(long uptime) {
+<span class="fc" id="L255">    this.uptime = uptime;</span>
+<span class="fc" id="L256">  }</span>
+
+  /**
+   * Gets the vm vendor.
+   *
+   * @return the vm vendor
+   */
+  public String getVmVendor() {
+<span class="fc" id="L264">    return vmVendor;</span>
+  }
+
+  /**
+   * Sets the vm vendor.
+   *
+   * @param vmVendor the new vm vendor
+   */
+  public void setVmVendor(String vmVendor) {
+<span class="fc" id="L273">    this.vmVendor = vmVendor;</span>
+<span class="fc" id="L274">  }</span>
+
+  /**
+   * Gets the open file descriptor count.
+   *
+   * @return the open file descriptor count
+   */
+  public long getOpenFileDescriptorCount() {
+<span class="fc" id="L282">    return openFileDescriptorCount;</span>
+  }
+
+  /**
+   * Sets the open file descriptor count.
+   *
+   * @param openFileDescriptorCount the new open file descriptor count
+   */
+  public void setOpenFileDescriptorCount(long openFileDescriptorCount) {
+<span class="fc" id="L291">    this.openFileDescriptorCount = openFileDescriptorCount;</span>
+<span class="fc" id="L292">  }</span>
+
+  /**
+   * Gets the max file descriptor count.
+   *
+   * @return the max file descriptor count
+   */
+  public long getMaxFileDescriptorCount() {
+<span class="fc" id="L300">    return maxFileDescriptorCount;</span>
+  }
+
+  /**
+   * Sets the max file descriptor count.
+   *
+   * @param maxFileDescriptorCount the new max file descriptor count
+   */
+  public void setMaxFileDescriptorCount(long maxFileDescriptorCount) {
+<span class="fc" id="L309">    this.maxFileDescriptorCount = maxFileDescriptorCount;</span>
+<span class="fc" id="L310">  }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ResourceResolverBean.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">psi-probe-core</a> &gt; <a href="index.source.html" class="el_package">psiprobe.beans</a> &gt; <span class="el_source">ResourceResolverBean.java</span></div><h1>ResourceResolverBean.java</h1><pre class="source lang-java linenums">/*
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ *
+ * THIS PACKAGE IS PROVIDED &quot;AS IS&quot; AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+ * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE.
+ */
+package psiprobe.beans;
+
+import java.lang.management.ManagementFactory;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
+import javax.inject.Inject;
+import javax.management.AttributeNotFoundException;
+import javax.management.InstanceNotFoundException;
+import javax.management.MBeanException;
+import javax.management.MBeanServer;
+import javax.management.MalformedObjectNameException;
+import javax.management.ObjectName;
+import javax.management.ReflectionException;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
+import org.apache.catalina.Context;
+import org.apache.catalina.Server;
+import org.apache.catalina.core.StandardServer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import psiprobe.beans.accessors.DatasourceAccessor;
+import psiprobe.model.ApplicationResource;
+import psiprobe.model.DataSourceInfo;
+
+/**
+ * The Class ResourceResolverBean.
+ */
+<span class="fc" id="L43">public class ResourceResolverBean implements ResourceResolver {</span>
+
+  /** The Constant logger. */
+<span class="fc" id="L46">  private static final Logger logger = LoggerFactory.getLogger(ResourceResolverBean.class);</span>
+
+  /**
+   * The default resource prefix for JNDI objects in the global scope: &lt;code&gt;java:&lt;/code&gt;.
+   */
+  public static final String DEFAULT_GLOBAL_RESOURCE_PREFIX = &quot;&quot;;
+
+  /**
+   * The default resource prefix for objects in a private application scope:
+   * &lt;code&gt;java:comp/env/&lt;/code&gt;.
+   */
+  public static final String DEFAULT_RESOURCE_PREFIX =
+      DEFAULT_GLOBAL_RESOURCE_PREFIX + &quot;java:comp/env/&quot;;
+
+  /** The datasource mappers. */
+  @Inject
+  private List&lt;String&gt; datasourceMappers;
+
+  @Override
+  public List&lt;ApplicationResource&gt; getApplicationResources() throws NamingException {
+<span class="nc" id="L66">    logger.debug(&quot;Reading GLOBAL resources&quot;);</span>
+<span class="nc" id="L67">    List&lt;ApplicationResource&gt; resources = new ArrayList&lt;&gt;();</span>
+
+<span class="nc" id="L69">    MBeanServer server = getMBeanServer();</span>
+<span class="nc bnc" id="L70" title="All 2 branches missed.">    if (server != null) {</span>
+      try {
+<span class="nc" id="L72">        Set&lt;ObjectName&gt; dsNames =</span>
+<span class="nc" id="L73">            server.queryNames(new ObjectName(&quot;Catalina:type=Resource,resourcetype=Global,*&quot;), null);</span>
+<span class="nc bnc" id="L74" title="All 2 branches missed.">        for (ObjectName objectName : dsNames) {</span>
+<span class="nc" id="L75">          ApplicationResource resource = new ApplicationResource();</span>
+
+<span class="nc" id="L77">          logger.debug(&quot;reading resource: {}&quot;, objectName);</span>
+<span class="nc" id="L78">          resource.setName(getStringAttribute(server, objectName, &quot;name&quot;));</span>
+<span class="nc" id="L79">          resource.setType(getStringAttribute(server, objectName, &quot;type&quot;));</span>
+<span class="nc" id="L80">          resource.setScope(getStringAttribute(server, objectName, &quot;scope&quot;));</span>
+<span class="nc" id="L81">          resource.setAuth(getStringAttribute(server, objectName, &quot;auth&quot;));</span>
+<span class="nc" id="L82">          resource.setDescription(getStringAttribute(server, objectName, &quot;description&quot;));</span>
+
+<span class="nc" id="L84">          lookupResource(resource, true, true);</span>
+
+<span class="nc" id="L86">          resources.add(resource);</span>
+<span class="nc" id="L87">        }</span>
+<span class="nc" id="L88">      } catch (Exception e) {</span>
+<span class="nc" id="L89">        logger.error(&quot;There was an error querying JMX server:&quot;, e);</span>
+<span class="nc" id="L90">      }</span>
+    }
+<span class="nc" id="L92">    return resources;</span>
+  }
+
+  @Override
+  public synchronized List&lt;ApplicationResource&gt; getApplicationResources(Context context,
+      ContainerWrapperBean containerWrapper) throws NamingException {
+
+<span class="nc" id="L99">    List&lt;ApplicationResource&gt; resourceList = new ArrayList&lt;&gt;();</span>
+
+<span class="nc" id="L101">    boolean contextAvailable = containerWrapper.getTomcatContainer().getAvailable(context);</span>
+<span class="nc bnc" id="L102" title="All 2 branches missed.">    if (contextAvailable) {</span>
+
+<span class="nc" id="L104">      logger.debug(&quot;Reading CONTEXT {}&quot;, context.getName());</span>
+
+<span class="nc" id="L106">      boolean contextBound = false;</span>
+
+      try {
+<span class="nc" id="L109">        containerWrapper.getTomcatContainer().bindToContext(context);</span>
+<span class="nc" id="L110">        contextBound = true;</span>
+<span class="nc" id="L111">      } catch (NamingException e) {</span>
+<span class="nc" id="L112">        logger.error(&quot;Cannot bind to context. useNaming=false ?&quot;);</span>
+<span class="nc" id="L113">        logger.debug(&quot;&quot;, e);</span>
+<span class="nc" id="L114">      }</span>
+
+      try {
+<span class="nc" id="L117">        containerWrapper.getTomcatContainer().addContextResource(context, resourceList);</span>
+
+<span class="nc" id="L119">        containerWrapper.getTomcatContainer().addContextResourceLink(context, resourceList);</span>
+
+<span class="nc bnc" id="L121" title="All 2 branches missed.">        for (ApplicationResource resourceList1 : resourceList) {</span>
+<span class="nc" id="L122">          lookupResource(resourceList1, contextBound, false);</span>
+<span class="nc" id="L123">        }</span>
+
+      } finally {
+<span class="nc bnc" id="L126" title="All 2 branches missed.">        if (contextBound) {</span>
+<span class="nc" id="L127">          containerWrapper.getTomcatContainer().unbindFromContext(context);</span>
+        }
+      }
+    }
+
+<span class="nc" id="L132">    return resourceList;</span>
+  }
+
+  /**
+   * Lookup resource.
+   *
+   * @param resource the resource
+   * @param contextBound the context bound
+   * @param global the global
+   */
+  public void lookupResource(ApplicationResource resource, boolean contextBound, boolean global) {
+<span class="nc" id="L143">    DataSourceInfo dataSourceInfo = null;</span>
+<span class="nc bnc" id="L144" title="All 2 branches missed.">    if (contextBound) {</span>
+      try {
+<span class="nc bnc" id="L146" title="All 2 branches missed.">        javax.naming.Context ctx = !global ? new InitialContext() : getGlobalNamingContext();</span>
+<span class="nc bnc" id="L147" title="All 2 branches missed.">        if (ctx == null) {</span>
+<span class="nc" id="L148">          logger.error(</span>
+              &quot;Unable to find context. This may indicate invalid setup. Check global resources versus requested resources&quot;);
+<span class="nc" id="L150">          resource.setLookedUp(false);</span>
+<span class="nc" id="L151">          return;</span>
+        }
+<span class="nc" id="L153">        String jndiName = resolveJndiName(resource.getName(), global);</span>
+<span class="nc" id="L154">        logger.debug(&quot;reading resource jndi name: {}&quot;, jndiName);</span>
+<span class="nc" id="L155">        Object obj = ctx.lookup(jndiName);</span>
+<span class="nc" id="L156">        resource.setLookedUp(true);</span>
+<span class="nc bnc" id="L157" title="All 2 branches missed.">        for (String accessorString : datasourceMappers) {</span>
+<span class="nc" id="L158">          logger.debug(&quot;Looking up datasource adapter: {}&quot;, accessorString);</span>
+<span class="nc" id="L159">          DatasourceAccessor accessor = Class.forName(accessorString)</span>
+<span class="nc" id="L160">              .asSubclass(DatasourceAccessor.class).getDeclaredConstructor().newInstance();</span>
+<span class="nc" id="L161">          dataSourceInfo = accessor.getInfo(obj);</span>
+<span class="nc bnc" id="L162" title="All 2 branches missed.">          if (dataSourceInfo != null) {</span>
+<span class="nc" id="L163">            break;</span>
+          }
+<span class="nc" id="L165">        }</span>
+<span class="nc" id="L166">      } catch (Exception e) {</span>
+<span class="nc" id="L167">        resource.setLookedUp(false);</span>
+<span class="nc" id="L168">        dataSourceInfo = null;</span>
+<span class="nc" id="L169">        logger.error(&quot;Failed to lookup: '{}'&quot;, resource.getName(), e);</span>
+<span class="nc" id="L170">      }</span>
+    } else {
+<span class="nc" id="L172">      resource.setLookedUp(false);</span>
+    }
+
+<span class="nc bnc" id="L175" title="All 4 branches missed.">    if (resource.isLookedUp() &amp;&amp; dataSourceInfo != null) {</span>
+<span class="nc" id="L176">      resource.setDataSourceInfo(dataSourceInfo);</span>
+    }
+<span class="nc" id="L178">  }</span>
+
+  @Override
+  public synchronized boolean resetResource(final Context context, String resourceName,
+      ContainerWrapperBean containerWrapper) throws NamingException {
+
+<span class="nc bnc" id="L184" title="All 2 branches missed.">    if (context != null) {</span>
+<span class="nc" id="L185">      containerWrapper.getTomcatContainer().bindToContext(context);</span>
+    }
+    try {
+<span class="nc bnc" id="L188" title="All 2 branches missed.">      javax.naming.Context ctx = context != null ? new InitialContext() : getGlobalNamingContext();</span>
+<span class="nc bnc" id="L189" title="All 2 branches missed.">      String jndiName = resolveJndiName(resourceName, context == null);</span>
+      try {
+<span class="nc bnc" id="L191" title="All 2 branches missed.">        for (String accessorString : datasourceMappers) {</span>
+<span class="nc" id="L192">          logger.debug(&quot;Resetting datasource adapter: {}&quot;, accessorString);</span>
+<span class="nc" id="L193">          DatasourceAccessor accessor = Class.forName(accessorString)</span>
+<span class="nc" id="L194">              .asSubclass(DatasourceAccessor.class).getDeclaredConstructor().newInstance();</span>
+<span class="nc bnc" id="L195" title="All 2 branches missed.">          if (ctx == null) {</span>
+<span class="nc" id="L196">            return false;</span>
+          }
+<span class="nc" id="L198">          Object obj = ctx.lookup(jndiName);</span>
+<span class="nc bnc" id="L199" title="All 2 branches missed.">          if (accessor.reset(obj)) {</span>
+<span class="nc" id="L200">            return true;</span>
+          }
+<span class="nc" id="L202">        }</span>
+<span class="nc" id="L203">        return false;</span>
+<span class="nc" id="L204">      } catch (Exception e) {</span>
+<span class="nc" id="L205">        logger.trace(&quot;&quot;, e);</span>
+<span class="nc" id="L206">        return false;</span>
+      }
+    } finally {
+<span class="nc bnc" id="L209" title="All 2 branches missed.">      if (context != null) {</span>
+<span class="nc" id="L210">        containerWrapper.getTomcatContainer().unbindFromContext(context);</span>
+      }
+    }
+  }
+
+  @Override
+  public synchronized DataSource lookupDataSource(final Context context, String resourceName,
+      ContainerWrapperBean containerWrapper) throws NamingException {
+
+<span class="nc bnc" id="L219" title="All 2 branches missed.">    if (context != null) {</span>
+<span class="nc" id="L220">      containerWrapper.getTomcatContainer().bindToContext(context);</span>
+    }
+    try {
+<span class="nc bnc" id="L223" title="All 2 branches missed.">      javax.naming.Context ctx = context != null ? new InitialContext() : getGlobalNamingContext();</span>
+<span class="nc bnc" id="L224" title="All 2 branches missed.">      String jndiName = resolveJndiName(resourceName, context == null);</span>
+<span class="nc bnc" id="L225" title="All 2 branches missed.">      if (ctx == null) {</span>
+<span class="nc" id="L226">        return null;</span>
+      }
+<span class="nc" id="L228">      Object obj = ctx.lookup(jndiName);</span>
+
+<span class="nc bnc" id="L230" title="All 2 branches missed.">      if (obj instanceof DataSource) {</span>
+<span class="nc" id="L231">        return (DataSource) obj;</span>
+      }
+<span class="nc" id="L233">      return null;</span>
+    } finally {
+<span class="nc bnc" id="L235" title="All 2 branches missed.">      if (context != null) {</span>
+<span class="nc" id="L236">        containerWrapper.getTomcatContainer().unbindFromContext(context);</span>
+      }
+    }
+  }
+
+  /**
+   * Gets the datasource mappers.
+   *
+   * @return the datasource mappers
+   */
+  public List&lt;String&gt; getDatasourceMappers() {
+<span class="nc" id="L247">    return datasourceMappers;</span>
+  }
+
+  /**
+   * Sets the datasource mappers.
+   *
+   * @param datasourceMappers the new datasource mappers
+   */
+  public void setDatasourceMappers(List&lt;String&gt; datasourceMappers) {
+<span class="nc" id="L256">    this.datasourceMappers = datasourceMappers;</span>
+<span class="nc" id="L257">  }</span>
+
+  @Override
+  public boolean supportsPrivateResources() {
+<span class="nc" id="L261">    return true;</span>
+  }
+
+  @Override
+  public boolean supportsGlobalResources() {
+<span class="nc" id="L266">    return true;</span>
+  }
+
+  @Override
+  public boolean supportsDataSourceLookup() {
+<span class="nc" id="L271">    return true;</span>
+  }
+
+  @Override
+  public MBeanServer getMBeanServer() {
+<span class="nc" id="L276">    return ManagementFactory.getPlatformMBeanServer();</span>
+  }
+
+  /**
+   * Resolves a JNDI resource name by prepending the scope-appropriate prefix.
+   *
+   * @param name the JNDI name of the resource
+   * @param global whether to use the global prefix
+   *
+   * @return the JNDI resource name with the prefix appended
+   *
+   * @see #DEFAULT_GLOBAL_RESOURCE_PREFIX
+   * @see #DEFAULT_RESOURCE_PREFIX
+   */
+  protected static String resolveJndiName(String name, boolean global) {
+<span class="nc bnc" id="L291" title="All 2 branches missed.">    return (global ? DEFAULT_GLOBAL_RESOURCE_PREFIX : DEFAULT_RESOURCE_PREFIX) + name;</span>
+  }
+
+  /**
+   * Gets the string attribute.
+   *
+   * @param server the server
+   * @param objectName the object name
+   * @param attributeName the attribute name
+   *
+   * @return the string attribute
+   */
+  private String getStringAttribute(MBeanServer server, ObjectName objectName,
+      String attributeName) {
+
+    try {
+<span class="nc" id="L307">      return (String) server.getAttribute(objectName, attributeName);</span>
+<span class="nc" id="L308">    } catch (Exception e) {</span>
+<span class="nc" id="L309">      logger.error(&quot;Error getting attribute '{}' from '{}'&quot;, attributeName, objectName, e);</span>
+<span class="nc" id="L310">      return null;</span>
+    }
+  }
+
+  /**
+   * Returns the Server's global naming context.
+   *
+   * @return the global JNDI context
+   */
+  public static javax.naming.Context getGlobalNamingContext() {
+
+<span class="nc" id="L321">    javax.naming.Context globalContext = null;</span>
+<span class="nc" id="L322">    MBeanServer mbeanServer = ManagementFactory.getPlatformMBeanServer();</span>
+<span class="nc bnc" id="L323" title="All 2 branches missed.">    if (mbeanServer != null) {</span>
+<span class="nc bnc" id="L324" title="All 2 branches missed.">      for (String domain : mbeanServer.getDomains()) {</span>
+
+        ObjectName name;
+        try {
+<span class="nc" id="L328">          name = new ObjectName(domain + &quot;:type=Server&quot;);</span>
+<span class="nc" id="L329">        } catch (MalformedObjectNameException e) {</span>
+<span class="nc" id="L330">          logger.error(&quot;&quot;, e);</span>
+<span class="nc" id="L331">          return null;</span>
+<span class="nc" id="L332">        }</span>
+
+<span class="nc" id="L334">        Server server = null;</span>
+        try {
+<span class="nc" id="L336">          server = (Server) mbeanServer.getAttribute(name, &quot;managedResource&quot;);</span>
+<span class="nc" id="L337">        } catch (AttributeNotFoundException | InstanceNotFoundException | MBeanException</span>
+            | ReflectionException e) {
+<span class="nc" id="L339">          logger.trace(&quot;JMX objectName {} does not contain any managedResource&quot;, name, e);</span>
+<span class="nc" id="L340">        }</span>
+
+        // Get Global Naming Context
+<span class="nc bnc" id="L343" title="All 2 branches missed.">        if (server instanceof StandardServer) {</span>
+<span class="nc" id="L344">          globalContext = server.getGlobalNamingContext();</span>
+<span class="nc" id="L345">          break;</span>
+        }
+      }
+    }
+
+<span class="nc" id="L350">    return globalContext;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

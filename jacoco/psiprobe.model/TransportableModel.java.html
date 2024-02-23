@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TransportableModel.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">psi-probe-core</a> &gt; <a href="index.source.html" class="el_package">psiprobe.model</a> &gt; <span class="el_source">TransportableModel.java</span></div><h1>TransportableModel.java</h1><pre class="source lang-java linenums">/*
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ *
+ * THIS PACKAGE IS PROVIDED &quot;AS IS&quot; AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+ * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE.
+ */
+package psiprobe.model;
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * A wrapper class to assist marshalling of ModelAndView.getModel() map to XML representation.
+ */
+<span class="fc" id="L20">public class TransportableModel {</span>
+
+  /** The items. */
+<span class="fc" id="L23">  private Map&lt;String, Object&gt; items = new HashMap&lt;&gt;();</span>
+
+  /**
+   * Gets the items.
+   *
+   * @return the items
+   */
+  public Map&lt;String, Object&gt; getItems() {
+<span class="pc bpc" id="L31" title="1 of 2 branches missed.">    return items == null ? Collections.emptyMap() : new HashMap&lt;&gt;(items);</span>
+  }
+
+  /**
+   * Sets the items.
+   *
+   * @param items the items
+   */
+  public void setItems(Map&lt;String, Object&gt; items) {
+<span class="pc bpc" id="L40" title="1 of 2 branches missed.">    this.items = items == null ? Collections.emptyMap() : new HashMap&lt;&gt;(items);</span>
+<span class="fc" id="L41">  }</span>
+
+  /**
+   * Put all.
+   *
+   * @param map the map
+   */
+  public void putAll(Map&lt;String, Object&gt; map) {
+<span class="nc bnc" id="L49" title="All 2 branches missed.">    if (map != null) {</span>
+<span class="nc" id="L50">      items.putAll(new HashMap&lt;&gt;(map));</span>
+    }
+<span class="nc" id="L52">  }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

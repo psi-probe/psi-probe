@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Cluster.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">psi-probe-core</a> &gt; <a href="index.source.html" class="el_package">psiprobe.model.jmx</a> &gt; <span class="el_source">Cluster.java</span></div><h1>Cluster.java</h1><pre class="source lang-java linenums">/*
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ *
+ * THIS PACKAGE IS PROVIDED &quot;AS IS&quot; AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+ * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE.
+ */
+package psiprobe.model.jmx;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
+/**
+ * The Class Cluster.
+ */
+<span class="fc" id="L21">public class Cluster {</span>
+
+  /** The name. */
+  private String name;
+
+  /** The info. */
+  private String info;
+
+  /** The manager class name. */
+  private String managerClassName;
+
+  /** The mcast address. */
+  private String mcastAddress;
+
+  /** The mcast bind address. */
+  private String mcastBindAddress;
+
+  /** The mcast cluster domain. */
+  private String mcastClusterDomain;
+
+  /** The mcast drop time. */
+  private long mcastDropTime;
+
+  /** The mcast frequency. */
+  private long mcastFrequency;
+
+  /** The mcast port. */
+  private int mcastPort;
+
+  /** The mcast so timeout. */
+  private int mcastSoTimeout;
+
+  /** The mcast ttl. */
+  private int mcastTtl;
+
+  /** The members. */
+<span class="fc" id="L57">  private List&lt;ClusterSender&gt; members = new ArrayList&lt;&gt;();</span>
+
+  /** The tcp thread count. */
+  private int tcpThreadCount;
+
+  /** The tcp listen address. */
+  private String tcpListenAddress;
+
+  /** The tcp listen port. */
+  private int tcpListenPort;
+
+  /** The tcp selector timeout. */
+  private long tcpSelectorTimeout;
+
+  /** The nr of msgs received. */
+  private long nrOfMsgsReceived;
+
+  /** The total received bytes. */
+  private long totalReceivedBytes;
+
+  /** The sender ack timeout. */
+  private long senderAckTimeout;
+
+  /** The sender auto connect. */
+  private boolean senderAutoConnect;
+
+  /** The sender failure counter. */
+  private long senderFailureCounter;
+
+  /** The sender nr of requests. */
+  private long senderNrOfRequests;
+
+  /** The sender replication mode. */
+  private String senderReplicationMode;
+
+  /** The sender total bytes. */
+  private long senderTotalBytes;
+
+  /**
+   * Gets the name.
+   *
+   * @return the name
+   */
+  public String getName() {
+<span class="fc" id="L101">    return name;</span>
+  }
+
+  /**
+   * Sets the name.
+   *
+   * @param name the new name
+   */
+  public void setName(String name) {
+<span class="fc" id="L110">    this.name = name;</span>
+<span class="fc" id="L111">  }</span>
+
+  /**
+   * Gets the info.
+   *
+   * @return the info
+   */
+  public String getInfo() {
+<span class="fc" id="L119">    return info;</span>
+  }
+
+  /**
+   * Sets the info.
+   *
+   * @param info the new info
+   */
+  public void setInfo(String info) {
+<span class="fc" id="L128">    this.info = info;</span>
+<span class="fc" id="L129">  }</span>
+
+  /**
+   * Gets the manager class name.
+   *
+   * @return the manager class name
+   */
+  public String getManagerClassName() {
+<span class="fc" id="L137">    return managerClassName;</span>
+  }
+
+  /**
+   * Sets the manager class name.
+   *
+   * @param managerClassName the new manager class name
+   */
+  public void setManagerClassName(String managerClassName) {
+<span class="fc" id="L146">    this.managerClassName = managerClassName;</span>
+<span class="fc" id="L147">  }</span>
+
+  /**
+   * Gets the mcast address.
+   *
+   * @return the mcast address
+   */
+  public String getMcastAddress() {
+<span class="fc" id="L155">    return mcastAddress;</span>
+  }
+
+  /**
+   * Sets the mcast address.
+   *
+   * @param mcastAddress the new mcast address
+   */
+  public void setMcastAddress(String mcastAddress) {
+<span class="fc" id="L164">    this.mcastAddress = mcastAddress;</span>
+<span class="fc" id="L165">  }</span>
+
+  /**
+   * Gets the mcast bind address.
+   *
+   * @return the mcast bind address
+   */
+  public String getMcastBindAddress() {
+<span class="fc" id="L173">    return mcastBindAddress;</span>
+  }
+
+  /**
+   * Sets the mcast bind address.
+   *
+   * @param mcastBindAddress the new mcast bind address
+   */
+  public void setMcastBindAddress(String mcastBindAddress) {
+<span class="fc" id="L182">    this.mcastBindAddress = mcastBindAddress;</span>
+<span class="fc" id="L183">  }</span>
+
+  /**
+   * Gets the mcast cluster domain.
+   *
+   * @return the mcast cluster domain
+   */
+  public String getMcastClusterDomain() {
+<span class="fc" id="L191">    return mcastClusterDomain;</span>
+  }
+
+  /**
+   * Sets the mcast cluster domain.
+   *
+   * @param mcastClusterDomain the new mcast cluster domain
+   */
+  public void setMcastClusterDomain(String mcastClusterDomain) {
+<span class="fc" id="L200">    this.mcastClusterDomain = mcastClusterDomain;</span>
+<span class="fc" id="L201">  }</span>
+
+  /**
+   * Gets the members.
+   *
+   * @return the members
+   */
+  public List&lt;ClusterSender&gt; getMembers() {
+<span class="nc bnc" id="L209" title="All 2 branches missed.">    return members == null ? Collections.emptyList() : new ArrayList&lt;&gt;(members);</span>
+  }
+
+  /**
+   * Sets the members.
+   *
+   * @param members the new members
+   */
+  public void setMembers(Collection&lt;ClusterSender&gt; members) {
+<span class="nc bnc" id="L218" title="All 2 branches missed.">    this.members = members == null ? Collections.emptyList() : new ArrayList&lt;&gt;(members);</span>
+<span class="nc" id="L219">  }</span>
+
+  /**
+   * Gets the tcp listen address.
+   *
+   * @return the tcp listen address
+   */
+  public String getTcpListenAddress() {
+<span class="fc" id="L227">    return tcpListenAddress;</span>
+  }
+
+  /**
+   * Sets the tcp listen address.
+   *
+   * @param tcpListenAddress the new tcp listen address
+   */
+  public void setTcpListenAddress(String tcpListenAddress) {
+<span class="fc" id="L236">    this.tcpListenAddress = tcpListenAddress;</span>
+<span class="fc" id="L237">  }</span>
+
+  /**
+   * Gets the tcp listen port.
+   *
+   * @return the tcp listen port
+   */
+  public int getTcpListenPort() {
+<span class="fc" id="L245">    return tcpListenPort;</span>
+  }
+
+  /**
+   * Sets the tcp listen port.
+   *
+   * @param tcpListenPort the new tcp listen port
+   */
+  public void setTcpListenPort(int tcpListenPort) {
+<span class="fc" id="L254">    this.tcpListenPort = tcpListenPort;</span>
+<span class="fc" id="L255">  }</span>
+
+  /**
+   * Gets the tcp selector timeout.
+   *
+   * @return the tcp selector timeout
+   */
+  public long getTcpSelectorTimeout() {
+<span class="fc" id="L263">    return tcpSelectorTimeout;</span>
+  }
+
+  /**
+   * Sets the tcp selector timeout.
+   *
+   * @param tcpSelectorTimeout the new tcp selector timeout
+   */
+  public void setTcpSelectorTimeout(long tcpSelectorTimeout) {
+<span class="fc" id="L272">    this.tcpSelectorTimeout = tcpSelectorTimeout;</span>
+<span class="fc" id="L273">  }</span>
+
+  /**
+   * Gets the nr of msgs received.
+   *
+   * @return the nr of msgs received
+   */
+  public long getNrOfMsgsReceived() {
+<span class="fc" id="L281">    return nrOfMsgsReceived;</span>
+  }
+
+  /**
+   * Sets the nr of msgs received.
+   *
+   * @param nrOfMsgsReceived the new nr of msgs received
+   */
+  public void setNrOfMsgsReceived(long nrOfMsgsReceived) {
+<span class="fc" id="L290">    this.nrOfMsgsReceived = nrOfMsgsReceived;</span>
+<span class="fc" id="L291">  }</span>
+
+  /**
+   * Gets the sender ack timeout.
+   *
+   * @return the sender ack timeout
+   */
+  public long getSenderAckTimeout() {
+<span class="fc" id="L299">    return senderAckTimeout;</span>
+  }
+
+  /**
+   * Sets the sender ack timeout.
+   *
+   * @param senderAckTimeout the new sender ack timeout
+   */
+  public void setSenderAckTimeout(long senderAckTimeout) {
+<span class="fc" id="L308">    this.senderAckTimeout = senderAckTimeout;</span>
+<span class="fc" id="L309">  }</span>
+
+  /**
+   * Checks if is sender auto connect.
+   *
+   * @return true, if is sender auto connect
+   */
+  public boolean isSenderAutoConnect() {
+<span class="fc" id="L317">    return senderAutoConnect;</span>
+  }
+
+  /**
+   * Sets the sender auto connect.
+   *
+   * @param senderAutoConnect the new sender auto connect
+   */
+  public void setSenderAutoConnect(boolean senderAutoConnect) {
+<span class="fc" id="L326">    this.senderAutoConnect = senderAutoConnect;</span>
+<span class="fc" id="L327">  }</span>
+
+  /**
+   * Gets the sender failure counter.
+   *
+   * @return the sender failure counter
+   */
+  public long getSenderFailureCounter() {
+<span class="fc" id="L335">    return senderFailureCounter;</span>
+  }
+
+  /**
+   * Sets the sender failure counter.
+   *
+   * @param senderFailureCounter the new sender failure counter
+   */
+  public void setSenderFailureCounter(long senderFailureCounter) {
+<span class="fc" id="L344">    this.senderFailureCounter = senderFailureCounter;</span>
+<span class="fc" id="L345">  }</span>
+
+  /**
+   * Gets the sender nr of requests.
+   *
+   * @return the sender nr of requests
+   */
+  public long getSenderNrOfRequests() {
+<span class="fc" id="L353">    return senderNrOfRequests;</span>
+  }
+
+  /**
+   * Sets the sender nr of requests.
+   *
+   * @param senderNrOfRequests the new sender nr of requests
+   */
+  public void setSenderNrOfRequests(long senderNrOfRequests) {
+<span class="fc" id="L362">    this.senderNrOfRequests = senderNrOfRequests;</span>
+<span class="fc" id="L363">  }</span>
+
+  /**
+   * Gets the sender replication mode.
+   *
+   * @return the sender replication mode
+   */
+  public String getSenderReplicationMode() {
+<span class="fc" id="L371">    return senderReplicationMode;</span>
+  }
+
+  /**
+   * Sets the sender replication mode.
+   *
+   * @param senderReplicationMode the new sender replication mode
+   */
+  public void setSenderReplicationMode(String senderReplicationMode) {
+<span class="fc" id="L380">    this.senderReplicationMode = senderReplicationMode;</span>
+<span class="fc" id="L381">  }</span>
+
+  /**
+   * Gets the sender total bytes.
+   *
+   * @return the sender total bytes
+   */
+  public long getSenderTotalBytes() {
+<span class="fc" id="L389">    return senderTotalBytes;</span>
+  }
+
+  /**
+   * Sets the sender total bytes.
+   *
+   * @param senderTotalBytes the new sender total bytes
+   */
+  public void setSenderTotalBytes(long senderTotalBytes) {
+<span class="fc" id="L398">    this.senderTotalBytes = senderTotalBytes;</span>
+<span class="fc" id="L399">  }</span>
+
+  /**
+   * Gets the mcast drop time.
+   *
+   * @return the mcast drop time
+   */
+  public long getMcastDropTime() {
+<span class="fc" id="L407">    return mcastDropTime;</span>
+  }
+
+  /**
+   * Sets the mcast drop time.
+   *
+   * @param mcastDropTime the new mcast drop time
+   */
+  public void setMcastDropTime(long mcastDropTime) {
+<span class="fc" id="L416">    this.mcastDropTime = mcastDropTime;</span>
+<span class="fc" id="L417">  }</span>
+
+  /**
+   * Gets the mcast frequency.
+   *
+   * @return the mcast frequency
+   */
+  public long getMcastFrequency() {
+<span class="fc" id="L425">    return mcastFrequency;</span>
+  }
+
+  /**
+   * Sets the mcast frequency.
+   *
+   * @param mcastFrequency the new mcast frequency
+   */
+  public void setMcastFrequency(long mcastFrequency) {
+<span class="fc" id="L434">    this.mcastFrequency = mcastFrequency;</span>
+<span class="fc" id="L435">  }</span>
+
+  /**
+   * Gets the mcast port.
+   *
+   * @return the mcast port
+   */
+  public int getMcastPort() {
+<span class="fc" id="L443">    return mcastPort;</span>
+  }
+
+  /**
+   * Sets the mcast port.
+   *
+   * @param mcastPort the new mcast port
+   */
+  public void setMcastPort(int mcastPort) {
+<span class="fc" id="L452">    this.mcastPort = mcastPort;</span>
+<span class="fc" id="L453">  }</span>
+
+  /**
+   * Gets the mcast so timeout.
+   *
+   * @return the mcast so timeout
+   */
+  public int getMcastSoTimeout() {
+<span class="fc" id="L461">    return mcastSoTimeout;</span>
+  }
+
+  /**
+   * Sets the mcast so timeout.
+   *
+   * @param mcastSoTimeout the new mcast so timeout
+   */
+  public void setMcastSoTimeout(int mcastSoTimeout) {
+<span class="fc" id="L470">    this.mcastSoTimeout = mcastSoTimeout;</span>
+<span class="fc" id="L471">  }</span>
+
+  /**
+   * Gets the mcast ttl.
+   *
+   * @return the mcast ttl
+   */
+  public int getMcastTtl() {
+<span class="fc" id="L479">    return mcastTtl;</span>
+  }
+
+  /**
+   * Sets the mcast ttl.
+   *
+   * @param mcastTtl the new mcast ttl
+   */
+  public void setMcastTtl(int mcastTtl) {
+<span class="fc" id="L488">    this.mcastTtl = mcastTtl;</span>
+<span class="fc" id="L489">  }</span>
+
+  /**
+   * Gets the tcp thread count.
+   *
+   * @return the tcp thread count
+   */
+  public int getTcpThreadCount() {
+<span class="fc" id="L497">    return tcpThreadCount;</span>
+  }
+
+  /**
+   * Sets the tcp thread count.
+   *
+   * @param tcpThreadCount the new tcp thread count
+   */
+  public void setTcpThreadCount(int tcpThreadCount) {
+<span class="fc" id="L506">    this.tcpThreadCount = tcpThreadCount;</span>
+<span class="fc" id="L507">  }</span>
+
+  /**
+   * Gets the total received bytes.
+   *
+   * @return the total received bytes
+   */
+  public long getTotalReceivedBytes() {
+<span class="fc" id="L515">    return totalReceivedBytes;</span>
+  }
+
+  /**
+   * Sets the total received bytes.
+   *
+   * @param totalReceivedBytes the new total received bytes
+   */
+  public void setTotalReceivedBytes(long totalReceivedBytes) {
+<span class="fc" id="L524">    this.totalReceivedBytes = totalReceivedBytes;</span>
+<span class="fc" id="L525">  }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

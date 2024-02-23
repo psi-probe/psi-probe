@@ -1,0 +1,603 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SessionSearchInfo.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">psi-probe-core</a> &gt; <a href="index.source.html" class="el_package">psiprobe.model</a> &gt; <span class="el_source">SessionSearchInfo.java</span></div><h1>SessionSearchInfo.java</h1><pre class="source lang-java linenums">/*
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ *
+ * THIS PACKAGE IS PROVIDED &quot;AS IS&quot; AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+ * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE.
+ */
+package psiprobe.model;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * Data model class used by session search feature of application session screen.
+ */
+<span class="fc" id="L25">public class SessionSearchInfo implements Serializable {</span>
+
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
+
+  /** The Constant logger. */
+<span class="fc" id="L31">  private static final Logger logger = LoggerFactory.getLogger(SessionSearchInfo.class);</span>
+
+  /** The Constant SESS_ATTR_NAME. */
+  public static final String SESS_ATTR_NAME = &quot;sessionSearchInfo&quot;;
+
+  /** The Constant ACTION_NONE. */
+  public static final String ACTION_NONE = &quot;none&quot;;
+
+  /** The Constant ACTION_APPLY. */
+  public static final String ACTION_APPLY = &quot;apply&quot;;
+
+  /** The Constant ACTION_CLEAR. */
+  public static final String ACTION_CLEAR = &quot;clear&quot;;
+
+  /** The search action. */
+<span class="fc" id="L46">  private String searchAction = ACTION_NONE;</span>
+
+  /** The apply. */
+  private boolean apply;
+
+  /** The clear. */
+  private boolean clear;
+
+  /** The session id. */
+  private String sessionId;
+
+  /** The session id pattern. */
+  private Pattern sessionIdPattern;
+
+  /** The session id msg. */
+  private String sessionIdMsg;
+
+  /** The attr name. */
+  private String attrName;
+
+  /** The attr name patterns. */
+<span class="fc" id="L67">  private final List&lt;Pattern&gt; attrNamePatterns = new ArrayList&lt;&gt;();</span>
+
+  /** The attr name msgs. */
+<span class="fc" id="L70">  private final List&lt;String&gt; attrNameMsgs = new ArrayList&lt;&gt;();</span>
+
+  /** The age from. */
+  private String ageFrom;
+
+  /** The age from sec. */
+  private Integer ageFromSec;
+
+  /** The age to. */
+  private String ageTo;
+
+  /** The age to sec. */
+  private Integer ageToSec;
+
+  /** The idle time from. */
+  private String idleTimeFrom;
+
+  /** The idle time from sec. */
+  private Integer idleTimeFromSec;
+
+  /** The idle time to. */
+  private String idleTimeTo;
+
+  /** The idle time to sec. */
+  private Integer idleTimeToSec;
+
+  /** The last ip. */
+  private String lastIp;
+
+  /** The info message. */
+  private String infoMessage;
+
+  /** The error messages. */
+<span class="fc" id="L103">  private final List&lt;String&gt; errorMessages = new ArrayList&lt;&gt;();</span>
+
+  /**
+   * Checks if is empty.
+   *
+   * @return true, if is empty
+   */
+  public boolean isEmpty() {
+<span class="nc bnc" id="L111" title="All 14 branches missed.">    return sessionId == null &amp;&amp; attrName == null &amp;&amp; ageFrom == null &amp;&amp; ageTo == null</span>
+        &amp;&amp; idleTimeFrom == null &amp;&amp; idleTimeTo == null &amp;&amp; lastIp == null;
+  }
+
+  /**
+   * Checks if is session id valid.
+   *
+   * @return true, if is session id valid
+   */
+  public boolean isSessionIdValid() {
+<span class="nc bnc" id="L121" title="All 4 branches missed.">    return sessionId == null || sessionIdPattern != null;</span>
+  }
+
+  /**
+   * Checks if is attr name valid.
+   *
+   * @return true, if is attr name valid
+   */
+  public boolean isAttrNameValid() {
+<span class="nc bnc" id="L130" title="All 4 branches missed.">    return attrName == null || !attrNamePatterns.isEmpty();</span>
+  }
+
+  /**
+   * Checks if is age from valid.
+   *
+   * @return true, if is age from valid
+   */
+  public boolean isAgeFromValid() {
+<span class="nc bnc" id="L139" title="All 4 branches missed.">    return ageFrom == null || ageFromSec != null;</span>
+  }
+
+  /**
+   * Checks if is age to valid.
+   *
+   * @return true, if is age to valid
+   */
+  public boolean isAgeToValid() {
+<span class="nc bnc" id="L148" title="All 4 branches missed.">    return ageTo == null || ageToSec != null;</span>
+  }
+
+  /**
+   * Checks if is idle time from valid.
+   *
+   * @return true, if is idle time from valid
+   */
+  public boolean isIdleTimeFromValid() {
+<span class="nc bnc" id="L157" title="All 4 branches missed.">    return idleTimeFrom == null || idleTimeFromSec != null;</span>
+  }
+
+  /**
+   * Checks if is idle time to valid.
+   *
+   * @return true, if is idle time to valid
+   */
+  public boolean isIdleTimeToValid() {
+<span class="nc bnc" id="L166" title="All 4 branches missed.">    return idleTimeTo == null || idleTimeToSec != null;</span>
+  }
+
+  /**
+   * Checks if is valid.
+   *
+   * @return true, if is valid
+   */
+  public boolean isValid() {
+<span class="nc bnc" id="L175" title="All 8 branches missed.">    return isSessionIdValid() &amp;&amp; isAttrNameValid() &amp;&amp; isAgeFromValid() &amp;&amp; isAgeToValid()</span>
+<span class="nc bnc" id="L176" title="All 4 branches missed.">        &amp;&amp; isIdleTimeFromValid() &amp;&amp; isIdleTimeToValid();</span>
+  }
+
+  /**
+   * Checks if is use search.
+   *
+   * @return true, if is use search
+   */
+  public boolean isUseSearch() {
+<span class="nc bnc" id="L185" title="All 6 branches missed.">    return isApply() &amp;&amp; !isEmpty() &amp;&amp; isValid();</span>
+  }
+
+  /**
+   * Checks if is use session id.
+   *
+   * @return true, if is use session id
+   */
+  public boolean isUseSessionId() {
+<span class="nc bnc" id="L194" title="All 2 branches missed.">    return sessionIdPattern != null;</span>
+  }
+
+  /**
+   * Checks if is use attr name.
+   *
+   * @return true, if is use attr name
+   */
+  public boolean isUseAttrName() {
+<span class="nc bnc" id="L203" title="All 2 branches missed.">    return !attrNamePatterns.isEmpty();</span>
+  }
+
+  /**
+   * Checks if is use attr.
+   *
+   * @return true, if is use attr
+   */
+  public boolean isUseAttr() {
+<span class="nc bnc" id="L212" title="All 4 branches missed.">    return isUseSearch() &amp;&amp; isUseAttrName();</span>
+  }
+
+  /**
+   * Checks if is use age from.
+   *
+   * @return true, if is use age from
+   */
+  public boolean isUseAgeFrom() {
+<span class="nc bnc" id="L221" title="All 2 branches missed.">    return ageFromSec != null;</span>
+  }
+
+  /**
+   * Checks if is use age to.
+   *
+   * @return true, if is use age to
+   */
+  public boolean isUseAgeTo() {
+<span class="nc bnc" id="L230" title="All 2 branches missed.">    return ageToSec != null;</span>
+  }
+
+  /**
+   * Checks if is use idle time from.
+   *
+   * @return true, if is use idle time from
+   */
+  public boolean isUseIdleTimeFrom() {
+<span class="nc bnc" id="L239" title="All 2 branches missed.">    return idleTimeFromSec != null;</span>
+  }
+
+  /**
+   * Checks if is use idle time to.
+   *
+   * @return true, if is use idle time to
+   */
+  public boolean isUseIdleTimeTo() {
+<span class="nc bnc" id="L248" title="All 2 branches missed.">    return idleTimeToSec != null;</span>
+  }
+
+  /**
+   * Checks if is use last ip.
+   *
+   * @return true, if is use last ip
+   */
+  public boolean isUseLastIp() {
+<span class="nc bnc" id="L257" title="All 2 branches missed.">    return lastIp != null;</span>
+  }
+
+  /**
+   * Gets the search action.
+   *
+   * @return the search action
+   */
+  public String getSearchAction() {
+<span class="fc" id="L266">    return searchAction;</span>
+  }
+
+  /**
+   * Sets the search action.
+   *
+   * @param searchAction the new search action
+   */
+  public void setSearchAction(String searchAction) {
+<span class="fc" id="L275">    this.searchAction = searchAction;</span>
+<span class="pc bpc" id="L276" title="1 of 2 branches missed.">    if (searchAction == null) {</span>
+<span class="nc" id="L277">      apply = false;</span>
+<span class="nc" id="L278">      clear = false;</span>
+    } else {
+<span class="fc" id="L280">      apply = ACTION_APPLY.equals(searchAction);</span>
+<span class="fc" id="L281">      clear = ACTION_CLEAR.equals(searchAction);</span>
+    }
+<span class="fc" id="L283">  }</span>
+
+  /**
+   * Checks if is apply.
+   *
+   * @return true, if is apply
+   */
+  public boolean isApply() {
+<span class="nc" id="L291">    return apply;</span>
+  }
+
+  /**
+   * Checks if is clear.
+   *
+   * @return true, if is clear
+   */
+  public boolean isClear() {
+<span class="nc" id="L300">    return clear;</span>
+  }
+
+  /**
+   * Gets the session id.
+   *
+   * @return the session id
+   */
+  public String getSessionId() {
+<span class="fc" id="L309">    return sessionId;</span>
+  }
+
+  /**
+   * Sets the session id.
+   *
+   * @param sessionId the new session id
+   */
+  public void setSessionId(String sessionId) {
+<span class="fc" id="L318">    this.sessionId = sessionId;</span>
+<span class="fc" id="L319">    sessionIdPattern = null;</span>
+<span class="fc" id="L320">    sessionIdMsg = null;</span>
+
+<span class="pc bpc" id="L322" title="1 of 2 branches missed.">    if (sessionId != null) {</span>
+      try {
+<span class="fc" id="L324">        sessionIdPattern = Pattern.compile(sessionId);</span>
+<span class="nc" id="L325">      } catch (PatternSyntaxException e) {</span>
+<span class="nc" id="L326">        logger.trace(&quot;&quot;, e);</span>
+<span class="nc" id="L327">        sessionIdMsg = e.getDescription();</span>
+<span class="fc" id="L328">      }</span>
+    }
+<span class="fc" id="L330">  }</span>
+
+  /**
+   * Gets the session id pattern.
+   *
+   * @return the session id pattern
+   */
+  public Pattern getSessionIdPattern() {
+<span class="nc" id="L338">    return sessionIdPattern;</span>
+  }
+
+  /**
+   * Gets the session id msg.
+   *
+   * @return the session id msg
+   */
+  public String getSessionIdMsg() {
+<span class="nc" id="L347">    return sessionIdMsg;</span>
+  }
+
+  /**
+   * Gets the attr name.
+   *
+   * @return the attr name
+   */
+  public String getAttrName() {
+<span class="fc" id="L356">    return attrName;</span>
+  }
+
+  /**
+   * Sets the attr name.
+   *
+   * @param attrName the new attr name
+   */
+  public void setAttrName(String attrName) {
+<span class="fc" id="L365">    this.attrName = attrName;</span>
+<span class="fc" id="L366">    attrNamePatterns.clear();</span>
+<span class="fc" id="L367">    attrNameMsgs.clear();</span>
+
+<span class="pc bpc" id="L369" title="1 of 2 branches missed.">    if (attrName != null) {</span>
+<span class="fc" id="L370">      String[] attrNames = attrName.split(&quot;,&quot;, -1);</span>
+<span class="pc bpc" id="L371" title="3 of 4 branches missed.">      if (attrNames.length == 0 &amp;&amp; !attrName.isEmpty()) {</span>
+<span class="nc" id="L372">        attrNameMsgs.add(&quot;&quot;);</span>
+      } else {
+<span class="fc bfc" id="L374" title="All 2 branches covered.">        for (String regex : attrNames) {</span>
+          try {
+<span class="fc" id="L376">            attrNamePatterns.add(Pattern.compile(regex));</span>
+<span class="nc" id="L377">          } catch (PatternSyntaxException e) {</span>
+<span class="nc" id="L378">            logger.trace(&quot;&quot;, e);</span>
+<span class="nc" id="L379">            attrNameMsgs.add(e.getDescription());</span>
+<span class="fc" id="L380">          }</span>
+        }
+      }
+    }
+<span class="fc" id="L384">  }</span>
+
+  /**
+   * Gets the attr name patterns.
+   *
+   * @return the attr name patterns
+   */
+  public List&lt;Pattern&gt; getAttrNamePatterns() {
+<span class="nc" id="L392">    return new ArrayList&lt;&gt;(attrNamePatterns);</span>
+  }
+
+  /**
+   * Gets the attr name msgs.
+   *
+   * @return the attr name msgs
+   */
+  public List&lt;String&gt; getAttrNameMsgs() {
+<span class="nc" id="L401">    return new ArrayList&lt;&gt;(attrNameMsgs);</span>
+  }
+
+  /**
+   * Gets the age from.
+   *
+   * @return the age from
+   */
+  public String getAgeFrom() {
+<span class="fc" id="L410">    return ageFrom;</span>
+  }
+
+  /**
+   * Sets the age from.
+   *
+   * @param ageFrom the new age from
+   */
+  public void setAgeFrom(String ageFrom) {
+<span class="fc" id="L419">    this.ageFrom = ageFrom;</span>
+<span class="fc" id="L420">    ageFromSec = null;</span>
+
+<span class="pc bpc" id="L422" title="1 of 2 branches missed.">    if (ageFrom != null) {</span>
+      try {
+<span class="nc" id="L424">        ageFromSec = Integer.valueOf(ageFrom);</span>
+<span class="fc" id="L425">      } catch (NumberFormatException e) {</span>
+<span class="fc" id="L426">        logger.trace(&quot;&quot;, e);</span>
+<span class="nc" id="L427">      }</span>
+    }
+<span class="fc" id="L429">  }</span>
+
+  /**
+   * Gets the age from sec.
+   *
+   * @return the age from sec
+   */
+  public Integer getAgeFromSec() {
+<span class="nc" id="L437">    return ageFromSec;</span>
+  }
+
+  /**
+   * Gets the age to.
+   *
+   * @return the age to
+   */
+  public String getAgeTo() {
+<span class="fc" id="L446">    return ageTo;</span>
+  }
+
+  /**
+   * Sets the age to.
+   *
+   * @param ageTo the new age to
+   */
+  public void setAgeTo(String ageTo) {
+<span class="fc" id="L455">    this.ageTo = ageTo;</span>
+<span class="fc" id="L456">    ageToSec = null;</span>
+
+<span class="pc bpc" id="L458" title="1 of 2 branches missed.">    if (ageTo != null) {</span>
+      try {
+<span class="nc" id="L460">        ageToSec = Integer.valueOf(ageTo);</span>
+<span class="fc" id="L461">      } catch (NumberFormatException e) {</span>
+<span class="fc" id="L462">        logger.trace(&quot;&quot;, e);</span>
+<span class="nc" id="L463">      }</span>
+    }
+<span class="fc" id="L465">  }</span>
+
+  /**
+   * Gets the age to sec.
+   *
+   * @return the age to sec
+   */
+  public Integer getAgeToSec() {
+<span class="nc" id="L473">    return ageToSec;</span>
+  }
+
+  /**
+   * Gets the idle time from.
+   *
+   * @return the idle time from
+   */
+  public String getIdleTimeFrom() {
+<span class="fc" id="L482">    return idleTimeFrom;</span>
+  }
+
+  /**
+   * Sets the idle time from.
+   *
+   * @param idleTimeFrom the new idle time from
+   */
+  public void setIdleTimeFrom(String idleTimeFrom) {
+<span class="fc" id="L491">    this.idleTimeFrom = idleTimeFrom;</span>
+<span class="fc" id="L492">    idleTimeFromSec = null;</span>
+
+<span class="pc bpc" id="L494" title="1 of 2 branches missed.">    if (idleTimeFrom != null) {</span>
+      try {
+<span class="nc" id="L496">        idleTimeFromSec = Integer.valueOf(idleTimeFrom);</span>
+<span class="fc" id="L497">      } catch (NumberFormatException e) {</span>
+<span class="fc" id="L498">        logger.trace(&quot;&quot;, e);</span>
+<span class="nc" id="L499">      }</span>
+    }
+<span class="fc" id="L501">  }</span>
+
+  /**
+   * Gets the idle time from sec.
+   *
+   * @return the idle time from sec
+   */
+  public Integer getIdleTimeFromSec() {
+<span class="nc" id="L509">    return idleTimeFromSec;</span>
+  }
+
+  /**
+   * Gets the idle time to.
+   *
+   * @return the idle time to
+   */
+  public String getIdleTimeTo() {
+<span class="fc" id="L518">    return idleTimeTo;</span>
+  }
+
+  /**
+   * Sets the idle time to.
+   *
+   * @param idleTimeTo the new idle time to
+   */
+  public void setIdleTimeTo(String idleTimeTo) {
+<span class="fc" id="L527">    this.idleTimeTo = idleTimeTo;</span>
+<span class="fc" id="L528">    idleTimeToSec = null;</span>
+
+<span class="pc bpc" id="L530" title="1 of 2 branches missed.">    if (idleTimeTo != null) {</span>
+      try {
+<span class="nc" id="L532">        idleTimeToSec = Integer.valueOf(idleTimeTo);</span>
+<span class="fc" id="L533">      } catch (NumberFormatException e) {</span>
+<span class="fc" id="L534">        logger.trace(&quot;&quot;, e);</span>
+<span class="nc" id="L535">      }</span>
+    }
+<span class="fc" id="L537">  }</span>
+
+  /**
+   * Gets the idle time to sec.
+   *
+   * @return the idle time to sec
+   */
+  public Integer getIdleTimeToSec() {
+<span class="nc" id="L545">    return idleTimeToSec;</span>
+  }
+
+  /**
+   * Gets the last ip.
+   *
+   * @return the last ip
+   */
+  public String getLastIp() {
+<span class="fc" id="L554">    return lastIp;</span>
+  }
+
+  /**
+   * Sets the last ip.
+   *
+   * @param lastIp the new last ip
+   */
+  public void setLastIp(String lastIp) {
+<span class="fc" id="L563">    this.lastIp = lastIp;</span>
+<span class="fc" id="L564">  }</span>
+
+  /**
+   * Gets the info message.
+   *
+   * @return the info message
+   */
+  public String getInfoMessage() {
+<span class="fc" id="L572">    return infoMessage;</span>
+  }
+
+  /**
+   * Sets the info message.
+   *
+   * @param infoMessage the new info message
+   */
+  public void setInfoMessage(String infoMessage) {
+<span class="fc" id="L581">    this.infoMessage = infoMessage;</span>
+<span class="fc" id="L582">  }</span>
+
+  /**
+   * Gets the error messages.
+   *
+   * @return the error messages
+   */
+  public List&lt;String&gt; getErrorMessages() {
+<span class="nc" id="L590">    return new ArrayList&lt;&gt;(errorMessages);</span>
+  }
+
+  /**
+   * Adds the error message.
+   *
+   * @param msg the msg
+   */
+  public void addErrorMessage(String msg) {
+<span class="nc" id="L599">    errorMessages.add(msg);</span>
+<span class="nc" id="L600">  }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

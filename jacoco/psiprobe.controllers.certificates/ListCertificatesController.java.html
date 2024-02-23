@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ListCertificatesController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">psi-probe-core</a> &gt; <a href="index.source.html" class="el_package">psiprobe.controllers.certificates</a> &gt; <span class="el_source">ListCertificatesController.java</span></div><h1>ListCertificatesController.java</h1><pre class="source lang-java linenums">/*
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ *
+ * THIS PACKAGE IS PROVIDED &quot;AS IS&quot; AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+ * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE.
+ */
+package psiprobe.controllers.certificates;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
+import java.net.URI;
+import java.net.URL;
+import java.nio.file.Files;
+import java.security.KeyStore;
+import java.security.cert.Certificate;
+import java.security.cert.X509Certificate;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
+import javax.management.ObjectName;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.catalina.connector.Connector;
+import org.apache.coyote.ProtocolHandler;
+import org.apache.coyote.http11.AbstractHttp11JsseProtocol;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import psiprobe.controllers.AbstractTomcatContainerController;
+import psiprobe.model.certificates.Cert;
+import psiprobe.model.certificates.CertificateInfo;
+import psiprobe.model.certificates.ConnectorInfo;
+import psiprobe.model.certificates.SslHostConfigInfo;
+
+/**
+ * The Class ListCertificatesController.
+ */
+@Controller
+<span class="fc" id="L52">public class ListCertificatesController extends AbstractTomcatContainerController {</span>
+
+  /** The Constant logger. */
+<span class="fc" id="L55">  private static final Logger logger = LoggerFactory.getLogger(ListCertificatesController.class);</span>
+
+  @RequestMapping(path = &quot;/certificates.htm&quot;)
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
+<span class="nc" id="L61">    return super.handleRequest(request, response);</span>
+  }
+
+  @Override
+  protected ModelAndView handleRequestInternal(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+
+<span class="nc" id="L68">    ModelAndView modelAndView = new ModelAndView(getViewName());</span>
+
+    try {
+<span class="nc" id="L71">      List&lt;Connector&gt; connectors = getContainerWrapper().getTomcatContainer().findConnectors();</span>
+<span class="nc" id="L72">      List&lt;ConnectorInfo&gt; infos = getConnectorInfos(connectors);</span>
+
+<span class="nc bnc" id="L74" title="All 2 branches missed.">      for (ConnectorInfo info : infos) {</span>
+        List&lt;Cert&gt; certs;
+
+<span class="nc" id="L77">        List&lt;SslHostConfigInfo&gt; sslHostConfigInfos = info.getSslHostConfigInfos();</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">        for (SslHostConfigInfo sslHostConfigInfo : sslHostConfigInfos) {</span>
+<span class="nc bnc" id="L79" title="All 2 branches missed.">          if (sslHostConfigInfo.getTruststoreFile() != null) {</span>
+<span class="nc" id="L80">            certs = getCertificates(sslHostConfigInfo.getTruststoreType(),</span>
+<span class="nc" id="L81">                sslHostConfigInfo.getTruststoreFile(), sslHostConfigInfo.getTruststorePassword());</span>
+<span class="nc" id="L82">            sslHostConfigInfo.setTrustStoreCerts(certs);</span>
+          }
+
+<span class="nc" id="L85">          List&lt;CertificateInfo&gt; certificateInfos = sslHostConfigInfo.getCertificateInfos();</span>
+<span class="nc bnc" id="L86" title="All 2 branches missed.">          for (CertificateInfo certificateInfo : certificateInfos) {</span>
+<span class="nc bnc" id="L87" title="All 2 branches missed.">            if (certificateInfo.getCertificateKeystoreFile() != null) {</span>
+<span class="nc" id="L88">              certs = getCertificates(certificateInfo.getCertificateKeystoreType(),</span>
+<span class="nc" id="L89">                  certificateInfo.getCertificateKeystoreFile(),</span>
+<span class="nc" id="L90">                  certificateInfo.getCertificateKeystorePassword());</span>
+<span class="nc" id="L91">              certificateInfo.setKeyStoreCerts(certs);</span>
+            }
+<span class="nc" id="L93">          }</span>
+<span class="nc" id="L94">          sslHostConfigInfo.setCertificateInfos(certificateInfos);</span>
+<span class="nc" id="L95">        }</span>
+<span class="nc" id="L96">        info.setSslHostConfigInfos(sslHostConfigInfos);</span>
+<span class="nc" id="L97">      }</span>
+
+<span class="nc" id="L99">      modelAndView.addObject(&quot;connectors&quot;, infos);</span>
+<span class="nc" id="L100">    } catch (Exception e) {</span>
+<span class="nc" id="L101">      logger.error(&quot;There was an exception listing certificates&quot;, e);</span>
+<span class="nc" id="L102">    }</span>
+
+<span class="nc" id="L104">    return modelAndView;</span>
+
+  }
+
+  /**
+   * Gets the certificates.
+   *
+   * @param storeType the store type
+   * @param storeFile the store file
+   * @param storePassword the store password
+   *
+   * @return the certificates
+   *
+   * @throws Exception the exception
+   */
+  public List&lt;Cert&gt; getCertificates(String storeType, String storeFile, String storePassword)
+      throws Exception {
+    KeyStore keyStore;
+
+    // Get key store
+<span class="pc bpc" id="L124" title="1 of 2 branches missed.">    if (storeType != null) {</span>
+<span class="fc" id="L125">      keyStore = KeyStore.getInstance(storeType);</span>
+    } else {
+<span class="nc" id="L127">      keyStore = KeyStore.getInstance(KeyStore.getDefaultType());</span>
+    }
+
+    // Get password
+<span class="fc" id="L131">    char[] password = null;</span>
+<span class="pc bpc" id="L132" title="1 of 2 branches missed.">    if (storePassword != null) {</span>
+<span class="fc" id="L133">      password = storePassword.toCharArray();</span>
+    }
+
+    // Load key store from file
+<span class="fc" id="L137">    try (InputStream storeInput = getStoreInputStream(storeFile)) {</span>
+<span class="fc" id="L138">      keyStore.load(storeInput, password);</span>
+<span class="nc" id="L139">    } catch (IOException e) {</span>
+<span class="nc" id="L140">      logger.error(&quot;Error loading store file {}&quot;, storeFile, e);</span>
+<span class="nc" id="L141">      return Collections.emptyList();</span>
+<span class="fc" id="L142">    }</span>
+
+<span class="fc" id="L144">    List&lt;Cert&gt; certs = new ArrayList&lt;&gt;();</span>
+
+<span class="fc bfc" id="L146" title="All 2 branches covered.">    for (String alias : Collections.list(keyStore.aliases())) {</span>
+
+<span class="fc" id="L148">      Certificate[] certificateChains = keyStore.getCertificateChain(alias);</span>
+
+<span class="pc bpc" id="L150" title="1 of 2 branches missed.">      if (certificateChains != null) {</span>
+<span class="nc bnc" id="L151" title="All 2 branches missed.">        for (Certificate certificateChain : certificateChains) {</span>
+<span class="nc" id="L152">          X509Certificate x509Cert = (X509Certificate) certificateChain;</span>
+<span class="nc" id="L153">          addToStore(certs, alias, x509Cert);</span>
+        }
+      } else {
+<span class="fc" id="L156">        X509Certificate x509Cert = (X509Certificate) keyStore.getCertificate(alias);</span>
+<span class="fc" id="L157">        addToStore(certs, alias, x509Cert);</span>
+      }
+<span class="fc" id="L159">    }</span>
+<span class="fc" id="L160">    return certs;</span>
+  }
+
+  /**
+   * Gets the connector infos.
+   *
+   * @param connectors the connectors
+   *
+   * @return the connector infos
+   *
+   * @throws IllegalAccessException the illegal access exception
+   * @throws InvocationTargetException the invocation target exception
+   */
+  private List&lt;ConnectorInfo&gt; getConnectorInfos(Collection&lt;Connector&gt; connectors)
+      throws IllegalAccessException, InvocationTargetException {
+<span class="nc" id="L175">    List&lt;ConnectorInfo&gt; infos = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L176" title="All 2 branches missed.">    for (Connector connector : connectors) {</span>
+<span class="nc bnc" id="L177" title="All 2 branches missed.">      if (!connector.getSecure()) {</span>
+<span class="nc" id="L178">        continue;</span>
+      }
+
+<span class="nc" id="L181">      ProtocolHandler protocolHandler = connector.getProtocolHandler();</span>
+
+<span class="nc bnc" id="L183" title="All 2 branches missed.">      if (protocolHandler instanceof AbstractHttp11JsseProtocol) {</span>
+<span class="nc" id="L184">        AbstractHttp11JsseProtocol&lt;?&gt; protocol = (AbstractHttp11JsseProtocol&lt;?&gt;) protocolHandler;</span>
+<span class="nc bnc" id="L185" title="All 2 branches missed.">        if (!protocol.getSecure()) {</span>
+<span class="nc" id="L186">          continue;</span>
+        }
+<span class="nc" id="L188">        infos.add(toConnectorInfo(protocol));</span>
+      }
+<span class="nc" id="L190">    }</span>
+<span class="nc" id="L191">    return infos;</span>
+  }
+
+  /**
+   * Tries to open a InputStream the same way as Tomcat ConfigFileLoader
+   * {@link org.apache.tomcat.util.file.ConfigFileLoader#getInputStream(String) getInputStream}.
+   *
+   * @param path the path of a store file (absolute or relative to CATALINA.BASE), or URI to store
+   *        file (absolute or relative to CATALINA.BASE).
+   *
+   * @return the input stream of the path file
+   *
+   * @throws IOException if path can not be resolved
+   */
+  private InputStream getStoreInputStream(String path) throws IOException {
+<span class="fc" id="L206">    File file = new File(path);</span>
+<span class="fc bfc" id="L207" title="All 2 branches covered.">    if (file.exists()) {</span>
+<span class="fc" id="L208">      return Files.newInputStream(file.toPath());</span>
+    }
+
+<span class="fc" id="L211">    File catalinaBaseFolder = new File(System.getProperty(&quot;catalina.base&quot;));</span>
+<span class="fc" id="L212">    file = new File(catalinaBaseFolder, path);</span>
+<span class="fc bfc" id="L213" title="All 2 branches covered.">    if (file.exists()) {</span>
+<span class="fc" id="L214">      return Files.newInputStream(file.toPath());</span>
+    }
+
+<span class="fc" id="L217">    URI uri = catalinaBaseFolder.toURI().resolve(path);</span>
+
+<span class="fc" id="L219">    URL url = uri.toURL();</span>
+
+<span class="fc" id="L221">    return url.openConnection().getInputStream();</span>
+  }
+
+  /**
+   * To connector info.
+   *
+   * @param protocol the protocol
+   *
+   * @return the connector info
+   *
+   * @throws IllegalAccessException the illegal access exception
+   * @throws InvocationTargetException the invocation target exception
+   */
+  private ConnectorInfo toConnectorInfo(AbstractHttp11JsseProtocol&lt;?&gt; protocol)
+      throws IllegalAccessException, InvocationTargetException {
+<span class="nc" id="L236">    ConnectorInfo info = new ConnectorInfo();</span>
+<span class="nc" id="L237">    info.setName(ObjectName.unquote(protocol.getName()));</span>
+
+<span class="nc" id="L239">    String defaultSslHostConfigName = protocol.getDefaultSSLHostConfigName();</span>
+<span class="nc bnc" id="L240" title="All 2 branches missed.">    if (defaultSslHostConfigName == null) {</span>
+<span class="nc" id="L241">      logger.error(&quot;Cannot determine defaultSslHostConfigName&quot;);</span>
+<span class="nc" id="L242">      return info;</span>
+    }
+<span class="nc" id="L244">    info.setDefaultSslHostConfigName(defaultSslHostConfigName);</span>
+<span class="nc" id="L245">    new SslHostConfigHelper(protocol, info);</span>
+
+<span class="nc" id="L247">    return info;</span>
+  }
+
+  /**
+   * Adds the to store.
+   *
+   * @param certs the certs
+   * @param alias the alias
+   * @param x509Cert the x509 cert
+   */
+  private void addToStore(Collection&lt;Cert&gt; certs, String alias, X509Certificate x509Cert) {
+<span class="fc" id="L258">    Cert cert = new Cert();</span>
+
+<span class="fc" id="L260">    cert.setAlias(alias);</span>
+<span class="fc" id="L261">    cert.setSubjectDistinguishedName(x509Cert.getSubjectDN().toString());</span>
+<span class="fc" id="L262">    cert.setNotBefore(x509Cert.getNotBefore().toInstant());</span>
+<span class="fc" id="L263">    cert.setNotAfter(x509Cert.getNotAfter().toInstant());</span>
+<span class="fc" id="L264">    cert.setIssuerDistinguishedName(x509Cert.getIssuerDN().toString());</span>
+
+<span class="fc" id="L266">    certs.add(cert);</span>
+<span class="fc" id="L267">  }</span>
+
+  @Value(&quot;certificates&quot;)
+  @Override
+  public void setViewName(String viewName) {
+<span class="fc" id="L272">    super.setViewName(viewName);</span>
+<span class="fc" id="L273">  }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

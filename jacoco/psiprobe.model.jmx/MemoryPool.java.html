@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MemoryPool.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">psi-probe-core</a> &gt; <a href="index.source.html" class="el_package">psiprobe.model.jmx</a> &gt; <span class="el_source">MemoryPool.java</span></div><h1>MemoryPool.java</h1><pre class="source lang-java linenums">/*
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ *
+ * THIS PACKAGE IS PROVIDED &quot;AS IS&quot; AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+ * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE.
+ */
+package psiprobe.model.jmx;
+
+import java.util.Locale;
+
+/**
+ * The Class MemoryPool.
+ */
+<span class="fc" id="L18">public class MemoryPool {</span>
+
+  /** The name. */
+  private String name;
+
+  /** The init. */
+  private long init;
+
+  /** The max. */
+  private long max;
+
+  /** The used. */
+  private long used;
+
+  /** The committed. */
+  private long committed;
+
+  /** The type. */
+  private String type;
+
+  /** The id. */
+  private String id;
+
+  /**
+   * Gets the name.
+   *
+   * @return the name
+   */
+  public String getName() {
+<span class="fc" id="L47">    return name;</span>
+  }
+
+  /**
+   * Sets the name.
+   *
+   * @param name the new name
+   */
+  public void setName(String name) {
+<span class="fc" id="L56">    this.name = name;</span>
+<span class="pc bpc" id="L57" title="1 of 2 branches missed.">    this.id = name != null ? name.replace(' ', '_').toLowerCase(Locale.ENGLISH) : null;</span>
+<span class="fc" id="L58">  }</span>
+
+  /**
+   * Gets the inits the.
+   *
+   * @return the inits the
+   */
+  public long getInit() {
+<span class="fc" id="L66">    return init;</span>
+  }
+
+  /**
+   * Sets the inits the.
+   *
+   * @param init the new inits the
+   */
+  public void setInit(long init) {
+<span class="fc" id="L75">    this.init = init;</span>
+<span class="fc" id="L76">  }</span>
+
+  /**
+   * Gets the max.
+   *
+   * @return the max
+   */
+  public long getMax() {
+<span class="fc" id="L84">    return max;</span>
+  }
+
+  /**
+   * Sets the max.
+   *
+   * @param max the new max
+   */
+  public void setMax(long max) {
+<span class="fc" id="L93">    this.max = max;</span>
+<span class="fc" id="L94">  }</span>
+
+  /**
+   * Gets the used.
+   *
+   * @return the used
+   */
+  public long getUsed() {
+<span class="fc" id="L102">    return used;</span>
+  }
+
+  /**
+   * Sets the used.
+   *
+   * @param used the new used
+   */
+  public void setUsed(long used) {
+<span class="fc" id="L111">    this.used = used;</span>
+<span class="fc" id="L112">  }</span>
+
+  /**
+   * Gets the committed.
+   *
+   * @return the committed
+   */
+  public long getCommitted() {
+<span class="fc" id="L120">    return committed;</span>
+  }
+
+  /**
+   * Sets the committed.
+   *
+   * @param committed the new committed
+   */
+  public void setCommitted(long committed) {
+<span class="fc" id="L129">    this.committed = committed;</span>
+<span class="fc" id="L130">  }</span>
+
+  /**
+   * Gets the type.
+   *
+   * @return the type
+   */
+  public String getType() {
+<span class="fc" id="L138">    return type;</span>
+  }
+
+  /**
+   * Sets the type.
+   *
+   * @param type the new type
+   */
+  public void setType(String type) {
+<span class="fc" id="L147">    this.type = type;</span>
+<span class="fc" id="L148">  }</span>
+
+  /**
+   * Gets the usage score.
+   *
+   * @return the usage score
+   */
+  public int getUsageScore() {
+    long div;
+<span class="nc bnc" id="L157" title="All 2 branches missed.">    if (max == -1) {</span>
+      /*
+       * Some memory pools have an undefined maximum size. In this case, report how much of the
+       * currently allocated memory is used.
+       */
+<span class="nc" id="L162">      div = committed;</span>
+    } else {
+<span class="nc" id="L164">      div = max;</span>
+    }
+<span class="nc bnc" id="L166" title="All 2 branches missed.">    return div == 0 ? 0 : (int) (used * 100 / div);</span>
+  }
+
+  /**
+   * Gets the id.
+   *
+   * @return the id
+   */
+  public String getId() {
+<span class="nc" id="L175">    return id;</span>
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

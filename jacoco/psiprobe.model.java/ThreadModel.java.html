@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ThreadModel.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">psi-probe-core</a> &gt; <a href="index.source.html" class="el_package">psiprobe.model.java</a> &gt; <span class="el_source">ThreadModel.java</span></div><h1>ThreadModel.java</h1><pre class="source lang-java linenums">/*
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ *
+ * THIS PACKAGE IS PROVIDED &quot;AS IS&quot; AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+ * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE.
+ */
+package psiprobe.model.java;
+
+/**
+ * The Class ThreadModel.
+ */
+<span class="fc" id="L16">public class ThreadModel {</span>
+
+  /** The name. */
+  private String name;
+
+  /** The priority. */
+  private int priority;
+
+  /** The daemon. */
+  private boolean daemon;
+
+  /** The interrupted. */
+  private boolean interrupted;
+
+  /** The runnable class name. */
+  private String runnableClassName;
+
+  /** The group name. */
+  private String groupName;
+
+  /** The app name. */
+  private String appName;
+
+  /** The thread class. */
+  private String threadClass;
+
+  /** The class loader. */
+  private String classLoader;
+
+  /**
+   * Gets the name.
+   *
+   * @return the name
+   */
+  public String getName() {
+<span class="fc" id="L51">    return name;</span>
+  }
+
+  /**
+   * Sets the name.
+   *
+   * @param name the new name
+   */
+  public void setName(String name) {
+<span class="fc" id="L60">    this.name = name;</span>
+<span class="fc" id="L61">  }</span>
+
+  /**
+   * Gets the priority.
+   *
+   * @return the priority
+   */
+  public int getPriority() {
+<span class="fc" id="L69">    return priority;</span>
+  }
+
+  /**
+   * Sets the priority.
+   *
+   * @param priority the new priority
+   */
+  public void setPriority(int priority) {
+<span class="fc" id="L78">    this.priority = priority;</span>
+<span class="fc" id="L79">  }</span>
+
+  /**
+   * Checks if is daemon.
+   *
+   * @return true, if is daemon
+   */
+  public boolean isDaemon() {
+<span class="fc" id="L87">    return daemon;</span>
+  }
+
+  /**
+   * Sets the daemon.
+   *
+   * @param daemon the new daemon
+   */
+  public void setDaemon(boolean daemon) {
+<span class="fc" id="L96">    this.daemon = daemon;</span>
+<span class="fc" id="L97">  }</span>
+
+  /**
+   * Checks if is interrupted.
+   *
+   * @return true, if is interrupted
+   */
+  public boolean isInterrupted() {
+<span class="fc" id="L105">    return interrupted;</span>
+  }
+
+  /**
+   * Sets the interrupted.
+   *
+   * @param interrupted the new interrupted
+   */
+  public void setInterrupted(boolean interrupted) {
+<span class="fc" id="L114">    this.interrupted = interrupted;</span>
+<span class="fc" id="L115">  }</span>
+
+  /**
+   * Gets the runnable class name.
+   *
+   * @return the runnable class name
+   */
+  public String getRunnableClassName() {
+<span class="fc" id="L123">    return runnableClassName;</span>
+  }
+
+  /**
+   * Sets the runnable class name.
+   *
+   * @param runnableClassName the new runnable class name
+   */
+  public void setRunnableClassName(String runnableClassName) {
+<span class="fc" id="L132">    this.runnableClassName = runnableClassName;</span>
+<span class="fc" id="L133">  }</span>
+
+  /**
+   * Gets the group name.
+   *
+   * @return the group name
+   */
+  public String getGroupName() {
+<span class="fc" id="L141">    return groupName;</span>
+  }
+
+  /**
+   * Sets the group name.
+   *
+   * @param groupName the new group name
+   */
+  public void setGroupName(String groupName) {
+<span class="fc" id="L150">    this.groupName = groupName;</span>
+<span class="fc" id="L151">  }</span>
+
+  /**
+   * Gets the app name.
+   *
+   * @return the app name
+   */
+  public String getAppName() {
+<span class="fc" id="L159">    return appName;</span>
+  }
+
+  /**
+   * Sets the app name.
+   *
+   * @param appName the new app name
+   */
+  public void setAppName(String appName) {
+<span class="fc" id="L168">    this.appName = appName;</span>
+<span class="fc" id="L169">  }</span>
+
+  /**
+   * Gets the thread class.
+   *
+   * @return the thread class
+   */
+  public String getThreadClass() {
+<span class="fc" id="L177">    return threadClass;</span>
+  }
+
+  /**
+   * Sets the thread class.
+   *
+   * @param threadClass the new thread class
+   */
+  public void setThreadClass(String threadClass) {
+<span class="fc" id="L186">    this.threadClass = threadClass;</span>
+<span class="fc" id="L187">  }</span>
+
+  /**
+   * Gets the class loader.
+   *
+   * @return the class loader
+   */
+  public String getClassLoader() {
+<span class="fc" id="L195">    return classLoader;</span>
+  }
+
+  /**
+   * Sets the class loader.
+   *
+   * @param classLoader the new class loader
+   */
+  public void setClassLoader(String classLoader) {
+<span class="fc" id="L204">    this.classLoader = classLoader;</span>
+<span class="fc" id="L205">  }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

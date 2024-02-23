@@ -10,7 +10,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content="Apache Maven Doxia Site Renderer 2.0.0-M16" />
-    <title>psi-probe – CPD Results</title>
+    <title>psi-probe-core – CPD Results</title>
     <link rel="stylesheet" href="./css/apache-maven-fluido-2.0.0-M8.min.css" />
     <link rel="stylesheet" href="./css/site.css" />
     <link rel="stylesheet" href="./css/print.css" media="print" />
@@ -27,12 +27,6 @@
         </a>
             <ul class="nav">
       <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown">User Guide <b class="caret"></b></a>
-        <ul class="dropdown-menu">
-            <li><a href="README.html">README</a></li>
-        </ul>
-      </li>
-      <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown">Project Documentation <b class="caret"></b></a>
         <ul class="dropdown-menu">
             <li class="dropdown-submenu">
@@ -40,7 +34,6 @@
               <ul class="dropdown-menu">
                   <li><a href="ci-management.html">CI Management</a></li>
                   <li><a href="dependencies.html">Dependencies</a></li>
-                  <li><a href="dependency-convergence.html">Dependency Convergence</a></li>
                   <li><a href="dependency-info.html">Dependency Information</a></li>
                   <li><a href="dependency-management.html">Dependency Management</a></li>
                   <li><a href="distribution-management.html">Distribution Management</a></li>
@@ -48,7 +41,6 @@
                   <li><a href="issue-management.html">Issue Management</a></li>
                   <li><a href="licenses.html">Licenses</a></li>
                   <li><a href="mailing-lists.html">Mailing Lists</a></li>
-                  <li><a href="modules.html">Project Modules</a></li>
                   <li><a href="plugin-management.html">Plugin Management</a></li>
                   <li><a href="plugins.html">Plugins</a></li>
                   <li><a href="scm.html">Source Code Management</a></li>
@@ -59,18 +51,16 @@
             <li class="dropdown-submenu">
 <a href="project-reports.html">Project Reports</a>
               <ul class="dropdown-menu">
-                  <li><a href="dependency-updates-aggregate-report.html">Dependency Updates Aggregate Report</a></li>
                   <li><a href="dependency-updates-report.html">Dependency Updates Report</a></li>
-                  <li><a href="plugin-updates-aggregate-report.html">Plugin Updates Aggregate Report</a></li>
                   <li><a href="plugin-updates-report.html">Plugin Updates Report</a></li>
-                  <li><a href="property-updates-aggregate-report.html">Property Updates Aggregate Report</a></li>
                   <li><a href="property-updates-report.html">Property Updates Report</a></li>
                   <li><a href="xref/index.html">Source Xref</a></li>
                   <li><a href="xref-test/index.html">Test Source Xref</a></li>
-                  <li><a href="surefire-report.html">Surefire</a></li>
-                  <li><a href="checkstyle-aggregate.html">Checkstyle</a></li>
+                  <li><a href="checkstyle.html">Checkstyle</a></li>
+                  <li><a href="spotbugs.html">SpotBugs</a></li>
                   <li><a>CPD</a></li>
                   <li><a href="pmd.html">PMD</a></li>
+                  <li><a href="jacoco/index.html">JaCoCo</a></li>
                   <li><a href="dependency-check-report.html">dependency-check:aggregate</a></li>
               </ul>
             </li>
@@ -108,24 +98,20 @@
         <header id="leftColumn" class="span2">
           <nav class="well sidebar-nav">
   <ul class="nav nav-list">
-   <li class="nav-header">User Guide</li>
-    <li><a href="README.html">README</a></li>
    <li class="nav-header">Project Documentation</li>
     <li><a href="project-info.html"><span class="icon-chevron-right"></span>Project Information</a></li>
     <li><a href="project-reports.html"><span class="icon-chevron-down"></span>Project Reports</a>
      <ul class="nav nav-list">
-      <li><a href="dependency-updates-aggregate-report.html">Dependency Updates Aggregate Report</a></li>
       <li><a href="dependency-updates-report.html">Dependency Updates Report</a></li>
-      <li><a href="plugin-updates-aggregate-report.html">Plugin Updates Aggregate Report</a></li>
       <li><a href="plugin-updates-report.html">Plugin Updates Report</a></li>
-      <li><a href="property-updates-aggregate-report.html">Property Updates Aggregate Report</a></li>
       <li><a href="property-updates-report.html">Property Updates Report</a></li>
       <li><a href="xref/index.html">Source Xref</a></li>
       <li><a href="xref-test/index.html">Test Source Xref</a></li>
-      <li><a href="surefire-report.html">Surefire</a></li>
-      <li><a href="checkstyle-aggregate.html">Checkstyle</a></li>
+      <li><a href="checkstyle.html">Checkstyle</a></li>
+      <li><a href="spotbugs.html">SpotBugs</a></li>
       <li class="active"><a>CPD</a></li>
       <li><a href="pmd.html">PMD</a></li>
+      <li><a href="jacoco/index.html">JaCoCo</a></li>
       <li><a href="dependency-check-report.html">dependency-check:aggregate</a></li>
      </ul></li>
   </ul>
@@ -144,240 +130,6 @@
 <h1>CPD Results</h1><a id="CPD_Results"></a>
 <p>The following document contains the results of PMD's  <a class="externalLink" href="https://pmd.github.io/latest/pmd_userdocs_cpd.html">CPD</a> 6.55.0.</p><section>
 <h2>Duplications</h2><a id="Duplications"></a>
-<table class="table table-striped">
-<tr class="a">
-<th>File</th>
-<th>Project</th>
-<th>Line</th></tr>
-<tr class="b">
-<td style="text-align: left;">psiprobe\Tomcat85ContainerAdapter.java</td>
-<td>psi-probe-tomcat85</td>
-<td><a href="./xref/psiprobe/Tomcat85ContainerAdapter.html#L60">60</a></td></tr>
-<tr class="a">
-<td style="text-align: left;">psiprobe\Tomcat90ContainerAdapter.java</td>
-<td>psi-probe-tomcat9</td>
-<td><a href="./xref/psiprobe/Tomcat90ContainerAdapter.html#L59">59</a></td></tr>
-<tr class="b">
-<td colspan="3" style="text-align: left;">
-<div class="verbatim">
-<pre>|| binding.startsWith(&quot;Pivotal tc&quot;) &amp;&amp; binding.contains(&quot;/8.5&quot;);
-  }
-
-  /**
-   * Gets the filter mappings.
-   *
-   * @param fmap the fmap
-   * @param dm the dm
-   * @param filterClass the filter class
-   *
-   * @return the filter mappings
-   */
-  protected List&lt;FilterMapping&gt; getFilterMappings(FilterMap fmap, String dm, String filterClass) {
-    String[] urls = fmap.getURLPatterns();
-    String[] servlets = fmap.getServletNames();
-    List&lt;FilterMapping&gt; results = new ArrayList&lt;&gt;(urls.length + servlets.length);
-    addFilterMapping(fmap.getFilterName(), dm, filterClass, urls, results, FilterMapType.URL);
-    addFilterMapping(fmap.getFilterName(), dm, filterClass, servlets, results,
-        FilterMapType.SERVLET_NAME);
-    return results;
-  }
-
-  @Override
-  protected JspCompilationContext createJspCompilationContext(String name, Options opt,
-      ServletContext sctx, JspRuntimeContext jrctx, ClassLoader classLoader) {
-
-    JspCompilationContext jcctx = new JspCompilationContext(name, opt, sctx, null, jrctx);
-    jcctx.setClassLoader(classLoader);
-    return jcctx;
-  }
-
-  @Override
-  public void addContextResourceLink(Context context, List&lt;ApplicationResource&gt; resourceList) {
-
-    NamingResourcesImpl namingResources = context.getNamingResources();
-    for (ContextResourceLink link : namingResources.findResourceLinks()) {
-      ApplicationResource resource = new ApplicationResource();
-
-      logger.debug(&quot;reading resourceLink: {}&quot;, link.getName());
-      resource.setApplicationName(context.getName());
-      resource.setName(link.getName());
-      resource.setType(link.getType());
-      resource.setLinkTo(link.getGlobal());
-
-      registerGlobalResourceAccess(link);
-
-      resourceList.add(resource);
-    }
-  }
-
-  @Override
-  public void addContextResource(Context context, List&lt;ApplicationResource&gt; resourceList) {
-    NamingResourcesImpl namingResources = context.getNamingResources();
-    for (ContextResource contextResource : namingResources.findResources()) {
-      ApplicationResource resource = new ApplicationResource();
-
-      logger.info(&quot;reading resource: {}&quot;, contextResource.getName());
-      resource.setApplicationName(context.getName());
-      resource.setName(contextResource.getName());
-      resource.setType(contextResource.getType());
-      resource.setScope(contextResource.getScope());
-      resource.setAuth(contextResource.getAuth());
-      resource.setDescription(contextResource.getDescription());
-
-      resourceList.add(resource);
-    }
-  }
-
-  @Override
-  public List&lt;FilterMapping&gt; getApplicationFilterMaps(Context context) {
-    FilterMap[] fms = context.findFilterMaps();
-    List&lt;FilterMapping&gt; filterMaps = new ArrayList&lt;&gt;(fms.length);
-    for (FilterMap filterMap : fms) {
-      if (filterMap != null) {
-        String dm;
-        switch (filterMap.getDispatcherMapping()) {
-          case FilterMap.ASYNC:
-            dm = &quot;ASYNC&quot;;
-            break;
-          case FilterMap.ERROR:
-            dm = &quot;ERROR&quot;;
-            break;
-          case FilterMap.FORWARD:
-            dm = &quot;FORWARD&quot;;
-            break;
-          case FilterMap.INCLUDE:
-            dm = &quot;INCLUDE&quot;;
-            break;
-          case FilterMap.REQUEST:
-            dm = &quot;REQUEST&quot;;
-            break;
-          default:
-            dm = &quot;&quot;;
-        }
-
-        String filterClass = &quot;&quot;;
-        FilterDef fd = context.findFilterDef(filterMap.getFilterName());
-        if (fd != null) {
-          filterClass = fd.getFilterClass();
-        }
-
-        List&lt;FilterMapping&gt; filterMappings = getFilterMappings(filterMap, dm, filterClass);
-        filterMaps.addAll(filterMappings);
-      }
-    }
-    return filterMaps;
-  }
-
-  @Override
-  public List&lt;FilterInfo&gt; getApplicationFilters(Context context) {
-    FilterDef[] fds = context.findFilterDefs();
-    List&lt;FilterInfo&gt; filterDefs = new ArrayList&lt;&gt;(fds.length);
-    for (FilterDef filterDef : fds) {
-      if (filterDef != null) {
-        FilterInfo fi = getFilterInfo(filterDef);
-        filterDefs.add(fi);
-      }
-    }
-    return filterDefs;
-  }
-
-  /**
-   * Gets the filter info.
-   *
-   * @param fd the fd
-   *
-   * @return the filter info
-   */
-  private static FilterInfo getFilterInfo(FilterDef fd) {
-    FilterInfo fi = new FilterInfo();
-    fi.setFilterName(fd.getFilterName());
-    fi.setFilterClass(fd.getFilterClass());
-    fi.setFilterDesc(fd.getDescription());
-    return fi;
-  }
-
-  @Override
-  public List&lt;ApplicationParam&gt; getApplicationInitParams(Context context) {
-    /*
-     * We'll try to determine if a parameter value comes from a deployment descriptor or a context
-     * descriptor.
-     *
-     * Assumption: context.findParameter() returns only values of parameters that are declared in a
-     * deployment descriptor.
-     *
-     * If a parameter is declared in a context descriptor with override=false and redeclared in a
-     * deployment descriptor, context.findParameter() still returns its value, even though the value
-     * is taken from a context descriptor.
-     *
-     * context.findApplicationParameters() returns all parameters that are declared in a context
-     * descriptor regardless of whether they are overridden in a deployment descriptor or not or
-     * not.
-     */
-    /*
-     * creating a set of parameter names that are declared in a context descriptor and can not be
-     * overridden in a deployment descriptor.
-     */
-    Set&lt;String&gt; nonOverridableParams = new HashSet&lt;&gt;();
-    for (ApplicationParameter appParam : context.findApplicationParameters()) {
-      if (appParam != null &amp;&amp; !appParam.getOverride()) {
-        nonOverridableParams.add(appParam.getName());
-      }
-    }
-    List&lt;ApplicationParam&gt; initParams = new ArrayList&lt;&gt;(20);
-    ServletContext servletCtx = context.getServletContext();
-    for (String paramName : Collections.list(servletCtx.getInitParameterNames())) {
-      ApplicationParam param = new ApplicationParam();
-      param.setName(paramName);
-      param.setValue(servletCtx.getInitParameter(paramName));
-      /*
-       * if the parameter is declared in a deployment descriptor and it is not declared in a context
-       * descriptor with override=false, the value comes from the deployment descriptor
-       */
-      param.setFromDeplDescr(
-          context.findParameter(paramName) != null &amp;&amp; !nonOverridableParams.contains(paramName));
-      initParams.add(param);
-    }
-    return initParams;
-  }
-
-  @Override
-  public boolean resourceExists(String name, Context context) {
-    return context.getResources().getResource(name) != null;
-  }
-
-  @Override
-  public InputStream getResourceStream(String name, Context context) throws IOException {
-    WebResource resource = context.getResources().getResource(name);
-    return resource.getInputStream();
-  }
-
-  @Override
-  public Long[] getResourceAttributes(String name, Context context) {
-    Long[] result = new Long[2];
-    WebResource resource = context.getResources().getResource(name);
-    result[0] = resource.getContentLength();
-    result[1] = resource.getLastModified();
-    return result;
-  }
-
-  /**
-   * Returns the security token required to bind to a naming context.
-   *
-   * @param context the catalina context
-   *
-   * @return the security token for use with &lt;code&gt;ContextBindings&lt;/code&gt;
-   */
-  @Override
-  protected Object getNamingToken(Context context) {
-    // Used by NamingContextListener when setting up JNDI context
-    Object token = context.getNamingToken();
-    if (!ContextAccessController.checkSecurityToken(context, token)) {
-      logger.error(&quot;Couldn't get a valid security token. ClassLoader binding will fail.&quot;);
-    }
-    return token;
-  }
-
-}</pre></div></td></tr></table>
 <table class="table table-striped">
 <tr class="a">
 <th>File</th>
@@ -921,53 +673,6 @@
    * @return the appender with the given name, or null if no such appender exists for this logger
    */
   public TomcatSlf4jLogback13AppenderAccessor getAppender(String name) {</pre></div></td></tr></table>
-<table class="table table-striped">
-<tr class="a">
-<th>File</th>
-<th>Project</th>
-<th>Line</th></tr>
-<tr class="b">
-<td style="text-align: left;">psiprobe\beans\accessors\Tomcat85DbcpDatasourceAccessor.java</td>
-<td>psi-probe-tomcat85</td>
-<td><a href="./xref/psiprobe/beans/accessors/Tomcat85DbcpDatasourceAccessor.html#L20">20</a></td></tr>
-<tr class="a">
-<td style="text-align: left;">psiprobe\beans\accessors\Tomcat9DbcpDatasourceAccessor.java</td>
-<td>psi-probe-tomcat9</td>
-<td><a href="./xref/psiprobe/beans/accessors/Tomcat9DbcpDatasourceAccessor.html#L20">20</a></td></tr>
-<tr class="b">
-<td colspan="3" style="text-align: left;">
-<div class="verbatim">
-<pre>public class Tomcat85DbcpDatasourceAccessor implements DatasourceAccessor {
-
-  @Override
-  public DataSourceInfo getInfo(Object resource) {
-    DataSourceInfo dataSourceInfo = null;
-    if (canMap(resource)) {
-      BasicDataSource source = (BasicDataSource) resource;
-      dataSourceInfo = new DataSourceInfo();
-      dataSourceInfo.setBusyConnections(source.getNumActive());
-      dataSourceInfo.setEstablishedConnections(source.getNumIdle() + source.getNumActive());
-      dataSourceInfo.setMaxConnections(source.getMaxTotal());
-      dataSourceInfo.setJdbcUrl(source.getUrl());
-      dataSourceInfo.setUsername(source.getUsername());
-      dataSourceInfo.setResettable(false);
-      dataSourceInfo.setType(&quot;tomcat-dbcp2&quot;);
-    }
-    return dataSourceInfo;
-  }
-
-  @Override
-  public boolean reset(Object resource) {
-    return false;
-  }
-
-  @Override
-  public boolean canMap(Object resource) {
-    return &quot;org.apache.tomcat.dbcp.dbcp2.BasicDataSource&quot;.equals(resource.getClass().getName())
-        &amp;&amp; resource instanceof BasicDataSource;
-  }
-
-}</pre></div></td></tr></table>
 <table class="table table-striped">
 <tr class="a">
 <th>File</th>

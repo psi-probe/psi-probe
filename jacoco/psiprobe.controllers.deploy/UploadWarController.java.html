@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UploadWarController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">psi-probe-core</a> &gt; <a href="index.source.html" class="el_package">psiprobe.controllers.deploy</a> &gt; <span class="el_source">UploadWarController.java</span></div><h1>UploadWarController.java</h1><pre class="source lang-java linenums">/*
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ *
+ * THIS PACKAGE IS PROVIDED &quot;AS IS&quot; AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+ * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE.
+ */
+package psiprobe.controllers.deploy;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.catalina.Context;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
+import org.apache.tomcat.util.http.fileupload.FileItem;
+import org.apache.tomcat.util.http.fileupload.FileItemFactory;
+import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
+import org.apache.tomcat.util.http.fileupload.servlet.ServletRequestContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.InternalResourceView;
+
+import psiprobe.controllers.AbstractTomcatContainerController;
+import psiprobe.controllers.jsp.DisplayJspController;
+import psiprobe.model.jsp.Summary;
+
+/**
+ * Uploads and installs web application from a .WAR.
+ */
+@Controller
+<span class="fc" id="L48">public class UploadWarController extends AbstractTomcatContainerController {</span>
+
+  /** The Constant logger. */
+<span class="fc" id="L51">  private static final Logger logger = LoggerFactory.getLogger(UploadWarController.class);</span>
+
+  @RequestMapping(path = &quot;/adm/war.htm&quot;)
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
+<span class="nc" id="L57">    return super.handleRequest(request, response);</span>
+  }
+
+  @Override
+  protected ModelAndView handleRequestInternal(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+
+    // If not multi-part content, exit
+<span class="nc bnc" id="L65" title="All 2 branches missed.">    if (!ServletFileUpload.isMultipartContent(request)) {</span>
+<span class="nc" id="L66">      return new ModelAndView(new InternalResourceView(getViewName()));</span>
+    }
+
+<span class="nc" id="L69">    File tmpWar = null;</span>
+<span class="nc" id="L70">    String contextName = null;</span>
+<span class="nc" id="L71">    boolean update = false;</span>
+<span class="nc" id="L72">    boolean compile = false;</span>
+<span class="nc" id="L73">    boolean discard = false;</span>
+
+    // parse multipart request and extract the file
+<span class="nc" id="L76">    FileItemFactory factory =</span>
+<span class="nc" id="L77">        new DiskFileItemFactory(1048000, new File(System.getProperty(&quot;java.io.tmpdir&quot;)));</span>
+<span class="nc" id="L78">    ServletFileUpload upload = new ServletFileUpload(factory);</span>
+<span class="nc" id="L79">    upload.setSizeMax(-1);</span>
+<span class="nc" id="L80">    upload.setHeaderEncoding(StandardCharsets.UTF_8.name());</span>
+    try {
+<span class="nc" id="L82">      List&lt;FileItem&gt; fileItems = upload.parseRequest(new ServletRequestContext(request));</span>
+<span class="nc bnc" id="L83" title="All 2 branches missed.">      for (FileItem fi : fileItems) {</span>
+<span class="nc bnc" id="L84" title="All 2 branches missed.">        if (!fi.isFormField()) {</span>
+<span class="nc bnc" id="L85" title="All 4 branches missed.">          if (fi.getName() != null &amp;&amp; fi.getName().length() &gt; 0) {</span>
+<span class="nc" id="L86">            tmpWar =</span>
+<span class="nc" id="L87">                new File(System.getProperty(&quot;java.io.tmpdir&quot;), FilenameUtils.getName(fi.getName()));</span>
+<span class="nc" id="L88">            fi.write(tmpWar);</span>
+          }
+<span class="nc bnc" id="L90" title="All 2 branches missed.">        } else if (&quot;context&quot;.equals(fi.getFieldName())) {</span>
+<span class="nc" id="L91">          contextName = fi.getString();</span>
+<span class="nc bnc" id="L92" title="All 4 branches missed.">        } else if (&quot;update&quot;.equals(fi.getFieldName()) &amp;&amp; &quot;yes&quot;.equals(fi.getString())) {</span>
+<span class="nc" id="L93">          update = true;</span>
+<span class="nc bnc" id="L94" title="All 4 branches missed.">        } else if (&quot;compile&quot;.equals(fi.getFieldName()) &amp;&amp; &quot;yes&quot;.equals(fi.getString())) {</span>
+<span class="nc" id="L95">          compile = true;</span>
+<span class="nc bnc" id="L96" title="All 4 branches missed.">        } else if (&quot;discard&quot;.equals(fi.getFieldName()) &amp;&amp; &quot;yes&quot;.equals(fi.getString())) {</span>
+<span class="nc" id="L97">          discard = true;</span>
+        }
+<span class="nc" id="L99">      }</span>
+<span class="nc" id="L100">    } catch (Exception e) {</span>
+<span class="nc" id="L101">      logger.error(&quot;Could not process file upload&quot;, e);</span>
+<span class="nc" id="L102">      request.setAttribute(&quot;errorMessage&quot;, getMessageSourceAccessor()</span>
+<span class="nc" id="L103">          .getMessage(&quot;probe.src.deploy.war.uploadfailure&quot;, new Object[] {e.getMessage()}));</span>
+<span class="nc bnc" id="L104" title="All 2 branches missed.">      if (tmpWar != null) {</span>
+<span class="nc" id="L105">        Files.delete(tmpWar.toPath());</span>
+<span class="nc" id="L106">        tmpWar = null;</span>
+      }
+<span class="nc" id="L108">    }</span>
+
+<span class="nc" id="L110">    String errMsg = null;</span>
+
+<span class="nc bnc" id="L112" title="All 2 branches missed.">    if (tmpWar == null) {</span>
+<span class="nc" id="L113">      return new ModelAndView(new InternalResourceView(getViewName()));</span>
+    }
+
+    try {
+<span class="nc bnc" id="L117" title="All 2 branches missed.">      if (tmpWar.getName().endsWith(&quot;.war&quot;)) {</span>
+
+<span class="nc bnc" id="L119" title="All 4 branches missed.">        if (contextName == null || contextName.length() == 0) {</span>
+<span class="nc" id="L120">          String warFileName = tmpWar.getName().replaceAll(&quot;\\.war$&quot;, &quot;&quot;);</span>
+<span class="nc" id="L121">          contextName = &quot;/&quot; + warFileName;</span>
+        }
+
+<span class="nc" id="L124">        contextName = getContainerWrapper().getTomcatContainer().formatContextName(contextName);</span>
+
+        /*
+         * pass the name of the newly deployed context to the presentation layer using this name the
+         * presentation layer can render a url to view compilation details
+         */
+<span class="nc bnc" id="L130" title="All 2 branches missed.">        String visibleContextName = contextName.isEmpty() ? &quot;/&quot; : contextName;</span>
+<span class="nc" id="L131">        request.setAttribute(&quot;contextName&quot;, visibleContextName);</span>
+
+<span class="nc bnc" id="L133" title="All 4 branches missed.">        if (update &amp;&amp; getContainerWrapper().getTomcatContainer().findContext(contextName) != null) {</span>
+<span class="nc" id="L134">          logger.debug(&quot;updating {}: removing the old copy&quot;, contextName);</span>
+<span class="nc" id="L135">          getContainerWrapper().getTomcatContainer().remove(contextName);</span>
+        }
+
+<span class="nc bnc" id="L138" title="All 2 branches missed.">        if (getContainerWrapper().getTomcatContainer().findContext(contextName) == null) {</span>
+          // move the .war to tomcat application base dir
+<span class="nc" id="L140">          String destWarFilename =</span>
+<span class="nc" id="L141">              getContainerWrapper().getTomcatContainer().formatContextFilename(contextName);</span>
+<span class="nc" id="L142">          File destWar = new File(getContainerWrapper().getTomcatContainer().getAppBase(),</span>
+              destWarFilename + &quot;.war&quot;);
+
+<span class="nc" id="L145">          FileUtils.moveFile(tmpWar, destWar);</span>
+
+          // let Tomcat know that the file is there
+<span class="nc" id="L148">          getContainerWrapper().getTomcatContainer().installWar(contextName);</span>
+
+<span class="nc" id="L150">          Context ctx = getContainerWrapper().getTomcatContainer().findContext(contextName);</span>
+<span class="nc bnc" id="L151" title="All 2 branches missed.">          if (ctx == null) {</span>
+<span class="nc" id="L152">            errMsg = getMessageSourceAccessor().getMessage(&quot;probe.src.deploy.war.notinstalled&quot;,</span>
+                new Object[] {visibleContextName});
+          } else {
+<span class="nc" id="L155">            request.setAttribute(&quot;success&quot;, Boolean.TRUE);</span>
+            // Logging action
+<span class="nc" id="L157">            Authentication auth = SecurityContextHolder.getContext().getAuthentication();</span>
+            // get username logger
+<span class="nc" id="L159">            String name = auth.getName();</span>
+<span class="nc" id="L160">            logger.info(getMessageSourceAccessor().getMessage(&quot;probe.src.log.deploywar&quot;), name,</span>
+                contextName);
+<span class="nc bnc" id="L162" title="All 2 branches missed.">            if (discard) {</span>
+<span class="nc" id="L163">              getContainerWrapper().getTomcatContainer().discardWorkDir(ctx);</span>
+<span class="nc" id="L164">              logger.info(getMessageSourceAccessor().getMessage(&quot;probe.src.log.discardwork&quot;), name,</span>
+                  contextName);
+            }
+<span class="nc bnc" id="L167" title="All 2 branches missed.">            if (compile) {</span>
+<span class="nc" id="L168">              Summary summary = new Summary();</span>
+<span class="nc" id="L169">              summary.setName(ctx.getName());</span>
+<span class="nc" id="L170">              getContainerWrapper().getTomcatContainer().listContextJsps(ctx, summary, true);</span>
+<span class="nc" id="L171">              request.getSession(false).setAttribute(DisplayJspController.SUMMARY_ATTRIBUTE,</span>
+                  summary);
+<span class="nc" id="L173">              request.setAttribute(&quot;compileSuccess&quot;, Boolean.TRUE);</span>
+            }
+          }
+<span class="nc" id="L176">        } else {</span>
+<span class="nc" id="L177">          errMsg = getMessageSourceAccessor().getMessage(&quot;probe.src.deploy.war.alreadyExists&quot;,</span>
+              new Object[] {visibleContextName});
+        }
+<span class="nc" id="L180">      } else {</span>
+<span class="nc" id="L181">        errMsg = getMessageSourceAccessor().getMessage(&quot;probe.src.deploy.war.notWar.failure&quot;);</span>
+      }
+<span class="nc" id="L183">    } catch (IOException e) {</span>
+<span class="nc" id="L184">      errMsg = getMessageSourceAccessor().getMessage(&quot;probe.src.deploy.war.failure&quot;,</span>
+<span class="nc" id="L185">          new Object[] {e.getMessage()});</span>
+<span class="nc" id="L186">      logger.error(&quot;Tomcat threw an exception when trying to deploy&quot;, e);</span>
+    } finally {
+<span class="nc bnc" id="L188" title="All 2 branches missed.">      if (errMsg != null) {</span>
+<span class="nc" id="L189">        request.setAttribute(&quot;errorMessage&quot;, errMsg);</span>
+      }
+      // If war was not moved, delete it
+<span class="nc bnc" id="L192" title="All 2 branches missed.">      if (tmpWar.exists()) {</span>
+<span class="nc" id="L193">        Files.delete(tmpWar.toPath());</span>
+      }
+    }
+<span class="nc" id="L196">    return new ModelAndView(new InternalResourceView(getViewName()));</span>
+  }
+
+  @Value(&quot;/adm/deploy.htm&quot;)
+  @Override
+  public void setViewName(String viewName) {
+<span class="fc" id="L202">    super.setViewName(viewName);</span>
+<span class="fc" id="L203">  }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

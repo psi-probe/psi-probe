@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>WrapperInfo.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">psi-probe-core</a> &gt; <a href="index.source.html" class="el_package">psiprobe.model.wrapper</a> &gt; <span class="el_source">WrapperInfo.java</span></div><h1>WrapperInfo.java</h1><pre class="source lang-java linenums">/*
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ *
+ * THIS PACKAGE IS PROVIDED &quot;AS IS&quot; AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+ * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE.
+ */
+package psiprobe.model.wrapper;
+
+import java.util.Map.Entry;
+import java.util.Set;
+
+/**
+ * The Class WrapperInfo.
+ */
+<span class="fc" id="L19">public class WrapperInfo {</span>
+
+  /** The user. */
+  private String user;
+
+  /** The interactive user. */
+  private String interactiveUser;
+
+  /** The version. */
+  private String version;
+
+  /** The wrapper pid. */
+  private int wrapperPid;
+
+  /** The jvm pid. */
+  private int jvmPid;
+
+  /** The build time. */
+  private String buildTime;
+
+  /** The properties. */
+  private Set&lt;Entry&lt;Object, Object&gt;&gt; properties;
+
+  /** The controlled by wrapper. */
+  private boolean controlledByWrapper;
+
+  /** The launched as service. */
+  private boolean launchedAsService;
+
+  /** The debug enabled. */
+  private boolean debugEnabled;
+
+  /**
+   * Gets the user.
+   *
+   * @return the user
+   */
+  public String getUser() {
+<span class="fc" id="L57">    return user;</span>
+  }
+
+  /**
+   * Sets the user.
+   *
+   * @param user the new user
+   */
+  public void setUser(String user) {
+<span class="fc" id="L66">    this.user = user;</span>
+<span class="fc" id="L67">  }</span>
+
+  /**
+   * Gets the interactive user.
+   *
+   * @return the interactive user
+   */
+  public String getInteractiveUser() {
+<span class="fc" id="L75">    return interactiveUser;</span>
+  }
+
+  /**
+   * Sets the interactive user.
+   *
+   * @param interactiveUser the new interactive user
+   */
+  public void setInteractiveUser(String interactiveUser) {
+<span class="fc" id="L84">    this.interactiveUser = interactiveUser;</span>
+<span class="fc" id="L85">  }</span>
+
+  /**
+   * Gets the version.
+   *
+   * @return the version
+   */
+  public String getVersion() {
+<span class="fc" id="L93">    return version;</span>
+  }
+
+  /**
+   * Sets the version.
+   *
+   * @param version the new version
+   */
+  public void setVersion(String version) {
+<span class="fc" id="L102">    this.version = version;</span>
+<span class="fc" id="L103">  }</span>
+
+  /**
+   * Gets the wrapper pid.
+   *
+   * @return the wrapper pid
+   */
+  public int getWrapperPid() {
+<span class="fc" id="L111">    return wrapperPid;</span>
+  }
+
+  /**
+   * Sets the wrapper pid.
+   *
+   * @param wrapperPid the new wrapper pid
+   */
+  public void setWrapperPid(int wrapperPid) {
+<span class="fc" id="L120">    this.wrapperPid = wrapperPid;</span>
+<span class="fc" id="L121">  }</span>
+
+  /**
+   * Gets the jvm pid.
+   *
+   * @return the jvm pid
+   */
+  public int getJvmPid() {
+<span class="fc" id="L129">    return jvmPid;</span>
+  }
+
+  /**
+   * Sets the jvm pid.
+   *
+   * @param jvmPid the new jvm pid
+   */
+  public void setJvmPid(int jvmPid) {
+<span class="fc" id="L138">    this.jvmPid = jvmPid;</span>
+<span class="fc" id="L139">  }</span>
+
+  /**
+   * Gets the builds the time.
+   *
+   * @return the builds the time
+   */
+  public String getBuildTime() {
+<span class="fc" id="L147">    return buildTime;</span>
+  }
+
+  /**
+   * Sets the builds the time.
+   *
+   * @param buildTime the new builds the time
+   */
+  public void setBuildTime(String buildTime) {
+<span class="fc" id="L156">    this.buildTime = buildTime;</span>
+<span class="fc" id="L157">  }</span>
+
+  /**
+   * Gets the properties.
+   *
+   * @return the properties
+   */
+  public Set&lt;Entry&lt;Object, Object&gt;&gt; getProperties() {
+<span class="fc" id="L165">    return properties;</span>
+  }
+
+  /**
+   * Sets the properties.
+   *
+   * @param properties the new properties
+   */
+  public void setProperties(Set&lt;Entry&lt;Object, Object&gt;&gt; properties) {
+<span class="fc" id="L174">    this.properties = properties;</span>
+<span class="fc" id="L175">  }</span>
+
+  /**
+   * Checks if is controlled by wrapper.
+   *
+   * @return true, if is controlled by wrapper
+   */
+  public boolean isControlledByWrapper() {
+<span class="fc" id="L183">    return controlledByWrapper;</span>
+  }
+
+  /**
+   * Sets the controlled by wrapper.
+   *
+   * @param controlledByWrapper the new controlled by wrapper
+   */
+  public void setControlledByWrapper(boolean controlledByWrapper) {
+<span class="fc" id="L192">    this.controlledByWrapper = controlledByWrapper;</span>
+<span class="fc" id="L193">  }</span>
+
+  /**
+   * Checks if is launched as service.
+   *
+   * @return true, if is launched as service
+   */
+  public boolean isLaunchedAsService() {
+<span class="fc" id="L201">    return launchedAsService;</span>
+  }
+
+  /**
+   * Sets the launched as service.
+   *
+   * @param launchedAsService the new launched as service
+   */
+  public void setLaunchedAsService(boolean launchedAsService) {
+<span class="fc" id="L210">    this.launchedAsService = launchedAsService;</span>
+<span class="fc" id="L211">  }</span>
+
+  /**
+   * Checks if is debug enabled.
+   *
+   * @return true, if is debug enabled
+   */
+  public boolean isDebugEnabled() {
+<span class="fc" id="L219">    return debugEnabled;</span>
+  }
+
+  /**
+   * Sets the debug enabled.
+   *
+   * @param debugEnabled the new debug enabled
+   */
+  public void setDebugEnabled(boolean debugEnabled) {
+<span class="fc" id="L228">    this.debugEnabled = debugEnabled;</span>
+<span class="fc" id="L229">  }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

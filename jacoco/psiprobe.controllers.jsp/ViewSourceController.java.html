@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ViewSourceController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">psi-probe-core</a> &gt; <a href="index.source.html" class="el_package">psiprobe.controllers.jsp</a> &gt; <span class="el_source">ViewSourceController.java</span></div><h1>ViewSourceController.java</h1><pre class="source lang-java linenums">/*
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ *
+ * THIS PACKAGE IS PROVIDED &quot;AS IS&quot; AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+ * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE.
+ */
+package psiprobe.controllers.jsp;
+
+import java.io.InputStream;
+
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.catalina.Context;
+import org.apache.jasper.EmbeddedServletOptions;
+import org.apache.jasper.Options;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import psiprobe.Utils;
+import psiprobe.controllers.AbstractContextHandlerController;
+import psiprobe.model.jsp.Item;
+import psiprobe.model.jsp.Summary;
+
+/**
+ * The Class ViewSourceController.
+ */
+@Controller
+<span class="fc" id="L40">public class ViewSourceController extends AbstractContextHandlerController {</span>
+
+  /** The Constant logger. */
+<span class="fc" id="L43">  private static final Logger logger = LoggerFactory.getLogger(ViewSourceController.class);</span>
+
+  @RequestMapping(path = &quot;/app/viewsource.htm&quot;)
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
+<span class="nc" id="L49">    return super.handleRequest(request, response);</span>
+  }
+
+  @Override
+  protected ModelAndView handleContext(String contextName, Context context,
+      HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+<span class="nc" id="L56">    String jspName = ServletRequestUtils.getStringParameter(request, &quot;source&quot;);</span>
+<span class="nc" id="L57">    boolean highlight = ServletRequestUtils.getBooleanParameter(request, &quot;highlight&quot;, true);</span>
+<span class="nc bnc" id="L58" title="All 2 branches missed.">    Summary summary = (Summary) (request.getSession(false) != null</span>
+<span class="nc" id="L59">        ? request.getSession(false).getAttribute(DisplayJspController.SUMMARY_ATTRIBUTE)</span>
+<span class="nc" id="L60">        : null);</span>
+
+<span class="nc bnc" id="L62" title="All 6 branches missed.">    if (jspName != null &amp;&amp; summary != null &amp;&amp; contextName.equals(summary.getName())) {</span>
+
+<span class="nc" id="L64">      Item item = summary.getItems().get(jspName);</span>
+
+<span class="nc bnc" id="L66" title="All 2 branches missed.">      if (item != null) {</span>
+        // replace &quot;\&quot; with &quot;/&quot;
+<span class="nc" id="L68">        jspName = jspName.replace('\\', '/');</span>
+
+        // remove cheeky &quot;../&quot; from the path to avoid exploits
+<span class="nc bnc" id="L71" title="All 2 branches missed.">        while (jspName.contains(&quot;../&quot;)) {</span>
+<span class="nc" id="L72">          jspName = jspName.replace(&quot;../&quot;, &quot;&quot;);</span>
+        }
+
+<span class="nc bnc" id="L75" title="All 2 branches missed.">        if (getContainerWrapper().getTomcatContainer().resourceExists(jspName, context)) {</span>
+<span class="nc" id="L76">          ServletContext sctx = context.getServletContext();</span>
+<span class="nc" id="L77">          ServletConfig scfg = (ServletConfig) context.findChild(&quot;jsp&quot;);</span>
+<span class="nc" id="L78">          Options opt = new EmbeddedServletOptions(scfg, sctx);</span>
+<span class="nc" id="L79">          String descriptorPageEncoding =</span>
+<span class="nc" id="L80">              opt.getJspConfig().findJspProperty(jspName).getPageEncoding();</span>
+
+<span class="nc bnc" id="L82" title="All 4 branches missed.">          if (descriptorPageEncoding != null &amp;&amp; descriptorPageEncoding.length() &gt; 0) {</span>
+<span class="nc" id="L83">            item.setEncoding(descriptorPageEncoding);</span>
+          } else {
+
+            /*
+             * we have to read the JSP twice, once to figure out the content encoding the second
+             * time to read the actual content using the correct encoding
+             */
+<span class="nc" id="L90">            try (InputStream encodedStream =</span>
+<span class="nc" id="L91">                getContainerWrapper().getTomcatContainer().getResourceStream(jspName, context)) {</span>
+<span class="nc" id="L92">              item.setEncoding(Utils.getJspEncoding(encodedStream));</span>
+            }
+          }
+<span class="nc" id="L95">          try (InputStream jspStream =</span>
+<span class="nc" id="L96">              getContainerWrapper().getTomcatContainer().getResourceStream(jspName, context)) {</span>
+<span class="nc bnc" id="L97" title="All 2 branches missed.">            if (highlight) {</span>
+<span class="nc" id="L98">              request.setAttribute(&quot;highlightedContent&quot;,</span>
+<span class="nc" id="L99">                  Utils.highlightStream(jspName, jspStream, &quot;xhtml&quot;, item.getEncoding()));</span>
+            } else {
+<span class="nc" id="L101">              request.setAttribute(&quot;content&quot;, Utils.readStream(jspStream, item.getEncoding()));</span>
+            }
+          }
+
+<span class="nc" id="L105">        } else {</span>
+<span class="nc" id="L106">          logger.error(&quot;{} does not exist&quot;, jspName);</span>
+        }
+
+<span class="nc" id="L109">        request.setAttribute(&quot;item&quot;, item);</span>
+
+      } else {
+<span class="nc" id="L112">        logger.error(&quot;jsp name passed is not in the summary, ignored&quot;);</span>
+      }
+<span class="nc" id="L114">    } else {</span>
+<span class="nc bnc" id="L115" title="All 2 branches missed.">      if (jspName == null) {</span>
+<span class="nc" id="L116">        logger.error(&quot;Passed empty 'source' parameter&quot;);</span>
+      }
+<span class="nc bnc" id="L118" title="All 2 branches missed.">      if (summary == null) {</span>
+<span class="nc" id="L119">        logger.error(&quot;Session has expired or there is no summary&quot;);</span>
+      }
+    }
+<span class="nc" id="L122">    return new ModelAndView(getViewName());</span>
+  }
+
+  @Value(&quot;view_jsp_source&quot;)
+  @Override
+  public void setViewName(String viewName) {
+<span class="fc" id="L128">    super.setViewName(viewName);</span>
+<span class="fc" id="L129">  }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProbeConfigStats.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">psi-probe-core</a> &gt; <a href="index.source.html" class="el_package">psiprobe</a> &gt; <span class="el_source">ProbeConfigStats.java</span></div><h1>ProbeConfigStats.java</h1><pre class="source lang-java linenums">/*
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ *
+ * THIS PACKAGE IS PROVIDED &quot;AS IS&quot; AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+ * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE.
+ */
+package psiprobe;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import psiprobe.beans.stats.collectors.AppStatsCollectorBean;
+import psiprobe.beans.stats.collectors.ClusterStatsCollectorBean;
+import psiprobe.beans.stats.collectors.ConnectorStatsCollectorBean;
+import psiprobe.beans.stats.collectors.DatasourceStatsCollectorBean;
+import psiprobe.beans.stats.collectors.JvmMemoryStatsCollectorBean;
+import psiprobe.beans.stats.collectors.RuntimeStatsCollectorBean;
+import psiprobe.beans.stats.listeners.MemoryPoolMailingListener;
+import psiprobe.beans.stats.listeners.StatsCollectionListener;
+import psiprobe.beans.stats.providers.ConnectorSeriesProvider;
+import psiprobe.beans.stats.providers.MultipleSeriesProvider;
+import psiprobe.beans.stats.providers.StandardSeriesProvider;
+import psiprobe.model.stats.StatsCollection;
+
+/**
+ * The Class ProbeConfigStats.
+ */
+@Configuration
+<span class="fc" id="L38">public class ProbeConfigStats {</span>
+
+  /** The Constant logger. */
+<span class="fc" id="L41">  private static final Logger logger = LoggerFactory.getLogger(ProbeConfigStats.class);</span>
+
+  /**
+   * Gets the stats collection.
+   *
+   * @return the stats collection
+   */
+  @Bean(name = &quot;statsCollection&quot;)
+  public StatsCollection getStatsCollection() {
+<span class="fc" id="L50">    logger.debug(&quot;Instantiated statsCollection&quot;);</span>
+<span class="fc" id="L51">    return new StatsCollection();</span>
+  }
+
+  /**
+   * Gets the connector stats collector bean.
+   *
+   * @return the connector stats collector bean
+   */
+  @Bean(name = &quot;connectorStatsCollector&quot;)
+  public ConnectorStatsCollectorBean getConnectorStatsCollectorBean() {
+<span class="fc" id="L61">    logger.debug(&quot;Instantiated connectorStatsCollector&quot;);</span>
+<span class="fc" id="L62">    return new ConnectorStatsCollectorBean();</span>
+  }
+
+  /**
+   * Gets the cluster stats collector bean.
+   *
+   * @return the cluster stats collector bean
+   */
+  @Bean(name = &quot;clusterStatsCollector&quot;)
+  public ClusterStatsCollectorBean getClusterStatsCollectorBean() {
+<span class="fc" id="L72">    logger.debug(&quot;Instantiated clusterStatsCollector&quot;);</span>
+<span class="fc" id="L73">    return new ClusterStatsCollectorBean();</span>
+  }
+
+  /**
+   * Gets the runtime stats collector bean.
+   *
+   * @return the runtime stats collector bean
+   */
+  @Bean(name = &quot;runtimeStatsCollector&quot;)
+  public RuntimeStatsCollectorBean getRuntimeStatsCollectorBean() {
+<span class="fc" id="L83">    logger.debug(&quot;Instantiated runtimeStatsCollector&quot;);</span>
+<span class="fc" id="L84">    return new RuntimeStatsCollectorBean();</span>
+  }
+
+  /**
+   * Gets the app stats collector bean.
+   *
+   * @return the app stats collector bean
+   */
+  @Bean(name = &quot;appStatsCollector&quot;)
+  public AppStatsCollectorBean getAppStatsCollectorBean() {
+<span class="fc" id="L94">    logger.debug(&quot;Instantiated appStatsCollector&quot;);</span>
+<span class="fc" id="L95">    return new AppStatsCollectorBean();</span>
+  }
+
+  /**
+   * Gets the jvm memory stats collector bean.
+   *
+   * @return the jvm memory stats collector bean
+   */
+  @Bean(name = &quot;memoryStatsCollector&quot;)
+  public JvmMemoryStatsCollectorBean getJvmMemoryStatsCollectorBean() {
+<span class="fc" id="L105">    logger.debug(&quot;Instantiated memoryStatsCollector&quot;);</span>
+<span class="fc" id="L106">    return new JvmMemoryStatsCollectorBean();</span>
+  }
+
+  /**
+   * Gets the datasource stats collector bean.
+   *
+   * @return the datasource stats collector bean
+   */
+  @Bean(name = &quot;datasourceStatsCollector&quot;)
+  public DatasourceStatsCollectorBean getDatasourceStatsCollectorBean() {
+<span class="fc" id="L116">    logger.debug(&quot;Instantiated datasourceStatsCollector&quot;);</span>
+<span class="fc" id="L117">    return new DatasourceStatsCollectorBean();</span>
+  }
+
+  /**
+   * Gets the memory pool mailing listener.
+   *
+   * @return the memory pool mailing listener
+   */
+  @Bean(name = &quot;listeners&quot;)
+  public List&lt;StatsCollectionListener&gt; getMemoryPoolMailingListener() {
+<span class="fc" id="L127">    logger.debug(&quot;Instantiated listeners&quot;);</span>
+<span class="fc" id="L128">    List&lt;StatsCollectionListener&gt; list = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L129">    list.add(new MemoryPoolMailingListener());</span>
+<span class="fc" id="L130">    return list;</span>
+  }
+
+  /**
+   * Gets the connector series provider.
+   *
+   * @return the connector series provider
+   */
+  @Bean(name = &quot;rcn&quot;)
+  public ConnectorSeriesProvider getConnectorSeriesProvider() {
+<span class="fc" id="L140">    logger.debug(&quot;Instantiated rcn&quot;);</span>
+<span class="fc" id="L141">    return new ConnectorSeriesProvider();</span>
+  }
+
+  /**
+   * Gets the cl traffic.
+   *
+   * @return the cl traffic
+   */
+  @Bean(name = &quot;cl_traffic&quot;)
+  public StandardSeriesProvider getClTraffic() {
+<span class="fc" id="L151">    logger.debug(&quot;Instantiated cl_traffic&quot;);</span>
+<span class="fc" id="L152">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L153">    list.add(&quot;cluster.sent&quot;);</span>
+<span class="fc" id="L154">    list.add(&quot;cluster.received&quot;);</span>
+
+<span class="fc" id="L156">    StandardSeriesProvider provider = new StandardSeriesProvider();</span>
+<span class="fc" id="L157">    provider.setStatNames(list);</span>
+<span class="fc" id="L158">    return provider;</span>
+  }
+
+  /**
+   * Gets the cl request.
+   *
+   * @return the cl request
+   */
+  @Bean(name = &quot;cl_request&quot;)
+  public StandardSeriesProvider getClRequest() {
+<span class="fc" id="L168">    logger.debug(&quot;Instantiated cl_request&quot;);</span>
+<span class="fc" id="L169">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L170">    list.add(&quot;cluster.req.sent&quot;);</span>
+<span class="fc" id="L171">    list.add(&quot;cluster.req.received&quot;);</span>
+
+<span class="fc" id="L173">    StandardSeriesProvider provider = new StandardSeriesProvider();</span>
+<span class="fc" id="L174">    provider.setStatNames(list);</span>
+<span class="fc" id="L175">    return provider;</span>
+  }
+
+  /**
+   * Gets the connector.
+   *
+   * @return the connector
+   */
+  @Bean(name = &quot;connector&quot;)
+  public StandardSeriesProvider getConnector() {
+<span class="fc" id="L185">    logger.debug(&quot;Instantiated connector&quot;);</span>
+<span class="fc" id="L186">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L187">    list.add(&quot;stat.connector.{0}.requests&quot;);</span>
+<span class="fc" id="L188">    list.add(&quot;stat.connector.{0}.errors&quot;);</span>
+
+<span class="fc" id="L190">    StandardSeriesProvider provider = new StandardSeriesProvider();</span>
+<span class="fc" id="L191">    provider.setStatNames(list);</span>
+<span class="fc" id="L192">    return provider;</span>
+  }
+
+  /**
+   * Gets the traffic.
+   *
+   * @return the traffic
+   */
+  @Bean(name = &quot;traffic&quot;)
+  public StandardSeriesProvider getTraffic() {
+<span class="fc" id="L202">    logger.debug(&quot;Instantiated traffic&quot;);</span>
+<span class="fc" id="L203">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L204">    list.add(&quot;stat.connector.{0}.sent&quot;);</span>
+<span class="fc" id="L205">    list.add(&quot;stat.connector.{0}.received&quot;);</span>
+
+<span class="fc" id="L207">    StandardSeriesProvider provider = new StandardSeriesProvider();</span>
+<span class="fc" id="L208">    provider.setStatNames(list);</span>
+<span class="fc" id="L209">    return provider;</span>
+  }
+
+  /**
+   * Gets the connector proc time.
+   *
+   * @return the connector proc time
+   */
+  @Bean(name = &quot;connector_proc_time&quot;)
+  public StandardSeriesProvider getConnectorProcTime() {
+<span class="fc" id="L219">    logger.debug(&quot;Instantiated connector_proc_time&quot;);</span>
+<span class="fc" id="L220">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L221">    list.add(&quot;stat.connector.{0}.proc_time&quot;);</span>
+
+<span class="fc" id="L223">    StandardSeriesProvider provider = new StandardSeriesProvider();</span>
+<span class="fc" id="L224">    provider.setStatNames(list);</span>
+<span class="fc" id="L225">    return provider;</span>
+  }
+
+  /**
+   * Gets the memory usage.
+   *
+   * @return the memory usage
+   */
+  @Bean(name = &quot;memory_usage&quot;)
+  public StandardSeriesProvider getMemoryUsage() {
+<span class="fc" id="L235">    logger.debug(&quot;Instantiated memory_usage&quot;);</span>
+<span class="fc" id="L236">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L237">    list.add(&quot;memory.pool.{0}&quot;);</span>
+
+<span class="fc" id="L239">    StandardSeriesProvider provider = new StandardSeriesProvider();</span>
+<span class="fc" id="L240">    provider.setStatNames(list);</span>
+<span class="fc" id="L241">    return provider;</span>
+  }
+
+  /**
+   * Gets the os memory.
+   *
+   * @return the os memory
+   */
+  @Bean(name = &quot;os_memory&quot;)
+  public StandardSeriesProvider getOsMemory() {
+<span class="fc" id="L251">    logger.debug(&quot;Instantiated os_memory&quot;);</span>
+<span class="fc" id="L252">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L253">    list.add(&quot;os.memory.physical&quot;);</span>
+<span class="fc" id="L254">    list.add(&quot;os.memory.committed&quot;);</span>
+
+<span class="fc" id="L256">    StandardSeriesProvider provider = new StandardSeriesProvider();</span>
+<span class="fc" id="L257">    provider.setStatNames(list);</span>
+<span class="fc" id="L258">    return provider;</span>
+  }
+
+  /**
+   * Gets the swap usage.
+   *
+   * @return the swap usage
+   */
+  @Bean(name = &quot;swap_usage&quot;)
+  public StandardSeriesProvider getSwapUsage() {
+<span class="fc" id="L268">    logger.debug(&quot;Instantiated swap_usage&quot;);</span>
+<span class="fc" id="L269">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L270">    list.add(&quot;os.memory.swap&quot;);</span>
+
+<span class="fc" id="L272">    StandardSeriesProvider provider = new StandardSeriesProvider();</span>
+<span class="fc" id="L273">    provider.setStatNames(list);</span>
+<span class="fc" id="L274">    return provider;</span>
+  }
+
+  /**
+   * Gets the cpu usage.
+   *
+   * @return the cpu usage
+   */
+  @Bean(name = &quot;cpu_usage&quot;)
+  public StandardSeriesProvider getCpuUsage() {
+<span class="fc" id="L284">    logger.debug(&quot;Instantiated cpu_usage&quot;);</span>
+<span class="fc" id="L285">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L286">    list.add(&quot;os.cpu&quot;);</span>
+
+<span class="fc" id="L288">    StandardSeriesProvider provider = new StandardSeriesProvider();</span>
+<span class="fc" id="L289">    provider.setStatNames(list);</span>
+<span class="fc" id="L290">    return provider;</span>
+  }
+
+  /**
+   * Gets the fd usage.
+   *
+   * @return the fd usage
+   */
+  @Bean(name = &quot;fd_usage&quot;)
+  public StandardSeriesProvider getFdUsage() {
+<span class="fc" id="L300">    logger.debug(&quot;Instantiated fd_usage&quot;);</span>
+<span class="fc" id="L301">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L302">    list.add(&quot;os.fd.open&quot;);</span>
+<span class="fc" id="L303">    list.add(&quot;os.fd.max&quot;);</span>
+
+<span class="fc" id="L305">    StandardSeriesProvider provider = new StandardSeriesProvider();</span>
+<span class="fc" id="L306">    provider.setStatNames(list);</span>
+<span class="fc" id="L307">    return provider;</span>
+  }
+
+  /**
+   * Gets the app req.
+   *
+   * @return the app req
+   */
+  @Bean(name = &quot;app_req&quot;)
+  public StandardSeriesProvider getAppReq() {
+<span class="fc" id="L317">    logger.debug(&quot;Instantiated app_req&quot;);</span>
+<span class="fc" id="L318">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L319">    list.add(&quot;app.requests.{0}&quot;);</span>
+<span class="fc" id="L320">    list.add(&quot;app.errors.{0}&quot;);</span>
+
+<span class="fc" id="L322">    StandardSeriesProvider provider = new StandardSeriesProvider();</span>
+<span class="fc" id="L323">    provider.setStatNames(list);</span>
+<span class="fc" id="L324">    return provider;</span>
+  }
+
+  /**
+   * Gets the app avg proc time.
+   *
+   * @return the app avg proc time
+   */
+  @Bean(name = &quot;app_avg_proc_time&quot;)
+  public StandardSeriesProvider getAppAvgProcTime() {
+<span class="fc" id="L334">    logger.debug(&quot;Instantiated app_avg_proc_time&quot;);</span>
+<span class="fc" id="L335">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L336">    list.add(&quot;app.avg_proc_time.{0}&quot;);</span>
+
+<span class="fc" id="L338">    StandardSeriesProvider provider = new StandardSeriesProvider();</span>
+<span class="fc" id="L339">    provider.setStatNames(list);</span>
+<span class="fc" id="L340">    return provider;</span>
+  }
+
+  /**
+   * Gets the total avg proc time.
+   *
+   * @return the total avg proc time
+   */
+  @Bean(name = &quot;total_avg_proc_time&quot;)
+  public StandardSeriesProvider getTotalAvgProcTime() {
+<span class="fc" id="L350">    logger.debug(&quot;Instantiated total_avg_proc_time&quot;);</span>
+<span class="fc" id="L351">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L352">    list.add(&quot;total.avg_proc_time&quot;);</span>
+
+<span class="fc" id="L354">    StandardSeriesProvider provider = new StandardSeriesProvider();</span>
+<span class="fc" id="L355">    provider.setStatNames(list);</span>
+<span class="fc" id="L356">    return provider;</span>
+  }
+
+  /**
+   * Gets the total req.
+   *
+   * @return the total req
+   */
+  @Bean(name = &quot;total_req&quot;)
+  public StandardSeriesProvider getTotalReq() {
+<span class="fc" id="L366">    logger.debug(&quot;Instantiated total_req&quot;);</span>
+<span class="fc" id="L367">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L368">    list.add(&quot;total.requests&quot;);</span>
+<span class="fc" id="L369">    list.add(&quot;total.errors&quot;);</span>
+
+<span class="fc" id="L371">    StandardSeriesProvider provider = new StandardSeriesProvider();</span>
+<span class="fc" id="L372">    provider.setStatNames(list);</span>
+<span class="fc" id="L373">    return provider;</span>
+  }
+
+  /**
+   * Gets the datasource usage.
+   *
+   * @return the datasource usage
+   */
+  @Bean(name = &quot;datasource_usage&quot;)
+  public StandardSeriesProvider getDatasourceUsage() {
+<span class="fc" id="L383">    logger.debug(&quot;Instantiated datasource_usage&quot;);</span>
+<span class="fc" id="L384">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L385">    list.add(&quot;ds.est.{0}&quot;);</span>
+<span class="fc" id="L386">    list.add(&quot;ds.busy.{0}&quot;);</span>
+
+<span class="fc" id="L388">    StandardSeriesProvider provider = new StandardSeriesProvider();</span>
+<span class="fc" id="L389">    provider.setStatNames(list);</span>
+<span class="fc" id="L390">    return provider;</span>
+  }
+
+  /**
+   * Gets the all app avg proc time.
+   *
+   * @return the all app avg proc time
+   */
+  @Bean(name = &quot;all_app_avg_proc_time&quot;)
+  public MultipleSeriesProvider getAllAppAvgProcTime() {
+<span class="fc" id="L400">    logger.debug(&quot;Instantiated all_app_avg_proc_time&quot;);</span>
+<span class="fc" id="L401">    MultipleSeriesProvider provider = new MultipleSeriesProvider();</span>
+<span class="fc" id="L402">    provider.setMovingAvgFrame(10);</span>
+<span class="fc" id="L403">    provider.setStatNamePrefix(&quot;app.avg_proc_time.&quot;);</span>
+<span class="fc" id="L404">    provider.setTop(4);</span>
+<span class="fc" id="L405">    return provider;</span>
+  }
+
+  /**
+   * Gets the all app req.
+   *
+   * @return the all app req
+   */
+  @Bean(name = &quot;all_app_req&quot;)
+  public MultipleSeriesProvider getAllAppReq() {
+<span class="fc" id="L415">    logger.debug(&quot;Instantiated all_app_req&quot;);</span>
+<span class="fc" id="L416">    MultipleSeriesProvider provider = new MultipleSeriesProvider();</span>
+<span class="fc" id="L417">    provider.setMovingAvgFrame(10);</span>
+<span class="fc" id="L418">    provider.setStatNamePrefix(&quot;app.requests.&quot;);</span>
+<span class="fc" id="L419">    provider.setTop(4);</span>
+<span class="fc" id="L420">    return provider;</span>
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

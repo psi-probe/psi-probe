@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RequestProcessor.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">psi-probe-core</a> &gt; <a href="index.source.html" class="el_package">psiprobe.model</a> &gt; <span class="el_source">RequestProcessor.java</span></div><h1>RequestProcessor.java</h1><pre class="source lang-java linenums">/*
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ *
+ * THIS PACKAGE IS PROVIDED &quot;AS IS&quot; AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+ * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE.
+ */
+package psiprobe.model;
+
+import java.util.Locale;
+
+/**
+ * POJO representing a single http request processor thread.
+ */
+<span class="fc" id="L18">public class RequestProcessor {</span>
+
+  /** The name. */
+  private String name;
+
+  /** The stage. */
+  private int stage;
+
+  /** The processing time. */
+  private long processingTime;
+
+  /** The bytes sent. */
+  private long bytesSent;
+
+  /** The bytes received. */
+  private long bytesReceived;
+
+  /** The remote addr. */
+  private String remoteAddr;
+
+  /** The remote addr locale. */
+  private Locale remoteAddrLocale;
+
+  /** The virtual host. */
+  private String virtualHost;
+
+  /** The method. */
+  private String method;
+
+  /** The current uri. */
+  private String currentUri;
+
+  /** The current query string. */
+  private String currentQueryString;
+
+  /** The protocol. */
+  private String protocol;
+
+  /** The worker thread name. */
+  private String workerThreadName;
+
+  /** The worker thread name supported. */
+  private boolean workerThreadNameSupported;
+
+  /**
+   * Gets the name.
+   *
+   * @return the name
+   */
+  public String getName() {
+<span class="fc" id="L68">    return name;</span>
+  }
+
+  /**
+   * Sets the name.
+   *
+   * @param name the new name
+   */
+  public void setName(String name) {
+<span class="fc" id="L77">    this.name = name;</span>
+<span class="fc" id="L78">  }</span>
+
+  /**
+   * Gets the stage.
+   *
+   * @return the stage
+   */
+  public int getStage() {
+<span class="fc" id="L86">    return stage;</span>
+  }
+
+  /**
+   * Sets the stage.
+   *
+   * @param stage the new stage
+   */
+  public void setStage(int stage) {
+<span class="fc" id="L95">    this.stage = stage;</span>
+<span class="fc" id="L96">  }</span>
+
+  /**
+   * Gets the processing time.
+   *
+   * @return the processing time
+   */
+  public long getProcessingTime() {
+<span class="fc" id="L104">    return processingTime;</span>
+  }
+
+  /**
+   * Sets the processing time.
+   *
+   * @param processingTime the new processing time
+   */
+  public void setProcessingTime(long processingTime) {
+<span class="fc" id="L113">    this.processingTime = processingTime;</span>
+<span class="fc" id="L114">  }</span>
+
+  /**
+   * Gets the bytes sent.
+   *
+   * @return the bytes sent
+   */
+  public long getBytesSent() {
+<span class="fc" id="L122">    return bytesSent;</span>
+  }
+
+  /**
+   * Sets the bytes sent.
+   *
+   * @param bytesSent the new bytes sent
+   */
+  public void setBytesSent(long bytesSent) {
+<span class="fc" id="L131">    this.bytesSent = bytesSent;</span>
+<span class="fc" id="L132">  }</span>
+
+  /**
+   * Gets the bytes received.
+   *
+   * @return the bytes received
+   */
+  public long getBytesReceived() {
+<span class="fc" id="L140">    return bytesReceived;</span>
+  }
+
+  /**
+   * Sets the bytes received.
+   *
+   * @param bytesReceived the new bytes received
+   */
+  public void setBytesReceived(long bytesReceived) {
+<span class="fc" id="L149">    this.bytesReceived = bytesReceived;</span>
+<span class="fc" id="L150">  }</span>
+
+  /**
+   * Gets the remote addr.
+   *
+   * @return the remote addr
+   */
+  public String getRemoteAddr() {
+<span class="fc" id="L158">    return remoteAddr;</span>
+  }
+
+  /**
+   * Sets the remote addr.
+   *
+   * @param remoteAddr the new remote addr
+   */
+  public void setRemoteAddr(String remoteAddr) {
+<span class="fc" id="L167">    this.remoteAddr = remoteAddr;</span>
+<span class="fc" id="L168">  }</span>
+
+  /**
+   * Gets the virtual host.
+   *
+   * @return the virtual host
+   */
+  public String getVirtualHost() {
+<span class="fc" id="L176">    return virtualHost;</span>
+  }
+
+  /**
+   * Sets the virtual host.
+   *
+   * @param virtualHost the new virtual host
+   */
+  public void setVirtualHost(String virtualHost) {
+<span class="fc" id="L185">    this.virtualHost = virtualHost;</span>
+<span class="fc" id="L186">  }</span>
+
+  /**
+   * Gets the method.
+   *
+   * @return the method
+   */
+  public String getMethod() {
+<span class="fc" id="L194">    return method;</span>
+  }
+
+  /**
+   * Sets the method.
+   *
+   * @param method the new method
+   */
+  public void setMethod(String method) {
+<span class="fc" id="L203">    this.method = method;</span>
+<span class="fc" id="L204">  }</span>
+
+  /**
+   * Gets the current uri.
+   *
+   * @return the current uri
+   */
+  public String getCurrentUri() {
+<span class="fc" id="L212">    return currentUri;</span>
+  }
+
+  /**
+   * Sets the current uri.
+   *
+   * @param currentUri the new current uri
+   */
+  public void setCurrentUri(String currentUri) {
+<span class="fc" id="L221">    this.currentUri = currentUri;</span>
+<span class="fc" id="L222">  }</span>
+
+  /**
+   * Gets the current query string.
+   *
+   * @return the current query string
+   */
+  public String getCurrentQueryString() {
+<span class="fc" id="L230">    return currentQueryString;</span>
+  }
+
+  /**
+   * Sets the current query string.
+   *
+   * @param currentQueryString the new current query string
+   */
+  public void setCurrentQueryString(String currentQueryString) {
+<span class="fc" id="L239">    this.currentQueryString = currentQueryString;</span>
+<span class="fc" id="L240">  }</span>
+
+  /**
+   * Gets the protocol.
+   *
+   * @return the protocol
+   */
+  public String getProtocol() {
+<span class="fc" id="L248">    return protocol;</span>
+  }
+
+  /**
+   * Sets the protocol.
+   *
+   * @param protocol the new protocol
+   */
+  public void setProtocol(String protocol) {
+<span class="fc" id="L257">    this.protocol = protocol;</span>
+<span class="fc" id="L258">  }</span>
+
+  /**
+   * Gets the remote addr locale.
+   *
+   * @return the remote addr locale
+   */
+  public Locale getRemoteAddrLocale() {
+<span class="fc" id="L266">    return remoteAddrLocale;</span>
+  }
+
+  /**
+   * Sets the remote addr locale.
+   *
+   * @param remoteAddrLocale the new remote addr locale
+   */
+  public void setRemoteAddrLocale(Locale remoteAddrLocale) {
+<span class="fc" id="L275">    this.remoteAddrLocale = remoteAddrLocale;</span>
+<span class="fc" id="L276">  }</span>
+
+  /**
+   * Gets the worker thread name.
+   *
+   * @return the worker thread name
+   */
+  public String getWorkerThreadName() {
+<span class="fc" id="L284">    return workerThreadName;</span>
+  }
+
+  /**
+   * Sets the worker thread name.
+   *
+   * @param workerThreadName the new worker thread name
+   */
+  public void setWorkerThreadName(String workerThreadName) {
+<span class="fc" id="L293">    this.workerThreadName = workerThreadName;</span>
+<span class="fc" id="L294">  }</span>
+
+  /**
+   * Checks if is worker thread name supported.
+   *
+   * @return true, if is worker thread name supported
+   */
+  public boolean isWorkerThreadNameSupported() {
+<span class="fc" id="L302">    return workerThreadNameSupported;</span>
+  }
+
+  /**
+   * Sets the worker thread name supported.
+   *
+   * @param workerThreadNameSupported the new worker thread name supported
+   */
+  public void setWorkerThreadNameSupported(boolean workerThreadNameSupported) {
+<span class="fc" id="L311">    this.workerThreadNameSupported = workerThreadNameSupported;</span>
+<span class="fc" id="L312">  }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

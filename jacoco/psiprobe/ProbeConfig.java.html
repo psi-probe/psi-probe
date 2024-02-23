@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProbeConfig.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">psi-probe-core</a> &gt; <a href="index.source.html" class="el_package">psiprobe</a> &gt; <span class="el_source">ProbeConfig.java</span></div><h1>ProbeConfig.java</h1><pre class="source lang-java linenums">/*
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ *
+ * THIS PACKAGE IS PROVIDED &quot;AS IS&quot; AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+ * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE.
+ */
+package psiprobe;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Properties;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.FactoryBean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.PropertiesFactoryBean;
+import org.springframework.context.MessageSource;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.web.servlet.HandlerMapping;
+import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.ThemeResolver;
+import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping;
+import org.springframework.web.servlet.i18n.CookieLocaleResolver;
+import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
+import org.springframework.web.servlet.theme.FixedThemeResolver;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.view.JstlView;
+
+import psiprobe.beans.ClusterWrapperBean;
+import psiprobe.beans.ContainerListenerBean;
+import psiprobe.beans.ContainerWrapperBean;
+import psiprobe.beans.JBossResourceResolverBean;
+import psiprobe.beans.JvmMemoryInfoAccessorBean;
+import psiprobe.beans.LogResolverBean;
+import psiprobe.beans.ResourceResolver;
+import psiprobe.beans.ResourceResolverBean;
+import psiprobe.beans.RuntimeInfoAccessorBean;
+import psiprobe.tools.Mailer;
+
+/**
+ * The Class ProbeConfig.
+ */
+@EnableWebMvc
+@Configuration
+@ComponentScan(basePackages = {&quot;psiprobe&quot;})
+<span class="fc" id="L64">public class ProbeConfig implements WebMvcConfigurer {</span>
+
+  /** The Constant logger. */
+<span class="fc" id="L67">  private static final Logger logger = LoggerFactory.getLogger(ProbeConfig.class);</span>
+
+  /**
+   * Gets the container listener bean.
+   *
+   * @return the container listener bean
+   */
+  @Bean(name = &quot;containerListener&quot;)
+  public ContainerListenerBean getContainerListenerBean() {
+<span class="fc" id="L76">    logger.debug(&quot;Instantiated containerListener&quot;);</span>
+<span class="fc" id="L77">    return new ContainerListenerBean();</span>
+  }
+
+  /**
+   * Gets the container wrapper bean.
+   *
+   * @return the container wrapper bean
+   */
+  @Bean(name = &quot;containerWrapper&quot;)
+  public ContainerWrapperBean getContainerWrapperBean() {
+<span class="fc" id="L87">    logger.debug(&quot;Instantiated containerWrapper&quot;);</span>
+<span class="fc" id="L88">    return new ContainerWrapperBean();</span>
+  }
+
+  /**
+   * Gets the cluster wrapper bean.
+   *
+   * @return the cluster wrapper bean
+   */
+  @Bean(name = &quot;clusterWrapper&quot;)
+  public ClusterWrapperBean getClusterWrapperBean() {
+<span class="fc" id="L98">    logger.debug(&quot;Instantiated clusterWrapper&quot;);</span>
+<span class="fc" id="L99">    return new ClusterWrapperBean();</span>
+  }
+
+  /**
+   * Gets the mailer.
+   *
+   * @return the mailer
+   */
+  @Bean(name = &quot;mailer&quot;)
+  public Mailer getMailer() {
+<span class="fc" id="L109">    logger.debug(&quot;Instantiated mailer&quot;);</span>
+<span class="fc" id="L110">    return new Mailer();</span>
+  }
+
+  /**
+   * Gets the default res.
+   *
+   * @return the default res
+   */
+  @Bean(name = &quot;datasourceMappers&quot;)
+  public List&lt;String&gt; getDefaultRes() {
+<span class="fc" id="L120">    logger.debug(&quot;Instantiated datasourceMappers&quot;);</span>
+<span class="fc" id="L121">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L122">    list.add(&quot;psiprobe.beans.accessors.C3P0DatasourceAccessor&quot;);</span>
+<span class="fc" id="L123">    list.add(&quot;psiprobe.beans.accessors.Dbcp2DatasourceAccessor&quot;);</span>
+<span class="fc" id="L124">    list.add(&quot;psiprobe.beans.accessors.HikariCpDatasourceAccessor&quot;);</span>
+<span class="fc" id="L125">    list.add(&quot;psiprobe.beans.accessors.OracleDatasourceAccessor&quot;);</span>
+<span class="fc" id="L126">    list.add(&quot;psiprobe.beans.accessors.OracleUcpDatasourceAccessor&quot;);</span>
+<span class="fc" id="L127">    list.add(&quot;psiprobe.beans.accessors.OpenEjbBasicDatasourceAccessor&quot;);</span>
+<span class="fc" id="L128">    list.add(&quot;psiprobe.beans.accessors.OpenEjbManagedDatasourceAccessor&quot;);</span>
+<span class="fc" id="L129">    list.add(&quot;psiprobe.beans.accessors.Tomcat85DbcpDatasourceAccessor&quot;);</span>
+<span class="fc" id="L130">    list.add(&quot;psiprobe.beans.accessors.Tomcat9DbcpDatasourceAccessor&quot;);</span>
+    /*
+     * list.add(&quot;psiprobe.beans.accessors.Tomcat10DbcpDatasourceAccessor&quot;);
+     * list.add(&quot;psiprobe.beans.accessors.Tomcat11DbcpDatasourceAccessor&quot;);
+     */
+<span class="fc" id="L135">    list.add(&quot;psiprobe.beans.accessors.TomcatJdbcPoolDatasourceAccessor&quot;);</span>
+<span class="fc" id="L136">    list.add(&quot;psiprobe.beans.accessors.TomEeJdbcPoolDatasourceAccessor&quot;);</span>
+<span class="fc" id="L137">    list.add(&quot;psiprobe.beans.accessors.ViburCpDatasourceAccessor&quot;);</span>
+<span class="fc" id="L138">    return list;</span>
+  }
+
+  /**
+   * Gets the resource resolver bean.
+   *
+   * @return the resource resolver bean
+   */
+  @Bean(name = &quot;default&quot;)
+  public ResourceResolverBean getResourceResolverBean() {
+<span class="fc" id="L148">    logger.debug(&quot;Instantiated default resourceResolverBean&quot;);</span>
+<span class="fc" id="L149">    return new ResourceResolverBean();</span>
+  }
+
+  /**
+   * Gets the jboss resource resolver bean.
+   *
+   * @return the jboss resource resolver bean
+   */
+  @Bean(name = &quot;jboss&quot;)
+  public JBossResourceResolverBean getJBossResourceResolverBean() {
+<span class="fc" id="L159">    logger.debug(&quot;Instantiated jbossResourceResolverBean&quot;);</span>
+<span class="fc" id="L160">    return new JBossResourceResolverBean();</span>
+  }
+
+  /**
+   * Gets the resource resolvers.
+   *
+   * @param jbossResourceResolverBean the jboss resource resolver bean
+   * @param resourceResolverBean the resource resolver bean
+   *
+   * @return the resource resolvers
+   */
+  @Bean(name = &quot;resourceResolvers&quot;)
+  public Map&lt;String, ResourceResolver&gt; getResourceResolvers(
+      @Autowired JBossResourceResolverBean jbossResourceResolverBean,
+      @Autowired ResourceResolverBean resourceResolverBean) {
+<span class="fc" id="L175">    logger.debug(&quot;Instantiated resourceResolvers&quot;);</span>
+<span class="fc" id="L176">    Map&lt;String, ResourceResolver&gt; map = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L177">    map.put(&quot;jboss&quot;, jbossResourceResolverBean);</span>
+<span class="fc" id="L178">    map.put(&quot;default&quot;, resourceResolverBean);</span>
+<span class="fc" id="L179">    return map;</span>
+  }
+
+  /**
+   * Gets the adapter classes.
+   *
+   * @return the adapter classes
+   */
+  @Bean(name = &quot;adapterClasses&quot;)
+  public List&lt;String&gt; getAdapterClasses() {
+<span class="fc" id="L189">    logger.debug(&quot;Instantiated adapterClasses&quot;);</span>
+<span class="fc" id="L190">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
+    try {
+<span class="fc" id="L192">      Properties properties = adapters().getObject();</span>
+<span class="pc bpc" id="L193" title="1 of 2 branches missed.">      if (properties == null) {</span>
+<span class="nc" id="L194">        return Collections.emptyList();</span>
+      }
+<span class="fc bfc" id="L196" title="All 2 branches covered.">      for (Object adapter : properties.values()) {</span>
+<span class="fc" id="L197">        list.add((String) adapter);</span>
+<span class="fc" id="L198">      }</span>
+<span class="nc" id="L199">    } catch (Exception e) {</span>
+<span class="nc" id="L200">      logger.error(&quot;&quot;, e);</span>
+<span class="fc" id="L201">    }</span>
+<span class="fc" id="L202">    return list;</span>
+  }
+
+  /**
+   * Gets the stdout files. Any file added to this list will be displayed.
+   *
+   * @return the stdout files
+   */
+  @Bean(name = &quot;stdoutFiles&quot;)
+  public List&lt;String&gt; getStdoutFiles() {
+<span class="fc" id="L212">    logger.debug(&quot;Instantiated stdoutFiles&quot;);</span>
+<span class="fc" id="L213">    List&lt;String&gt; list = new ArrayList&lt;&gt;();</span>
+    try {
+<span class="fc" id="L215">      Properties properties = stdout().getObject();</span>
+<span class="pc bpc" id="L216" title="1 of 2 branches missed.">      if (properties == null) {</span>
+<span class="nc" id="L217">        return Collections.emptyList();</span>
+      }
+<span class="fc bfc" id="L219" title="All 2 branches covered.">      for (Object stdout : properties.values()) {</span>
+<span class="fc" id="L220">        list.add((String) stdout);</span>
+<span class="fc" id="L221">      }</span>
+<span class="nc" id="L222">    } catch (Exception e) {</span>
+<span class="nc" id="L223">      logger.error(&quot;&quot;, e);</span>
+<span class="fc" id="L224">    }</span>
+<span class="fc" id="L225">    return list;</span>
+  }
+
+  /**
+   * Standard Out Properties.
+   *
+   * @return the properties factory bean for standard out
+   */
+  @Bean(name = &quot;stdout&quot;)
+  public FactoryBean&lt;Properties&gt; stdout() {
+<span class="fc" id="L235">    logger.debug(&quot;Instantiated stdout&quot;);</span>
+<span class="fc" id="L236">    PropertiesFactoryBean bean = new PropertiesFactoryBean();</span>
+<span class="fc" id="L237">    bean.setLocation(new ClassPathResource(&quot;stdout.properties&quot;));</span>
+<span class="fc" id="L238">    return bean;</span>
+  }
+
+  /**
+   * Adapters Properties.
+   *
+   * @return the properties factory bean for adaptors
+   */
+  @Bean(name = &quot;adapters&quot;)
+  public FactoryBean&lt;Properties&gt; adapters() {
+<span class="fc" id="L248">    logger.debug(&quot;Instantiated adapters&quot;);</span>
+<span class="fc" id="L249">    PropertiesFactoryBean bean = new PropertiesFactoryBean();</span>
+<span class="fc" id="L250">    bean.setLocation(new ClassPathResource(&quot;adapters.properties&quot;));</span>
+<span class="fc" id="L251">    return bean;</span>
+  }
+
+  /**
+   * Gets the log resolver bean.
+   *
+   * @return the log resolver bean
+   */
+  @Bean(name = &quot;logResolver&quot;)
+  public LogResolverBean getLogResolverBean() {
+<span class="fc" id="L261">    logger.debug(&quot;Instantiated logResolver&quot;);</span>
+<span class="fc" id="L262">    return new LogResolverBean();</span>
+  }
+
+  /**
+   * Gets the jvm memory info accessor bean.
+   *
+   * @return the jvm memory info accessor bean
+   */
+  @Bean(name = &quot;jvmMemoryInfoAccessor&quot;)
+  public JvmMemoryInfoAccessorBean getJvmMemoryInfoAccessorBean() {
+<span class="fc" id="L272">    logger.debug(&quot;Instantiated jvmMemoryInfoAccessorBean&quot;);</span>
+<span class="fc" id="L273">    return new JvmMemoryInfoAccessorBean();</span>
+  }
+
+  /**
+   * Gets the runtime info accessor bean.
+   *
+   * @return the runtime info accessor bean
+   */
+  @Bean(name = &quot;runtimeInfoAccessor&quot;)
+  public RuntimeInfoAccessorBean getRuntimeInfoAccessorBean() {
+<span class="fc" id="L283">    logger.debug(&quot;Instantiated runtimeInfoAccessorBean&quot;);</span>
+<span class="fc" id="L284">    return new RuntimeInfoAccessorBean();</span>
+  }
+
+  /**
+   * Gets the internal resource view resolver.
+   *
+   * @return the internal resource view resolver
+   */
+  @Bean(name = &quot;jspViewResolver&quot;)
+  public ViewResolver getViewResolver() {
+<span class="fc" id="L294">    logger.debug(&quot;Instantiated internalResourceViewResolver&quot;);</span>
+<span class="fc" id="L295">    InternalResourceViewResolver resolver = new InternalResourceViewResolver();</span>
+<span class="fc" id="L296">    resolver.setViewClass(JstlView.class);</span>
+<span class="fc" id="L297">    resolver.setPrefix(&quot;/WEB-INF/jsp/&quot;);</span>
+<span class="fc" id="L298">    resolver.setSuffix(&quot;.jsp&quot;);</span>
+<span class="fc" id="L299">    return resolver;</span>
+  }
+
+  /**
+   * Gets the fixed theme resolver.
+   *
+   * @return the fixed theme resolver
+   */
+  @Bean(name = &quot;themeResolver&quot;)
+  public ThemeResolver getThemeResolver() {
+<span class="fc" id="L309">    logger.debug(&quot;Instantiated fixedThemeResolver&quot;);</span>
+<span class="fc" id="L310">    FixedThemeResolver resolver = new FixedThemeResolver();</span>
+<span class="fc" id="L311">    resolver.setDefaultThemeName(&quot;theme-classic&quot;);</span>
+<span class="fc" id="L312">    return resolver;</span>
+  }
+
+  /**
+   * Gets the reloadable resource bundle message source.
+   *
+   * @return the reloadable resource bundle message source
+   */
+  @Bean(name = &quot;messageSource&quot;)
+  public MessageSource getMessageSource() {
+<span class="fc" id="L322">    logger.debug(&quot;Instantiated reloadableResourceBundleMessageSource&quot;);</span>
+<span class="fc" id="L323">    ReloadableResourceBundleMessageSource source = new ReloadableResourceBundleMessageSource();</span>
+<span class="fc" id="L324">    source.setBasename(&quot;/WEB-INF/messages&quot;);</span>
+<span class="fc" id="L325">    source.setCacheSeconds(1);</span>
+<span class="fc" id="L326">    source.setFallbackToSystemLocale(false);</span>
+<span class="fc" id="L327">    return source;</span>
+  }
+
+  /**
+   * Gets the cookie locale resolver.
+   *
+   * @return the cookie locale resolver
+   */
+  @Bean(name = &quot;localeResolver&quot;)
+  public LocaleResolver getLocaleResolver() {
+<span class="fc" id="L337">    logger.debug(&quot;Instantiated cookieLocaleResolver&quot;);</span>
+<span class="fc" id="L338">    CookieLocaleResolver resolver = new CookieLocaleResolver();</span>
+<span class="fc" id="L339">    resolver.setDefaultLocale(Locale.ENGLISH);</span>
+<span class="fc" id="L340">    resolver.setCookieSecure(true);</span>
+<span class="fc" id="L341">    resolver.setCookieHttpOnly(true);</span>
+<span class="fc" id="L342">    return resolver;</span>
+  }
+
+  /**
+   * Gets the bean name url handler mapping.
+   *
+   * @param interceptor the interceptor
+   *
+   * @return the bean name url handler mapping
+   */
+  @Bean(name = &quot;handlerMapping&quot;)
+  public HandlerMapping getHandlerMapping(@Autowired LocaleChangeInterceptor interceptor) {
+<span class="fc" id="L354">    logger.debug(&quot;Instantiated beanNameUrlHandlerMapping&quot;);</span>
+<span class="fc" id="L355">    BeanNameUrlHandlerMapping mapping = new BeanNameUrlHandlerMapping();</span>
+<span class="fc" id="L356">    mapping.setAlwaysUseFullPath(true);</span>
+<span class="fc" id="L357">    mapping.setInterceptors(interceptor);</span>
+<span class="fc" id="L358">    return mapping;</span>
+  }
+
+  @Override
+  public void addInterceptors(InterceptorRegistry registry) {
+<span class="fc" id="L363">    logger.debug(&quot;Registering localeChangeInterceptor&quot;);</span>
+<span class="fc" id="L364">    registry.addInterceptor(getLocaleChangeInterceptor());</span>
+<span class="fc" id="L365">  }</span>
+
+  /**
+   * Gets the locale change interceptor.
+   *
+   * @return the locale change interceptor
+   */
+  @Bean(name = &quot;localeChangeInterceptor&quot;)
+  public LocaleChangeInterceptor getLocaleChangeInterceptor() {
+<span class="fc" id="L374">    logger.debug(&quot;Instantiated localeChangeInterceptor&quot;);</span>
+<span class="fc" id="L375">    LocaleChangeInterceptor interceptor = new LocaleChangeInterceptor();</span>
+<span class="fc" id="L376">    interceptor.setParamName(&quot;lang&quot;);</span>
+<span class="fc" id="L377">    return interceptor;</span>
+  }
+
+  /**
+   * Gets the property sources placeholder configurer.
+   *
+   * @return the property sources placeholder configurer
+   */
+  @Bean(name = &quot;propertySourcesPlaceholderConfigurer&quot;)
+  public static PropertySourcesPlaceholderConfigurer getPropertySourcesPlaceholderConfigurer() {
+<span class="fc" id="L387">    logger.debug(&quot;Instantiated propertySourcesPlaceholderConfigurer&quot;);</span>
+<span class="fc" id="L388">    PropertySourcesPlaceholderConfigurer configurer = new PropertySourcesPlaceholderConfigurer();</span>
+<span class="fc" id="L389">    configurer.setLocation(new ClassPathResource(&quot;stats.properties&quot;));</span>
+<span class="fc" id="L390">    configurer.setNullValue(&quot;NULL&quot;);</span>
+
+<span class="fc" id="L392">    Properties properties = new Properties();</span>
+<span class="fc" id="L393">    properties.put(&quot;psiprobe.tools.mail.to&quot;, &quot;NULL&quot;);</span>
+<span class="fc" id="L394">    properties.put(&quot;psiprobe.tools.mail.subjectPrefix&quot;, &quot;[PSI Probe]&quot;);</span>
+<span class="fc" id="L395">    configurer.setProperties(properties);</span>
+<span class="fc" id="L396">    return configurer;</span>
+  }
+
+  /**
+   * Version.
+   *
+   * @return the properties factory bean
+   */
+  @Bean(name = &quot;version&quot;)
+  public PropertiesFactoryBean version() {
+<span class="fc" id="L406">    logger.debug(&quot;Instantiated version&quot;);</span>
+<span class="fc" id="L407">    PropertiesFactoryBean bean = new PropertiesFactoryBean();</span>
+<span class="fc" id="L408">    bean.setLocation(new ClassPathResource(&quot;version.properties&quot;));</span>
+<span class="fc" id="L409">    return bean;</span>
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

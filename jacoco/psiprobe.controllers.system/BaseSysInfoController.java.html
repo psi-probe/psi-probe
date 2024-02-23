@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BaseSysInfoController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">psi-probe-core</a> &gt; <a href="index.source.html" class="el_package">psiprobe.controllers.system</a> &gt; <span class="el_source">BaseSysInfoController.java</span></div><h1>BaseSysInfoController.java</h1><pre class="source lang-java linenums">/*
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ *
+ * THIS PACKAGE IS PROVIDED &quot;AS IS&quot; AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+ * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE.
+ */
+package psiprobe.controllers.system;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.web.servlet.ModelAndView;
+
+import psiprobe.beans.RuntimeInfoAccessorBean;
+import psiprobe.controllers.AbstractTomcatContainerController;
+import psiprobe.model.SystemInformation;
+import psiprobe.tools.SecurityUtils;
+
+/**
+ * Creates an instance of SystemInformation.
+ */
+<span class="fc" id="L32">public class BaseSysInfoController extends AbstractTomcatContainerController {</span>
+
+  /** The filter out keys. */
+<span class="fc" id="L35">  private List&lt;String&gt; filterOutKeys = new ArrayList&lt;&gt;();</span>
+
+  /** The runtime info accessor. */
+  @Inject
+  private RuntimeInfoAccessorBean runtimeInfoAccessor;
+
+  /** The collection period. */
+  private long collectionPeriod;
+
+  /**
+   * Gets the filter out keys.
+   *
+   * @return the filter out keys
+   */
+  public List&lt;String&gt; getFilterOutKeys() {
+<span class="fc" id="L50">    return filterOutKeys;</span>
+  }
+
+  /**
+   * Sets the filter out keys.
+   *
+   * @param filterOutKeys the new filter out keys
+   */
+  public void setFilterOutKeys(List&lt;String&gt; filterOutKeys) {
+<span class="fc" id="L59">    this.filterOutKeys = filterOutKeys;</span>
+<span class="fc" id="L60">  }</span>
+
+  /**
+   * Gets the runtime info accessor.
+   *
+   * @return the runtime info accessor
+   */
+  public RuntimeInfoAccessorBean getRuntimeInfoAccessor() {
+<span class="fc" id="L68">    return runtimeInfoAccessor;</span>
+  }
+
+  /**
+   * Sets the runtime info accessor.
+   *
+   * @param runtimeInfoAccessor the new runtime info accessor
+   */
+  public void setRuntimeInfoAccessor(RuntimeInfoAccessorBean runtimeInfoAccessor) {
+<span class="fc" id="L77">    this.runtimeInfoAccessor = runtimeInfoAccessor;</span>
+<span class="fc" id="L78">  }</span>
+
+  /**
+   * Gets the collection period.
+   *
+   * @return the collection period
+   */
+  public long getCollectionPeriod() {
+<span class="fc" id="L86">    return collectionPeriod;</span>
+  }
+
+  /**
+   * Sets the collection period.
+   *
+   * @param collectionPeriod the new collection period
+   */
+  public void setCollectionPeriod(long collectionPeriod) {
+<span class="fc" id="L95">    this.collectionPeriod = collectionPeriod;</span>
+<span class="fc" id="L96">  }</span>
+
+  @Override
+  protected ModelAndView handleRequestInternal(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+
+<span class="nc" id="L102">    SystemInformation systemInformation = new SystemInformation();</span>
+<span class="nc" id="L103">    systemInformation</span>
+<span class="nc" id="L104">        .setAppBase(getContainerWrapper().getTomcatContainer().getAppBase().getAbsolutePath());</span>
+<span class="nc" id="L105">    systemInformation.setConfigBase(getContainerWrapper().getTomcatContainer().getConfigBase());</span>
+
+<span class="nc" id="L107">    Map&lt;String, String&gt; sysProps = new HashMap&lt;&gt;();</span>
+<span class="nc bnc" id="L108" title="All 2 branches missed.">    for (String propertyName : System.getProperties().stringPropertyNames()) {</span>
+<span class="nc" id="L109">      String propertyValue = System.getProperty(propertyName);</span>
+<span class="nc" id="L110">      sysProps.put(propertyName, propertyValue);</span>
+<span class="nc" id="L111">    }</span>
+
+<span class="nc bnc" id="L113" title="All 2 branches missed.">    if (!SecurityUtils.hasAttributeValueRole(getServletContext())) {</span>
+<span class="nc bnc" id="L114" title="All 2 branches missed.">      for (String key : filterOutKeys) {</span>
+<span class="nc" id="L115">        sysProps.remove(key);</span>
+<span class="nc" id="L116">      }</span>
+    }
+
+<span class="nc" id="L119">    systemInformation.setSystemProperties(sysProps);</span>
+
+<span class="nc" id="L121">    ModelAndView mv = new ModelAndView(getViewName());</span>
+<span class="nc" id="L122">    mv.addObject(&quot;systemInformation&quot;, systemInformation);</span>
+<span class="nc" id="L123">    mv.addObject(&quot;runtime&quot;, getRuntimeInfoAccessor().getRuntimeInformation());</span>
+<span class="nc" id="L124">    mv.addObject(&quot;collectionPeriod&quot;, getCollectionPeriod());</span>
+<span class="nc" id="L125">    return mv;</span>
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

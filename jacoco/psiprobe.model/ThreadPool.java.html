@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ThreadPool.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">psi-probe-core</a> &gt; <a href="index.source.html" class="el_package">psiprobe.model</a> &gt; <span class="el_source">ThreadPool.java</span></div><h1>ThreadPool.java</h1><pre class="source lang-java linenums">/*
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ *
+ * THIS PACKAGE IS PROVIDED &quot;AS IS&quot; AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+ * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE.
+ */
+package psiprobe.model;
+
+/**
+ * POJO representing thread pool.
+ */
+<span class="fc" id="L16">public class ThreadPool {</span>
+
+  /** The name. */
+  private String name;
+
+  /** The max threads. */
+  private int maxThreads;
+
+  /** The min spare threads. */
+  private int minSpareThreads;
+
+  /** The max spare threads. */
+  private int maxSpareThreads;
+
+  /** The current thread count. */
+  private int currentThreadCount;
+
+  /** The current threads busy. */
+  private int currentThreadsBusy;
+
+  /**
+   * Gets the name.
+   *
+   * @return the name
+   */
+  public String getName() {
+<span class="fc" id="L42">    return name;</span>
+  }
+
+  /**
+   * Sets the name.
+   *
+   * @param name the new name
+   */
+  public void setName(String name) {
+<span class="fc" id="L51">    this.name = name;</span>
+<span class="fc" id="L52">  }</span>
+
+  /**
+   * Gets the max threads.
+   *
+   * @return the max threads
+   */
+  public int getMaxThreads() {
+<span class="fc" id="L60">    return maxThreads;</span>
+  }
+
+  /**
+   * Sets the max threads.
+   *
+   * @param maxThreads the new max threads
+   */
+  public void setMaxThreads(int maxThreads) {
+<span class="fc" id="L69">    this.maxThreads = maxThreads;</span>
+<span class="fc" id="L70">  }</span>
+
+  /**
+   * Gets the min spare threads.
+   *
+   * @return the min spare threads
+   */
+  public int getMinSpareThreads() {
+<span class="fc" id="L78">    return minSpareThreads;</span>
+  }
+
+  /**
+   * Sets the min spare threads.
+   *
+   * @param minSpareThreads the new min spare threads
+   */
+  public void setMinSpareThreads(int minSpareThreads) {
+<span class="fc" id="L87">    this.minSpareThreads = minSpareThreads;</span>
+<span class="fc" id="L88">  }</span>
+
+  /**
+   * Gets the max spare threads.
+   *
+   * @return the max spare threads
+   */
+  public int getMaxSpareThreads() {
+<span class="fc" id="L96">    return maxSpareThreads;</span>
+  }
+
+  /**
+   * Sets the max spare threads.
+   *
+   * @param maxSpareThreads the new max spare threads
+   */
+  public void setMaxSpareThreads(int maxSpareThreads) {
+<span class="fc" id="L105">    this.maxSpareThreads = maxSpareThreads;</span>
+<span class="fc" id="L106">  }</span>
+
+  /**
+   * Gets the current thread count.
+   *
+   * @return the current thread count
+   */
+  public int getCurrentThreadCount() {
+<span class="fc" id="L114">    return currentThreadCount;</span>
+  }
+
+  /**
+   * Sets the current thread count.
+   *
+   * @param currentThreadCount the new current thread count
+   */
+  public void setCurrentThreadCount(int currentThreadCount) {
+<span class="fc" id="L123">    this.currentThreadCount = currentThreadCount;</span>
+<span class="fc" id="L124">  }</span>
+
+  /**
+   * Gets the current threads busy.
+   *
+   * @return the current threads busy
+   */
+  public int getCurrentThreadsBusy() {
+<span class="fc" id="L132">    return currentThreadsBusy;</span>
+  }
+
+  /**
+   * Sets the current threads busy.
+   *
+   * @param currentThreadsBusy the new current threads busy
+   */
+  public void setCurrentThreadsBusy(int currentThreadsBusy) {
+<span class="fc" id="L141">    this.currentThreadsBusy = currentThreadsBusy;</span>
+<span class="fc" id="L142">  }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Cert.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">psi-probe-core</a> &gt; <a href="index.source.html" class="el_package">psiprobe.model.certificates</a> &gt; <span class="el_source">Cert.java</span></div><h1>Cert.java</h1><pre class="source lang-java linenums">/*
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ *
+ * THIS PACKAGE IS PROVIDED &quot;AS IS&quot; AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+ * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE.
+ */
+package psiprobe.model.certificates;
+
+import java.io.Serializable;
+import java.time.Instant;
+import java.util.Date;
+
+/**
+ * The Class Cert.
+ */
+<span class="fc" id="L20">public class Cert implements Serializable {</span>
+
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = -727528588030989042L;
+
+  /** The alias. */
+  private String alias;
+
+  /** The subject distinguished name. */
+  private String subjectDistinguishedName;
+
+  /** The issuer distinguished name. */
+  private String issuerDistinguishedName;
+
+  /** The not before. */
+  private Instant notBefore;
+
+  /** The not after. */
+  private Instant notAfter;
+
+  /**
+   * Gets the subject distinguished name.
+   *
+   * @return the subject distinguished name
+   */
+  public String getSubjectDistinguishedName() {
+<span class="nc" id="L46">    return subjectDistinguishedName;</span>
+  }
+
+  /**
+   * Sets the subject distinguished name.
+   *
+   * @param distinguishedName the new subject distinguished name
+   */
+  public void setSubjectDistinguishedName(String distinguishedName) {
+<span class="fc" id="L55">    this.subjectDistinguishedName = distinguishedName;</span>
+<span class="fc" id="L56">  }</span>
+
+  /**
+   * Gets the not before.
+   *
+   * @return the not before
+   */
+  public Date getNotBefore() {
+<span class="nc bnc" id="L64" title="All 2 branches missed.">    return notBefore == null ? null : Date.from(notBefore);</span>
+  }
+
+  /**
+   * Sets the not before.
+   *
+   * @param notBefore the new not before
+   */
+  public void setNotBefore(Instant notBefore) {
+<span class="fc" id="L73">    this.notBefore = notBefore;</span>
+<span class="fc" id="L74">  }</span>
+
+  /**
+   * Gets the not after.
+   *
+   * @return the not after
+   */
+  public Date getNotAfter() {
+<span class="nc bnc" id="L82" title="All 2 branches missed.">    return notAfter == null ? null : Date.from(notAfter);</span>
+  }
+
+  /**
+   * Sets the not after.
+   *
+   * @param notAfter the new not after
+   */
+  public void setNotAfter(Instant notAfter) {
+<span class="fc" id="L91">    this.notAfter = notAfter;</span>
+<span class="fc" id="L92">  }</span>
+
+  /**
+   * Gets the issuer distinguished name.
+   *
+   * @return the issuer distinguished name
+   */
+  public String getIssuerDistinguishedName() {
+<span class="nc" id="L100">    return issuerDistinguishedName;</span>
+  }
+
+  /**
+   * Sets the issuer distinguished name.
+   *
+   * @param issuerDistinguishedName the new issuer distinguished name
+   */
+  public void setIssuerDistinguishedName(String issuerDistinguishedName) {
+<span class="fc" id="L109">    this.issuerDistinguishedName = issuerDistinguishedName;</span>
+<span class="fc" id="L110">  }</span>
+
+  /**
+   * Gets the alias.
+   *
+   * @return the alias
+   */
+  public String getAlias() {
+<span class="fc" id="L118">    return alias;</span>
+  }
+
+  /**
+   * Sets the alias.
+   *
+   * @param alias the new alias
+   */
+  public void setAlias(String alias) {
+<span class="fc" id="L127">    this.alias = alias;</span>
+<span class="fc" id="L128">  }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RecompileJspController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">psi-probe-core</a> &gt; <a href="index.source.html" class="el_package">psiprobe.controllers.jsp</a> &gt; <span class="el_source">RecompileJspController.java</span></div><h1>RecompileJspController.java</h1><pre class="source lang-java linenums">/*
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ *
+ * THIS PACKAGE IS PROVIDED &quot;AS IS&quot; AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+ * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE.
+ */
+package psiprobe.controllers.jsp;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.catalina.Context;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
+
+import psiprobe.controllers.AbstractContextHandlerController;
+import psiprobe.model.jsp.Summary;
+
+/**
+ * The Class RecompileJspController.
+ */
+@Controller
+<span class="fc" id="L38">public class RecompileJspController extends AbstractContextHandlerController {</span>
+
+  /** The Constant logger. */
+<span class="fc" id="L41">  private static final Logger logger = LoggerFactory.getLogger(RecompileJspController.class);</span>
+
+  @RequestMapping(path = &quot;/app/recompile.htm&quot;)
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
+<span class="nc" id="L47">    return super.handleRequest(request, response);</span>
+  }
+
+  @Override
+  protected ModelAndView handleContext(String contextName, Context context,
+      HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+<span class="nc" id="L54">    HttpSession session = request.getSession(false);</span>
+<span class="nc" id="L55">    Summary summary = (Summary) session.getAttribute(DisplayJspController.SUMMARY_ATTRIBUTE);</span>
+
+<span class="nc bnc" id="L57" title="All 4 branches missed.">    if (summary != null &amp;&amp; &quot;post&quot;.equalsIgnoreCase(request.getMethod())) {</span>
+<span class="nc" id="L58">      List&lt;String&gt; names = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L59" title="All 2 branches missed.">      for (String name : Collections.list(request.getParameterNames())) {</span>
+<span class="nc bnc" id="L60" title="All 2 branches missed.">        if (&quot;on&quot;.equals(request.getParameter(name))) {</span>
+<span class="nc" id="L61">          names.add(name);</span>
+        }
+<span class="nc" id="L63">      }</span>
+<span class="nc" id="L64">      getContainerWrapper().getTomcatContainer().recompileJsps(context, summary, names);</span>
+<span class="nc" id="L65">      request.getSession(false).setAttribute(DisplayJspController.SUMMARY_ATTRIBUTE, summary);</span>
+<span class="nc bnc" id="L66" title="All 4 branches missed.">    } else if (summary != null &amp;&amp; contextName.equals(summary.getName())) {</span>
+<span class="nc" id="L67">      String name = ServletRequestUtils.getStringParameter(request, &quot;source&quot;);</span>
+<span class="nc bnc" id="L68" title="All 2 branches missed.">      if (name != null) {</span>
+<span class="nc" id="L69">        List&lt;String&gt; names = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L70">        names.add(name);</span>
+<span class="nc" id="L71">        getContainerWrapper().getTomcatContainer().recompileJsps(context, summary, names);</span>
+<span class="nc" id="L72">        request.getSession(false).setAttribute(DisplayJspController.SUMMARY_ATTRIBUTE, summary);</span>
+<span class="nc" id="L73">      } else {</span>
+<span class="nc" id="L74">        logger.error(&quot;source is not passed, nothing to do&quot;);</span>
+      }
+    }
+<span class="nc" id="L77">    return new ModelAndView(new RedirectView(request.getContextPath()</span>
+<span class="nc" id="L78">        + ServletRequestUtils.getStringParameter(request, &quot;view&quot;, getViewName()) + &quot;?&quot;</span>
+<span class="nc" id="L79">        + request.getQueryString()));</span>
+  }
+
+  @Value(&quot;/app/jsp.htm&quot;)
+  @Override
+  public void setViewName(String viewName) {
+<span class="fc" id="L85">    super.setViewName(viewName);</span>
+<span class="fc" id="L86">  }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

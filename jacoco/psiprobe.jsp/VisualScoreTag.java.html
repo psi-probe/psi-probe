@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>VisualScoreTag.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">psi-probe-core</a> &gt; <a href="index.source.html" class="el_package">psiprobe.jsp</a> &gt; <span class="el_source">VisualScoreTag.java</span></div><h1>VisualScoreTag.java</h1><pre class="source lang-java linenums">/*
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ *
+ * THIS PACKAGE IS PROVIDED &quot;AS IS&quot; AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+ * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE.
+ */
+package psiprobe.jsp;
+
+import java.io.IOException;
+import java.text.MessageFormat;
+
+import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.tagext.BodyContent;
+import javax.servlet.jsp.tagext.BodyTagSupport;
+
+/**
+ * The Class VisualScoreTag.
+ */
+<span class="fc" id="L23">public class VisualScoreTag extends BodyTagSupport {</span>
+
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = -5653846466205838602L;
+
+
+  /** The Constant WHITE_LEFT_BORDER. */
+  private static final String WHITE_LEFT_BORDER = &quot;a0&quot;;
+
+  /** The Constant RED_LEFT_BORDER. */
+  private static final String RED_LEFT_BORDER = &quot;a1&quot;;
+
+  /** The Constant BLUE_LEFT_BORDER. */
+  private static final String BLUE_LEFT_BORDER = &quot;a2&quot;;
+
+  /** The Constant WHITE_RIGHT_BORDER. */
+  private static final String WHITE_RIGHT_BORDER = &quot;b0&quot;;
+
+  /** The Constant RED_RIGHT_BORDER. */
+  private static final String RED_RIGHT_BORDER = &quot;b1&quot;;
+
+  /** The Constant BLUE_RIGHT_BORDER. */
+  private static final String BLUE_RIGHT_BORDER = &quot;b2&quot;;
+
+  /** Red value. */
+<span class="fc" id="L48">  private double value = 0;</span>
+
+  /** Blue value. */
+<span class="fc" id="L51">  private double value2 = 0;</span>
+
+  /** The min value. */
+<span class="fc" id="L54">  private double minValue = 0;</span>
+
+  /** The max value. */
+<span class="fc" id="L57">  private double maxValue = 100;</span>
+
+  /**
+   * Number of parts in one block.&lt;br&gt;
+   * It always must be 5 to match the 5 different gifs available at
+   * /src/main/webapp/css/classic/gifs
+   */
+<span class="fc" id="L64">  private int partialBlocks = 1;</span>
+
+  /**
+   * Total number of blocks.&lt;br&gt;
+   * fullBlocks + 2 img elements will be added to the page.&lt;br&gt;
+   * The plus 2 is due the left and right border.
+   */
+<span class="fc" id="L71">  private int fullBlocks = 5;</span>
+
+  /** The show empty blocks. */
+  private boolean showEmptyBlocks;
+
+  /** The show a. */
+  private boolean showA;
+
+  /** The show b. */
+  private boolean showB;
+
+  @Override
+  public int doAfterBody() throws JspException {
+<span class="nc" id="L84">    try (BodyContent bc = getBodyContent()) {</span>
+<span class="nc" id="L85">      String body = bc.getString().trim();</span>
+
+<span class="nc" id="L87">      String buf = calculateSuffix(body);</span>
+
+<span class="nc" id="L89">      bc.getEnclosingWriter().print(buf);</span>
+<span class="nc" id="L90">    } catch (IOException e) {</span>
+<span class="nc" id="L91">      throw new JspException(&quot;Exception while writing to client&quot;, e);</span>
+<span class="nc" id="L92">    }</span>
+
+<span class="nc" id="L94">    return SKIP_BODY;</span>
+  }
+
+  /**
+   * Calculate suffix.
+   *
+   * @param body the body
+   *
+   * @return the string buffer
+   */
+  String calculateSuffix(String body) {
+<span class="pc bpc" id="L105" title="1 of 2 branches missed.">    if (value &lt; minValue) {</span>
+<span class="nc" id="L106">      value = minValue;</span>
+    }
+<span class="pc bpc" id="L108" title="1 of 2 branches missed.">    if (value &gt; maxValue) {</span>
+<span class="nc" id="L109">      value = maxValue;</span>
+    }
+<span class="pc bpc" id="L111" title="2 of 4 branches missed.">    if (value + value2 &lt; minValue || value2 &lt; 0) {</span>
+<span class="nc" id="L112">      value2 = 0;</span>
+    }
+<span class="fc bfc" id="L114" title="All 2 branches covered.">    if (value + value2 &gt; maxValue) {</span>
+<span class="fc" id="L115">      value2 = maxValue - value;</span>
+    }
+
+<span class="fc" id="L118">    double unitSize = (maxValue - minValue) / (fullBlocks * partialBlocks);</span>
+<span class="fc" id="L119">    double blockWidth = unitSize * partialBlocks;</span>
+
+<span class="fc" id="L121">    int redWhole = (int) Math.floor(value / blockWidth);</span>
+<span class="fc" id="L122">    int redPart = (int) Math.floor((value - redWhole * blockWidth) / unitSize);</span>
+    int bluePart1 =
+<span class="fc bfc" id="L124" title="All 2 branches covered.">        redPart &gt; 0 ? Math.min((int) Math.floor(value2 / unitSize), partialBlocks - redPart) : 0;</span>
+<span class="fc bfc" id="L125" title="All 2 branches covered.">    int blueWhole = (int) Math.max(0, Math.ceil(value2 / blockWidth) - (redPart &gt; 0 ? 1 : 0));</span>
+<span class="fc" id="L126">    int bluePart2 =</span>
+<span class="fc" id="L127">        (int) Math.floor((value2 - blueWhole * blockWidth - bluePart1 * unitSize) / unitSize);</span>
+
+<span class="fc" id="L129">    StringBuilder buf = new StringBuilder();</span>
+
+    // Beginning
+<span class="pc bpc" id="L132" title="1 of 2 branches missed.">    if (showA) {</span>
+<span class="fc" id="L133">      String format = WHITE_LEFT_BORDER;</span>
+<span class="fc bfc" id="L134" title="All 4 branches covered.">      if (redWhole &gt; 0 || redPart &gt; 0) {</span>
+<span class="fc" id="L135">        format = RED_LEFT_BORDER;</span>
+<span class="pc bpc" id="L136" title="2 of 6 branches missed.">      } else if (bluePart1 == 0 &amp;&amp; (blueWhole &gt; 0 || bluePart2 &gt; 0)) {</span>
+
+<span class="fc" id="L138">        format = BLUE_LEFT_BORDER;</span>
+      }
+<span class="fc" id="L140">      buf.append(MessageFormat.format(body, format));</span>
+    }
+
+    // Full red blocks
+<span class="fc" id="L144">    String fullRedBody = MessageFormat.format(body, partialBlocks + &quot;+0&quot;);</span>
+<span class="fc bfc" id="L145" title="All 2 branches covered.">    for (int i = 0; i &lt; redWhole; i++) {</span>
+<span class="fc" id="L146">      buf.append(fullRedBody);</span>
+    }
+
+    // Mixed red/blue block (mid-block transition)
+<span class="fc bfc" id="L150" title="All 2 branches covered.">    if (redPart &gt; 0) {</span>
+<span class="fc" id="L151">      String partialBody = MessageFormat.format(body, redPart + &quot;+&quot; + bluePart1);</span>
+<span class="fc" id="L152">      buf.append(partialBody);</span>
+    }
+
+    // Full blue blocks
+<span class="fc" id="L156">    String fullBlueBody = MessageFormat.format(body, &quot;0+&quot; + partialBlocks);</span>
+<span class="fc bfc" id="L157" title="All 2 branches covered.">    for (int i = 0; i &lt; blueWhole; i++) {</span>
+<span class="fc" id="L158">      buf.append(fullBlueBody);</span>
+    }
+
+    // Partial blue block
+<span class="fc bfc" id="L162" title="All 2 branches covered.">    if (bluePart2 &gt; 0) {</span>
+<span class="fc" id="L163">      String partialBody = MessageFormat.format(body, &quot;0+&quot; + bluePart2);</span>
+<span class="fc" id="L164">      buf.append(partialBody);</span>
+    }
+
+    // Empty blocks
+<span class="pc bpc" id="L168" title="1 of 2 branches missed.">    int emptyBlocks = showEmptyBlocks</span>
+<span class="fc bfc" id="L169" title="All 4 branches covered.">        ? fullBlocks - (redWhole + blueWhole + (redPart &gt; 0 ? 1 : 0) + (bluePart2 &gt; 0 ? 1 : 0))</span>
+<span class="pc" id="L170">        : 0;</span>
+<span class="fc bfc" id="L171" title="All 2 branches covered.">    if (emptyBlocks &gt; 0) {</span>
+<span class="fc" id="L172">      String emptyBody = MessageFormat.format(body, &quot;0+0&quot;);</span>
+<span class="fc bfc" id="L173" title="All 2 branches covered.">      for (int i = 0; i &lt; emptyBlocks; i++) {</span>
+<span class="fc" id="L174">        buf.append(emptyBody);</span>
+      }
+    }
+
+    // End
+<span class="pc bpc" id="L179" title="1 of 2 branches missed.">    if (showB) {</span>
+<span class="fc" id="L180">      String format = WHITE_RIGHT_BORDER;</span>
+<span class="fc bfc" id="L181" title="All 2 branches covered.">      if (redWhole == fullBlocks) {</span>
+<span class="fc" id="L182">        format = RED_RIGHT_BORDER;</span>
+<span class="fc bfc" id="L183" title="All 4 branches covered.">      } else if (redWhole + (redPart + bluePart1 == partialBlocks ? 1 : 0)</span>
+          + blueWhole == fullBlocks) {
+<span class="fc" id="L185">        format = BLUE_RIGHT_BORDER;</span>
+      }
+<span class="fc" id="L187">      buf.append(MessageFormat.format(body, format));</span>
+    }
+
+<span class="fc" id="L190">    return buf.toString();</span>
+  }
+
+  /**
+   * Gets the value.
+   *
+   * @return the value
+   */
+  public double getValue() {
+<span class="fc" id="L199">    return value;</span>
+  }
+
+  /**
+   * Sets the value.
+   *
+   * @param value the new value
+   */
+  public void setValue(double value) {
+<span class="fc" id="L208">    this.value = value;</span>
+<span class="fc" id="L209">  }</span>
+
+  /**
+   * Gets the value2.
+   *
+   * @return the value2
+   */
+  public double getValue2() {
+<span class="fc" id="L217">    return value2;</span>
+  }
+
+  /**
+   * Sets the value2.
+   *
+   * @param value2 the new value2
+   */
+  public void setValue2(double value2) {
+<span class="fc" id="L226">    this.value2 = value2;</span>
+<span class="fc" id="L227">  }</span>
+
+  /**
+   * Gets the min value.
+   *
+   * @return the min value
+   */
+  public double getMinValue() {
+<span class="fc" id="L235">    return minValue;</span>
+  }
+
+  /**
+   * Sets the min value.
+   *
+   * @param minValue the new min value
+   */
+  public void setMinValue(double minValue) {
+<span class="fc" id="L244">    this.minValue = minValue;</span>
+<span class="fc" id="L245">  }</span>
+
+  /**
+   * Gets the max value.
+   *
+   * @return the max value
+   */
+  public double getMaxValue() {
+<span class="fc" id="L253">    return maxValue;</span>
+  }
+
+  /**
+   * Sets the max value.
+   *
+   * @param maxValue the new max value
+   */
+  public void setMaxValue(double maxValue) {
+<span class="fc" id="L262">    this.maxValue = maxValue;</span>
+<span class="fc" id="L263">  }</span>
+
+  /**
+   * Gets the partial blocks.
+   *
+   * @return the partial blocks
+   */
+  public int getPartialBlocks() {
+<span class="fc" id="L271">    return partialBlocks;</span>
+  }
+
+  /**
+   * Sets the partial blocks.
+   *
+   * @param partialBlocks the new partial blocks
+   */
+  public void setPartialBlocks(int partialBlocks) {
+<span class="fc" id="L280">    this.partialBlocks = partialBlocks;</span>
+<span class="fc" id="L281">  }</span>
+
+  /**
+   * Gets the full blocks.
+   *
+   * @return the full blocks
+   */
+  public int getFullBlocks() {
+<span class="fc" id="L289">    return fullBlocks;</span>
+  }
+
+  /**
+   * Sets the full blocks.
+   *
+   * @param fullBlocks the new full blocks
+   */
+  public void setFullBlocks(int fullBlocks) {
+<span class="fc" id="L298">    this.fullBlocks = fullBlocks;</span>
+<span class="fc" id="L299">  }</span>
+
+  /**
+   * Checks if is show empty blocks.
+   *
+   * @return true, if is show empty blocks
+   */
+  public boolean isShowEmptyBlocks() {
+<span class="fc" id="L307">    return showEmptyBlocks;</span>
+  }
+
+  /**
+   * Sets the show empty blocks.
+   *
+   * @param showEmptyBlocks the new show empty blocks
+   */
+  public void setShowEmptyBlocks(boolean showEmptyBlocks) {
+<span class="fc" id="L316">    this.showEmptyBlocks = showEmptyBlocks;</span>
+<span class="fc" id="L317">  }</span>
+
+  /**
+   * Checks if is show a.
+   *
+   * @return true, if is show a
+   */
+  public boolean isShowA() {
+<span class="fc" id="L325">    return showA;</span>
+  }
+
+  /**
+   * Sets the show a.
+   *
+   * @param showA the new show a
+   */
+  public void setShowA(boolean showA) {
+<span class="fc" id="L334">    this.showA = showA;</span>
+<span class="fc" id="L335">  }</span>
+
+  /**
+   * Checks if is show b.
+   *
+   * @return true, if is show b
+   */
+  public boolean isShowB() {
+<span class="fc" id="L343">    return showB;</span>
+  }
+
+  /**
+   * Sets the show b.
+   *
+   * @param showB the new show b
+   */
+  public void setShowB(boolean showB) {
+<span class="fc" id="L352">    this.showB = showB;</span>
+<span class="fc" id="L353">  }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

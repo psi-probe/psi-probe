@@ -1,0 +1,610 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>OshiController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">psi-probe-core</a> &gt; <a href="index.source.html" class="el_package">psiprobe.controllers.oshi</a> &gt; <span class="el_source">OshiController.java</span></div><h1>OshiController.java</h1><pre class="source lang-java linenums">/*
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ *
+ * THIS PACKAGE IS PROVIDED &quot;AS IS&quot; AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+ * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE.
+ */
+
+/*
+ * MIT License
+ *
+ * Copyright (c) 2010 - 2020 The OSHI Project Contributors: https://github.com/oshi/oshi/graphs/contributors
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the &quot;Software&quot;), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+package psiprobe.controllers.oshi;
+
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map.Entry;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import oshi.PlatformEnum;
+import oshi.SystemInfo;
+import oshi.hardware.CentralProcessor;
+import oshi.hardware.CentralProcessor.PhysicalProcessor;
+import oshi.hardware.CentralProcessor.TickType;
+import oshi.hardware.ComputerSystem;
+import oshi.hardware.Display;
+import oshi.hardware.GlobalMemory;
+import oshi.hardware.GraphicsCard;
+import oshi.hardware.HWDiskStore;
+import oshi.hardware.HWPartition;
+import oshi.hardware.HardwareAbstractionLayer;
+import oshi.hardware.LogicalVolumeGroup;
+import oshi.hardware.NetworkIF;
+import oshi.hardware.PhysicalMemory;
+import oshi.hardware.PowerSource;
+import oshi.hardware.Sensors;
+import oshi.hardware.SoundCard;
+import oshi.hardware.UsbDevice;
+import oshi.hardware.VirtualMemory;
+import oshi.software.os.FileSystem;
+import oshi.software.os.InternetProtocolStats;
+import oshi.software.os.NetworkParams;
+import oshi.software.os.OSFileStore;
+import oshi.software.os.OSProcess;
+import oshi.software.os.OSService;
+import oshi.software.os.OSSession;
+import oshi.software.os.OperatingSystem;
+import oshi.software.os.OperatingSystem.ProcessFiltering;
+import oshi.software.os.OperatingSystem.ProcessSorting;
+import oshi.util.FormatUtil;
+import oshi.util.Util;
+
+import psiprobe.controllers.AbstractTomcatContainerController;
+
+/**
+ * Creates an instance of Operating System and Hardware Information based on Oshi SystemInfoTest.
+ * &lt;p&gt;
+ * A demonstration of access to many of OSHI's capabilities
+ */
+@Controller
+<span class="fc" id="L94">public class OshiController extends AbstractTomcatContainerController {</span>
+
+  /** The Constant logger. */
+<span class="fc" id="L97">  private static final Logger logger = LoggerFactory.getLogger(OshiController.class);</span>
+
+  /** Oshi Cache. */
+<span class="fc" id="L100">  private static List&lt;String&gt; oshi = new ArrayList&lt;&gt;();</span>
+
+  @RequestMapping(path = &quot;/adm/oshi.htm&quot;)
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
+<span class="nc" id="L106">    return super.handleRequest(request, response);</span>
+  }
+
+  @Override
+  protected ModelAndView handleRequestInternal(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+
+<span class="nc bnc" id="L113" title="All 2 branches missed.">    if (!oshi.isEmpty()) {</span>
+<span class="nc" id="L114">      ModelAndView mv = new ModelAndView(getViewName());</span>
+<span class="nc" id="L115">      mv.addObject(&quot;oshi&quot;, oshi);</span>
+<span class="nc" id="L116">      return mv;</span>
+    }
+
+    // TODO: Remove once no longer experimental
+<span class="nc" id="L120">    oshi.add(</span>
+        &quot;Oshi results are performed as a system dump to screen here using Oshi SystemInfoTest logic.&quot;);
+<span class="nc" id="L122">    oshi.add(</span>
+        &quot;Please be advised this is experimental in use and is slow. Resulting data is entirely cached.&quot;);
+<span class="nc" id="L124">    oshi.add(&quot;Issues with library should be directed to https://github.com/oshi/oshi&quot;);</span>
+<span class="nc" id="L125">    oshi.add(&quot;For issues with our library usage of Oshi, please submit pull requests&quot;);</span>
+<span class="nc" id="L126">    oshi.add(&quot;&quot;);</span>
+<span class="nc" id="L127">    oshi.add(&quot;&quot;);</span>
+
+<span class="nc" id="L129">    this.initialize();</span>
+
+<span class="nc" id="L131">    ModelAndView mv = new ModelAndView(getViewName());</span>
+<span class="nc" id="L132">    mv.addObject(&quot;oshi&quot;, oshi);</span>
+<span class="nc" id="L133">    return mv;</span>
+  }
+
+  @Value(&quot;oshi&quot;)
+  @Override
+  public void setViewName(String viewName) {
+<span class="fc" id="L139">    super.setViewName(viewName);</span>
+<span class="fc" id="L140">  }</span>
+
+  /**
+   * Process initialization using Oshi System Info Test.
+   * &lt;p&gt;
+   * Code copied and adjusted for Psi Probem from Oshi SystemInfoTest.main at revision
+   *
+   * &lt;pre&gt;
+   * https://github.com/oshi/oshi/blob/cf45b1f528f99ca353655dea5f154940c76c0bdb/oshi-core/src/test/java/oshi/SystemInfoTest.java
+   * &lt;/pre&gt;
+   *
+   * &lt;pre&gt;
+   * Psi Probe differences
+   * - Noted directly in area of change as possible
+   * - Logging switched from 'info' to 'debug'
+   * - Javadocs throughout
+   * - Formatting differences (2 vs 4 spaces)
+   * &lt;/pre&gt;
+   */
+  private void initialize() {
+<span class="nc" id="L160">    logger.debug(&quot;Initializing System...&quot;);</span>
+<span class="nc" id="L161">    SystemInfo si = new SystemInfo();</span>
+
+    // Psi Probe adjusted oshi initial test to confirm platform supported before attempting to run
+<span class="nc bnc" id="L164" title="All 2 branches missed.">    if (PlatformEnum.UNKNOWN.equals(SystemInfo.getCurrentPlatform())) {</span>
+<span class="nc" id="L165">      logger.error(&quot;Oshi not supported on current platform&quot;);</span>
+<span class="nc" id="L166">      oshi.add(&quot;Oshi not supported on current platform&quot;);</span>
+<span class="nc" id="L167">      oshi.add(&quot;&quot;);</span>
+<span class="nc" id="L168">      return;</span>
+    }
+
+<span class="nc" id="L171">    HardwareAbstractionLayer hal = si.getHardware();</span>
+<span class="nc" id="L172">    OperatingSystem os = si.getOperatingSystem();</span>
+
+<span class="nc" id="L174">    printOperatingSystem(os);</span>
+
+<span class="nc" id="L176">    logger.debug(&quot;Checking computer system...&quot;);</span>
+<span class="nc" id="L177">    printComputerSystem(hal.getComputerSystem());</span>
+
+<span class="nc" id="L179">    logger.debug(&quot;Checking Processor...&quot;);</span>
+<span class="nc" id="L180">    printProcessor(hal.getProcessor());</span>
+
+<span class="nc" id="L182">    logger.debug(&quot;Checking Memory...&quot;);</span>
+<span class="nc" id="L183">    printMemory(hal.getMemory());</span>
+
+<span class="nc" id="L185">    logger.debug(&quot;Checking CPU...&quot;);</span>
+<span class="nc" id="L186">    printCpu(hal.getProcessor());</span>
+
+<span class="nc" id="L188">    logger.debug(&quot;Checking Processes...&quot;);</span>
+<span class="nc" id="L189">    printProcesses(os, hal.getMemory());</span>
+
+<span class="nc" id="L191">    logger.debug(&quot;Checking Services...&quot;);</span>
+<span class="nc" id="L192">    printServices(os);</span>
+
+<span class="nc" id="L194">    logger.debug(&quot;Checking Sensors...&quot;);</span>
+<span class="nc" id="L195">    printSensors(hal.getSensors());</span>
+
+<span class="nc" id="L197">    logger.debug(&quot;Checking Power sources...&quot;);</span>
+<span class="nc" id="L198">    printPowerSources(hal.getPowerSources());</span>
+
+<span class="nc" id="L200">    logger.debug(&quot;Checking Disks...&quot;);</span>
+<span class="nc" id="L201">    printDisks(hal.getDiskStores());</span>
+
+<span class="nc" id="L203">    logger.debug(&quot;Checking Logical Volume Groups ...&quot;);</span>
+<span class="nc" id="L204">    printLogicalVolumegroups(hal.getLogicalVolumeGroups());</span>
+
+<span class="nc" id="L206">    logger.debug(&quot;Checking File System...&quot;);</span>
+<span class="nc" id="L207">    printFileSystem(os.getFileSystem());</span>
+
+<span class="nc" id="L209">    logger.debug(&quot;Checking Network interfaces...&quot;);</span>
+<span class="nc" id="L210">    printNetworkInterfaces(hal.getNetworkIFs());</span>
+
+<span class="nc" id="L212">    logger.debug(&quot;Checking Network parameters...&quot;);</span>
+<span class="nc" id="L213">    printNetworkParameters(os.getNetworkParams());</span>
+
+<span class="nc" id="L215">    logger.debug(&quot;Checking IP statistics...&quot;);</span>
+<span class="nc" id="L216">    printInternetProtocolStats(os.getInternetProtocolStats());</span>
+
+<span class="nc" id="L218">    logger.debug(&quot;Checking Displays...&quot;);</span>
+<span class="nc" id="L219">    printDisplays(hal.getDisplays());</span>
+
+<span class="nc" id="L221">    logger.debug(&quot;Checking USB Devices...&quot;);</span>
+<span class="nc" id="L222">    printUsbDevices(hal.getUsbDevices(true));</span>
+
+<span class="nc" id="L224">    logger.debug(&quot;Checking Sound Cards...&quot;);</span>
+<span class="nc" id="L225">    printSoundCards(hal.getSoundCards());</span>
+
+<span class="nc" id="L227">    logger.debug(&quot;Checking Graphics Cards...&quot;);</span>
+<span class="nc" id="L228">    printGraphicsCards(hal.getGraphicsCards());</span>
+
+    // Psi Probe addition to note finished
+<span class="nc" id="L231">    oshi.add(&quot;Finished Operating System and Hardware Info Dump&quot;);</span>
+
+<span class="nc" id="L233">    StringBuilder output = new StringBuilder();</span>
+<span class="nc bnc" id="L234" title="All 2 branches missed.">    for (String element : oshi) {</span>
+<span class="nc" id="L235">      output.append(element);</span>
+      // Psi Probe fix as output check 'endsWith' was wrong
+<span class="nc bnc" id="L237" title="All 2 branches missed.">      if (!&quot;\n&quot;.equals(element)) {</span>
+<span class="nc" id="L238">        output.append('\n');</span>
+      }
+<span class="nc" id="L240">    }</span>
+<span class="nc" id="L241">    logger.info(&quot;Printing Operating System and Hardware Info:{}{}&quot;, '\n', output);</span>
+<span class="nc" id="L242">  }</span>
+
+  /**
+   * Prints the operating system.
+   *
+   * @param operatingSystem the operating system
+   */
+  private static void printOperatingSystem(final OperatingSystem operatingSystem) {
+<span class="nc" id="L250">    oshi.add(String.valueOf(operatingSystem));</span>
+<span class="nc" id="L251">    oshi.add(&quot;Booted: &quot; + Instant.ofEpochSecond(operatingSystem.getSystemBootTime()));</span>
+<span class="nc" id="L252">    oshi.add(&quot;Uptime: &quot; + FormatUtil.formatElapsedSecs(operatingSystem.getSystemUptime()));</span>
+<span class="nc" id="L253">    oshi.add(</span>
+<span class="nc bnc" id="L254" title="All 2 branches missed.">        &quot;Running with&quot; + (operatingSystem.isElevated() ? &quot;&quot; : &quot;out&quot;) + &quot; elevated permissions.&quot;);</span>
+<span class="nc" id="L255">    oshi.add(&quot;Sessions:&quot;);</span>
+<span class="nc bnc" id="L256" title="All 2 branches missed.">    for (OSSession s : operatingSystem.getSessions()) {</span>
+<span class="nc" id="L257">      oshi.add(&quot; &quot; + s.toString());</span>
+<span class="nc" id="L258">    }</span>
+<span class="nc" id="L259">  }</span>
+
+  /**
+   * Prints the computer system.
+   *
+   * @param computerSystem the computer system
+   */
+  private static void printComputerSystem(final ComputerSystem computerSystem) {
+<span class="nc" id="L267">    oshi.add(&quot;System: &quot; + computerSystem.toString());</span>
+<span class="nc" id="L268">    oshi.add(&quot; Firmware: &quot; + computerSystem.getFirmware().toString());</span>
+<span class="nc" id="L269">    oshi.add(&quot; Baseboard: &quot; + computerSystem.getBaseboard().toString());</span>
+<span class="nc" id="L270">  }</span>
+
+  /**
+   * Prints the processor.
+   *
+   * @param processor the processor
+   */
+  private static void printProcessor(CentralProcessor processor) {
+<span class="nc" id="L278">    oshi.add(processor.toString());</span>
+<span class="nc" id="L279">    oshi.add(&quot; Cores:&quot;);</span>
+<span class="nc bnc" id="L280" title="All 2 branches missed.">    for (PhysicalProcessor p : processor.getPhysicalProcessors()) {</span>
+<span class="nc" id="L281">      oshi.add(</span>
+<span class="nc bnc" id="L282" title="All 2 branches missed.">          &quot;  &quot; + (processor.getPhysicalPackageCount() &gt; 1 ? p.getPhysicalPackageNumber() + &quot;,&quot; : &quot;&quot;)</span>
+<span class="nc" id="L283">              + p.getPhysicalProcessorNumber() + &quot;: efficiency=&quot; + p.getEfficiency() + &quot;, id=&quot;</span>
+<span class="nc" id="L284">              + p.getIdString());</span>
+<span class="nc" id="L285">    }</span>
+<span class="nc" id="L286">  }</span>
+
+  /**
+   * Prints the memory.
+   *
+   * @param memory the memory
+   */
+  private static void printMemory(GlobalMemory memory) {
+<span class="nc" id="L294">    oshi.add(&quot;Physical Memory: \n &quot; + memory.toString());</span>
+<span class="nc" id="L295">    VirtualMemory vm = memory.getVirtualMemory();</span>
+<span class="nc" id="L296">    oshi.add(&quot;Virtual Memory: \n &quot; + vm.toString());</span>
+<span class="nc" id="L297">    List&lt;PhysicalMemory&gt; pmList = memory.getPhysicalMemory();</span>
+<span class="nc bnc" id="L298" title="All 2 branches missed.">    if (!pmList.isEmpty()) {</span>
+<span class="nc" id="L299">      oshi.add(&quot;Physical Memory: &quot;);</span>
+<span class="nc bnc" id="L300" title="All 2 branches missed.">      for (PhysicalMemory pm : pmList) {</span>
+<span class="nc" id="L301">        oshi.add(&quot; &quot; + pm.toString());</span>
+<span class="nc" id="L302">      }</span>
+    }
+<span class="nc" id="L304">  }</span>
+
+  /**
+   * Prints the cpu.
+   *
+   * @param processor the processor
+   */
+  private static void printCpu(CentralProcessor processor) {
+<span class="nc" id="L312">    oshi.add(&quot;Context Switches/Interrupts: &quot; + processor.getContextSwitches() + &quot; / &quot;</span>
+<span class="nc" id="L313">        + processor.getInterrupts());</span>
+
+<span class="nc" id="L315">    long[] prevTicks = processor.getSystemCpuLoadTicks();</span>
+<span class="nc" id="L316">    oshi.add(&quot;CPU, IOWait, and IRQ ticks @ 0 sec:&quot; + Arrays.toString(prevTicks));</span>
+    // Wait a second...
+<span class="nc" id="L318">    Util.sleep(1000);</span>
+<span class="nc" id="L319">    long[] ticks = processor.getSystemCpuLoadTicks();</span>
+<span class="nc" id="L320">    oshi.add(&quot;CPU, IOWait, and IRQ ticks @ 1 sec:&quot; + Arrays.toString(ticks));</span>
+<span class="nc" id="L321">    long user = ticks[TickType.USER.getIndex()] - prevTicks[TickType.USER.getIndex()];</span>
+<span class="nc" id="L322">    long nice = ticks[TickType.NICE.getIndex()] - prevTicks[TickType.NICE.getIndex()];</span>
+<span class="nc" id="L323">    long sys = ticks[TickType.SYSTEM.getIndex()] - prevTicks[TickType.SYSTEM.getIndex()];</span>
+<span class="nc" id="L324">    long idle = ticks[TickType.IDLE.getIndex()] - prevTicks[TickType.IDLE.getIndex()];</span>
+<span class="nc" id="L325">    long iowait = ticks[TickType.IOWAIT.getIndex()] - prevTicks[TickType.IOWAIT.getIndex()];</span>
+<span class="nc" id="L326">    long irq = ticks[TickType.IRQ.getIndex()] - prevTicks[TickType.IRQ.getIndex()];</span>
+<span class="nc" id="L327">    long softirq = ticks[TickType.SOFTIRQ.getIndex()] - prevTicks[TickType.SOFTIRQ.getIndex()];</span>
+<span class="nc" id="L328">    long steal = ticks[TickType.STEAL.getIndex()] - prevTicks[TickType.STEAL.getIndex()];</span>
+<span class="nc" id="L329">    long totalCpu = user + nice + sys + idle + iowait + irq + softirq + steal;</span>
+
+<span class="nc" id="L331">    oshi.add(String.format(</span>
+        &quot;User: %.1f%% Nice: %.1f%% System: %.1f%% Idle: %.1f%% IOwait: %.1f%% IRQ: %.1f%% SoftIRQ: %.1f%% Steal: %.1f%%&quot;,
+<span class="nc" id="L333">        100d * user / totalCpu, 100d * nice / totalCpu, 100d * sys / totalCpu,</span>
+<span class="nc" id="L334">        100d * idle / totalCpu, 100d * iowait / totalCpu, 100d * irq / totalCpu,</span>
+<span class="nc" id="L335">        100d * softirq / totalCpu, 100d * steal / totalCpu));</span>
+<span class="nc" id="L336">    oshi.add(</span>
+<span class="nc" id="L337">        String.format(&quot;CPU load: %.1f%%&quot;, processor.getSystemCpuLoadBetweenTicks(prevTicks) * 100));</span>
+<span class="nc" id="L338">    double[] loadAverage = processor.getSystemLoadAverage(3);</span>
+<span class="nc" id="L339">    oshi.add(&quot;CPU load averages:&quot;</span>
+<span class="nc bnc" id="L340" title="All 2 branches missed.">        + (loadAverage[0] &lt; 0 ? &quot; N/A&quot; : String.format(&quot; %.2f&quot;, loadAverage[0]))</span>
+<span class="nc bnc" id="L341" title="All 2 branches missed.">        + (loadAverage[1] &lt; 0 ? &quot; N/A&quot; : String.format(&quot; %.2f&quot;, loadAverage[1]))</span>
+<span class="nc bnc" id="L342" title="All 2 branches missed.">        + (loadAverage[2] &lt; 0 ? &quot; N/A&quot; : String.format(&quot; %.2f&quot;, loadAverage[2])));</span>
+    // per core CPU
+<span class="nc" id="L344">    StringBuilder procCpu = new StringBuilder(&quot;CPU load per processor:&quot;);</span>
+<span class="nc" id="L345">    long[][] prevProcTicks = processor.getProcessorCpuLoadTicks();</span>
+<span class="nc" id="L346">    double[] load = processor.getProcessorCpuLoadBetweenTicks(prevProcTicks);</span>
+<span class="nc bnc" id="L347" title="All 2 branches missed.">    for (double avg : load) {</span>
+<span class="nc" id="L348">      procCpu.append(String.format(&quot; %.1f%%&quot;, avg * 100));</span>
+    }
+<span class="nc" id="L350">    oshi.add(procCpu.toString());</span>
+<span class="nc" id="L351">    long freq = processor.getProcessorIdentifier().getVendorFreq();</span>
+<span class="nc bnc" id="L352" title="All 2 branches missed.">    if (freq &gt; 0) {</span>
+<span class="nc" id="L353">      oshi.add(&quot;Vendor Frequency: &quot; + FormatUtil.formatHertz(freq));</span>
+    }
+<span class="nc" id="L355">    freq = processor.getMaxFreq();</span>
+<span class="nc bnc" id="L356" title="All 2 branches missed.">    if (freq &gt; 0) {</span>
+<span class="nc" id="L357">      oshi.add(&quot;Max Frequency: &quot; + FormatUtil.formatHertz(freq));</span>
+    }
+<span class="nc" id="L359">    long[] freqs = processor.getCurrentFreq();</span>
+<span class="nc bnc" id="L360" title="All 2 branches missed.">    if (freqs[0] &gt; 0) {</span>
+<span class="nc" id="L361">      StringBuilder sb = new StringBuilder(&quot;Current Frequencies: &quot;);</span>
+<span class="nc bnc" id="L362" title="All 2 branches missed.">      for (int i = 0; i &lt; freqs.length; i++) {</span>
+<span class="nc bnc" id="L363" title="All 2 branches missed.">        if (i &gt; 0) {</span>
+<span class="nc" id="L364">          sb.append(&quot;, &quot;);</span>
+        }
+<span class="nc" id="L366">        sb.append(FormatUtil.formatHertz(freqs[i]));</span>
+      }
+<span class="nc" id="L368">      oshi.add(sb.toString());</span>
+    }
+<span class="nc" id="L370">  }</span>
+
+  /**
+   * Prints the processes.
+   *
+   * @param os the os
+   * @param memory the memory
+   */
+  private static void printProcesses(OperatingSystem os, GlobalMemory memory) {
+<span class="nc" id="L379">    OSProcess myProc = os.getProcess(os.getProcessId());</span>
+    // current process will never be null. Other code should check for null here
+<span class="nc" id="L381">    oshi.add(&quot;My PID: &quot; + myProc.getProcessID() + &quot; with affinity &quot;</span>
+<span class="nc" id="L382">        + Long.toBinaryString(myProc.getAffinityMask()));</span>
+<span class="nc" id="L383">    oshi.add(&quot;Processes: &quot; + os.getProcessCount() + &quot;, Threads: &quot; + os.getThreadCount());</span>
+    // Sort by highest CPU
+<span class="nc" id="L385">    List&lt;OSProcess&gt; procs =</span>
+<span class="nc" id="L386">        os.getProcesses(ProcessFiltering.ALL_PROCESSES, ProcessSorting.CPU_DESC, 5);</span>
+<span class="nc" id="L387">    oshi.add(&quot;   PID  %CPU %MEM       VSZ       RSS Name&quot;);</span>
+<span class="nc bnc" id="L388" title="All 4 branches missed.">    for (int i = 0; i &lt; procs.size() &amp;&amp; i &lt; 5; i++) {</span>
+<span class="nc" id="L389">      OSProcess p = procs.get(i);</span>
+<span class="nc" id="L390">      oshi.add(String.format(&quot; %5d %5.1f %4.1f %9s %9s %s&quot;, p.getProcessID(),</span>
+<span class="nc" id="L391">          100d * (p.getKernelTime() + p.getUserTime()) / p.getUpTime(),</span>
+<span class="nc" id="L392">          100d * p.getResidentSetSize() / memory.getTotal(),</span>
+<span class="nc" id="L393">          FormatUtil.formatBytes(p.getVirtualSize()),</span>
+<span class="nc" id="L394">          FormatUtil.formatBytes(p.getResidentSetSize()), p.getName()));</span>
+    }
+<span class="nc" id="L396">    OSProcess p = os.getProcess(os.getProcessId());</span>
+<span class="nc" id="L397">    oshi.add(&quot;Current process arguments: &quot;);</span>
+<span class="nc bnc" id="L398" title="All 2 branches missed.">    for (String s : p.getArguments()) {</span>
+<span class="nc" id="L399">      oshi.add(&quot;  &quot; + s);</span>
+<span class="nc" id="L400">    }</span>
+<span class="nc" id="L401">    oshi.add(&quot;Current process environment: &quot;);</span>
+<span class="nc bnc" id="L402" title="All 2 branches missed.">    for (Entry&lt;String, String&gt; e : p.getEnvironmentVariables().entrySet()) {</span>
+<span class="nc" id="L403">      oshi.add(&quot;  &quot; + e.getKey() + '=' + e.getValue());</span>
+<span class="nc" id="L404">    }</span>
+<span class="nc" id="L405">  }</span>
+
+  /**
+   * Prints the services.
+   *
+   * @param os the operating system
+   */
+  private static void printServices(OperatingSystem os) {
+<span class="nc" id="L413">    oshi.add(&quot;Services: &quot;);</span>
+<span class="nc" id="L414">    oshi.add(&quot;   PID   State   Name&quot;);</span>
+    // DO 5 each of running and stopped
+<span class="nc" id="L416">    int i = 0;</span>
+<span class="nc bnc" id="L417" title="All 2 branches missed.">    for (OSService s : os.getServices()) {</span>
+<span class="nc bnc" id="L418" title="All 4 branches missed.">      if (s.getState().equals(OSService.State.RUNNING) &amp;&amp; i++ &lt; 5) {</span>
+<span class="nc" id="L419">        oshi.add(String.format(&quot; %5d  %7s  %s&quot;, s.getProcessID(), s.getState(), s.getName()));</span>
+      }
+<span class="nc" id="L421">    }</span>
+<span class="nc" id="L422">    i = 0;</span>
+<span class="nc bnc" id="L423" title="All 2 branches missed.">    for (OSService s : os.getServices()) {</span>
+<span class="nc bnc" id="L424" title="All 4 branches missed.">      if (s.getState().equals(OSService.State.STOPPED) &amp;&amp; i++ &lt; 5) {</span>
+<span class="nc" id="L425">        oshi.add(String.format(&quot; %5d  %7s  %s&quot;, s.getProcessID(), s.getState(), s.getName()));</span>
+      }
+<span class="nc" id="L427">    }</span>
+<span class="nc" id="L428">  }</span>
+
+  /**
+   * Prints the sensors.
+   *
+   * @param sensors the sensors
+   */
+  private static void printSensors(Sensors sensors) {
+<span class="nc" id="L436">    oshi.add(&quot;Sensors: &quot; + sensors.toString());</span>
+<span class="nc" id="L437">  }</span>
+
+  /**
+   * Prints the power sources.
+   *
+   * @param list the power sources
+   */
+  private static void printPowerSources(List&lt;PowerSource&gt; list) {
+<span class="nc" id="L445">    StringBuilder sb = new StringBuilder(&quot;Power Sources: &quot;);</span>
+<span class="nc bnc" id="L446" title="All 2 branches missed.">    if (list.isEmpty()) {</span>
+<span class="nc" id="L447">      sb.append(&quot;Unknown&quot;);</span>
+    }
+<span class="nc bnc" id="L449" title="All 2 branches missed.">    for (PowerSource powerSource : list) {</span>
+<span class="nc" id="L450">      sb.append(&quot;\n &quot;).append(powerSource.toString());</span>
+<span class="nc" id="L451">    }</span>
+<span class="nc" id="L452">    oshi.add(sb.toString());</span>
+<span class="nc" id="L453">  }</span>
+
+  /**
+   * Prints the disks.
+   *
+   * @param list the disk stores
+   */
+  private static void printDisks(List&lt;HWDiskStore&gt; list) {
+<span class="nc" id="L461">    oshi.add(&quot;Disks:&quot;);</span>
+<span class="nc bnc" id="L462" title="All 2 branches missed.">    for (HWDiskStore disk : list) {</span>
+<span class="nc" id="L463">      oshi.add(&quot; &quot; + disk.toString());</span>
+
+<span class="nc" id="L465">      List&lt;HWPartition&gt; partitions = disk.getPartitions();</span>
+<span class="nc bnc" id="L466" title="All 2 branches missed.">      for (HWPartition part : partitions) {</span>
+<span class="nc" id="L467">        oshi.add(&quot; |-- &quot; + part.toString());</span>
+<span class="nc" id="L468">      }</span>
+<span class="nc" id="L469">    }</span>
+
+<span class="nc" id="L471">  }</span>
+
+  /**
+   * Prints the logical volume groups.
+   *
+   * @param list the logical volume groups
+   */
+  private static void printLogicalVolumegroups(List&lt;LogicalVolumeGroup&gt; list) {
+<span class="nc bnc" id="L479" title="All 2 branches missed.">    if (!list.isEmpty()) {</span>
+<span class="nc" id="L480">      oshi.add(&quot;Logical Volume Groups:&quot;);</span>
+<span class="nc bnc" id="L481" title="All 2 branches missed.">      for (LogicalVolumeGroup lvg : list) {</span>
+<span class="nc" id="L482">        oshi.add(&quot; &quot; + lvg.toString());</span>
+<span class="nc" id="L483">      }</span>
+    }
+<span class="nc" id="L485">  }</span>
+
+  /**
+   * Prints the file system.
+   *
+   * @param fileSystem the file system
+   */
+  private static void printFileSystem(FileSystem fileSystem) {
+<span class="nc" id="L493">    oshi.add(&quot;File System:&quot;);</span>
+
+<span class="nc" id="L495">    oshi.add(String.format(&quot; File Descriptors: %d/%d&quot;, fileSystem.getOpenFileDescriptors(),</span>
+<span class="nc" id="L496">        fileSystem.getMaxFileDescriptors()));</span>
+
+<span class="nc bnc" id="L498" title="All 2 branches missed.">    for (OSFileStore fs : fileSystem.getFileStores()) {</span>
+<span class="nc" id="L499">      long usable = fs.getUsableSpace();</span>
+<span class="nc" id="L500">      long total = fs.getTotalSpace();</span>
+<span class="nc" id="L501">      oshi.add(String.format(</span>
+          &quot; %s (%s) [%s] %s of %s free (%.1f%%), %s of %s files free (%.1f%%) is %s &quot;
+<span class="nc bnc" id="L503" title="All 4 branches missed.">              + (fs.getLogicalVolume() != null &amp;&amp; fs.getLogicalVolume().length() &gt; 0 ? &quot;[%s]&quot;</span>
+<span class="nc" id="L504">                  : &quot;%s&quot;)</span>
+              + &quot; and is mounted at %s&quot;,
+<span class="nc bnc" id="L506" title="All 2 branches missed.">          fs.getName(), fs.getDescription().isEmpty() ? &quot;file system&quot; : fs.getDescription(),</span>
+<span class="nc" id="L507">          fs.getType(), FormatUtil.formatBytes(usable), FormatUtil.formatBytes(fs.getTotalSpace()),</span>
+<span class="nc" id="L508">          100d * usable / total, FormatUtil.formatValue(fs.getFreeInodes(), &quot;&quot;),</span>
+<span class="nc" id="L509">          FormatUtil.formatValue(fs.getTotalInodes(), &quot;&quot;),</span>
+<span class="nc" id="L510">          100d * fs.getFreeInodes() / fs.getTotalInodes(), fs.getVolume(), fs.getLogicalVolume(),</span>
+<span class="nc" id="L511">          fs.getMount()));</span>
+<span class="nc" id="L512">    }</span>
+<span class="nc" id="L513">  }</span>
+
+  /**
+   * Prints the network interfaces.
+   *
+   * @param list the network interfaces
+   */
+  private static void printNetworkInterfaces(List&lt;NetworkIF&gt; list) {
+<span class="nc" id="L521">    StringBuilder sb = new StringBuilder(&quot;Network Interfaces:&quot;);</span>
+<span class="nc bnc" id="L522" title="All 2 branches missed.">    if (list.isEmpty()) {</span>
+<span class="nc" id="L523">      sb.append(&quot; Unknown&quot;);</span>
+    } else {
+<span class="nc bnc" id="L525" title="All 2 branches missed.">      for (NetworkIF net : list) {</span>
+<span class="nc" id="L526">        sb.append(&quot;\n &quot;).append(net.toString());</span>
+<span class="nc" id="L527">      }</span>
+    }
+<span class="nc" id="L529">    oshi.add(sb.toString());</span>
+<span class="nc" id="L530">  }</span>
+
+  /**
+   * Prints the network parameters.
+   *
+   * @param networkParams the network params
+   */
+  private static void printNetworkParameters(NetworkParams networkParams) {
+<span class="nc" id="L538">    oshi.add(&quot;Network parameters:\n &quot; + networkParams.toString());</span>
+<span class="nc" id="L539">  }</span>
+
+  /**
+   * Prints the internet protocol stats.
+   *
+   * @param internetProtocolStats the internet protocal stats
+   */
+  private static void printInternetProtocolStats(InternetProtocolStats internetProtocolStats) {
+<span class="nc" id="L547">    oshi.add(&quot;Internet Protocol statistics:&quot;);</span>
+<span class="nc" id="L548">    oshi.add(&quot; TCPv4: &quot; + internetProtocolStats.getTCPv4Stats());</span>
+<span class="nc" id="L549">    oshi.add(&quot; TCPv6: &quot; + internetProtocolStats.getTCPv6Stats());</span>
+<span class="nc" id="L550">    oshi.add(&quot; UDPv4: &quot; + internetProtocolStats.getUDPv4Stats());</span>
+<span class="nc" id="L551">    oshi.add(&quot; UDPv6: &quot; + internetProtocolStats.getUDPv6Stats());</span>
+<span class="nc" id="L552">  }</span>
+
+  /**
+   * Prints the displays.
+   *
+   * @param list the displays
+   */
+  private static void printDisplays(List&lt;Display&gt; list) {
+<span class="nc" id="L560">    oshi.add(&quot;Displays:&quot;);</span>
+<span class="nc" id="L561">    int i = 0;</span>
+<span class="nc bnc" id="L562" title="All 2 branches missed.">    for (Display display : list) {</span>
+<span class="nc" id="L563">      oshi.add(&quot; Display &quot; + i + &quot;:&quot;);</span>
+<span class="nc" id="L564">      oshi.add(String.valueOf(display));</span>
+<span class="nc" id="L565">      i++;</span>
+<span class="nc" id="L566">    }</span>
+<span class="nc" id="L567">  }</span>
+
+  /**
+   * Prints the usb devices.
+   *
+   * @param list the usb devices
+   */
+  private static void printUsbDevices(List&lt;UsbDevice&gt; list) {
+<span class="nc" id="L575">    oshi.add(&quot;USB Devices:&quot;);</span>
+<span class="nc bnc" id="L576" title="All 2 branches missed.">    for (UsbDevice usbDevice : list) {</span>
+<span class="nc" id="L577">      oshi.add(String.valueOf(usbDevice));</span>
+<span class="nc" id="L578">    }</span>
+<span class="nc" id="L579">  }</span>
+
+  /**
+   * Prints the sound cards.
+   *
+   * @param list the sound cards
+   */
+  private static void printSoundCards(List&lt;SoundCard&gt; list) {
+<span class="nc" id="L587">    oshi.add(&quot;Sound Cards:&quot;);</span>
+<span class="nc bnc" id="L588" title="All 2 branches missed.">    for (SoundCard card : list) {</span>
+<span class="nc" id="L589">      oshi.add(&quot; &quot; + String.valueOf(card));</span>
+<span class="nc" id="L590">    }</span>
+<span class="nc" id="L591">  }</span>
+
+  /**
+   * Prints the graphic cards.
+   *
+   * @param list the graphics cards
+   */
+  private static void printGraphicsCards(List&lt;GraphicsCard&gt; list) {
+<span class="nc" id="L599">    oshi.add(&quot;Graphics Cards:&quot;);</span>
+<span class="nc bnc" id="L600" title="All 2 branches missed.">    if (list.isEmpty()) {</span>
+<span class="nc" id="L601">      oshi.add(&quot; None detected.&quot;);</span>
+    } else {
+<span class="nc bnc" id="L603" title="All 2 branches missed.">      for (GraphicsCard card : list) {</span>
+<span class="nc" id="L604">        oshi.add(&quot; &quot; + String.valueOf(card));</span>
+<span class="nc" id="L605">      }</span>
+    }
+<span class="nc" id="L607">  }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

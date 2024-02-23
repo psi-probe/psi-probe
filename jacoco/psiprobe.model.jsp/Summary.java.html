@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Summary.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">psi-probe-core</a> &gt; <a href="index.source.html" class="el_package">psiprobe.model.jsp</a> &gt; <span class="el_source">Summary.java</span></div><h1>Summary.java</h1><pre class="source lang-java linenums">/*
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ *
+ * THIS PACKAGE IS PROVIDED &quot;AS IS&quot; AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+ * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE.
+ */
+package psiprobe.model.jsp;
+
+import java.io.Serializable;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * The Class Summary.
+ */
+<span class="fc" id="L21">public class Summary implements Serializable {</span>
+
+  /** The Constant serialVersionUID. */
+  private static final long serialVersionUID = 1L;
+
+  /** The name. */
+  private String name;
+
+  /** The items. */
+  private Map&lt;String, Item&gt; items;
+
+  /** The out of date count. */
+  private int outOfDateCount;
+
+  /**
+   * Gets the name.
+   *
+   * @return the name
+   */
+  public String getName() {
+<span class="fc" id="L41">    return name;</span>
+  }
+
+  /**
+   * Sets the name.
+   *
+   * @param name the new name
+   */
+  public void setName(String name) {
+<span class="fc" id="L50">    this.name = name;</span>
+<span class="fc" id="L51">  }</span>
+
+  /**
+   * Gets the items.
+   *
+   * @return the items
+   */
+  public Map&lt;String, Item&gt; getItems() {
+<span class="pc bpc" id="L59" title="1 of 2 branches missed.">    return items == null ? Collections.emptyMap() : new HashMap&lt;&gt;(items);</span>
+  }
+
+  /**
+   * Sets the items.
+   *
+   * @param items the items
+   */
+  public void setItems(Map&lt;String, Item&gt; items) {
+<span class="pc bpc" id="L68" title="1 of 2 branches missed.">    this.items = items == null ? Collections.emptyMap() : new HashMap&lt;&gt;(items);</span>
+<span class="fc" id="L69">  }</span>
+
+  /**
+   * Put the items.
+   *
+   * @param string the string
+   * @param item the item
+   */
+  public void putItem(String string, Item item) {
+<span class="nc bnc" id="L78" title="All 2 branches missed.">    if (items == null) {</span>
+<span class="nc" id="L79">      items = new HashMap&lt;&gt;();</span>
+    }
+<span class="nc" id="L81">    items.put(string, item);</span>
+<span class="nc" id="L82">  }</span>
+
+  /**
+   * Gets the out of date count.
+   *
+   * @return the out of date count
+   */
+  public int getOutOfDateCount() {
+<span class="fc" id="L90">    return outOfDateCount;</span>
+  }
+
+  /**
+   * Sets the out of date count.
+   *
+   * @param outOfDateCount the new out of date count
+   */
+  public void setOutOfDateCount(int outOfDateCount) {
+<span class="fc" id="L99">    this.outOfDateCount = outOfDateCount;</span>
+<span class="fc" id="L100">  }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

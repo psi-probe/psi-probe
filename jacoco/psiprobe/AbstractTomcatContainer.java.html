@@ -1,0 +1,678 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AbstractTomcatContainer.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">psi-probe-core</a> &gt; <a href="index.source.html" class="el_package">psiprobe</a> &gt; <span class="el_source">AbstractTomcatContainer.java</span></div><h1>AbstractTomcatContainer.java</h1><pre class="source lang-java linenums">/*
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ *
+ * THIS PACKAGE IS PROVIDED &quot;AS IS&quot; AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+ * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE.
+ */
+package psiprobe;
+
+import java.io.File;
+import java.io.IOException;
+import java.lang.management.ManagementFactory;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import javax.management.MBeanServer;
+import javax.management.MalformedObjectNameException;
+import javax.management.ObjectName;
+import javax.naming.NamingException;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
+
+import org.apache.catalina.Container;
+import org.apache.catalina.Context;
+import org.apache.catalina.Engine;
+import org.apache.catalina.Host;
+import org.apache.catalina.Service;
+import org.apache.catalina.Valve;
+import org.apache.catalina.Wrapper;
+import org.apache.catalina.connector.Connector;
+import org.apache.catalina.core.StandardContext;
+import org.apache.jasper.EmbeddedServletOptions;
+import org.apache.jasper.JspCompilationContext;
+import org.apache.jasper.Options;
+import org.apache.jasper.compiler.Compiler;
+import org.apache.jasper.compiler.JspRuntimeContext;
+import org.apache.naming.ContextBindings;
+import org.apache.naming.factory.ResourceLinkFactory;
+import org.apache.tomcat.util.descriptor.web.ContextResourceLink;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.util.ClassUtils;
+
+import psiprobe.beans.ResourceResolverBean;
+import psiprobe.model.FilterMapping;
+import psiprobe.model.jsp.Item;
+import psiprobe.model.jsp.Summary;
+
+/**
+ * Abstraction layer to implement some functionality, which is common between different container
+ * adapters.
+ */
+<span class="nc" id="L67">public abstract class AbstractTomcatContainer implements TomcatContainer {</span>
+
+  /** The logger. */
+<span class="nc" id="L70">  protected final Logger logger = LoggerFactory.getLogger(getClass());</span>
+
+  /** The Constant NO_JSP_SERVLET. */
+  private static final String NO_JSP_SERVLET = &quot;Context '{}' does not have 'JSP' servlet&quot;;
+
+  /** The host. */
+  protected Host host;
+
+  /** The connectors. */
+  protected Connector[] connectors;
+
+  /** The deployer o name. */
+  protected ObjectName objectNameDeployer;
+
+  /** The mbean server. */
+  protected MBeanServer mbeanServer;
+
+  /** The Enum FilterMapType. */
+<span class="nc" id="L88">  public enum FilterMapType {</span>
+
+    /** The url. */
+<span class="nc" id="L91">    URL,</span>
+
+    /** The servlet name. */
+<span class="nc" id="L94">    SERVLET_NAME</span>
+  }
+
+  @Override
+  public void setWrapper(Wrapper wrapper) {
+<span class="nc" id="L99">    Valve valve = createValve();</span>
+<span class="nc bnc" id="L100" title="All 2 branches missed.">    if (wrapper != null) {</span>
+<span class="nc" id="L101">      host = (Host) wrapper.getParent().getParent();</span>
+<span class="nc" id="L102">      Engine engine = (Engine) host.getParent();</span>
+<span class="nc" id="L103">      Service service = engine.getService();</span>
+<span class="nc" id="L104">      connectors = service.findConnectors();</span>
+      try {
+<span class="nc" id="L106">        objectNameDeployer =</span>
+<span class="nc" id="L107">            new ObjectName(host.getParent().getName() + &quot;:type=Deployer,host=&quot; + host.getName());</span>
+<span class="nc" id="L108">      } catch (MalformedObjectNameException e) {</span>
+<span class="nc" id="L109">        logger.trace(&quot;&quot;, e);</span>
+<span class="nc" id="L110">      }</span>
+<span class="nc" id="L111">      host.getPipeline().addValve(valve);</span>
+<span class="nc" id="L112">      mbeanServer = ManagementFactory.getPlatformMBeanServer();</span>
+<span class="nc bnc" id="L113" title="All 2 branches missed.">    } else if (host != null) {</span>
+<span class="nc" id="L114">      host.getPipeline().removeValve(valve);</span>
+    }
+<span class="nc" id="L116">  }</span>
+
+  @Override
+  public File getAppBase() {
+<span class="nc" id="L120">    File base = new File(host.getAppBase());</span>
+<span class="nc bnc" id="L121" title="All 2 branches missed.">    if (!base.isAbsolute()) {</span>
+<span class="nc" id="L122">      base = new File(System.getProperty(&quot;catalina.base&quot;), host.getAppBase());</span>
+    }
+<span class="nc" id="L124">    return base;</span>
+  }
+
+  @Override
+  public String getConfigBase() {
+<span class="nc" id="L129">    File configBase = new File(System.getProperty(&quot;catalina.base&quot;), &quot;conf&quot;);</span>
+<span class="nc" id="L130">    Container baseHost = null;</span>
+<span class="nc" id="L131">    Container thisContainer = host;</span>
+<span class="nc bnc" id="L132" title="All 2 branches missed.">    while (thisContainer != null) {</span>
+<span class="nc bnc" id="L133" title="All 2 branches missed.">      if (thisContainer instanceof Host) {</span>
+<span class="nc" id="L134">        baseHost = thisContainer;</span>
+      }
+<span class="nc" id="L136">      thisContainer = thisContainer.getParent();</span>
+    }
+<span class="nc bnc" id="L138" title="All 2 branches missed.">    if (baseHost != null) {</span>
+<span class="nc" id="L139">      configBase = new File(configBase, baseHost.getName());</span>
+    }
+<span class="nc" id="L141">    return configBase.getAbsolutePath();</span>
+  }
+
+  @Override
+  public String getHostName() {
+<span class="nc" id="L146">    return host.getName();</span>
+  }
+
+  @Override
+  public String getName() {
+<span class="nc" id="L151">    return host.getParent().getName();</span>
+  }
+
+  @Override
+  public List&lt;Context&gt; findContexts() {
+<span class="nc" id="L156">    List&lt;Context&gt; results = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L157" title="All 2 branches missed.">    for (Container child : host.findChildren()) {</span>
+<span class="nc bnc" id="L158" title="All 2 branches missed.">      if (child instanceof Context) {</span>
+<span class="nc" id="L159">        results.add((Context) child);</span>
+      }
+    }
+<span class="nc" id="L162">    return results;</span>
+  }
+
+  @Override
+  public List&lt;Connector&gt; findConnectors() {
+<span class="nc" id="L167">    return Collections.unmodifiableList(Arrays.asList(connectors));</span>
+  }
+
+  @Override
+  public boolean installContext(String contextName) throws Exception {
+<span class="nc" id="L172">    contextName = formatContextName(contextName);</span>
+<span class="nc" id="L173">    installContextInternal(contextName);</span>
+<span class="nc bnc" id="L174" title="All 2 branches missed.">    return findContext(contextName) != null;</span>
+  }
+
+  @Override
+  public void stop(String name) throws Exception {
+<span class="nc" id="L179">    Context ctx = findContext(name);</span>
+<span class="nc bnc" id="L180" title="All 2 branches missed.">    if (ctx != null) {</span>
+<span class="nc" id="L181">      ctx.stop();</span>
+    }
+<span class="nc" id="L183">  }</span>
+
+  @Override
+  public void start(String name) throws Exception {
+<span class="nc" id="L187">    Context ctx = findContext(name);</span>
+<span class="nc bnc" id="L188" title="All 2 branches missed.">    if (ctx != null) {</span>
+<span class="nc" id="L189">      ctx.start();</span>
+    }
+<span class="nc" id="L191">  }</span>
+
+  @Override
+  public void remove(String name) throws Exception {
+<span class="nc" id="L195">    name = formatContextName(name);</span>
+<span class="nc" id="L196">    Context ctx = findContext(name);</span>
+
+<span class="nc bnc" id="L198" title="All 2 branches missed.">    if (ctx != null) {</span>
+
+      try {
+<span class="nc" id="L201">        stop(name);</span>
+<span class="nc" id="L202">      } catch (Exception e) {</span>
+<span class="nc" id="L203">        logger.info(&quot;Stopping '{}' threw this exception:&quot;, name, e);</span>
+<span class="nc" id="L204">      }</span>
+
+      File appDir;
+<span class="nc" id="L207">      File docBase = new File(ctx.getDocBase());</span>
+
+<span class="nc bnc" id="L209" title="All 2 branches missed.">      if (!docBase.isAbsolute()) {</span>
+<span class="nc" id="L210">        appDir = new File(getAppBase(), ctx.getDocBase());</span>
+      } else {
+<span class="nc" id="L212">        appDir = docBase;</span>
+      }
+
+<span class="nc" id="L215">      logger.debug(&quot;Deleting '{}'&quot;, appDir.getAbsolutePath());</span>
+<span class="nc" id="L216">      Utils.delete(appDir);</span>
+
+<span class="nc" id="L218">      String warFilename = formatContextFilename(name);</span>
+<span class="nc" id="L219">      File warFile = new File(getAppBase(), warFilename + &quot;.war&quot;);</span>
+<span class="nc" id="L220">      logger.debug(&quot;Deleting '{}'&quot;, warFile.getAbsolutePath());</span>
+<span class="nc" id="L221">      Utils.delete(warFile);</span>
+
+<span class="nc" id="L223">      File configFile = getConfigFile(ctx);</span>
+<span class="nc bnc" id="L224" title="All 2 branches missed.">      if (configFile != null) {</span>
+<span class="nc" id="L225">        logger.debug(&quot;Deleting '{}'&quot;, configFile.getAbsolutePath());</span>
+<span class="nc" id="L226">        Utils.delete(configFile);</span>
+      }
+
+<span class="nc" id="L229">      removeInternal(name);</span>
+    }
+<span class="nc" id="L231">  }</span>
+
+  /**
+   * Removes the internal.
+   *
+   * @param name the name
+   *
+   * @throws Exception the exception
+   */
+  private void removeInternal(String name) throws Exception {
+<span class="nc" id="L241">    checkChanges(name);</span>
+<span class="nc" id="L242">  }</span>
+
+  @Override
+  public void installWar(String name) throws Exception {
+<span class="nc" id="L246">    checkChanges(name);</span>
+<span class="nc" id="L247">  }</span>
+
+  /**
+   * Install context internal.
+   *
+   * @param name the name
+   *
+   * @throws Exception the exception
+   */
+  private void installContextInternal(String name) throws Exception {
+<span class="nc" id="L257">    checkChanges(name);</span>
+<span class="nc" id="L258">  }</span>
+
+  @Override
+  public Context findContext(String name) {
+<span class="nc" id="L262">    String safeName = formatContextName(name);</span>
+<span class="nc bnc" id="L263" title="All 2 branches missed.">    if (safeName == null) {</span>
+<span class="nc" id="L264">      return null;</span>
+    }
+<span class="nc" id="L266">    Context result = findContextInternal(safeName);</span>
+<span class="nc bnc" id="L267" title="All 4 branches missed.">    if (result == null &amp;&amp; safeName.isEmpty()) {</span>
+<span class="nc" id="L268">      result = findContextInternal(&quot;/&quot;);</span>
+    }
+<span class="nc" id="L270">    return result;</span>
+  }
+
+  @Override
+  public String formatContextName(String name) {
+<span class="nc bnc" id="L275" title="All 2 branches missed.">    if (name == null) {</span>
+<span class="nc" id="L276">      return null;</span>
+    }
+<span class="nc" id="L278">    String result = name.trim();</span>
+<span class="nc bnc" id="L279" title="All 2 branches missed.">    if (!result.startsWith(&quot;/&quot;)) {</span>
+<span class="nc" id="L280">      result = &quot;/&quot; + result;</span>
+    }
+<span class="nc bnc" id="L282" title="All 4 branches missed.">    if (&quot;/&quot;.equals(result) || &quot;/ROOT&quot;.equals(result)) {</span>
+<span class="nc" id="L283">      result = &quot;&quot;;</span>
+    }
+    // For ROOT Parallel Deployment, remove &quot;/ROOT&quot;
+<span class="nc bnc" id="L286" title="All 2 branches missed.">    if (result.startsWith(&quot;/ROOT##&quot;)) {</span>
+<span class="nc" id="L287">      result = result.substring(5);</span>
+    }
+    // For ROOT Parallel Usage, remove &quot;/&quot;
+<span class="nc bnc" id="L290" title="All 2 branches missed.">    if (result.startsWith(&quot;/##&quot;)) {</span>
+<span class="nc" id="L291">      result = result.substring(1);</span>
+    }
+<span class="nc" id="L293">    return result;</span>
+  }
+
+  @Override
+  public String formatContextFilename(String contextName) {
+<span class="nc bnc" id="L298" title="All 2 branches missed.">    if (contextName == null) {</span>
+<span class="nc" id="L299">      return null;</span>
+    }
+<span class="nc bnc" id="L301" title="All 2 branches missed.">    if (contextName.isEmpty()) {</span>
+<span class="nc" id="L302">      return &quot;ROOT&quot;;</span>
+    }
+<span class="nc bnc" id="L304" title="All 2 branches missed.">    if (contextName.startsWith(&quot;/&quot;)) {</span>
+<span class="nc" id="L305">      return contextName.substring(1);</span>
+    }
+<span class="nc" id="L307">    return contextName;</span>
+  }
+
+  @Override
+  public void discardWorkDir(Context context) {
+<span class="nc bnc" id="L312" title="All 2 branches missed.">    if (context instanceof StandardContext) {</span>
+<span class="nc" id="L313">      StandardContext standardContext = (StandardContext) context;</span>
+<span class="nc" id="L314">      String path = standardContext.getWorkPath();</span>
+<span class="nc" id="L315">      logger.info(&quot;Discarding '{}'&quot;, path);</span>
+<span class="nc" id="L316">      Utils.delete(new File(path, &quot;org&quot;));</span>
+<span class="nc" id="L317">    } else {</span>
+<span class="nc" id="L318">      logger.error(&quot;context '{}' is not an instance of '{}', expected StandardContext&quot;,</span>
+<span class="nc" id="L319">          context.getName(), context.getClass().getName());</span>
+    }
+<span class="nc" id="L321">  }</span>
+
+  @Override
+  public String getServletFileNameForJsp(Context context, String jspName) {
+<span class="nc" id="L325">    String servletName = null;</span>
+
+<span class="nc" id="L327">    ServletConfig servletConfig = (ServletConfig) context.findChild(&quot;jsp&quot;);</span>
+<span class="nc bnc" id="L328" title="All 2 branches missed.">    if (servletConfig != null) {</span>
+<span class="nc" id="L329">      ServletContext sctx = context.getServletContext();</span>
+<span class="nc" id="L330">      Options opt = new EmbeddedServletOptions(servletConfig, sctx);</span>
+<span class="nc" id="L331">      JspRuntimeContext jrctx = new JspRuntimeContext(sctx, opt);</span>
+<span class="nc" id="L332">      JspCompilationContext jcctx = createJspCompilationContext(jspName, opt, sctx, jrctx, null);</span>
+<span class="nc" id="L333">      servletName = jcctx.getServletJavaFileName();</span>
+<span class="nc" id="L334">    } else {</span>
+<span class="nc" id="L335">      logger.error(NO_JSP_SERVLET, context.getName());</span>
+    }
+<span class="nc" id="L337">    return servletName;</span>
+  }
+
+  @Override
+  public void recompileJsps(Context context, Summary summary, List&lt;String&gt; names) {
+<span class="nc" id="L342">    ServletConfig servletConfig = (ServletConfig) context.findChild(&quot;jsp&quot;);</span>
+<span class="nc bnc" id="L343" title="All 2 branches missed.">    if (servletConfig != null) {</span>
+<span class="nc bnc" id="L344" title="All 2 branches missed.">      if (summary != null) {</span>
+<span class="nc" id="L345">        synchronized (servletConfig) {</span>
+<span class="nc" id="L346">          ServletContext sctx = context.getServletContext();</span>
+<span class="nc" id="L347">          Options opt = new EmbeddedServletOptions(servletConfig, sctx);</span>
+
+<span class="nc" id="L349">          JspRuntimeContext jrctx = new JspRuntimeContext(sctx, opt);</span>
+          /*
+           * we need to pass context classloader here, so the jsps can reference /WEB-INF/classes
+           * and /WEB-INF/lib. JspCompilationContext would only take URLClassLoader, so we fake it
+           */
+<span class="nc" id="L354">          try (URLClassLoader classLoader =</span>
+<span class="nc" id="L355">              new URLClassLoader(new URL[0], context.getLoader().getClassLoader())) {</span>
+<span class="nc bnc" id="L356" title="All 2 branches missed.">            for (String name : names) {</span>
+<span class="nc" id="L357">              long time = System.currentTimeMillis();</span>
+<span class="nc" id="L358">              JspCompilationContext jcctx =</span>
+<span class="nc" id="L359">                  createJspCompilationContext(name, opt, sctx, jrctx, classLoader);</span>
+<span class="nc" id="L360">              ClassLoader prevCl = ClassUtils.overrideThreadContextClassLoader(classLoader);</span>
+              try {
+<span class="nc" id="L362">                Item item = summary.getItems().get(name);</span>
+<span class="nc bnc" id="L363" title="All 2 branches missed.">                if (item != null) {</span>
+                  try {
+<span class="nc" id="L365">                    Compiler compiler = jcctx.createCompiler();</span>
+<span class="nc" id="L366">                    compiler.compile();</span>
+<span class="nc" id="L367">                    item.setState(Item.STATE_READY);</span>
+<span class="nc" id="L368">                    item.setException(null);</span>
+<span class="nc" id="L369">                    logger.info(&quot;Compiled '{}': OK&quot;, name);</span>
+<span class="nc" id="L370">                  } catch (Exception e) {</span>
+<span class="nc" id="L371">                    item.setState(Item.STATE_FAILED);</span>
+<span class="nc" id="L372">                    item.setException(e);</span>
+<span class="nc" id="L373">                    logger.error(&quot;Compiled '{}': FAILED&quot;, name, e);</span>
+<span class="nc" id="L374">                  }</span>
+<span class="nc" id="L375">                  item.setCompileTime(System.currentTimeMillis() - time);</span>
+                } else {
+<span class="nc" id="L377">                  logger.error(&quot;{} is not on the summary list, ignored&quot;, name);</span>
+                }
+              } finally {
+<span class="nc" id="L380">                ClassUtils.overrideThreadContextClassLoader(prevCl);</span>
+              }
+<span class="nc" id="L382">            }</span>
+<span class="nc" id="L383">          } catch (IOException e) {</span>
+<span class="nc" id="L384">            this.logger.error(&quot;&quot;, e);</span>
+          } finally {
+<span class="nc" id="L386">            jrctx.destroy();</span>
+          }
+<span class="nc" id="L388">        }</span>
+      } else {
+<span class="nc" id="L390">        logger.error(&quot;summary is null for '{}', request ignored&quot;, context.getName());</span>
+      }
+    } else {
+<span class="nc" id="L393">      logger.error(NO_JSP_SERVLET, context.getName());</span>
+    }
+<span class="nc" id="L395">  }</span>
+
+  @Override
+  public void listContextJsps(Context context, Summary summary, boolean compile) {
+<span class="nc" id="L399">    ServletConfig servletConfig = (ServletConfig) context.findChild(&quot;jsp&quot;);</span>
+<span class="nc bnc" id="L400" title="All 2 branches missed.">    if (servletConfig != null) {</span>
+<span class="nc" id="L401">      synchronized (servletConfig) {</span>
+<span class="nc" id="L402">        ServletContext sctx = context.getServletContext();</span>
+<span class="nc" id="L403">        Options opt = new EmbeddedServletOptions(servletConfig, sctx);</span>
+
+<span class="nc" id="L405">        JspRuntimeContext jrctx = new JspRuntimeContext(sctx, opt);</span>
+        try {
+<span class="nc bnc" id="L407" title="All 2 branches missed.">          if (summary.getItems() == null) {</span>
+<span class="nc" id="L408">            summary.setItems(new HashMap&lt;&gt;());</span>
+          }
+
+          /*
+           * mark all items as missing
+           */
+<span class="nc bnc" id="L414" title="All 2 branches missed.">          for (Item item : summary.getItems().values()) {</span>
+<span class="nc" id="L415">            item.setMissing(true);</span>
+<span class="nc" id="L416">          }</span>
+
+          /*
+           * we need to pass context classloader here, so the jsps can reference /WEB-INF/classes
+           * and /WEB-INF/lib. JspCompilationContext would only take URLClassLoader, so we fake it
+           */
+<span class="nc" id="L422">          try (URLClassLoader urlcl =</span>
+<span class="nc" id="L423">              new URLClassLoader(new URL[0], context.getLoader().getClassLoader())) {</span>
+
+<span class="nc" id="L425">            compileItem(&quot;/&quot;, opt, context, jrctx, summary, urlcl, 0, compile);</span>
+<span class="nc" id="L426">          } catch (IOException e) {</span>
+<span class="nc" id="L427">            this.logger.error(&quot;&quot;, e);</span>
+<span class="nc" id="L428">          }</span>
+        } finally {
+<span class="nc" id="L430">          jrctx.destroy();</span>
+        }
+<span class="nc" id="L432">      }</span>
+
+      //
+      // delete &quot;missing&quot; items by keeping &quot;not missing&quot; ones
+      //
+<span class="nc" id="L437">      Map&lt;String, Item&gt; hashMap = new HashMap&lt;&gt;();</span>
+<span class="nc bnc" id="L438" title="All 2 branches missed.">      for (Entry&lt;String, Item&gt; entry : summary.getItems().entrySet()) {</span>
+<span class="nc bnc" id="L439" title="All 2 branches missed.">        if (!entry.getValue().isMissing()) {</span>
+<span class="nc" id="L440">          hashMap.put(entry.getKey(), entry.getValue());</span>
+        }
+<span class="nc" id="L442">      }</span>
+
+<span class="nc" id="L444">      summary.setItems(hashMap);</span>
+<span class="nc" id="L445">    } else {</span>
+<span class="nc" id="L446">      logger.error(NO_JSP_SERVLET, context.getName());</span>
+    }
+<span class="nc" id="L448">  }</span>
+
+  @Override
+  public boolean getAvailable(Context context) {
+<span class="nc" id="L452">    return context.getState().isAvailable();</span>
+  }
+
+  @Override
+  public File getConfigFile(Context context) {
+<span class="nc" id="L457">    URL configUrl = context.getConfigFile();</span>
+<span class="nc bnc" id="L458" title="All 2 branches missed.">    if (configUrl != null) {</span>
+      try {
+<span class="nc" id="L460">        URI configUri = configUrl.toURI();</span>
+<span class="nc bnc" id="L461" title="All 2 branches missed.">        if (&quot;file&quot;.equals(configUri.getScheme())) {</span>
+<span class="nc" id="L462">          return new File(configUri.getPath());</span>
+        }
+<span class="nc" id="L464">      } catch (URISyntaxException ex) {</span>
+<span class="nc" id="L465">        logger.error(&quot;Could not convert URL to URI: '{}'&quot;, configUrl, ex);</span>
+<span class="nc" id="L466">      }</span>
+    }
+<span class="nc" id="L468">    return null;</span>
+  }
+
+  @Override
+  public void bindToContext(Context context) throws NamingException {
+<span class="nc" id="L473">    changeContextBinding(context, true);</span>
+<span class="nc" id="L474">  }</span>
+
+  @Override
+  public void unbindFromContext(Context context) throws NamingException {
+<span class="nc" id="L478">    changeContextBinding(context, false);</span>
+<span class="nc" id="L479">  }</span>
+
+  /**
+   * Register access to global resources.
+   *
+   * @param resourceLink the resource link
+   */
+  protected void registerGlobalResourceAccess(ContextResourceLink resourceLink) {
+<span class="nc" id="L487">    ResourceLinkFactory.registerGlobalResourceAccess(ResourceResolverBean.getGlobalNamingContext(),</span>
+<span class="nc" id="L488">        resourceLink.getName(), resourceLink.getGlobal());</span>
+<span class="nc" id="L489">  }</span>
+
+  /**
+   * Change context binding.
+   *
+   * @param context the context
+   * @param bind the bind
+   *
+   * @throws NamingException the naming exception
+   */
+  private void changeContextBinding(Context context, boolean bind) throws NamingException {
+<span class="nc" id="L500">    Object token = getNamingToken(context);</span>
+<span class="nc" id="L501">    ClassLoader loader = Thread.currentThread().getContextClassLoader();</span>
+<span class="nc bnc" id="L502" title="All 2 branches missed.">    if (bind) {</span>
+<span class="nc" id="L503">      ContextBindings.bindClassLoader(context, token, loader);</span>
+    } else {
+<span class="nc" id="L505">      ContextBindings.unbindClassLoader(context, token, loader);</span>
+    }
+<span class="nc" id="L507">  }</span>
+
+  /**
+   * Lists and optionally compiles a directory recursively.
+   *
+   * @param jspName name of JSP file or directory to be listed and compiled.
+   * @param opt the JSP compiler options
+   * @param ctx the context
+   * @param jrctx the runtime context used to create the compilation context
+   * @param summary the summary in which the output is stored
+   * @param classLoader the classloader used by the compiler
+   * @param level the depth in the tree at which the item was encountered
+   * @param compile whether or not to compile the item or just to check whether it's out of date
+   */
+  protected void compileItem(String jspName, Options opt, Context ctx, JspRuntimeContext jrctx,
+      Summary summary, URLClassLoader classLoader, int level, boolean compile) {
+<span class="nc" id="L523">    ServletContext sctx = ctx.getServletContext();</span>
+<span class="nc" id="L524">    Set&lt;String&gt; paths = sctx.getResourcePaths(jspName);</span>
+
+<span class="nc bnc" id="L526" title="All 2 branches missed.">    if (paths != null) {</span>
+<span class="nc bnc" id="L527" title="All 2 branches missed.">      for (String name : paths) {</span>
+<span class="nc" id="L528">        boolean isJsp =</span>
+<span class="nc bnc" id="L529" title="All 6 branches missed.">            name.endsWith(&quot;.jsp&quot;) || name.endsWith(&quot;.jspx&quot;) || opt.getJspConfig().isJspPage(name);</span>
+
+<span class="nc bnc" id="L531" title="All 2 branches missed.">        if (isJsp) {</span>
+<span class="nc" id="L532">          JspCompilationContext jcctx =</span>
+<span class="nc" id="L533">              createJspCompilationContext(name, opt, sctx, jrctx, classLoader);</span>
+<span class="nc" id="L534">          ClassLoader prevCl = ClassUtils.overrideThreadContextClassLoader(classLoader);</span>
+          try {
+<span class="nc" id="L536">            Item item = summary.getItems().get(name);</span>
+
+<span class="nc bnc" id="L538" title="All 2 branches missed.">            if (item == null) {</span>
+<span class="nc" id="L539">              item = new Item();</span>
+<span class="nc" id="L540">              item.setName(name);</span>
+            }
+
+<span class="nc" id="L543">            item.setLevel(level);</span>
+<span class="nc" id="L544">            item.setCompileTime(-1);</span>
+
+<span class="nc" id="L546">            Long[] objects = this.getResourceAttributes(name, ctx);</span>
+<span class="nc" id="L547">            item.setSize(objects[0]);</span>
+<span class="nc" id="L548">            item.setLastModified(objects[1]);</span>
+
+<span class="nc" id="L550">            long time = System.currentTimeMillis();</span>
+            try {
+<span class="nc" id="L552">              Compiler compiler = jcctx.createCompiler();</span>
+<span class="nc bnc" id="L553" title="All 2 branches missed.">              if (compile) {</span>
+<span class="nc" id="L554">                compiler.compile();</span>
+<span class="nc" id="L555">                item.setState(Item.STATE_READY);</span>
+<span class="nc" id="L556">                item.setException(null);</span>
+<span class="nc bnc" id="L557" title="All 2 branches missed.">              } else if (!compiler.isOutDated()) {</span>
+<span class="nc" id="L558">                item.setState(Item.STATE_READY);</span>
+<span class="nc" id="L559">                item.setException(null);</span>
+<span class="nc bnc" id="L560" title="All 2 branches missed.">              } else if (item.getState() != Item.STATE_FAILED) {</span>
+<span class="nc" id="L561">                item.setState(Item.STATE_OOD);</span>
+<span class="nc" id="L562">                item.setException(null);</span>
+              }
+<span class="nc" id="L564">              logger.info(&quot;Compiled '{}': OK&quot;, name);</span>
+<span class="nc" id="L565">            } catch (Exception e) {</span>
+<span class="nc" id="L566">              item.setState(Item.STATE_FAILED);</span>
+<span class="nc" id="L567">              item.setException(e);</span>
+<span class="nc" id="L568">              logger.info(&quot;Compiled '{}': FAILED&quot;, name, e);</span>
+<span class="nc" id="L569">            }</span>
+<span class="nc bnc" id="L570" title="All 2 branches missed.">            if (compile) {</span>
+<span class="nc" id="L571">              item.setCompileTime(System.currentTimeMillis() - time);</span>
+            }
+<span class="nc" id="L573">            item.setMissing(false);</span>
+<span class="nc" id="L574">            summary.putItem(name, item);</span>
+          } finally {
+<span class="nc" id="L576">            ClassUtils.overrideThreadContextClassLoader(prevCl);</span>
+          }
+<span class="nc" id="L578">        } else {</span>
+<span class="nc" id="L579">          compileItem(name, opt, ctx, jrctx, summary, classLoader, level + 1, compile);</span>
+        }
+<span class="nc" id="L581">      }</span>
+    } else {
+<span class="nc" id="L583">      logger.debug(&quot;getResourcePaths() is null for '{}'. Empty dir? Or Tomcat bug?&quot;, jspName);</span>
+    }
+<span class="nc" id="L585">  }</span>
+
+  /**
+   * Find context internal.
+   *
+   * @param name the context name
+   *
+   * @return the context
+   */
+  protected Context findContextInternal(String name) {
+<span class="nc" id="L595">    return (Context) host.findChild(name);</span>
+  }
+
+  /**
+   * Check changes.
+   *
+   * @param name the name
+   *
+   * @throws Exception the exception
+   */
+  protected void checkChanges(String name) throws Exception {
+<span class="nc" id="L606">    Boolean result = (Boolean) mbeanServer.invoke(objectNameDeployer, &quot;isServiced&quot;,</span>
+<span class="nc" id="L607">        new String[] {name}, new String[] {String.class.getName()});</span>
+<span class="nc bnc" id="L608" title="All 2 branches missed.">    if (!result.booleanValue()) {</span>
+<span class="nc" id="L609">      mbeanServer.invoke(objectNameDeployer, &quot;addServiced&quot;, new String[] {name},</span>
+<span class="nc" id="L610">          new String[] {String.class.getName()});</span>
+      try {
+<span class="nc" id="L612">        mbeanServer.invoke(objectNameDeployer, &quot;check&quot;, new String[] {name},</span>
+<span class="nc" id="L613">            new String[] {String.class.getName()});</span>
+      } finally {
+<span class="nc" id="L615">        mbeanServer.invoke(objectNameDeployer, &quot;removeServiced&quot;, new String[] {name},</span>
+<span class="nc" id="L616">            new String[] {String.class.getName()});</span>
+      }
+    }
+<span class="nc" id="L619">  }</span>
+
+  /**
+   * Returns the security token required to bind to a naming context.
+   *
+   * @param context the catalina context
+   *
+   * @return the security token for use with &lt;code&gt;ContextBindings&lt;/code&gt;
+   */
+  protected abstract Object getNamingToken(Context context);
+
+  /**
+   * Creates the jsp compilation context.
+   *
+   * @param name the name
+   * @param opt the opt
+   * @param sctx the sctx
+   * @param jrctx the jrctx
+   * @param classLoader the class loader
+   *
+   * @return the jsp compilation context
+   */
+  protected abstract JspCompilationContext createJspCompilationContext(String name, Options opt,
+      ServletContext sctx, JspRuntimeContext jrctx, ClassLoader classLoader);
+
+  /**
+   * Creates the valve.
+   *
+   * @return the valve
+   */
+  protected abstract Valve createValve();
+
+  /**
+   * Adds the filter mapping.
+   *
+   * @param filterName the filter name
+   * @param dispatcherMap the dispatcher map
+   * @param filterClass the filter class
+   * @param types the types as urls or servlet name
+   * @param results the results
+   * @param filterMapType the filter map type
+   */
+  protected void addFilterMapping(String filterName, String dispatcherMap, String filterClass,
+      String[] types, Collection&lt;FilterMapping&gt; results, FilterMapType filterMapType) {
+<span class="nc bnc" id="L663" title="All 2 branches missed.">    for (String type : types) {</span>
+<span class="nc" id="L664">      FilterMapping fm = new FilterMapping();</span>
+<span class="nc bnc" id="L665" title="All 2 branches missed.">      if (filterMapType == FilterMapType.URL) {</span>
+<span class="nc" id="L666">        fm.setUrl(type);</span>
+      } else {
+<span class="nc" id="L668">        fm.setServletName(type);</span>
+      }
+<span class="nc" id="L670">      fm.setFilterName(filterName);</span>
+<span class="nc" id="L671">      fm.setDispatcherMap(dispatcherMap);</span>
+<span class="nc" id="L672">      fm.setFilterClass(filterClass);</span>
+<span class="nc" id="L673">      results.add(fm);</span>
+    }
+<span class="nc" id="L675">  }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

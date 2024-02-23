@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GetAllDestinationsVisitor.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">psi-probe-core</a> &gt; <a href="index.source.html" class="el_package">psiprobe.tools.logging.commons</a> &gt; <span class="el_source">GetAllDestinationsVisitor.java</span></div><h1>GetAllDestinationsVisitor.java</h1><pre class="source lang-java linenums">/*
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ *
+ * THIS PACKAGE IS PROVIDED &quot;AS IS&quot; AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+ * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE.
+ */
+package psiprobe.tools.logging.commons;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import psiprobe.tools.logging.LogDestination;
+import psiprobe.tools.logging.jdk.Jdk14LoggerAccessor;
+import psiprobe.tools.logging.log4j.Log4JLoggerAccessor;
+
+/**
+ * The Class GetAllDestinationsVisitor.
+ */
+<span class="nc" id="L23">public class GetAllDestinationsVisitor extends AbstractLoggerAccessorVisitor {</span>
+
+  /** The destinations. */
+<span class="nc" id="L26">  private final List&lt;LogDestination&gt; destinations = new ArrayList&lt;&gt;();</span>
+
+  /**
+   * Gets the destinations.
+   *
+   * @return the destinations
+   */
+  public List&lt;LogDestination&gt; getDestinations() {
+<span class="nc" id="L34">    return destinations;</span>
+  }
+
+  @Override
+  public void visit(Log4JLoggerAccessor accessor) {
+<span class="nc" id="L39">    destinations.addAll(accessor.getAppenders());</span>
+<span class="nc" id="L40">  }</span>
+
+  @Override
+  public void visit(Jdk14LoggerAccessor accessor) {
+<span class="nc" id="L44">    destinations.addAll(accessor.getHandlers());</span>
+<span class="nc" id="L45">  }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

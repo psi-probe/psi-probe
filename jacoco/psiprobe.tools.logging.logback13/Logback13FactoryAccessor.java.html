@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Logback13FactoryAccessor.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">psi-probe-core</a> &gt; <a href="index.source.html" class="el_package">psiprobe.tools.logging.logback13</a> &gt; <span class="el_source">Logback13FactoryAccessor.java</span></div><h1>Logback13FactoryAccessor.java</h1><pre class="source lang-java linenums">/*
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ *
+ * THIS PACKAGE IS PROVIDED &quot;AS IS&quot; AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+ * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE.
+ */
+package psiprobe.tools.logging.logback13;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.lang3.reflect.MethodUtils;
+
+import psiprobe.tools.logging.DefaultAccessor;
+
+/**
+ * Wraps a Logback logger factory from a given web application class loader.
+ *
+ * &lt;p&gt;
+ * All Logback classes are loaded via the given class loader and not via psi-probe's own class
+ * loader. For this reasons, all methods on Logback objects are invoked via reflection.
+ * &lt;/p&gt;
+ * &lt;p&gt;
+ * This way, we can even handle different versions of Logback embedded in different WARs.
+ * &lt;/p&gt;
+ */
+public class Logback13FactoryAccessor extends DefaultAccessor {
+
+  /**
+   * Attempts to initialize a Logback logger factory via the given class loader.
+   *
+   * @param cl the ClassLoader to use when fetching the factory
+   *
+   * @throws ClassNotFoundException the class not found exception
+   * @throws IllegalAccessException the illegal access exception
+   * @throws InvocationTargetException the invocation target exception
+   * @throws NoSuchMethodException the no such method exception
+   * @throws SecurityException the security exception
+   * @throws IllegalArgumentException the illegal argument exception
+   */
+  public Logback13FactoryAccessor(ClassLoader cl)
+      throws ClassNotFoundException, IllegalAccessException, InvocationTargetException,
+<span class="nc" id="L49">      NoSuchMethodException, SecurityException, IllegalArgumentException {</span>
+
+    // Get the SLF4J provider binding, which may or may not be Logback, depending on the binding.
+<span class="nc" id="L52">    final List&lt;?&gt; providers = findServiceProviders(cl);</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">    if (providers.isEmpty()) {</span>
+<span class="nc" id="L54">      throw new RuntimeException(&quot;The SLF4J provider binding was not Logback&quot;);</span>
+    }
+
+    // Get the service provider
+<span class="nc" id="L58">    Object provider = providers.get(0);</span>
+
+    // Initialize the service provider
+<span class="nc" id="L61">    Method initialize = MethodUtils.getAccessibleMethod(provider.getClass(), &quot;initialize&quot;);</span>
+<span class="nc" id="L62">    initialize.invoke(provider);</span>
+
+    // Call the logger factory
+<span class="nc" id="L65">    Method getLoggerFactory =</span>
+<span class="nc" id="L66">        MethodUtils.getAccessibleMethod(provider.getClass(), &quot;getLoggerFactory&quot;);</span>
+<span class="nc" id="L67">    Object loggerFactory = getLoggerFactory.invoke(provider);</span>
+
+    // Check if the binding is indeed Logback
+<span class="nc" id="L70">    Class&lt;?&gt; loggerFactoryClass = cl.loadClass(&quot;ch.qos.logback.classic.LoggerContext&quot;);</span>
+<span class="nc bnc" id="L71" title="All 2 branches missed.">    if (!loggerFactoryClass.isInstance(loggerFactory)) {</span>
+<span class="nc" id="L72">      throw new RuntimeException(&quot;The SLF4J provider binding was not Logback&quot;);</span>
+    }
+<span class="nc" id="L74">    setTarget(loggerFactory);</span>
+<span class="nc" id="L75">  }</span>
+
+  /**
+   * Returns the Logback root logger.
+   *
+   * @return the root logger
+   */
+  public Logback13LoggerAccessor getRootLogger() {
+    // Logback has no dedicated getRootLogger() method, so we simply access the root logger
+    // by its well-defined name.
+<span class="nc" id="L85">    return getLogger(&quot;ROOT&quot;);</span>
+  }
+
+  /**
+   * Returns the Logback logger with a given name.
+   *
+   * @param name the name
+   *
+   * @return the Logger with the given name
+   */
+  public Logback13LoggerAccessor getLogger(String name) {
+    try {
+<span class="nc" id="L97">      Class&lt;? extends Object&gt; clazz = getTarget().getClass();</span>
+<span class="nc" id="L98">      Method getLogger = MethodUtils.getAccessibleMethod(clazz, &quot;getLogger&quot;, String.class);</span>
+
+<span class="nc" id="L100">      Object logger = getLogger.invoke(getTarget(), name);</span>
+<span class="nc bnc" id="L101" title="All 2 branches missed.">      if (logger == null) {</span>
+<span class="nc" id="L102">        throw new NullPointerException(getTarget() + &quot;.getLogger(\&quot;&quot; + name + &quot;\&quot;) returned null&quot;);</span>
+      }
+<span class="nc" id="L104">      Logback13LoggerAccessor accessor = new Logback13LoggerAccessor();</span>
+<span class="nc" id="L105">      accessor.setTarget(logger);</span>
+<span class="nc" id="L106">      accessor.setApplication(getApplication());</span>
+<span class="nc" id="L107">      return accessor;</span>
+
+<span class="nc" id="L109">    } catch (Exception e) {</span>
+<span class="nc" id="L110">      logger.error(&quot;{}.getLogger('{}') failed&quot;, getTarget(), name, e);</span>
+    }
+<span class="nc" id="L112">    return null;</span>
+  }
+
+  /**
+   * Returns a list of wrappers for all Logback appenders that have an associated logger.
+   *
+   * @return a list of {@link Logback13AppenderAccessor}s representing all appenders that are in use
+   */
+  @SuppressWarnings(&quot;unchecked&quot;)
+  public List&lt;Logback13AppenderAccessor&gt; getAppenders() {
+<span class="nc" id="L122">    List&lt;Logback13AppenderAccessor&gt; appenders = new ArrayList&lt;&gt;();</span>
+    try {
+<span class="nc" id="L124">      Class&lt;? extends Object&gt; clazz = getTarget().getClass();</span>
+<span class="nc" id="L125">      Method getLoggerList = MethodUtils.getAccessibleMethod(clazz, &quot;getLoggerList&quot;);</span>
+
+<span class="nc" id="L127">      List&lt;Object&gt; loggers = (List&lt;Object&gt;) getLoggerList.invoke(getTarget());</span>
+<span class="nc bnc" id="L128" title="All 2 branches missed.">      for (Object logger : loggers) {</span>
+<span class="nc" id="L129">        Logback13LoggerAccessor accessor = new Logback13LoggerAccessor();</span>
+<span class="nc" id="L130">        accessor.setTarget(logger);</span>
+<span class="nc" id="L131">        accessor.setApplication(getApplication());</span>
+
+<span class="nc" id="L133">        appenders.addAll(accessor.getAppenders());</span>
+<span class="nc" id="L134">      }</span>
+<span class="nc" id="L135">    } catch (Exception e) {</span>
+<span class="nc" id="L136">      logger.error(&quot;{}.getLoggerList() failed&quot;, getTarget(), e);</span>
+<span class="nc" id="L137">    }</span>
+<span class="nc" id="L138">    return appenders;</span>
+  }
+
+  /**
+   * Find service providers.
+   *
+   * @param cl the cl
+   *
+   * @return the list
+   *
+   * @throws NoSuchMethodException the no such method exception
+   * @throws SecurityException the security exception
+   * @throws ClassNotFoundException the class not found exception
+   * @throws IllegalAccessException the illegal access exception
+   * @throws IllegalArgumentException the illegal argument exception
+   * @throws InvocationTargetException the invocation target exception
+   */
+  private static List&lt;?&gt; findServiceProviders(final ClassLoader cl)
+      throws NoSuchMethodException, SecurityException, ClassNotFoundException,
+      IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+<span class="nc" id="L158">    final Class&lt;?&gt; loggerFactory = cl.loadClass(&quot;org.slf4j.LoggerFactory&quot;);</span>
+<span class="nc" id="L159">    final Method findServiceProviders = loggerFactory.getDeclaredMethod(&quot;findServiceProviders&quot;);</span>
+    // Make package protected accessible
+<span class="nc" id="L161">    findServiceProviders.setAccessible(true);</span>
+<span class="nc" id="L162">    final List&lt;?&gt; providers = (List&lt;?&gt;) findServiceProviders.invoke(null);</span>
+<span class="nc" id="L163">    findServiceProviders.setAccessible(false);</span>
+<span class="nc" id="L164">    return providers;</span>
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

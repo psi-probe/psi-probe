@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LogbackLoggerAccessor.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">psi-probe-core</a> &gt; <a href="index.source.html" class="el_package">psiprobe.tools.logging.logback</a> &gt; <span class="el_source">LogbackLoggerAccessor.java</span></div><h1>LogbackLoggerAccessor.java</h1><pre class="source lang-java linenums">/*
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ *
+ * THIS PACKAGE IS PROVIDED &quot;AS IS&quot; AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+ * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE.
+ */
+package psiprobe.tools.logging.logback;
+
+import com.google.common.collect.Iterators;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+
+import org.apache.commons.lang3.reflect.MethodUtils;
+
+import psiprobe.tools.logging.DefaultAccessor;
+
+/**
+ * A wrapper for a Logback logger.
+ */
+<span class="fc" id="L28">public class LogbackLoggerAccessor extends DefaultAccessor {</span>
+
+  /**
+   * Returns all appenders of this logger.
+   *
+   * @return a list of {@link LogbackAppenderAccessor}s
+   */
+  @SuppressWarnings(&quot;unchecked&quot;)
+  public List&lt;LogbackAppenderAccessor&gt; getAppenders() {
+<span class="nc" id="L37">    List&lt;LogbackAppenderAccessor&gt; appenders = new ArrayList&lt;&gt;();</span>
+    try {
+<span class="nc bnc" id="L39" title="All 2 branches missed.">      for (Object appender : Collections.list(Iterators.asEnumeration(</span>
+<span class="nc" id="L40">          (Iterator&lt;Object&gt;) MethodUtils.invokeMethod(getTarget(), &quot;iteratorForAppenders&quot;)))) {</span>
+<span class="nc" id="L41">        List&lt;Object&gt; siftedAppenders = getSiftedAppenders(appender);</span>
+<span class="nc bnc" id="L42" title="All 2 branches missed.">        if (!siftedAppenders.isEmpty()) {</span>
+<span class="nc bnc" id="L43" title="All 2 branches missed.">          for (Object siftedAppender : siftedAppenders) {</span>
+<span class="nc" id="L44">            wrapAndAddAppender(siftedAppender, appenders);</span>
+<span class="nc" id="L45">          }</span>
+        } else {
+<span class="nc" id="L47">          wrapAndAddAppender(appender, appenders);</span>
+        }
+<span class="nc" id="L49">      }</span>
+<span class="nc" id="L50">    } catch (NoClassDefFoundError e) {</span>
+<span class="nc" id="L51">      logger.error(&quot;{}#getAppenders() failed, To see this logger, upgrade slf4j to 1.7.21+&quot;,</span>
+<span class="nc" id="L52">          getTarget().getClass().getName(), e);</span>
+<span class="nc" id="L53">    } catch (Exception e) {</span>
+<span class="nc" id="L54">      logger.error(&quot;{}#getAppenders() failed&quot;, getTarget().getClass().getName(), e);</span>
+<span class="nc" id="L55">    }</span>
+<span class="nc" id="L56">    return appenders;</span>
+  }
+
+  /**
+   * Returns the appender of this logger with the given name.
+   *
+   * @param name the name of the appender to return
+   *
+   * @return the appender with the given name, or null if no such appender exists for this logger
+   */
+  public LogbackAppenderAccessor getAppender(String name) {
+    try {
+<span class="nc" id="L68">      Object appender = MethodUtils.invokeMethod(getTarget(), &quot;getAppender&quot;, name);</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">      if (appender == null) {</span>
+<span class="nc" id="L70">        List&lt;LogbackAppenderAccessor&gt; appenders = getAppenders();</span>
+<span class="nc bnc" id="L71" title="All 2 branches missed.">        for (LogbackAppenderAccessor wrappedAppender : appenders) {</span>
+<span class="nc bnc" id="L72" title="All 2 branches missed.">          if (wrappedAppender.getIndex().equals(name)) {</span>
+<span class="nc" id="L73">            return wrappedAppender;</span>
+          }
+<span class="nc" id="L75">        }</span>
+      }
+<span class="nc" id="L77">      return wrapAppender(appender);</span>
+<span class="nc" id="L78">    } catch (Exception e) {</span>
+<span class="nc" id="L79">      logger.error(&quot;{}#getAppender() failed&quot;, getTarget().getClass().getName(), e);</span>
+    }
+<span class="nc" id="L81">    return null;</span>
+  }
+
+  /**
+   * Checks if is context.
+   *
+   * @return true, if is context
+   */
+  public boolean isContext() {
+<span class="nc" id="L90">    return false;</span>
+  }
+
+  /**
+   * Checks if is root.
+   *
+   * @return true, if is root
+   */
+  public boolean isRoot() {
+<span class="nc" id="L99">    return &quot;ROOT&quot;.equals(getName());</span>
+  }
+
+  /**
+   * Gets the name.
+   *
+   * @return the name
+   */
+  public String getName() {
+<span class="nc" id="L108">    return (String) getProperty(getTarget(), &quot;name&quot;, null);</span>
+  }
+
+  /**
+   * Gets the log level of this logger.
+   *
+   * @return the level of this logger
+   */
+  public String getLevel() {
+    try {
+<span class="nc" id="L118">      Object level = MethodUtils.invokeMethod(getTarget(), &quot;getLevel&quot;);</span>
+<span class="nc" id="L119">      return (String) MethodUtils.invokeMethod(level, &quot;toString&quot;);</span>
+<span class="nc" id="L120">    } catch (Exception e) {</span>
+<span class="nc" id="L121">      logger.error(&quot;{}#getLevel() failed&quot;, getTarget().getClass().getName(), e);</span>
+    }
+<span class="nc" id="L123">    return null;</span>
+  }
+
+  /**
+   * Sets the log level of this logger.
+   *
+   * @param newLevelStr the name of the new level
+   */
+  public void setLevel(String newLevelStr) {
+    try {
+<span class="nc" id="L133">      Object level = MethodUtils.invokeMethod(getTarget(), &quot;getLevel&quot;);</span>
+<span class="nc" id="L134">      Object newLevel = MethodUtils.invokeMethod(level, &quot;toLevel&quot;, newLevelStr);</span>
+<span class="nc" id="L135">      MethodUtils.invokeMethod(getTarget(), &quot;setLevel&quot;, newLevel);</span>
+<span class="nc" id="L136">    } catch (Exception e) {</span>
+<span class="nc" id="L137">      logger.error(&quot;{}#setLevel('{}') failed&quot;, getTarget().getClass().getName(), newLevelStr, e);</span>
+<span class="nc" id="L138">    }</span>
+<span class="nc" id="L139">  }</span>
+
+  /**
+   * Gets the sifted appenders.
+   *
+   * @param appender the appender
+   *
+   * @return the sifted appenders
+   *
+   * @throws Exception the exception
+   */
+  @SuppressWarnings(&quot;unchecked&quot;)
+  private List&lt;Object&gt; getSiftedAppenders(Object appender) throws Exception {
+<span class="nc bnc" id="L152" title="All 2 branches missed.">    if (&quot;ch.qos.logback.classic.sift.SiftingAppender&quot;.equals(appender.getClass().getName())) {</span>
+<span class="nc" id="L153">      Object tracker = MethodUtils.invokeMethod(appender, &quot;getAppenderTracker&quot;);</span>
+<span class="nc bnc" id="L154" title="All 2 branches missed.">      if (tracker != null) {</span>
+<span class="nc" id="L155">        return (List&lt;Object&gt;) MethodUtils.invokeMethod(tracker, &quot;allComponents&quot;);</span>
+      }
+    }
+<span class="nc" id="L158">    return Collections.emptyList();</span>
+  }
+
+  /**
+   * Wrap and add appender.
+   *
+   * @param appender the appender
+   * @param appenders the appenders
+   */
+  private void wrapAndAddAppender(Object appender, Collection&lt;LogbackAppenderAccessor&gt; appenders) {
+<span class="nc" id="L168">    LogbackAppenderAccessor appenderAccessor = wrapAppender(appender);</span>
+<span class="nc bnc" id="L169" title="All 2 branches missed.">    if (appenderAccessor != null) {</span>
+<span class="nc" id="L170">      appenders.add(appenderAccessor);</span>
+    }
+<span class="nc" id="L172">  }</span>
+
+  /**
+   * Wrap appender.
+   *
+   * @param appender the appender
+   *
+   * @return the logback appender accessor
+   */
+  private LogbackAppenderAccessor wrapAppender(Object appender) {
+    try {
+<span class="nc bnc" id="L183" title="All 2 branches missed.">      if (appender == null) {</span>
+<span class="nc" id="L184">        throw new IllegalArgumentException(&quot;appender is null&quot;);</span>
+      }
+<span class="nc" id="L186">      LogbackAppenderAccessor appenderAccessor = new LogbackAppenderAccessor();</span>
+<span class="nc" id="L187">      appenderAccessor.setTarget(appender);</span>
+<span class="nc" id="L188">      appenderAccessor.setLoggerAccessor(this);</span>
+<span class="nc" id="L189">      appenderAccessor.setApplication(getApplication());</span>
+<span class="nc" id="L190">      return appenderAccessor;</span>
+<span class="nc" id="L191">    } catch (Exception e) {</span>
+<span class="nc" id="L192">      logger.error(&quot;Could not wrap appender: '{}'&quot;, appender, e);</span>
+    }
+<span class="nc" id="L194">    return null;</span>
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

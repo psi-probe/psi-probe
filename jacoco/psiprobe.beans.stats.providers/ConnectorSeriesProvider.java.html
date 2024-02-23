@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ConnectorSeriesProvider.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">psi-probe-core</a> &gt; <a href="index.source.html" class="el_package">psiprobe.beans.stats.providers</a> &gt; <span class="el_source">ConnectorSeriesProvider.java</span></div><h1>ConnectorSeriesProvider.java</h1><pre class="source lang-java linenums">/*
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ *
+ * THIS PACKAGE IS PROVIDED &quot;AS IS&quot; AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+ * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE.
+ */
+package psiprobe.beans.stats.providers;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.jfree.data.xy.DefaultTableXYDataset;
+import org.jfree.data.xy.XYDataItem;
+import org.springframework.web.bind.ServletRequestBindingException;
+import org.springframework.web.bind.ServletRequestUtils;
+
+import psiprobe.model.stats.StatsCollection;
+
+/**
+ * The Class ConnectorSeriesProvider.
+ */
+<span class="fc" id="L27">public class ConnectorSeriesProvider extends AbstractSeriesProvider {</span>
+
+  @Override
+  public void populate(DefaultTableXYDataset dataset, StatsCollection statsCollection,
+      HttpServletRequest request) {
+
+    try {
+      // get Connector name from the request
+<span class="nc" id="L35">      String connectorName = ServletRequestUtils.getStringParameter(request, &quot;cn&quot;);</span>
+
+      // type of statistic to be displayed
+<span class="nc" id="L38">      String statType = ServletRequestUtils.getStringParameter(request, &quot;st&quot;);</span>
+
+<span class="nc bnc" id="L40" title="All 4 branches missed.">      if (connectorName != null &amp;&amp; statType != null) {</span>
+<span class="nc" id="L41">        List&lt;XYDataItem&gt; stats =</span>
+<span class="nc" id="L42">            statsCollection.getStats(&quot;stat.connector.&quot; + connectorName + &quot;.&quot; + statType);</span>
+<span class="nc bnc" id="L43" title="All 2 branches missed.">        if (stats != null) {</span>
+          // Series legend
+<span class="nc" id="L45">          String series1Legend = ServletRequestUtils.getStringParameter(request, &quot;sl&quot;, &quot;&quot;);</span>
+<span class="nc" id="L46">          dataset.addSeries(toSeries(series1Legend, stats));</span>
+        }
+      }
+<span class="nc" id="L49">    } catch (ServletRequestBindingException e) {</span>
+<span class="nc" id="L50">      logger.error(&quot;&quot;, e);</span>
+<span class="nc" id="L51">    }</span>
+<span class="nc" id="L52">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

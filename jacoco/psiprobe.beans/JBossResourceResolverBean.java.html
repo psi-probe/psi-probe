@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>JBossResourceResolverBean.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">psi-probe-core</a> &gt; <a href="index.source.html" class="el_package">psiprobe.beans</a> &gt; <span class="el_source">JBossResourceResolverBean.java</span></div><h1>JBossResourceResolverBean.java</h1><pre class="source lang-java linenums">/*
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ *
+ * THIS PACKAGE IS PROVIDED &quot;AS IS&quot; AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+ * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE.
+ */
+package psiprobe.beans;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
+import javax.management.MBeanServer;
+import javax.management.MBeanServerFactory;
+import javax.management.MalformedObjectNameException;
+import javax.management.ObjectName;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
+import org.apache.catalina.Context;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
+import psiprobe.model.ApplicationResource;
+import psiprobe.model.DataSourceInfo;
+
+/**
+ * An Adapter to convert information retrieved from JBoss JMX beans into internal resource model.
+ */
+<span class="fc" id="L37">public class JBossResourceResolverBean implements ResourceResolver {</span>
+
+  /** The Constant logger. */
+<span class="fc" id="L40">  private static final Logger logger = LoggerFactory.getLogger(JBossResourceResolverBean.class);</span>
+
+  @Override
+  public MBeanServer getMBeanServer() {
+<span class="nc bnc" id="L44" title="All 2 branches missed.">    for (MBeanServer server : MBeanServerFactory.findMBeanServer(null)) {</span>
+<span class="nc bnc" id="L45" title="All 2 branches missed.">      if (&quot;jboss&quot;.equals(server.getDefaultDomain())</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">          || &quot;DefaultDomain&quot;.equals(server.getDefaultDomain())) {</span>
+<span class="nc" id="L47">        return server;</span>
+      }
+<span class="nc" id="L49">    }</span>
+<span class="nc" id="L50">    return null;</span>
+  }
+
+  @Override
+  public boolean supportsPrivateResources() {
+<span class="nc" id="L55">    return false;</span>
+  }
+
+  @Override
+  public boolean supportsGlobalResources() {
+<span class="nc" id="L60">    return true;</span>
+  }
+
+  @Override
+  public boolean supportsDataSourceLookup() {
+<span class="nc" id="L65">    return false;</span>
+  }
+
+  @Override
+  public List&lt;ApplicationResource&gt; getApplicationResources() throws NamingException {
+
+<span class="nc" id="L71">    List&lt;ApplicationResource&gt; resources = new ArrayList&lt;&gt;();</span>
+
+<span class="nc" id="L73">    MBeanServer server = getMBeanServer();</span>
+<span class="nc bnc" id="L74" title="All 2 branches missed.">    if (server != null) {</span>
+      try {
+<span class="nc" id="L76">        Set&lt;ObjectName&gt; dsNames =</span>
+<span class="nc" id="L77">            server.queryNames(new ObjectName(&quot;jboss.jca:service=ManagedConnectionPool,*&quot;), null);</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">        for (ObjectName objectNameManagedConnectionPool : dsNames) {</span>
+<span class="nc" id="L79">          ApplicationResource resource = new ApplicationResource();</span>
+<span class="nc" id="L80">          resource.setName(objectNameManagedConnectionPool.getKeyProperty(&quot;name&quot;));</span>
+<span class="nc" id="L81">          resource.setType(&quot;jboss&quot;);</span>
+<span class="nc" id="L82">          String criteria =</span>
+<span class="nc" id="L83">              (String) server.getAttribute(objectNameManagedConnectionPool, &quot;Criteria&quot;);</span>
+<span class="nc bnc" id="L84" title="All 2 branches missed.">          if (&quot;ByApplication&quot;.equals(criteria)) {</span>
+<span class="nc" id="L85">            resource.setAuth(&quot;Application&quot;);</span>
+<span class="nc bnc" id="L86" title="All 2 branches missed.">          } else if (&quot;ByContainerAndApplication&quot;.equals(criteria)) {</span>
+<span class="nc" id="L87">            resource.setAuth(&quot;Both&quot;);</span>
+          } else {
+<span class="nc" id="L89">            resource.setAuth(&quot;Container&quot;);</span>
+          }
+<span class="nc" id="L91">          DataSourceInfo dsInfo = new DataSourceInfo();</span>
+<span class="nc" id="L92">          dsInfo.setMaxConnections(</span>
+<span class="nc" id="L93">              (Integer) server.getAttribute(objectNameManagedConnectionPool, &quot;MaxSize&quot;));</span>
+<span class="nc" id="L94">          dsInfo.setEstablishedConnections(</span>
+<span class="nc" id="L95">              (Integer) server.getAttribute(objectNameManagedConnectionPool, &quot;ConnectionCount&quot;));</span>
+<span class="nc" id="L96">          dsInfo.setBusyConnections(</span>
+<span class="nc" id="L97">              ((Long) server.getAttribute(objectNameManagedConnectionPool, &quot;InUseConnectionCount&quot;))</span>
+<span class="nc" id="L98">                  .intValue());</span>
+<span class="nc" id="L99">          ObjectName objectNameConnectionFactory = new ObjectName(</span>
+<span class="nc" id="L100">              &quot;jboss.jca:service=ManagedConnectionFactory,name=&quot; + resource.getName());</span>
+<span class="nc" id="L101">          Element elm = (Element) server.getAttribute(objectNameConnectionFactory,</span>
+              &quot;ManagedConnectionFactoryProperties&quot;);
+
+<span class="nc bnc" id="L104" title="All 2 branches missed.">          if (elm != null) {</span>
+<span class="nc" id="L105">            NodeList nl = elm.getChildNodes();</span>
+<span class="nc bnc" id="L106" title="All 2 branches missed.">            for (int i = 0; i &lt; nl.getLength(); i++) {</span>
+<span class="nc" id="L107">              Node node = nl.item(i);</span>
+<span class="nc" id="L108">              Node na = node.getAttributes().getNamedItem(&quot;name&quot;);</span>
+<span class="nc bnc" id="L109" title="All 2 branches missed.">              if (na != null) {</span>
+<span class="nc bnc" id="L110" title="All 2 branches missed.">                if (&quot;ConnectionURL&quot;.equals(na.getNodeValue())) {</span>
+<span class="nc" id="L111">                  dsInfo.setJdbcUrl(node.getFirstChild().getNodeValue());</span>
+                }
+
+<span class="nc bnc" id="L114" title="All 2 branches missed.">                if (&quot;UserName&quot;.equals(na.getNodeValue())) {</span>
+<span class="nc" id="L115">                  dsInfo.setUsername(node.getFirstChild().getNodeValue());</span>
+                }
+
+                // JMS datasource
+<span class="nc bnc" id="L119" title="All 2 branches missed.">                if (&quot;JmsProviderAdapterJNDI&quot;.equals(na.getNodeValue())) {</span>
+<span class="nc" id="L120">                  dsInfo.setJdbcUrl(node.getFirstChild().getNodeValue());</span>
+<span class="nc" id="L121">                  resource.setType(&quot;jms&quot;);</span>
+                }
+              }
+            }
+          }
+
+<span class="nc" id="L127">          dsInfo.setResettable(true);</span>
+
+<span class="nc" id="L129">          resource.setDataSourceInfo(dsInfo);</span>
+<span class="nc" id="L130">          resources.add(resource);</span>
+<span class="nc" id="L131">        }</span>
+<span class="nc" id="L132">      } catch (Exception e) {</span>
+<span class="nc" id="L133">        logger.error(&quot;There was an error querying JBoss JMX server:&quot;, e);</span>
+<span class="nc" id="L134">      }</span>
+    }
+<span class="nc" id="L136">    return resources;</span>
+  }
+
+  /**
+   * Gets the application resources.
+   *
+   * @param context the context
+   *
+   * @return the application resources
+   *
+   * @throws NamingException the naming exception
+   */
+  public List&lt;ApplicationResource&gt; getApplicationResources(Context context) throws NamingException {
+    // TODO 11/23/2023 Not implemented
+<span class="nc" id="L150">    return new ArrayList&lt;&gt;();</span>
+  }
+
+  @Override
+  public List&lt;ApplicationResource&gt; getApplicationResources(Context context,
+      ContainerWrapperBean containerWrapper) throws NamingException {
+    // TODO 11/23/2023 Not implemented
+<span class="nc" id="L157">    throw new UnsupportedOperationException(&quot;Not supported yet.&quot;);</span>
+  }
+
+  @Override
+  public boolean resetResource(Context context, String resourceName,
+      ContainerWrapperBean containerWrapper) throws NamingException {
+    try {
+<span class="nc" id="L164">      ObjectName objectNamePool =</span>
+          new ObjectName(&quot;jboss.jca:service=ManagedConnectionPool,name=&quot; + resourceName);
+<span class="nc" id="L166">      MBeanServer server = getMBeanServer();</span>
+<span class="nc bnc" id="L167" title="All 2 branches missed.">      if (server != null) {</span>
+        try {
+<span class="nc" id="L169">          server.invoke(objectNamePool, &quot;stop&quot;, null, null);</span>
+<span class="nc" id="L170">          server.invoke(objectNamePool, &quot;start&quot;, null, null);</span>
+<span class="nc" id="L171">          return true;</span>
+<span class="nc" id="L172">        } catch (Exception e) {</span>
+<span class="nc" id="L173">          logger.error(&quot;Could not reset resource '{}'&quot;, resourceName, e);</span>
+        }
+      }
+<span class="nc" id="L176">      return false;</span>
+<span class="nc" id="L177">    } catch (MalformedObjectNameException e) {</span>
+<span class="nc" id="L178">      logger.trace(&quot;&quot;, e);</span>
+<span class="nc" id="L179">      throw new NamingException(</span>
+          &quot;Resource name: \&quot;&quot; + resourceName + &quot;\&quot; makes a malformed ObjectName&quot;);
+    }
+  }
+
+  @Override
+  public DataSource lookupDataSource(Context context, String resourceName,
+      ContainerWrapperBean containerWrapper) throws NamingException {
+<span class="nc" id="L187">    throw new UnsupportedOperationException(</span>
+        &quot;This feature has not been implemented for JBoss server yet.&quot;);
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

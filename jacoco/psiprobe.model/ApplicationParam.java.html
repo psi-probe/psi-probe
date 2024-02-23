@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ApplicationParam.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">psi-probe-core</a> &gt; <a href="index.source.html" class="el_package">psiprobe.model</a> &gt; <span class="el_source">ApplicationParam.java</span></div><h1>ApplicationParam.java</h1><pre class="source lang-java linenums">/*
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ *
+ * THIS PACKAGE IS PROVIDED &quot;AS IS&quot; AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+ * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE.
+ */
+package psiprobe.model;
+
+/**
+ * A model class representing an application initialization parameter.
+ */
+<span class="fc" id="L16">public class ApplicationParam {</span>
+
+  /** The name. */
+  private String name;
+
+  /** The value. */
+  private Object value;
+
+  /** denotes whether the value is taken from a deployment descriptor. */
+  private boolean fromDeplDescr;
+
+  /**
+   * Gets the name.
+   *
+   * @return the name
+   */
+  public String getName() {
+<span class="fc" id="L33">    return name;</span>
+  }
+
+  /**
+   * Sets the name.
+   *
+   * @param name the new name
+   */
+  public void setName(String name) {
+<span class="fc" id="L42">    this.name = name;</span>
+<span class="fc" id="L43">  }</span>
+
+  /**
+   * Gets the value.
+   *
+   * @return the value
+   */
+  public Object getValue() {
+<span class="fc" id="L51">    return value;</span>
+  }
+
+  /**
+   * Sets the value.
+   *
+   * @param value the new value
+   */
+  public void setValue(Object value) {
+<span class="fc" id="L60">    this.value = value;</span>
+<span class="fc" id="L61">  }</span>
+
+  /**
+   * Checks if is from depl descr.
+   *
+   * @return true, if is from depl descr
+   */
+  public boolean isFromDeplDescr() {
+<span class="fc" id="L69">    return fromDeplDescr;</span>
+  }
+
+  /**
+   * Sets the from depl descr.
+   *
+   * @param fromDeplDescr the new from depl descr
+   */
+  public void setFromDeplDescr(boolean fromDeplDescr) {
+<span class="fc" id="L78">    this.fromDeplDescr = fromDeplDescr;</span>
+<span class="fc" id="L79">  }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

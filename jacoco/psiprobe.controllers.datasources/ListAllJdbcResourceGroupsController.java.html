@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ListAllJdbcResourceGroupsController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">psi-probe-core</a> &gt; <a href="index.source.html" class="el_package">psiprobe.controllers.datasources</a> &gt; <span class="el_source">ListAllJdbcResourceGroupsController.java</span></div><h1>ListAllJdbcResourceGroupsController.java</h1><pre class="source lang-java linenums">/*
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ *
+ * THIS PACKAGE IS PROVIDED &quot;AS IS&quot; AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+ * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE.
+ */
+package psiprobe.controllers.datasources;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import psiprobe.controllers.AbstractTomcatContainerController;
+import psiprobe.model.ApplicationResource;
+import psiprobe.model.DataSourceInfo;
+import psiprobe.model.DataSourceInfoGroup;
+
+/**
+ * Produces a list of all datasources configured within the container grouped by JDBC URL.
+ */
+@Controller
+<span class="fc" id="L35">public class ListAllJdbcResourceGroupsController extends AbstractTomcatContainerController {</span>
+
+  @RequestMapping(path = &quot;/datasourcegroups.htm&quot;)
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
+<span class="nc" id="L41">    return super.handleRequest(request, response);</span>
+  }
+
+  @Override
+  protected ModelAndView handleRequestInternal(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+
+<span class="nc" id="L48">    List&lt;DataSourceInfoGroup&gt; dataSourceGroups = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L49">    List&lt;DataSourceInfo&gt; dataSources = new ArrayList&lt;&gt;();</span>
+
+<span class="nc" id="L51">    List&lt;ApplicationResource&gt; privateResources = getContainerWrapper().getPrivateDataSources();</span>
+<span class="nc" id="L52">    List&lt;ApplicationResource&gt; globalResources = getContainerWrapper().getGlobalDataSources();</span>
+
+    // filter out anything that is not a datasource
+    // and use only those datasources that are properly configured
+    // as aggregated totals would not make any sense otherwise
+<span class="nc" id="L57">    filterValidDataSources(privateResources, dataSources);</span>
+<span class="nc" id="L58">    filterValidDataSources(globalResources, dataSources);</span>
+
+    // sort datasources by JDBC URL
+<span class="nc" id="L61">    Collections.sort(dataSources, (ds1, ds2) -&gt; {</span>
+<span class="nc" id="L62">      String jdbcUrl1 = ds1.getJdbcUrl();</span>
+<span class="nc" id="L63">      String jdbcUrl2 = ds2.getJdbcUrl();</span>
+
+      // here we rely on the the filter not to add any datasources with a null jdbcUrl to the list
+
+<span class="nc" id="L67">      return jdbcUrl1.compareToIgnoreCase(jdbcUrl2);</span>
+    });
+
+    // group datasources by JDBC URL and calculate aggregated totals
+<span class="nc" id="L71">    DataSourceInfoGroup dsGroup = null;</span>
+<span class="nc bnc" id="L72" title="All 2 branches missed.">    for (DataSourceInfo ds : dataSources) {</span>
+<span class="nc bnc" id="L73" title="All 4 branches missed.">      if (dsGroup == null || !dsGroup.getJdbcUrl().equalsIgnoreCase(ds.getJdbcUrl())) {</span>
+<span class="nc" id="L74">        dsGroup = new DataSourceInfoGroup().builder(ds);</span>
+<span class="nc" id="L75">        dataSourceGroups.add(dsGroup);</span>
+      } else {
+<span class="nc" id="L77">        dsGroup.addDataSourceInfo(ds);</span>
+      }
+<span class="nc" id="L79">    }</span>
+
+<span class="nc" id="L81">    return new ModelAndView(getViewName(), &quot;dataSourceGroups&quot;, dataSourceGroups);</span>
+  }
+
+  /**
+   * Filter valid data sources.
+   *
+   * @param resources the resources
+   * @param dataSources the data sources
+   */
+  protected void filterValidDataSources(Collection&lt;ApplicationResource&gt; resources,
+      Collection&lt;DataSourceInfo&gt; dataSources) {
+
+<span class="nc bnc" id="L93" title="All 2 branches missed.">    for (ApplicationResource res : resources) {</span>
+<span class="nc bnc" id="L94" title="All 4 branches missed.">      if (res.isLookedUp() &amp;&amp; res.getDataSourceInfo() != null</span>
+<span class="nc bnc" id="L95" title="All 2 branches missed.">          &amp;&amp; res.getDataSourceInfo().getJdbcUrl() != null) {</span>
+<span class="nc" id="L96">        dataSources.add(res.getDataSourceInfo());</span>
+      }
+<span class="nc" id="L98">    }</span>
+<span class="nc" id="L99">  }</span>
+
+  @Value(&quot;datasourcegroup&quot;)
+  @Override
+  public void setViewName(String viewName) {
+<span class="fc" id="L104">    super.setViewName(viewName);</span>
+<span class="fc" id="L105">  }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

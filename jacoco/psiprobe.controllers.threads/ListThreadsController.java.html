@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ListThreadsController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">psi-probe-core</a> &gt; <a href="index.source.html" class="el_package">psiprobe.controllers.threads</a> &gt; <span class="el_source">ListThreadsController.java</span></div><h1>ListThreadsController.java</h1><pre class="source lang-java linenums">/*
+ * Licensed under the GPL License. You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ *
+ * THIS PACKAGE IS PROVIDED &quot;AS IS&quot; AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
+ * WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE.
+ */
+package psiprobe.controllers.threads;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.catalina.Context;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import psiprobe.controllers.AbstractTomcatContainerController;
+import psiprobe.model.java.ThreadModel;
+import psiprobe.tools.Instruments;
+
+/**
+ * The Class ListThreadsController.
+ */
+@Controller
+<span class="fc" id="L35">public class ListThreadsController extends AbstractTomcatContainerController {</span>
+
+  @RequestMapping(path = &quot;/th_impl1.htm&quot;)
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+      throws Exception {
+<span class="nc" id="L41">    return super.handleRequest(request, response);</span>
+  }
+
+  @Override
+  protected ModelAndView handleRequestInternal(HttpServletRequest request,
+      HttpServletResponse response) throws Exception {
+
+    /*
+     * Create a list of webapp classloaders. This will help us to associate threads with
+     * applications.
+     */
+<span class="nc" id="L52">    List&lt;Context&gt; contexts = getContainerWrapper().getTomcatContainer().findContexts();</span>
+<span class="nc" id="L53">    Map&lt;String, String&gt; classLoaderMap = new TreeMap&lt;&gt;();</span>
+<span class="nc bnc" id="L54" title="All 2 branches missed.">    for (Context context : contexts) {</span>
+<span class="nc bnc" id="L55" title="All 4 branches missed.">      if (context.getLoader() != null &amp;&amp; context.getLoader().getClassLoader() != null) {</span>
+<span class="nc" id="L56">        classLoaderMap.put(toUid(context.getLoader().getClassLoader()), context.getName());</span>
+      }
+<span class="nc" id="L58">    }</span>
+
+<span class="nc" id="L60">    return new ModelAndView(getViewName(), &quot;threads&quot;, enumerateThreads(classLoaderMap));</span>
+  }
+
+  /**
+   * Enumerate threads.
+   *
+   * @param classLoaderMap the class loader map
+   *
+   * @return the list
+   */
+  private List&lt;ThreadModel&gt; enumerateThreads(final Map&lt;String, String&gt; classLoaderMap) {
+
+    // get top ThreadGroup
+<span class="nc" id="L73">    ThreadGroup masterGroup = Thread.currentThread().getThreadGroup();</span>
+<span class="nc bnc" id="L74" title="All 2 branches missed.">    while (masterGroup.getParent() != null) {</span>
+<span class="nc" id="L75">      masterGroup = masterGroup.getParent();</span>
+    }
+
+    // enumerate all Threads starting from top
+<span class="nc" id="L79">    List&lt;ThreadModel&gt; threadList = new ArrayList&lt;&gt;();</span>
+
+<span class="nc" id="L81">    Thread[] threads = new Thread[masterGroup.activeCount()];</span>
+<span class="nc" id="L82">    int numThreads = masterGroup.enumerate(threads);</span>
+
+<span class="nc bnc" id="L84" title="All 2 branches missed.">    for (int i = 0; i &lt; numThreads; i++) {</span>
+<span class="nc" id="L85">      ThreadModel threadModel = new ThreadModel();</span>
+<span class="nc" id="L86">      threadModel.setThreadClass(threads[i].getClass().getName());</span>
+<span class="nc" id="L87">      threadModel.setName(threads[i].getName());</span>
+<span class="nc" id="L88">      threadModel.setPriority(threads[i].getPriority());</span>
+<span class="nc" id="L89">      threadModel.setDaemon(threads[i].isDaemon());</span>
+<span class="nc" id="L90">      threadModel.setInterrupted(threads[i].isInterrupted());</span>
+<span class="nc bnc" id="L91" title="All 2 branches missed.">      if (threads[i].getThreadGroup() != null) {</span>
+<span class="nc" id="L92">        threadModel.setGroupName(threads[i].getThreadGroup().getName());</span>
+      }
+<span class="nc" id="L94">      Object target = Instruments.getField(threads[i], &quot;target&quot;);</span>
+<span class="nc bnc" id="L95" title="All 2 branches missed.">      if (target != null) {</span>
+<span class="nc" id="L96">        threadModel.setRunnableClassName(target.getClass().getName());</span>
+      }
+
+<span class="nc" id="L99">      ClassLoader cl = threads[i].getContextClassLoader();</span>
+<span class="nc bnc" id="L100" title="All 2 branches missed.">      if (cl != null) {</span>
+<span class="nc bnc" id="L101" title="All 2 branches missed.">        if (classLoaderMap != null) {</span>
+<span class="nc" id="L102">          threadModel.setAppName(classLoaderMap.get(toUid(cl)));</span>
+        }
+<span class="nc" id="L104">        threadModel.setClassLoader(toUid(cl));</span>
+      }
+<span class="nc" id="L106">      threadList.add(threadModel);</span>
+    }
+<span class="nc" id="L108">    return threadList;</span>
+  }
+
+  /**
+   * To uid.
+   *
+   * @param obj the obj
+   *
+   * @return the string
+   */
+  private static String toUid(Object obj) {
+<span class="nc" id="L119">    return obj.getClass().getName() + &quot;@&quot; + obj.hashCode();</span>
+  }
+
+  @Value(&quot;threads&quot;)
+  @Override
+  public void setViewName(String viewName) {
+<span class="fc" id="L125">    super.setViewName(viewName);</span>
+<span class="fc" id="L126">  }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
