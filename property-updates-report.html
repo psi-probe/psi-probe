@@ -10,7 +10,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content="Apache Maven Doxia Site Renderer 2.0.0-M16" />
-    <title>psi-probe-web – Property Updates Report</title>
+    <title>psi-probe – Property Updates Report</title>
     <link rel="stylesheet" href="./css/apache-maven-fluido-2.0.0-M8.min.css" />
     <link rel="stylesheet" href="./css/site.css" />
     <link rel="stylesheet" href="./css/print.css" media="print" />
@@ -27,6 +27,12 @@
         </a>
             <ul class="nav">
       <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown">User Guide <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            <li><a href="README.html">README</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown">Project Documentation <b class="caret"></b></a>
         <ul class="dropdown-menu">
             <li class="dropdown-submenu">
@@ -34,6 +40,7 @@
               <ul class="dropdown-menu">
                   <li><a href="ci-management.html">CI Management</a></li>
                   <li><a href="dependencies.html">Dependencies</a></li>
+                  <li><a href="dependency-convergence.html">Dependency Convergence</a></li>
                   <li><a href="dependency-info.html">Dependency Information</a></li>
                   <li><a href="dependency-management.html">Dependency Management</a></li>
                   <li><a href="distribution-management.html">Distribution Management</a></li>
@@ -41,6 +48,7 @@
                   <li><a href="issue-management.html">Issue Management</a></li>
                   <li><a href="licenses.html">Licenses</a></li>
                   <li><a href="mailing-lists.html">Mailing Lists</a></li>
+                  <li><a href="modules.html">Project Modules</a></li>
                   <li><a href="plugin-management.html">Plugin Management</a></li>
                   <li><a href="plugins.html">Plugins</a></li>
                   <li><a href="scm.html">Source Code Management</a></li>
@@ -51,10 +59,16 @@
             <li class="dropdown-submenu">
 <a href="project-reports.html">Project Reports</a>
               <ul class="dropdown-menu">
+                  <li><a href="dependency-updates-aggregate-report.html">Dependency Updates Aggregate Report</a></li>
                   <li><a href="dependency-updates-report.html">Dependency Updates Report</a></li>
+                  <li><a href="plugin-updates-aggregate-report.html">Plugin Updates Aggregate Report</a></li>
                   <li><a href="plugin-updates-report.html">Plugin Updates Report</a></li>
+                  <li><a href="property-updates-aggregate-report.html">Property Updates Aggregate Report</a></li>
                   <li><a>Property Updates Report</a></li>
-                  <li><a href="checkstyle.html">Checkstyle</a></li>
+                  <li><a href="xref/index.html">Source Xref</a></li>
+                  <li><a href="xref-test/index.html">Test Source Xref</a></li>
+                  <li><a href="surefire-report.html">Surefire</a></li>
+                  <li><a href="checkstyle-aggregate.html">Checkstyle</a></li>
                   <li><a href="cpd.html">CPD</a></li>
                   <li><a href="pmd.html">PMD</a></li>
                   <li><a href="dependency-check-report.html">dependency-check:aggregate</a></li>
@@ -94,14 +108,22 @@
         <header id="leftColumn" class="span2">
           <nav class="well sidebar-nav">
   <ul class="nav nav-list">
+   <li class="nav-header">User Guide</li>
+    <li><a href="README.html">README</a></li>
    <li class="nav-header">Project Documentation</li>
     <li><a href="project-info.html"><span class="icon-chevron-right"></span>Project Information</a></li>
     <li><a href="project-reports.html"><span class="icon-chevron-down"></span>Project Reports</a>
      <ul class="nav nav-list">
+      <li><a href="dependency-updates-aggregate-report.html">Dependency Updates Aggregate Report</a></li>
       <li><a href="dependency-updates-report.html">Dependency Updates Report</a></li>
+      <li><a href="plugin-updates-aggregate-report.html">Plugin Updates Aggregate Report</a></li>
       <li><a href="plugin-updates-report.html">Plugin Updates Report</a></li>
+      <li><a href="property-updates-aggregate-report.html">Property Updates Aggregate Report</a></li>
       <li class="active"><a>Property Updates Report</a></li>
-      <li><a href="checkstyle.html">Checkstyle</a></li>
+      <li><a href="xref/index.html">Source Xref</a></li>
+      <li><a href="xref-test/index.html">Test Source Xref</a></li>
+      <li><a href="surefire-report.html">Surefire</a></li>
+      <li><a href="checkstyle-aggregate.html">Checkstyle</a></li>
       <li><a href="cpd.html">CPD</a></li>
       <li><a href="pmd.html">PMD</a></li>
       <li><a href="dependency-check-report.html">dependency-check:aggregate</a></li>
@@ -126,11 +148,11 @@
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" /></td>
 <td># of properties using the latest version available</td>
-<td>69</td></tr>
+<td>68</td></tr>
 <tr class="a">
-<td><img src="images/icon_success_sml.gif" /></td>
+<td><img src="images/icon_warning_sml.gif" /></td>
 <td># of properties where the next version available is smaller than an incremental version update</td>
-<td>0</td></tr>
+<td>1</td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" /></td>
 <td># of properties where the next version available is an incremental version update</td>
@@ -218,10 +240,10 @@
 <td></td>
 <td></td></tr>
 <tr class="b">
-<td><img src="images/icon_success_sml.gif" /></td>
+<td><img src="images/icon_warning_sml.gif" /></td>
 <td>${c3p0.version}</td>
 <td>0.10.0-pre3</td>
-<td></td>
+<td><b>0.10.0-pre4</b></td>
 <td></td>
 <td></td>
 <td></td></tr>
@@ -1162,7 +1184,7 @@
 <table class="table table-striped">
 <tr class="a">
 <th>Status</th>
-<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
+<td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;There is at least one newer version available.</td></tr>
 <tr class="b">
 <th>Property</th>
 <td style="text-align: left;">${c3p0.version}</td></tr>
@@ -1173,18 +1195,21 @@
 <th>Current Version</th>
 <td style="text-align: left;">0.10.0-pre3</td></tr>
 <tr class="a">
+<th>Newer versions</th>
+<td style="text-align: left;"><b>0.10.0-pre4</b>&#160;<i>Latest Subincremental</i></td></tr>
+<tr class="b">
 <th>Allowed version range</th>
 <td style="text-align: left;">0.10.0-pre3</td></tr>
-<tr class="b">
+<tr class="a">
 <th>Infer associations from project</th>
 <td style="text-align: left;">Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <th>Only use release versions</th>
 <td style="text-align: left;">No</td></tr>
-<tr class="b">
+<tr class="a">
 <th>Include projects from reactor</th>
 <td style="text-align: left;">Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <th>Always use reactor projects (even if older or -SNAPSHOT)</th>
 <td style="text-align: left;">Yes</td></tr></table></section><section>
 <h2>${checker.version}</h2>

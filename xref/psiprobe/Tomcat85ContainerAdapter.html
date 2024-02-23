@@ -50,7 +50,7 @@
 <a class="jxr_linenumber" name="L42" href="#L42">42</a>  <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L43" href="#L43">43</a>  <em class="jxr_javadoccomment"> * The Class Tomcat85ContainerAdapter.</em>
 <a class="jxr_linenumber" name="L44" href="#L44">44</a>  <em class="jxr_javadoccomment"> */</em>
-<a class="jxr_linenumber" name="L45" href="#L45">45</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a name="Tomcat85ContainerAdapter" href="../psiprobe/Tomcat85ContainerAdapter.html#Tomcat85ContainerAdapter">Tomcat85ContainerAdapter</a> <strong class="jxr_keyword">extends</strong> AbstractTomcatContainer {
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a name="Tomcat85ContainerAdapter" href="../psiprobe/Tomcat85ContainerAdapter.html#Tomcat85ContainerAdapter">Tomcat85ContainerAdapter</a> <strong class="jxr_keyword">extends</strong> <a name="AbstractTomcatContainer" href="../psiprobe/AbstractTomcatContainer.html#AbstractTomcatContainer">AbstractTomcatContainer</a> {
 <a class="jxr_linenumber" name="L46" href="#L46">46</a>  
 <a class="jxr_linenumber" name="L47" href="#L47">47</a>    @Override
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>    <strong class="jxr_keyword">protected</strong> Valve createValve() {
@@ -101,7 +101,7 @@
 <a class="jxr_linenumber" name="L93" href="#L93">93</a>  
 <a class="jxr_linenumber" name="L94" href="#L94">94</a>      NamingResourcesImpl namingResources = context.getNamingResources();
 <a class="jxr_linenumber" name="L95" href="#L95">95</a>      <strong class="jxr_keyword">for</strong> (ContextResourceLink link : namingResources.findResourceLinks()) {
-<a class="jxr_linenumber" name="L96" href="#L96">96</a>        ApplicationResource resource = <strong class="jxr_keyword">new</strong> ApplicationResource();
+<a class="jxr_linenumber" name="L96" href="#L96">96</a>        <a name="ApplicationResource" href="../psiprobe/model/ApplicationResource.html#ApplicationResource">ApplicationResource</a> resource = <strong class="jxr_keyword">new</strong> <a name="ApplicationResource" href="../psiprobe/model/ApplicationResource.html#ApplicationResource">ApplicationResource</a>();
 <a class="jxr_linenumber" name="L97" href="#L97">97</a>  
 <a class="jxr_linenumber" name="L98" href="#L98">98</a>        logger.debug(<span class="jxr_string">"reading resourceLink: {}"</span>, link.getName());
 <a class="jxr_linenumber" name="L99" href="#L99">99</a>        resource.setApplicationName(context.getName());
@@ -119,7 +119,7 @@
 <a class="jxr_linenumber" name="L111" href="#L111">111</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> addContextResource(Context context, List&lt;ApplicationResource&gt; resourceList) {
 <a class="jxr_linenumber" name="L112" href="#L112">112</a>     NamingResourcesImpl namingResources = context.getNamingResources();
 <a class="jxr_linenumber" name="L113" href="#L113">113</a>     <strong class="jxr_keyword">for</strong> (ContextResource contextResource : namingResources.findResources()) {
-<a class="jxr_linenumber" name="L114" href="#L114">114</a>       ApplicationResource resource = <strong class="jxr_keyword">new</strong> ApplicationResource();
+<a class="jxr_linenumber" name="L114" href="#L114">114</a>       <a name="ApplicationResource" href="../psiprobe/model/ApplicationResource.html#ApplicationResource">ApplicationResource</a> resource = <strong class="jxr_keyword">new</strong> <a name="ApplicationResource" href="../psiprobe/model/ApplicationResource.html#ApplicationResource">ApplicationResource</a>();
 <a class="jxr_linenumber" name="L115" href="#L115">115</a> 
 <a class="jxr_linenumber" name="L116" href="#L116">116</a>       logger.info(<span class="jxr_string">"reading resource: {}"</span>, contextResource.getName());
 <a class="jxr_linenumber" name="L117" href="#L117">117</a>       resource.setApplicationName(context.getName());
@@ -179,7 +179,7 @@
 <a class="jxr_linenumber" name="L171" href="#L171">171</a>     List&lt;FilterInfo&gt; filterDefs = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;(fds.length);
 <a class="jxr_linenumber" name="L172" href="#L172">172</a>     <strong class="jxr_keyword">for</strong> (FilterDef filterDef : fds) {
 <a class="jxr_linenumber" name="L173" href="#L173">173</a>       <strong class="jxr_keyword">if</strong> (filterDef != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L174" href="#L174">174</a>         FilterInfo fi = getFilterInfo(filterDef);
+<a class="jxr_linenumber" name="L174" href="#L174">174</a>         <a name="FilterInfo" href="../psiprobe/model/FilterInfo.html#FilterInfo">FilterInfo</a> fi = getFilterInfo(filterDef);
 <a class="jxr_linenumber" name="L175" href="#L175">175</a>         filterDefs.add(fi);
 <a class="jxr_linenumber" name="L176" href="#L176">176</a>       }
 <a class="jxr_linenumber" name="L177" href="#L177">177</a>     }
@@ -193,8 +193,8 @@
 <a class="jxr_linenumber" name="L185" href="#L185">185</a> <em class="jxr_javadoccomment">   *</em>
 <a class="jxr_linenumber" name="L186" href="#L186">186</a> <em class="jxr_javadoccomment">   * @return the filter info</em>
 <a class="jxr_linenumber" name="L187" href="#L187">187</a> <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L188" href="#L188">188</a>   <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> FilterInfo getFilterInfo(FilterDef fd) {
-<a class="jxr_linenumber" name="L189" href="#L189">189</a>     FilterInfo fi = <strong class="jxr_keyword">new</strong> FilterInfo();
+<a class="jxr_linenumber" name="L188" href="#L188">188</a>   <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <a name="FilterInfo" href="../psiprobe/model/FilterInfo.html#FilterInfo">FilterInfo</a> getFilterInfo(FilterDef fd) {
+<a class="jxr_linenumber" name="L189" href="#L189">189</a>     <a name="FilterInfo" href="../psiprobe/model/FilterInfo.html#FilterInfo">FilterInfo</a> fi = <strong class="jxr_keyword">new</strong> <a name="FilterInfo" href="../psiprobe/model/FilterInfo.html#FilterInfo">FilterInfo</a>();
 <a class="jxr_linenumber" name="L190" href="#L190">190</a>     fi.setFilterName(fd.getFilterName());
 <a class="jxr_linenumber" name="L191" href="#L191">191</a>     fi.setFilterClass(fd.getFilterClass());
 <a class="jxr_linenumber" name="L192" href="#L192">192</a>     fi.setFilterDesc(fd.getDescription());
@@ -231,7 +231,7 @@
 <a class="jxr_linenumber" name="L223" href="#L223">223</a>     List&lt;ApplicationParam&gt; initParams = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;(20);
 <a class="jxr_linenumber" name="L224" href="#L224">224</a>     ServletContext servletCtx = context.getServletContext();
 <a class="jxr_linenumber" name="L225" href="#L225">225</a>     <strong class="jxr_keyword">for</strong> (String paramName : Collections.list(servletCtx.getInitParameterNames())) {
-<a class="jxr_linenumber" name="L226" href="#L226">226</a>       ApplicationParam param = <strong class="jxr_keyword">new</strong> ApplicationParam();
+<a class="jxr_linenumber" name="L226" href="#L226">226</a>       <a name="ApplicationParam" href="../psiprobe/model/ApplicationParam.html#ApplicationParam">ApplicationParam</a> param = <strong class="jxr_keyword">new</strong> <a name="ApplicationParam" href="../psiprobe/model/ApplicationParam.html#ApplicationParam">ApplicationParam</a>();
 <a class="jxr_linenumber" name="L227" href="#L227">227</a>       param.setName(paramName);
 <a class="jxr_linenumber" name="L228" href="#L228">228</a>       param.setValue(servletCtx.getInitParameter(paramName));
 <a class="jxr_linenumber" name="L229" href="#L229">229</a>       <em class="jxr_comment">/*</em>
