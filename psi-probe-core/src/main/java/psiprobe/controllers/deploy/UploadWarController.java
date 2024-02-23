@@ -190,7 +190,7 @@ public class UploadWarController extends AbstractTomcatContainerController {
       }
       // If war was not moved, delete it
       if (tmpWar.exists()) {
-          Files.delete(tmpWar.toPath());
+        Files.delete(tmpWar.toPath());
       }
     }
     return new ModelAndView(new InternalResourceView(getViewName()));

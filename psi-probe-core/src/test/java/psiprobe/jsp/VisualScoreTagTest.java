@@ -77,10 +77,10 @@ class VisualScoreTagTest {
           String[] values = suffix.split("\\+", -1);
           if (values.length > 1) {
             try {
-                value = Integer.parseInt(values[0]);
-                value2 = Integer.parseInt(values[1]);
+              value = Integer.parseInt(values[0]);
+              value2 = Integer.parseInt(values[1]);
             } catch (NumberFormatException e) {
-                Assertions.fail("NumberFormatException should never occur here");
+              Assertions.fail("NumberFormatException should never occur here");
             }
             // TODO JWL 12/12/2016 This never occurs so why do we care?
             if (value > 5 || value2 > 5) {
