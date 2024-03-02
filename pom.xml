@@ -182,7 +182,7 @@
         <jmockit.version>1.52.0</jmockit.version>
         <jna.version>5.14.0</jna.version>
         <jsp-api.version>2.3.6</jsp-api.version>
-        <jstl-api.version>1.2.7</jstl-api.version>
+        <jstl-api.version>3.0.0</jstl-api.version>
         <jstl.version>1.2.6</jstl.version>
         <junit.version>5.10.2</junit.version>
         <lang3.version>3.14.0</lang3.version>
