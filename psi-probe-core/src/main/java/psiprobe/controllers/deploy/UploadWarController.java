@@ -49,6 +49,7 @@ public class UploadWarController extends AbstractTomcatContainerController {
 
   /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(UploadWarController.class);
+  private static final int MAXSECONDS_WAITFOR_CONTEXT = 10;
 
   @RequestMapping(path = "/adm/war.htm")
   @Override
@@ -146,6 +147,11 @@ public class UploadWarController extends AbstractTomcatContainerController {
 
           // let Tomcat know that the file is there
           getContainerWrapper().getTomcatContainer().installWar(contextName);
+
+          File destContext =
+              new File(getContainerWrapper().getTomcatContainer().getAppBase(), destWarFilename);
+          // Wait few seconds for creating context dir to avoid empty context
+          FileUtils.waitFor(destContext, MAXSECONDS_WAITFOR_CONTEXT);
 
           Context ctx = getContainerWrapper().getTomcatContainer().findContext(contextName);
           if (ctx == null) {
