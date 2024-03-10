@@ -187,7 +187,7 @@
         <junit.version>5.10.2</junit.version>
         <lang3.version>3.14.0</lang3.version>
         <logback.version>1.3.14</logback.version>
-        <mail.version>1.6.7</mail.version>
+        <mail.version>2.0.1</mail.version>
         <mchange.version>0.3.0</mchange.version>
         <mockito.version>5.11.0</mockito.version>
         <ojdbc.version>19.22.0.0</ojdbc.version>
