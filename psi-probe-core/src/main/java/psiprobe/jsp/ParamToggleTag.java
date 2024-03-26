@@ -36,19 +36,29 @@ public class ParamToggleTag extends TagSupport {
     boolean getSize =
         ServletRequestUtils.getBooleanParameter(pageContext.getRequest(), param, false);
     StringBuilder query = new StringBuilder();
-    query.append(param).append('=').append(!getSize);
+
     String encoding = pageContext.getResponse().getCharacterEncoding();
     for (String name : Collections.list(pageContext.getRequest().getParameterNames())) {
       if (!param.equals(name)) {
         try {
           String value = ServletRequestUtils.getStringParameter(pageContext.getRequest(), name, "");
           String encodedValue = URLEncoder.encode(value, encoding);
-          query.append('&').append(name).append('=').append(encodedValue);
+          if (query.length() > 0) {
+            query.append('&');
+          }
+          query.append(name).append('=').append(encodedValue);
         } catch (UnsupportedEncodingException e) {
           throw new JspException(e);
         }
       }
     }
+
+    if (query.length() > 0) {
+      query.append('&');
+    }
+    // size param has to be last
+    query.append(param).append('=').append(!getSize);
+
     try {
       pageContext.getOut().print(query);
     } catch (IOException e) {
