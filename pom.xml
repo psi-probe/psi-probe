@@ -171,7 +171,7 @@
         <geoip2.version>2.17.0</geoip2.version>
         <guava.version>33.1.0-jre</guava.version>
         <hateoas.version>1.5.6</hateoas.version>
-        <hikaricp.version>4.0.3</hikaricp.version>
+        <hikaricp.version>5.1.0</hikaricp.version>
         <inject.version>1.0.5</inject.version>
         <io.version>2.16.0</io.version>
         <j2objc.version>3.0.0</j2objc.version>
