@@ -382,14 +382,10 @@ public final class ApplicationUtils {
       si.setAllocationCount(sw.getCountAllocated());
       si.setErrorCount(sw.getErrorCount());
       si.setLoadTime(sw.getLoadTime());
-      // XXX: Remove with tomcat 10.1
-      si.setMaxInstances(sw.getMaxInstances());
       si.setMaxTime(sw.getMaxTime());
       si.setMinTime(sw.getMinTime() == Long.MAX_VALUE ? 0 : sw.getMinTime());
       si.setProcessingTime(sw.getProcessingTime());
       si.setRequestCount(sw.getRequestCount());
-      // XXX: Remove with tomcat 10.1
-      si.setSingleThreaded(Boolean.TRUE.equals(sw.isSingleThreadModel()));
     }
     return si;
   }
