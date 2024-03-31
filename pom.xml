@@ -173,7 +173,7 @@
         <hateoas.version>1.5.6</hateoas.version>
         <hikaricp.version>4.0.3</hikaricp.version>
         <inject.version>1.0.5</inject.version>
-        <io.version>2.15.1</io.version>
+        <io.version>2.16.0</io.version>
         <j2objc.version>3.0.0</j2objc.version>
         <jackson.version>2.17.0</jackson.version>
         <javabean-tester.version>2.6.3</javabean-tester.version>
