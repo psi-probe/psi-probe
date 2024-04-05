@@ -244,7 +244,7 @@
         <site.plugin>4.0.0-M13</site.plugin>
         <sonar.plugin>3.11.0.3922</sonar.plugin>
         <sortpom.plugin>3.4.1</sortpom.plugin>
-        <source.plugin>3.3.0</source.plugin>
+        <source.plugin>3.3.1</source.plugin>
         <spotbugs.plugin>4.8.3.1</spotbugs.plugin>
         <spotless.plugin>2.43.0</spotless.plugin>
         <surefire.plugin>3.2.5</surefire.plugin>
