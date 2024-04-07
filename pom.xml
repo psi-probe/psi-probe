@@ -1075,13 +1075,6 @@
                             <version>${ecj.version}</version>
                         </dependency>
                     </dependencies>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>jspc</goal>
-                            </goals>
-                        </execution>
-                    </executions>
                 </plugin>
                 <plugin>
                     <groupId>com.github.hazendaz.maven</groupId>
