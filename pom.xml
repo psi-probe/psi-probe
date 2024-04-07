@@ -1227,7 +1227,7 @@
                     <artifactId>modernizer-maven-plugin</artifactId>
                     <version>${modernizer.plugin}</version>
                     <configuration>
-                        <javaVersion>${maven.compiler.target}</javaVersion>
+                        <javaVersion>${maven.compiler.release}</javaVersion>
                     </configuration>
                 </plugin>
             </plugins>
