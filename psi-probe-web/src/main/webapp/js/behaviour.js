@@ -13,12 +13,12 @@
    of Simon Willison (see comments by Simon below).
 
    Description:
-   	
+
    	Uses css selectors to apply javascript behaviours to enable
    	unobtrusive javascript in html documents.
-   	
-   Usage:   
-   
+
+   Usage:
+
 	var myrules = {
 		'b.someclass' : function(element){
 			element.onclick = function(){
@@ -31,40 +31,40 @@
 			}
 		}
 	};
-	
+
 	Behaviour.register(myrules);
-	
+
 	// Call Behaviour.apply() to re-apply the rules (if you
 	// update the dom, etc).
 
    License:
-   
+
    	This file is entirely BSD licensed.
-   	
+
    More information:
-   	
+
    	http://ripcord.co.nz/behaviour/
-   
-*/   
+
+*/
 
 var Behaviour = {
 	list : new Array,
-	
+
 	register : function(sheet){
 		Behaviour.list.push(sheet);
 	},
-	
+
 	start : function(){
 		Behaviour.addLoadEvent(function(){
 			Behaviour.apply();
 		});
 	},
-	
+
 	apply : function(){
 		for (h=0;sheet=Behaviour.list[h];h++){
 			for (selector in sheet){
 				list = document.getElementsBySelector(selector);
-				
+
 				if (!list){
 					continue;
 				}
@@ -75,10 +75,10 @@ var Behaviour = {
 			}
 		}
 	},
-	
+
 	addLoadEvent : function(func){
 		var oldonload = window.onload;
-		
+
 		if (typeof window.onload != 'function') {
 			window.onload = func;
 		} else {
@@ -97,13 +97,13 @@ Behaviour.start();
 
    document.getElementsBySelector(selector)
    - returns an array of element objects from the current document
-     matching the CSS selector. Selectors can contain element names, 
+     matching the CSS selector. Selectors can contain element names,
      class names and ids and can be nested. For example:
-     
+
        elements = document.getElementsBySelect('div#main p a.external')
-     
-     Will return an array of all 'a' elements with 'external' in their 
-     class attribute that are contained inside 'p' elements that are 
+
+     Will return an array of all 'a' elements with 'external' in their
+     class attribute that are contained inside 'p' elements that are
      contained inside the 'div' element which has id="main"
 
    New in version 0.4: Support for CSS2 and CSS3 attribute selectors:
@@ -111,7 +111,7 @@ Behaviour.start();
 
    Version 0.4 - Simon Willison, March 25th 2003
    -- Works in Phoenix 0.5, Mozilla 1.3, Opera 7, Internet Explorer 6, Internet Explorer 5 on Windows
-   -- Opera 7 fails 
+   -- Opera 7 fails
 */
 
 function getAllChildren(e) {
@@ -204,7 +204,7 @@ document.getElementsBySelector = function(selector) {
         case '=': // Equality
           checkFunction = function(e) { return (e.getAttribute(attrName) == attrValue); };
           break;
-        case '~': // Match one of space seperated words 
+        case '~': // Match one of space seperated words
           checkFunction = function(e) { return (e.getAttribute(attrName).match(new RegExp('\\b'+attrValue+'\\b'))); };
           break;
         case '|': // Match start with value followed by optional hyphen
@@ -233,11 +233,11 @@ document.getElementsBySelector = function(selector) {
       // alert('Attribute Selector: '+tagName+' '+attrName+' '+attrOperator+' '+attrValue);
       continue; // Skip to next token
     }
-    
+
     if (!currentContext[0]){
     	return;
     }
-    
+
     // If we get here, token is JUST an element (not a class or ID selector)
     tagName = token;
     var found = new Array;
@@ -253,12 +253,12 @@ document.getElementsBySelector = function(selector) {
   return currentContext;
 }
 
-/* That revolting regular expression explained 
+/* That revolting regular expression explained
 /^(\w+)\[(\w+)([=~\|\^\$\*]?)=?"?([^\]"]*)"?\]$/
   \---/  \---/\-------------/    \-------/
     |      |         |               |
     |      |         |           The value
     |      |    ~,|,^,$,* or =
-    |   Attribute 
+    |   Attribute
    Tag
 */
