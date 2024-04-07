@@ -47,7 +47,7 @@ function setupScrollers(container) {
 					leftScroller.cancel();
 				}
 				rightScroller = new Effect.Scroll(containerID, {
-					pps: 100, 
+					pps: 100,
 					direction: 'right'
 				});
 			}

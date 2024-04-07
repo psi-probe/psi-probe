@@ -17,7 +17,7 @@
 
     <groupId>com.github.psi-probe</groupId>
     <artifactId>psi-probe</artifactId>
-    <version>4.1.5-SNAPSHOT</version>
+    <version>4.1.6-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>psi-probe</name>
@@ -118,7 +118,6 @@
         <java.test.version>${java.version}</java.test.version>
         <java.test.release.version>${java.release.version}</java.test.release.version>
 
-        <maven.compiler.compilerVersion>${java.version}</maven.compiler.compilerVersion>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <maven.compiler.testSource>${java.test.version}</maven.compiler.testSource>
@@ -148,7 +147,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <!-- Reproducible Builds -->
-        <project.build.outputTimestamp>1709408341</project.build.outputTimestamp>
+        <project.build.outputTimestamp>1712506417</project.build.outputTimestamp>
 
         <!-- Checkstyle -->
         <checkstyle.configLocation>checkstyle.xml</checkstyle.configLocation>
@@ -1075,13 +1074,6 @@
                             <version>${ecj.version}</version>
                         </dependency>
                     </dependencies>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>jspc</goal>
-                            </goals>
-                        </execution>
-                    </executions>
                 </plugin>
                 <plugin>
                     <groupId>com.github.hazendaz.maven</groupId>
@@ -1112,14 +1104,6 @@
                             <recipe>org.openrewrite.java.RemoveUnusedImports</recipe>
                         </activeRecipes>
                     </configuration>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>run</goal>
-                            </goals>
-                            <phase>process-sources</phase>
-                        </execution>
-                    </executions>
                 </plugin>
                 <plugin>
                     <groupId>com.github.ekryd.sortpom</groupId>
@@ -1178,14 +1162,6 @@
                     <groupId>com.github.hazendaz.maven</groupId>
                     <artifactId>whitespace-maven-plugin</artifactId>
                     <version>${whitespace.plugin}</version>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>trim</goal>
-                            </goals>
-                            <phase>process-sources</phase>
-                        </execution>
-                    </executions>
                 </plugin>
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
@@ -1251,7 +1227,7 @@
                     <artifactId>modernizer-maven-plugin</artifactId>
                     <version>${modernizer.plugin}</version>
                     <configuration>
-                        <javaVersion>${maven.compiler.target}</javaVersion>
+                        <javaVersion>${maven.compiler.release}</javaVersion>
                     </configuration>
                 </plugin>
             </plugins>
@@ -1428,6 +1404,23 @@
                 </executions>
             </plugin>
             <plugin>
+                <groupId>org.openrewrite.maven</groupId>
+                <artifactId>rewrite-maven-plugin</artifactId>
+                <configuration>
+                    <activeRecipes>
+                        <recipe>org.openrewrite.java.RemoveUnusedImports</recipe>
+                    </activeRecipes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <phase>process-sources</phase>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>com.diffplug.spotless</groupId>
                 <artifactId>spotless-maven-plugin</artifactId>
                 <executions>
@@ -1448,6 +1441,18 @@
                             <goal>sort</goal>
                         </goals>
                         <phase>verify</phase>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.github.hazendaz.maven</groupId>
+                <artifactId>whitespace-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>trim</goal>
+                        </goals>
+                        <phase>process-sources</phase>
                     </execution>
                 </executions>
             </plugin>

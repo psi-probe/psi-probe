@@ -1,4 +1,4 @@
-Psi-Probe - Advanced manager and monitor for Apache Tomcat, forked from Lambda Probe 
+Psi-Probe - Advanced manager and monitor for Apache Tomcat, forked from Lambda Probe
 ====================================================================================
 
 PSI Probe is a community-driven fork of Lambda Probe distributed under the same open-source license (GPLv2). It is intended to replace and extend Tomcat Manager, making it easier to manage and monitor an instance of Apache Tomcat.
