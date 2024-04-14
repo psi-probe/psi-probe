@@ -225,7 +225,7 @@
         <impsort.plugin>1.9.0</impsort.plugin>
         <install.plugin>3.1.1</install.plugin>
         <jacoco.plugin>0.8.12</jacoco.plugin>
-        <jar.plugin>3.3.0</jar.plugin>
+        <jar.plugin>3.4.0</jar.plugin>
         <javadoc.plugin>3.6.3</javadoc.plugin>
         <jdeps.plugin>3.1.2</jdeps.plugin>
         <jspc.plugin>12.0.8</jspc.plugin>
