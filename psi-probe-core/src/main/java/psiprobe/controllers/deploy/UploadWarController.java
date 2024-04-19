@@ -24,8 +24,8 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.tomcat.util.http.fileupload.FileItem;
 import org.apache.tomcat.util.http.fileupload.FileItemFactory;
+import org.apache.tomcat.util.http.fileupload.FileUpload;
 import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
-import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletRequestContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -63,7 +63,7 @@ public class UploadWarController extends AbstractTomcatContainerController {
       HttpServletResponse response) throws Exception {
 
     // If not multi-part content, exit
-    if (!ServletFileUpload.isMultipartContent(request)) {
+    if (!this.isMultipartContent(request)) {
       return new ModelAndView(new InternalResourceView(getViewName()));
     }
 
@@ -76,7 +76,8 @@ public class UploadWarController extends AbstractTomcatContainerController {
     // parse multipart request and extract the file
     FileItemFactory factory =
         new DiskFileItemFactory(1048000, new File(System.getProperty("java.io.tmpdir")));
-    ServletFileUpload upload = new ServletFileUpload(factory);
+    FileUpload upload = new FileUpload();
+    upload.setFileItemFactory(factory);
     upload.setSizeMax(-1);
     upload.setHeaderEncoding(StandardCharsets.UTF_8.name());
     try {
