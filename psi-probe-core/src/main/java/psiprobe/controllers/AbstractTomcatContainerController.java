@@ -10,8 +10,12 @@
  */
 package psiprobe.controllers;
 
-import javax.inject.Inject;
+import java.util.Locale;
 
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.tomcat.util.http.fileupload.servlet.ServletRequestContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.mvc.AbstractController;
@@ -34,6 +38,12 @@ public abstract class AbstractTomcatContainerController extends AbstractControll
 
   /** The view name. */
   private String viewName;
+
+  /** Part of HTTP content type header. */
+  private static final String MULTIPART = "multipart/";
+
+  /** Constant for HTTP POST method. */
+  private static final String POST_METHOD = "POST";
 
   /**
    * Gets the container wrapper.
@@ -70,4 +80,24 @@ public abstract class AbstractTomcatContainerController extends AbstractControll
   public void setViewName(String viewName) {
     this.viewName = viewName;
   }
+
+  /**
+   * Utility method that determines whether the request contains multipart content. Borrowed and
+   * modified from tomcat as they removed it in 9.0.88 and 10.1.x lines.
+   *
+   * @param request The request context to be evaluated. Must be non-null.
+   *
+   * @return {@code true} if the request is multipart; {@code false} otherwise.
+   */
+  public boolean isMultipartContent(final HttpServletRequest request) {
+    if (!POST_METHOD.equalsIgnoreCase(request.getMethod())) {
+      return false;
+    }
+    final String contentType = new ServletRequestContext(request).getContentType();
+    if (contentType == null) {
+      return false;
+    }
+    return contentType.toLowerCase(Locale.ENGLISH).startsWith(MULTIPART);
+  }
+
 }
