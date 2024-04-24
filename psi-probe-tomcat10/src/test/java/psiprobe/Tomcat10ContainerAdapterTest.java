@@ -29,6 +29,7 @@ import org.apache.catalina.Valve;
 import org.apache.catalina.WebResource;
 import org.apache.catalina.WebResourceRoot;
 import org.apache.catalina.deploy.NamingResourcesImpl;
+import org.apache.jasper.EmbeddedServletOptions;
 import org.apache.jasper.JspCompilationContext;
 import org.apache.tomcat.util.descriptor.web.ApplicationParameter;
 import org.apache.tomcat.util.descriptor.web.ContextResource;
@@ -54,6 +55,10 @@ class Tomcat10ContainerAdapterTest {
   /** The context. */
   @Mock
   Context context;
+
+  // * The embedded servlet options. */
+  @Mock
+  EmbeddedServletOptions options;
 
   /**
    * Creates the valve.
@@ -112,8 +117,9 @@ class Tomcat10ContainerAdapterTest {
   @Test
   void createJspCompilationContext() {
     final Tomcat10ContainerAdapter adapter = new Tomcat10ContainerAdapter();
-    JspCompilationContext jspContext = adapter.createJspCompilationContext("name", null, null, null,
-        ClassLoader.getSystemClassLoader());
+    Mockito.when(this.options.getGeneratedJspPackageName()).thenReturn("org.apache.jsp");
+    JspCompilationContext jspContext = adapter.createJspCompilationContext("name", this.options,
+        null, null, ClassLoader.getSystemClassLoader());
     assertEquals("org.apache.jsp.name", jspContext.getFQCN());
   }
 
