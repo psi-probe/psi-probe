@@ -32,6 +32,11 @@ jobs:
           languages: ${{ matrix.language }}
           queries: +security-and-quality
 
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: 17
+
       - name: Autobuild
         uses: github/codeql-action/autobuild@v3
 
