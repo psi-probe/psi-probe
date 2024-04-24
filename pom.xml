@@ -1177,6 +1177,10 @@
                             <enforceBytecodeVersion>
                                 <maxJdkVersion>${java.version}</maxJdkVersion>
                                 <ignoredScopes>test</ignoredScopes>
+                                <excludes>
+                                    <!-- Openssl contains panama for jdk 22 or higher if enabled via listener 'org.apache.catalina.core.OpenSSLLifecycleListener' -->
+                                    <exclude>org.apache.tomcat:tomcat-coyote</exclude>
+                                </excludes>
                             </enforceBytecodeVersion>
                             <requireJavaVersion>
                                 <version>[17,18),[21,22),[22,23),[23,24)</version>
