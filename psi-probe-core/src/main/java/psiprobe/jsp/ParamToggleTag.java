@@ -10,13 +10,13 @@
  */
 package psiprobe.jsp;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.Collections;
+import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.tagext.TagSupport;
 
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.tagext.TagSupport;
+import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.Charset;
+import java.util.Collections;
 
 import org.springframework.web.bind.ServletRequestUtils;
 
@@ -40,16 +40,12 @@ public class ParamToggleTag extends TagSupport {
     String encoding = pageContext.getResponse().getCharacterEncoding();
     for (String name : Collections.list(pageContext.getRequest().getParameterNames())) {
       if (!param.equals(name)) {
-        try {
-          String value = ServletRequestUtils.getStringParameter(pageContext.getRequest(), name, "");
-          String encodedValue = URLEncoder.encode(value, encoding);
-          if (query.length() > 0) {
-            query.append('&');
-          }
-          query.append(name).append('=').append(encodedValue);
-        } catch (UnsupportedEncodingException e) {
-          throw new JspException(e);
+        String value = ServletRequestUtils.getStringParameter(pageContext.getRequest(), name, "");
+        String encodedValue = URLEncoder.encode(value, Charset.forName(encoding));
+        if (query.length() > 0) {
+          query.append('&');
         }
+        query.append(name).append('=').append(encodedValue);
       }
     }
 

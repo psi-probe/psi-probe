@@ -16,9 +16,9 @@ import com.opensymphony.module.sitemesh.DecoratorMapper;
 import com.opensymphony.module.sitemesh.Page;
 import com.opensymphony.module.sitemesh.mapper.AbstractDecoratorMapper;
 
-import java.util.Properties;
+import jakarta.servlet.http.HttpServletRequest;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.Properties;
 
 /**
  * The AjaxDecoratorMapper will exclude all "ajax" requests from being decorated. It will also make
@@ -43,7 +43,7 @@ public class AjaxDecoratorMapper extends AbstractDecoratorMapper {
   public Decorator getDecorator(HttpServletRequest request, Page page) {
 
     boolean callMapperChain;
-    String originalUri = (String) request.getAttribute("javax.servlet.error.request_uri");
+    String originalUri = (String) request.getAttribute("jakarta.servlet.error.request_uri");
     if (originalUri != null) {
       //
       // cut off the query string

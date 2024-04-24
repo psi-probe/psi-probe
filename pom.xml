@@ -74,10 +74,8 @@
     <modules>
         <module>psi-probe-core</module>
         <module>psi-probe-rest</module>
-        <module>psi-probe-tomcat85</module>
-        <module>psi-probe-tomcat9</module>
-        <!-- <module>psi-probe-tomcat10</module> -->
-        <!-- <module>psi-probe-tomcat11</module> -->
+        <module>psi-probe-tomcat10</module>
+        <module>psi-probe-tomcat11</module>
         <module>psi-probe-web</module>
     </modules>
 
@@ -113,8 +111,8 @@
 
     <properties>
         <!-- Java Settings -->
-        <java.version>8</java.version>
-        <java.release.version>8</java.release.version>
+        <java.version>17</java.version>
+        <java.release.version>17</java.release.version>
         <java.test.version>${java.version}</java.test.version>
         <java.test.release.version>${java.release.version}</java.test.release.version>
 
@@ -156,7 +154,8 @@
         <argLine>-javaagent:${settings.localRepository}/com/github/hazendaz/jmockit/jmockit/${jmockit.version}/jmockit-${jmockit.version}.jar -javaagent:${settings.localRepository}/net/bytebuddy/byte-buddy-agent/${byte-buddy.version}/byte-buddy-agent-${byte-buddy.version}.jar</argLine>
 
         <!-- Dependency Versions -->
-        <activation.version>1.2.2</activation.version>
+        <activation.version>2.1.3</activation.version>
+        <angus-activation.version>2.0.2</angus-activation.version>
         <assertj.version>3.25.3</assertj.version>
         <beanutils.version>1.9.4</beanutils.version>
         <byte-buddy.version>1.14.14</byte-buddy.version>
@@ -164,14 +163,14 @@
         <checker.version>3.42.0</checker.version>
         <collections.version>3.2.2</collections.version>
         <dbcp2.version>2.12.0</dbcp2.version>
-        <displaytag.version>2.5.5</displaytag.version>
-        <el-api.version>3.0.3</el-api.version>
+        <displaytag.version>3.0.2</displaytag.version>
+        <el-api.version>5.0.1</el-api.version>
         <error-prone.version>2.26.1</error-prone.version>
-        <geoip2.version>2.17.0</geoip2.version>
+        <geoip2.version>4.2.0</geoip2.version>
         <guava.version>33.1.0-jre</guava.version>
-        <hateoas.version>1.5.6</hateoas.version>
-        <hikaricp.version>4.0.3</hikaricp.version>
-        <inject.version>1.0.5</inject.version>
+        <hateoas.version>2.2.1</hateoas.version>
+        <hikaricp.version>5.1.0</hikaricp.version>
+        <inject.version>2.0.1</inject.version>
         <io.version>2.16.1</io.version>
         <j2objc.version>3.0.0</j2objc.version>
         <jackson.version>2.17.0</jackson.version>
@@ -180,28 +179,28 @@
         <jhighlight.version>1.1.0</jhighlight.version>
         <jmockit.version>1.52.0</jmockit.version>
         <jna.version>5.14.0</jna.version>
-        <jsp-api.version>2.3.6</jsp-api.version>
-        <jstl-api.version>1.2.7</jstl-api.version>
-        <jstl.version>1.2.6</jstl.version>
+        <jsp-api.version>3.1.1</jsp-api.version>
+        <jstl-api.version>3.0.0</jstl-api.version>
+        <jstl.version>3.0.1</jstl.version>
         <junit.version>5.10.2</junit.version>
         <lang3.version>3.14.0</lang3.version>
-        <logback.version>1.3.14</logback.version>
-        <mail.version>1.6.7</mail.version>
+        <logback.version>1.5.6</logback.version>
+        <mail.version>2.0.3</mail.version>
         <mchange.version>0.3.0</mchange.version>
         <mockito.version>5.11.0</mockito.version>
         <ojdbc.version>19.22.0.0</ojdbc.version>
         <oshi.version>6.6.0</oshi.version>
         <quartz.version>2.4.0-rc2</quartz.version>
-        <servlet-api.version>4.0.4</servlet-api.version>
-        <sitemesh.version>2.5.2</sitemesh.version>
+        <servlet-api.version>6.0.0</servlet-api.version>
+        <sitemesh.version>2.6.0</sitemesh.version>
         <slf4j.version>2.0.13</slf4j.version>
         <spotbugs.version>4.8.4</spotbugs.version>
-        <spring.version>5.3.34</spring.version>
-        <spring-security.version>5.8.12</spring-security.version>
+        <spring.version>6.1.6</spring.version>
+        <spring-security.version>6.2.4</spring-security.version>
         <text.version>1.12.0</text.version>
-        <tomcat.version>9.0.88</tomcat.version>
-        <tomee.version>8.0.16</tomee.version>
-        <transaction-api.version>1.3.3</transaction-api.version>
+        <tomcat.version>10.1.23</tomcat.version>
+        <tomee.version>9.1.3</tomee.version>
+        <transaction-api.version>2.0.1</transaction-api.version>
         <ucp.version>21.13.0.0</ucp.version>
         <wrapper.version>3.2.3</wrapper.version>
         <xstream.version>1.4.20</xstream.version>
@@ -332,9 +331,9 @@
                 <version>${activation.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.sun.activation</groupId>
-                <artifactId>jakarta.activation</artifactId>
-                <version>${activation.version}</version>
+                <groupId>org.eclipse.angus</groupId>
+                <artifactId>angus-activation</artifactId>
+                <version>${angus-activation.version}</version>
             </dependency>
             <dependency>
                 <groupId>jakarta.inject</groupId>
@@ -357,8 +356,8 @@
                 <version>${jstl-api.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.sun.mail</groupId>
-                <artifactId>jakarta.mail</artifactId>
+                <groupId>org.eclipse.angus</groupId>
+                <artifactId>angus-mail</artifactId>
                 <version>${mail.version}</version>
             </dependency>
             <dependency>
@@ -430,7 +429,7 @@
                     </exclusion>
                     <exclusion>
                         <groupId>org.apache.tomee</groupId>
-                        <artifactId>javaee-api</artifactId>
+                        <artifactId>jakartaee-api</artifactId>
                     </exclusion>
                 </exclusions>
             </dependency>
@@ -716,8 +715,8 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>com.sun.activation</groupId>
-            <artifactId>jakarta.activation</artifactId>
+            <groupId>org.eclipse.angus</groupId>
+            <artifactId>angus-activation</artifactId>
             <scope>compile</scope>
         </dependency>
     </dependencies>
@@ -1047,8 +1046,8 @@
                     <version>${versions.plugin}</version>
                 </plugin>
                 <plugin>
-                    <groupId>org.eclipse.jetty.ee8</groupId>
-                    <artifactId>jetty-ee8-jspc-maven-plugin</artifactId>
+                    <groupId>org.eclipse.jetty.ee10</groupId>
+                    <artifactId>jetty-ee10-jspc-maven-plugin</artifactId>
                     <version>${jspc.plugin}</version>
                     <configuration>
                         <mergeFragment>false</mergeFragment>

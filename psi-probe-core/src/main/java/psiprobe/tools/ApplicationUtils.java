@@ -10,6 +10,9 @@
  */
 package psiprobe.tools;
 
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -22,8 +25,6 @@ import java.util.Locale;
 import java.util.Set;
 
 import javax.naming.NamingException;
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpSession;
 
 import org.apache.catalina.Container;
 import org.apache.catalina.Context;
@@ -381,14 +382,10 @@ public final class ApplicationUtils {
       si.setAllocationCount(sw.getCountAllocated());
       si.setErrorCount(sw.getErrorCount());
       si.setLoadTime(sw.getLoadTime());
-      // XXX: Remove with tomcat 10.1
-      si.setMaxInstances(sw.getMaxInstances());
       si.setMaxTime(sw.getMaxTime());
       si.setMinTime(sw.getMinTime() == Long.MAX_VALUE ? 0 : sw.getMinTime());
       si.setProcessingTime(sw.getProcessingTime());
       si.setRequestCount(sw.getRequestCount());
-      // XXX: Remove with tomcat 10.1
-      si.setSingleThreaded(Boolean.TRUE.equals(sw.isSingleThreadModel()));
     }
     return si;
   }

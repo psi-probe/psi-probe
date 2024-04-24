@@ -10,7 +10,7 @@
  */
 package psiprobe.controllers.apps;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 import org.springframework.stereotype.Controller;
 

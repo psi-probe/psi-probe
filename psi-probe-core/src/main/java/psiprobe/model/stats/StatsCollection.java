@@ -12,6 +12,8 @@ package psiprobe.model.stats;
 
 import com.thoughtworks.xstream.XStream;
 
+import jakarta.inject.Inject;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -25,8 +27,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeMap;
-
-import javax.inject.Inject;
 
 import org.jfree.data.xy.XYDataItem;
 import org.slf4j.Logger;
@@ -373,7 +373,7 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
   @Override
   public void setApplicationContext(ApplicationContext applicationContext) {
     WebApplicationContext wac = (WebApplicationContext) applicationContext;
-    contextTempDir = (File) wac.getServletContext().getAttribute("javax.servlet.context.tempdir");
+    contextTempDir = (File) wac.getServletContext().getAttribute("jakarta.servlet.context.tempdir");
   }
 
 }

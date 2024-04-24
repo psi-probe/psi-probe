@@ -10,12 +10,12 @@
  */
 package psiprobe.tools;
 
+import jakarta.activation.DataSource;
+import jakarta.activation.FileDataSource;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.activation.DataSource;
-import javax.activation.FileDataSource;
 
 /**
  * The Class MailMessage.

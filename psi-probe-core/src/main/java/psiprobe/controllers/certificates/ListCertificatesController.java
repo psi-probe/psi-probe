@@ -10,6 +10,9 @@
  */
 package psiprobe.controllers.certificates;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,8 +29,6 @@ import java.util.Collections;
 import java.util.List;
 
 import javax.management.ObjectName;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.apache.catalina.connector.Connector;
 import org.apache.coyote.ProtocolHandler;
@@ -258,10 +259,10 @@ public class ListCertificatesController extends AbstractTomcatContainerControlle
     Cert cert = new Cert();
 
     cert.setAlias(alias);
-    cert.setSubjectDistinguishedName(x509Cert.getSubjectDN().toString());
+    cert.setSubjectDistinguishedName(x509Cert.getSubjectX500Principal().toString());
     cert.setNotBefore(x509Cert.getNotBefore().toInstant());
     cert.setNotAfter(x509Cert.getNotAfter().toInstant());
-    cert.setIssuerDistinguishedName(x509Cert.getIssuerDN().toString());
+    cert.setIssuerDistinguishedName(x509Cert.getIssuerX500Principal().toString());
 
     certs.add(cert);
   }

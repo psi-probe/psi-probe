@@ -14,9 +14,9 @@ import com.opensymphony.module.sitemesh.Config;
 import com.opensymphony.module.sitemesh.DecoratorMapper;
 import com.opensymphony.module.sitemesh.Page;
 
-import java.util.Properties;
+import jakarta.servlet.http.HttpServletRequest;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.Properties;
 
 import mockit.Expectations;
 import mockit.Mocked;
@@ -73,7 +73,7 @@ class AjaxDecoratorMapperTest {
 
     new Expectations() {
       {
-        request.getAttribute("javax.servlet.error.request_uri");
+        request.getAttribute("jakarta.servlet.error.request_uri");
         result = "https://localhost:8443/probe";
 
         request.getServletPath();

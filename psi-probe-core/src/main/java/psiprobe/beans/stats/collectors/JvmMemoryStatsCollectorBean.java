@@ -10,9 +10,9 @@
  */
 package psiprobe.beans.stats.collectors;
 
-import java.util.List;
+import jakarta.inject.Inject;
 
-import javax.inject.Inject;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

@@ -10,8 +10,8 @@
  */
 package psiprobe.controllers.error;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -103,7 +103,7 @@ public class Error403Controller extends AbstractController {
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 
-    String originalUri = (String) request.getAttribute("javax.servlet.error.request_uri");
+    String originalUri = (String) request.getAttribute("jakarta.servlet.error.request_uri");
     if (originalUri != null && originalUri.endsWith(ajaxExtension)) {
       return new ModelAndView(ajaxViewName);
     }

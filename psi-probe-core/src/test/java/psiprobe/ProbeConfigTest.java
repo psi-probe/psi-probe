@@ -10,9 +10,9 @@
  */
 package psiprobe;
 
-import java.util.List;
+import jakarta.inject.Inject;
 
-import javax.inject.Inject;
+import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

@@ -10,6 +10,9 @@
  */
 package psiprobe.controllers.truststore;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -25,9 +28,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -81,7 +81,7 @@ public class TrustStoreController extends AbstractTomcatContainerController {
             X509Certificate cert = (X509Certificate) ks.getCertificate(alias);
 
             attributes.put("alias", alias);
-            attributes.put("cn", cert.getSubjectDN().toString());
+            attributes.put("cn", cert.getSubjectX500Principal().toString());
             attributes.put("expirationDate",
                 new SimpleDateFormat("yyyy-MM-dd").format(cert.getNotAfter()));
             certificateList.add(attributes);

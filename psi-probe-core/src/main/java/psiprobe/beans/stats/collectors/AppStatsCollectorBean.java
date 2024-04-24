@@ -10,8 +10,8 @@
  */
 package psiprobe.beans.stats.collectors;
 
-import javax.inject.Inject;
-import javax.servlet.ServletContext;
+import jakarta.inject.Inject;
+import jakarta.servlet.ServletContext;
 
 import org.apache.catalina.Context;
 import org.slf4j.Logger;

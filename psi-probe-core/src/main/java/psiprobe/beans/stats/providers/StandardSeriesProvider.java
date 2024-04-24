@@ -10,11 +10,11 @@
  */
 package psiprobe.beans.stats.providers;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.jfree.data.xy.DefaultTableXYDataset;
 import org.jfree.data.xy.XYDataItem;
