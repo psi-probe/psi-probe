@@ -18,12 +18,12 @@
     <parent>
         <groupId>com.github.psi-probe</groupId>
         <artifactId>psi-probe</artifactId>
-        <version>4.1.6-SNAPSHOT</version>
+        <version>4.2.0</version>
     </parent>
 
     <groupId>com.github.psi-probe</groupId>
     <artifactId>psi-probe-rest</artifactId>
-    <version>4.1.6-SNAPSHOT</version>
+    <version>4.2.0</version>
 
     <name>psi-probe-rest</name>
     <description>PSI Probe Rest - RESTful service endpoints.</description>
@@ -32,7 +32,7 @@
     <scm>
         <connection>scm:git:ssh://git@github.com/psi-probe/psi-probe.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/psi-probe/psi-probe.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>psi-probe-4.2.0</tag>
         <url>https://github.com/psi-probe/psi-probe/</url>
     </scm>
 
