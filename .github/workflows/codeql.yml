@@ -36,6 +36,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           java-version: 17
+          distribution: 'temurin'
 
       - name: Autobuild
         uses: github/codeql-action/autobuild@v3
