@@ -222,7 +222,7 @@
         <git-commit.plugin>8.0.2</git-commit.plugin>
         <gpg.plugin>3.2.4</gpg.plugin>
         <impsort.plugin>1.9.0</impsort.plugin>
-        <install.plugin>3.1.1</install.plugin>
+        <install.plugin>3.1.2</install.plugin>
         <jacoco.plugin>0.8.12</jacoco.plugin>
         <jar.plugin>3.4.1</jar.plugin>
         <javadoc.plugin>3.6.3</javadoc.plugin>
