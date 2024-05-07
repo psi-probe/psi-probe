@@ -230,7 +230,7 @@
         <jspc.plugin>12.0.8</jspc.plugin>
         <jxr.plugin>3.3.2</jxr.plugin>
         <l10n.plugin>1.0.0</l10n.plugin>
-        <license.plugin>4.3</license.plugin>
+        <license.plugin>4.4</license.plugin>
         <lifecycle-mapping.plugin>1.0.0</lifecycle-mapping.plugin>
         <modernizer.plugin>2.8.0</modernizer.plugin>
         <pmd.plugin>3.22.0</pmd.plugin>
