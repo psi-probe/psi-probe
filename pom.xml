@@ -240,7 +240,7 @@
         <resources.plugin>3.3.1</resources.plugin>
         <rewrite.plugin>5.29.0</rewrite.plugin>
         <scm-publish.plugin>3.2.1</scm-publish.plugin>
-        <site.plugin>4.0.0-M13</site.plugin>
+        <site.plugin>4.0.0-M14</site.plugin>
         <sonar.plugin>3.11.0.3922</sonar.plugin>
         <sortpom.plugin>3.4.1</sortpom.plugin>
         <source.plugin>3.3.1</source.plugin>
