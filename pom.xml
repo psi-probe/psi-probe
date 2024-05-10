@@ -159,7 +159,7 @@
         <activation.version>1.2.2</activation.version>
         <assertj.version>3.25.3</assertj.version>
         <beanutils.version>1.9.4</beanutils.version>
-        <byte-buddy.version>1.14.14</byte-buddy.version>
+        <byte-buddy.version>1.14.15</byte-buddy.version>
         <c3p0.version>0.10.1</c3p0.version>
         <checker.version>3.43.0</checker.version>
         <collections.version>3.2.2</collections.version>
