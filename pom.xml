@@ -158,7 +158,7 @@
         <angus-activation.version>2.0.2</angus-activation.version>
         <assertj.version>3.25.3</assertj.version>
         <beanutils.version>1.9.4</beanutils.version>
-        <byte-buddy.version>1.14.14</byte-buddy.version>
+        <byte-buddy.version>1.14.15</byte-buddy.version>
         <c3p0.version>0.10.0-pre7</c3p0.version>
         <checker.version>3.43.0</checker.version>
         <collections.version>3.2.2</collections.version>
