@@ -18,8 +18,8 @@
 <a class="jxr_linenumber" name="L10" href="#L10">10</a>  <em class="jxr_comment"> */</em>
 <a class="jxr_linenumber" name="L11" href="#L11">11</a>  <strong class="jxr_keyword">package</strong> psiprobe.controllers.error;
 <a class="jxr_linenumber" name="L12" href="#L12">12</a>  
-<a class="jxr_linenumber" name="L13" href="#L13">13</a>  <strong class="jxr_keyword">import</strong> javax.servlet.http.HttpServletRequest;
-<a class="jxr_linenumber" name="L14" href="#L14">14</a>  <strong class="jxr_keyword">import</strong> javax.servlet.http.HttpServletResponse;
+<a class="jxr_linenumber" name="L13" href="#L13">13</a>  <strong class="jxr_keyword">import</strong> jakarta.servlet.http.HttpServletRequest;
+<a class="jxr_linenumber" name="L14" href="#L14">14</a>  <strong class="jxr_keyword">import</strong> jakarta.servlet.http.HttpServletResponse;
 <a class="jxr_linenumber" name="L15" href="#L15">15</a>  
 <a class="jxr_linenumber" name="L16" href="#L16">16</a>  <strong class="jxr_keyword">import</strong> org.springframework.beans.factory.annotation.Value;
 <a class="jxr_linenumber" name="L17" href="#L17">17</a>  <strong class="jxr_keyword">import</strong> org.springframework.stereotype.Controller;
@@ -111,7 +111,7 @@
 <a class="jxr_linenumber" name="L103" href="#L103">103</a>   <strong class="jxr_keyword">protected</strong> ModelAndView handleRequestInternal(HttpServletRequest request,
 <a class="jxr_linenumber" name="L104" href="#L104">104</a>       HttpServletResponse response) <strong class="jxr_keyword">throws</strong> Exception {
 <a class="jxr_linenumber" name="L105" href="#L105">105</a> 
-<a class="jxr_linenumber" name="L106" href="#L106">106</a>     String originalUri = (String) request.getAttribute(<span class="jxr_string">"javax.servlet.error.request_uri"</span>);
+<a class="jxr_linenumber" name="L106" href="#L106">106</a>     String originalUri = (String) request.getAttribute(<span class="jxr_string">"jakarta.servlet.error.request_uri"</span>);
 <a class="jxr_linenumber" name="L107" href="#L107">107</a>     <strong class="jxr_keyword">if</strong> (originalUri != <strong class="jxr_keyword">null</strong> &amp;&amp; originalUri.endsWith(ajaxExtension)) {
 <a class="jxr_linenumber" name="L108" href="#L108">108</a>       <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> ModelAndView(ajaxViewName);
 <a class="jxr_linenumber" name="L109" href="#L109">109</a>     }
