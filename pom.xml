@@ -175,7 +175,7 @@
         <io.version>2.16.1</io.version>
         <j2objc.version>3.0.0</j2objc.version>
         <jackson.version>2.17.1</jackson.version>
-        <javabean-tester.version>2.8.0</javabean-tester.version>
+        <javabean-tester.version>2.8.1</javabean-tester.version>
         <jfreechart.version>1.5.4</jfreechart.version>
         <jhighlight.version>1.1.0</jhighlight.version>
         <jmockit.version>1.53.0</jmockit.version>
