@@ -219,7 +219,7 @@
         <deploy.plugin>3.1.2</deploy.plugin>
         <enforcer.plugin>3.5.0</enforcer.plugin>
         <formatter.plugin>2.24.1</formatter.plugin>
-        <git-commit.plugin>8.0.2</git-commit.plugin>
+        <git-commit.plugin>9.0.0</git-commit.plugin>
         <gpg.plugin>3.2.4</gpg.plugin>
         <impsort.plugin>1.10.0</impsort.plugin>
         <install.plugin>3.1.2</install.plugin>
