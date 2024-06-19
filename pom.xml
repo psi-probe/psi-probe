@@ -1737,7 +1737,7 @@
                             <dependency>
                                 <groupId>org.openrewrite.recipe</groupId>
                                 <artifactId>rewrite-static-analysis</artifactId>
-                                <version>1.9.0</version>
+                                <version>1.10.1</version>
                             </dependency>
                         </dependencies>
                         <executions>
