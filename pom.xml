@@ -238,7 +238,7 @@
         <release.plugin>3.1.0</release.plugin>
         <resources.plugin>3.3.1</resources.plugin>
         <rewrite.plugin>5.34.1</rewrite.plugin>
-        <scm-publish.plugin>3.2.1</scm-publish.plugin>
+        <scm-publish.plugin>3.3.0</scm-publish.plugin>
         <site.plugin>4.0.0-M15</site.plugin>
         <sonar.plugin>4.0.0.4121</sonar.plugin>
         <sortpom.plugin>4.0.0</sortpom.plugin>
