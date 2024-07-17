@@ -183,7 +183,7 @@
         <jstl-api.version>3.0.0</jstl-api.version>
         <jstl.version>3.0.1</jstl.version>
         <junit.version>5.10.3</junit.version>
-        <lang3.version>3.14.0</lang3.version>
+        <lang3.version>3.15.0</lang3.version>
         <logback.version>1.5.6</logback.version>
         <mail.version>2.0.3</mail.version>
         <mchange.version>0.3.1</mchange.version>
