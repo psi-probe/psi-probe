@@ -261,7 +261,7 @@
 
         <!-- Verification Checks -->
         <error-prone.failOnViolations>-XepAllErrorsAsWarnings</error-prone.failOnViolations>
-        <error-prone.skipGeneratedCode>-XepDisableWarningsInGeneratedCode</error-prone.skipGeneratedCode>
+        <error-prone.skipGeneratedCode>-XepDisableWarningsInGeneratedCode -XepExcludedPaths:.*target/generated-sources/.*</error-prone.skipGeneratedCode>
     </properties>
 
     <dependencyManagement>
