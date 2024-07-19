@@ -18,12 +18,12 @@
     <parent>
         <groupId>com.github.psi-probe</groupId>
         <artifactId>psi-probe</artifactId>
-        <version>4.2.1-SNAPSHOT</version>
+        <version>4.3.1-SNAPSHOT</version>
     </parent>
 
     <groupId>com.github.psi-probe</groupId>
     <artifactId>psi-probe-web</artifactId>
-    <version>4.2.1-SNAPSHOT</version>
+    <version>4.3.1-SNAPSHOT</version>
     <packaging>war</packaging>
 
     <name>psi-probe-web</name>
