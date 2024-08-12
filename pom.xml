@@ -180,7 +180,7 @@
         <jmockit.version>1.54.0</jmockit.version>
         <jna.version>5.14.0</jna.version>
         <jsp-api.version>4.0.0</jsp-api.version>
-        <jstl-api.version>3.0.0</jstl-api.version>
+        <jstl-api.version>3.0.1</jstl-api.version>
         <jstl.version>3.0.1</jstl.version>
         <junit.version>5.10.3</junit.version>
         <lang3.version>3.16.0</lang3.version>
