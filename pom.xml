@@ -213,7 +213,7 @@
         <checkstyle.plugin>3.4.0</checkstyle.plugin>
         <clean.plugin>3.4.0</clean.plugin>
         <compiler.plugin>3.13.0</compiler.plugin>
-        <coveralls.plugin>4.5.0-M3</coveralls.plugin>
+        <coveralls.plugin>4.5.0-M4</coveralls.plugin>
         <dependency.plugin>3.7.1</dependency.plugin>
         <dependency-check.plugin>10.0.3</dependency-check.plugin>
         <deploy.plugin>3.1.2</deploy.plugin>
