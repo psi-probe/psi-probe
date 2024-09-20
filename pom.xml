@@ -255,7 +255,7 @@
         <bugpattern.version>1.5.0</bugpattern.version>
         <checkstyle.version>10.18.1</checkstyle.version>
         <ecj.version>3.39.0</ecj.version>
-        <extra-enforcer-rules.version>1.8.0</extra-enforcer-rules.version>
+        <extra-enforcer-rules.version>1.9.0</extra-enforcer-rules.version>
         <sb-contrib.version>7.6.4</sb-contrib.version>
         <findsecbugs.version>1.13.0</findsecbugs.version>
 
