@@ -126,7 +126,7 @@
         <maven.compiler.testRelease>${java.test.release.version}</maven.compiler.testRelease>
 
         <!-- Maven minimum version -->
-        <maven.min-version>3.9.6</maven.min-version>
+        <maven.min-version>3.9.9</maven.min-version>
 
         <!-- Copyright -->
         <copyright>2024</copyright>
