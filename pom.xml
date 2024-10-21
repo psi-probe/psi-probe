@@ -182,7 +182,7 @@
         <jsp-api.version>4.0.0</jsp-api.version>
         <jstl-api.version>3.0.2</jstl-api.version>
         <jstl.version>3.0.1</jstl.version>
-        <junit.version>5.11.2</junit.version>
+        <junit.version>5.11.3</junit.version>
         <lang3.version>3.17.0</lang3.version>
         <logback.version>1.5.11</logback.version>
         <mail.version>2.0.3</mail.version>
