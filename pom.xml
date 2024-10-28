@@ -233,7 +233,7 @@
         <license.plugin>4.6</license.plugin>
         <lifecycle-mapping.plugin>1.0.0</lifecycle-mapping.plugin>
         <modernizer.plugin>2.9.0</modernizer.plugin>
-        <pmd.plugin>3.25.0</pmd.plugin>
+        <pmd.plugin>3.26.0</pmd.plugin>
         <project-info.plugin>3.8.0</project-info.plugin>
         <release.plugin>3.1.1</release.plugin>
         <resources.plugin>3.3.1</resources.plugin>
