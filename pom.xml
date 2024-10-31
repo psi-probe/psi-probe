@@ -229,7 +229,7 @@
         <jdeps.plugin>3.1.2</jdeps.plugin>
         <jspc.plugin>12.0.14</jspc.plugin>
         <jxr.plugin>3.6.0</jxr.plugin>
-        <l10n.plugin>1.0.0</l10n.plugin>
+        <l10n.plugin>1.1.0</l10n.plugin>
         <license.plugin>4.6</license.plugin>
         <lifecycle-mapping.plugin>1.0.0</lifecycle-mapping.plugin>
         <modernizer.plugin>2.9.0</modernizer.plugin>
