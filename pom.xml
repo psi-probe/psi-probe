@@ -256,7 +256,7 @@
         <checkstyle.version>10.20.1</checkstyle.version>
         <ecj.version>3.39.0</ecj.version>
         <extra-enforcer-rules.version>1.9.0</extra-enforcer-rules.version>
-        <sb-contrib.version>7.6.7</sb-contrib.version>
+        <sb-contrib.version>7.6.8</sb-contrib.version>
         <findsecbugs.version>1.13.0</findsecbugs.version>
 
         <!-- Verification Checks -->
