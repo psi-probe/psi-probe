@@ -168,7 +168,7 @@
         <error-prone.version>2.35.1</error-prone.version>
         <geoip2.version>4.2.1</geoip2.version>
         <guava.version>33.3.1-jre</guava.version>
-        <hateoas.version>2.3.3</hateoas.version>
+        <hateoas.version>2.4.0</hateoas.version>
         <hikaricp.version>6.1.0</hikaricp.version>
         <inject.version>2.0.1</inject.version>
         <io.version>2.17.0</io.version>
