@@ -883,6 +883,7 @@
 
                         <compilerArgs>
                             <arg>-XDcompilePolicy=simple</arg>
+                            <arg>--should-stop=ifError=FLOW</arg>
                             <arg>-Xplugin:ErrorProne ${error-prone.failOnViolations} ${error-prone.skipGeneratedCode}</arg>
                         </compilerArgs>
 
