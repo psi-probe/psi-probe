@@ -339,17 +339,7 @@ public class LogResolverBean {
             logConfigAccessor.setApplication(application);
             logConfigAccessor.setContext(true);
             logConfigAccessor.setLoggerContext(loggerContextAccessor);
-            Method getAppenders =
-                MethodUtils.getAccessibleMethod(loggerConfig.getClass(), "getAppenders");
-            @SuppressWarnings("unchecked")
-            Map<String, Object> appenders = (Map<String, Object>) getAppenders.invoke(loggerConfig);
-            for (Object appender : appenders.values()) {
-              Log4J2AppenderAccessor appenderAccessor = new Log4J2AppenderAccessor();
-              appenderAccessor.setTarget(appender);
-              appenderAccessor.setLoggerAccessor(logConfigAccessor);
-              appenderAccessor.setApplication(application);
-              allAppenders.add(appenderAccessor);
-            }
+            allAppenders.addAll(logConfigAccessor.getAppenders());
           }
         }
       } catch (Exception e) {
