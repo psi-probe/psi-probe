@@ -156,7 +156,7 @@
 
         <!-- Dependency Versions -->
         <activation.version>1.2.2</activation.version>
-        <assertj.version>3.26.3</assertj.version>
+        <assertj.version>3.27.0</assertj.version>
         <beanutils.version>1.9.4</beanutils.version>
         <byte-buddy.version>1.15.11</byte-buddy.version>
         <c3p0.version>0.10.1</c3p0.version>
