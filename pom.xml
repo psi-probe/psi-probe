@@ -184,7 +184,7 @@
         <jstl.version>3.0.1</jstl.version>
         <junit.version>5.11.4</junit.version>
         <lang3.version>3.17.0</lang3.version>
-        <logback.version>1.5.13</logback.version>
+        <logback.version>1.5.14</logback.version>
         <mail.version>2.0.3</mail.version>
         <mchange.version>0.3.1</mchange.version>
         <mockito.version>5.14.2</mockito.version>
