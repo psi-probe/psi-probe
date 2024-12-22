@@ -178,7 +178,7 @@
         <jfreechart.version>1.5.5</jfreechart.version>
         <jhighlight.version>1.1.0</jhighlight.version>
         <jmockit.version>1.55.0</jmockit.version>
-        <jna.version>5.15.0</jna.version>
+        <jna.version>5.16.0</jna.version>
         <jsp-api.version>4.0.0</jsp-api.version>
         <jstl-api.version>3.0.2</jstl-api.version>
         <jstl.version>3.0.1</jstl.version>
