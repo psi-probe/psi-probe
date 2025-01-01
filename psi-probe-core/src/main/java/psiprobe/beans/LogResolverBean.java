@@ -17,6 +17,7 @@ import java.io.File;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -476,7 +477,7 @@ public class LogResolverBean {
    * @return the file log accessor
    */
   private FileLogAccessor resolveStdoutLogDestination(String fileName) {
-    File stdout = new File(System.getProperty("catalina.base"), "logs/" + fileName);
+    File stdout = Path.of(System.getProperty("catalina.base"), "logs/" + fileName).toFile();
     if (stdout.exists()) {
       FileLogAccessor fla = new FileLogAccessor();
       fla.setName(fileName);

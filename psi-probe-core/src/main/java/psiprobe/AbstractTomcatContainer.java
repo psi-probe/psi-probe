@@ -20,6 +20,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -118,16 +119,15 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
 
   @Override
   public File getAppBase() {
-    File base = new File(host.getAppBase());
+    File base = Path.of(host.getAppBase()).toFile();
     if (!base.isAbsolute()) {
-      base = new File(System.getProperty("catalina.base"), host.getAppBase());
+      base = Path.of(System.getProperty("catalina.base"), host.getAppBase()).toFile();
     }
     return base;
   }
 
   @Override
   public String getConfigBase() {
-    File configBase = new File(System.getProperty("catalina.base"), "conf");
     Container baseHost = null;
     Container thisContainer = host;
     while (thisContainer != null) {
@@ -136,8 +136,9 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
       }
       thisContainer = thisContainer.getParent();
     }
+    File configBase = Path.of(System.getProperty("catalina.base"), "conf").toFile();
     if (baseHost != null) {
-      configBase = new File(configBase, baseHost.getName());
+      configBase = Path.of(configBase.getPath(), baseHost.getName()).toFile();
     }
     return configBase.getAbsolutePath();
   }
@@ -205,10 +206,10 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
       }
 
       File appDir;
-      File docBase = new File(ctx.getDocBase());
+      File docBase = Path.of(ctx.getDocBase()).toFile();
 
       if (!docBase.isAbsolute()) {
-        appDir = new File(getAppBase(), ctx.getDocBase());
+        appDir = Path.of(getAppBase().getPath(), ctx.getDocBase()).toFile();
       } else {
         appDir = docBase;
       }
@@ -217,7 +218,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
       Utils.delete(appDir);
 
       String warFilename = formatContextFilename(name);
-      File warFile = new File(getAppBase(), warFilename + ".war");
+      File warFile = Path.of(getAppBase().getPath(), warFilename + ".war").toFile();
       logger.debug("Deleting '{}'", warFile.getAbsolutePath());
       Utils.delete(warFile);
 
@@ -314,7 +315,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
       StandardContext standardContext = (StandardContext) context;
       String path = standardContext.getWorkPath();
       logger.info("Discarding '{}'", path);
-      Utils.delete(new File(path, "org"));
+      Utils.delete(Path.of(path, "org").toFile());
     } else {
       logger.error("context '{}' is not an instance of '{}', expected StandardContext",
           context.getName(), context.getClass().getName());
@@ -460,7 +461,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
       try {
         URI configUri = configUrl.toURI();
         if ("file".equals(configUri.getScheme())) {
-          return new File(configUri.getPath());
+          return Path.of(configUri.getPath()).toFile();
         }
       } catch (URISyntaxException ex) {
         logger.error("Could not convert URL to URI: '{}'", configUrl, ex);

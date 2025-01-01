@@ -15,6 +15,7 @@ import ch.qos.logback.core.encoder.Encoder;
 import ch.qos.logback.core.encoder.LayoutWrappingEncoder;
 
 import java.io.File;
+import java.nio.file.Path;
 
 import psiprobe.tools.logging.AbstractLogDestination;
 
@@ -93,7 +94,7 @@ public class TomcatSlf4jLogbackAppenderAccessor extends AbstractLogDestination {
   @Override
   public File getFile() {
     String fileName = (String) getProperty(getTarget(), "file", null);
-    return fileName != null ? new File(fileName) : getStdoutFile();
+    return fileName != null ? Path.of(fileName).toFile() : getStdoutFile();
   }
 
   @Override

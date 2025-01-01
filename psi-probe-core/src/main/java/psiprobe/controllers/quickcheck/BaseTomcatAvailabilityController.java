@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -120,14 +121,13 @@ public class BaseTomcatAvailabilityController extends AbstractTomcatContainerCon
     }
 
     // try to open some files
-    File tmpDir = new File(System.getProperty("java.io.tmpdir"));
     int fileCount = tomcatTestReport.getDefaultFileCount();
     List<File> files = new ArrayList<>();
     List<OutputStream> fileStreams = new ArrayList<>();
 
     try {
       for (; fileCount > 0; fileCount--) {
-        File file = new File(tmpDir, "tctest_" + fileCount);
+        File file = Path.of(System.getProperty("java.io.tmpdir"), "tctest_" + fileCount).toFile();
         try (OutputStream fos = Files.newOutputStream(file.toPath())) {
           files.add(file);
           fileStreams.add(fos);

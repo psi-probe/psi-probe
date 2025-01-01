@@ -15,6 +15,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.File;
+import java.nio.file.Path;
 
 import org.apache.catalina.Context;
 import org.slf4j.Logger;
@@ -80,7 +81,7 @@ public class BaseDownloadXmlConfController extends AbstractContextHandlerControl
     }
 
     if (xmlPath != null) {
-      File xmlFile = new File(xmlPath);
+      File xmlFile = Path.of(xmlPath).toFile();
       if (xmlFile.exists()) {
         Utils.sendFile(request, response, xmlFile);
       } else {

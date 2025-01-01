@@ -19,6 +19,7 @@ import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 
 import org.apache.catalina.Context;
 import org.slf4j.Logger;
@@ -100,7 +101,7 @@ public class BaseViewXmlConfController extends AbstractContextHandlerController 
     if (TARGET_WEB_XML.equals(displayTarget)) {
       ServletContext sctx = context.getServletContext();
       xmlPath = sctx.getRealPath("/WEB-INF/web.xml");
-      xmlFile = new File(xmlPath);
+      xmlFile = Path.of(xmlPath).toFile();
       mv.addObject("fileDesc",
           getMessageSourceAccessor().getMessage("probe.src.app.viewxmlconf.webxml.desc"));
     } else if (TARGET_CONTEXT_XML.equals(displayTarget)) {

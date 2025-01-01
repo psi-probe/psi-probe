@@ -19,6 +19,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -97,7 +98,7 @@ public class CopySingleFileController extends AbstractTomcatContainerController 
 
     // parse multipart request and extract the file
     FileItemFactory factory =
-        new DiskFileItemFactory(1048000, new File(System.getProperty("java.io.tmpdir")));
+        new DiskFileItemFactory(1048000, Path.of(System.getProperty("java.io.tmpdir")).toFile());
     FileUpload upload = new FileUpload();
     upload.setFileItemFactory(factory);
     upload.setSizeMax(-1);
@@ -108,7 +109,8 @@ public class CopySingleFileController extends AbstractTomcatContainerController 
         if (!fi.isFormField()) {
           if (fi.getName() != null && fi.getName().length() > 0) {
             tmpFile =
-                new File(System.getProperty("java.io.tmpdir"), FilenameUtils.getName(fi.getName()));
+                Path.of(System.getProperty("java.io.tmpdir"), FilenameUtils.getName(fi.getName()))
+                    .toFile();
             fi.write(tmpFile);
           }
         } else if ("context".equals(fi.getFieldName())) {
@@ -148,8 +150,8 @@ public class CopySingleFileController extends AbstractTomcatContainerController 
         // Check if context is already deployed
         if (getContainerWrapper().getTomcatContainer().findContext(contextName) != null) {
 
-          File destFile = new File(getContainerWrapper().getTomcatContainer().getAppBase(),
-              contextName + where);
+          File destFile = Path.of(getContainerWrapper().getTomcatContainer().getAppBase().getPath(),
+              contextName + where).toFile();
 
           // Checks if the destination path exists
           if (destFile.exists()) {

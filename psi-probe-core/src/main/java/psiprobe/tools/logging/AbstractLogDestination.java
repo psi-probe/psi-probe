@@ -11,6 +11,7 @@
 package psiprobe.tools.logging;
 
 import java.io.File;
+import java.nio.file.Path;
 import java.sql.Timestamp;
 
 /**
@@ -44,8 +45,8 @@ public abstract class AbstractLogDestination extends DefaultAccessor implements 
    * @return the stdout file
    */
   protected File getStdoutFile() {
-    File file = new File(System.getProperty("catalina.base"), "logs/catalina.out");
-    return file.exists() ? file : new File("stdout");
+    File file = Path.of(System.getProperty("catalina.base"), "logs/catalina.out").toFile();
+    return file.exists() ? file : Path.of("stdout").toFile();
   }
 
   @Override

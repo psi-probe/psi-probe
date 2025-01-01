@@ -18,6 +18,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.InputStream;
 import java.nio.file.Files;
+import java.nio.file.Path;
 
 import org.apache.catalina.Context;
 import org.apache.jasper.EmbeddedServletOptions;
@@ -60,7 +61,7 @@ public class ViewServletSourceController extends AbstractContextHandlerControlle
           getContainerWrapper().getTomcatContainer().getServletFileNameForJsp(context, jspName);
 
       if (servletName != null) {
-        File servletFile = new File(servletName);
+        File servletFile = Path.of(servletName).toFile();
         if (servletFile.exists()) {
           try (InputStream fis = Files.newInputStream(servletFile.toPath())) {
             content = Utils.highlightStream(jspName, fis, "java", encoding);
