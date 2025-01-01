@@ -14,6 +14,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.File;
+import java.nio.file.Path;
 
 import org.apache.catalina.Context;
 import org.springframework.stereotype.Controller;
@@ -47,7 +48,7 @@ public class DownloadServletController extends AbstractContextHandlerController 
       String servletName =
           getContainerWrapper().getTomcatContainer().getServletFileNameForJsp(context, jspName);
       if (servletName != null) {
-        File servletFile = new File(servletName);
+        File servletFile = Path.of(servletName).toFile();
         if (servletFile.exists()) {
           Utils.sendFile(request, response, servletFile);
         }

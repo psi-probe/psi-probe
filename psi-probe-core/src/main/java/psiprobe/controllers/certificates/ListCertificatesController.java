@@ -20,6 +20,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
 import java.net.URL;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.security.KeyStore;
 import java.security.cert.Certificate;
 import java.security.cert.X509Certificate;
@@ -205,13 +206,13 @@ public class ListCertificatesController extends AbstractTomcatContainerControlle
    * @throws IOException if path can not be resolved
    */
   private InputStream getStoreInputStream(String path) throws IOException {
-    File file = new File(path);
+    File file = Path.of(path).toFile();
     if (file.exists()) {
       return Files.newInputStream(file.toPath());
     }
 
-    File catalinaBaseFolder = new File(System.getProperty("catalina.base"));
-    file = new File(catalinaBaseFolder, path);
+    File catalinaBaseFolder = Path.of(System.getProperty("catalina.base")).toFile();
+    file = Path.of(catalinaBaseFolder.getPath(), path).toFile();
     if (file.exists()) {
       return Files.newInputStream(file.toPath());
     }

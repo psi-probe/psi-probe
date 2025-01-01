@@ -10,8 +10,8 @@
  */
 package psiprobe.model;
 
-import java.io.File;
 import java.io.Serializable;
+import java.nio.file.Path;
 import java.util.Date;
 import java.util.Map;
 import java.util.Set;
@@ -95,7 +95,7 @@ public class SystemInformation implements Serializable {
    * @return the working dir
    */
   public String getWorkingDir() {
-    return new File("").getAbsolutePath();
+    return Path.of("").toFile().getAbsolutePath();
   }
 
   /**

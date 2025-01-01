@@ -17,6 +17,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 
 import org.apache.catalina.Context;
@@ -75,7 +76,7 @@ public class UploadWarController extends AbstractTomcatContainerController {
 
     // parse multipart request and extract the file
     FileItemFactory factory =
-        new DiskFileItemFactory(1048000, new File(System.getProperty("java.io.tmpdir")));
+        new DiskFileItemFactory(1048000, Path.of(System.getProperty("java.io.tmpdir")).toFile());
     FileUpload upload = new FileUpload();
     upload.setFileItemFactory(factory);
     upload.setSizeMax(-1);
@@ -86,7 +87,8 @@ public class UploadWarController extends AbstractTomcatContainerController {
         if (!fi.isFormField()) {
           if (fi.getName() != null && fi.getName().length() > 0) {
             tmpWar =
-                new File(System.getProperty("java.io.tmpdir"), FilenameUtils.getName(fi.getName()));
+                Path.of(System.getProperty("java.io.tmpdir"), FilenameUtils.getName(fi.getName()))
+                    .toFile();
             fi.write(tmpWar);
           }
         } else if ("context".equals(fi.getFieldName())) {
@@ -141,8 +143,8 @@ public class UploadWarController extends AbstractTomcatContainerController {
           // move the .war to tomcat application base dir
           String destWarFilename =
               getContainerWrapper().getTomcatContainer().formatContextFilename(contextName);
-          File destWar = new File(getContainerWrapper().getTomcatContainer().getAppBase(),
-              destWarFilename + ".war");
+          File destWar = Path.of(getContainerWrapper().getTomcatContainer().getAppBase().getPath(),
+              destWarFilename + ".war").toFile();
 
           FileUtils.moveFile(tmpWar, destWar);
 
@@ -150,7 +152,8 @@ public class UploadWarController extends AbstractTomcatContainerController {
           getContainerWrapper().getTomcatContainer().installWar(contextName);
 
           File destContext =
-              new File(getContainerWrapper().getTomcatContainer().getAppBase(), destWarFilename);
+              Path.of(getContainerWrapper().getTomcatContainer().getAppBase().getPath(),
+                  destWarFilename).toFile();
           // Wait few seconds for creating context dir to avoid empty context
           FileUtils.waitFor(destContext, MAXSECONDS_WAITFOR_CONTEXT);
 

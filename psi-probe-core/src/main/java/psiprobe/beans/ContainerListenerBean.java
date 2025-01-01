@@ -18,8 +18,8 @@ import com.maxmind.geoip2.record.Country;
 
 import jakarta.inject.Inject;
 
-import java.io.File;
 import java.net.InetAddress;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -367,8 +367,9 @@ public class ContainerListenerBean implements NotificationListener {
                   System.getProperty("user.country")));
             } else {
               // Show flag for non-localhost using geo lite
-              try (DatabaseReader reader = new DatabaseReader.Builder(new File(
-                  getClass().getClassLoader().getResource("GeoLite2-Country.mmdb").toURI()))
+              try (DatabaseReader reader = new DatabaseReader.Builder(
+                  Path.of(getClass().getClassLoader().getResource("GeoLite2-Country.mmdb").toURI())
+                      .toFile())
                   .withCache(new CHMCache()).build()) {
                 CountryResponse response =
                     reader.country(InetAddress.getByName(rp.getRemoteAddr()));

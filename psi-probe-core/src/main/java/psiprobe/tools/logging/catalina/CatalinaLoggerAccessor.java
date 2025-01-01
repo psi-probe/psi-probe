@@ -11,6 +11,7 @@
 package psiprobe.tools.logging.catalina;
 
 import java.io.File;
+import java.nio.file.Path;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -45,9 +46,10 @@ public class CatalinaLoggerAccessor extends AbstractLogDestination {
     boolean timestamp = Instruments.getField(getTarget(), "timestamp") != null;
     String date = timestamp ? new SimpleDateFormat("yyyy-MM-dd").format(new Date()) : "";
 
-    File file = notNull(date, dir, prefix, suffix) ? new File(dir, prefix + date + suffix) : null;
+    File file =
+        notNull(date, dir, prefix, suffix) ? Path.of(dir, prefix + date + suffix).toFile() : null;
     if (file != null && !file.isAbsolute()) {
-      return new File(System.getProperty("catalina.base"), file.getPath());
+      return Path.of(System.getProperty("catalina.base"), file.getPath()).toFile();
     }
     return file;
   }

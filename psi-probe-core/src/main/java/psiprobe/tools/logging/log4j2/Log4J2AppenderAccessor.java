@@ -11,6 +11,7 @@
 package psiprobe.tools.logging.log4j2;
 
 import java.io.File;
+import java.nio.file.Path;
 
 import psiprobe.tools.logging.AbstractLogDestination;
 
@@ -79,7 +80,7 @@ public class Log4J2AppenderAccessor extends AbstractLogDestination {
   public File getFile() {
     String fileName = (String) getProperty(getTarget(), "fileName", null);
     if (fileName != null) {
-      return new File(fileName);
+      return Path.of(fileName).toFile();
     }
     // Check for SMTPAppender information
     File result = null;
@@ -103,9 +104,11 @@ public class Log4J2AppenderAccessor extends AbstractLogDestination {
           }
         }
       }
-      result = new File("mailto:" + getProperty(factoryData, "to", "", true)
-          + (from != null ? "&from=" + from : "") + (cc != null ? "&cc=" + cc : "")
-          + (bcc != null ? "&bcc=" + bcc : "") + (subject != null ? "&subject=" + subject : ""));
+      result = Path
+          .of("mailto:" + getProperty(factoryData, "to", "", true)
+              + (from != null ? "&from=" + from : "") + (cc != null ? "&cc=" + cc : "")
+              + (bcc != null ? "&bcc=" + bcc : "") + (subject != null ? "&subject=" + subject : ""))
+          .toFile();
     } else {
       result = getStdoutFile();
     }
