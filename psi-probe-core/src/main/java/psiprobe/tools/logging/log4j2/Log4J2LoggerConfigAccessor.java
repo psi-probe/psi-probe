@@ -198,7 +198,7 @@ public class Log4J2LoggerConfigAccessor extends DefaultAccessor {
   @SuppressWarnings("unchecked")
   private List<Object> getAsyncedAppenders(Object appender) throws Exception {
     if ("org.apache.logging.log4j.core.appender.AsyncAppender"
-            .equals(appender.getClass().getName())) {
+        .equals(appender.getClass().getName())) {
       Object appenders = MethodUtils.invokeMethod(appender, "getAppenders");
       if (appenders != null) {
         return (List<Object>) appenders;
