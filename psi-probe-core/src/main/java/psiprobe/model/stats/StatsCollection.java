@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -232,8 +232,8 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
   private void shiftFiles(int index) {
     if (index >= maxFiles - 1) {
       try {
-        if (Files.exists(Paths.get(makeFile().getAbsolutePath() + "." + index))) {
-          Files.delete(Paths.get(makeFile().getAbsolutePath() + "." + index));
+        if (Files.exists(Path.of(makeFile().getAbsolutePath() + "." + index))) {
+          Files.delete(Path.of(makeFile().getAbsolutePath() + "." + index));
         }
       } catch (IOException e) {
         logger.error("Could not delete file {}",
