@@ -194,7 +194,7 @@
         <servlet-api.version>6.1.0</servlet-api.version>
         <sitemesh.version>2.6.0</sitemesh.version>
         <slf4j.version>2.0.16</slf4j.version>
-        <spotbugs.version>4.8.6</spotbugs.version>
+        <spotbugs.version>4.9.0</spotbugs.version>
         <spring.version>6.2.1</spring.version>
         <spring-security.version>6.4.2</spring-security.version>
         <text.version>1.13.0</text.version>
