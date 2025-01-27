@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+ii<?xml version="1.0" encoding="UTF-8"?>
 <!--
 
     Licensed under the GPL License. You may not use this file except in compliance with the License.
@@ -129,7 +129,7 @@
         <maven.min-version>3.9.9</maven.min-version>
 
         <!-- Copyright -->
-        <copyright>2024</copyright>
+        <copyright>2025</copyright>
 
         <!-- Github Settings -->
         <github.global.server>github</github.global.server>
