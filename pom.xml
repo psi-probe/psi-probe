@@ -198,7 +198,7 @@
         <spring.version>6.2.3</spring.version>
         <spring-security.version>6.4.2</spring-security.version>
         <text.version>1.13.0</text.version>
-        <tomcat.version>10.1.35</tomcat.version>
+        <tomcat.version>10.1.36</tomcat.version>
         <tomee.version>10.0.0</tomee.version>
         <transaction-api.version>2.0.1</transaction-api.version>
         <ucp.version>21.17.0.0</ucp.version>
