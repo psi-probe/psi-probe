@@ -211,7 +211,7 @@
         <assembly.plugin>3.7.1</assembly.plugin>
         <build-helper.plugin>3.6.0</build-helper.plugin>
         <checkstyle.plugin>3.6.0</checkstyle.plugin>
-        <clean.plugin>3.4.0</clean.plugin>
+        <clean.plugin>3.4.1</clean.plugin>
         <compiler.plugin>3.13.0</compiler.plugin>
         <coveralls.plugin>4.5.0-M6</coveralls.plugin>
         <dependency.plugin>3.8.1</dependency.plugin>
