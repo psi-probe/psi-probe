@@ -33,7 +33,7 @@ import javax.management.ObjectName;
 
 import org.apache.catalina.connector.Connector;
 import org.apache.coyote.ProtocolHandler;
-import org.apache.coyote.http11.AbstractHttp11JsseProtocol;
+import org.apache.coyote.http11.AbstractHttp11Protocol;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -182,8 +182,8 @@ public class ListCertificatesController extends AbstractTomcatContainerControlle
 
       ProtocolHandler protocolHandler = connector.getProtocolHandler();
 
-      if (protocolHandler instanceof AbstractHttp11JsseProtocol) {
-        AbstractHttp11JsseProtocol<?> protocol = (AbstractHttp11JsseProtocol<?>) protocolHandler;
+      if (protocolHandler instanceof AbstractHttp11Protocol) {
+        AbstractHttp11Protocol<?> protocol = (AbstractHttp11Protocol<?>) protocolHandler;
         if (!protocol.getSecure()) {
           continue;
         }
@@ -234,7 +234,7 @@ public class ListCertificatesController extends AbstractTomcatContainerControlle
    * @throws IllegalAccessException the illegal access exception
    * @throws InvocationTargetException the invocation target exception
    */
-  private ConnectorInfo toConnectorInfo(AbstractHttp11JsseProtocol<?> protocol)
+  private ConnectorInfo toConnectorInfo(AbstractHttp11Protocol<?> protocol)
       throws IllegalAccessException, InvocationTargetException {
     ConnectorInfo info = new ConnectorInfo();
     info.setName(ObjectName.unquote(protocol.getName()));
