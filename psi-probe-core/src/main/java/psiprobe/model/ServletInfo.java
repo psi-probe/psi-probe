@@ -39,7 +39,7 @@ public class ServletInfo {
   private String runAs;
 
   /** The error count. */
-  private int errorCount;
+  private long errorCount;
 
   /** The load time. */
   private long loadTime;
@@ -54,7 +54,7 @@ public class ServletInfo {
   private long processingTime;
 
   /** The request count. */
-  private int requestCount;
+  private long requestCount;
 
   /** The single threaded. */
   private boolean singleThreaded;
@@ -188,7 +188,7 @@ public class ServletInfo {
    *
    * @return the error count
    */
-  public int getErrorCount() {
+  public long getErrorCount() {
     return errorCount;
   }
 
@@ -197,7 +197,7 @@ public class ServletInfo {
    *
    * @param errorCount the new error count
    */
-  public void setErrorCount(int errorCount) {
+  public void setErrorCount(long errorCount) {
     this.errorCount = errorCount;
   }
 
@@ -278,7 +278,7 @@ public class ServletInfo {
    *
    * @return the request count
    */
-  public int getRequestCount() {
+  public long getRequestCount() {
     return requestCount;
   }
 
@@ -287,7 +287,7 @@ public class ServletInfo {
    *
    * @param requestCount the new request count
    */
-  public void setRequestCount(int requestCount) {
+  public void setRequestCount(long requestCount) {
     this.requestCount = requestCount;
   }
 

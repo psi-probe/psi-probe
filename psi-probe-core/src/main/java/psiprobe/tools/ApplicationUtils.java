@@ -160,8 +160,8 @@ public final class ApplicationUtils {
    */
   public static void collectApplicationServletStats(Context context, Application app) {
     int svltCount = 0;
-    int reqCount = 0;
-    int errCount = 0;
+    long reqCount = 0;
+    long errCount = 0;
     long procTime = 0;
     long minTime = Long.MAX_VALUE;
     long maxTime = 0;
