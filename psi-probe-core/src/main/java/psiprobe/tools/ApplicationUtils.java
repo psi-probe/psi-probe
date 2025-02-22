@@ -238,16 +238,7 @@ public final class ApplicationUtils {
       sbean.setLastAccessTime(new Date(session.getLastAccessedTime()));
       sbean.setMaxIdleTime(session.getMaxInactiveInterval() * 1000);
       sbean.setManagerType(session.getManager().getClass().getName());
-
-      // Tomcat 8+ dropped support of getInfo off session. This patch allows it to continue working
-      // for tomcat 7.
-      try {
-        Object info = MethodUtils.invokeMethod(session, "getInfo");
-        sbean.setInfo(String.valueOf(info));
-      } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-        sbean.setInfo(session.getClass().getSimpleName());
-        logger.trace("Cannot determine session info for tomcat 8+", e);
-      }
+      sbean.setInfo(session.getClass().getSimpleName());
 
       boolean sessionSerializable = true;
       int attributeCount = 0;
