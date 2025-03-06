@@ -159,8 +159,8 @@ public final class ApplicationUtils {
    */
   public static void collectApplicationServletStats(Context context, Application app) {
     int svltCount = 0;
-    int reqCount = 0;
-    int errCount = 0;
+    long reqCount = 0;
+    long errCount = 0;
     long procTime = 0;
     long minTime = Long.MAX_VALUE;
     long maxTime = 0;
@@ -169,11 +169,45 @@ public final class ApplicationUtils {
       if (container instanceof StandardWrapper) {
         StandardWrapper sw = (StandardWrapper) container;
         svltCount++;
-        reqCount += sw.getRequestCount();
-        errCount += sw.getErrorCount();
+
+        // Get Request Count (bridge between tomcat 9/10 and 11 using int vs long
+        Object requestCount = null;
+        try {
+          requestCount = MethodUtils.invokeMethod(sw, "getRequestCount");
+          if (requestCount instanceof Long) {
+            // tomcat 11+
+            reqCount += (long) requestCount;
+          } else {
+            // tomcat 9/10
+            reqCount += (int) requestCount;
+          }
+        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+          logger.error("Unable to find getRequestCount", e);
+        }
+
+        // Get Error Count (bridge between tomcat 10 and 11 using int vs long
+        try {
+          Object errorCount = MethodUtils.invokeMethod(sw, "getErrorCount");
+          if (errorCount instanceof Long) {
+            // Tomcat 11+
+            errCount += (long) errorCount;
+          } else {
+            // Tomcat 9/10
+            errCount += (int) errorCount;
+          }
+        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+          logger.error("Unable to find getErrorCount", e);
+        }
+
         procTime += sw.getProcessingTime();
-        if (sw.getRequestCount() > 0) {
-          minTime = Math.min(minTime, sw.getMinTime());
+        if (requestCount != null) {
+          if (requestCount instanceof Long && (long) requestCount > 0) {
+            // Tomcat 11+
+            minTime = Math.min(minTime, sw.getMinTime());
+          } else if (requestCount instanceof Integer && (int) requestCount > 0) {
+            // Tomcat 9/10
+            minTime = Math.min(minTime, sw.getMinTime());
+          }
         }
         maxTime = Math.max(maxTime, sw.getMaxTime());
       }
@@ -237,16 +271,7 @@ public final class ApplicationUtils {
       sbean.setLastAccessTime(new Date(session.getLastAccessedTime()));
       sbean.setMaxIdleTime(session.getMaxInactiveInterval() * 1000);
       sbean.setManagerType(session.getManager().getClass().getName());
-
-      // Tomcat 8+ dropped support of getInfo off session. This patch allows it to continue working
-      // for tomcat 7.
-      try {
-        Object info = MethodUtils.invokeMethod(session, "getInfo");
-        sbean.setInfo(String.valueOf(info));
-      } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-        sbean.setInfo(session.getClass().getSimpleName());
-        logger.trace("Cannot determine session info for tomcat 8+", e);
-      }
+      sbean.setInfo(session.getClass().getSimpleName());
 
       boolean sessionSerializable = true;
       int attributeCount = 0;
@@ -379,14 +404,42 @@ public final class ApplicationUtils {
     if (wrapper instanceof StandardWrapper) {
       StandardWrapper sw = (StandardWrapper) wrapper;
       si.setAllocationCount(sw.getCountAllocated());
-      si.setErrorCount(sw.getErrorCount());
+
+      // Get Error Count (bridge between tomcat 9/10 and 11 using int vs long
+      try {
+        Object errorCount = MethodUtils.invokeMethod(sw, "getErrorCount");
+        if (errorCount instanceof Long) {
+          // Tomcat 11+
+          si.setErrorCount((long) errorCount);
+        } else {
+          // Tomcat 9/10
+          si.setErrorCount((int) errorCount);
+        }
+      } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+        logger.error("Unable to find getErrorCount", e);
+      }
+
       si.setLoadTime(sw.getLoadTime());
       // XXX: Remove with tomcat 10.1
       si.setMaxInstances(sw.getMaxInstances());
       si.setMaxTime(sw.getMaxTime());
       si.setMinTime(sw.getMinTime() == Long.MAX_VALUE ? 0 : sw.getMinTime());
       si.setProcessingTime(sw.getProcessingTime());
-      si.setRequestCount(sw.getRequestCount());
+
+      // Get Request Count (bridge between tomcat 9/10 and 11 using int vs long
+      try {
+        Object requestCount = MethodUtils.invokeMethod(sw, "getRequestCount");
+        if (requestCount instanceof Long) {
+          // Tomcat 11+
+          si.setRequestCount((long) requestCount);
+        } else {
+          // Tomcat 9/10
+          si.setRequestCount((int) requestCount);
+        }
+      } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+        logger.error("Unable to find getRequestCount", e);
+      }
+
       // XXX: Remove with tomcat 10.1
       si.setSingleThreaded(Boolean.TRUE.equals(sw.isSingleThreadModel()));
     }

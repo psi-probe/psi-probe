@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.apache.commons.beanutils.BeanUtils;
-import org.apache.coyote.http11.AbstractHttp11JsseProtocol;
+import org.apache.coyote.http11.AbstractHttp11Protocol;
 import org.apache.tomcat.util.net.SSLHostConfig;
 import org.apache.tomcat.util.net.SSLHostConfigCertificate;
 
@@ -38,7 +38,7 @@ public class SslHostConfigHelper {
    * @throws IllegalAccessException the illegal access exception
    * @throws InvocationTargetException the invocation target exception
    */
-  public SslHostConfigHelper(AbstractHttp11JsseProtocol<?> protocol, ConnectorInfo info)
+  public SslHostConfigHelper(AbstractHttp11Protocol<?> protocol, ConnectorInfo info)
       throws IllegalAccessException, InvocationTargetException {
     SSLHostConfig[] sslHostConfigs = protocol.findSslHostConfigs();
     List<SslHostConfigInfo> sslHostConfigInfos = new ArrayList<>(sslHostConfigs.length);

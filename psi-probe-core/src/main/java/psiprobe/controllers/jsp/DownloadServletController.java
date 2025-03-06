@@ -11,6 +11,7 @@
 package psiprobe.controllers.jsp;
 
 import java.io.File;
+import java.nio.file.Path;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -47,7 +48,7 @@ public class DownloadServletController extends AbstractContextHandlerController 
       String servletName =
           getContainerWrapper().getTomcatContainer().getServletFileNameForJsp(context, jspName);
       if (servletName != null) {
-        File servletFile = new File(servletName);
+        File servletFile = Path.of(servletName).toFile();
         if (servletFile.exists()) {
           Utils.sendFile(request, response, servletFile);
         }

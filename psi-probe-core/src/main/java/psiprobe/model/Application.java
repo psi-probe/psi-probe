@@ -66,13 +66,13 @@ public class Application implements Serializable {
   private int servletCount;
 
   /** The request count. */
-  private int requestCount;
+  private long requestCount;
 
   /** The processing time. */
   private long processingTime;
 
   /** The error count. */
-  private int errorCount;
+  private long errorCount;
 
   /** The min time. */
   private long minTime;
@@ -367,7 +367,7 @@ public class Application implements Serializable {
    *
    * @return the request count
    */
-  public int getRequestCount() {
+  public long getRequestCount() {
     return requestCount;
   }
 
@@ -376,7 +376,7 @@ public class Application implements Serializable {
    *
    * @param requestCount the new request count
    */
-  public void setRequestCount(int requestCount) {
+  public void setRequestCount(long requestCount) {
     this.requestCount = requestCount;
   }
 
@@ -403,7 +403,7 @@ public class Application implements Serializable {
    *
    * @return the error count
    */
-  public int getErrorCount() {
+  public long getErrorCount() {
     return errorCount;
   }
 
@@ -412,7 +412,7 @@ public class Application implements Serializable {
    *
    * @param errorCount the new error count
    */
-  public void setErrorCount(int errorCount) {
+  public void setErrorCount(long errorCount) {
     this.errorCount = errorCount;
   }
 

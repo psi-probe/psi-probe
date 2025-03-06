@@ -13,7 +13,7 @@ package psiprobe.controllers.truststore;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.nio.file.Path;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
@@ -69,7 +69,7 @@ public class TrustStoreController extends AbstractTomcatContainerController {
       String trustStore = System.getProperty("javax.net.ssl.trustStore");
       String trustStorePassword = System.getProperty("javax.net.ssl.trustStorePassword");
       if (trustStore != null) {
-        try (InputStream fis = Files.newInputStream(Paths.get(trustStore))) {
+        try (InputStream fis = Files.newInputStream(Path.of(trustStore))) {
           ks.load(fis, trustStorePassword != null ? trustStorePassword.toCharArray() : null);
         } catch (NoSuchAlgorithmException | CertificateException | IOException e) {
           logger.error("", e);
