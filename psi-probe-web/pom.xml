@@ -18,12 +18,12 @@
     <parent>
         <groupId>com.github.psi-probe</groupId>
         <artifactId>psi-probe</artifactId>
-        <version>4.3.2-SNAPSHOT</version>
+        <version>4.3.2</version>
     </parent>
 
     <groupId>com.github.psi-probe</groupId>
     <artifactId>psi-probe-web</artifactId>
-    <version>4.3.2-SNAPSHOT</version>
+    <version>4.3.2</version>
     <packaging>war</packaging>
 
     <name>psi-probe-web</name>
@@ -33,7 +33,7 @@
     <scm>
         <connection>scm:git:ssh://git@github.com/psi-probe/psi-probe.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/psi-probe/psi-probe.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>psi-probe-4.3.2</tag>
         <url>https://github.com/psi-probe/psi-probe/</url>
     </scm>
 
