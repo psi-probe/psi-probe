@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -220,8 +220,8 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
    * @return the file
    */
   private File makeFile() {
-    return storagePath == null ? new File(contextTempDir, swapFileName)
-        : new File(storagePath, swapFileName);
+    return storagePath == null ? Path.of(contextTempDir.getPath(), swapFileName).toFile()
+        : Path.of(storagePath, swapFileName).toFile();
   }
 
   /**
@@ -232,18 +232,19 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
   private void shiftFiles(int index) {
     if (index >= maxFiles - 1) {
       try {
-        if (Files.exists(Paths.get(makeFile().getAbsolutePath() + "." + index))) {
-          Files.delete(Paths.get(makeFile().getAbsolutePath() + "." + index));
+        if (Files.exists(Path.of(makeFile().getAbsolutePath() + "." + index))) {
+          Files.delete(Path.of(makeFile().getAbsolutePath() + "." + index));
         }
       } catch (IOException e) {
         logger.error("Could not delete file {}",
-            new File(makeFile().getAbsolutePath() + "." + index).getName());
+            Path.of(makeFile().getAbsolutePath() + "." + index).toFile().getName());
       }
     } else {
       shiftFiles(index + 1);
-      File srcFile = index == 0 ? makeFile() : new File(makeFile().getAbsolutePath() + "." + index);
+      File srcFile =
+          index == 0 ? makeFile() : Path.of(makeFile().getAbsolutePath() + "." + index).toFile();
       if (Files.exists(srcFile.toPath())) {
-        File destFile = new File(makeFile().getAbsolutePath() + "." + (index + 1));
+        File destFile = Path.of(makeFile().getAbsolutePath() + "." + (index + 1)).toFile();
         if (!srcFile.renameTo(destFile)) {
           logger.error("Could not rename file {} to {}", srcFile.getName(), destFile.getName());
         }
@@ -349,7 +350,8 @@ public class StatsCollection implements InitializingBean, DisposableBean, Applic
     Map<String, List<XYDataItem>> stats;
 
     while (true) {
-      File file = index == 0 ? makeFile() : new File(makeFile().getAbsolutePath() + "." + index);
+      File file =
+          index == 0 ? makeFile() : Path.of(makeFile().getAbsolutePath() + "." + index).toFile();
       stats = deserialize(file);
       index += 1;
       if (stats != null || index >= maxFiles - 1) {

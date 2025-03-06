@@ -11,6 +11,7 @@
 package psiprobe.controllers.apps;
 
 import java.io.File;
+import java.nio.file.Path;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -80,7 +81,7 @@ public class BaseDownloadXmlConfController extends AbstractContextHandlerControl
     }
 
     if (xmlPath != null) {
-      File xmlFile = new File(xmlPath);
+      File xmlFile = Path.of(xmlPath).toFile();
       if (xmlFile.exists()) {
         Utils.sendFile(request, response, xmlFile);
       } else {

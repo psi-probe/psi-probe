@@ -109,8 +109,7 @@ class ListCertificatesControllerTest {
 
     String storePassword = "123456";
 
-    List<Cert> certs =
-        controller.getCertificates(storeType, storeFile.toURI().toString(), storePassword);
+    List<Cert> certs = controller.getCertificates(storeType, storeFile.getPath(), storePassword);
 
     assertThat(certs).doesNotContainNull().hasSize(2);
     assertThat(certs.get(0).getAlias()).isEqualTo("*.google.com");

@@ -13,6 +13,8 @@ package psiprobe.tools.logging.log4j2;
 import com.google.common.base.Strings;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -52,34 +54,57 @@ public class Log4J2LoggerConfigAccessor extends DefaultAccessor {
   }
 
   /**
-   * Gets the appenders.
+   * Returns all appenders of this logger.
    *
-   * @return the appenders
+   * @return a list of {@link Log4J2AppenderAccessor}s
    */
   public List<Log4J2AppenderAccessor> getAppenders() {
     List<Log4J2AppenderAccessor> appenders = new ArrayList<>();
     if (appenderMap != null) {
-      for (Object unwrappedAppender : appenderMap.values()) {
-        Log4J2AppenderAccessor appender = wrapAppender(unwrappedAppender);
-        if (appender != null) {
-          appenders.add(appender);
+      try {
+        for (Object appender : appenderMap.values()) {
+          List<Object> asyncedAppenders = getAsyncedAppenders(appender);
+          if (!asyncedAppenders.isEmpty()) {
+            for (Object asyncedAppender : asyncedAppenders) {
+              wrapAndAddAppender(asyncedAppender, appenders);
+            }
+          } else {
+            wrapAndAddAppender(appender, appenders);
+          }
         }
+      } catch (NoClassDefFoundError e) {
+        logger.error("{}#getAppenders() failed, To see this logger, upgrade slf4j to 1.7.21+",
+            getTarget().getClass().getName(), e);
+      } catch (Exception e) {
+        logger.error("{}#getAppenders() failed", getTarget().getClass().getName(), e);
       }
     }
     return appenders;
   }
 
   /**
-   * Gets the appender.
+   * Returns the appender of this logger with the given name.
    *
-   * @param name the name
+   * @param name the name of the appender to return
    *
-   * @return the appender
+   * @return the appender with the given name, or null if no such appender exists for this logger
    */
   public Log4J2AppenderAccessor getAppender(String name) {
     if (this.appenderMap != null) {
-      Object appender = appenderMap.get(name);
-      return wrapAppender(appender);
+      try {
+        Object appender = appenderMap.get(name);
+        if (appender == null) {
+          List<Log4J2AppenderAccessor> appenders = getAppenders();
+          for (Log4J2AppenderAccessor wrappedAppender : appenders) {
+            if (wrappedAppender.getIndex().equals(name)) {
+              return wrappedAppender;
+            }
+          }
+        }
+        return wrapAppender(appender);
+      } catch (Exception e) {
+        logger.error("{}#getAppender() failed", getTarget().getClass().getName(), e);
+      }
     }
     return null;
   }
@@ -157,6 +182,41 @@ public class Log4J2LoggerConfigAccessor extends DefaultAccessor {
       loggerContext.updateLoggers();
     } catch (Exception e) {
       logger.error("{}#setLevel('{}') failed", getTarget().getClass().getName(), newLevelStr, e);
+    }
+  }
+
+
+  /**
+   * Gets the Asynced appenders.
+   *
+   * @param appender the appender
+   *
+   * @return the Asynced appenders
+   *
+   * @throws Exception the exception
+   */
+  @SuppressWarnings("unchecked")
+  private List<Object> getAsyncedAppenders(Object appender) throws Exception {
+    if ("org.apache.logging.log4j.core.appender.AsyncAppender"
+        .equals(appender.getClass().getName())) {
+      Object appenders = MethodUtils.invokeMethod(appender, "getAppenders");
+      if (appenders != null) {
+        return (List<Object>) appenders;
+      }
+    }
+    return Collections.emptyList();
+  }
+
+  /**
+   * Wrap and add appender.
+   *
+   * @param appender the appender
+   * @param appenders the appenders
+   */
+  private void wrapAndAddAppender(Object appender, Collection<Log4J2AppenderAccessor> appenders) {
+    Log4J2AppenderAccessor appenderAccessor = wrapAppender(appender);
+    if (appenderAccessor != null) {
+      appenders.add(appenderAccessor);
     }
   }
 

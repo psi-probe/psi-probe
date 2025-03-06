@@ -1,14 +1,3 @@
-#
-# Licensed under the GPL License. You may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#   https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
-#
-# THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,
-# WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR
-# PURPOSE.
-#
-
 name: Site
 
 on:
@@ -25,22 +14,18 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v4
         with:
+          cache: maven
+          distribution: temurin
           java-version: 21
-          distribution: zulu
-      - uses: webfactory/ssh-agent@master
-        with:
-          ssh-private-key: ${{ secrets.DEPLOY_KEY }}
       - name: Build site
-        run: ./mvnw site site:stage -DskipTests -B -V -Dlicense.skip=true --no-transfer-progress --settings ./.mvn/settings.xml
+        run: ./mvnw site site:stage -DskipTests -Dlicense.skip=true -B -V --no-transfer-progress --settings ./.mvn/settings.xml
         env:
           CI_DEPLOY_USERNAME: ${{ secrets.CI_DEPLOY_USERNAME }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
       - name: Deploy Site to gh-pages
-        uses: JamesIves/github-pages-deploy-action@v4.7.3
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          SSH: true
-          BRANCH: gh-pages
-          FOLDER: target/staging
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-pages
+          folder: target/staging
+          ssh-key: ${{ secrets.DEPLOY_KEY }}
