@@ -18,12 +18,12 @@
     <parent>
         <groupId>com.github.psi-probe</groupId>
         <artifactId>psi-probe</artifactId>
-        <version>4.3.2</version>
+        <version>4.3.3-SNAPSHOT</version>
     </parent>
 
     <groupId>com.github.psi-probe</groupId>
     <artifactId>psi-probe-core</artifactId>
-    <version>4.3.2</version>
+    <version>4.3.3-SNAPSHOT</version>
 
     <name>psi-probe-core</name>
     <description>PSI Probe Core - Core logic, data models, and controllers</description>
@@ -32,7 +32,7 @@
     <scm>
         <connection>scm:git:ssh://git@github.com/psi-probe/psi-probe.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/psi-probe/psi-probe.git</developerConnection>
-        <tag>psi-probe-4.3.2</tag>
+        <tag>HEAD</tag>
         <url>https://github.com/psi-probe/psi-probe/</url>
     </scm>
 
