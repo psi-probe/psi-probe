@@ -248,7 +248,7 @@
         <surefire.plugin>3.5.2</surefire.plugin>
         <versions.plugin>2.18.0</versions.plugin>
         <war.plugin>3.4.0</war.plugin>
-        <whitespace.plugin>1.4.0</whitespace.plugin>
+        <whitespace.plugin>1.5.0</whitespace.plugin>
 
         <!-- Plugin Dependency Versions -->
         <build-tools.version>1.4.0</build-tools.version>
