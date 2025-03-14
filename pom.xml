@@ -195,7 +195,7 @@
         <sitemesh.version>2.6.0</sitemesh.version>
         <slf4j.version>2.0.17</slf4j.version>
         <spotbugs.version>4.9.2</spotbugs.version>
-        <spring.version>6.2.3</spring.version>
+        <spring.version>6.2.4</spring.version>
         <spring-security.version>6.4.3</spring-security.version>
         <text.version>1.13.0</text.version>
         <tomcat.version>10.1.39</tomcat.version>
