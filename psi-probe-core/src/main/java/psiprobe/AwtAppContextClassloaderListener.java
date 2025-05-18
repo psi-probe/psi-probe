@@ -54,8 +54,7 @@ public class AwtAppContextClassloaderListener implements ServletContextListener 
          * Forces the sun.awt.AppContext singleton to be created and initialized. Call
          * ImageIO.getCacheDirectory() to avoid direct call to Oracle JVM internal class
          * sun.awt.AppContext. Same solution as in
-         * org.apache.catalina.core.JreMemoryLeakPreventionListener which is optional on Tomcat
-         * 1.7.0_02 or greater.
+         * org.apache.catalina.core.JreMemoryLeakPreventionListener which is optional on Tomcat.
          */
         ImageIO.getCacheDirectory();
       } finally {
