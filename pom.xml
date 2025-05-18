@@ -188,7 +188,7 @@
         <oshi.version>6.8.1</oshi.version>
         <quartz.version>2.5.0</quartz.version>
         <servlet-api.version>4.0.4</servlet-api.version>
-        <sitemesh.version>2.5.2</sitemesh.version>
+        <sitemesh.version>2.5.3</sitemesh.version>
         <slf4j.version>2.0.17</slf4j.version>
         <spotbugs.version>4.9.3</spotbugs.version>
         <spring.version>5.3.39</spring.version>
