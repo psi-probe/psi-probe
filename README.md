@@ -75,8 +75,8 @@ Generally supported versions for third party tomcat providers align with their s
     - Tomcat 9.0.72 to 9.0.105
     - TomEE 8.0.16 (Based on Tomcat 9.0.82).  TomEE 8.0 ended support on December 31st 2023
     - NonStop(tm) never supported 9.0 as they changed direction but seem to have come back now for 10.1
-    - Pivotal tc 4.1.29 release (Based on Tomcat 9.0.84) - retired in favor of vmware.
-    - Vmware tc 5.0.8 release (Based on Tomcat 9.0.84)
+    - Vmware Tanzu tc 4.1.44 release (Based on Tomcat 9.0.102)
+    - Vmware Tanzu tc 5.0.23 release (Based on Tomcat 9.0.104)
 
 * Tomcat 10.1 Series
 
@@ -84,13 +84,14 @@ Generally supported versions for third party tomcat providers align with their s
     - Tomcat 10.1.6 to 10.1.41
     - TomEE 10.0.0 to 10.0.1 (Based on Tomcat 10.1.39).
     - NonStop(tm) Servlets For JavaServer Pages(tm) v10.1 (Based on Tomcat 10.1.7)
-    - Vmware tc 5.0.8 release (Based on Tomcat 10.1.17)
+    - Vmware Tanzu tc 10.1.40.A release (Based on Tomcat 10.1.40)
 
 * Tomcat 11.0 Series
 
     - Requires java 17 or better
     - Tomcat 11.0.0.M3 to 11.0.7
     - TomEE - no support yet for tomcat 11.0
+    - Vmware Tanzu tc 11.0.6.A release (Based on Tomcat 11.0.6)
 
 ## Precondition
 
