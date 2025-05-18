@@ -100,12 +100,13 @@
 <a class="jxr_linenumber" name="L92" href="#L92">92</a>  <em class="jxr_javadoccomment">   * @param period the period</em>
 <a class="jxr_linenumber" name="L93" href="#L93">93</a>  <em class="jxr_javadoccomment">   * @param span the span</em>
 <a class="jxr_linenumber" name="L94" href="#L94">94</a>  <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L95" href="#L95">95</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setMaxSeries(@Value(<span class="jxr_string">"${psiprobe.beans.stats.collectors.cluster.period}"</span>) <strong class="jxr_keyword">long</strong> period,
-<a class="jxr_linenumber" name="L96" href="#L96">96</a>        @Value(<span class="jxr_string">"${psiprobe.beans.stats.collectors.cluster.span}"</span>) <strong class="jxr_keyword">long</strong> span) {
-<a class="jxr_linenumber" name="L97" href="#L97">97</a>      <strong class="jxr_keyword">super</strong>.setMaxSeries((<strong class="jxr_keyword">int</strong>) TimeExpression.dataPoints(period, span));
-<a class="jxr_linenumber" name="L98" href="#L98">98</a>    }
-<a class="jxr_linenumber" name="L99" href="#L99">99</a>  
-<a class="jxr_linenumber" name="L100" href="#L100">100</a> }
+<a class="jxr_linenumber" name="L95" href="#L95">95</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setMaxSeries(
+<a class="jxr_linenumber" name="L96" href="#L96">96</a>        @Value(<span class="jxr_string">"${psiprobe.beans.stats.collectors.cluster.period}"</span>) String period,
+<a class="jxr_linenumber" name="L97" href="#L97">97</a>        @Value(<span class="jxr_string">"${psiprobe.beans.stats.collectors.cluster.span}"</span>) String span) {
+<a class="jxr_linenumber" name="L98" href="#L98">98</a>      <strong class="jxr_keyword">super</strong>.setMaxSeries((<strong class="jxr_keyword">int</strong>) TimeExpression.dataPoints(period, span));
+<a class="jxr_linenumber" name="L99" href="#L99">99</a>    }
+<a class="jxr_linenumber" name="L100" href="#L100">100</a> 
+<a class="jxr_linenumber" name="L101" href="#L101">101</a> }
 </pre>
 <hr/>
 <div id="footer">© 2009–2025 <a href="https://github.com/psi-probe/">psi-probe</a></div>

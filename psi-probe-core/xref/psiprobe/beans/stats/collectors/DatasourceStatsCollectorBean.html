@@ -119,8 +119,8 @@
 <a class="jxr_linenumber" name="L111" href="#L111">111</a> <em class="jxr_javadoccomment">   * @param span the span</em>
 <a class="jxr_linenumber" name="L112" href="#L112">112</a> <em class="jxr_javadoccomment">   */</em>
 <a class="jxr_linenumber" name="L113" href="#L113">113</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setMaxSeries(
-<a class="jxr_linenumber" name="L114" href="#L114">114</a>       @Value(<span class="jxr_string">"${psiprobe.beans.stats.collectors.datasource.period}"</span>) <strong class="jxr_keyword">long</strong> period,
-<a class="jxr_linenumber" name="L115" href="#L115">115</a>       @Value(<span class="jxr_string">"${psiprobe.beans.stats.collectors.datasource.span}"</span>) <strong class="jxr_keyword">long</strong> span) {
+<a class="jxr_linenumber" name="L114" href="#L114">114</a>       @Value(<span class="jxr_string">"${psiprobe.beans.stats.collectors.datasource.period}"</span>) String period,
+<a class="jxr_linenumber" name="L115" href="#L115">115</a>       @Value(<span class="jxr_string">"${psiprobe.beans.stats.collectors.datasource.span}"</span>) String span) {
 <a class="jxr_linenumber" name="L116" href="#L116">116</a>     <strong class="jxr_keyword">super</strong>.setMaxSeries((<strong class="jxr_keyword">int</strong>) TimeExpression.dataPoints(period, span));
 <a class="jxr_linenumber" name="L117" href="#L117">117</a>   }
 <a class="jxr_linenumber" name="L118" href="#L118">118</a> 
