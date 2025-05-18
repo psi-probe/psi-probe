@@ -77,10 +77,9 @@ Generally supported versions for third party tomcat providers align with their s
     - Pivotal tc 4.1.29 release (Based on Tomcat 9.0.84) - retired in favor of vmware.
     - Vmware tc 5.0.8 release (Based on Tomcat 9.0.84)
 
+* Tomcat 10.1 Series
 
-* Tomcat 10.1 Series (not released by psi probe yet - issues with hop from tomcat 10.0.27 to 10.1.x)
-
-    - Tomcat 10.1.6 to 10.1.18
+    - Tomcat 10.1.6 to 10.1.41
     - TomEE - no support yet for 10.1
     - NonStop(tm) Servlets For JavaServer Pages(tm) v10.1 (Based on Tomcat 10.1.7)
     - Vmware tc 5.0.8 release (Based on Tomcat 10.1.17)
