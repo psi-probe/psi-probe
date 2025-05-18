@@ -53,7 +53,7 @@ You can rename 'psi-probe-web.war' to the traditional 'probe.war' or other name 
 
 2.  Minimum JDK version required to build is JDK 11 and run is JDK 8.
 
-3.  **Download and install Maven 3.9.6 or better
+3.  **Download and install Maven 3.9.9 or better
 
     You may download it from the [Apache Maven website](https://maven.apache.org/download.cgi).
 
