@@ -88,9 +88,9 @@ Generally supported versions for third party tomcat providers align with their s
     - NonStop(tm) Servlets For JavaServer Pages(tm) v10.1 (Based on Tomcat 10.1.7)
     - Vmware tc 5.0.8 release (Based on Tomcat 10.1.17)
 
-* Tomcat 11.0 Series (pending)
+* Tomcat 11.0 Series
 
-    - Tomcat 11.0.0.M3 to 11.0.0.M16
+    - Tomcat 11.0.0.M3 to 11.0.7
 
 ## Precondition
 
