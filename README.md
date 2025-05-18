@@ -77,9 +77,6 @@ Generally supported versions for third party tomcat providers align with their s
     - Pivotal tc 4.1.29 release (Based on Tomcat 9.0.84) - retired in favor of vmware.
     - Vmware tc 5.0.8 release (Based on Tomcat 9.0.84)
 
-* Tomcat 10.0 Series (discontinued by tomcat / not released by psi probe yet)
-
-    - TomEE 9.1.2 (Based on Tomcat 10.0.27)
 
 * Tomcat 10.1 Series (not released by psi probe yet - issues with hop from tomcat 10.0.27 to 10.1.x)
 
