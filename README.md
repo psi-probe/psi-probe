@@ -25,7 +25,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for info on working on PSI Probe and send
 
 ## Latest Release via Github Releases ##
 
-Please download latest probe.war from [here](https://github.com/psi-probe/psi-probe/releases/download/psi-probe-4.1.1/probe.war)
+Please download latest probe.war from [here](https://github.com/psi-probe/psi-probe/releases/download/psi-probe-5.1.1/probe.war)
 
 ## Latest Release via Maven Central ##
 
@@ -90,7 +90,7 @@ Generally supported versions for third party tomcat providers align with their s
 
 ## Precondition
 
-PSI Probe uses deep reflection to access data. Take care your tomcat configuration considers this. 
+PSI Probe uses deep reflection to access data. Take care your tomcat configuration considers this.
 You can do this by extending the JDK_JAVA_OPTIONS variable:
 
 
