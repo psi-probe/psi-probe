@@ -26,8 +26,8 @@
 <a class="jxr_linenumber" name="L18" href="#L18">18</a>  
 <a class="jxr_linenumber" name="L19" href="#L19">19</a>  <strong class="jxr_keyword">import</strong> jakarta.inject.Inject;
 <a class="jxr_linenumber" name="L20" href="#L20">20</a>  
-<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">import</strong> java.io.File;
-<a class="jxr_linenumber" name="L22" href="#L22">22</a>  <strong class="jxr_keyword">import</strong> java.net.InetAddress;
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">import</strong> java.net.InetAddress;
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>  <strong class="jxr_keyword">import</strong> java.nio.file.Path;
 <a class="jxr_linenumber" name="L23" href="#L23">23</a>  <strong class="jxr_keyword">import</strong> java.util.ArrayList;
 <a class="jxr_linenumber" name="L24" href="#L24">24</a>  <strong class="jxr_keyword">import</strong> java.util.Arrays;
 <a class="jxr_linenumber" name="L25" href="#L25">25</a>  <strong class="jxr_keyword">import</strong> java.util.HashSet;
@@ -375,53 +375,54 @@
 <a class="jxr_linenumber" name="L367" href="#L367">367</a>                   System.getProperty(<span class="jxr_string">"user.country"</span>)));
 <a class="jxr_linenumber" name="L368" href="#L368">368</a>             } <strong class="jxr_keyword">else</strong> {
 <a class="jxr_linenumber" name="L369" href="#L369">369</a>               <em class="jxr_comment">// Show flag for non-localhost using geo lite</em>
-<a class="jxr_linenumber" name="L370" href="#L370">370</a>               <strong class="jxr_keyword">try</strong> (DatabaseReader reader = <strong class="jxr_keyword">new</strong> DatabaseReader.Builder(<strong class="jxr_keyword">new</strong> File(
-<a class="jxr_linenumber" name="L371" href="#L371">371</a>                   getClass().getClassLoader().getResource(<span class="jxr_string">"GeoLite2-Country.mmdb"</span>).toURI()))
-<a class="jxr_linenumber" name="L372" href="#L372">372</a>                   .withCache(<strong class="jxr_keyword">new</strong> CHMCache()).build()) {
-<a class="jxr_linenumber" name="L373" href="#L373">373</a>                 CountryResponse response =
-<a class="jxr_linenumber" name="L374" href="#L374">374</a>                     reader.country(InetAddress.getByName(rp.getRemoteAddr()));
-<a class="jxr_linenumber" name="L375" href="#L375">375</a>                 Country country = response.getCountry();
-<a class="jxr_linenumber" name="L376" href="#L376">376</a>                 rp.setRemoteAddrLocale(<strong class="jxr_keyword">new</strong> Locale(<span class="jxr_string">""</span>, country.getIsoCode()));
-<a class="jxr_linenumber" name="L377" href="#L377">377</a>               } <strong class="jxr_keyword">catch</strong> (AddressNotFoundException e) {
-<a class="jxr_linenumber" name="L378" href="#L378">378</a>                 logger.debug(<span class="jxr_string">"Address Not Found: {}"</span>, e.getMessage());
-<a class="jxr_linenumber" name="L379" href="#L379">379</a>                 logger.trace(<span class="jxr_string">""</span>, e);
-<a class="jxr_linenumber" name="L380" href="#L380">380</a>               }
-<a class="jxr_linenumber" name="L381" href="#L381">381</a>             }
-<a class="jxr_linenumber" name="L382" href="#L382">382</a>           }
-<a class="jxr_linenumber" name="L383" href="#L383">383</a> 
-<a class="jxr_linenumber" name="L384" href="#L384">384</a>           rp.setVirtualHost(JmxTools.getStringAttr(server, wrkName, <span class="jxr_string">"virtualHost"</span>));
-<a class="jxr_linenumber" name="L385" href="#L385">385</a>           rp.setMethod(JmxTools.getStringAttr(server, wrkName, <span class="jxr_string">"method"</span>));
-<a class="jxr_linenumber" name="L386" href="#L386">386</a>           rp.setCurrentUri(JmxTools.getStringAttr(server, wrkName, <span class="jxr_string">"currentUri"</span>));
-<a class="jxr_linenumber" name="L387" href="#L387">387</a>           rp.setCurrentQueryString(JmxTools.getStringAttr(server, wrkName, <span class="jxr_string">"currentQueryString"</span>));
-<a class="jxr_linenumber" name="L388" href="#L388">388</a>           rp.setProtocol(JmxTools.getStringAttr(server, wrkName, <span class="jxr_string">"protocol"</span>));
-<a class="jxr_linenumber" name="L389" href="#L389">389</a> 
-<a class="jxr_linenumber" name="L390" href="#L390">390</a>           <em class="jxr_comment">// Relies on https://issues.apache.org/bugzilla/show_bug.cgi?id=41128</em>
-<a class="jxr_linenumber" name="L391" href="#L391">391</a>           <strong class="jxr_keyword">if</strong> (workerThreadNameSupported
-<a class="jxr_linenumber" name="L392" href="#L392">392</a>               &amp;&amp; JmxTools.hasAttribute(server, wrkName, <span class="jxr_string">"workerThreadName"</span>)) {
-<a class="jxr_linenumber" name="L393" href="#L393">393</a> 
-<a class="jxr_linenumber" name="L394" href="#L394">394</a>             rp.setWorkerThreadName(JmxTools.getStringAttr(server, wrkName, <span class="jxr_string">"workerThreadName"</span>));
-<a class="jxr_linenumber" name="L395" href="#L395">395</a>             rp.setWorkerThreadNameSupported(<strong class="jxr_keyword">true</strong>);
-<a class="jxr_linenumber" name="L396" href="#L396">396</a>           } <strong class="jxr_keyword">else</strong> {
-<a class="jxr_linenumber" name="L397" href="#L397">397</a>             <em class="jxr_comment">/*</em>
-<a class="jxr_linenumber" name="L398" href="#L398">398</a> <em class="jxr_comment">             * attribute should consistently either exist or be missing across all the workers so it</em>
-<a class="jxr_linenumber" name="L399" href="#L399">399</a> <em class="jxr_comment">             * does not make sense to check attribute existence if we have found once that it is not</em>
-<a class="jxr_linenumber" name="L400" href="#L400">400</a> <em class="jxr_comment">             * supported</em>
-<a class="jxr_linenumber" name="L401" href="#L401">401</a> <em class="jxr_comment">             */</em>
-<a class="jxr_linenumber" name="L402" href="#L402">402</a>             rp.setWorkerThreadNameSupported(false);
-<a class="jxr_linenumber" name="L403" href="#L403">403</a>             workerThreadNameSupported = false;
-<a class="jxr_linenumber" name="L404" href="#L404">404</a>           }
-<a class="jxr_linenumber" name="L405" href="#L405">405</a>           connector.addRequestProcessor(rp);
-<a class="jxr_linenumber" name="L406" href="#L406">406</a>         }
-<a class="jxr_linenumber" name="L407" href="#L407">407</a>       }
-<a class="jxr_linenumber" name="L408" href="#L408">408</a> 
-<a class="jxr_linenumber" name="L409" href="#L409">409</a>       connectors.add(connector);
-<a class="jxr_linenumber" name="L410" href="#L410">410</a>     }
-<a class="jxr_linenumber" name="L411" href="#L411">411</a>     <strong class="jxr_keyword">return</strong> connectors;
-<a class="jxr_linenumber" name="L412" href="#L412">412</a>   }
-<a class="jxr_linenumber" name="L413" href="#L413">413</a> 
-<a class="jxr_linenumber" name="L414" href="#L414">414</a> }
+<a class="jxr_linenumber" name="L370" href="#L370">370</a>               <strong class="jxr_keyword">try</strong> (DatabaseReader reader = <strong class="jxr_keyword">new</strong> DatabaseReader.Builder(
+<a class="jxr_linenumber" name="L371" href="#L371">371</a>                   Path.of(getClass().getClassLoader().getResource(<span class="jxr_string">"GeoLite2-Country.mmdb"</span>).toURI())
+<a class="jxr_linenumber" name="L372" href="#L372">372</a>                       .toFile())
+<a class="jxr_linenumber" name="L373" href="#L373">373</a>                   .withCache(<strong class="jxr_keyword">new</strong> CHMCache()).build()) {
+<a class="jxr_linenumber" name="L374" href="#L374">374</a>                 CountryResponse response =
+<a class="jxr_linenumber" name="L375" href="#L375">375</a>                     reader.country(InetAddress.getByName(rp.getRemoteAddr()));
+<a class="jxr_linenumber" name="L376" href="#L376">376</a>                 Country country = response.getCountry();
+<a class="jxr_linenumber" name="L377" href="#L377">377</a>                 rp.setRemoteAddrLocale(<strong class="jxr_keyword">new</strong> Locale(<span class="jxr_string">""</span>, country.getIsoCode()));
+<a class="jxr_linenumber" name="L378" href="#L378">378</a>               } <strong class="jxr_keyword">catch</strong> (AddressNotFoundException e) {
+<a class="jxr_linenumber" name="L379" href="#L379">379</a>                 logger.debug(<span class="jxr_string">"Address Not Found: {}"</span>, e.getMessage());
+<a class="jxr_linenumber" name="L380" href="#L380">380</a>                 logger.trace(<span class="jxr_string">""</span>, e);
+<a class="jxr_linenumber" name="L381" href="#L381">381</a>               }
+<a class="jxr_linenumber" name="L382" href="#L382">382</a>             }
+<a class="jxr_linenumber" name="L383" href="#L383">383</a>           }
+<a class="jxr_linenumber" name="L384" href="#L384">384</a> 
+<a class="jxr_linenumber" name="L385" href="#L385">385</a>           rp.setVirtualHost(JmxTools.getStringAttr(server, wrkName, <span class="jxr_string">"virtualHost"</span>));
+<a class="jxr_linenumber" name="L386" href="#L386">386</a>           rp.setMethod(JmxTools.getStringAttr(server, wrkName, <span class="jxr_string">"method"</span>));
+<a class="jxr_linenumber" name="L387" href="#L387">387</a>           rp.setCurrentUri(JmxTools.getStringAttr(server, wrkName, <span class="jxr_string">"currentUri"</span>));
+<a class="jxr_linenumber" name="L388" href="#L388">388</a>           rp.setCurrentQueryString(JmxTools.getStringAttr(server, wrkName, <span class="jxr_string">"currentQueryString"</span>));
+<a class="jxr_linenumber" name="L389" href="#L389">389</a>           rp.setProtocol(JmxTools.getStringAttr(server, wrkName, <span class="jxr_string">"protocol"</span>));
+<a class="jxr_linenumber" name="L390" href="#L390">390</a> 
+<a class="jxr_linenumber" name="L391" href="#L391">391</a>           <em class="jxr_comment">// Relies on https://issues.apache.org/bugzilla/show_bug.cgi?id=41128</em>
+<a class="jxr_linenumber" name="L392" href="#L392">392</a>           <strong class="jxr_keyword">if</strong> (workerThreadNameSupported
+<a class="jxr_linenumber" name="L393" href="#L393">393</a>               &amp;&amp; JmxTools.hasAttribute(server, wrkName, <span class="jxr_string">"workerThreadName"</span>)) {
+<a class="jxr_linenumber" name="L394" href="#L394">394</a> 
+<a class="jxr_linenumber" name="L395" href="#L395">395</a>             rp.setWorkerThreadName(JmxTools.getStringAttr(server, wrkName, <span class="jxr_string">"workerThreadName"</span>));
+<a class="jxr_linenumber" name="L396" href="#L396">396</a>             rp.setWorkerThreadNameSupported(<strong class="jxr_keyword">true</strong>);
+<a class="jxr_linenumber" name="L397" href="#L397">397</a>           } <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="L398" href="#L398">398</a>             <em class="jxr_comment">/*</em>
+<a class="jxr_linenumber" name="L399" href="#L399">399</a> <em class="jxr_comment">             * attribute should consistently either exist or be missing across all the workers so it</em>
+<a class="jxr_linenumber" name="L400" href="#L400">400</a> <em class="jxr_comment">             * does not make sense to check attribute existence if we have found once that it is not</em>
+<a class="jxr_linenumber" name="L401" href="#L401">401</a> <em class="jxr_comment">             * supported</em>
+<a class="jxr_linenumber" name="L402" href="#L402">402</a> <em class="jxr_comment">             */</em>
+<a class="jxr_linenumber" name="L403" href="#L403">403</a>             rp.setWorkerThreadNameSupported(false);
+<a class="jxr_linenumber" name="L404" href="#L404">404</a>             workerThreadNameSupported = false;
+<a class="jxr_linenumber" name="L405" href="#L405">405</a>           }
+<a class="jxr_linenumber" name="L406" href="#L406">406</a>           connector.addRequestProcessor(rp);
+<a class="jxr_linenumber" name="L407" href="#L407">407</a>         }
+<a class="jxr_linenumber" name="L408" href="#L408">408</a>       }
+<a class="jxr_linenumber" name="L409" href="#L409">409</a> 
+<a class="jxr_linenumber" name="L410" href="#L410">410</a>       connectors.add(connector);
+<a class="jxr_linenumber" name="L411" href="#L411">411</a>     }
+<a class="jxr_linenumber" name="L412" href="#L412">412</a>     <strong class="jxr_keyword">return</strong> connectors;
+<a class="jxr_linenumber" name="L413" href="#L413">413</a>   }
+<a class="jxr_linenumber" name="L414" href="#L414">414</a> 
+<a class="jxr_linenumber" name="L415" href="#L415">415</a> }
 </pre>
 <hr/>
-<div id="footer">© 2009–2024 <a href="https://github.com/psi-probe/">psi-probe</a></div>
+<div id="footer">© 2009–2025 <a href="https://github.com/psi-probe/">psi-probe</a></div>
 </body>
 </html>

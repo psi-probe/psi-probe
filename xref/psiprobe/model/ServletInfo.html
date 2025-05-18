@@ -47,7 +47,7 @@
 <a class="jxr_linenumber" name="L39" href="#L39">39</a>    <strong class="jxr_keyword">private</strong> String runAs;
 <a class="jxr_linenumber" name="L40" href="#L40">40</a>  
 <a class="jxr_linenumber" name="L41" href="#L41">41</a>    <em class="jxr_javadoccomment">/** The error count. */</em>
-<a class="jxr_linenumber" name="L42" href="#L42">42</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">int</strong> errorCount;
+<a class="jxr_linenumber" name="L42" href="#L42">42</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">long</strong> errorCount;
 <a class="jxr_linenumber" name="L43" href="#L43">43</a>  
 <a class="jxr_linenumber" name="L44" href="#L44">44</a>    <em class="jxr_javadoccomment">/** The load time. */</em>
 <a class="jxr_linenumber" name="L45" href="#L45">45</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">long</strong> loadTime;
@@ -62,7 +62,7 @@
 <a class="jxr_linenumber" name="L54" href="#L54">54</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">long</strong> processingTime;
 <a class="jxr_linenumber" name="L55" href="#L55">55</a>  
 <a class="jxr_linenumber" name="L56" href="#L56">56</a>    <em class="jxr_javadoccomment">/** The request count. */</em>
-<a class="jxr_linenumber" name="L57" href="#L57">57</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">int</strong> requestCount;
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">long</strong> requestCount;
 <a class="jxr_linenumber" name="L58" href="#L58">58</a>  
 <a class="jxr_linenumber" name="L59" href="#L59">59</a>    <em class="jxr_javadoccomment">/** The single threaded. */</em>
 <a class="jxr_linenumber" name="L60" href="#L60">60</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">boolean</strong> singleThreaded;
@@ -196,7 +196,7 @@
 <a class="jxr_linenumber" name="L188" href="#L188">188</a> <em class="jxr_javadoccomment">   *</em>
 <a class="jxr_linenumber" name="L189" href="#L189">189</a> <em class="jxr_javadoccomment">   * @return the error count</em>
 <a class="jxr_linenumber" name="L190" href="#L190">190</a> <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L191" href="#L191">191</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">int</strong> getErrorCount() {
+<a class="jxr_linenumber" name="L191" href="#L191">191</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">long</strong> getErrorCount() {
 <a class="jxr_linenumber" name="L192" href="#L192">192</a>     <strong class="jxr_keyword">return</strong> errorCount;
 <a class="jxr_linenumber" name="L193" href="#L193">193</a>   }
 <a class="jxr_linenumber" name="L194" href="#L194">194</a> 
@@ -205,7 +205,7 @@
 <a class="jxr_linenumber" name="L197" href="#L197">197</a> <em class="jxr_javadoccomment">   *</em>
 <a class="jxr_linenumber" name="L198" href="#L198">198</a> <em class="jxr_javadoccomment">   * @param errorCount the new error count</em>
 <a class="jxr_linenumber" name="L199" href="#L199">199</a> <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L200" href="#L200">200</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setErrorCount(<strong class="jxr_keyword">int</strong> errorCount) {
+<a class="jxr_linenumber" name="L200" href="#L200">200</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setErrorCount(<strong class="jxr_keyword">long</strong> errorCount) {
 <a class="jxr_linenumber" name="L201" href="#L201">201</a>     <strong class="jxr_keyword">this</strong>.errorCount = errorCount;
 <a class="jxr_linenumber" name="L202" href="#L202">202</a>   }
 <a class="jxr_linenumber" name="L203" href="#L203">203</a> 
@@ -286,7 +286,7 @@
 <a class="jxr_linenumber" name="L278" href="#L278">278</a> <em class="jxr_javadoccomment">   *</em>
 <a class="jxr_linenumber" name="L279" href="#L279">279</a> <em class="jxr_javadoccomment">   * @return the request count</em>
 <a class="jxr_linenumber" name="L280" href="#L280">280</a> <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L281" href="#L281">281</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">int</strong> getRequestCount() {
+<a class="jxr_linenumber" name="L281" href="#L281">281</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">long</strong> getRequestCount() {
 <a class="jxr_linenumber" name="L282" href="#L282">282</a>     <strong class="jxr_keyword">return</strong> requestCount;
 <a class="jxr_linenumber" name="L283" href="#L283">283</a>   }
 <a class="jxr_linenumber" name="L284" href="#L284">284</a> 
@@ -295,7 +295,7 @@
 <a class="jxr_linenumber" name="L287" href="#L287">287</a> <em class="jxr_javadoccomment">   *</em>
 <a class="jxr_linenumber" name="L288" href="#L288">288</a> <em class="jxr_javadoccomment">   * @param requestCount the new request count</em>
 <a class="jxr_linenumber" name="L289" href="#L289">289</a> <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L290" href="#L290">290</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setRequestCount(<strong class="jxr_keyword">int</strong> requestCount) {
+<a class="jxr_linenumber" name="L290" href="#L290">290</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setRequestCount(<strong class="jxr_keyword">long</strong> requestCount) {
 <a class="jxr_linenumber" name="L291" href="#L291">291</a>     <strong class="jxr_keyword">this</strong>.requestCount = requestCount;
 <a class="jxr_linenumber" name="L292" href="#L292">292</a>   }
 <a class="jxr_linenumber" name="L293" href="#L293">293</a> 
@@ -374,6 +374,6 @@
 <a class="jxr_linenumber" name="L366" href="#L366">366</a> }
 </pre>
 <hr/>
-<div id="footer">© 2009–2024 <a href="https://github.com/psi-probe/">psi-probe</a></div>
+<div id="footer">© 2009–2025 <a href="https://github.com/psi-probe/">psi-probe</a></div>
 </body>
 </html>

@@ -19,28 +19,29 @@
 <a class="jxr_linenumber" name="L11" href="#L11">11</a>  <strong class="jxr_keyword">package</strong> psiprobe.tools.logging.jdk;
 <a class="jxr_linenumber" name="L12" href="#L12">12</a>  
 <a class="jxr_linenumber" name="L13" href="#L13">13</a>  <strong class="jxr_keyword">import</strong> java.io.File;
-<a class="jxr_linenumber" name="L14" href="#L14">14</a>  
-<a class="jxr_linenumber" name="L15" href="#L15">15</a>  <strong class="jxr_keyword">import</strong> psiprobe.tools.Instruments;
-<a class="jxr_linenumber" name="L16" href="#L16">16</a>  
-<a class="jxr_linenumber" name="L17" href="#L17">17</a>  <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <em class="jxr_javadoccomment"> * The Class JuliHandlerAccessor.</em>
-<a class="jxr_linenumber" name="L19" href="#L19">19</a>  <em class="jxr_javadoccomment"> */</em>
-<a class="jxr_linenumber" name="L20" href="#L20">20</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a name="JuliHandlerAccessor" href="../../../../psiprobe/tools/logging/jdk/JuliHandlerAccessor.html#JuliHandlerAccessor">JuliHandlerAccessor</a> <strong class="jxr_keyword">extends</strong> <a name="Jdk14HandlerAccessor" href="../../../../psiprobe/tools/logging/jdk/Jdk14HandlerAccessor.html#Jdk14HandlerAccessor">Jdk14HandlerAccessor</a> {
-<a class="jxr_linenumber" name="L21" href="#L21">21</a>  
-<a class="jxr_linenumber" name="L22" href="#L22">22</a>    @Override
-<a class="jxr_linenumber" name="L23" href="#L23">23</a>    <strong class="jxr_keyword">public</strong> File getFile() {
-<a class="jxr_linenumber" name="L24" href="#L24">24</a>      String dir = (String) Instruments.getField(getTarget(), <span class="jxr_string">"directory"</span>);
-<a class="jxr_linenumber" name="L25" href="#L25">25</a>      String prefix = (String) Instruments.getField(getTarget(), <span class="jxr_string">"prefix"</span>);
-<a class="jxr_linenumber" name="L26" href="#L26">26</a>      String suffix = (String) Instruments.getField(getTarget(), <span class="jxr_string">"suffix"</span>);
-<a class="jxr_linenumber" name="L27" href="#L27">27</a>      String date = (String) Instruments.getField(getTarget(), <span class="jxr_string">"date"</span>);
-<a class="jxr_linenumber" name="L28" href="#L28">28</a>      <strong class="jxr_keyword">return</strong> dir != <strong class="jxr_keyword">null</strong> &amp;&amp; prefix != <strong class="jxr_keyword">null</strong> &amp;&amp; suffix != <strong class="jxr_keyword">null</strong> &amp;&amp; date != <strong class="jxr_keyword">null</strong>
-<a class="jxr_linenumber" name="L29" href="#L29">29</a>          ? <strong class="jxr_keyword">new</strong> File(dir, prefix + date + suffix)
-<a class="jxr_linenumber" name="L30" href="#L30">30</a>          : getStdoutFile();
-<a class="jxr_linenumber" name="L31" href="#L31">31</a>    }
-<a class="jxr_linenumber" name="L32" href="#L32">32</a>  
-<a class="jxr_linenumber" name="L33" href="#L33">33</a>  }
+<a class="jxr_linenumber" name="L14" href="#L14">14</a>  <strong class="jxr_keyword">import</strong> java.nio.file.Path;
+<a class="jxr_linenumber" name="L15" href="#L15">15</a>  
+<a class="jxr_linenumber" name="L16" href="#L16">16</a>  <strong class="jxr_keyword">import</strong> psiprobe.tools.Instruments;
+<a class="jxr_linenumber" name="L17" href="#L17">17</a>  
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L19" href="#L19">19</a>  <em class="jxr_javadoccomment"> * The Class JuliHandlerAccessor.</em>
+<a class="jxr_linenumber" name="L20" href="#L20">20</a>  <em class="jxr_javadoccomment"> */</em>
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a name="JuliHandlerAccessor" href="../../../../psiprobe/tools/logging/jdk/JuliHandlerAccessor.html#JuliHandlerAccessor">JuliHandlerAccessor</a> <strong class="jxr_keyword">extends</strong> <a name="Jdk14HandlerAccessor" href="../../../../psiprobe/tools/logging/jdk/Jdk14HandlerAccessor.html#Jdk14HandlerAccessor">Jdk14HandlerAccessor</a> {
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>  
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>    @Override
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>    <strong class="jxr_keyword">public</strong> File getFile() {
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>      String dir = (String) Instruments.getField(getTarget(), <span class="jxr_string">"directory"</span>);
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>      String prefix = (String) Instruments.getField(getTarget(), <span class="jxr_string">"prefix"</span>);
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>      String suffix = (String) Instruments.getField(getTarget(), <span class="jxr_string">"suffix"</span>);
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>      String date = (String) Instruments.getField(getTarget(), <span class="jxr_string">"date"</span>);
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>      <strong class="jxr_keyword">return</strong> dir != <strong class="jxr_keyword">null</strong> &amp;&amp; prefix != <strong class="jxr_keyword">null</strong> &amp;&amp; suffix != <strong class="jxr_keyword">null</strong> &amp;&amp; date != <strong class="jxr_keyword">null</strong>
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>          ? Path.of(dir, prefix + date + suffix).toFile()
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>          : getStdoutFile();
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>    }
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>  
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>  }
 </pre>
 <hr/>
-<div id="footer">© 2009–2024 <a href="https://github.com/psi-probe/">psi-probe</a></div>
+<div id="footer">© 2009–2025 <a href="https://github.com/psi-probe/">psi-probe</a></div>
 </body>
 </html>
