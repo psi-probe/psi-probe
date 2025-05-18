@@ -11,9 +11,9 @@
     PURPOSE.
 
 -->
-<taglib xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-    xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-jsptaglibrary_3_0.xsd"
-    version="3.0">
+<taglib xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
+        version="2.1">
 
     <description>
         <![CDATA[
@@ -21,7 +21,7 @@
         ]]>
     </description>
 
-    <tlib-version>3.0</tlib-version>
+    <tlib-version>2.1</tlib-version>
     <short-name>probe</short-name>
     <uri>https://github.com/psi-probe/psi-probe/jsp/tags</uri>
 

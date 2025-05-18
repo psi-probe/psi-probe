@@ -11,7 +11,7 @@
     PURPOSE.
 
 -->
-<Context path="/probe" privileged="true" suspendWrappedResponseAfterForward="false">
+<Context path="/probe" privileged="true">
   <CookieProcessor sameSiteCookies="strict" />
   <Loader delegate="false" />
   <JarScanner>
