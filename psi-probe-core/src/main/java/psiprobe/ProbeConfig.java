@@ -413,7 +413,7 @@ public class ProbeConfig implements WebMvcConfigurer {
    */
   @Bean(name = "multipartResolver")
   public StandardServletMultipartResolver multipartResolver() {
-      return new StandardServletMultipartResolver();
+    return new StandardServletMultipartResolver();
   }
-  
+
 }
