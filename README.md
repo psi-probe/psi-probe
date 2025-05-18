@@ -35,7 +35,7 @@ You can rename 'psi-probe-web.war' to the traditional 'probe.war' or other name 
 
 ## Latest Snapshot via Maven Central ##
 
-Please download latest psi-probe-web.war snapshots from [here](https://central.sonatype.org/service/rest/repository/browse/maven-snapshots/com/github/psi-probe/psi-probe-web/)
+Please download latest psi-probe-web.war snapshots from [here](https://central.sonatype.com/service/rest/repository/browse/maven-snapshots/com/github/psi-probe/psi-probe-web/)
 
 You can rename 'psi-probe-web.war' to the traditional 'probe.war' or other name as you see fit.
 
