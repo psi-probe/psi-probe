@@ -30,6 +30,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.HandlerMapping;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.ThemeResolver;
@@ -403,6 +404,16 @@ public class ProbeConfig implements WebMvcConfigurer {
     PropertiesFactoryBean bean = new PropertiesFactoryBean();
     bean.setLocation(new ClassPathResource("version.properties"));
     return bean;
+  }
+
+  /**
+   * Multipart resolver.
+   *
+   * @return the standard servlet multipart resolver
+   */
+  @Bean(name = "multipartResolver")
+  public StandardServletMultipartResolver multipartResolver() {
+    return new StandardServletMultipartResolver();
   }
 
 }
