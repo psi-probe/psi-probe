@@ -91,6 +91,7 @@ Generally supported versions for third party tomcat providers align with their s
     - Requires java 17 or better
     - Tomcat 11.0.0.M3 to 11.0.7
     - TomEE - no support yet for tomcat 11.0
+    - NonStop(tm) Servlets For JavaServer Pages(tm) - no support yet for tomcat 11.0
     - Vmware Tanzu tc 11.0.6.A release (Based on Tomcat 11.0.6)
 
 ## Precondition
