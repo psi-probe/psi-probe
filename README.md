@@ -25,7 +25,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for info on working on PSI Probe and send
 
 ## Latest Release via Github Releases ##
 
-Please download latest probe.war from [here](https://github.com/psi-probe/psi-probe/releases/download/psi-probe-4.1.1/probe.war)
+Please download latest probe.war from [here](https://github.com/psi-probe/psi-probe/releases/download/psi-probe-5.1.1/probe.war)
 
 ## Latest Release via Maven Central ##
 
@@ -35,7 +35,7 @@ You can rename 'psi-probe-web.war' to the traditional 'probe.war' or other name 
 
 ## Latest Snapshot via Maven Central ##
 
-Please download latest psi-probe-web.war snapshots from [here](https://oss.sonatype.org/content/repositories/snapshots/com/github/psi-probe/psi-probe-web/)
+Please download latest psi-probe-web.war snapshots from [here](https://central.sonatype.com/service/rest/repository/browse/maven-snapshots/com/github/psi-probe/psi-probe-web/)
 
 You can rename 'psi-probe-web.war' to the traditional 'probe.war' or other name as you see fit.
 
@@ -51,7 +51,7 @@ You can rename 'psi-probe-web.war' to the traditional 'probe.war' or other name 
 
     This will create directory called `psi-probe`. Subsequent steps will refer to this as "your PSI Probe base directory."
 
-2.  Minimum JDK version required to build is JDK 11 and run is JDK 8.
+2.  Minimum JDK version required to build is JDK 17 and run is JDK 17.
 
 3.  **Download and install Maven 3.9.9 or better
 
@@ -90,7 +90,7 @@ Generally supported versions for third party tomcat providers align with their s
 
 ## Precondition
 
-PSI Probe uses deep reflection to access data. Take care your tomcat configuration considers this. 
+PSI Probe uses deep reflection to access data. Take care your tomcat configuration considers this.
 You can do this by extending the JDK_JAVA_OPTIONS variable:
 
 
