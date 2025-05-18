@@ -110,8 +110,8 @@ public class DatasourceStatsCollectorBean extends AbstractStatsCollectorBean {
    * @param span the span
    */
   public void setMaxSeries(
-      @Value("${psiprobe.beans.stats.collectors.datasource.period}") long period,
-      @Value("${psiprobe.beans.stats.collectors.datasource.span}") long span) {
+      @Value("${psiprobe.beans.stats.collectors.datasource.period}") String period,
+      @Value("${psiprobe.beans.stats.collectors.datasource.span}") String span) {
     super.setMaxSeries((int) TimeExpression.dataPoints(period, span));
   }
 

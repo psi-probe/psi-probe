@@ -460,7 +460,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
       try {
         URI configUri = configUrl.toURI();
         if ("file".equals(configUri.getScheme())) {
-          return Path.of(configUri.getPath()).toFile();
+          return Path.of(configUri).toFile();
         }
       } catch (URISyntaxException ex) {
         logger.error("Could not convert URL to URI: '{}'", configUrl, ex);
