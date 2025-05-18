@@ -73,7 +73,7 @@ Generally supported versions for third party tomcat providers align with their s
 
     - Requires java 11 or better
     - Tomcat 9.0.72 to 9.0.105
-    - TomEE 8.0.16 (Based on Tomcat 9.0.82).  TomEE is ending support on December 31st 2023
+    - TomEE 8.0.16 (Based on Tomcat 9.0.82).  TomEE 8.0 ended support on December 31st 2023
     - NonStop(tm) never supported 9.0 as they changed direction but seem to have come back now for 10.1
     - Pivotal tc 4.1.29 release (Based on Tomcat 9.0.84) - retired in favor of vmware.
     - Vmware tc 5.0.8 release (Based on Tomcat 9.0.84)
