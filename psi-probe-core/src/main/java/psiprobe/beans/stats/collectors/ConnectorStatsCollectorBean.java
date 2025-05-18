@@ -89,8 +89,8 @@ public class ConnectorStatsCollectorBean extends AbstractStatsCollectorBean {
    * @param span the span
    */
   public void setMaxSeries(
-      @Value("${psiprobe.beans.stats.collectors.connector.period}") long period,
-      @Value("${psiprobe.beans.stats.collectors.connector.span}") long span) {
+      @Value("${psiprobe.beans.stats.collectors.connector.period}") String period,
+      @Value("${psiprobe.beans.stats.collectors.connector.span}") String span) {
     super.setMaxSeries((int) TimeExpression.dataPoints(period, span));
   }
 
