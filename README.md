@@ -72,6 +72,7 @@ Generally supported versions for third party tomcat providers align with their s
 * Tomcat 9.0 Series
 
     - Requires java 11 or better
+    - Spring is no longer receiving updates so vulnerabilities with spring will not be addressed.  If you have a subscription to spring, manually patch the jars.
     - Tomcat 9.0.72 to 9.0.105
     - TomEE 8.0.16 (Based on Tomcat 9.0.82).  TomEE 8.0 ended support on December 31st 2023
     - NonStop(tm) never supported 9.0 as they changed direction but seem to have come back now for 10.1
