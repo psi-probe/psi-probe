@@ -94,13 +94,9 @@
         <url>https://github.com/psi-probe/psi-probe/actions/</url>
     </ciManagement>
     <distributionManagement>
-        <repository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
         <snapshotRepository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <id>central</id>
+            <url>https://central.sonatype.com/repository/maven-snapshots/</url>
         </snapshotRepository>
         <site>
             <id>gh-pages-scm</id>
@@ -128,7 +124,7 @@
         <maven.min-version>3.9.9</maven.min-version>
 
         <!-- Copyright -->
-        <copyright>2024</copyright>
+        <copyright>2025</copyright>
 
         <!-- Github Settings -->
         <github.global.server>github</github.global.server>
@@ -239,7 +235,7 @@
         <resources.plugin>3.3.1</resources.plugin>
         <rewrite.plugin>6.8.1</rewrite.plugin>
         <scm-publish.plugin>3.3.0</scm-publish.plugin>
-        <site.plugin>4.0.0-M16</site.plugin>
+        <site.plugin>3.21.0</site.plugin>
         <sonar.plugin>5.1.0.4751</sonar.plugin>
         <sortpom.plugin>4.0.0</sortpom.plugin>
         <source.plugin>3.3.1</source.plugin>
@@ -1234,6 +1230,16 @@
                         <javaVersion>${maven.compiler.release}</javaVersion>
                     </configuration>
                 </plugin>
+                <!-- Sonatype Provided Plugins -->
+                <plugin>
+                    <groupId>org.sonatype.central</groupId>
+                    <artifactId>central-publishing-maven-plugin</artifactId>
+                    <version>0.7.0</version>
+                    <extensions>true</extensions>
+                    <configuration>
+                        <publishingServerId>central</publishingServerId>
+                    </configuration>
+                </plugin>
             </plugins>
         </pluginManagement>
 
@@ -1459,6 +1465,16 @@
                         <phase>process-sources</phase>
                     </execution>
                 </executions>
+            </plugin>
+
+            <!-- Sonatype Provided Plugins -->
+            <plugin>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <publishingServerId>central</publishingServerId>
+                </configuration>
             </plugin>
         </plugins>
     </build>
