@@ -184,7 +184,7 @@
         <mail.version>1.6.7</mail.version>
         <mchange.version>0.3.2</mchange.version>
         <mockito.version>5.18.0</mockito.version>
-        <ojdbc.version>19.27.0.0</ojdbc.version>
+        <ojdbc.version>23.8.0.25.04</ojdbc.version>
         <oshi.version>6.8.1</oshi.version>
         <quartz.version>2.5.0</quartz.version>
         <servlet-api.version>4.0.4</servlet-api.version>
@@ -197,7 +197,7 @@
         <tomcat.version>9.0.105</tomcat.version>
         <tomee.version>8.0.16</tomee.version>
         <transaction-api.version>1.3.3</transaction-api.version>
-        <ucp.version>21.17.0.0</ucp.version>
+        <ucp.version>23.8.0.25.04</ucp.version>
         <wrapper.version>3.2.3</wrapper.version>
         <xstream.version>1.4.21</xstream.version>
         <vibur-dbcp.version>26.0</vibur-dbcp.version>
