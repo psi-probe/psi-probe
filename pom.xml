@@ -249,7 +249,7 @@
         <!-- Plugin Dependency Versions -->
         <build-tools.version>1.4.0</build-tools.version>
         <bugpattern.version>1.5.0</bugpattern.version>
-        <checkstyle.version>10.23.1</checkstyle.version>
+        <checkstyle.version>10.24.0</checkstyle.version>
         <ecj.version>3.41.0</ecj.version>
         <extra-enforcer-rules.version>1.10.0</extra-enforcer-rules.version>
         <sb-contrib.version>7.6.9</sb-contrib.version>
