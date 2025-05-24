@@ -167,17 +167,16 @@ public final class ApplicationUtils {
     long maxTime = 0;
 
     for (Container container : context.findChildren()) {
-      if (container instanceof StandardWrapper) {
-        StandardWrapper sw = (StandardWrapper) container;
+      if (container instanceof StandardWrapper sw) {
         svltCount++;
 
         // Get Request Count (bridge between tomcat 10 and 11 using int vs long
         Object requestCount = null;
         try {
           requestCount = MethodUtils.invokeMethod(sw, "getRequestCount");
-          if (requestCount instanceof Long) {
+          if (requestCount instanceof Long result) {
             // tomcat 11+
-            reqCount += (long) requestCount;
+            reqCount += result;
           } else {
             // tomcat 10
             reqCount += (int) requestCount;
@@ -189,9 +188,9 @@ public final class ApplicationUtils {
         // Get Error Count (bridge between tomcat 10 and 11 using int vs long
         try {
           Object errorCount = MethodUtils.invokeMethod(sw, "getErrorCount");
-          if (errorCount instanceof Long) {
+          if (errorCount instanceof Long result) {
             // Tomcat 11+
-            errCount += (long) errorCount;
+            errCount += result;
           } else {
             // Tomcat 10
             errCount += (int) errorCount;
@@ -202,10 +201,10 @@ public final class ApplicationUtils {
 
         procTime += sw.getProcessingTime();
         if (requestCount != null) {
-          if (requestCount instanceof Long && (long) requestCount > 0) {
+          if (requestCount instanceof Long result && result > 0) {
             // Tomcat 11+
             minTime = Math.min(minTime, sw.getMinTime());
-          } else if (requestCount instanceof Integer && (int) requestCount > 0) {
+          } else if (requestCount instanceof Integer result && result > 0) {
             // Tomcat 10
             minTime = Math.min(minTime, sw.getMinTime());
           }
@@ -378,8 +377,7 @@ public final class ApplicationUtils {
   public static ServletInfo getApplicationServlet(Context context, String servletName) {
     Container container = context.findChild(servletName);
 
-    if (container instanceof Wrapper) {
-      Wrapper wrapper = (Wrapper) container;
+    if (container instanceof Wrapper wrapper) {
       return getServletInfo(wrapper, context.getName());
     }
     return null;
@@ -402,16 +400,15 @@ public final class ApplicationUtils {
     si.setLoadOnStartup(wrapper.getLoadOnStartup());
     si.setRunAs(wrapper.getRunAs());
     si.getMappings().addAll(Arrays.asList(wrapper.findMappings()));
-    if (wrapper instanceof StandardWrapper) {
-      StandardWrapper sw = (StandardWrapper) wrapper;
+    if (wrapper instanceof StandardWrapper sw) {
       si.setAllocationCount(sw.getCountAllocated());
 
       // Get Error Count (bridge between tomcat 10 and 11 using int vs long
       try {
         Object errorCount = MethodUtils.invokeMethod(sw, "getErrorCount");
-        if (errorCount instanceof Long) {
+        if (errorCount instanceof Long result) {
           // Tomcat 11+
-          si.setErrorCount((long) errorCount);
+          si.setErrorCount(result);
         } else {
           // Tomcat 10
           si.setErrorCount((int) errorCount);
@@ -428,9 +425,9 @@ public final class ApplicationUtils {
       // Get Request Count (bridge between tomcat 10 and 11 using int vs long
       try {
         Object requestCount = MethodUtils.invokeMethod(sw, "getRequestCount");
-        if (requestCount instanceof Long) {
+        if (requestCount instanceof Long result) {
           // Tomcat 11+
-          si.setRequestCount((long) requestCount);
+          si.setRequestCount(result);
         } else {
           // Tomcat 10
           si.setRequestCount((int) requestCount);
@@ -454,8 +451,7 @@ public final class ApplicationUtils {
     Container[] cns = context.findChildren();
     List<ServletInfo> servlets = new ArrayList<>(cns.length);
     for (Container container : cns) {
-      if (container instanceof Wrapper) {
-        Wrapper wrapper = (Wrapper) container;
+      if (container instanceof Wrapper wrapper) {
         servlets.add(getServletInfo(wrapper, context.getName()));
       }
     }
@@ -481,8 +477,7 @@ public final class ApplicationUtils {
           sm.setUrl(servletMapping);
           sm.setServletName(sn);
           Container container = context.findChild(sn);
-          if (container instanceof Wrapper) {
-            Wrapper wrapper = (Wrapper) container;
+          if (container instanceof Wrapper wrapper) {
             sm.setServletClass(wrapper.getServletClass());
             sm.setAvailable(!wrapper.isUnavailable());
           }

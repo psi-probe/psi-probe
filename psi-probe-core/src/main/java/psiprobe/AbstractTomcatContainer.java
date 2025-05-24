@@ -131,8 +131,8 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     Container baseHost = null;
     Container thisContainer = host;
     while (thisContainer != null) {
-      if (thisContainer instanceof Host) {
-        baseHost = thisContainer;
+      if (thisContainer instanceof Host host) {
+        baseHost = host;
       }
       thisContainer = thisContainer.getParent();
     }

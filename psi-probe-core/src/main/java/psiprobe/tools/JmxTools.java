@@ -120,7 +120,7 @@ public final class JmxTools {
    */
   public static long getLongAttr(CompositeData compositeData, String name) {
     Object object = compositeData.get(name);
-    return object instanceof Long ? (Long) object : 0;
+    return object instanceof Long result ? result : 0;
   }
 
   /**
@@ -164,7 +164,7 @@ public final class JmxTools {
    */
   public static int getIntAttr(CompositeData compositeData, String name, int defaultValue) {
     Object object = compositeData.get(name);
-    return object instanceof Integer ? (Integer) object : defaultValue;
+    return object instanceof Integer result ? result : defaultValue;
   }
 
   /**
@@ -207,7 +207,7 @@ public final class JmxTools {
   public static boolean getBooleanAttr(MBeanServer mbeanServer, ObjectName objectName,
       String attributeName) {
     Object object = JmxTools.getAttribute(mbeanServer, objectName, attributeName);
-    return object instanceof Boolean && (Boolean) object;
+    return object instanceof Boolean result && result.booleanValue();
   }
 
   /**
@@ -220,7 +220,7 @@ public final class JmxTools {
    */
   public static boolean getBooleanAttr(CompositeData compositeData, String name) {
     Object object = compositeData.get(name);
-    return object instanceof Boolean && (Boolean) object;
+    return object instanceof Boolean result && result.booleanValue();
   }
 
   /**
