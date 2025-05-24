@@ -350,7 +350,7 @@ public class ProbeConfig implements WebMvcConfigurer {
   public HandlerMapping getHandlerMapping(@Autowired LocaleChangeInterceptor interceptor) {
     logger.debug("Instantiated beanNameUrlHandlerMapping");
     BeanNameUrlHandlerMapping mapping = new BeanNameUrlHandlerMapping();
-    mapping.setAlwaysUseFullPath(true);
+    mapping.getUrlPathHelper().setAlwaysUseFullPath(true);
     mapping.setInterceptors(interceptor);
     return mapping;
   }
