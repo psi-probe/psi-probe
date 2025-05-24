@@ -85,7 +85,7 @@ public class UploadWarController extends AbstractTomcatContainerController {
       List<FileItem> fileItems = upload.parseRequest(new ServletRequestContext(request));
       for (FileItem fi : fileItems) {
         if (!fi.isFormField()) {
-          if (fi.getName() != null && fi.getName().length() > 0) {
+          if (fi.getName() != null && !fi.getName().isEmpty()) {
             tmpWar =
                 Path.of(System.getProperty("java.io.tmpdir"), FilenameUtils.getName(fi.getName()))
                     .toFile();
