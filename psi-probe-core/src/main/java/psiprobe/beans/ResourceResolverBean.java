@@ -228,8 +228,8 @@ public class ResourceResolverBean implements ResourceResolver {
       }
       Object obj = ctx.lookup(jndiName);
 
-      if (obj instanceof DataSource) {
-        return (DataSource) obj;
+      if (obj instanceof DataSource dataSource) {
+        return dataSource;
       }
       return null;
     } finally {
