@@ -233,16 +233,6 @@ public class LogResolverBean {
   public LogDestination getLogDestination(String logType, String webapp, boolean context,
       boolean root, String logName, String logIndex) {
 
-    LogDestination result = null;
-    Context ctx = null;
-    Application application = null;
-    if (webapp != null) {
-      ctx = getContainerWrapper().getTomcatContainer().findContext(webapp);
-      if (ctx != null) {
-        application = ApplicationUtils.getApplication(ctx, getContainerWrapper());
-      }
-    }
-
     // Supported loggers
     List<String> loggers = new ArrayList<>();
     loggers.add("jdk");
@@ -253,6 +243,16 @@ public class LogResolverBean {
     loggers.add("tomcatSlf4jLogback");
     loggers.add("tomcatSlf4jLogback13");
 
+    Context ctx = null;
+    Application application = null;
+    if (webapp != null) {
+      ctx = getContainerWrapper().getTomcatContainer().findContext(webapp);
+      if (ctx != null) {
+        application = ApplicationUtils.getApplication(ctx, getContainerWrapper());
+      }
+    }
+
+    LogDestination result = null;
     if (logName != null && "stdout".equals(logType)) {
       result = getStdoutLogDestination(logName);
     } else if (ctx != null && "catalina".equals(logType)) {
