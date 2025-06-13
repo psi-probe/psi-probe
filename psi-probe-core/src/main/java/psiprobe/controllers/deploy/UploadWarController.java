@@ -120,7 +120,7 @@ public class UploadWarController extends AbstractTomcatContainerController {
     try {
       if (tmpWar.getName().endsWith(".war")) {
 
-        if (contextName == null || contextName.length() == 0) {
+        if (contextName == null || contextName.isEmpty()) {
           String warFileName = tmpWar.getName().replaceAll("\\.war$", "");
           contextName = "/" + warFileName;
         }
