@@ -100,8 +100,8 @@ public class ContainerWrapperBean {
             try {
               Object obj = Class.forName(className).getDeclaredConstructor().newInstance();
               logger.debug("Testing container adapter: {}", className);
-              if (obj instanceof TomcatContainer) {
-                if (forceFirstAdapter || ((TomcatContainer) obj).canBoundTo(serverInfo)) {
+              if (obj instanceof TomcatContainer container) {
+                if (forceFirstAdapter || container.canBoundTo(serverInfo)) {
                   logger.info("Using {}", className);
                   tomcatContainer = (TomcatContainer) obj;
                   tomcatContainer.setWrapper(wrapper);

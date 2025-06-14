@@ -182,8 +182,7 @@ public class ListCertificatesController extends AbstractTomcatContainerControlle
 
       ProtocolHandler protocolHandler = connector.getProtocolHandler();
 
-      if (protocolHandler instanceof AbstractHttp11Protocol) {
-        AbstractHttp11Protocol<?> protocol = (AbstractHttp11Protocol<?>) protocolHandler;
+      if (protocolHandler instanceof AbstractHttp11Protocol protocol) {
         if (!protocol.getSecure()) {
           continue;
         }

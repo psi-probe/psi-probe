@@ -49,27 +49,19 @@ public class ChangeLogLevelController extends AbstractLogHandlerController {
 
     String level = ServletRequestUtils.getRequiredStringParameter(request, "level");
     if (Arrays.asList(logDest.getValidLevels()).contains(level)) {
-      if (logDest instanceof Log4JAppenderAccessor) {
-        Log4JAppenderAccessor accessor = (Log4JAppenderAccessor) logDest;
+      if (logDest instanceof Log4JAppenderAccessor accessor) {
         accessor.getLoggerAccessor().setLevel(level);
-      } else if (logDest instanceof Log4J2AppenderAccessor) {
-        Log4J2AppenderAccessor accessor = (Log4J2AppenderAccessor) logDest;
+      } else if (logDest instanceof Log4J2AppenderAccessor accessor) {
         accessor.getLoggerAccessor().setLevel(level);
-      } else if (logDest instanceof Jdk14HandlerAccessor) {
-        Jdk14HandlerAccessor accessor = (Jdk14HandlerAccessor) logDest;
+      } else if (logDest instanceof Jdk14HandlerAccessor accessor) {
         accessor.getLoggerAccessor().setLevel(level);
-      } else if (logDest instanceof LogbackAppenderAccessor) {
-        LogbackAppenderAccessor accessor = (LogbackAppenderAccessor) logDest;
+      } else if (logDest instanceof LogbackAppenderAccessor accessor) {
         accessor.getLoggerAccessor().setLevel(level);
-      } else if (logDest instanceof Logback13AppenderAccessor) {
-        Logback13AppenderAccessor accessor = (Logback13AppenderAccessor) logDest;
+      } else if (logDest instanceof Logback13AppenderAccessor accessor) {
         accessor.getLoggerAccessor().setLevel(level);
-      } else if (logDest instanceof TomcatSlf4jLogbackAppenderAccessor) {
-        TomcatSlf4jLogbackAppenderAccessor accessor = (TomcatSlf4jLogbackAppenderAccessor) logDest;
+      } else if (logDest instanceof TomcatSlf4jLogbackAppenderAccessor accessor) {
         accessor.getLoggerAccessor().setLevel(level);
-      } else if (logDest instanceof TomcatSlf4jLogback13AppenderAccessor) {
-        TomcatSlf4jLogback13AppenderAccessor accessor =
-            (TomcatSlf4jLogback13AppenderAccessor) logDest;
+      } else if (logDest instanceof TomcatSlf4jLogback13AppenderAccessor accessor) {
         accessor.getLoggerAccessor().setLevel(level);
       }
     }

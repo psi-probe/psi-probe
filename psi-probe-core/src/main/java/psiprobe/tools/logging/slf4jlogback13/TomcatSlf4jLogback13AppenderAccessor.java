@@ -99,11 +99,9 @@ public class TomcatSlf4jLogback13AppenderAccessor extends AbstractLogDestination
 
   @Override
   public String getEncoding() {
-    if (getTarget() instanceof OutputStreamAppender) {
-      OutputStreamAppender<?> appender = (OutputStreamAppender<?>) getTarget();
+    if (getTarget() instanceof OutputStreamAppender appender) {
       Encoder<?> encoder = appender.getEncoder();
-      if (encoder instanceof LayoutWrappingEncoder) {
-        LayoutWrappingEncoder<?> base = (LayoutWrappingEncoder<?>) encoder;
+      if (encoder instanceof LayoutWrappingEncoder base) {
         if (base.getCharset() != null) {
           return base.getCharset().name();
         }

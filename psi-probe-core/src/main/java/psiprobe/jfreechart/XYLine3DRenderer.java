@@ -245,10 +245,9 @@ public class XYLine3DRenderer extends XYLineAndShapeRenderer implements Effect3D
     if (obj == this) {
       return true;
     }
-    if (!(obj instanceof XYLine3DRenderer)) {
+    if (!(obj instanceof XYLine3DRenderer that)) {
       return false;
     }
-    XYLine3DRenderer that = (XYLine3DRenderer) obj;
     if (this.xOffset != that.xOffset || this.yOffset != that.yOffset
         || !PaintUtils.equal(this.wallPaint, that.wallPaint)) {
       return false;
