@@ -708,6 +708,9 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-clean-plugin</artifactId>
                     <version>${clean.plugin}</version>
+                    <configuration>
+                        <force>true</force>
+                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -1142,6 +1145,16 @@
                     <version>${enforcer.plugin}</version>
                     <configuration>
                         <rules>
+                            <bannedDependencies>
+                                <message>Do not use obsolete logging libraries.  Prefer slf4j/logback and override slf4j libraries for replacements.  Use only commons-logging when needed and no overrides from any of the major logging providers.</message>
+                                <excludes>
+                                    <exclude>log4j:log4j</exclude>
+                                    <exclude>org.apache.logging.log4j:log4j-jcl</exclude>
+                                    <exclude>org.slf4j:jcl-over-slf4j</exclude>
+                                    <exclude>org.slf4j:slf4j-log4j12</exclude>
+                                    <exclude>org.springframework:spring-jcl</exclude>
+                                </excludes>
+                            </bannedDependencies>
                             <enforceBytecodeVersion>
                                 <maxJdkVersion>${java.version}</maxJdkVersion>
                                 <ignoredScopes>test</ignoredScopes>
