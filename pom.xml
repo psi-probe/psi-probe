@@ -1712,6 +1712,21 @@
                                                 </execute>
                                             </action>
                                         </pluginExecution>
+
+                                        <!-- rewrite maven plugin should be ignored in m2e. -->
+                                        <pluginExecution>
+                                            <pluginExecutionFilter>
+                                                <groupId>org.openrewrite.maven</groupId>
+                                                <artifactId>rewrite-maven-plugin</artifactId>
+                                                <versionRange>[${rewrite.plugin},)</versionRange>
+                                                <goals>
+                                                    <goal>run</goal>
+                                                </goals>
+                                            </pluginExecutionFilter>
+                                            <action>
+                                                <ignore />
+                                            </action>
+                                        </pluginExecution>
                                     </pluginExecutions>
                                 </lifecycleMappingMetadata>
                             </configuration>
