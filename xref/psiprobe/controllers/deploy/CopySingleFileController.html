@@ -115,7 +115,7 @@
 <a class="jxr_linenumber" name="L107" href="#L107">107</a>       List&lt;FileItem&gt; fileItems = upload.parseRequest(<strong class="jxr_keyword">new</strong> ServletRequestContext(request));
 <a class="jxr_linenumber" name="L108" href="#L108">108</a>       <strong class="jxr_keyword">for</strong> (FileItem fi : fileItems) {
 <a class="jxr_linenumber" name="L109" href="#L109">109</a>         <strong class="jxr_keyword">if</strong> (!fi.isFormField()) {
-<a class="jxr_linenumber" name="L110" href="#L110">110</a>           <strong class="jxr_keyword">if</strong> (fi.getName() != <strong class="jxr_keyword">null</strong> &amp;&amp; fi.getName().length() &gt; 0) {
+<a class="jxr_linenumber" name="L110" href="#L110">110</a>           <strong class="jxr_keyword">if</strong> (fi.getName() != <strong class="jxr_keyword">null</strong> &amp;&amp; !fi.getName().isEmpty()) {
 <a class="jxr_linenumber" name="L111" href="#L111">111</a>             tmpFile =
 <a class="jxr_linenumber" name="L112" href="#L112">112</a>                 Path.of(System.getProperty(<span class="jxr_string">"java.io.tmpdir"</span>), FilenameUtils.getName(fi.getName()))
 <a class="jxr_linenumber" name="L113" href="#L113">113</a>                     .toFile();

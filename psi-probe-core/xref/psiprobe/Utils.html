@@ -543,17 +543,17 @@
 <a class="jxr_linenumber" name="L535" href="#L535">535</a>     String variant = locale.getVariant();
 <a class="jxr_linenumber" name="L536" href="#L536">536</a>     StringBuilder temp = <strong class="jxr_keyword">new</strong> StringBuilder(baseName);
 <a class="jxr_linenumber" name="L537" href="#L537">537</a> 
-<a class="jxr_linenumber" name="L538" href="#L538">538</a>     <strong class="jxr_keyword">if</strong> (language.length() &gt; 0) {
+<a class="jxr_linenumber" name="L538" href="#L538">538</a>     <strong class="jxr_keyword">if</strong> (!language.isEmpty()) {
 <a class="jxr_linenumber" name="L539" href="#L539">539</a>       temp.append('_').append(language);
 <a class="jxr_linenumber" name="L540" href="#L540">540</a>       result.add(0, temp.toString());
 <a class="jxr_linenumber" name="L541" href="#L541">541</a>     }
 <a class="jxr_linenumber" name="L542" href="#L542">542</a> 
-<a class="jxr_linenumber" name="L543" href="#L543">543</a>     <strong class="jxr_keyword">if</strong> (country.length() &gt; 0) {
+<a class="jxr_linenumber" name="L543" href="#L543">543</a>     <strong class="jxr_keyword">if</strong> (!country.isEmpty()) {
 <a class="jxr_linenumber" name="L544" href="#L544">544</a>       temp.append('_').append(country);
 <a class="jxr_linenumber" name="L545" href="#L545">545</a>       result.add(0, temp.toString());
 <a class="jxr_linenumber" name="L546" href="#L546">546</a>     }
 <a class="jxr_linenumber" name="L547" href="#L547">547</a> 
-<a class="jxr_linenumber" name="L548" href="#L548">548</a>     <strong class="jxr_keyword">if</strong> (variant.length() &gt; 0) {
+<a class="jxr_linenumber" name="L548" href="#L548">548</a>     <strong class="jxr_keyword">if</strong> (!variant.isEmpty()) {
 <a class="jxr_linenumber" name="L549" href="#L549">549</a>       temp.append('_').append(variant);
 <a class="jxr_linenumber" name="L550" href="#L550">550</a>       result.add(0, temp.toString());
 <a class="jxr_linenumber" name="L551" href="#L551">551</a>     }

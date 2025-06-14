@@ -121,7 +121,7 @@
 <a class="jxr_linenumber" name="L113" href="#L113">113</a>               ApplicationUtils.getApplicationSession(session, calcSize, searchInfo.isUseAttr());
 <a class="jxr_linenumber" name="L114" href="#L114">114</a>           <strong class="jxr_keyword">if</strong> (appSession != <strong class="jxr_keyword">null</strong> &amp;&amp; matchSession(appSession, searchInfo)) {
 <a class="jxr_linenumber" name="L115" href="#L115">115</a>             <strong class="jxr_keyword">if</strong> (ctx.getName() != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L116" href="#L116">116</a>               appSession.setApplicationName(ctx.getName().length() &gt; 0 ? ctx.getName() : <span class="jxr_string">"/"</span>);
+<a class="jxr_linenumber" name="L116" href="#L116">116</a>               appSession.setApplicationName(!ctx.getName().isEmpty() ? ctx.getName() : <span class="jxr_string">"/"</span>);
 <a class="jxr_linenumber" name="L117" href="#L117">117</a>             }
 <a class="jxr_linenumber" name="L118" href="#L118">118</a>             sessionList.add(appSession);
 <a class="jxr_linenumber" name="L119" href="#L119">119</a>           }

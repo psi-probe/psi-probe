@@ -358,7 +358,7 @@
 <a class="jxr_linenumber" name="L350" href="#L350">350</a>   <strong class="jxr_keyword">public</strong> HandlerMapping getHandlerMapping(@Autowired LocaleChangeInterceptor interceptor) {
 <a class="jxr_linenumber" name="L351" href="#L351">351</a>     logger.debug(<span class="jxr_string">"Instantiated beanNameUrlHandlerMapping"</span>);
 <a class="jxr_linenumber" name="L352" href="#L352">352</a>     BeanNameUrlHandlerMapping mapping = <strong class="jxr_keyword">new</strong> BeanNameUrlHandlerMapping();
-<a class="jxr_linenumber" name="L353" href="#L353">353</a>     mapping.setAlwaysUseFullPath(<strong class="jxr_keyword">true</strong>);
+<a class="jxr_linenumber" name="L353" href="#L353">353</a>     mapping.getUrlPathHelper().setAlwaysUseFullPath(<strong class="jxr_keyword">true</strong>);
 <a class="jxr_linenumber" name="L354" href="#L354">354</a>     mapping.setInterceptors(interceptor);
 <a class="jxr_linenumber" name="L355" href="#L355">355</a>     <strong class="jxr_keyword">return</strong> mapping;
 <a class="jxr_linenumber" name="L356" href="#L356">356</a>   }

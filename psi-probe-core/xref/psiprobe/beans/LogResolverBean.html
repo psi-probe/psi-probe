@@ -241,26 +241,26 @@
 <a class="jxr_linenumber" name="L233" href="#L233">233</a>   <strong class="jxr_keyword">public</strong> <a name="LogDestination" href="../../psiprobe/tools/logging/LogDestination.html#LogDestination">LogDestination</a> getLogDestination(String logType, String webapp, <strong class="jxr_keyword">boolean</strong> context,
 <a class="jxr_linenumber" name="L234" href="#L234">234</a>       <strong class="jxr_keyword">boolean</strong> root, String logName, String logIndex) {
 <a class="jxr_linenumber" name="L235" href="#L235">235</a> 
-<a class="jxr_linenumber" name="L236" href="#L236">236</a>     <a name="LogDestination" href="../../psiprobe/tools/logging/LogDestination.html#LogDestination">LogDestination</a> result = <strong class="jxr_keyword">null</strong>;
-<a class="jxr_linenumber" name="L237" href="#L237">237</a>     Context ctx = <strong class="jxr_keyword">null</strong>;
-<a class="jxr_linenumber" name="L238" href="#L238">238</a>     <a name="Application" href="../../psiprobe/model/Application.html#Application">Application</a> application = <strong class="jxr_keyword">null</strong>;
-<a class="jxr_linenumber" name="L239" href="#L239">239</a>     <strong class="jxr_keyword">if</strong> (webapp != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L240" href="#L240">240</a>       ctx = getContainerWrapper().getTomcatContainer().findContext(webapp);
-<a class="jxr_linenumber" name="L241" href="#L241">241</a>       <strong class="jxr_keyword">if</strong> (ctx != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L242" href="#L242">242</a>         application = ApplicationUtils.getApplication(ctx, getContainerWrapper());
-<a class="jxr_linenumber" name="L243" href="#L243">243</a>       }
-<a class="jxr_linenumber" name="L244" href="#L244">244</a>     }
+<a class="jxr_linenumber" name="L236" href="#L236">236</a>     <em class="jxr_comment">// Supported loggers</em>
+<a class="jxr_linenumber" name="L237" href="#L237">237</a>     List&lt;String&gt; loggers = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;();
+<a class="jxr_linenumber" name="L238" href="#L238">238</a>     loggers.add(<span class="jxr_string">"jdk"</span>);
+<a class="jxr_linenumber" name="L239" href="#L239">239</a>     loggers.add(<span class="jxr_string">"log4j"</span>);
+<a class="jxr_linenumber" name="L240" href="#L240">240</a>     loggers.add(<span class="jxr_string">"log4j2"</span>);
+<a class="jxr_linenumber" name="L241" href="#L241">241</a>     loggers.add(<span class="jxr_string">"logback"</span>);
+<a class="jxr_linenumber" name="L242" href="#L242">242</a>     loggers.add(<span class="jxr_string">"logback13"</span>);
+<a class="jxr_linenumber" name="L243" href="#L243">243</a>     loggers.add(<span class="jxr_string">"tomcatSlf4jLogback"</span>);
+<a class="jxr_linenumber" name="L244" href="#L244">244</a>     loggers.add(<span class="jxr_string">"tomcatSlf4jLogback13"</span>);
 <a class="jxr_linenumber" name="L245" href="#L245">245</a> 
-<a class="jxr_linenumber" name="L246" href="#L246">246</a>     <em class="jxr_comment">// Supported loggers</em>
-<a class="jxr_linenumber" name="L247" href="#L247">247</a>     List&lt;String&gt; loggers = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;();
-<a class="jxr_linenumber" name="L248" href="#L248">248</a>     loggers.add(<span class="jxr_string">"jdk"</span>);
-<a class="jxr_linenumber" name="L249" href="#L249">249</a>     loggers.add(<span class="jxr_string">"log4j"</span>);
-<a class="jxr_linenumber" name="L250" href="#L250">250</a>     loggers.add(<span class="jxr_string">"log4j2"</span>);
-<a class="jxr_linenumber" name="L251" href="#L251">251</a>     loggers.add(<span class="jxr_string">"logback"</span>);
-<a class="jxr_linenumber" name="L252" href="#L252">252</a>     loggers.add(<span class="jxr_string">"logback13"</span>);
-<a class="jxr_linenumber" name="L253" href="#L253">253</a>     loggers.add(<span class="jxr_string">"tomcatSlf4jLogback"</span>);
-<a class="jxr_linenumber" name="L254" href="#L254">254</a>     loggers.add(<span class="jxr_string">"tomcatSlf4jLogback13"</span>);
-<a class="jxr_linenumber" name="L255" href="#L255">255</a> 
+<a class="jxr_linenumber" name="L246" href="#L246">246</a>     Context ctx = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="L247" href="#L247">247</a>     <a name="Application" href="../../psiprobe/model/Application.html#Application">Application</a> application = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="L248" href="#L248">248</a>     <strong class="jxr_keyword">if</strong> (webapp != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L249" href="#L249">249</a>       ctx = getContainerWrapper().getTomcatContainer().findContext(webapp);
+<a class="jxr_linenumber" name="L250" href="#L250">250</a>       <strong class="jxr_keyword">if</strong> (ctx != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L251" href="#L251">251</a>         application = ApplicationUtils.getApplication(ctx, getContainerWrapper());
+<a class="jxr_linenumber" name="L252" href="#L252">252</a>       }
+<a class="jxr_linenumber" name="L253" href="#L253">253</a>     }
+<a class="jxr_linenumber" name="L254" href="#L254">254</a> 
+<a class="jxr_linenumber" name="L255" href="#L255">255</a>     <a name="LogDestination" href="../../psiprobe/tools/logging/LogDestination.html#LogDestination">LogDestination</a> result = <strong class="jxr_keyword">null</strong>;
 <a class="jxr_linenumber" name="L256" href="#L256">256</a>     <strong class="jxr_keyword">if</strong> (logName != <strong class="jxr_keyword">null</strong> &amp;&amp; <span class="jxr_string">"stdout"</span>.equals(logType)) {
 <a class="jxr_linenumber" name="L257" href="#L257">257</a>       result = getStdoutLogDestination(logName);
 <a class="jxr_linenumber" name="L258" href="#L258">258</a>     } <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (ctx != <strong class="jxr_keyword">null</strong> &amp;&amp; <span class="jxr_string">"catalina"</span>.equals(logType)) {

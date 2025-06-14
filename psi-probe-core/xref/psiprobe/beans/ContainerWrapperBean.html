@@ -108,8 +108,8 @@
 <a class="jxr_linenumber" name="L100" href="#L100">100</a>             <strong class="jxr_keyword">try</strong> {
 <a class="jxr_linenumber" name="L101" href="#L101">101</a>               Object obj = Class.forName(className).getDeclaredConstructor().newInstance();
 <a class="jxr_linenumber" name="L102" href="#L102">102</a>               logger.debug(<span class="jxr_string">"Testing container adapter: {}"</span>, className);
-<a class="jxr_linenumber" name="L103" href="#L103">103</a>               <strong class="jxr_keyword">if</strong> (obj instanceof <a name="TomcatContainer" href="../../psiprobe/TomcatContainer.html#TomcatContainer">TomcatContainer</a>) {
-<a class="jxr_linenumber" name="L104" href="#L104">104</a>                 <strong class="jxr_keyword">if</strong> (forceFirstAdapter || ((<a name="TomcatContainer" href="../../psiprobe/TomcatContainer.html#TomcatContainer">TomcatContainer</a>) obj).canBoundTo(serverInfo)) {
+<a class="jxr_linenumber" name="L103" href="#L103">103</a>               <strong class="jxr_keyword">if</strong> (obj instanceof <a name="TomcatContainer" href="../../psiprobe/TomcatContainer.html#TomcatContainer">TomcatContainer</a> container) {
+<a class="jxr_linenumber" name="L104" href="#L104">104</a>                 <strong class="jxr_keyword">if</strong> (forceFirstAdapter || container.canBoundTo(serverInfo)) {
 <a class="jxr_linenumber" name="L105" href="#L105">105</a>                   logger.info(<span class="jxr_string">"Using {}"</span>, className);
 <a class="jxr_linenumber" name="L106" href="#L106">106</a>                   tomcatContainer = (<a name="TomcatContainer" href="../../psiprobe/TomcatContainer.html#TomcatContainer">TomcatContainer</a>) obj;
 <a class="jxr_linenumber" name="L107" href="#L107">107</a>                   tomcatContainer.setWrapper(wrapper);
