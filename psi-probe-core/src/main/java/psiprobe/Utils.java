@@ -535,17 +535,17 @@ public final class Utils {
     String variant = locale.getVariant();
     StringBuilder temp = new StringBuilder(baseName);
 
-    if (language.length() > 0) {
+    if (!language.isEmpty()) {
       temp.append('_').append(language);
       result.add(0, temp.toString());
     }
 
-    if (country.length() > 0) {
+    if (!country.isEmpty()) {
       temp.append('_').append(country);
       result.add(0, temp.toString());
     }
 
-    if (variant.length() > 0) {
+    if (!variant.isEmpty()) {
       temp.append('_').append(variant);
       result.add(0, temp.toString());
     }
