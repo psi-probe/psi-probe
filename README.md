@@ -100,12 +100,13 @@ Generally supported versions for third party tomcat providers align with their s
 PSI Probe uses deep reflection to access data. Take care your tomcat configuration considers this.
 You can do this by extending the JDK_JAVA_OPTIONS variable:
 
-
         ...
         --add-opens=java.base/java.lang=ALL-UNNAMED \
+        --add-opens=java.base/java.lang.reflect=ALL-UNNAMED \
         --add-opens=java.base/java.io=ALL-UNNAMED \
         --add-opens=java.base/java.util=ALL-UNNAMED \
         --add-opens=java.base/java.util.concurrent=ALL-UNNAMED \
+        --add-opens=java.base/sun.util.locale=ALL-UNNAMED \
         --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED \
         ...
 
