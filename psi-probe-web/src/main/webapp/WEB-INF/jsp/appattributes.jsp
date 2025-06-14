@@ -53,7 +53,7 @@
                     <table id="resultsTable" style="padding:0;border-spacing:0;border-collapse:separate;">
                         <tr>
                             <td id="left_scroller" class="scroller">&#160;</td>
-                            <td id="separator" width="1%">&#160;</td>
+                            <td id="separator" style="width: 1%;">&#160;</td>
                             <td>
                                 <div id="appAttrTblContainer" class="scrollable_content">
                                     <display:table htmlId="appAttrTbl" name="appAttributes" uid="attribute"
