@@ -37,7 +37,6 @@ import org.apache.tomcat.util.descriptor.web.ContextResource;
 import org.apache.tomcat.util.descriptor.web.ContextResourceLink;
 import org.apache.tomcat.util.descriptor.web.FilterDef;
 import org.apache.tomcat.util.descriptor.web.FilterMap;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -83,22 +82,13 @@ class Tomcat11ContainerAdapterTest {
   }
 
   /**
-   * Can bound to tomcat11.
+   * Can bound to tomcat11, tomee 11.0, nsjsp 11.0, vmware tc 11.0.
    */
-  @Test
-  void canBoundToTomcat11() {
-    final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
-    assertTrue(adapter.canBoundTo("Apache Tomcat/11.0"));
-  }
-
-  /**
-   * Can bound to tomee 11.0, nsjsp 11.0, vmware tc 11.0.
-   */
-  // TODO Not yet supported
-  @Disabled
   @ParameterizedTest
-  @ValueSource(strings = {"Apache Tomcat (TomEE)/11.0",
-      "NonStop(tm) Servlets For JavaServer Pages(tm) v11.0", "Vmware tc..../11.0"})
+  @ValueSource(strings = {"Apache Tomcat/11.0",
+      // "Apache Tomcat (TomEE)/11.0",
+      // "NonStop(tm) Servlets For JavaServer Pages(tm) v11.0",
+      "Vmware tc..../11.0"})
   void canBoundTo(String container) {
     final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
     assertTrue(adapter.canBoundTo(container));
