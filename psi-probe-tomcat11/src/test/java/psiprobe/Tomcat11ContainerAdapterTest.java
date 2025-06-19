@@ -14,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import jakarta.servlet.ServletContext;
@@ -82,7 +83,9 @@ class Tomcat11ContainerAdapterTest {
   }
 
   /**
-   * Can bound to tomcat11, tomee 11.0, nsjsp 11.0, vmware tc 11.0.
+   * Can bound to tomcat 11, tomee 11.0, nsjsp 11.0, vmware tc 11.0.
+   *
+   * @param container the container
    */
   @ParameterizedTest
   @ValueSource(strings = {"Apache Tomcat/11.0",
@@ -96,6 +99,8 @@ class Tomcat11ContainerAdapterTest {
 
   /**
    * Can not bound to other containers.
+   *
+   * @param container the container
    */
   @ParameterizedTest
   @ValueSource(strings = {"Vmware tc", "Other"})
@@ -169,6 +174,42 @@ class Tomcat11ContainerAdapterTest {
 
     final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
     assertEquals(0, adapter.getApplicationFilterMaps(context).size());
+  }
+
+  /**
+   * Gets the application filter maps async.
+   *
+   * @param dispatcher the dispatcher
+   */
+  @ParameterizedTest
+  @ValueSource(strings = {"ASYNC", "ERROR", "FORWARD", "INCLUDE", "NONE"})
+  void applicationFilterMapsTypes(String dispatcher) {
+    FilterMap filterMap = new FilterMap();
+    filterMap.setDispatcher(dispatcher);
+    Mockito.when(context.findFilterMaps()).thenReturn(new FilterMap[] {filterMap});
+
+    Mockito.when(context.findFilterDef(Mockito.any())).thenReturn(new FilterDef());
+
+    final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
+    assertEquals(0, adapter.getApplicationFilterMaps(context).size());
+  }
+
+  /**
+   * Gets the application filter maps throws on unknown dispatcher mapping.
+   */
+  @Test
+  void applicationFilterMapsThrowsOnUnknownDispatcherMapping() {
+    Context mockContext = Mockito.mock(Context.class);
+    FilterMap filterMap = Mockito.mock(FilterMap.class);
+
+    // Return an invalid dispatcher mapping value
+    Mockito.when(filterMap.getDispatcherMapping()).thenReturn(-1);
+    Mockito.when(mockContext.findFilterMaps()).thenReturn(new FilterMap[] {filterMap});
+
+    Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
+
+    assertThrows(IllegalArgumentException.class,
+        () -> adapter.getApplicationFilterMaps(mockContext));
   }
 
   /**
@@ -337,7 +378,7 @@ class Tomcat11ContainerAdapterTest {
    * Gets the naming token.
    */
   @Test
-  void getNamingToken() {
+  void namingToken() {
     Mockito.when(context.getNamingToken()).thenReturn(new Object());
 
     final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
@@ -348,7 +389,7 @@ class Tomcat11ContainerAdapterTest {
    * Gets the naming token with security token check false.
    */
   @Test
-  void getNamingTokenWithSecurityTokenCheckFalse() {
+  void namingTokenWithSecurityTokenCheckFalse() {
     Mockito.when(context.getNamingToken()).thenReturn(new Object());
 
     try (MockedStatic<ContextAccessController> mocked =
@@ -362,12 +403,10 @@ class Tomcat11ContainerAdapterTest {
   }
 
   /**
-   * Gets the application filters when none.
-   *
-   * @return the application filters when none
+   * Application filters when none.
    */
   @Test
-  void getApplicationFiltersWhenNone() {
+  void applicationFiltersWhenNone() {
     Mockito.when(context.findFilterDefs()).thenReturn(new FilterDef[] {(FilterDef) null});
 
     final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
