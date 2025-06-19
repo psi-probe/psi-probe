@@ -36,6 +36,11 @@
         <url>https://github.com/psi-probe/psi-probe/</url>
     </scm>
 
+    <properties>
+        <!-- Jacoco minimum code coverage -->
+        <jacoco.minimum.coverage>1.00</jacoco.minimum.coverage>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.hateoas</groupId>
