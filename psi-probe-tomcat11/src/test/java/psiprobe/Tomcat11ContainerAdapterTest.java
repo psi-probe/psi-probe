@@ -14,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import jakarta.servlet.ServletContext;
@@ -37,7 +38,6 @@ import org.apache.tomcat.util.descriptor.web.ContextResource;
 import org.apache.tomcat.util.descriptor.web.ContextResourceLink;
 import org.apache.tomcat.util.descriptor.web.FilterDef;
 import org.apache.tomcat.util.descriptor.web.FilterMap;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -83,22 +83,15 @@ class Tomcat11ContainerAdapterTest {
   }
 
   /**
-   * Can bound to tomcat11.
+   * Can bound to tomcat 11, tomee 11.0, nsjsp 11.0, vmware tc 11.0.
+   *
+   * @param container the container
    */
-  @Test
-  void canBoundToTomcat11() {
-    final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
-    assertTrue(adapter.canBoundTo("Apache Tomcat/11.0"));
-  }
-
-  /**
-   * Can bound to tomee 11.0, nsjsp 11.0, vmware tc 11.0.
-   */
-  // TODO Not yet supported
-  @Disabled
   @ParameterizedTest
-  @ValueSource(strings = {"Apache Tomcat (TomEE)/11.0",
-      "NonStop(tm) Servlets For JavaServer Pages(tm) v11.0", "Vmware tc..../11.0"})
+  @ValueSource(strings = {"Apache Tomcat/11.0",
+      // "Apache Tomcat (TomEE)/11.0",
+      // "NonStop(tm) Servlets For JavaServer Pages(tm) v11.0",
+      "Vmware tc..../11.0"})
   void canBoundTo(String container) {
     final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
     assertTrue(adapter.canBoundTo(container));
@@ -106,6 +99,8 @@ class Tomcat11ContainerAdapterTest {
 
   /**
    * Can not bound to other containers.
+   *
+   * @param container the container
    */
   @ParameterizedTest
   @ValueSource(strings = {"Vmware tc", "Other"})
@@ -179,6 +174,42 @@ class Tomcat11ContainerAdapterTest {
 
     final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
     assertEquals(0, adapter.getApplicationFilterMaps(context).size());
+  }
+
+  /**
+   * Gets the application filter maps async.
+   *
+   * @param dispatcher the dispatcher
+   */
+  @ParameterizedTest
+  @ValueSource(strings = {"ASYNC", "ERROR", "FORWARD", "INCLUDE", "NONE"})
+  void applicationFilterMapsTypes(String dispatcher) {
+    FilterMap filterMap = new FilterMap();
+    filterMap.setDispatcher(dispatcher);
+    Mockito.when(context.findFilterMaps()).thenReturn(new FilterMap[] {filterMap});
+
+    Mockito.when(context.findFilterDef(Mockito.any())).thenReturn(new FilterDef());
+
+    final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
+    assertEquals(0, adapter.getApplicationFilterMaps(context).size());
+  }
+
+  /**
+   * Gets the application filter maps throws on unknown dispatcher mapping.
+   */
+  @Test
+  void applicationFilterMapsThrowsOnUnknownDispatcherMapping() {
+    Context mockContext = Mockito.mock(Context.class);
+    FilterMap filterMap = Mockito.mock(FilterMap.class);
+
+    // Return an invalid dispatcher mapping value
+    Mockito.when(filterMap.getDispatcherMapping()).thenReturn(-1);
+    Mockito.when(mockContext.findFilterMaps()).thenReturn(new FilterMap[] {filterMap});
+
+    Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
+
+    assertThrows(IllegalArgumentException.class,
+        () -> adapter.getApplicationFilterMaps(mockContext));
   }
 
   /**
@@ -347,7 +378,7 @@ class Tomcat11ContainerAdapterTest {
    * Gets the naming token.
    */
   @Test
-  void getNamingToken() {
+  void namingToken() {
     Mockito.when(context.getNamingToken()).thenReturn(new Object());
 
     final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
@@ -358,7 +389,7 @@ class Tomcat11ContainerAdapterTest {
    * Gets the naming token with security token check false.
    */
   @Test
-  void getNamingTokenWithSecurityTokenCheckFalse() {
+  void namingTokenWithSecurityTokenCheckFalse() {
     Mockito.when(context.getNamingToken()).thenReturn(new Object());
 
     try (MockedStatic<ContextAccessController> mocked =
@@ -372,12 +403,10 @@ class Tomcat11ContainerAdapterTest {
   }
 
   /**
-   * Gets the application filters when none.
-   *
-   * @return the application filters when none
+   * Application filters when none.
    */
   @Test
-  void getApplicationFiltersWhenNone() {
+  void applicationFiltersWhenNone() {
     Mockito.when(context.findFilterDefs()).thenReturn(new FilterDef[] {(FilterDef) null});
 
     final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();

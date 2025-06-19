@@ -14,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import jakarta.servlet.ServletContext;
@@ -83,6 +84,8 @@ class Tomcat10ContainerAdapterTest {
 
   /**
    * Can bound to tomcat 10.1, tomee 10.0, nsjsp 10.1, vmware tc 10.1.
+   *
+   * @param container the container
    */
   @ParameterizedTest
   @ValueSource(strings = {"Apache Tomcat/10.1", "Apache Tomcat (TomEE)/10.0",
@@ -94,6 +97,8 @@ class Tomcat10ContainerAdapterTest {
 
   /**
    * Can not bound to other containers.
+   *
+   * @param container the container
    */
   @ParameterizedTest
   @ValueSource(strings = {"Vmware tc", "Other"})
@@ -167,6 +172,42 @@ class Tomcat10ContainerAdapterTest {
 
     final Tomcat10ContainerAdapter adapter = new Tomcat10ContainerAdapter();
     assertEquals(0, adapter.getApplicationFilterMaps(context).size());
+  }
+
+  /**
+   * Gets the application filter maps async.
+   *
+   * @param dispatcher the dispatcher
+   */
+  @ParameterizedTest
+  @ValueSource(strings = {"ASYNC", "ERROR", "FORWARD", "INCLUDE", "NONE"})
+  void applicationFilterMapsTypes(String dispatcher) {
+    FilterMap filterMap = new FilterMap();
+    filterMap.setDispatcher(dispatcher);
+    Mockito.when(context.findFilterMaps()).thenReturn(new FilterMap[] {filterMap});
+
+    Mockito.when(context.findFilterDef(Mockito.any())).thenReturn(new FilterDef());
+
+    final Tomcat10ContainerAdapter adapter = new Tomcat10ContainerAdapter();
+    assertEquals(0, adapter.getApplicationFilterMaps(context).size());
+  }
+
+  /**
+   * Gets the application filter maps throws on unknown dispatcher mapping.
+   */
+  @Test
+  void applicationFilterMapsThrowsOnUnknownDispatcherMapping() {
+    Context mockContext = Mockito.mock(Context.class);
+    FilterMap filterMap = Mockito.mock(FilterMap.class);
+
+    // Return an invalid dispatcher mapping value
+    Mockito.when(filterMap.getDispatcherMapping()).thenReturn(-1);
+    Mockito.when(mockContext.findFilterMaps()).thenReturn(new FilterMap[] {filterMap});
+
+    Tomcat10ContainerAdapter adapter = new Tomcat10ContainerAdapter();
+
+    assertThrows(IllegalArgumentException.class,
+        () -> adapter.getApplicationFilterMaps(mockContext));
   }
 
   /**
@@ -335,7 +376,7 @@ class Tomcat10ContainerAdapterTest {
    * Gets the naming token.
    */
   @Test
-  void getNamingToken() {
+  void namingToken() {
     Mockito.when(context.getNamingToken()).thenReturn(new Object());
 
     final Tomcat10ContainerAdapter adapter = new Tomcat10ContainerAdapter();
@@ -346,7 +387,7 @@ class Tomcat10ContainerAdapterTest {
    * Gets the naming token with security token check false.
    */
   @Test
-  void getNamingTokenWithSecurityTokenCheckFalse() {
+  void namingTokenWithSecurityTokenCheckFalse() {
     Mockito.when(context.getNamingToken()).thenReturn(new Object());
 
     try (MockedStatic<ContextAccessController> mocked =
