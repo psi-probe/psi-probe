@@ -213,6 +213,78 @@ class Tomcat11ContainerAdapterTest {
   }
 
   /**
+   * Application init params none.
+   */
+  @Test
+  void applicationInitParamsNone() {
+    Mockito.when(context.findApplicationParameters())
+        .thenReturn(new ApplicationParameter[] {(ApplicationParameter) null});
+
+    ServletContext servletContext = Mockito.mock(ServletContext.class);
+    Mockito.when(context.getServletContext()).thenReturn(servletContext);
+
+    List<String> initParams = new ArrayList<>();
+    initParams.add("name");
+    Enumeration<String> initParameterNames = Collections.enumeration(initParams);
+    Mockito.when(servletContext.getInitParameterNames()).thenReturn(initParameterNames);
+
+    Mockito.when(context.findParameter(Mockito.any())).thenReturn(null);
+
+    final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
+    assertEquals(1, adapter.getApplicationInitParams(context).size());
+  }
+
+  /**
+   * Application init params not override attempt.
+   */
+  @Test
+  void applicationInitParamsNotOverrideAttempt() {
+    ApplicationParameter appParam = new ApplicationParameter();
+    appParam.setName("noOverride");
+    appParam.setOverride(false);
+    Mockito.when(context.findApplicationParameters())
+        .thenReturn(new ApplicationParameter[] {appParam});
+
+    ServletContext servletContext = Mockito.mock(ServletContext.class);
+    Mockito.when(context.getServletContext()).thenReturn(servletContext);
+
+    List<String> initParams = new ArrayList<>();
+    initParams.add("name");
+    Enumeration<String> initParameterNames = Collections.enumeration(initParams);
+    Mockito.when(servletContext.getInitParameterNames()).thenReturn(initParameterNames);
+
+    Mockito.when(context.findParameter(Mockito.any())).thenReturn("name");
+
+    final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
+    assertEquals(1, adapter.getApplicationInitParams(context).size());
+  }
+
+  /**
+   * Application init params not override attempt.
+   */
+  @Test
+  void applicationInitParamsOverrideAttempt() {
+    ApplicationParameter appParam = new ApplicationParameter();
+    appParam.setName("override");
+    appParam.setOverride(false);
+    Mockito.when(context.findApplicationParameters())
+        .thenReturn(new ApplicationParameter[] {appParam});
+
+    ServletContext servletContext = Mockito.mock(ServletContext.class);
+    Mockito.when(context.getServletContext()).thenReturn(servletContext);
+
+    List<String> initParams = new ArrayList<>();
+    initParams.add("override");
+    Enumeration<String> initParameterNames = Collections.enumeration(initParams);
+    Mockito.when(servletContext.getInitParameterNames()).thenReturn(initParameterNames);
+
+    Mockito.when(context.findParameter(Mockito.any())).thenReturn("override");
+
+    final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
+    assertEquals(1, adapter.getApplicationInitParams(context).size());
+  }
+
+  /**
    * Resource exists.
    */
   @Test
