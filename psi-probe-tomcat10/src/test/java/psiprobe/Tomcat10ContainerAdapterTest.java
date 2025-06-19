@@ -31,6 +31,7 @@ import org.apache.catalina.WebResourceRoot;
 import org.apache.catalina.deploy.NamingResourcesImpl;
 import org.apache.jasper.EmbeddedServletOptions;
 import org.apache.jasper.JspCompilationContext;
+import org.apache.naming.ContextAccessController;
 import org.apache.tomcat.util.descriptor.web.ApplicationParameter;
 import org.apache.tomcat.util.descriptor.web.ContextResource;
 import org.apache.tomcat.util.descriptor.web.ContextResourceLink;
@@ -41,6 +42,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.Mock;
+import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -56,7 +58,7 @@ class Tomcat10ContainerAdapterTest {
   @Mock
   Context context;
 
-  // * The embedded servlet options. */
+  /** The embedded servlet options. */
   @Mock
   EmbeddedServletOptions options;
 
@@ -91,12 +93,13 @@ class Tomcat10ContainerAdapterTest {
   }
 
   /**
-   * Can bound to other.
+   * Can not bound to other containers.
    */
-  @Test
-  void canBoundToOther() {
+  @ParameterizedTest
+  @ValueSource(strings = {"Vmware tc", "Other"})
+  void cannotBoundToOthers(String container) {
     final Tomcat10ContainerAdapter adapter = new Tomcat10ContainerAdapter();
-    assertFalse(adapter.canBoundTo("Other"));
+    assertFalse(adapter.canBoundTo(container));
   }
 
   /**
@@ -198,6 +201,78 @@ class Tomcat10ContainerAdapterTest {
   }
 
   /**
+   * Application init params none.
+   */
+  @Test
+  void applicationInitParamsNone() {
+    Mockito.when(context.findApplicationParameters())
+        .thenReturn(new ApplicationParameter[] {(ApplicationParameter) null});
+
+    ServletContext servletContext = Mockito.mock(ServletContext.class);
+    Mockito.when(context.getServletContext()).thenReturn(servletContext);
+
+    List<String> initParams = new ArrayList<>();
+    initParams.add("name");
+    Enumeration<String> initParameterNames = Collections.enumeration(initParams);
+    Mockito.when(servletContext.getInitParameterNames()).thenReturn(initParameterNames);
+
+    Mockito.when(context.findParameter(Mockito.any())).thenReturn(null);
+
+    final Tomcat10ContainerAdapter adapter = new Tomcat10ContainerAdapter();
+    assertEquals(1, adapter.getApplicationInitParams(context).size());
+  }
+
+  /**
+   * Application init params not override attempt.
+   */
+  @Test
+  void applicationInitParamsNotOverrideAttempt() {
+    ApplicationParameter appParam = new ApplicationParameter();
+    appParam.setName("noOverride");
+    appParam.setOverride(false);
+    Mockito.when(context.findApplicationParameters())
+        .thenReturn(new ApplicationParameter[] {appParam});
+
+    ServletContext servletContext = Mockito.mock(ServletContext.class);
+    Mockito.when(context.getServletContext()).thenReturn(servletContext);
+
+    List<String> initParams = new ArrayList<>();
+    initParams.add("name");
+    Enumeration<String> initParameterNames = Collections.enumeration(initParams);
+    Mockito.when(servletContext.getInitParameterNames()).thenReturn(initParameterNames);
+
+    Mockito.when(context.findParameter(Mockito.any())).thenReturn("name");
+
+    final Tomcat10ContainerAdapter adapter = new Tomcat10ContainerAdapter();
+    assertEquals(1, adapter.getApplicationInitParams(context).size());
+  }
+
+  /**
+   * Application init params not override attempt.
+   */
+  @Test
+  void applicationInitParamsOverrideAttempt() {
+    ApplicationParameter appParam = new ApplicationParameter();
+    appParam.setName("override");
+    appParam.setOverride(false);
+    Mockito.when(context.findApplicationParameters())
+        .thenReturn(new ApplicationParameter[] {appParam});
+
+    ServletContext servletContext = Mockito.mock(ServletContext.class);
+    Mockito.when(context.getServletContext()).thenReturn(servletContext);
+
+    List<String> initParams = new ArrayList<>();
+    initParams.add("override");
+    Enumeration<String> initParameterNames = Collections.enumeration(initParams);
+    Mockito.when(servletContext.getInitParameterNames()).thenReturn(initParameterNames);
+
+    Mockito.when(context.findParameter(Mockito.any())).thenReturn("override");
+
+    final Tomcat10ContainerAdapter adapter = new Tomcat10ContainerAdapter();
+    assertEquals(1, adapter.getApplicationInitParams(context).size());
+  }
+
+  /**
    * Resource exists.
    */
   @Test
@@ -207,6 +282,21 @@ class Tomcat10ContainerAdapterTest {
 
     final Tomcat10ContainerAdapter adapter = new Tomcat10ContainerAdapter();
     assertFalse(adapter.resourceExists("name", context));
+  }
+
+  /**
+   * Resource exists when true.
+   */
+  @Test
+  void resourceExistsWhenTrue() {
+    WebResourceRoot webResourceRoot = Mockito.mock(WebResourceRoot.class);
+    Mockito.when(context.getResources()).thenReturn(webResourceRoot);
+
+    WebResource webResource = Mockito.mock(WebResource.class);
+    Mockito.when(webResourceRoot.getResource("name")).thenReturn(webResource);
+
+    final Tomcat10ContainerAdapter adapter = new Tomcat10ContainerAdapter();
+    assertTrue(adapter.resourceExists("name", context));
   }
 
   /**
@@ -250,6 +340,45 @@ class Tomcat10ContainerAdapterTest {
 
     final Tomcat10ContainerAdapter adapter = new Tomcat10ContainerAdapter();
     assertNotNull(adapter.getNamingToken(context));
+  }
+
+  /**
+   * Gets the naming token with security token check false.
+   */
+  @Test
+  void getNamingTokenWithSecurityTokenCheckFalse() {
+    Mockito.when(context.getNamingToken()).thenReturn(new Object());
+
+    try (MockedStatic<ContextAccessController> mocked =
+        Mockito.mockStatic(ContextAccessController.class)) {
+      mocked.when(() -> ContextAccessController.checkSecurityToken(Mockito.any(), Mockito.any()))
+          .thenReturn(false);
+
+      final Tomcat10ContainerAdapter adapter = new Tomcat10ContainerAdapter();
+      assertNotNull(adapter.getNamingToken(context));
+    }
+  }
+
+  /**
+   * Application filters when none.
+   */
+  @Test
+  void applicationFiltersWhenNone() {
+    Mockito.when(context.findFilterDefs()).thenReturn(new FilterDef[] {(FilterDef) null});
+
+    final Tomcat10ContainerAdapter adapter = new Tomcat10ContainerAdapter();
+    assertTrue(adapter.getApplicationFilters(context).isEmpty());
+  }
+
+  /**
+   * Application filter maps when none.
+   */
+  @Test
+  void applicationFilterMapsWhenNone() {
+    Mockito.when(context.findFilterMaps()).thenReturn(new FilterMap[] {(FilterMap) null});
+
+    final Tomcat10ContainerAdapter adapter = new Tomcat10ContainerAdapter();
+    assertTrue(adapter.getApplicationFilterMaps(context).isEmpty());
   }
 
 }
