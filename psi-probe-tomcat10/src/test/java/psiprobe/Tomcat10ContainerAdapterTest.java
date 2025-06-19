@@ -31,6 +31,7 @@ import org.apache.catalina.WebResourceRoot;
 import org.apache.catalina.deploy.NamingResourcesImpl;
 import org.apache.jasper.EmbeddedServletOptions;
 import org.apache.jasper.JspCompilationContext;
+import org.apache.naming.ContextAccessController;
 import org.apache.tomcat.util.descriptor.web.ApplicationParameter;
 import org.apache.tomcat.util.descriptor.web.ContextResource;
 import org.apache.tomcat.util.descriptor.web.ContextResourceLink;
@@ -41,6 +42,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.Mock;
+import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -219,6 +221,21 @@ class Tomcat10ContainerAdapterTest {
   }
 
   /**
+   * Resource exists when true.
+   */
+  @Test
+  void resourceExistsWhenTrue() {
+    WebResourceRoot webResourceRoot = Mockito.mock(WebResourceRoot.class);
+    Mockito.when(context.getResources()).thenReturn(webResourceRoot);
+
+    WebResource webResource = Mockito.mock(WebResource.class);
+    Mockito.when(webResourceRoot.getResource("name")).thenReturn(webResource);
+
+    final Tomcat10ContainerAdapter adapter = new Tomcat10ContainerAdapter();
+    assertTrue(adapter.resourceExists("name", context));
+  }
+
+  /**
    * Resource stream.
    *
    * @throws IOException Signals that an I/O exception has occurred.
@@ -259,6 +276,23 @@ class Tomcat10ContainerAdapterTest {
 
     final Tomcat10ContainerAdapter adapter = new Tomcat10ContainerAdapter();
     assertNotNull(adapter.getNamingToken(context));
+  }
+
+  /**
+   * Gets the naming token with security token check false.
+   */
+  @Test
+  void getNamingTokenWithSecurityTokenCheckFalse() {
+    Mockito.when(context.getNamingToken()).thenReturn(new Object());
+
+    try (MockedStatic<ContextAccessController> mocked =
+        Mockito.mockStatic(ContextAccessController.class)) {
+      mocked.when(() -> ContextAccessController.checkSecurityToken(Mockito.any(), Mockito.any()))
+          .thenReturn(false);
+
+      final Tomcat10ContainerAdapter adapter = new Tomcat10ContainerAdapter();
+      assertNotNull(adapter.getNamingToken(context));
+    }
   }
 
   /**
