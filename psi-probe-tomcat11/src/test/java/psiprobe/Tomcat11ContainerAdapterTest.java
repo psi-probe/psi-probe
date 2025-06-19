@@ -103,10 +103,19 @@ class Tomcat11ContainerAdapterTest {
   }
 
   /**
+   * Can not bound to wrong vmware.
+   */
+  @Test
+  void cannotBoundToWrongVmware() {
+    final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
+    assertFalse(adapter.canBoundTo("Vmware tc"));
+  }
+
+  /**
    * Can bound to other.
    */
   @Test
-  void canBoundToOther() {
+  void cannotBoundToOther() {
     final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
     assertFalse(adapter.canBoundTo("Other"));
   }
@@ -262,6 +271,30 @@ class Tomcat11ContainerAdapterTest {
 
     final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
     assertNotNull(adapter.getNamingToken(context));
+  }
+
+  /**
+   * Gets the application filters when none.
+   *
+   * @return the application filters when none
+   */
+  @Test
+  void getApplicationFiltersWhenNone() {
+    Mockito.when(context.findFilterDefs()).thenReturn(new FilterDef[] {(FilterDef) null});
+
+    final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
+    assertTrue(adapter.getApplicationFilters(context).isEmpty());
+  }
+
+  /**
+   * Application filter maps when none.
+   */
+  @Test
+  void applicationFilterMapsWhenNone() {
+    Mockito.when(context.findFilterMaps()).thenReturn(new FilterMap[] {(FilterMap) null});
+
+    final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
+    assertTrue(adapter.getApplicationFilterMaps(context).isEmpty());
   }
 
 }
