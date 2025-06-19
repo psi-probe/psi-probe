@@ -10,11 +10,20 @@
  */
 package psiprobe.rest;
 
-/**
- * The Class Dummy.
- */
-public class Dummy {
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-  // Future use case and protection from plugins being disabled on no code
+/**
+ * The Class DummyTest.
+ */
+class DummyTest {
+
+  /**
+   * Test dummy.
+   */
+  @Test
+  void testDummy() {
+    Assertions.assertNotNull(new Dummy());
+  }
 
 }
