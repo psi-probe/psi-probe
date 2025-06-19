@@ -93,21 +93,13 @@ class Tomcat10ContainerAdapterTest {
   }
 
   /**
-   * Can not bound to wrong vmware.
+   * Can not bound to other containers.
    */
-  @Test
-  void cannotBoundToWrongVmware() {
+  @ParameterizedTest
+  @ValueSource(strings = {"Vmware tc", "Other"})
+  void cannotBoundToOthers(String container) {
     final Tomcat10ContainerAdapter adapter = new Tomcat10ContainerAdapter();
-    assertFalse(adapter.canBoundTo("Vmware tc"));
-  }
-
-  /**
-   * Can bound to other.
-   */
-  @Test
-  void cannotBoundToOther() {
-    final Tomcat10ContainerAdapter adapter = new Tomcat10ContainerAdapter();
-    assertFalse(adapter.canBoundTo("Other"));
+    assertFalse(adapter.canBoundTo(container));
   }
 
   /**
