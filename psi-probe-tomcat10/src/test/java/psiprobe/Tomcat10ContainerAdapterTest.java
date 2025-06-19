@@ -58,7 +58,7 @@ class Tomcat10ContainerAdapterTest {
   @Mock
   Context context;
 
-  // * The embedded servlet options. */
+  /** The embedded servlet options. */
   @Mock
   EmbeddedServletOptions options;
 
