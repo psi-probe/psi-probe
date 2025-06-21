@@ -97,8 +97,8 @@
 
                 <form action="<c:url value='/adm/deploycontext.htm'/>" method="get">
                     <dl>
-                        <dt><label for="context2"><spring:message code="probe.jsp.deployment.s2.context.label"/></label> <em>*</em></dt>
-                        <dd><input id="context2" type="text" name="context" size="90"/></dd>
+                        <dt><label for="context"><spring:message code="probe.jsp.deployment.s2.context.label"/></label> <em>*</em></dt>
+                        <dd><input id="context" type="text" name="context" size="90"/></dd>
 
                         <dd class="submit">
                             <input class="b" type="submit" value="<spring:message code='probe.jsp.deployment.s1.submit'/>"/>
