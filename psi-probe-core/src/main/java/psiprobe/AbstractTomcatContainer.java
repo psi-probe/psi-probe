@@ -304,13 +304,20 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     if (contextName == null) {
       return null;
     }
-    if (contextName.isEmpty()) {
+    String result = contextName.trim();
+    if (result.startsWith("/")) {
+      result = result.substring(1);
+    }
+    if (result.isEmpty()) {
       return "ROOT";
     }
-    if (contextName.startsWith("/")) {
-      return contextName.substring(1);
+    // For a context with one or more sub-paths, replace all "/" with "#"
+    result = result.replace('/', '#');
+    // For ROOT Parallel Usage, prepend "ROOT"
+    if (result.startsWith("##")) {
+      result = "ROOT" + result;
     }
-    return contextName;
+    return result;
   }
 
   @Override
