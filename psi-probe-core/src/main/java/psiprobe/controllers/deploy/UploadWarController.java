@@ -131,7 +131,9 @@ public class UploadWarController extends AbstractTomcatContainerController {
       // Checks if UPDATE option is selected
       if ("yes".equals(updateParam)
           && getContainerWrapper().getTomcatContainer().findContext(contextName) != null) {
-        logger.debug("updating {}: removing the old copy", contextName);
+        if (contextName.matches("\\w*")) {
+          logger.debug("updating {}: removing the old copy", contextName);
+        }
         getContainerWrapper().getTomcatContainer().remove(contextName);
       }
 
@@ -163,13 +165,17 @@ public class UploadWarController extends AbstractTomcatContainerController {
           Authentication auth = SecurityContextHolder.getContext().getAuthentication();
           // get username logger
           String name = auth.getName();
-          logger.info(getMessageSourceAccessor().getMessage("probe.src.log.deploywar"), name,
-              contextName);
+          if (contextName.matches("\\w*")) {
+            logger.info(getMessageSourceAccessor().getMessage("probe.src.log.deploywar"), name,
+                contextName);
+          }
           // Checks if DISCARD "work" directory is selected
           if ("yes".equals(discardParam)) {
             getContainerWrapper().getTomcatContainer().discardWorkDir(ctx);
-            logger.info(getMessageSourceAccessor().getMessage("probe.src.log.discardwork"), name,
-                contextName);
+            if (contextName.matches("\\w*")) {
+              logger.info(getMessageSourceAccessor().getMessage("probe.src.log.discardwork"), name,
+                  contextName);
+            }
           }
           // Checks if COMPILE option is selected
           if ("yes".equals(compileParam)) {

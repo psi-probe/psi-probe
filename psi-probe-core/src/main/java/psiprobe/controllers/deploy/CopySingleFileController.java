@@ -151,21 +151,27 @@ public class CopySingleFileController extends AbstractTomcatContainerController 
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             // get username logger
             String name = auth.getName();
-            logger.info(getMessageSourceAccessor().getMessage("probe.src.log.copyfile"), name,
-                contextName);
+            if (contextName.matches("\\w*")) {
+              logger.info(getMessageSourceAccessor().getMessage("probe.src.log.copyfile"), name,
+                  contextName);
+            }
             Context context = getContainerWrapper().getTomcatContainer().findContext(contextName);
             // Checks if DISCARD "work" directory is selected
             if ("yes".equalsIgnoreCase(discardParam)) {
               getContainerWrapper().getTomcatContainer().discardWorkDir(context);
-              logger.info(getMessageSourceAccessor().getMessage("probe.src.log.discardwork"), name,
-                  contextName);
+              if (contextName.matches("\\w*")) {
+                logger.info(getMessageSourceAccessor().getMessage("probe.src.log.discardwork"),
+                    name, contextName);
+              }
             }
             // Checks if RELOAD option is selected
             if ("yes".equalsIgnoreCase(reloadParam) && context != null) {
               context.reload();
               request.setAttribute("reloadContext", Boolean.TRUE);
-              logger.info(getMessageSourceAccessor().getMessage("probe.src.log.reload"), name,
-                  contextName);
+              if (contextName.matches("\\w*")) {
+                logger.info(getMessageSourceAccessor().getMessage("probe.src.log.reload"), name,
+                    contextName);
+              }
             }
           } else {
             errMsg = getMessageSourceAccessor().getMessage("probe.src.deploy.file.pathNotValid");
