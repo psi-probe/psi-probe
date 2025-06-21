@@ -71,7 +71,7 @@ public class UploadWarController extends AbstractTomcatContainerController {
       @RequestParam(value = "update", required = false) String updateParam,
       @RequestParam(value = "compile", required = false) String compileParam,
       @RequestParam(value = "discard", required = false) String discardParam,
-      HttpServletRequest request, HttpServletResponse response) throws Exception {
+      HttpServletRequest request) throws Exception {
 
     String errMsg = null;
 

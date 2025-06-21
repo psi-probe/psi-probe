@@ -69,7 +69,7 @@ public class CopySingleFileController extends AbstractTomcatContainerController 
       @RequestParam("context") String contextName, @RequestParam("where") String where,
       @RequestParam(value = "reload", required = false) String reloadParam,
       @RequestParam(value = "discard", required = false) String discardParam,
-      HttpServletRequest request, HttpServletResponse response) throws Exception {
+      HttpServletRequest request) throws IOException {
 
     List<Context> apps;
     try {
