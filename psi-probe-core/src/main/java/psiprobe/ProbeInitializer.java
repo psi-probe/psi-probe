@@ -14,6 +14,7 @@ import com.opensymphony.sitemesh.webapp.SiteMeshFilter;
 
 import jakarta.servlet.DispatcherType;
 import jakarta.servlet.FilterRegistration;
+import jakarta.servlet.MultipartConfigElement;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRegistration;
@@ -47,6 +48,10 @@ public class ProbeInitializer implements WebApplicationInitializer {
 
     // Set probe servlet
     ServletRegistration.Dynamic probe = servletContext.addServlet("probe", ProbeServlet.class);
+
+    // Use temp directory unlimited in size for multipart uploads
+    MultipartConfigElement multipartConfig = new MultipartConfigElement(null, -1L, -1L, 0);
+    probe.setMultipartConfig(multipartConfig);
 
     // Set Role that can view session attribute values
     servletContext.setInitParameter("attribute.value.roles", "ROLE_MANAGER,ROLE_MANAGER-GUI");
