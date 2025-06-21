@@ -205,7 +205,7 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
         if (name.matches("\\w*")) {
           logger.info("Stopping '{}' threw this exception:", name, e);
         } else {
-          logger.info("Stopping '{}' threw this exception:", e);
+          logger.info("Stopping and threw this exception:", e);
         }
       }
 
