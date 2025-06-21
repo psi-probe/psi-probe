@@ -23,8 +23,12 @@ import psiprobe.beans.ContainerWrapperBean;
  */
 public abstract class AbstractTomcatContainerController extends AbstractController {
 
-  /** The logger. */
-  // We are hiding this as we use better logger and don't care to use springs jcl variation
+  /**
+   * The logger.
+   * <p>
+   * Direct usage of slf4j rather than spring usage of commons logging located her to protect
+   * downstream usage.
+   */
   @SuppressWarnings("HidingField")
   protected final Logger logger = LoggerFactory.getLogger(getClass());
 
