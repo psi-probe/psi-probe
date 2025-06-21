@@ -10,31 +10,29 @@
  */
 package psiprobe.controllers.deploy;
 
+import com.google.common.base.Strings;
+
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.List;
 
 import org.apache.catalina.Context;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
-import org.apache.tomcat.util.http.fileupload.FileItem;
-import org.apache.tomcat.util.http.fileupload.FileItemFactory;
-import org.apache.tomcat.util.http.fileupload.FileUpload;
-import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
-import org.apache.tomcat.util.http.fileupload.servlet.ServletRequestContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.InternalResourceView;
 
@@ -50,9 +48,11 @@ public class UploadWarController extends AbstractTomcatContainerController {
 
   /** The Constant logger. */
   private static final Logger logger = LoggerFactory.getLogger(UploadWarController.class);
+
+  /** The Constant MAXSECONDS_WAITFOR_CONTEXT. */
   private static final int MAXSECONDS_WAITFOR_CONTEXT = 10;
 
-  @RequestMapping(path = "/adm/war.htm")
+  @GetMapping("/adm/war.htm")
   @Override
   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
       throws Exception {
@@ -62,133 +62,128 @@ public class UploadWarController extends AbstractTomcatContainerController {
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
+    return new ModelAndView(new InternalResourceView(getViewName()));
+  }
 
-    // If not multi-part content, exit
-    if (!this.isMultipartContent(request)) {
-      return new ModelAndView(new InternalResourceView(getViewName()));
-    }
-
-    File tmpWar = null;
-    String contextName = null;
-    boolean update = false;
-    boolean compile = false;
-    boolean discard = false;
-
-    // parse multipart request and extract the file
-    FileItemFactory factory =
-        new DiskFileItemFactory(1048000, Path.of(System.getProperty("java.io.tmpdir")).toFile());
-    FileUpload upload = new FileUpload();
-    upload.setFileItemFactory(factory);
-    upload.setSizeMax(-1);
-    upload.setHeaderEncoding(StandardCharsets.UTF_8.name());
-    try {
-      List<FileItem> fileItems = upload.parseRequest(new ServletRequestContext(request));
-      for (FileItem fi : fileItems) {
-        if (!fi.isFormField()) {
-          if (fi.getName() != null && !fi.getName().isEmpty()) {
-            tmpWar =
-                Path.of(System.getProperty("java.io.tmpdir"), FilenameUtils.getName(fi.getName()))
-                    .toFile();
-            fi.write(tmpWar);
-          }
-        } else if ("context".equals(fi.getFieldName())) {
-          contextName = fi.getString();
-        } else if ("update".equals(fi.getFieldName()) && "yes".equals(fi.getString())) {
-          update = true;
-        } else if ("compile".equals(fi.getFieldName()) && "yes".equals(fi.getString())) {
-          compile = true;
-        } else if ("discard".equals(fi.getFieldName()) && "yes".equals(fi.getString())) {
-          discard = true;
-        }
-      }
-    } catch (Exception e) {
-      logger.error("Could not process file upload", e);
-      request.setAttribute("errorMessage", getMessageSourceAccessor()
-          .getMessage("probe.src.deploy.war.uploadfailure", new Object[] {e.getMessage()}));
-      if (tmpWar != null) {
-        Files.delete(tmpWar.toPath());
-        tmpWar = null;
-      }
-    }
+  @PostMapping("/adm/war.htm")
+  public ModelAndView handleUpload(@RequestParam("war") MultipartFile file,
+      @RequestParam(value = "context", required = false) String contextName,
+      @RequestParam(value = "update", required = false) String updateParam,
+      @RequestParam(value = "compile", required = false) String compileParam,
+      @RequestParam(value = "discard", required = false) String discardParam,
+      HttpServletRequest request, HttpServletResponse response) throws Exception {
 
     String errMsg = null;
 
-    if (tmpWar == null) {
+    // If not multi-part content, exit
+    if (file == null || file.isEmpty()) {
+      errMsg = getMessageSourceAccessor().getMessage("probe.src.deploy.war.notWar.failure")
+          + " [null or empty]";
+      request.setAttribute("errorMessage", errMsg);
       return new ModelAndView(new InternalResourceView(getViewName()));
     }
 
+    // Save the uploaded file to a temporary location
+    Path tmpPath = null;
     try {
-      if (tmpWar.getName().endsWith(".war")) {
+      String fileName = file.getOriginalFilename();
+      if (!Strings.isNullOrEmpty(fileName)) {
+        fileName = FilenameUtils.getName(fileName);
+        tmpPath = Path.of(System.getProperty("java.io.tmpdir"), fileName);
+        file.transferTo(tmpPath);
+      } else {
+        errMsg = getMessageSourceAccessor().getMessage("probe.src.deploy.war.notWar.failure")
+            + " [null or empty]";
+        request.setAttribute("errorMessage", errMsg);
+        return new ModelAndView(new InternalResourceView(getViewName()));
+      }
+    } catch (IOException e) {
+      logger.error("Could not process file upload", e);
+      request.setAttribute("errorMessage", getMessageSourceAccessor()
+          .getMessage("probe.src.deploy.war.uploadfailure", new Object[] {e.getMessage()}));
+      if (tmpPath != null) {
+        Files.delete(tmpPath);
+      }
+      return new ModelAndView(new InternalResourceView(getViewName()));
+    }
 
-        if (contextName == null || contextName.isEmpty()) {
-          String warFileName = tmpWar.getName().replaceAll("\\.war$", "");
-          contextName = "/" + warFileName;
-        }
+    if (!tmpPath.getFileName().toString().endsWith(".war")) {
+      errMsg = getMessageSourceAccessor().getMessage("probe.src.deploy.war.notWar.failure") + " ["
+          + tmpPath.getFileName() + "]";
+      request.setAttribute("errorMessage", errMsg);
+      return new ModelAndView(new InternalResourceView(getViewName()));
+    }
 
-        contextName = getContainerWrapper().getTomcatContainer().formatContextName(contextName);
+    if (contextName == null || contextName.isEmpty()) {
+      String warFileName = tmpPath.getFileName().toString().replaceAll("\\.war$", "");
+      contextName = "/" + warFileName;
+    }
 
-        /*
-         * pass the name of the newly deployed context to the presentation layer using this name the
-         * presentation layer can render a url to view compilation details
-         */
-        String visibleContextName = contextName.isEmpty() ? "/" : contextName;
-        request.setAttribute("contextName", visibleContextName);
+    try {
+      contextName = getContainerWrapper().getTomcatContainer().formatContextName(contextName);
 
-        if (update && getContainerWrapper().getTomcatContainer().findContext(contextName) != null) {
-          logger.debug("updating {}: removing the old copy", contextName);
-          getContainerWrapper().getTomcatContainer().remove(contextName);
-        }
+      /*
+       * pass the name of the newly deployed context to the presentation layer using this name the
+       * presentation layer can render a url to view compilation details
+       */
+      String visibleContextName = contextName.isEmpty() ? "/" : contextName;
+      request.setAttribute("contextName", visibleContextName);
 
-        if (getContainerWrapper().getTomcatContainer().findContext(contextName) == null) {
-          // move the .war to tomcat application base dir
-          String destWarFilename =
-              getContainerWrapper().getTomcatContainer().formatContextFilename(contextName);
-          File destWar = Path.of(getContainerWrapper().getTomcatContainer().getAppBase().getPath(),
-              destWarFilename + ".war").toFile();
+      // Checks if UPDATE option is selected
+      if ("yes".equals(updateParam)
+          && getContainerWrapper().getTomcatContainer().findContext(contextName) != null) {
+        logger.debug("updating {}: removing the old copy", contextName);
+        getContainerWrapper().getTomcatContainer().remove(contextName);
+      }
 
-          FileUtils.moveFile(tmpWar, destWar);
+      if (getContainerWrapper().getTomcatContainer().findContext(contextName) == null) {
+        // move the .war to tomcat application base dir
+        String destWarFilename =
+            getContainerWrapper().getTomcatContainer().formatContextFilename(contextName);
+        File destWar = Path.of(getContainerWrapper().getTomcatContainer().getAppBase().getPath(),
+            destWarFilename + ".war").toFile();
 
-          // let Tomcat know that the file is there
-          getContainerWrapper().getTomcatContainer().installWar(contextName);
+        FileUtils.moveFile(tmpPath.toFile(), destWar);
 
-          File destContext =
-              Path.of(getContainerWrapper().getTomcatContainer().getAppBase().getPath(),
-                  destWarFilename).toFile();
-          // Wait few seconds for creating context dir to avoid empty context
-          FileUtils.waitFor(destContext, MAXSECONDS_WAITFOR_CONTEXT);
+        // let Tomcat know that the file is there
+        getContainerWrapper().getTomcatContainer().installWar(contextName);
 
-          Context ctx = getContainerWrapper().getTomcatContainer().findContext(contextName);
-          if (ctx == null) {
-            errMsg = getMessageSourceAccessor().getMessage("probe.src.deploy.war.notinstalled",
-                new Object[] {visibleContextName});
-          } else {
-            request.setAttribute("success", Boolean.TRUE);
-            // Logging action
-            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-            // get username logger
-            String name = auth.getName();
-            logger.info(getMessageSourceAccessor().getMessage("probe.src.log.deploywar"), name,
-                contextName);
-            if (discard) {
-              getContainerWrapper().getTomcatContainer().discardWorkDir(ctx);
-              logger.info(getMessageSourceAccessor().getMessage("probe.src.log.discardwork"), name,
-                  contextName);
-            }
-            if (compile) {
-              Summary summary = new Summary();
-              summary.setName(ctx.getName());
-              getContainerWrapper().getTomcatContainer().listContextJsps(ctx, summary, true);
-              request.getSession(false).setAttribute(DisplayJspController.SUMMARY_ATTRIBUTE,
-                  summary);
-              request.setAttribute("compileSuccess", Boolean.TRUE);
-            }
-          }
-        } else {
-          errMsg = getMessageSourceAccessor().getMessage("probe.src.deploy.war.alreadyExists",
+        File destContext = Path
+            .of(getContainerWrapper().getTomcatContainer().getAppBase().getPath(), destWarFilename)
+            .toFile();
+        // Wait few seconds for creating context dir to avoid empty context
+        FileUtils.waitFor(destContext, MAXSECONDS_WAITFOR_CONTEXT);
+
+        Context ctx = getContainerWrapper().getTomcatContainer().findContext(contextName);
+        if (ctx == null) {
+          errMsg = getMessageSourceAccessor().getMessage("probe.src.deploy.war.notinstalled",
               new Object[] {visibleContextName});
+        } else {
+          request.setAttribute("success", Boolean.TRUE);
+          // Logging action
+          Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+          // get username logger
+          String name = auth.getName();
+          logger.info(getMessageSourceAccessor().getMessage("probe.src.log.deploywar"), name,
+              contextName);
+          // Checks if DISCARD "work" directory is selected
+          if ("yes".equals(discardParam)) {
+            getContainerWrapper().getTomcatContainer().discardWorkDir(ctx);
+            logger.info(getMessageSourceAccessor().getMessage("probe.src.log.discardwork"), name,
+                contextName);
+          }
+          // Checks if COMPILE option is selected
+          if ("yes".equals(compileParam)) {
+            Summary summary = new Summary();
+            summary.setName(ctx.getName());
+            getContainerWrapper().getTomcatContainer().listContextJsps(ctx, summary, true);
+            request.getSession(false).setAttribute(DisplayJspController.SUMMARY_ATTRIBUTE, summary);
+            request.setAttribute("compileSuccess", Boolean.TRUE);
+          }
         }
       } else {
-        errMsg = getMessageSourceAccessor().getMessage("probe.src.deploy.war.notWar.failure");
+        errMsg = getMessageSourceAccessor().getMessage("probe.src.deploy.war.alreadyExists",
+            new Object[] {visibleContextName});
       }
     } catch (IOException e) {
       errMsg = getMessageSourceAccessor().getMessage("probe.src.deploy.war.failure",
@@ -199,8 +194,8 @@ public class UploadWarController extends AbstractTomcatContainerController {
         request.setAttribute("errorMessage", errMsg);
       }
       // If war was not moved, delete it
-      if (tmpWar.exists()) {
-        Files.delete(tmpWar.toPath());
+      if (Files.exists(tmpPath)) {
+        Files.delete(tmpPath);
       }
     }
     return new ModelAndView(new InternalResourceView(getViewName()));
