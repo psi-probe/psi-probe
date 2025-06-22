@@ -19,10 +19,12 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.Duration;
 
 import org.apache.catalina.Context;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.io.file.PathUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -149,11 +151,11 @@ public class UploadWarController extends AbstractTomcatContainerController {
         // let Tomcat know that the file is there
         getContainerWrapper().getTomcatContainer().installWar(contextName);
 
-        File destContext = Path
-            .of(getContainerWrapper().getTomcatContainer().getAppBase().getPath(), destWarFilename)
-            .toFile();
+        Path destContext = Path
+            .of(getContainerWrapper().getTomcatContainer().getAppBase().getPath(), destWarFilename);
+
         // Wait few seconds for creating context dir to avoid empty context
-        FileUtils.waitFor(destContext, MAXSECONDS_WAITFOR_CONTEXT);
+        PathUtils.waitFor(destContext, Duration.ofSeconds(MAXSECONDS_WAITFOR_CONTEXT));
 
         Context ctx = getContainerWrapper().getTomcatContainer().findContext(contextName);
         if (ctx == null) {
