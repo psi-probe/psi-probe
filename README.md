@@ -72,6 +72,7 @@ Generally supported versions for third party tomcat providers align with their s
 * Tomcat 9.0 Series
 
     - Requires java 11 or better
+    - Use psi probe 4.x series for javax namespace
     - Spring is no longer receiving updates so vulnerabilities with spring will not be addressed.  If you have a subscription to spring, manually patch the jars.
     - Tomcat 9.0.72 to 9.0.105
     - TomEE 8.0.16 (Based on Tomcat 9.0.82).  TomEE 8.0 ended support on December 31st 2023
@@ -82,6 +83,7 @@ Generally supported versions for third party tomcat providers align with their s
 * Tomcat 10.1 Series
 
     - Requires java 17 or better
+    - Use psi probe 5.x series for jakarta namespace
     - Tomcat 10.1.6 to 10.1.41
     - TomEE 10.0.0 to 10.0.1 (Based on Tomcat 10.1.39).
     - NonStop(tm) Servlets For JavaServer Pages(tm) v10.1 (Based on Tomcat 10.1.7)
@@ -90,6 +92,7 @@ Generally supported versions for third party tomcat providers align with their s
 * Tomcat 11.0 Series
 
     - Requires java 17 or better
+    - Use psi probe 5.x series for jakarta namespace
     - Tomcat 11.0.0.M3 to 11.0.7
     - TomEE - no support yet for tomcat 11.0
     - NonStop(tm) Servlets For JavaServer Pages(tm) - no support yet for tomcat 11.0
