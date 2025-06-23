@@ -119,11 +119,11 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
 
   @Override
   public File getAppBase() {
-    File base = Path.of(host.getAppBase()).toFile();
+    Path base = Path.of(host.getAppBase());
     if (!base.isAbsolute()) {
-      base = Path.of(System.getProperty("catalina.base"), host.getAppBase()).toFile();
+      base = Path.of(System.getProperty("catalina.base"), host.getAppBase());
     }
-    return base;
+    return base.toFile();
   }
 
   @Override
@@ -131,16 +131,16 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     Container baseHost = null;
     Container thisContainer = host;
     while (thisContainer != null) {
-      if (thisContainer instanceof Host host) {
-        baseHost = host;
+      if (thisContainer instanceof Host thisHost) {
+        baseHost = thisHost;
       }
       thisContainer = thisContainer.getParent();
     }
-    File configBase = Path.of(System.getProperty("catalina.base"), "conf").toFile();
+    Path configBase = Path.of(System.getProperty("catalina.base"), "conf");
     if (baseHost != null) {
-      configBase = Path.of(configBase.getPath(), baseHost.getName()).toFile();
+      configBase = configBase.resolve(baseHost.getName());
     }
-    return configBase.getAbsolutePath();
+    return configBase.toFile().getAbsolutePath();
   }
 
   @Override
@@ -209,17 +209,17 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
         }
       }
 
-      File appDir;
-      File docBase = Path.of(ctx.getDocBase()).toFile();
+      Path appDir;
+      Path docBase = Path.of(ctx.getDocBase());
 
       if (!docBase.isAbsolute()) {
-        appDir = Path.of(getAppBase().getPath(), ctx.getDocBase()).toFile();
+        appDir = Path.of(getAppBase().getPath(), ctx.getDocBase());
       } else {
         appDir = docBase;
       }
 
-      logger.debug("Deleting '{}'", appDir.getAbsolutePath());
-      Utils.delete(appDir);
+      logger.debug("Deleting '{}'", appDir.toFile().getAbsolutePath());
+      Utils.delete(appDir.toFile());
 
       String warFilename = formatContextFilename(name);
       File warFile = Path.of(getAppBase().getPath(), warFilename + ".war").toFile();
