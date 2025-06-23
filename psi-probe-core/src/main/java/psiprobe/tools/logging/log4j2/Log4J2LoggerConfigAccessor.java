@@ -227,7 +227,7 @@ public class Log4J2LoggerConfigAccessor extends DefaultAccessor {
    *
    * @return the log4 j appender accessor
    */
-  private Log4J2AppenderAccessor wrapAppender(Object appender) {
+  protected Log4J2AppenderAccessor wrapAppender(Object appender) {
     try {
       if (appender == null) {
         throw new IllegalArgumentException("appender is null");

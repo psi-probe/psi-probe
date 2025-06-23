@@ -127,7 +127,7 @@ public class DefaultAccessor {
    *
    * @return the object
    */
-  protected Object invokeMethod(Object object, String name, Object param, Object defaultValue) {
+  public Object invokeMethod(Object object, String name, Object param, Object defaultValue) {
     try {
       if (param == null) {
         return MethodUtils.invokeMethod(object, name);
