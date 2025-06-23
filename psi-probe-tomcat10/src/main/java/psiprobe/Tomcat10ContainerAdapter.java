@@ -149,8 +149,8 @@ public class Tomcat10ContainerAdapter extends AbstractTomcatContainer {
             dm = "REQUEST";
             break;
           default:
-            throw new IllegalArgumentException(
-                "Unknown dispatcher mapping: " + filterMap.getDispatcherMapping());
+            // Can be any other filters, for those set to space
+            dm = "";
         }
 
         String filterClass = "";
