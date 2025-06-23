@@ -46,10 +46,10 @@
                         <display:column class="leftMostIcon" title="&#160;" style="width:1px;">
                             <c:choose>
                                 <c:when test="${prm.fromDeplDescr}">
-                                    <img src="${pageContext.request.contextPath}<spring:theme code='deployment_descriptor.img'/>" alt="">
+                                    <img src="${pageContext.request.contextPath}/css/classic/gifs/silk/page_white_cup.png" alt="">
                                 </c:when>
                                 <c:otherwise>
-                                    <img src="${pageContext.request.contextPath}<spring:theme code='context.img'/>" alt="">
+                                    <img src="${pageContext.request.contextPath}/css/classic/gifs/silk/page_white_c.png" alt="">
                                 </c:otherwise>
                             </c:choose>
                         </display:column>

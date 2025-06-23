@@ -24,7 +24,7 @@
         <title>
             <spring:message htmlEscape="true" code="probe.jsp.title.app.attributes" arguments="${param.webapp}"/>
         </title>
-        <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='scroller.css'/>"/>
+        <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/classic/scroller.css"/>
         <script src="<c:url value='/js/prototype.js'/>"></script>
         <script src="<c:url value='/js/behaviour.js'/>"></script>
         <script src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
@@ -66,7 +66,7 @@
                                             </c:url>
                                             <a href="${rmappattr_url}" class="imglink">
                                                 <img class="lnk"
-                                                        src="${pageContext.request.contextPath}<spring:theme code='remove.img'/>"
+                                                        src="${pageContext.request.contextPath}/css/classic/img/bin.jpg"
                                                         alt="<spring:message code='probe.jsp.app.attributes.col.delete'/>"
                                                         title="<spring:message code='probe.jsp.app.attributes.col.delete.title'/>"/>
                                             </a>

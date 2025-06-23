@@ -39,13 +39,13 @@
             var img = $('ri_'+idx);
             var status = $('rs_'+idx);
             var reload_url = '<c:url value="/app/reload.ajax"/>?webapp='+context;
-            img.src='${pageContext.request.contextPath}<spring:theme code="animated_reset.gif"/>';
+            img.src='${pageContext.request.contextPath}/css/classic/gifs/animated_reset.gif';
             status.update('wait...');
             new Ajax.Updater(status,reload_url, {
                 method:'get',
                 asynchronous:true,
                 onComplete:function(response) {
-                    img.src='${pageContext.request.contextPath}<spring:theme code="reset.gif"/>';
+                    img.src='${pageContext.request.contextPath}/css/classic/gifs/reset.gif';
                     updateStatusClass(status, response.responseText);
                 }
             });
@@ -54,7 +54,7 @@
 
         function toggleContext(idx, url, context) {
             var status = $('rs_'+idx);
-            status.update('<img border="0" src="${pageContext.request.contextPath}<spring:theme code="progressbar_editnplace.gif"/>"/>');
+            status.update('<img border="0" src="${pageContext.request.contextPath}/css/classic/gifs/progressbar_editnplace.gif"/>');
             new Ajax.Updater(status, url+'?webapp='+context, {
                 method:'get',
                 asynchronous:true,
@@ -133,7 +133,7 @@
                 </c:set>
                 <a class="imglink" href="<c:url value='/adm/undeploy.htm'><c:param name='webapp' value='${app.name}'/></c:url>"
                         onclick="return confirm('${confirmMessage}')">
-                    <img class="lnk" src="${pageContext.request.contextPath}<spring:theme code='remove.img'/>"
+                    <img class="lnk" src="${pageContext.request.contextPath}/css/classic/img/bin.jpg"
                             alt="<spring:message code='probe.jsp.applications.alt.undeploy'/>"
                             title="<spring:message code='probe.jsp.applications.title.undeploy' arguments='${app.name}'/>"/>
                 </a>
@@ -174,7 +174,7 @@
                         class="imglink"
                         href="<c:url value='/app/reload.htm'><c:param name='webapp' value='${app.name}' /></c:url>">
                     <img id='ri_${app_rowNum}'
-                            border="0" src="${pageContext.request.contextPath}<spring:theme code='reset.gif'/>"
+                            border="0" src="${pageContext.request.contextPath}/css/classic/gifs/reset.gif"
                             alt="<spring:message code='probe.jsp.applications.alt.reload'/>"
                             title="<spring:message code='probe.jsp.applications.title.reload' arguments='${app.name}'/>"/>
                 </a>
@@ -218,7 +218,7 @@
 
             <display:column titleKey="probe.jsp.applications.col.jsp">
                 <a class="imglink" href="<c:url value='/app/jsp.htm'><c:param name='webapp' value='${app.name}'/></c:url>">
-                    <img border="0" src="${pageContext.request.contextPath}<spring:theme code='magnifier.png'/>" alt="<spring:message code='probe.jsp.applications.jsp.view'/>">
+                    <img border="0" src="${pageContext.request.contextPath}/css/classic/gifs/silk/magnifier.png" alt="<spring:message code='probe.jsp.applications.jsp.view'/>">
                 </a>
             </display:column>
 

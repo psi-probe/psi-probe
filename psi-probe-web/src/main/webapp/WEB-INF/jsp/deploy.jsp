@@ -19,7 +19,7 @@
     <head>
         <title><spring:message code="probe.jsp.title.deployment"/></title>
         <script src="<c:url value='/js/prototype.js'/>"></script>
-        <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='deploy.css'/>"/>
+        <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/classic/deploy.css"/>
     </head>
 
     <body>
