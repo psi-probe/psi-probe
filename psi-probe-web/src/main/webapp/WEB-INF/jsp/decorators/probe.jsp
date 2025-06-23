@@ -25,11 +25,11 @@
     <head>
         <title>Probe - <decorator:title default="Tomcat management"/></title>
         <link type="image/gif" rel="shortcut icon" href="<c:url value='/css/favicon.gif'/>"/>
-        <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='tables.css'/>"/>
-        <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='main.css'/>"/>
-        <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='mainnav.css'/>"/>
-        <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='messages.css'/>"/>
-        <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='tooltip.css'/>"/>
+        <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/classic/tables.css"/>
+        <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/classic/main.css"/>
+        <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/classic/mainnav.css"/>
+        <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/classic/messages.css"/>
+        <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/classic/tooltip.css"/>
         <decorator:head/>
     </head>
 

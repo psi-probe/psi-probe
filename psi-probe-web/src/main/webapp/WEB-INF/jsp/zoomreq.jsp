@@ -70,7 +70,7 @@
 
             <div id="sliderContainer">
                 <div id="track">
-                    <div id="handle"><img src="${pageContext.request.contextPath}<spring:theme code='slider.gif'/>" alt=""/></div>
+                    <div id="handle"><img src="${pageContext.request.contextPath}/css/classic/img/scaler_slider.gif" alt=""/></div>
                 </div>
             </div>
 
