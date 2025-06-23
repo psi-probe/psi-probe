@@ -15,7 +15,6 @@ import com.google.common.base.Strings;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -487,24 +486,17 @@ public final class Utils {
    */
   public static void sendCompressedFile(HttpServletResponse response, File file)
       throws IOException {
-    try (ZipOutputStream zip = new ZipOutputStream(response.getOutputStream());
-        InputStream fileInput = new BufferedInputStream(Files.newInputStream(file.toPath()))) {
 
-      String fileName = file.getName();
+    // set some headers
+    String fileName = file.getName();
+    response.setContentType("application/zip");
+    response.setHeader("Content-Disposition", "attachment; filename=" + fileName + ".zip");
 
-      // set some headers
-      response.setContentType("application/zip");
-      response.setHeader("Content-Disposition", "attachment; filename=" + fileName + ".zip");
-
-      zip.putNextEntry(new ZipEntry(fileName));
-
+    try (OutputStream out = response.getOutputStream();
+        ZipOutputStream zip = new ZipOutputStream(out)) {
       // send the file
-      byte[] buffer = new byte[4096];
-      long len;
-
-      while ((len = fileInput.read(buffer)) > 0) {
-        zip.write(buffer, 0, (int) len);
-      }
+      zip.putNextEntry(new ZipEntry(fileName));
+      Files.copy(file.toPath(), zip);
       zip.closeEntry();
     }
   }
