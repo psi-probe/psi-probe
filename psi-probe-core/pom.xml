@@ -38,7 +38,7 @@
 
     <properties>
         <!-- Jacoco minimum code coverage -->
-        <jacoco.minimum.coverage>0.40</jacoco.minimum.coverage>
+        <jacoco.minimum.coverage>0.45</jacoco.minimum.coverage>
     </properties>
 
     <dependencies>
