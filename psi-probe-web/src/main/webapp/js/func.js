@@ -9,18 +9,18 @@
  * PURPOSE.
  */
 function inverse($f) {
-	for (let $i = 0; $i < $f.elements.length; $i++) {
-		if ($f.elements[$i].type == "checkbox") {
-			$f.elements[$i].checked = !$f.elements[$i].checked;
+	for (const element of $f.elements) {
+		if (element.type == "checkbox") {
+			element.checked = !element.checked;
 		}
 	}
 	return false;
 }
 
 function checkAll($f) {
-	for (let $i = 0; $i < $f.elements.length; $i++) {
-		if ($f.elements[$i].type == "checkbox") {
-			$f.elements[$i].checked = true;
+	for (const element of $f.elements) {
+		if (element.type == "checkbox") {
+			element.checked = true;
 		}
 	}
 	return false;
@@ -43,7 +43,7 @@ Ajax.ImgUpdater.prototype = {
 	},
 
 	start: function() {
-		var now = new Date();
+		let now = new Date();
 		this.img.src = this.src + '&t=' + now.getTime();
 		this.timer = setTimeout(this.start.bind(this), this.timeout * 1000);
 	},
@@ -92,15 +92,15 @@ function togglePanel(container, remember_url) {
 }
 
 function scaleImage(v, minX, maxX, minY, maxY) {
-	var images = document.getElementsByClassName('scale-image');
-	var w = (maxX - minX) * v + minX;
-	var h = (maxY - minY) * v + minY;
+	let images = document.getElementsByClassName('scale-image');
+	let w = (maxX - minX) * v + minX;
+	let h = (maxY - minY) * v + minY;
 	if(v > 0.8) {
 		w = w -30;
 		h = h - 100;
 	}
-	for (let i = 0; i < images.length; i++) {
-		$(images[i]).setStyle({
+	for (const element of images) {
+		$(element).setStyle({
 			"width": w + 'px',
 			"height": h + 'px'
 		});
@@ -118,7 +118,7 @@ function toggleAndReloadPanel(container, url) {
 }
 
 function getWindowHeight() {
-	var myHeight = 0;
+	let myHeight = 0;
 	if (typeof( window.innerHeight ) == 'number') {
 		//Non-IE
 		myHeight = window.innerHeight;
@@ -130,7 +130,7 @@ function getWindowHeight() {
 }
 
 function getWindowWidth() {
-	var myWidth = 0;
+	let myWidth = 0;
 	if (typeof( document.body.clientWidth ) == 'number') {
 		//Non-IE
 		myWidth = document.body.clientWidth;
@@ -141,13 +141,13 @@ function getWindowWidth() {
 	return myWidth;
 }
 
-var helpTimerID;
+let helpTimerID;
 
 function setupHelpToggle(url) {
-	var rules = {
+	let rules = {
 		'li#abbreviations': function(element) {
 			element.onclick = function() {
-				var help_container = 'help';
+				let help_container = 'help';
 				if (Element.getStyle(help_container, "display") == 'none') {
 					new Ajax.Updater(help_container, url);
 				}
@@ -173,10 +173,10 @@ function addAjaxTooltip(activator, tooltip, url) {
 	}
 
 	Tooltip.add(activator, tooltip);
-	var tt_container = $$('#' + tooltip + ' .tt_content')[0];
+	let tt_container = $$('#' + tooltip + ' .tt_content')[0];
 	Event.observe(activator, 'click', function(e) {
 
-		var t_title = $('tt_title');
+		let t_title = $('tt_title');
 
 		if (t_title) {
 			t_title.hide();
@@ -189,7 +189,7 @@ function addAjaxTooltip(activator, tooltip, url) {
 			method: 'get',
 			onComplete: function() {
 				tt_container.style.width = null;
-				var the_title = $('tooltip_title');
+				let the_title = $('tooltip_title');
 				t_title = $('tt_title');
 
 				if (the_title && t_title) {
