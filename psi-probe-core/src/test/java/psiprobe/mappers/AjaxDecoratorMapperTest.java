@@ -83,4 +83,43 @@ class AjaxDecoratorMapperTest {
     Assertions.assertNotNull(mapper.getDecorator(request, page));
   }
 
+  /**
+   * Test without ajax extension property.
+   *
+   * @throws InstantiationException the instantiation exception
+   */
+  @Test
+  void testWithoutAjaxExtensionProperty() throws InstantiationException {
+    mapper.init(config, properties, decoratorMapper);
+    new Expectations() {
+      {
+        request.getAttribute("jakarta.servlet.error.request_uri");
+        result = "https://localhost:8443/probe";
+        request.getServletPath();
+        result = "probe/ws";
+      }
+    };
+    Assertions.assertNotNull(mapper.getDecorator(request, page));
+  }
+
+  /**
+   * Test null request uri.
+   *
+   * @throws InstantiationException the instantiation exception
+   */
+  @Test
+  void testNullRequestUri() throws InstantiationException {
+    properties.setProperty("ajaxExtension", ".ajax");
+    mapper.init(config, properties, decoratorMapper);
+    new Expectations() {
+      {
+        request.getAttribute("jakarta.servlet.error.request_uri");
+        result = null;
+        request.getServletPath();
+        result = "probe/ws";
+      }
+    };
+    Assertions.assertNotNull(mapper.getDecorator(request, page));
+  }
+
 }

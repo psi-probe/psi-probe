@@ -58,7 +58,7 @@ public class DisplayJspController extends AbstractContextHandlerController {
 
     if (compile) {
       return new ModelAndView(new RedirectView(
-          request.getRequestURI() + "?webapp=" + (contextName.length() == 0 ? "/" : contextName)));
+          request.getRequestURI() + "?webapp=" + (contextName.isEmpty() ? "/" : contextName)));
     }
     return new ModelAndView(getViewName(), "summary", summary);
   }

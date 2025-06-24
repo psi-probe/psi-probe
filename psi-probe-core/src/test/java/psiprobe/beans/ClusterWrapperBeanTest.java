@@ -30,6 +30,7 @@ import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 
 import psiprobe.model.jmx.Cluster;
+import psiprobe.tools.JmxTools;
 
 class ClusterWrapperBeanTest {
 
@@ -60,17 +61,12 @@ class ClusterWrapperBeanTest {
       mgmtFactoryMock.when(ManagementFactory::getPlatformMBeanServer).thenReturn(mbeanServer);
 
       // Mock JmxTools methods as needed (example for getStringAttr)
-      try (MockedStatic<psiprobe.tools.JmxTools> jmxToolsMock =
-          Mockito.mockStatic(psiprobe.tools.JmxTools.class)) {
-        jmxToolsMock.when(() -> psiprobe.tools.JmxTools.getStringAttr(any(), any(), any()))
-            .thenReturn("test");
-        jmxToolsMock.when(() -> psiprobe.tools.JmxTools.getLongAttr(any(), any(), any()))
-            .thenReturn(1L);
-        jmxToolsMock.when(() -> psiprobe.tools.JmxTools.getIntAttr(any(), any(), any()))
-            .thenReturn(1);
-        jmxToolsMock.when(() -> psiprobe.tools.JmxTools.getBooleanAttr(any(), any(), any()))
-            .thenReturn(true);
-        jmxToolsMock.when(() -> psiprobe.tools.JmxTools.getAttribute(any(), any(), any()))
+      try (MockedStatic<JmxTools> jmxToolsMock = Mockito.mockStatic(JmxTools.class)) {
+        jmxToolsMock.when(() -> JmxTools.getStringAttr(any(), any(), any())).thenReturn("test");
+        jmxToolsMock.when(() -> JmxTools.getLongAttr(any(), any(), any())).thenReturn(1L);
+        jmxToolsMock.when(() -> JmxTools.getIntAttr(any(), any(), any())).thenReturn(1);
+        jmxToolsMock.when(() -> JmxTools.getBooleanAttr(any(), any(), any())).thenReturn(true);
+        jmxToolsMock.when(() -> JmxTools.getAttribute(any(), any(), any()))
             .thenReturn(new ObjectName[0]);
 
         ClusterWrapperBean bean = new ClusterWrapperBean();
