@@ -476,7 +476,7 @@ public class LogResolverBean {
    *
    * @return the file log accessor
    */
-  private FileLogAccessor resolveStdoutLogDestination(String fileName) {
+  protected FileLogAccessor resolveStdoutLogDestination(String fileName) {
     File stdout = Path.of(System.getProperty("catalina.base"), "logs/" + fileName).toFile();
     if (stdout.exists()) {
       FileLogAccessor fla = new FileLogAccessor();
