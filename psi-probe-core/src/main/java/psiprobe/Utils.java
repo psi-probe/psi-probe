@@ -15,7 +15,6 @@ import com.google.common.base.Strings;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -439,34 +438,39 @@ public final class Utils {
       return null;
     }
 
-    ByteArrayOutputStream bos = new ByteArrayOutputStream();
-    jspRenderer.highlight(name, input, bos, encoding, true);
+    byte[] highlightedBytes;
+    try (ByteArrayOutputStream bos = new ByteArrayOutputStream()) {
+      jspRenderer.highlight(name, input, bos, encoding, true);
+      highlightedBytes = bos.toByteArray();
+    }
 
-    ByteArrayInputStream bis = new ByteArrayInputStream(bos.toByteArray());
-
-    Tokenizer tokenizer = new Tokenizer(new InputStreamReader(bis, Charset.forName(encoding)));
-    tokenizer.addSymbol(new TokenizerSymbol("EOL", "\n", null, false, false, true, false));
-    tokenizer.addSymbol(new TokenizerSymbol("EOL", "\r\n", null, false, false, true, false));
-
-    //
-    // JHighlight adds HTML comment as the first line, so if
-    // we number the lines we could end up with a line number and no line
-    // to avoid that we just ignore the first line all together.
-    //
     StringBuilder buffer = new StringBuilder();
-    long counter = 0;
-    while (tokenizer.hasMore()) {
-      Token tk = tokenizer.nextToken();
-      if ("EOL".equals(tk.getName())) {
-        counter++;
-        buffer.append(tk.getText());
-      } else if (counter > 0) {
-        buffer.append("<span class=\"codeline\">");
-        buffer.append("<span class=\"linenum\">");
-        buffer.append(leftPad(Long.toString(counter), 6, " ").replace(" ", "&nbsp;"));
-        buffer.append("</span>");
-        buffer.append(tk.getText());
-        buffer.append("</span>");
+    try (InputStream bis = new ByteArrayInputStream(highlightedBytes);
+        Reader reader = new InputStreamReader(bis, Charset.forName(encoding))) {
+
+      Tokenizer tokenizer = new Tokenizer(reader);
+      tokenizer.addSymbol(new TokenizerSymbol("EOL", "\n", null, false, false, true, false));
+      tokenizer.addSymbol(new TokenizerSymbol("EOL", "\r\n", null, false, false, true, false));
+
+      //
+      // JHighlight adds HTML comment as the first line, so if
+      // we number the lines we could end up with a line number and no line
+      // to avoid that we just ignore the first line all together.
+      //
+      long counter = 0;
+      while (tokenizer.hasMore()) {
+        Token tk = tokenizer.nextToken();
+        if ("EOL".equals(tk.getName())) {
+          counter++;
+          buffer.append(tk.getText());
+        } else if (counter > 0) {
+          buffer.append("<span class=\"codeline\">");
+          buffer.append("<span class=\"linenum\">");
+          buffer.append(leftPad(Long.toString(counter), 6, " ").replace(" ", "&nbsp;"));
+          buffer.append("</span>");
+          buffer.append(tk.getText());
+          buffer.append("</span>");
+        }
       }
     }
     return buffer.toString();
@@ -482,24 +486,17 @@ public final class Utils {
    */
   public static void sendCompressedFile(HttpServletResponse response, File file)
       throws IOException {
-    try (ZipOutputStream zip = new ZipOutputStream(response.getOutputStream());
-        InputStream fileInput = new BufferedInputStream(Files.newInputStream(file.toPath()))) {
 
-      String fileName = file.getName();
+    // set some headers
+    String fileName = file.getName();
+    response.setContentType("application/zip");
+    response.setHeader("Content-Disposition", "attachment; filename=" + fileName + ".zip");
 
-      // set some headers
-      response.setContentType("application/zip");
-      response.setHeader("Content-Disposition", "attachment; filename=" + fileName + ".zip");
-
-      zip.putNextEntry(new ZipEntry(fileName));
-
+    try (OutputStream out = response.getOutputStream();
+        ZipOutputStream zip = new ZipOutputStream(out)) {
       // send the file
-      byte[] buffer = new byte[4096];
-      long len;
-
-      while ((len = fileInput.read(buffer)) > 0) {
-        zip.write(buffer, 0, (int) len);
-      }
+      zip.putNextEntry(new ZipEntry(fileName));
+      Files.copy(file.toPath(), zip);
       zip.closeEntry();
     }
   }
