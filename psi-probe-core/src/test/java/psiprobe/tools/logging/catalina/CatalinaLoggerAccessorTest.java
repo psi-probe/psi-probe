@@ -81,6 +81,8 @@ class CatalinaLoggerAccessorTest {
     try (MockedStatic<Instruments> mocked = mockStatic(Instruments.class)) {
       mocked.when(() -> Instruments.getField(target, "timestamp")).thenReturn(new Object());
 
+      System.setProperty("catalina.base", "");
+
       File file = accessor.getFile();
       assertNotNull(file);
       assertTrue(file.getName().startsWith("catalina."));
