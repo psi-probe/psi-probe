@@ -208,8 +208,7 @@ class Tomcat11ContainerAdapterTest {
 
     Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
 
-    assertThrows(IllegalArgumentException.class,
-        () -> adapter.getApplicationFilterMaps(mockContext));
+    assertThrows(NullPointerException.class, () -> adapter.getApplicationFilterMaps(mockContext));
   }
 
   /**
