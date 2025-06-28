@@ -147,7 +147,7 @@
         <checkstyle.configLocation>checkstyle.xml</checkstyle.configLocation>
 
         <!-- Surefire Settings -->
-        <argLine>-javaagent:${settings.localRepository}/com/github/hazendaz/jmockit/jmockit/${jmockit.version}/jmockit-${jmockit.version}.jar -javaagent:${settings.localRepository}/net/bytebuddy/byte-buddy-agent/${byte-buddy.version}/byte-buddy-agent-${byte-buddy.version}.jar</argLine>
+        <argLine>-javaagent:${settings.localRepository}/net/bytebuddy/byte-buddy-agent/${byte-buddy.version}/byte-buddy-agent-${byte-buddy.version}.jar</argLine>
 
         <!-- Jacoco minimum code coverage -->
         <jacoco.minimum.coverage>1.00</jacoco.minimum.coverage>
@@ -176,7 +176,6 @@
         <javabean-tester.version>2.9.0</javabean-tester.version>
         <jfreechart.version>1.5.6</jfreechart.version>
         <jhighlight.version>1.1.0</jhighlight.version>
-        <jmockit.version>1.56.0</jmockit.version>
         <jna.version>5.17.0</jna.version>
         <jsp-api.version>4.0.0</jsp-api.version>
         <jstl-api.version>3.0.2</jstl-api.version>
@@ -298,11 +297,6 @@
                 <groupId>net.bytebuddy</groupId>
                 <artifactId>byte-buddy-agent</artifactId>
                 <version>${byte-buddy.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.github.hazendaz.jmockit</groupId>
-                <artifactId>jmockit</artifactId>
-                <version>${jmockit.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.mockito</groupId>
@@ -646,11 +640,6 @@
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.github.hazendaz.jmockit</groupId>
-            <artifactId>jmockit</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -1663,7 +1652,7 @@
                 <jdk>[17,)</jdk>
             </activation>
             <properties>
-                <argLine>-javaagent:${settings.localRepository}/com/github/hazendaz/jmockit/jmockit/${jmockit.version}/jmockit-${jmockit.version}.jar -javaagent:${settings.localRepository}/net/bytebuddy/byte-buddy-agent/${byte-buddy.version}/byte-buddy-agent-${byte-buddy.version}.jar --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.logging/java.util.logging=ALL-UNNAMED</argLine>
+                <argLine>-javaagent:${settings.localRepository}/net/bytebuddy/byte-buddy-agent/${byte-buddy.version}/byte-buddy-agent-${byte-buddy.version}.jar --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.logging/java.util.logging=ALL-UNNAMED</argLine>
             </properties>
             <build>
                 <pluginManagement>

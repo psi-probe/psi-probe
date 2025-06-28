@@ -15,25 +15,27 @@ import com.zaxxer.hikari.HikariDataSource;
 import java.sql.SQLException;
 import java.util.Properties;
 
-import mockit.Expectations;
-import mockit.Mocked;
-
 import oracle.jdbc.pool.OracleDataSource;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 /**
  * The Class OracleDatasourceAccessorTest.
  */
+@ExtendWith(MockitoExtension.class)
 class OracleDatasourceAccessorTest {
 
   /** The accessor. */
   OracleDatasourceAccessor accessor;
 
   /** The source. */
-  @Mocked
+  @Mock
   OracleDataSource source;
 
   /** The bad source. */
@@ -73,12 +75,7 @@ class OracleDatasourceAccessorTest {
    */
   @Test
   void getInfoTest() throws SQLException {
-    new Expectations() {
-      {
-        source.getConnectionCacheProperties();
-        result = new Properties();
-      }
-    };
+    Mockito.when(source.getConnectionCacheProperties()).thenReturn(new Properties());
     Assertions.assertNotNull(accessor.getInfo(source));
   }
 
