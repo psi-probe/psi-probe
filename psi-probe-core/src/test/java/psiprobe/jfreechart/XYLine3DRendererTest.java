@@ -11,7 +11,9 @@
 package psiprobe.jfreechart;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.times;
@@ -94,9 +96,9 @@ class XYLine3DRendererTest {
     renderer.setWallPaint(Color.GREEN);
 
     ByteArrayOutputStream baos = new ByteArrayOutputStream();
-    ObjectOutputStream oos = new ObjectOutputStream(baos);
-    oos.writeObject(renderer);
-    oos.close();
+    try (ObjectOutputStream oos = new ObjectOutputStream(baos)) {
+      oos.writeObject(renderer);
+    }
 
     ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(baos.toByteArray()));
     XYLine3DRenderer deserialized = (XYLine3DRenderer) ois.readObject();
@@ -197,6 +199,95 @@ class XYLine3DRendererTest {
     XYLine3DRenderer renderer = new XYLine3DRenderer();
     assertNotEquals(renderer, null);
     assertNotEquals(renderer, "not a renderer");
+  }
+
+  /**
+   * Test equals different Y offset.
+   */
+  @Test
+  void testEqualsDifferentYOffset() {
+    XYLine3DRenderer r1 = new XYLine3DRenderer();
+    XYLine3DRenderer r2 = new XYLine3DRenderer();
+    r1.setYOffset(10.0);
+    assertNotEquals(r1, r2);
+    r2.setYOffset(10.0);
+    assertEquals(r1, r2);
+  }
+
+  /**
+   * Test equals different wall paint.
+   */
+  @Test
+  void testEqualsDifferentWallPaint() {
+    XYLine3DRenderer r1 = new XYLine3DRenderer();
+    XYLine3DRenderer r2 = new XYLine3DRenderer();
+    r1.setWallPaint(Color.BLUE);
+    r2.setWallPaint(Color.RED);
+    assertNotEquals(r1, r2);
+  }
+
+  /**
+   * Test serialization with null wall paint.
+   *
+   * @throws Exception the exception
+   */
+  @Test
+  void testSerializationWithNullWallPaint() throws Exception {
+    XYLine3DRenderer renderer = new XYLine3DRenderer();
+    renderer.setWallPaint(null);
+
+    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    try (ObjectOutputStream oos = new ObjectOutputStream(baos)) {
+      oos.writeObject(renderer);
+    }
+
+    ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(baos.toByteArray()));
+    XYLine3DRenderer deserialized = (XYLine3DRenderer) ois.readObject();
+
+    assertEquals(renderer, deserialized);
+    assertEquals(null, deserialized.getWallPaint());
+  }
+
+  /**
+   * Test default constructor fields.
+   */
+  @Test
+  void testDefaultConstructorFields() {
+    XYLine3DRenderer renderer = new XYLine3DRenderer();
+    assertEquals(XYLine3DRenderer.DEFAULT_X_OFFSET, renderer.getXOffset());
+    assertEquals(XYLine3DRenderer.DEFAULT_Y_OFFSET, renderer.getYOffset());
+    assertEquals(XYLine3DRenderer.DEFAULT_WALL_PAINT, renderer.getWallPaint());
+  }
+
+  /**
+   * Test is item pass.
+   */
+  @Test
+  void testIsItemPass() {
+    XYLine3DRenderer renderer = new XYLine3DRenderer();
+    // Pass 0 is shadow, pass 1 and 2 are normal
+    assertFalse(renderer.isItemPass(1));
+    assertTrue(renderer.isItemPass(2));
+    assertFalse(renderer.isItemPass(0));
+  }
+
+  /**
+   * Test is line pass.
+   *
+   * @throws Exception the exception
+   */
+  @Test
+  void testIsLinePass() throws Exception {
+    XYLine3DRenderer renderer = new XYLine3DRenderer();
+    var method = XYLine3DRenderer.class.getDeclaredMethod("isLinePass", int.class);
+    method.setAccessible(true);
+
+    // pass 0 and 1 should return true, others false
+    assertTrue((Boolean) method.invoke(renderer, 0));
+    assertTrue((Boolean) method.invoke(renderer, 1));
+    assertFalse((Boolean) method.invoke(renderer, 2));
+    assertFalse((Boolean) method.invoke(renderer, -1));
+    assertFalse((Boolean) method.invoke(renderer, 3));
   }
 
 }
