@@ -134,4 +134,69 @@ class XYLine3DRendererTest {
     verify(renderer, times(1)).drawFirstPassShape(g2, 2, 0, 0, shape);
   }
 
+  /**
+   * Test hash code consistency.
+   */
+  @Test
+  void testHashCodeConsistency() {
+    XYLine3DRenderer r1 = new XYLine3DRenderer();
+    XYLine3DRenderer r2 = new XYLine3DRenderer();
+    assertEquals(r1.hashCode(), r2.hashCode());
+
+    r1.setXOffset(42.0);
+    assertNotEquals(r1.hashCode(), r2.hashCode());
+    r2.setXOffset(42.0);
+    assertEquals(r1.hashCode(), r2.hashCode());
+  }
+
+  /**
+   * Test clone.
+   *
+   * @throws Exception the exception
+   */
+  @Test
+  void testClone() throws Exception {
+    XYLine3DRenderer renderer = new XYLine3DRenderer();
+    renderer.setXOffset(1.1);
+    renderer.setYOffset(2.2);
+    renderer.setWallPaint(Color.MAGENTA);
+
+    XYLine3DRenderer clone = (XYLine3DRenderer) renderer.clone();
+    assertEquals(renderer, clone);
+    assertEquals(renderer.getWallPaint(), clone.getWallPaint());
+    assertNotEquals(System.identityHashCode(renderer), System.identityHashCode(clone));
+  }
+
+  /**
+   * Test set wall paint null.
+   */
+  @Test
+  void testSetWallPaintNull() {
+    XYLine3DRenderer renderer = new XYLine3DRenderer();
+    renderer.setWallPaint(null);
+    assertEquals(null, renderer.getWallPaint());
+  }
+
+  /**
+   * Test set negative offsets.
+   */
+  @Test
+  void testSetNegativeOffsets() {
+    XYLine3DRenderer renderer = new XYLine3DRenderer();
+    renderer.setXOffset(-10.0);
+    renderer.setYOffset(-5.0);
+    assertEquals(-10.0, renderer.getXOffset());
+    assertEquals(-5.0, renderer.getYOffset());
+  }
+
+  /**
+   * Test equals with null and other type.
+   */
+  @Test
+  void testEqualsWithNullAndOtherType() {
+    XYLine3DRenderer renderer = new XYLine3DRenderer();
+    assertNotEquals(renderer, null);
+    assertNotEquals(renderer, "not a renderer");
+  }
+
 }
