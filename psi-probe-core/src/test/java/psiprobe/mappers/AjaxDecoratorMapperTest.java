@@ -125,4 +125,87 @@ class AjaxDecoratorMapperTest {
     Assertions.assertNotNull(mapper.getDecorator(request, page));
   }
 
+  /**
+   * Returns null for ajax servlet path.
+   *
+   * @throws InstantiationException the instantiation exception
+   */
+  @Test
+  void returnsNullForAjaxServletPath() throws InstantiationException {
+    properties.setProperty("ajaxExtension", ".ajax");
+    mapper.init(config, properties, decoratorMapper);
+
+    Mockito.when(request.getAttribute("jakarta.servlet.error.request_uri")).thenReturn(null);
+    Mockito.when(request.getServletPath()).thenReturn("/foo.ajax");
+
+    Assertions.assertNull(mapper.getDecorator(request, page));
+  }
+
+  /**
+   * Returns null for ajax error uri.
+   *
+   * @throws InstantiationException the instantiation exception
+   */
+  @Test
+  void returnsNullForAjaxErrorUri() throws InstantiationException {
+    properties.setProperty("ajaxExtension", ".ajax");
+    mapper.init(config, properties, decoratorMapper);
+
+    Mockito.when(request.getAttribute("jakarta.servlet.error.request_uri"))
+        .thenReturn("/error/test.ajax");
+
+    Assertions.assertNull(mapper.getDecorator(request, page));
+  }
+
+  /**
+   * Returns null for ajax error uri with query string.
+   *
+   * @throws InstantiationException the instantiation exception
+   */
+  @Test
+  void returnsNullForAjaxErrorUriWithQueryString() throws InstantiationException {
+    properties.setProperty("ajaxExtension", ".ajax");
+    mapper.init(config, properties, decoratorMapper);
+
+    Mockito.when(request.getAttribute("jakarta.servlet.error.request_uri"))
+        .thenReturn("/error/test.ajax?param=1");
+
+    Assertions.assertNull(mapper.getDecorator(request, page));
+  }
+
+  /**
+   * Calls super for non ajax request.
+   *
+   * @throws InstantiationException the instantiation exception
+   */
+  @Test
+  void callsSuperForNonAjaxRequest() throws InstantiationException {
+    properties.setProperty("ajaxExtension", ".ajax");
+    mapper.init(config, properties, decoratorMapper);
+
+    Mockito.when(request.getAttribute("jakarta.servlet.error.request_uri")).thenReturn(null);
+    Mockito.when(request.getServletPath()).thenReturn("/foo.html");
+
+    var decorator = Mockito.mock(Decorator.class);
+    Mockito.when(decoratorMapper.getDecorator(request, page)).thenReturn(decorator);
+
+    Assertions.assertEquals(decorator, mapper.getDecorator(request, page));
+  }
+
+  /**
+   * Uses custom ajax extension.
+   *
+   * @throws InstantiationException the instantiation exception
+   */
+  @Test
+  void usesCustomAjaxExtension() throws InstantiationException {
+    properties.setProperty("ajaxExtension", ".customajax");
+    mapper.init(config, properties, decoratorMapper);
+
+    Mockito.when(request.getAttribute("jakarta.servlet.error.request_uri"))
+        .thenReturn("/foo.customajax");
+
+    Assertions.assertNull(mapper.getDecorator(request, page));
+  }
+
 }

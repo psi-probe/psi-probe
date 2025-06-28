@@ -256,6 +256,23 @@ public class XYLine3DRenderer extends XYLineAndShapeRenderer implements Effect3D
   }
 
   /**
+   * Hash code.
+   *
+   * @return the int
+   */
+  @Override
+  public int hashCode() {
+    int result = super.hashCode();
+    long temp;
+    temp = Double.doubleToLongBits(xOffset);
+    result = 31 * result + (int) (temp ^ (temp >>> 32));
+    temp = Double.doubleToLongBits(yOffset);
+    result = 31 * result + (int) (temp ^ (temp >>> 32));
+    result = 31 * result + (wallPaint != null ? wallPaint.hashCode() : 0);
+    return result;
+  }
+
+  /**
    * Provides serialization support.
    *
    * @param stream the input stream.
