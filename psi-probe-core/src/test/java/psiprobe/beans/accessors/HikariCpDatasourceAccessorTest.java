@@ -11,26 +11,30 @@
 package psiprobe.beans.accessors;
 
 import com.zaxxer.hikari.HikariDataSource;
+import com.zaxxer.hikari.HikariPoolMXBean;
 
 import java.sql.SQLException;
-
-import mockit.Mocked;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.vibur.dbcp.ViburDBCPDataSource;
 
 /**
  * The Class HikariCpDatasourceAccessorTest.
  */
+@ExtendWith(MockitoExtension.class)
 class HikariCpDatasourceAccessorTest {
 
   /** The accessor. */
   HikariCpDatasourceAccessor accessor;
 
   /** The source. */
-  @Mocked
+  @Mock
   HikariDataSource source;
 
   /** The bad source. */
@@ -68,6 +72,11 @@ class HikariCpDatasourceAccessorTest {
    */
   @Test
   void getInfoTest() throws SQLException {
+    var poolMxBean = Mockito.mock(HikariPoolMXBean.class);
+    Mockito.when(source.getHikariPoolMXBean()).thenReturn(poolMxBean);
+    Mockito.when(poolMxBean.getActiveConnections()).thenReturn(1);
+    Mockito.when(poolMxBean.getTotalConnections()).thenReturn(2);
+
     Assertions.assertNotNull(accessor.getInfo(source));
   }
 

@@ -11,6 +11,7 @@
 package psiprobe.mappers;
 
 import com.opensymphony.module.sitemesh.Config;
+import com.opensymphony.module.sitemesh.Decorator;
 import com.opensymphony.module.sitemesh.DecoratorMapper;
 import com.opensymphony.module.sitemesh.Page;
 
@@ -18,38 +19,40 @@ import jakarta.servlet.http.HttpServletRequest;
 
 import java.util.Properties;
 
-import mockit.Expectations;
-import mockit.Mocked;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 /**
  * The Class AjaxDecoratorMapperTest.
  */
+@ExtendWith(MockitoExtension.class)
 class AjaxDecoratorMapperTest {
 
   /** The mapper. */
   AjaxDecoratorMapper mapper;
 
   /** The config. */
-  @Mocked
+  @Mock
   Config config;
 
   /** The properties. */
   Properties properties;
 
   /** The decorator mapper. */
-  @Mocked
+  @Mock
   DecoratorMapper decoratorMapper;
 
   /** The request. */
-  @Mocked
+  @Mock
   HttpServletRequest request;
 
   /** The page. */
-  @Mocked
+  @Mock
   Page page;
 
   /**
@@ -71,15 +74,14 @@ class AjaxDecoratorMapperTest {
     properties.setProperty("ajaxExtension", ".ajax");
     mapper.init(config, properties, decoratorMapper);
 
-    new Expectations() {
-      {
-        request.getAttribute("jakarta.servlet.error.request_uri");
-        result = "https://localhost:8443/probe";
+    Mockito.when(request.getAttribute("jakarta.servlet.error.request_uri"))
+        .thenReturn("https://localhost:8443/probe");
+    Mockito.when(request.getServletPath()).thenReturn("probe/ws");
 
-        request.getServletPath();
-        result = "probe/ws";
-      }
-    };
+    // Mock the decoratorMapper to return a non-null decorator
+    var decorator = Mockito.mock(Decorator.class);
+    Mockito.when(decoratorMapper.getDecorator(request, page)).thenReturn(decorator);
+
     Assertions.assertNotNull(mapper.getDecorator(request, page));
   }
 
@@ -91,14 +93,15 @@ class AjaxDecoratorMapperTest {
   @Test
   void testWithoutAjaxExtensionProperty() throws InstantiationException {
     mapper.init(config, properties, decoratorMapper);
-    new Expectations() {
-      {
-        request.getAttribute("jakarta.servlet.error.request_uri");
-        result = "https://localhost:8443/probe";
-        request.getServletPath();
-        result = "probe/ws";
-      }
-    };
+
+    Mockito.when(request.getAttribute("jakarta.servlet.error.request_uri"))
+        .thenReturn("https://localhost:8443/probe");
+    Mockito.when(request.getServletPath()).thenReturn("probe/ws");
+
+    // Mock the decoratorMapper to return a non-null decorator
+    var decorator = Mockito.mock(Decorator.class);
+    Mockito.when(decoratorMapper.getDecorator(request, page)).thenReturn(decorator);
+
     Assertions.assertNotNull(mapper.getDecorator(request, page));
   }
 
@@ -111,14 +114,14 @@ class AjaxDecoratorMapperTest {
   void testNullRequestUri() throws InstantiationException {
     properties.setProperty("ajaxExtension", ".ajax");
     mapper.init(config, properties, decoratorMapper);
-    new Expectations() {
-      {
-        request.getAttribute("jakarta.servlet.error.request_uri");
-        result = null;
-        request.getServletPath();
-        result = "probe/ws";
-      }
-    };
+
+    Mockito.when(request.getAttribute("jakarta.servlet.error.request_uri")).thenReturn(null);
+    Mockito.when(request.getServletPath()).thenReturn("probe/ws");
+
+    // Mock the decoratorMapper to return a non-null decorator
+    var decorator = Mockito.mock(Decorator.class);
+    Mockito.when(decoratorMapper.getDecorator(request, page)).thenReturn(decorator);
+
     Assertions.assertNotNull(mapper.getDecorator(request, page));
   }
 

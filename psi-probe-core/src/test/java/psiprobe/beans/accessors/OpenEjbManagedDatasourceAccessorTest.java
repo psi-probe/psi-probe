@@ -14,26 +14,28 @@ import com.zaxxer.hikari.HikariDataSource;
 
 import java.sql.SQLException;
 
-import mockit.Mocked;
-import mockit.Tested;
-
 import org.apache.openejb.resource.jdbc.managed.local.ManagedDataSource;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 /**
  * The Class OpenEjbManagedDatasourceAccessorTest.
  */
+@ExtendWith(MockitoExtension.class)
 class OpenEjbManagedDatasourceAccessorTest {
 
   /** The accessor. */
-  @Tested
+  @InjectMocks
   OpenEjbManagedDatasourceAccessor accessor;
 
   /** The source. */
-  @Mocked
+  @Mock
   ManagedDataSource source;
 
   /** The bad source. */

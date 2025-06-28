@@ -13,21 +13,23 @@ package psiprobe.tools;
 import java.io.IOException;
 import java.io.PrintStream;
 
-import mockit.Mocked;
-
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.slf4j.Logger;
 
 /**
  * The Class LogOutputStreamTest.
  */
+@ExtendWith(MockitoExtension.class)
 class LogOutputStreamTest {
 
   /** The stream. */
   PrintStream stream;
 
   /** The log. */
-  @Mocked
+  @Mock
   Logger log;
 
   /**
