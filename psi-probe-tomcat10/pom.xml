@@ -37,7 +37,7 @@
     </scm>
 
     <properties>
-        <tomcat.version>10.1.42</tomcat.version>
+        <tomcat.version>10.1.43</tomcat.version>
     </properties>
 
     <dependencies>
