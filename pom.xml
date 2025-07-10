@@ -181,7 +181,7 @@
         <jstl-api.version>3.0.2</jstl-api.version>
         <jstl.version>3.0.1</jstl.version>
         <junit.version>5.13.3</junit.version>
-        <lang3.version>3.17.0</lang3.version>
+        <lang3.version>3.18.0</lang3.version>
         <logback.version>1.5.18</logback.version>
         <logging.version>1.3.5</logging.version>
         <mail.version>2.0.3</mail.version>
