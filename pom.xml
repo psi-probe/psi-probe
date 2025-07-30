@@ -200,7 +200,7 @@
         <tomcat.version>10.1.43</tomcat.version>
         <tomee.version>10.1.0</tomee.version>
         <transaction-api.version>2.0.1</transaction-api.version>
-        <ucp.version>21.18.0.0</ucp.version>
+        <ucp.version>21.19.0.0</ucp.version>
         <wrapper.version>3.2.3</wrapper.version>
         <xstream.version>1.4.21</xstream.version>
         <vibur-dbcp.version>26.0</vibur-dbcp.version>
