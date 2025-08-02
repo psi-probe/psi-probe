@@ -484,7 +484,7 @@
 <a class="jxr_linenumber" name="L476" href="#L476">476</a> <em class="jxr_javadoccomment">   *</em>
 <a class="jxr_linenumber" name="L477" href="#L477">477</a> <em class="jxr_javadoccomment">   * @return the file log accessor</em>
 <a class="jxr_linenumber" name="L478" href="#L478">478</a> <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L479" href="#L479">479</a>   <strong class="jxr_keyword">private</strong> <a name="FileLogAccessor" href="../../psiprobe/tools/logging/FileLogAccessor.html#FileLogAccessor">FileLogAccessor</a> resolveStdoutLogDestination(String fileName) {
+<a class="jxr_linenumber" name="L479" href="#L479">479</a>   <strong class="jxr_keyword">protected</strong> <a name="FileLogAccessor" href="../../psiprobe/tools/logging/FileLogAccessor.html#FileLogAccessor">FileLogAccessor</a> resolveStdoutLogDestination(String fileName) {
 <a class="jxr_linenumber" name="L480" href="#L480">480</a>     File stdout = Path.of(System.getProperty(<span class="jxr_string">"catalina.base"</span>), <span class="jxr_string">"logs/"</span> + fileName).toFile();
 <a class="jxr_linenumber" name="L481" href="#L481">481</a>     <strong class="jxr_keyword">if</strong> (stdout.exists()) {
 <a class="jxr_linenumber" name="L482" href="#L482">482</a>       <a name="FileLogAccessor" href="../../psiprobe/tools/logging/FileLogAccessor.html#FileLogAccessor">FileLogAccessor</a> fla = <strong class="jxr_keyword">new</strong> <a name="FileLogAccessor" href="../../psiprobe/tools/logging/FileLogAccessor.html#FileLogAccessor">FileLogAccessor</a>();
