@@ -9,23 +9,23 @@
  * PURPOSE.
  */
 #servletTbl tr td {
-	vertical-align: bottom;
+    vertical-align: bottom;
 }
 
 .servletName {
-	font-weight: bold;
+    font-weight: bold;
 }
 
 .servletName span {
-	color: #666;
-	font-weight: normal;
-	font-size: 90%;
+    color: #666;
+    font-weight: normal;
+    font-size: 90%;
 }
 
 .servletClass {
-	font-size: 90%;
-	line-height: 90%;
-	padding-bottom:2px;
-	padding-top:1px;
-	color: #999;
+    font-size: 90%;
+    line-height: 90%;
+    padding-bottom:2px;
+    padding-top:1px;
+    color: #999;
 }

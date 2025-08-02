@@ -9,58 +9,58 @@
  * PURPOSE.
  */
 .xml_tag_symbols {
-	color: #003bff;
+    color: #003bff;
 }
 
 .xml_rife_tag {
-	color: #000000;
-	background-color: #e4e6a0;
+    color: #000000;
+    background-color: #e4e6a0;
 }
 
 .xml_plain {
-	color: #000000;
+    color: #000000;
 }
 
 .xml_comment {
-	color: #939393;
-	background-color: #f7f7f7;
+    color: #939393;
+    background-color: #f7f7f7;
 }
 
 .xml_attribute_name {
-	color: #000000;
-	font-weight: bold;
+    color: #000000;
+    font-weight: bold;
 }
 
 h1 {
-	font-family: sans-serif;
-	font-size: 16pt;
-	font-weight: bold;
-	color: #000000;
-	background-color: #d2d2d2;
-	border: solid 1px black;
-	padding: 5px;
-	text-align: center;
+    font-family: sans-serif;
+    font-size: 16pt;
+    font-weight: bold;
+    color: #000000;
+    background-color: #d2d2d2;
+    border: solid 1px black;
+    padding: 5px;
+    text-align: center;
 }
 
 .xml_tag_name {
-	color: #0037ff;
+    color: #0037ff;
 }
 
 .xml_char_data {
-	color: #000000;
+    color: #000000;
 }
 
 .xml_processing_instruction {
-	color: #000000;
-	font-weight: bold;
-	font-style: italic;
+    color: #000000;
+    font-weight: bold;
+    font-style: italic;
 }
 
 .xml_attribute_value {
-	color: #c10000;
+    color: #c10000;
 }
 
 .xml_rife_name {
-	color: #0000c4;
-	background-color: #e4e6a0;
+    color: #0000c4;
+    background-color: #e4e6a0;
 }

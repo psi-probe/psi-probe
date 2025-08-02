@@ -9,11 +9,11 @@
  * PURPOSE.
  */
 div#resources div.dbConnAdditionalInfo {
-	color: #228B22;
-	max-width: 1024px;
+    color: #228B22;
+    max-width: 1024px;
 }
 
 div#resources div.dbConnMisconfigured {
-	color: #DC143C;
-	max-width: 1024px;
+    color: #DC143C;
+    max-width: 1024px;
 }
