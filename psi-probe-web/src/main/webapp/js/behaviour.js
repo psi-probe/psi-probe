@@ -14,80 +14,80 @@
 
    Description:
 
-   	Uses css selectors to apply javascript behaviours to enable
-   	unobtrusive javascript in html documents.
+       Uses css selectors to apply javascript behaviours to enable
+       unobtrusive javascript in html documents.
 
    Usage:
 
-	var myrules = {
-		'b.someclass' : function(element){
-			element.onclick = function(){
-				alert(this.innerHTML);
-			}
-		},
-		'#someid u' : function(element){
-			element.onmouseover = function(){
-				this.innerHTML = "BLAH!";
-			}
-		}
-	};
+    var myrules = {
+        'b.someclass' : function(element){
+            element.onclick = function(){
+                alert(this.innerHTML);
+            }
+        },
+        '#someid u' : function(element){
+            element.onmouseover = function(){
+                this.innerHTML = "BLAH!";
+            }
+        }
+    };
 
-	Behaviour.register(myrules);
+    Behaviour.register(myrules);
 
-	// Call Behaviour.apply() to re-apply the rules (if you
-	// update the dom, etc).
+    // Call Behaviour.apply() to re-apply the rules (if you
+    // update the dom, etc).
 
    License:
 
-   	This file is entirely BSD licensed.
+       This file is entirely BSD licensed.
 
    More information:
 
-   	http://ripcord.co.nz/behaviour/
+       http://ripcord.co.nz/behaviour/
 
 */
 
 var Behaviour = {
-	list : new Array,
+    list : new Array,
 
-	register : function(sheet){
-		Behaviour.list.push(sheet);
-	},
+    register : function(sheet){
+        Behaviour.list.push(sheet);
+    },
 
-	start : function(){
-		Behaviour.addLoadEvent(function(){
-			Behaviour.apply();
-		});
-	},
+    start : function(){
+        Behaviour.addLoadEvent(function(){
+            Behaviour.apply();
+        });
+    },
 
-	apply : function(){
-		for (h=0;sheet=Behaviour.list[h];h++){
-			for (selector in sheet){
-				list = document.getElementsBySelector(selector);
+    apply : function(){
+        for (h=0;sheet=Behaviour.list[h];h++){
+            for (selector in sheet){
+                list = document.getElementsBySelector(selector);
 
-				if (!list){
-					continue;
-				}
+                if (!list){
+                    continue;
+                }
 
-				for (i=0;element=list[i];i++){
-					sheet[selector](element);
-				}
-			}
-		}
-	},
+                for (i=0;element=list[i];i++){
+                    sheet[selector](element);
+                }
+            }
+        }
+    },
 
-	addLoadEvent : function(func){
-		var oldonload = window.onload;
+    addLoadEvent : function(func){
+        var oldonload = window.onload;
 
-		if (typeof window.onload != 'function') {
-			window.onload = func;
-		} else {
-			window.onload = function() {
-				oldonload();
-				func();
-			}
-		}
-	}
+        if (typeof window.onload != 'function') {
+            window.onload = func;
+        } else {
+            window.onload = function() {
+                oldonload();
+                func();
+            }
+        }
+    }
 }
 
 Behaviour.start();
@@ -235,7 +235,7 @@ document.getElementsBySelector = function(selector) {
     }
 
     if (!currentContext[0]){
-    	return;
+        return;
     }
 
     // If we get here, token is JUST an element (not a class or ID selector)
