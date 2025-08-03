@@ -156,8 +156,8 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
   public List<Context> findContexts() {
     List<Context> results = new ArrayList<>();
     for (Container child : host.findChildren()) {
-      if (child instanceof Context context) {
-        results.add(context);
+      if (child instanceof Context) {
+        results.add((Context) child);
       }
     }
     return results;
@@ -321,7 +321,8 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
 
   @Override
   public void discardWorkDir(Context context) {
-    if (context instanceof StandardContext standardContext) {
+    if (context instanceof StandardContext) {
+      StandardContext standardContext = (StandardContext) context;
       String path = standardContext.getWorkPath();
       logger.info("Discarding '{}'", path);
       Utils.delete(Path.of(path, "org").toFile());
