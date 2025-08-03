@@ -59,7 +59,7 @@
                         <a class="imglink"
                                 onclick="return confirm('${confirmMessage}')"
                                 href="<c:url value='/adm/kill.htm'><c:param name='thread' value='${th.name}'/></c:url>">
-                            <img class="lnk" src="${pageContext.request.contextPath}<spring:theme code='delete.png'/>"
+                            <img class="lnk" src="${pageContext.request.contextPath}/css/classic/gifs/silk/control_eject_blue.png"
                                     alt="<spring:message code='probe.jsp.threads.stop.alt'/>"/>
                         </a>
                     </display:column>

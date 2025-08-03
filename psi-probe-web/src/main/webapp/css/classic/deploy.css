@@ -9,63 +9,63 @@
  * PURPOSE.
  */
 div.deploy {
-	padding: 10px 10px 10px 10px;
-	margin: 0 0 10px 0;
-	border: 1px solid #ccc;
-	vertical-align: middle;
-	min-width: 700px;
+    padding: 10px 10px 10px 10px;
+    margin: 0 0 10px 0;
+    border: 1px solid #ccc;
+    vertical-align: middle;
+    min-width: 700px;
 }
 
 div.deploy div.deployDescription {
-	padding: 5px 50px 15px 0;
+    padding: 5px 50px 15px 0;
 }
 
 div.deploy .deployLabel {
-	border: 1px dashed white;
-	padding: 0 5px 0 5px;
-	background: #06c;
-	color: white;
-	font-weight: bold;
+    border: 1px dashed white;
+    padding: 0 5px 0 5px;
+    background: #06c;
+    color: white;
+    font-weight: bold;
 
 }
 
 div.deploy .submit {
-	text-align: right;
-	padding-top: 15px;
-	padding-right: 30px;
+    text-align: right;
+    padding-top: 15px;
+    padding-right: 30px;
 }
 
 div.deploy .submit input.b {
-	font-size: 90%;
-	font-weight: bold;
-	padding: 2px 4px 2px 4px;
-	border: 1px solid #06c;
-	background-color: #c2e3ff;
-	color: #007ce6;
+    font-size: 90%;
+    font-weight: bold;
+    padding: 2px 4px 2px 4px;
+    border: 1px solid #06c;
+    background-color: #c2e3ff;
+    color: #007ce6;
 }
 
 div#deployScenario1 {
-	background-color: #ebf8ff;
-	margin-bottom: 10px;
+    background-color: #ebf8ff;
+    margin-bottom: 10px;
 }
 
 div#deployScenario3 {
-	background-color: #ebf8ff;
-	margin-bottom: 10px;
+    background-color: #ebf8ff;
+    margin-bottom: 10px;
 }
 
 .cb input {
-	margin-left: 0;
+    margin-left: 0;
 }
 
 em {
-	color: #cc0000;
-	font-weight: bold;
-	font-style: normal;
+    color: #cc0000;
+    font-weight: bold;
+    font-style: normal;
 }
 
 .deploy dl dd {
-	margin: 0;
-	padding: 0 0 1em 0;
-	line-height: 1.5em;
+    margin: 0;
+    padding: 0 0 1em 0;
+    line-height: 1.5em;
 }

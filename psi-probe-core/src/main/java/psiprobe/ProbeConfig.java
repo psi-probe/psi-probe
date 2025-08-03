@@ -33,7 +33,6 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.HandlerMapping;
 import org.springframework.web.servlet.LocaleResolver;
-import org.springframework.web.servlet.ThemeResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -41,7 +40,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
-import org.springframework.web.servlet.theme.FixedThemeResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
@@ -300,19 +298,6 @@ public class ProbeConfig implements WebMvcConfigurer {
   }
 
   /**
-   * Gets the fixed theme resolver.
-   *
-   * @return the fixed theme resolver
-   */
-  @Bean(name = "themeResolver")
-  public ThemeResolver getThemeResolver() {
-    logger.debug("Instantiated fixedThemeResolver");
-    FixedThemeResolver resolver = new FixedThemeResolver();
-    resolver.setDefaultThemeName("theme-classic");
-    return resolver;
-  }
-
-  /**
    * Gets the reloadable resource bundle message source.
    *
    * @return the reloadable resource bundle message source
@@ -353,7 +338,7 @@ public class ProbeConfig implements WebMvcConfigurer {
   public HandlerMapping getHandlerMapping(@Autowired LocaleChangeInterceptor interceptor) {
     logger.debug("Instantiated beanNameUrlHandlerMapping");
     BeanNameUrlHandlerMapping mapping = new BeanNameUrlHandlerMapping();
-    mapping.setAlwaysUseFullPath(true);
+    mapping.getUrlPathHelper().setAlwaysUseFullPath(true);
     mapping.setInterceptors(interceptor);
     return mapping;
   }

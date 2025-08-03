@@ -19,7 +19,7 @@
     <head>
         <title><spring:message code="probe.jsp.title.deployment"/></title>
         <script src="<c:url value='/js/prototype.js'/>"></script>
-        <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='deploy.css'/>"/>
+        <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/classic/deploy.css"/>
     </head>
 
     <body>
@@ -97,8 +97,8 @@
 
                 <form action="<c:url value='/adm/deploycontext.htm'/>" method="get">
                     <dl>
-                        <dt><label for="context2"><spring:message code="probe.jsp.deployment.s2.context.label"/></label> <em>*</em></dt>
-                        <dd><input id="context2" type="text" name="context" size="90"/></dd>
+                        <dt><label for="context"><spring:message code="probe.jsp.deployment.s2.context.label"/></label> <em>*</em></dt>
+                        <dd><input id="context" type="text" name="context" size="90"/></dd>
 
                         <dd class="submit">
                             <input class="b" type="submit" value="<spring:message code='probe.jsp.deployment.s1.submit'/>"/>
@@ -114,11 +114,10 @@
 
                 <form action="<c:url value='/adm/deployfile.htm'/>" method="post" enctype="multipart/form-data">
                     <dl>
-                        <dt><label for="file1"><spring:message code="probe.jsp.deployment.s3.file.label"/> <em>*</em></label></dt>
-                        <dd><input id="file1" type="file" name="file1" size="90"/></dd>
+                        <dt><label for="file"><spring:message code="probe.jsp.deployment.s3.file.label"/> <em>*</em></label></dt>
+                        <dd><input id="file" type="file" name="file" size="90"/></dd>
                         <dt><label for="context"><spring:message code="probe.jsp.deployment.s3.context.label"/>&#160;</label></dt>
                         <dd>
-                            <!--input id="context" type="text" name="context" size="90"/-->
                             <select id="context" name="context" style="width: 90px">
                                 <c:forEach var="app" items="${apps}">
                                     <option value="${app.value}">${app.label}</option>

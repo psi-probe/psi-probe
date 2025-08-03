@@ -96,7 +96,7 @@ public final class ApplicationUtils {
     logger.debug("Querying webapp: {}", context.getName());
 
     Application app = new Application();
-    app.setName(context.getName().length() > 0 ? context.getName() : "/");
+    app.setName(!context.getName().isEmpty() ? context.getName() : "/");
     app.setDocBase(context.getDocBase());
     app.setDisplayName(context.getDisplayName());
 
@@ -394,7 +394,7 @@ public final class ApplicationUtils {
    */
   private static ServletInfo getServletInfo(Wrapper wrapper, String contextName) {
     ServletInfo si = new ServletInfo();
-    si.setApplicationName(contextName.length() > 0 ? contextName : "/");
+    si.setApplicationName(!contextName.isEmpty() ? contextName : "/");
     si.setServletName(wrapper.getName());
     si.setServletClass(wrapper.getServletClass());
     si.setAvailable(!wrapper.isUnavailable());
@@ -480,7 +480,7 @@ public final class ApplicationUtils {
         String sn = context.findServletMapping(servletMapping);
         if (sn != null) {
           ServletMapping sm = new ServletMapping();
-          sm.setApplicationName(context.getName().length() > 0 ? context.getName() : "/");
+          sm.setApplicationName(!context.getName().isEmpty() ? context.getName() : "/");
           sm.setUrl(servletMapping);
           sm.setServletName(sn);
           Container container = context.findChild(sn);

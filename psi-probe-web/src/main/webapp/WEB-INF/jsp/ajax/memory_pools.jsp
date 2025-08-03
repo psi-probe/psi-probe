@@ -21,10 +21,10 @@
     <display:column title="&#160;" style="width:16px;" class="leftMostIcon">
         <c:choose>
             <c:when test="${pool.type == 'HEAP'}">
-                <img src="${pageContext.request.contextPath}<spring:theme code='heap_pool.png'/>" alt=""/>
+                <img src="${pageContext.request.contextPath}/css/classic/gifs/silk/package_green.png" alt=""/>
             </c:when>
             <c:otherwise>
-                <img src="${pageContext.request.contextPath}<spring:theme code='non_heap_pool.png'/>" alt=""/>
+                <img src="${pageContext.request.contextPath}/css/classic/gifs/silk/brick.png" alt=""/>
             </c:otherwise>
         </c:choose>
     </display:column>
@@ -62,7 +62,7 @@
                 onclick="return togglePanel('${pool.id}', '${poolUrl}')"
                 class="clickable"
                 style="${style_on}"
-                src="${pageContext.request.contextPath}<spring:theme code='memory_chart_visible.png'/>"
+                src="${pageContext.request.contextPath}/css/classic/gifs/silk/bricks.png"
                 alt=""
                 border="0"/>
 
@@ -70,7 +70,7 @@
                 onclick="return togglePanel('${pool.id}', '${poolUrl}')"
                 class="clickable"
                 style="${style_off}"
-                src="${pageContext.request.contextPath}<spring:theme code='memory_chart_hidden.png'/>"
+                src="${pageContext.request.contextPath}/css/classic/gifs/silk/custom/bricks_grey.gif"
                 alt=""
                 border="0"/>
     </display:column>

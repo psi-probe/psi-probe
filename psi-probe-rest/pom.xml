@@ -18,12 +18,12 @@
     <parent>
         <groupId>com.github.psi-probe</groupId>
         <artifactId>psi-probe</artifactId>
-        <version>4.4.1-SNAPSHOT</version>
+        <version>4.5.1-SNAPSHOT</version>
     </parent>
 
     <groupId>com.github.psi-probe</groupId>
     <artifactId>psi-probe-rest</artifactId>
-    <version>4.4.1-SNAPSHOT</version>
+    <version>4.5.1-SNAPSHOT</version>
 
     <name>psi-probe-rest</name>
     <description>PSI Probe Rest - RESTful service endpoints.</description>
@@ -36,20 +36,33 @@
         <url>https://github.com/psi-probe/psi-probe/</url>
     </scm>
 
+    <properties>
+        <!-- Jacoco minimum code coverage -->
+        <jacoco.minimum.coverage>1.00</jacoco.minimum.coverage>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.hateoas</groupId>
             <artifactId>spring-hateoas</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.jayway.jsonpath</groupId>
             <artifactId>json-path</artifactId>
             <version>2.9.0</version>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>net.minidev</groupId>
             <artifactId>json-smart</artifactId>
             <version>2.6.0</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 </project>

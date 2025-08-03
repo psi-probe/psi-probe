@@ -38,6 +38,9 @@
 
     <properties>
         <tomcat.version>11.0.9</tomcat.version>
+
+        <!-- Jacoco minimum code coverage -->
+        <jacoco.minimum.coverage>0.97</jacoco.minimum.coverage>
     </properties>
 
     <dependencies>

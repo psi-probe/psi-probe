@@ -22,6 +22,7 @@
         <title><spring:message htmlEscape="true" code="probe.jsp.title.jsps" arguments="${param.webapp}"/></title>
         <script src="<c:url value='/js/prototype.js'/>"></script>
         <script src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
+        <script src="<c:url value='/js/func.js'/>"></script>
     </head>
 
     <c:set var="navTabApps" value="active" scope="request"/>

@@ -113,7 +113,7 @@ public class ListSessionsController extends AbstractContextHandlerController {
               ApplicationUtils.getApplicationSession(session, calcSize, searchInfo.isUseAttr());
           if (appSession != null && matchSession(appSession, searchInfo)) {
             if (ctx.getName() != null) {
-              appSession.setApplicationName(ctx.getName().length() > 0 ? ctx.getName() : "/");
+              appSession.setApplicationName(!ctx.getName().isEmpty() ? ctx.getName() : "/");
             }
             sessionList.add(appSession);
           }

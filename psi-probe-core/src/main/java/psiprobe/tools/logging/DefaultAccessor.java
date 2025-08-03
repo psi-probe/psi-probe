@@ -12,7 +12,7 @@ package psiprobe.tools.logging;
 
 import java.lang.reflect.InvocationTargetException;
 
-import org.apache.commons.beanutils.PropertyUtils;
+import org.apache.commons.beanutils2.PropertyUtils;
 import org.apache.commons.lang3.reflect.FieldUtils;
 import org.apache.commons.lang3.reflect.MethodUtils;
 import org.slf4j.Logger;
@@ -127,7 +127,7 @@ public class DefaultAccessor {
    *
    * @return the object
    */
-  protected Object invokeMethod(Object object, String name, Object param, Object defaultValue) {
+  public Object invokeMethod(Object object, String name, Object param, Object defaultValue) {
     try {
       if (param == null) {
         return MethodUtils.invokeMethod(object, name);

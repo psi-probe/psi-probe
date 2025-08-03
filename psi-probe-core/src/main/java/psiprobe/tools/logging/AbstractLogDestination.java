@@ -44,7 +44,7 @@ public abstract class AbstractLogDestination extends DefaultAccessor implements 
    *
    * @return the stdout file
    */
-  protected File getStdoutFile() {
+  public File getStdoutFile() {
     File file = Path.of(System.getProperty("catalina.base"), "logs/catalina.out").toFile();
     return file.exists() ? file : Path.of("stdout").toFile();
   }

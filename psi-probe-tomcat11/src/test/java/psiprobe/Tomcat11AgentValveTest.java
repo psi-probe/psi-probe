@@ -71,4 +71,24 @@ class Tomcat11AgentValveTest {
     Mockito.verify(session, Mockito.times(2)).setAttribute(Mockito.anyString(), Mockito.any());
   }
 
+  /**
+   * Invoke with null session.
+   *
+   * @throws IOException Signals that an I/O exception has occurred.
+   * @throws ServletException the servlet exception
+   */
+  @Test
+  void invokeWithNullSession() throws IOException, ServletException {
+    Mockito.when(request.getSession(Mockito.anyBoolean())).thenReturn(null);
+
+    valve = new Tomcat11AgentValve();
+    valve.setNext(valveMock);
+
+    // Should not throw even if session is null
+    valve.invoke(request, response);
+
+    // No session attribute should be set
+    Mockito.verify(session, Mockito.never()).setAttribute(Mockito.anyString(), Mockito.any());
+  }
+
 }

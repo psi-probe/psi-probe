@@ -115,7 +115,7 @@
                                         <c:param name="attr" value="${attribute.name}"/>
                                     </c:url>
                                     <a href="${rmsattr_url}" class="imglink">
-                                        <img class="lnk" src="${pageContext.request.contextPath}<spring:theme code='remove.img'/>"
+                                        <img class="lnk" src="${pageContext.request.contextPath}/css/classic/img/bin.jpg"
                                                 alt="<spring:message code='probe.jsp.sessionAttibutes.col.delete'/>"
                                                 title="<spring:message code='probe.jsp.sessionAttibutes.col.delete.title'/>"/>
                                     </a>

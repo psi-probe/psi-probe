@@ -89,6 +89,8 @@ public class ProbeSecurityConfig {
    *
    * @return the security context persistence filter
    */
+  // NOTE While deprecated, tomcat 9 does not use listener in same way to work, stay with this for
+  // tomcat 9
   @Bean(name = "securityContextPersistenceFilter")
   public SecurityContextPersistenceFilter getSecurityContextPersistenceFilter() {
     return new SecurityContextPersistenceFilter();

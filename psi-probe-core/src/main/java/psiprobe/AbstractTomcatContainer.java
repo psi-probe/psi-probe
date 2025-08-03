@@ -118,11 +118,11 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
 
   @Override
   public File getAppBase() {
-    File base = Path.of(host.getAppBase()).toFile();
+    Path base = Path.of(host.getAppBase());
     if (!base.isAbsolute()) {
-      base = Path.of(System.getProperty("catalina.base"), host.getAppBase()).toFile();
+      base = Path.of(System.getProperty("catalina.base"), host.getAppBase());
     }
-    return base;
+    return base.toFile();
   }
 
   @Override
@@ -135,11 +135,11 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
       }
       thisContainer = thisContainer.getParent();
     }
-    File configBase = Path.of(System.getProperty("catalina.base"), "conf").toFile();
+    Path configBase = Path.of(System.getProperty("catalina.base"), "conf");
     if (baseHost != null) {
-      configBase = Path.of(configBase.getPath(), baseHost.getName()).toFile();
+      configBase = configBase.resolve(baseHost.getName());
     }
-    return configBase.getAbsolutePath();
+    return configBase.toFile().getAbsolutePath();
   }
 
   @Override
@@ -201,20 +201,24 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
       try {
         stop(name);
       } catch (Exception e) {
-        logger.info("Stopping '{}' threw this exception:", name, e);
+        if (name.matches("\\w*")) {
+          logger.info("Stopping '{}' threw this exception:", name, e);
+        } else {
+          logger.info("Stopping and threw this exception:", e);
+        }
       }
 
-      File appDir;
-      File docBase = Path.of(ctx.getDocBase()).toFile();
+      Path appDir;
+      Path docBase = Path.of(ctx.getDocBase());
 
       if (!docBase.isAbsolute()) {
-        appDir = Path.of(getAppBase().getPath(), ctx.getDocBase()).toFile();
+        appDir = Path.of(getAppBase().getPath(), ctx.getDocBase());
       } else {
         appDir = docBase;
       }
 
-      logger.debug("Deleting '{}'", appDir.getAbsolutePath());
-      Utils.delete(appDir);
+      logger.debug("Deleting '{}'", appDir.toFile().getAbsolutePath());
+      Utils.delete(appDir.toFile());
 
       String warFilename = formatContextFilename(name);
       File warFile = Path.of(getAppBase().getPath(), warFilename + ".war").toFile();
@@ -299,13 +303,20 @@ public abstract class AbstractTomcatContainer implements TomcatContainer {
     if (contextName == null) {
       return null;
     }
-    if (contextName.isEmpty()) {
+    String result = contextName.trim();
+    if (result.startsWith("/")) {
+      result = result.substring(1);
+    }
+    if (result.isEmpty()) {
       return "ROOT";
     }
-    if (contextName.startsWith("/")) {
-      return contextName.substring(1);
+    // For a context with one or more sub-paths, replace all "/" with "#"
+    result = result.replace('/', '#');
+    // For ROOT Parallel Usage, prepend "ROOT"
+    if (result.startsWith("##")) {
+      result = "ROOT" + result;
     }
-    return contextName;
+    return result;
   }
 
   @Override

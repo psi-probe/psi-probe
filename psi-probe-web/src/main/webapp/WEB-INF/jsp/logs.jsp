@@ -130,10 +130,10 @@
                             </c:if>
                         </c:url>
                         <a class="imglink" href="${downloadUrl}"><img
-                                class="lnk" src="${pageContext.request.contextPath}<spring:theme code='download.png'/>"
+                                class="lnk" src="${pageContext.request.contextPath}/css/classic/gifs/silk/page_white_put.png"
                                 alt="<spring:message code='probe.jsp.logs.download.alt'/>"/></a>
                         <a class="imglink" title="download compressed" href="${downloadUrl}&compressed=true"><img
-                                class="lnk" src="${pageContext.request.contextPath}<spring:theme code='download_compressed.png'/>"
+                                class="lnk" src="${pageContext.request.contextPath}/css/classic/gifs/silk/page_white_compressed.png"
                                 alt="<spring:message code='probe.jsp.logs.download.alt'/>"/></a>
                     </c:if>
                 </display:column>

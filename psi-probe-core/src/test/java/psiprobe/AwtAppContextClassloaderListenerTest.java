@@ -13,28 +13,29 @@ package psiprobe;
 import javax.imageio.ImageIO;
 import javax.servlet.ServletContextEvent;
 
-import mockit.Expectations;
-import mockit.Mocked;
-import mockit.Tested;
-import mockit.Verifications;
-
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 /**
  * The Class AwtAppContextClassloaderListenerTest.
  */
+@ExtendWith(MockitoExtension.class)
 class AwtAppContextClassloaderListenerTest {
 
   /** The listener. */
-  @Tested
+  @InjectMocks
   AwtAppContextClassloaderListener listener;
 
   /** The event. */
-  @Mocked
+  @Mock
   ServletContextEvent event;
 
   /** The image IO. */
-  @Mocked
+  @Mock
   ImageIO imageIO;
 
   /**
@@ -42,14 +43,10 @@ class AwtAppContextClassloaderListenerTest {
    */
   @Test
   void contextInitializedTest() {
-    listener.contextInitialized(event);
-
-    new Verifications() {
-      {
-        ImageIO.getCacheDirectory();
-        times = 1;
-      }
-    };
+    try (var mocked = Mockito.mockStatic(ImageIO.class)) {
+      listener.contextInitialized(event);
+      mocked.verify(() -> ImageIO.getCacheDirectory(), Mockito.times(1));
+    }
   }
 
   /**
@@ -57,14 +54,10 @@ class AwtAppContextClassloaderListenerTest {
    */
   @Test
   void contextInitializedErrorTest() {
-    new Expectations() {
-      {
-        ImageIO.getCacheDirectory();
-        result = new Exception();
-      }
-    };
-
-    listener.contextInitialized(event);
+    try (var mocked = Mockito.mockStatic(ImageIO.class)) {
+      mocked.when(ImageIO::getCacheDirectory).thenThrow(new RuntimeException());
+      listener.contextInitialized(event);
+    }
   }
 
   /**

@@ -9,31 +9,31 @@
  * PURPOSE.
  */
 #resultsTable {
-	width: 99%;
-	table-layout: fixed;
-	clear: left;
+    width: 99%;
+    table-layout: fixed;
+    clear: left;
 }
 
 .scroller {
-	width: 15px;
-	cursor: pointer;
-	border: 1px solid #ccc;
+    width: 15px;
+    cursor: pointer;
+    border: 1px solid #ccc;
 }
 
 #right_scroller {
-	background: #eee url("gifs/scroll_arrow_right.gif") repeat-y;
+    background: #eee url("gifs/scroll_arrow_right.gif") repeat-y;
 }
 
 #left_scroller {
-	background: #eee url("gifs/scroll_arrow_left.gif") repeat-y;
-	margin-left: 5px;
+    background: #eee url("gifs/scroll_arrow_left.gif") repeat-y;
+    margin-left: 5px;
 }
 
 .scroller:hover {
-	background-color: #000;
+    background-color: #000;
 }
 
 .scrollable_content {
-	overflow: hidden;
-	width: 99%;
+    overflow: hidden;
+    width: 99%;
 }

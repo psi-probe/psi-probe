@@ -30,7 +30,7 @@
                 </c:otherwise>
             </c:choose>
         </title>
-        <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='servlets.css'/>"/>
+        <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/classic/servlets.css"/>
         <script src="<c:url value='/js/prototype.js'/>"></script>
     </head>
 
