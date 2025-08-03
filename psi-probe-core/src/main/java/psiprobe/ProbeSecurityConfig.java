@@ -46,9 +46,7 @@ import org.springframework.security.web.authentication.preauth.PreAuthenticatedG
 import org.springframework.security.web.authentication.preauth.j2ee.J2eeBasedPreAuthenticatedWebAuthenticationDetailsSource;
 import org.springframework.security.web.authentication.preauth.j2ee.J2eePreAuthenticatedProcessingFilter;
 import org.springframework.security.web.authentication.preauth.j2ee.WebXmlMappableAttributesRetriever;
-import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
-import org.springframework.security.web.context.SecurityContextHolderFilter;
-import org.springframework.security.web.context.SecurityContextRepository;
+import org.springframework.security.web.context.SecurityContextPersistenceFilter;
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -69,9 +67,8 @@ public class ProbeSecurityConfig {
   @Bean(name = "filterChainProxy")
   public FilterChainProxy getFilterChainProxy() {
     SecurityFilterChain chain = new DefaultSecurityFilterChain(new AntPathRequestMatcher("/**"),
-        securityContextHolderFilter(securityContextRepository()),
-        getJ2eePreAuthenticatedProcessingFilter(), getLogoutFilter(),
-        getExceptionTranslationFilter(), getFilterSecurityInterceptor());
+        getSecurityContextPersistenceFilter(), getJ2eePreAuthenticatedProcessingFilter(),
+        getLogoutFilter(), getExceptionTranslationFilter(), getFilterSecurityInterceptor());
     return new FilterChainProxy(chain);
   }
 
@@ -87,27 +84,15 @@ public class ProbeSecurityConfig {
     return new ProviderManager(providers);
   }
 
-
   /**
-   * Security context holder filter.
+   * Gets the security context persistence filter.
    *
-   * @param repository the repository
-   * @return the security context holder filter
+   * @return the security context persistence filter
    */
-  @Bean
-  public SecurityContextHolderFilter securityContextHolderFilter(
-      SecurityContextRepository repository) {
-    return new SecurityContextHolderFilter(repository);
-  }
-
-  /**
-   * Security context repository.
-   *
-   * @return the security context repository
-   */
-  @Bean
-  public SecurityContextRepository securityContextRepository() {
-    return new HttpSessionSecurityContextRepository();
+  // NOTE While deprecated, tomcat 9 does not use listener in same way to work, stay with this for tomcat 9
+  @Bean(name = "securityContextPersistenceFilter")
+  public SecurityContextPersistenceFilter getSecurityContextPersistenceFilter() {
+    return new SecurityContextPersistenceFilter();
   }
 
   /**
