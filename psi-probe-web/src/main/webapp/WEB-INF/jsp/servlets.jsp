@@ -11,7 +11,7 @@
 
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" session="false" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 <%-- Displays a list of servlets of a particular web application or all web applications --%>
@@ -30,7 +30,7 @@
                 </c:otherwise>
             </c:choose>
         </title>
-        <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='servlets.css'/>"/>
+        <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/classic/servlets.css"/>
         <script src="<c:url value='/js/prototype.js'/>"></script>
     </head>
 

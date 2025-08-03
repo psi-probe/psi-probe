@@ -11,8 +11,8 @@
 
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" session="false" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
+<%@ taglib uri="jakarta.tags.functions" prefix="fn" %>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="https://github.com/psi-probe/psi-probe/jsp/tags" prefix="probe" %>
@@ -152,15 +152,15 @@
 
                 <div class="connectorChartHeader">
                     <span class="headerTitle" onclick="togglePanel('chartdata-${probe:escapeHtml(protocolHandler)}', '${remember_url}')">
-                        <img class="lnk" src="${pageContext.request.contextPath}<spring:theme code='section.collapse.img'/>" alt="collapse" id="visible_chartdata-${probe:escapeHtml(protocolHandler)}" style="${style_collapse}"/>
-                        <img class="lnk" src="${pageContext.request.contextPath}<spring:theme code='section.expand.img'/>" alt="expand" id="invisible_chartdata-${probe:escapeHtml(protocolHandler)}" style="${style_expand}"/>
+                        <img class="lnk" src="${pageContext.request.contextPath}/css/classic/gifs/icon_minus.gif" alt="collapse" id="visible_chartdata-${probe:escapeHtml(protocolHandler)}" style="${style_collapse}"/>
+                        <img class="lnk" src="${pageContext.request.contextPath}/css/classic/gifs/icon_plus.gif" alt="expand" id="invisible_chartdata-${probe:escapeHtml(protocolHandler)}" style="${style_expand}"/>
                         ${protocolHandler}
                     </span>
                     --- ${connector.status}
 
                     <span class="actions">
                         <a href="${reset_url}">
-                            <img border="0" src="${pageContext.request.contextPath}<spring:theme code='reset.gif'/>" alt="reset"/>
+                            <img border="0" src="${pageContext.request.contextPath}/css/classic/gifs/reset.gif" alt="reset"/>
                         </a>
                     </span>
 
@@ -334,7 +334,7 @@
                                                                 href="<c:url value='/adm/kill.htm'>
                                                                 <c:param name='thread' value='${rp.workerThreadName}'/>
                                                                 </c:url>">
-                                                            <img class="lnk" src="${pageContext.request.contextPath}<spring:theme code='delete.png'/>"
+                                                            <img class="lnk" src="${pageContext.request.contextPath}/css/classic/gifs/silk/control_eject_blue.png"
                                                                     alt="<spring:message code='probe.jsp.threads.stop.alt'/>"/>
                                                         </a>
                                                     </c:when>

@@ -77,7 +77,7 @@ public class ResetDataSourceController extends AbstractContextHandlerController 
       redirectUrl = request.getContextPath() + getViewName();
     }
 
-    if (resourceName != null && resourceName.length() > 0) {
+    if (resourceName != null && !resourceName.isEmpty()) {
       boolean reset = false;
       try {
         reset = getContainerWrapper().getResourceResolver().resetResource(context, resourceName,

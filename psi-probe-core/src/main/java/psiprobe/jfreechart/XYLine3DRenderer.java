@@ -245,15 +245,31 @@ public class XYLine3DRenderer extends XYLineAndShapeRenderer implements Effect3D
     if (obj == this) {
       return true;
     }
-    if (!(obj instanceof XYLine3DRenderer)) {
+    if (!(obj instanceof XYLine3DRenderer that)) {
       return false;
     }
-    XYLine3DRenderer that = (XYLine3DRenderer) obj;
     if (this.xOffset != that.xOffset || this.yOffset != that.yOffset
         || !PaintUtils.equal(this.wallPaint, that.wallPaint)) {
       return false;
     }
     return super.equals(obj);
+  }
+
+  /**
+   * Hash code.
+   *
+   * @return the int
+   */
+  @Override
+  public int hashCode() {
+    int result = super.hashCode();
+    long temp;
+    temp = Double.doubleToLongBits(xOffset);
+    result = 31 * result + (int) (temp ^ (temp >>> 32));
+    temp = Double.doubleToLongBits(yOffset);
+    result = 31 * result + (int) (temp ^ (temp >>> 32));
+    result = 31 * result + (wallPaint != null ? wallPaint.hashCode() : 0);
+    return result;
   }
 
   /**

@@ -11,7 +11,7 @@
 
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" session="false" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@ taglib uri="https://github.com/psi-probe/psi-probe/jsp/tags" prefix="probe" %>
@@ -22,6 +22,7 @@
         <title><spring:message htmlEscape="true" code="probe.jsp.title.jsps" arguments="${param.webapp}"/></title>
         <script src="<c:url value='/js/prototype.js'/>"></script>
         <script src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
+        <script src="<c:url value='/js/func.js'/>"></script>
     </head>
 
     <c:set var="navTabApps" value="active" scope="request"/>

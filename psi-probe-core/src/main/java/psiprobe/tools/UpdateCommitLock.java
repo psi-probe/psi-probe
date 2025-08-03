@@ -17,7 +17,6 @@ package psiprobe.tools;
  *
  * <p>
  * Commits themselves are not synchronized. It is allowed for two commits to run concurrently.
- * </p>
  */
 public class UpdateCommitLock {
 

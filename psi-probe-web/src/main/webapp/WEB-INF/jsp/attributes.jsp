@@ -11,7 +11,7 @@
 
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" session="false" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@ taglib uri="https://github.com/psi-probe/psi-probe/jsp/tags" prefix="probe" %>
@@ -115,7 +115,7 @@
                                         <c:param name="attr" value="${attribute.name}"/>
                                     </c:url>
                                     <a href="${rmsattr_url}" class="imglink">
-                                        <img class="lnk" src="${pageContext.request.contextPath}<spring:theme code='remove.img'/>"
+                                        <img class="lnk" src="${pageContext.request.contextPath}/css/classic/img/bin.jpg"
                                                 alt="<spring:message code='probe.jsp.sessionAttibutes.col.delete'/>"
                                                 title="<spring:message code='probe.jsp.sessionAttibutes.col.delete.title'/>"/>
                                     </a>

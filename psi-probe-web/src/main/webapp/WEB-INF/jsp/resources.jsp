@@ -11,7 +11,7 @@
 
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" session="false" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@ taglib uri="https://github.com/psi-probe/psi-probe/jsp/tags" prefix="probe" %>
@@ -22,7 +22,7 @@
     <head>
         <title><spring:message htmlEscape="true" code="probe.jsp.title.resources" arguments="${param.webapp}"/></title>
         <script src="<c:url value='/js/prototype.js'/>"></script>
-        <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='resources.css'/>"/>
+        <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/classic/resources.css"/>
     </head>
 
     <body>
@@ -64,7 +64,7 @@
                                             <b>&#160;
                                                 <a href="<c:url value='/app/resetds.htm'><c:param name='webapp' value='${resource.applicationName}' /><c:param name='resource' value='${resource.name}' /></c:url>">
                                                     <img border="0"
-                                                            src="${pageContext.request.contextPath}<spring:theme code='reset.gif'/>"
+                                                            src="${pageContext.request.contextPath}/css/classic/gifs/reset.gif"
                                                             alt="<spring:message code='probe.jsp.resources.info.reset.alt'/>"/>
                                                 </a>
                                             </b>
@@ -79,7 +79,7 @@
                                 </c:when>
                                 <c:when test="${!resource.lookedUp}">
                                     <div class="dbConnMisconfigured">
-                                        <img src="${pageContext.request.contextPath}<spring:theme code='exclamation.gif'/>"
+                                        <img src="${pageContext.request.contextPath}/css/classic/img/exclamation.gif"
                                                 alt="<spring:message code='probe.jsp.resources.info.misconfigured.alt'/>"/>
                                         <spring:message code="probe.jsp.resources.info.misconfigured"/>
                                     </div>

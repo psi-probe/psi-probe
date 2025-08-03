@@ -170,7 +170,7 @@ public class Tokenizer {
       if (symbolIndex != -1) {
         // we have found a symbol
         TokenizerToken workToken =
-            token.type == Tokenizer.TT_TOKEN && token.text.length() > 0 ? upcomingToken : token;
+            token.type == Tokenizer.TT_TOKEN && !token.text.isEmpty() ? upcomingToken : token;
         TokenizerSymbol symbol = symbols.get(symbolIndex);
         boolean hideSymbol = symbol.hidden;
 
@@ -197,7 +197,7 @@ public class Tokenizer {
           workToken.type = Tokenizer.TT_BLOCK;
         }
 
-        if (token.text.length() > 0) {
+        if (!token.text.isEmpty()) {
           break;
         }
       } else {

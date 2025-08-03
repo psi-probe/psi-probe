@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.locks.ReentrantLock;
 
 import javax.inject.Inject;
 import javax.naming.NamingException;
@@ -43,7 +44,7 @@ public class ContainerWrapperBean {
   private volatile TomcatContainer tomcatContainer;
 
   /** The lock. */
-  private final Object lock = new Object();
+  private final ReentrantLock lock = new ReentrantLock();
 
   /** List of class names to adapt particular Tomcat implementation to TomcatContainer interface. */
   @Inject
@@ -89,8 +90,8 @@ public class ContainerWrapperBean {
   public void setWrapper(Wrapper wrapper) {
     if (tomcatContainer == null) {
 
-      synchronized (lock) {
-
+      lock.lock();
+      try {
         if (tomcatContainer == null) {
 
           String serverInfo = ServerInfo.getServerInfo();
@@ -99,8 +100,8 @@ public class ContainerWrapperBean {
             try {
               Object obj = Class.forName(className).getDeclaredConstructor().newInstance();
               logger.debug("Testing container adapter: {}", className);
-              if (obj instanceof TomcatContainer) {
-                if (forceFirstAdapter || ((TomcatContainer) obj).canBoundTo(serverInfo)) {
+              if (obj instanceof TomcatContainer container) {
+                if (forceFirstAdapter || container.canBoundTo(serverInfo)) {
                   logger.info("Using {}", className);
                   tomcatContainer = (TomcatContainer) obj;
                   tomcatContainer.setWrapper(wrapper);
@@ -121,6 +122,8 @@ public class ContainerWrapperBean {
             logger.error("No suitable container adapter found!");
           }
         }
+      } finally {
+        lock.unlock();
       }
     }
 

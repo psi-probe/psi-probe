@@ -142,22 +142,25 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <!-- Reproducible Builds -->
-        <project.build.outputTimestamp>1747599393</project.build.outputTimestamp>
+        <project.build.outputTimestamp>1754182788</project.build.outputTimestamp>
 
         <!-- Checkstyle -->
         <checkstyle.configLocation>checkstyle.xml</checkstyle.configLocation>
 
         <!-- Surefire Settings -->
-        <argLine>-javaagent:${settings.localRepository}/com/github/hazendaz/jmockit/jmockit/${jmockit.version}/jmockit-${jmockit.version}.jar -javaagent:${settings.localRepository}/net/bytebuddy/byte-buddy-agent/${byte-buddy.version}/byte-buddy-agent-${byte-buddy.version}.jar</argLine>
+        <argLine>-javaagent:${settings.localRepository}/net/bytebuddy/byte-buddy-agent/${byte-buddy.version}/byte-buddy-agent-${byte-buddy.version}.jar</argLine>
+
+        <!-- Jacoco minimum code coverage -->
+        <jacoco.minimum.coverage>1.00</jacoco.minimum.coverage>
 
         <!-- Dependency Versions -->
         <activation.version>1.2.2</activation.version>
         <assertj.version>3.27.3</assertj.version>
-        <beanutils.version>1.11.0</beanutils.version>
+        <beanutils.version>2.0.0-M2</beanutils.version>
         <byte-buddy.version>1.17.6</byte-buddy.version>
         <c3p0.version>0.11.2</c3p0.version>
         <checker.version>3.49.5</checker.version>
-        <collections.version>3.2.2</collections.version>
+        <collections.version>4.5.0</collections.version>
         <dbcp2.version>2.13.0</dbcp2.version>
         <displaytag.version>2.8.0</displaytag.version>
         <el-api.version>3.0.3</el-api.version>
@@ -173,7 +176,6 @@
         <javabean-tester.version>2.10.0</javabean-tester.version>
         <jfreechart.version>1.5.6</jfreechart.version>
         <jhighlight.version>1.1.0</jhighlight.version>
-        <jmockit.version>1.56.0</jmockit.version>
         <jna.version>5.17.0</jna.version>
         <jsp-api.version>2.3.6</jsp-api.version>
         <jstl-api.version>1.2.7</jstl-api.version>
@@ -181,6 +183,7 @@
         <junit.version>5.13.4</junit.version>
         <lang3.version>3.18.0</lang3.version>
         <logback.version>1.5.18</logback.version>
+        <logging.version>1.3.5</logging.version>
         <mail.version>1.6.8</mail.version>
         <mchange.version>0.3.2</mchange.version>
         <mockito.version>5.18.0</mockito.version>
@@ -296,11 +299,6 @@
                 <version>${byte-buddy.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.hazendaz.jmockit</groupId>
-                <artifactId>jmockit</artifactId>
-                <version>${jmockit.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-bom</artifactId>
                 <version>${mockito.version}</version>
@@ -385,7 +383,7 @@
             </dependency>
             <dependency>
                 <groupId>com.oracle.database.jdbc</groupId>
-                <artifactId>ojdbc8</artifactId>
+                <artifactId>ojdbc10</artifactId>
                 <version>${ojdbc.version}</version>
             </dependency>
             <dependency>
@@ -402,12 +400,6 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-dbcp2</artifactId>
                 <version>${dbcp2.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>commons-logging</groupId>
-                        <artifactId>commons-logging</artifactId>
-                    </exclusion>
-                </exclusions>
             </dependency>
             <dependency>
                 <groupId>org.apache.tomcat</groupId>
@@ -471,19 +463,13 @@
 
             <!-- Commons -->
             <dependency>
-                <groupId>commons-beanutils</groupId>
-                <artifactId>commons-beanutils</artifactId>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-beanutils2</artifactId>
                 <version>${beanutils.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>commons-logging</groupId>
-                        <artifactId>commons-logging</artifactId>
-                    </exclusion>
-                </exclusions>
             </dependency>
             <dependency>
-                <groupId>commons-collections</groupId>
-                <artifactId>commons-collections</artifactId>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-collections4</artifactId>
                 <version>${collections.version}</version>
             </dependency>
             <dependency>
@@ -497,6 +483,11 @@
                 <version>${lang3.version}</version>
             </dependency>
             <dependency>
+                <groupId>commons-logging</groupId>
+                <artifactId>commons-logging</artifactId>
+                <version>${logging.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-text</artifactId>
                 <version>${text.version}</version>
@@ -507,12 +498,6 @@
                 <groupId>com.github.hazendaz</groupId>
                 <artifactId>displaytag</artifactId>
                 <version>${displaytag.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.slf4j</groupId>
-                        <artifactId>jcl-over-slf4j</artifactId>
-                    </exclusion>
-                </exclusions>
             </dependency>
 
             <!-- Logging -->
@@ -542,6 +527,12 @@
                 <groupId>org.springframework.hateoas</groupId>
                 <artifactId>spring-hateoas</artifactId>
                 <version>${hateoas.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring-jcl</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
 
             <dependency>
@@ -557,16 +548,6 @@
                 <groupId>com.maxmind.geoip2</groupId>
                 <artifactId>geoip2</artifactId>
                 <version>${geoip2.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>commons-logging</groupId>
-                        <artifactId>commons-logging</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.apache.httpcomponents</groupId>
-                        <artifactId>httpclient</artifactId>
-                    </exclusion>
-                </exclusions>
             </dependency>
 
             <!-- Override Jackson used in geoip2 -->
@@ -590,12 +571,6 @@
                 <groupId>com.github.hazendaz</groupId>
                 <artifactId>sitemesh</artifactId>
                 <version>${sitemesh.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.slf4j</groupId>
-                        <artifactId>jcl-over-slf4j</artifactId>
-                    </exclusion>
-                </exclusions>
             </dependency>
             <dependency>
                 <groupId>com.thoughtworks.xstream</groupId>
@@ -608,12 +583,6 @@
                 <groupId>org.codelibs</groupId>
                 <artifactId>jhighlight</artifactId>
                 <version>${jhighlight.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>javax.servlet</groupId>
-                        <artifactId>servlet-api</artifactId>
-                    </exclusion>
-                </exclusions>
             </dependency>
             <dependency>
                 <groupId>org.jfree</groupId>
@@ -674,11 +643,6 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.github.hazendaz.jmockit</groupId>
-            <artifactId>jmockit</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
             <scope>test</scope>
@@ -690,12 +654,12 @@
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
+            <artifactId>junit-jupiter</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-params</artifactId>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-launcher</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -736,6 +700,9 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-clean-plugin</artifactId>
                     <version>${clean.plugin}</version>
+                    <configuration>
+                        <force>true</force>
+                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -863,6 +830,20 @@
                     <groupId>org.jacoco</groupId>
                     <artifactId>jacoco-maven-plugin</artifactId>
                     <version>${jacoco.plugin}</version>
+                    <configuration>
+                        <rules>
+                            <rule>
+                                <element>BUNDLE</element>
+                                <limits>
+                                    <limit>
+                                        <counter>COMPLEXITY</counter>
+                                        <value>COVEREDRATIO</value>
+                                        <minimum>${jacoco.minimum.coverage}</minimum>
+                                    </limit>
+                                </limits>
+                            </rule>
+                        </rules>
+                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -1170,6 +1151,16 @@
                     <version>${enforcer.plugin}</version>
                     <configuration>
                         <rules>
+                            <bannedDependencies>
+                                <message>Do not use obsolete logging libraries.  Prefer slf4j/logback and override slf4j libraries for replacements.  Use only commons-logging when needed and no overrides from any of the major logging providers.</message>
+                                <excludes>
+                                    <exclude>log4j:log4j</exclude>
+                                    <exclude>org.apache.logging.log4j:log4j-jcl</exclude>
+                                    <exclude>org.slf4j:jcl-over-slf4j</exclude>
+                                    <exclude>org.slf4j:slf4j-log4j12</exclude>
+                                    <exclude>org.springframework:spring-jcl</exclude>
+                                </excludes>
+                            </bannedDependencies>
                             <enforceBytecodeVersion>
                                 <maxJdkVersion>${java.version}</maxJdkVersion>
                                 <ignoredScopes>test</ignoredScopes>
@@ -1258,6 +1249,12 @@
                         <id>report</id>
                         <goals>
                             <goal>report</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>check</id>
+                        <goals>
+                            <goal>check</goal>
                         </goals>
                     </execution>
                 </executions>
@@ -1655,7 +1652,7 @@
                 <jdk>[17,)</jdk>
             </activation>
             <properties>
-                <argLine>-javaagent:${settings.localRepository}/com/github/hazendaz/jmockit/jmockit/${jmockit.version}/jmockit-${jmockit.version}.jar -javaagent:${settings.localRepository}/net/bytebuddy/byte-buddy-agent/${byte-buddy.version}/byte-buddy-agent-${byte-buddy.version}.jar --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.logging/java.util.logging=ALL-UNNAMED</argLine>
+                <argLine>-javaagent:${settings.localRepository}/net/bytebuddy/byte-buddy-agent/${byte-buddy.version}/byte-buddy-agent-${byte-buddy.version}.jar --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.logging/java.util.logging=ALL-UNNAMED</argLine>
             </properties>
             <build>
                 <pluginManagement>
@@ -1725,6 +1722,21 @@
                                                     <runOnConfiguration>true</runOnConfiguration>
                                                     <runOnIncremental>true</runOnIncremental>
                                                 </execute>
+                                            </action>
+                                        </pluginExecution>
+
+                                        <!-- rewrite maven plugin should be ignored in m2e. -->
+                                        <pluginExecution>
+                                            <pluginExecutionFilter>
+                                                <groupId>org.openrewrite.maven</groupId>
+                                                <artifactId>rewrite-maven-plugin</artifactId>
+                                                <versionRange>[${rewrite.plugin},)</versionRange>
+                                                <goals>
+                                                    <goal>run</goal>
+                                                </goals>
+                                            </pluginExecutionFilter>
+                                            <action>
+                                                <ignore />
                                             </action>
                                         </pluginExecution>
                                     </pluginExecutions>

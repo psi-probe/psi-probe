@@ -11,7 +11,7 @@
 
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" session="false" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 <%-- Displays deployment descriptor (web.xml) or a context descriptor (context.xml) of a web application
@@ -21,8 +21,8 @@
 <html lang="${lang}">
     <head>
         <title><spring:message htmlEscape="true" code="probe.jsp.title.app.viewXMLConf" arguments="${param.webapp},${fileDesc}"/></title>
-        <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='syntax.css'/>"/>
-        <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='scroller.css'/>"/>
+        <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/classic/syntax.css"/>
+        <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/classic/scroller.css"/>
         <script src="<c:url value='/js/prototype.js'/>"></script>
         <script src="<c:url value='/js/behaviour.js'/>"></script>
         <script src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>

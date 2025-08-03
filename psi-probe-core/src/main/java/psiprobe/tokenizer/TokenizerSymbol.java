@@ -63,8 +63,8 @@ public class TokenizerSymbol implements Comparable<Object> {
 
   @Override
   public int compareTo(Object obj) {
-    if (obj instanceof Character) {
-      return compareTo((Character) obj);
+    if (obj instanceof Character charactor) {
+      return compareTo(charactor);
     }
     return compareTo((TokenizerSymbol) obj);
   }

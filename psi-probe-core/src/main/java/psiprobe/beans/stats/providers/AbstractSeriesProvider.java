@@ -11,6 +11,7 @@
 package psiprobe.beans.stats.providers;
 
 import java.util.List;
+import java.util.concurrent.locks.ReentrantLock;
 
 import org.jfree.data.xy.XYDataItem;
 import org.jfree.data.xy.XYSeries;
@@ -26,7 +27,7 @@ public abstract class AbstractSeriesProvider implements SeriesProvider {
   protected final Logger logger = LoggerFactory.getLogger(getClass());
 
   /** The lock. */
-  private final Object lockObj = new Object();
+  private final ReentrantLock lockObj = new ReentrantLock();
 
   /**
    * To series.
@@ -38,10 +39,13 @@ public abstract class AbstractSeriesProvider implements SeriesProvider {
    */
   protected XYSeries toSeries(String legend, List<XYDataItem> stats) {
     XYSeries xySeries = new XYSeries(legend, true, false);
-    synchronized (lockObj) {
+    lockObj.lock();
+    try {
       for (XYDataItem item : stats) {
         xySeries.addOrUpdate(item.getX(), item.getY());
       }
+    } finally {
+      lockObj.unlock();
     }
     return xySeries;
   }

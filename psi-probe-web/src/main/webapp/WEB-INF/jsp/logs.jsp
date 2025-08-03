@@ -11,8 +11,8 @@
 
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" session="false"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
+<%@ taglib uri="jakarta.tags.functions" prefix="fn" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@ taglib uri="https://github.com/psi-probe/psi-probe/jsp/tags" prefix="probe" %>
@@ -130,10 +130,10 @@
                             </c:if>
                         </c:url>
                         <a class="imglink" href="${downloadUrl}"><img
-                                class="lnk" src="${pageContext.request.contextPath}<spring:theme code='download.png'/>"
+                                class="lnk" src="${pageContext.request.contextPath}/css/classic/gifs/silk/page_white_put.png"
                                 alt="<spring:message code='probe.jsp.logs.download.alt'/>"/></a>
                         <a class="imglink" title="download compressed" href="${downloadUrl}&compressed=true"><img
-                                class="lnk" src="${pageContext.request.contextPath}<spring:theme code='download_compressed.png'/>"
+                                class="lnk" src="${pageContext.request.contextPath}/css/classic/gifs/silk/page_white_compressed.png"
                                 alt="<spring:message code='probe.jsp.logs.download.alt'/>"/></a>
                     </c:if>
                 </display:column>

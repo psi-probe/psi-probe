@@ -11,7 +11,7 @@
 
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" session="false" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 
@@ -46,10 +46,10 @@
                         <display:column class="leftMostIcon" title="&#160;" style="width:1px;">
                             <c:choose>
                                 <c:when test="${prm.fromDeplDescr}">
-                                    <img src="${pageContext.request.contextPath}<spring:theme code='deployment_descriptor.img'/>" alt="">
+                                    <img src="${pageContext.request.contextPath}/css/classic/gifs/silk/page_white_cup.png" alt="">
                                 </c:when>
                                 <c:otherwise>
-                                    <img src="${pageContext.request.contextPath}<spring:theme code='context.img'/>" alt="">
+                                    <img src="${pageContext.request.contextPath}/css/classic/gifs/silk/page_white_c.png" alt="">
                                 </c:otherwise>
                             </c:choose>
                         </display:column>

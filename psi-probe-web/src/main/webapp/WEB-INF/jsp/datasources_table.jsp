@@ -11,7 +11,7 @@
 
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" session="false" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@ taglib uri="https://github.com/psi-probe/psi-probe/jsp/tags" prefix="probe" %>
@@ -29,7 +29,7 @@
                     <c:param name="resource" value="${resource.name}"/>
                 </c:url>
                 <a class="imglink" href="${reset_url}">
-                    <img border="0" src="${pageContext.request.contextPath}<spring:theme code='reset.gif'/>"
+                    <img border="0" src="${pageContext.request.contextPath}/css/classic/gifs/reset.gif"
                             alt="<spring:message code='probe.jsp.datasources.list.col.reset.alt'/>"/>
                 </a>
             </c:when>
@@ -46,7 +46,7 @@
             </c:url>
             <a href="${application_url}">
                 <c:if test="${!resource.lookedUp || resource.dataSourceInfo.jdbcUrl == null}">
-                    <img border="0" src="${pageContext.request.contextPath}<spring:theme code='exclamation.gif'/>"
+                    <img border="0" src="${pageContext.request.contextPath}/css/classic/img/exclamation.gif"
                             alt="<spring:message code='probe.jsp.datasources.list.misconfigured.alt'/>"/>
                 </c:if>
                 ${resource.applicationName}

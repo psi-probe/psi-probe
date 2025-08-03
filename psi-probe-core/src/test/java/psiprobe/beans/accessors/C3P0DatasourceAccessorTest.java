@@ -18,6 +18,7 @@ import java.sql.SQLException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 /**
  * The Class C3P0DatasourceAccessorTest.
@@ -65,8 +66,40 @@ class C3P0DatasourceAccessorTest {
    * @throws SQLException the sql exception
    */
   @Test
-  void getInfoTest() throws SQLException {
+  void infoTest() throws SQLException {
     Assertions.assertNotNull(accessor.getInfo(source));
+  }
+
+  /**
+   * Gets the info with bad source test.
+   *
+   * @throws SQLException the SQL exception
+   */
+  @Test
+  void infoWithBadSourceTest() throws SQLException {
+    Assertions.assertNull(accessor.getInfo(badSource));
+  }
+
+  /**
+   * Gets the info throws SQL exception test.
+   *
+   * @throws Exception the exception
+   */
+  @Test
+  void infoThrowsSQLExceptionTest() throws Exception {
+    ComboPooledDataSource mockSource = Mockito.mock(ComboPooledDataSource.class);
+    Mockito.when(mockSource.getNumConnectionsDefaultUser())
+        .thenThrow(new SQLException("Test exception"));
+    Assertions.assertNotNull(accessor.getInfo(mockSource));
+  }
+
+  /**
+   * Reset test.
+   */
+  @Test
+  void resetTest() {
+    ComboPooledDataSource mockSource = Mockito.mock(ComboPooledDataSource.class);
+    Assertions.assertDoesNotThrow(() -> accessor.reset(mockSource));
   }
 
 }

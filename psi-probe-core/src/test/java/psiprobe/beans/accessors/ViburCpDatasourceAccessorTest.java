@@ -14,23 +14,27 @@ import com.zaxxer.hikari.HikariDataSource;
 
 import java.sql.SQLException;
 
-import mockit.Mocked;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.vibur.dbcp.ViburDBCPDataSource;
+import org.vibur.objectpool.PoolService;
 
 /**
  * The Class ViburCpDatasourceAccessorTest.
  */
+@ExtendWith(MockitoExtension.class)
 class ViburCpDatasourceAccessorTest {
 
   /** The accessor. */
   ViburCpDatasourceAccessor accessor;
 
   /** The source. */
-  @Mocked
+  @Mock
   ViburDBCPDataSource source;
 
   /** The bad source. */
@@ -66,8 +70,14 @@ class ViburCpDatasourceAccessorTest {
    *
    * @throws SQLException the sql exception
    */
+  @SuppressWarnings("unchecked")
   @Test
   void getInfoTest() throws SQLException {
+    var poolService = Mockito.mock(PoolService.class);
+    Mockito.when(source.getPool()).thenReturn(poolService);
+    Mockito.when(poolService.taken()).thenReturn(1);
+    Mockito.when(poolService.remainingCreated()).thenReturn(1);
+
     Assertions.assertNotNull(accessor.getInfo(source));
   }
 

@@ -14,23 +14,25 @@ import com.zaxxer.hikari.HikariDataSource;
 
 import java.sql.SQLException;
 
-import mockit.Mocked;
-
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 /**
  * The Class TomcatJdbcPoolDatasourceAccessorTest.
  */
+@ExtendWith(MockitoExtension.class)
 class TomcatJdbcPoolDatasourceAccessorTest {
 
   /** The accessor. */
   TomcatJdbcPoolDatasourceAccessor accessor;
 
   /** The source. */
-  @Mocked
+  @Mock
   DataSource source;
 
   /** The bad source. */

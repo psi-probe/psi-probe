@@ -149,6 +149,7 @@ public class Tomcat10ContainerAdapter extends AbstractTomcatContainer {
             dm = "REQUEST";
             break;
           default:
+            // Can be any other filters, for those set to space
             dm = "";
         }
 

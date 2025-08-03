@@ -11,7 +11,7 @@
 
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" session="false" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 
@@ -24,7 +24,7 @@
         <title>
             <spring:message htmlEscape="true" code="probe.jsp.title.app.attributes" arguments="${param.webapp}"/>
         </title>
-        <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}<spring:theme code='scroller.css'/>"/>
+        <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/classic/scroller.css"/>
         <script src="<c:url value='/js/prototype.js'/>"></script>
         <script src="<c:url value='/js/behaviour.js'/>"></script>
         <script src="<c:url value='/js/scriptaculous/scriptaculous.js'/>"></script>
@@ -53,7 +53,7 @@
                     <table id="resultsTable" style="padding:0;border-spacing:0;border-collapse:separate;">
                         <tr>
                             <td id="left_scroller" class="scroller">&#160;</td>
-                            <td id="separator" width="1%">&#160;</td>
+                            <td id="separator" style="width: 1%;">&#160;</td>
                             <td>
                                 <div id="appAttrTblContainer" class="scrollable_content">
                                     <display:table htmlId="appAttrTbl" name="appAttributes" uid="attribute"
@@ -66,7 +66,7 @@
                                             </c:url>
                                             <a href="${rmappattr_url}" class="imglink">
                                                 <img class="lnk"
-                                                        src="${pageContext.request.contextPath}<spring:theme code='remove.img'/>"
+                                                        src="${pageContext.request.contextPath}/css/classic/img/bin.jpg"
                                                         alt="<spring:message code='probe.jsp.app.attributes.col.delete'/>"
                                                         title="<spring:message code='probe.jsp.app.attributes.col.delete.title'/>"/>
                                             </a>

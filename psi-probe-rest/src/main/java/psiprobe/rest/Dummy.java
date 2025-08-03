@@ -13,7 +13,7 @@ package psiprobe.rest;
 /**
  * The Class Dummy.
  */
-public interface Dummy {
+public class Dummy {
 
   // Future use case and protection from plugins being disabled on no code
 

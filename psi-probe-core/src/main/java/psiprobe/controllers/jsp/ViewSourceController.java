@@ -79,7 +79,7 @@ public class ViewSourceController extends AbstractContextHandlerController {
           String descriptorPageEncoding =
               opt.getJspConfig().findJspProperty(jspName).getPageEncoding();
 
-          if (descriptorPageEncoding != null && descriptorPageEncoding.length() > 0) {
+          if (descriptorPageEncoding != null && !descriptorPageEncoding.isEmpty()) {
             item.setEncoding(descriptorPageEncoding);
           } else {
 
