@@ -14,7 +14,7 @@
 <%@ page import="java.io.ByteArrayOutputStream" %>
 <%@ page import="java.io.PrintStream" %>
 <%@ page import="java.io.File" %>
-<%@ taglib uri="jakarta.tags.core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <%-- Servlet exception handler page. Unfortunately we cannot use here any fancy libraries if we want
  any kind of reliability. Spring or sitemesh could have caused the exception we are handling here. --%>

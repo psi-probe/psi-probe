@@ -11,7 +11,7 @@
 
 --%>
 <%@ page contentType="text/xml;charset=UTF-8" language="java" session="false" %>
-<%@ taglib uri="jakarta.tags.core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <%-- "Quick check" results in machine-readable XML format. --%>
 
