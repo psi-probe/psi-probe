@@ -73,22 +73,20 @@ class C3P0DatasourceAccessorTest {
   /**
    * Gets the info with bad source test.
    *
-   * @return the info with bad source test
    * @throws SQLException the SQL exception
    */
   @Test
-  void getInfoWithBadSourceTest() throws SQLException {
+  void infoWithBadSourceTest() throws SQLException {
     Assertions.assertNull(accessor.getInfo(badSource));
   }
 
   /**
    * Gets the info throws SQL exception test.
    *
-   * @return the info throws SQL exception test
    * @throws Exception the exception
    */
   @Test
-  void getInfoThrowsSQLExceptionTest() throws Exception {
+  void infoThrowsSQLExceptionTest() throws Exception {
     ComboPooledDataSource mockSource = Mockito.mock(ComboPooledDataSource.class);
     Mockito.when(mockSource.getNumConnectionsDefaultUser())
         .thenThrow(new SQLException("Test exception"));
