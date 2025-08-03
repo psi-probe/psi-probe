@@ -11,6 +11,7 @@
 [![GPLv2 License](https://img.shields.io/badge/license-GPLv2-green.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
 [![Project Stats](https://www.openhub.net/p/psi-probe/widgets/project_thin_badge.gif)](https://www.openhub.net/p/psi-probe)
 [![Github All Releases](https://img.shields.io/github/downloads/psi-probe/psi-probe/total.svg)]()
+[![Reproducible Builds](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/jvm-repo-rebuild/reproducible-central/master/content/com/github/psi-probe/badge.json)](https://github.com/jvm-repo-rebuild/reproducible-central/blob/master/content/com/github/psi-probe/README.md)
 
 ![psi-probe](src/site/resources/images/psi-probe-banner.jpg)
 
