@@ -144,8 +144,8 @@ public class RenderChartController extends AbstractController {
 
     if (provider != null) {
       Object series = getApplicationContext().getBean(provider);
-      if (series instanceof SeriesProvider seriesProvider) {
-        seriesProvider.populate(ds, statsCollection, request);
+      if (series instanceof SeriesProvider) {
+        ((SeriesProvider) series).populate(ds, statsCollection, request);
       } else {
         logger.error("SeriesProvider '{}' does not implement '{}'", provider, SeriesProvider.class);
       }

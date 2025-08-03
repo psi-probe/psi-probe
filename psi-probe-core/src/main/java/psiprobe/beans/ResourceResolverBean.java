@@ -340,8 +340,8 @@ public class ResourceResolverBean implements ResourceResolver {
         }
 
         // Get Global Naming Context
-        if (server instanceof StandardServer standardServer) {
-          globalContext = standardServer.getGlobalNamingContext();
+        if (server instanceof StandardServer) {
+          globalContext = server.getGlobalNamingContext();
           break;
         }
       }

@@ -53,9 +53,9 @@ public class GetClassLoaderUrlsController extends ParameterizableViewController 
 
     if (thread != null) {
       ClassLoader cl = thread.getContextClassLoader();
-      if (cl instanceof URLClassLoader urlClassLoader) {
+      if (cl instanceof URLClassLoader) {
         try {
-          request.setAttribute("urls", Arrays.asList(urlClassLoader.getURLs()));
+          request.setAttribute("urls", Arrays.asList(((URLClassLoader) cl).getURLs()));
         } catch (Exception e) {
           logger.error("There was an exception querying classloader for thread '{}'", threadName,
               e);
