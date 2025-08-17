@@ -157,7 +157,7 @@
         <activation.version>1.2.2</activation.version>
         <assertj.version>3.27.4</assertj.version>
         <beanutils.version>2.0.0-M2</beanutils.version>
-        <byte-buddy.version>1.17.6</byte-buddy.version>
+        <byte-buddy.version>1.17.7</byte-buddy.version>
         <c3p0.version>0.11.2</c3p0.version>
         <checker.version>3.49.5</checker.version>
         <collections.version>4.5.0</collections.version>
