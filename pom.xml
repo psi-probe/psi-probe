@@ -172,7 +172,7 @@
         <inject.version>2.0.1</inject.version>
         <io.version>2.20.0</io.version>
         <j2objc.version>3.1</j2objc.version>
-        <jackson.version>2.19.2</jackson.version>
+        <jackson.version>2.20.0</jackson.version>
         <javabean-tester.version>2.11.0</javabean-tester.version>
         <jfreechart.version>1.5.6</jfreechart.version>
         <jhighlight.version>1.1.0</jhighlight.version>
