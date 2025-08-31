@@ -239,7 +239,7 @@
         <rewrite.plugin>6.17.0</rewrite.plugin>
         <scm-publish.plugin>3.3.0</scm-publish.plugin>
         <site.plugin>3.21.0</site.plugin>
-        <sonar.plugin>5.1.0.4751</sonar.plugin>
+        <sonar.plugin>5.2.0.4988</sonar.plugin>
         <sortpom.plugin>4.0.0</sortpom.plugin>
         <source.plugin>3.3.1</source.plugin>
         <spotbugs.plugin>4.9.4.0</spotbugs.plugin>
