@@ -7,7 +7,7 @@
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
  *
- *  https://www.apache.org/licenses/LICENSE-2.0
+ *  http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
@@ -25,11 +25,12 @@ import java.net.URI;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.concurrent.ThreadLocalRandom;
 
 public final class MavenWrapperDownloader {
-    private static final String WRAPPER_VERSION = "3.3.2";
+    private static final String WRAPPER_VERSION = "3.3.3";
 
     private static final boolean VERBOSE = Boolean.parseBoolean(System.getenv("MVNW_VERBOSE"));
 
@@ -45,7 +46,7 @@ public final class MavenWrapperDownloader {
             log(" - Downloader started");
             final URL wrapperUrl = URI.create(args[0]).toURL();
             final String jarPath = args[1].replace("..", ""); // Sanitize path
-            final Path wrapperJarPath = Path.of(jarPath).toAbsolutePath().normalize();
+            final Path wrapperJarPath = Paths.get(jarPath).toAbsolutePath().normalize();
             downloadFileFromURL(wrapperUrl, wrapperJarPath);
             log("Done");
         } catch (IOException e) {
