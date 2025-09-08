@@ -250,7 +250,7 @@
         <whitespace.plugin>1.5.0</whitespace.plugin>
 
         <!-- Plugin Dependency Versions -->
-        <build-tools.version>1.4.0</build-tools.version>
+        <build-tools.version>1.5.0</build-tools.version>
         <bugpattern.version>1.5.0</bugpattern.version>
         <checkstyle.version>11.0.1</checkstyle.version>
         <ecj.version>3.43.0</ecj.version>
