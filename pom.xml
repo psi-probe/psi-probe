@@ -242,7 +242,7 @@
         <sonar.plugin>5.2.0.4988</sonar.plugin>
         <sortpom.plugin>4.0.0</sortpom.plugin>
         <source.plugin>3.3.1</source.plugin>
-        <spotbugs.plugin>4.9.4.2</spotbugs.plugin>
+        <spotbugs.plugin>4.9.5.0</spotbugs.plugin>
         <spotless.plugin>2.46.1</spotless.plugin>
         <surefire.plugin>3.5.4</surefire.plugin>
         <versions.plugin>2.19.0</versions.plugin>
