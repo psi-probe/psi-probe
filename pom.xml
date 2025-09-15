@@ -195,7 +195,7 @@
         <slf4j.version>2.0.17</slf4j.version>
         <spotbugs.version>4.9.5</spotbugs.version>
         <spring.version>6.2.11</spring.version>
-        <spring-security.version>6.5.3</spring-security.version>
+        <spring-security.version>6.5.4</spring-security.version>
         <text.version>1.14.0</text.version>
         <tomcat.version>10.1.46</tomcat.version>
         <tomee.version>10.1.1</tomee.version>
