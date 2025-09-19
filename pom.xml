@@ -155,7 +155,7 @@
         <!-- Dependency Versions -->
         <activation.version>2.1.4</activation.version>
         <angus-activation.version>2.0.3</angus-activation.version>
-        <assertj.version>3.27.4</assertj.version>
+        <assertj.version>3.27.5</assertj.version>
         <beanutils.version>2.0.0-M2</beanutils.version>
         <byte-buddy.version>1.17.7</byte-buddy.version>
         <c3p0.version>0.11.2</c3p0.version>
