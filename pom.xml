@@ -188,7 +188,7 @@
         <mchange.version>0.3.2</mchange.version>
         <mockito.version>5.19.0</mockito.version>
         <ojdbc.version>19.28.0.0</ojdbc.version>
-        <oshi.version>6.8.3</oshi.version>
+        <oshi.version>6.9.0</oshi.version>
         <quartz.version>2.5.0</quartz.version>
         <servlet-api.version>4.0.4</servlet-api.version>
         <sitemesh.version>2.5.3</sitemesh.version>
