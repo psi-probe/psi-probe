@@ -162,7 +162,7 @@
         <checker.version>3.51.1</checker.version>
         <collections.version>4.5.0</collections.version>
         <dbcp2.version>2.13.0</dbcp2.version>
-        <displaytag.version>3.3.0</displaytag.version>
+        <displaytag.version>3.4.0</displaytag.version>
         <el-api.version>6.0.1</el-api.version>
         <error-prone.version>2.42.0</error-prone.version>
         <geoip2.version>4.4.0</geoip2.version>
