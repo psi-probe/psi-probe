@@ -82,7 +82,7 @@
     <scm>
         <connection>scm:git:ssh://git@github.com/psi-probe/psi-probe.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/psi-probe/psi-probe.git</developerConnection>
-        <tag>psi-probe-5.3.0</tag>
+        <tag>HEAD</tag>
         <url>https://github.com/psi-probe/psi-probe/</url>
     </scm>
     <issueManagement>
