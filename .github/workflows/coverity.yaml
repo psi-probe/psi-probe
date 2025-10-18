@@ -18,32 +18,41 @@ on:
 
 permissions: read-all
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  UPSTREAM_OWNER: psi-probe
+  UPSTREAM_REPO: psi-probe
+
 jobs:
   build:
     if: github.repository_owner == 'psi-probe'
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v5
-      - name: Set up JDK
-        uses: actions/setup-java@v5
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
+      - name: Setup Java
+        uses: actions/setup-java@dded0888837ed1f317902acf8a20df0ad188d165 # v5
         with:
-          java-version: 21
+          cache: maven
+          java-version: 25
           distribution: zulu
       - name: Analyze with Coverity
         run: |
-          wget -q https://scan.coverity.com/download/linux64 --post-data "token=$COVERITY_TOKEN&project=psi-probe%2Fpsi-probe" -O coverity_tool.tgz
-          tar -xf coverity_tool.tgz
+          wget --quiet https://scan.coverity.com/download/linux64 --post-data "token=${COVERITY_TOKEN}&project=${UPSTREAM_OWNER}%2F${UPSTREAM_REPO}" --output-document=coverity_tool.tgz
+          tar --extract --file=coverity_tool.tgz
           ./cov-analysis-linux64-*/bin/cov-configure --java
-          ./cov-analysis-linux64-*/bin/cov-build --dir cov-int ./mvnw -B -V -DskipTests=true verify -Dlicense.skip=true --no-transfer-progress
-          cat /home/runner/work/psi-probe/psi-probe/cov-int/build-log.txt
-          tar czvf psi-probe.tgz cov-int
-          curl \
-            --form token=$COVERITY_TOKEN \
-            --form email=$EMAIL \
-            --form file=@psi-probe.tgz \
-            --form version="psi-probe/coverity_scan" \
-            --form description="psi-probe Coverity Scan" \
-            https://scan.coverity.com/builds?project=psi-probe%2Fpsi-probe
+          ./cov-analysis-linux64-*/bin/cov-build --dir cov-int ./mvnw verify --batch-mode --no-transfer-progress --show-version -Dlicense.skip=true -DskipTests=true
+          cat /home/runner/work/${UPSTREAM_OWNER}/${UPSTREAM_REPO}/cov-int/build-log.txt
+          tar --create --gzip --verbose --file=${UPSTREAM_REPO}.tgz cov-int
+          curl --form token=${COVERITY_TOKEN} \
+            --form email=${EMAIL} \
+            --form file=@${UPSTREAM_REPO}.tgz \
+            --form version="${UPSREAM_REPO}/coverity_scan" \
+            --form description="${UPSTREAM_OWNER} Coverity Scan" \
+            https://scan.coverity.com/builds?project=${UPSTREAM_OWNER}%2F${UPSTREAM_REPO}
         env:
           COVERITY_TOKEN: ${{ secrets.COVERITY_TOKEN }}
           EMAIL: ${{ secrets.EMAIL }}
