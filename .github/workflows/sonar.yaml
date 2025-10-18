@@ -7,23 +7,34 @@ on:
 
 permissions: read-all
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  SONAR_ORGANIZATION: psi-probe
+  SONAR_PROJECT_KEY: psi-probe
+
 jobs:
   build:
     if: github.repository_owner == 'psi-probe'
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
         with:
           # Disabling shallow clone is recommended for improving relevancy of reporting
           fetch-depth: 0
-      - name: Set up JDK
-        uses: actions/setup-java@v5
+      - name: Setup Java
+        uses: actions/setup-java@dded0888837ed1f317902acf8a20df0ad188d165 # v5
         with:
           cache: maven
           distribution: temurin
-          java-version: 21
+          java-version: 25
+      - name: Set SONAR_SCANNER_JAVA_OPTS
+        run: echo "SONAR_SCANNER_JAVA_OPTS=-Xmx512m" >> ${GITHUB_ENV}
       - name: Analyze with SonarCloud
-        run: ./mvnw verify jacoco:report sonar:sonar -B -V -Dsonar.projectKey=psi-probe_psi-probe -Dsonar.organization=psi-probe -Dsonar.host.url=https://sonarcloud.io -Dsonar.token=$SONAR_TOKEN -Dlicense.skip=true --no-transfer-progress
+        run: ./mvnw verify jacoco:report sonar:sonar --batch-mode --no-transfer-progress --show-version -Dlicense.skip=true -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=${SONAR_ORGANIZATION} -Dsonar.projectKey=${SONAR_ORGANIZATION}_${SONAR_PROJECT_KEY} -Dsonar.scanner.skipJreProvisioning=true -Dsonar.token=${SONAR_TOKEN}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

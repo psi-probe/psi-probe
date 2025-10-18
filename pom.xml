@@ -122,7 +122,7 @@
         <maven.compiler.testRelease>${java.test.release.version}</maven.compiler.testRelease>
 
         <!-- Maven minimum version -->
-        <maven.min-version>3.9.9</maven.min-version>
+        <maven.min-version>3.9.11</maven.min-version>
 
         <!-- Copyright -->
         <copyright>2025</copyright>
@@ -1170,7 +1170,7 @@
                                 </excludes>
                             </enforceBytecodeVersion>
                             <requireJavaVersion>
-                                <version>[17,18),[21,22),[23,24),[24,25),[25,26)</version>
+                                <version>[17,18),[21,22),[25,26),[26,27)</version>
                             </requireJavaVersion>
                             <requireMavenVersion>
                                 <version>[${maven.min-version},)</version>

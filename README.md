@@ -5,12 +5,13 @@
 [![Coveralls](https://coveralls.io/repos/github/psi-probe/psi-probe/badge.svg?branch=master)](https://coveralls.io/github/psi-probe/psi-probe?branch=master)
 [![Known Vulnerabilities](https://snyk.io/test/github/psi-probe/psi-probe/badge.svg)](https://snyk.io/test/github/psi-probe/psi-probe)
 [![Maven Central](https://img.shields.io/maven-central/v/com.github.psi-probe/psi-probe-web)](https://maven-badges.herokuapp.com/maven-central/com.github.psi-probe/psi-probe-web)
-[![Sonatype Nexus (Snapshots)](https://img.shields.io/nexus/s/https/oss.sonatype.org/com.github.psi-probe/psi-probe-web.svg)](https://oss.sonatype.org/content/repositories/snapshots/org/psi-probe/psi-probe-web/)
+![Sonatype Nexus (Snapshots)](https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Fcentral.sonatype.com%2Frepository%2Fmaven-snapshots%2Fcom%2Fgithub%2Fpsi-probe%2Fpsi-probe-web%2Fmaven-metadata.xml)
 [![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/)
 [![Releases](https://img.shields.io/github/downloads/psi-probe/psi-probe/psi-probe-5.2.1/total)](https://github.com/psi-probe/psi-probe/releases/download/psi-probe-5.2.1/probe.war)
 [![GPLv2 License](https://img.shields.io/badge/license-GPLv2-green.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
 [![Project Stats](https://www.openhub.net/p/psi-probe/widgets/project_thin_badge.gif)](https://www.openhub.net/p/psi-probe)
 [![Github All Releases](https://img.shields.io/github/downloads/psi-probe/psi-probe/total.svg)]()
+[![Reproducible Builds](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/jvm-repo-rebuild/reproducible-central/master/content/com/github/psi-probe/badge.json)](https://github.com/jvm-repo-rebuild/reproducible-central/blob/master/content/com/github/psi-probe/README.md)
 
 ![psi-probe](src/site/resources/images/psi-probe-banner.jpg)
 
