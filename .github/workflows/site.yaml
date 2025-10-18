@@ -8,25 +8,30 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
     if: github.repository_owner == 'psi-probe' && ! contains(toJSON(github.event.head_commit.message), '[maven-release-plugin]')
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v5
-      - name: Set up JDK
-        uses: actions/setup-java@v5
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
+      - name: Setup Java
+        uses: actions/setup-java@dded0888837ed1f317902acf8a20df0ad188d165 # v5
         with:
           cache: maven
           distribution: temurin
-          java-version: 21
+          java-version: 25
       - name: Build site
-        run: ./mvnw site site:stage -DskipTests -Dlicense.skip=true -B -V --no-transfer-progress --settings ./.mvn/settings.xml
+        run: ./mvnw site site:stage --batch-mode --no-transfer-progress --settings ./.mvn/settings.xml --show-version -Dlicense.skip=true -DskipTests
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
       - name: Deploy Site to gh-pages
-        uses: JamesIves/github-pages-deploy-action@v4
+        uses: JamesIves/github-pages-deploy-action@6c2d9db40f9296374acc17b90404b6e8864128c8 # v4
         with:
           branch: gh-pages
           folder: target/staging
