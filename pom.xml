@@ -1170,7 +1170,7 @@
                                 </excludes>
                             </enforceBytecodeVersion>
                             <requireJavaVersion>
-                                <version>[17,18),[21,22),[23,24),[24,25),[25,26)</version>
+                                <version>[17,18),[21,22),[25,26),[26,27)</version>
                             </requireJavaVersion>
                             <requireMavenVersion>
                                 <version>[${maven.min-version},)</version>
