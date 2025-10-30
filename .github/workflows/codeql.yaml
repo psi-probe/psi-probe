@@ -39,15 +39,15 @@ jobs:
           java-version: 25
 
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@5fe9434cd24fe243e33e7f3305f8a5b519b70280  # v4
+        uses: github/codeql-action/init@0499de31b99561a6d14a36a5f662c2a54f91beee  # v4
         with:
           languages: ${{ matrix.language }}
           queries: +security-and-quality
 
       - name: Autobuild
-        uses: github/codeql-action/autobuild@5fe9434cd24fe243e33e7f3305f8a5b519b70280  # v4
+        uses: github/codeql-action/autobuild@0499de31b99561a6d14a36a5f662c2a54f91beee  # v4
 
       - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@5fe9434cd24fe243e33e7f3305f8a5b519b70280  # v4
+        uses: github/codeql-action/analyze@0499de31b99561a6d14a36a5f662c2a54f91beee  # v4
         with:
           category: "/language:${{ matrix.language }}"
