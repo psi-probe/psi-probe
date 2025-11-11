@@ -31,6 +31,6 @@ jobs:
           PR_NUMBER: ${{ github.event.number }}
       - name: Report Coverage to Coveralls for General Push
         if: github.event_name == 'push'
-        run: ./mvnw jacoco:report coveralls:report --batch-mode --no-transfer-progress -DrepoToken=${GITHUB_TOKEN} -DserviceName=github
+        run: ./mvnw generate-sources jacoco:report coveralls:report --batch-mode --no-transfer-progress -DrepoToken=${GITHUB_TOKEN} -DserviceName=github
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
