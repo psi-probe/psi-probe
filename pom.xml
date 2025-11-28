@@ -246,7 +246,7 @@
         <spotless.plugin>3.1.0</spotless.plugin>
         <surefire.plugin>3.5.4</surefire.plugin>
         <versions.plugin>2.20.1</versions.plugin>
-        <war.plugin>3.5.0</war.plugin>
+        <war.plugin>3.5.1</war.plugin>
         <whitespace.plugin>1.5.0</whitespace.plugin>
 
         <!-- Plugin Dependency Versions -->
