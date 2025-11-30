@@ -235,7 +235,7 @@
         <pmd.plugin>3.28.0</pmd.plugin>
         <project-info.plugin>3.9.0</project-info.plugin>
         <release.plugin>3.2.0</release.plugin>
-        <resources.plugin>3.3.1</resources.plugin>
+        <resources.plugin>3.4.0</resources.plugin>
         <rewrite.plugin>6.24.0</rewrite.plugin>
         <scm-publish.plugin>3.3.0</scm-publish.plugin>
         <site.plugin>3.21.0</site.plugin>
