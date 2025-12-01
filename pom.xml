@@ -189,7 +189,7 @@
         <mockito.version>5.20.0</mockito.version>
         <ojdbc.version>19.29.0.0</ojdbc.version>
         <oshi.version>6.9.1</oshi.version>
-        <quartz.version>2.5.1</quartz.version>
+        <quartz.version>2.5.2</quartz.version>
         <servlet-api.version>6.1.0</servlet-api.version>
         <sitemesh.version>2.6.1</sitemesh.version>
         <slf4j.version>2.0.17</slf4j.version>
