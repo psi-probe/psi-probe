@@ -236,7 +236,7 @@
         <project-info.plugin>3.9.0</project-info.plugin>
         <release.plugin>3.3.0</release.plugin>
         <resources.plugin>3.4.0</resources.plugin>
-        <rewrite.plugin>6.24.0</rewrite.plugin>
+        <rewrite.plugin>6.25.0</rewrite.plugin>
         <scm-publish.plugin>3.3.0</scm-publish.plugin>
         <site.plugin>3.21.0</site.plugin>
         <sonar.plugin>5.4.0.6343</sonar.plugin>
