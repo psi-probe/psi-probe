@@ -34,7 +34,7 @@ jobs:
       - name: Set SONAR_SCANNER_JAVA_OPTS
         run: echo "SONAR_SCANNER_JAVA_OPTS=-Xmx512m" >> ${GITHUB_ENV}
       - name: Analyze with SonarCloud
-        run: ./mvnw verify jacoco:report sonar:sonar --batch-mode --no-transfer-progress --show-version -Dlicense.skip=true -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=${SONAR_ORGANIZATION} -Dsonar.projectKey=${SONAR_ORGANIZATION}_${SONAR_PROJECT_KEY} -Dsonar.scanner.skipJreProvisioning=true -Dsonar.token=${SONAR_TOKEN}
+        run: ./mvnw verify jacoco:report sonar:sonar --batch-mode --no-transfer-progress --show-version -Dlicense.skip=true -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=${{ env.SONAR_ORGANIZATION }} -Dsonar.projectKey=${{ env.SONAR_ORGANIZATION }}_${{ env.SONAR_PROJECT_KEY }} -Dsonar.scanner.skipJreProvisioning=true -Dsonar.token=${{ env.SONAR_TOKEN }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

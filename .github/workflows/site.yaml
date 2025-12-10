@@ -16,7 +16,7 @@ jobs:
   build:
     if: github.repository_owner == 'psi-probe' && ! contains(toJSON(github.event.head_commit.message), '[maven-release-plugin]')
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
       - name: Setup Java
