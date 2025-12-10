@@ -33,6 +33,7 @@ jobs:
           wget --quiet https://scan.coverity.com/download/linux64 --post-data "token=${{ env.COVERITY_TOKEN }}&project=${{ env.UPSTREAM_OWNER }}%2F${{ env.UPSTREAM_REPO }}" --output-document=coverity_tool.tgz
           tar --extract --file=coverity_tool.tgz
           ./cov-analysis-linux64-*/bin/cov-build --dir cov-int ./mvnw verify --batch-mode --no-transfer-progress --show-version -Dlicense.skip=true -Dmaven.compiler.fork=true -DskipTests=true
+          cat /home/runner/work/${UPSTREAM_OWNER}/${{ UPSTREAM_REPO }}/cov-int/build-log.txt
           tar --create --gzip --verbose --file=${{ env.UPSTREAM_REPO }}.tgz cov-int
           curl --form token=${{ env.COVERITY_TOKEN }} \
             --form email=${{ env.EMAIL }} \
