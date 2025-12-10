@@ -196,7 +196,7 @@
         <spotbugs.version>4.9.8</spotbugs.version>
         <spring.version>5.3.39</spring.version>
         <spring-security.version>5.8.16</spring-security.version>
-        <text.version>1.14.0</text.version>
+        <text.version>1.15.0</text.version>
         <tomcat.version>9.0.113</tomcat.version>
         <tomee.version>8.0.16</tomee.version>
         <transaction-api.version>1.3.3</transaction-api.version>
