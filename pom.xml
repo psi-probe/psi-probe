@@ -175,7 +175,7 @@
         <jackson.version>2.20.1</jackson.version>
         <javabean-tester.version>2.11.2</javabean-tester.version>
         <jfreechart.version>1.5.6</jfreechart.version>
-        <jhighlight.version>1.1.0</jhighlight.version>
+        <jhighlight.version>1.1.1</jhighlight.version>
         <jna.version>5.18.1</jna.version>
         <jsp-api.version>2.3.6</jsp-api.version>
         <jstl-api.version>1.2.7</jstl-api.version>
