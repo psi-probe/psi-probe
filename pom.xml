@@ -124,7 +124,7 @@
         <maven.min-version>3.9.12</maven.min-version>
 
         <!-- Copyright -->
-        <copyright>2025</copyright>
+        <copyright>2026</copyright>
 
         <!-- Github Settings -->
         <github.global.server>github</github.global.server>
