@@ -859,6 +859,7 @@
                         </annotationProcessorPaths>
 
                         <compilerArgs>
+                            <compilerArg>-XDaddTypeAnnotationsToSymbol=true</compilerArg>
                             <compilerArg>-XDcompilePolicy=simple</compilerArg>
                             <compilerArg>--should-stop=ifError=FLOW</compilerArg>
                             <compilerArg>-Xplugin:ErrorProne ${error-prone.failOnViolations} ${error-prone.skipGeneratedCode}</compilerArg>
