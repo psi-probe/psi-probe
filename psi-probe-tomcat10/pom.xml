@@ -37,7 +37,7 @@
     </scm>
 
     <properties>
-        <tomcat.version>10.1.50</tomcat.version>
+        <tomcat.version>10.1.52</tomcat.version>
 
         <!-- Jacoco minimum code coverage -->
         <jacoco.minimum.coverage>0.98</jacoco.minimum.coverage>
