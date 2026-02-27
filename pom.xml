@@ -1900,7 +1900,7 @@
                             <dependency>
                                 <groupId>org.openrewrite.recipe</groupId>
                                 <artifactId>rewrite-spring</artifactId>
-                                <version>6.25.0</version>
+                                <version>6.25.1</version>
                             </dependency>
                         </dependencies>
                         <executions>
