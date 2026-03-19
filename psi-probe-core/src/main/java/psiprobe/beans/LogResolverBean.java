@@ -266,8 +266,13 @@ public class LogResolverBean {
         ClassLoader cl;
         ClassLoader prevCl = null;
         if (ctx != null) {
-          cl = ctx.getLoader().getClassLoader();
-          prevCl = ClassUtils.overrideThreadContextClassLoader(cl);
+          Loader ctxLoader = ctx.getLoader();
+          cl = ctxLoader != null ? ctxLoader.getClassLoader() : null;
+          if (cl != null) {
+            prevCl = ClassUtils.overrideThreadContextClassLoader(cl);
+          } else {
+            cl = Thread.currentThread().getContextClassLoader().getParent();
+          }
         } else {
           cl = Thread.currentThread().getContextClassLoader().getParent();
         }
@@ -306,7 +311,12 @@ public class LogResolverBean {
    */
   private void interrogateContext(Context ctx, List<LogDestination> allAppenders) {
     Application application = ApplicationUtils.getApplication(ctx, getContainerWrapper());
-    ClassLoader cl = ctx.getLoader().getClassLoader();
+    Loader loader = ctx.getLoader();
+    if (loader == null) {
+      logger.debug("Context {} has no loader, skipping classloader interrogation", ctx.getName());
+      return;
+    }
+    ClassLoader cl = loader.getClassLoader();
     Object contextLogger = ctx.getLogger();
     if (contextLogger != null) {
       if (contextLogger.getClass().getName().startsWith("org.apache.commons.logging")) {
