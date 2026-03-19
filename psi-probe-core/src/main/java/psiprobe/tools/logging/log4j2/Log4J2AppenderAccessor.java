@@ -104,11 +104,9 @@ public class Log4J2AppenderAccessor extends AbstractLogDestination {
           }
         }
       }
-      result = Path
-          .of("mailto:" + getProperty(factoryData, "to", "", true)
-              + (from != null ? "&from=" + from : "") + (cc != null ? "&cc=" + cc : "")
-              + (bcc != null ? "&bcc=" + bcc : "") + (subject != null ? "&subject=" + subject : ""))
-          .toFile();
+      result = new File("mailto:" + getProperty(factoryData, "to", "", true)
+          + (from != null ? "&from=" + from : "") + (cc != null ? "&cc=" + cc : "")
+          + (bcc != null ? "&bcc=" + bcc : "") + (subject != null ? "&subject=" + subject : ""));
     } else {
       result = getStdoutFile();
     }
