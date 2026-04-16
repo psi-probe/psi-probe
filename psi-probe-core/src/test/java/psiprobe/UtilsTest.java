@@ -104,6 +104,7 @@ class UtilsTest {
     byte[] bytes = payload.getBytes(StandardCharsets.UTF_8);
     Assertions.assertEquals("alpha\nbeta\n",
         Utils.readStream(new ByteArrayInputStream(bytes), StandardCharsets.UTF_8.name()));
+    // Unsupported charset names fall back to the platform default charset.
     Assertions.assertEquals("alpha\nbeta\n",
         Utils.readStream(new ByteArrayInputStream(bytes), "unsupported-charset"));
 
@@ -195,7 +196,7 @@ class UtilsTest {
     Utils.delete(dir);
     Assertions.assertFalse(dir.exists());
 
-    Utils.delete(dir);
+    Assertions.assertDoesNotThrow(() -> Utils.delete(dir));
   }
 
 }

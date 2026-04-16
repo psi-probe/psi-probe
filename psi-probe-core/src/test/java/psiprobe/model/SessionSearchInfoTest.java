@@ -103,7 +103,7 @@ class SessionSearchInfoTest {
    * Numeric and list behavior test.
    */
   @Test
-  void numericAndListBehaviorTest() {
+  void numericAndDefensiveListBehaviorTest() {
     SessionSearchInfo info = new SessionSearchInfo();
 
     info.setAgeFrom("10");
