@@ -15,6 +15,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
@@ -186,9 +187,9 @@ class UtilsTest {
    */
   @Test
   void deleteRecursivelyTest() throws IOException {
-    java.nio.file.Path dirPath = Files.createTempDirectory("utils-delete-test-");
-    java.nio.file.Path nestedPath = dirPath.resolve("nested");
-    java.nio.file.Path childPath = nestedPath.resolve("child.txt");
+    Path dirPath = Files.createTempDirectory("utils-delete-test-");
+    Path nestedPath = dirPath.resolve("nested");
+    Path childPath = nestedPath.resolve("child.txt");
     Files.createDirectories(nestedPath);
     Files.writeString(childPath, "child", StandardCharsets.UTF_8);
     File dir = dirPath.toFile();
