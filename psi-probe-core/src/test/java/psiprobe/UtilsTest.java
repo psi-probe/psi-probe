@@ -128,12 +128,12 @@ class UtilsTest {
         new ByteArrayInputStream(pageEncodingJsp.getBytes(StandardCharsets.UTF_8))));
 
     String contentTypeJsp = "<%@ page contentType=\"text/html; charset=UTF-16\" %>";
-    Assertions.assertEquals("UTF-16", Utils.getJspEncoding(
-        new ByteArrayInputStream(contentTypeJsp.getBytes(StandardCharsets.UTF_8))));
+    Assertions.assertEquals("UTF-16", Utils
+        .getJspEncoding(new ByteArrayInputStream(contentTypeJsp.getBytes(StandardCharsets.UTF_8))));
 
     String defaultJsp = "<html><body>no directives</body></html>";
-    Assertions.assertEquals(StandardCharsets.UTF_8.name(), Utils.getJspEncoding(
-        new ByteArrayInputStream(defaultJsp.getBytes(StandardCharsets.UTF_8))));
+    Assertions.assertEquals(StandardCharsets.UTF_8.name(), Utils
+        .getJspEncoding(new ByteArrayInputStream(defaultJsp.getBytes(StandardCharsets.UTF_8))));
   }
 
   /**
@@ -185,11 +185,12 @@ class UtilsTest {
    */
   @Test
   void deleteRecursivelyTest() throws IOException {
-    File dir = Files.createTempDirectory("utils-delete-test-").toFile();
-    File nested = new File(dir, "nested");
-    File child = new File(nested, "child.txt");
-    Assertions.assertTrue(nested.mkdirs());
-    Files.writeString(child.toPath(), "child", StandardCharsets.UTF_8);
+    java.nio.file.Path dirPath = Files.createTempDirectory("utils-delete-test-");
+    java.nio.file.Path nestedPath = dirPath.resolve("nested");
+    java.nio.file.Path childPath = nestedPath.resolve("child.txt");
+    Files.createDirectories(nestedPath);
+    Files.writeString(childPath, "child", StandardCharsets.UTF_8);
+    File dir = dirPath.toFile();
 
     Utils.delete(dir);
     Assertions.assertFalse(dir.exists());

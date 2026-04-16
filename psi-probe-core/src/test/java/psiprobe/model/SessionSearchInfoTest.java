@@ -145,4 +145,70 @@ class SessionSearchInfoTest {
     Assertions.assertEquals(1, info.getErrorMessages().size());
   }
 
+  /**
+   * Empty and valid branch coverage test.
+   */
+  @Test
+  void emptyAndValidBranchCoverageTest() {
+    SessionSearchInfo withSessionId = new SessionSearchInfo();
+    withSessionId.setSessionId("x");
+    Assertions.assertFalse(withSessionId.isEmpty());
+
+    SessionSearchInfo withAttrName = new SessionSearchInfo();
+    withAttrName.setAttrName("x");
+    Assertions.assertFalse(withAttrName.isEmpty());
+
+    SessionSearchInfo withAgeFrom = new SessionSearchInfo();
+    withAgeFrom.setAgeFrom("1");
+    Assertions.assertFalse(withAgeFrom.isEmpty());
+
+    SessionSearchInfo withAgeTo = new SessionSearchInfo();
+    withAgeTo.setAgeTo("1");
+    Assertions.assertFalse(withAgeTo.isEmpty());
+
+    SessionSearchInfo withIdleFrom = new SessionSearchInfo();
+    withIdleFrom.setIdleTimeFrom("1");
+    Assertions.assertFalse(withIdleFrom.isEmpty());
+
+    SessionSearchInfo withIdleTo = new SessionSearchInfo();
+    withIdleTo.setIdleTimeTo("1");
+    Assertions.assertFalse(withIdleTo.isEmpty());
+
+    SessionSearchInfo withLastIp = new SessionSearchInfo();
+    withLastIp.setLastIp("127.0.0.1");
+    Assertions.assertFalse(withLastIp.isEmpty());
+
+    SessionSearchInfo invalidSession = new SessionSearchInfo();
+    invalidSession.setSessionId("(");
+    Assertions.assertFalse(invalidSession.isValid());
+
+    SessionSearchInfo invalidAttr = new SessionSearchInfo();
+    invalidAttr.setAttrName("(");
+    Assertions.assertFalse(invalidAttr.isValid());
+
+    SessionSearchInfo invalidAgeFrom = new SessionSearchInfo();
+    invalidAgeFrom.setAgeFrom("x");
+    Assertions.assertFalse(invalidAgeFrom.isValid());
+
+    SessionSearchInfo invalidAgeTo = new SessionSearchInfo();
+    invalidAgeTo.setAgeTo("x");
+    Assertions.assertFalse(invalidAgeTo.isValid());
+
+    SessionSearchInfo invalidIdleFrom = new SessionSearchInfo();
+    invalidIdleFrom.setIdleTimeFrom("x");
+    Assertions.assertFalse(invalidIdleFrom.isValid());
+
+    SessionSearchInfo invalidIdleTo = new SessionSearchInfo();
+    invalidIdleTo.setIdleTimeTo("x");
+    Assertions.assertFalse(invalidIdleTo.isValid());
+
+    SessionSearchInfo info = new SessionSearchInfo();
+    info.setSearchAction(SessionSearchInfo.ACTION_APPLY);
+    info.setAttrName("user");
+    Assertions.assertTrue(info.isUseAttr());
+    info.setAttrName(null);
+    info.setSessionId(null);
+    Assertions.assertFalse(info.isUseAttr());
+  }
+
 }
