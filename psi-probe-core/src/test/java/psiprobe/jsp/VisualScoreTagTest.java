@@ -10,6 +10,10 @@
  */
 package psiprobe.jsp;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import com.codebox.bean.JavaBeanTester;
 
 import org.junit.jupiter.api.Assertions;
@@ -48,6 +52,122 @@ class VisualScoreTagTest {
      */
     doTestRangeScan(10, 5, false);
     doTestRangeScan(10, 5, true);
+  }
+
+  @Test
+  void testCalculateSuffixShowAFalse() {
+    VisualScoreTag tag = new VisualScoreTag();
+    tag.setFullBlocks(10);
+    tag.setPartialBlocks(5);
+    tag.setShowEmptyBlocks(true);
+    tag.setShowA(false);
+    tag.setShowB(true);
+    tag.setValue(50);
+    tag.setValue2(0);
+
+    String result = tag.calculateSuffix("{0} ");
+    assertNotNull(result);
+    // Should not start with a border (a0/a1/a2)
+    assertFalse(result.startsWith("a0 ") || result.startsWith("a1 ") || result.startsWith("a2 "));
+  }
+
+  @Test
+  void testCalculateSuffixShowBFalse() {
+    VisualScoreTag tag = new VisualScoreTag();
+    tag.setFullBlocks(10);
+    tag.setPartialBlocks(5);
+    tag.setShowEmptyBlocks(true);
+    tag.setShowA(true);
+    tag.setShowB(false);
+    tag.setValue(50);
+    tag.setValue2(0);
+
+    String result = tag.calculateSuffix("{0} ");
+    assertNotNull(result);
+    // Should not end with a border (b0/b1/b2)
+    String trimmed = result.trim();
+    assertFalse(trimmed.endsWith("b0") || trimmed.endsWith("b1") || trimmed.endsWith("b2"));
+  }
+
+  @Test
+  void testCalculateSuffixShowEmptyBlocksFalse() {
+    VisualScoreTag tag = new VisualScoreTag();
+    tag.setFullBlocks(10);
+    tag.setPartialBlocks(5);
+    tag.setShowEmptyBlocks(false);
+    tag.setShowA(true);
+    tag.setShowB(true);
+    tag.setValue(25); // Only 25%, so many empty blocks
+    tag.setValue2(0);
+
+    String result = tag.calculateSuffix("{0} ");
+    assertNotNull(result);
+    // When showEmptyBlocks=false, no "0+0" blocks should appear
+    assertFalse(result.contains("0+0"));
+  }
+
+  @Test
+  void testCalculateSuffixFullRedBorder() {
+    VisualScoreTag tag = new VisualScoreTag();
+    tag.setFullBlocks(5);
+    tag.setPartialBlocks(5);
+    tag.setShowEmptyBlocks(false);
+    tag.setShowA(true);
+    tag.setShowB(true);
+    tag.setValue(100); // Full red
+    tag.setValue2(0);
+
+    String result = tag.calculateSuffix("{0} ");
+    assertTrue(result.contains("a1")); // RED_LEFT_BORDER
+    assertTrue(result.contains("b1")); // RED_RIGHT_BORDER
+  }
+
+  @Test
+  void testCalculateSuffixBlueBorder() {
+    VisualScoreTag tag = new VisualScoreTag();
+    tag.setFullBlocks(10);
+    tag.setPartialBlocks(5);
+    tag.setShowEmptyBlocks(false);
+    tag.setShowA(true);
+    tag.setShowB(true);
+    tag.setValue(0);
+    tag.setValue2(100); // Full blue
+
+    String result = tag.calculateSuffix("{0} ");
+    assertTrue(result.contains("a2")); // BLUE_LEFT_BORDER
+    assertTrue(result.contains("b2")); // BLUE_RIGHT_BORDER
+  }
+
+  @Test
+  void testCalculateSuffixWithValue2BelowZero() {
+    VisualScoreTag tag = new VisualScoreTag();
+    tag.setFullBlocks(10);
+    tag.setPartialBlocks(5);
+    tag.setShowEmptyBlocks(true);
+    tag.setShowA(true);
+    tag.setShowB(true);
+    tag.setValue(50);
+    tag.setValue2(-10); // negative value2 should be clamped to 0
+
+    String result = tag.calculateSuffix("{0} ");
+    assertNotNull(result);
+  }
+
+  @Test
+  void testCalculateSuffixValueBelowMin() {
+    VisualScoreTag tag = new VisualScoreTag();
+    tag.setFullBlocks(10);
+    tag.setPartialBlocks(5);
+    tag.setShowEmptyBlocks(true);
+    tag.setShowA(true);
+    tag.setShowB(true);
+    tag.setValue(-10); // below min, should be clamped to min
+    tag.setValue2(0);
+
+    String result = tag.calculateSuffix("{0} ");
+    assertNotNull(result);
+    // All empty, so white borders
+    assertTrue(result.contains("a0")); // WHITE_LEFT_BORDER
   }
 
   /**
