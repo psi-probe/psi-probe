@@ -1910,7 +1910,7 @@
                             <dependency>
                                 <groupId>org.openrewrite.recipe</groupId>
                                 <artifactId>rewrite-spring</artifactId>
-                                <version>6.30.1</version>
+                                <version>6.30.3</version>
                             </dependency>
                         </dependencies>
                         <executions>
