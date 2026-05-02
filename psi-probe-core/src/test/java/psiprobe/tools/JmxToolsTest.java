@@ -150,4 +150,76 @@ class JmxToolsTest {
     Mockito.when(mbeanServer.getMBeanInfo(objectName)).thenReturn(mbeanInfo);
     Assertions.assertFalse(JmxTools.hasAttribute(mbeanServer, objectName, "attr"));
   }
+
+  @Test
+  void testGetAttribute_RuntimeOperationsException() throws Exception {
+    Mockito.when(mbeanServer.getAttribute(objectName, "attr"))
+        .thenThrow(new javax.management.RuntimeOperationsException(new RuntimeException("test")));
+    Assertions.assertNull(JmxTools.getAttribute(mbeanServer, objectName, "attr"));
+  }
+
+  @Test
+  void testGetAttribute_MBeanException() throws Exception {
+    Mockito.when(mbeanServer.getAttribute(objectName, "attr"))
+        .thenThrow(new MBeanException(new Exception("test")));
+    Assertions.assertNull(JmxTools.getAttribute(mbeanServer, objectName, "attr"));
+  }
+
+  @Test
+  void testGetAttribute_ReflectionException() throws Exception {
+    Mockito.when(mbeanServer.getAttribute(objectName, "attr"))
+        .thenThrow(new ReflectionException(new Exception("test")));
+    Assertions.assertNull(JmxTools.getAttribute(mbeanServer, objectName, "attr"));
+  }
+
+  @Test
+  void testGetAttribute_InstanceNotFoundException() throws Exception {
+    Mockito.when(mbeanServer.getAttribute(objectName, "attr"))
+        .thenThrow(new InstanceNotFoundException("not found"));
+    Assertions.assertNull(JmxTools.getAttribute(mbeanServer, objectName, "attr"));
+  }
+
+  @Test
+  void testInvoke_MBeanException() throws Exception {
+    Mockito.when(mbeanServer.invoke(objectName, "method", null, null))
+        .thenThrow(new MBeanException(new Exception("test")));
+    Assertions.assertNull(JmxTools.invoke(mbeanServer, objectName, "method", null, null));
+  }
+
+  @Test
+  void testGetStringAttr_CompositeData_null() {
+    Mockito.when(compositeData.get("attr")).thenReturn(null);
+    Assertions.assertNull(JmxTools.getStringAttr(compositeData, "attr"));
+  }
+
+  @Test
+  void testGetBooleanAttr_CompositeData_false() {
+    Mockito.when(compositeData.get("boolAttr")).thenReturn(Boolean.FALSE);
+    Assertions.assertFalse(JmxTools.getBooleanAttr(compositeData, "boolAttr"));
+  }
+
+  @Test
+  void testGetBooleanAttr_MBeanServer_null() {
+    // getAttribute returns null -> getBooleanAttr returns false
+    Assertions.assertFalse(JmxTools.getBooleanAttr(mbeanServer, objectName, "attr"));
+  }
+
+  @Test
+  void testHasAttribute_InstanceNotFoundException() throws Exception {
+    Mockito.when(mbeanServer.getMBeanInfo(objectName))
+        .thenThrow(new InstanceNotFoundException("not found"));
+    Assertions.assertFalse(JmxTools.hasAttribute(mbeanServer, objectName, "attr"));
+  }
+
+  @Test
+  void testGetLongAttr_CompositeData_nonLong() {
+    Mockito.when(compositeData.get("longAttr")).thenReturn("notALong");
+    Assertions.assertEquals(0L, JmxTools.getLongAttr(compositeData, "longAttr"));
+  }
+
+  @Test
+  void testGetIntAttr_MBeanServer_null() {
+    // getAttribute returns null -> getIntAttr returns 0
+    Assertions.assertEquals(0, JmxTools.getIntAttr(mbeanServer, objectName, "attr"));
+  }
 }

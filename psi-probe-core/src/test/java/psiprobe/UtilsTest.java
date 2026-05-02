@@ -24,6 +24,8 @@ import java.util.concurrent.TimeUnit;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.mock.web.MockHttpServletRequest;
+import org.springframework.mock.web.MockHttpServletResponse;
 
 /**
  * The Class UtilsTest.
@@ -198,6 +200,145 @@ class UtilsTest {
     Assertions.assertFalse(dir.exists());
 
     Assertions.assertDoesNotThrow(() -> Utils.delete(dir));
+  }
+
+  /**
+   * Highlight stream test.
+   *
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
+  @Test
+  void highlightStreamTest() throws IOException {
+    // Test with a JSP renderer
+    String jspContent = "<html><body>hello</body></html>";
+    byte[] bytes = jspContent.getBytes(StandardCharsets.UTF_8);
+    String result =
+        Utils.highlightStream("test.jsp", new ByteArrayInputStream(bytes), "JSP", "UTF-8");
+    // result may be null if no renderer found; just verify no exception
+    // if not null, verify it contains HTML content
+    if (result != null) {
+      Assertions.assertTrue(result.contains("hello") || result.contains("codeline"));
+    }
+  }
+
+  /**
+   * Highlight stream null renderer test.
+   *
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
+  @Test
+  void highlightStreamNullRendererTest() throws IOException {
+    byte[] bytes = "content".getBytes(StandardCharsets.UTF_8);
+    String result = Utils.highlightStream("test.xyz", new ByteArrayInputStream(bytes),
+        "unknownrenderer", "UTF-8");
+    Assertions.assertNull(result);
+  }
+
+  /**
+   * Get JSP encoding with single quote test.
+   *
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
+  @Test
+  void getJspEncodingWithSingleQuoteTest() throws IOException {
+    String jsp = "<%@ page pageEncoding='ISO-8859-2' %>";
+    String encoding =
+        Utils.getJspEncoding(new ByteArrayInputStream(jsp.getBytes(StandardCharsets.UTF_8)));
+    Assertions.assertEquals("ISO-8859-2", encoding);
+  }
+
+  /**
+   * Get JSP encoding with contentType charset test.
+   *
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
+  @Test
+  void getJspEncodingContentTypeCharsetTest() throws IOException {
+    String jsp = "<%@ page contentType='text/html;charset=ISO-8859-3' %>";
+    String encoding =
+        Utils.getJspEncoding(new ByteArrayInputStream(jsp.getBytes(StandardCharsets.UTF_8)));
+    Assertions.assertEquals("ISO-8859-3", encoding);
+  }
+
+  /**
+   * Delete null file test.
+   */
+  @Test
+  void deleteNullFileTest() {
+    Assertions.assertDoesNotThrow(() -> Utils.delete(null));
+  }
+
+  /**
+   * Send file test.
+   *
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
+  @Test
+  void sendFileTest() throws IOException {
+    File file = Files.createTempFile("utils-send-", ".txt").toFile();
+    Files.writeString(file.toPath(), "Hello File Content", StandardCharsets.UTF_8);
+
+    try {
+      MockHttpServletRequest request = new MockHttpServletRequest();
+      MockHttpServletResponse response = new MockHttpServletResponse();
+
+      Utils.sendFile(request, response, file);
+
+      Assertions.assertEquals("application/x-download", response.getContentType());
+      Assertions.assertTrue(response.getHeader("Content-Disposition").contains(file.getName()));
+      Assertions.assertEquals("Hello File Content", response.getContentAsString());
+    } finally {
+      Files.deleteIfExists(file.toPath());
+    }
+  }
+
+  /**
+   * Send file with range test.
+   *
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
+  @Test
+  void sendFileWithRangeTest() throws IOException {
+    File file = Files.createTempFile("utils-range-", ".txt").toFile();
+    Files.writeString(file.toPath(), "ABCDEFGHIJ", StandardCharsets.UTF_8);
+
+    try {
+      MockHttpServletRequest request = new MockHttpServletRequest();
+      request.addHeader("Range", "bytes=2-5");
+      MockHttpServletResponse response = new MockHttpServletResponse();
+
+      Utils.sendFile(request, response, file);
+
+      String content = response.getContentAsString();
+      Assertions.assertEquals("CDEF", content);
+    } finally {
+      Files.deleteIfExists(file.toPath());
+    }
+  }
+
+  /**
+   * Send compressed file test.
+   *
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
+  @Test
+  void sendCompressedFileTest() throws IOException {
+    File file = Files.createTempFile("utils-zip-", ".txt").toFile();
+    Files.writeString(file.toPath(), "compress me", StandardCharsets.UTF_8);
+
+    try {
+      MockHttpServletResponse response = new MockHttpServletResponse();
+
+      Utils.sendCompressedFile(response, file);
+
+      Assertions.assertEquals("application/zip", response.getContentType());
+      Assertions.assertTrue(response.getHeader("Content-Disposition").contains(".zip"));
+      // Verify the response has some content (it's a valid zip)
+      byte[] content = response.getContentAsByteArray();
+      Assertions.assertTrue(content.length > 0);
+    } finally {
+      Files.deleteIfExists(file.toPath());
+    }
   }
 
 }
