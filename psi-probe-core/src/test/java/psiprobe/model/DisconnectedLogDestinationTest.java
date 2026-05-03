@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import com.codebox.bean.JavaBeanTester;
 
 import java.io.File;
-import java.nio.file.Paths;
+import java.nio.file.Path;
 import java.sql.Timestamp;
 
 import org.junit.jupiter.api.Test;
@@ -50,7 +50,7 @@ class DisconnectedLogDestinationTest {
     Mockito.when(dest.getIndex()).thenReturn("0");
     Mockito.when(dest.getTargetClass()).thenReturn("com.example.Logger");
     Mockito.when(dest.getConversionPattern()).thenReturn("%d %m%n");
-    File logFile = Paths.get(System.getProperty("java.io.tmpdir"), "test.log").toFile();
+    File logFile = Path.of(System.getProperty("java.io.tmpdir"), "test.log").toFile();
     Mockito.when(dest.getFile()).thenReturn(logFile);
     Mockito.when(dest.getLogType()).thenReturn("logback");
     Mockito.when(dest.getSize()).thenReturn(1024L);
