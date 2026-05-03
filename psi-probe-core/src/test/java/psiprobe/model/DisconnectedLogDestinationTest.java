@@ -49,7 +49,8 @@ class DisconnectedLogDestinationTest {
     Mockito.when(dest.getIndex()).thenReturn("0");
     Mockito.when(dest.getTargetClass()).thenReturn("com.example.Logger");
     Mockito.when(dest.getConversionPattern()).thenReturn("%d %m%n");
-    Mockito.when(dest.getFile()).thenReturn(new File("/tmp/test.log"));
+    File logFile = new File(System.getProperty("java.io.tmpdir"), "test.log");
+    Mockito.when(dest.getFile()).thenReturn(logFile);
     Mockito.when(dest.getLogType()).thenReturn("logback");
     Mockito.when(dest.getSize()).thenReturn(1024L);
     Mockito.when(dest.getLastModified()).thenReturn(new Timestamp(1000L));
@@ -66,7 +67,7 @@ class DisconnectedLogDestinationTest {
     assertEquals("0", dld.getIndex());
     assertEquals("com.example.Logger", dld.getTargetClass());
     assertEquals("%d %m%n", dld.getConversionPattern());
-    assertEquals("/tmp/test.log", dld.getFile().getPath());
+    assertEquals(logFile.getPath(), dld.getFile().getPath());
     assertEquals("logback", dld.getLogType());
     assertEquals(1024L, dld.getSize());
     assertNotNull(dld.getLastModified());

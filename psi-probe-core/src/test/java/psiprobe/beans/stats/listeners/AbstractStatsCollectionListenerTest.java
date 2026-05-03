@@ -51,7 +51,8 @@ class AbstractStatsCollectionListenerTest {
 
   private TestListener listener;
   private static final String TEST_CATEGORY = "test.category";
-  private static final String TEST_PROP_KEY = "psiprobe.beans.stats.listeners.test.category.myname.threshold";
+  private static final String TEST_PROP_KEY =
+      "psiprobe.beans.stats.listeners.test.category.myname.threshold";
 
   @BeforeEach
   void setUp() {
