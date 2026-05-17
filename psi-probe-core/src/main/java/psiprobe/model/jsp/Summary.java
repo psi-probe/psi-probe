@@ -55,7 +55,7 @@ public class Summary implements Serializable {
    * @return the items
    */
   public Map<String, Item> getItems() {
-    return items == null ? Map.of() : new HashMap<>(items);
+    return items == null ? new HashMap<>() : new HashMap<>(items);
   }
 
   /**
@@ -64,7 +64,7 @@ public class Summary implements Serializable {
    * @param items the items
    */
   public void setItems(Map<String, Item> items) {
-    this.items = items == null ? Map.of() : new HashMap<>(items);
+    this.items = items == null ? new HashMap<>() : new HashMap<>(items);
   }
 
   /**
