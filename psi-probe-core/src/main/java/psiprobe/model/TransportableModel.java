@@ -27,7 +27,7 @@ public class TransportableModel {
    * @return the items
    */
   public Map<String, Object> getItems() {
-    return items == null ? Map.of() : new HashMap<>(items);
+    return items == null ? new HashMap<>() : new HashMap<>(items);
   }
 
   /**
@@ -36,7 +36,7 @@ public class TransportableModel {
    * @param items the items
    */
   public void setItems(Map<String, Object> items) {
-    this.items = items == null ? Map.of() : new HashMap<>(items);
+    this.items = items == null ? new HashMap<>() : new HashMap<>(items);
   }
 
   /**
