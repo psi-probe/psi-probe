@@ -154,7 +154,7 @@
         <jacoco.minimum.coverage>1.00</jacoco.minimum.coverage>
 
         <!-- Dependency Versions -->
-        <activation.version>1.2.2</activation.version>
+        <activation.version>2.1.4</activation.version>
         <assertj.version>3.27.7</assertj.version>
         <beanutils.version>2.0.0-M2</beanutils.version>
         <byte-buddy.version>1.18.8</byte-buddy.version>
