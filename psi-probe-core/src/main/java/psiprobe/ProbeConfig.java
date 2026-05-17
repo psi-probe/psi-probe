@@ -186,7 +186,7 @@ public class ProbeConfig implements WebMvcConfigurer {
     try {
       Properties properties = adapters().getObject();
       if (properties == null) {
-        return Collections.emptyList();
+        return List.of();
       }
       for (Object adapter : properties.values()) {
         list.add((String) adapter);
@@ -209,7 +209,7 @@ public class ProbeConfig implements WebMvcConfigurer {
     try {
       Properties properties = stdout().getObject();
       if (properties == null) {
-        return Collections.emptyList();
+        return List.of();
       }
       for (Object stdout : properties.values()) {
         list.add((String) stdout);

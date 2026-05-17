@@ -48,7 +48,7 @@ class SecurityUtilsTest {
   @Test
   void testHasAttributeValueRoleTrue() {
     Collection<GrantedAuthority> authorities =
-        Collections.singletonList(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        List.of(new SimpleGrantedAuthority("ROLE_ADMIN"));
     SecurityContextHolder.getContext()
         .setAuthentication(new UsernamePasswordAuthenticationToken("user", "pass", authorities));
 
@@ -61,7 +61,7 @@ class SecurityUtilsTest {
   @Test
   void testHasAttributeValueRoleFalse() {
     Collection<GrantedAuthority> authorities =
-        Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"));
+        List.of(new SimpleGrantedAuthority("ROLE_USER"));
     SecurityContextHolder.getContext()
         .setAuthentication(new UsernamePasswordAuthenticationToken("user", "pass", authorities));
 
@@ -74,7 +74,7 @@ class SecurityUtilsTest {
   @Test
   void testHasAttributeValueRoleMultipleRoles() {
     Collection<GrantedAuthority> authorities =
-        Collections.singletonList(new SimpleGrantedAuthority("ROLE_MANAGER"));
+        List.of(new SimpleGrantedAuthority("ROLE_MANAGER"));
     SecurityContextHolder.getContext()
         .setAuthentication(new UsernamePasswordAuthenticationToken("user", "pass", authorities));
 
@@ -88,7 +88,7 @@ class SecurityUtilsTest {
   @Test
   void testHasAttributeValueRoleNoMatch() {
     Collection<GrantedAuthority> authorities =
-        Arrays.asList(new SimpleGrantedAuthority("ROLE_A"), new SimpleGrantedAuthority("ROLE_B"));
+        List.of(new SimpleGrantedAuthority("ROLE_A"), new SimpleGrantedAuthority("ROLE_B"));
     SecurityContextHolder.getContext()
         .setAuthentication(new UsernamePasswordAuthenticationToken("user", "pass", authorities));
 
@@ -101,7 +101,7 @@ class SecurityUtilsTest {
   @Test
   void testHasAttributeValueRoleEmptyAuthorities() {
     SecurityContextHolder.getContext().setAuthentication(
-        new UsernamePasswordAuthenticationToken("user", "pass", Collections.emptyList()));
+        new UsernamePasswordAuthenticationToken("user", "pass", List.of()));
 
     ServletContext context = mock(ServletContext.class);
     when(context.getInitParameter("attribute.value.roles")).thenReturn("ROLE_ADMIN");

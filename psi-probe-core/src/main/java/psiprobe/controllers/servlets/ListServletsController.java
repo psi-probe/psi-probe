@@ -58,7 +58,7 @@ public class ListServletsController extends AbstractContextHandlerController {
       if (ctx != null) {
         List<ServletInfo> appServlets = ApplicationUtils.getApplicationServlets(ctx);
         for (ServletInfo svlt : appServlets) {
-          Collections.sort(svlt.getMappings());
+          svlt.getMappings().sort(Comparator.naturalOrder());
         }
         servlets.addAll(appServlets);
       }

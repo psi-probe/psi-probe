@@ -206,7 +206,7 @@ public class Cluster {
    * @return the members
    */
   public List<ClusterSender> getMembers() {
-    return members == null ? Collections.emptyList() : new ArrayList<>(members);
+    return members == null ? List.of() : new ArrayList<>(members);
   }
 
   /**
@@ -215,7 +215,7 @@ public class Cluster {
    * @param members the new members
    */
   public void setMembers(Collection<ClusterSender> members) {
-    this.members = members == null ? Collections.emptyList() : new ArrayList<>(members);
+    this.members = members == null ? List.of() : new ArrayList<>(members);
   }
 
   /**

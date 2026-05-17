@@ -121,7 +121,7 @@ class ListSessionsControllerTest {
 
     when(ApplicationUtils.getApplicationSession(any(), anyBoolean(), anyBoolean()))
         .thenReturn(appSession);
-    when(appSession.getAttributes()).thenReturn(Collections.emptyList());
+    when(appSession.getAttributes()).thenReturn(List.of());
 
     ModelAndView mv = controller.handleContext(null, null, request, response);
     assertNotNull(mv);

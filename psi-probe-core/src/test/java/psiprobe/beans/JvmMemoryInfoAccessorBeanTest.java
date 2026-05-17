@@ -44,7 +44,7 @@ class JvmMemoryInfoAccessorBeanTest {
     ObjectInstance objectInstance = mock(ObjectInstance.class);
     when(objectInstance.getObjectName()).thenReturn(objName);
 
-    Set<ObjectInstance> objectInstances = Collections.singleton(objectInstance);
+    Set<ObjectInstance> objectInstances = Set.of(objectInstance);
 
     when(mbeanServer.queryMBeans(any(ObjectName.class), isNull())).thenReturn(objectInstances);
 
@@ -102,7 +102,7 @@ class JvmMemoryInfoAccessorBeanTest {
     ObjectInstance objectInstance = mock(ObjectInstance.class);
     when(objectInstance.getObjectName()).thenReturn(objName);
 
-    Set<ObjectInstance> objectInstances = Collections.singleton(objectInstance);
+    Set<ObjectInstance> objectInstances = Set.of(objectInstance);
 
     when(mbeanServer.queryMBeans(any(ObjectName.class), isNull())).thenReturn(objectInstances);
 

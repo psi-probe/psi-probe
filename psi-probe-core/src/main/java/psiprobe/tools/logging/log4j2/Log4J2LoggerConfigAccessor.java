@@ -204,7 +204,7 @@ public class Log4J2LoggerConfigAccessor extends DefaultAccessor {
         return (List<Object>) appenders;
       }
     }
-    return Collections.emptyList();
+    return List.of();
   }
 
   /**

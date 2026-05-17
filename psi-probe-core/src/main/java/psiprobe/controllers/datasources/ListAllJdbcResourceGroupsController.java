@@ -58,7 +58,7 @@ public class ListAllJdbcResourceGroupsController extends AbstractTomcatContainer
     filterValidDataSources(globalResources, dataSources);
 
     // sort datasources by JDBC URL
-    Collections.sort(dataSources, (ds1, ds2) -> {
+    dataSources.sort((ds1, ds2) -> {
       String jdbcUrl1 = ds1.getJdbcUrl();
       String jdbcUrl2 = ds2.getJdbcUrl();
 

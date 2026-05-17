@@ -122,7 +122,7 @@ public class LogResolverBean {
     List<LogDestination> allAppenders = getAllLogDestinations();
 
     if (allAppenders.isEmpty()) {
-      return Collections.emptyList();
+      return List.of();
     }
 
     //
@@ -131,7 +131,7 @@ public class LogResolverBean {
     List<LogDestination> uniqueList = new LinkedList<>();
     AbstractLogComparator cmp = new LogDestinationComparator(all);
 
-    Collections.sort(allAppenders, cmp);
+    allAppenders.sort(cmp);
     for (LogDestination dest : allAppenders) {
       if (Collections.binarySearch(uniqueList, dest, cmp) < 0
           && (all || dest.getFile() == null || dest.getFile().exists())) {
@@ -171,7 +171,7 @@ public class LogResolverBean {
     if (!allAppenders.isEmpty()) {
       AbstractLogComparator cmp = new LogSourceComparator();
 
-      Collections.sort(allAppenders, cmp);
+      allAppenders.sort(cmp);
       for (LogDestination dest : allAppenders) {
         if (Collections.binarySearch(sources, dest, cmp) < 0) {
           sources.add(new DisconnectedLogDestination().builder(dest));
@@ -188,7 +188,7 @@ public class LogResolverBean {
    */
   private List<LogDestination> getAllLogDestinations() {
     if (!Instruments.isInitialized()) {
-      return Collections.emptyList();
+      return List.of();
     }
 
     List<LogDestination> allAppenders = new ArrayList<>();

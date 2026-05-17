@@ -57,7 +57,7 @@ public class ConnectorInfo implements Serializable {
    * @return the SslHostConfig infos
    */
   public List<SslHostConfigInfo> getSslHostConfigInfos() {
-    return sslHostConfigInfos == null ? Collections.emptyList()
+    return sslHostConfigInfos == null ? List.of()
         : new ArrayList<>(sslHostConfigInfos);
   }
 
@@ -68,7 +68,7 @@ public class ConnectorInfo implements Serializable {
    */
   public void setSslHostConfigInfos(Collection<SslHostConfigInfo> sslHostConfigInfos) {
     this.sslHostConfigInfos =
-        sslHostConfigInfos == null ? Collections.emptyList() : new ArrayList<>(sslHostConfigInfos);
+        sslHostConfigInfos == null ? List.of() : new ArrayList<>(sslHostConfigInfos);
   }
 
   /**
