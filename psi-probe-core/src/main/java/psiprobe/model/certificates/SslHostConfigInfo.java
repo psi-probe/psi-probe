@@ -13,7 +13,6 @@ package psiprobe.model.certificates;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -276,8 +275,7 @@ public class SslHostConfigInfo implements Serializable {
    * @param trustStoreCerts the new trust store certs
    */
   public void setTrustStoreCerts(Collection<Cert> trustStoreCerts) {
-    this.trustStoreCerts =
-        trustStoreCerts == null ? List.of() : new ArrayList<>(trustStoreCerts);
+    this.trustStoreCerts = trustStoreCerts == null ? List.of() : new ArrayList<>(trustStoreCerts);
   }
 
   /**

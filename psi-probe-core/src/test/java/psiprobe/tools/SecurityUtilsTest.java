@@ -19,9 +19,8 @@ import com.codebox.bean.JavaBeanTester;
 
 import jakarta.servlet.ServletContext;
 
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -47,8 +46,7 @@ class SecurityUtilsTest {
 
   @Test
   void testHasAttributeValueRoleTrue() {
-    Collection<GrantedAuthority> authorities =
-        List.of(new SimpleGrantedAuthority("ROLE_ADMIN"));
+    Collection<GrantedAuthority> authorities = List.of(new SimpleGrantedAuthority("ROLE_ADMIN"));
     SecurityContextHolder.getContext()
         .setAuthentication(new UsernamePasswordAuthenticationToken("user", "pass", authorities));
 
@@ -60,8 +58,7 @@ class SecurityUtilsTest {
 
   @Test
   void testHasAttributeValueRoleFalse() {
-    Collection<GrantedAuthority> authorities =
-        List.of(new SimpleGrantedAuthority("ROLE_USER"));
+    Collection<GrantedAuthority> authorities = List.of(new SimpleGrantedAuthority("ROLE_USER"));
     SecurityContextHolder.getContext()
         .setAuthentication(new UsernamePasswordAuthenticationToken("user", "pass", authorities));
 
@@ -73,8 +70,7 @@ class SecurityUtilsTest {
 
   @Test
   void testHasAttributeValueRoleMultipleRoles() {
-    Collection<GrantedAuthority> authorities =
-        List.of(new SimpleGrantedAuthority("ROLE_MANAGER"));
+    Collection<GrantedAuthority> authorities = List.of(new SimpleGrantedAuthority("ROLE_MANAGER"));
     SecurityContextHolder.getContext()
         .setAuthentication(new UsernamePasswordAuthenticationToken("user", "pass", authorities));
 
@@ -100,8 +96,8 @@ class SecurityUtilsTest {
 
   @Test
   void testHasAttributeValueRoleEmptyAuthorities() {
-    SecurityContextHolder.getContext().setAuthentication(
-        new UsernamePasswordAuthenticationToken("user", "pass", List.of()));
+    SecurityContextHolder.getContext()
+        .setAuthentication(new UsernamePasswordAuthenticationToken("user", "pass", List.of()));
 
     ServletContext context = mock(ServletContext.class);
     when(context.getInitParameter("attribute.value.roles")).thenReturn("ROLE_ADMIN");

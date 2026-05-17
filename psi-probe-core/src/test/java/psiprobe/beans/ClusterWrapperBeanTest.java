@@ -18,7 +18,6 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.lang.management.ManagementFactory;
-import java.util.Collections;
 import java.util.Set;
 
 import javax.management.MBeanServer;

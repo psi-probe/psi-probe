@@ -335,10 +335,10 @@ public class OshiController extends AbstractTomcatContainerController {
                 100d * softirq / totalCpu, 100d * steal / totalCpu));
     oshi.add("CPU load: %.1f%%".formatted(processor.getSystemCpuLoadBetweenTicks(prevTicks) * 100));
     double[] loadAverage = processor.getSystemLoadAverage(3);
-    oshi.add("CPU load averages:"
-        + (loadAverage[0] < 0 ? " N/A" : " %.2f".formatted(loadAverage[0]))
-        + (loadAverage[1] < 0 ? " N/A" : " %.2f".formatted(loadAverage[1]))
-        + (loadAverage[2] < 0 ? " N/A" : " %.2f".formatted(loadAverage[2])));
+    oshi.add(
+        "CPU load averages:" + (loadAverage[0] < 0 ? " N/A" : " %.2f".formatted(loadAverage[0]))
+            + (loadAverage[1] < 0 ? " N/A" : " %.2f".formatted(loadAverage[1]))
+            + (loadAverage[2] < 0 ? " N/A" : " %.2f".formatted(loadAverage[2])));
     // per core CPU
     StringBuilder procCpu = new StringBuilder("CPU load per processor:");
     long[][] prevProcTicks = processor.getProcessorCpuLoadTicks();
@@ -388,7 +388,8 @@ public class OshiController extends AbstractTomcatContainerController {
       OSProcess p = procs.get(i);
       oshi.add(" %5d %5.1f %4.1f %9s %9s %s".formatted(p.getProcessID(),
           100d * (p.getKernelTime() + p.getUserTime()) / p.getUpTime(),
-          100d * p.getResidentSetSize() / memory.getTotal(), FormatUtil.formatBytes(p.getVirtualSize()),
+          100d * p.getResidentSetSize() / memory.getTotal(),
+          FormatUtil.formatBytes(p.getVirtualSize()),
           FormatUtil.formatBytes(p.getResidentSetSize()), p.getName()));
     }
     OSProcess p = os.getProcess(os.getProcessId());
@@ -496,17 +497,15 @@ public class OshiController extends AbstractTomcatContainerController {
     for (OSFileStore fs : fileSystem.getFileStores()) {
       long usable = fs.getUsableSpace();
       long total = fs.getTotalSpace();
-      oshi.add(
-          (" %s (%s) [%s] %s of %s free (%.1f%%), %s of %s files free (%.1f%%) is %s "
-              + (fs.getLogicalVolume() != null && !fs.getLogicalVolume().isEmpty() ? "[%s]" : "%s")
-              + " and is mounted at %s")
-              .formatted(fs.getName(),
-                  fs.getDescription().isEmpty() ? "file system" : fs.getDescription(), fs.getType(),
-                  FormatUtil.formatBytes(usable), FormatUtil.formatBytes(fs.getTotalSpace()),
-                  100d * usable / total, FormatUtil.formatValue(fs.getFreeInodes(), ""),
-                  FormatUtil.formatValue(fs.getTotalInodes(), ""),
-                  100d * fs.getFreeInodes() / fs.getTotalInodes(), fs.getVolume(),
-                  fs.getLogicalVolume(), fs.getMount()));
+      oshi.add((" %s (%s) [%s] %s of %s free (%.1f%%), %s of %s files free (%.1f%%) is %s "
+          + (fs.getLogicalVolume() != null && !fs.getLogicalVolume().isEmpty() ? "[%s]" : "%s")
+          + " and is mounted at %s").formatted(fs.getName(),
+              fs.getDescription().isEmpty() ? "file system" : fs.getDescription(), fs.getType(),
+              FormatUtil.formatBytes(usable), FormatUtil.formatBytes(fs.getTotalSpace()),
+              100d * usable / total, FormatUtil.formatValue(fs.getFreeInodes(), ""),
+              FormatUtil.formatValue(fs.getTotalInodes(), ""),
+              100d * fs.getFreeInodes() / fs.getTotalInodes(), fs.getVolume(),
+              fs.getLogicalVolume(), fs.getMount()));
     }
   }
 

@@ -13,7 +13,6 @@ package psiprobe.model.certificates;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -57,8 +56,7 @@ public class CertificateInfo implements Serializable {
    * @param keyStoreCerts the new key store certs
    */
   public void setKeyStoreCerts(Collection<Cert> keyStoreCerts) {
-    this.keyStoreCerts =
-        keyStoreCerts == null ? List.of() : new ArrayList<>(keyStoreCerts);
+    this.keyStoreCerts = keyStoreCerts == null ? List.of() : new ArrayList<>(keyStoreCerts);
   }
 
   /**
