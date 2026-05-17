@@ -11,7 +11,6 @@
 package psiprobe;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -186,7 +185,7 @@ public class ProbeConfig implements WebMvcConfigurer {
     try {
       Properties properties = adapters().getObject();
       if (properties == null) {
-        return Collections.emptyList();
+        return List.of();
       }
       for (Object adapter : properties.values()) {
         list.add((String) adapter);
@@ -209,7 +208,7 @@ public class ProbeConfig implements WebMvcConfigurer {
     try {
       Properties properties = stdout().getObject();
       if (properties == null) {
-        return Collections.emptyList();
+        return List.of();
       }
       for (Object stdout : properties.values()) {
         list.add((String) stdout);

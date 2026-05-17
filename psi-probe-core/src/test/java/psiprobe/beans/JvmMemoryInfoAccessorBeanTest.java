@@ -18,7 +18,6 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.lang.management.ManagementFactory;
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -44,7 +43,7 @@ class JvmMemoryInfoAccessorBeanTest {
     ObjectInstance objectInstance = mock(ObjectInstance.class);
     when(objectInstance.getObjectName()).thenReturn(objName);
 
-    Set<ObjectInstance> objectInstances = Collections.singleton(objectInstance);
+    Set<ObjectInstance> objectInstances = Set.of(objectInstance);
 
     when(mbeanServer.queryMBeans(any(ObjectName.class), isNull())).thenReturn(objectInstances);
 
@@ -102,7 +101,7 @@ class JvmMemoryInfoAccessorBeanTest {
     ObjectInstance objectInstance = mock(ObjectInstance.class);
     when(objectInstance.getObjectName()).thenReturn(objName);
 
-    Set<ObjectInstance> objectInstances = Collections.singleton(objectInstance);
+    Set<ObjectInstance> objectInstances = Set.of(objectInstance);
 
     when(mbeanServer.queryMBeans(any(ObjectName.class), isNull())).thenReturn(objectInstances);
 

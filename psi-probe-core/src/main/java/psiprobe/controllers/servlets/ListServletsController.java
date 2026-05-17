@@ -14,7 +14,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.apache.catalina.Context;
@@ -58,7 +58,7 @@ public class ListServletsController extends AbstractContextHandlerController {
       if (ctx != null) {
         List<ServletInfo> appServlets = ApplicationUtils.getApplicationServlets(ctx);
         for (ServletInfo svlt : appServlets) {
-          Collections.sort(svlt.getMappings());
+          svlt.getMappings().sort(Comparator.naturalOrder());
         }
         servlets.addAll(appServlets);
       }

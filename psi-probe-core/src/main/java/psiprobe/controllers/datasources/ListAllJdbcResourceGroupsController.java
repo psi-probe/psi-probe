@@ -15,7 +15,6 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -58,7 +57,7 @@ public class ListAllJdbcResourceGroupsController extends AbstractTomcatContainer
     filterValidDataSources(globalResources, dataSources);
 
     // sort datasources by JDBC URL
-    Collections.sort(dataSources, (ds1, ds2) -> {
+    dataSources.sort((ds1, ds2) -> {
       String jdbcUrl1 = ds1.getJdbcUrl();
       String jdbcUrl2 = ds2.getJdbcUrl();
 

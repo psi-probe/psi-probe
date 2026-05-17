@@ -155,7 +155,7 @@ public class LogbackLoggerAccessor extends DefaultAccessor {
         return (List<Object>) MethodUtils.invokeMethod(tracker, "allComponents");
       }
     }
-    return Collections.emptyList();
+    return List.of();
   }
 
   /**

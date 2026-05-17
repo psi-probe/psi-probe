@@ -25,7 +25,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import org.apache.catalina.Context;
@@ -121,7 +120,7 @@ class ListSessionsControllerTest {
 
     when(ApplicationUtils.getApplicationSession(any(), anyBoolean(), anyBoolean()))
         .thenReturn(appSession);
-    when(appSession.getAttributes()).thenReturn(Collections.emptyList());
+    when(appSession.getAttributes()).thenReturn(List.of());
 
     ModelAndView mv = controller.handleContext(null, null, request, response);
     assertNotNull(mv);

@@ -23,8 +23,6 @@ import jakarta.servlet.ServletContext;
 
 import java.io.File;
 import java.nio.file.Path;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import org.apache.catalina.Context;
@@ -50,7 +48,7 @@ class LogResolverBeanTest {
 
   @Test
   void testGetAndSetStdoutFiles() {
-    List<String> files = Arrays.asList("catalina.out", "stdout.log");
+    List<String> files = List.of("catalina.out", "stdout.log");
     bean.setStdoutFiles(files);
     assertEquals(files, bean.getStdoutFiles());
   }
@@ -58,7 +56,7 @@ class LogResolverBeanTest {
   @Test
   void testGetLogDestinations_Empty() {
     // Instruments.isInitialized() returns false, so should be empty
-    bean.setStdoutFiles(Collections.emptyList());
+    bean.setStdoutFiles(List.of());
     // Mock Instruments.isInitialized() to return false
     try (var mocked = org.mockito.Mockito.mockStatic(psiprobe.tools.Instruments.class)) {
       mocked.when(psiprobe.tools.Instruments::isInitialized).thenReturn(false);

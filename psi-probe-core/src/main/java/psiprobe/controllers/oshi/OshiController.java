@@ -328,24 +328,23 @@ public class OshiController extends AbstractTomcatContainerController {
     long steal = ticks[TickType.STEAL.getIndex()] - prevTicks[TickType.STEAL.getIndex()];
     long totalCpu = user + nice + sys + idle + iowait + irq + softirq + steal;
 
-    oshi.add(String.format(
-        "User: %.1f%% Nice: %.1f%% System: %.1f%% Idle: %.1f%% IOwait: %.1f%% IRQ: %.1f%% SoftIRQ: %.1f%% Steal: %.1f%%",
-        100d * user / totalCpu, 100d * nice / totalCpu, 100d * sys / totalCpu,
-        100d * idle / totalCpu, 100d * iowait / totalCpu, 100d * irq / totalCpu,
-        100d * softirq / totalCpu, 100d * steal / totalCpu));
     oshi.add(
-        String.format("CPU load: %.1f%%", processor.getSystemCpuLoadBetweenTicks(prevTicks) * 100));
+        "User: %.1f%% Nice: %.1f%% System: %.1f%% Idle: %.1f%% IOwait: %.1f%% IRQ: %.1f%% SoftIRQ: %.1f%% Steal: %.1f%%"
+            .formatted(100d * user / totalCpu, 100d * nice / totalCpu, 100d * sys / totalCpu,
+                100d * idle / totalCpu, 100d * iowait / totalCpu, 100d * irq / totalCpu,
+                100d * softirq / totalCpu, 100d * steal / totalCpu));
+    oshi.add("CPU load: %.1f%%".formatted(processor.getSystemCpuLoadBetweenTicks(prevTicks) * 100));
     double[] loadAverage = processor.getSystemLoadAverage(3);
-    oshi.add("CPU load averages:"
-        + (loadAverage[0] < 0 ? " N/A" : String.format(" %.2f", loadAverage[0]))
-        + (loadAverage[1] < 0 ? " N/A" : String.format(" %.2f", loadAverage[1]))
-        + (loadAverage[2] < 0 ? " N/A" : String.format(" %.2f", loadAverage[2])));
+    oshi.add(
+        "CPU load averages:" + (loadAverage[0] < 0 ? " N/A" : " %.2f".formatted(loadAverage[0]))
+            + (loadAverage[1] < 0 ? " N/A" : " %.2f".formatted(loadAverage[1]))
+            + (loadAverage[2] < 0 ? " N/A" : " %.2f".formatted(loadAverage[2])));
     // per core CPU
     StringBuilder procCpu = new StringBuilder("CPU load per processor:");
     long[][] prevProcTicks = processor.getProcessorCpuLoadTicks();
     double[] load = processor.getProcessorCpuLoadBetweenTicks(prevProcTicks);
     for (double avg : load) {
-      procCpu.append(String.format(" %.1f%%", avg * 100));
+      procCpu.append(" %.1f%%".formatted(avg * 100));
     }
     oshi.add(procCpu.toString());
     long freq = processor.getProcessorIdentifier().getVendorFreq();
@@ -387,7 +386,7 @@ public class OshiController extends AbstractTomcatContainerController {
     oshi.add("   PID  %CPU %MEM       VSZ       RSS Name");
     for (int i = 0; i < procs.size() && i < 5; i++) {
       OSProcess p = procs.get(i);
-      oshi.add(String.format(" %5d %5.1f %4.1f %9s %9s %s", p.getProcessID(),
+      oshi.add(" %5d %5.1f %4.1f %9s %9s %s".formatted(p.getProcessID(),
           100d * (p.getKernelTime() + p.getUserTime()) / p.getUpTime(),
           100d * p.getResidentSetSize() / memory.getTotal(),
           FormatUtil.formatBytes(p.getVirtualSize()),
@@ -416,13 +415,13 @@ public class OshiController extends AbstractTomcatContainerController {
     int i = 0;
     for (OSService s : os.getServices()) {
       if (s.getState().equals(OSService.State.RUNNING) && i++ < 5) {
-        oshi.add(String.format(" %5d  %7s  %s", s.getProcessID(), s.getState(), s.getName()));
+        oshi.add(" %5d  %7s  %s".formatted(s.getProcessID(), s.getState(), s.getName()));
       }
     }
     i = 0;
     for (OSService s : os.getServices()) {
       if (s.getState().equals(OSService.State.STOPPED) && i++ < 5) {
-        oshi.add(String.format(" %5d  %7s  %s", s.getProcessID(), s.getState(), s.getName()));
+        oshi.add(" %5d  %7s  %s".formatted(s.getProcessID(), s.getState(), s.getName()));
       }
     }
   }
@@ -492,22 +491,21 @@ public class OshiController extends AbstractTomcatContainerController {
   private static void printFileSystem(FileSystem fileSystem) {
     oshi.add("File System:");
 
-    oshi.add(String.format(" File Descriptors: %d/%d", fileSystem.getOpenFileDescriptors(),
+    oshi.add(" File Descriptors: %d/%d".formatted(fileSystem.getOpenFileDescriptors(),
         fileSystem.getMaxFileDescriptors()));
 
     for (OSFileStore fs : fileSystem.getFileStores()) {
       long usable = fs.getUsableSpace();
       long total = fs.getTotalSpace();
-      oshi.add(String.format(
-          " %s (%s) [%s] %s of %s free (%.1f%%), %s of %s files free (%.1f%%) is %s "
-              + (fs.getLogicalVolume() != null && !fs.getLogicalVolume().isEmpty() ? "[%s]" : "%s")
-              + " and is mounted at %s",
-          fs.getName(), fs.getDescription().isEmpty() ? "file system" : fs.getDescription(),
-          fs.getType(), FormatUtil.formatBytes(usable), FormatUtil.formatBytes(fs.getTotalSpace()),
-          100d * usable / total, FormatUtil.formatValue(fs.getFreeInodes(), ""),
-          FormatUtil.formatValue(fs.getTotalInodes(), ""),
-          100d * fs.getFreeInodes() / fs.getTotalInodes(), fs.getVolume(), fs.getLogicalVolume(),
-          fs.getMount()));
+      oshi.add((" %s (%s) [%s] %s of %s free (%.1f%%), %s of %s files free (%.1f%%) is %s "
+          + (fs.getLogicalVolume() != null && !fs.getLogicalVolume().isEmpty() ? "[%s]" : "%s")
+          + " and is mounted at %s").formatted(fs.getName(),
+              fs.getDescription().isEmpty() ? "file system" : fs.getDescription(), fs.getType(),
+              FormatUtil.formatBytes(usable), FormatUtil.formatBytes(fs.getTotalSpace()),
+              100d * usable / total, FormatUtil.formatValue(fs.getFreeInodes(), ""),
+              FormatUtil.formatValue(fs.getTotalInodes(), ""),
+              100d * fs.getFreeInodes() / fs.getTotalInodes(), fs.getVolume(),
+              fs.getLogicalVolume(), fs.getMount()));
     }
   }
 
