@@ -50,7 +50,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import oshi.PlatformEnum;
 import oshi.SystemInfo;
 import oshi.hardware.CentralProcessor;
 import oshi.hardware.CentralProcessor.PhysicalProcessor;
@@ -81,6 +80,7 @@ import oshi.software.os.OperatingSystem;
 import oshi.software.os.OperatingSystem.ProcessFiltering;
 import oshi.software.os.OperatingSystem.ProcessSorting;
 import oshi.util.FormatUtil;
+import oshi.util.PlatformEnum;
 import oshi.util.Util;
 
 import psiprobe.controllers.AbstractTomcatContainerController;
@@ -161,7 +161,7 @@ public class OshiController extends AbstractTomcatContainerController {
     SystemInfo si = new SystemInfo();
 
     // Psi Probe adjusted oshi initial test to confirm platform supported before attempting to run
-    if (PlatformEnum.UNKNOWN.equals(SystemInfo.getCurrentPlatform())) {
+    if (PlatformEnum.UNKNOWN.equals(PlatformEnum.getCurrentPlatform())) {
       logger.error("Oshi not supported on current platform");
       oshi.add("Oshi not supported on current platform");
       oshi.add("");
@@ -388,9 +388,9 @@ public class OshiController extends AbstractTomcatContainerController {
       OSProcess p = procs.get(i);
       oshi.add(" %5d %5.1f %4.1f %9s %9s %s".formatted(p.getProcessID(),
           100d * (p.getKernelTime() + p.getUserTime()) / p.getUpTime(),
-          100d * p.getResidentSetSize() / memory.getTotal(),
-          FormatUtil.formatBytes(p.getVirtualSize()),
-          FormatUtil.formatBytes(p.getResidentSetSize()), p.getName()));
+          100d * p.getResidentMemory() / memory.getTotal(),
+          FormatUtil.formatBytes(p.getVirtualSize()), FormatUtil.formatBytes(p.getResidentMemory()),
+          p.getName()));
     }
     OSProcess p = os.getProcess(os.getProcessId());
     oshi.add("Current process arguments: ");
