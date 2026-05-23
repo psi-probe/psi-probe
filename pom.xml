@@ -238,7 +238,7 @@
         <resources.plugin>3.5.0</resources.plugin>
         <rewrite.plugin>6.39.0</rewrite.plugin>
         <scm-publish.plugin>3.3.0</scm-publish.plugin>
-        <site.plugin>3.21.0</site.plugin>
+        <site.plugin>3.22.0</site.plugin>
         <sonar.plugin>5.6.0.6792</sonar.plugin>
         <sortpom.plugin>4.0.0</sortpom.plugin>
         <source.plugin>3.4.0</source.plugin>
