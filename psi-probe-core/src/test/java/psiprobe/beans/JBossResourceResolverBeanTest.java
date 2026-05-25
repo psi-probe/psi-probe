@@ -14,7 +14,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 import java.io.StringReader;
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -87,7 +86,7 @@ class JBossResourceResolverBeanTest {
   void getApplicationResourcesReturnsEmptyWhenNoMBeanServerPresent() throws Exception {
     JBossResourceResolverBean bean = new TestableJBossResourceResolverBean(null);
 
-    assertEquals(Collections.emptyList(), bean.getApplicationResources());
+    assertEquals(List.of(), bean.getApplicationResources());
   }
 
   @Test
@@ -98,7 +97,7 @@ class JBossResourceResolverBeanTest {
 
     JBossResourceResolverBean bean = new TestableJBossResourceResolverBean(server);
 
-    assertEquals(Collections.emptyList(), bean.getApplicationResources());
+    assertEquals(List.of(), bean.getApplicationResources());
   }
 
   @Test
