@@ -198,11 +198,15 @@ class AbstractTomcatContainerTest {
       assertEquals(Path.of("/tmp/catalina-base", "webapps").toString(),
           container.getAppBase().toPath().toString());
 
-      when(host.getAppBase()).thenReturn("/opt/webapps");
-      assertEquals(Path.of("/opt/webapps").toString(), container.getAppBase().toPath().toString());
+      String absoluteAppBase =
+          Path.of(System.getProperty("java.io.tmpdir"), "opt-webapps").toAbsolutePath().toString();
+      when(host.getAppBase()).thenReturn(absoluteAppBase);
+      assertEquals(Path.of(absoluteAppBase).toString(), container.getAppBase().toPath().toString());
     } finally {
       if (oldBase != null) {
         System.setProperty("catalina.base", oldBase);
+      } else {
+        System.clearProperty("catalina.base");
       }
     }
   }
