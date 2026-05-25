@@ -127,7 +127,7 @@ class ApplicationUtilsTest {
     when(sw1.getMaxTime()).thenReturn(50L);
 
     when(sw2.getRequestCount()).thenReturn(2);
-    when(sw2.getErrorCount()).thenReturn(0);
+    when(sw2.getErrorCountLong()).thenReturn(0L);
     when(sw2.getProcessingTime()).thenReturn(200L);
     when(sw2.getMinTime()).thenReturn(5L);
     when(sw2.getMaxTime()).thenReturn(80L);
