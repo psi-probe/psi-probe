@@ -32,6 +32,7 @@ import org.apache.catalina.Context;
 import org.apache.catalina.Manager;
 import org.apache.catalina.Session;
 import org.apache.catalina.Wrapper;
+import org.apache.catalina.core.StandardWrapper;
 import org.junit.jupiter.api.Test;
 
 import psiprobe.beans.ContainerWrapperBean;
@@ -113,20 +114,20 @@ class ApplicationUtilsTest {
   @Test
   void collectApplicationServletStatsAggregatesStandardWrappers() {
     Context context = mock(Context.class);
-    Wrapper sw1 = mock(Wrapper.class);
-    Wrapper sw2 = mock(Wrapper.class);
+    StandardWrapper sw1 = mock(StandardWrapper.class);
+    StandardWrapper sw2 = mock(StandardWrapper.class);
     Container other = mock(Container.class);
 
     when(context.findChildren()).thenReturn(new Container[] {sw1, other, sw2});
 
     when(sw1.getRequestCount()).thenReturn(5);
-    when(sw1.getErrorCountLong()).thenReturn(1L);
+    when(sw1.getErrorCount()).thenReturn(1);
     when(sw1.getProcessingTime()).thenReturn(100L);
     when(sw1.getMinTime()).thenReturn(10L);
     when(sw1.getMaxTime()).thenReturn(50L);
 
     when(sw2.getRequestCount()).thenReturn(2);
-    when(sw2.getErrorCountLong()).thenReturn(0L);
+    when(sw2.getErrorCount()).thenReturn(0);
     when(sw2.getProcessingTime()).thenReturn(200L);
     when(sw2.getMinTime()).thenReturn(5L);
     when(sw2.getMaxTime()).thenReturn(80L);
