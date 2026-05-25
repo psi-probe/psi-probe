@@ -26,6 +26,7 @@ import jakarta.servlet.ServletContext;
 import java.io.File;
 import java.io.InputStream;
 import java.net.URL;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
@@ -260,9 +261,9 @@ class AbstractTomcatContainerTest {
     TestTomcatContainer container = new TestTomcatContainer();
     Context context = mock(Context.class);
 
-    File temp = File.createTempFile("ctx", ".xml");
-    temp.deleteOnExit();
-    when(context.getConfigFile()).thenReturn(temp.toURI().toURL());
+    Path temp = Files.createTempFile("ctx", ".xml");
+    temp.toFile().deleteOnExit();
+    when(context.getConfigFile()).thenReturn(temp.toUri().toURL());
     assertNotNull(container.getConfigFile(context));
 
     when(context.getConfigFile()).thenReturn(new URL("https://example.com/context.xml"));
