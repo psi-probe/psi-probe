@@ -32,7 +32,6 @@ import org.apache.catalina.Context;
 import org.apache.catalina.Manager;
 import org.apache.catalina.Session;
 import org.apache.catalina.Wrapper;
-import org.apache.catalina.core.StandardWrapper;
 import org.junit.jupiter.api.Test;
 
 import psiprobe.beans.ContainerWrapperBean;
@@ -114,8 +113,8 @@ class ApplicationUtilsTest {
   @Test
   void collectApplicationServletStatsAggregatesStandardWrappers() {
     Context context = mock(Context.class);
-    StandardWrapper sw1 = mock(StandardWrapper.class);
-    StandardWrapper sw2 = mock(StandardWrapper.class);
+    Wrapper sw1 = mock(Wrapper.class);
+    Wrapper sw2 = mock(Wrapper.class);
     Container other = mock(Container.class);
 
     when(context.findChildren()).thenReturn(new Container[] {sw1, other, sw2});
