@@ -54,7 +54,7 @@ You can rename 'psi-probe-web.war' to the traditional 'probe.war' or other name 
 
 2.  Minimum JDK version required to build is JDK 21 and run is JDK 17.
 
-3.  **Download and install Maven 3.9.9 or better
+3.  **Download and install Maven 3.9.16 or better
 
     You may download it from the [Apache Maven website](https://maven.apache.org/download.cgi).
 
@@ -75,7 +75,7 @@ Generally supported versions for third party tomcat providers align with their s
     - Requires java 11 or better
     - Use psi probe 4.x series for javax namespace
     - Spring is no longer receiving updates so vulnerabilities with spring will not be addressed.  If you have a subscription to spring, manually patch the jars.
-    - Tomcat 9.0.72 to 9.0.105
+    - Tomcat 9.0.72 to 9.0.118
     - TomEE 8.0.16 (Based on Tomcat 9.0.82).  TomEE 8.0 ended support on December 31st 2023
     - NonStop(tm) never supported 9.0 as they changed direction but seem to have come back now for 10.1
     - Vmware Tanzu tc 4.1.44 release (Based on Tomcat 9.0.102)
@@ -85,7 +85,7 @@ Generally supported versions for third party tomcat providers align with their s
 
     - Requires java 17 or better
     - Use psi probe 5.x series for jakarta namespace
-    - Tomcat 10.1.6 to 10.1.41
+    - Tomcat 10.1.6 to 10.1.55
     - TomEE 10.0.0 to 10.0.1 (Based on Tomcat 10.1.39).
     - NonStop(tm) Servlets For JavaServer Pages(tm) v10.1 (Based on Tomcat 10.1.7)
     - Vmware Tanzu tc 10.1.40.A release (Based on Tomcat 10.1.40)
@@ -94,7 +94,7 @@ Generally supported versions for third party tomcat providers align with their s
 
     - Requires java 17 or better
     - Use psi probe 5.x series for jakarta namespace
-    - Tomcat 11.0.0.M3 to 11.0.7
+    - Tomcat 11.0.0.M3 to 11.0.22
     - TomEE - no support yet for tomcat 11.0
     - NonStop(tm) Servlets For JavaServer Pages(tm) - no support yet for tomcat 11.0
     - Vmware Tanzu tc 11.0.6.A release (Based on Tomcat 11.0.6)
