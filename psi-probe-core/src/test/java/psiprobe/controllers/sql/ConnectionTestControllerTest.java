@@ -33,9 +33,9 @@ import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 
+import psiprobe.TomcatContainer;
 import psiprobe.beans.ContainerWrapperBean;
 import psiprobe.beans.ResourceResolver;
-import psiprobe.TomcatContainer;
 
 class ConnectionTestControllerTest {
 
@@ -52,8 +52,8 @@ class ConnectionTestControllerTest {
     StaticApplicationContext applicationContext = new StaticApplicationContext();
     applicationContext.addMessage("probe.src.dataSourceTest.resource.lookup.failure",
         Locale.getDefault(), "lookup {0}");
-    applicationContext.addMessage("probe.src.dataSourceTest.connection.failure", Locale.getDefault(),
-        "connection {0}");
+    applicationContext.addMessage("probe.src.dataSourceTest.connection.failure",
+        Locale.getDefault(), "connection {0}");
     applicationContext.addMessage("probe.jsp.dataSourceTest.dbMetaData.dbProdName",
         Locale.getDefault(), "db product");
     applicationContext.addMessage("probe.jsp.dataSourceTest.dbMetaData.dbProdVersion",
@@ -64,6 +64,7 @@ class ConnectionTestControllerTest {
         Locale.getDefault(), "driver version");
     applicationContext.addMessage("probe.jsp.dataSourceTest.dbMetaData.jdbcVersion",
         Locale.getDefault(), "jdbc version");
+    applicationContext.refresh();
     controller.setApplicationContext(applicationContext);
 
     containerWrapper = mock(ContainerWrapperBean.class);
@@ -95,7 +96,7 @@ class ConnectionTestControllerTest {
     when(metaData.getDriverVersion()).thenReturn("1.0");
     when(metaData.getJDBCMajorVersion()).thenReturn(4);
 
-    MockHttpServletRequest request = new MockHttpServletRequest();
+    MockHttpServletRequest request = new MockHttpServletRequest("GET", "/sql/connection.ajax");
     request.addParameter("webapp", "app");
     request.addParameter("resource", "jdbc/test");
 
@@ -106,8 +107,8 @@ class ConnectionTestControllerTest {
     List<Map<String, String>> dbMetaData =
         (List<Map<String, String>>) modelAndView.getModel().get("dbMetaData");
     assertEquals(5, dbMetaData.size());
-    assertEquals("db product", dbMetaData.getFirst().get("propertyName"));
-    assertEquals("PostgreSQL", dbMetaData.getFirst().get("propertyValue"));
+    assertEquals("db product", dbMetaData.get(0).get("propertyName"));
+    assertEquals("PostgreSQL", dbMetaData.get(0).get("propertyValue"));
   }
 
   @Test
@@ -117,7 +118,7 @@ class ConnectionTestControllerTest {
     when(resourceResolver.lookupDataSource(context, "jdbc/missing", containerWrapper))
         .thenThrow(new NamingException("boom"));
 
-    MockHttpServletRequest request = new MockHttpServletRequest();
+    MockHttpServletRequest request = new MockHttpServletRequest("GET", "/sql/connection.ajax");
     request.addParameter("webapp", "app");
     request.addParameter("resource", "jdbc/missing");
 
@@ -136,7 +137,7 @@ class ConnectionTestControllerTest {
         .thenReturn(dataSource);
     when(dataSource.getConnection()).thenThrow(new SQLException("down"));
 
-    MockHttpServletRequest request = new MockHttpServletRequest();
+    MockHttpServletRequest request = new MockHttpServletRequest("GET", "/sql/connection.ajax");
     request.addParameter("webapp", "app");
     request.addParameter("resource", "jdbc/test");
 

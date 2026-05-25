@@ -39,7 +39,7 @@ class Error403ControllerTest {
     controller.setAjaxViewName("errors/403_ajax");
     controller.setAjaxExtension(".ajax");
 
-    MockHttpServletRequest request = new MockHttpServletRequest();
+    MockHttpServletRequest request = new MockHttpServletRequest("GET", "/403.htm");
     request.setAttribute("jakarta.servlet.error.request_uri", "/sql/query.ajax");
 
     assertEquals("errors/403_ajax",
@@ -53,7 +53,7 @@ class Error403ControllerTest {
     controller.setAjaxViewName("errors/403_ajax");
     controller.setAjaxExtension(".ajax");
 
-    MockHttpServletRequest request = new MockHttpServletRequest();
+    MockHttpServletRequest request = new MockHttpServletRequest("GET", "/403.htm");
     request.setAttribute("jakarta.servlet.error.request_uri", "/home.htm");
 
     assertEquals("errors/403",

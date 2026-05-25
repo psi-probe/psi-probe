@@ -14,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.mockStatic;
 import static org.mockito.Mockito.when;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -26,6 +27,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.MockedStatic;
 import org.springframework.web.servlet.ModelAndView;
 
 import oshi.hardware.Baseboard;
@@ -50,9 +52,11 @@ import oshi.software.os.FileSystem;
 import oshi.software.os.InternetProtocolStats;
 import oshi.software.os.NetworkParams;
 import oshi.software.os.OSFileStore;
+import oshi.software.os.OSProcess;
 import oshi.software.os.OSService;
 import oshi.software.os.OSSession;
 import oshi.software.os.OperatingSystem;
+import oshi.util.Util;
 
 /**
  * Tests for {@link OshiController}.
@@ -329,5 +333,87 @@ class OshiControllerTest {
     assertTrue(rendered.contains("virtual-memory"));
     assertTrue(rendered.contains("dimm0"));
     assertTrue(rendered.contains("sensor-data"));
+  }
+
+  @Test
+  void printCpuRendersTickLoadAndFrequencyInformation() throws Exception {
+    CentralProcessor processor = mock(CentralProcessor.class);
+    CentralProcessor.ProcessorIdentifier identifier =
+        mock(CentralProcessor.ProcessorIdentifier.class);
+    long[] previousTicks = new long[] {100, 10, 20, 200, 5, 3, 2, 1};
+    long[] currentTicks = new long[] {150, 15, 30, 260, 8, 5, 4, 2};
+
+    when(processor.getContextSwitches()).thenReturn(123L);
+    when(processor.getInterrupts()).thenReturn(456L);
+    when(processor.getSystemCpuLoadTicks()).thenReturn(previousTicks, currentTicks);
+    when(processor.getSystemCpuLoadBetweenTicks(previousTicks)).thenReturn(0.25d);
+    when(processor.getSystemLoadAverage(3)).thenReturn(new double[] {1.0d, -1.0d, 3.0d});
+    when(processor.getProcessorCpuLoadTicks()).thenReturn(new long[][] {previousTicks});
+    when(processor.getProcessorCpuLoadBetweenTicks(new long[][] {previousTicks}))
+        .thenReturn(new double[] {0.5d, 0.25d});
+    when(processor.getProcessorIdentifier()).thenReturn(identifier);
+    when(identifier.getVendorFreq()).thenReturn(2_000_000_000L);
+    when(processor.getMaxFreq()).thenReturn(3_000_000_000L);
+    when(processor.getCurrentFreq()).thenReturn(new long[] {1_500_000_000L, 1_600_000_000L});
+
+    try (MockedStatic<Util> utilMock = mockStatic(Util.class)) {
+      invokeStatic("printCpu", CentralProcessor.class, processor);
+      utilMock.verify(() -> Util.sleep(1000));
+    }
+
+    String rendered = String.join("\n", getOshiData());
+    assertTrue(rendered.contains("Context Switches/Interrupts: 123 / 456"));
+    assertTrue(rendered.contains("CPU load: 25.0%"));
+    assertTrue(rendered.contains("CPU load averages: 1.00 N/A 3.00"));
+    assertTrue(rendered.contains("CPU load per processor: 50.0% 25.0%"));
+    assertTrue(rendered.contains("Vendor Frequency:"));
+    assertTrue(rendered.contains("Current Frequencies:"));
+  }
+
+  @Test
+  void printProcessesRendersProcessTableArgumentsAndEnvironment() throws Exception {
+    OperatingSystem operatingSystem = mock(OperatingSystem.class);
+    GlobalMemory memory = mock(GlobalMemory.class);
+    OSProcess currentProcess = mock(OSProcess.class);
+    OSProcess topProcess = mock(OSProcess.class);
+
+    when(operatingSystem.getProcessId()).thenReturn(42);
+    when(operatingSystem.getProcess(42)).thenReturn(currentProcess);
+    when(currentProcess.getProcessID()).thenReturn(42);
+    when(currentProcess.getAffinityMask()).thenReturn(3L);
+    when(currentProcess.getArguments()).thenReturn(List.of("--debug"));
+    when(currentProcess.getEnvironmentVariables()).thenReturn(java.util.Map.of("ENV", "value"));
+
+    when(operatingSystem.getProcessCount()).thenReturn(10);
+    when(operatingSystem.getThreadCount()).thenReturn(20);
+    when(operatingSystem.getProcesses(OperatingSystem.ProcessFiltering.ALL_PROCESSES,
+        OperatingSystem.ProcessSorting.CPU_DESC, 5)).thenReturn(List.of(topProcess));
+
+    when(topProcess.getProcessID()).thenReturn(7);
+    when(topProcess.getKernelTime()).thenReturn(30L);
+    when(topProcess.getUserTime()).thenReturn(20L);
+    when(topProcess.getUpTime()).thenReturn(100L);
+    when(topProcess.getResidentMemory()).thenReturn(512L);
+    when(topProcess.getVirtualSize()).thenReturn(2048L);
+    when(topProcess.getName()).thenReturn("java");
+    when(memory.getTotal()).thenReturn(4096L);
+
+    invokeStatic("printProcesses", OperatingSystem.class, operatingSystem, GlobalMemory.class,
+        memory);
+
+    String rendered = String.join("\n", getOshiData());
+    assertTrue(rendered.contains("My PID: 42 with affinity 11"));
+    assertTrue(rendered.contains("Processes: 10, Threads: 20"));
+    assertTrue(rendered.contains("java"));
+    assertTrue(rendered.contains("Current process arguments:"));
+    assertTrue(rendered.contains("--debug"));
+    assertTrue(rendered.contains("ENV=value"));
+  }
+
+  private void invokeStatic(String methodName, Class<?> firstType, Object firstArg,
+      Class<?> secondType, Object secondArg) throws Exception {
+    Method method = OshiController.class.getDeclaredMethod(methodName, firstType, secondType);
+    method.setAccessible(true);
+    method.invoke(null, firstArg, secondArg);
   }
 }

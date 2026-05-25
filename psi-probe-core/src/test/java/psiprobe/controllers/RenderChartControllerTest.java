@@ -16,9 +16,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.codebox.bean.JavaBeanTester;
 
-import org.junit.jupiter.api.Test;
 import org.jfree.data.xy.DefaultTableXYDataset;
 import org.jfree.data.xy.XYSeries;
+import org.junit.jupiter.api.Test;
 import org.springframework.context.support.StaticApplicationContext;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
@@ -58,14 +58,13 @@ class RenderChartControllerTest {
   @Test
   void handleRequestRendersLineChartFromSeriesProvider() throws Exception {
     RenderChartController controller = new RenderChartController();
-    controller.setViewName("chart");
     controller.setStatsCollection(new StatsCollection());
 
     StaticApplicationContext applicationContext = new StaticApplicationContext();
     applicationContext.registerSingleton("seriesProvider", TestSeriesProvider.class);
     controller.setApplicationContext(applicationContext);
 
-    MockHttpServletRequest request = new MockHttpServletRequest();
+    MockHttpServletRequest request = new MockHttpServletRequest("GET", "/chart.png");
     request.addParameter("ct", "line");
     request.addParameter("p", "seriesProvider");
     request.addParameter("xz", "320");
@@ -81,14 +80,13 @@ class RenderChartControllerTest {
   @Test
   void handleRequestRendersChartWhenProviderBeanDoesNotImplementSeriesProvider() throws Exception {
     RenderChartController controller = new RenderChartController();
-    controller.setViewName("chart");
     controller.setStatsCollection(new StatsCollection());
 
     StaticApplicationContext applicationContext = new StaticApplicationContext();
     applicationContext.registerSingleton("badProvider", NotASeriesProvider.class);
     controller.setApplicationContext(applicationContext);
 
-    MockHttpServletRequest request = new MockHttpServletRequest();
+    MockHttpServletRequest request = new MockHttpServletRequest("GET", "/chart.png");
     request.addParameter("ct", "area");
     request.addParameter("p", "badProvider");
 

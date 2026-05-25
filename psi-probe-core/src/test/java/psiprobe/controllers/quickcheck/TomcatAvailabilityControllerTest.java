@@ -78,13 +78,15 @@ class TomcatAvailabilityControllerTest {
     ApplicationResource firstResource = new ApplicationResource();
     firstResource.setName("jdbc/app1");
     DataSourceInfo firstInfo = new DataSourceInfo();
-    firstInfo.setBusyScore(10);
+    firstInfo.setMaxConnections(100);
+    firstInfo.setBusyConnections(10);
     firstResource.setDataSourceInfo(firstInfo);
 
     ApplicationResource secondResource = new ApplicationResource();
     secondResource.setName("jdbc/app2");
     DataSourceInfo secondInfo = new DataSourceInfo();
-    secondInfo.setBusyScore(70);
+    secondInfo.setMaxConnections(100);
+    secondInfo.setBusyConnections(70);
     secondResource.setDataSourceInfo(secondInfo);
 
     when(resourceResolver.getApplicationResources(firstContext, containerWrapper))
@@ -94,8 +96,8 @@ class TomcatAvailabilityControllerTest {
 
     controller.setContainerWrapper(containerWrapper);
 
-    ModelAndView modelAndView =
-        controller.handleRequest(new MockHttpServletRequest(), new MockHttpServletResponse());
+    ModelAndView modelAndView = controller.handleRequest(
+        new MockHttpServletRequest("GET", "/quickcheck.htm"), new MockHttpServletResponse());
 
     assertEquals("quickcheck", modelAndView.getViewName());
     TomcatTestReport report = (TomcatTestReport) modelAndView.getModel().get("testReport");
@@ -123,14 +125,15 @@ class TomcatAvailabilityControllerTest {
     ApplicationResource resource = new ApplicationResource();
     resource.setName("jdbc/global");
     DataSourceInfo info = new DataSourceInfo();
-    info.setBusyScore(25);
+    info.setMaxConnections(100);
+    info.setBusyConnections(25);
     resource.setDataSourceInfo(info);
     when(resourceResolver.getApplicationResources()).thenReturn(List.of(resource));
 
     controller.setContainerWrapper(containerWrapper);
 
-    ModelAndView modelAndView =
-        controller.handleRequest(new MockHttpServletRequest(), new MockHttpServletResponse());
+    ModelAndView modelAndView = controller.handleRequest(
+        new MockHttpServletRequest("GET", "/quickcheck.xml.htm"), new MockHttpServletResponse());
 
     assertEquals("quickcheck.xml", modelAndView.getViewName());
     TomcatTestReport report = (TomcatTestReport) modelAndView.getModel().get("testReport");

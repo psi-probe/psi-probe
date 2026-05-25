@@ -24,7 +24,8 @@ class QueryHistoryItemControllerTest {
   @Test
   void handleRequestWritesRequestedSqlHistoryItem() throws Exception {
     QueryHistoryItemController controller = new QueryHistoryItemController();
-    MockHttpServletRequest request = new MockHttpServletRequest();
+    MockHttpServletRequest request =
+        new MockHttpServletRequest("GET", "/sql/queryHistoryItem.ajax");
     request.addParameter("sqlId", "1");
 
     DataSourceTestInfo info = new DataSourceTestInfo();
@@ -43,7 +44,8 @@ class QueryHistoryItemControllerTest {
   @Test
   void handleRequestIgnoresMissingSessionDataAndOutOfBoundsHistoryIndex() throws Exception {
     QueryHistoryItemController controller = new QueryHistoryItemController();
-    MockHttpServletRequest request = new MockHttpServletRequest();
+    MockHttpServletRequest request =
+        new MockHttpServletRequest("GET", "/sql/queryHistoryItem.ajax");
     request.addParameter("sqlId", "5");
 
     DataSourceTestInfo info = new DataSourceTestInfo();
