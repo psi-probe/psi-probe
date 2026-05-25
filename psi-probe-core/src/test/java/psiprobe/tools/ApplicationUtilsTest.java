@@ -121,7 +121,7 @@ class ApplicationUtilsTest {
     when(context.findChildren()).thenReturn(new Container[] {sw1, other, sw2});
 
     when(sw1.getRequestCount()).thenReturn(5);
-    when(sw1.getErrorCount()).thenReturn(1);
+    when(sw1.getErrorCountLong()).thenReturn(1L);
     when(sw1.getProcessingTime()).thenReturn(100L);
     when(sw1.getMinTime()).thenReturn(10L);
     when(sw1.getMaxTime()).thenReturn(50L);
