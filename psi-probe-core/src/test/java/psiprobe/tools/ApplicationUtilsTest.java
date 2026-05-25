@@ -120,14 +120,14 @@ class ApplicationUtilsTest {
 
     when(context.findChildren()).thenReturn(new Container[] {sw1, other, sw2});
 
-    when(sw1.getRequestCount()).thenReturn(5L);
-    when(sw1.getErrorCount()).thenReturn(1L);
+    when(sw1.getRequestCount()).thenReturn(5);
+    when(sw1.getErrorCount()).thenReturn(1);
     when(sw1.getProcessingTime()).thenReturn(100L);
     when(sw1.getMinTime()).thenReturn(10L);
     when(sw1.getMaxTime()).thenReturn(50L);
 
-    when(sw2.getRequestCount()).thenReturn(2L);
-    when(sw2.getErrorCount()).thenReturn(0L);
+    when(sw2.getRequestCount()).thenReturn(2);
+    when(sw2.getErrorCount()).thenReturn(0);
     when(sw2.getProcessingTime()).thenReturn(200L);
     when(sw2.getMinTime()).thenReturn(5L);
     when(sw2.getMaxTime()).thenReturn(80L);
@@ -165,7 +165,8 @@ class ApplicationUtilsTest {
 
     ApplicationResource r3 = new ApplicationResource();
 
-    when(resolver.getApplicationResources(context, containerWrapper)).thenReturn(List.of(r1, r2, r3));
+    when(resolver.getApplicationResources(context, containerWrapper))
+        .thenReturn(List.of(r1, r2, r3));
 
     int[] scores =
         ApplicationUtils.getApplicationDataSourceUsageScores(context, resolver, containerWrapper);
@@ -183,8 +184,8 @@ class ApplicationUtilsTest {
     when(resolver.getApplicationResources(context, containerWrapper))
         .thenThrow(new NamingException("boom"));
 
-    assertThrows(RuntimeException.class,
-        () -> ApplicationUtils.getApplicationDataSourceUsageScores(context, resolver, containerWrapper));
+    assertThrows(RuntimeException.class, () -> ApplicationUtils
+        .getApplicationDataSourceUsageScores(context, resolver, containerWrapper));
   }
 
   @Test
@@ -193,7 +194,8 @@ class ApplicationUtilsTest {
     ServletContext servletContext = mock(ServletContext.class);
 
     when(context.getServletContext()).thenReturn(servletContext);
-    when(servletContext.getAttributeNames()).thenReturn(Collections.enumeration(List.of("a1", "a2")));
+    when(servletContext.getAttributeNames())
+        .thenReturn(Collections.enumeration(List.of("a1", "a2")));
     when(servletContext.getAttribute("a1")).thenReturn("v1");
     when(servletContext.getAttribute("a2")).thenReturn(42);
 
@@ -250,8 +252,8 @@ class ApplicationUtilsTest {
     List<ServletMapping> mappings = ApplicationUtils.getApplicationServletMaps(context);
 
     assertEquals(1, mappings.size());
-    assertEquals("/x", mappings.getFirst().getUrl());
-    assertEquals("s1", mappings.getFirst().getServletName());
-    assertEquals("com.example.S1", mappings.getFirst().getServletClass());
+    assertEquals("/x", mappings.get(0).getUrl());
+    assertEquals("s1", mappings.get(0).getServletName());
+    assertEquals("com.example.S1", mappings.get(0).getServletClass());
   }
 }

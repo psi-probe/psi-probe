@@ -24,6 +24,7 @@ import static org.mockito.Mockito.when;
 import jakarta.servlet.ServletContext;
 
 import java.io.File;
+import java.io.InputStream;
 import java.net.URL;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -47,6 +48,9 @@ import org.apache.jasper.Options;
 import org.apache.jasper.compiler.JspRuntimeContext;
 import org.junit.jupiter.api.Test;
 
+import psiprobe.model.ApplicationParam;
+import psiprobe.model.ApplicationResource;
+import psiprobe.model.FilterInfo;
 import psiprobe.model.FilterMapping;
 import psiprobe.model.jsp.Summary;
 
@@ -73,6 +77,51 @@ class AbstractTomcatContainerTest {
     @Override
     protected Valve createValve() {
       return valve;
+    }
+
+    @Override
+    public boolean canBoundTo(String binding) {
+      return true;
+    }
+
+    @Override
+    public List<FilterMapping> getApplicationFilterMaps(Context context) {
+      return List.of();
+    }
+
+    @Override
+    public void addContextResource(Context context, List<ApplicationResource> resourceList) {
+      // no-op for tests
+    }
+
+    @Override
+    public void addContextResourceLink(Context context, List<ApplicationResource> resourceList) {
+      // no-op for tests
+    }
+
+    @Override
+    public List<FilterInfo> getApplicationFilters(Context context) {
+      return List.of();
+    }
+
+    @Override
+    public List<ApplicationParam> getApplicationInitParams(Context context) {
+      return List.of();
+    }
+
+    @Override
+    public boolean resourceExists(String name, Context context) {
+      return false;
+    }
+
+    @Override
+    public InputStream getResourceStream(String name, Context context) {
+      return null;
+    }
+
+    @Override
+    public Long[] getResourceAttributes(String name, Context context) {
+      return new Long[] {0L, 0L};
     }
   }
 
@@ -169,7 +218,7 @@ class AbstractTomcatContainerTest {
 
     List<Context> contexts = container.findContexts();
     assertEquals(1, contexts.size());
-    assertEquals(context, contexts.getFirst());
+    assertEquals(context, contexts.get(0));
   }
 
   @Test
@@ -225,13 +274,13 @@ class AbstractTomcatContainerTest {
     TestTomcatContainer container = new TestTomcatContainer();
     List<FilterMapping> mappings = new ArrayList<>();
 
-    container.addFilterMapping("f1", "REQUEST", "FilterClass", new String[] {"/a", "/b"},
-        mappings, AbstractTomcatContainer.FilterMapType.URL);
+    container.addFilterMapping("f1", "REQUEST", "FilterClass", new String[] {"/a", "/b"}, mappings,
+        AbstractTomcatContainer.FilterMapType.URL);
     container.addFilterMapping("f2", "REQUEST", "FilterClass2", new String[] {"s1"}, mappings,
         AbstractTomcatContainer.FilterMapType.SERVLET_NAME);
 
     assertEquals(3, mappings.size());
-    assertEquals("/a", mappings.getFirst().getUrl());
+    assertEquals("/a", mappings.get(0).getUrl());
     assertEquals("s1", mappings.get(2).getServletName());
   }
 
@@ -269,6 +318,7 @@ class AbstractTomcatContainerTest {
     when(context.getName()).thenReturn("/app");
 
     container.listContextJsps(context, summary, false);
-    assertNull(summary.getItems());
+    assertNotNull(summary.getItems());
+    assertTrue(summary.getItems().isEmpty());
   }
 }

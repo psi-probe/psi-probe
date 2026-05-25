@@ -115,16 +115,15 @@ class ListSessionsControllerTest {
     when(ctx.getManager()).thenReturn(mgr);
     when(mgr.findSessions()).thenReturn(new Session[] {s});
 
-    @SuppressWarnings("unused")
-    var unused = mockStatic(ApplicationUtils.class);
+    try (var mockedApplicationUtils = mockStatic(ApplicationUtils.class)) {
+      when(ApplicationUtils.getApplicationSession(any(), anyBoolean(), anyBoolean()))
+          .thenReturn(appSession);
+      when(appSession.getAttributes()).thenReturn(List.of());
 
-    when(ApplicationUtils.getApplicationSession(any(), anyBoolean(), anyBoolean()))
-        .thenReturn(appSession);
-    when(appSession.getAttributes()).thenReturn(List.of());
-
-    ModelAndView mv = controller.handleContext(null, null, request, response);
-    assertNotNull(mv);
-    assertTrue(mv.getModel().containsKey("sessions"));
+      ModelAndView mv = controller.handleContext(null, null, request, response);
+      assertNotNull(mv);
+      assertTrue(mv.getModel().containsKey("sessions"));
+    }
   }
 
   /**
