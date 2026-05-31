@@ -39,6 +39,10 @@ public class FlexyPoolDatasourceAccessor implements DatasourceAccessor {
           "psiprobe.beans.accessors.TomEeJdbcPoolDatasourceAccessor",
           "psiprobe.beans.accessors.ViburCpDatasourceAccessor");
 
+  /** The Constant delegateAccessors. */
+  private static final List<DatasourceAccessor> DELEGATE_ACCESSORS =
+      DELEGATE_ACCESSOR_CLASS_NAMES.stream().map(FlexyPoolDatasourceAccessor::newAccessor).toList();
+
   @Override
   public DataSourceInfo getInfo(Object resource) throws SQLException {
     Object targetDataSource = getTargetDataSource(resource);
@@ -46,7 +50,7 @@ public class FlexyPoolDatasourceAccessor implements DatasourceAccessor {
       return null;
     }
 
-    for (DatasourceAccessor accessor : getDelegateAccessors()) {
+    for (DatasourceAccessor accessor : DELEGATE_ACCESSORS) {
       if (accessor.canMap(targetDataSource)) {
         return accessor.getInfo(targetDataSource);
       }
@@ -62,7 +66,7 @@ public class FlexyPoolDatasourceAccessor implements DatasourceAccessor {
       return false;
     }
 
-    for (DatasourceAccessor accessor : getDelegateAccessors()) {
+    for (DatasourceAccessor accessor : DELEGATE_ACCESSORS) {
       if (accessor.canMap(targetDataSource)) {
         return accessor.reset(targetDataSource);
       }
@@ -96,21 +100,12 @@ public class FlexyPoolDatasourceAccessor implements DatasourceAccessor {
   }
 
   /**
-   * Gets the delegate accessors.
-   *
-   * @return the delegate accessors
-   */
-  private List<DatasourceAccessor> getDelegateAccessors() {
-    return DELEGATE_ACCESSOR_CLASS_NAMES.stream().map(this::newAccessor).toList();
-  }
-
-  /**
    * Creates a datasource accessor.
    *
    * @param accessorClassName the accessor class name
    * @return the datasource accessor
    */
-  private DatasourceAccessor newAccessor(String accessorClassName) {
+  private static DatasourceAccessor newAccessor(String accessorClassName) {
     try {
       return Class.forName(accessorClassName).asSubclass(DatasourceAccessor.class)
           .getDeclaredConstructor().newInstance();
