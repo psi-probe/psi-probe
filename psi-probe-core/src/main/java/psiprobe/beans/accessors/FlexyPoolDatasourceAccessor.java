@@ -24,7 +24,7 @@ public class FlexyPoolDatasourceAccessor implements DatasourceAccessor {
   private static final String FLEXY_POOL_DATASOURCE_CLASS_NAME =
       "com.vladmihalcea.flexypool.FlexyPoolDataSource";
 
-  /** The Constant delegateAccessors. */
+  /** The Constant delegateAccessorClassNames. */
   private static final List<String> DELEGATE_ACCESSOR_CLASS_NAMES =
       List.of("psiprobe.beans.accessors.C3P0DatasourceAccessor",
           "psiprobe.beans.accessors.Dbcp2DatasourceAccessor",
@@ -39,7 +39,7 @@ public class FlexyPoolDatasourceAccessor implements DatasourceAccessor {
           "psiprobe.beans.accessors.TomEeJdbcPoolDatasourceAccessor",
           "psiprobe.beans.accessors.ViburCpDatasourceAccessor");
 
-  /** The Constant delegateAccessors. */
+  /** The Constant DELEGATE_ACCESSORS. */
   private static final List<DatasourceAccessor> DELEGATE_ACCESSORS =
       DELEGATE_ACCESSOR_CLASS_NAMES.stream().map(FlexyPoolDatasourceAccessor::newAccessor).toList();
 
