@@ -119,6 +119,7 @@ public class ProbeConfig implements WebMvcConfigurer {
     List<String> list = new ArrayList<>();
     list.add("psiprobe.beans.accessors.C3P0DatasourceAccessor");
     list.add("psiprobe.beans.accessors.Dbcp2DatasourceAccessor");
+    list.add("psiprobe.beans.accessors.FlexyPoolDatasourceAccessor");
     list.add("psiprobe.beans.accessors.HikariCpDatasourceAccessor");
     list.add("psiprobe.beans.accessors.OracleDatasourceAccessor");
     list.add("psiprobe.beans.accessors.OracleUcpDatasourceAccessor");

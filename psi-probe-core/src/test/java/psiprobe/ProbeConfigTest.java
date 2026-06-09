@@ -33,6 +33,8 @@ class ProbeConfigTest {
   @Test
   void checkListenerTest() {
     Assertions.assertNotNull(datasourceMappers);
+    Assertions.assertTrue(
+        datasourceMappers.contains("psiprobe.beans.accessors.FlexyPoolDatasourceAccessor"));
   }
 
 }
