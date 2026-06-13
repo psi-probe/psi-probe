@@ -11,7 +11,6 @@
 package psiprobe;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -120,6 +119,7 @@ public class ProbeConfig implements WebMvcConfigurer {
     List<String> list = new ArrayList<>();
     list.add("psiprobe.beans.accessors.C3P0DatasourceAccessor");
     list.add("psiprobe.beans.accessors.Dbcp2DatasourceAccessor");
+    list.add("psiprobe.beans.accessors.FlexyPoolDatasourceAccessor");
     list.add("psiprobe.beans.accessors.HikariCpDatasourceAccessor");
     list.add("psiprobe.beans.accessors.OracleDatasourceAccessor");
     list.add("psiprobe.beans.accessors.OracleUcpDatasourceAccessor");
@@ -189,7 +189,7 @@ public class ProbeConfig implements WebMvcConfigurer {
     try {
       Properties properties = adapters().getObject();
       if (properties == null) {
-        return Collections.emptyList();
+        return List.of();
       }
       for (Object adapter : properties.values()) {
         list.add((String) adapter);
@@ -212,7 +212,7 @@ public class ProbeConfig implements WebMvcConfigurer {
     try {
       Properties properties = stdout().getObject();
       if (properties == null) {
-        return Collections.emptyList();
+        return List.of();
       }
       for (Object stdout : properties.values()) {
         list.add((String) stdout);

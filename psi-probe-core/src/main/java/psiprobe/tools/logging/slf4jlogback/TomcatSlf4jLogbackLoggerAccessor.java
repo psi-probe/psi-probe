@@ -158,7 +158,7 @@ public class TomcatSlf4jLogbackLoggerAccessor extends DefaultAccessor {
         return (List<Object>) MethodUtils.invokeMethod(tracker, "allComponents");
       }
     }
-    return Collections.emptyList();
+    return List.of();
   }
 
   /**

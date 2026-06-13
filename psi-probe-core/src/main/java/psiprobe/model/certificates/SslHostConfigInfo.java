@@ -13,7 +13,6 @@ package psiprobe.model.certificates;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -267,7 +266,7 @@ public class SslHostConfigInfo implements Serializable {
    * @return the trust store certs
    */
   public List<Cert> getTrustStoreCerts() {
-    return trustStoreCerts == null ? Collections.emptyList() : new ArrayList<>(trustStoreCerts);
+    return trustStoreCerts == null ? List.of() : new ArrayList<>(trustStoreCerts);
   }
 
   /**
@@ -276,8 +275,7 @@ public class SslHostConfigInfo implements Serializable {
    * @param trustStoreCerts the new trust store certs
    */
   public void setTrustStoreCerts(Collection<Cert> trustStoreCerts) {
-    this.trustStoreCerts =
-        trustStoreCerts == null ? Collections.emptyList() : new ArrayList<>(trustStoreCerts);
+    this.trustStoreCerts = trustStoreCerts == null ? List.of() : new ArrayList<>(trustStoreCerts);
   }
 
   /**
@@ -286,7 +284,7 @@ public class SslHostConfigInfo implements Serializable {
    * @return certificate infos
    */
   public List<CertificateInfo> getCertificateInfos() {
-    return certificateInfos == null ? Collections.emptyList() : new ArrayList<>(certificateInfos);
+    return certificateInfos == null ? List.of() : new ArrayList<>(certificateInfos);
   }
 
   /**
@@ -296,7 +294,7 @@ public class SslHostConfigInfo implements Serializable {
    */
   public void setCertificateInfos(Collection<CertificateInfo> certificateInfos) {
     this.certificateInfos =
-        certificateInfos == null ? Collections.emptyList() : new ArrayList<>(certificateInfos);
+        certificateInfos == null ? List.of() : new ArrayList<>(certificateInfos);
   }
 
 }

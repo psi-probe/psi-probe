@@ -25,6 +25,16 @@ import psiprobe.tools.Whois.Response;
 class WhoisTests {
 
   /**
+   * Lookup null query test.
+   *
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
+  @Test
+  void nullQueryReturnsNullTest() throws IOException {
+    Assertions.assertNull(Whois.lookup("localhost", 43, null, 1));
+  }
+
+  /**
    * Test localhost.
    *
    * @throws IOException Signals that an I/O exception has occurred.

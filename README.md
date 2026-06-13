@@ -4,8 +4,7 @@
 [![Coverity](https://scan.coverity.com/projects/28366/badge.svg)](https://scan.coverity.com/projects/28366)
 [![Coveralls](https://coveralls.io/repos/github/psi-probe/psi-probe/badge.svg?branch=master)](https://coveralls.io/github/psi-probe/psi-probe?branch=master)
 [![Known Vulnerabilities](https://snyk.io/test/github/psi-probe/psi-probe/badge.svg)](https://snyk.io/test/github/psi-probe/psi-probe)
-[![Maven Central](https://img.shields.io/maven-central/v/com.github.psi-probe/psi-probe-web)](https://maven-badges.herokuapp.com/maven-central/com.github.psi-probe/psi-probe-web)
-![Sonatype Nexus (Snapshots)](https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Fcentral.sonatype.com%2Frepository%2Fmaven-snapshots%2Fcom%2Fgithub%2Fpsi-probe%2Fpsi-probe-web%2Fmaven-metadata.xml)
+[![Maven Central](https://img.shields.io/maven-central/v/com.github.psi-probe/psi-probe-web.svg)](https://central.sonatype.com/artifact/com.github.psi-probe/psi-probe-web)
 [![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/)
 [![Releases](https://img.shields.io/github/downloads/psi-probe/psi-probe/psi-probe-5.2.1/total)](https://github.com/psi-probe/psi-probe/releases/download/psi-probe-5.2.1/probe.war)
 [![GPLv2 License](https://img.shields.io/badge/license-GPLv2-green.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
@@ -52,9 +51,9 @@ You can rename 'psi-probe-web.war' to the traditional 'probe.war' or other name 
 
     This will create directory called `psi-probe`. Subsequent steps will refer to this as "your PSI Probe base directory."
 
-2.  Minimum JDK version required to build is JDK 17 and run is JDK 17.
+2.  Minimum JDK version required to build is JDK 21 and run is JDK 17.
 
-3.  **Download and install Maven 3.9.9 or better
+3.  **Download and install Maven 3.9.16 or better
 
     You may download it from the [Apache Maven website](https://maven.apache.org/download.cgi).
 
@@ -75,7 +74,7 @@ Generally supported versions for third party tomcat providers align with their s
     - Requires java 11 or better
     - Use psi probe 4.x series for javax namespace
     - Spring is no longer receiving updates so vulnerabilities with spring will not be addressed.  If you have a subscription to spring, manually patch the jars.
-    - Tomcat 9.0.72 to 9.0.105
+    - Tomcat 9.0.72 to 9.0.118
     - TomEE 8.0.16 (Based on Tomcat 9.0.82).  TomEE 8.0 ended support on December 31st 2023
     - NonStop(tm) never supported 9.0 as they changed direction but seem to have come back now for 10.1
     - Vmware Tanzu tc 4.1.44 release (Based on Tomcat 9.0.102)
@@ -85,7 +84,7 @@ Generally supported versions for third party tomcat providers align with their s
 
     - Requires java 17 or better
     - Use psi probe 5.x series for jakarta namespace
-    - Tomcat 10.1.6 to 10.1.41
+    - Tomcat 10.1.6 to 10.1.55
     - TomEE 10.0.0 to 10.0.1 (Based on Tomcat 10.1.39).
     - NonStop(tm) Servlets For JavaServer Pages(tm) v10.1 (Based on Tomcat 10.1.7)
     - Vmware Tanzu tc 10.1.40.A release (Based on Tomcat 10.1.40)
@@ -94,7 +93,7 @@ Generally supported versions for third party tomcat providers align with their s
 
     - Requires java 17 or better
     - Use psi probe 5.x series for jakarta namespace
-    - Tomcat 11.0.0.M3 to 11.0.7
+    - Tomcat 11.0.0.M3 to 11.0.22
     - TomEE - no support yet for tomcat 11.0
     - NonStop(tm) Servlets For JavaServer Pages(tm) - no support yet for tomcat 11.0
     - Vmware Tanzu tc 11.0.6.A release (Based on Tomcat 11.0.6)
