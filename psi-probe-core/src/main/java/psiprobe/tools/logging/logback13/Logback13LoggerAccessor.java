@@ -152,7 +152,7 @@ public class Logback13LoggerAccessor extends DefaultAccessor {
         return (List<Object>) MethodUtils.invokeMethod(tracker, "allComponents");
       }
     }
-    return Collections.emptyList();
+    return List.of();
   }
 
   /**

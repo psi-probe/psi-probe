@@ -18,7 +18,6 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.lang.management.ManagementFactory;
-import java.util.Collections;
 import java.util.Set;
 
 import javax.management.MBeanServer;
@@ -46,8 +45,8 @@ class ClusterWrapperBeanTest {
     ObjectInstance clusterInstance = mock(ObjectInstance.class);
     when(clusterInstance.getObjectName()).thenReturn(clusterObjName);
 
-    Set<ObjectInstance> clusters = Collections.singleton(clusterInstance);
-    Set<ObjectInstance> membership = Collections.singleton(clusterInstance);
+    Set<ObjectInstance> clusters = Set.of(clusterInstance);
+    Set<ObjectInstance> membership = Set.of(clusterInstance);
 
     when(mbeanServer.queryMBeans(new ObjectName("*:type=Cluster,host=" + hostName), null))
         .thenReturn(clusters);
@@ -90,10 +89,10 @@ class ClusterWrapperBeanTest {
     MBeanServer mbeanServer = mock(MBeanServer.class);
 
     when(mbeanServer.queryMBeans(new ObjectName("*:type=Cluster,host=" + hostName), null))
-        .thenReturn(Collections.emptySet());
+        .thenReturn(Set.of());
     when(mbeanServer
         .queryMBeans(new ObjectName(serverName + ":type=ClusterMembership,host=" + hostName), null))
-        .thenReturn(Collections.emptySet());
+        .thenReturn(Set.of());
 
     try (MockedStatic<ManagementFactory> mgmtFactoryMock =
         Mockito.mockStatic(ManagementFactory.class)) {

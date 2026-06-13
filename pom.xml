@@ -17,7 +17,7 @@
 
     <groupId>com.github.psi-probe</groupId>
     <artifactId>psi-probe</artifactId>
-    <version>4.5.1-SNAPSHOT</version>
+    <version>4.6.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>psi-probe</name>
@@ -122,7 +122,7 @@
         <maven.compiler.testRelease>${java.test.release.version}</maven.compiler.testRelease>
 
         <!-- Maven minimum version -->
-        <maven.min-version>3.9.12</maven.min-version>
+        <maven.min-version>3.9.16</maven.min-version>
 
         <!-- Copyright -->
         <copyright>2026</copyright>
@@ -142,7 +142,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <!-- Reproducible Builds -->
-        <project.build.outputTimestamp>1754246949</project.build.outputTimestamp>
+        <project.build.outputTimestamp>1781310156</project.build.outputTimestamp>
 
         <!-- Checkstyle -->
         <checkstyle.configLocation>checkstyle.xml</checkstyle.configLocation>
@@ -270,6 +270,11 @@
                 <groupId>com.github.spotbugs</groupId>
                 <artifactId>spotbugs-annotations</artifactId>
                 <version>${spotbugs.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.gaul</groupId>
+                <artifactId>modernizer-maven-annotations</artifactId>
+                <version>${modernizer.plugin}</version>
             </dependency>
             <dependency>
                 <groupId>com.google.errorprone</groupId>
@@ -623,6 +628,11 @@
         <dependency>
             <groupId>com.github.spotbugs</groupId>
             <artifactId>spotbugs-annotations</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.gaul</groupId>
+            <artifactId>modernizer-maven-annotations</artifactId>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -1171,7 +1181,7 @@
                                 </excludes>
                             </enforceBytecodeVersion>
                             <requireJavaVersion>
-                                <version>[17,18),[21,22),[25,26),[26,27)</version>
+                                <version>[21,22),[25,26),[26,27),[27,28)</version>
                             </requireJavaVersion>
                             <requireMavenVersion>
                                 <version>[${maven.min-version},)</version>

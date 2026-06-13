@@ -10,7 +10,13 @@
  */
 package psiprobe.model;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import com.codebox.bean.JavaBeanTester;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
@@ -27,4 +33,46 @@ class SystemInformationTest {
     JavaBeanTester.builder(SystemInformation.class).loadData().skipStrictSerializable().test();
   }
 
+  @Test
+  void testGetMemoryValues() {
+    SystemInformation si = new SystemInformation();
+    assertTrue(si.getMaxMemory() > 0);
+    assertTrue(si.getFreeMemory() >= 0);
+    assertTrue(si.getTotalMemory() > 0);
+  }
+
+  @Test
+  void testGetCpuCount() {
+    SystemInformation si = new SystemInformation();
+    assertTrue(si.getCpuCount() > 0);
+  }
+
+  @Test
+  void testGetDate() {
+    SystemInformation si = new SystemInformation();
+    assertNotNull(si.getDate());
+  }
+
+  @Test
+  void testGetWorkingDir() {
+    SystemInformation si = new SystemInformation();
+    assertNotNull(si.getWorkingDir());
+  }
+
+  @Test
+  void testGetServerInfo() {
+    SystemInformation si = new SystemInformation();
+    // may return empty string if not in Tomcat, but should not throw
+    assertNotNull(si.getServerInfo());
+  }
+
+  @Test
+  void testSystemPropertySet() {
+    SystemInformation si = new SystemInformation();
+    Map<String, String> props = new HashMap<>();
+    props.put("key1", "val1");
+    si.setSystemProperties(props);
+    assertNotNull(si.getSystemPropertySet());
+    assertTrue(si.getSystemPropertySet().size() == 1);
+  }
 }

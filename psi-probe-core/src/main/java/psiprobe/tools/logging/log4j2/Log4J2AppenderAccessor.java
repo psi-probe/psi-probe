@@ -13,6 +13,8 @@ package psiprobe.tools.logging.log4j2;
 import java.io.File;
 import java.nio.file.Path;
 
+import org.gaul.modernizer_maven_annotations.SuppressModernizer;
+
 import psiprobe.tools.logging.AbstractLogDestination;
 
 /**
@@ -76,6 +78,7 @@ public class Log4J2AppenderAccessor extends AbstractLogDestination {
     return null;
   }
 
+  @SuppressModernizer
   @Override
   public File getFile() {
     String fileName = (String) getProperty(getTarget(), "fileName", null);
@@ -104,11 +107,9 @@ public class Log4J2AppenderAccessor extends AbstractLogDestination {
           }
         }
       }
-      result = Path
-          .of("mailto:" + getProperty(factoryData, "to", "", true)
-              + (from != null ? "&from=" + from : "") + (cc != null ? "&cc=" + cc : "")
-              + (bcc != null ? "&bcc=" + bcc : "") + (subject != null ? "&subject=" + subject : ""))
-          .toFile();
+      result = new File("mailto:" + getProperty(factoryData, "to", "", true)
+          + (from != null ? "&from=" + from : "") + (cc != null ? "&cc=" + cc : "")
+          + (bcc != null ? "&bcc=" + bcc : "") + (subject != null ? "&subject=" + subject : ""));
     } else {
       result = getStdoutFile();
     }

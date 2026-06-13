@@ -14,7 +14,6 @@ import com.google.common.base.Strings;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -204,7 +203,7 @@ public class Log4J2LoggerConfigAccessor extends DefaultAccessor {
         return (List<Object>) appenders;
       }
     }
-    return Collections.emptyList();
+    return List.of();
   }
 
   /**

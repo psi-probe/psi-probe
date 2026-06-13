@@ -10,6 +10,7 @@
  */
 package psiprobe.beans;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -20,14 +21,16 @@ import static org.mockito.Mockito.when;
 
 import java.io.File;
 import java.nio.file.Path;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
+import javax.servlet.ServletContext;
+
+import org.apache.catalina.Context;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import psiprobe.TomcatContainer;
 import psiprobe.tools.logging.FileLogAccessor;
 import psiprobe.tools.logging.LogDestination;
 
@@ -45,7 +48,7 @@ class LogResolverBeanTest {
 
   @Test
   void testGetAndSetStdoutFiles() {
-    List<String> files = Arrays.asList("catalina.out", "stdout.log");
+    List<String> files = List.of("catalina.out", "stdout.log");
     bean.setStdoutFiles(files);
     assertEquals(files, bean.getStdoutFiles());
   }
@@ -53,7 +56,7 @@ class LogResolverBeanTest {
   @Test
   void testGetLogDestinations_Empty() {
     // Instruments.isInitialized() returns false, so should be empty
-    bean.setStdoutFiles(Collections.emptyList());
+    bean.setStdoutFiles(List.of());
     // Mock Instruments.isInitialized() to return false
     try (var mocked = org.mockito.Mockito.mockStatic(psiprobe.tools.Instruments.class)) {
       mocked.when(psiprobe.tools.Instruments::isInitialized).thenReturn(false);
@@ -120,6 +123,51 @@ class LogResolverBeanTest {
     ContainerWrapperBean cw = mock(ContainerWrapperBean.class);
     bean.setContainerWrapper(cw);
     assertEquals(cw, bean.getContainerWrapper());
+  }
+
+  /**
+   * Test that getLogDestinations does not throw NPE when a context has a null loader (issue #5576).
+   */
+  @Test
+  void testGetLogDestinations_NullContextLoader() {
+    System.setProperty("catalina.base", System.getProperty("java.io.tmpdir"));
+    try {
+      Context ctx = mock(Context.class);
+      when(ctx.getLoader()).thenReturn(null);
+      when(ctx.getName()).thenReturn("/testapp");
+      ServletContext servletContext = mock(ServletContext.class);
+      when(ctx.getServletContext()).thenReturn(servletContext);
+
+      TomcatContainer tomcatContainer = mock(TomcatContainer.class);
+      when(tomcatContainer.findContexts()).thenReturn(List.of(ctx));
+      when(containerWrapper.getTomcatContainer()).thenReturn(tomcatContainer);
+
+      try (var mocked = org.mockito.Mockito.mockStatic(psiprobe.tools.Instruments.class)) {
+        mocked.when(psiprobe.tools.Instruments::isInitialized).thenReturn(true);
+        assertDoesNotThrow(() -> bean.getLogDestinations(true));
+      }
+    } finally {
+      System.clearProperty("catalina.base");
+    }
+  }
+
+  /**
+   * Test that getLogDestination does not throw NPE when a context has a null loader.
+   */
+  @Test
+  void testGetLogDestination_NullContextLoader() {
+    Context ctx = mock(Context.class);
+    when(ctx.getLoader()).thenReturn(null);
+    when(ctx.getName()).thenReturn("/testapp");
+    ServletContext servletContext = mock(ServletContext.class);
+    when(ctx.getServletContext()).thenReturn(servletContext);
+
+    TomcatContainer tomcatContainer = mock(TomcatContainer.class);
+    when(tomcatContainer.findContext("/testapp")).thenReturn(ctx);
+    when(containerWrapper.getTomcatContainer()).thenReturn(tomcatContainer);
+
+    // Should not throw NPE even though ctx.getLoader() returns null
+    assertDoesNotThrow(() -> bean.getLogDestination("jdk", "/testapp", false, true, null, "0"));
   }
 
 }
