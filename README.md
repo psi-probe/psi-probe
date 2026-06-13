@@ -28,9 +28,16 @@ Official PSI Probe release artifacts are published to Maven Central.
 Please download the latest psi-probe-web.war release from:
 [Maven Central](https://central.sonatype.com/artifact/com.github.psi-probe/psi-probe-web).
 
-GitHub Releases are used for release notes and source code history and may not contain binary distributions.
+GitHub Releases are used for release notes and source code history. Official binary distributions are published to Maven Central.
 
 You can rename 'psi-probe-web.war' to the traditional 'probe.war' or any other name as desired.
+
+## Version Selection ##
+
+* PSI Probe 4.x supports Tomcat 9 (javax namespace).
+* PSI Probe 5.x supports Tomcat 10.1 and Tomcat 11 (jakarta namespace).
+
+Be sure to select the PSI Probe release series that matches your Tomcat version.
 
 ## Building from Source ##
 
