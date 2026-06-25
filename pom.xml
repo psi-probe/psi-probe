@@ -182,7 +182,7 @@
         <jstl.version>1.2.6</jstl.version>
         <junit.version>6.1.0</junit.version>
         <lang3.version>3.20.0</lang3.version>
-        <logback.version>1.5.34</logback.version>
+        <logback.version>1.5.35</logback.version>
         <logging.version>1.4.0</logging.version>
         <mail.version>1.6.8</mail.version>
         <mchange.version>0.6.1</mchange.version>
