@@ -132,8 +132,13 @@ class Tomcat90ContainerAdapterTest {
   void addContextResourceLink() {
     NamingResourcesImpl namingResources = Mockito.mock(NamingResourcesImpl.class);
     Mockito.when(context.getNamingResources()).thenReturn(namingResources);
-    Mockito.when(namingResources.findResourceLinks())
-        .thenReturn(new ContextResourceLink[] {new ContextResourceLink()});
+
+    ContextResourceLink link = new ContextResourceLink();
+    link.setName("jdbc/MyDataSource");
+    link.setGlobal("jdbc/GlobalDataSource");
+    link.setType("javax.sql.DataSource");
+
+    Mockito.when(namingResources.findResourceLinks()).thenReturn(new ContextResourceLink[] {link});
 
     final Tomcat90ContainerAdapter adapter = new Tomcat90ContainerAdapter();
     final List<ApplicationResource> list = new ArrayList<>();
