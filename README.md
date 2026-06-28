@@ -6,10 +6,8 @@
 [![Known Vulnerabilities](https://snyk.io/test/github/psi-probe/psi-probe/badge.svg)](https://snyk.io/test/github/psi-probe/psi-probe)
 [![Maven Central](https://img.shields.io/maven-central/v/com.github.psi-probe/psi-probe-web.svg)](https://central.sonatype.com/artifact/com.github.psi-probe/psi-probe-web)
 [![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/)
-[![Releases](https://img.shields.io/github/downloads/psi-probe/psi-probe/psi-probe-5.2.1/total)](https://github.com/psi-probe/psi-probe/releases/download/psi-probe-5.2.1/probe.war)
 [![GPLv2 License](https://img.shields.io/badge/license-GPLv2-green.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
 [![Project Stats](https://www.openhub.net/p/psi-probe/widgets/project_thin_badge.gif)](https://www.openhub.net/p/psi-probe)
-[![Github All Releases](https://img.shields.io/github/downloads/psi-probe/psi-probe/total.svg)]()
 [![Reproducible Builds](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/jvm-repo-rebuild/reproducible-central/master/content/com/github/psi-probe/badge.json)](https://github.com/jvm-repo-rebuild/reproducible-central/blob/master/content/com/github/psi-probe/README.md)
 
 ![psi-probe](src/site/resources/images/psi-probe-banner.jpg)
@@ -23,21 +21,23 @@
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for info on working on PSI Probe and sending patches.
 
-## Latest Release via Github Releases ##
+## Latest Release ##
 
-Please download latest probe.war from [here](https://github.com/psi-probe/psi-probe/releases/download/psi-probe-5.2.1/probe.war)
+Official PSI Probe release artifacts are published to Maven Central.
 
-## Latest Release via Maven Central ##
+Please download the latest psi-probe-web.war release from:
+[Maven Central](https://central.sonatype.com/artifact/com.github.psi-probe/psi-probe-web).
 
-Please download latest psi-probe-web.war release from [here](https://oss.sonatype.org/content/repositories/releases/com/github/psi-probe/psi-probe-web/)
+GitHub Releases are used for release notes and source code history. Official binary distributions are published to Maven Central.
 
-You can rename 'psi-probe-web.war' to the traditional 'probe.war' or other name as you see fit.
+You can rename 'psi-probe-web.war' to the traditional 'probe.war' or any other name as desired.
 
-## Latest Snapshot via Maven Central ##
+## Version Selection ##
 
-Please download latest psi-probe-web.war snapshots from [here](https://central.sonatype.com/service/rest/repository/browse/maven-snapshots/com/github/psi-probe/psi-probe-web/)
+* PSI Probe 4.x supports Tomcat 9 (javax namespace).
+* PSI Probe 5.x supports Tomcat 10.1 and Tomcat 11 (jakarta namespace).
 
-You can rename 'psi-probe-web.war' to the traditional 'probe.war' or other name as you see fit.
+Be sure to select the PSI Probe release series that matches your Tomcat version.
 
 ## Building from Source ##
 
