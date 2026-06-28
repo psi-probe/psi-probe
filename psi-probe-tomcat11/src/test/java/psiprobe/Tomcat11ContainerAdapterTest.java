@@ -146,8 +146,7 @@ class Tomcat11ContainerAdapterTest {
     link.setGlobal("jdbc/GlobalDataSource");
     link.setType("javax.sql.DataSource");
 
-    Mockito.when(namingResources.findResourceLinks())
-        .thenReturn(new ContextResourceLink[] { link });
+    Mockito.when(namingResources.findResourceLinks()).thenReturn(new ContextResourceLink[] {link});
 
     final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
     final List<ApplicationResource> list = new ArrayList<ApplicationResource>();
