@@ -140,8 +140,14 @@ class Tomcat11ContainerAdapterTest {
   void addContextResourceLink() {
     NamingResourcesImpl namingResources = Mockito.mock(NamingResourcesImpl.class);
     Mockito.when(context.getNamingResources()).thenReturn(namingResources);
+
+    ContextResourceLink link = new ContextResourceLink();
+    link.setName("jdbc/MyDataSource");
+    link.setGlobal("jdbc/GlobalDataSource");
+    link.setType("javax.sql.DataSource");
+
     Mockito.when(namingResources.findResourceLinks())
-        .thenReturn(new ContextResourceLink[] {new ContextResourceLink()});
+        .thenReturn(new ContextResourceLink[] { link });
 
     final Tomcat11ContainerAdapter adapter = new Tomcat11ContainerAdapter();
     final List<ApplicationResource> list = new ArrayList<ApplicationResource>();
