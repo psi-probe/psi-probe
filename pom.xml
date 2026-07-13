@@ -193,7 +193,7 @@
         <servlet-api.version>4.0.4</servlet-api.version>
         <sitemesh.version>2.5.6</sitemesh.version>
         <slf4j.version>2.0.18</slf4j.version>
-        <spotbugs.version>4.10.2</spotbugs.version>
+        <spotbugs.version>4.10.3</spotbugs.version>
         <spring.version>5.3.39</spring.version>
         <spring-security.version>5.8.16</spring-security.version>
         <text.version>1.15.0</text.version>
