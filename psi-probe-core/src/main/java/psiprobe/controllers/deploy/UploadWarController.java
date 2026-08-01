@@ -22,7 +22,6 @@ import java.nio.file.Path;
 import java.time.Duration;
 
 import org.apache.catalina.Context;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.file.PathUtils;
 import org.slf4j.Logger;
@@ -146,7 +145,7 @@ public class UploadWarController extends AbstractTomcatContainerController {
         File destWar = Path.of(getContainerWrapper().getTomcatContainer().getAppBase().getPath(),
             destWarFilename + ".war").toFile();
 
-        FileUtils.moveFile(tmpPath.toFile(), destWar);
+        Files.move(tmpPath, destWar.toPath());
 
         // let Tomcat know that the file is there
         getContainerWrapper().getTomcatContainer().installWar(contextName);
