@@ -160,7 +160,7 @@
         <byte-buddy.version>1.18.11</byte-buddy.version>
         <c3p0.version>0.14.1</c3p0.version>
         <checker.version>4.2.2</checker.version>
-        <collections.version>4.5.0</collections.version>
+        <collections.version>4.6.0</collections.version>
         <dbcp2.version>2.14.0</dbcp2.version>
         <displaytag.version>2.13.0</displaytag.version>
         <el-api.version>3.0.3</el-api.version>
