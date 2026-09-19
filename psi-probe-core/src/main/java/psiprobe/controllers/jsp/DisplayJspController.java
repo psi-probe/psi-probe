@@ -47,6 +47,7 @@ public class DisplayJspController extends AbstractContextHandlerController {
     boolean compile = ServletRequestUtils.getBooleanParameter(request, "compile", false);
 
     HttpSession session = request.getSession(false);
+
     Summary summary = (Summary) session.getAttribute(SUMMARY_ATTRIBUTE);
     if (summary == null || !contextName.equals(summary.getName())) {
       summary = new Summary();
@@ -54,7 +55,7 @@ public class DisplayJspController extends AbstractContextHandlerController {
     }
     getContainerWrapper().getTomcatContainer().listContextJsps(context, summary, compile);
 
-    request.getSession(false).setAttribute(SUMMARY_ATTRIBUTE, summary);
+    session.setAttribute(SUMMARY_ATTRIBUTE, summary);
 
     if (compile) {
       return new ModelAndView(new RedirectView(

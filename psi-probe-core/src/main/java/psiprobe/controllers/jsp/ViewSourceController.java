@@ -14,6 +14,7 @@ import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.InputStream;
 
@@ -55,9 +56,9 @@ public class ViewSourceController extends AbstractContextHandlerController {
 
     String jspName = ServletRequestUtils.getStringParameter(request, "source");
     boolean highlight = ServletRequestUtils.getBooleanParameter(request, "highlight", true);
-    Summary summary = (Summary) (request.getSession(false) != null
-        ? request.getSession(false).getAttribute(DisplayJspController.SUMMARY_ATTRIBUTE)
-        : null);
+    HttpSession session = request.getSession(false);
+    Summary summary = session == null ? null
+        : (Summary) session.getAttribute(DisplayJspController.SUMMARY_ATTRIBUTE);
 
     if (jspName != null && summary != null && contextName.equals(summary.getName())) {
 
