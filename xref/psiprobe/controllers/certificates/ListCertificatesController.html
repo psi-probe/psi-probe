@@ -148,7 +148,7 @@
 <a class="jxr_linenumber" name="L140" href="#L140">140</a>       keyStore.load(storeInput, password);
 <a class="jxr_linenumber" name="L141" href="#L141">141</a>     } <strong class="jxr_keyword">catch</strong> (IOException e) {
 <a class="jxr_linenumber" name="L142" href="#L142">142</a>       logger.error(<span class="jxr_string">"Error loading store file {}"</span>, storeFile, e);
-<a class="jxr_linenumber" name="L143" href="#L143">143</a>       <strong class="jxr_keyword">return</strong> Collections.emptyList();
+<a class="jxr_linenumber" name="L143" href="#L143">143</a>       <strong class="jxr_keyword">return</strong> List.of();
 <a class="jxr_linenumber" name="L144" href="#L144">144</a>     }
 <a class="jxr_linenumber" name="L145" href="#L145">145</a> 
 <a class="jxr_linenumber" name="L146" href="#L146">146</a>     List&lt;Cert&gt; certs = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;();
@@ -285,6 +285,6 @@
 <a class="jxr_linenumber" name="L277" href="#L277">277</a> }
 </pre>
 <hr/>
-<div id="footer">© 2009–2025 <a href="https://github.com/psi-probe/">psi-probe</a></div>
+<div id="footer">© 2009–2026 <a href="https://github.com/psi-probe/">psi-probe</a></div>
 </body>
 </html>
