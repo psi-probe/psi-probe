@@ -41,6 +41,7 @@ import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+import org.springframework.web.util.pattern.PathPatternParser;
 
 import psiprobe.beans.ClusterWrapperBean;
 import psiprobe.beans.ContainerListenerBean;
@@ -335,7 +336,7 @@ public class ProbeConfig implements WebMvcConfigurer {
   public HandlerMapping getHandlerMapping(@Autowired LocaleChangeInterceptor interceptor) {
     logger.debug("Instantiated beanNameUrlHandlerMapping");
     BeanNameUrlHandlerMapping mapping = new BeanNameUrlHandlerMapping();
-    mapping.getUrlPathHelper().setAlwaysUseFullPath(true);
+    mapping.setPatternParser(PathPatternParser.defaultInstance);
     mapping.setInterceptors(interceptor);
     return mapping;
   }
