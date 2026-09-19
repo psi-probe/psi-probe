@@ -103,7 +103,7 @@ class CatalinaLoggerAccessorTest {
   void testGetFileWithAllFieldsAndTimestamp() {
     Object target = mock(Object.class);
     doReturn(target).when(accessor).getTarget();
-    doReturn("/logs").when(accessor).invokeMethod(target, "getDirectory", null, null);
+    doReturn("logs").when(accessor).invokeMethod(target, "getDirectory", null, null);
     doReturn("catalina.").when(accessor).invokeMethod(target, "getPrefix", null, null);
     doReturn(".log").when(accessor).invokeMethod(target, "getSuffix", null, null);
 
@@ -121,7 +121,7 @@ class CatalinaLoggerAccessorTest {
       assertTrue(file.getPath().contains("catalina." + date + ".log"));
 
       Path catalinaBase = Path.of(System.getProperty("catalina.base")).toAbsolutePath().normalize();
-      Path filePath = file.toPath().toAbsolutePath().normalize().getParent();
+      Path filePath = file.toPath().toAbsolutePath().normalize();
 
       assertEquals(catalinaBase, filePath);
     }
@@ -131,7 +131,7 @@ class CatalinaLoggerAccessorTest {
   void testGetFileWithAllFieldsNoTimestamp() {
     Object target = mock(Object.class);
     doReturn(target).when(accessor).getTarget();
-    doReturn("/logs").when(accessor).invokeMethod(target, "getDirectory", null, null);
+    doReturn("logs").when(accessor).invokeMethod(target, "getDirectory", null, null);
     doReturn("catalina.").when(accessor).invokeMethod(target, "getPrefix", null, null);
     doReturn(".log").when(accessor).invokeMethod(target, "getSuffix", null, null);
 
@@ -147,7 +147,7 @@ class CatalinaLoggerAccessorTest {
       assertTrue(file.getPath().contains("catalina..log"));
 
       Path catalinaBase = Path.of(System.getProperty("catalina.base")).toAbsolutePath().normalize();
-      Path filePath = file.toPath().toAbsolutePath().normalize().getParent();
+      Path filePath = file.toPath().toAbsolutePath().normalize();
 
       assertEquals(catalinaBase, filePath);
     }
