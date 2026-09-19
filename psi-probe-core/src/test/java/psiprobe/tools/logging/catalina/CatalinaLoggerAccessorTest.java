@@ -121,7 +121,7 @@ class CatalinaLoggerAccessorTest {
       assertTrue(file.getPath().contains("catalina." + date + ".log"));
 
       Path catalinaBase = Path.of(System.getProperty("catalina.base")).toAbsolutePath().normalize();
-      Path filePath = file.toPath().toAbsolutePath().normalize().getParent().getParent();
+      Path filePath = file.toPath().toAbsolutePath().normalize().getParent();
 
       assertEquals(catalinaBase, filePath);
     }
@@ -147,7 +147,7 @@ class CatalinaLoggerAccessorTest {
       assertTrue(file.getPath().contains("catalina..log"));
 
       Path catalinaBase = Path.of(System.getProperty("catalina.base")).toAbsolutePath().normalize();
-      Path filePath = file.toPath().toAbsolutePath().normalize().getParent().getParent();
+      Path filePath = file.toPath().toAbsolutePath().normalize().getParent();
 
       assertEquals(catalinaBase, filePath);
     }
