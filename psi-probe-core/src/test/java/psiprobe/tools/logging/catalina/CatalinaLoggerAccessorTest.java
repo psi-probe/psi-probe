@@ -20,7 +20,11 @@ import static org.mockito.Mockito.mockStatic;
 import static org.mockito.Mockito.spy;
 
 import java.io.File;
+import java.nio.file.Path;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
@@ -41,6 +45,11 @@ class CatalinaLoggerAccessorTest {
   @BeforeEach
   void setUp() {
     accessor = spy(new CatalinaLoggerAccessor());
+  }
+
+  @AfterEach
+  void tearDown() {
+    System.clearProperty("catalina.base");
   }
 
   /**
@@ -90,6 +99,52 @@ class CatalinaLoggerAccessorTest {
     }
   }
 
+  @Test
+  void testGetFileWithAllFieldsAndTimestamp() {
+    Object target = mock(Object.class);
+    doReturn(target).when(accessor).getTarget();
+    doReturn("/logs").when(accessor).invokeMethod(target, "getDirectory", null, null);
+    doReturn("catalina.").when(accessor).invokeMethod(target, "getPrefix", null, null);
+    doReturn(".log").when(accessor).invokeMethod(target, "getSuffix", null, null);
+
+    // Simulate timestamp field present
+    try (var instrumentsMock = mockStatic(Instruments.class)) {
+      instrumentsMock.when(() -> Instruments.getField(target, "timestamp"))
+          .thenReturn(Boolean.TRUE);
+
+      String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+      System.setProperty("catalina.base", "/base");
+
+      File file = accessor.getFile();
+      assertNotNull(file);
+      // Should be absolute and include catalina.base
+      assertTrue(file.getPath().contains("catalina." + date + ".log"));
+      assertTrue(file.toPath().startsWith(Path.of(System.getProperty("catalina.base"))));
+    }
+  }
+
+  @Test
+  void testGetFileWithAllFieldsNoTimestamp() {
+    Object target = mock(Object.class);
+    doReturn(target).when(accessor).getTarget();
+    doReturn("/logs").when(accessor).invokeMethod(target, "getDirectory", null, null);
+    doReturn("catalina.").when(accessor).invokeMethod(target, "getPrefix", null, null);
+    doReturn(".log").when(accessor).invokeMethod(target, "getSuffix", null, null);
+
+    // Simulate timestamp field absent
+    try (var instrumentsMock = mockStatic(Instruments.class)) {
+      instrumentsMock.when(() -> Instruments.getField(target, "timestamp")).thenReturn(null);
+
+      System.setProperty("catalina.base", "/base");
+
+      File file = accessor.getFile();
+      assertNotNull(file);
+      // Should be absolute and include catalina.base
+      assertTrue(file.getPath().contains("catalina..log"));
+      assertTrue(file.toPath().startsWith(Path.of(System.getProperty("catalina.base"))));
+    }
+  }
+
   /**
    * Test get file with missing fields.
    */
@@ -100,8 +155,10 @@ class CatalinaLoggerAccessorTest {
     doReturn(null).when(accessor).invokeMethod(target, "getDirectory", null, null);
     doReturn("catalina.").when(accessor).invokeMethod(target, "getPrefix", null, null);
     doReturn(".log").when(accessor).invokeMethod(target, "getSuffix", null, null);
-    try (MockedStatic<Instruments> mocked = mockStatic(Instruments.class)) {
-      mocked.when(() -> Instruments.getField(target, "timestamp")).thenReturn(null);
+
+    try (var instrumentsMock = mockStatic(Instruments.class)) {
+      instrumentsMock.when(() -> Instruments.getField(target, "timestamp"))
+          .thenReturn(Boolean.TRUE);
 
       File file = accessor.getFile();
       assertNull(file);
