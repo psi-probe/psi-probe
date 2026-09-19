@@ -1432,11 +1432,6 @@
             <plugin>
                 <groupId>org.openrewrite.maven</groupId>
                 <artifactId>rewrite-maven-plugin</artifactId>
-                <configuration>
-                    <activeRecipes>
-                        <recipe>org.openrewrite.java.RemoveUnusedImports</recipe>
-                    </activeRecipes>
-                </configuration>
                 <executions>
                     <execution>
                         <goals>
