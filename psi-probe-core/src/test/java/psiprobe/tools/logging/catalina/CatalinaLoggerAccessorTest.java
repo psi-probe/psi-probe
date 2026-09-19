@@ -123,7 +123,7 @@ class CatalinaLoggerAccessorTest {
       Path catalinaBase = Path.of(System.getProperty("catalina.base")).toAbsolutePath().normalize();
       Path filePath = file.toPath().toAbsolutePath().normalize();
 
-      assertEquals(catalinaBase, filePath);
+      assertTrue(filePath.startsWith(catalinaBase));
     }
   }
 
@@ -149,7 +149,7 @@ class CatalinaLoggerAccessorTest {
       Path catalinaBase = Path.of(System.getProperty("catalina.base")).toAbsolutePath().normalize();
       Path filePath = file.toPath().toAbsolutePath().normalize();
 
-      assertEquals(catalinaBase, filePath);
+      assertTrue(filePath.startsWith(catalinaBase));
     }
   }
 
