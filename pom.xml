@@ -1928,5 +1928,15 @@
                 </plugins>
             </build>
         </profile>
+
+        <profile>
+            <id>skip-openrewrite-jdk27</id>
+            <activation>
+                <jdk>[27,)</jdk>
+            </activation>
+            <properties>
+                <rewrite.skip>true</rewrite.skip>
+            </properties>
+        </profile>
     </profiles>
 </project>
