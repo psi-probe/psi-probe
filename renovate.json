@@ -1,10 +1,12 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended"
+    "config:best-practices"
   ],
-  "baseBranchPatterns": [
-    "master",
-    "javax"
+  "packageRules": [
+    {
+      "matchPackageNames": ["*"],
+      "allowedVersions": "!/.*jdk5.*/"
+    }
   ]
 }
