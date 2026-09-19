@@ -119,7 +119,11 @@ class CatalinaLoggerAccessorTest {
       assertNotNull(file);
       // Should be absolute and include catalina.base
       assertTrue(file.getPath().contains("catalina." + date + ".log"));
-      assertTrue(file.toPath().startsWith(Path.of(System.getProperty("catalina.base"))));
+
+      Path catalinaBase = Path.of(System.getProperty("catalina.base")).toAbsolutePath().normalize();
+      Path filePath = file.toPath().toAbsolutePath().normalize();
+
+      assertTrue(filePath.startsWith(catalinaBase));
     }
   }
 
@@ -141,7 +145,11 @@ class CatalinaLoggerAccessorTest {
       assertNotNull(file);
       // Should be absolute and include catalina.base
       assertTrue(file.getPath().contains("catalina..log"));
-      assertTrue(file.toPath().startsWith(Path.of(System.getProperty("catalina.base"))));
+
+      Path catalinaBase = Path.of(System.getProperty("catalina.base")).toAbsolutePath().normalize();
+      Path filePath = file.toPath().toAbsolutePath().normalize();
+
+      assertTrue(filePath.startsWith(catalinaBase));
     }
   }
 
