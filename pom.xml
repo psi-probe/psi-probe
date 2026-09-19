@@ -158,6 +158,7 @@
         <assertj.version>3.27.7</assertj.version>
         <beanutils.version>2.0.0-M2</beanutils.version>
         <byte-buddy.version>1.18.14</byte-buddy.version>
+        <caffeine.version>3.2.4</caffeine.version>
         <c3p0.version>0.14.2</c3p0.version>
         <checker.version>4.2.3</checker.version>
         <collections.version>4.6.0</collections.version>
@@ -1092,6 +1093,13 @@
                             <recipe>org.openrewrite.java.RemoveUnusedImports</recipe>
                         </activeRecipes>
                     </configuration>
+                    <dependencies>
+                        <dependency>
+                            <groupId>com.github.ben-manes.caffeine</groupId>
+                            <artifactId>caffeine</artifactId>
+                            <version>${caffeine.version}</version>
+                        </dependency>
+                    </dependencies>
                 </plugin>
                 <plugin>
                     <groupId>com.github.ekryd.sortpom</groupId>
