@@ -158,6 +158,7 @@
         <assertj.version>3.27.7</assertj.version>
         <beanutils.version>2.0.0-M2</beanutils.version>
         <byte-buddy.version>1.18.14</byte-buddy.version>
+        <caffeine.version>3.2.4</caffeine.version>
         <c3p0.version>0.14.2</c3p0.version>
         <checker.version>4.2.3</checker.version>
         <collections.version>4.6.0</collections.version>
@@ -1092,6 +1093,13 @@
                             <recipe>org.openrewrite.java.RemoveUnusedImports</recipe>
                         </activeRecipes>
                     </configuration>
+                    <dependencies>
+                        <dependency>
+                            <groupId>com.github.ben-manes.caffeine</groupId>
+                            <artifactId>caffeine</artifactId>
+                            <version>${caffeine.version}</version>
+                        </dependency>
+                    </dependencies>
                 </plugin>
                 <plugin>
                     <groupId>com.github.ekryd.sortpom</groupId>
@@ -1181,7 +1189,7 @@
                                 </excludes>
                             </enforceBytecodeVersion>
                             <requireJavaVersion>
-                                <version>[21,22),[25,26),[26,27),[27,28)</version>
+                                <version>[21,22),[25,26),[26,27),[27,28),[28,29)</version>
                             </requireJavaVersion>
                             <requireMavenVersion>
                                 <version>[${maven.min-version},)</version>
@@ -1424,11 +1432,6 @@
             <plugin>
                 <groupId>org.openrewrite.maven</groupId>
                 <artifactId>rewrite-maven-plugin</artifactId>
-                <configuration>
-                    <activeRecipes>
-                        <recipe>org.openrewrite.java.RemoveUnusedImports</recipe>
-                    </activeRecipes>
-                </configuration>
                 <executions>
                     <execution>
                         <goals>
@@ -1924,6 +1927,16 @@
                     </plugin>
                 </plugins>
             </build>
+        </profile>
+
+        <profile>
+            <id>skip-openrewrite-jdk27</id>
+            <activation>
+                <jdk>[27,)</jdk>
+            </activation>
+            <properties>
+                <rewrite.skip>true</rewrite.skip>
+            </properties>
         </profile>
     </profiles>
 </project>
