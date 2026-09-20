@@ -44,20 +44,8 @@ public class AppStatsCollectorBean extends AbstractStatsCollectorBean
 
   /** The self ignored. */
   @Value("${psiprobe.beans.stats.collectors.app.selfIgnored}")
-  /**
-   * Gets the servlet context.
-   *
-   * @return the servlet context
-   */
-  protected ServletContext getServletContext() {
-    return servletContext;
-  }
   private boolean selfIgnored;
 
-  @Override
-  public void setServletContext(ServletContext servletContext) {
-    this.servletContext = servletContext;
-  }
 
   @Override
   public void collect() throws InterruptedException {
@@ -122,7 +110,7 @@ public class AppStatsCollectorBean extends AbstractStatsCollectorBean
    * @return true, if successful
    */
   private boolean excludeFromTotal(Context ctx) {
-    return selfIgnored && getServletContext().equals(ctx.getServletContext());
+    return selfIgnored && servletContext.equals(ctx.getServletContext());
   }
 
   /**
@@ -168,6 +156,11 @@ public class AppStatsCollectorBean extends AbstractStatsCollectorBean
   public void setMaxSeries(@Value("${psiprobe.beans.stats.collectors.app.period}") String period,
       @Value("${psiprobe.beans.stats.collectors.app.span}") String span) {
     super.setMaxSeries((int) TimeExpression.dataPoints(period, span));
+  }
+
+  @Override
+  public void setServletContext(ServletContext servletContext) {
+    // Do not set servlet context as set via injection
   }
 
 }
