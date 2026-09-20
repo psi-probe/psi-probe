@@ -50,18 +50,18 @@ public class ListWebappsController extends AbstractTomcatContainerController {
 
     List<Context> apps;
     try {
-      apps = getContainerWrapper().getTomcatContainer().findContexts();
+      apps = containerWrapper.getTomcatContainer().findContexts();
     } catch (NullPointerException ex) {
       throw new IllegalStateException(
           "No container found for your server: " + getServletContext().getServerInfo(), ex);
     }
     List<Application> applications = new ArrayList<>(apps.size());
-    boolean showResources = getContainerWrapper().getResourceResolver().supportsPrivateResources();
+    boolean showResources = containerWrapper.getResourceResolver().supportsPrivateResources();
     for (Context appContext : apps) {
       // check if this is not the ROOT webapp
       if (appContext.getName() != null) {
         applications.add(ApplicationUtils.getApplication(appContext,
-            getContainerWrapper().getResourceResolver(), calcSize, getContainerWrapper()));
+            containerWrapper.getResourceResolver(), calcSize, containerWrapper));
       }
     }
     if (!applications.isEmpty() && !showResources) {

@@ -39,7 +39,7 @@ public class DiscardCompiledJspController extends AbstractContextHandlerControll
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-    getContainerWrapper().getTomcatContainer().discardWorkDir(context);
+    containerWrapper.getTomcatContainer().discardWorkDir(context);
     return new ModelAndView(new RedirectView(
         request.getContextPath() + getViewName() + "?" + request.getQueryString()));
   }

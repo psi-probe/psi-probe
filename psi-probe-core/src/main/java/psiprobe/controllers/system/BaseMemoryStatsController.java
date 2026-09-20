@@ -32,24 +32,6 @@ public class BaseMemoryStatsController extends ParameterizableViewController {
   private long collectionPeriod;
 
   /**
-   * Gets the jvm memory info accessor bean.
-   *
-   * @return the jvm memory info accessor bean
-   */
-  public JvmMemoryInfoAccessorBean getJvmMemoryInfoAccessorBean() {
-    return jvmMemoryInfoAccessorBean;
-  }
-
-  /**
-   * Sets the jvm memory info accessor bean.
-   *
-   * @param jvmMemoryInfoAccessorBean the new jvm memory info accessor bean
-   */
-  public void setJvmMemoryInfoAccessorBean(JvmMemoryInfoAccessorBean jvmMemoryInfoAccessorBean) {
-    this.jvmMemoryInfoAccessorBean = jvmMemoryInfoAccessorBean;
-  }
-
-  /**
    * Gets the collection period.
    *
    * @return the collection period
@@ -72,7 +54,7 @@ public class BaseMemoryStatsController extends ParameterizableViewController {
       HttpServletResponse response) throws Exception {
 
     ModelAndView mv = new ModelAndView(getViewName());
-    mv.addObject("pools", getJvmMemoryInfoAccessorBean().getPools());
+    mv.addObject("pools", jvmMemoryInfoAccessorBean.getPools());
     mv.addObject("collectionPeriod", getCollectionPeriod());
     return mv;
   }

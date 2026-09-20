@@ -42,8 +42,7 @@ public class ListAppFiltersController extends AbstractContextHandlerController {
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-    List<FilterInfo> appFilters =
-        ApplicationUtils.getApplicationFilters(context, getContainerWrapper());
+    List<FilterInfo> appFilters = ApplicationUtils.getApplicationFilters(context, containerWrapper);
 
     return new ModelAndView(getViewName(), "appFilters", appFilters);
   }

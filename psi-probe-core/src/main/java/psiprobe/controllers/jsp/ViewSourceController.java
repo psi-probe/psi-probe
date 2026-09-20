@@ -73,7 +73,7 @@ public class ViewSourceController extends AbstractContextHandlerController {
           jspName = jspName.replace("../", "");
         }
 
-        if (getContainerWrapper().getTomcatContainer().resourceExists(jspName, context)) {
+        if (containerWrapper.getTomcatContainer().resourceExists(jspName, context)) {
           ServletContext sctx = context.getServletContext();
           ServletConfig scfg = (ServletConfig) context.findChild("jsp");
           Options opt = new EmbeddedServletOptions(scfg, sctx);
@@ -89,12 +89,12 @@ public class ViewSourceController extends AbstractContextHandlerController {
              * time to read the actual content using the correct encoding
              */
             try (InputStream encodedStream =
-                getContainerWrapper().getTomcatContainer().getResourceStream(jspName, context)) {
+                containerWrapper.getTomcatContainer().getResourceStream(jspName, context)) {
               item.setEncoding(Utils.getJspEncoding(encodedStream));
             }
           }
           try (InputStream jspStream =
-              getContainerWrapper().getTomcatContainer().getResourceStream(jspName, context)) {
+              containerWrapper.getTomcatContainer().getResourceStream(jspName, context)) {
             if (highlight) {
               request.setAttribute("highlightedContent",
                   Utils.highlightStream(jspName, jspStream, "xhtml", item.getEncoding()));

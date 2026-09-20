@@ -20,6 +20,7 @@ import java.util.List;
 import org.jfree.data.xy.XYDataItem;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.test.util.ReflectionTestUtils;
 
 import psiprobe.beans.stats.listeners.StatsCollectionEvent;
 import psiprobe.beans.stats.listeners.StatsCollectionListener;
@@ -87,13 +88,13 @@ class AbstractStatsCollectorBeanTest {
   void setUp() {
     collector = new TestCollector();
     statsCollection = new StatsCollection();
-    collector.setStatsCollection(statsCollection);
+    ReflectionTestUtils.setField(collector, "statsCollection", statsCollection);
     collector.setMaxSeries(10);
   }
 
   @Test
   void testSettersAndGetters() {
-    assertEquals(statsCollection, collector.getStatsCollection());
+    assertEquals(statsCollection, ReflectionTestUtils.getField(collector, "statsCollection"));
     assertEquals(10, collector.getMaxSeries());
   }
 
@@ -199,7 +200,7 @@ class AbstractStatsCollectorBeanTest {
 
   @Test
   void testNullStatsCollection() throws InterruptedException {
-    collector.setStatsCollection(null);
+    ReflectionTestUtils.setField(collector, "statsCollection", null);
     // Should not throw
     long delta = collector.testBuildDeltaStats("x", 100L);
     assertEquals(0L, delta);

@@ -53,7 +53,7 @@ public class DisplayJspController extends AbstractContextHandlerController {
       summary = new Summary();
       summary.setName(contextName);
     }
-    getContainerWrapper().getTomcatContainer().listContextJsps(context, summary, compile);
+    containerWrapper.getTomcatContainer().listContextJsps(context, summary, compile);
 
     session.setAttribute(SUMMARY_ATTRIBUTE, summary);
 

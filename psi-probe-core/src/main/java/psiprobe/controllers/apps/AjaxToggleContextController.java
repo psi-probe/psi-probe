@@ -53,12 +53,12 @@ public class AjaxToggleContextController extends AbstractContextHandlerControlle
         String name = auth.getName();
         if (context.getState().isAvailable()) {
           logger.info("{} requested STOP of {}", request.getRemoteAddr(), contextName);
-          getContainerWrapper().getTomcatContainer().stop(contextName);
+          containerWrapper.getTomcatContainer().stop(contextName);
           logger.info(getMessageSourceAccessor().getMessage("probe.src.log.stop"), name,
               contextName);
         } else {
           logger.info("{} requested START of {}", request.getRemoteAddr(), contextName);
-          getContainerWrapper().getTomcatContainer().start(contextName);
+          containerWrapper.getTomcatContainer().start(contextName);
           logger.info(getMessageSourceAccessor().getMessage("probe.src.log.start"), name,
               contextName);
         }
@@ -67,7 +67,7 @@ public class AjaxToggleContextController extends AbstractContextHandlerControlle
       }
     }
     return new ModelAndView(getViewName(), "available",
-        context != null && getContainerWrapper().getTomcatContainer().getAvailable(context));
+        context != null && containerWrapper.getTomcatContainer().getAvailable(context));
   }
 
   @Value("ajax/context_status")

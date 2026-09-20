@@ -26,7 +26,7 @@ public class BaseReloadContextController extends AbstractNoSelfContextHandlerCon
 
   @Override
   protected void executeAction(String contextName) throws Exception {
-    Context context = getContainerWrapper().getTomcatContainer().findContext(contextName);
+    Context context = containerWrapper.getTomcatContainer().findContext(contextName);
     if (context != null) {
       context.reload();
 

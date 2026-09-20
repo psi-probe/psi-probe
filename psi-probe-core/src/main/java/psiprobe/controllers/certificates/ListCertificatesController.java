@@ -70,7 +70,7 @@ public class ListCertificatesController extends AbstractTomcatContainerControlle
     ModelAndView modelAndView = new ModelAndView(getViewName());
 
     try {
-      List<Connector> connectors = getContainerWrapper().getTomcatContainer().findConnectors();
+      List<Connector> connectors = containerWrapper.getTomcatContainer().findConnectors();
       List<ConnectorInfo> infos = getConnectorInfos(connectors);
 
       for (ConnectorInfo info : infos) {

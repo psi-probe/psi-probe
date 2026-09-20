@@ -47,7 +47,7 @@ public class DeployController extends AbstractTomcatContainerController {
 
     List<Context> apps;
     try {
-      apps = getContainerWrapper().getTomcatContainer().findContexts();
+      apps = containerWrapper.getTomcatContainer().findContexts();
     } catch (NullPointerException ex) {
       throw new IllegalStateException(
           "No container found for your server: " + getServletContext().getServerInfo(), ex);

@@ -44,24 +44,6 @@ public class ListConnectorsController extends AbstractTomcatContainerController 
   private long collectionPeriod;
 
   /**
-   * Gets the container listener bean.
-   *
-   * @return the container listener bean
-   */
-  public ContainerListenerBean getContainerListenerBean() {
-    return containerListenerBean;
-  }
-
-  /**
-   * Sets the container listener bean.
-   *
-   * @param containerListenerBean the new container listener bean
-   */
-  public void setContainerListenerBean(ContainerListenerBean containerListenerBean) {
-    this.containerListenerBean = containerListenerBean;
-  }
-
-  /**
    * Gets the collection period.
    *
    * @return the collection period

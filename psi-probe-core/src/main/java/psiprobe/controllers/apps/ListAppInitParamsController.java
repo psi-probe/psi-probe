@@ -41,7 +41,7 @@ public class ListAppInitParamsController extends AbstractContextHandlerControlle
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 
     ModelAndView mv = new ModelAndView(getViewName(), "appInitParams",
-        ApplicationUtils.getApplicationInitParams(context, getContainerWrapper()));
+        ApplicationUtils.getApplicationInitParams(context, containerWrapper));
     if (SecurityUtils.hasAttributeValueRole(getServletContext())) {
       mv.addObject("allowedToViewValues", Boolean.TRUE);
     }

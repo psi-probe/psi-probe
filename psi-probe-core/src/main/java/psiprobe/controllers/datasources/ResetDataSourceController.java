@@ -81,8 +81,8 @@ public class ResetDataSourceController extends AbstractContextHandlerController 
     if (resourceName != null && !resourceName.isEmpty()) {
       boolean reset = false;
       try {
-        reset = getContainerWrapper().getResourceResolver().resetResource(context, resourceName,
-            getContainerWrapper());
+        reset = containerWrapper.getResourceResolver().resetResource(context, resourceName,
+            containerWrapper);
       } catch (NamingException e) {
         request.setAttribute("errorMessage", getMessageSourceAccessor()
             .getMessage("probe.src.reset.datasource.notfound", new Object[] {resourceName}));
@@ -100,7 +100,7 @@ public class ResetDataSourceController extends AbstractContextHandlerController 
 
   @Override
   protected boolean isContextOptional() {
-    return !getContainerWrapper().getResourceResolver().supportsPrivateResources();
+    return !containerWrapper.getResourceResolver().supportsPrivateResources();
   }
 
   @Value("/resources.htm")

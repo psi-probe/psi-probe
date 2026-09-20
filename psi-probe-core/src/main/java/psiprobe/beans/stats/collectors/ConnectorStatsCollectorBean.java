@@ -27,24 +27,6 @@ public class ConnectorStatsCollectorBean extends AbstractStatsCollectorBean {
   @Inject
   private ContainerListenerBean listenerBean;
 
-  /**
-   * Gets the listener bean.
-   *
-   * @return the listener bean
-   */
-  public ContainerListenerBean getListenerBean() {
-    return listenerBean;
-  }
-
-  /**
-   * Sets the listener bean.
-   *
-   * @param listenerBean the new listener bean
-   */
-  public void setListenerBean(ContainerListenerBean listenerBean) {
-    this.listenerBean = listenerBean;
-  }
-
   @Override
   public void collect() throws Exception {
     for (Connector connector : listenerBean.getConnectors(false)) {

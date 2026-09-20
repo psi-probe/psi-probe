@@ -33,48 +33,12 @@ import psiprobe.tools.logging.LogDestination;
 public class ListLogsController extends ParameterizableViewController {
 
   /** The error view. */
+  @Value("logs_notsupported")
   private String errorView;
 
   /** The log resolver. */
   @Inject
   private LogResolverBean logResolver;
-
-  /**
-   * Gets the error view.
-   *
-   * @return the error view
-   */
-  public String getErrorView() {
-    return errorView;
-  }
-
-  /**
-   * Sets the error view.
-   *
-   * @param errorView the new error view
-   */
-  @Value("logs_notsupported")
-  public void setErrorView(String errorView) {
-    this.errorView = errorView;
-  }
-
-  /**
-   * Gets the log resolver.
-   *
-   * @return the log resolver
-   */
-  public LogResolverBean getLogResolver() {
-    return logResolver;
-  }
-
-  /**
-   * Sets the log resolver.
-   *
-   * @param logResolver the new log resolver
-   */
-  public void setLogResolver(LogResolverBean logResolver) {
-    this.logResolver = logResolver;
-  }
 
   @RequestMapping(path = {"/logs", "/list.htm"})
   @Override

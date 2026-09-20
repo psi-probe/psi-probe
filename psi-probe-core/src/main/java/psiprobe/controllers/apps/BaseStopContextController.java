@@ -25,7 +25,7 @@ public class BaseStopContextController extends AbstractNoSelfContextHandlerContr
 
   @Override
   protected void executeAction(String contextName) throws Exception {
-    getContainerWrapper().getTomcatContainer().stop(contextName);
+    containerWrapper.getTomcatContainer().stop(contextName);
 
     // Logging action
     Authentication auth = SecurityContextHolder.getContext().getAuthentication();

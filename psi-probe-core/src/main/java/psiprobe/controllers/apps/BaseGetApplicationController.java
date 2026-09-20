@@ -35,7 +35,7 @@ public class BaseGetApplicationController extends AbstractContextHandlerControll
 
   /** The stats collection. */
   @Inject
-  private StatsCollection statsCollection;
+  protected StatsCollection statsCollection;
 
   /** The collection period. */
   private long collectionPeriod;
@@ -56,24 +56,6 @@ public class BaseGetApplicationController extends AbstractContextHandlerControll
    */
   public void setExtendedInfo(boolean extendedInfo) {
     this.extendedInfo = extendedInfo;
-  }
-
-  /**
-   * Gets the stats collection.
-   *
-   * @return the stats collection
-   */
-  public StatsCollection getStatsCollection() {
-    return statsCollection;
-  }
-
-  /**
-   * Sets the stats collection.
-   *
-   * @param statsCollection the new stats collection
-   */
-  public void setStatsCollection(StatsCollection statsCollection) {
-    this.statsCollection = statsCollection;
   }
 
   /**
@@ -101,13 +83,13 @@ public class BaseGetApplicationController extends AbstractContextHandlerControll
     boolean calcSize = ServletRequestUtils.getBooleanParameter(request, "size", false)
         && SecurityUtils.hasAttributeValueRole(getServletContext());
 
-    ResourceResolver resourceResolver = getContainerWrapper().getResourceResolver();
+    ResourceResolver resourceResolver = containerWrapper.getResourceResolver();
     Application app = ApplicationUtils.getApplication(context,
-        isExtendedInfo() ? resourceResolver : null, calcSize, getContainerWrapper());
+        isExtendedInfo() ? resourceResolver : null, calcSize, containerWrapper);
 
-    if (isExtendedInfo() && getStatsCollection() != null) {
+    if (isExtendedInfo() && statsCollection != null) {
       String avgStatisticName = "app.avg_proc_time." + app.getName();
-      app.setAvgTime(getStatsCollection().getLastValueForStat(avgStatisticName));
+      app.setAvgTime(statsCollection.getLastValueForStat(avgStatisticName));
     }
 
     return new ModelAndView(getViewName()).addObject("app", app)

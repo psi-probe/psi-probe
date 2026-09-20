@@ -49,7 +49,7 @@ public class ListThreadsController extends AbstractTomcatContainerController {
      * Create a list of webapp classloaders. This will help us to associate threads with
      * applications.
      */
-    List<Context> contexts = getContainerWrapper().getTomcatContainer().findContexts();
+    List<Context> contexts = containerWrapper.getTomcatContainer().findContexts();
     Map<String, String> classLoaderMap = new TreeMap<>();
     for (Context context : contexts) {
       if (context.getLoader() != null && context.getLoader().getClassLoader() != null) {

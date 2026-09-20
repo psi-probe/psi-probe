@@ -75,7 +75,7 @@ public class BaseDownloadXmlConfController extends AbstractContextHandlerControl
       ServletContext sctx = context.getServletContext();
       xmlPath = sctx.getRealPath("/WEB-INF/web.xml");
     } else if (TARGET_CONTEXT_XML.equals(downloadTarget)) {
-      xmlPath = this.getContainerWrapper().getTomcatContainer().getConfigFile(context).getPath();
+      xmlPath = this.containerWrapper.getTomcatContainer().getConfigFile(context).getPath();
     } else {
       throw new RuntimeException("Unknown download target " + getDownloadTarget());
     }

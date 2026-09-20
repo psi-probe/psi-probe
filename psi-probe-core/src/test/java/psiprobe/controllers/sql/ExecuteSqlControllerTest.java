@@ -34,6 +34,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.context.support.StaticApplicationContext;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
+import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
 import psiprobe.TomcatContainer;
@@ -78,7 +79,7 @@ class ExecuteSqlControllerTest {
     when(containerWrapper.getTomcatContainer()).thenReturn(tomcatContainer);
     when(tomcatContainer.formatContextName("app")).thenReturn("/app");
     when(tomcatContainer.findContext("/app")).thenReturn(context);
-    controller.setContainerWrapper(containerWrapper);
+    ReflectionTestUtils.setField(controller, "containerWrapper", containerWrapper);
   }
 
   @Test
