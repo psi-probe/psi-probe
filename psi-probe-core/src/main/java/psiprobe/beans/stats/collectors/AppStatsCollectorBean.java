@@ -46,7 +46,6 @@ public class AppStatsCollectorBean extends AbstractStatsCollectorBean
   @Value("${psiprobe.beans.stats.collectors.app.selfIgnored}")
   private boolean selfIgnored;
 
-
   @Override
   public void collect() throws InterruptedException {
 
