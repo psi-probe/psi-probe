@@ -37,24 +37,6 @@ public class BaseClusterStatsController extends AbstractTomcatContainerControlle
   private long collectionPeriod;
 
   /**
-   * Gets the cluster wrapper.
-   *
-   * @return the cluster wrapper
-   */
-  public ClusterWrapperBean getClusterWrapper() {
-    return clusterWrapper;
-  }
-
-  /**
-   * Sets the cluster wrapper.
-   *
-   * @param clusterWrapper the new cluster wrapper
-   */
-  public void setClusterWrapper(ClusterWrapperBean clusterWrapper) {
-    this.clusterWrapper = clusterWrapper;
-  }
-
-  /**
    * Checks if is load members.
    *
    * @return true, if is load members
@@ -95,8 +77,8 @@ public class BaseClusterStatsController extends AbstractTomcatContainerControlle
       HttpServletResponse response) throws Exception {
 
     TomcatContainer container = containerWrapper.getTomcatContainer();
-    Cluster cluster = getClusterWrapper().getCluster(container.getName(), container.getHostName(),
-        isLoadMembers());
+    Cluster cluster =
+        clusterWrapper.getCluster(container.getName(), container.getHostName(), isLoadMembers());
     return new ModelAndView(getViewName()).addObject("cluster", cluster)
         .addObject("collectionPeriod", getCollectionPeriod());
   }
