@@ -71,13 +71,13 @@ public class BaseTomcatAvailabilityController extends AbstractTomcatContainerCon
     tomcatTestReport.setDatasourceUsageScore(0);
 
     boolean allContextsAvailable = true;
-    if (getContainerWrapper().getResourceResolver().supportsPrivateResources()) {
-      for (Context appContext : getContainerWrapper().getTomcatContainer().findContexts()) {
-        allContextsAvailable = allContextsAvailable
-            && getContainerWrapper().getTomcatContainer().getAvailable(appContext);
+    if (containerWrapper.getResourceResolver().supportsPrivateResources()) {
+      for (Context appContext : containerWrapper.getTomcatContainer().findContexts()) {
+        allContextsAvailable =
+            allContextsAvailable && containerWrapper.getTomcatContainer().getAvailable(appContext);
 
-        List<ApplicationResource> applicationResources = getContainerWrapper().getResourceResolver()
-            .getApplicationResources(appContext, getContainerWrapper());
+        List<ApplicationResource> applicationResources = containerWrapper.getResourceResolver()
+            .getApplicationResources(appContext, containerWrapper);
 
         for (ApplicationResource appResource : applicationResources) {
           DataSourceInfo dsi = appResource.getDataSourceInfo();
@@ -94,7 +94,7 @@ public class BaseTomcatAvailabilityController extends AbstractTomcatContainerCon
 
     } else {
       List<ApplicationResource> resources =
-          getContainerWrapper().getResourceResolver().getApplicationResources();
+          containerWrapper.getResourceResolver().getApplicationResources();
       for (ApplicationResource resource : resources) {
         DataSourceInfo dsi = resource.getDataSourceInfo();
         if (dsi != null && dsi.getBusyScore() > tomcatTestReport.getDatasourceUsageScore()) {

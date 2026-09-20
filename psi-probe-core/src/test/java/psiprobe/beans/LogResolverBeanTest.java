@@ -29,6 +29,7 @@ import org.apache.catalina.Context;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.springframework.test.util.ReflectionTestUtils;
 
 import psiprobe.TomcatContainer;
 import psiprobe.tools.logging.FileLogAccessor;
@@ -43,7 +44,7 @@ class LogResolverBeanTest {
   void setUp() {
     bean = new LogResolverBean();
     containerWrapper = mock(ContainerWrapperBean.class);
-    bean.setContainerWrapper(containerWrapper);
+    ReflectionTestUtils.setField(bean, "containerWrapper", containerWrapper);
   }
 
   @Test
@@ -113,16 +114,6 @@ class LogResolverBeanTest {
   void testGetLogDestination_UnknownType() {
     LogDestination result = bean.getLogDestination("unknown", null, false, false, null, null);
     assertNull(result);
-  }
-
-  /**
-   * Test set and get container wrapper.
-   */
-  @Test
-  void testSetAndGetContainerWrapper() {
-    ContainerWrapperBean cw = mock(ContainerWrapperBean.class);
-    bean.setContainerWrapper(cw);
-    assertEquals(cw, bean.getContainerWrapper());
   }
 
   /**

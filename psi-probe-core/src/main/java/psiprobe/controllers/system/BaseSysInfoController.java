@@ -101,8 +101,8 @@ public class BaseSysInfoController extends AbstractTomcatContainerController {
 
     SystemInformation systemInformation = new SystemInformation();
     systemInformation
-        .setAppBase(getContainerWrapper().getTomcatContainer().getAppBase().getAbsolutePath());
-    systemInformation.setConfigBase(getContainerWrapper().getTomcatContainer().getConfigBase());
+        .setAppBase(containerWrapper.getTomcatContainer().getAppBase().getAbsolutePath());
+    systemInformation.setConfigBase(containerWrapper.getTomcatContainer().getConfigBase());
 
     Map<String, String> sysProps = new HashMap<>();
     for (String propertyName : System.getProperties().stringPropertyNames()) {

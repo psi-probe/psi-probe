@@ -23,6 +23,7 @@ import org.apache.catalina.Context;
 import org.junit.jupiter.api.Test;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
+import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
 import psiprobe.TomcatContainer;
@@ -94,7 +95,7 @@ class TomcatAvailabilityControllerTest {
     when(resourceResolver.getApplicationResources(secondContext, containerWrapper))
         .thenReturn(List.of(secondResource));
 
-    controller.setContainerWrapper(containerWrapper);
+    ReflectionTestUtils.setField(controller, "containerWrapper", containerWrapper);
 
     ModelAndView modelAndView = controller.handleRequest(
         new MockHttpServletRequest("GET", "/quickcheck.htm"), new MockHttpServletResponse());
@@ -130,7 +131,7 @@ class TomcatAvailabilityControllerTest {
     resource.setDataSourceInfo(info);
     when(resourceResolver.getApplicationResources()).thenReturn(List.of(resource));
 
-    controller.setContainerWrapper(containerWrapper);
+    ReflectionTestUtils.setField(controller, "containerWrapper", containerWrapper);
 
     ModelAndView modelAndView = controller.handleRequest(
         new MockHttpServletRequest("GET", "/quickcheck.xml.htm"), new MockHttpServletResponse());

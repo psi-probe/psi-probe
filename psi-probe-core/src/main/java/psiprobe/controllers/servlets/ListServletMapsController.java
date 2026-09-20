@@ -46,7 +46,7 @@ public class ListServletMapsController extends AbstractContextHandlerController 
 
     List<Context> ctxs;
     if (context == null) {
-      ctxs = getContainerWrapper().getTomcatContainer().findContexts();
+      ctxs = containerWrapper.getTomcatContainer().findContexts();
     } else {
       ctxs = new ArrayList<>();
       ctxs.add(context);

@@ -120,7 +120,7 @@ public class UploadWarController extends AbstractTomcatContainerController {
     }
 
     try {
-      contextName = getContainerWrapper().getTomcatContainer().formatContextName(contextName);
+      contextName = containerWrapper.getTomcatContainer().formatContextName(contextName);
 
       /*
        * pass the name of the newly deployed context to the presentation layer using this name the
@@ -131,32 +131,32 @@ public class UploadWarController extends AbstractTomcatContainerController {
 
       // Checks if UPDATE option is selected
       if ("yes".equals(updateParam)
-          && getContainerWrapper().getTomcatContainer().findContext(contextName) != null) {
+          && containerWrapper.getTomcatContainer().findContext(contextName) != null) {
         if (contextName.matches("\\w*")) {
           logger.debug("updating {}: removing the old copy", contextName);
         }
-        getContainerWrapper().getTomcatContainer().remove(contextName);
+        containerWrapper.getTomcatContainer().remove(contextName);
       }
 
-      if (getContainerWrapper().getTomcatContainer().findContext(contextName) == null) {
+      if (containerWrapper.getTomcatContainer().findContext(contextName) == null) {
         // move the .war to tomcat application base dir
         String destWarFilename =
-            getContainerWrapper().getTomcatContainer().formatContextFilename(contextName);
-        File destWar = Path.of(getContainerWrapper().getTomcatContainer().getAppBase().getPath(),
+            containerWrapper.getTomcatContainer().formatContextFilename(contextName);
+        File destWar = Path.of(containerWrapper.getTomcatContainer().getAppBase().getPath(),
             destWarFilename + ".war").toFile();
 
         Files.move(tmpPath, destWar.toPath());
 
         // let Tomcat know that the file is there
-        getContainerWrapper().getTomcatContainer().installWar(contextName);
+        containerWrapper.getTomcatContainer().installWar(contextName);
 
-        Path destContext = Path
-            .of(getContainerWrapper().getTomcatContainer().getAppBase().getPath(), destWarFilename);
+        Path destContext =
+            Path.of(containerWrapper.getTomcatContainer().getAppBase().getPath(), destWarFilename);
 
         // Wait few seconds for creating context dir to avoid empty context
         PathUtils.waitFor(destContext, Duration.ofSeconds(MAXSECONDS_WAITFOR_CONTEXT));
 
-        Context ctx = getContainerWrapper().getTomcatContainer().findContext(contextName);
+        Context ctx = containerWrapper.getTomcatContainer().findContext(contextName);
         if (ctx == null) {
           errMsg = getMessageSourceAccessor().getMessage("probe.src.deploy.war.notinstalled",
               new Object[] {visibleContextName});
@@ -172,7 +172,7 @@ public class UploadWarController extends AbstractTomcatContainerController {
           }
           // Checks if DISCARD "work" directory is selected
           if ("yes".equals(discardParam)) {
-            getContainerWrapper().getTomcatContainer().discardWorkDir(ctx);
+            containerWrapper.getTomcatContainer().discardWorkDir(ctx);
             if (contextName.matches("\\w*")) {
               logger.info(getMessageSourceAccessor().getMessage("probe.src.log.discardwork"), name,
                   contextName);
@@ -182,7 +182,7 @@ public class UploadWarController extends AbstractTomcatContainerController {
           if ("yes".equals(compileParam)) {
             Summary summary = new Summary();
             summary.setName(ctx.getName());
-            getContainerWrapper().getTomcatContainer().listContextJsps(ctx, summary, true);
+            containerWrapper.getTomcatContainer().listContextJsps(ctx, summary, true);
             request.getSession(false).setAttribute(DisplayJspController.SUMMARY_ATTRIBUTE, summary);
             request.setAttribute("compileSuccess", Boolean.TRUE);
           }

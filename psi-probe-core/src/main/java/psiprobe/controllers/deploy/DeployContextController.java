@@ -45,7 +45,7 @@ public class DeployContextController extends AbstractTomcatContainerController {
 
     if (contextName != null) {
       try {
-        if (getContainerWrapper().getTomcatContainer().installContext(contextName)) {
+        if (containerWrapper.getTomcatContainer().installContext(contextName)) {
           request.setAttribute("successMessage", getMessageSourceAccessor()
               .getMessage("probe.src.deploy.context.success", new Object[] {contextName}));
           // Logging action

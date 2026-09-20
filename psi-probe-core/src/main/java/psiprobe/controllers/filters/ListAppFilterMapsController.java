@@ -42,7 +42,7 @@ public class ListAppFilterMapsController extends AbstractContextHandlerControlle
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 
     List<FilterMapping> filterMaps =
-        getContainerWrapper().getTomcatContainer().getApplicationFilterMaps(context);
+        containerWrapper.getTomcatContainer().getApplicationFilterMaps(context);
 
     return new ModelAndView(getViewName(), "filterMaps", filterMaps);
   }

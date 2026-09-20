@@ -60,7 +60,7 @@ public class AjaxReloadContextController extends AbstractContextHandlerControlle
       }
     }
     return new ModelAndView(getViewName(), "available",
-        context != null && getContainerWrapper().getTomcatContainer().getAvailable(context));
+        context != null && containerWrapper.getTomcatContainer().getAvailable(context));
   }
 
   @Value("ajax/context_status")

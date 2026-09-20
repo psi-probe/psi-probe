@@ -101,9 +101,9 @@ public class BaseGetApplicationController extends AbstractContextHandlerControll
     boolean calcSize = ServletRequestUtils.getBooleanParameter(request, "size", false)
         && SecurityUtils.hasAttributeValueRole(getServletContext());
 
-    ResourceResolver resourceResolver = getContainerWrapper().getResourceResolver();
+    ResourceResolver resourceResolver = containerWrapper.getResourceResolver();
     Application app = ApplicationUtils.getApplication(context,
-        isExtendedInfo() ? resourceResolver : null, calcSize, getContainerWrapper());
+        isExtendedInfo() ? resourceResolver : null, calcSize, containerWrapper);
 
     if (isExtendedInfo() && getStatsCollection() != null) {
       String avgStatisticName = "app.avg_proc_time." + app.getName();

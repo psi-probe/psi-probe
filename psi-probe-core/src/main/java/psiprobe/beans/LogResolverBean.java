@@ -74,24 +74,6 @@ public class LogResolverBean {
   private List<String> stdoutFiles = new ArrayList<>();
 
   /**
-   * Gets the container wrapper.
-   *
-   * @return the container wrapper
-   */
-  public ContainerWrapperBean getContainerWrapper() {
-    return containerWrapper;
-  }
-
-  /**
-   * Sets the container wrapper.
-   *
-   * @param containerWrapper the new container wrapper
-   */
-  public void setContainerWrapper(ContainerWrapperBean containerWrapper) {
-    this.containerWrapper = containerWrapper;
-  }
-
-  /**
    * Gets the stdout files.
    *
    * @return the stdout files
@@ -210,7 +192,7 @@ public class LogResolverBean {
     //
     // interrogate webapp classloaders and available loggers
     //
-    List<Context> contexts = getContainerWrapper().getTomcatContainer().findContexts();
+    List<Context> contexts = containerWrapper.getTomcatContainer().findContexts();
     for (Context ctx : contexts) {
       interrogateContext(ctx, allAppenders);
     }
@@ -246,9 +228,9 @@ public class LogResolverBean {
     Context ctx = null;
     Application application = null;
     if (webapp != null) {
-      ctx = getContainerWrapper().getTomcatContainer().findContext(webapp);
+      ctx = containerWrapper.getTomcatContainer().findContext(webapp);
       if (ctx != null) {
-        application = ApplicationUtils.getApplication(ctx, getContainerWrapper());
+        application = ApplicationUtils.getApplication(ctx, containerWrapper);
       }
     }
 
@@ -310,7 +292,7 @@ public class LogResolverBean {
    * @param allAppenders the all appenders
    */
   private void interrogateContext(Context ctx, List<LogDestination> allAppenders) {
-    Application application = ApplicationUtils.getApplication(ctx, getContainerWrapper());
+    Application application = ApplicationUtils.getApplication(ctx, containerWrapper);
     Loader loader = ctx.getLoader();
     if (loader == null) {
       logger.debug("Context {} has no loader, skipping classloader interrogation", ctx.getName());

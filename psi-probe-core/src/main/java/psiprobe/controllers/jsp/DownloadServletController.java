@@ -46,7 +46,7 @@ public class DownloadServletController extends AbstractContextHandlerController 
 
     if (jspName != null) {
       String servletName =
-          getContainerWrapper().getTomcatContainer().getServletFileNameForJsp(context, jspName);
+          containerWrapper.getTomcatContainer().getServletFileNameForJsp(context, jspName);
       if (servletName != null) {
         File servletFile = Path.of(servletName).toFile();
         if (servletFile.exists()) {

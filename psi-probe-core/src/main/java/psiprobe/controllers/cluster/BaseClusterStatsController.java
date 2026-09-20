@@ -94,7 +94,7 @@ public class BaseClusterStatsController extends AbstractTomcatContainerControlle
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {
 
-    TomcatContainer container = getContainerWrapper().getTomcatContainer();
+    TomcatContainer container = containerWrapper.getTomcatContainer();
     Cluster cluster = getClusterWrapper().getCluster(container.getName(), container.getHostName(),
         isLoadMembers());
     return new ModelAndView(getViewName()).addObject("cluster", cluster)

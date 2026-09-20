@@ -34,28 +34,10 @@ public abstract class AbstractTomcatContainerController extends AbstractControll
 
   /** The container wrapper. */
   @Inject
-  private ContainerWrapperBean containerWrapper;
+  protected ContainerWrapperBean containerWrapper;
 
   /** The view name. */
   private String viewName;
-
-  /**
-   * Gets the container wrapper.
-   *
-   * @return the container wrapper
-   */
-  public ContainerWrapperBean getContainerWrapper() {
-    return containerWrapper;
-  }
-
-  /**
-   * Sets the container wrapper.
-   *
-   * @param containerWrapper the new container wrapper
-   */
-  public void setContainerWrapper(ContainerWrapperBean containerWrapper) {
-    this.containerWrapper = containerWrapper;
-  }
 
   /**
    * Gets the view name.
