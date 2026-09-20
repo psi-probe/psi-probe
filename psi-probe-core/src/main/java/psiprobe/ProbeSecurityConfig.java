@@ -24,6 +24,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.ProviderManager;
+import org.springframework.security.authorization.AuthorityAuthorizationManager;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.authority.mapping.SimpleAttributes2GrantedAuthoritiesMapper;
 import org.springframework.security.web.DefaultSecurityFilterChain;
@@ -41,8 +42,8 @@ import org.springframework.security.web.authentication.preauth.j2ee.J2eeBasedPre
 import org.springframework.security.web.authentication.preauth.j2ee.J2eePreAuthenticatedProcessingFilter;
 import org.springframework.security.web.authentication.preauth.j2ee.WebXmlMappableAttributesRetriever;
 import org.springframework.security.web.context.SecurityContextPersistenceFilter;
-import org.springframework.security.web.context.SecurityContextRepository;
-import org.springframework.security.web.servlet.util.matcher.PathPatternRequestMatcher;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.util.matcher.AnyRequestMatcher;
 
 /**
  * The Class ProbeSecurityConfig.
@@ -58,8 +59,7 @@ public class ProbeSecurityConfig {
    */
   @Bean(name = "filterChainProxy")
   public FilterChainProxy getFilterChainProxy() {
-    SecurityFilterChain chain =
-        new DefaultSecurityFilterChain(PathPatternRequestMatcher.withDefaults().matcher("/**"),
+    SecurityFilterChain chain = new DefaultSecurityFilterChain(new AntPathRequestMatcher("/**"),
         getSecurityContextPersistenceFilter(), getJ2eePreAuthenticatedProcessingFilter(),
         getLogoutFilter(), getExceptionTranslationFilter(), getAuthorizationFilter());
 
@@ -230,25 +230,24 @@ public class ProbeSecurityConfig {
    */
   @Bean(name = "authorizationManager")
   public RequestMatcherDelegatingAuthorizationManager getAuthorizationManager() {
-    PathPatternRequestMatcher.Builder matcher = PathPatternRequestMatcher.withDefaults();
-
     RequestMatcherDelegatingAuthorizationManager.Builder manager =
         RequestMatcherDelegatingAuthorizationManager.builder();
 
-    manager.requestMatchers(matcher.matcher("/adm/**")).hasAnyAuthority("ROLE_MANAGER",
-        "ROLE_MANAGER-GUI");
+    manager.add(new AntPathRequestMatcher("/adm/**"),
+        AuthorityAuthorizationManager.hasAnyAuthority("ROLE_MANAGER", "ROLE_MANAGER-GUI"));
 
-    manager.requestMatchers(matcher.matcher("/adm/restartvm.ajax"))
-        .hasAnyAuthority("ROLE_POWERUSERPLUS", "ROLE_MANAGER", "ROLE_MANAGER-GUI");
+    manager.add(new AntPathRequestMatcher("/adm/restartvm.ajax"), AuthorityAuthorizationManager
+        .hasAnyAuthority("ROLE_POWERUSERPLUS", "ROLE_MANAGER", "ROLE_MANAGER-GUI"));
 
-    manager.requestMatchers(matcher.matcher("/sql/**")).hasAnyAuthority("ROLE_POWERUSERPLUS",
-        "ROLE_MANAGER", "ROLE_MANAGER-GUI");
+    manager.add(new AntPathRequestMatcher("/sql/**"), AuthorityAuthorizationManager
+        .hasAnyAuthority("ROLE_POWERUSERPLUS", "ROLE_MANAGER", "ROLE_MANAGER-GUI"));
 
-    manager.requestMatchers(matcher.matcher("/app/**")).hasAnyAuthority("ROLE_POWERUSER",
-        "ROLE_POWERUSERPLUS", "ROLE_MANAGER", "ROLE_MANAGER-GUI");
+    manager.add(new AntPathRequestMatcher("/app/**"), AuthorityAuthorizationManager.hasAnyAuthority(
+        "ROLE_POWERUSER", "ROLE_POWERUSERPLUS", "ROLE_MANAGER", "ROLE_MANAGER-GUI"));
 
-    manager.anyRequest().hasAnyAuthority("ROLE_PROBEUSER", "ROLE_POWERUSER", "ROLE_POWERUSERPLUS",
-        "ROLE_MANAGER", "ROLE_MANAGER-GUI");
+    manager.add(AnyRequestMatcher.INSTANCE,
+        AuthorityAuthorizationManager.hasAnyAuthority("ROLE_PROBEUSER", "ROLE_POWERUSER",
+            "ROLE_POWERUSERPLUS", "ROLE_MANAGER", "ROLE_MANAGER-GUI"));
 
     return manager.build();
   }

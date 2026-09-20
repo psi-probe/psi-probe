@@ -354,8 +354,8 @@ public class ContainerListenerBean implements NotificationListener {
                   .withCache(new CHMCache()).build()) {
                 CountryResponse response =
                     reader.country(InetAddress.getByName(rp.getRemoteAddr()));
-                Country country = response.country();
-                rp.setRemoteAddrLocale(new Locale("", country.isoCode()));
+                Country country = response.getCountry();
+                rp.setRemoteAddrLocale(new Locale("", country.getIsoCode()));
               } catch (AddressNotFoundException e) {
                 logger.debug("Address Not Found: {}", e.getMessage());
                 logger.trace("", e);
