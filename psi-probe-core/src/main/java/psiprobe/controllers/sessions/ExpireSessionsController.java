@@ -51,7 +51,7 @@ public class ExpireSessionsController extends AbstractTomcatContainerController 
         }
         String sessionId = ss[0];
         String appName = ss[1];
-        Context context = getContainerWrapper().getTomcatContainer().findContext(appName);
+        Context context = containerWrapper.getTomcatContainer().findContext(appName);
         if (context == null) {
           return new ModelAndView("errors/paramerror");
         }

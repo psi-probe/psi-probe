@@ -73,7 +73,7 @@ public class CopySingleFileController extends AbstractTomcatContainerController 
 
     List<Context> apps;
     try {
-      apps = getContainerWrapper().getTomcatContainer().findContexts();
+      apps = containerWrapper.getTomcatContainer().findContexts();
     } catch (NullPointerException ex) {
       throw new IllegalStateException(
           "No container found for your server: " + getServletContext().getServerInfo(), ex);
@@ -125,7 +125,7 @@ public class CopySingleFileController extends AbstractTomcatContainerController 
     }
 
     try {
-      contextName = getContainerWrapper().getTomcatContainer().formatContextName(contextName);
+      contextName = containerWrapper.getTomcatContainer().formatContextName(contextName);
 
       /*
        * pass the name of the newly deployed context to the presentation layer using this name the
@@ -135,10 +135,11 @@ public class CopySingleFileController extends AbstractTomcatContainerController 
       request.setAttribute("contextName", visibleContextName);
 
       // Check if context is already deployed
-      if (getContainerWrapper().getTomcatContainer().findContext(contextName) != null) {
+      if (containerWrapper.getTomcatContainer().findContext(contextName) != null) {
 
-        File destFile = Path.of(getContainerWrapper().getTomcatContainer().getAppBase().getPath(),
-            contextName + where).toFile();
+        File destFile = Path
+            .of(containerWrapper.getTomcatContainer().getAppBase().getPath(), contextName + where)
+            .toFile();
 
         // Checks if the destination path exists
         if (destFile.exists()) {
@@ -155,10 +156,10 @@ public class CopySingleFileController extends AbstractTomcatContainerController 
               logger.info(getMessageSourceAccessor().getMessage("probe.src.log.copyfile"), name,
                   contextName);
             }
-            Context context = getContainerWrapper().getTomcatContainer().findContext(contextName);
+            Context context = containerWrapper.getTomcatContainer().findContext(contextName);
             // Checks if DISCARD "work" directory is selected
             if ("yes".equalsIgnoreCase(discardParam)) {
-              getContainerWrapper().getTomcatContainer().discardWorkDir(context);
+              containerWrapper.getTomcatContainer().discardWorkDir(context);
               if (contextName.matches("\\w*")) {
                 logger.info(getMessageSourceAccessor().getMessage("probe.src.log.discardwork"),
                     name, contextName);

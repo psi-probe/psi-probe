@@ -238,24 +238,6 @@ public class ResourceResolverBean implements ResourceResolver {
     }
   }
 
-  /**
-   * Gets the datasource mappers.
-   *
-   * @return the datasource mappers
-   */
-  public List<String> getDatasourceMappers() {
-    return datasourceMappers;
-  }
-
-  /**
-   * Sets the datasource mappers.
-   *
-   * @param datasourceMappers the new datasource mappers
-   */
-  public void setDatasourceMappers(List<String> datasourceMappers) {
-    this.datasourceMappers = datasourceMappers;
-  }
-
   @Override
   public boolean supportsPrivateResources() {
     return true;

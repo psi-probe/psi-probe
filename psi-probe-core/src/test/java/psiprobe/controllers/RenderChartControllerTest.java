@@ -24,6 +24,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.context.support.StaticApplicationContext;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
+import org.springframework.test.util.ReflectionTestUtils;
 
 import psiprobe.beans.stats.providers.SeriesProvider;
 import psiprobe.model.stats.StatsCollection;
@@ -60,7 +61,7 @@ class RenderChartControllerTest {
   @Test
   void handleRequestRendersLineChartFromSeriesProvider() throws Exception {
     RenderChartController controller = new RenderChartController();
-    controller.setStatsCollection(new StatsCollection());
+    ReflectionTestUtils.setField(controller, "statsCollection", new StatsCollection());
 
     StaticApplicationContext applicationContext = new StaticApplicationContext();
     applicationContext.registerSingleton("seriesProvider", TestSeriesProvider.class);
@@ -82,7 +83,7 @@ class RenderChartControllerTest {
   @Test
   void handleRequestRendersChartWhenProviderBeanDoesNotImplementSeriesProvider() throws Exception {
     RenderChartController controller = new RenderChartController();
-    controller.setStatsCollection(new StatsCollection());
+    ReflectionTestUtils.setField(controller, "statsCollection", new StatsCollection());
 
     StaticApplicationContext applicationContext = new StaticApplicationContext();
     applicationContext.registerSingleton("badProvider", NotASeriesProvider.class);

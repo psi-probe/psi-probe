@@ -33,42 +33,6 @@ public class ClusterStatsCollectorBean extends AbstractStatsCollectorBean {
   @Inject
   private ClusterWrapperBean clusterWrapper;
 
-  /**
-   * Gets the container wrapper.
-   *
-   * @return the container wrapper
-   */
-  public ContainerWrapperBean getContainerWrapper() {
-    return containerWrapper;
-  }
-
-  /**
-   * Sets the container wrapper.
-   *
-   * @param containerWrapper the new container wrapper
-   */
-  public void setContainerWrapper(ContainerWrapperBean containerWrapper) {
-    this.containerWrapper = containerWrapper;
-  }
-
-  /**
-   * Gets the cluster wrapper.
-   *
-   * @return the cluster wrapper
-   */
-  public ClusterWrapperBean getClusterWrapper() {
-    return clusterWrapper;
-  }
-
-  /**
-   * Sets the cluster wrapper.
-   *
-   * @param clusterWrapper the new cluster wrapper
-   */
-  public void setClusterWrapper(ClusterWrapperBean clusterWrapper) {
-    this.clusterWrapper = clusterWrapper;
-  }
-
   @Override
   public void collect() throws Exception {
     // Job can be called before the servlet finished initialization. Make sure

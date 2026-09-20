@@ -95,8 +95,8 @@ public class ExecuteSqlController extends AbstractContextHandlerController {
     DataSource dataSource = null;
 
     try {
-      dataSource = getContainerWrapper().getResourceResolver().lookupDataSource(context,
-          resourceName, getContainerWrapper());
+      dataSource = containerWrapper.getResourceResolver().lookupDataSource(context, resourceName,
+          containerWrapper);
     } catch (NamingException e) {
       request.setAttribute("errorMessage", getMessageSourceAccessor().getMessage(
           "probe.src.dataSourceTest.resource.lookup.failure", new Object[] {resourceName}));

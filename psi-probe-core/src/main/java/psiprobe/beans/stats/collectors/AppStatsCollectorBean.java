@@ -43,58 +43,8 @@ public class AppStatsCollectorBean extends AbstractStatsCollectorBean
   private ServletContext servletContext;
 
   /** The self ignored. */
-  private boolean selfIgnored;
-
-  /**
-   * Gets the container wrapper.
-   *
-   * @return the container wrapper
-   */
-  public ContainerWrapperBean getContainerWrapper() {
-    return containerWrapper;
-  }
-
-  /**
-   * Sets the container wrapper.
-   *
-   * @param containerWrapper the new container wrapper
-   */
-  public void setContainerWrapper(ContainerWrapperBean containerWrapper) {
-    this.containerWrapper = containerWrapper;
-  }
-
-  /**
-   * Checks if is self ignored.
-   *
-   * @return true, if is self ignored
-   */
-  public boolean isSelfIgnored() {
-    return selfIgnored;
-  }
-
-  /**
-   * Sets the self ignored.
-   *
-   * @param selfIgnored the new self ignored
-   */
   @Value("${psiprobe.beans.stats.collectors.app.selfIgnored}")
-  public void setSelfIgnored(boolean selfIgnored) {
-    this.selfIgnored = selfIgnored;
-  }
-
-  /**
-   * Gets the servlet context.
-   *
-   * @return the servlet context
-   */
-  protected ServletContext getServletContext() {
-    return servletContext;
-  }
-
-  @Override
-  public void setServletContext(ServletContext servletContext) {
-    this.servletContext = servletContext;
-  }
+  private boolean selfIgnored;
 
   @Override
   public void collect() throws InterruptedException {
@@ -104,7 +54,7 @@ public class AppStatsCollectorBean extends AbstractStatsCollectorBean
     if (containerWrapper == null) {
       logger.error("Cannot collect application stats. Container wrapper is not set.");
     } else {
-      TomcatContainer tomcatContainer = getContainerWrapper().getTomcatContainer();
+      TomcatContainer tomcatContainer = containerWrapper.getTomcatContainer();
 
       // check if the containerWtapper has been initialized
       if (tomcatContainer != null) {
@@ -159,7 +109,7 @@ public class AppStatsCollectorBean extends AbstractStatsCollectorBean
    * @return true, if successful
    */
   private boolean excludeFromTotal(Context ctx) {
-    return isSelfIgnored() && getServletContext().equals(ctx.getServletContext());
+    return selfIgnored && servletContext.equals(ctx.getServletContext());
   }
 
   /**
@@ -169,7 +119,7 @@ public class AppStatsCollectorBean extends AbstractStatsCollectorBean
     if (containerWrapper == null) {
       logger.error("Cannot reset application stats. Container wrapper is not set.");
     } else {
-      TomcatContainer tomcatContainer = getContainerWrapper().getTomcatContainer();
+      TomcatContainer tomcatContainer = containerWrapper.getTomcatContainer();
       if (tomcatContainer != null) {
         for (Context ctx : tomcatContainer.findContexts()) {
           if (ctx != null && ctx.getName() != null) {
@@ -205,6 +155,11 @@ public class AppStatsCollectorBean extends AbstractStatsCollectorBean
   public void setMaxSeries(@Value("${psiprobe.beans.stats.collectors.app.period}") String period,
       @Value("${psiprobe.beans.stats.collectors.app.span}") String span) {
     super.setMaxSeries((int) TimeExpression.dataPoints(period, span));
+  }
+
+  @Override
+  public void setServletContext(ServletContext servletContext) {
+    // Do not set servlet context as set via injection
   }
 
 }

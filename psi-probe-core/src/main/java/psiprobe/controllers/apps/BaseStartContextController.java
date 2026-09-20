@@ -25,7 +25,7 @@ public class BaseStartContextController extends AbstractNoSelfContextHandlerCont
 
   @Override
   protected void executeAction(String contextName) throws Exception {
-    getContainerWrapper().getTomcatContainer().start(contextName);
+    containerWrapper.getTomcatContainer().start(contextName);
 
     // Logging action
     Authentication auth = SecurityContextHolder.getContext().getAuthentication();

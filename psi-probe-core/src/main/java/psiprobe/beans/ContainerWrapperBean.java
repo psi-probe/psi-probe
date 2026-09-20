@@ -147,24 +147,6 @@ public class ContainerWrapperBean {
   }
 
   /**
-   * Gets the adapter classes.
-   *
-   * @return the adapter classes
-   */
-  public List<String> getAdapterClasses() {
-    return adapterClasses;
-  }
-
-  /**
-   * Sets the adapter classes.
-   *
-   * @param adapterClasses the new adapter classes
-   */
-  public void setAdapterClasses(List<String> adapterClasses) {
-    this.adapterClasses = adapterClasses;
-  }
-
-  /**
    * Gets the resource resolver.
    *
    * @return the resource resolver
@@ -180,24 +162,6 @@ public class ContainerWrapperBean {
       }
     }
     return resourceResolver;
-  }
-
-  /**
-   * Gets the resource resolvers.
-   *
-   * @return the resource resolvers
-   */
-  public Map<String, ResourceResolver> getResourceResolvers() {
-    return resourceResolvers;
-  }
-
-  /**
-   * Sets the resource resolvers.
-   *
-   * @param resourceResolvers the resource resolvers
-   */
-  public void setResourceResolvers(Map<String, ResourceResolver> resourceResolvers) {
-    this.resourceResolvers = resourceResolvers;
   }
 
   /**

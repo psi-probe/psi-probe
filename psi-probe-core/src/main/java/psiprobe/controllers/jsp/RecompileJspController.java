@@ -61,15 +61,15 @@ public class RecompileJspController extends AbstractContextHandlerController {
           names.add(name);
         }
       }
-      getContainerWrapper().getTomcatContainer().recompileJsps(context, summary, names);
-      request.getSession(false).setAttribute(DisplayJspController.SUMMARY_ATTRIBUTE, summary);
+      containerWrapper.getTomcatContainer().recompileJsps(context, summary, names);
+      session.setAttribute(DisplayJspController.SUMMARY_ATTRIBUTE, summary);
     } else if (summary != null && contextName.equals(summary.getName())) {
       String name = ServletRequestUtils.getStringParameter(request, "source");
       if (name != null) {
         List<String> names = new ArrayList<>();
         names.add(name);
-        getContainerWrapper().getTomcatContainer().recompileJsps(context, summary, names);
-        request.getSession(false).setAttribute(DisplayJspController.SUMMARY_ATTRIBUTE, summary);
+        containerWrapper.getTomcatContainer().recompileJsps(context, summary, names);
+        session.setAttribute(DisplayJspController.SUMMARY_ATTRIBUTE, summary);
       } else {
         logger.error("source is not passed, nothing to do");
       }

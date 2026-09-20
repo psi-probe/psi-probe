@@ -16,6 +16,7 @@ import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.catalina.Context;
 import org.apache.jasper.EmbeddedServletOptions;
@@ -55,9 +56,9 @@ public class ViewSourceController extends AbstractContextHandlerController {
 
     String jspName = ServletRequestUtils.getStringParameter(request, "source");
     boolean highlight = ServletRequestUtils.getBooleanParameter(request, "highlight", true);
-    Summary summary = (Summary) (request.getSession(false) != null
-        ? request.getSession(false).getAttribute(DisplayJspController.SUMMARY_ATTRIBUTE)
-        : null);
+    HttpSession session = request.getSession(false);
+    Summary summary = session == null ? null
+        : (Summary) session.getAttribute(DisplayJspController.SUMMARY_ATTRIBUTE);
 
     if (jspName != null && summary != null && contextName.equals(summary.getName())) {
 
@@ -72,7 +73,7 @@ public class ViewSourceController extends AbstractContextHandlerController {
           jspName = jspName.replace("../", "");
         }
 
-        if (getContainerWrapper().getTomcatContainer().resourceExists(jspName, context)) {
+        if (containerWrapper.getTomcatContainer().resourceExists(jspName, context)) {
           ServletContext sctx = context.getServletContext();
           ServletConfig scfg = (ServletConfig) context.findChild("jsp");
           Options opt = new EmbeddedServletOptions(scfg, sctx);
@@ -88,12 +89,12 @@ public class ViewSourceController extends AbstractContextHandlerController {
              * time to read the actual content using the correct encoding
              */
             try (InputStream encodedStream =
-                getContainerWrapper().getTomcatContainer().getResourceStream(jspName, context)) {
+                containerWrapper.getTomcatContainer().getResourceStream(jspName, context)) {
               item.setEncoding(Utils.getJspEncoding(encodedStream));
             }
           }
           try (InputStream jspStream =
-              getContainerWrapper().getTomcatContainer().getResourceStream(jspName, context)) {
+              containerWrapper.getTomcatContainer().getResourceStream(jspName, context)) {
             if (highlight) {
               request.setAttribute("highlightedContent",
                   Utils.highlightStream(jspName, jspStream, "xhtml", item.getEncoding()));

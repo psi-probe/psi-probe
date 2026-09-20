@@ -38,8 +38,8 @@ public class ListApplicationResourcesController extends AbstractContextHandlerCo
   protected ModelAndView handleContext(String contextName, Context context,
       HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-    return new ModelAndView(getViewName(), "resources", getContainerWrapper().getResourceResolver()
-        .getApplicationResources(context, getContainerWrapper()));
+    return new ModelAndView(getViewName(), "resources",
+        containerWrapper.getResourceResolver().getApplicationResources(context, containerWrapper));
   }
 
   @Value("resources")
