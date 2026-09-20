@@ -65,24 +65,6 @@ public class RenderChartController extends AbstractController {
   @Inject
   private StatsCollection statsCollection;
 
-  /**
-   * Gets the stats collection.
-   *
-   * @return the stats collection
-   */
-  public StatsCollection getStatsCollection() {
-    return statsCollection;
-  }
-
-  /**
-   * Sets the stats collection.
-   *
-   * @param statsCollection the new stats collection
-   */
-  public void setStatsCollection(StatsCollection statsCollection) {
-    this.statsCollection = statsCollection;
-  }
-
   @RequestMapping(path = "/chart.png")
   @Override
   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)

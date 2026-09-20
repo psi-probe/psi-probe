@@ -24,6 +24,7 @@ import java.util.Map;
 
 import org.apache.catalina.Context;
 import org.junit.jupiter.api.Test;
+import org.springframework.test.util.ReflectionTestUtils;
 
 import psiprobe.TomcatContainer;
 import psiprobe.model.ApplicationResource;
@@ -223,7 +224,8 @@ class ContainerWrapperBeanTest {
     ResourceResolver jbossResolver = mock(ResourceResolver.class);
 
     ContainerWrapperBean defaultBean = new ContainerWrapperBean();
-    defaultBean.setResourceResolvers(Map.of("default", defaultResolver, "jboss", jbossResolver));
+    ReflectionTestUtils.setField(defaultBean, "resourceResolvers",
+        Map.of("default", defaultResolver, "jboss", jbossResolver));
     assertSame(defaultResolver, defaultBean.getResourceResolver());
     assertSame(defaultResolver, defaultBean.getResourceResolver());
 
@@ -231,7 +233,8 @@ class ContainerWrapperBeanTest {
     try {
       System.setProperty("jboss.server.name", "node1");
       ContainerWrapperBean jbossBean = new ContainerWrapperBean();
-      jbossBean.setResourceResolvers(Map.of("default", defaultResolver, "jboss", jbossResolver));
+      ReflectionTestUtils.setField(jbossBean, "resourceResolvers",
+          Map.of("default", defaultResolver, "jboss", jbossResolver));
       assertSame(jbossResolver, jbossBean.getResourceResolver());
     } finally {
       if (previous == null) {
@@ -249,7 +252,7 @@ class ContainerWrapperBeanTest {
     Context context = mock(Context.class);
     TomcatContainer tomcatContainer = mock(TomcatContainer.class);
 
-    bean.setResourceResolvers(Map.of("default", resolver));
+    ReflectionTestUtils.setField(bean, "resourceResolvers", Map.of("default", resolver));
     setTomcatContainer(bean, tomcatContainer);
 
     when(resolver.supportsPrivateResources()).thenReturn(true);
@@ -278,7 +281,8 @@ class ContainerWrapperBeanTest {
     RecordingTomcatContainer.lastWrapper = null;
     RecordingTomcatContainer.setWrapperCalls = 0;
 
-    bean.setAdapterClasses(List.of(RecordingTomcatContainer.class.getName()));
+    ReflectionTestUtils.setField(bean, "adapterClasses",
+        List.of(RecordingTomcatContainer.class.getName()));
     bean.setForceFirstAdapter(true);
 
     org.apache.catalina.Wrapper wrapper = mock(org.apache.catalina.Wrapper.class);

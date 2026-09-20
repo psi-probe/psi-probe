@@ -33,25 +33,7 @@ public abstract class AbstractLogHandlerController extends ParameterizableViewCo
 
   /** The log resolver. */
   @Inject
-  private LogResolverBean logResolver;
-
-  /**
-   * Gets the log resolver.
-   *
-   * @return the log resolver
-   */
-  public LogResolverBean getLogResolver() {
-    return logResolver;
-  }
-
-  /**
-   * Sets the log resolver.
-   *
-   * @param logResolver the new log resolver
-   */
-  public void setLogResolver(LogResolverBean logResolver) {
-    this.logResolver = logResolver;
-  }
+  protected LogResolverBean logResolver;
 
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,

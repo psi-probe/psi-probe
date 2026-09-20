@@ -45,24 +45,6 @@ public class ToggleConnectorStatusController extends ParameterizableViewControll
   @Inject
   private ContainerListenerBean containerListener;
 
-  /**
-   * Gets the collector bean.
-   *
-   * @return the collector bean
-   */
-  public ConnectorStatsCollectorBean getCollectorBean() {
-    return collectorBean;
-  }
-
-  /**
-   * Sets the collector bean.
-   *
-   * @param collectorBean the new collector bean
-   */
-  public void setCollectorBean(ConnectorStatsCollectorBean collectorBean) {
-    this.collectorBean = collectorBean;
-  }
-
   @RequestMapping(path = "/app/connectorStatus.htm")
   @Override
   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)

@@ -40,25 +40,7 @@ public class BaseTomcatAvailabilityController extends AbstractTomcatContainerCon
 
   /** The container listener bean. */
   @Inject
-  private ContainerListenerBean containerListenerBean;
-
-  /**
-   * Gets the container listener bean.
-   *
-   * @return the container listener bean
-   */
-  public ContainerListenerBean getContainerListenerBean() {
-    return containerListenerBean;
-  }
-
-  /**
-   * Sets the container listener bean.
-   *
-   * @param containerListenerBean the new container listener bean
-   */
-  public void setContainerListenerBean(ContainerListenerBean containerListenerBean) {
-    this.containerListenerBean = containerListenerBean;
-  }
+  protected ContainerListenerBean containerListenerBean;
 
   @Override
   public ModelAndView handleRequestInternal(HttpServletRequest request,
