@@ -23,7 +23,6 @@ import ch.qos.logback.core.encoder.LayoutWrappingEncoder;
 
 import com.codebox.bean.JavaBeanTester;
 
-import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 
@@ -110,7 +109,7 @@ class LogbackAppenderAccessorTest {
 
     accessor.setTarget(appender);
 
-    assertEquals(expected, accessor.getFile());
+    assertEquals(expected, accessor.getFile().toPath());
   }
 
   @Test
