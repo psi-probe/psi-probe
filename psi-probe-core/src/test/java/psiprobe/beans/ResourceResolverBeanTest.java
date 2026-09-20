@@ -32,6 +32,7 @@ import org.apache.catalina.core.StandardServer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
+import org.springframework.test.util.ReflectionTestUtils;
 
 import psiprobe.TomcatContainer;
 import psiprobe.beans.accessors.DatasourceAccessor;
@@ -45,7 +46,8 @@ class ResourceResolverBeanTest {
   @BeforeEach
   void setUp() {
     bean = new TestableResourceResolverBean();
-    bean.setDatasourceMappers(List.of(TestDatasourceAccessor.class.getName()));
+    ReflectionTestUtils.setField(bean, "datasourceMappers",
+        List.of(TestDatasourceAccessor.class.getName()));
     TestDatasourceAccessor.infoToReturn = null;
     TestDatasourceAccessor.resetToReturn = false;
     TestDatasourceAccessor.lastResource = null;
@@ -107,7 +109,8 @@ class ResourceResolverBeanTest {
   @Test
   void lookupResourceMarksResourceUnresolvedWhenContextIsNotBound() {
     ResourceResolverBean realBean = new ResourceResolverBean();
-    realBean.setDatasourceMappers(List.of(TestDatasourceAccessor.class.getName()));
+    ReflectionTestUtils.setField(realBean, "datasourceMappers",
+        List.of(TestDatasourceAccessor.class.getName()));
     ApplicationResource resource = new ApplicationResource();
     resource.setName("jdbc/test");
     resource.setLookedUp(true);

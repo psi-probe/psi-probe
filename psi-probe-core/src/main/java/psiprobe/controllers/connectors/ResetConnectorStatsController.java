@@ -34,24 +34,6 @@ public class ResetConnectorStatsController extends ParameterizableViewController
   @Inject
   private ConnectorStatsCollectorBean collectorBean;
 
-  /**
-   * Gets the collector bean.
-   *
-   * @return the collector bean
-   */
-  public ConnectorStatsCollectorBean getCollectorBean() {
-    return collectorBean;
-  }
-
-  /**
-   * Sets the collector bean.
-   *
-   * @param collectorBean the new collector bean
-   */
-  public void setCollectorBean(ConnectorStatsCollectorBean collectorBean) {
-    this.collectorBean = collectorBean;
-  }
-
   @RequestMapping(path = "/app/connectorReset.htm")
   @Override
   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)

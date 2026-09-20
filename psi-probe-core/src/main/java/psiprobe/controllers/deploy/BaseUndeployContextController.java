@@ -62,7 +62,7 @@ public class BaseUndeployContextController extends AbstractContextHandlerControl
             getMessageSourceAccessor().getMessage("probe.src.contextAction.cannotActOnSelf"));
       }
 
-      getContainerWrapper().getTomcatContainer().remove(contextName);
+      containerWrapper.getTomcatContainer().remove(contextName);
       // Logging action
       Authentication auth = SecurityContextHolder.getContext().getAuthentication();
       // get username logger

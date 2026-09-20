@@ -22,7 +22,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.io.InputStream;
-import java.net.URL;
+import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -270,7 +270,7 @@ class AbstractTomcatContainerTest {
     when(context.getConfigFile()).thenReturn(temp.toUri().toURL());
     assertNotNull(container.getConfigFile(context));
 
-    when(context.getConfigFile()).thenReturn(new URL("https://example.com/context.xml"));
+    when(context.getConfigFile()).thenReturn(URI.create("https://example.com/context.xml").toURL());
     assertNull(container.getConfigFile(context));
   }
 

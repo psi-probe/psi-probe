@@ -58,7 +58,7 @@ public class ViewServletSourceController extends AbstractContextHandlerControlle
 
     if (jspName != null) {
       String servletName =
-          getContainerWrapper().getTomcatContainer().getServletFileNameForJsp(context, jspName);
+          containerWrapper.getTomcatContainer().getServletFileNameForJsp(context, jspName);
 
       if (servletName != null) {
         File servletFile = Path.of(servletName).toFile();

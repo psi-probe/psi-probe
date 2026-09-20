@@ -32,6 +32,7 @@ import org.apache.catalina.Manager;
 import org.apache.catalina.Session;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.web.servlet.ModelAndView;
 
 import psiprobe.TomcatContainer;
@@ -75,7 +76,8 @@ class ListSessionsControllerTest {
     manager = mock(Manager.class);
     containerWrapper = mock(ContainerWrapperBean.class);
 
-    doReturn(containerWrapper).when(controller).getContainerWrapper();
+    ReflectionTestUtils.setField(controller, "containerWrapper", containerWrapper);
+
     doReturn("sessions").when(controller).getViewName();
   }
 

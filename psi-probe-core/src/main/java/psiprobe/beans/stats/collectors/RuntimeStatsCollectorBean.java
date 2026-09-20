@@ -27,24 +27,6 @@ public class RuntimeStatsCollectorBean extends AbstractStatsCollectorBean {
   @Inject
   private RuntimeInfoAccessorBean runtimeInfoAccessorBean;
 
-  /**
-   * Gets the runtime info accessor bean.
-   *
-   * @return the runtime info accessor bean
-   */
-  public RuntimeInfoAccessorBean getRuntimeInfoAccessorBean() {
-    return runtimeInfoAccessorBean;
-  }
-
-  /**
-   * Sets the runtime info accessor bean.
-   *
-   * @param runtimeInfoAccessorBean the new runtime info accessor bean
-   */
-  public void setRuntimeInfoAccessorBean(RuntimeInfoAccessorBean runtimeInfoAccessorBean) {
-    this.runtimeInfoAccessorBean = runtimeInfoAccessorBean;
-  }
-
   @Override
   public void collect() throws Exception {
     RuntimeInformation ri = runtimeInfoAccessorBean.getRuntimeInformation();

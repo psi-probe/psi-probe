@@ -32,24 +32,6 @@ public class BaseGetConnectorController extends AbstractTomcatContainerControlle
   @Inject
   private ContainerListenerBean containerListenerBean;
 
-  /**
-   * Gets the container listener bean.
-   *
-   * @return the container listener bean
-   */
-  public ContainerListenerBean getContainerListenerBean() {
-    return containerListenerBean;
-  }
-
-  /**
-   * Sets the container listener bean.
-   *
-   * @param containerListenerBean the new container listener bean
-   */
-  public void setContainerListenerBean(ContainerListenerBean containerListenerBean) {
-    this.containerListenerBean = containerListenerBean;
-  }
-
   @Override
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse response) throws Exception {

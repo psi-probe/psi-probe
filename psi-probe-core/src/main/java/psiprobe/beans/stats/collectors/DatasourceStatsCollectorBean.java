@@ -40,31 +40,13 @@ public class DatasourceStatsCollectorBean extends AbstractStatsCollectorBean {
   @Inject
   private ContainerWrapperBean containerWrapper;
 
-  /**
-   * Gets the container wrapper.
-   *
-   * @return the container wrapper
-   */
-  public ContainerWrapperBean getContainerWrapper() {
-    return containerWrapper;
-  }
-
-  /**
-   * Sets the container wrapper.
-   *
-   * @param containerWrapper the new container wrapper
-   */
-  public void setContainerWrapper(ContainerWrapperBean containerWrapper) {
-    this.containerWrapper = containerWrapper;
-  }
-
   @Override
   public void collect() throws NamingException, InterruptedException {
     long currentTime = System.currentTimeMillis();
     if (containerWrapper == null) {
       logger.error("Cannot collect data source stats. Container wrapper is not set.");
     } else {
-      for (ApplicationResource ds : getContainerWrapper().getDataSources()) {
+      for (ApplicationResource ds : containerWrapper.getDataSources()) {
         String appName = ds.getApplicationName();
         String name = (appName == null ? "" : appName) + '/' + ds.getName();
         DataSourceInfo dsi = ds.getDataSourceInfo();
@@ -87,7 +69,7 @@ public class DatasourceStatsCollectorBean extends AbstractStatsCollectorBean {
     if (containerWrapper == null) {
       logger.error("Cannot reset application stats. Container wrapper is not set.");
     } else {
-      for (ApplicationResource ds : getContainerWrapper().getDataSources()) {
+      for (ApplicationResource ds : containerWrapper.getDataSources()) {
         reset(ds.getName());
       }
     }

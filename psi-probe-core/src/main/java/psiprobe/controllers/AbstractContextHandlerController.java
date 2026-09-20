@@ -29,8 +29,8 @@ public abstract class AbstractContextHandlerController extends AbstractTomcatCon
     String contextName = ServletRequestUtils.getStringParameter(request, "webapp");
     Context context = null;
     if (contextName != null) {
-      contextName = getContainerWrapper().getTomcatContainer().formatContextName(contextName);
-      context = getContainerWrapper().getTomcatContainer().findContext(contextName);
+      contextName = containerWrapper.getTomcatContainer().formatContextName(contextName);
+      context = containerWrapper.getTomcatContainer().findContext(contextName);
     }
 
     if (context != null || isContextOptional()) {

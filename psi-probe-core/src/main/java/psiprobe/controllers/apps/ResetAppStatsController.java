@@ -27,24 +27,6 @@ public class ResetAppStatsController extends AbstractNoSelfContextHandlerControl
   @Inject
   private AppStatsCollectorBean statsCollector;
 
-  /**
-   * Gets the stats collector.
-   *
-   * @return the stats collector
-   */
-  public AppStatsCollectorBean getStatsCollector() {
-    return statsCollector;
-  }
-
-  /**
-   * Sets the stats collector.
-   *
-   * @param statsCollector the new stats collector
-   */
-  public void setStatsCollector(AppStatsCollectorBean statsCollector) {
-    this.statsCollector = statsCollector;
-  }
-
   @Override
   protected void executeAction(String contextName) throws Exception {
     statsCollector.reset(contextName);

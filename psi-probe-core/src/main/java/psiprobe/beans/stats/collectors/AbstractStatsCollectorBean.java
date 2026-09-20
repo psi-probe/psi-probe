@@ -30,7 +30,7 @@ public abstract class AbstractStatsCollectorBean {
 
   /** The stats collection. */
   @Inject
-  private StatsCollection statsCollection;
+  protected StatsCollection statsCollection;
 
   /** The max series. */
   private int maxSeries = 240;
@@ -43,24 +43,6 @@ public abstract class AbstractStatsCollectorBean {
 
   /** The previous data2 d. */
   private final Map<String, Entry> previousData2D = new TreeMap<>();
-
-  /**
-   * Gets the stats collection.
-   *
-   * @return the stats collection
-   */
-  public StatsCollection getStatsCollection() {
-    return statsCollection;
-  }
-
-  /**
-   * Sets the stats collection.
-   *
-   * @param statsCollection the new stats collection
-   */
-  public void setStatsCollection(StatsCollection statsCollection) {
-    this.statsCollection = statsCollection;
-  }
 
   /**
    * Gets the max series.

@@ -47,8 +47,8 @@ public class ListAllJdbcResourceGroupsController extends AbstractTomcatContainer
     List<DataSourceInfoGroup> dataSourceGroups = new ArrayList<>();
     List<DataSourceInfo> dataSources = new ArrayList<>();
 
-    List<ApplicationResource> privateResources = getContainerWrapper().getPrivateDataSources();
-    List<ApplicationResource> globalResources = getContainerWrapper().getGlobalDataSources();
+    List<ApplicationResource> privateResources = containerWrapper.getPrivateDataSources();
+    List<ApplicationResource> globalResources = containerWrapper.getGlobalDataSources();
 
     // filter out anything that is not a datasource
     // and use only those datasources that are properly configured

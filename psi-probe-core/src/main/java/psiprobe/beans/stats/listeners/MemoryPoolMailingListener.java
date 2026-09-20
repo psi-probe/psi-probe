@@ -55,30 +55,12 @@ public class MemoryPoolMailingListener extends AbstractFlapListener
     this.messageSourceAccessor = new MessageSourceAccessor(messageSource);
   }
 
-  /**
-   * Gets the mailer.
-   *
-   * @return the mailer
-   */
-  public Mailer getMailer() {
-    return mailer;
-  }
-
-  /**
-   * Sets the mailer.
-   *
-   * @param mailer the new mailer
-   */
-  public void setMailer(Mailer mailer) {
-    this.mailer = mailer;
-  }
-
   @Override
   public void afterPropertiesSet() throws Exception {
-    if (getMailer().getSmtp() == null) {
+    if (mailer.getSmtp() == null) {
       logger.info("Mailer SMTP host is not set.  Disabling listener.");
       setEnabled(false);
-    } else if (getMailer().getDefaultTo() == null) {
+    } else if (mailer.getDefaultTo() == null) {
       logger.info("Mailer default recipient is not set.  Disabling listener.");
       setEnabled(false);
     }
@@ -137,7 +119,7 @@ public class MemoryPoolMailingListener extends AbstractFlapListener
         new Object[] {bodyPrefix, name, value, threshold});
     MailMessage mail = new MailMessage(null, subject, body);
     try {
-      getMailer().send(mail);
+      mailer.send(mail);
     } catch (MessagingException ex) {
       logger.error("Cannot send message", ex);
     }

@@ -40,13 +40,12 @@ public class ListAllJdbcResourcesController extends AbstractTomcatContainerContr
   protected ModelAndView handleRequestInternal(HttpServletRequest request,
       HttpServletResponse httpServletResponse) throws Exception {
 
-    boolean supportsGlobal = getContainerWrapper().getResourceResolver().supportsGlobalResources();
-    boolean supportsPrivate =
-        getContainerWrapper().getResourceResolver().supportsPrivateResources();
+    boolean supportsGlobal = containerWrapper.getResourceResolver().supportsGlobalResources();
+    boolean supportsPrivate = containerWrapper.getResourceResolver().supportsPrivateResources();
     boolean supportsDataSourceLookup =
-        getContainerWrapper().getResourceResolver().supportsDataSourceLookup();
-    List<ApplicationResource> privateResources = getContainerWrapper().getPrivateDataSources();
-    List<ApplicationResource> globalResources = getContainerWrapper().getGlobalDataSources();
+        containerWrapper.getResourceResolver().supportsDataSourceLookup();
+    List<ApplicationResource> privateResources = containerWrapper.getPrivateDataSources();
+    List<ApplicationResource> globalResources = containerWrapper.getGlobalDataSources();
     return new ModelAndView(getViewName()).addObject("supportsGlobal", supportsGlobal)
         .addObject("supportsPrivate", supportsPrivate)
         .addObject("supportsDSLookup", supportsDataSourceLookup)

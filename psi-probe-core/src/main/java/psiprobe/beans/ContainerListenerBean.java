@@ -69,24 +69,6 @@ public class ContainerListenerBean implements NotificationListener {
   private ContainerWrapperBean containerWrapper;
 
   /**
-   * Gets the container wrapper.
-   *
-   * @return the container wrapper
-   */
-  public ContainerWrapperBean getContainerWrapper() {
-    return containerWrapper;
-  }
-
-  /**
-   * Sets the container wrapper.
-   *
-   * @param containerWrapper the new container wrapper
-   */
-  public void setContainerWrapper(ContainerWrapperBean containerWrapper) {
-    this.containerWrapper = containerWrapper;
-  }
-
-  /**
    * Checks if is initialized.
    *
    * @return true, if is initialized
@@ -152,8 +134,8 @@ public class ContainerListenerBean implements NotificationListener {
   private synchronized void initialize()
       throws MalformedObjectNameException, InstanceNotFoundException {
 
-    MBeanServer server = getContainerWrapper().getResourceResolver().getMBeanServer();
-    String serverName = getContainerWrapper().getTomcatContainer().getName();
+    MBeanServer server = containerWrapper.getResourceResolver().getMBeanServer();
+    String serverName = containerWrapper.getTomcatContainer().getName();
     Set<ObjectInstance> threadPools =
         server.queryMBeans(new ObjectName(serverName + ":type=ThreadPool,name=\"*\""), null);
     poolNames = new ArrayList<>(threadPools.size());
@@ -216,7 +198,7 @@ public class ContainerListenerBean implements NotificationListener {
 
     List<ThreadPool> threadPools = new ArrayList<>(poolNames.size());
 
-    MBeanServer server = getContainerWrapper().getResourceResolver().getMBeanServer();
+    MBeanServer server = containerWrapper.getResourceResolver().getMBeanServer();
 
     for (ObjectName executorName : executorNames) {
       ThreadPool threadPool = new ThreadPool();
@@ -272,7 +254,7 @@ public class ContainerListenerBean implements NotificationListener {
 
     ObjectName objectName = new ObjectName("Catalina:type=Connector,port=" + port);
 
-    MBeanServer server = getContainerWrapper().getResourceResolver().getMBeanServer();
+    MBeanServer server = containerWrapper.getResourceResolver().getMBeanServer();
 
     JmxTools.invoke(server, objectName, operation, null, null);
 
@@ -299,7 +281,7 @@ public class ContainerListenerBean implements NotificationListener {
 
     List<Connector> connectors = new ArrayList<>(poolNames.size());
 
-    MBeanServer server = getContainerWrapper().getResourceResolver().getMBeanServer();
+    MBeanServer server = containerWrapper.getResourceResolver().getMBeanServer();
 
     for (ThreadPoolObjectName threadPoolObjectName : poolNames) {
       ObjectName poolName = threadPoolObjectName.getThreadPoolName();
