@@ -105,8 +105,8 @@ class TomcatSlf4jLogback13AppenderAccessorTest {
   void testGetFile() {
     FileAppender<?> appender = new FileAppender<>();
 
-    File expected = new File("logs/test.log");
-    appender.setFile(expected.getPath());
+    Path expected = Path.of("logs/test.log");
+    appender.setFile(expected.toString());
 
     accessor.setTarget(appender);
 
