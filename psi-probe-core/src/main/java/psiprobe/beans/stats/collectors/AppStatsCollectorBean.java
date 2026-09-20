@@ -43,27 +43,7 @@ public class AppStatsCollectorBean extends AbstractStatsCollectorBean
   private ServletContext servletContext;
 
   /** The self ignored. */
-  private boolean selfIgnored;
-
-  /**
-   * Checks if is self ignored.
-   *
-   * @return true, if is self ignored
-   */
-  public boolean isSelfIgnored() {
-    return selfIgnored;
-  }
-
-  /**
-   * Sets the self ignored.
-   *
-   * @param selfIgnored the new self ignored
-   */
   @Value("${psiprobe.beans.stats.collectors.app.selfIgnored}")
-  public void setSelfIgnored(boolean selfIgnored) {
-    this.selfIgnored = selfIgnored;
-  }
-
   /**
    * Gets the servlet context.
    *
@@ -72,6 +52,7 @@ public class AppStatsCollectorBean extends AbstractStatsCollectorBean
   protected ServletContext getServletContext() {
     return servletContext;
   }
+  private boolean selfIgnored;
 
   @Override
   public void setServletContext(ServletContext servletContext) {
@@ -141,7 +122,7 @@ public class AppStatsCollectorBean extends AbstractStatsCollectorBean
    * @return true, if successful
    */
   private boolean excludeFromTotal(Context ctx) {
-    return isSelfIgnored() && getServletContext().equals(ctx.getServletContext());
+    return selfIgnored && getServletContext().equals(ctx.getServletContext());
   }
 
   /**
