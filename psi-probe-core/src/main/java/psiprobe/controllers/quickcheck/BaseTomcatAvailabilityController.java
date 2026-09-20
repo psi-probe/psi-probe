@@ -135,23 +135,8 @@ public class BaseTomcatAvailabilityController extends AbstractTomcatContainerCon
 
     tomcatTestReport.setTestDuration(System.currentTimeMillis() - start);
 
+    // TODO JWL 9/19/2026 - implement a real service time test or remove this from the report
     long maxServiceTime = 0;
-
-    // TODO JWL 12/11/2016 - Why is this commented out? If not needed, delete it.
-    // check the maximum execution time
-    // List<ThreadPool> pools = containerListenerBean.getThreadPools();
-    // for (int iPool = 0; iPool < pools.size(); iPool++) {
-    // ThreadPool threadPool = (ThreadPool) pools.get(iPool);
-    // List<RequestProcessor> threads = threadPool.getRequestProcessors();
-    // for (int iThread = 0; iThread < threads.size(); iThread++) {
-    // RequestProcessor rp = (RequestProcessor) threads.get(iThread);
-    // if (rp.getStage() == 3) {
-    // // the request processor is in SERVICE state
-    // maxServiceTime = Math.max(maxServiceTime, rp.getProcessingTime());
-    // }
-    // }
-    // }
-
     tomcatTestReport.setMaxServiceTime(maxServiceTime);
 
     return new ModelAndView(getViewName(), "testReport", tomcatTestReport);
