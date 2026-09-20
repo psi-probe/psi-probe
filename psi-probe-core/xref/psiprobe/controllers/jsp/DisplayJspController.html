@@ -55,29 +55,30 @@
 <a class="jxr_linenumber" name="L47" href="#L47">47</a>      <strong class="jxr_keyword">boolean</strong> compile = ServletRequestUtils.getBooleanParameter(request, <span class="jxr_string">"compile"</span>, false);
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>  
 <a class="jxr_linenumber" name="L49" href="#L49">49</a>      HttpSession session = request.getSession(false);
-<a class="jxr_linenumber" name="L50" href="#L50">50</a>      <a name="Summary" href="../../../psiprobe/model/jsp/Summary.html#Summary">Summary</a> summary = (<a name="Summary" href="../../../psiprobe/model/jsp/Summary.html#Summary">Summary</a>) session.getAttribute(SUMMARY_ATTRIBUTE);
-<a class="jxr_linenumber" name="L51" href="#L51">51</a>      <strong class="jxr_keyword">if</strong> (summary == <strong class="jxr_keyword">null</strong> || !contextName.equals(summary.getName())) {
-<a class="jxr_linenumber" name="L52" href="#L52">52</a>        summary = <strong class="jxr_keyword">new</strong> <a name="Summary" href="../../../psiprobe/model/jsp/Summary.html#Summary">Summary</a>();
-<a class="jxr_linenumber" name="L53" href="#L53">53</a>        summary.setName(contextName);
-<a class="jxr_linenumber" name="L54" href="#L54">54</a>      }
-<a class="jxr_linenumber" name="L55" href="#L55">55</a>      getContainerWrapper().getTomcatContainer().listContextJsps(context, summary, compile);
-<a class="jxr_linenumber" name="L56" href="#L56">56</a>  
-<a class="jxr_linenumber" name="L57" href="#L57">57</a>      request.getSession(false).setAttribute(SUMMARY_ATTRIBUTE, summary);
-<a class="jxr_linenumber" name="L58" href="#L58">58</a>  
-<a class="jxr_linenumber" name="L59" href="#L59">59</a>      <strong class="jxr_keyword">if</strong> (compile) {
-<a class="jxr_linenumber" name="L60" href="#L60">60</a>        <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> ModelAndView(<strong class="jxr_keyword">new</strong> RedirectView(
-<a class="jxr_linenumber" name="L61" href="#L61">61</a>            request.getRequestURI() + <span class="jxr_string">"?webapp="</span> + (contextName.isEmpty() ? <span class="jxr_string">"/"</span> : contextName)));
-<a class="jxr_linenumber" name="L62" href="#L62">62</a>      }
-<a class="jxr_linenumber" name="L63" href="#L63">63</a>      <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> ModelAndView(getViewName(), <span class="jxr_string">"summary"</span>, summary);
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>    }
-<a class="jxr_linenumber" name="L65" href="#L65">65</a>  
-<a class="jxr_linenumber" name="L66" href="#L66">66</a>    @Value(<span class="jxr_string">"showjsps"</span>)
-<a class="jxr_linenumber" name="L67" href="#L67">67</a>    @Override
-<a class="jxr_linenumber" name="L68" href="#L68">68</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setViewName(String viewName) {
-<a class="jxr_linenumber" name="L69" href="#L69">69</a>      <strong class="jxr_keyword">super</strong>.setViewName(viewName);
-<a class="jxr_linenumber" name="L70" href="#L70">70</a>    }
-<a class="jxr_linenumber" name="L71" href="#L71">71</a>  
-<a class="jxr_linenumber" name="L72" href="#L72">72</a>  }
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>  
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>      <a name="Summary" href="../../../psiprobe/model/jsp/Summary.html#Summary">Summary</a> summary = (<a name="Summary" href="../../../psiprobe/model/jsp/Summary.html#Summary">Summary</a>) session.getAttribute(SUMMARY_ATTRIBUTE);
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>      <strong class="jxr_keyword">if</strong> (summary == <strong class="jxr_keyword">null</strong> || !contextName.equals(summary.getName())) {
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>        summary = <strong class="jxr_keyword">new</strong> <a name="Summary" href="../../../psiprobe/model/jsp/Summary.html#Summary">Summary</a>();
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>        summary.setName(contextName);
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>      }
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>      containerWrapper.getTomcatContainer().listContextJsps(context, summary, compile);
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>  
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>      session.setAttribute(SUMMARY_ATTRIBUTE, summary);
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>  
+<a class="jxr_linenumber" name="L60" href="#L60">60</a>      <strong class="jxr_keyword">if</strong> (compile) {
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>        <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> ModelAndView(<strong class="jxr_keyword">new</strong> RedirectView(
+<a class="jxr_linenumber" name="L62" href="#L62">62</a>            request.getRequestURI() + <span class="jxr_string">"?webapp="</span> + (contextName.isEmpty() ? <span class="jxr_string">"/"</span> : contextName)));
+<a class="jxr_linenumber" name="L63" href="#L63">63</a>      }
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>      <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> ModelAndView(getViewName(), <span class="jxr_string">"summary"</span>, summary);
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>    }
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>  
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>    @Value(<span class="jxr_string">"showjsps"</span>)
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>    @Override
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setViewName(String viewName) {
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>      <strong class="jxr_keyword">super</strong>.setViewName(viewName);
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>    }
+<a class="jxr_linenumber" name="L72" href="#L72">72</a>  
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>  }
 </pre>
 <hr/>
 <div id="footer">© 2009–2026 <a href="https://github.com/psi-probe/">psi-probe</a></div>

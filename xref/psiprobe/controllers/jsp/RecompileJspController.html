@@ -69,15 +69,15 @@
 <a class="jxr_linenumber" name="L61" href="#L61">61</a>            names.add(name);
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>          }
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>        }
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>        getContainerWrapper().getTomcatContainer().recompileJsps(context, summary, names);
-<a class="jxr_linenumber" name="L65" href="#L65">65</a>        request.getSession(false).setAttribute(DisplayJspController.SUMMARY_ATTRIBUTE, summary);
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>        containerWrapper.getTomcatContainer().recompileJsps(context, summary, names);
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>        session.setAttribute(DisplayJspController.SUMMARY_ATTRIBUTE, summary);
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>      } <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (summary != <strong class="jxr_keyword">null</strong> &amp;&amp; contextName.equals(summary.getName())) {
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>        String name = ServletRequestUtils.getStringParameter(request, <span class="jxr_string">"source"</span>);
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>        <strong class="jxr_keyword">if</strong> (name != <strong class="jxr_keyword">null</strong>) {
 <a class="jxr_linenumber" name="L69" href="#L69">69</a>          List&lt;String&gt; names = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;();
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>          names.add(name);
-<a class="jxr_linenumber" name="L71" href="#L71">71</a>          getContainerWrapper().getTomcatContainer().recompileJsps(context, summary, names);
-<a class="jxr_linenumber" name="L72" href="#L72">72</a>          request.getSession(false).setAttribute(DisplayJspController.SUMMARY_ATTRIBUTE, summary);
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>          containerWrapper.getTomcatContainer().recompileJsps(context, summary, names);
+<a class="jxr_linenumber" name="L72" href="#L72">72</a>          session.setAttribute(DisplayJspController.SUMMARY_ATTRIBUTE, summary);
 <a class="jxr_linenumber" name="L73" href="#L73">73</a>        } <strong class="jxr_keyword">else</strong> {
 <a class="jxr_linenumber" name="L74" href="#L74">74</a>          logger.error(<span class="jxr_string">"source is not passed, nothing to do"</span>);
 <a class="jxr_linenumber" name="L75" href="#L75">75</a>        }

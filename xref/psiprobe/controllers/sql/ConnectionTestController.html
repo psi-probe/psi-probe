@@ -69,8 +69,8 @@
 <a class="jxr_linenumber" name="L61" href="#L61">61</a>      DataSource dataSource = <strong class="jxr_keyword">null</strong>;
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>  
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>      <strong class="jxr_keyword">try</strong> {
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>        dataSource = getContainerWrapper().getResourceResolver().lookupDataSource(context,
-<a class="jxr_linenumber" name="L65" href="#L65">65</a>            resourceName, getContainerWrapper());
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>        dataSource = containerWrapper.getResourceResolver().lookupDataSource(context, resourceName,
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>            containerWrapper);
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>      } <strong class="jxr_keyword">catch</strong> (NamingException e) {
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>        request.setAttribute(<span class="jxr_string">"errorMessage"</span>, getMessageSourceAccessor().getMessage(
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>            <span class="jxr_string">"probe.src.dataSourceTest.resource.lookup.failure"</span>, <strong class="jxr_keyword">new</strong> Object[] {resourceName}));

@@ -53,7 +53,7 @@
 <a class="jxr_linenumber" name="L45" href="#L45">45</a>  
 <a class="jxr_linenumber" name="L46" href="#L46">46</a>      <strong class="jxr_keyword">if</strong> (contextName != <strong class="jxr_keyword">null</strong>) {
 <a class="jxr_linenumber" name="L47" href="#L47">47</a>        <strong class="jxr_keyword">try</strong> {
-<a class="jxr_linenumber" name="L48" href="#L48">48</a>          <strong class="jxr_keyword">if</strong> (getContainerWrapper().getTomcatContainer().installContext(contextName)) {
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>          <strong class="jxr_keyword">if</strong> (containerWrapper.getTomcatContainer().installContext(contextName)) {
 <a class="jxr_linenumber" name="L49" href="#L49">49</a>            request.setAttribute(<span class="jxr_string">"successMessage"</span>, getMessageSourceAccessor()
 <a class="jxr_linenumber" name="L50" href="#L50">50</a>                .getMessage(<span class="jxr_string">"probe.src.deploy.context.success"</span>, <strong class="jxr_keyword">new</strong> Object[] {contextName}));
 <a class="jxr_linenumber" name="L51" href="#L51">51</a>            <em class="jxr_comment">// Logging action</em>

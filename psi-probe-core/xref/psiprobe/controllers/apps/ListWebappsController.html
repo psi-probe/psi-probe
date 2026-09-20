@@ -58,18 +58,18 @@
 <a class="jxr_linenumber" name="L50" href="#L50">50</a>  
 <a class="jxr_linenumber" name="L51" href="#L51">51</a>      List&lt;Context&gt; apps;
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>      <strong class="jxr_keyword">try</strong> {
-<a class="jxr_linenumber" name="L53" href="#L53">53</a>        apps = getContainerWrapper().getTomcatContainer().findContexts();
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>        apps = containerWrapper.getTomcatContainer().findContexts();
 <a class="jxr_linenumber" name="L54" href="#L54">54</a>      } <strong class="jxr_keyword">catch</strong> (NullPointerException ex) {
 <a class="jxr_linenumber" name="L55" href="#L55">55</a>        <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> IllegalStateException(
 <a class="jxr_linenumber" name="L56" href="#L56">56</a>            <span class="jxr_string">"No container found for your server: "</span> + getServletContext().getServerInfo(), ex);
 <a class="jxr_linenumber" name="L57" href="#L57">57</a>      }
 <a class="jxr_linenumber" name="L58" href="#L58">58</a>      List&lt;Application&gt; applications = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;(apps.size());
-<a class="jxr_linenumber" name="L59" href="#L59">59</a>      <strong class="jxr_keyword">boolean</strong> showResources = getContainerWrapper().getResourceResolver().supportsPrivateResources();
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>      <strong class="jxr_keyword">boolean</strong> showResources = containerWrapper.getResourceResolver().supportsPrivateResources();
 <a class="jxr_linenumber" name="L60" href="#L60">60</a>      <strong class="jxr_keyword">for</strong> (Context appContext : apps) {
 <a class="jxr_linenumber" name="L61" href="#L61">61</a>        <em class="jxr_comment">// check if this is not the ROOT webapp</em>
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>        <strong class="jxr_keyword">if</strong> (appContext.getName() != <strong class="jxr_keyword">null</strong>) {
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>          applications.add(ApplicationUtils.getApplication(appContext,
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>              getContainerWrapper().getResourceResolver(), calcSize, getContainerWrapper()));
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>              containerWrapper.getResourceResolver(), calcSize, containerWrapper));
 <a class="jxr_linenumber" name="L65" href="#L65">65</a>        }
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>      }
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>      <strong class="jxr_keyword">if</strong> (!applications.isEmpty() &amp;&amp; !showResources) {

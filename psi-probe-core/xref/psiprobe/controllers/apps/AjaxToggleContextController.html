@@ -61,12 +61,12 @@
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>          String name = auth.getName();
 <a class="jxr_linenumber" name="L54" href="#L54">54</a>          <strong class="jxr_keyword">if</strong> (context.getState().isAvailable()) {
 <a class="jxr_linenumber" name="L55" href="#L55">55</a>            logger.info(<span class="jxr_string">"{} requested STOP of {}"</span>, request.getRemoteAddr(), contextName);
-<a class="jxr_linenumber" name="L56" href="#L56">56</a>            getContainerWrapper().getTomcatContainer().stop(contextName);
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>            containerWrapper.getTomcatContainer().stop(contextName);
 <a class="jxr_linenumber" name="L57" href="#L57">57</a>            logger.info(getMessageSourceAccessor().getMessage(<span class="jxr_string">"probe.src.log.stop"</span>), name,
 <a class="jxr_linenumber" name="L58" href="#L58">58</a>                contextName);
 <a class="jxr_linenumber" name="L59" href="#L59">59</a>          } <strong class="jxr_keyword">else</strong> {
 <a class="jxr_linenumber" name="L60" href="#L60">60</a>            logger.info(<span class="jxr_string">"{} requested START of {}"</span>, request.getRemoteAddr(), contextName);
-<a class="jxr_linenumber" name="L61" href="#L61">61</a>            getContainerWrapper().getTomcatContainer().start(contextName);
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>            containerWrapper.getTomcatContainer().start(contextName);
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>            logger.info(getMessageSourceAccessor().getMessage(<span class="jxr_string">"probe.src.log.start"</span>), name,
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>                contextName);
 <a class="jxr_linenumber" name="L64" href="#L64">64</a>          }
@@ -75,7 +75,7 @@
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>        }
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>      }
 <a class="jxr_linenumber" name="L69" href="#L69">69</a>      <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> ModelAndView(getViewName(), <span class="jxr_string">"available"</span>,
-<a class="jxr_linenumber" name="L70" href="#L70">70</a>          context != <strong class="jxr_keyword">null</strong> &amp;&amp; getContainerWrapper().getTomcatContainer().getAvailable(context));
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>          context != <strong class="jxr_keyword">null</strong> &amp;&amp; containerWrapper.getTomcatContainer().getAvailable(context));
 <a class="jxr_linenumber" name="L71" href="#L71">71</a>    }
 <a class="jxr_linenumber" name="L72" href="#L72">72</a>  
 <a class="jxr_linenumber" name="L73" href="#L73">73</a>    @Value(<span class="jxr_string">"ajax/context_status"</span>)
