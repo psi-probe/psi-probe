@@ -187,7 +187,7 @@
         <logging.version>1.4.0</logging.version>
         <mail.version>2.0.5</mail.version>
         <mchange.version>0.6.1</mchange.version>
-        <mockito.version>5.23.0</mockito.version>
+        <mockito.version>5.24.0</mockito.version>
         <ojdbc.version>19.32.0.0</ojdbc.version>
         <oshi.version>7.6.1</oshi.version>
         <quartz.version>2.5.2</quartz.version>
