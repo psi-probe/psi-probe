@@ -158,7 +158,7 @@
         <assertj.version>3.27.7</assertj.version>
         <beanutils.version>2.0.0-M2</beanutils.version>
         <byte-buddy.version>1.18.14</byte-buddy.version>
-        <caffeine.version>3.2.4</caffeine.version>
+        <caffeine.version>3.3.0</caffeine.version>
         <c3p0.version>0.14.2</c3p0.version>
         <checker.version>4.2.3</checker.version>
         <collections.version>4.6.0</collections.version>
