@@ -199,7 +199,7 @@
         <spring-security.version>7.1.2</spring-security.version>
         <text.version>1.15.0</text.version>
         <tomcat.version>10.1.61</tomcat.version>
-        <tomee.version>10.2.0</tomee.version>
+        <tomee.version>10.3.0</tomee.version>
         <transaction-api.version>2.0.1</transaction-api.version>
         <ucp.version>21.24.0.0</ucp.version>
         <wrapper.version>3.2.3</wrapper.version>
