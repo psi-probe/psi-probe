@@ -246,7 +246,7 @@
         <spotbugs.plugin>4.10.5.0</spotbugs.plugin>
         <spotless.plugin>3.11.0</spotless.plugin>
         <surefire.plugin>3.6.1</surefire.plugin>
-        <versions.plugin>2.25.1</versions.plugin>
+        <versions.plugin>2.25.2</versions.plugin>
         <war.plugin>3.5.1</war.plugin>
         <whitespace.plugin>1.7.0</whitespace.plugin>
 
