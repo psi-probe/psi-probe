@@ -12,6 +12,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" session="false" %>
 <%@ taglib uri="jakarta.tags.core" prefix="c" %>
+<%@ taglib uri="jakarta.tags.fmt" prefix="fmt" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 <!DOCTYPE html>
@@ -36,12 +37,15 @@
 
         <c:if test="${success}">
             <div id="successMessage">
+                <jsp:useBean id="deploymentTimestamp" class="java.util.Date" />
                 <c:set var="successLink">
                     <a href="<c:url value='/appsummary.htm'><c:param name='webapp' value='${contextName}'/></c:url>">
                         ${contextName}
                     </a>
                 </c:set>
                 <spring:message code="probe.jsp.deployment.war.success" arguments="${successLink}" />
+                (<fmt:formatDate value="${deploymentTimestamp}" type="both" dateStyle="medium"
+                    timeStyle="medium" />)
                 <c:if test="${compileSuccess}">
                     <a href="<c:url value='/app/jsp.htm'><c:param name='webapp' value='${contextName}'/></c:url>">
                         <spring:message code="probe.jsp.deployment.compilationDetails"/>
